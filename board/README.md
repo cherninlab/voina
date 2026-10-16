@@ -22,7 +22,7 @@ New sessions should prefer a private worktree: `worktree --agent NAME` creates `
 
 ## Watching as a human
 
-`python3 scripts/board_web.py`, then open http://localhost:8777: a read-only page, live from origin/main, with the status bar, who is working on what, pushes per agent in the last hour, every task's latest log line and the playtest pin. It refreshes every 10 s and never commits.
+`python3 scripts/board_web.py`, then open http://localhost:8777: a read-only page, live from origin/main: each agent with a stable colour, its claimed task, latest log line and pushes this hour; then unclaimed tasks, a folded done list and the playtest pin. Click a row for its scope and recent log. It refreshes every 10 s, keeps expanded rows open, and never commits.
 
 ## Staying synced
 
