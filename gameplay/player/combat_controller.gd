@@ -39,6 +39,7 @@ var action_ranged: bool = false
 var struck: Dictionary[int, bool] = {}
 # Match flow freezes combat during countdowns: no actions start and hits are ignored.
 var frozen: bool = false
+var locked: bool = false  # match countdown: movement held in place, camera look stays free
 
 func _ready() -> void:
 	set_multiplayer_authority(1)

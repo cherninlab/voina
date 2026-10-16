@@ -61,8 +61,19 @@ func run() -> void:
 	flow.step(0.1)
 	check(flow.state == MatchFlow.State.COUNTDOWN and combat(guest).frozen, "A second player starts a frozen countdown")
 	check(combat(guest).take_hit(25, false, false, combat(host)) == CombatController.HitResult.EVADE and not combat(host).begin_attack(false), "Countdown blocks damage and attacks")
+	check(combat(host).locked and combat(guest).locked, "The countdown locks movement")
+	Input.action_press(&"move_forward")
+	check(host.call(&"movement_direction") == Vector3.ZERO, "A locked owner ignores movement input")
+	var spawn: Vector3 = guest.get("spawn_position")
+	place(guest, spawn + Vector3(3, 0, 0))
+	for frame: int in 30:
+		await get_tree().physics_frame
+	var held: Vector3 = guest.get("sync_position")
+	check(Vector2(held.x - spawn.x, held.z - spawn.z).length() < 0.8, "The host snaps a drifting locked player back to its spawn point")
 	flow.step(MatchFlow.COUNTDOWN_SECONDS + 0.1)
-	check(flow.state == MatchFlow.State.ROUND and not combat(host).frozen, "The round starts after the countdown")
+	check(flow.state == MatchFlow.State.ROUND and not combat(host).frozen and not combat(host).locked, "The round starts after the countdown and unlocks movement")
+	check(host.call(&"movement_direction") != Vector3.ZERO, "Movement input works again once the round starts")
+	Input.action_release(&"move_forward")
 
 	kill(guest, host)
 	check(flow.state == MatchFlow.State.ROUND_OVER and flow.scores.get(1, 0) == 1 and combat(guest).health == CombatController.MAX_HEALTH, "A kill wins the round and the victim respawns")
@@ -135,5 +146,5 @@ func run() -> void:
 	check(flow.scores.get(2, 0) == 1, "Actual fighter identity still credits a three-player kill")
 	if failed:
 		return
-	print("MATCH_OK: waiting, frozen countdown, kill rounds, sudden-death ring burn and closed-ring healthiest/draw, first to three, result freeze, rematch, leaver")
+	print("MATCH_OK: waiting, frozen and movement-locked countdown, kill rounds, sudden-death ring burn and closed-ring healthiest/draw, first to three, result freeze, rematch, leaver")
 	get_tree().quit()

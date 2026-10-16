@@ -32,6 +32,7 @@ var flash_color: Color = Color.WHITE
 var accepted_position: Vector3 = Vector3.ZERO
 var stagger_anchor: Vector3 = Vector3.ZERO
 var stagger_anchored: bool = false
+var locked_for: float = 0.0
 var last_motion_check: float = 0.0
 var history: HitResolver.PositionHistory = HitResolver.PositionHistory.new()
 var remote_motion: RemoteMotion = RemoteMotion.new()
@@ -39,6 +40,7 @@ var corrections_sent: int = 0
 
 # Knockback slide plus slack; walking during the owner's latency is added per peer.
 const STAGGER_DRIFT: float = 2.0
+const LOCK_SLACK: float = 0.75
 
 func _ready() -> void:
 	spawn_position = position
@@ -77,7 +79,7 @@ func _ready() -> void:
 	combat.attack_active.connect(resolve_attack)
 	combat.respawn_requested.connect(respawn)
 	add_child(combat)
-	add_sync("CombatSync", 1, [^"Combat:health", ^"Combat:stamina", ^"Combat:poise", ^"Combat:blocking", ^"Combat:phase"])
+	add_sync("CombatSync", 1, [^"Combat:health", ^"Combat:stamina", ^"Combat:poise", ^"Combat:blocking", ^"Combat:phase", ^"Combat:locked"])
 	var aim_shape: SphereShape3D = SphereShape3D.new()
 	aim_shape.radius = 0.35
 	aim_cast.shape = aim_shape
@@ -159,6 +161,8 @@ func _notification(what: int) -> void:
 		release_input()
 
 func movement_direction() -> Vector3:
+	if combat.locked:
+		return Vector3.ZERO
 	var input: Vector2 = Input.get_vector(&"move_left", &"move_right", &"move_forward", &"move_back")
 	return Vector3(input.x, 0, input.y).rotated(Vector3.UP, yaw)
 
@@ -169,7 +173,7 @@ func can_predict_action(cost: float) -> bool:
 
 func dash() -> void:
 	drag_gesture.cancel()
-	if not can_predict_action(CombatController.DASH_COST):
+	if combat.locked or not can_predict_action(CombatController.DASH_COST):
 		return
 	var direction: Vector3 = movement_direction()
 	if direction.is_zero_approx():
@@ -274,13 +278,13 @@ func _physics_process(delta: float) -> void:
 			velocity.z = dash_direction.z * 16.0
 		else:
 			var speed: float = 3.0 if combat.blocking or swing_time >= 0.0 else 6.5
-			var pull: Vector3 = body.motion.pull_velocity if not staggered else Vector3.ZERO
+			var pull: Vector3 = body.motion.pull_velocity if not (staggered or combat.locked) else Vector3.ZERO
 			velocity.x = move_toward(velocity.x, direction.x * speed + pull.x, delta * 24.0)
 			velocity.z = move_toward(velocity.z, direction.z * speed + pull.z, delta * 24.0)
 		dash_left = maxf(0, dash_left - delta)
 		if not is_on_floor():
 			velocity.y -= 20 * delta
-		elif Input.mouse_mode == Input.MOUSE_MODE_CAPTURED and Input.is_action_just_pressed(&"jump") and combat.phase != CombatController.Phase.STAGGERED:
+		elif Input.mouse_mode == Input.MOUSE_MODE_CAPTURED and Input.is_action_just_pressed(&"jump") and combat.phase != CombatController.Phase.STAGGERED and not combat.locked:
 			velocity.y = 5.5
 		move_and_slide()
 		if position.y < -10:
@@ -294,6 +298,7 @@ func _physics_process(delta: float) -> void:
 		if multiplayer.is_server():
 			validate_motion()
 			enforce_stagger()
+			enforce_lock(delta)
 		# Host-side corrections write sync_position directly, without a snapshot signal.
 		if sync_position != remote_motion.snapshot_position:
 			remote_motion.receive(sync_position, sync_velocity, HitResolver.now(), position)
@@ -482,6 +487,20 @@ func interrupt() -> void:
 	swing_time = -1.0
 	dash_pending = false
 	swing_pending = false
+
+# Host: a player locked for the countdown stays at its spawn point; drift past the slack snaps back.
+# The first round trip is exempt: snapshots sent before the client saw its respawn are still arriving.
+func enforce_lock(delta: float) -> void:
+	locked_for = locked_for + delta if combat.locked else 0.0
+	var offset: Vector3 = sync_position - spawn_position
+	offset.y = 0.0
+	if locked_for <= NetworkManager.one_way_seconds(get_multiplayer_authority()) * 2.0 + 0.2 or offset.length() <= LOCK_SLACK:
+		return
+	var anchored: Vector3 = Vector3(spawn_position.x, sync_position.y, spawn_position.z)
+	accepted_position = anchored
+	sync_position = anchored
+	corrections_sent += 1
+	correct_position.rpc(anchored, Vector3.ZERO)
 
 @rpc("any_peer", "call_local", "reliable")
 func correct_position(location: Vector3, impulse: Vector3) -> void:

@@ -116,6 +116,7 @@ func enter(next: int, seconds: float, message: String) -> void:
 	scores_text = JSON.stringify(scores)
 	for body: CharacterBody3D in fighters():
 		combat_of(body).frozen = next in [State.COUNTDOWN, State.ROUND_OVER, State.MATCH_OVER]
+		combat_of(body).locked = next == State.COUNTDOWN
 
 # Everyone restarts the round at full health from their spawn point.
 func begin_round() -> void:
