@@ -8,7 +8,7 @@ Both user-supplied packs are integrated. Run `git lfs pull` before opening the p
 
 Nine clips are retargeted to **each** male/female base character in `male.res` and `female.res`:
 
-| Game state | Clip |
+| Resource purpose | Retargeted clip |
 | --- | --- |
 | Idle | Idle |
 | Movement | Jog_Fwd |
@@ -20,9 +20,9 @@ Nine clips are retargeted to **each** male/female base character in `male.res` a
 | Stagger | Hit_Chest |
 | Available for tuning | Walk |
 
-Godot strips the source `_Loop` suffix on import; these are the actual imported names. CharacterVisual drives one AnimationPlayer with short crossfades. Attack animation playback is triggered by the existing host-approved effect RPC; replicated phase/state chooses stagger, block and dash. Damage timing, stamina, physics, player ownership and hit detection remain in the gameplay controller.
+Godot strips the source `_Loop` suffix on import; these are the actual imported names. This table describes the available library, rather than the current player's animation selection. `CharacterVisual` samples idle once and pauses its AnimationPlayer; the active player runtime uses procedural heavy-sword and body/hand/foot IK. See [longsword behavior](longsword.md) and [character usage](characters.md). Hostile raiders use their separate `gameplay/mobs/mob_visual.gd` AnimationPlayer for idle, jogging, punching and hit reaction.
 
-These are **full-body** clips. Upper-body layering, backward/strafe-specific motion, weapons/viewmodels, pitch aiming, exact frame-to-contact alignment and polished dash/guard animations remain work to do. Block reuses a sword-ready clip and dash reuses sprint; those clips are not authored block/dodge animations. Remote airborne state currently uses replicated vertical velocity. Two-Mac latency and human motion review remain manual acceptance gates.
+These are **full-body** clips. Sword_Idle and Sprint are temporary resource mappings, not authored block/dodge clips. Adding upper-body clip layers or directional animation must be coordinated with the current procedural pose system before replacing it. Damage timing, stamina, physics, player ownership and hit detection stay in the gameplay controllers. Two-Mac latency and human motion review remain manual acceptance gates.
 
 ### Rebuild or extend the clips
 
@@ -33,7 +33,7 @@ The skeleton names match, but their rest poses/proportions differ. The build scr
 "$GODOT" --headless --path . --script scripts/build_character_animations.gd
 ```
 
-To use another source clip, add its imported name to `CLIPS` in that script (and to `LOOPS` if appropriate), rebuild both libraries, then map it in `gameplay/player/character_visual.gd`. The full original source library stays available for inspection. Do not let cosmetic clip selection decide damage or network authority.
+To retarget another source clip, add its imported name to `CLIPS` in that script (and to `LOOPS` if appropriate), then rebuild both libraries. To play it, use an AnimationPlayer targeting the corresponding model hierarchy, as the raider visual does; the player procedural controller will otherwise overwrite the pose. The full original source library stays available for inspection. Do not let cosmetic clip selection decide damage or network authority.
 
 ## Free 3D Modular Game Assets For Prototyping — Rgsdev
 
