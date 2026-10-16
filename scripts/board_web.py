@@ -178,12 +178,21 @@ def agents_section(all_tasks: List[Task]) -> str:
     return f"<section><h2>Agents <span class='n'>{len(names)}</span></h2><ul class='list'>{body}</ul></section>"
 
 
-def tasks_section(title: str, items: List[Task], folded: bool = False) -> str:
+def hints(meta: Dict[str, str], finished: set) -> List[str]:
+    """Why an unclaimed task cannot be taken yet, mirroring board.py claim rules."""
+    if meta.get("status") != "open":
+        return []
+    found = ["for humans"] if meta.get("owner", "").startswith("human:") or meta.get("title", "").startswith("Human:") else []
+    waiting = [d.strip() for d in meta.get("depends", "").split(",") if d.strip() and d.strip() not in finished]
+    return found + (["waits for " + ", ".join(waiting)] if waiting else [])
+
+
+def tasks_section(title: str, items: List[Task], finished: set, folded: bool = False) -> str:
     if not items:
         return ""
     rows = "".join(
         f"<li><details><summary class='row plain'><span class='id'>{html.escape(m.get('id', ''))}</span>"
-        f"<span class='title'>{html.escape(m.get('title', ''))}</span>"
+        f"<span class='title'>{html.escape(m.get('title', ''))}{''.join(f'<span class=hint>{html.escape(h)}</span>' for h in hints(m, finished))}</span>"
         f"<span class='side'>{who(m['owner']) if m.get('owner') else html.escape(ago(stamp(m.get('updated', ''))))}</span>"
         f"</summary>{details(m, log)}</details></li>" for m, log in items)
     head = f"{title} <span class='n'>{len(items)}</span>"
@@ -198,6 +207,7 @@ def page() -> str:
     all_tasks = tasks()
     assign_hues(all_tasks)
     unclaimed = [t for t in all_tasks if t[0].get("status") == "open"]
+    finished = {m.get("id", "") for m, _ in all_tasks if m.get("status") == "done"}
     done = sorted((t for t in all_tasks if t[0].get("status") == "done"), key=lambda t: t[0].get("updated", ""), reverse=True)
     pin_text = git("show", f"{REF}:board/playtest.json")
     pin = json.loads(pin_text) if pin_text.strip() else None
@@ -236,7 +246,7 @@ summary.row:hover{{background:var(--hover)}}
 .side{{color:var(--faint);font-size:12px;text-align:right;white-space:nowrap;line-height:1.7}} .side .m{{display:block}}
 .idle{{opacity:.55}}
 .flag{{font-size:11px;font-weight:600;color:var(--accent);margin-left:10px;text-transform:uppercase;letter-spacing:.06em}}
-.compact .title{{font-size:14px}} .compact .side .who{{font-weight:500;font-size:13px}}
+.compact .title{{font-size:14px}} .hint{{font-size:12px;color:var(--faint);margin-left:10px;white-space:nowrap}} .compact .side .who{{font-weight:500;font-size:13px}}
 .more{{padding:0 10px 22px 184px;font-size:13px}} .compact .more{{padding-left:86px}}
 .k{{font-size:11px;text-transform:uppercase;letter-spacing:.08em;color:var(--faint);margin:12px 0 4px}}
 .pin .k{{margin:0}} .more .k:first-child{{margin-top:0}}
@@ -251,8 +261,8 @@ summary.row:hover{{background:var(--hover)}}
 </style></head><body><main id="board">
 <header><h1>Voina board</h1><div class="meta">main <code>{html.escape(head_hash)}</code> · {html.escape(head_subject)}</div>{pin_line}</header>
 {agents_section(all_tasks)}
-{tasks_section("Unclaimed", unclaimed)}
-{tasks_section("Done", done, folded=True)}
+{tasks_section("Unclaimed", unclaimed, finished)}
+{tasks_section("Done", done, finished, folded=True)}
 </main><script>
 // Swap in fresh content every 10 s, keeping whichever rows and folds are expanded.
 const key = d => d.id || d.querySelector(".id")?.textContent;

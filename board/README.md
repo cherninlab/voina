@@ -8,11 +8,11 @@ All commands are `python3 scripts/board.py <command>`; mutating commands need `-
 
 1. Pick a name once per session, `<person>-<tool>-<n>`: `theo-claude-2`, `alex-codex-1`. Reuse it for every command.
 2. `list -v` syncs and prints tasks with their scopes.
-3. `claim T-004 --agent NAME` **before** touching code. "Already claimed" means pick another. Work that is not on the board: `new "title" --scope paths --agent NAME`, then claim it.
+3. `claim T-004 --agent NAME` **before** touching code. A refused claim means pick another task: it is owned, waits for an unfinished `depends` task, or is reserved for a human. Work that is not on the board: `new "title" --scope paths --agent NAME` (add `--depends T-003,T-007` if it must wait), then claim it.
 4. Edit only files inside your task's `scope`. Need a file in another task's scope? `note` that task and wait for its owner, or ask the human.
 5. Ship small working increments: run the AGENTS.md checks, then `ship --agent NAME -m "feat: ..." path/a.gd path/a.gd.uid`. It commits only those paths, merges `origin/main` safely and pushes.
-6. `sync` before each new step. `note T-004 "progress" --agent NAME` at least every couple of hours: claims idle for 3 h show STALE and may be taken with `claim --steal` (logged in the task).
-7. Finish with `done T-004 "summary"`, or `release` / `block T-004 "reason"`.
+6. `sync` before each new step. `note T-004 "progress" --agent NAME` at least every couple of hours. Only the owner's own commands keep a claim fresh; notes from others do not. A claim idle for 3 h shows STALE and only then may be taken with `claim --steal` (logged in the task). Fresh claims cannot be stolen.
+7. Finish with `done T-004 "summary"`, or `release` / `block T-004 "reason"`. Only the owner can finish, release or block a task; a blocked task stays with its owner.
 
 ## Shared-checkout rules
 
@@ -22,7 +22,7 @@ New sessions should prefer a private worktree: `worktree --agent NAME` creates `
 
 ## Watching as a human
 
-`python3 scripts/board_web.py`, then open http://localhost:8777: a read-only page, live from origin/main: each agent with a stable colour, its claimed task, latest log line and pushes this hour; then unclaimed tasks, a folded done list and the playtest pin. Click a row for its scope and recent log. It refreshes every 10 s, keeps expanded rows open, and never commits.
+`python3 scripts/board_web.py`, then open http://localhost:8777: a read-only page, live from origin/main: each agent with a stable colour, its claimed task, latest log line and pushes this hour; then unclaimed tasks, a folded done list and the playtest pin. Click a row for its scope and recent log. Unclaimed tasks say when they are for humans or wait for another task. It refreshes every 10 s, keeps expanded rows open, and never commits.
 
 ## Staying synced
 
@@ -32,4 +32,4 @@ Every successful push also sends a UDP "main moved" poke (port 47777) to localho
 
 ## Task files
 
-`board/tasks/T-NNN.md`: front matter (`status` is open, claimed, blocked or done; `scope` lists the paths the task may touch; `depends` lists task ids), then Goal, Done when and Log. Change status and owner only through the script; improve Goal and notes with a normal `ship`. Tasks owned by `human:<name>` are for people, not agents.
+`board/tasks/T-NNN.md`: front matter (`status` is open, claimed, blocked or done; `scope` lists the paths the task may touch; `depends` lists task ids), then Goal, Done when and Log. Change status and owner only through the script; improve Goal and notes with a normal `ship`. Tasks owned by `human:<name>`, or titled `Human: ...`, are for people: agents cannot claim them, and a person claims with `--agent human:theo`.
