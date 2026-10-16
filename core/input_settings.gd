@@ -3,7 +3,7 @@ extends Node
 const DEFAULTS: Dictionary[StringName, int] = {
 	&"move_forward": KEY_W, &"move_back": KEY_S, &"move_left": KEY_A, &"move_right": KEY_D,
 	&"melee": KEY_F, &"beam": KEY_E, &"block": KEY_SHIFT, &"dash": KEY_SPACE,
-	&"jump": KEY_C, &"camera_toggle": KEY_V, &"quick_turn": KEY_R,
+	&"jump": KEY_C, &"camera_toggle": KEY_V, &"quick_turn": KEY_R, &"bolt": KEY_Q,
 }
 var keys: Dictionary[StringName, int] = DEFAULTS.duplicate()
 var sensitivity: float = 0.0024

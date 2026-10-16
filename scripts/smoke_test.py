@@ -39,6 +39,12 @@ print(cars.stdout, end='')
 print(cars.stderr, end='')
 assert cars.returncode == 0 and 'CAR_OK:' in cars.stdout
 assert 'ERROR' not in cars.stdout + cars.stderr
+# --fixed-fps steps physics at 1/60 s per frame without waiting for wall-clock time.
+projectiles = subprocess.run(base + ['--fixed-fps', '60', 'res://tests/projectile_test.tscn'], capture_output=True, text=True, timeout=60)
+print(projectiles.stdout, end='')
+print(projectiles.stderr, end='')
+assert projectiles.returncode == 0 and 'PROJECTILE_OK:' in projectiles.stdout
+assert 'ERROR' not in projectiles.stdout + projectiles.stderr
 with tempfile.TemporaryDirectory() as directory:
     log_path = pathlib.Path(directory) / 'host.log'
     with log_path.open('w') as log:
@@ -63,4 +69,28 @@ with tempfile.TemporaryDirectory() as directory:
         finally:
             host.terminate()
             host.wait(timeout=5)
+
+def run_projectile_pair() -> None:
+    """A second client fires bolts at the host player over real ENet."""
+    with socket.socket(socket.AF_INET, socket.SOCK_DGRAM) as probe:
+        probe.bind(('127.0.0.1', 0))
+        bolt_port = probe.getsockname()[1]
+    with tempfile.TemporaryDirectory() as directory:
+        log_path = pathlib.Path(directory) / 'host.log'
+        with log_path.open('w') as log:
+            host = subprocess.Popen(base + ['--', '--host', f'--port={bolt_port}'], stdout=log, stderr=subprocess.STDOUT)
+            try:
+                time.sleep(1)
+                result = subprocess.run(base + ['--', '--join=127.0.0.1', f'--port={bolt_port}', '--projectile-smoke'], capture_output=True, text=True, timeout=25)
+                time.sleep(0.5)
+                output = result.stdout + result.stderr + log_path.read_text()
+                print(output, end='')
+                assert result.returncode == 0 and 'PROJECTILE_SMOKE_OK:' in result.stdout
+                assert 'SCRIPT ERROR' not in output and 'ERROR:' not in output
+            finally:
+                host.terminate()
+                host.wait(timeout=5)
+
+
+run_projectile_pair()
 print('PASS: local two-process ENet integration and disconnect cleanup')

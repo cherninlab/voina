@@ -15,6 +15,8 @@ const MELEE_ACTIVE: float = 0.12
 const MELEE_RECOVERY: float = 0.25
 const DASH_DURATION: float = 0.25
 const I_FRAME_DURATION: float = 0.15
+# Front guard covers about 70 degrees to each side of the defender's facing.
+const GUARD_DOT: float = 0.34
 
 enum Phase { IDLE, WINDUP, ACTIVE, RECOVERY, STAGGERED, DASHING }
 enum HitResult { HIT, BLOCK, PARRY, EVADE }
@@ -83,6 +85,29 @@ func begin_attack(ranged: bool, head_start: float = 0.0) -> bool:
 		attack_active.emit(true)
 	return true
 
+# A projectile release: the same gate and shared cooldown as the beam, without a hitscan.
+# The projectile system resolves the hit later, when the bolt arrives.
+func begin_shot(cost: float, cooldown: float) -> bool:
+	if not multiplayer.is_server() or phase != Phase.IDLE or blocking or clock < next_attack or not spend(cost):
+		return false
+	next_attack = clock + cooldown
+	action_ranged = true
+	phase = Phase.ACTIVE
+	phase_until = clock + 0.05
+	return true
+
+func evades_ranged() -> bool:
+	return clock < invulnerable_until
+
+# parry_grace pads the window by the defender's one-way latency, since their block input reached the host late.
+func parries(facing_attacker: bool, parry_grace: float = 0.0) -> bool:
+	return blocking and facing_attacker and clock - block_started <= PARRY_WINDOW + clampf(parry_grace, 0.0, MAX_PARRY_GRACE)
+
+static func guards(yaw: float, incoming_direction: Vector3) -> bool:
+	var against: Vector3 = -incoming_direction
+	against.y = 0.0
+	return Vector3.FORWARD.rotated(Vector3.UP, yaw).dot(against.normalized()) >= GUARD_DOT
+
 func set_block(wants_block: bool) -> bool:
 	if not multiplayer.is_server():
 		return false
@@ -119,14 +144,13 @@ func stagger(duration: float = 0.8) -> void:
 	phase_until = clock + duration
 	invulnerable_until = 0.0
 
-# parry_grace pads the window by the defender's one-way latency, since their block input reached the host late.
 func take_hit(damage: int, ranged: bool, facing_attacker: bool, attacker: CombatController = null, parry_grace: float = 0.0) -> int:
 	if not multiplayer.is_server():
 		return HitResult.EVADE
-	if ranged and clock < invulnerable_until:
+	if ranged and evades_ranged():
 		return HitResult.EVADE
 	if blocking and facing_attacker:
-		if not ranged and clock - block_started <= PARRY_WINDOW + clampf(parry_grace, 0.0, MAX_PARRY_GRACE):
+		if not ranged and parries(true, parry_grace):
 			if attacker != null:
 				attacker.stagger()
 			return HitResult.PARRY

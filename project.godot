@@ -8,6 +8,7 @@ config/features=PackedStringArray("4.7", "Mobile")
 [autoload]
 InputSettings="*res://core/input_settings.gd"
 NetworkManager="*res://core/network_manager.gd"
+Projectiles="*res://gameplay/projectile/projectile_system.gd"
 
 [display]
 window/size/viewport_width=1152
