@@ -1,6 +1,6 @@
 {
-  "commit": "df756787710ab36c65e4b20c990d33c0516f654f",
-  "by": "theo-claude-1",
-  "at": "2026-10-16T21:08Z",
-  "note": "full main: match flow, PvE raiders, birds, cars, trees, anchored sword WIP, bolts, 60 Hz netcode; import + smoke + mob + wildlife tests pass"
+  "commit": "51b1a371fa31dc022c4286c26ea43d4ca3bdae89",
+  "by": "mike-claude-1",
+  "at": "2026-10-16T21:09Z",
+  "note": "tip of main: centrifugal sword physics, Sword tweaks panel, test beam off"
 }
