@@ -28,6 +28,8 @@ var route: PackedVector3Array = PackedVector3Array()
 var did_strike: bool = false
 var corpse_left: float = 1.3
 var visual: Node3D = preload("res://gameplay/mobs/mob_visual.gd").new()
+var kick_velocity: Vector3 = Vector3.ZERO # host-side shove from a blade contact, decays
+var hop: float = 0.0
 var collision: CollisionShape3D = CollisionShape3D.new()
 
 func _ready() -> void:
@@ -66,6 +68,9 @@ func _physics_process(delta: float) -> void:
 	velocity.x = 0.0
 	velocity.z = 0.0
 	velocity.y = 0.0 if is_on_floor() else velocity.y - 20.0 * delta
+	if hop > 0.0:
+		velocity.y = hop
+		hop = 0.0
 	if combat.phase == CombatController.Phase.STAGGERED:
 		state = State.IDLE
 	elif system != null and system.started:
@@ -75,6 +80,9 @@ func _physics_process(delta: float) -> void:
 			sense()
 			sense_left = 0.2
 		choose_action(delta)
+	kick_velocity = kick_velocity.lerp(Vector3.ZERO, 1.0 - exp(-5.0 * delta))
+	velocity.x += kick_velocity.x
+	velocity.z += kick_velocity.z
 	move_and_slide()
 	sync_position = global_position
 	history.record(HitResolver.now(), sync_position)
@@ -158,6 +166,38 @@ func receive_hit(damage: int, direction: Vector3, ranged: bool = false, attacker
 	var result: int = combat.take_hit(damage, ranged, CombatController.guards(yaw, direction), attacker_combat)
 	if attacker != null:
 		attacker.rpc("hit_feedback", result, true)
+
+# A player's simulated blade touched this raider on the host. Speed sets the shove; a fast
+# damaging contact bisects. Damage reuses the shared combat rules through receive_hit.
+func blade_hit(attacker: CharacterBody3D, point: Vector3, direction: Vector3, speed: float, cut: bool, damage: int, blade_direction: Vector3) -> void:
+	if not multiplayer.is_server() or state == State.DEAD:
+		return
+	var flat: Vector3 = Vector3(direction.x, 0.0, direction.z)
+	if flat.length_squared() < 0.0001:
+		flat = global_position - attacker.global_position
+		flat.y = 0.0
+	flat = flat.normalized() if flat.length_squared() > 0.0001 else Vector3.FORWARD
+	if cut:
+		var normal: Vector3 = blade_direction.cross(direction).normalized()
+		if normal.length_squared() < 0.5:
+			normal = Vector3.UP
+		bisected.rpc(point, normal, flat * minf(speed, 20.0) * 0.35 + Vector3.UP * 2.0)
+		receive_hit(999, direction, false, attacker)
+		return
+	var shove: float = clampf(speed * 0.6, 1.5, 7.0)
+	kick_velocity += flat * shove
+	hop = 2.0 if speed > 6.0 else 1.0
+	kicked.rpc(flat * shove)
+	if damage > 0:
+		receive_hit(damage, direction, false, attacker)
+
+@rpc("authority", "call_local", "reliable")
+func kicked(impulse: Vector3) -> void:
+	visual.call("react", impulse)
+
+@rpc("authority", "call_local", "reliable")
+func bisected(point: Vector3, normal: Vector3, impulse: Vector3) -> void:
+	visual.call("bisect", point, normal, impulse)
 
 func die() -> void:
 	state = State.DEAD

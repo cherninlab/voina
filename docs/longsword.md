@@ -18,6 +18,10 @@ Imported clips remain available for asset inspection, but runtime locomotion and
 
 The owner predicts locally. Host-approved attack direction provides the initial impulse; ongoing yaw, pitch and held intent travel with owner movement synchronization so peers reconstruct the motion. Held intent is cosmetic and cannot authorize damage. Ownership, finite direction validation, stamina, cooldown, phases, hit resolution and the existing rewind logic remain with the host.
 
+## Raiders
+
+The host sweeps each player's simulated blade against hostile raiders every physics tick while a swing is approved (`gameplay/player/blade_contact.gd`). The blade point that touches moves with the tip scaled by its position along the blade; above 3 m/s it shoves the raider along that direction with a hop and a lean, deals the swing's damage once per target, and above 10 m/s it bisects the raider: the mob dies and two rigid halves, clipped by a plane through the contact that contains the blade and its travel, tumble away with exposed flesh. This is host-only and cosmetic between players; see [mobs](mobs.md).
+
 ## Tuning
 
 Release the cursor with Esc and open **Sword tweaks** (below the Controls button) for live sliders over the pendulum: hands torque and damping, body chase and turn cap, cut kick, air damping, gravity, mouse lift, floor drag and anchor friction, reach and hilt heights, anchor pull-back and swing follow-through. Values persist per machine in `user://sword_tweaks.cfg`, are cosmetic only, and **Print values** writes the current set to the console for copying into the defaults.

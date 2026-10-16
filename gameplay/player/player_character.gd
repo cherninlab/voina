@@ -36,6 +36,7 @@ var locked_for: float = 0.0
 var last_motion_check: float = 0.0
 var history: HitResolver.PositionHistory = HitResolver.PositionHistory.new()
 var remote_motion: RemoteMotion = RemoteMotion.new()
+var blade_contact: BladeContact = BladeContact.new() # host-only sword contact with raiders
 var corrections_sent: int = 0
 
 # Knockback slide plus slack; walking during the owner's latency is added per peer.
@@ -306,6 +307,9 @@ func _physics_process(delta: float) -> void:
 		velocity = sync_velocity
 		var swinging: bool = combat.phase in [CombatController.Phase.WINDUP, CombatController.Phase.ACTIVE, CombatController.Phase.RECOVERY] and body.swing_elapsed >= 0.0
 		body.drive_sword(delta, yaw, pitch, sword_held, swinging, combat.blocking, combat.phase in [CombatController.Phase.STAGGERED, CombatController.Phase.DASHING], sync_velocity)
+	if multiplayer.is_server():
+		# The host's view of this player's blade is authoritative for raiders.
+		blade_contact.sweep(self, body.motion, combat.phase in [CombatController.Phase.WINDUP, CombatController.Phase.ACTIVE, CombatController.Phase.RECOVERY], HitResolver.now())
 	body.update_feet(delta, velocity, is_on_floor() if is_multiplayer_authority() else absf(sync_velocity.y) < 0.5)
 	if multiplayer.is_server():
 		history.record(HitResolver.now(), sync_position)
