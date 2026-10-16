@@ -1,0 +1,36 @@
+# Roadmap and decisions
+
+## M1 — playable networking foundation
+
+Implemented: procedural arena/capsules, local movement, interpolated remote motion, dual cameras, host/join/dedicated CLI, host-owned health and hit tests, attack cooldown and RPC ownership, respawn and knockback. See README for verification limits.
+
+Still requires manual acceptance: two visible Mac instances, both camera modes, trackpad input, walls, melee/ranged/knockback/respawn, focus loss, late joins, a four-player session and two-Mac Tailscale play.
+
+## M2 — combat depth
+
+Add stamina, timed block/parry, dash and ranged invulnerability, poise, hitstop/camera shake, aim friction and input remapping. Resolve E's beam-vs-block mapping before implementing. Explicitly test that the host owns all combat state and rejects impossible input. Retain local movement responsiveness.
+
+## M3 — data-driven content
+
+Introduce CharacterDef, WeaponDef, AttackActionDef and ArenaDef resources when a second kit needs them. Move existing constants into resource instances; add server-spawned swept projectiles. Send IDs/primitives over the network, never Resource objects. Add a minimal content registry only as content requires it.
+
+## M4 — character art
+
+Import CC0 assets with recorded source and license. Verify each actual skeleton and animation library; do not assume packs share a rig or include every animation. Add AnimationTree locomotion/attack layers, viewmodels and compatible SkeletonModifier3D aiming. Preserve first-person shadow behavior.
+
+## M5 — settings and match flow
+
+Medieval/cyberpunk kits and arenas, kit selection, first to three round wins, countdown, 90-second timer, sudden-death ring, results and rematch. Keep server time authoritative; do not use client Engine.time_scale for match logic.
+
+## Networking beyond Tailscale
+
+Transport creation is isolated now, but internet discovery, NAT traversal, platform authentication, lobby/invite lifecycle, disconnect policy and relay semantics need their own design and tests. A transport migration cannot responsibly be promised as an 80-line one-file change. Noray and Steam integrations must be checked against their current primary docs before selection. No relay or Steam dependency is included.
+
+## Corrections and scoped departures from the brief
+
+- CLI parsing uses OS.get_cmdline_user_args() for arguments after `--`.
+- Health uses its own server-authority synchronizer; assigning player authority recursively to one combined synchronizer would let the player own health.
+- Synced movement is distinct from interpolated display position; basic host checks use elapsed-time movement envelopes. Full rollback and lag compensation are deferred.
+- No hard performance promises: FPS, thermals, input acceleration and gesture support must be measured on the target Macs.
+- M1 uses a simple host-validated melee cone plus line-of-sight, not a swept animated weapon hitbox; physical lunge and three-phase combat remain M2 work.
+- Procedural arena geometry keeps the project runnable without LFS assets. Resource definitions, empty registries and unused folders are deferred until used.

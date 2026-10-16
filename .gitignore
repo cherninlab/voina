@@ -1,0 +1,6 @@
+.godot/
+.DS_Store
+builds/
+*.log
+
+__pycache__/

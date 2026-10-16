@@ -1,0 +1,18 @@
+name: Godot checks
+on: [push, pull_request]
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Download Godot 4.7.2 Standard
+        run: |
+          curl --fail --location --retry 3 https://github.com/godotengine/godot-builds/releases/download/4.7.2-stable/Godot_v4.7.2-stable_linux.x86_64.zip -o /tmp/godot.zip
+          unzip -q /tmp/godot.zip -d /tmp/godot
+          echo "GODOT=/tmp/godot/Godot_v4.7.2-stable_linux.x86_64" >> "$GITHUB_ENV"
+      - name: Import and check scripts
+        run: |
+          "$GODOT" --headless --editor --path . --quit 2>&1 | tee /tmp/import.log
+          ! grep -E 'SCRIPT ERROR|ERROR:' /tmp/import.log
+      - name: Two-process ENet integration
+        run: python3 scripts/smoke_test.py "$GODOT"

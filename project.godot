@@ -1,0 +1,25 @@
+config_version=5
+
+[application]
+config/name="MultiPlayerProject"
+run/main_scene="res://gameplay/match_world.tscn"
+config/features=PackedStringArray("4.7", "Mobile")
+
+[autoload]
+NetworkManager="*res://core/network_manager.gd"
+
+[display]
+window/size/viewport_width=1152
+window/size/viewport_height=720
+
+[rendering]
+renderer/rendering_method="mobile"
+rendering_device/driver.macos="metal"
+scaling_3d/scale=0.75
+textures/default_filters/use_nearest_mipmap_filter=false
+
+[physics]
+3d/physics_engine="Jolt Physics"
+
+[debug]
+gdscript/warnings/untyped_declaration=2
