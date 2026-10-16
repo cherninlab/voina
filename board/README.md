@@ -20,6 +20,10 @@ Other agents' uncommitted work lives in the same working tree. Never run `git ad
 
 New sessions should prefer a private worktree: `worktree --agent NAME` creates `../MultiPlayerProject-agents/NAME` on branch `agent/NAME`. The same commands work there (it rebases privately and pushes `HEAD` to `main`). Run the Godot import once inside a new worktree.
 
+## Watching as a human
+
+`python3 scripts/board_web.py`, then open http://localhost:8777: a read-only page, live from origin/main, with the status bar, who is working on what, pushes per agent in the last hour, every task's latest log line and the playtest pin. It refreshes every 10 s and never commits.
+
 ## Staying synced
 
 Run one watcher per checkout: `watch` fetches, fast-forwards or merges when that cannot touch uncommitted edits, and pushes committed work. It never commits. If it warns that local edits overlap remote changes, the agent editing those files must ship first.
