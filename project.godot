@@ -11,6 +11,7 @@ NetworkManager="*res://core/network_manager.gd"
 BuildSync="*res://core/build_sync.gd"
 NetMonitor="*res://core/net_monitor.gd"
 Projectiles="*res://gameplay/projectile/projectile_system.gd"
+Wildlife="*res://gameplay/wildlife/wildlife.gd"
 
 [display]
 window/size/viewport_width=1152
