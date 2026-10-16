@@ -2,6 +2,8 @@ extends Node
 
 const PLAYER: PackedScene = preload("res://gameplay/player/player_character.tscn")
 var failures: int = 0
+var network_world: Node3D
+var motion_probe_received: bool = false
 
 func _ready() -> void:
 	run.call_deferred()
@@ -35,7 +37,7 @@ func run() -> void:
 	combat.set_physics_process(false)
 	var body: CharacterVisual = player.get("body") as CharacterVisual
 	if DisplayServer.get_name() != "headless":
-		# Exercise the actual input route, including cursor recapture and camera suppression.
+		# Exercise the actual input route, including cursor recapture and continuous camera look.
 		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 		var click: InputEventMouseButton = InputEventMouseButton.new()
 		click.button_index = MOUSE_BUTTON_LEFT
@@ -54,7 +56,7 @@ func run() -> void:
 		check(combat.stamina == 100.0, "Jitter does not spend stamina")
 		motion.screen_relative = Vector2(25, 0)
 		player.call("_unhandled_input", motion)
-		check(combat.stamina == 82.0 and float(player.get("yaw")) == 0.0, "Drag attacks while camera remains still")
+		check(combat.stamina == 82.0 and float(player.get("yaw")) < -0.09, "Drag attacks while camera continues turning")
 		player.call("_unhandled_input", motion)
 		check(combat.stamina == 82.0, "Further drag cannot repeat")
 		press.pressed = false
@@ -98,12 +100,13 @@ func run() -> void:
 		check_grip(visual, false, variant + " idle")
 		for direction: Vector2 in [Vector2.RIGHT, Vector2.LEFT, Vector2.UP, Vector2.DOWN, Vector2(1, 1).normalized()]:
 			visual.start_swing(direction)
-			for elapsed: float in [0.15, 0.21, 0.269]:
-				visual.swing_elapsed = elapsed
+			for frame: int in range(45):
+				visual.rotation.y = -direction.x * 0.5
+				visual.drive_sword(1.0 / 60.0, visual.rotation.y, -direction.y * 0.5, true, true, false, false)
 				visual.update_pose(0.0, Vector3.ZERO, false, false)
-				await get_tree().process_frame
-				await get_tree().process_frame
-				check_grip(visual, true, "%s cut %s at %.3f" % [variant, direction, elapsed])
+			await get_tree().process_frame
+			await get_tree().process_frame
+			check_grip(visual, true, "%s driven cut %s" % [variant, direction])
 		visual.update_pose(0.01, Vector3.ZERO, false, true)
 		check(visual.swing_elapsed < 0.0, "Stagger cancels sword presentation")
 		visual.set_first_person(true)
@@ -117,10 +120,8 @@ func run() -> void:
 	get_tree().quit(0 if failures == 0 else 1)
 
 func check_grip(visual: CharacterVisual, both: bool, label: String) -> void:
-	var right_target: Vector3 = visual.sword.to_global(Vector3(0.065, 0, 0.06))
-	var left_target: Vector3 = visual.sword.to_global(Vector3(-0.065, 0, 0.23))
-	var right_error: float = visual.ik.last_right_hand.distance_to(right_target)
-	var left_error: float = visual.ik.last_left_hand.distance_to(left_target)
+	var right_error: float = visual.ik.last_hands[0].distance_to(visual.ik.grip_frame(0).origin)
+	var left_error: float = visual.ik.last_hands[1].distance_to(visual.ik.grip_frame(1).origin)
 	check(right_error < 0.06, "%s right grip error %.3f m" % [label, right_error])
 	if both:
 		check(left_error < 0.06, "%s left grip error %.3f m" % [label, left_error])
@@ -129,6 +130,7 @@ func network_checks() -> void:
 	var scene: PackedScene = load("res://gameplay/match_world.tscn") as PackedScene
 	var world: Node3D = scene.instantiate() as Node3D
 	add_child(world)
+	network_world = world
 	await get_tree().create_timer(2.0).timeout
 	if multiplayer.is_server():
 		return
@@ -147,6 +149,14 @@ func network_checks() -> void:
 	await get_tree().create_timer(0.2).timeout
 	check(local_combat.stamina == 100.0 and host_combat.stamina == 100.0, "Forged/invalid network attacks rejected")
 	check(local_body.swing_elapsed < 0.0 and host_body.swing_elapsed < 0.0, "Forged effect cannot animate a swing")
+	var gesture: DragGesture = local.get("drag_gesture") as DragGesture
+	gesture.begin()
+	local.set("yaw", -0.6)
+	local.set("pitch", 0.25)
+	await get_tree().create_timer(0.8).timeout
+	request_motion_probe.rpc_id(1)
+	await get_tree().create_timer(0.2).timeout
+	check(motion_probe_received, "Server reconstructed held sword from movement sync")
 	local.rpc_id(1, "request_attack", false, Vector2(-1.5, 0))
 	local.rpc_id(1, "request_attack", false, Vector2.RIGHT)
 	await get_tree().create_timer(0.12).timeout
@@ -156,3 +166,21 @@ func network_checks() -> void:
 	if failures == 0:
 		print("SWORD_NETWORK_OK: ownership, finite vectors, effect authentication, direction broadcast, cooldown")
 	get_tree().quit(0 if failures == 0 else 1)
+
+@rpc("any_peer", "call_remote", "reliable")
+func request_motion_probe() -> void:
+	if not multiplayer.is_server() or network_world == null:
+		return
+	var sender: int = multiplayer.get_remote_sender_id()
+	var owner: Node = network_world.get_node_or_null("Players/" + str(sender))
+	if owner == null:
+		return
+	var visual: CharacterVisual = owner.get("body") as CharacterVisual
+	# The host reconstructs a gripped, dragging blade: both hands engaged and the tip near the floor.
+	receive_motion_probe.rpc_id(sender, bool(owner.get("sword_held")), visual.motion.raised, visual.motion.tip.y - visual.motion.ground)
+
+@rpc("any_peer", "call_remote", "reliable")
+func receive_motion_probe(held: bool, raised: float, tip_height: float) -> void:
+	if multiplayer.get_remote_sender_id() != 1:
+		return
+	motion_probe_received = held and raised > 0.99 and tip_height < 0.3

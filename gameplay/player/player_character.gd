@@ -20,7 +20,7 @@ var dash_left: float = 0.0
 var dash_pending: bool = false
 var swing_time: float = -1.0
 var swing_pending: bool = false
-var turn_budget: float = 0.0
+var sword_held: bool = false # Owner-synchronized cosmetic intent; never grants damage.
 var feedback: String = ""
 var feedback_left: float = 0.0
 var shake_left: float = 0.0
@@ -35,8 +35,6 @@ var stagger_anchored: bool = false
 var last_motion_check: float = 0.0
 var history: HitResolver.PositionHistory = HitResolver.PositionHistory.new()
 
-const LUNGE_SPEED: float = 7.0
-const SWING_TURN_RATE: float = 4.0
 # Knockback slide plus slack; walking during the owner's latency is added per peer.
 const STAGGER_DRIFT: float = 2.0
 
@@ -53,6 +51,7 @@ func _ready() -> void:
 	var visual_scene: PackedScene = MALE_VISUAL if get_multiplayer_authority() == 1 else FEMALE_VISUAL
 	body = visual_scene.instantiate() as CharacterVisual
 	add_child(body)
+	body.reset_motion(yaw)
 	pivot.position.y = 0.65
 	add_child(pivot)
 	arm.spring_length = 2.6
@@ -65,7 +64,7 @@ func _ready() -> void:
 	pivot.add_child(arm)
 	arm.add_child(camera)
 	camera.current = is_multiplayer_authority() and not NetworkManager.dedicated
-	add_sync("MovementSync", get_multiplayer_authority(), [^":sync_position", ^":sync_velocity", ^":yaw", ^":pitch"])
+	add_sync("MovementSync", get_multiplayer_authority(), [^":sync_position", ^":sync_velocity", ^":yaw", ^":pitch", ^":sword_held"])
 	combat.name = "Combat"
 	combat.set_multiplayer_authority(1)
 	combat.attack_started.connect(func(ranged: bool) -> void: attack_effect.rpc(ranged, approved_swing_direction))
@@ -129,19 +128,22 @@ func _unhandled_input(event: InputEvent) -> void:
 		dash()
 	if event is InputEventMouseMotion:
 		var motion: InputEventMouseMotion = event as InputEventMouseMotion
-		if drag_gesture.held:
-			var cut: Vector2 = drag_gesture.move(motion.screen_relative)
-			if not cut.is_zero_approx():
-				attack(false, cut)
-			get_viewport().set_input_as_handled()
+		if not motion.screen_relative.is_finite():
 			return
 		var sensitivity: float = InputSettings.sensitivity * aim_friction
-		var turn: float = motion.screen_relative.x * sensitivity
-		if swing_turn_limited():
-			turn = clampf(turn, -turn_budget, turn_budget)
-			turn_budget -= absf(turn)
-		yaw -= turn
+		yaw -= motion.screen_relative.x * sensitivity
 		pitch = clampf(pitch - motion.screen_relative.y * sensitivity, -1.39, 1.39)
+		# Camera and sword share the same look input, including after the initial attack.
+		if drag_gesture.held:
+			var cut: Vector2 = drag_gesture.move(motion.screen_relative)
+			if cut.is_zero_approx():
+				pass
+			elif body.motion.can_swing(cut):
+				attack(false, cut)
+			else:
+				# The blade rests against the body on that side; rearm so the opposite drag can swing it.
+				drag_gesture.cancel()
+				drag_gesture.begin()
 	if event is InputEventMagnifyGesture:
 		var gesture: InputEventMagnifyGesture = event as InputEventMagnifyGesture
 		if gesture.factor < 0.85:
@@ -182,9 +184,6 @@ func dash() -> void:
 	dash_left = CombatController.DASH_DURATION
 	dash_pending = true
 	request_dash.rpc_id(1, direction)
-
-func swing_turn_limited() -> bool:
-	return swing_time >= CombatController.MELEE_WINDUP
 
 func cancel_prediction() -> void:
 	if dash_pending:
@@ -265,24 +264,21 @@ func _physics_process(delta: float) -> void:
 			direction = Vector3.ZERO
 			dash_left = 0.0
 			swing_time = -1.0
-		turn_budget = SWING_TURN_RATE * delta
 		if swing_time >= 0.0:
 			swing_time += delta
 			if swing_time >= CombatController.MELEE_WINDUP + CombatController.MELEE_ACTIVE + CombatController.MELEE_RECOVERY:
 				swing_time = -1.0
 				swing_pending = false
-		var lunging: bool = swing_time >= CombatController.MELEE_WINDUP and swing_time < CombatController.MELEE_WINDUP + CombatController.MELEE_ACTIVE
+		sword_held = drag_gesture.held and not staggered and not combat.blocking
+		body.drive_sword(delta, yaw, pitch, sword_held, swing_time >= 0.0, combat.blocking, staggered or dash_left > 0.0)
 		if dash_left > 0 and not staggered:
 			velocity.x = dash_direction.x * 16.0
 			velocity.z = dash_direction.z * 16.0
-		elif lunging:
-			var forward: Vector3 = Vector3.FORWARD.rotated(Vector3.UP, yaw)
-			velocity.x = forward.x * LUNGE_SPEED
-			velocity.z = forward.z * LUNGE_SPEED
 		else:
 			var speed: float = 3.0 if combat.blocking or swing_time >= 0.0 else 6.5
-			velocity.x = move_toward(velocity.x, direction.x * speed, delta * 32)
-			velocity.z = move_toward(velocity.z, direction.z * speed, delta * 32)
+			var pull: Vector3 = body.motion.pull_velocity if not staggered else Vector3.ZERO
+			velocity.x = move_toward(velocity.x, direction.x * speed + pull.x, delta * 24.0)
+			velocity.z = move_toward(velocity.z, direction.z * speed + pull.z, delta * 24.0)
 		dash_left = maxf(0, dash_left - delta)
 		if not is_on_floor():
 			velocity.y -= 20 * delta
@@ -291,6 +287,7 @@ func _physics_process(delta: float) -> void:
 		move_and_slide()
 		if position.y < -10:
 			position = spawn_position
+			body.reset_motion(yaw)
 		sync_position = position
 		sync_velocity = velocity
 		if DisplayServer.get_name() != "headless":
@@ -301,6 +298,9 @@ func _physics_process(delta: float) -> void:
 			enforce_stagger()
 		position = position.lerp(sync_position, 1.0 - exp(-20.0 * delta))
 		velocity = sync_velocity
+		var swinging: bool = combat.phase in [CombatController.Phase.WINDUP, CombatController.Phase.ACTIVE, CombatController.Phase.RECOVERY] and body.swing_elapsed >= 0.0
+		body.drive_sword(delta, yaw, pitch, sword_held, swinging, combat.blocking, combat.phase in [CombatController.Phase.STAGGERED, CombatController.Phase.DASHING])
+	body.update_feet(delta, velocity, is_on_floor() if is_multiplayer_authority() else absf(sync_velocity.y) < 0.5)
 	if multiplayer.is_server():
 		history.record(HitResolver.now(), sync_position)
 
@@ -364,7 +364,8 @@ func attack(ranged: bool, direction: Vector2 = Vector2.RIGHT) -> void:
 		if combat.blocking or not can_predict_action(18.0):
 			return
 		swing_time = 0.0
-		body.start_swing(direction)
+		if not multiplayer.is_server():
+			body.start_swing(direction)
 	if multiplayer.is_server():
 		request_attack(ranged, direction)
 	else:
@@ -470,6 +471,8 @@ func correct_position(location: Vector3, impulse: Vector3) -> void:
 		return
 	drag_gesture.cancel()
 	body.cancel_swing()
+	body.reset_motion(yaw)
+	sword_held = false
 	if location.distance_to(sync_position) > 1.0:
 		history.clear()  # a teleport must not be interpolated by rewound hits
 	position = location

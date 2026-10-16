@@ -12,12 +12,26 @@ var sword_meshes: Array[MeshInstance3D] = []
 var highlight: StandardMaterial3D = StandardMaterial3D.new()
 var playback: AnimationPlayer = AnimationPlayer.new()
 var clip: StringName = &""
-var action_left: float = 0.0
 
-var support_hand: float = 0.0
+var grip_right: float = 1.0
+var grip_left: float = 0.0
 var swing_elapsed: float = -1.0
 var swing_direction: Vector2 = Vector2.RIGHT
-var trail_direction: Vector3 = Vector3.BACK
+var motion: HeavySwordMotion = HeavySwordMotion.new()
+var camera_yaw: float = 0.0
+var camera_pitch: float = 0.0
+var feet: Array[Vector3] = []
+var foot_normals: Array[Vector3] = [Vector3.UP, Vector3.UP]
+var ground_level: float = -0.9 # world height of the floor under the planted feet
+var step_from: Vector3 = Vector3.ZERO
+var step_to: Vector3 = Vector3.ZERO
+var stepping: int = -1
+var step_time: float = 0.0
+var step_duration: float = 0.2
+var next_foot: int = 0
+var gait_bob: float = 0.0
+var gait_crouch: float = 0.0 # hips drop with speed so the planted leg can reach forward and back
+var grounded_pose: bool = true
 const BLADE_TIP: Vector3 = Vector3(0, 0, -1.65)
 
 func _ready() -> void:
@@ -32,15 +46,17 @@ func _ready() -> void:
 			meshes.append(node as MeshInstance3D)
 		elif node is Skeleton3D:
 			skeleton = node as Skeleton3D
-	# The Standard pack has no clips. Lower the T-pose arms into a static neutral pose.
+	# Keep imported clips available for inspection; runtime posing is procedural IK.
 	if animation_library != null:
 		playback.name = "Playback"
 		add_child(playback)
 		playback.add_animation_library(&"", animation_library)
 		select_clip(&"Idle")
 		playback.advance(0.0)
+		playback.pause()
 	build_sword()
-	trail_direction = global_basis * Vector3.BACK
+	ground_level = global_position.y - 0.9
+	motion.reset(global_rotation.y, global_position, ground_level)
 	update_pose(0.0, Vector3.ZERO, false, false)
 	if skeleton != null:
 		ik = SwordIK.new()
@@ -99,52 +115,103 @@ func add_sword_mesh(mesh: Mesh, location: Vector3, surface_material: Material) -
 func start_swing(direction: Vector2) -> void:
 	swing_direction = direction.normalized()
 	swing_elapsed = 0.0
+	motion.strike(swing_direction)
 
 func cancel_swing() -> void:
 	swing_elapsed = -1.0
 
-func update_pose(delta: float, world_velocity: Vector3, blocking: bool, staggered: bool) -> void:
+func reset_motion(view_yaw: float) -> void:
+	motion.reset(view_yaw, global_position, ground_level)
+	feet.clear()
+	stepping = -1
+	grip_right = 1.0
+	grip_left = 0.0
+
+func drive_sword(delta: float, view_yaw: float, view_pitch: float, held: bool, attacking: bool, blocking: bool, interrupted: bool) -> void:
+	if not is_finite(view_yaw) or not is_finite(view_pitch):
+		return
+	camera_yaw = view_yaw
+	camera_pitch = view_pitch
+	if interrupted:
+		cancel_swing()
+	# A staggered or dashing body lets go of the drag; the blade keeps falling under its own weight.
+	var free: bool = not interrupted
+	motion.step(delta, view_yaw, view_pitch, held and free, attacking and free, blocking and free, global_position, ground_level)
+	# Both hands grip while dragging; at rest the hand on the blade's side keeps hold of the hilt.
+	var side: float = motion.bearing()
+	var engaged: bool = motion.raised > 0.5
+	grip_right = move_toward(grip_right, 1.0 if engaged or side <= 0.0 else 0.0, delta * 6.0)
+	grip_left = move_toward(grip_left, 1.0 if engaged or side > 0.0 else 0.0, delta * 6.0)
+
+func update_pose(delta: float, _world_velocity: Vector3, _blocking: bool, staggered: bool) -> void:
 	if staggered:
 		cancel_swing()
 	if swing_elapsed >= 0.0:
 		swing_elapsed += delta
 		if swing_elapsed >= CombatController.MELEE_WINDUP + CombatController.MELEE_ACTIVE + CombatController.MELEE_RECOVERY:
 			cancel_swing()
-	# World-space lag lets the blade follow turns and trail opposite travel.
-	var horizontal: Vector3 = Vector3(world_velocity.x, 0, world_velocity.z)
-	var wanted_trail: Vector3 = (global_basis * Vector3.BACK - horizontal * 0.12).normalized()
-	trail_direction = trail_direction.lerp(wanted_trail, 1.0 - exp(-7.0 * delta)).normalized()
-	var local_trail: Vector3 = global_basis.inverse() * trail_direction
-	var idle_position: Vector3 = Vector3(0.32, 0.17, 0.05)
-	var idle_direction: Vector3 = Vector3(local_trail.x * 0.75 + 0.12, -1.02, maxf(0.5, local_trail.z) * 1.28).normalized()
-	# Keep the tip at floor height in the flat arena without scaling the weapon.
-	idle_direction.y = -1.02 / 1.65
-	var flat: Vector2 = Vector2(idle_direction.x, idle_direction.z).normalized() * sqrt(1.0 - idle_direction.y * idle_direction.y)
-	idle_direction.x = flat.x
-	idle_direction.z = flat.y
-	var pose_position: Vector3 = idle_position
-	var pose_direction: Vector3 = idle_direction
-	var support: float = 0.0
-	if swing_elapsed >= 0.0:
-		var active_start: float = CombatController.MELEE_WINDUP
-		var active_end: float = active_start + CombatController.MELEE_ACTIVE
-		var progress: float = clampf((swing_elapsed - active_start) / CombatController.MELEE_ACTIVE, 0.0, 1.0)
-		var angle: float = lerpf(-1.25, 1.25, progress)
-		var cut: Vector3 = Vector3(swing_direction.x * sin(angle), -swing_direction.y * sin(angle), -cos(angle))
-		var grip: Vector3 = Vector3(0.06 + swing_direction.x * sin(angle) * 0.16, 0.43 - swing_direction.y * sin(angle) * 0.1, -0.27)
-		var weight: float = smoothstep(0.0, active_start, swing_elapsed)
-		if swing_elapsed > active_end:
-			weight = 1.0 - smoothstep(active_end, active_end + CombatController.MELEE_RECOVERY, swing_elapsed)
-		pose_position = idle_position.lerp(grip, weight)
-		pose_direction = idle_direction.slerp(cut.normalized(), weight)
-		support = weight
-	elif blocking:
-		pose_position = Vector3(0.08, 0.35, -0.30)
-		pose_direction = Vector3(0.35, 0.8, -0.3).normalized()
-		support = 1.0
-	support_hand = support
-	sword.position = pose_position
-	sword.basis = Basis.looking_at(pose_direction, Vector3.UP)
+	var direction: Vector3 = motion.blade_direction()
+	var up: Vector3 = Vector3.UP if absf(direction.y) < 0.99 else Vector3.FORWARD.rotated(Vector3.UP, motion.body_yaw)
+	sword.global_transform = Transform3D(Basis.looking_at(direction, up), motion.hilt)
+
+func foot_home(index: int, travel: Vector3 = Vector3.ZERO) -> Vector3:
+	var stance: Vector3 = Vector3(-0.16 if index == 0 else 0.16, -0.81, 0.04)
+	return global_position + stance.rotated(Vector3.UP, motion.body_yaw) + travel
+
+func ground_foot(location: Vector3, index: int) -> Vector3:
+	var query: PhysicsRayQueryParameters3D = PhysicsRayQueryParameters3D.create(location + Vector3.UP * 0.6, location + Vector3.DOWN * 1.1)
+	if get_parent() is CollisionObject3D:
+		query.exclude = [(get_parent() as CollisionObject3D).get_rid()]
+	var hit: Dictionary = get_world_3d().direct_space_state.intersect_ray(query)
+	if not hit.is_empty():
+		foot_normals[index] = hit["normal"] as Vector3
+		return (hit["position"] as Vector3) + Vector3.UP * 0.085
+	foot_normals[index] = Vector3.UP
+	return location
+
+func update_feet(delta: float, velocity: Vector3, grounded: bool) -> void:
+	var landed: bool = grounded and not grounded_pose
+	grounded_pose = grounded
+	if feet.is_empty() or landed:
+		feet = [ground_foot(foot_home(0), 0), ground_foot(foot_home(1), 1)]
+		stepping = -1
+	var horizontal: Vector3 = Vector3(velocity.x, 0, velocity.z)
+	var speed: float = horizontal.length()
+	var pace: float = clampf(speed / 6.5, 0.0, 1.0)
+	gait_crouch = move_toward(gait_crouch, 0.1 * pace, delta * 0.6)
+	if not grounded:
+		stepping = -1
+		for index: int in range(2):
+			feet[index] = foot_home(index) + Vector3.UP * 0.18
+		return
+	var travel: Vector3 = horizontal / speed if speed > 0.2 else Vector3.ZERO
+	if stepping < 0:
+		# A planted foot steps once it trails the hips by half a stride, or drifts sideways under a turn.
+		var duration: float = lerpf(0.26, 0.12, pace)
+		var ahead: float = clampf(speed * duration * 0.5 + 0.05, 0.05, 0.4)
+		for candidate: int in [next_foot, 1 - next_foot]:
+			var offset: Vector3 = feet[candidate] - foot_home(candidate)
+			offset.y = 0.0
+			var behind: float = -offset.dot(travel)
+			var drift: float = (offset - travel * offset.dot(travel)).length()
+			if behind >= ahead or drift > 0.24:
+				stepping = candidate
+				step_from = feet[candidate]
+				# Land where the hips will be when the step finishes, plus half a stride ahead.
+				step_to = ground_foot(foot_home(candidate, travel * (speed * duration + ahead)), candidate)
+				step_duration = duration
+				step_time = 0.0
+				next_foot = 1 - candidate
+				break
+	if stepping >= 0:
+		step_time = minf(1.0, step_time + delta / step_duration)
+		feet[stepping] = step_from.lerp(step_to, smoothstep(0.0, 1.0, step_time)) + Vector3.UP * sin(step_time * PI) * 0.15
+		ground_level = feet[1 - stepping].y - 0.085
+		if step_time >= 1.0:
+			stepping = -1
+	else:
+		ground_level = minf(feet[0].y, feet[1].y) - 0.085
+	gait_bob = sin(step_time * PI) * 0.025 if stepping >= 0 else 0.0
 
 func set_first_person(enabled: bool) -> void:
 	for mesh: MeshInstance3D in meshes:
@@ -162,34 +229,9 @@ func select_clip(next: StringName, speed: float = 1.0) -> void:
 	clip = next
 	playback.play(clip, 0.08, speed)
 
-func play_attack(ranged: bool) -> void:
-	if animation_library == null:
-		return
-	action_left = 0.4 if ranged else 0.52
-	clip = &""
-	var action: StringName = &"Pistol_Shoot" if ranged else &"Sword_Idle"
-	select_clip(action, animation_library.get_animation(action).length / action_left)
+func play_attack(_ranged: bool) -> void:
+	# IK owns the full body during gameplay; no canned melee/locomotion clip is started.
+	pass
 
-func animate(delta: float, motion: Vector3, grounded: bool, phase: int, blocking: bool, frozen: bool) -> void:
-	update_pose(0.0 if frozen else delta, motion, blocking, phase == CombatController.Phase.STAGGERED)
-	if animation_library == null:
-		return
-	playback.speed_scale = 0.0 if frozen else 1.0
-	if not frozen:
-		action_left = maxf(0.0, action_left - delta)
-	if phase == CombatController.Phase.STAGGERED:
-		action_left = 0.0
-		select_clip(&"Hit_Chest")
-	elif phase == CombatController.Phase.DASHING:
-		action_left = 0.0
-		select_clip(&"Sprint", 1.5)
-	elif blocking:
-		select_clip(&"Sword_Idle")
-	elif action_left > 0:
-		return
-	elif not grounded:
-		select_clip(&"Jump")
-	elif Vector2(motion.x, motion.z).length() > 0.3:
-		select_clip(&"Jog_Fwd")
-	else:
-		select_clip(&"Idle")
+func animate(delta: float, velocity: Vector3, _grounded: bool, phase: int, blocking: bool, frozen: bool) -> void:
+	update_pose(0.0 if frozen else delta, velocity, blocking, phase == CombatController.Phase.STAGGERED)
