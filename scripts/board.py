@@ -12,6 +12,9 @@ import argparse
 import datetime as dt
 import os
 import re
+import select
+import signal
+import socket
 import subprocess
 import sys
 import time
@@ -21,6 +24,7 @@ from typing import Callable, Dict, List, Optional, Tuple
 REMOTE = "origin"
 TRUNK = "main"
 STALE_HOURS = 3
+POKE_PORT = int(os.environ.get("BOARD_PORT", "47777"))
 FIELDS = ["id", "title", "status", "owner", "scope", "depends", "updated"]
 STATUSES = ("open", "claimed", "blocked", "done")
 
@@ -102,10 +106,66 @@ def integrate() -> None:
 def push() -> bool:
     proc = git("push", "--quiet", REMOTE, f"HEAD:{TRUNK}", check=False)
     if proc.returncode == 0:
+        poke()
         return True
     if re.search(r"rejected|fetch first|non-fast-forward", proc.stderr):
         return False
     raise BoardError(f"push failed:\n{proc.stderr.strip()}")
+
+
+def repo_id() -> str:
+    return Path(git("remote", "get-url", REMOTE, check=False).stdout.strip().rstrip("/")).stem or "repo"
+
+
+def poke() -> None:
+    """LAN/Tailscale doorbell after a push: peers' watchers fetch now. It carries no state;
+    origin/main stays the only source of truth, so a lost or forged poke costs one fetch."""
+    message = f"board-poke {repo_id()} {socket.gethostname()} {os.getpid()}".encode()
+    peers = git("config", "--get-all", "board.peer", check=False).stdout.split()
+    peers += [host.strip() for host in os.environ.get("BOARD_PEERS", "").split(",") if host.strip()]
+    with socket.socket(socket.AF_INET, socket.SOCK_DGRAM) as sock:
+        sock.setsockopt(socket.SOL_SOCKET, socket.SO_BROADCAST, 1)
+        for host in ["127.0.0.1", "<broadcast>", *peers]:
+            try:
+                sock.sendto(message, (host, POKE_PORT))
+            except OSError:
+                pass  # offline peer or unresolvable name: polling still covers it
+
+
+def listen() -> Optional[socket.socket]:
+    sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+    sock.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
+    if hasattr(socket, "SO_REUSEPORT"):
+        sock.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEPORT, 1)
+    try:
+        sock.bind(("", POKE_PORT))
+    except OSError as error:
+        print(f"board: no LAN pokes on UDP {POKE_PORT} ({error}); polling only", flush=True)
+        sock.close()
+        return None
+    return sock
+
+
+def wait_for_poke(sock: Optional[socket.socket], timeout: float) -> Optional[str]:
+    """Block until a poke for this repo arrives (returns its sender) or timeout (returns None)."""
+    deadline = time.monotonic() + timeout
+    while True:
+        remaining = deadline - time.monotonic()
+        if remaining <= 0:
+            return None
+        if sock is None:
+            time.sleep(remaining)
+            return None
+        if not select.select([sock], [], [], remaining)[0]:
+            return None
+        data, (address, _) = sock.recvfrom(256)
+        words = data.decode(errors="replace").split()
+        if words[:2] != ["board-poke", repo_id()] or words[2:4] == [socket.gethostname(), str(os.getpid())]:
+            continue
+        time.sleep(1.0)  # let a burst of pushes land, then fetch once
+        while select.select([sock], [], [], 0)[0]:
+            sock.recvfrom(256)
+        return f"{words[2] if len(words) > 2 else address} ({address})"
 
 
 def sync() -> str:
@@ -325,17 +385,23 @@ def cmd_watch(args: argparse.Namespace) -> None:
         except (ProcessLookupError, ValueError):
             pass
     lock.write_text(str(os.getpid()))
+    signal.signal(signal.SIGTERM, lambda *_: sys.exit(0))
+    sock = listen()
+    reason = "start"
     try:
         while True:
             try:
                 message = sync()
             except BoardError as error:
                 message = f"WARN {error}"
-            print(f"{dt.datetime.now():%H:%M:%S} {message}", flush=True)
-            time.sleep(args.interval)
+            print(f"{dt.datetime.now():%H:%M:%S} [{reason}] {message}", flush=True)
+            sender = wait_for_poke(sock, args.interval)
+            reason = f"poke from {sender}" if sender else "poll"
     except KeyboardInterrupt:
         pass
     finally:
+        if sock is not None:
+            sock.close()
         lock.unlink(missing_ok=True)
 
 

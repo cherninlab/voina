@@ -22,7 +22,9 @@ New sessions should prefer a private worktree: `worktree --agent NAME` creates `
 
 ## Staying synced
 
-Run one watcher per checkout: `watch` fetches every 60 s, fast-forwards or merges when that cannot touch uncommitted edits, and pushes committed work. It never commits. If it warns that local edits overlap remote changes, the agent editing those files must ship first.
+Run one watcher per checkout: `watch` fetches, fast-forwards or merges when that cannot touch uncommitted edits, and pushes committed work. It never commits. If it warns that local edits overlap remote changes, the agent editing those files must ship first.
+
+Every successful push also sends a UDP "main moved" poke (port 47777) to localhost, the LAN broadcast address and configured peers, so watchers sync within about 2 s instead of waiting for the 60 s poll. The poke carries no state: `origin/main` remains the only source of truth, so a lost poke only means waiting for the next poll. Tailscale does not carry broadcasts, so add each other machine once per checkout: `git config --add board.peer <magicdns-name>`. Allow incoming connections for python3 if macOS asks.
 
 ## Task files
 
