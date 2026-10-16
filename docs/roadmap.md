@@ -4,13 +4,13 @@
 
 Implemented: greybox arena with imported props, trees, parked cars and capsule-based players; local movement and dual cameras; host/join/dedicated CLI; host-owned combat, spawning, respawn and knockback. Debug peers authenticate a source fingerprint before spawning. Movement sends every network frame at the 60 fps cap; remote display projects recent snapshots. Host-owned combat state uses a separate synchronizer.
 
-Use the [pinned playtest workflow](playtest.md) when agents are pushing: each Mac gets its own clean playtest copy at the same commit. A successful import or loopback test does not establish two-Mac acceptance.
+Use the [pinned playtest workflow](playtest.md) when agents are pushing: each Mac gets its own clean playtest copy at the same commit. The [session lobby](sessions.md) supports leaving, failed joins and reconnecting without restarting. A successful import or loopback test does not establish two-Mac acceptance.
 
 Still requires manual acceptance: two visible Mac instances, both camera modes, trackpad input, walls, melee/ranged/knockback/respawn, focus loss, late joins, a four-player session and two-Mac Tailscale play.
 
 ## M2 — combat depth
 
-Implemented: host-owned stamina/poise and combat phases; directional block/parry with capped latency grace; owner-predicted dash and melee with host approval; per-tick melee cone sweeps with per-target deduplication; stagger/guard break and host correction; hit feedback, reticle sensitivity friction and persistent key remapping. Defaults are Ctrl/right click to block, Shift to dash, Space to jump, E for the beam and Q for the bolt. Saved bindings can differ; the in-game Controls panel shows them.
+Implemented: host-owned stamina/poise and combat phases; directional block/parry with capped latency grace; owner-predicted dash and melee with host approval; per-tick melee cone sweeps with per-target deduplication; stagger/guard break and host correction; hit feedback, reticle sensitivity friction and persistent key remapping. Defaults are Ctrl/right click to block, Shift to dash, Space to jump and Q for the bolt. The beam remains a host-validated test path, but its E input was disabled during the active sword work. Saved bindings can differ; the in-game Controls panel shows them.
 
 The host records position history and rewinds target capsules using measured round trip, capped at 0.2 seconds. Melee requests can receive up to 0.06 seconds of windup compensation. Beam/melee damage checks static cover. Swept bolts support cover, block, reflection by parry and dash pass-through. This is bounded compensation, with client-owned movement inside a generous host envelope; full rollback and competitive anti-cheat remain future work.
 
@@ -30,9 +30,11 @@ Remaining: human motion/contact acceptance and polish of the active procedural s
 
 ## M5 — settings and match flow
 
-Implemented: optional [match flow](match.md), enabled by the host with the menu switch or `--match`: waiting, countdown, 90-second rounds, first to three wins, results and automatic rematch. The host owns time and scores. Combat is frozen between rounds; pending attacks are cancelled. See that guide for current timeout and kill-credit rules.
+Implemented: optional [match flow](match.md), enabled by the host with the menu switch or `--match`: waiting, countdown, 90-second rounds, first to three wins, results and automatic rematch. The host owns time and scores. Combat is frozen between rounds; pending attacks are cancelled. T-026 locks countdown movement with host correction while camera look stays live. See that guide for current timeout and kill-credit rules.
 
-Remaining: countdown movement lock, kit selection and medieval/cyberpunk arenas. T-020 tracks the sudden-death ring; treat it as in progress until its shipped implementation and checks are recorded. Keep server time authoritative; do not use client `Engine.time_scale` for match logic.
+Implemented by T-020: after the round timer, a sudden-death ring shrinks from 17 to 1.5 metres over 15 seconds and applies host-owned environmental damage outside it. See [match rules](match.md) for the final timeout fallback. Live two-Mac visual acceptance is still pending.
+
+Remaining: kit selection and medieval/cyberpunk arenas. Keep server time authoritative; do not use client `Engine.time_scale` for match logic.
 
 ## Current automated checks
 
@@ -41,6 +43,7 @@ Remaining: countdown movement lock, kit selection and medieval/cyberpunk arenas.
 python3 scripts/smoke_test.py "$GODOT"
 python3 scripts/mob_smoke_test.py "$GODOT"
 python3 gameplay/wildlife/tests/smoke_test.py "$GODOT"
+python3 scripts/session_smoke_test.py "$GODOT"
 ```
 
 The main suite covers combat, assets, hit resolution, bolts, remote motion, match flow, build authentication and real ENet pairs. The focused suites cover PvE and wildlife behavior, late joining, authority and cleanup. Run real-time suites separately when diagnosing timing assertions. CI runs the suites sequentially. These checks do not establish visual quality, WAN behavior or thermal performance.

@@ -12,6 +12,10 @@ var pve_toggle: CheckButton = CheckButton.new()
 var mobs: MobSystem = MobSystem.new()
 var match_toggle: CheckButton = CheckButton.new()
 var match_flow: MatchFlow = MatchFlow.new()
+var lobby_camera: Camera3D = Camera3D.new()
+var leave_button: Button = Button.new()
+var host_button: Button = Button.new()
+var join_button: Button = Button.new()
 
 func _ready() -> void:
 	add_to_group("match_world")
@@ -24,6 +28,10 @@ func _ready() -> void:
 	spawner.spawn_function = create_player
 	add_child(spawner)
 	build_arena()
+	lobby_camera.position = Vector3(16, 14, 18)
+	add_child(lobby_camera)
+	lobby_camera.look_at(Vector3.ZERO)
+	lobby_camera.make_current()
 	mobs.name = "Mobs"
 	mobs.players = players
 	add_child(mobs)
@@ -71,8 +79,18 @@ func peer_disconnected(peer_id: int) -> void:
 
 func clear_players() -> void:
 	mobs.clear()
+	Projectiles.clear()
+	match_flow.state = MatchFlow.State.OFF
+	match_flow.time_left = 0.0
+	match_flow.scores.clear()
+	match_flow.scores_text = "{}"
+	match_flow.banner = ""
 	for player: Node in players.get_children():
 		player.queue_free()
+	menu.show()
+	controls_panel.hide()
+	leave_button.hide()
+	lobby_camera.make_current()
 
 func build_arena() -> void:
 	add_child(preload("res://gameplay/environment/tree_pack.tscn").instantiate())
@@ -119,8 +137,13 @@ func build_ui() -> void:
 	controls_button.pressed.connect(func() -> void: controls_panel.visible = not controls_panel.visible)
 	canvas.add_child(controls_button)
 	canvas.add_child(controls_panel)
+	leave_button.position = Vector2(140, 150)
+	leave_button.text = "Leave game"
+	leave_button.pressed.connect(func() -> void: NetworkManager.stop("Left game"))
+	leave_button.hide()
+	canvas.add_child(leave_button)
 	canvas.add_child(preload("res://ui/sword_tweaks_panel.gd").new()) # T-014 hook: live sword tuning
-	menu.position = Vector2(24, 195)
+	menu.position = Vector2(440, 195)
 	menu.add_theme_constant_override("separation", 12)
 	canvas.add_child(menu)
 	var title: Label = Label.new()
@@ -133,14 +156,12 @@ func build_ui() -> void:
 	menu.add_child(pve_toggle)
 	match_toggle.text = "Match · first to 3 round wins"
 	menu.add_child(match_toggle)
-	var host: Button = Button.new()
-	host.text = "Host game"
-	host.pressed.connect(func() -> void: NetworkManager.host_game(NetworkManager.port))
-	menu.add_child(host)
-	var join: Button = Button.new()
-	join.text = "Join game"
-	join.pressed.connect(func() -> void: NetworkManager.join_game(address.text, NetworkManager.port))
-	menu.add_child(join)
+	host_button.text = "Host game"
+	host_button.pressed.connect(func() -> void: NetworkManager.host_game(NetworkManager.port))
+	menu.add_child(host_button)
+	join_button.text = "Join game"
+	join_button.pressed.connect(func() -> void: NetworkManager.join_game(address.text, NetworkManager.port))
+	menu.add_child(join_button)
 	var reticle: Label = Label.new()
 	reticle.text = "+"
 	reticle.set_anchors_and_offsets_preset(Control.PRESET_CENTER)
@@ -148,9 +169,17 @@ func build_ui() -> void:
 
 func _process(_delta: float) -> void:
 	controls_button.visible = Input.mouse_mode != Input.MOUSE_MODE_CAPTURED
+	var active_peer: bool = not multiplayer.multiplayer_peer is OfflineMultiplayerPeer
+	leave_button.visible = active_peer and controls_button.visible
+	leave_button.text = "Cancel connection" if multiplayer.multiplayer_peer.get_connection_status() == MultiplayerPeer.CONNECTION_CONNECTING else "Leave game"
+	host_button.disabled = active_peer
+	join_button.disabled = active_peer
+	address.editable = not active_peer
+	pve_toggle.disabled = active_peer
+	match_toggle.disabled = active_peer
 	if not controls_button.visible:
 		controls_panel.hide()
-	hud.text = "VOINA · %s\n%s melee · %s beam · %s block · %s dash · %s jump\n%s camera · %s turn · Esc release cursor" % [NetworkManager.status, InputSettings.key_label(&"melee"), InputSettings.key_label(&"beam"), InputSettings.key_label(&"block"), InputSettings.key_label(&"dash"), InputSettings.key_label(&"jump"), InputSettings.key_label(&"camera_toggle"), InputSettings.key_label(&"quick_turn")]
+	hud.text = "VOINA · %s\n%s melee · %s bolt · %s block · %s dash · %s jump\n%s camera · %s turn · Esc release cursor" % [NetworkManager.status, InputSettings.key_label(&"melee"), InputSettings.key_label(&"bolt"), InputSettings.key_label(&"block"), InputSettings.key_label(&"dash"), InputSettings.key_label(&"jump"), InputSettings.key_label(&"camera_toggle"), InputSettings.key_label(&"quick_turn")]
 	var local: Node = players.get_node_or_null(str(multiplayer.get_unique_id()))
 	if local != null:
 		var combat: CombatController = local.get("combat") as CombatController

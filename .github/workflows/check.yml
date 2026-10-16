@@ -22,3 +22,5 @@ jobs:
         run: python3 scripts/mob_smoke_test.py "$GODOT"
       - name: Ambient wildlife behavior and late-join replication
         run: python3 gameplay/wildlife/tests/smoke_test.py "$GODOT"
+      - name: Lobby lifecycle and authenticated reconnect
+        run: python3 scripts/session_smoke_test.py "$GODOT"

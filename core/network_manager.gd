@@ -9,7 +9,7 @@ var port: int = 7777
 func _ready() -> void:
 	multiplayer.connected_to_server.connect(func() -> void: report("Connected"))
 	multiplayer.connection_failed.connect(func() -> void: stop("Connection failed"))
-	multiplayer.server_disconnected.connect(func() -> void: stop("Host disconnected; restart to reconnect"))
+	multiplayer.server_disconnected.connect(func() -> void: stop("Host disconnected"))
 	for argument: String in OS.get_cmdline_user_args():
 		if argument.begins_with("--port="):
 			port = argument.get_slice("=", 1).to_int()
