@@ -38,13 +38,17 @@ func run() -> void:
 	motion.reset(0.0, player.position, 0.0)
 	motion.hilt = Vector3(-1.2, 1.0, 0)
 	motion.tip = Vector3(0.3, 1.0, 0)
-	# A slow blade through a raider does nothing.
+	# A slow blade through a raider shoves it a little but never hurts.
 	var mob: HostileMob = spawn_mob(1, Vector3(0, 0.95, 0))
-	motion.tip_velocity = Vector3(0, 0, 2.0)
+	motion.tip_velocity = Vector3(0, 0, 0.5)
 	player_combat.respawn()
 	player_combat.begin_attack(false)
-	contact.sweep(player, motion, true, 0.0)
-	check(mob.combat.health == 60 and mob.kick_velocity.is_zero_approx(), "A slow blade neither hurts nor shoves")
+	contact.sweep(player, motion, true, -1.0)
+	check(mob.combat.health == 60 and mob.kick_velocity.is_zero_approx(), "A barely moving blade does nothing")
+	motion.tip_velocity = Vector3(0, 0, 2.0)
+	contact.sweep(player, motion, false, 0.0)
+	check(mob.combat.health == 60 and mob.kick_velocity.length() > 0.3, "A slow blade shoves without hurting, even outside a swing")
+	mob.kick_velocity = Vector3.ZERO
 	# A medium swing shoves and deals the cone's damage once per swing.
 	motion.tip_velocity = Vector3(0, 0, 6.0)
 	contact.sweep(player, motion, true, 1.0)
@@ -55,10 +59,13 @@ func run() -> void:
 	check(mob.combat.health == 35, "Re-hit cooldown blocks an immediate second contact")
 	contact.sweep(player, motion, true, 2.0)
 	check(mob.combat.health == 35, "One damaging contact per swing")
-	# Not swinging: nothing happens even at speed.
+	# Not swinging: a fast blade still shoves but neither hurts nor cuts.
 	motion.tip_velocity = Vector3(0, 0, 15.0)
+	mob.kick_velocity = Vector3.ZERO
 	contact.sweep(player, motion, false, 3.0)
-	check(mob.combat.health == 35, "Contact outside an approved swing is ignored")
+	check(mob.combat.health == 35 and mob.state != HostileMob.State.DEAD and mob.kick_velocity.length() > 3.0, "Contact outside an approved swing shoves without damage or cut")
+	var far: Vector3 = MobSystem.farthest_spawn(MobSystem.SPAWN_POINTS, [Vector3(-3, 1, 0), Vector3(3, 1, 0)])
+	check(far == Vector3(0, 0.95, -5), "Respawns pick the spawn point farthest from players")
 	# A fast approved swing bisects in one shot.
 	player_combat.respawn()
 	player_combat.clock += 5.0
@@ -75,5 +82,5 @@ func run() -> void:
 	check(halves == 2, "Two tumbling halves exist (%d)" % halves)
 	check(get_tree().current_scene.get_child_count() == before + 2, "Halves are the only new scene children")
 	if failures == 0:
-		print("BLADE_CONTACT_OK: segment geometry, slow pass, shove and damage, cooldown, one hit per swing, swing gate, one-shot bisect")
+		print("BLADE_CONTACT_OK: segment geometry, gentle shove, shove and damage, cooldown, one hit per swing, swing gate, farthest respawn, one-shot bisect")
 	get_tree().quit(0 if failures == 0 else 1)

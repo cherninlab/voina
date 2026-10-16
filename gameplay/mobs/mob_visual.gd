@@ -44,8 +44,44 @@ func _process(delta: float) -> void:
 func react(impulse: Vector3) -> void:
 	# Impulse is world space; tilt about the horizontal axis perpendicular to it, in this node's frame.
 	var local: Vector3 = impulse.rotated(Vector3.UP, -global_rotation.y)
-	lean_speed += Vector3(-local.z, 0.0, local.x) * 0.9
+	lean_speed += Vector3(-local.z, 0.0, local.x) * 1.4
 	react_left = 0.45
+
+func splash(point: Vector3, direction: Vector3, amount: float) -> void:
+	# A one-shot burst of droplets from the contact, thrown along the blade's travel.
+	if DisplayServer.get_name() == "headless" or get_tree().current_scene == null:
+		return
+	var burst: GPUParticles3D = GPUParticles3D.new()
+	burst.one_shot = true
+	burst.explosiveness = 1.0
+	burst.amount = int(clampf(18.0 * amount, 10.0, 60.0))
+	burst.lifetime = 0.8
+	burst.emitting = true
+	var process: ParticleProcessMaterial = ParticleProcessMaterial.new()
+	process.direction = (direction + Vector3.UP * 0.6).normalized()
+	process.spread = 40.0
+	process.initial_velocity_min = 1.5 * amount + 1.0
+	process.initial_velocity_max = 4.0 * amount + 2.0
+	process.gravity = Vector3(0, -9.8, 0)
+	process.damping_min = 1.0
+	process.damping_max = 2.0
+	process.scale_min = 0.03
+	process.scale_max = 0.07
+	process.color = Color(0.45, 0.02, 0.02)
+	burst.process_material = process
+	var droplet: SphereMesh = SphereMesh.new()
+	droplet.radius = 0.5
+	droplet.height = 1.0
+	droplet.radial_segments = 6
+	droplet.rings = 3
+	var blood: StandardMaterial3D = StandardMaterial3D.new()
+	blood.albedo_color = Color(0.5, 0.03, 0.03)
+	blood.roughness = 0.3
+	droplet.material = blood
+	burst.draw_pass_1 = droplet
+	burst.position = point
+	get_tree().current_scene.add_child(burst)
+	get_tree().create_timer(1.6).timeout.connect(burst.queue_free)
 
 func bisect(point: Vector3, normal: Vector3, impulse: Vector3) -> void:
 	if model == null or not visible:

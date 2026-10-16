@@ -30,6 +30,7 @@ var corpse_left: float = 1.3
 var visual: Node3D = preload("res://gameplay/mobs/mob_visual.gd").new()
 var kick_velocity: Vector3 = Vector3.ZERO # host-side shove from a blade contact, decays
 var hop: float = 0.0
+var push_react_left: float = 0.0 # throttles the visible reaction while a player keeps shoving
 var collision: CollisionShape3D = CollisionShape3D.new()
 
 func _ready() -> void:
@@ -80,7 +81,8 @@ func _physics_process(delta: float) -> void:
 			sense()
 			sense_left = 0.2
 		choose_action(delta)
-	kick_velocity = kick_velocity.lerp(Vector3.ZERO, 1.0 - exp(-5.0 * delta))
+	body_pushes(delta)
+	kick_velocity = kick_velocity.lerp(Vector3.ZERO, 1.0 - exp(-3.5 * delta))
 	velocity.x += kick_velocity.x
 	velocity.z += kick_velocity.z
 	move_and_slide()
@@ -181,22 +183,46 @@ func blade_hit(attacker: CharacterBody3D, point: Vector3, direction: Vector3, sp
 		var normal: Vector3 = blade_direction.cross(direction).normalized()
 		if normal.length_squared() < 0.5:
 			normal = Vector3.UP
-		bisected.rpc(point, normal, flat * minf(speed, 20.0) * 0.35 + Vector3.UP * 2.0)
+		bisected.rpc(point, normal, flat * minf(speed, 20.0) * 0.35 + Vector3.UP * 2.0, direction)
 		receive_hit(999, direction, false, attacker)
 		return
-	var shove: float = clampf(speed * 0.6, 1.5, 7.0)
+	var shove: float = clampf(speed * 0.8, 0.6, 7.0)
 	kick_velocity += flat * shove
-	hop = 2.0 if speed > 6.0 else 1.0
-	kicked.rpc(flat * shove)
+	hop = 2.0 if speed > 6.0 else (1.0 if speed > 3.0 else 0.0)
+	kicked.rpc(flat * shove, point, direction, speed)
 	if damage > 0:
 		receive_hit(damage, direction, false, attacker)
 
-@rpc("authority", "call_local", "reliable")
-func kicked(impulse: Vector3) -> void:
-	visual.call("react", impulse)
+# A player walking into this raider shoves it along; the host sees every player's replicated motion.
+func body_pushes(delta: float) -> void:
+	push_react_left = maxf(0.0, push_react_left - delta)
+	if system == null or state == State.DEAD:
+		return
+	for node: Node in system.players.get_children():
+		var player: CharacterBody3D = node as CharacterBody3D
+		if player == null or player.is_queued_for_deletion():
+			continue
+		var away: Vector3 = global_position - player.global_position
+		away.y = 0.0
+		if away.length() > 0.85 or away.length_squared() < 0.0001:
+			continue
+		away = away.normalized()
+		var player_velocity: Vector3 = player.get("sync_velocity") as Vector3
+		var approach: float = maxf(0.0, Vector3(player_velocity.x, 0.0, player_velocity.z).dot(away))
+		kick_velocity += away * (1.5 + approach) * 8.0 * delta
+		if approach > 1.0 and push_react_left <= 0.0:
+			push_react_left = 0.5
+			kicked.rpc(away * approach, global_position + CHEST, away, 0.0)
 
 @rpc("authority", "call_local", "reliable")
-func bisected(point: Vector3, normal: Vector3, impulse: Vector3) -> void:
+func kicked(impulse: Vector3, point: Vector3, direction: Vector3, speed: float) -> void:
+	visual.call("react", impulse)
+	if speed > 0.0:
+		visual.call("splash", point, direction, clampf(speed / 10.0, 0.2, 1.0))
+
+@rpc("authority", "call_local", "reliable")
+func bisected(point: Vector3, normal: Vector3, impulse: Vector3, direction: Vector3) -> void:
+	visual.call("splash", point, direction, 2.5)
 	visual.call("bisect", point, normal, impulse)
 
 func die() -> void:
