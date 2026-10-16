@@ -67,7 +67,8 @@ func spend(amount: float) -> bool:
 	last_spend = clock
 	return true
 
-func begin_attack(ranged: bool) -> bool:
+# head_start back-dates a client's melee windup by the time its request spent in flight.
+func begin_attack(ranged: bool, head_start: float = 0.0) -> bool:
 	if not multiplayer.is_server() or phase != Phase.IDLE or blocking or clock < next_attack:
 		return false
 	if not spend(8.0 if ranged else 18.0):
@@ -76,7 +77,7 @@ func begin_attack(ranged: bool) -> bool:
 	action_ranged = ranged
 	struck.clear()
 	phase = Phase.ACTIVE if ranged else Phase.WINDUP
-	phase_until = clock + (0.05 if ranged else MELEE_WINDUP)
+	phase_until = clock + (0.05 if ranged else MELEE_WINDUP - clampf(head_start, 0.0, MELEE_WINDUP))
 	attack_started.emit(ranged)
 	if ranged:
 		attack_active.emit(true)

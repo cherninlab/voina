@@ -33,6 +33,7 @@ var accepted_position: Vector3 = Vector3.ZERO
 var stagger_anchor: Vector3 = Vector3.ZERO
 var stagger_anchored: bool = false
 var last_motion_check: float = 0.0
+var history: HitResolver.PositionHistory = HitResolver.PositionHistory.new()
 
 const LUNGE_SPEED: float = 7.0
 const SWING_TURN_RATE: float = 4.0
@@ -300,6 +301,8 @@ func _physics_process(delta: float) -> void:
 			enforce_stagger()
 		position = position.lerp(sync_position, 1.0 - exp(-20.0 * delta))
 		velocity = sync_velocity
+	if multiplayer.is_server():
+		history.record(HitResolver.now(), sync_position)
 
 func update_aim_friction() -> void:
 	aim_cast.force_shapecast_update()
@@ -378,38 +381,50 @@ func request_attack(ranged: bool, direction: Vector2 = Vector2.RIGHT) -> void:
 	# Direction is presentation only; host combat still decides timing, cost and damage.
 	if combat.phase == CombatController.Phase.IDLE:
 		approved_swing_direction = direction.normalized()
-	if not combat.begin_attack(ranged):
+	var round_trip: float = NetworkManager.round_trip_seconds(get_multiplayer_authority())
+	if not combat.begin_attack(ranged, HitResolver.head_start_seconds(round_trip)):
 		if multiplayer.get_remote_sender_id() == 0:
 			swing_time = -1.0
 			body.cancel_swing()
 		reject_request()
 
+# Targets are judged where the attacker's screen showed them (HitResolver), and the attacker
+# from its latest replicated position rather than the host's smoothed copy.
 func resolve_attack(ranged: bool) -> void:
 	if not multiplayer.is_server():
 		return
-	var origin: Vector3 = global_position + Vector3.UP * 0.65
+	var view_time: float = HitResolver.now() - HitResolver.rewind_seconds(NetworkManager.round_trip_seconds(get_multiplayer_authority()))
+	var targets: Array[CharacterBody3D] = []
+	var centers: PackedVector3Array = PackedVector3Array()
+	var exclude: Array[RID] = []
+	for target: Node in get_parent().get_children():
+		var other: CharacterBody3D = target as CharacterBody3D
+		if other == null:
+			continue
+		exclude.append(other.get_rid())
+		if other != self and not other.is_queued_for_deletion():
+			targets.append(other)
+			var other_history: HitResolver.PositionHistory = other.get("history") as HitResolver.PositionHistory
+			centers.append(other_history.sample(view_time, other.global_position))
+	var space: PhysicsDirectSpaceState3D = get_world_3d().direct_space_state
+	var origin: Vector3 = sync_position + Vector3.UP * HitResolver.CHEST_HEIGHT
 	var forward: Vector3 = Vector3.FORWARD.rotated(Vector3.RIGHT, pitch).rotated(Vector3.UP, yaw)
 	if ranged:
-		var query: PhysicsRayQueryParameters3D = PhysicsRayQueryParameters3D.create(origin, origin + forward * 40.0)
-		query.exclude = [get_rid()]
-		var result: Dictionary = get_world_3d().direct_space_state.intersect_ray(query)
-		var target: CharacterBody3D = result.get("collider") as CharacterBody3D
-		if target != null and target.has_method("receive_hit"):
-			target.call("receive_hit", 15, forward, true, self)
-	else:
-		for target: Node in get_parent().get_children():
-			var other: CharacterBody3D = target as CharacterBody3D
-			if other == null or other == self or other.is_queued_for_deletion():
-				continue
-			var offset: Vector3 = other.global_position - global_position
-			if offset.length() <= 2.2 and forward.dot(offset.normalized()) >= cos(deg_to_rad(35)):
-				var query: PhysicsRayQueryParameters3D = PhysicsRayQueryParameters3D.create(origin, other.global_position + Vector3.UP * 0.65)
-				query.exclude = [get_rid()]
-				var result: Dictionary = get_world_3d().direct_space_state.intersect_ray(query)
-				if result.get("collider") == other and combat.strike(other.get_multiplayer_authority()):
-					other.call("receive_hit", 25, forward, false, self)
-					if combat.phase == CombatController.Phase.STAGGERED:
-						break
+		var index: int = HitResolver.first_ray_target(space, origin, origin + forward * 40.0, centers, exclude)
+		if index >= 0:
+			targets[index].call("receive_hit", 15, forward, true, self)
+		return
+	for index: int in range(targets.size()):
+		var center: Vector3 = centers[index]
+		var chest: Vector3 = center + Vector3.UP * HitResolver.CHEST_HEIGHT
+		if not HitResolver.in_cone(sync_position, forward, center, 2.2, deg_to_rad(35)):
+			continue
+		if HitResolver.wall_distance(space, origin, chest, exclude) < origin.distance_to(chest):
+			continue
+		if combat.strike(targets[index].get_multiplayer_authority()):
+			targets[index].call("receive_hit", 25, forward, false, self)
+			if combat.phase == CombatController.Phase.STAGGERED:
+				break
 
 func receive_hit(damage: int, direction: Vector3, ranged: bool = false, attacker: CharacterBody3D = null) -> void:
 	if not multiplayer.is_server():
@@ -430,6 +445,7 @@ func receive_hit(damage: int, direction: Vector3, ranged: bool = false, attacker
 		correct_position.rpc(sync_position, direction * 5.0 + Vector3.UP * 2)
 
 func respawn() -> void:
+	history.clear()
 	accepted_position = spawn_position
 	sync_position = spawn_position
 	position = spawn_position
@@ -454,6 +470,8 @@ func correct_position(location: Vector3, impulse: Vector3) -> void:
 		return
 	drag_gesture.cancel()
 	body.cancel_swing()
+	if location.distance_to(sync_position) > 1.0:
+		history.clear()  # a teleport must not be interpolated by rewound hits
 	position = location
 	sync_position = location
 	dash_left = 0.0

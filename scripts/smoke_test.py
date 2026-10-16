@@ -29,6 +29,11 @@ print(assets.stdout, end='')
 print(assets.stderr, end='')
 assert assets.returncode == 0 and 'ASSETS_OK:' in assets.stdout
 assert 'ERROR' not in assets.stdout + assets.stderr
+resolver = subprocess.run(base + ['--script', 'tests/hit_resolver_test.gd'], capture_output=True, text=True, timeout=15)
+print(resolver.stdout, end='')
+print(resolver.stderr, end='')
+assert resolver.returncode == 0 and 'HIT_RESOLVER_OK:' in resolver.stdout
+assert 'ERROR' not in resolver.stdout + resolver.stderr
 with tempfile.TemporaryDirectory() as directory:
     log_path = pathlib.Path(directory) / 'host.log'
     with log_path.open('w') as log:
