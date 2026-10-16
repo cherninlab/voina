@@ -7,7 +7,7 @@ const RECOVERY: float = 0.8
 const REACH: float = 1.9
 const DAMAGE: int = 12
 const MEMORY: float = 3.0
-const SIGHT: float = 14.0
+const SIGHT: float = 30.0 # the arena is 56 m across
 const CHEST: Vector3 = Vector3.UP * HitResolver.CHEST_HEIGHT
 
 var mob_id: int = 0

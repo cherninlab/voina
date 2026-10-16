@@ -332,6 +332,7 @@ func _process(delta: float) -> void:
 	body.animate(delta, velocity, grounded, combat.phase, combat.blocking, hitstop_left > 0)
 	body.set_highlight(flash_left > 0 or combat.blocking, flash_color if flash_left > 0 else Color("fff1a2"))
 	if is_multiplayer_authority():
+		camera.fov = preload("res://ui/fisheye.gd").camera_fov(InputSettings.fisheye)
 		camera.h_offset = sin(Time.get_ticks_msec() * 0.07) * shake_left * 0.12
 		camera.v_offset = cos(Time.get_ticks_msec() * 0.09) * shake_left * 0.1
 

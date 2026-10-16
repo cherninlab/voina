@@ -4,8 +4,8 @@ extends Node3D
 ## CLOSE_SECONDS. The radius is derived from MatchFlow's replicated time, so every peer draws the
 ## same ring without extra sync. Only the host burns fighters outside it, through CombatController.
 
-const CLOSE_SECONDS: float = 15.0
-const START_RADIUS: float = 17.0  # reaches the corners of the 24 m arena
+const CLOSE_SECONDS: float = 36.0  # keeps the old ~1 m/s closing speed across the 56 m arena
+const START_RADIUS: float = 40.0  # reaches the corners of the 56 m arena
 const END_RADIUS: float = 1.5
 const BURN_INTERVAL: float = 0.25
 const BURN_DAMAGE: int = 5  # 20 health per second outside the ring

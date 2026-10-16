@@ -1,6 +1,7 @@
 extends Node3D
 
 const PLAYER: PackedScene = preload("res://gameplay/player/player_character.tscn")
+const ARENA: float = 56.0 # greybox floor edge; walls sit at +/- ARENA / 2
 var players: Node3D = Node3D.new()
 var spawner: MultiplayerSpawner = MultiplayerSpawner.new()
 var hud: Label = Label.new()
@@ -28,7 +29,7 @@ func _ready() -> void:
 	spawner.spawn_function = create_player
 	add_child(spawner)
 	build_arena()
-	lobby_camera.position = Vector3(16, 14, 18)
+	lobby_camera.position = Vector3(34, 26, 38)
 	add_child(lobby_camera)
 	lobby_camera.look_at(Vector3.ZERO)
 	lobby_camera.make_current()
@@ -50,6 +51,7 @@ func create_player(data: Variant) -> Node:
 	var player: CharacterBody3D = PLAYER.instantiate() as CharacterBody3D
 	player.name = str(int(info[0]))
 	player.set_multiplayer_authority(int(info[0]))
+	# Spawns stay 6 m apart: the host's movement envelope must still accept the smoke client's hop.
 	player.position = Vector3(0, 0.95, 3.0 if int(info[1]) % 2 == 0 else -3.0)
 	player.set("sync_position", player.position)
 	player.set("yaw", 0.0 if int(info[1]) % 2 == 0 else PI)
@@ -96,13 +98,17 @@ func build_arena() -> void:
 	add_child(preload("res://gameplay/environment/tree_pack.tscn").instantiate())
 	add_prototype_props()
 	add_parked_cars()
-	box(Vector3(24, 1, 24), Vector3(0, -0.5, 0), Color("243442"))
+	# A 56 m greybox: the inner cover ring keeps the old spacing, an outer ring gives the extra room its own fights.
+	box(Vector3(ARENA, 1, ARENA), Vector3(0, -0.5, 0), Color("243442"))
 	for location: Vector3 in [Vector3(-5, 0.6, -4), Vector3(5, 0.6, 4), Vector3(-5, 0.6, 4), Vector3(5, 0.6, -4)]:
 		box(Vector3(3, 1.2, 2), location, Color("45606c"))
-	for location: Vector3 in [Vector3(-12, 1, 0), Vector3(12, 1, 0)]:
-		box(Vector3(0.5, 2, 24), location, Color("304654"))
-	for location: Vector3 in [Vector3(0, 1, -12), Vector3(0, 1, 12)]:
-		box(Vector3(24, 2, 0.5), location, Color("304654"))
+	for location: Vector3 in [Vector3(-16, 0.6, -14), Vector3(16, 0.6, 14), Vector3(-17, 0.6, 12), Vector3(17, 0.6, -12), Vector3(0, 0.6, -19), Vector3(0, 0.6, 19), Vector3(-20, 0.6, 2), Vector3(20, 0.6, -2)]:
+		box(Vector3(3.5, 1.2, 2.2), location, Color("45606c"))
+	var half: float = ARENA / 2.0
+	for location: Vector3 in [Vector3(-half, 1, 0), Vector3(half, 1, 0)]:
+		box(Vector3(0.5, 2, ARENA), location, Color("304654"))
+	for location: Vector3 in [Vector3(0, 1, -half), Vector3(0, 1, half)]:
+		box(Vector3(ARENA, 2, 0.5), location, Color("304654"))
 	var light: DirectionalLight3D = DirectionalLight3D.new()
 	light.rotation_degrees = Vector3(-55, -30, 0)
 	light.shadow_enabled = true
@@ -127,6 +133,7 @@ func box(size: Vector3, location: Vector3, color: Color) -> void:
 	add_child(block)
 
 func build_ui() -> void:
+	add_child(preload("res://ui/fisheye.gd").new()) # T-031: fisheye remap of the 3D frame, below the HUD
 	var canvas: CanvasLayer = CanvasLayer.new()
 	add_child(canvas)
 	hud.position = Vector2(24, 20)
@@ -213,7 +220,7 @@ func smoke_client() -> void:
 	await get_tree().create_timer(0.7).timeout
 	local.rpc_id(1, "request_attack", false)
 	await get_tree().create_timer(0.7).timeout
-	check(host_combat.health == 75, "A multi-tick melee swing hits each target once")
+	check(host_combat.health == 75, "A multi-tick melee swing hits each target once (health %d, host %s, local %s, local yaw %.2f)" % [host_combat.health, host.get("position"), local.get("position"), float(local.get("yaw"))])
 	host.rpc_id(1, "request_block", true)
 	host.rpc_id(1, "request_dash", Vector3.RIGHT)
 	local.rpc_id(1, "request_dash", Vector3(NAN, 0, 0))
@@ -254,7 +261,7 @@ func check(condition: bool, message: String) -> void:
 		get_tree().quit(1)
 
 func add_prototype_props() -> void:
-	var locations: Array[Vector3] = [Vector3(-8, 0, -8), Vector3(8, 0, 8), Vector3(-9, 0, 5), Vector3(9, 0, -5)]
+	var locations: Array[Vector3] = [Vector3(-9, 0, -9), Vector3(9, 0, 9), Vector3(-22, 0, 20), Vector3(22, 0, -20)]
 	var names: Array[String] = ["box", "box", "pillar", "stairs"]
 	for index: int in range(names.size()):
 		var prop: PrototypeProp = PrototypeProp.new()
@@ -269,7 +276,8 @@ func add_parked_cars() -> void:
 		CarProp.create("Car 05/Car5_Taxi.obj", "Car 05/car5_taxi.png"),
 		CarProp.create("Car 07/Car7.obj", "Car 07/car7_red.png"),
 	]
-	var placements: Array[Vector4] = [Vector4(0, 0, -8, 90), Vector4(0, 0, 8, 75), Vector4(-9.5, 0, -1, 4), Vector4(9.5, 0, 1, 180)]
+	# Off the spawn axis (players start at z = +/-3 on x = 0) so nobody spawns against a hull.
+	var placements: Array[Vector4] = [Vector4(-13, 0, -17, 90), Vector4(13, 0, 17, 75), Vector4(-23, 0, -6, 4), Vector4(23, 0, 6, 180)]
 	for index: int in range(cars.size()):
 		cars[index].position = Vector3(placements[index].x, placements[index].y, placements[index].z)
 		cars[index].rotation_degrees.y = placements[index].w

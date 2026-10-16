@@ -8,11 +8,13 @@ const DEFAULTS: Dictionary[StringName, int] = {
 }
 var keys: Dictionary[StringName, int] = DEFAULTS.duplicate()
 var sensitivity: float = 0.0024
+var fisheye: float = 0.6 # 0 = plain camera, 1 = full fisheye
 
 func _ready() -> void:
 	var config: ConfigFile = ConfigFile.new()
 	if config.load("user://controls.cfg") == OK:
 		sensitivity = clampf(float(config.get_value("look", "sensitivity", sensitivity)), 0.0005, 0.01)
+		fisheye = clampf(float(config.get_value("look", "fisheye", fisheye)), 0.0, 1.0)
 		for action: StringName in DEFAULTS:
 			var value: int = int(config.get_value("keys", action, DEFAULTS[action]))
 			if value > 0 and value != KEY_ESCAPE:
@@ -51,6 +53,7 @@ func save_settings() -> void:
 	for action: StringName in keys:
 		config.set_value("keys", action, keys[action])
 	config.set_value("look", "sensitivity", sensitivity)
+	config.set_value("look", "fisheye", fisheye)
 	var error: Error = config.save("user://controls.cfg")
 	if error != OK:
 		push_warning("Could not save controls: " + error_string(error))
@@ -58,6 +61,7 @@ func save_settings() -> void:
 func reset_defaults() -> void:
 	keys = DEFAULTS.duplicate()
 	sensitivity = 0.0024
+	fisheye = 0.6
 	apply_bindings()
 	save_settings()
 

@@ -7,7 +7,7 @@ var plants: Array[Node3D] = []
 func _ready() -> void:
 	var ground: MeshInstance3D = MeshInstance3D.new()
 	var plane: PlaneMesh = PlaneMesh.new()
-	plane.size = Vector2(80, 80)
+	plane.size = Vector2(150, 150)
 	ground.mesh = plane
 	ground.position.y = -0.03
 	var soil: StandardMaterial3D = StandardMaterial3D.new()
@@ -15,14 +15,14 @@ func _ready() -> void:
 	soil.roughness = 1.0
 	ground.material_override = soil
 	add_child(ground)
-	# Cosmetic scenery sits beyond the arena's +/-12 m walls; no random or replicated state.
+	# Cosmetic scenery sits beyond the arena's +/-28 m walls; no random or replicated state.
 	for index: int in range(24):
 		var angle: float = TAU * index / 24.0
-		var radius: float = 17.0 + (index % 3) * 2.0
+		var radius: float = 33.0 + (index % 3) * 3.0
 		add_plant("tree%02d" % (1 + (index * 5) % 36), Vector3(cos(angle) * radius, 0, sin(angle) * radius), 5.0 + index % 4)
 	for index: int in range(12):
 		var angle: float = TAU * (index + 0.4) / 12.0
-		add_plant("bush%02d" % (1 + index % 8), Vector3(cos(angle) * 18.0, 0, sin(angle) * 18.0), 1.2)
+		add_plant("bush%02d" % (1 + index % 8), Vector3(cos(angle) * 34.0, 0, sin(angle) * 34.0), 1.2)
 
 func add_plant(id: String, location: Vector3, height: float) -> Node3D:
 	var scene: PackedScene = load(ASSET_ROOT + "models/" + id + ".fbx") as PackedScene

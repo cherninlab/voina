@@ -10,7 +10,7 @@ var started: bool = false
 var generation: int = 0
 const COUNT: int = 3
 const RESPAWN_DELAY: float = 5.0
-const SPAWN_POINTS: Array[Vector3] = [Vector3(-3, 0.95, 0), Vector3(3, 0.95, 0), Vector3(0, 0.95, -5)]
+const SPAWN_POINTS: Array[Vector3] = [Vector3(-8, 0.95, 0), Vector3(8, 0.95, 0), Vector3(0, 0.95, -13)]
 var next_id: int = COUNT + 1
 var respawn_left: float = RESPAWN_DELAY
 

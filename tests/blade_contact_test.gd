@@ -64,8 +64,8 @@ func run() -> void:
 	mob.kick_velocity = Vector3.ZERO
 	contact.sweep(player, motion, false, 3.0)
 	check(mob.combat.health == 35 and mob.state != HostileMob.State.DEAD and mob.kick_velocity.length() > 3.0, "Contact outside an approved swing shoves without damage or cut")
-	var far: Vector3 = MobSystem.farthest_spawn(MobSystem.SPAWN_POINTS, [Vector3(-3, 1, 0), Vector3(3, 1, 0)])
-	check(far == Vector3(0, 0.95, -5), "Respawns pick the spawn point farthest from players")
+	var far: Vector3 = MobSystem.farthest_spawn(MobSystem.SPAWN_POINTS, [Vector3(-8, 1, 0), Vector3(8, 1, 0)])
+	check(far == Vector3(0, 0.95, -13), "Respawns pick the spawn point farthest from players")
 	# A fast approved swing bisects in one shot.
 	player_combat.respawn()
 	player_combat.clock += 5.0

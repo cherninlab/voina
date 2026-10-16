@@ -3,12 +3,14 @@ extends RefCounted
 
 # One ground-plane grid, shared by the encounter. Dynamic actors are steered by physics.
 const CELL: float = 0.5
+const CELLS: int = 113 # 56 m arena at 0.5 m, inclusive of both walls
+const ORIGIN: float = -28.0
 var grid: AStarGrid2D = AStarGrid2D.new()
 
 func build(space: PhysicsDirectSpaceState3D, exclude: Array[RID]) -> void:
-	grid.region = Rect2i(0, 0, 43, 43)
+	grid.region = Rect2i(0, 0, CELLS, CELLS)
 	grid.cell_size = Vector2.ONE * CELL
-	grid.offset = Vector2(-10.5, -10.5)
+	grid.offset = Vector2(ORIGIN, ORIGIN)
 	grid.diagonal_mode = AStarGrid2D.DIAGONAL_MODE_ONLY_IF_NO_OBSTACLES
 	grid.update()
 	var capsule: CapsuleShape3D = CapsuleShape3D.new()
@@ -17,20 +19,20 @@ func build(space: PhysicsDirectSpaceState3D, exclude: Array[RID]) -> void:
 	var query: PhysicsShapeQueryParameters3D = PhysicsShapeQueryParameters3D.new()
 	query.shape = capsule
 	query.exclude = exclude
-	for x: int in range(43):
-		for z: int in range(43):
+	for x: int in range(CELLS):
+		for z: int in range(CELLS):
 			var point: Vector2 = grid.get_point_position(Vector2i(x, z))
 			query.transform = Transform3D(Basis.IDENTITY, Vector3(point.x, 1.0, point.y))
 			grid.set_point_solid(Vector2i(x, z), not space.intersect_shape(query, 1).is_empty())
 
 func nearest(location: Vector3) -> Vector2i:
 	# ponytail: scan this tiny fixed grid; use a local search if the arena grows.
-	var point: Vector2i = Vector2i(roundi((location.x + 10.5) / CELL), roundi((location.z + 10.5) / CELL))
-	point = point.clamp(Vector2i.ZERO, Vector2i(42, 42))
+	var point: Vector2i = Vector2i(roundi((location.x - ORIGIN) / CELL), roundi((location.z - ORIGIN) / CELL))
+	point = point.clamp(Vector2i.ZERO, Vector2i(CELLS - 1, CELLS - 1))
 	var best: Vector2i = point
 	var distance: float = INF
-	for x: int in range(43):
-		for z: int in range(43):
+	for x: int in range(CELLS):
+		for z: int in range(CELLS):
 			var candidate: Vector2i = Vector2i(x, z)
 			if not grid.is_point_solid(candidate) and Vector2(candidate).distance_squared_to(Vector2(point)) < distance:
 				best = candidate

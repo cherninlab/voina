@@ -4,6 +4,7 @@ var actions: OptionButton = OptionButton.new()
 var bind_button: Button = Button.new()
 var message: Label = Label.new()
 var sensitivity: HSlider = HSlider.new()
+var fisheye: HSlider = HSlider.new()
 var waiting: bool = false
 
 func _ready() -> void:
@@ -39,11 +40,25 @@ func _ready() -> void:
 		InputSettings.save_settings()
 	)
 	column.add_child(sensitivity)
+	var fisheye_label: Label = Label.new()
+	fisheye_label.text = "Fisheye"
+	column.add_child(fisheye_label)
+	fisheye.min_value = 0.0
+	fisheye.max_value = 1.0
+	fisheye.step = 0.05
+	fisheye.value = InputSettings.fisheye
+	fisheye.custom_minimum_size.x = 300
+	fisheye.value_changed.connect(func(value: float) -> void:
+		InputSettings.fisheye = value
+		InputSettings.save_settings()
+	)
+	column.add_child(fisheye)
 	var reset: Button = Button.new()
 	reset.text = "Restore defaults"
 	reset.pressed.connect(func() -> void:
 		InputSettings.reset_defaults()
 		sensitivity.value = InputSettings.sensitivity
+		fisheye.value = InputSettings.fisheye
 		refresh()
 	)
 	column.add_child(reset)
