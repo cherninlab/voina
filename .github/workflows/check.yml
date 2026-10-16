@@ -18,3 +18,5 @@ jobs:
           ! grep -E 'SCRIPT ERROR|ERROR:' /tmp/import.log
       - name: Two-process ENet integration
         run: python3 scripts/smoke_test.py "$GODOT"
+      - name: PvE combat, navigation and late-join replication
+        run: python3 scripts/mob_smoke_test.py "$GODOT"
