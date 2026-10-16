@@ -18,6 +18,8 @@ On every machine, once: install Git LFS and Godot 4.7.2 Standard. If Godot is no
    Each command fetches, moves this machine's playtest copy (`<checkout>-playtest`, a detached worktree) to the pin, pulls LFS files, imports, and launches the game from there. Pass the address only, without `:7777`; use `--port` for another port.
 3. `python3 scripts/playtest.py status` shows the pin and whether this machine's copy matches it.
 
+`host` pins the exact commit it is about to host when that differs from the board, so the pin always names the build a running host plays. `join` follows the host: when it is refused for another build, it reads the host's commit from the refusal, syncs to it and rejoins (up to twice). Only a host running uncommitted edits (`+dirty`) cannot be followed. Never pass `--commit` unless you mean to override the host.
+
 ## Build check
 
 Debug builds (the editor binary) refuse to play against a different build. On connect, both games compare a fingerprint of every script, scene and resource under `core/`, `gameplay/` and `ui/`, plus `project.godot`, during Godot's authentication step, so a mismatched player never spawns. Uncommitted edits change the fingerprint too; the displayed commit gets `+dirty`.

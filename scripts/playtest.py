@@ -15,6 +15,8 @@ from __future__ import annotations
 import argparse
 import json
 import os
+import re
+import socket
 import subprocess
 import sys
 from pathlib import Path
@@ -36,6 +38,8 @@ def git(*args: str, cwd: Optional[Path] = None, check: bool = True) -> str:
 
 
 def playtest_dir() -> Path:
+    if os.environ.get("PLAYTEST_DIR"):  # tests use a throwaway copy
+        return Path(os.environ["PLAYTEST_DIR"])
     main_root = Path(git("rev-parse", "--path-format=absolute", "--git-common-dir")).parent
     return main_root.parent / f"{main_root.name}-playtest"
 
@@ -103,19 +107,29 @@ def cmd_status(args: argparse.Namespace) -> None:
         print("match" if local == pin["commit"] else "differs: run playtest.py sync")
 
 
-def cmd_pin(args: argparse.Namespace) -> None:
-    agent = board.need_agent(args)
-    board.fetch()
-    sha = resolve(args.commit or f"{board.REMOTE}/{board.TRUNK}")
+def publish_pin(sha: str, agent: str, note: str) -> None:
     if subprocess.run(["git", "merge-base", "--is-ancestor", sha, f"{board.REMOTE}/{board.TRUNK}"], cwd=board.ROOT).returncode != 0:
         sys.exit(f"playtest: {sha[:7]} is not on {board.REMOTE}/{board.TRUNK}; ship it first")
 
     def mutate() -> List[Path]:
-        record = {"commit": sha, "by": agent, "at": board.now(), "note": args.note}
+        record = {"commit": sha, "by": agent, "at": board.now(), "note": note}
         PIN.write_text(json.dumps(record, indent=2) + "\n")
         return [PIN]
 
     board.publish(f"board: {agent} pins playtest {sha[:7]}", mutate)
+
+
+def host_name(args: argparse.Namespace) -> str:
+    """Board name for pins written by a host; humans need not pass --agent."""
+    name = getattr(args, "agent", None) or os.environ.get("BOARD_AGENT") or "host-" + socket.gethostname().split(".")[0].lower()
+    return re.sub(r"[^A-Za-z0-9._-]", "-", name)
+
+
+def cmd_pin(args: argparse.Namespace) -> None:
+    agent = board.need_agent(args)
+    board.fetch()
+    sha = resolve(args.commit or f"{board.REMOTE}/{board.TRUNK}")
+    publish_pin(sha, agent, args.note)
     print(f"pinned {sha[:7]}; players run: python3 scripts/playtest.py host | join ADDRESS")
 
 
@@ -123,15 +137,47 @@ def cmd_sync(args: argparse.Namespace) -> None:
     sync(args.commit, godot_binary(args.godot))
 
 
+# The board pin always names the build a host is actually running, so joiners follow it.
 def cmd_host(args: argparse.Namespace) -> None:
     godot = godot_binary(args.godot)
+    path = sync(args.commit, godot)
+    sha = git("rev-parse", "HEAD", cwd=path)
+    pin = pinned()
+    if not pin or pin["commit"] != sha:
+        publish_pin(sha, host_name(args), f"hosting on {socket.gethostname().split('.')[0]}")
+        print(f"pinned {sha[:7]}: the board now names the build this host runs")
     modes = (["--match"] if args.match else []) + (["--pve"] if args.pve else [])
-    launch(sync(args.commit, godot), godot, ["--host", f"--port={args.port}", *modes], args.detach)
+    launch(path, godot, ["--host", f"--port={args.port}", *modes], args.detach)
 
 
+# A joiner refused for another build reads the host's commit from the refusal, syncs to it and
+# rejoins, at most twice. A host on uncommitted (+dirty) edits cannot be followed.
 def cmd_join(args: argparse.Namespace) -> None:
     godot = godot_binary(args.godot)
-    launch(sync(args.commit, godot), godot, [f"--join={args.address}", f"--port={args.port}"], args.detach)
+    commit = args.commit
+    game_args = [f"--join={args.address}", f"--port={args.port}"]
+    if args.detach:
+        launch(sync(commit, godot), godot, game_args, True)
+        return
+    for attempt in range(3):
+        path = sync(commit, godot)
+        process = subprocess.Popen([godot, "--path", str(path), "--", *game_args], stdout=subprocess.PIPE, stderr=subprocess.STDOUT, text=True)
+        follow = None
+        for line in process.stdout:
+            print(line, end="", flush=True)
+            match = re.match(r"VERSION_MISMATCH: Host runs ([0-9a-f]+)(\+dirty)? ", line)
+            if match:
+                if match.group(2):
+                    print("playtest: the host runs uncommitted edits; ask the host to ship and run playtest.py host")
+                else:
+                    follow = match.group(1)
+                process.terminate()
+                break
+        process.wait()
+        if not follow or attempt == 2:
+            sys.exit(process.returncode if not follow else 1)
+        print(f"playtest: following the host's build {follow}")
+        commit = follow
 
 
 def main() -> None:
