@@ -119,6 +119,7 @@ func build_ui() -> void:
 	controls_button.pressed.connect(func() -> void: controls_panel.visible = not controls_panel.visible)
 	canvas.add_child(controls_button)
 	canvas.add_child(controls_panel)
+	canvas.add_child(preload("res://ui/sword_tweaks_panel.gd").new()) # T-014 hook: live sword tuning
 	menu.position = Vector2(24, 195)
 	menu.add_theme_constant_override("separation", 12)
 	canvas.add_child(menu)

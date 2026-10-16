@@ -57,7 +57,20 @@ func run() -> void:
 			body_led = absf(angle_difference(motion.body_yaw, yaw)) < absf(angle_difference(motion.blade_yaw(), yaw)) - 0.05
 	check(swept > 0.4, "Camera turn and cut swing the blade along the mouse direction (swept %.2f rad)" % swept)
 	check(body_led, "While swinging the body leads the turn and the blade trails it")
-	check(peak > 0.4, "Rising mouse motion lifts the tip off the ground")
+	# A sustained spin of the body lifts the blade by centrifugal force, without any mouse pitch.
+	var spin: HeavySwordMotion = HeavySwordMotion.new()
+	spin.reset(0.0, origin, 0.0)
+	var spin_peak: float = 0.0
+	var spin_swept: float = 0.0
+	var spin_last: float = spin.blade_yaw()
+	for frame: int in range(90):
+		spin.step(1.0 / 60.0, wrapf(frame * 0.1, -PI, PI), 0.0, true, true, false, origin, 0.0)
+		spin_peak = maxf(spin_peak, spin.tip.y)
+		spin_swept += angle_difference(spin_last, spin.blade_yaw())
+		spin_last = spin.blade_yaw()
+	check(spin_peak > 0.8, "A spinning body lifts the blade by centrifugal force (peak %.2f m)" % spin_peak)
+	check(spin_swept > 4.0, "The blade keeps up with a 6 rad/s spin (swept %.2f rad)" % spin_swept)
+	check(spin.tip_velocity.length() <= HeavySwordMotion.MAX_TIP_SPEED, "Spin speed stays bounded")
 	check(pulled, "Heavy blade produces bounded owner pull")
 	check(absf(angle_difference(motion.body_yaw, motion.blade_yaw())) < 0.3 and motion.tip.y < 0.1, "Body follows the blade and it settles back into the ground")
 	for frame: int in range(120):
@@ -136,5 +149,5 @@ func run() -> void:
 	var body: CharacterVisual = player.get("body") as CharacterVisual
 	check(body.motion.pull_velocity.is_zero_approx(), "Host correction clears owner sword movement")
 	if failures == 0:
-		print("INERTIA_OK: anchored rest, no hold-up, arm stretch, dragged anchor, owner resistance, always facing the blade, body-led swing, release, timestep stability, planted feet, owner pull/correction")
+		print("INERTIA_OK: anchored rest, no hold-up, arm stretch, dragged anchor, owner resistance, always facing the blade, body-led swing, centrifugal spin, release, timestep stability, planted feet, owner pull/correction")
 	get_tree().quit(0 if failures == 0 else 1)

@@ -126,9 +126,6 @@ func _unhandled_input(event: InputEvent) -> void:
 	elif event.is_action_pressed(&"melee"):
 		if not combat.blocking and can_predict_action(18.0):
 			drag_gesture.begin()
-	elif event.is_action_pressed(&"beam"):
-		drag_gesture.cancel()
-		attack(true)
 	elif event.is_action_pressed(&"block"):
 		send_block(true)
 	elif event.is_action_pressed(&"dash"):
