@@ -14,32 +14,46 @@ func run() -> void:
 	var motion: HeavySwordMotion = HeavySwordMotion.new()
 	var origin: Vector3 = Vector3(0, 0.9, 0)
 	motion.reset(0.0, origin, 0.0)
-	check(absf(motion.tip.y - HeavySwordMotion.TIP_RADIUS) < 0.01 and motion.bearing() < -2.5, "Blade rests on the ground behind the right hip")
+	check(absf(motion.tip.y - HeavySwordMotion.TIP_RADIUS) < 0.01 and absf(motion.bearing()) < 0.3, "Blade rests with its tip in the ground ahead of the body")
 	for frame: int in range(120):
 		motion.step(1.0 / 60.0, 0.0, 0.0, true, false, false, origin, 0.0)
 	check(motion.tip.y < 0.1 and motion.raised > 0.99, "Holding without dragging cannot lift the blade")
-	# A leftward drag (camera turning left) plus the approved cut carries the blade across the front.
-	motion.strike(Vector2.LEFT)
-	var crossed_front: bool = false
+	for frame: int in range(120):
+		motion.step(1.0 / 60.0, 0.0, 0.0, false, false, false, origin, 0.0)
+	# Stepping back a little stretches the arms toward the anchored tip without moving it.
+	var anchored_tip: Vector3 = motion.tip
+	for frame: int in range(12):
+		motion.step(1.0 / 60.0, 0.0, 0.0, false, false, false, origin + Vector3(0, 0, 0.1), 0.0)
+	check(motion.tip.distance_to(anchored_tip) < 0.02 and motion.stretch > 0.2, "Small body shift stretches the arms while the tip stays anchored")
+	# Walking away breaks the anchor, drags the blade along the floor and pulls the owner back toward it.
+	var pulled_back: bool = false
+	for frame: int in range(60):
+		motion.step(1.0 / 60.0, 0.0, 0.0, false, false, false, origin + Vector3(0, 0, 0.1 + frame * 0.05), 0.0, Vector3(0, 0, 3.0))
+		pulled_back = pulled_back or motion.pull_velocity.z < -0.05
+	check(motion.tip.z > anchored_tip.z + 0.5 and motion.tip.y < 0.1, "Walking away drags the anchored blade along the ground")
+	check(pulled_back, "Dragging the anchored blade pulls the owner back toward it")
+	for frame: int in range(120):
+		motion.step(1.0 / 60.0, 0.0, 0.0, false, false, false, origin + Vector3(0, 0, 3.05), 0.0)
+	check(absf(angle_difference(motion.body_yaw, motion.blade_yaw())) < 0.2, "At rest the body turns to face the blade")
+	# A drag plus the approved cut throws the tip along the mouse direction; the body follows it.
+	var last_blade_yaw: float = motion.blade_yaw()
+	var swept: float = 0.0
 	var peak: float = 0.0
 	var pulled: bool = false
-	for frame: int in range(120):
+	motion.strike(Vector2.LEFT)
+	for frame: int in range(150):
 		var yaw: float = minf(0.6, frame * 0.05)
-		motion.step(1.0 / 60.0, yaw, 0.0, frame < 12, frame < 31, false, origin, 0.0)
-		crossed_front = crossed_front or absf(motion.bearing()) < 0.3
+		motion.step(1.0 / 60.0, yaw, 0.0, frame < 12, frame < 31, false, origin + Vector3(0, 0, 3.05), 0.0)
+		swept += angle_difference(last_blade_yaw, motion.blade_yaw())
+		last_blade_yaw = motion.blade_yaw()
 		peak = maxf(peak, motion.tip.y)
 		pulled = pulled or (motion.pull_velocity.length() > 0.01 and motion.pull_velocity.length() <= HeavySwordMotion.MAX_PULL)
-	check(crossed_front, "Swing carries the blade across the front")
+	check(swept > 0.8, "Drag and cut swing the blade along the mouse direction (swept %.2f rad)" % swept)
 	check(peak > 0.4, "Swing lifts the tip off the ground")
 	check(pulled, "Heavy blade produces bounded owner pull")
-	check(motion.bearing() > HeavySwordMotion.HOLD_BEARING and motion.tip.y < 0.1, "Blade falls to the other side and rests on the ground")
-	check(not motion.can_swing(Vector2.LEFT) and motion.can_swing(Vector2.RIGHT), "Next swing must drag the other way")
-	motion.strike(Vector2.LEFT)
-	for frame: int in range(60):
-		motion.step(1.0 / 60.0, 0.6, 0.0, true, true, false, origin, 0.0)
-	check(motion.bearing() > HeavySwordMotion.HOLD_BEARING, "Body blocks the blade from passing behind the back")
-	for frame: int in range(180):
-		motion.step(1.0 / 60.0, 0.6, 0.0, false, false, false, origin, 0.0)
+	check(absf(angle_difference(motion.body_yaw, motion.blade_yaw())) < 0.3 and motion.tip.y < 0.1, "Body follows the blade and it settles back into the ground")
+	for frame: int in range(120):
+		motion.step(1.0 / 60.0, 0.6, 0.0, false, false, false, origin + Vector3(0, 0, 3.05), 0.0)
 	check(motion.tip_velocity.length() < 0.05 and motion.raised == 0.0 and motion.pull_velocity.length() < 0.001, "Released blade settles")
 	var fine: HeavySwordMotion = HeavySwordMotion.new()
 	var coarse: HeavySwordMotion = HeavySwordMotion.new()
@@ -114,5 +128,5 @@ func run() -> void:
 	var body: CharacterVisual = player.get("body") as CharacterVisual
 	check(body.motion.pull_velocity.is_zero_approx(), "Host correction clears owner sword movement")
 	if failures == 0:
-		print("INERTIA_OK: rest, no hold-up, cross-front swing, opposite-side rest, body block, release, timestep stability, planted feet, owner pull/correction")
+		print("INERTIA_OK: anchored rest, no hold-up, arm stretch, dragged anchor, owner resistance, body faces blade, mouse-driven swing, release, timestep stability, planted feet, owner pull/correction")
 	get_tree().quit(0 if failures == 0 else 1)

@@ -30,7 +30,7 @@ var step_time: float = 0.0
 var step_duration: float = 0.2
 var next_foot: int = 0
 var gait_bob: float = 0.0
-var gait_crouch: float = 0.0 # hips drop with speed so the planted leg can reach forward and back
+var gait_crouch: float = 0.12 # hips stay dropped for a half-bent stance and lower further at speed
 var grounded_pose: bool = true
 const BLADE_TIP: Vector3 = Vector3(0, 0, -1.65)
 
@@ -127,7 +127,7 @@ func reset_motion(view_yaw: float) -> void:
 	grip_right = 1.0
 	grip_left = 0.0
 
-func drive_sword(delta: float, view_yaw: float, view_pitch: float, held: bool, attacking: bool, blocking: bool, interrupted: bool) -> void:
+func drive_sword(delta: float, view_yaw: float, view_pitch: float, held: bool, attacking: bool, blocking: bool, interrupted: bool, velocity: Vector3 = Vector3.ZERO) -> void:
 	if not is_finite(view_yaw) or not is_finite(view_pitch):
 		return
 	camera_yaw = view_yaw
@@ -136,12 +136,13 @@ func drive_sword(delta: float, view_yaw: float, view_pitch: float, held: bool, a
 		cancel_swing()
 	# A staggered or dashing body lets go of the drag; the blade keeps falling under its own weight.
 	var free: bool = not interrupted
-	motion.step(delta, view_yaw, view_pitch, held and free, attacking and free, blocking and free, global_position, ground_level)
-	# Both hands grip while dragging; at rest the hand on the blade's side keeps hold of the hilt.
+	motion.step(delta, view_yaw, view_pitch, held and free, attacking and free, blocking and free, global_position, ground_level, velocity)
+	# Both hands hold the hilt while dragging or whenever the blade stands ahead; a blade left off
+	# to one side is held by the hand on that side.
 	var side: float = motion.bearing()
-	var engaged: bool = motion.raised > 0.5
-	grip_right = move_toward(grip_right, 1.0 if engaged or side <= 0.0 else 0.0, delta * 6.0)
-	grip_left = move_toward(grip_left, 1.0 if engaged or side > 0.0 else 0.0, delta * 6.0)
+	var both: bool = motion.raised > 0.5 or absf(side) < 1.0
+	grip_right = move_toward(grip_right, 1.0 if both or side <= 0.0 else 0.0, delta * 6.0)
+	grip_left = move_toward(grip_left, 1.0 if both or side > 0.0 else 0.0, delta * 6.0)
 
 func update_pose(delta: float, _world_velocity: Vector3, _blocking: bool, staggered: bool) -> void:
 	if staggered:
@@ -150,6 +151,8 @@ func update_pose(delta: float, _world_velocity: Vector3, _blocking: bool, stagge
 		swing_elapsed += delta
 		if swing_elapsed >= CombatController.MELEE_WINDUP + CombatController.MELEE_ACTIVE + CombatController.MELEE_RECOVERY:
 			cancel_swing()
+	# The body turns to face the blade; the parent carries the camera yaw, so counter-rotate here.
+	rotation.y = angle_difference(camera_yaw, motion.body_yaw)
 	var direction: Vector3 = motion.blade_direction()
 	var up: Vector3 = Vector3.UP if absf(direction.y) < 0.99 else Vector3.FORWARD.rotated(Vector3.UP, motion.body_yaw)
 	sword.global_transform = Transform3D(Basis.looking_at(direction, up), motion.hilt)
@@ -178,7 +181,8 @@ func update_feet(delta: float, velocity: Vector3, grounded: bool) -> void:
 	var horizontal: Vector3 = Vector3(velocity.x, 0, velocity.z)
 	var speed: float = horizontal.length()
 	var pace: float = clampf(speed / 6.5, 0.0, 1.0)
-	gait_crouch = move_toward(gait_crouch, 0.1 * pace, delta * 0.6)
+	# Always on half-bent knees, a little lower at speed.
+	gait_crouch = move_toward(gait_crouch, 0.12 + 0.06 * pace, delta * 0.6)
 	if not grounded:
 		stepping = -1
 		for index: int in range(2):

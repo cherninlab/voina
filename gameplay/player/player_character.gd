@@ -143,14 +143,8 @@ func _unhandled_input(event: InputEvent) -> void:
 		# Camera and sword share the same look input, including after the initial attack.
 		if drag_gesture.held:
 			var cut: Vector2 = drag_gesture.move(motion.screen_relative)
-			if cut.is_zero_approx():
-				pass
-			elif body.motion.can_swing(cut):
+			if not cut.is_zero_approx():
 				attack(false, cut)
-			else:
-				# The blade rests against the body on that side; rearm so the opposite drag can swing it.
-				drag_gesture.cancel()
-				drag_gesture.begin()
 	if event is InputEventMagnifyGesture:
 		var gesture: InputEventMagnifyGesture = event as InputEventMagnifyGesture
 		if gesture.factor < 0.85:
@@ -277,7 +271,7 @@ func _physics_process(delta: float) -> void:
 				swing_time = -1.0
 				swing_pending = false
 		sword_held = drag_gesture.held and not staggered and not combat.blocking
-		body.drive_sword(delta, yaw, pitch, sword_held, swing_time >= 0.0, combat.blocking, staggered or dash_left > 0.0)
+		body.drive_sword(delta, yaw, pitch, sword_held, swing_time >= 0.0, combat.blocking, staggered or dash_left > 0.0, velocity)
 		if dash_left > 0 and not staggered:
 			velocity.x = dash_direction.x * 16.0
 			velocity.z = dash_direction.z * 16.0
@@ -309,7 +303,7 @@ func _physics_process(delta: float) -> void:
 		position = remote_motion.shown(HitResolver.now(), delta)
 		velocity = sync_velocity
 		var swinging: bool = combat.phase in [CombatController.Phase.WINDUP, CombatController.Phase.ACTIVE, CombatController.Phase.RECOVERY] and body.swing_elapsed >= 0.0
-		body.drive_sword(delta, yaw, pitch, sword_held, swinging, combat.blocking, combat.phase in [CombatController.Phase.STAGGERED, CombatController.Phase.DASHING])
+		body.drive_sword(delta, yaw, pitch, sword_held, swinging, combat.blocking, combat.phase in [CombatController.Phase.STAGGERED, CombatController.Phase.DASHING], sync_velocity)
 	body.update_feet(delta, velocity, is_on_floor() if is_multiplayer_authority() else absf(sync_velocity.y) < 0.5)
 	if multiplayer.is_server():
 		history.record(HitResolver.now(), sync_position)

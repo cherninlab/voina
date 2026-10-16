@@ -51,12 +51,12 @@ func _process_modification_with_delta(_delta: float) -> void:
 		last_hands[side] = rig.global_transform * rig.get_bone_global_pose(arms[side][2]).origin
 
 func pose_body(rig: Skeleton3D) -> void:
-	var twist: float = clampf(angle_difference(visual.camera_yaw, visual.motion.body_yaw), -1.1, 1.1)
+	# The whole visual faces the blade; the spine and head turn toward where the camera looks.
+	var look: float = clampf(angle_difference(visual.motion.body_yaw, visual.camera_yaw), -1.0, 1.0)
 	var lean: Vector2 = visual.motion.lean
-	var hips: Basis = Basis.from_euler(Vector3(lean.x * 0.4, twist * 0.65, lean.y * 0.4))
-	rotate_visual(rig, "pelvis", hips, Vector3(-lean.y * 0.08, -0.05 - visual.gait_bob - visual.gait_crouch, lean.x * 0.08))
-	rotate_visual(rig, "spine_01", Basis.from_euler(Vector3(lean.x * 0.6, twist * 0.35, lean.y * 0.6)))
-	rotate_visual(rig, "Head", Basis.from_euler(Vector3(visual.camera_pitch * 0.35, -twist * 0.65, 0.0)))
+	rotate_visual(rig, "pelvis", Basis.from_euler(Vector3(lean.x * 0.4, 0.0, lean.y * 0.4)), Vector3(-lean.y * 0.08, -0.05 - visual.gait_bob - visual.gait_crouch, lean.x * 0.08))
+	rotate_visual(rig, "spine_01", Basis.from_euler(Vector3(lean.x * 0.6, look * 0.35, lean.y * 0.6)))
+	rotate_visual(rig, "Head", Basis.from_euler(Vector3(visual.camera_pitch * 0.35, look * 0.65, 0.0)))
 
 func rotate_visual(rig: Skeleton3D, bone_name: String, rotation: Basis, shift: Vector3 = Vector3.ZERO) -> void:
 	var bone: int = rig.find_bone(bone_name)
@@ -76,9 +76,8 @@ func pose_legs(rig: Skeleton3D) -> void:
 		var ankle: int = legs[index][2]
 		var pose: Transform3D = rig.get_bone_global_pose(ankle)
 		var normal: Vector3 = visual.foot_normals[index]
-		var facing: Basis = Basis(Vector3.UP, angle_difference(visual.camera_yaw, visual.motion.body_yaw))
 		var rest_world: Basis = rig.global_basis * rig.get_bone_global_rest(ankle).basis
-		pose.basis = rig.global_basis.inverse() * Basis(Quaternion(Vector3.UP, normal)) * facing * rest_world
+		pose.basis = rig.global_basis.inverse() * Basis(Quaternion(Vector3.UP, normal)) * rest_world
 		rig.set_bone_global_pose(ankle, pose)
 		last_feet[index] = rig.global_transform * pose.origin
 
@@ -96,7 +95,12 @@ func constrain_grip(rig: Skeleton3D) -> void:
 			var reach: float = shoulder.distance_to(elbow) + elbow.distance_to(hand) - 0.005
 			var offset: Vector3 = grip_frame(side).origin - shoulder
 			if offset.length() > reach:
+				# Pull the hilt in but keep the blade aimed at its tip, so an anchored tip stays put.
+				var tip: Vector3 = visual.sword.to_global(CharacterVisual.BLADE_TIP)
 				visual.sword.global_position -= offset.normalized() * (offset.length() - reach)
+				var toward_tip: Vector3 = tip - visual.sword.global_position
+				if toward_tip.length_squared() > 0.0001 and absf(toward_tip.normalized().y) < 0.99:
+					visual.sword.global_basis = Basis.looking_at(toward_tip, Vector3.UP)
 
 func solve(rig: Skeleton3D, bones: PackedInt32Array, target_world: Vector3, pole_world: Vector3) -> void:
 	if bones.size() != 3 or bones[0] < 0 or bones[1] < 0 or bones[2] < 0:

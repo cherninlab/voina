@@ -60,7 +60,7 @@ func _ready() -> void:
 func refresh() -> void:
 	var action: StringName = actions.get_item_metadata(actions.selected)
 	bind_button.text = "Rebind: " + InputSettings.key_label(action)
-	message.text = "Hold left click / melee key + look to swing\nSword follows camera with weight · Release to rearm\nRight click: block"
+	message.text = "Hold left click / melee key + drag to swing\nThe blade is heavy and anchors in the ground: your drag sets its path, your body follows it\nRight click: block"
 
 func _input(event: InputEvent) -> void:
 	if not visible or not waiting or not event is InputEventKey:

@@ -96,7 +96,7 @@ func run() -> void:
 		await get_tree().process_frame
 		await get_tree().process_frame
 		var tip: Vector3 = visual.to_local(visual.sword.to_global(CharacterVisual.BLADE_TIP))
-		check(tip.z > 1.0 and absf(tip.y + 0.85) < 0.03, variant + " blade trails behind at ground level")
+		check(tip.z < -1.0 and absf(tip.y + 0.87) < 0.03, variant + " blade stands ahead with its tip in the ground")
 		check_grip(visual, false, variant + " idle")
 		for direction: Vector2 in [Vector2.RIGHT, Vector2.LEFT, Vector2.UP, Vector2.DOWN, Vector2(1, 1).normalized()]:
 			visual.start_swing(direction)
