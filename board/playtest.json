@@ -1,6 +1,6 @@
 {
-  "commit": "36b89ece870a59b7f92aa6e00d8a2aa239c6074e",
-  "by": "theo-claude-2",
-  "at": "2026-10-16T21:17Z",
-  "note": "tip of main: sword physics + tweaks panel, sudden-death ring, countdown movement lock, host auto-pin/join follows host build, cleaner board page; match/smoke/mob/wildlife passed per shipping agents (not re-run here: no Godot on this Mac)"
+  "commit": "a81c04aec583cfee02ba3d457f61e86535e124d4",
+  "by": "mike-claude-1",
+  "at": "2026-10-16T21:39Z",
+  "note": "tip of main: sword contact on raiders (shove, bisect), centrifugal sword, tweaks panel"
 }
