@@ -1,6 +1,6 @@
 {
-  "commit": "51b1a371fa31dc022c4286c26ea43d4ca3bdae89",
-  "by": "mike-claude-1",
-  "at": "2026-10-16T21:09Z",
-  "note": "tip of main: centrifugal sword physics, Sword tweaks panel, test beam off"
+  "commit": "36b89ece870a59b7f92aa6e00d8a2aa239c6074e",
+  "by": "theo-claude-2",
+  "at": "2026-10-16T21:17Z",
+  "note": "tip of main: sword physics + tweaks panel, sudden-death ring, countdown movement lock, host auto-pin/join follows host build, cleaner board page; match/smoke/mob/wildlife passed per shipping agents (not re-run here: no Godot on this Mac)"
 }
