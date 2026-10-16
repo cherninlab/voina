@@ -45,7 +45,7 @@ print(projectiles.stdout, end='')
 print(projectiles.stderr, end='')
 assert projectiles.returncode == 0 and 'PROJECTILE_OK:' in projectiles.stdout
 assert 'ERROR' not in projectiles.stdout + projectiles.stderr
-for test, marker in ((['--script', 'tests/remote_motion_test.gd'], 'REMOTE_MOTION_OK:'), (['--fixed-fps', '60', 'res://tests/net_test.tscn'], 'NET_OK:')):
+for test, marker in ((['--script', 'tests/remote_motion_test.gd'], 'REMOTE_MOTION_OK:'), (['--fixed-fps', '60', 'res://tests/net_test.tscn'], 'NET_OK:'), (['--fixed-fps', '60', 'res://tests/match_test.tscn'], 'MATCH_OK:')):
     run = subprocess.run(base + test, capture_output=True, text=True, timeout=60)
     print(run.stdout, end='')
     print(run.stderr, end='')
@@ -76,7 +76,7 @@ with tempfile.TemporaryDirectory() as directory:
             host.terminate()
             host.wait(timeout=5)
 
-def run_pair(client_flags: list, marker: str, spawns: bool = True) -> str:
+def run_pair(client_flags: list, marker: str, spawns: bool = True, host_flags: tuple = ()) -> str:
     """Start a host and one scripted client on a fresh port; return the host log."""
     with socket.socket(socket.AF_INET, socket.SOCK_DGRAM) as probe:
         probe.bind(('127.0.0.1', 0))
@@ -84,7 +84,7 @@ def run_pair(client_flags: list, marker: str, spawns: bool = True) -> str:
     with tempfile.TemporaryDirectory() as directory:
         log_path = pathlib.Path(directory) / 'host.log'
         with log_path.open('w') as log:
-            host = subprocess.Popen(base + ['--', '--host', f'--port={pair_port}'], stdout=log, stderr=subprocess.STDOUT)
+            host = subprocess.Popen(base + ['--', '--host', f'--port={pair_port}', *host_flags], stdout=log, stderr=subprocess.STDOUT)
             try:
                 time.sleep(1)
                 result = subprocess.run(base + ['--', '--join=127.0.0.1', f'--port={pair_port}'] + client_flags, capture_output=True, text=True, timeout=25)
@@ -105,6 +105,8 @@ def run_pair(client_flags: list, marker: str, spawns: bool = True) -> str:
 run_pair(['--projectile-smoke'], 'PROJECTILE_SMOKE_OK:')
 # The client's net monitor sees the host's 60 Hz movement snapshots over a live ENet link.
 run_pair(['--net-smoke'], 'NET_SMOKE_OK:')
+# A --match host runs the countdown and round; the client sees the replicated state.
+run_pair(['--match-smoke'], 'MATCH_SMOKE_OK:', host_flags=('--match',))
 # A different build is refused during authentication, before anything spawns.
 assert 'BUILD_REFUSED' in run_pair(['--fake-build=0123456789ab', '--expect-version-mismatch'], 'VERSION_MISMATCH_OK:', spawns=False)
 print('PASS: local two-process ENet integration and disconnect cleanup')

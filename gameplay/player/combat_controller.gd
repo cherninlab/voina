@@ -4,6 +4,8 @@ extends Node
 signal attack_started(ranged: bool)
 signal attack_active(ranged: bool)
 signal respawn_requested
+# Emitted on the host when health reaches zero; killer is null for unattributed damage.
+signal died(killer: CombatController)
 
 const MAX_HEALTH: int = 100
 const MAX_STAMINA: float = 100.0
@@ -35,6 +37,8 @@ var next_block: float = 0.0
 var invulnerable_until: float = 0.0
 var action_ranged: bool = false
 var struck: Dictionary[int, bool] = {}
+# Match flow freezes combat during countdowns: no actions start and hits are ignored.
+var frozen: bool = false
 
 func _ready() -> void:
 	set_multiplayer_authority(1)
@@ -71,7 +75,7 @@ func spend(amount: float) -> bool:
 
 # head_start back-dates a client's melee windup by the time its request spent in flight.
 func begin_attack(ranged: bool, head_start: float = 0.0) -> bool:
-	if not multiplayer.is_server() or phase != Phase.IDLE or blocking or clock < next_attack:
+	if not multiplayer.is_server() or frozen or phase != Phase.IDLE or blocking or clock < next_attack:
 		return false
 	if not spend(8.0 if ranged else 18.0):
 		return false
@@ -88,7 +92,7 @@ func begin_attack(ranged: bool, head_start: float = 0.0) -> bool:
 # A projectile release: the same gate and shared cooldown as the beam, without a hitscan.
 # The projectile system resolves the hit later, when the bolt arrives.
 func begin_shot(cost: float, cooldown: float) -> bool:
-	if not multiplayer.is_server() or phase != Phase.IDLE or blocking or clock < next_attack or not spend(cost):
+	if not multiplayer.is_server() or frozen or phase != Phase.IDLE or blocking or clock < next_attack or not spend(cost):
 		return false
 	next_attack = clock + cooldown
 	action_ranged = true
@@ -130,7 +134,7 @@ func strike(target_id: int) -> bool:
 	return true
 
 func begin_dash() -> bool:
-	if not multiplayer.is_server() or phase != Phase.IDLE or not spend(DASH_COST):
+	if not multiplayer.is_server() or frozen or phase != Phase.IDLE or not spend(DASH_COST):
 		return false
 	blocking = false
 	phase = Phase.DASHING
@@ -145,7 +149,7 @@ func stagger(duration: float = 0.8) -> void:
 	invulnerable_until = 0.0
 
 func take_hit(damage: int, ranged: bool, facing_attacker: bool, attacker: CombatController = null, parry_grace: float = 0.0) -> int:
-	if not multiplayer.is_server():
+	if not multiplayer.is_server() or frozen:
 		return HitResult.EVADE
 	if ranged and evades_ranged():
 		return HitResult.EVADE
@@ -157,6 +161,7 @@ func take_hit(damage: int, ranged: bool, facing_attacker: bool, attacker: Combat
 		if spend(20.0):
 			health -= maxi(1, int(ceil(damage * 0.2)))
 			if health <= 0:
+				died.emit(attacker)
 				respawn()
 			return HitResult.BLOCK
 		stagger()
@@ -164,6 +169,7 @@ func take_hit(damage: int, ranged: bool, facing_attacker: bool, attacker: Combat
 	poise = maxf(0.0, poise - (15.0 if ranged else 35.0))
 	last_spend = clock
 	if health <= 0:
+		died.emit(attacker)
 		respawn()
 	elif poise <= 0.0 or phase == Phase.WINDUP:
 		poise = 100.0

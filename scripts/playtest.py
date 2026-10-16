@@ -7,7 +7,8 @@ board/playtest.json), so agents' checkouts, imports and parallel test runs are n
   playtest.py status                       pin, local playtest copy, and whether they match
   playtest.py pin [COMMIT] --agent NAME    pin a commit of origin/main (default: its tip) for everyone
   playtest.py sync [--commit C]            move this machine's playtest copy to the pin (or C) and import
-  playtest.py host | join ADDRESS          sync, then launch the game from the playtest copy
+  playtest.py host [--match] [--pve]       sync, then host from the playtest copy
+  playtest.py join ADDRESS                 sync, then join from the playtest copy
 """
 from __future__ import annotations
 
@@ -124,7 +125,8 @@ def cmd_sync(args: argparse.Namespace) -> None:
 
 def cmd_host(args: argparse.Namespace) -> None:
     godot = godot_binary(args.godot)
-    launch(sync(args.commit, godot), godot, ["--host", f"--port={args.port}"], args.detach)
+    modes = (["--match"] if args.match else []) + (["--pve"] if args.pve else [])
+    launch(sync(args.commit, godot), godot, ["--host", f"--port={args.port}", *modes], args.detach)
 
 
 def cmd_join(args: argparse.Namespace) -> None:
@@ -150,6 +152,9 @@ def main() -> None:
         if name != "sync":
             command.add_argument("--port", type=int, default=7777)
             command.add_argument("--detach", action="store_true", help="return after launching the game")
+        if name == "host":
+            command.add_argument("--match", action="store_true", help="first to three round wins")
+            command.add_argument("--pve", action="store_true", help="add hostile PvE raiders")
         command.set_defaults(fn=fn)
     args = parser.parse_args()
     try:

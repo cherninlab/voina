@@ -10,6 +10,8 @@ var controls_button: Button = Button.new()
 var controls_panel: PanelContainer = preload("res://ui/controls_panel.gd").new()
 var pve_toggle: CheckButton = CheckButton.new()
 var mobs: MobSystem = MobSystem.new()
+var match_toggle: CheckButton = CheckButton.new()
+var match_flow: MatchFlow = MatchFlow.new()
 
 func _ready() -> void:
 	add_to_group("match_world")
@@ -25,6 +27,9 @@ func _ready() -> void:
 	mobs.name = "Mobs"
 	mobs.players = players
 	add_child(mobs)
+	match_flow.name = "Match"
+	match_flow.players = players
+	add_child(match_flow)
 	build_ui()
 	multiplayer.peer_connected.connect(peer_connected)
 	multiplayer.peer_disconnected.connect(peer_disconnected)
@@ -48,6 +53,8 @@ func host_started() -> void:
 		spawner.spawn([1, 0])
 	if pve_toggle.button_pressed or "--pve" in OS.get_cmdline_user_args():
 		mobs.start()
+	if match_toggle.button_pressed or "--match" in OS.get_cmdline_user_args():
+		match_flow.start()
 
 func peer_connected(peer_id: int) -> void:
 	menu.hide()
@@ -123,6 +130,8 @@ func build_ui() -> void:
 	menu.add_child(address)
 	pve_toggle.text = "PvE · 3 hostile raiders"
 	menu.add_child(pve_toggle)
+	match_toggle.text = "Match · first to 3 round wins"
+	menu.add_child(match_toggle)
 	var host: Button = Button.new()
 	host.text = "Host game"
 	host.pressed.connect(func() -> void: NetworkManager.host_game(NetworkManager.port))
