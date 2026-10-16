@@ -1,6 +1,6 @@
 {
-  "commit": "949aa548d68635b1316281f1708769f3601694a1",
-  "by": "mike-claude-1",
-  "at": "2026-10-16T20:50Z",
-  "note": "tip of main: anchored sword, body-led swings, backwards walk, net monitor fix"
+  "commit": "ad1922046573f02cb6b5920559d2b8095fac3f86",
+  "by": "theo-claude-4",
+  "at": "2026-10-16T20:56Z",
+  "note": "match flow (host --match), sword work, bolts, netcode, monitor fix"
 }
