@@ -4,6 +4,7 @@ const DEFAULTS: Dictionary[StringName, int] = {
 	&"move_forward": KEY_W, &"move_back": KEY_S, &"move_left": KEY_A, &"move_right": KEY_D,
 	&"melee": KEY_F, &"beam": KEY_E, &"block": KEY_CTRL, &"dash": KEY_SHIFT,
 	&"jump": KEY_SPACE, &"camera_toggle": KEY_V, &"quick_turn": KEY_R, &"bolt": KEY_Q,
+	&"net_overlay": KEY_QUOTELEFT,
 }
 var keys: Dictionary[StringName, int] = DEFAULTS.duplicate()
 var sensitivity: float = 0.0024

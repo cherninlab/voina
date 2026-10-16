@@ -24,6 +24,18 @@ Debug builds (the editor binary) refuse to play against a different build. On co
 
 A refused joiner sees the host's commit and the exact command, e.g. `python3 scripts/playtest.py sync --commit 80dedc6`, then joins again. The host's HUD reports the refusal. `BUILD: <commit> [<fingerprint>]` is printed at startup. For a deliberate experiment, launch with `-- --allow-version-mismatch`.
 
+## Monitor
+
+Press **`** (the key left of 1; rebind it as "Net overlay" under Controls) for the net overlay:
+
+- the role and build;
+- per ENet peer, the round trip, jitter and packet loss;
+- per remote player, movement snapshots per second (about 60 when healthy), display drift (how far the drawn body was from its latest snapshot; it fades out), and host corrections (times the host pulled that player back for impossible movement).
+
+A small build label stays in the bottom-left corner. While connected, the same numbers go to the game's output every 5 s as `NET ...` lines. Keep the terminal output, or launch through `playtest.py` from a terminal, to diagnose a session afterwards. Rising drift and corrections at a steady round trip point to netcode; a rising round trip, jitter or loss points to the connection.
+
+Movement replicates at 60 Hz. Remote bodies show their latest snapshot projected by the time since it arrived, and knockback is applied as velocity instead of a teleport. What remains behind the other player is network transit: about half the round trip when the other player is the host, a full round trip when another client's movement is relayed through the host.
+
 ## Working in parallel
 
 - Never edit the playtest copy; `sync` refuses to move it if it has local edits. Agents keep using their own checkouts or `board.py worktree` copies.

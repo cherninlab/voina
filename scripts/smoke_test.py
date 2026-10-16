@@ -103,6 +103,8 @@ def run_pair(client_flags: list, marker: str, spawns: bool = True) -> str:
 
 # A client fires bolts at the host player over real ENet.
 run_pair(['--projectile-smoke'], 'PROJECTILE_SMOKE_OK:')
+# The client's net monitor sees the host's 60 Hz movement snapshots over a live ENet link.
+run_pair(['--net-smoke'], 'NET_SMOKE_OK:')
 # A different build is refused during authentication, before anything spawns.
 assert 'BUILD_REFUSED' in run_pair(['--fake-build=0123456789ab', '--expect-version-mismatch'], 'VERSION_MISMATCH_OK:', spawns=False)
 print('PASS: local two-process ENet integration and disconnect cleanup')

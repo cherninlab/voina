@@ -66,8 +66,9 @@ func _ready() -> void:
 	pivot.add_child(arm)
 	arm.add_child(camera)
 	camera.current = is_multiplayer_authority() and not NetworkManager.dedicated
-	# 60 Hz so remote bodies trail by network transit, not by half a slow snapshot interval.
-	var movement: MultiplayerSynchronizer = add_sync("MovementSync", get_multiplayer_authority(), [^":sync_position", ^":sync_velocity", ^":yaw", ^":pitch", ^":sword_held"], 1.0 / 60.0)
+	# Every network frame (60/s at the game's 60 fps cap), so remote bodies trail by network transit,
+	# not by half a slow snapshot interval. An interval equal to the frame time would skip frames.
+	var movement: MultiplayerSynchronizer = add_sync("MovementSync", get_multiplayer_authority(), [^":sync_position", ^":sync_velocity", ^":yaw", ^":pitch", ^":sword_held"], 0.0)
 	movement.synchronized.connect(func() -> void: remote_motion.receive(sync_position, sync_velocity, HitResolver.now(), position))
 	remote_motion.reset(position, HitResolver.now())
 	combat.name = "Combat"
