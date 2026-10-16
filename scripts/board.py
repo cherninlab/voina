@@ -257,7 +257,7 @@ def all_tasks() -> List[Tuple[Dict[str, str], str]]:
 
 def need_agent(args: argparse.Namespace) -> str:
     agent = args.agent or os.environ.get("BOARD_AGENT", "")
-    if not re.fullmatch(r"[A-Za-z0-9._-]+", agent):
+    if not re.fullmatch(r"(?:human:)?[A-Za-z0-9._-]+", agent):
         raise BoardError("pass --agent NAME (e.g. theo-claude-2) or set BOARD_AGENT")
     return agent
 
@@ -319,17 +319,25 @@ def transition(args: argparse.Namespace, status: Optional[str], note: str, owner
         meta, body = read_task(path)
         owner = meta.get("owner", "")
         if status == "claimed":
+            if (owner.startswith("human:") or meta.get("title", "").startswith("Human:")) and not agent.startswith("human:"):
+                raise BoardError(f"{meta['id']} is reserved for a human")
             if meta.get("status") == "done":
                 raise BoardError(f"{meta['id']} is done")
-            if meta.get("status") == "claimed" and owner != agent and not args.steal:
+            done = {m["id"] for m, _ in all_tasks() if m.get("status") == "done"}
+            waiting = [d.strip() for d in meta.get("depends", "").split(",") if d.strip() and d.strip() not in done]
+            if waiting:
+                raise BoardError(f"{meta['id']} waits for {', '.join(waiting)}")
+            if owner and owner != agent and (not args.steal or not is_stale(meta)):
                 stale = " (stale: use --steal)" if is_stale(meta) else ""
-                raise BoardError(f"{meta['id']} already claimed by {owner}{stale}")
-        elif owner_check and meta.get("status") == "claimed" and owner != agent:
+                raise BoardError(f"{meta['id']} is owned by {owner}{stale}; only stale ownership can be taken")
+        elif owner_check and owner != agent:
             raise BoardError(f"{meta['id']} is owned by {owner}, not {agent}")
         if status:
             meta["status"] = status
             meta["owner"] = "" if status == "open" else agent
-        meta["updated"] = now()
+        # A collaborator's comment must not make an absent owner appear active.
+        if status or not owner or owner == agent:
+            meta["updated"] = now()
         text = note + (f" (stolen from {owner})" if status == "claimed" and owner and owner != agent else "")
         write_task(path, meta, add_log(body, agent, text))
         return [path]
@@ -440,7 +448,7 @@ def main() -> None:
     p.add_argument("--done-when", default="")
     p = command("claim", cmd_claim, "take a task; the first push wins")
     p.add_argument("id")
-    p.add_argument("--steal", action="store_true", help="take over another agent's task (logged)")
+    p.add_argument("--steal", action="store_true", help="take over stale ownership after 3 hours (logged)")
     for name, fn, required in (("done", cmd_done, False), ("release", cmd_release, False),
                                ("block", cmd_block, True), ("note", cmd_note, True)):
         p = command(name, fn)
