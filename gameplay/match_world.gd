@@ -8,6 +8,8 @@ var menu: VBoxContainer = VBoxContainer.new()
 var address: LineEdit = LineEdit.new()
 var controls_button: Button = Button.new()
 var controls_panel: PanelContainer = preload("res://ui/controls_panel.gd").new()
+var pve_toggle: CheckButton = CheckButton.new()
+var mobs: MobSystem = MobSystem.new()
 
 func _ready() -> void:
 	add_to_group("match_world")
@@ -20,6 +22,9 @@ func _ready() -> void:
 	spawner.spawn_function = create_player
 	add_child(spawner)
 	build_arena()
+	mobs.name = "Mobs"
+	mobs.players = players
+	add_child(mobs)
 	build_ui()
 	multiplayer.peer_connected.connect(peer_connected)
 	multiplayer.peer_disconnected.connect(peer_disconnected)
@@ -41,6 +46,8 @@ func host_started() -> void:
 	menu.hide()
 	if not NetworkManager.dedicated:
 		spawner.spawn([1, 0])
+	if pve_toggle.button_pressed or "--pve" in OS.get_cmdline_user_args():
+		mobs.start()
 
 func peer_connected(peer_id: int) -> void:
 	menu.hide()
@@ -56,6 +63,7 @@ func peer_disconnected(peer_id: int) -> void:
 			print("DESPAWNED ", peer_id)
 
 func clear_players() -> void:
+	mobs.clear()
 	for player: Node in players.get_children():
 		player.queue_free()
 
@@ -113,6 +121,8 @@ func build_ui() -> void:
 	address.text = "127.0.0.1"
 	address.custom_minimum_size = Vector2(320, 40)
 	menu.add_child(address)
+	pve_toggle.text = "PvE · 3 hostile raiders"
+	menu.add_child(pve_toggle)
 	var host: Button = Button.new()
 	host.text = "Host game"
 	host.pressed.connect(func() -> void: NetworkManager.host_game(NetworkManager.port))
@@ -137,6 +147,8 @@ func _process(_delta: float) -> void:
 		hud.text += "\nHealth %d · Stamina %d · Poise %d · %s · players %d / 4" % [combat.health, int(combat.stamina), int(combat.poise), CombatController.Phase.keys()[combat.phase], players.get_child_count()]
 		if float(local.get("feedback_left")) > 0:
 			hud.text += " · " + String(local.get("feedback"))
+	if mobs.bodies.get_child_count() > 0 or mobs.started:
+		hud.text += "\nPvE · %d raiders remaining · yellow = attack windup" % mobs.living_count()
 
 func smoke_client() -> void:
 	await get_tree().create_timer(2.0).timeout

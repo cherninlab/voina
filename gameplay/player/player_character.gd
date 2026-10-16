@@ -410,11 +410,15 @@ func resolve_attack(ranged: bool) -> void:
 	var targets: Array[CharacterBody3D] = []
 	var centers: PackedVector3Array = PackedVector3Array()
 	var exclude: Array[RID] = []
-	for target: Node in get_parent().get_children():
+	var candidates: Array[Node] = get_parent().get_children()
+	candidates.append_array(get_tree().get_nodes_in_group("hostile_mobs"))
+	for target: Node in candidates:
 		var other: CharacterBody3D = target as CharacterBody3D
 		if other == null:
 			continue
 		exclude.append(other.get_rid())
+		if other is HostileMob and (other as HostileMob).combat.health <= 0:
+			continue
 		if other != self and not other.is_queued_for_deletion():
 			targets.append(other)
 			var other_history: HitResolver.PositionHistory = other.get("history") as HitResolver.PositionHistory
@@ -434,7 +438,9 @@ func resolve_attack(ranged: bool) -> void:
 			continue
 		if HitResolver.wall_distance(space, origin, chest, exclude) < origin.distance_to(chest):
 			continue
-		if combat.strike(targets[index].get_multiplayer_authority()):
+		# All mobs belong to peer 1, so use their own negative IDs for swing deduplication.
+		var hit_id: int = -(targets[index] as HostileMob).mob_id if targets[index] is HostileMob else targets[index].get_multiplayer_authority()
+		if combat.strike(hit_id):
 			targets[index].call("receive_hit", 25, forward, false, self)
 			if combat.phase == CombatController.Phase.STAGGERED:
 				break
