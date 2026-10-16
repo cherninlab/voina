@@ -92,7 +92,8 @@ func report() -> PackedStringArray:
 	lines.append("%s · build %s" % [role, BuildSync.label()])
 	var enet: ENetMultiplayerPeer = multiplayer.multiplayer_peer as ENetMultiplayerPeer
 	if connected() and enet != null:
-		for peer: int in multiplayer.get_peers():
+		# A client only has a direct ENet link to the host; other clients are relayed through it.
+		for peer: int in (multiplayer.get_peers() if multiplayer.is_server() else PackedInt32Array([1])):
 			var link: ENetPacketPeer = enet.get_peer(peer)
 			if link != null:
 				var loss: float = link.get_statistic(ENetPacketPeer.PEER_PACKET_LOSS) / ENetPacketPeer.PACKET_LOSS_SCALE * 100.0
