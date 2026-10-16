@@ -20,7 +20,7 @@ python3 scripts/smoke_test.py "$GODOT"
 "$GODOT" --headless --path . res://tests/sword_test.tscn
 ```
 
-The sword test checks gesture threshold/rearming/cancellation, the input route, host request validation, one charge per swing, prediction rejection, both rigs' grip reach and first-person visibility flags. Its optional network mode runs with two processes: start the same test scene with `-- --sword-network --host --port=7788`, then with `-- --sword-network --join=127.0.0.1 --port=7788`. Stop the host after the client reports `SWORD_NETWORK_OK`.
+The headless sword test checks gesture threshold/rearming/cancellation, host request validation, one charge per swing, prediction rejection, both rigs' grip reach and first-person visibility flags. Run the same test without `--headless` to additionally check cursor recapture, the actual input route and camera suppression; headless Godot cannot capture the mouse. Its optional network mode runs with two processes: start the same test scene with `-- --sword-network --host --port=7788`, then with `-- --sword-network --join=127.0.0.1 --port=7788`. Stop the host after the client reports `SWORD_NETWORK_OK`.
 
 Rendered pose previews check idle and mid-swing presentation on both models. These checks do not establish manual trackpad feel, camera readability in motion or two-Mac Tailscale behavior. Those still require visible playtesting.
 
