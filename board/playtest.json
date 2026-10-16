@@ -1,6 +1,6 @@
 {
-  "commit": "18d1e0a2c070745cdab096e3c9cdc219c22fbe81",
-  "by": "theo-claude-4",
-  "at": "2026-10-16T20:33Z",
-  "note": "everything on main: bolts, 60/s netcode, build check, net overlay, PvE raiders (T-015)"
+  "commit": "949aa548d68635b1316281f1708769f3601694a1",
+  "by": "mike-claude-1",
+  "at": "2026-10-16T20:50Z",
+  "note": "tip of main: anchored sword, body-led swings, backwards walk, net monitor fix"
 }
