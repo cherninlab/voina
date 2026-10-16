@@ -34,6 +34,11 @@ print(resolver.stdout, end='')
 print(resolver.stderr, end='')
 assert resolver.returncode == 0 and 'HIT_RESOLVER_OK:' in resolver.stdout
 assert 'ERROR' not in resolver.stdout + resolver.stderr
+cars = subprocess.run(base + ['--script', 'tests/car_test.gd'], capture_output=True, text=True, timeout=15)
+print(cars.stdout, end='')
+print(cars.stderr, end='')
+assert cars.returncode == 0 and 'CAR_OK:' in cars.stdout
+assert 'ERROR' not in cars.stdout + cars.stderr
 with tempfile.TemporaryDirectory() as directory:
     log_path = pathlib.Path(directory) / 'host.log'
     with log_path.open('w') as log:

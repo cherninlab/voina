@@ -62,6 +62,7 @@ func clear_players() -> void:
 func build_arena() -> void:
 	add_child(preload("res://gameplay/environment/tree_pack.tscn").instantiate())
 	add_prototype_props()
+	add_parked_cars()
 	box(Vector3(24, 1, 24), Vector3(0, -0.5, 0), Color("243442"))
 	for location: Vector3 in [Vector3(-5, 0.6, -4), Vector3(5, 0.6, 4), Vector3(-5, 0.6, 4), Vector3(5, 0.6, -4)]:
 		box(Vector3(3, 1.2, 2), location, Color("45606c"))
@@ -209,3 +210,16 @@ func add_prototype_props() -> void:
 		prop.model_scene = load("res://content/environments/rgsdev/Pieces/%s.fbx" % names[index]) as PackedScene
 		prop.position = locations[index]
 		add_child(prop)
+
+func add_parked_cars() -> void:
+	var cars: Array[CarProp] = [
+		CarProp.create("Car 05/Car5_Police.obj", "Car 05/car5_police.png"),
+		CarProp.create("Car 06/Car6.obj", "Car 06/car6.png"),
+		CarProp.create("Car 05/Car5_Taxi.obj", "Car 05/car5_taxi.png"),
+		CarProp.create("Car 07/Car7.obj", "Car 07/car7_red.png"),
+	]
+	var placements: Array[Vector4] = [Vector4(0, 0, -8, 90), Vector4(0, 0, 8, 75), Vector4(-9.5, 0, -1, 4), Vector4(9.5, 0, 1, 180)]
+	for index: int in range(cars.size()):
+		cars[index].position = Vector3(placements[index].x, placements[index].y, placements[index].z)
+		cars[index].rotation_degrees.y = placements[index].w
+		add_child(cars[index])
