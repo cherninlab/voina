@@ -13,7 +13,8 @@ const MALE_VISUAL: PackedScene = preload("res://content/characters/quaternius/ma
 const FEMALE_VISUAL: PackedScene = preload("res://content/characters/quaternius/female.tscn")
 var body: CharacterVisual
 var third_person: bool = true
-var visual_attack_until: float = 0.0
+var drag_gesture: DragGesture = DragGesture.new()
+var approved_swing_direction: Vector2 = Vector2.RIGHT
 var dash_direction: Vector3 = Vector3.ZERO
 var dash_left: float = 0.0
 var dash_pending: bool = false
@@ -66,7 +67,7 @@ func _ready() -> void:
 	add_sync("MovementSync", get_multiplayer_authority(), [^":sync_position", ^":sync_velocity", ^":yaw", ^":pitch"])
 	combat.name = "Combat"
 	combat.set_multiplayer_authority(1)
-	combat.attack_started.connect(func(ranged: bool) -> void: attack_effect.rpc(ranged))
+	combat.attack_started.connect(func(ranged: bool) -> void: attack_effect.rpc(ranged, approved_swing_direction))
 	combat.attack_active.connect(resolve_attack)
 	combat.respawn_requested.connect(respawn)
 	add_child(combat)
@@ -98,6 +99,8 @@ func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventKey and event.pressed and not event.echo and event.physical_keycode == KEY_ESCAPE:
 		release_input()
 		return
+	if event.is_action_released(&"melee"):
+		drag_gesture.cancel()
 	if event.is_action_released(&"block"):
 		send_block(false)
 	if event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT and Input.mouse_mode != Input.MOUSE_MODE_CAPTURED:
@@ -111,10 +114,13 @@ func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed(&"camera_toggle"):
 		set_camera_mode(not third_person)
 	elif event.is_action_pressed(&"quick_turn"):
+		drag_gesture.cancel()
 		yaw += PI
 	elif event.is_action_pressed(&"melee"):
-		attack(false)
+		if not combat.blocking and can_predict_action(18.0):
+			drag_gesture.begin()
 	elif event.is_action_pressed(&"beam"):
+		drag_gesture.cancel()
 		attack(true)
 	elif event.is_action_pressed(&"block"):
 		send_block(true)
@@ -122,6 +128,12 @@ func _unhandled_input(event: InputEvent) -> void:
 		dash()
 	if event is InputEventMouseMotion:
 		var motion: InputEventMouseMotion = event as InputEventMouseMotion
+		if drag_gesture.held:
+			var cut: Vector2 = drag_gesture.move(motion.screen_relative)
+			if not cut.is_zero_approx():
+				attack(false, cut)
+			get_viewport().set_input_as_handled()
+			return
 		var sensitivity: float = InputSettings.sensitivity * aim_friction
 		var turn: float = motion.screen_relative.x * sensitivity
 		if swing_turn_limited():
@@ -137,6 +149,7 @@ func _unhandled_input(event: InputEvent) -> void:
 			set_camera_mode(false)
 
 func release_input() -> void:
+	drag_gesture.cancel()
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 	send_block(false)
 
@@ -154,6 +167,7 @@ func can_predict_action(cost: float) -> bool:
 	return combat.phase == CombatController.Phase.IDLE and combat.stamina >= cost and dash_left <= 0.0 and swing_time < 0.0
 
 func dash() -> void:
+	drag_gesture.cancel()
 	if not can_predict_action(CombatController.DASH_COST):
 		return
 	var direction: Vector3 = movement_direction()
@@ -176,10 +190,13 @@ func cancel_prediction() -> void:
 		dash_left = 0.0
 	if swing_pending:
 		swing_time = -1.0
+		body.cancel_swing()
 	dash_pending = false
 	swing_pending = false
 
 func send_block(wants_block: bool) -> void:
+	if wants_block:
+		drag_gesture.cancel()
 	if multiplayer.is_server():
 		request_block(wants_block)
 	else:
@@ -228,6 +245,7 @@ func from_server() -> bool:
 	return sender == 1 or (sender == 0 and multiplayer.is_server())
 
 func set_camera_mode(use_third_person: bool) -> void:
+	drag_gesture.cancel()
 	third_person = use_third_person
 	arm.spring_length = 2.6 if third_person else 0.0
 	arm.position.x = 0.55 if third_person else 0.0
@@ -242,6 +260,7 @@ func _physics_process(delta: float) -> void:
 			direction = movement_direction()
 		var staggered: bool = combat.phase == CombatController.Phase.STAGGERED
 		if staggered:
+			drag_gesture.cancel()
 			direction = Vector3.ZERO
 			dash_left = 0.0
 			swing_time = -1.0
@@ -296,8 +315,6 @@ func _process(delta: float) -> void:
 	flash_left = maxf(0, flash_left - delta)
 	if hitstop_left > 0:
 		hitstop_left -= delta
-	else:
-		body.rotation.z = 0.18 if Time.get_ticks_msec() / 1000.0 < visual_attack_until else 0.0
 	var grounded: bool = is_on_floor() if is_multiplayer_authority() else absf(sync_velocity.y) < 0.5
 	body.animate(delta, velocity, grounded, combat.phase, combat.blocking, hitstop_left > 0)
 	body.set_highlight(flash_left > 0 or combat.blocking, flash_color if flash_left > 0 else Color("fff1a2"))
@@ -339,24 +356,32 @@ func validate_motion() -> void:
 	accepted_position = sync_position
 	last_motion_check = now
 
-func attack(ranged: bool) -> void:
+func attack(ranged: bool, direction: Vector2 = Vector2.RIGHT) -> void:
 	if not ranged:
 		if combat.blocking or not can_predict_action(18.0):
 			return
 		swing_time = 0.0
+		body.start_swing(direction)
 	if multiplayer.is_server():
-		request_attack(ranged)
+		request_attack(ranged, direction)
 	else:
 		swing_pending = not ranged
-		request_attack.rpc_id(1, ranged)
+		request_attack.rpc_id(1, ranged, direction)
 
 @rpc("any_peer", "call_remote", "reliable")
-func request_attack(ranged: bool) -> void:
+func request_attack(ranged: bool, direction: Vector2 = Vector2.RIGHT) -> void:
 	if not owns_request():
 		return
+	if not direction.is_finite() or direction.length_squared() < 0.01 or direction.length_squared() > 4.0:
+		reject_request()
+		return
+	# Direction is presentation only; host combat still decides timing, cost and damage.
+	if combat.phase == CombatController.Phase.IDLE:
+		approved_swing_direction = direction.normalized()
 	if not combat.begin_attack(ranged):
 		if multiplayer.get_remote_sender_id() == 0:
 			swing_time = -1.0
+			body.cancel_swing()
 		reject_request()
 
 func resolve_attack(ranged: bool) -> void:
@@ -427,6 +452,8 @@ func hit_feedback(result: int, dealt: bool) -> void:
 func correct_position(location: Vector3, impulse: Vector3) -> void:
 	if not from_server():
 		return
+	drag_gesture.cancel()
+	body.cancel_swing()
 	position = location
 	sync_position = location
 	dash_left = 0.0
@@ -437,13 +464,16 @@ func correct_position(location: Vector3, impulse: Vector3) -> void:
 		velocity = impulse
 
 @rpc("any_peer", "call_local", "reliable")
-func attack_effect(ranged: bool) -> void:
+func attack_effect(ranged: bool, direction: Vector2 = Vector2.RIGHT) -> void:
 	if not from_server():
 		return
 	if not ranged:
+		if not swing_pending:
+			body.start_swing(direction)
+			if is_multiplayer_authority():
+				swing_time = 0.0
 		swing_pending = false
 	body.play_attack(ranged)
-	visual_attack_until = Time.get_ticks_msec() / 1000.0 + 0.3
 	if not ranged or DisplayServer.get_name() == "headless":
 		return
 	var beam: MeshInstance3D = MeshInstance3D.new()

@@ -23,7 +23,7 @@ No export templates or third-party addons are required to run from the editor.
 | Action | Control |
 | --- | --- |
 | Move / look | WASD / trackpad glide |
-| Melee / hitscan | F or left click / E |
+| Longsword / hitscan | Hold left click or F + drag to swing; release to rearm / E |
 | Block / parry | Hold Shift or right click; parry during the first 0.18 s (plus up to 0.08 s latency grace) |
 | Dash | Space + movement direction (forward if stationary) |
 | Jump | C |
@@ -32,7 +32,7 @@ No export templates or third-party addons are required to run from the editor.
 | Release cursor | Esc or focus loss |
 | Recapture | Left click |
 
-**E remains the test beam; Shift/right click blocks.** Release the cursor with Esc and click **Controls** to rebind keyboard actions or change sensitivity. Bindings persist locally in Godot's `user://controls.cfg`; duplicate keys are rejected. Left/right mouse bindings remain available. Camera switching currently snaps. Players use the supplied Quaternius male/female models with capsule collision. See [character setup and usage](docs/characters.md) for the preserved CC0 license, import details and current animation limitations.
+**Hold left click (or F) and drag 36 screen pixels to swing.** The drag direction selects the cut; one swing per press, release to rearm. Mouse motion controls the sword while held and resumes camera look on release. A click without dragging does not attack. Both characters carry a trailing longsword with hand IK; see [longsword controls and limitations](docs/longsword.md). **E remains the test beam; Shift/right click blocks.** Release the cursor with Esc and click **Controls** to rebind keyboard actions or change sensitivity. Bindings persist locally in Godot's `user://controls.cfg`; duplicate keys are rejected. Left/right mouse bindings remain available. Camera switching currently snaps. Players use the supplied Quaternius male/female models with capsule collision. See [character setup and usage](docs/characters.md) for the preserved CC0 license, import details and current animation limitations.
 
 ## Implemented
 
