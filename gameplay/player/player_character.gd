@@ -34,6 +34,8 @@ var stagger_anchor: Vector3 = Vector3.ZERO
 var stagger_anchored: bool = false
 var last_motion_check: float = 0.0
 var history: HitResolver.PositionHistory = HitResolver.PositionHistory.new()
+var remote_motion: RemoteMotion = RemoteMotion.new()
+var corrections_sent: int = 0
 
 # Knockback slide plus slack; walking during the owner's latency is added per peer.
 const STAGGER_DRIFT: float = 2.0
@@ -64,7 +66,10 @@ func _ready() -> void:
 	pivot.add_child(arm)
 	arm.add_child(camera)
 	camera.current = is_multiplayer_authority() and not NetworkManager.dedicated
-	add_sync("MovementSync", get_multiplayer_authority(), [^":sync_position", ^":sync_velocity", ^":yaw", ^":pitch", ^":sword_held"])
+	# 60 Hz so remote bodies trail by network transit, not by half a slow snapshot interval.
+	var movement: MultiplayerSynchronizer = add_sync("MovementSync", get_multiplayer_authority(), [^":sync_position", ^":sync_velocity", ^":yaw", ^":pitch", ^":sword_held"], 1.0 / 60.0)
+	movement.synchronized.connect(func() -> void: remote_motion.receive(sync_position, sync_velocity, HitResolver.now(), position))
+	remote_motion.reset(position, HitResolver.now())
 	combat.name = "Combat"
 	combat.set_multiplayer_authority(1)
 	combat.attack_started.connect(func(ranged: bool) -> void: attack_effect.rpc(ranged, approved_swing_direction))
@@ -81,17 +86,18 @@ func _ready() -> void:
 	if is_multiplayer_authority() and DisplayServer.get_name() != "headless":
 		Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 
-func add_sync(sync_name: String, authority: int, properties: Array[NodePath]) -> void:
+func add_sync(sync_name: String, authority: int, properties: Array[NodePath], interval: float = 1.0 / 30.0) -> MultiplayerSynchronizer:
 	var synchronizer: MultiplayerSynchronizer = MultiplayerSynchronizer.new()
 	synchronizer.name = sync_name
 	synchronizer.set_multiplayer_authority(authority)
-	synchronizer.replication_interval = 1.0 / 30.0
+	synchronizer.replication_interval = interval
 	var config: SceneReplicationConfig = SceneReplicationConfig.new()
 	for property: NodePath in properties:
 		config.add_property(property)
 		config.property_set_replication_mode(property, SceneReplicationConfig.REPLICATION_MODE_ALWAYS)
 	synchronizer.replication_config = config
 	add_child(synchronizer)
+	return synchronizer
 
 func _unhandled_input(event: InputEvent) -> void:
 	if not is_multiplayer_authority():
@@ -296,7 +302,10 @@ func _physics_process(delta: float) -> void:
 		if multiplayer.is_server():
 			validate_motion()
 			enforce_stagger()
-		position = position.lerp(sync_position, 1.0 - exp(-20.0 * delta))
+		# Host-side corrections write sync_position directly, without a snapshot signal.
+		if sync_position != remote_motion.snapshot_position:
+			remote_motion.receive(sync_position, sync_velocity, HitResolver.now(), position)
+		position = remote_motion.shown(HitResolver.now(), delta)
 		velocity = sync_velocity
 		var swinging: bool = combat.phase in [CombatController.Phase.WINDUP, CombatController.Phase.ACTIVE, CombatController.Phase.RECOVERY] and body.swing_elapsed >= 0.0
 		body.drive_sword(delta, yaw, pitch, sword_held, swinging, combat.blocking, combat.phase in [CombatController.Phase.STAGGERED, CombatController.Phase.DASHING])
@@ -342,6 +351,7 @@ func enforce_stagger() -> void:
 	var clamped: Vector3 = stagger_anchor + offset.normalized() * allowed
 	clamped.y = sync_position.y
 	accepted_position = clamped
+	corrections_sent += 1
 	correct_position.rpc(clamped, Vector3.ZERO)
 
 func validate_motion() -> void:
@@ -355,6 +365,7 @@ func validate_motion() -> void:
 		sync_velocity = Vector3.ZERO
 		yaw = 0
 		pitch = 0
+		corrections_sent += 1
 		correct_position.rpc(accepted_position, Vector3.ZERO)
 	accepted_position = sync_position
 	last_motion_check = now
@@ -443,7 +454,7 @@ func receive_hit(damage: int, direction: Vector3, ranged: bool = false, attacker
 	if attacker != null:
 		attacker.rpc("hit_feedback", result, true)
 	if result == CombatController.HitResult.HIT and combat.health < old_health:
-		correct_position.rpc(sync_position, direction * 5.0 + Vector3.UP * 2)
+		push.rpc(direction * 5.0 + Vector3.UP * 2)
 
 func respawn() -> void:
 	history.clear()
@@ -465,22 +476,36 @@ func hit_feedback(result: int, dealt: bool) -> void:
 	if is_multiplayer_authority():
 		shake_left = 0.14 if dealt else 0.3
 
-@rpc("any_peer", "call_local", "reliable")
-func correct_position(location: Vector3, impulse: Vector3) -> void:
-	if not from_server():
-		return
+func interrupt() -> void:
 	drag_gesture.cancel()
 	body.cancel_swing()
-	body.reset_motion(yaw)
 	sword_held = false
-	if location.distance_to(sync_position) > 1.0:
-		history.clear()  # a teleport must not be interpolated by rewound hits
-	position = location
-	sync_position = location
 	dash_left = 0.0
 	swing_time = -1.0
 	dash_pending = false
 	swing_pending = false
+
+@rpc("any_peer", "call_local", "reliable")
+func correct_position(location: Vector3, impulse: Vector3) -> void:
+	if not from_server():
+		return
+	interrupt()
+	body.reset_motion(yaw)
+	if location.distance_to(sync_position) > 1.0:
+		history.clear()  # a teleport must not be interpolated by rewound hits
+	position = location
+	sync_position = location
+	remote_motion.reset(location, HitResolver.now())
+	if is_multiplayer_authority():
+		velocity = impulse
+
+# Knockback reaches the owner as velocity only. Teleporting the owner to the host's last snapshot
+# would undo up to a round trip of its own movement on every hit.
+@rpc("any_peer", "call_local", "reliable")
+func push(impulse: Vector3) -> void:
+	if not from_server():
+		return
+	interrupt()
 	if is_multiplayer_authority():
 		velocity = impulse
 

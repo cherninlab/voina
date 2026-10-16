@@ -81,8 +81,11 @@ func collect(directory: String, files: Array[String]) -> void:
 static func encode(info: Dictionary) -> PackedByteArray:
 	return var_to_bytes(info)
 
+# Only payloads headed as a dictionary reach the variant decoder, so garbage is ignored quietly.
 static func decode(data: PackedByteArray) -> Dictionary:
-	var value: Variant = bytes_to_var(data) if not data.is_empty() else null
+	if data.size() < 8 or (data.decode_u32(0) & 0xFF) != TYPE_DICTIONARY:
+		return {}
+	var value: Variant = bytes_to_var(data)
 	return value as Dictionary if value is Dictionary else {}
 
 # The joining side speaks first; the host answers after comparing.

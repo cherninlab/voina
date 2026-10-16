@@ -45,6 +45,12 @@ print(projectiles.stdout, end='')
 print(projectiles.stderr, end='')
 assert projectiles.returncode == 0 and 'PROJECTILE_OK:' in projectiles.stdout
 assert 'ERROR' not in projectiles.stdout + projectiles.stderr
+for test, marker in ((['--script', 'tests/remote_motion_test.gd'], 'REMOTE_MOTION_OK:'), (['--fixed-fps', '60', 'res://tests/net_test.tscn'], 'NET_OK:')):
+    run = subprocess.run(base + test, capture_output=True, text=True, timeout=60)
+    print(run.stdout, end='')
+    print(run.stderr, end='')
+    assert run.returncode == 0 and marker in run.stdout
+    assert 'ERROR' not in run.stdout + run.stderr
 with tempfile.TemporaryDirectory() as directory:
     log_path = pathlib.Path(directory) / 'host.log'
     with log_path.open('w') as log:

@@ -6,9 +6,9 @@ extends RefCounted
 
 const HISTORY_SECONDS: float = 0.4
 const MAX_REWIND: float = 0.2
-## Remote bodies chase 30 Hz snapshots with an exponential lerp at rate 20 (player_character.gd):
-## about 1/20 s behind, plus half a snapshot interval.
-const VIEW_LAG: float = 1.0 / 20.0 + 0.5 / 30.0
+## Remote bodies show their latest 60 Hz snapshot projected to the present (RemoteMotion), so the
+## attacker's screen trails targets only by network transit, which the round trip already covers.
+const VIEW_LAG: float = 0.0
 const MAX_HEAD_START: float = 0.06
 const CAPSULE_RADIUS: float = 0.4
 const CAPSULE_HALF_SEGMENT: float = 0.5
