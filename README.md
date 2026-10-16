@@ -1,4 +1,4 @@
-# MultiPlayerProject
+# Voina
 
 A Godot **4.7.2 Standard / typed GDScript** multiplayer combat starter for 2–4 friends on MacBooks. Mobile renderer, native Metal, built-in Jolt; Git for collaboration and ENet over LAN/Tailscale for game traffic.
 
@@ -24,21 +24,31 @@ No export templates or third-party addons are required to run from the editor.
 | --- | --- |
 | Move / look | WASD / trackpad glide |
 | Melee / hitscan | F or left click / E |
+| Block / parry | Hold Shift or right click; parry during the first 0.18 s (plus up to 0.08 s latency grace) |
+| Dash | Space + movement direction (forward if stationary) |
 | Jump | C |
 | First/third person | V, or pinch |
 | Quick turn | R |
 | Release cursor | Esc or focus loss |
 | Recapture | Left click |
 
-This milestone deliberately assigns **E to the test beam**. The full design's E/block, stamina, dash, weapon swap, aim assist, and match scoring are future work. Camera switching currently snaps. Capsules use procedural placeholder geometry; no external assets or asset licenses are needed.
+**E remains the test beam; Shift/right click blocks.** Release the cursor with Esc and click **Controls** to rebind keyboard actions or change sensitivity. Bindings persist locally in Godot's `user://controls.cfg`; duplicate keys are rejected. Left/right mouse bindings remain available. Camera switching currently snaps. Capsules use procedural placeholder geometry; no external assets or asset licenses are needed.
 
 ## Implemented
 
 - 24 m greybox arena, four cover blocks, host/join overlay and health HUD.
 - Up to four capsule players, peer-ID ownership, custom `MultiplayerSpawner` spawns and automatic late-join replication.
 - Local movement and camera, 30 Hz synchronized motion, interpolated remote bodies, generous host movement checks.
-- Separate **host-owned health synchronizer**. Client movement authority cannot overwrite health.
+- Separate **host-owned combat synchronizer** for health, stamina, poise, block and combat phase. Client movement authority cannot overwrite these values.
 - Host-only hit resolution, sender ownership and cooldown checks, delayed 70-degree/2.2 m melee cone with wall check, 40 m hitscan, knockback and immediate respawn at zero health.
+- Explicit host-timed 0.15 s windup → 0.12 s active → 0.25 s recovery. The host sweeps the cone every physics tick of the active window and hits each target at most once per swing; interruption, parry and respawn cancel pending swings.
+- The owner predicts its own swing locally: 7 m/s forward lunge during active frames, slowed walking and a 4 rad/s turn-rate limit through active and recovery. The host repeats every check and cancels a prediction it rejects.
+- 100 stamina, melee cost 18, beam cost 8, dash cost 35; 22/s regeneration after 0.7 s without spending or taking a hit, while idle and not blocking.
+- Front-facing block reduces health damage by 80% and costs 20 stamina per hit. First 0.18 s (padded by the defender's ENet one-way latency, capped at 0.08 s) parries melee and staggers the attacker for 0.8 s. Back attacks bypass guard; exhausted guard breaks. Re-raising block is limited to once per 0.35 s.
+- Directional 16 m/s dash for 0.25 s with 0.15 s of host-owned ranged immunity; melee remains effective. The owner starts the dash immediately from replicated stamina/phase; host rejection cancels it.
+- Poise damage (melee 35, beam 15), stagger at zero, 18/s idle regeneration. Incoming hits interrupt melee windup.
+- Confirmed-hit text, body flash, camera shake and 0.06 s visual hitstop; game/network time keeps running.
+- 0.35 m camera shape cast gives 0.55× look sensitivity over a target. Projectile magnetism awaits projectile weapons.
 - Third-person spring-arm exclusion and first-person body shadows; cursor release on focus loss.
 - CLI hosting, joining, dedicated server and configurable port.
 
@@ -51,9 +61,9 @@ The host trusts client movement inside a generous envelope. This is a friend-gro
 python3 scripts/smoke_test.py "$GODOT"
 ```
 
-The integration check starts host and client processes on loopback, checks both player spawns, fires a beam, checks replicated health, rejects an attack sent through another player's node, checks cooldown, lethal-hit respawn, delayed melee, and disconnect cleanup. Godot generates `.gd.uid` files during import; commit them.
+The command first runs deterministic combat tests (parry expiry and capped latency grace, directional guard, active-window sweep and per-target hit dedupe, guard break, resource costs/regeneration, dash immunity and interrupted swings), then starts host and client processes on loopback, checks both player spawns, fires a beam, checks replicated health, rejects an attack sent through another player's node, checks cooldown, lethal-hit respawn, one hit per multi-tick melee swing, replicated block/dash, cancellation of a rejected predicted dash, invalid vectors, forged block/dash ownership, and disconnect cleanup. Godot generates `.gd.uid` files during import; commit them.
 
-Before calling this ready for friends, run two visible instances and verify walking, jumping, both cameras, cover occlusion, melee, beam, knockback, respawn, cursor release, late join and reconnect via restarting. Then repeat over Tailscale on two Macs. Automated tests do not establish trackpad feel, visual quality, WAN behavior or thermal performance.
+Before calling this ready for friends, run two visible instances and verify walking, jumping, both cameras, cover occlusion, melee, beam, block/parry, stamina, directional dash, hit feedback, aim friction, saved key remapping, knockback, respawn, cursor release, late join and reconnect via restarting. Then repeat over Tailscale on two Macs. Automated tests do not establish trackpad feel, visual quality, WAN behavior or thermal performance.
 
 ## Collaborate
 

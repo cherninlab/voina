@@ -8,7 +8,9 @@ Still requires manual acceptance: two visible Mac instances, both camera modes, 
 
 ## M2 — combat depth
 
-Add stamina, timed block/parry, dash and ranged invulnerability, poise, hitstop/camera shake, aim friction and input remapping. Resolve E's beam-vs-block mapping before implementing. Explicitly test that the host owns all combat state and rejects impossible input. Retain local movement responsiveness.
+Implemented: host-owned stamina/poise and combat phases, timed directional block/parry, owner-predicted dash with host approval and ranged immunity, owner-predicted melee lunge and turn-rate limit, per-tick active melee sweep, latency-padded parry window, stagger/guard break, visual hitstop/camera shake and hit feedback, reticle sensitivity friction, persistent keyboard remapping and sensitivity panel. Shift/right click blocks; E remains the test beam. Dash and swing start locally from replicated state; the host revalidates and cancels rejected predictions.
+
+Automated acceptance covers combat timing/resource rules plus multi-process replication, request ownership, invalid dash vectors, cooldown and respawn. Human acceptance still requires two-Mac combat and trackpad play. Animated swept weapon hitboxes, host-side position history and projectile magnetism remain deferred until content/projectile work; no animation-quality claim is made for capsule tilts.
 
 ## M3 — data-driven content
 
@@ -32,5 +34,5 @@ Transport creation is isolated now, but internet discovery, NAT traversal, platf
 - Health uses its own server-authority synchronizer; assigning player authority recursively to one combined synchronizer would let the player own health.
 - Synced movement is distinct from interpolated display position; basic host checks use elapsed-time movement envelopes. Full rollback and lag compensation are deferred.
 - No hard performance promises: FPS, thermals, input acceleration and gesture support must be measured on the target Macs.
-- M1 uses a simple host-validated melee cone plus line-of-sight, not a swept animated weapon hitbox; physical lunge and three-phase combat remain M2 work.
+- M1 uses a simple host-validated melee cone plus line-of-sight, not a swept animated weapon hitbox; three-phase combat with a per-tick active sweep and owner-predicted lunge is now implemented.
 - Procedural arena geometry keeps the project runnable without LFS assets. Resource definitions, empty registries and unused folders are deferred until used.

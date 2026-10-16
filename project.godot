@@ -1,11 +1,12 @@
 config_version=5
 
 [application]
-config/name="MultiPlayerProject"
+config/name="Voina"
 run/main_scene="res://gameplay/match_world.tscn"
 config/features=PackedStringArray("4.7", "Mobile")
 
 [autoload]
+InputSettings="*res://core/input_settings.gd"
 NetworkManager="*res://core/network_manager.gd"
 
 [display]

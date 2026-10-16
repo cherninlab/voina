@@ -14,13 +14,18 @@ with socket.socket(socket.AF_INET, socket.SOCK_DGRAM) as probe:
     probe.bind(('127.0.0.1', 0))
     port = probe.getsockname()[1]
 base = [godot, '--headless', '--path', str(root)]
+combat = subprocess.run(base + ['--script', 'tests/combat_test.gd'], capture_output=True, text=True, timeout=15)
+print(combat.stdout, end='')
+print(combat.stderr, end='')
+assert combat.returncode == 0 and 'COMBAT_OK:' in combat.stdout
+assert 'ERROR' not in combat.stdout + combat.stderr
 with tempfile.TemporaryDirectory() as directory:
     log_path = pathlib.Path(directory) / 'host.log'
     with log_path.open('w') as log:
         host = subprocess.Popen(base + ['--', '--host', f'--port={port}'], stdout=log, stderr=subprocess.STDOUT)
         try:
             time.sleep(1)
-            result = subprocess.run(base + ['--', '--join=127.0.0.1', f'--port={port}', '--smoke-client'], capture_output=True, text=True, timeout=15)
+            result = subprocess.run(base + ['--', '--join=127.0.0.1', f'--port={port}', '--smoke-client'], capture_output=True, text=True, timeout=25)
             time.sleep(0.5)
             host_log = log_path.read_text()
             print(result.stdout, end='')
@@ -30,6 +35,11 @@ with tempfile.TemporaryDirectory() as directory:
             assert 'DESPAWNED' in host_log
             assert 'SCRIPT ERROR' not in result.stdout + result.stderr + host_log
             assert 'ERROR:' not in result.stdout + result.stderr + host_log
+        except subprocess.TimeoutExpired as error:
+            print((error.stdout or b'').decode(errors='replace'))
+            print((error.stderr or b'').decode(errors='replace'))
+            print(log_path.read_text())
+            raise
         finally:
             host.terminate()
             host.wait(timeout=5)

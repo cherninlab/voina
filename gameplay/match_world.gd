@@ -6,6 +6,8 @@ var spawner: MultiplayerSpawner = MultiplayerSpawner.new()
 var hud: Label = Label.new()
 var menu: VBoxContainer = VBoxContainer.new()
 var address: LineEdit = LineEdit.new()
+var controls_button: Button = Button.new()
+var controls_panel: PanelContainer = preload("res://ui/controls_panel.gd").new()
 
 func _ready() -> void:
 	add_to_group("match_world")
@@ -94,7 +96,12 @@ func build_ui() -> void:
 	hud.position = Vector2(24, 20)
 	hud.add_theme_font_size_override("font_size", 18)
 	canvas.add_child(hud)
-	menu.position = Vector2(24, 150)
+	controls_button.text = "Controls"
+	controls_button.position = Vector2(24, 150)
+	controls_button.pressed.connect(func() -> void: controls_panel.visible = not controls_panel.visible)
+	canvas.add_child(controls_button)
+	canvas.add_child(controls_panel)
+	menu.position = Vector2(24, 195)
 	menu.add_theme_constant_override("separation", 12)
 	canvas.add_child(menu)
 	var title: Label = Label.new()
@@ -117,33 +124,77 @@ func build_ui() -> void:
 	canvas.add_child(reticle)
 
 func _process(_delta: float) -> void:
-	hud.text = "MultiPlayerProject · %s\nWASD move · trackpad look · F melee · E beam · C jump\nV camera · R turn · Esc release cursor" % NetworkManager.status
+	controls_button.visible = Input.mouse_mode != Input.MOUSE_MODE_CAPTURED
+	if not controls_button.visible:
+		controls_panel.hide()
+	hud.text = "VOINA · %s\n%s melee · %s beam · %s block · %s dash · %s jump\n%s camera · %s turn · Esc release cursor" % [NetworkManager.status, InputSettings.key_label(&"melee"), InputSettings.key_label(&"beam"), InputSettings.key_label(&"block"), InputSettings.key_label(&"dash"), InputSettings.key_label(&"jump"), InputSettings.key_label(&"camera_toggle"), InputSettings.key_label(&"quick_turn")]
 	var local: Node = players.get_node_or_null(str(multiplayer.get_unique_id()))
 	if local != null:
-		hud.text += "\nHealth %d / 100 · players %d / 4" % [int(local.get("health")), players.get_child_count()]
+		var combat: CombatController = local.get("combat") as CombatController
+		hud.text += "\nHealth %d · Stamina %d · Poise %d · %s · players %d / 4" % [combat.health, int(combat.stamina), int(combat.poise), CombatController.Phase.keys()[combat.phase], players.get_child_count()]
+		if float(local.get("feedback_left")) > 0:
+			hud.text += " · " + String(local.get("feedback"))
 
 func smoke_client() -> void:
 	await get_tree().create_timer(2.0).timeout
-	assert(players.get_child_count() == 2, "Both players must replicate")
+	check(players.get_child_count() == 2, "Both players must replicate")
 	var local: Node = players.get_node(str(multiplayer.get_unique_id()))
 	var host: Node = players.get_node("1")
+	var host_combat: CombatController = host.get_node("Combat") as CombatController
+	var local_combat: CombatController = local.get_node("Combat") as CombatController
 	# A client cannot attack through another player's RPC, or burst past cooldown.
 	host.rpc_id(1, "request_attack", true)
 	local.rpc_id(1, "request_attack", true)
 	local.rpc_id(1, "request_attack", true)
 	local.rpc_id(1, "request_attack", true)
 	await get_tree().create_timer(0.8).timeout
-	assert(int(host.get("health")) == 85, "One validated hit must replicate")
-	assert(int(local.get("health")) == 100, "Forged ownership must be rejected")
+	check(host_combat.health == 85, "One validated hit must replicate")
+	check(local_combat.health == 100, "Forged ownership must be rejected")
 	for shot: int in range(6):
 		local.rpc_id(1, "request_attack", true)
 		await get_tree().create_timer(0.6).timeout
-	assert(int(host.get("health")) == 100, "Lethal damage must respawn at full health")
+	check(host_combat.health == 100, "Lethal damage must respawn at full health")
 	local.set("position", (host.get("position") as Vector3) + Vector3(0, 0, -1.5))
 	local.set("velocity", Vector3.ZERO)
 	await get_tree().create_timer(0.7).timeout
 	local.rpc_id(1, "request_attack", false)
 	await get_tree().create_timer(0.7).timeout
-	assert(int(host.get("health")) == 75, "Delayed melee must hit inside its cone")
-	print("SMOKE_OK: spawn, hitscan, cooldown, ownership, health, respawn, melee")
+	check(host_combat.health == 75, "A multi-tick melee swing hits each target once")
+	host.rpc_id(1, "request_block", true)
+	host.rpc_id(1, "request_dash", Vector3.RIGHT)
+	local.rpc_id(1, "request_dash", Vector3(NAN, 0, 0))
+	await get_tree().create_timer(0.2).timeout
+	check(not host_combat.blocking and host_combat.phase == CombatController.Phase.IDLE, "Forged block/dash must be rejected")
+	check(local_combat.phase == CombatController.Phase.IDLE, "Invalid dash vector must be rejected")
+	var before_dash: float = local_combat.stamina
+	var before_position: Vector3 = local.get("position") as Vector3
+	local.rpc_id(1, "request_dash", Vector3.RIGHT)
+	local.rpc_id(1, "request_dash", Vector3.RIGHT)
+	await get_tree().create_timer(0.35).timeout
+	check(local_combat.stamina <= before_dash - 33.0 and local_combat.stamina >= before_dash - 37.0, "Only one dash cost is charged")
+	check((local.get("position") as Vector3).x > before_position.x + 2.0, "Accepted dash must move its owner")
+	# Host rejection undoes an owner's predicted dash once stamina cannot pay for it.
+	while local_combat.stamina >= CombatController.DASH_COST:
+		local.rpc_id(1, "request_dash", Vector3.LEFT)
+		await get_tree().create_timer(0.3).timeout
+	local.set("dash_pending", true)
+	local.set("dash_left", CombatController.DASH_DURATION)
+	local.rpc_id(1, "request_dash", Vector3.RIGHT)
+	await get_tree().create_timer(0.15).timeout
+	check(float(local.get("dash_left")) == 0.0 and not bool(local.get("dash_pending")), "Rejected prediction must be cancelled")
+	while local_combat.stamina < 40.0 or local_combat.phase != CombatController.Phase.IDLE:
+		await get_tree().physics_frame
+	await get_tree().create_timer(0.4).timeout
+	local.rpc_id(1, "request_block", true)
+	await get_tree().create_timer(0.15).timeout
+	check(local_combat.blocking, "Block must replicate from the host")
+	local.rpc_id(1, "request_block", false)
+	await get_tree().create_timer(0.15).timeout
+	check(not local_combat.blocking, "Block release must replicate")
+	print("SMOKE_OK: spawn, hitscan, cooldown, ownership, health, respawn, melee, dash, rejection, block")
 	get_tree().quit()
+
+func check(condition: bool, message: String) -> void:
+	if not condition:
+		printerr("SMOKE_FAIL: " + message)
+		get_tree().quit(1)
