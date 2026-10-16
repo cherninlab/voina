@@ -1,6 +1,6 @@
 {
-  "commit": "78558c48908c27dee5673685008425dae15399a3",
+  "commit": "18d1e0a2c070745cdab096e3c9cdc219c22fbe81",
   "by": "theo-claude-4",
-  "at": "2026-10-16T20:23Z",
-  "note": "bolts (Q), 60/s movement, projected remote motion, push knockback, build check, net overlay"
+  "at": "2026-10-16T20:33Z",
+  "note": "everything on main: bolts, 60/s netcode, build check, net overlay, PvE raiders (T-015)"
 }
