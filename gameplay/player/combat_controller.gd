@@ -184,6 +184,16 @@ func take_hit(damage: int, ranged: bool, facing_attacker: bool, attacker: Combat
 		stagger()
 	return HitResult.HIT
 
+# Hazard damage with no attacker (sudden-death ring): ignores block, parry, poise and dash immunity.
+func take_environment_damage(damage: int) -> void:
+	if not multiplayer.is_server() or frozen:
+		return
+	health -= damage
+	last_spend = clock
+	if health <= 0:
+		died.emit(null)
+		respawn()
+
 func respawn() -> void:
 	health = MAX_HEALTH
 	stamina = MAX_STAMINA

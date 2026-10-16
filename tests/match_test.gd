@@ -25,6 +25,10 @@ func add_player(peer: int, location: Vector3) -> CharacterBody3D:
 func combat(player: CharacterBody3D) -> CombatController:
 	return player.get("combat") as CombatController
 
+func place(body: CharacterBody3D, location: Vector3) -> void:
+	body.position = location
+	body.set("sync_position", location)
+
 func kill(victim: CharacterBody3D, killer: CharacterBody3D) -> void:
 	combat(victim).take_hit(500, false, false, combat(killer) if killer != null else null)
 
@@ -66,23 +70,44 @@ func run() -> void:
 	flow.step(MatchFlow.COUNTDOWN_SECONDS + 0.1)
 	combat(guest).take_hit(30, false, false, combat(host))
 	flow.step(MatchFlow.ROUND_SECONDS + 0.1)
-	check(flow.scores.get(1, 0) == 2 and flow.banner == "Host wins the round", "On timeout the healthiest player wins the round")
+	check(flow.state == MatchFlow.State.SUDDEN_DEATH and not combat(host).frozen and flow.display_text().contains("ring"), "Timeout starts sudden death")
+	place(host, Vector3(0.5, 0.9, 0))
+	place(guest, Vector3(-0.5, 0.95, 0))
+	flow.step(SuddenDeathRing.CLOSE_SECONDS + 0.1)
+	check(flow.scores.get(1, 0) == 2 and flow.banner == "Host wins the round" and combat(guest).health == 70, "A fully closed ring gives the round to the healthiest player and spares players inside it")
 	flow.step(MatchFlow.ROUND_OVER_SECONDS + 0.1)
 	flow.step(MatchFlow.COUNTDOWN_SECONDS + 0.1)
 	check(combat(guest).health == CombatController.MAX_HEALTH, "Every round starts at full health")
 	flow.step(MatchFlow.ROUND_SECONDS + 0.1)
-	check(flow.banner == "Draw" and flow.total_rounds() == 2, "Equal health at timeout is a draw")
+	place(host, Vector3(0.5, 0.9, 0))
+	place(guest, Vector3(-0.5, 0.95, 0))
+	flow.step(SuddenDeathRing.CLOSE_SECONDS + 0.1)
+	check(flow.banner == "Draw" and flow.total_rounds() == 2, "Equal health when the ring closes is a draw")
 	flow.step(MatchFlow.ROUND_OVER_SECONDS + 0.1)
 	flow.step(MatchFlow.COUNTDOWN_SECONDS + 0.1)
 	kill(host, null)
 	check(flow.scores.get(2, 0) == 1, "An unattributed death gives the round to the only opponent")
 	flow.step(MatchFlow.ROUND_OVER_SECONDS + 0.1)
 	flow.step(MatchFlow.COUNTDOWN_SECONDS + 0.1)
+	flow.step(MatchFlow.ROUND_SECONDS + 0.1)
+	place(host, Vector3(10, 0.9, 0))
+	place(guest, Vector3(0.5, 0.95, 0))
+	var elapsed: float = 0.0
+	while elapsed < 5.0:
+		flow.step(SuddenDeathRing.BURN_INTERVAL)
+		elapsed += SuddenDeathRing.BURN_INTERVAL
+	check(combat(host).health == CombatController.MAX_HEALTH, "The ring starts at the arena edge, so a player 10 m out is safe at first")
+	while flow.state == MatchFlow.State.SUDDEN_DEATH and elapsed < SuddenDeathRing.CLOSE_SECONDS:
+		flow.step(SuddenDeathRing.BURN_INTERVAL)
+		elapsed += SuddenDeathRing.BURN_INTERVAL
+	check(flow.scores.get(2, 0) == 2 and elapsed < SuddenDeathRing.CLOSE_SECONDS and combat(guest).health == CombatController.MAX_HEALTH, "The closing ring burns the player outside it to death and the opponent inside wins")
+	flow.step(MatchFlow.ROUND_OVER_SECONDS + 0.1)
+	flow.step(MatchFlow.COUNTDOWN_SECONDS + 0.1)
 	kill(guest, host)
 	check(flow.state == MatchFlow.State.MATCH_OVER and flow.banner == "Host wins the match!", "Three round wins take the match")
 	check(combat(host).frozen and not combat(host).begin_attack(false), "Combat stays frozen on the result screen")
 	kill(host, guest)
-	check(flow.scores.get(2, 0) == 1, "Deaths after the match do not score")
+	check(flow.scores.get(2, 0) == 2, "Deaths after the match do not score")
 	flow.step(MatchFlow.REMATCH_SECONDS + 0.1)
 	flow.step(0.1)
 	check(flow.state == MatchFlow.State.COUNTDOWN and flow.scores.is_empty(), "A rematch starts with fresh scores")
@@ -110,5 +135,5 @@ func run() -> void:
 	check(flow.scores.get(2, 0) == 1, "Actual fighter identity still credits a three-player kill")
 	if failed:
 		return
-	print("MATCH_OK: waiting, frozen countdown, kill and timeout rounds, draw, first to three, result freeze, rematch, leaver")
+	print("MATCH_OK: waiting, frozen countdown, kill rounds, sudden-death ring burn and closed-ring healthiest/draw, first to three, result freeze, rematch, leaver")
 	get_tree().quit()

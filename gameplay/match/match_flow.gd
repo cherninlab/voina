@@ -3,10 +3,11 @@ extends Node
 ## Optional host-authoritative match: countdown, 90 s rounds, first to three round wins, result and
 ## automatic rematch. Peer 1 runs the clock from physics delta (never Engine.time_scale) and
 ## replicates state, time and scores; clients only display them. A round goes to whoever lands
-## the kill; on timeout the healthiest player wins it, a tie is a draw. Combat is frozen during
-## countdowns. Off unless the host enables it (menu switch or --match).
+## the kill. On timeout a sudden-death ring closes on the centre; if it closes fully, the
+## healthiest player wins the round and a tie is a draw. Combat is frozen during countdowns.
+## Off unless the host enables it (menu switch or --match).
 
-enum State { OFF, WAITING, COUNTDOWN, ROUND, ROUND_OVER, MATCH_OVER }
+enum State { OFF, WAITING, COUNTDOWN, ROUND, ROUND_OVER, MATCH_OVER, SUDDEN_DEATH }
 
 const COUNTDOWN_SECONDS: float = 3.0
 const ROUND_SECONDS: float = 90.0
@@ -21,6 +22,7 @@ var scores_text: String = "{}"
 var banner: String = ""
 var scores: Dictionary[int, int] = {}
 var label: Label = null
+var ring: SuddenDeathRing = SuddenDeathRing.new()
 
 func _ready() -> void:
 	var synchronizer: MultiplayerSynchronizer = MultiplayerSynchronizer.new()
@@ -33,6 +35,8 @@ func _ready() -> void:
 		config.property_set_replication_mode(property, SceneReplicationConfig.REPLICATION_MODE_ALWAYS)
 	synchronizer.replication_config = config
 	add_child(synchronizer)
+	ring.name = "SuddenDeathRing"
+	add_child(ring)
 	if DisplayServer.get_name() != "headless":
 		var layer: CanvasLayer = CanvasLayer.new()
 		add_child(layer)
@@ -70,6 +74,7 @@ func name_of(peer: int) -> String:
 func _physics_process(delta: float) -> void:
 	if multiplayer.is_server() and state != State.OFF:
 		step(delta)
+	ring.display(state == State.SUDDEN_DEATH, SuddenDeathRing.radius_at(time_left), delta)
 	if label != null:
 		label.visible = state != State.OFF
 		label.text = display_text()
@@ -77,7 +82,7 @@ func _physics_process(delta: float) -> void:
 func step(delta: float) -> void:
 	watch_deaths()
 	var count: int = fighters().size()
-	if state in [State.COUNTDOWN, State.ROUND] and count < 2:
+	if state in [State.COUNTDOWN, State.ROUND, State.SUDDEN_DEATH] and count < 2:
 		enter(State.WAITING, 0.0, "Match · waiting for a second player")
 		return
 	time_left = maxf(0.0, time_left - delta)
@@ -90,6 +95,12 @@ func step(delta: float) -> void:
 				enter(State.ROUND, ROUND_SECONDS, "Fight!")
 		State.ROUND:
 			if time_left <= 0.0:
+				ring.reset()
+				enter(State.SUDDEN_DEATH, SuddenDeathRing.CLOSE_SECONDS, "Sudden death · get inside the ring")
+		State.SUDDEN_DEATH:
+			ring.burn(fighters(), SuddenDeathRing.radius_at(time_left), delta)
+			# A ring death may already have ended the round.
+			if state == State.SUDDEN_DEATH and time_left <= 0.0:
 				end_round(healthiest())
 		State.ROUND_OVER:
 			if time_left <= 0.0:
@@ -127,7 +138,7 @@ func watch_deaths() -> void:
 			combat.died.connect(on_died.bind(body.get_multiplayer_authority()))
 
 func on_died(killer: CombatController, victim: int) -> void:
-	if state != State.ROUND:
+	if state not in [State.ROUND, State.SUDDEN_DEATH]:
 		return
 	var winner: int = 0
 	for body: CharacterBody3D in fighters():
@@ -173,7 +184,7 @@ func display_text() -> String:
 			var tag: String = "You" if peer == multiplayer.get_unique_id() else name_of(peer)
 			parts.append("%s %d" % [tag, int((parsed as Dictionary)[key])])
 	var timer: String = ""
-	if state in [State.COUNTDOWN, State.ROUND, State.MATCH_OVER]:
+	if state in [State.COUNTDOWN, State.ROUND, State.SUDDEN_DEATH, State.MATCH_OVER]:
 		timer = " · %d s" % ceili(time_left)
 	if state == State.MATCH_OVER:
 		timer = " · rematch in %d s" % ceili(time_left)
