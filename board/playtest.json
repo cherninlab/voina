@@ -1,6 +1,6 @@
 {
-  "commit": "ad1922046573f02cb6b5920559d2b8095fac3f86",
-  "by": "theo-claude-4",
-  "at": "2026-10-16T20:56Z",
-  "note": "match flow (host --match), sword work, bolts, netcode, monitor fix"
+  "commit": "df756787710ab36c65e4b20c990d33c0516f654f",
+  "by": "theo-claude-1",
+  "at": "2026-10-16T21:08Z",
+  "note": "full main: match flow, PvE raiders, birds, cars, trees, anchored sword WIP, bolts, 60 Hz netcode; import + smoke + mob + wildlife tests pass"
 }
