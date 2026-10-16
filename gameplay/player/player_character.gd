@@ -9,8 +9,9 @@ var spawn_position: Vector3 = Vector3.ZERO
 var camera: Camera3D = Camera3D.new()
 var pivot: Node3D = Node3D.new()
 var arm: SpringArm3D = SpringArm3D.new()
-var body: MeshInstance3D = MeshInstance3D.new()
-var nose: MeshInstance3D = MeshInstance3D.new()
+const MALE_VISUAL: PackedScene = preload("res://content/characters/quaternius/male.tscn")
+const FEMALE_VISUAL: PackedScene = preload("res://content/characters/quaternius/female.tscn")
+var body: CharacterVisual
 var third_person: bool = true
 var visual_attack_until: float = 0.0
 var dash_direction: Vector3 = Vector3.ZERO
@@ -25,14 +26,17 @@ var shake_left: float = 0.0
 var hitstop_left: float = 0.0
 var aim_friction: float = 1.0
 var aim_cast: ShapeCast3D = ShapeCast3D.new()
-var base_color: Color = Color.WHITE
 var flash_left: float = 0.0
 var flash_color: Color = Color.WHITE
 var accepted_position: Vector3 = Vector3.ZERO
+var stagger_anchor: Vector3 = Vector3.ZERO
+var stagger_anchored: bool = false
 var last_motion_check: float = 0.0
 
 const LUNGE_SPEED: float = 7.0
 const SWING_TURN_RATE: float = 4.0
+# Knockback slide plus slack; walking during the owner's latency is added per peer.
+const STAGGER_DRIFT: float = 2.0
 
 func _ready() -> void:
 	spawn_position = position
@@ -44,20 +48,9 @@ func _ready() -> void:
 	shape.height = 1.8
 	collision.shape = shape
 	add_child(collision)
-	var mesh: CapsuleMesh = CapsuleMesh.new()
-	mesh.radius = 0.4
-	mesh.height = 1.8
-	body.mesh = mesh
-	var material: StandardMaterial3D = StandardMaterial3D.new()
-	material.albedo_color = Color("53d7ef") if get_multiplayer_authority() == 1 else Color("ff816c")
-	base_color = material.albedo_color
-	body.material_override = material
+	var visual_scene: PackedScene = MALE_VISUAL if get_multiplayer_authority() == 1 else FEMALE_VISUAL
+	body = visual_scene.instantiate() as CharacterVisual
 	add_child(body)
-	var nose_mesh: BoxMesh = BoxMesh.new()
-	nose_mesh.size = Vector3(0.18, 0.18, 0.4)
-	nose.mesh = nose_mesh
-	nose.position = Vector3(0, 0.5, -0.5)
-	body.add_child(nose)
 	pivot.position.y = 0.65
 	add_child(pivot)
 	arm.spring_length = 2.6
@@ -238,8 +231,7 @@ func set_camera_mode(use_third_person: bool) -> void:
 	third_person = use_third_person
 	arm.spring_length = 2.6 if third_person else 0.0
 	arm.position.x = 0.55 if third_person else 0.0
-	body.cast_shadow = GeometryInstance3D.SHADOW_CASTING_SETTING_ON if third_person else GeometryInstance3D.SHADOW_CASTING_SETTING_SHADOWS_ONLY
-	nose.cast_shadow = body.cast_shadow
+	body.set_first_person(not third_person)
 
 func _physics_process(delta: float) -> void:
 	rotation.y = yaw
@@ -286,6 +278,7 @@ func _physics_process(delta: float) -> void:
 	else:
 		if multiplayer.is_server():
 			validate_motion()
+			enforce_stagger()
 		position = position.lerp(sync_position, 1.0 - exp(-20.0 * delta))
 		velocity = sync_velocity
 
@@ -305,11 +298,29 @@ func _process(delta: float) -> void:
 		hitstop_left -= delta
 	else:
 		body.rotation.z = 0.18 if Time.get_ticks_msec() / 1000.0 < visual_attack_until else 0.0
-	var material: StandardMaterial3D = body.material_override as StandardMaterial3D
-	material.albedo_color = flash_color if flash_left > 0 else (base_color.lightened(0.4) if combat.blocking else base_color)
+	body.set_highlight(flash_left > 0 or combat.blocking, flash_color if flash_left > 0 else Color("fff1a2"))
 	if is_multiplayer_authority():
 		camera.h_offset = sin(Time.get_ticks_msec() * 0.07) * shake_left * 0.12
 		camera.v_offset = cos(Time.get_ticks_msec() * 0.09) * shake_left * 0.1
+
+# A staggered owner should only slide from knockback. The host clamps horizontal drift
+# around where it saw the stagger begin, allowing walking until the stagger reaches the owner.
+func enforce_stagger() -> void:
+	var staggered: bool = combat.phase == CombatController.Phase.STAGGERED
+	if staggered and not stagger_anchored:
+		stagger_anchor = sync_position
+	stagger_anchored = staggered
+	if not staggered:
+		return
+	var offset: Vector3 = sync_position - stagger_anchor
+	offset.y = 0.0
+	var allowed: float = STAGGER_DRIFT + 6.5 * (NetworkManager.one_way_seconds(get_multiplayer_authority()) * 2.0 + 0.05)
+	if offset.length() <= allowed:
+		return
+	var clamped: Vector3 = stagger_anchor + offset.normalized() * allowed
+	clamped.y = sync_position.y
+	accepted_position = clamped
+	correct_position.rpc(clamped, Vector3.ZERO)
 
 func validate_motion() -> void:
 	var now: float = Time.get_ticks_msec() / 1000.0

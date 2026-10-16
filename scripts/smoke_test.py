@@ -19,6 +19,11 @@ print(combat.stdout, end='')
 print(combat.stderr, end='')
 assert combat.returncode == 0 and 'COMBAT_OK:' in combat.stdout
 assert 'ERROR' not in combat.stdout + combat.stderr
+stagger = subprocess.run(base + ['res://tests/stagger_test.tscn'], capture_output=True, text=True, timeout=15)
+print(stagger.stdout, end='')
+print(stagger.stderr, end='')
+assert stagger.returncode == 0 and 'STAGGER_OK:' in stagger.stdout
+assert 'ERROR' not in stagger.stdout + stagger.stderr
 with tempfile.TemporaryDirectory() as directory:
     log_path = pathlib.Path(directory) / 'host.log'
     with log_path.open('w') as log:

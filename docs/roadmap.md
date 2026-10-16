@@ -8,7 +8,7 @@ Still requires manual acceptance: two visible Mac instances, both camera modes, 
 
 ## M2 — combat depth
 
-Implemented: host-owned stamina/poise and combat phases, timed directional block/parry, owner-predicted dash with host approval and ranged immunity, owner-predicted melee lunge and turn-rate limit, per-tick active melee sweep, latency-padded parry window, stagger/guard break, visual hitstop/camera shake and hit feedback, reticle sensitivity friction, persistent keyboard remapping and sensitivity panel. Shift/right click blocks; E remains the test beam. Dash and swing start locally from replicated state; the host revalidates and cancels rejected predictions.
+Implemented: host-owned stamina/poise and combat phases, timed directional block/parry, owner-predicted dash with host approval and ranged immunity, owner-predicted melee lunge and turn-rate limit, per-tick active melee sweep, latency-padded parry window, host-enforced stagger drift limit, stagger/guard break, visual hitstop/camera shake and hit feedback, reticle sensitivity friction, persistent keyboard remapping and sensitivity panel. Shift/right click blocks; E remains the test beam. Dash and swing start locally from replicated state; the host revalidates and cancels rejected predictions.
 
 Automated acceptance covers combat timing/resource rules plus multi-process replication, request ownership, invalid dash vectors, cooldown and respawn. Human acceptance still requires two-Mac combat and trackpad play. Animated swept weapon hitboxes, host-side position history and projectile magnetism remain deferred until content/projectile work; no animation-quality claim is made for capsule tilts.
 

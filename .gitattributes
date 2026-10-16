@@ -8,3 +8,5 @@
 *.tscn text eol=lf
 *.tres text eol=lf
 *.md text eol=lf
+*.bin filter=lfs diff=lfs merge=lfs -text
+*.gltf text eol=lf

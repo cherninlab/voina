@@ -47,6 +47,7 @@ No export templates or third-party addons are required to run from the editor.
 - Front-facing block reduces health damage by 80% and costs 20 stamina per hit. First 0.18 s (padded by the defender's ENet one-way latency, capped at 0.08 s) parries melee and staggers the attacker for 0.8 s. Back attacks bypass guard; exhausted guard breaks. Re-raising block is limited to once per 0.35 s.
 - Directional 16 m/s dash for 0.25 s with 0.15 s of host-owned ranged immunity; melee remains effective. The owner starts the dash immediately from replicated stamina/phase; host rejection cancels it.
 - Poise damage (melee 35, beam 15), stagger at zero, 18/s idle regeneration. Incoming hits interrupt melee windup.
+- The host clamps a staggered player's horizontal drift to 2 m of knockback slack plus walking during that peer's measured round trip, so ignoring stagger locally is corrected.
 - Confirmed-hit text, body flash, camera shake and 0.06 s visual hitstop; game/network time keeps running.
 - 0.35 m camera shape cast gives 0.55× look sensitivity over a target. Projectile magnetism awaits projectile weapons.
 - Third-person spring-arm exclusion and first-person body shadows; cursor release on focus loss.
@@ -61,7 +62,7 @@ The host trusts client movement inside a generous envelope. This is a friend-gro
 python3 scripts/smoke_test.py "$GODOT"
 ```
 
-The command first runs deterministic combat tests (parry expiry and capped latency grace, directional guard, active-window sweep and per-target hit dedupe, guard break, resource costs/regeneration, dash immunity and interrupted swings), then starts host and client processes on loopback, checks both player spawns, fires a beam, checks replicated health, rejects an attack sent through another player's node, checks cooldown, lethal-hit respawn, one hit per multi-tick melee swing, replicated block/dash, cancellation of a rejected predicted dash, invalid vectors, forged block/dash ownership, and disconnect cleanup. Godot generates `.gd.uid` files during import; commit them.
+The command first runs deterministic combat tests and a host-side stagger enforcement test (parry expiry and capped latency grace, directional guard, active-window sweep and per-target hit dedupe, guard break, resource costs/regeneration, dash immunity and interrupted swings), then starts host and client processes on loopback, checks both player spawns, fires a beam, checks replicated health, rejects an attack sent through another player's node, checks cooldown, lethal-hit respawn, one hit per multi-tick melee swing, replicated block/dash, cancellation of a rejected predicted dash, invalid vectors, forged block/dash ownership, and disconnect cleanup. Godot generates `.gd.uid` files during import; commit them.
 
 Before calling this ready for friends, run two visible instances and verify walking, jumping, both cameras, cover occlusion, melee, beam, block/parry, stamina, directional dash, hit feedback, aim friction, saved key remapping, knockback, respawn, cursor release, late join and reconnect via restarting. Then repeat over Tailscale on two Macs. Automated tests do not establish trackpad feel, visual quality, WAN behavior or thermal performance.
 
