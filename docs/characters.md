@@ -13,15 +13,15 @@ To inspect/reuse a model in the editor, open `content/characters/quaternius/male
 
 ## What is included
 
-Both full-body glTF models, their .bin buffers and referenced textures are included (about 30 MiB before Git LFS). Each imported skeleton has **65 bones**, including `pelvis`, `spine_01`–`spine_03`, `Head`, `upperarm_l/r` and hand/finger bones. The Standard character archive has **no animation clips**. The current visual wrapper lowers the arms into a static neutral pose; walking and combat still move that static model. This is an asset integration, not a finished animation system.
+Both full-body glTF models, their .bin buffers and referenced textures are included (about 30 MiB before Git LFS). Each imported skeleton has **65 bones**, including `pelvis`, `spine_01`–`spine_03`, `Head`, `upperarm_l/r` and hand/finger bones. The Standard character archive has **no animation clips**. The separately supplied Universal Animation Library now supplies retargeted idle, movement, jump and combat clips. See [animation integration and usage](animations-and-environments.md). A static relaxed arm pose remains a fallback when no animation library is assigned.
 
 The original archive also contains alternate engine exports, hairstyle variants, duplicate textures and a preview image. Those are left in the original local ZIP rather than duplicated in the runtime project. Reimporting the included glTF files does not require that ZIP.
 
 Two broken texture URI aliases in the original glTF files were corrected to the matching supplied filenames: `T_Eye_Normal_png.png` → `T_Eye_Normal.png` and `T_Hair_1_Normal_png.png` → `T_Hair_1_Normal.png`. No texture pixels or geometry were changed.
 
-## Adding animation later
+## Animation integration
 
-Use compatible clips or retarget a verified animation rig to these actual bone names. In Godot, the source model's Advanced Import Settings expose the skeleton's retarget Bone Map; use a `SkeletonProfileHumanoid` and inspect its mapping rather than assuming automatic compatibility. Add animation to the visual wrapper so it cannot drive health, collision, movement authority or damage timing. Keep gameplay root motion disabled unless the controller explicitly consumes it. Replace the static arm pose when animation is wired.
+Both wrapper scenes now reference generated per-character AnimationLibrary resources. The reproducible retarget build script, clip mappings and extension instructions are documented in [animations and environments](animations-and-environments.md). Animation remains cosmetic; gameplay movement and combat stay in their existing controllers.
 
 ## Check
 
@@ -31,4 +31,4 @@ Run the normal import and multiplayer checks from README, plus:
 "$GODOT" --headless --path . --script tests/character_test.gd
 ```
 
-This checks both imports, skeletons, neutral pose and first-person shadow flags. Visible checks on the development Mac confirmed the male model's materials, facing and relaxed arms. Two-Mac play and final animation quality remain manual acceptance work.
+This checks both imports, skeletons, idle pose and first-person shadow flags. Visible checks on the development Mac confirmed the male model's materials, facing and retargeted idle pose. Two-Mac play and final animation quality remain manual acceptance work.

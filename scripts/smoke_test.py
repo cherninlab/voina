@@ -24,6 +24,11 @@ print(stagger.stdout, end='')
 print(stagger.stderr, end='')
 assert stagger.returncode == 0 and 'STAGGER_OK:' in stagger.stdout
 assert 'ERROR' not in stagger.stdout + stagger.stderr
+assets = subprocess.run(base + ['--script', 'tests/asset_test.gd'], capture_output=True, text=True, timeout=15)
+print(assets.stdout, end='')
+print(assets.stderr, end='')
+assert assets.returncode == 0 and 'ASSETS_OK:' in assets.stdout
+assert 'ERROR' not in assets.stdout + assets.stderr
 with tempfile.TemporaryDirectory() as directory:
     log_path = pathlib.Path(directory) / 'host.log'
     with log_path.open('w') as log:

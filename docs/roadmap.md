@@ -18,9 +18,9 @@ Introduce CharacterDef, WeaponDef, AttackActionDef and ArenaDef resources when a
 
 ## M4 — character art
 
-The supplied Quaternius Standard male/female models are now imported and attached as player visuals, with a static neutral arm pose and first-person shadow handling. See [character instructions](characters.md). Animation clips are absent from the character archive; animated locomotion/combat is still pending.
+The supplied Quaternius Standard male/female models are now imported and attached as player visuals, with first-person shadow handling and nine retargeted gameplay clips per model from the supplied Universal Animation Library. See [character instructions](characters.md). The character archive itself has no clips; the separate animation pack is now integrated. The full modular FBX environment pack and four placed arena props are also included. See [animation/environment usage](animations-and-environments.md).
 
-Import CC0 assets with recorded source and license. Verify each actual skeleton and animation library; do not assume packs share a rig or include every animation. Add AnimationTree locomotion/attack layers, viewmodels and compatible SkeletonModifier3D aiming. Preserve first-person shadow behavior.
+Remaining: AnimationTree upper-body layers, directional locomotion, weapons/viewmodels, compatible SkeletonModifier3D aiming, contact timing polish and human motion acceptance. The current version uses full-body clips and AnimationPlayer crossfades.
 
 ## M5 — settings and match flow
 
@@ -37,4 +37,4 @@ Transport creation is isolated now, but internet discovery, NAT traversal, platf
 - Synced movement is distinct from interpolated display position; basic host checks use elapsed-time movement envelopes. Full rollback and lag compensation are deferred.
 - No hard performance promises: FPS, thermals, input acceleration and gesture support must be measured on the target Macs.
 - M1 uses a simple host-validated melee cone plus line-of-sight, not a swept animated weapon hitbox; three-phase combat with a per-tick active sweep and owner-predicted lunge is now implemented.
-- Procedural arena geometry keeps the project runnable without LFS assets. Resource definitions, empty registries and unused folders are deferred until used.
+- Binary art and animation assets now require Git LFS; procedural arena geometry still provides the main playfield. Resource definitions, empty registries and unused folders are deferred until used.

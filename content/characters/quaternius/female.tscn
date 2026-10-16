@@ -1,8 +1,11 @@
-[gd_scene load_steps=3 format=3]
+[gd_scene load_steps=4 format=3]
 
 [ext_resource type="Script" path="res://gameplay/player/character_visual.gd" id="1"]
 [ext_resource type="PackedScene" path="res://content/characters/quaternius/Superhero_Female_FullBody.gltf" id="2"]
 
+[ext_resource type="AnimationLibrary" path="res://content/animations/quaternius/female.res" id="3"]
+
 [node name="FemaleVisual" type="Node3D"]
 script = ExtResource("1")
 model_scene = ExtResource("2")
+animation_library = ExtResource("3")

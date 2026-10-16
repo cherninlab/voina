@@ -298,6 +298,8 @@ func _process(delta: float) -> void:
 		hitstop_left -= delta
 	else:
 		body.rotation.z = 0.18 if Time.get_ticks_msec() / 1000.0 < visual_attack_until else 0.0
+	var grounded: bool = is_on_floor() if is_multiplayer_authority() else absf(sync_velocity.y) < 0.5
+	body.animate(delta, velocity, grounded, combat.phase, combat.blocking, hitstop_left > 0)
 	body.set_highlight(flash_left > 0 or combat.blocking, flash_color if flash_left > 0 else Color("fff1a2"))
 	if is_multiplayer_authority():
 		camera.h_offset = sin(Time.get_ticks_msec() * 0.07) * shake_left * 0.12
@@ -440,6 +442,7 @@ func attack_effect(ranged: bool) -> void:
 		return
 	if not ranged:
 		swing_pending = false
+	body.play_attack(ranged)
 	visual_attack_until = Time.get_ticks_msec() / 1000.0 + 0.3
 	if not ranged or DisplayServer.get_name() == "headless":
 		return

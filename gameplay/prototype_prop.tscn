@@ -1,0 +1,8 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="Script" path="res://gameplay/prototype_prop.gd" id="1"]
+[ext_resource type="PackedScene" path="res://content/environments/rgsdev/Pieces/box.fbx" id="2"]
+
+[node name="PrototypeProp" type="Node3D"]
+script = ExtResource("1")
+model_scene = ExtResource("2")

@@ -13,7 +13,7 @@ func run() -> void:
 		assert(visual.meshes.size() == 3)
 		var shoulder: int = visual.skeleton.find_bone("upperarm_l")
 		var hand: int = visual.skeleton.find_bone("hand_l")
-		assert(visual.skeleton.get_bone_global_pose(hand).origin.y < visual.skeleton.get_bone_global_pose(shoulder).origin.y - 0.3, "Neutral arm must lower the hand")
+		assert(visual.skeleton.get_bone_global_pose(hand).origin.y < visual.skeleton.get_bone_global_pose(shoulder).origin.y - 0.3, "Idle pose must lower the hand")
 		visual.set_first_person(true)
 		for mesh: MeshInstance3D in visual.meshes:
 			assert(mesh.cast_shadow == GeometryInstance3D.SHADOW_CASTING_SETTING_SHADOWS_ONLY)
@@ -21,5 +21,5 @@ func run() -> void:
 		for mesh: MeshInstance3D in visual.meshes:
 			assert(mesh.cast_shadow == GeometryInstance3D.SHADOW_CASTING_SETTING_ON)
 		visual.queue_free()
-	print("CHARACTER_OK: both models, 65-bone rigs, neutral arms, first-person shadows")
+	print("CHARACTER_OK: both models, 65-bone rigs, idle arms, first-person shadows")
 	quit()

@@ -60,6 +60,7 @@ func clear_players() -> void:
 		player.queue_free()
 
 func build_arena() -> void:
+	add_prototype_props()
 	box(Vector3(24, 1, 24), Vector3(0, -0.5, 0), Color("243442"))
 	for location: Vector3 in [Vector3(-5, 0.6, -4), Vector3(5, 0.6, 4), Vector3(-5, 0.6, 4), Vector3(5, 0.6, -4)]:
 		box(Vector3(3, 1.2, 2), location, Color("45606c"))
@@ -198,3 +199,12 @@ func check(condition: bool, message: String) -> void:
 	if not condition:
 		printerr("SMOKE_FAIL: " + message)
 		get_tree().quit(1)
+
+func add_prototype_props() -> void:
+	var locations: Array[Vector3] = [Vector3(-8, 0, -8), Vector3(8, 0, 8), Vector3(-9, 0, 5), Vector3(9, 0, -5)]
+	var names: Array[String] = ["box", "box", "pillar", "stairs"]
+	for index: int in range(names.size()):
+		var prop: PrototypeProp = PrototypeProp.new()
+		prop.model_scene = load("res://content/environments/rgsdev/Pieces/%s.fbx" % names[index]) as PackedScene
+		prop.position = locations[index]
+		add_child(prop)

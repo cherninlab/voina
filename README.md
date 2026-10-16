@@ -36,6 +36,9 @@ No export templates or third-party addons are required to run from the editor.
 
 ## Implemented
 
+- Quaternius male/female character models with nine retargeted gameplay clips per rig; all 43 animation source clips are included.
+- Rgsdev modular pack (81 FBX assets), with palette repairs, a reusable prop wrapper, and four placed arena props.
+
 - 24 m greybox arena, four cover blocks, host/join overlay and health HUD.
 - Up to four players, peer-ID ownership, custom `MultiplayerSpawner` spawns and automatic late-join replication.
 - Local movement and camera, 30 Hz synchronized motion, interpolated remote bodies, generous host movement checks.
@@ -68,8 +71,8 @@ Before calling this ready for friends, run two visible instances and verify walk
 
 ## Collaborate
 
-Install Git LFS before adding binary assets (`brew install git-lfs`, then `git lfs install`). The repository already tracks GLB, PNG, WebP, WAV and OGG through LFS. Never share a live working directory between editors; ignore `.godot/`, commit `.uid`, and use separate clones/branches.
+Install Git LFS before adding binary assets (`brew install git-lfs`, then `git lfs install`). The repository tracks GLB, PNG, WebP, WAV, OGG, FBX, binary mesh buffers and generated animation resources through LFS. Run `git lfs pull` after cloning. Never share a live working directory between editors; ignore `.godot/`, commit `.uid`, and use separate clones/branches.
 
-See [character usage](docs/characters.md), [roadmap](docs/roadmap.md), [original supplied brief](docs/original-brief.md), and [agent rules](AGENTS.md). The original brief is a design reference, not a verified inventory of implemented features.
+See [animation and environment usage](docs/animations-and-environments.md), [character usage](docs/characters.md), [roadmap](docs/roadmap.md), [original supplied brief](docs/original-brief.md), and [agent rules](AGENTS.md). The original brief is a design reference, not a verified inventory of implemented features.
 
 Engine references: [Godot 4.7.2 release](https://github.com/godotengine/godot-builds/releases/tag/4.7.2-stable), [MultiplayerSpawner](https://docs.godotengine.org/en/stable/classes/class_multiplayerspawner.html), [MultiplayerSynchronizer](https://docs.godotengine.org/en/stable/classes/class_multiplayersynchronizer.html).
