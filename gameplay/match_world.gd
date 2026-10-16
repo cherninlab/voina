@@ -60,6 +60,7 @@ func clear_players() -> void:
 		player.queue_free()
 
 func build_arena() -> void:
+	add_child(preload("res://gameplay/environment/tree_pack.tscn").instantiate())
 	add_prototype_props()
 	box(Vector3(24, 1, 24), Vector3(0, -0.5, 0), Color("243442"))
 	for location: Vector3 in [Vector3(-5, 0.6, -4), Vector3(5, 0.6, 4), Vector3(-5, 0.6, 4), Vector3(5, 0.6, -4)]:
