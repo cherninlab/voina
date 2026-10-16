@@ -1,5 +1,15 @@
 # Project rules
 
+## Multi-agent coordination (read first)
+
+Several agents edit this repo at once, on two machines and in several sessions per machine, some in the same checkout. Follow [board/README.md](board/README.md):
+
+- Start with `python3 scripts/board.py list -v`, then `claim` a task before touching code; stay inside its `scope`.
+- Commit with `python3 scripts/board.py ship --agent NAME -m "..." <exact paths>`. Never `git add -A`/`.`, `commit -a`, `stash`, `reset --hard`, `checkout -- .`, `clean`, rebase or force-push in a shared checkout: other agents' uncommitted work lives there.
+- Ship small verified increments often, `sync` before each step, and finish with `done`/`release`/`block`.
+
+## Engine and code
+
 - Target Godot 4.7.2 Standard, typed GDScript, Apple Silicon. Use Mobile/Metal and built-in Jolt; no external physics plugin.
 - Read README.md and docs/roadmap.md before expanding the starter. The supplied brief includes future proposals; do not claim those are implemented.
 - Explicitly type variables, parameters and return values. Use typed arrays/dictionaries when the schema permits. Variant is allowed at Godot API boundaries such as MultiplayerSpawner.spawn_function.
