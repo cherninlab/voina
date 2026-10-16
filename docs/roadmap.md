@@ -18,6 +18,8 @@ Introduce CharacterDef, WeaponDef, AttackActionDef and ArenaDef resources when a
 
 ## M4 — character art
 
+The supplied Quaternius Standard male/female models are now imported and attached as player visuals, with a static neutral arm pose and first-person shadow handling. See [character instructions](characters.md). Animation clips are absent from the character archive; animated locomotion/combat is still pending.
+
 Import CC0 assets with recorded source and license. Verify each actual skeleton and animation library; do not assume packs share a rig or include every animation. Add AnimationTree locomotion/attack layers, viewmodels and compatible SkeletonModifier3D aiming. Preserve first-person shadow behavior.
 
 ## M5 — settings and match flow
