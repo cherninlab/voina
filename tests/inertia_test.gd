@@ -27,11 +27,14 @@ func run() -> void:
 	check(motion.tip.distance_to(anchored_tip) < 0.02 and motion.stretch > 0.2, "Small body shift stretches the arms while the tip stays anchored")
 	# Walking away breaks the anchor, drags the blade along the floor and pulls the owner back toward it.
 	var pulled_back: bool = false
+	var faced_blade: bool = true
 	for frame: int in range(60):
 		motion.step(1.0 / 60.0, 0.0, 0.0, false, false, false, origin + Vector3(0, 0, 0.1 + frame * 0.05), 0.0, Vector3(0, 0, 3.0))
 		pulled_back = pulled_back or motion.pull_velocity.z < -0.05
+		faced_blade = faced_blade and absf(angle_difference(motion.body_yaw, motion.blade_yaw())) < 0.5
 	check(motion.tip.z > anchored_tip.z + 0.5 and motion.tip.y < 0.1, "Walking away drags the anchored blade along the ground")
 	check(pulled_back, "Dragging the anchored blade pulls the owner back toward it")
+	check(faced_blade, "Walking away keeps facing the blade (walking backwards)")
 	for frame: int in range(120):
 		motion.step(1.0 / 60.0, 0.0, 0.0, false, false, false, origin + Vector3(0, 0, 3.05), 0.0)
 	check(absf(angle_difference(motion.body_yaw, motion.blade_yaw())) < 0.2, "At rest the body turns to face the blade")
@@ -40,16 +43,21 @@ func run() -> void:
 	var swept: float = 0.0
 	var peak: float = 0.0
 	var pulled: bool = false
+	var body_led: bool = false
 	motion.strike(Vector2.LEFT)
 	for frame: int in range(150):
 		var yaw: float = minf(0.6, frame * 0.05)
-		motion.step(1.0 / 60.0, yaw, 0.0, frame < 12, frame < 31, false, origin + Vector3(0, 0, 3.05), 0.0)
+		var pitch: float = minf(0.3, frame * 0.025) # the mouse also rises during the hold, lifting the tip
+		motion.step(1.0 / 60.0, yaw, pitch, frame < 12, frame < 31, false, origin + Vector3(0, 0, 3.05), 0.0)
 		swept += angle_difference(last_blade_yaw, motion.blade_yaw())
 		last_blade_yaw = motion.blade_yaw()
 		peak = maxf(peak, motion.tip.y)
 		pulled = pulled or (motion.pull_velocity.length() > 0.01 and motion.pull_velocity.length() <= HeavySwordMotion.MAX_PULL)
-	check(swept > 0.8, "Drag and cut swing the blade along the mouse direction (swept %.2f rad)" % swept)
-	check(peak > 0.4, "Swing lifts the tip off the ground")
+		if frame == 8:
+			body_led = absf(angle_difference(motion.body_yaw, yaw)) < absf(angle_difference(motion.blade_yaw(), yaw)) - 0.05
+	check(swept > 0.4, "Camera turn and cut swing the blade along the mouse direction (swept %.2f rad)" % swept)
+	check(body_led, "While swinging the body leads the turn and the blade trails it")
+	check(peak > 0.4, "Rising mouse motion lifts the tip off the ground")
 	check(pulled, "Heavy blade produces bounded owner pull")
 	check(absf(angle_difference(motion.body_yaw, motion.blade_yaw())) < 0.3 and motion.tip.y < 0.1, "Body follows the blade and it settles back into the ground")
 	for frame: int in range(120):
@@ -128,5 +136,5 @@ func run() -> void:
 	var body: CharacterVisual = player.get("body") as CharacterVisual
 	check(body.motion.pull_velocity.is_zero_approx(), "Host correction clears owner sword movement")
 	if failures == 0:
-		print("INERTIA_OK: anchored rest, no hold-up, arm stretch, dragged anchor, owner resistance, body faces blade, mouse-driven swing, release, timestep stability, planted feet, owner pull/correction")
+		print("INERTIA_OK: anchored rest, no hold-up, arm stretch, dragged anchor, owner resistance, always facing the blade, body-led swing, release, timestep stability, planted feet, owner pull/correction")
 	get_tree().quit(0 if failures == 0 else 1)

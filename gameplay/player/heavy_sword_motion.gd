@@ -12,9 +12,10 @@ const MAX_PULL: float = 1.8
 const MAX_TIP_SPEED: float = 26.0
 const MAX_BEARING: float = 2.95 # radians from forward; past this the body is in the way
 const HOLD_BEARING: float = 1.9 # the hands stay beside or ahead of the hips
-const DRAG_GAIN: float = 7.0 # tip m/s per radian of camera turn while dragging
 const LIFT_GAIN: float = 6.0 # tip m/s per radian of camera pitch while dragging
-const STRIKE_SPEED: float = 9.0
+const FOLLOW_SPRING: float = 25.0 # the blade trails the body's facing while swinging
+const FOLLOW_DAMPING: float = 3.0
+const STRIKE_TURN: float = 4.0 # rad/s kick to the body's turn from the approved cut
 const STRIKE_LIFT: float = 5.0
 const AIR_DAMPING: float = 0.5
 const DRAG_FRICTION: float = 3.0 # tip sliding on the floor while dragged
@@ -91,12 +92,11 @@ func hilt_offset(direction: Vector3) -> Vector3:
 	return Vector3(-sin(hold) * reach, height, -cos(hold) * reach).rotated(Vector3.UP, body_yaw)
 
 func strike(direction: Vector2) -> void:
-	# The host-approved cut adds one bounded impulse along the drag; horizontal cuts lift a little.
+	# The host-approved cut kicks the body into the turn; the blade follows it. Vertical cuts lift the tip.
 	if not direction.is_finite():
 		return
-	var tangent: Vector3 = Vector3.UP.cross(tip - hilt).normalized()
-	tip_velocity += tangent * (-direction.x * STRIKE_SPEED)
-	tip_velocity += Vector3.UP * (-direction.y * STRIKE_LIFT + absf(direction.x) * STRIKE_LIFT * 0.5)
+	body_yaw_speed = clampf(body_yaw_speed - direction.x * STRIKE_TURN, -7.0, 7.0)
+	tip_velocity += Vector3.UP * (-direction.y * STRIKE_LIFT + absf(direction.x) * STRIKE_LIFT * 0.8)
 	tip_velocity = tip_velocity.limit_length(MAX_TIP_SPEED)
 
 func step(delta: float, camera_yaw: float, camera_pitch: float, holding: bool, attacking: bool, blocking: bool = false, origin: Vector3 = anchor, floor_y: float = ground, velocity: Vector3 = Vector3.ZERO) -> void:
@@ -111,9 +111,9 @@ func step(delta: float, camera_yaw: float, camera_pitch: float, holding: bool, a
 	last_yaw = camera_yaw
 	last_pitch = camera_pitch
 	tracking = true
-	# Dragging: look motion while holding throws the tip. A quick turn is not a drag.
+	# Dragging: vertical look motion while holding lifts or drops the tip. A quick turn is not a drag.
 	if holding and not blocking and absf(turn) < 1.2 and absf(tilt) < 1.2:
-		tip_velocity += Vector3.UP.cross(tip - hilt) * turn * DRAG_GAIN + Vector3.UP * tilt * BLADE * LIFT_GAIN
+		tip_velocity += Vector3.UP * tilt * BLADE * LIFT_GAIN
 	var engaged: bool = holding or attacking or blocking
 	var flat_velocity: Vector3 = Vector3(velocity.x, 0.0, velocity.z)
 	var speed: float = flat_velocity.length()
@@ -123,19 +123,23 @@ func step(delta: float, camera_yaw: float, camera_pitch: float, holding: bool, a
 		var dt: float = minf(remaining, 1.0 / 120.0)
 		remaining -= dt
 		raised = move_toward(raised, 1.0 if engaged else 0.0, dt * (7.0 if engaged else 2.5))
-		# The body faces the blade; walking with the blade at rest turns it toward the travel direction.
-		var body_target: float = blade_yaw()
-		if not engaged and speed > 0.5:
-			body_target = lerp_angle(body_target, atan2(-flat_velocity.x, -flat_velocity.z), clampf((speed - 0.5) / 2.0, 0.0, 1.0))
-		body_yaw_speed += (angle_difference(body_yaw, body_target) * 48.0 - body_yaw_speed * 11.0) * dt
-		body_yaw_speed = clampf(body_yaw_speed, -5.0, 5.0)
+		# Swinging: the body follows the camera and the blade trails the body. Idle: the body always
+		# faces the blade, even while walking, so walking away from it is walking backwards.
+		var body_target: float = camera_yaw if engaged else blade_yaw()
+		body_yaw_speed += (angle_difference(body_yaw, body_target) * (70.0 if engaged else 48.0) - body_yaw_speed * 11.0) * dt
+		var top_speed: float = 7.0 if engaged else 5.0
+		body_yaw_speed = clampf(body_yaw_speed, -top_speed, top_speed)
 		body_yaw = wrapf(body_yaw + body_yaw_speed * dt, -PI, PI)
-		var anchored: bool = grounded() and not holding and not blocking
+		var anchored: bool = grounded() and not engaged
 		hilt = anchor + hilt_offset(blade_direction())
 		if anchored:
 			reach_anchor()
 		else:
 			stretch = move_toward(stretch, 0.0, dt * 4.0)
+		if engaged and not blocking:
+			# The blade is pulled after the body's facing at its current height and catches up with momentum.
+			var ahead: Vector3 = hilt + direction_from(0.0, clampf(blade_direction().y, -0.95, 0.95)) * BLADE
+			tip_velocity += ((ahead - tip) * FOLLOW_SPRING - tip_velocity * FOLLOW_DAMPING) * dt
 		if blocking:
 			# Bracing is the one time the arms hold the blade up, through a strong but finite spring,
 			# toward the camera so the guard faces the attacker.
@@ -151,10 +155,10 @@ func step(delta: float, camera_yaw: float, camera_pitch: float, holding: bool, a
 		if tip.y <= floor_level:
 			tip.y = floor_level
 			tip_velocity.y = maxf(tip_velocity.y, 0.0)
-			var slide: float = exp(-(DRAG_FRICTION if holding else ANCHOR_FRICTION) * dt)
+			var slide: float = exp(-(DRAG_FRICTION if engaged else ANCHOR_FRICTION) * dt)
 			tip_velocity.x *= slide
 			tip_velocity.z *= slide
-			if not holding and Vector2(tip_velocity.x, tip_velocity.z).length() < ANCHOR_HOLD_SPEED:
+			if not engaged and Vector2(tip_velocity.x, tip_velocity.z).length() < ANCHOR_HOLD_SPEED:
 				tip_velocity.x = 0.0
 				tip_velocity.z = 0.0
 		var along: Vector3 = blade_direction()
