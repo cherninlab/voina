@@ -130,8 +130,11 @@ func on_died(killer: CombatController, victim: int) -> void:
 	if state != State.ROUND:
 		return
 	var winner: int = 0
-	if killer != null and killer.get_parent() != null:
-		winner = killer.get_parent().get_multiplayer_authority()
+	for body: CharacterBody3D in fighters():
+		# Server-owned mobs also have authority 1; only an actual fighter can earn credit.
+		if killer == combat_of(body):
+			winner = body.get_multiplayer_authority()
+			break
 	if winner == victim or winner == 0:
 		var others: Array[CharacterBody3D] = fighters().filter(func(body: CharacterBody3D) -> bool: return body.get_multiplayer_authority() != victim)
 		winner = others[0].get_multiplayer_authority() if others.size() == 1 else 0

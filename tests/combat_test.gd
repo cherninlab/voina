@@ -92,5 +92,28 @@ func run() -> void:
 	advance(shooter, 0.17)
 	assert(not shooter.evades_ranged(), "Ranged immunity expires")
 	assert(CombatController.guards(0.0, Vector3.BACK) and not CombatController.guards(0.0, Vector3.FORWARD), "Guard faces incoming from the front only")
+	var paused: CombatController = CombatController.new()
+	root.add_child(paused)
+	paused.set_physics_process(false)
+	paused.attack_active.connect(func(ranged: bool) -> void: active_hits.append(ranged))
+	assert(paused.begin_attack(false))
+	paused.frozen = true
+	assert(not paused.strike(99), "A round freeze rejects remaining targets in the current sweep")
+	var before_freeze: int = active_hits.size()
+	advance(paused, 1.0)
+	assert(active_hits.size() == before_freeze and paused.phase == CombatController.Phase.IDLE, "A frozen windup never resolves or resumes")
+	assert(not paused.set_block(true), "Guard cannot be raised during a round freeze")
+	paused.frozen = false
+	assert(paused.begin_attack(false))
+	advance(paused, 0.16)
+	paused.frozen = true
+	before_freeze = active_hits.size()
+	advance(paused, 0.5)
+	assert(active_hits.size() == before_freeze, "A freeze also cancels an already active attack")
+	paused.frozen = false
+	assert(paused.begin_dash())
+	paused.frozen = true
+	paused.step(0.01)
+	assert(not paused.evades_ranged() and paused.phase == CombatController.Phase.IDLE, "A freeze cancels dash immunity")
 	print("COMBAT_OK: parry, latency grace, recovery, block, guard break, stamina, dodge, active sweep, respawn cancellation, bolt release")
 	quit()

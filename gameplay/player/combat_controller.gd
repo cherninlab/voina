@@ -49,6 +49,12 @@ func _physics_process(delta: float) -> void:
 
 func step(delta: float) -> void:
 	clock += delta
+	if frozen:
+		phase = Phase.IDLE
+		phase_until = clock
+		blocking = false
+		invulnerable_until = 0.0
+		return
 	if phase != Phase.IDLE and clock >= phase_until:
 		match phase:
 			Phase.WINDUP:
@@ -118,6 +124,8 @@ func set_block(wants_block: bool) -> bool:
 	if not wants_block:
 		blocking = false
 		return true
+	if frozen:
+		return false
 	if blocking:
 		return true
 	if phase != Phase.IDLE or stamina < 20.0 or clock < next_block:
@@ -128,7 +136,7 @@ func set_block(wants_block: bool) -> bool:
 	return true
 
 func strike(target_id: int) -> bool:
-	if struck.has(target_id):
+	if frozen or struck.has(target_id):
 		return false
 	struck[target_id] = true
 	return true
