@@ -2,7 +2,7 @@
 
 **PSX Style Cars** by GGBot, August 2023 release, is imported in `content/vehicles/ggbot_psx_cars/`. The archive has no license file. The [itch.io page](https://ggbot.itch.io/psx-style-cars) states the assets are licensed under **CC0 1.0 Universal**. The archive hash, the license source and per-file SHA-256 hashes are in `provenance.json`.
 
-Included, unmodified: Car 01–08 OBJ/MTL meshes (with police and taxi variants of Car 05) and all their 128 px PNG skins (PNGs via Git LFS). Each car mesh already contains its wheels. Omitted: `.blend` sources, the sound effects, the separate wheel and blob-shadow meshes. Add them from the original zip when a feature needs them.
+Included (unmodified except one case fix: `Car 03/Car3.mtl` named `Car3.png`, but the supplied file is `car3.png`, which broke loading on Linux): Car 01–08 OBJ/MTL meshes (with police and taxi variants of Car 05) and all their 128 px PNG skins (PNGs via Git LFS). Each car mesh already contains its wheels. Omitted: `.blend` sources, the sound effects, the separate wheel and blob-shadow meshes. Add them from the original zip when a feature needs them.
 
 ## Use
 

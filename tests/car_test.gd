@@ -16,6 +16,14 @@ func check(condition: bool, message: String) -> void:
 		quit(1)
 
 func run() -> void:
+	# Exact-case texture names: macOS hides MTL case mismatches that break Linux CI.
+	for model: String in MODELS:
+		var folder: String = CarProp.ROOT + model.get_base_dir()
+		var files: PackedStringArray = DirAccess.get_files_at(folder)
+		for line: String in FileAccess.get_file_as_string(CarProp.ROOT + model.get_basename() + ".mtl").split("\n"):
+			if line.strip_edges().begins_with("map_K"):
+				var texture: String = line.strip_edges().get_slice(" ", 1)
+				check(files.has(texture), "%s references %s with exact case" % [model, texture])
 	var cover: CarProp = null
 	for model: String in MODELS:
 		var car: CarProp = CarProp.create(model, MODELS[model])

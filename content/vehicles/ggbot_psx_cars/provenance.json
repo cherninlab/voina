@@ -5,7 +5,7 @@
   "license_source": "https://ggbot.itch.io/psx-style-cars — page states: \"This game assets is licensed under a CC0 1.0 Universal.\" The archive itself contains no license file.",
   "archive": "PSX_Style_Cars_by_GGBot_(August2023).zip",
   "archive_sha256": "db67b0b0fbaa02454a5d000dc9ec1cc53f360e8f41ab44f3fb1c7e8f71e699e4",
-  "included": "Car 01–08 OBJ/MTL meshes and PNG texture variants, unmodified",
+  "included": "Car 01–08 OBJ/MTL meshes and PNG texture variants; unmodified except texture_reference_fixes",
   "omitted": ".blend sources, sound effects, separate Wheel and Shadow (3D) meshes, itch.io shortcut",
   "files": {
     "Car 01/Car.mtl": "c220c245f98a523b54bca7bdddbc88b013509be8da6b11b42901296a4a91ca69",
@@ -27,7 +27,7 @@
     "Car 02/car2.png": "b4a4220eff6d0411a774b79446e042aa956defd3ba8ddf3bdef231021f6eac17",
     "Car 02/car2_black.png": "49c6c9269d188cdb5a032008fdb1d7c7a55b14c67b59cbe4c2f45e2d81d4d9c8",
     "Car 02/car2_red.png": "10a18ee2d8a45acb2589102242c93a4713fd463d8e5e9e2fdf5d8d1c1e34c7b6",
-    "Car 03/Car3.mtl": "5a583c70e59a464d16a57bae733c3d38552d93e10c8baa71da0b22c8b1c160f4",
+    "Car 03/Car3.mtl": "71308b0ade060971b8a830002ba1f6f82c2e4f0837776c6f47e6fb24a2b65443",
     "Car 03/Car3.obj": "7525a0264841b24bd5f04ec6da72b7d833015a55e932cfbd895191ac1d2a4fe0",
     "Car 03/car3.png": "467cc5964f6cd39cab646f466b763be2864ea69a3408ec21c301c1d40d6f4ed7",
     "Car 03/car3_red.png": "e87ca54e7a8b7ff0d3b071e9fcd5c31abe63cdcb53f4d55374b630ce009bab49",
@@ -67,5 +67,8 @@
     "Car 08/Car8_grey.png": "9c290adb439fe4016799a0fcb3397c9083cf0f0bf738d2d6a1b2ab2ae5555669",
     "Car 08/Car8_mail.png": "33e0750be75f351ab8de8b15bfb3f9ec1b03e9603645ffdb0366b7b5e523c542",
     "Car 08/Car8_purple.png": "2747c9e1dce5930989d01d72c78e0941412bfb8e3c94e2bb3f68c43018b9b90f"
+  },
+  "texture_reference_fixes": {
+    "Car 03/Car3.mtl": "map_Ka/map_Kd Car3.png -> car3.png (the supplied file is lowercase; case-sensitive filesystems failed to load it)"
   }
 }
