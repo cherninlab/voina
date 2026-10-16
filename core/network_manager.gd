@@ -51,14 +51,17 @@ func join_game(address: String, target_port: int = 7777) -> void:
 	multiplayer.multiplayer_peer = peer
 	report("Connecting to " + address)
 
-func one_way_seconds(peer_id: int) -> float:
+func round_trip_seconds(peer_id: int) -> float:
 	var enet: ENetMultiplayerPeer = multiplayer.multiplayer_peer as ENetMultiplayerPeer
 	if enet == null or peer_id == multiplayer.get_unique_id():
 		return 0.0
 	var packet_peer: ENetPacketPeer = enet.get_peer(peer_id)
 	if packet_peer == null:
 		return 0.0
-	return packet_peer.get_statistic(ENetPacketPeer.PEER_ROUND_TRIP_TIME) / 2000.0
+	return packet_peer.get_statistic(ENetPacketPeer.PEER_ROUND_TRIP_TIME) / 1000.0
+
+func one_way_seconds(peer_id: int) -> float:
+	return round_trip_seconds(peer_id) * 0.5
 
 func valid_port(value: int) -> bool:
 	if value < 1024 or value > 65535:
