@@ -70,27 +70,33 @@ with tempfile.TemporaryDirectory() as directory:
             host.terminate()
             host.wait(timeout=5)
 
-def run_projectile_pair() -> None:
-    """A second client fires bolts at the host player over real ENet."""
+def run_pair(client_flags: list, marker: str, spawns: bool = True) -> str:
+    """Start a host and one scripted client on a fresh port; return the host log."""
     with socket.socket(socket.AF_INET, socket.SOCK_DGRAM) as probe:
         probe.bind(('127.0.0.1', 0))
-        bolt_port = probe.getsockname()[1]
+        pair_port = probe.getsockname()[1]
     with tempfile.TemporaryDirectory() as directory:
         log_path = pathlib.Path(directory) / 'host.log'
         with log_path.open('w') as log:
-            host = subprocess.Popen(base + ['--', '--host', f'--port={bolt_port}'], stdout=log, stderr=subprocess.STDOUT)
+            host = subprocess.Popen(base + ['--', '--host', f'--port={pair_port}'], stdout=log, stderr=subprocess.STDOUT)
             try:
                 time.sleep(1)
-                result = subprocess.run(base + ['--', '--join=127.0.0.1', f'--port={bolt_port}', '--projectile-smoke'], capture_output=True, text=True, timeout=25)
+                result = subprocess.run(base + ['--', '--join=127.0.0.1', f'--port={pair_port}'] + client_flags, capture_output=True, text=True, timeout=25)
                 time.sleep(0.5)
-                output = result.stdout + result.stderr + log_path.read_text()
+                host_log = log_path.read_text()
+                output = result.stdout + result.stderr + host_log
                 print(output, end='')
-                assert result.returncode == 0 and 'PROJECTILE_SMOKE_OK:' in result.stdout
+                assert result.returncode == 0 and marker in result.stdout
                 assert 'SCRIPT ERROR' not in output and 'ERROR:' not in output
+                assert ('SPAWNED' in host_log) == spawns
+                return host_log
             finally:
                 host.terminate()
                 host.wait(timeout=5)
 
 
-run_projectile_pair()
+# A client fires bolts at the host player over real ENet.
+run_pair(['--projectile-smoke'], 'PROJECTILE_SMOKE_OK:')
+# A different build is refused during authentication, before anything spawns.
+assert 'BUILD_REFUSED' in run_pair(['--fake-build=0123456789ab', '--expect-version-mismatch'], 'VERSION_MISMATCH_OK:', spawns=False)
 print('PASS: local two-process ENet integration and disconnect cleanup')
