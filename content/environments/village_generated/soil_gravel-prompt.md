@@ -1,0 +1,1 @@
+Original ImageGen seamless 2.5m square path albedo: orthographic compacted brown-grey mineral soil, 15 percent irregular slate gravel 5mm to 4cm, sparse tan straw, damp/dry granular variation. No paving, large rocks, grass, tracks, shadows, gloss or perspective. Restrained neutral earth colors. No text or borders. Artistic albedo candidate, not a scanned PBR material.

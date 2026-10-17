@@ -66,19 +66,43 @@
     {
       "target": "target-schist-valley.png",
       "supporting_basecolors": [
-        "schist_rock.png"
+        "schist_rock.png",
+        "soil_gravel.png"
       ],
       "supporting_geometry": [
         "gameplay/environment/village_arena.gd:landscape",
         "gameplay/environment/village_arena.gd:landscape_surface_height",
         "gameplay/environment/village_arena.gd:landscape_height",
-        "gameplay/environment/village_arena.gd:ground_stones"
+        "gameplay/environment/village_arena.gd:ground_stones",
+        "gameplay/environment/village_arena.gd:terrain"
       ],
       "prompts": [
         "schist_rock-prompt.md",
-        "target-schist-valley-prompt.md"
+        "target-schist-valley-prompt.md",
+        "soil_gravel-prompt.md"
       ],
       "note": "Original generated schist albedo candidate paired with 3m landscape mesh, triplanar rock mapping, slope-aligned rock scatter and denser surrounding forest. Runtime captures assess the actual result. Domain-warped ridge and softened strata height field replaces the smooth dome skyline; first serrated trial rejected during runtime review."
+    },
+    {
+      "target": "target-next-ground-pass.png",
+      "source_capture": "runtime-soil-material/village-03.png",
+      "supporting_basecolors": [
+        "soil_gravel.png",
+        "reed_thatch.png",
+        "oak.png",
+        "schist_rock.png"
+      ],
+      "supporting_geometry": [
+        "gameplay/environment/village_arena.gd:terrain",
+        "gameplay/environment/village_arena.gd:green_borders",
+        "gameplay/environment/village_arena.gd:ground_stones",
+        "gameplay/environment/village_arena.gd:roof"
+      ],
+      "prompts": [
+        "target-next-ground-pass-prompt.md",
+        "soil_gravel-prompt.md"
+      ],
+      "note": "User-directed closer intermediate target derived from latest actual capture. Preserve composition; next work is restrained material weathering, thatch edge thickness, clover clusters and rock breakup. Generated image is not actual gameplay."
     }
   ],
   "sky_note": "Generated LDR appearance panorama, not calibrated HDR lighting. Sky shader adjusts horizon latitude and blends wrap/poles; runtime review is required."

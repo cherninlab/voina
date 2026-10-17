@@ -411,6 +411,7 @@ func terrain() -> void:
 				tool.set_uv(location * 0.25)
 				tool.add_vertex(Vector3(location.x, ground_height(location.x, location.y), location.y))
 	tool.generate_normals()
+	tool.generate_tangents()
 	tool.index()
 	var mesh: ArrayMesh = tool.commit()
 	var visual: MeshInstance3D = MeshInstance3D.new()
@@ -439,19 +440,19 @@ void fragment() {
  float court=1.0-smoothstep(7.0,14.0,length(p));
  float path=max(court,max(main_path,cross_path));
  float vegetation=(1.0-path)*smoothstep(0.2,0.7,n);
- vec3 dirt=texture(dirt_color,p*0.65).rgb * mix(0.8,1.05,n);
+ vec3 dirt=texture(dirt_color,p*0.4).rgb * mix(0.8,1.05,n);
  vec3 grass=texture(grass_color,p*0.22).rgb * mix(0.72,1.05,n);
  vec3 rock=texture(stones,p*0.65).rgb;
- float rock_mask=smoothstep(0.4,0.68,noise(p*0.23))*path;
- ALBEDO=mix(mix(dirt,rock,rock_mask*0.38),grass,vegetation);
- ROUGHNESS=mix(texture(stone_roughness,p*0.65).r,texture(grass_roughness,p*0.22).r,vegetation);
- NORMAL_MAP=mix(texture(stone_normal,p*0.65).rgb,texture(grass_normal,p*0.22).rgb,vegetation);
+ float rock_mask=smoothstep(0.55,0.8,noise(p*0.23))*path*0.25;
+ ALBEDO=mix(mix(dirt,rock,rock_mask),grass,vegetation);
+ ROUGHNESS=mix(mix(0.94,texture(stone_roughness,p*0.65).r,rock_mask),texture(grass_roughness,p*0.22).r,vegetation);
+ NORMAL_MAP=mix(mix(vec3(0.5,0.5,1.0),texture(stone_normal,p*0.65).rgb,rock_mask),texture(grass_normal,p*0.22).rgb,vegetation);
  NORMAL_MAP_DEPTH=0.45;
  // Screen-space color derivatives are not a physical normal map and shimmer during motion.
 }
 """
 	material.shader = shader
-	material.set_shader_parameter("dirt_color", load("res://content/environments/village_generated/compacted_path.png"))
+	material.set_shader_parameter("dirt_color", load("res://content/environments/village_generated/soil_gravel.png"))
 	for binding: String in ["stones", "grass_color", "stone_normal", "grass_normal", "stone_roughness", "grass_roughness"]:
 		var family: String = "GrassGround" if binding.begins_with("grass") else "StoneFloor"
 		var channel: String = "normal" if binding.ends_with("normal") else ("roughness" if binding.ends_with("roughness") else "basecolor")

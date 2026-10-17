@@ -9,7 +9,8 @@
     "flax_weave.png",
     "reed_thatch.png",
     "daylight_sky.png",
-    "schist_rock.png"
+    "schist_rock.png",
+    "soil_gravel.png"
   ],
   "notes": "Original ImageGen base-color candidates; generation prompts accompany new assets. Terrain/cloth geometry is authored in village_arena.gd. These images are artistic material candidates, not calibrated PBR scans; seam and motion quality require runtime review. No assets from the earlier commercial Village House Kit are included.",
   "reference_images": [
@@ -17,7 +18,8 @@
     "target-village.png",
     "target-roof-shape.png",
     "groundcover-shape-study.png",
-    "target-schist-valley.png"
+    "target-schist-valley.png",
+    "target-next-ground-pass.png"
   ],
   "reference_note": "Built-in ImageGen targets preserve actual runtime composition and use user-supplied visual references; these are not game screenshots. See target-prompts.md and reference_sets.json."
 }
