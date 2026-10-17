@@ -1,6 +1,7 @@
 extends Node3D
 ## Original procedural village; cosmetic scenery never owns gameplay state.
 
+var timber_material: ShaderMaterial
 var wood: StandardMaterial3D
 var straw: StandardMaterial3D
 var stone: StandardMaterial3D
@@ -26,6 +27,7 @@ func _ready() -> void:
 			return
 		snapshot.free()
 	wood = surface("b0a08a", "oak", 0.5)
+	make_timber_material()
 	straw = surface("bfb9aa", "reed_thatch")
 	straw.uv1_triplanar = false
 	straw.cull_mode = BaseMaterial3D.CULL_DISABLED
@@ -221,7 +223,7 @@ func timber(start: Vector3, finish: Vector3, radius: float, parent: Node3D = sel
 	mesh.bottom_radius = radius
 	mesh.radial_segments = 10
 	visual.mesh = mesh
-	visual.material_override = wood
+	visual.material_override = timber_material
 	visual.position = (start + finish) * 0.5
 	visual.quaternion = Quaternion(Vector3.UP, (finish - start).normalized())
 	parent.add_child(visual)
@@ -477,7 +479,7 @@ func log_post(location: Vector3, height: float, radius: float, collision: bool =
 	var visual: MeshInstance3D = MeshInstance3D.new()
 	visual.mesh = mesh
 	visual.position = location
-	visual.material_override = wood
+	visual.material_override = timber_material
 	add_child(visual)
 	if collision:
 		var body: StaticBody3D = StaticBody3D.new()
@@ -639,3 +641,21 @@ void fragment() { ALBEDO=vec3(0.08,0.14,0.025)*COLOR.rgb; ROUGHNESS=0.9; BACKLIG
 	visual.gi_mode = GeometryInstance3D.GI_MODE_DYNAMIC
 	visual.cast_shadow = GeometryInstance3D.SHADOW_CASTING_SETTING_OFF
 	add_child(visual)
+
+func make_timber_material() -> void:
+	# Grain follows each beam's local length rather than projecting board joints onto logs.
+	var shader: Shader = Shader.new()
+	shader.code = """shader_type spatial;
+uniform sampler2D grain : source_color, filter_linear_mipmap_anisotropic, repeat_enable;
+varying vec3 local_pos;
+void vertex() { local_pos=VERTEX; }
+void fragment() {
+ vec2 uv=vec2(UV.x*0.6,local_pos.y*0.5);
+ vec3 base=texture(grain,uv).rgb;
+ ALBEDO=base*vec3(0.82,0.78,0.70);
+ ROUGHNESS=0.88;
+}
+"""
+	timber_material = ShaderMaterial.new()
+	timber_material.shader = shader
+	timber_material.set_shader_parameter("grain", load("res://content/environments/village_generated/aged_timber.png"))
