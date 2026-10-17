@@ -1,0 +1,1 @@
+Square seamless tileable base color: natural weathered northern European grey schist bedrock. Flat orthographic surface, broad irregular fractured plates and stratified cracks, slate blue grey and warm muted mineral patches, sparse olive lichen. No paving, masonry, objects, text, perspective or directional lighting. Neutral diffuse albedo candidate, seamless edges.

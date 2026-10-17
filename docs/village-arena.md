@@ -39,3 +39,7 @@ The supporting `daylight_sky.png` is an original generated LDR appearance panora
 ## Groundcover shape pass
 
 The generated groundcover study is paired with solid, three-segment tapered grass strips in `green_borders()`. Generated alpha cards were rejected for fringes and clipped silhouettes. Geometry needs no transparency sorting or alpha edge filtering. The experimental static lightmap snapshot is not enabled: probe data is empty and the actual capture does not yet justify replacing the procedural level.
+
+## Surrounding landscape material pass
+
+Original generated schist replaces the paving texture on distant exposed terrain. Triplanar mapping avoids vertical stretch, broad color variation breaks repetition, and the surrounding visual terrain uses a 3m sampling grid. Rock shelves are distributed across the slopes instead of a ring; 320 trees occupy the surrounding land. These outer visuals do not expand the playable collision boundary. No M2 performance acceptance is implied.

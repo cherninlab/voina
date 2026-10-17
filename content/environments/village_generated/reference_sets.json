@@ -62,6 +62,21 @@
         "groundcover-shape-prompt.md"
       ],
       "note": "Curved opaque grass strips authored from morphology study. Generated alpha cards rejected for colored fringes and clipped silhouettes."
+    },
+    {
+      "target": "target-schist-valley.png",
+      "supporting_basecolors": [
+        "schist_rock.png"
+      ],
+      "supporting_geometry": [
+        "gameplay/environment/village_arena.gd:landscape",
+        "gameplay/environment/village_arena.gd:landscape_surface_height"
+      ],
+      "prompts": [
+        "schist_rock-prompt.md",
+        "target-schist-valley-prompt.md"
+      ],
+      "note": "Original generated schist albedo candidate paired with 3m landscape mesh, triplanar rock mapping, slope-aligned rock scatter and denser surrounding forest. Runtime captures assess the actual result."
     }
   ],
   "sky_note": "Generated LDR appearance panorama, not calibrated HDR lighting. Sky shader adjusts horizon latitude and blends wrap/poles; runtime review is required."

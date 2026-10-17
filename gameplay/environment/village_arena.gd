@@ -59,9 +59,16 @@ func _ready() -> void:
 	kit_prop("wagon", Vector3(16, 0, 3), 3.5, 0.4)
 	kit_prop("dummy", Vector3(20, 0, 8), 1.3, -0.7)
 	kit_prop("shield", Vector3(18, 0, 10), 0.8, -0.5, false)
-	for index: int in range(18):
-		var angle: float = TAU * float(index) / 18.0
-		kit_prop("rock_a" if index % 2 == 0 else "rock_b", Vector3(cos(angle) * 30.0, 0, sin(angle) * 30.0), 2.0 + float(index % 3), angle, false)
+	# Rock shelves follow the slopes instead of forming a decorative ring.
+	var rock_random: RandomNumberGenerator = RandomNumberGenerator.new()
+	rock_random.seed = 52191
+	for index: int in range(72):
+		var angle: float = rock_random.randf_range(0.0, TAU)
+		var radius: float = rock_random.randf_range(34.0, 155.0)
+		var location: Vector3 = Vector3(cos(angle) * radius, 0, sin(angle) * radius)
+		var width: float = rock_random.randf_range(2.5, 7.5)
+		location.y = landscape_surface_height(location.x, location.z) - width * 0.12
+		kit_prop("rock_a" if index % 2 == 0 else "rock_b", location, width, angle, false)
 	for side: int in [-1, 1]:
 		stall(Vector3(side * 15, 0, -8), red if side < 0 else teal)
 		stall(Vector3(side * 15, 0, 9), gold if side < 0 else cream)
@@ -79,7 +86,7 @@ func _ready() -> void:
 	# Additional vegetation belongs to the surrounding land, not a single circular tree row.
 	var forest_random: RandomNumberGenerator = RandomNumberGenerator.new()
 	forest_random.seed = 41271
-	for index: int in range(112):
+	for index: int in range(320):
 		var angle: float = forest_random.randf_range(0.0, TAU)
 		var radius: float = forest_random.randf_range(38.0, 175.0)
 		var x: float = cos(angle) * radius
@@ -96,16 +103,16 @@ func landscape_height(x: float, z: float) -> float:
 	return -0.7 + foothills + mountains * (ridge + detail + 6.0)
 
 func landscape_surface_height(x: float, z: float) -> float:
-	# Match the actual six-metre mesh triangles, not an unsampled noise peak.
-	var cell: Vector2 = (Vector2(x,z) + Vector2.ONE * 288.0) / 6.0
-	var base: Vector2 = cell.floor() * 6.0 - Vector2.ONE * 288.0
+	# Match the actual three-metre mesh triangles, not an unsampled noise peak.
+	var cell: Vector2 = (Vector2(x,z) + Vector2.ONE * 288.0) / 3.0
+	var base: Vector2 = cell.floor() * 3.0 - Vector2.ONE * 288.0
 	var offset: Vector2 = cell - cell.floor()
 	var near_height: float = landscape_height(base.x, base.y)
-	var right_height: float = landscape_height(base.x + 6.0, base.y)
-	var far_height: float = landscape_height(base.x, base.y + 6.0)
+	var right_height: float = landscape_height(base.x + 3.0, base.y)
+	var far_height: float = landscape_height(base.x, base.y + 3.0)
 	if offset.x + offset.y <= 1.0:
 		return near_height + (right_height-near_height)*offset.x + (far_height-near_height)*offset.y
-	var diagonal: float = landscape_height(base.x + 6.0, base.y + 6.0)
+	var diagonal: float = landscape_height(base.x + 3.0, base.y + 3.0)
 	return diagonal + (far_height-diagonal)*(1.0-offset.x) + (right_height-diagonal)*(1.0-offset.y)
 
 func landscape() -> void:
@@ -114,11 +121,11 @@ func landscape() -> void:
 	landscape_noise.fractal_octaves = 3
 	var tool: SurfaceTool = SurfaceTool.new()
 	tool.begin(Mesh.PRIMITIVE_TRIANGLES)
-	for z: int in range(96):
-		for x: int in range(96):
+	for z: int in range(192):
+		for x: int in range(192):
 			var corners: Array[Vector2] = [Vector2(x,z), Vector2(x+1,z), Vector2(x,z+1), Vector2(x+1,z), Vector2(x+1,z+1), Vector2(x,z+1)]
 			for corner: Vector2 in corners:
-				var point: Vector2 = corner * 6.0 - Vector2.ONE * 288.0
+				var point: Vector2 = corner * 3.0 - Vector2.ONE * 288.0
 				var height: float = landscape_height(point.x, point.y)
 				var rocky: float = smoothstep(12.0, 42.0, height)
 				tool.set_color(Color("637457").lerp(Color("858780"), rocky))
@@ -133,18 +140,25 @@ func landscape() -> void:
 uniform sampler2D soil : source_color, filter_linear_mipmap_anisotropic, repeat_enable;
 uniform sampler2D rock : source_color, filter_linear_mipmap_anisotropic, repeat_enable;
 varying vec3 world_pos;
-varying float slope;
-void vertex() { world_pos=(MODEL_MATRIX*vec4(VERTEX,1.0)).xyz; slope=NORMAL.y; }
+varying vec3 world_normal;
+void vertex() { world_pos=(MODEL_MATRIX*vec4(VERTEX,1.0)).xyz; world_normal=normalize(MODEL_NORMAL_MATRIX*NORMAL); }
+vec3 bedrock(vec3 p,vec3 n) {
+ vec3 weights=pow(abs(n),vec3(4.0));
+ weights/=max(weights.x+weights.y+weights.z,0.001);
+ return texture(rock,p.yz*0.12).rgb*weights.x+texture(rock,p.xz*0.12).rgb*weights.y+texture(rock,p.xy*0.12).rgb*weights.z;
+}
 void fragment() {
+ float slope=normalize(world_normal).y;
  float exposed=max(1.0-smoothstep(0.55,0.85,slope),smoothstep(18.0,42.0,world_pos.y));
  vec3 earth=texture(soil,world_pos.xz*0.18).rgb*vec3(0.72,1.05,0.68);
- ALBEDO=mix(earth,texture(rock,world_pos.xz*0.13).rgb*0.8,exposed);
+ float macro=0.82+0.18*sin(world_pos.x*0.045+sin(world_pos.z*0.06))*cos(world_pos.z*0.035);
+ ALBEDO=mix(earth,bedrock(world_pos,normalize(world_normal)),exposed)*macro;
  ROUGHNESS=0.95;
 }
 """
 	material.shader = shader
 	material.set_shader_parameter("soil", load("res://content/environments/valhalla/textures/KB3D_VHL_GrassGround_basecolor.png"))
-	material.set_shader_parameter("rock", load("res://content/environments/valhalla/textures/KB3D_VHL_StoneFloor_basecolor.png"))
+	material.set_shader_parameter("rock", load("res://content/environments/village_generated/schist_rock.png"))
 	visual.material_override = material
 	add_child(visual)
 
