@@ -349,6 +349,8 @@ func lighting() -> void:
 	light.light_color = Color("fff1d8")
 	light.light_energy = 1.3
 	light.shadow_enabled = true
+	light.shadow_bias = 0.03
+	light.shadow_normal_bias = 0.8
 	light.directional_shadow_max_distance = 100.0
 	add_child(light)
 	var world: WorldEnvironment = WorldEnvironment.new()

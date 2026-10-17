@@ -38,7 +38,7 @@ The supporting `daylight_sky.png` is an original generated LDR appearance panora
 
 ## Groundcover shape pass
 
-The generated groundcover study is paired with solid, three-segment tapered grass strips in `green_borders()`. Generated alpha cards were rejected for fringes and clipped silhouettes. Geometry needs no transparency sorting or alpha edge filtering. The experimental static lightmap snapshot is not enabled: probe data is empty and the actual capture does not yet justify replacing the procedural level.
+The generated groundcover study is paired with solid, three-segment tapered grass strips in `green_borders()`. Generated alpha cards were rejected for fringes and clipped silhouettes. Geometry needs no transparency sorting or alpha edge filtering. The experimental static lightmap snapshot is not enabled: the actual capture does not yet justify replacing the procedural level. The earlier empty-probe diagnosis was misleading because dummy headless rendering does not expose the same capture data as Metal.
 
 ## Surrounding landscape material pass
 
@@ -51,3 +51,11 @@ The paired schist-valley target guides domain-warped ridges, smaller crags and s
 ## Ground stone dressing
 
 Low-profile opaque stone geometry uses the paired generated schist material. Deterministic clustered scatter avoids the central duel space, main path center and x=0 test axis. Stones are cosmetic and have no collision. The full reference look remains unachieved; this pass adds genuine ground silhouettes rather than more texture noise.
+
+## Experimental static lightmap preparation
+
+Run `"$GODOT" --path . --script scripts/prepare_village_bake.gd` with the real renderer, without `--headless` or `--editor`, then open the generated `village_lit.scn` and use Bake Lightmaps. Preparation unwraps selected static meshes and adds explicit probes. It replaces local experimental bake outputs; it does not enable them in gameplay.
+
+Headless inspection incorrectly suggested missing probe data. A Metal load of the baked resource shows populated probe positions. Preparing the snapshot with dummy headless rendering also lost MultiMesh instance buffers; the helper now refuses that mode. The Metal-prepared snapshot retained 5,076 grass instances and 1,167 stones in validation. The new snapshot still needs its own rebake and visual review before any runtime switch. The experimental binaries remain local and are not shipped.
+
+AgX/lower-fill trials were rejected after actual captures looked flatter or underexposed. Live tone mapping remains ACES; directional shadow bias is reduced to improve contact placement. No GI quality or performance acceptance is implied.
