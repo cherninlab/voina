@@ -1,0 +1,81 @@
+{
+  "pack": "KitBash3D Valhalla, user-supplied Blender source",
+  "source_filename": "KB3D_Valhalla-Native.blend",
+  "authorization": "User explicitly authorized using, editing and integrating parts of this folder in this conversation on 2026-10-17.",
+  "license_note": "Third-party commercial assets, not CC0. No upstream license text was bundled in the supplied folder; user authorization is recorded without asserting broader redistribution rights.",
+  "processing": "Selected roots, no animations/cameras/lights/skeletons/skulls; texture dimensions capped at 2048; native glTF PBR export.",
+  "assets": [
+    {
+      "file": "well.gltf",
+      "source_root": "KB3D_VAL_Well_A_grp",
+      "mesh_count": 1,
+      "polygons": 6828
+    },
+    {
+      "file": "wagon.gltf",
+      "source_root": "KB3D_VAL_Wagon_A_grp",
+      "mesh_count": 1,
+      "polygons": 6963
+    },
+    {
+      "file": "barrel.gltf",
+      "source_root": "KB3D_VAL_Barrel_A_grp",
+      "mesh_count": 1,
+      "polygons": 3722
+    },
+    {
+      "file": "shield.gltf",
+      "source_root": "KB3D_VAL_Shield_A_grp",
+      "mesh_count": 1,
+      "polygons": 2301
+    },
+    {
+      "file": "brazier.gltf",
+      "source_root": "KB3D_VAL_Torch_A_grp",
+      "mesh_count": 1,
+      "polygons": 5684
+    },
+    {
+      "file": "dummy.gltf",
+      "source_root": "KB3D_VAL_PractiseDummy_A_grp",
+      "mesh_count": 1,
+      "polygons": 458
+    },
+    {
+      "file": "rock_a.gltf",
+      "source_root": "KB3D_VAL_Rock_A_grp",
+      "mesh_count": 1,
+      "polygons": 88
+    },
+    {
+      "file": "rock_b.gltf",
+      "source_root": "KB3D_VAL_Rock_B_grp",
+      "mesh_count": 1,
+      "polygons": 88
+    },
+    {
+      "file": "rock_c.gltf",
+      "source_root": "KB3D_VAL_Rock_C_grp",
+      "mesh_count": 1,
+      "polygons": 88
+    },
+    {
+      "file": "cottage_a.gltf",
+      "source_root": "KB3D_VAL_BldgSM_A_grp",
+      "mesh_count": 10,
+      "polygons": 196663
+    },
+    {
+      "file": "cottage_f.gltf",
+      "source_root": "KB3D_VAL_BldgSM_F_grp",
+      "mesh_count": 17,
+      "polygons": 157801
+    },
+    {
+      "file": "cottage_h.gltf",
+      "source_root": "KB3D_VAL_BldgSM_H_grp",
+      "mesh_count": 9,
+      "polygons": 175111
+    }
+  ]
+}

@@ -27,27 +27,44 @@ func _ready() -> void:
 	# Visual terrain extends beyond the fenced playfield; collisions stay inside 56 m.
 	block(Vector3(240, 0.2, 240), Vector3(0, -0.75, 0), surface("54684b"))
 	green_borders()
-	for side: int in [-1, 1]:
-		block(Vector3(0.4, 2.5, 56), Vector3(side * 28, 1.25, 0), wood, true)
-		block(Vector3(56, 2.5, 0.4), Vector3(0, 1.25, side * 28), wood, true)
-		for index: int in range(19):
-			block(Vector3(0.22, 3.0, 0.22), Vector3(side * 27.7, 1.5, -27 + index * 3), beam)
-			block(Vector3(0.22, 3.0, 0.22), Vector3(-27 + index * 3, 1.5, side * 27.7), beam)
+	# Connected clearings bounded by angled palisades, rather than a square enclosure.
+	var outline: PackedVector2Array = PackedVector2Array([
+		Vector2(-28,-10), Vector2(-24,-23), Vector2(-9,-28), Vector2(8,-25),
+		Vector2(22,-28), Vector2(28,-16), Vector2(25,0), Vector2(28,15),
+		Vector2(17,27), Vector2(2,28), Vector2(-12,25), Vector2(-28,28)])
+	for index: int in range(outline.size()):
+		var start: Vector2 = outline[index]
+		var finish: Vector2 = outline[(index + 1) % outline.size()]
+		var midpoint: Vector2 = (start + finish) * 0.5
+		var delta: Vector2 = finish - start
+		var fence: MeshInstance3D = block(Vector3(delta.length(), 2.2, 0.35), Vector3(midpoint.x, ground_height(midpoint.x, midpoint.y) + 1.1, midpoint.y), wood, true)
+		fence.rotation.y = -atan2(delta.y, delta.x)
+		var count: int = ceili(delta.length() / 0.65)
+		for post: int in range(count + 1):
+			var point: Vector2 = start.lerp(finish, float(post) / float(count))
+			log_post(Vector3(point.x, ground_height(point.x, point.y) + 1.25, point.y), 2.5 + sin(float(post) * 2.1) * 0.18, 0.14)
 	# Keep the spawn and combat-test axis x=0 unobstructed.
 	for location: Vector3 in [Vector3(-5, 0.6, -4), Vector3(5, 0.6, 4), Vector3(-5, 0.6, 4), Vector3(5, 0.6, -4)]:
 		block(Vector3(3, 1.2, 2), location, wood, true)
 		for offset: float in [-1.25, 1.25]:
 			block(Vector3(0.12, 1.25, 2.04), location + Vector3(offset, 0, 0), beam)
-	for index: int in range(4):
-		var x: float = -20.0 + index * 13.0
-		house(Vector3(x, 0, -22), 0.0, red if index % 2 == 0 else teal)
-		house(Vector3(x, 0, 22), PI, teal if index % 2 == 0 else wood)
+	kit_prop("cottage_a", Vector3(-15, 0, -17), 8.0, 0.18)
+	kit_prop("cottage_f", Vector3(-4, 0, -21), 8.0, -0.12)
+	kit_prop("cottage_h", Vector3(13, 0, -19), 8.5, -0.3)
+	kit_prop("cottage_f", Vector3(19, 0, 17), 8.0, PI + 0.3)
+	kit_prop("cottage_a", Vector3(-7, 0, 20), 8.5, PI - 0.2)
+	kit_prop("wagon", Vector3(16, 0, 3), 3.5, 0.4)
+	kit_prop("dummy", Vector3(20, 0, 8), 1.3, -0.7)
+	kit_prop("shield", Vector3(18, 0, 10), 0.8, -0.5, false)
+	for index: int in range(18):
+		var angle: float = TAU * float(index) / 18.0
+		kit_prop("rock_a" if index % 2 == 0 else "rock_b", Vector3(cos(angle) * 30.0, 0, sin(angle) * 30.0), 2.0 + float(index % 3), angle, false)
 	for side: int in [-1, 1]:
 		stall(Vector3(side * 15, 0, -8), red if side < 0 else teal)
 		stall(Vector3(side * 15, 0, 9), gold if side < 0 else cream)
 		for index: int in range(3):
 			barrel(Vector3(side * 20, 0, -5 + index * 4))
-	well(Vector3(-12, ground_height(-12, 0), 0))
+	kit_prop("well", Vector3(-12, 0, 0), 3.0, 0.0)
 	watchtower(Vector3(-23, 0, 2))
 	var trees: Node3D = preload("res://gameplay/environment/tree_pack.tscn").instantiate() as Node3D
 	add_child(trees)
@@ -152,25 +169,18 @@ func stall(location: Vector3, cloth: StandardMaterial3D) -> void:
 	for x: float in [-1.2, 0.0, 1.2]:
 		block(Vector3(0.7, 0.5, 0.7), location + Vector3(x, 1.35, 0), cream if x == 0 else gold)
 
+func kit_prop(asset: String, location: Vector3, width: float, yaw: float, collision: bool = true) -> void:
+	var prop: PrototypeProp = PrototypeProp.new()
+	prop.model_scene = load("res://content/environments/valhalla/%s.gltf" % asset) as PackedScene
+	prop.collision_enabled = collision
+	prop.position = location + Vector3(0, ground_height(location.x, location.z), 0)
+	prop.rotation.y = yaw
+	add_child(prop)
+	# Uniform scaling also preserves the imported collision shape proportions.
+	prop.scale = Vector3.ONE * (width / maxf(prop.bounds.size.x, 0.01))
+
 func barrel(location: Vector3) -> void:
-	var body: StaticBody3D = StaticBody3D.new()
-	body.position = location + Vector3(0, 0.65, 0)
-	add_child(body)
-	var mesh: CylinderMesh = CylinderMesh.new()
-	mesh.top_radius = 0.5
-	mesh.bottom_radius = 0.5
-	mesh.height = 1.3
-	mesh.radial_segments = 12
-	var visual: MeshInstance3D = MeshInstance3D.new()
-	visual.mesh = mesh
-	visual.material_override = wood
-	body.add_child(visual)
-	var shape: CollisionShape3D = CollisionShape3D.new()
-	var cylinder: CylinderShape3D = CylinderShape3D.new()
-	cylinder.radius = 0.5
-	cylinder.height = 1.3
-	shape.shape = cylinder
-	body.add_child(shape)
+	kit_prop("barrel", location, 0.9, location.z * 0.3)
 
 func well(location: Vector3) -> void:
 	for index: int in range(12):
@@ -258,6 +268,11 @@ func terrain() -> void:
 	var shader: Shader = Shader.new()
 	shader.code = """shader_type spatial;
 uniform sampler2D stones : source_color, filter_linear_mipmap_anisotropic, repeat_enable;
+uniform sampler2D grass_color : source_color, filter_linear_mipmap_anisotropic, repeat_enable;
+uniform sampler2D stone_normal : hint_normal, filter_linear_mipmap_anisotropic, repeat_enable;
+uniform sampler2D grass_normal : hint_normal, filter_linear_mipmap_anisotropic, repeat_enable;
+uniform sampler2D stone_roughness : filter_linear_mipmap_anisotropic, repeat_enable;
+uniform sampler2D grass_roughness : filter_linear_mipmap_anisotropic, repeat_enable;
 varying vec3 pos;
 float hash(vec2 p) { return fract(sin(dot(p,vec2(127.1,311.7))) * 43758.5453); }
 float noise(vec2 p) { vec2 i=floor(p); vec2 f=fract(p); f=f*f*(3.0-2.0*f); return mix(mix(hash(i),hash(i+vec2(1,0)),f.x),mix(hash(i+vec2(0,1)),hash(i+vec2(1,1)),f.x),f.y); }
@@ -273,16 +288,21 @@ void fragment() {
  float path=max(court,max(main_path,cross_path));
  float vegetation=(1.0-path)*smoothstep(0.2,0.7,n);
  vec3 dirt=mix(vec3(0.13,0.095,0.065),vec3(0.29,0.23,0.16),n);
- vec3 grass=mix(vec3(0.075,0.12,0.045),vec3(0.21,0.27,0.11),n);
- vec3 rock=texture(stones,p*0.18).rgb*0.65;
+ vec3 grass=texture(grass_color,p*0.22).rgb * mix(0.72,1.05,n);
+ vec3 rock=texture(stones,p*0.22).rgb;
  float rock_mask=smoothstep(0.4,0.68,noise(p*0.23))*path;
  ALBEDO=mix(mix(dirt,rock,rock_mask*0.72),grass,vegetation);
- ROUGHNESS=mix(0.74,0.97,n);
+ ROUGHNESS=mix(texture(stone_roughness,p*0.22).r,texture(grass_roughness,p*0.22).r,vegetation);
+ NORMAL_MAP=mix(texture(stone_normal,p*0.22).rgb,texture(grass_normal,p*0.22).rgb,vegetation);
+ NORMAL_MAP_DEPTH=0.45;
  // Screen-space color derivatives are not a physical normal map and shimmer during motion.
 }
 """
 	material.shader = shader
-	material.set_shader_parameter("stones", load("res://content/environments/village_generated/ground.png"))
+	for binding: String in ["stones", "grass_color", "stone_normal", "grass_normal", "stone_roughness", "grass_roughness"]:
+		var family: String = "GrassGround" if binding.begins_with("grass") else "StoneFloor"
+		var channel: String = "normal" if binding.ends_with("normal") else ("roughness" if binding.ends_with("roughness") else "basecolor")
+		material.set_shader_parameter(binding, load("res://content/environments/valhalla/textures/KB3D_VHL_%s_%s.png" % [family, channel]))
 	visual.material_override = material
 	add_child(visual)
 	var body: StaticBody3D = StaticBody3D.new()

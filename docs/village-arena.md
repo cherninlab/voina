@@ -21,3 +21,11 @@ This checks collision under the spawn floor, ramp midpoint and lookout landing, 
 ## Verification and limits
 
 Run the editor import and `python3 scripts/smoke_test.py "$GODOT"`. Runtime collision probes and loopback checks do not establish human camera/input feel, four-player acceptance, Tailscale behavior, or performance/thermal guarantees. Buildings are closed decorative shells; interiors, commercial armor, foley integration and the proposed GUI redesign are not implemented by this change.
+
+## Valhalla integration increment (2026-10-17)
+
+Selected user-authorized KitBash Valhalla cottages, well, wagon, barrels, shield, training dummy and rocks replace several procedural placeholders. Source geometry is exported through `scripts/export_valhalla.py`, with shared PBR textures capped at 2048 pixels; provenance is recorded in `content/environments/valhalla/provenance.json`. Full source Blender files are not included.
+
+Buildings form asymmetric clusters and angled palisades bound connected clearings. The collision terrain remains continuous within its existing 56 m extent. This is an integration increment: primitive stalls, lookout, horizon scenery and lighting still need visual refinement. Mik's fisheye shader is unchanged.
+
+Validation: real rendered capture checks the spawn floor, ramp and lookout, plus actual player landings at four terrain locations. Screenshots are captured outside the repository. Headless import and smoke checks cover parsing and combat/network regressions; two-Mac and visual acceptance remain separate.
