@@ -69,3 +69,7 @@ The accepted Metal snapshot preserves both MultiMesh scatters and passes floor/r
 ## Soil material correction
 
 The valley target is paired with an original 2.5m soil/gravel albedo candidate. Paving normal and roughness now contribute only to visible paving patches rather than the whole dirt path. Terrain tangents are generated for the normal-map basis; soil is high roughness with a flat normal rather than invented displacement. The source and baked snapshot are updated together. Generated albedo does not constitute a calibrated PBR scan.
+
+## Layered clover groundcover
+
+The actual-Enshrouded target is paired with the groundcover shape study and original opaque clover leaf geometry. A deterministic low foliage layer fills irregular edge patches around existing grass while leaving the court and primary routes clear. It has no collision, transparency or shadow-card sorting. This live foliage is deliberately excluded during static bake preparation and added after loading the baked village, so it is not duplicated in subsequent snapshots. Its density and leaf detail are still below the reference; no M2 performance claim is made.

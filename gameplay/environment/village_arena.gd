@@ -22,6 +22,7 @@ func _ready() -> void:
 		var lightmap: LightmapGI = snapshot.get_node("VillageLightmap") as LightmapGI
 		if lightmap.light_data != null and lightmap.light_data.get_user_count() > 0:
 			add_child(snapshot)
+			clover_edges()
 			return
 		snapshot.free()
 	wood = surface("b0a08a", "oak", 0.5)
@@ -40,6 +41,8 @@ func _ready() -> void:
 	landscape()
 	green_borders()
 	ground_stones()
+	if not bool(get_meta("prepare_lightmap", false)):
+		clover_edges()
 	# Connected clearings bounded by angled palisades, rather than a square enclosure.
 	var outline: PackedVector2Array = PackedVector2Array([
 		Vector2(-28,-10), Vector2(-24,-23), Vector2(-9,-28), Vector2(8,-25),
@@ -581,4 +584,58 @@ func ground_stones() -> void:
 	visual.name = "GroundStoneScatter"
 	visual.multimesh = scatter
 	visual.material_override = material
+	add_child(visual)
+
+func clover_edges() -> void:
+	# Original opaque leaf geometry follows the paired groundcover shape study.
+	# Keep this small live foliage layer outside the static lighting snapshot.
+	var leaves: SurfaceTool = SurfaceTool.new()
+	leaves.begin(Mesh.PRIMITIVE_TRIANGLES)
+	for plant: int in range(3):
+		var origin: Vector3 = Vector3(cos(plant * 2.4) * 0.055, 0.045 + plant * 0.025, sin(plant * 2.4) * 0.055)
+		for petal: int in range(3):
+			var direction: float = petal * TAU / 3.0 + plant
+			var center: Vector3 = origin + Vector3(cos(direction), 0, sin(direction)) * 0.026
+			for side: int in range(8):
+				leaves.set_color(Color(0.95, 1.0, 0.85))
+				leaves.add_vertex(center + Vector3.UP * 0.005)
+				for corner: int in [side + 1, side]:
+					var angle: float = corner * TAU / 8.0
+					var radius: float = 0.027 * (0.88 + 0.12 * cos(angle * 2.0))
+					leaves.set_color(Color(0.72, 0.88, 0.65))
+					leaves.add_vertex(center + Vector3(cos(angle) * radius, sin(angle + direction) * 0.003, sin(angle) * radius))
+	leaves.generate_normals()
+	var shader: Shader = Shader.new()
+	shader.code = """shader_type spatial;
+render_mode cull_disabled;
+void fragment() { ALBEDO=vec3(0.08,0.14,0.025)*COLOR.rgb; ROUGHNESS=0.9; BACKLIGHT=ALBEDO*0.35; }
+"""
+	var material: ShaderMaterial = ShaderMaterial.new()
+	material.shader = shader
+	var random: RandomNumberGenerator = RandomNumberGenerator.new()
+	random.seed = 91271
+	var locations: Array[Vector3] = []
+	for attempt: int in range(14000):
+		var x: float = random.randf_range(-26.0, 26.0)
+		var z: float = random.randf_range(-26.0, 26.0)
+		if Vector2(x, z).length() < 8.0 or absf(x - sin(z * 0.16) * 2.2) < 3.6 or absf(z - sin(x * 0.14) * 1.5) < 2.7:
+			continue
+		if sin(x * 0.8 + sin(z * 0.3)) * cos(z * 0.7) < 0.05:
+			continue
+		locations.append(Vector3(x, ground_height(x, z), z))
+	var multi: MultiMesh = MultiMesh.new()
+	multi.transform_format = MultiMesh.TRANSFORM_3D
+	multi.use_colors = true
+	multi.mesh = leaves.commit()
+	multi.instance_count = locations.size()
+	for index: int in range(locations.size()):
+		var size: float = random.randf_range(0.8, 1.7)
+		multi.set_instance_transform(index, Transform3D(Basis(Vector3.UP, random.randf() * TAU).scaled(Vector3.ONE * size), locations[index]))
+		multi.set_instance_color(index, Color(random.randf_range(0.65, 1.0), random.randf_range(0.8, 1.0), 0.8))
+	var visual: MultiMeshInstance3D = MultiMeshInstance3D.new()
+	visual.name = "CloverEdges"
+	visual.multimesh = multi
+	visual.material_override = material
+	visual.gi_mode = GeometryInstance3D.GI_MODE_DYNAMIC
+	visual.cast_shadow = GeometryInstance3D.SHADOW_CASTING_SETTING_OFF
 	add_child(visual)
