@@ -26,7 +26,6 @@ var feedback_left: float = 0.0
 var shake_left: float = 0.0
 var hitstop_left: float = 0.0
 var aim_friction: float = 1.0
-var aim_cast: ShapeCast3D = ShapeCast3D.new()
 var flash_left: float = 0.0
 var flash_color: Color = Color.WHITE
 var accepted_position: Vector3 = Vector3.ZERO
@@ -81,12 +80,6 @@ func _ready() -> void:
 	combat.respawn_requested.connect(respawn)
 	add_child(combat)
 	add_sync("CombatSync", 1, [^"Combat:health", ^"Combat:stamina", ^"Combat:poise", ^"Combat:blocking", ^"Combat:phase", ^"Combat:locked"])
-	var aim_shape: SphereShape3D = SphereShape3D.new()
-	aim_shape.radius = 0.35
-	aim_cast.shape = aim_shape
-	aim_cast.target_position = Vector3(0, 0, -40)
-	aim_cast.add_exception(self)
-	camera.add_child(aim_cast)
 	if is_multiplayer_authority() and DisplayServer.get_name() != "headless":
 		Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 
@@ -315,12 +308,11 @@ func _physics_process(delta: float) -> void:
 		history.record(HitResolver.now(), sync_position)
 
 func update_aim_friction() -> void:
-	aim_cast.force_shapecast_update()
-	aim_friction = 1.0
-	if aim_cast.is_colliding():
-		var target: Node3D = aim_cast.get_collider(0) as Node3D
-		if target != null and target.has_method("receive_hit"):
-			aim_friction = 0.55
+	var candidates: Array[Node3D] = []
+	for node: Node in get_parent().get_children() + get_tree().get_nodes_in_group("hostile_mobs"):
+		if node is Node3D:
+			candidates.append(node as Node3D)
+	aim_friction = AimAssist.friction(camera, candidates, self)
 
 func _process(delta: float) -> void:
 	feedback_left = maxf(0, feedback_left - delta)
