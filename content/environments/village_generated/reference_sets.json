@@ -71,7 +71,8 @@
       "supporting_geometry": [
         "gameplay/environment/village_arena.gd:landscape",
         "gameplay/environment/village_arena.gd:landscape_surface_height",
-        "gameplay/environment/village_arena.gd:landscape_height"
+        "gameplay/environment/village_arena.gd:landscape_height",
+        "gameplay/environment/village_arena.gd:ground_stones"
       ],
       "prompts": [
         "schist_rock-prompt.md",

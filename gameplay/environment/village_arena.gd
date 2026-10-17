@@ -29,6 +29,7 @@ func _ready() -> void:
 	terrain()
 	landscape()
 	green_borders()
+	ground_stones()
 	# Connected clearings bounded by angled palisades, rather than a square enclosure.
 	var outline: PackedVector2Array = PackedVector2Array([
 		Vector2(-28,-10), Vector2(-24,-23), Vector2(-9,-28), Vector2(8,-25),
@@ -528,3 +529,43 @@ void fragment() { ALBEDO=vec3(0.045,0.085,0.018)*COLOR.rgb; ROUGHNESS=0.95; BACK
 	instance.multimesh = multi
 	instance.material_override = blade_material
 	add_child(instance)
+
+func ground_stones() -> void:
+	# Small original geometry paired with the schist-valley target and rock albedo.
+	# Visual-only stones remain below ankle height and cannot snag a moving player.
+	var mesh: SphereMesh = SphereMesh.new()
+	mesh.radius = 0.1
+	mesh.height = 0.2
+	mesh.radial_segments = 7
+	mesh.rings = 3
+	var material: StandardMaterial3D = surface("d8d4cb", "schist_rock", 2.0)
+	material.vertex_color_use_as_albedo = true
+	var scatter: MultiMesh = MultiMesh.new()
+	scatter.transform_format = MultiMesh.TRANSFORM_3D
+	scatter.use_colors = true
+	scatter.mesh = mesh
+	var random: RandomNumberGenerator = RandomNumberGenerator.new()
+	random.seed = 68192
+	var locations: Array[Vector3] = []
+	for attempt: int in range(2100):
+		var x: float = random.randf_range(-26.0, 26.0)
+		var z: float = random.randf_range(-26.0, 26.0)
+		# Leave the test axis and central duelling space visually readable.
+		if absf(x) < 2.0 or Vector2(x, z).length() < 8.0:
+			continue
+		var path_edge: float = absf(z - sin(x * 0.14) * 1.5)
+		if path_edge < 1.1 or sin(x * 0.43 + z * 0.19) * cos(z * 0.36) < -0.2:
+			continue
+		locations.append(Vector3(x, ground_height(x, z) + 0.025, z))
+	scatter.instance_count = locations.size()
+	for index: int in range(locations.size()):
+		var size: float = random.randf_range(0.5, 1.5)
+		var shape: Vector3 = Vector3(size, random.randf_range(0.3, 0.6), size * random.randf_range(0.65, 1.3))
+		scatter.set_instance_transform(index, Transform3D(Basis(Vector3.UP, random.randf() * TAU).scaled(shape), locations[index]))
+		var tint: float = random.randf_range(0.65, 1.0)
+		scatter.set_instance_color(index, Color(tint, tint * 0.98, tint * 0.91))
+	var visual: MultiMeshInstance3D = MultiMeshInstance3D.new()
+	visual.name = "GroundStoneScatter"
+	visual.multimesh = scatter
+	visual.material_override = material
+	add_child(visual)
