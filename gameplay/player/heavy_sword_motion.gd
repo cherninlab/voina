@@ -3,16 +3,19 @@ extends RefCounted
 
 # Stylized angular inertia, independent of hand/body constraint corrections. The blade has
 # a heading and elevation with bounded speeds; the body follows, but cannot feed energy back
-# into the weapon. Exported world-space tip velocity is for contact, never solver input.
+# into the weapon. An approved cut is a torque that builds over DRIVE_TIME, so the heavy blade
+# starts slowly, accelerates through the arc and coasts on its momentum until it lands.
+# Exported world-space tip velocity is for contact, never solver input.
 # Combat authorization stays with the host.
 const BLADE: float = 1.65
 const TIP_RADIUS: float = 0.03
 const MAX_PULL: float = 1.8
 const MAX_TIP_SPEED: float = 30.0
-const MAX_SWEEP: float = 2.45 # one gesture can sweep broadly, never orbit the character
+const MAX_SWEEP: float = 3.4 # one gesture sweeps about half a turn, never orbits the character
 const MAX_ELEVATION: float = 0.95 # clear overhead lift without the vertical heading singularity
-const MAX_ANGULAR_SPEED: float = 12.0
-const FOLLOW_THROUGH_TIME: float = 0.45
+const MAX_ANGULAR_SPEED: float = 7.5
+const DRIVE_TIME: float = 0.20 # the cut's torque builds over this long, then the blade coasts
+const FOLLOW_THROUGH_TIME: float = 0.6
 const HOLD_BEARING: float = 1.9 # the hands stay beside or ahead of the hips
 const ANCHOR_HOLD_SPEED: float = 0.6 # below this a resting tip sticks
 
@@ -22,7 +25,7 @@ static var follow_spring: float = 60.0 # gesture impulse gain; never a spring to
 static var follow_damping: float = 1.5
 static var body_stiffness: float = 160.0 # how hard the body follows the blade while swinging
 static var body_top_speed: float = 14.0 # rad/s cap on the body's turn while swinging
-static var strike_turn: float = 8.0 # launch strength from the approved cut
+static var cut_speed: float = 7.0 # rad/s a level cut builds up to over DRIVE_TIME (was strike_turn)
 static var air_damping: float = 0.3
 static var lift_gain: float = 3.0 # tip m/s per radian of camera pitch while dragging
 static var drag_friction: float = 3.0 # angular braking on ground contact
@@ -40,7 +43,7 @@ static func tunable_specs() -> Array[Dictionary]:
 		{"name": "follow_damping", "label": "Gesture damping", "min": 0.0, "max": 10.0, "default": 1.5},
 		{"name": "body_stiffness", "label": "Body follow", "min": 10.0, "max": 400.0, "default": 160.0},
 		{"name": "body_top_speed", "label": "Body turn cap", "min": 2.0, "max": 30.0, "default": 14.0},
-		{"name": "strike_turn", "label": "Cut kick", "min": 0.0, "max": 20.0, "default": 8.0},
+		{"name": "cut_speed", "label": "Cut speed", "min": 1.0, "max": 7.5, "default": 7.0},
 		{"name": "air_damping", "label": "Air damping", "min": 0.0, "max": 3.0, "default": 0.3},
 		{"name": "gravity", "label": "Gravity", "min": 1.0, "max": 30.0, "default": 9.8},
 		{"name": "lift_gain", "label": "Mouse lift", "min": 0.0, "max": 12.0, "default": 3.0},
@@ -60,7 +63,7 @@ static func get_tunable(name: String) -> float:
 		"follow_damping": return follow_damping
 		"body_stiffness": return body_stiffness
 		"body_top_speed": return body_top_speed
-		"strike_turn": return strike_turn
+		"cut_speed": return cut_speed
 		"air_damping": return air_damping
 		"lift_gain": return lift_gain
 		"drag_friction": return drag_friction
@@ -82,7 +85,7 @@ static func set_tunable(name: String, value: float) -> void:
 		"follow_damping": follow_damping = value
 		"body_stiffness": body_stiffness = value
 		"body_top_speed": body_top_speed = value
-		"strike_turn": strike_turn = value
+		"cut_speed": cut_speed = value
 		"air_damping": air_damping = value
 		"lift_gain": lift_gain = value
 		"drag_friction": drag_friction = value
@@ -118,11 +121,14 @@ var heading: float = 0.0
 var elevation: float = 0.0
 var heading_speed: float = 0.0
 var elevation_speed: float = 0.0
-var sweep_origin: float = 0.0
+var sweep: float = 0.0 # signed heading travel of the current gesture; unwrapped, so it can pass PI
 var planted: bool = true
 var was_holding: bool = false
 var stroke_age: float = FOLLOW_THROUGH_TIME
 var stroke_pull: Vector3 = Vector3.ZERO
+var drive_age: float = DRIVE_TIME
+var drive_turn: float = 0.0 # signed peak heading torque of the current cut, rad/s^2
+var drive_lift: float = 0.0 # elevation torque of the current cut, rad/s^2
 
 func reset(camera_yaw: float, origin: Vector3 = anchor, floor_y: float = ground) -> void:
 	anchor = origin
@@ -130,7 +136,8 @@ func reset(camera_yaw: float, origin: Vector3 = anchor, floor_y: float = ground)
 	body_yaw = camera_yaw
 	body_yaw_speed = 0.0
 	heading = camera_yaw
-	sweep_origin = heading
+	sweep = 0.0
+	drive_age = DRIVE_TIME
 	elevation = rest_elevation()
 	heading_speed = 0.0
 	elevation_speed = 0.0
@@ -184,11 +191,18 @@ func strike(direction: Vector2) -> void:
 	if not direction.is_finite() or direction.is_zero_approx():
 		return
 	var cut: Vector2 = direction.normalized()
-	sweep_origin = heading
-	# A broad launch plus a pronounced pickup. A down-cut already aloft drives straight down;
-	# from the floor it first picks up the blade, instead of burying the impulse in the ground.
-	heading_speed = clampf(-cut.x * strike_turn * 1.25, -MAX_ANGULAR_SPEED, MAX_ANGULAR_SPEED)
-	elevation_speed = -9.0 if cut.y > 0.5 and elevation > 0.1 else 8.5 + lift_gain * 0.35 - cut.y
+	sweep = 0.0
+	# No launch velocity: the cut is a torque that rises over DRIVE_TIME (see drive()), sized so
+	# a level cut peaks near cut_speed rad/s and coasts to a landing about half a turn away.
+	# Momentum already travelling in the cut direction is kept; the grip stops the opposite.
+	var side: float = -cut.x
+	heading_speed = side * maxf(heading_speed * signf(side), 0.0) if not is_zero_approx(side) else heading_speed * 0.5
+	drive_turn = side * cut_speed / (0.65 * DRIVE_TIME)
+	# A down-cut already aloft chops with gravity; from the floor it first picks the blade up.
+	var chop: bool = cut.y > 0.5 and elevation > 0.1
+	drive_lift = -12.0 if chop else (26.0 + lift_gain) * (1.0 - cut.y * 0.25)
+	elevation_speed = minf(elevation_speed, 0.0) if chop else maxf(elevation_speed, 0.0) * 0.5
+	drive_age = 0.0
 	planted = false
 	stroke_age = 0.0
 	var forward: Vector3 = Vector3.FORWARD.rotated(Vector3.UP, heading)
@@ -207,11 +221,12 @@ func step(delta: float, camera_yaw: float, camera_pitch: float, holding: bool, a
 	last_pitch = camera_pitch
 	tracking = true
 	if holding and not was_holding and stroke_age >= FOLLOW_THROUGH_TIME:
-		sweep_origin = heading
+		sweep = 0.0
 	was_holding = holding
 	if blocking:
-		sweep_origin = heading
+		sweep = 0.0
 		stroke_age = FOLLOW_THROUGH_TIME
+		drive_age = DRIVE_TIME
 	var driving: bool = holding and not blocking and absf(turn) < 1.2 and absf(tilt) < 1.2 and absf(turn) + absf(tilt) > 0.00001
 	var start_anchor: Vector3 = anchor
 	var start_ground: float = ground
@@ -227,10 +242,12 @@ func step(delta: float, camera_yaw: float, camera_pitch: float, holding: bool, a
 		raised = move_toward(raised, 1.0 if engaged else 0.0, dt * (7.0 if engaged else 2.5))
 		if driving:
 			if planted:
-				sweep_origin = heading
-			var fraction: float = dt / duration
+				sweep = 0.0
+			# Mouse steering is a nudge, not a launch: while a cut's torque is still building,
+			# the hands cannot yet whip the heavy blade, so the drag cannot skip the wind-up.
+			var fraction: float = dt / duration * drive_ramp()
 			heading_speed += turn * follow_spring * 0.08 * fraction
-			elevation_speed += (tilt * lift_gain * 2.0 + absf(turn) * lift_gain * 3.0) * fraction
+			elevation_speed += (tilt * lift_gain * 2.0 + absf(turn) * lift_gain * 0.5) * fraction
 			if elevation_speed > 0.0 or absf(heading_speed) > 0.01:
 				planted = false
 		if blocking:
@@ -239,20 +256,21 @@ func step(delta: float, camera_yaw: float, camera_pitch: float, holding: bool, a
 			heading_speed += (angle_difference(heading, camera_yaw + 0.35) * 60.0 - heading_speed * 16.0) * dt
 			elevation_speed += ((0.85 - elevation) * 80.0 - elevation_speed * 18.0) * dt
 		else:
+			drive(dt)
 			elevation_speed -= gravity / BLADE * 2.4 * maxf(0.7, cos(elevation)) * dt
-			heading_speed *= exp(-(1.1 + air_damping + (follow_damping * 0.2 if driving else 0.0)) * dt)
+			heading_speed *= exp(-(0.4 + air_damping + (follow_damping * 0.2 if driving else 0.0)) * dt)
 			elevation_speed *= exp(-(0.6 + air_damping) * dt)
 		heading_speed = clampf(heading_speed, -MAX_ANGULAR_SPEED, MAX_ANGULAR_SPEED)
 		elevation_speed = clampf(elevation_speed, -MAX_ANGULAR_SPEED, MAX_ANGULAR_SPEED)
 		if not planted:
 			var travel: float = heading_speed * dt
 			if not blocking:
-				var offset: float = angle_difference(sweep_origin, heading)
 				# Brake only outward travel near the end of the arc. Never reverse it toward the view.
-				if signf(heading_speed) == signf(offset):
-					var room: float = maxf(0.0, MAX_SWEEP - absf(offset))
-					heading_speed = signf(heading_speed) * minf(absf(heading_speed), room * 12.0)
-				travel = clampf(heading_speed * dt, -MAX_SWEEP - offset, MAX_SWEEP - offset)
+				if signf(heading_speed) == signf(sweep):
+					var room: float = maxf(0.0, MAX_SWEEP - absf(sweep))
+					heading_speed = signf(heading_speed) * minf(absf(heading_speed), room * 14.0)
+				travel = clampf(heading_speed * dt, -MAX_SWEEP - sweep, MAX_SWEEP - sweep)
+				sweep += travel
 			heading = wrapf(heading + travel, -PI, PI)
 			elevation += elevation_speed * dt
 			if elevation > MAX_ELEVATION:
@@ -264,7 +282,8 @@ func step(delta: float, camera_yaw: float, camera_pitch: float, holding: bool, a
 		else:
 			stretch = move_toward(stretch, 0.0, dt * 4.0)
 			place_blade()
-			if tip.y <= ground + TIP_RADIUS and elevation_speed <= 0.0:
+			# A rising cut leaves the floor; it only lands once its torque is spent or it chops down.
+			if tip.y <= ground + TIP_RADIUS and elevation_speed <= 0.0 and (drive_age >= DRIVE_TIME or drive_lift < 0.0):
 				elevation = rest_elevation()
 				elevation_speed = 0.0
 				heading_speed *= exp(-(anchor_friction + drag_friction) * dt)
@@ -275,6 +294,20 @@ func step(delta: float, camera_yaw: float, camera_pitch: float, holding: bool, a
 		# Contact velocity is measured, but NEVER fed back into heading/elevation or body pull.
 		tip_velocity = ((tip - previous_tip) / dt).limit_length(MAX_TIP_SPEED)
 		update_follow_through(dt, attacking, blocking, velocity)
+
+func drive_ramp() -> float:
+	return clampf(drive_age / DRIVE_TIME, 0.0, 1.0)
+
+func drive(dt: float) -> void:
+	# The cut's torque rises from a third of its peak to full, then stops: the blade gathers
+	# speed through the first part of the arc and carries the rest on its own momentum. The
+	# pickup leads slightly, so the blade clears the floor before the sweep gathers speed.
+	if drive_age >= DRIVE_TIME:
+		return
+	var ramp: float = 0.3 + 0.7 * drive_ramp()
+	drive_age = minf(drive_age + dt, DRIVE_TIME)
+	heading_speed += drive_turn * ramp * dt
+	elevation_speed += drive_lift * (1.3 - 0.6 * ramp) * dt
 
 func update_body(dt: float, target: float, engaged: bool) -> void:
 	var stiffness: float = body_stiffness if engaged else 48.0

@@ -11,6 +11,7 @@ func check(condition: bool, message: String) -> void:
 		printerr("INERTIA_FAIL: " + message)
 
 func run() -> void:
+	check_heavy_swing()
 	check_carry_through()
 	check_gesture_rates()
 	check_coupled_motion()
@@ -60,9 +61,11 @@ func run() -> void:
 			body_followed = motion.body_yaw_speed > 0.0 and angle_difference(motion.body_yaw, motion.blade_yaw()) > 0.05
 	check(swept > 0.4, "Camera turn and cut swing the blade along the mouse direction (swept %.2f rad)" % swept)
 	check(body_followed, "While swinging the torso follows the blade in the cut direction")
-	# Sustained circular input can lift the blade, but one gesture cannot cause an orbit.
+	# A cut followed by sustained circular input stays aloft, but one gesture cannot cause an orbit.
+	# (In play a held drag always fires its cut after 36 px; the circling then only steers.)
 	var spin: HeavySwordMotion = HeavySwordMotion.new()
 	spin.reset(0.0, origin, 0.0)
+	spin.strike(Vector2.LEFT)
 	var spin_peak: float = 0.0
 	var spin_swept: float = 0.0
 	var spin_last: float = spin.blade_yaw()
@@ -71,7 +74,7 @@ func run() -> void:
 		spin_peak = maxf(spin_peak, spin.tip.y)
 		spin_swept += angle_difference(spin_last, spin.blade_yaw())
 		spin_last = spin.blade_yaw()
-	check(spin_peak > 0.8, "A circular gesture lifts the heavy blade (peak %.2f m)" % spin_peak)
+	check(spin_peak > 0.8, "A cut with circular input lifts the heavy blade (peak %.2f m)" % spin_peak)
 	check(spin_swept > 1.0 and spin_swept <= HeavySwordMotion.MAX_SWEEP + 0.01, "Continuous input stays within one broad arc (swept %.2f rad)" % spin_swept)
 	check(spin.tip_velocity.length() <= HeavySwordMotion.MAX_TIP_SPEED, "Spin speed stays bounded")
 	check(pulled, "Heavy blade produces bounded owner pull")
@@ -152,8 +155,47 @@ func run() -> void:
 	var body: CharacterVisual = player.get("body") as CharacterVisual
 	check(body.motion.pull_velocity.is_zero_approx(), "Host correction clears owner sword movement")
 	if failures == 0:
-		print("INERTIA_OK: anchored rest, no hold-up, arm stretch, dragged anchor, owner resistance, always facing the blade, gesture launch, uninterrupted follow-through, persistent landing, return cuts, bounded gesture arcs, release, timestep stability, planted feet, owner pull/correction")
+		print("INERTIA_OK: anchored rest, no hold-up, arm stretch, dragged anchor, owner resistance, always facing the blade, gesture launch, uninterrupted follow-through, persistent landing, return cuts, half-turn heavy cut with ramped tip speed, bounded gesture arcs, release, timestep stability, planted feet, owner pull/correction")
 	get_tree().quit(0 if failures == 0 else 1)
+
+func check_heavy_swing() -> void:
+	# One approved level cut from rest, no further mouse input: the blade winds up, accelerates
+	# to a cutting speed mid-swing and carries through about half a turn before it lands.
+	var origin: Vector3 = Vector3(0.0, 0.9, 0.0)
+	for hz: int in [30, 60, 120]:
+		for side: float in [-1.0, 1.0]:
+			var motion: HeavySwordMotion = HeavySwordMotion.new()
+			motion.reset(0.0, origin, 0.0)
+			motion.strike(Vector2(side, 0.0))
+			var previous_yaw: float = motion.blade_yaw()
+			var swept: float = 0.0
+			var peak: float = 0.0
+			var peak_time: float = 0.0
+			var early: float = 0.0
+			var ramping: bool = true
+			var last_speed: float = 0.0
+			var mid_speed: float = 0.0
+			for frame: int in range(hz * 2):
+				var time: float = float(frame + 1) / hz
+				motion.step(1.0 / hz, 0.0, 0.0, time <= 0.5, time < 0.52, false, origin, 0.0)
+				swept += angle_difference(previous_yaw, motion.blade_yaw()) * -side
+				previous_yaw = motion.blade_yaw()
+				var speed: float = motion.tip_velocity.length()
+				if time <= 0.1:
+					early = maxf(early, speed)
+				if time <= HeavySwordMotion.DRIVE_TIME:
+					ramping = ramping and speed >= last_speed - 0.05
+				if swept > deg_to_rad(45.0) and swept < deg_to_rad(120.0):
+					mid_speed = maxf(mid_speed, speed)
+				if speed > peak:
+					peak = speed
+					peak_time = time
+				last_speed = speed
+			var label: String = "%d Hz, cut %+.0f" % [hz, side]
+			check(swept > deg_to_rad(170.0) and swept <= HeavySwordMotion.MAX_SWEEP + 0.01, "One approved cut sweeps about 180 degrees (%.0f deg): %s" % [rad_to_deg(swept), label])
+			check(ramping and early < peak * 0.45 and peak_time > 0.15, "Tip speed builds up instead of peaking at launch (%.1f m/s by 0.1 s, peak %.1f m/s at %.2f s): %s" % [early, peak, peak_time, label])
+			check(mid_speed >= 7.0 and peak <= 15.0, "Mid-swing tip speed can still cut a raider (%.1f m/s): %s" % [mid_speed, label])
+			check(motion.planted and motion.tip_velocity.length() < 0.05, "The swing lands and settles: " + label)
 
 func check_carry_through() -> void:
 	var origin: Vector3 = Vector3(0.0, 0.9, 0.0)
@@ -176,7 +218,7 @@ func check_carry_through() -> void:
 					previous_yaw = motion.blade_yaw()
 				var label: String = "%d Hz, cut %+.0f, held=%s" % [hz, side, keep_holding]
 				check(not reversed and swept > 1.0, "Cut carries past the stationary view without reversal: " + label)
-				check(peak > 2.0 and motion.grounded() and motion.tip_velocity.length() < 0.05, "Blade lifts overhead then lands and settles: " + label)
+				check(peak > 0.8 and motion.grounded() and motion.tip_velocity.length() < 0.05, "Blade rises to about hip height then lands and settles: " + label)
 				var landing: Vector3 = motion.tip
 				# Looking elsewhere without a drag must not undo the landed cut.
 				for frame: int in range(hz):
@@ -185,7 +227,8 @@ func check_carry_through() -> void:
 				motion.strike(Vector2(-side, 0.0))
 				check(motion.tip.distance_to(landing) < 0.001, "Return cut begins at the landing without teleporting: " + label)
 				var start_yaw: float = motion.blade_yaw()
-				for frame: int in range(hz / 5):
+				# The heavy blade winds up first, so give the return cut a third of a second.
+				for frame: int in range(ceili(hz * 0.35)):
 					motion.step(1.0 / hz, 1.1, 0.0, true, true, false, origin, 0.0)
 				check(angle_difference(start_yaw, motion.blade_yaw()) * side > 0.2 and motion.tip.y > 0.1, "Return cut lifts and travels in the new direction: " + label)
 
