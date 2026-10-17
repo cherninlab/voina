@@ -35,3 +35,7 @@ The generated roof construction sheet is paired with an original reed-thatch bas
 ## Sky and fog pass
 
 The supporting `daylight_sky.png` is an original generated LDR appearance panorama, not an HDR lighting capture. A sky shader adjusts its generated horizon latitude and softens wrap/pole discontinuities. Fog still affects distant geometry, while `fog_sky_affect = 0.08` preserves cloud detail. A real-render comparison at 1.0 versus 0.0 confirmed that the previous full sky-fog influence was hiding the procedural clouds entirely. Panorama prompts and reference associations are recorded with the texture.
+
+## Groundcover shape pass
+
+The generated groundcover study is paired with solid, three-segment tapered grass strips in `green_borders()`. Generated alpha cards were rejected for fringes and clipped silhouettes. Geometry needs no transparency sorting or alpha edge filtering. The experimental static lightmap snapshot is not enabled: probe data is empty and the actual capture does not yet justify replacing the procedural level.

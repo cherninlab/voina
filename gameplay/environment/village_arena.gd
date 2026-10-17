@@ -456,14 +456,26 @@ func green_borders() -> void:
 	blades.begin(Mesh.PRIMITIVE_TRIANGLES)
 	var random: RandomNumberGenerator = RandomNumberGenerator.new()
 	random.seed = 32017
-	for index: int in range(7):
+	# Solid tapered strips follow the generated shape study, avoiding alpha fringes.
+	for index: int in range(11):
 		var angle: float = index * 2.4
-		var offset: Vector3 = Vector3(cos(angle), 0, sin(angle)) * 0.12
-		var edge: Vector3 = Vector3(cos(angle + 0.7), 0, sin(angle + 0.7)) * 0.028
-		var top: Vector3 = offset + Vector3(0.06, random.randf_range(0.17, 0.34), 0.02)
-		blades.add_vertex(offset - edge)
-		blades.add_vertex(offset + edge)
-		blades.add_vertex(top)
+		var direction: Vector3 = Vector3(cos(angle), 0, sin(angle))
+		var offset: Vector3 = direction * random.randf_range(0.02, 0.16)
+		var edge: Vector3 = Vector3(-direction.z, 0, direction.x)
+		var height: float = random.randf_range(0.14, 0.36)
+		var width: float = random.randf_range(0.009, 0.018)
+		for segment: int in range(3):
+			var t0: float = float(segment) / 3.0
+			var t1: float = float(segment + 1) / 3.0
+			var base: Vector3 = offset + Vector3.UP * height * t0 + direction * height * t0 * t0 * 0.65
+			var tip: Vector3 = offset + Vector3.UP * height * t1 + direction * height * t1 * t1 * 0.65
+			var left: Vector3 = base - edge * width * (1.0 - t0)
+			var right: Vector3 = base + edge * width * (1.0 - t0)
+			var upper_left: Vector3 = tip - edge * width * (1.0 - t1)
+			var upper_right: Vector3 = tip + edge * width * (1.0 - t1)
+			for point: Vector3 in [left, right, upper_left, right, upper_right, upper_left]:
+				blades.set_color(Color(0.65 + t1 * 0.35, 0.75 + t1 * 0.25, 0.65))
+				blades.add_vertex(point)
 	blades.generate_normals()
 	var blade_material: ShaderMaterial = ShaderMaterial.new()
 	var grass_shader: Shader = Shader.new()
