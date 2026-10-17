@@ -7,7 +7,7 @@ board/playtest.json), so agents' checkouts, imports and parallel test runs are n
   playtest.py status                       pin, local playtest copy, and whether they match
   playtest.py pin [COMMIT] --agent NAME    pin a commit of origin/main (default: its tip) for everyone
   playtest.py sync [--commit C]            move this machine's playtest copy to the pin (or C) and import
-  playtest.py host [--match] [--pve]       sync, then host from the playtest copy
+  playtest.py host [--match] [--pve]       sync to the tip of origin/main, pin it, then host from the playtest copy
   playtest.py join ADDRESS                 sync, then join from the playtest copy
 """
 from __future__ import annotations
@@ -137,10 +137,15 @@ def cmd_sync(args: argparse.Namespace) -> None:
     sync(args.commit, godot_binary(args.godot))
 
 
-# The board pin always names the build a host is actually running, so joiners follow it.
+# A host plays the newest build on main unless told otherwise (--pinned or --commit); stale pins
+# otherwise kept hosts on old builds. The board pin always names the build a host is actually
+# running, so joiners follow it.
 def cmd_host(args: argparse.Namespace) -> None:
     godot = godot_binary(args.godot)
-    path = sync(args.commit, godot)
+    commit = args.commit
+    if not commit and not args.pinned:
+        commit = f"{board.REMOTE}/{board.TRUNK}"
+    path = sync(commit, godot)
     sha = git("rev-parse", "HEAD", cwd=path)
     pin = pinned()
     if not pin or pin["commit"] != sha:
@@ -195,6 +200,8 @@ def main() -> None:
             command.add_argument("address", help="host LAN IP or Tailscale name, without a port")
         command.add_argument("--commit", default=None, help="exact commit to play instead of the pin")
         command.add_argument("--godot", default=None, help="path to the Godot 4.7.2 binary")
+        if name == "host":
+            command.add_argument("--pinned", action="store_true", help="host the board's pinned build instead of the tip of main")
         if name != "sync":
             command.add_argument("--port", type=int, default=7777)
             command.add_argument("--detach", action="store_true", help="return after launching the game")
