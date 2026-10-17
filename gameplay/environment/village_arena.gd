@@ -15,7 +15,9 @@ var landscape_noise: FastNoiseLite = FastNoiseLite.new()
 func _ready() -> void:
 	name = "WoodlandVillage"
 	wood = surface("b0a08a", "oak", 0.5)
-	straw = surface("d5c491", "thatch", 0.5)
+	straw = surface("bfb9aa", "reed_thatch")
+	straw.uv1_triplanar = false
+	straw.cull_mode = BaseMaterial3D.CULL_DISABLED
 	stone = surface("88918f")
 	earth = surface("c1b9a6", "ground", 0.3)
 	beam = surface("493d32")
@@ -176,52 +178,46 @@ func block(size: Vector3, location: Vector3, material: Material, collision: bool
 		visual.add_child(body)
 	return visual
 
-func roof(location: Vector3, width: float, depth: float, parent: Node3D) -> void:
-	# Two pitched surfaces leave the gable open; straw is never painted onto a solid triangular end.
-	var slope: float = atan(2.8 / (width * 0.5))
-	var length: float = sqrt(pow(width * 0.5, 2) + 2.8 * 2.8)
-	for side: int in [-1, 1]:
-		var panel: MeshInstance3D = block(Vector3(length, 0.18, depth), location + Vector3(side * width * 0.25, 0, 0), straw, false, parent)
-		panel.rotation.z = -side * slope
-		for row: int in range(5):
-			var t: float = float(row) / 5.0
-			var course: MeshInstance3D = block(Vector3(length * 0.21, 0.13, depth + 0.08), location + Vector3(side * (width * 0.5 * t + width * 0.05), 1.4 - 2.8 * (t + 0.1), 0), straw, false, parent)
-			course.rotation.z = -side * slope
-	block(Vector3(0.18, 0.24, depth + 0.25), location + Vector3(0, 1.48, 0), beam, false, parent)
+func timber(start: Vector3, finish: Vector3, radius: float, parent: Node3D = self) -> void:
+	var visual: MeshInstance3D = MeshInstance3D.new()
+	var mesh: CylinderMesh = CylinderMesh.new()
+	mesh.height = start.distance_to(finish)
+	mesh.top_radius = radius * 0.9
+	mesh.bottom_radius = radius
+	mesh.radial_segments = 10
+	visual.mesh = mesh
+	visual.material_override = wood
+	visual.position = (start + finish) * 0.5
+	visual.quaternion = Quaternion(Vector3.UP, (finish - start).normalized())
+	parent.add_child(visual)
 
-func house(location: Vector3, yaw: float, paint: StandardMaterial3D) -> void:
-	var root: Node3D = Node3D.new()
-	root.position = location + Vector3(0, ground_height(location.x, location.z), 0)
-	root.rotation.y = yaw
-	add_child(root)
-	block(Vector3(7, 3.8, 6), Vector3(0, 1.9, 0), wood, true, root)
-	for index: int in range(18):
-		var x: float = -3.3 + index * 0.39
-		block(Vector3(0.36, 3.6 - float(index % 3) * 0.025, 0.12), Vector3(x, 1.9, 3.08), paint, false, root)
+func roof(location: Vector3, width: float, depth: float, parent: Node3D) -> void:
+	var rise: float = 2.8
+	var length: float = sqrt(pow(width * 0.5, 2) + rise * rise)
 	for side: int in [-1, 1]:
-		for index: int in range(15):
-			block(Vector3(0.12, 3.6, 0.37), Vector3(side * 3.55, 1.9, -2.8 + index * 0.4), paint, false, root)
-	var gable_mesh: PrismMesh = PrismMesh.new()
-	gable_mesh.size = Vector3(7, 2.8, 6)
-	var gable: MeshInstance3D = MeshInstance3D.new()
-	gable.mesh = gable_mesh
-	gable.position.y = 5.2
-	gable.material_override = wood
-	root.add_child(gable)
-	roof(Vector3(0, 5.2, 0), 8.0, 7.0, root)
-	# Exposed frame, planks and shutters carry color without an overall brown grade.
-	for x: float in [-3.4, 0.0, 3.4]:
-		block(Vector3(0.25, 3.9, 0.25), Vector3(x, 1.95, 3.08), beam, false, root)
-	for y: float in [0.3, 1.4, 3.65]:
-		block(Vector3(7.2, 0.15, 0.18), Vector3(0, y, 3.12), wood, false, root)
-	block(Vector3(1.3, 2.4, 0.15), Vector3(-1.5, 1.2, 3.15), wood, false, root)
-	block(Vector3(1.5, 1.2, 0.16), Vector3(1.8, 2.1, 3.15), beam, false, root)
-	block(Vector3(0.09, 1.2, 0.2), Vector3(1.8, 2.1, 3.25), cream, false, root)
-	block(Vector3(1.5, 0.09, 0.2), Vector3(1.8, 2.1, 3.25), cream, false, root)
-	block(Vector3(1.0, 2.6, 0.9), Vector3(2.3, 4.8, -1.8), stone, false, root)
-	for side: int in [-1, 1]:
-		var rafter: MeshInstance3D = block(Vector3(0.19, 4.9, 0.2), Vector3(side * 1.8, 4.8, 3.55), beam, false, root)
-		rafter.rotation.z = side * 0.95
+		var tool: SurfaceTool = SurfaceTool.new()
+		tool.begin(Mesh.PRIMITIVE_TRIANGLES)
+		for row: int in range(10):
+			for column: int in range(28):
+				var corners: Array[Vector2] = [Vector2(row,column),Vector2(row+1,column),Vector2(row,column+1),Vector2(row+1,column),Vector2(row+1,column+1),Vector2(row,column+1)]
+				if side < 0:
+					corners.reverse()
+				for corner: Vector2 in corners:
+					var down: float = corner.x / 10.0
+					var along: float = corner.y / 28.0
+					var fringe: float = pow(down, 8.0) * sin(along * 83.0) * 0.065
+					var point: Vector3 = Vector3(side * (width * 0.5 * down + fringe), rise * (0.5 - down) - absf(fringe), (along-0.5)*depth)
+					tool.set_uv(Vector2(along * depth * 0.65, down * length * 0.65))
+					tool.set_normal(Vector3(side * rise, width * 0.5, 0).normalized())
+					tool.add_vertex(location + point)
+		tool.index()
+		var visual: MeshInstance3D = MeshInstance3D.new()
+		visual.mesh = tool.commit()
+		visual.material_override = straw
+		parent.add_child(visual)
+		for z: float in [-depth*0.42, 0.0, depth*0.42]:
+			timber(location + Vector3(side*width*0.5, -rise*0.5-0.12, z), location + Vector3(0, rise*0.5-0.12, z), 0.085, parent)
+	timber(location + Vector3(0, rise*0.5+0.04, -depth*0.53), location + Vector3(0, rise*0.5+0.04, depth*0.53), 0.11, parent)
 
 func stall(location: Vector3, cloth: StandardMaterial3D) -> void:
 	# Collision remains a simple counter footprint; the visible table has open legs.
@@ -288,32 +284,42 @@ func kit_prop(asset: String, location: Vector3, width: float, yaw: float, collis
 func barrel(location: Vector3) -> void:
 	kit_prop("barrel", location, 0.9, location.z * 0.3)
 
-func well(location: Vector3) -> void:
-	for index: int in range(12):
-		var angle: float = TAU * index / 12.0
-		var piece: MeshInstance3D = block(Vector3(0.7, 1.0, 0.45), location + Vector3(sin(angle) * 1.2, 0.5, cos(angle) * 1.2), stone, true)
-		piece.rotation.y = angle
-	for side: int in [-1, 1]:
-		log_post(location + Vector3(side * 1.25, 1.6, 0), 3.2, 0.12)
-	roof(location + Vector3(0, 3.5, 0), 3.4, 2.6, self)
-
 func watchtower(location: Vector3) -> void:
 	for x: float in [-1.5, 1.5]:
 		for z: float in [-1.5, 1.5]:
-			log_post(location + Vector3(x, 3.35, z), 6.7, 0.18, true)
+			log_post(location + Vector3(x, 3.175, z), 6.35, 0.18, true)
+			timber(location + Vector3(x, 2.9, z), location + Vector3(x*0.4, 4.05, z), 0.1)
+			timber(location + Vector3(x, 2.9, z), location + Vector3(x, 4.05, z*0.4), 0.1)
 	block(Vector3(3.5, 0.3, 3.5), location + Vector3(0, 4.2, 0), wood, true)
-	# Long rafters lean inward at the top and meet the ridge, not outward.
-	for z: float in [-1.65, 1.65]:
-		for side: int in [-1, 1]:
-			var rafter: MeshInstance3D = block(Vector3(0.18, 3.5, 0.18), location + Vector3(side * 1.05, 7.0, z), beam)
-			rafter.rotation.z = float(side) * atan(2.1 / 2.8)
+	# Tie beams, king posts and inward rafters give the roof a supported load path.
+	for z: float in [-1.5, 1.5]:
+		timber(location + Vector3(-1.5, 6.3, z), location + Vector3(1.5, 6.3, z), 0.1)
+		timber(location + Vector3(0, 6.3, z), location + Vector3(0, 8.36, z), 0.085)
 	roof(location + Vector3(0, 7.1, 0), 4.2, 4.2, self)
+	for index: int in range(18):
+		var offset: float = -1.53 + float(index) * 0.18
+		var height: float = 0.86 + sin(float(index) * 2.3) * 0.04
+		for side: int in [-1, 1]:
+			block(Vector3(0.1, height, 0.16), location + Vector3(side*1.62, 4.78, offset), wood)
+		block(Vector3(0.16, height, 0.1), location + Vector3(offset, 4.78, -1.62), wood)
 	for side: int in [-1, 1]:
-		block(Vector3(0.2, 1.0, 3.4), location + Vector3(side * 1.6, 4.8, 0), teal)
-	block(Vector3(3.4, 1.0, 0.2), location + Vector3(0, 4.8, -1.6), teal)
-	# One broad approach gives the lookout an actual playable connection.
+		timber(location + Vector3(side*1.62, 5.25, -1.65), location + Vector3(side*1.62, 5.25, 1.65), 0.065)
+	timber(location + Vector3(-1.65, 5.25, -1.62), location + Vector3(1.65, 5.25, -1.62), 0.065)
+	# Retain the single smooth collision ramp; decorative decking must not add step jitter.
 	var ramp: MeshInstance3D = block(Vector3(3.0, 0.25, 9.5), location + Vector3(0, 2.1, 6.0), wood, true)
 	ramp.rotation.x = atan(4.2 / 8.5)
+	ramp.visible = false
+	for index: int in range(34):
+		var z: float = -4.62 + float(index) * 0.28
+		var plank: MeshInstance3D = block(Vector3(3.0, 0.07, 0.265), ramp.transform * Vector3(0, 0.135, z), wood)
+		plank.rotation.x = ramp.rotation.x
+	for side: int in [-1, 1]:
+		for z: float in [-4.5, -1.5, 1.5, 4.5]:
+			var base: Vector3 = ramp.transform * Vector3(side*1.45, 0.15, z)
+			timber(base, base + Vector3.UP * 0.9, 0.055)
+		var near_end: Vector3 = ramp.transform * Vector3(side*1.45, 0.15, -4.5)
+		var far_end: Vector3 = ramp.transform * Vector3(side*1.45, 0.15, 4.5)
+		timber(near_end + Vector3.UP*0.9, far_end + Vector3.UP*0.9, 0.055)
 
 func lighting() -> void:
 	var light: DirectionalLight3D = DirectionalLight3D.new()
@@ -401,11 +407,11 @@ void fragment() {
  float vegetation=(1.0-path)*smoothstep(0.2,0.7,n);
  vec3 dirt=texture(dirt_color,p*0.65).rgb * mix(0.8,1.05,n);
  vec3 grass=texture(grass_color,p*0.22).rgb * mix(0.72,1.05,n);
- vec3 rock=texture(stones,p*0.22).rgb;
+ vec3 rock=texture(stones,p*0.65).rgb;
  float rock_mask=smoothstep(0.4,0.68,noise(p*0.23))*path;
  ALBEDO=mix(mix(dirt,rock,rock_mask*0.38),grass,vegetation);
- ROUGHNESS=mix(texture(stone_roughness,p*0.22).r,texture(grass_roughness,p*0.22).r,vegetation);
- NORMAL_MAP=mix(texture(stone_normal,p*0.22).rgb,texture(grass_normal,p*0.22).rgb,vegetation);
+ ROUGHNESS=mix(texture(stone_roughness,p*0.65).r,texture(grass_roughness,p*0.22).r,vegetation);
+ NORMAL_MAP=mix(texture(stone_normal,p*0.65).rgb,texture(grass_normal,p*0.22).rgb,vegetation);
  NORMAL_MAP_DEPTH=0.45;
  // Screen-space color derivatives are not a physical normal map and shimmer during motion.
 }
@@ -464,7 +470,7 @@ func green_borders() -> void:
 	grass_shader.code = """shader_type spatial;
 render_mode cull_disabled;
 void vertex() { NORMAL=normalize(mix(NORMAL,vec3(0.0,1.0,0.0),0.75)); }
-void fragment() { ALBEDO=vec3(0.12,0.23,0.055)*COLOR.rgb; ROUGHNESS=0.95; BACKLIGHT=ALBEDO*0.3; }
+void fragment() { ALBEDO=vec3(0.045,0.085,0.018)*COLOR.rgb; ROUGHNESS=0.95; BACKLIGHT=ALBEDO*0.3; }
 """
 	blade_material.shader = grass_shader
 	var instance: MultiMeshInstance3D = MultiMeshInstance3D.new()

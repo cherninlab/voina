@@ -34,6 +34,22 @@
         "valhalla/crate.gltf"
       ],
       "prompts": "target-prompts.md"
+    },
+    {
+      "target": "target-roof-shape.png",
+      "supporting_basecolors": [
+        "reed_thatch.png",
+        "oak.png"
+      ],
+      "supporting_geometry": [
+        "gameplay/environment/village_arena.gd:roof",
+        "gameplay/environment/village_arena.gd:watchtower"
+      ],
+      "prompts": [
+        "target-roof-shape-prompt.md",
+        "reed_thatch-prompt.md"
+      ],
+      "note": "Generated shape study is not dimensional CAD; actual mesh dimensions and collision are authored and checked in Godot."
     }
   ]
 }
