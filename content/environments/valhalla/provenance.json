@@ -76,6 +76,24 @@
       "source_root": "KB3D_VAL_BldgSM_H_grp",
       "mesh_count": 9,
       "polygons": 175111
+    },
+    {
+      "file": "crate.gltf",
+      "source_root": "KB3D_VAL_Crate_A_grp",
+      "mesh_count": 1,
+      "polygons": 3585
+    },
+    {
+      "file": "basket.gltf",
+      "source_root": "KB3D_VAL_FoodBasket_A_grp",
+      "mesh_count": 1,
+      "polygons": 6953
+    },
+    {
+      "file": "table.gltf",
+      "source_root": "KB3D_VAL_Table_A_grp",
+      "mesh_count": 1,
+      "polygons": 1630
     }
   ]
 }

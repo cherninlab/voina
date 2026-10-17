@@ -31,10 +31,15 @@ roots = {
     'shield': 'Shield_A', 'brazier': 'Torch_A', 'dummy': 'PractiseDummy_A',
     'rock_a': 'Rock_A', 'rock_b': 'Rock_B', 'rock_c': 'Rock_C',
     'cottage_a': 'BldgSM_A', 'cottage_f': 'BldgSM_F', 'cottage_h': 'BldgSM_H',
+    'crate': 'Crate_A', 'basket': 'FoodBasket_A', 'table': 'Table_A',
 }
+selection = next((arg.split('=', 1)[1].split(',') for arg in sys.argv if arg.startswith('--assets=')), None)
+if selection is not None:
+    roots = {name: identifier for name, identifier in roots.items() if name in selection}
 if '--only-terrain' in sys.argv:
     roots = {}
-report = json.loads((output / 'provenance.json').read_text())['assets'] if '--only-terrain' in sys.argv else []
+report = json.loads((output / 'provenance.json').read_text())['assets'] if output.joinpath('provenance.json').exists() else []
+report = [asset for asset in report if asset['file'].removesuffix('.gltf') not in roots]
 for name, identifier in roots.items():
     root = bpy.data.objects['KB3D_VAL_' + identifier + '_grp']
     children = [root] + list(root.children_recursive)

@@ -1,31 +1,29 @@
 # Woodland village arena
 
-T-032 replaces the flat car-and-block test yard with an original procedural 56 m woodland village. Uneven terrain with blended earth/stone/grass paths, eight colored timber cottages, layered thatch roofs, four market stalls, a well, a ramp-connected lookout, wooden cover, grass borders, distant hills, and a blue clouded sky are built by `gameplay/environment/village_arena.gd`.
+VALKA's arena is a roughly 56 m woodland settlement with asymmetric cottage clusters, angled palisades, a market clearing, an off-center well, and a ramp-connected lookout. The collision ground is an original gently uneven mesh. A separate original noise-shaped landscape continues beyond it into foothills and distant ridges; those distant slopes are cosmetic.
 
-The center spawn axis remains clear, and the original four inner cover footprints are retained for combat spacing. House shells, cover, barrels, perimeter, lookout landing and ramp have static collision. Terrain uses a concave triangle collider with upward-facing triangles; regression checks catch inverted floor winding. Hills and foliage beyond the fence are cosmetic. Existing spawning, combat authority, match timing, networking and character controls are unchanged.
+The central spawn axis remains clear. The original four cover collision footprints remain in place beneath detailed paired crate visuals. Cottages, tables, well, barrels, palisades, lookout and ramp have static collision. Source model scaling is uniform. This scenery does not own networking, combat, player movement or match rules. Mik's fisheye shader is unchanged.
 
-## Assets and provenance
+## Visual targets and supporting assets
 
-Geometry is authored here using Godot primitives; it does not contain meshes extracted from the supplied commercial Village House Kit. Three original ImageGen base-color candidates are stored in `content/environments/village_generated/` with provenance. Existing trees retain their repository provenance. The commercial armor and audio packs are not included. Generated textures remain prototype art: repetition and fine material work need a later art pass.
+`content/environments/village_generated/reference_sets.json` pairs each generated composition target with its supporting assets and geometry. The two `target-*.png` images are AI concepts, **not game screenshots**. Prompts and provenance are stored beside them.
 
-## Runtime screenshots and geometry check
+The first material pass adds original ImageGen compacted-path and flax-weave base colors, curved sagging market canopies, clustered opaque grass with upward-biased normals and backlighting, and more surrounding trees. Ground and prop textures use mipmaps, anisotropic filtering and VRAM compression. The cloth dye is explicitly converted from sRGB to linear shader color. Generated materials remain artistic candidates rather than calibrated PBR scans.
 
-Run the actual Metal-rendered world and host a local session on an unused port:
+The tree pack's preview ground plane is removed from its village instance: it previously intersected the uneven terrain and produced flat green patches. Trees beyond the fence follow the actual landscape triangles, avoiding floating placements at unsampled noise peaks.
+
+## Imported asset provenance
+
+Selected user-authorized KitBash Valhalla cottages, well, wagon, barrels, shield, dummy, rocks, tables, baskets and crates are exported by `scripts/export_valhalla.py`. `--assets=crate,basket,table` updates a subset while retaining the existing provenance entries. Shared PBR textures are capped at 2048 pixels; commercial source provenance and user authorization are recorded in `content/environments/valhalla/provenance.json`. Source Blender files are not included.
+
+No geometry, textures, armor or sounds from the earlier commercial Village House Kit / CLO / Ghosthack archives are included. Existing trees retain their repository provenance.
+
+## Real runtime captures and collision checks
 
 ```sh
 "$GODOT" --path . --script scripts/capture_village.gd -- --host --port=7793 --capture-dir=/absolute/output/folder
 ```
 
-This checks collision under the spawn floor, ramp midpoint and lookout landing, drops the actual player at four terrain locations and requires it to land, then saves three 1600 × 1000 frames from the running game with its HUD and build identity. It never substitutes a concept render for a game screenshot. The last two views inspect the court and lookout. The free capture camera is only in this explicit script; normal gameplay still uses the player camera.
+The script probes spawn floor, ramp and lookout; drops the actual player at four terrain locations and requires it to land; then saves three 1600 × 1000 images from the actual Metal renderer. The explicit art-capture script hides the local menu/HUD layer so focus-loss pause panels cannot obscure scenery. The build identifier and fisheye remain active. Normal play is unaffected by this capture-only camera.
 
-## Verification and limits
-
-Run the editor import and `python3 scripts/smoke_test.py "$GODOT"`. Runtime collision probes and loopback checks do not establish human camera/input feel, four-player acceptance, Tailscale behavior, or performance/thermal guarantees. Buildings are closed decorative shells; interiors, commercial armor, foley integration and the proposed GUI redesign are not implemented by this change.
-
-## Valhalla integration increment (2026-10-17)
-
-Selected user-authorized KitBash Valhalla cottages, well, wagon, barrels, shield, training dummy and rocks replace several procedural placeholders. Source geometry is exported through `scripts/export_valhalla.py`, with shared PBR textures capped at 2048 pixels; provenance is recorded in `content/environments/valhalla/provenance.json`. Full source Blender files are not included.
-
-Buildings form asymmetric clusters and angled palisades bound connected clearings. The collision terrain remains continuous within its existing 56 m extent. This is an integration increment: primitive stalls, lookout, horizon scenery and lighting still need visual refinement. Mik's fisheye shader is unchanged.
-
-Validation: real rendered capture checks the spawn floor, ramp and lookout, plus actual player landings at four terrain locations. Screenshots are captured outside the repository. Headless import and smoke checks cover parsing and combat/network regressions; two-Mac and visual acceptance remain separate.
+Run `"$GODOT" --headless --editor --path . --quit` and `python3 scripts/smoke_test.py "$GODOT"`. Headless/loopback checks do not establish human camera feel, four-player acceptance, Tailscale behavior, M2 frame rate or thermal performance. Visual quality is still below the references: the lookout construction, foliage assets, lighting depth, material repetition and landscape dressing need further passes. Buildings remain closed shells.

@@ -1,0 +1,39 @@
+{
+  "kind": "AI visual targets, not runtime screenshots",
+  "sets": [
+    {
+      "target": "target-lookout.png",
+      "supporting_basecolors": [
+        "compacted_path.png",
+        "flax_weave.png"
+      ],
+      "supporting_geometry": [
+        "gameplay/environment/village_arena.gd:cloth_canopy",
+        "gameplay/environment/village_arena.gd:landscape"
+      ],
+      "shared_imported_geometry": [
+        "valhalla/table.gltf",
+        "valhalla/basket.gltf",
+        "valhalla/crate.gltf"
+      ],
+      "prompts": "target-prompts.md"
+    },
+    {
+      "target": "target-village.png",
+      "supporting_basecolors": [
+        "compacted_path.png",
+        "flax_weave.png"
+      ],
+      "supporting_geometry": [
+        "gameplay/environment/village_arena.gd:cloth_canopy",
+        "gameplay/environment/village_arena.gd:landscape"
+      ],
+      "shared_imported_geometry": [
+        "valhalla/table.gltf",
+        "valhalla/basket.gltf",
+        "valhalla/crate.gltf"
+      ],
+      "prompts": "target-prompts.md"
+    }
+  ]
+}

@@ -3,19 +3,20 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://tyvlvqmjjdc5"
-path="res://.godot/imported/KB3D_VHL_Burlap_basecolor-KB3D_VHL_Burlap_opacity.png-dad28e450d0f2ca1f78fc959dbfd3ca0.ctex"
+path.s3tc="res://.godot/imported/KB3D_VHL_Burlap_basecolor-KB3D_VHL_Burlap_opacity.png-dad28e450d0f2ca1f78fc959dbfd3ca0.s3tc.ctex"
 metadata={
-"vram_texture": false
+"imported_formats": ["s3tc_bptc"],
+"vram_texture": true
 }
 
 [deps]
 
 source_file="res://content/environments/valhalla/textures/KB3D_VHL_Burlap_basecolor-KB3D_VHL_Burlap_opacity.png"
-dest_files=["res://.godot/imported/KB3D_VHL_Burlap_basecolor-KB3D_VHL_Burlap_opacity.png-dad28e450d0f2ca1f78fc959dbfd3ca0.ctex"]
+dest_files=["res://.godot/imported/KB3D_VHL_Burlap_basecolor-KB3D_VHL_Burlap_opacity.png-dad28e450d0f2ca1f78fc959dbfd3ca0.s3tc.ctex"]
 
 [params]
 
-compress/mode=0
+compress/mode=2
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/uastc_level=0
@@ -23,7 +24,7 @@ compress/rdo_quality_loss=0.0
 compress/hdr_compression=1
 compress/normal_map=0
 compress/channel_pack=0
-mipmaps/generate=false
+mipmaps/generate=true
 mipmaps/limit=-1
 roughness/mode=0
 roughness/src_normal=""

@@ -3,19 +3,20 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://bh0eu3o026wgc"
-path="res://.godot/imported/KB3D_VHL_GrassRoof_basecolor-KB3D_VHL_GrassRoof_opacity.png-459f098dcd23c8ae60466ba675932fb9.ctex"
+path.s3tc="res://.godot/imported/KB3D_VHL_GrassRoof_basecolor-KB3D_VHL_GrassRoof_opacity.png-459f098dcd23c8ae60466ba675932fb9.s3tc.ctex"
 metadata={
-"vram_texture": false
+"imported_formats": ["s3tc_bptc"],
+"vram_texture": true
 }
 
 [deps]
 
 source_file="res://content/environments/valhalla/textures/KB3D_VHL_GrassRoof_basecolor-KB3D_VHL_GrassRoof_opacity.png"
-dest_files=["res://.godot/imported/KB3D_VHL_GrassRoof_basecolor-KB3D_VHL_GrassRoof_opacity.png-459f098dcd23c8ae60466ba675932fb9.ctex"]
+dest_files=["res://.godot/imported/KB3D_VHL_GrassRoof_basecolor-KB3D_VHL_GrassRoof_opacity.png-459f098dcd23c8ae60466ba675932fb9.s3tc.ctex"]
 
 [params]
 
-compress/mode=0
+compress/mode=2
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/uastc_level=0
@@ -23,7 +24,7 @@ compress/rdo_quality_loss=0.0
 compress/hdr_compression=1
 compress/normal_map=0
 compress/channel_pack=0
-mipmaps/generate=false
+mipmaps/generate=true
 mipmaps/limit=-1
 roughness/mode=0
 roughness/src_normal=""

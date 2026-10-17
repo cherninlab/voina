@@ -46,13 +46,15 @@ func capture() -> void:
 	var camera: Camera3D = Camera3D.new()
 	world.add_child(camera)
 	camera.fov = 68.0
-	camera.far = 300.0
+	camera.far = 600.0
 	var positions: Array[Vector3] = [Vector3(33, 28, 37), Vector3(-18, 2.3, 17), Vector3(-13, 5, -10)]
 	var targets: Array[Vector3] = [Vector3(0, 0, -2), Vector3(-18, 2.6, -5), Vector3(-23, 3, 4)]
 	for index: int in range(positions.size()):
 		camera.position = positions[index]
 		camera.look_at(targets[index])
 		camera.make_current()
+		var presentation: CanvasLayer = world.get_node("GameUI") as CanvasLayer
+		presentation.visible = false
 		for frame: int in range(12):
 			await process_frame
 		await RenderingServer.frame_post_draw

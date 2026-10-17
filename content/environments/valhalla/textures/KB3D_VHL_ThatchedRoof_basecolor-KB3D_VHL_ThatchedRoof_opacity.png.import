@@ -3,19 +3,20 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://dlk8n72h7gmg2"
-path="res://.godot/imported/KB3D_VHL_ThatchedRoof_basecolor-KB3D_VHL_ThatchedRoof_opacity.png-c6778eb64a5d8f4d8ece2c06fd3de94e.ctex"
+path.s3tc="res://.godot/imported/KB3D_VHL_ThatchedRoof_basecolor-KB3D_VHL_ThatchedRoof_opacity.png-c6778eb64a5d8f4d8ece2c06fd3de94e.s3tc.ctex"
 metadata={
-"vram_texture": false
+"imported_formats": ["s3tc_bptc"],
+"vram_texture": true
 }
 
 [deps]
 
 source_file="res://content/environments/valhalla/textures/KB3D_VHL_ThatchedRoof_basecolor-KB3D_VHL_ThatchedRoof_opacity.png"
-dest_files=["res://.godot/imported/KB3D_VHL_ThatchedRoof_basecolor-KB3D_VHL_ThatchedRoof_opacity.png-c6778eb64a5d8f4d8ece2c06fd3de94e.ctex"]
+dest_files=["res://.godot/imported/KB3D_VHL_ThatchedRoof_basecolor-KB3D_VHL_ThatchedRoof_opacity.png-c6778eb64a5d8f4d8ece2c06fd3de94e.s3tc.ctex"]
 
 [params]
 
-compress/mode=0
+compress/mode=2
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/uastc_level=0
@@ -23,7 +24,7 @@ compress/rdo_quality_loss=0.0
 compress/hdr_compression=1
 compress/normal_map=0
 compress/channel_pack=0
-mipmaps/generate=false
+mipmaps/generate=true
 mipmaps/limit=-1
 roughness/mode=0
 roughness/src_normal=""
