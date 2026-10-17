@@ -156,7 +156,7 @@ func house(location: Vector3, yaw: float, paint: StandardMaterial3D) -> void:
 	block(Vector3(1.0, 2.6, 0.9), Vector3(2.3, 4.8, -1.8), stone, false, root)
 	for side: int in [-1, 1]:
 		var rafter: MeshInstance3D = block(Vector3(0.19, 4.9, 0.2), Vector3(side * 1.8, 4.8, 3.55), beam, false, root)
-		rafter.rotation.z = side * -0.95
+		rafter.rotation.z = side * 0.95
 
 func stall(location: Vector3, cloth: StandardMaterial3D) -> void:
 	block(Vector3(4, 1.1, 2.4), location + Vector3(0, 0.55, 0), wood, true)
@@ -194,8 +194,13 @@ func well(location: Vector3) -> void:
 func watchtower(location: Vector3) -> void:
 	for x: float in [-1.5, 1.5]:
 		for z: float in [-1.5, 1.5]:
-			log_post(location + Vector3(x, 3, z), 6.0, 0.18, true)
+			log_post(location + Vector3(x, 3.35, z), 6.7, 0.18, true)
 	block(Vector3(3.5, 0.3, 3.5), location + Vector3(0, 4.2, 0), wood, true)
+	# Long rafters lean inward at the top and meet the ridge, not outward.
+	for z: float in [-1.65, 1.65]:
+		for side: int in [-1, 1]:
+			var rafter: MeshInstance3D = block(Vector3(0.18, 3.5, 0.18), location + Vector3(side * 1.05, 7.0, z), beam)
+			rafter.rotation.z = float(side) * atan(2.1 / 2.8)
 	roof(location + Vector3(0, 7.1, 0), 4.2, 4.2, self)
 	for side: int in [-1, 1]:
 		block(Vector3(0.2, 1.0, 3.4), location + Vector3(side * 1.6, 4.8, 0), teal)
