@@ -117,6 +117,26 @@
         "target-enshrouded-pass-prompt.md"
       ],
       "note": "User-requested Enshrouded-inspired rendering treatment of the same composition. Visual target only, not implemented gameplay. Supporting material candidates are paired for subsequent implementation."
+    },
+    {
+      "target": "target-enshrouded-actual-refs.png",
+      "source_capture": "runtime-soil-material/village-03.png",
+      "style_reference": "Actual Enshrouded screenshots supplied by user; Steam app 1203620",
+      "supporting_basecolors": [
+        "soil_gravel.png",
+        "oak.png",
+        "reed_thatch.png",
+        "schist_rock.png"
+      ],
+      "supporting_geometry": [
+        "gameplay/environment/village_arena.gd:roof",
+        "gameplay/environment/village_arena.gd:green_borders",
+        "gameplay/environment/village_arena.gd:landscape"
+      ],
+      "prompts": [
+        "target-enshrouded-actual-refs-prompt.md"
+      ],
+      "note": "Corrected target directly conditions on actual Enshrouded images rather than its name alone. Generated reference, not actual VALKA gameplay. Existing texture candidates are paired; broad sculpted surface detail and dense layered foliage remain implementation work."
     }
   ],
   "sky_note": "Generated LDR appearance panorama, not calibrated HDR lighting. Sky shader adjusts horizon latitude and blends wrap/poles; runtime review is required."
