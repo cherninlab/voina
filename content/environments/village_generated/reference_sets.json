@@ -70,13 +70,14 @@
       ],
       "supporting_geometry": [
         "gameplay/environment/village_arena.gd:landscape",
-        "gameplay/environment/village_arena.gd:landscape_surface_height"
+        "gameplay/environment/village_arena.gd:landscape_surface_height",
+        "gameplay/environment/village_arena.gd:landscape_height"
       ],
       "prompts": [
         "schist_rock-prompt.md",
         "target-schist-valley-prompt.md"
       ],
-      "note": "Original generated schist albedo candidate paired with 3m landscape mesh, triplanar rock mapping, slope-aligned rock scatter and denser surrounding forest. Runtime captures assess the actual result."
+      "note": "Original generated schist albedo candidate paired with 3m landscape mesh, triplanar rock mapping, slope-aligned rock scatter and denser surrounding forest. Runtime captures assess the actual result. Domain-warped ridge and softened strata height field replaces the smooth dome skyline; first serrated trial rejected during runtime review."
     }
   ],
   "sky_note": "Generated LDR appearance panorama, not calibrated HDR lighting. Sky shader adjusts horizon latitude and blends wrap/poles; runtime review is required."

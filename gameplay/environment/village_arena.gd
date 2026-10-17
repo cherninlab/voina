@@ -98,9 +98,16 @@ func landscape_height(x: float, z: float) -> float:
 	var broad: float = landscape_noise.get_noise_2d(x, z)
 	var foothills: float = smoothstep(34.0, 100.0, distance) * (2.0 + broad * 2.0)
 	var mountains: float = smoothstep(90.0, 260.0, distance)
-	var ridge: float = pow(clampf(0.5 + broad, 0.0, 1.0), 2.0) * 75.0
-	var detail: float = landscape_noise.get_noise_2d(x * 2.1 + 91.0, z * 2.1) * 4.0
-	return -0.7 + foothills + mountains * (ridge + detail + 6.0)
+	# Warped ridges and softened strata interrupt the former smooth dome outline.
+	var warp: float = landscape_noise.get_noise_2d(x * 2.4 + 143.0, z * 2.4 - 71.0) * 28.0
+	var ridge_noise: float = landscape_noise.get_noise_2d((x + warp) * 1.7, (z - warp) * 1.7)
+	var crags: float = pow(1.0 - absf(ridge_noise), 2.0)
+	var ridge: float = pow(clampf(0.5 + broad, 0.0, 1.0), 2.0) * 65.0
+	var detail: float = landscape_noise.get_noise_2d(x * 5.0 + 91.0, z * 5.0) * 2.0
+	var raw_height: float = ridge + crags * 10.0 + detail + 3.0
+	var layer: float = raw_height / 5.5
+	var shelves: float = (floorf(layer) + smoothstep(0.1, 0.9, fposmod(layer, 1.0))) * 5.5
+	return -0.7 + foothills + mountains * lerpf(raw_height, shelves, 0.65)
 
 func landscape_surface_height(x: float, z: float) -> float:
 	# Match the actual three-metre mesh triangles, not an unsampled noise peak.
