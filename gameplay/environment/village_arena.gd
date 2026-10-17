@@ -68,6 +68,11 @@ func _ready() -> void:
 	watchtower(Vector3(-23, 0, 2))
 	var trees: Node3D = preload("res://gameplay/environment/tree_pack.tscn").instantiate() as Node3D
 	add_child(trees)
+	# The asset preview's flat ground cuts through this level's sculpted terrain.
+	for child: Node in trees.get_children():
+		if child is MeshInstance3D and (child as MeshInstance3D).mesh is PlaneMesh:
+			trees.remove_child(child)
+			child.queue_free()
 	for index: int in range(14):
 		var angle: float = TAU * index / 14.0
 		var hill: MeshInstance3D = MeshInstance3D.new()
