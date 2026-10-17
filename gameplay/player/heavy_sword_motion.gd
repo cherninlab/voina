@@ -4,8 +4,8 @@ extends RefCounted
 # The longsword is a separate physical object: its tip is a point mass on a rigid rod from the
 # hilt, pulled by gravity, and it anchors in the ground wherever it lands. The tip is integrated
 # position-based (its velocity is whatever the constraints let it do), so swinging the hilt
-# around the body lifts the blade by centrifugal force like a real pendulum. The hands only add
-# torque toward the body's facing while swinging; the body turns to face the blade when idle.
+# around the body lifts the blade like a pendulum. Gestures add tangential momentum; stopping
+# the gesture leaves the blade free to carry through and land. The body follows the blade.
 # Cosmetic only: no damage or combat authority lives here.
 const BLADE: float = 1.65
 const TIP_RADIUS: float = 0.03
@@ -17,11 +17,11 @@ const ANCHOR_HOLD_SPEED: float = 0.6 # below this a resting tip sticks
 
 # Tunables: the in-game Sword tweaks panel edits these live; tests use the defaults.
 static var gravity: float = 9.8
-static var follow_spring: float = 60.0 # hands' torque pulling the blade after the body's facing while swinging
+static var follow_spring: float = 60.0 # gesture impulse gain; never a spring toward the camera
 static var follow_damping: float = 1.5
-static var body_stiffness: float = 160.0 # how hard the body chases the camera while swinging
+static var body_stiffness: float = 160.0 # how hard the body follows the blade while swinging
 static var body_top_speed: float = 14.0 # rad/s cap on the body's turn while swinging
-static var strike_turn: float = 8.0 # rad/s kick to the body's turn from the approved cut
+static var strike_turn: float = 8.0 # launch strength from the approved cut
 static var air_damping: float = 0.3
 static var lift_gain: float = 3.0 # tip m/s per radian of camera pitch while dragging
 static var drag_friction: float = 3.0 # tip sliding on the floor while swinging
@@ -35,9 +35,9 @@ static var pull_gain: float = 0.1 # owner follow-through per m/s of tip speed wh
 
 static func tunable_specs() -> Array[Dictionary]:
 	return [
-		{"name": "follow_spring", "label": "Hands torque", "min": 0.0, "max": 200.0, "default": 60.0},
-		{"name": "follow_damping", "label": "Hands damping", "min": 0.0, "max": 10.0, "default": 1.5},
-		{"name": "body_stiffness", "label": "Body chase", "min": 10.0, "max": 400.0, "default": 160.0},
+		{"name": "follow_spring", "label": "Gesture drive", "min": 0.0, "max": 200.0, "default": 60.0},
+		{"name": "follow_damping", "label": "Gesture damping", "min": 0.0, "max": 10.0, "default": 1.5},
+		{"name": "body_stiffness", "label": "Body follow", "min": 10.0, "max": 400.0, "default": 160.0},
 		{"name": "body_top_speed", "label": "Body turn cap", "min": 2.0, "max": 30.0, "default": 14.0},
 		{"name": "strike_turn", "label": "Cut kick", "min": 0.0, "max": 20.0, "default": 8.0},
 		{"name": "air_damping", "label": "Air damping", "min": 0.0, "max": 3.0, "default": 0.3},
@@ -162,11 +162,17 @@ func hilt_offset(direction: Vector3) -> Vector3:
 	return Vector3(-sin(hold) * reach, height, -cos(hold) * reach).rotated(Vector3.UP, body_yaw)
 
 func strike(direction: Vector2) -> void:
-	# The host-approved cut kicks the body into the turn; the blade follows it. Vertical cuts lift the tip.
-	if not direction.is_finite():
+	# Launch along the rod's tangent, from its current position. Never kick the body away from
+	# the blade then spring it back to the camera: that reverses an otherwise valid cut.
+	if not direction.is_finite() or direction.is_zero_approx():
 		return
-	body_yaw_speed = clampf(body_yaw_speed - direction.x * strike_turn, -body_top_speed, body_top_speed)
-	tip_velocity += Vector3.UP * (-direction.y * lift_gain * 1.5)
+	var cut: Vector2 = direction.normalized()
+	var rod: Vector3 = blade_direction()
+	var sideways: Vector3 = Vector3.UP.cross(rod)
+	var lift: Vector3 = Vector3.UP - rod * rod.y
+	# Horizontal cuts also pick the heavy tip off the floor, then gravity finishes the arc.
+	tip_velocity += sideways * (-cut.x * strike_turn * 0.65)
+	tip_velocity += lift * (-cut.y * lift_gain * 1.5 + absf(cut.x) * strike_turn * 0.3)
 	tip_velocity = tip_velocity.limit_length(MAX_TIP_SPEED)
 
 func step(delta: float, camera_yaw: float, camera_pitch: float, holding: bool, attacking: bool, blocking: bool = false, origin: Vector3 = anchor, floor_y: float = ground, velocity: Vector3 = Vector3.ZERO) -> void:
@@ -181,9 +187,9 @@ func step(delta: float, camera_yaw: float, camera_pitch: float, holding: bool, a
 	last_yaw = camera_yaw
 	last_pitch = camera_pitch
 	tracking = true
-	# Dragging: vertical look motion while holding lifts or drops the tip a little. A quick turn is not a drag.
-	if holding and not blocking and absf(turn) < 1.2 and absf(tilt) < 1.2:
-		tip_velocity += Vector3.UP * tilt * BLADE * lift_gain
+	# Input changes supply force; holding still, release and combat recovery do not recenter.
+	# Reject quick-turn jumps so looking over a shoulder cannot launch the sword.
+	var driving: bool = holding and not blocking and absf(turn) < 1.2 and absf(tilt) < 1.2 and (absf(turn) + absf(tilt) > 0.00001)
 	var engaged: bool = holding or attacking or blocking
 	var speed: float = Vector2(velocity.x, velocity.z).length()
 	var remaining: float = minf(delta, 0.1)
@@ -191,24 +197,28 @@ func step(delta: float, camera_yaw: float, camera_pitch: float, holding: bool, a
 	while remaining > 0.000001:
 		var dt: float = minf(remaining, 1.0 / 120.0)
 		remaining -= dt
+		if driving:
+			# Spread the gesture over substeps so a 30 Hz frame does not front-load its impulse.
+			var fraction: float = dt / minf(delta, 0.1)
+			var rod: Vector3 = blade_direction()
+			tip_velocity += Vector3.UP.cross(rod) * turn * BLADE * follow_spring * 0.06 * fraction
+			tip_velocity += (Vector3.UP - rod * rod.y) * tilt * BLADE * lift_gain * fraction
 		raised = move_toward(raised, 1.0 if engaged else 0.0, dt * (7.0 if engaged else 2.5))
-		# Swinging: the body follows the camera and the blade trails the body. Idle: the body always
-		# faces the blade, even while walking, so walking away from it is walking backwards.
-		var body_target: float = camera_yaw if engaged else blade_yaw()
+		# The torso follows the actual blade through the cut, even after the mouse stops.
+		# Only a deliberate guard turns the body back toward the view.
+		var body_target: float = camera_yaw if blocking else blade_yaw()
 		body_yaw_speed += (angle_difference(body_yaw, body_target) * (body_stiffness if engaged else 48.0) - body_yaw_speed * 11.0) * dt
 		var top_speed: float = body_top_speed if engaged else 5.0
 		body_yaw_speed = clampf(body_yaw_speed, -top_speed, top_speed)
 		body_yaw = wrapf(body_yaw + body_yaw_speed * dt, -PI, PI)
-		var anchored: bool = grounded() and not engaged
+		var anchored: bool = grounded() and not driving and not blocking and tip_velocity.length() < ANCHOR_HOLD_SPEED
 		hilt = anchor + hilt_offset(blade_direction())
 		if anchored:
 			reach_anchor()
 		else:
 			stretch = move_toward(stretch, 0.0, dt * 4.0)
-		if engaged and not blocking:
-			# The hands torque the blade after the body's facing at its current height; the rod does the lifting.
-			var ahead: Vector3 = hilt + direction_from(0.0, clampf(blade_direction().y, -0.95, 0.95)) * BLADE
-			tip_velocity += ((ahead - tip) * follow_spring - tip_velocity * follow_damping) * dt
+		if driving:
+			tip_velocity *= exp(-follow_damping * dt)
 		if blocking:
 			# Bracing is the one time the arms hold the blade up, through a strong but finite spring,
 			# toward the camera so the guard faces the attacker.
@@ -237,10 +247,14 @@ func step(delta: float, camera_yaw: float, camera_pitch: float, holding: bool, a
 		# including the centrifugal rise when the hilt is swung around the body.
 		tip_velocity = ((tip - previous) / dt).limit_length(MAX_TIP_SPEED)
 		if tip.y <= floor_level + 0.001:
-			var slide: float = exp(-(drag_friction if engaged else anchor_friction) * dt)
+			# Soil absorbs the landing rather than bouncing the blade into another orbit.
+			if previous.y > floor_level + 0.001:
+				tip_velocity *= 0.5
+			tip_velocity.y = 0.0
+			var slide: float = exp(-(anchor_friction if anchored else drag_friction) * dt)
 			tip_velocity.x *= slide
 			tip_velocity.z *= slide
-			if not engaged and Vector2(tip_velocity.x, tip_velocity.z).length() < ANCHOR_HOLD_SPEED:
+			if not driving and not blocking and Vector2(tip_velocity.x, tip_velocity.z).length() < ANCHOR_HOLD_SPEED:
 				tip_velocity.x = 0.0
 				tip_velocity.z = 0.0
 		# Follow-through and lean come from the blade's momentum; a stretched anchor pulls the owner back.

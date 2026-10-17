@@ -11,6 +11,8 @@ func check(condition: bool, message: String) -> void:
 		printerr("INERTIA_FAIL: " + message)
 
 func run() -> void:
+	check_carry_through()
+	check_gesture_rates()
 	var motion: HeavySwordMotion = HeavySwordMotion.new()
 	var origin: Vector3 = Vector3(0, 0.9, 0)
 	motion.reset(0.0, origin, 0.0)
@@ -43,7 +45,7 @@ func run() -> void:
 	var swept: float = 0.0
 	var peak: float = 0.0
 	var pulled: bool = false
-	var body_led: bool = false
+	var body_followed: bool = false
 	motion.strike(Vector2.LEFT)
 	for frame: int in range(150):
 		var yaw: float = minf(0.6, frame * 0.05)
@@ -54,10 +56,10 @@ func run() -> void:
 		peak = maxf(peak, motion.tip.y)
 		pulled = pulled or (motion.pull_velocity.length() > 0.01 and motion.pull_velocity.length() <= HeavySwordMotion.MAX_PULL)
 		if frame == 8:
-			body_led = absf(angle_difference(motion.body_yaw, yaw)) < absf(angle_difference(motion.blade_yaw(), yaw)) - 0.05
+			body_followed = motion.body_yaw_speed > 0.0 and angle_difference(motion.body_yaw, motion.blade_yaw()) > 0.05
 	check(swept > 0.4, "Camera turn and cut swing the blade along the mouse direction (swept %.2f rad)" % swept)
-	check(body_led, "While swinging the body leads the turn and the blade trails it")
-	# A sustained spin of the body lifts the blade by centrifugal force, without any mouse pitch.
+	check(body_followed, "While swinging the torso follows the blade in the cut direction")
+	# A sustained circular gesture lifts the blade by centrifugal force, without any mouse pitch.
 	var spin: HeavySwordMotion = HeavySwordMotion.new()
 	spin.reset(0.0, origin, 0.0)
 	var spin_peak: float = 0.0
@@ -68,7 +70,7 @@ func run() -> void:
 		spin_peak = maxf(spin_peak, spin.tip.y)
 		spin_swept += angle_difference(spin_last, spin.blade_yaw())
 		spin_last = spin.blade_yaw()
-	check(spin_peak > 0.8, "A spinning body lifts the blade by centrifugal force (peak %.2f m)" % spin_peak)
+	check(spin_peak > 0.8, "A circular gesture lifts the blade by centrifugal force (peak %.2f m)" % spin_peak)
 	check(spin_swept > 4.0, "The blade keeps up with a 6 rad/s spin (swept %.2f rad)" % spin_swept)
 	check(spin.tip_velocity.length() <= HeavySwordMotion.MAX_TIP_SPEED, "Spin speed stays bounded")
 	check(pulled, "Heavy blade produces bounded owner pull")
@@ -136,7 +138,7 @@ func run() -> void:
 	player.set_physics_process(false)
 	var combat: CombatController = player.get("combat") as CombatController
 	combat.set_physics_process(false)
-	# The blade rests on the right, so only a leftward cut can move it.
+	# A cut launches the blade and its momentum pulls the owner along.
 	player.call("attack", false, Vector2.LEFT)
 	player.set("yaw", 0.8)
 	var start: Vector3 = player.position
@@ -149,5 +151,53 @@ func run() -> void:
 	var body: CharacterVisual = player.get("body") as CharacterVisual
 	check(body.motion.pull_velocity.is_zero_approx(), "Host correction clears owner sword movement")
 	if failures == 0:
-		print("INERTIA_OK: anchored rest, no hold-up, arm stretch, dragged anchor, owner resistance, always facing the blade, body-led swing, centrifugal spin, release, timestep stability, planted feet, owner pull/correction")
+		print("INERTIA_OK: anchored rest, no hold-up, arm stretch, dragged anchor, owner resistance, always facing the blade, gesture launch, uninterrupted follow-through, persistent landing, return cuts, centrifugal spin, release, timestep stability, planted feet, owner pull/correction")
 	get_tree().quit(0 if failures == 0 else 1)
+
+func check_carry_through() -> void:
+	var origin: Vector3 = Vector3(0.0, 0.9, 0.0)
+	for hz: int in [30, 60, 120]:
+		for side: float in [-1.0, 1.0]:
+			for keep_holding: bool in [false, true]:
+				var motion: HeavySwordMotion = HeavySwordMotion.new()
+				motion.reset(0.0, origin, 0.0)
+				motion.strike(Vector2(side, 0.0))
+				var previous_yaw: float = motion.blade_yaw()
+				var swept: float = 0.0
+				var peak: float = 0.0
+				var reversed: bool = false
+				for frame: int in range(hz * 2):
+					motion.step(1.0 / hz, 0.0, 0.0, keep_holding, float(frame) / hz < 0.52, false, origin, 0.0)
+					var travel: float = angle_difference(previous_yaw, motion.blade_yaw()) * -side
+					reversed = reversed or travel < -0.002
+					swept += travel
+					peak = maxf(peak, motion.tip.y)
+					previous_yaw = motion.blade_yaw()
+				var label: String = "%d Hz, cut %+.0f, held=%s" % [hz, side, keep_holding]
+				check(not reversed and swept > 1.0, "Cut carries past the stationary view without reversal: " + label)
+				check(peak > 0.25 and motion.grounded() and motion.tip_velocity.length() < 0.05, "Blade lifts then lands and settles: " + label)
+				var landing: Vector3 = motion.tip
+				# Looking elsewhere without a drag must not undo the landed cut.
+				for frame: int in range(hz):
+					motion.step(1.0 / hz, 1.1, 0.0, false, false, false, origin, 0.0)
+				check(motion.tip.distance_to(landing) < 0.015, "Camera look preserves the landing: " + label)
+				motion.strike(Vector2(-side, 0.0))
+				check(motion.tip.distance_to(landing) < 0.001, "Return cut begins at the landing without teleporting: " + label)
+				var start_yaw: float = motion.blade_yaw()
+				for frame: int in range(hz / 5):
+					motion.step(1.0 / hz, 1.1, 0.0, true, true, false, origin, 0.0)
+				check(angle_difference(start_yaw, motion.blade_yaw()) * side > 0.2 and motion.tip.y > 0.1, "Return cut lifts and travels in the new direction: " + label)
+
+func check_gesture_rates() -> void:
+	var origin: Vector3 = Vector3(0.0, 0.9, 0.0)
+	var landings: Array[Vector3] = []
+	for hz: int in [30, 60, 120]:
+		var motion: HeavySwordMotion = HeavySwordMotion.new()
+		motion.reset(0.0, origin, 0.0)
+		motion.step(1.0 / hz, 0.0, 0.0, true, false, false, origin, 0.0)
+		motion.strike(Vector2.LEFT)
+		for frame: int in range(hz * 3):
+			var time: float = float(frame + 1) / hz
+			motion.step(1.0 / hz, minf(0.6, time * 3.0), minf(0.3, time * 1.5), time <= 0.2, time < 0.52, false, origin, 0.0)
+		landings.append(motion.tip)
+	check(landings[0].distance_to(landings[2]) < 0.01 and landings[1].distance_to(landings[2]) < 0.01, "The same moving gesture lands consistently at 30/60/120 Hz")
