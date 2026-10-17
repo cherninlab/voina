@@ -61,4 +61,13 @@ func capture() -> void:
 		var result: Error = image.save_png(path)
 		assert(result == OK, "Screenshot save failed: " + path)
 		print("VILLAGE_CAPTURE: ", path)
+	if "--capture-motion" in OS.get_cmdline_user_args():
+		# A slow 4-second dolly uses the real renderer and untouched fisheye canvas.
+		var start: Vector3 = positions[1]
+		for frame: int in range(240):
+			camera.position = start + Vector3(float(frame) / 60.0, 0, 0)
+			camera.look_at(targets[1])
+			await process_frame
+			await RenderingServer.frame_post_draw
+		print("VILLAGE_MOTION_OK: 240 rendered frames, native scale ", root.scaling_3d_scale, " MSAA ", root.msaa_3d, " screen AA ", root.screen_space_aa)
 	quit()

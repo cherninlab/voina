@@ -1,8 +1,8 @@
 # Woodland village arena
 
-T-032 replaces the flat car-and-block test yard with an original procedural 56 m woodland village. Eight colored timber cottages, thatch roofs, four market stalls, a well, a ramp-connected lookout, wooden cover, grass borders, distant hills, and a blue clouded sky are built by `gameplay/environment/village_arena.gd`.
+T-032 replaces the flat car-and-block test yard with an original procedural 56 m woodland village. Uneven terrain with blended earth/stone/grass paths, eight colored timber cottages, layered thatch roofs, four market stalls, a well, a ramp-connected lookout, wooden cover, grass borders, distant hills, and a blue clouded sky are built by `gameplay/environment/village_arena.gd`.
 
-The center spawn axis remains clear, and the original four inner cover footprints are retained for combat spacing. House shells, cover, barrels, perimeter, lookout landing and ramp have static collision. Hills and foliage beyond the fence are cosmetic. Existing spawning, combat authority, match timing, networking and character controls are unchanged.
+The center spawn axis remains clear, and the original four inner cover footprints are retained for combat spacing. House shells, cover, barrels, perimeter, lookout landing and ramp have static collision. Terrain uses a concave triangle collider with upward-facing triangles; regression checks catch inverted floor winding. Hills and foliage beyond the fence are cosmetic. Existing spawning, combat authority, match timing, networking and character controls are unchanged.
 
 ## Assets and provenance
 
@@ -16,7 +16,7 @@ Run the actual Metal-rendered world and host a local session on an unused port:
 "$GODOT" --path . --script scripts/capture_village.gd -- --host --port=7793 --capture-dir=/absolute/output/folder
 ```
 
-This checks collision under the spawn floor, ramp midpoint and lookout landing, then saves three 1600 × 1000 frames from the running game with its HUD and build identity. It never substitutes a concept render for a game screenshot. The last two views inspect the court and lookout. The free capture camera is only in this explicit script; normal gameplay still uses the player camera.
+This checks collision under the spawn floor, ramp midpoint and lookout landing, drops the actual player at four terrain locations and requires it to land, then saves three 1600 × 1000 frames from the running game with its HUD and build identity. It never substitutes a concept render for a game screenshot. The last two views inspect the court and lookout. The free capture camera is only in this explicit script; normal gameplay still uses the player camera.
 
 ## Verification and limits
 

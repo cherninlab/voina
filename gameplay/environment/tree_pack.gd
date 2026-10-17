@@ -37,7 +37,8 @@ func add_plant(id: String, location: Vector3, height: float) -> Node3D:
 	material.transparency = BaseMaterial3D.TRANSPARENCY_ALPHA_SCISSOR
 	material.alpha_scissor_threshold = 0.5
 	material.cull_mode = BaseMaterial3D.CULL_DISABLED
-	material.texture_filter = BaseMaterial3D.TEXTURE_FILTER_NEAREST_WITH_MIPMAPS
+	material.texture_filter = BaseMaterial3D.TEXTURE_FILTER_LINEAR_WITH_MIPMAPS_ANISOTROPIC
+	material.alpha_antialiasing_mode = BaseMaterial3D.ALPHA_ANTIALIASING_ALPHA_TO_COVERAGE
 	material.roughness = 1.0
 	var bounds: AABB
 	var first: bool = true

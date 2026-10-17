@@ -68,7 +68,7 @@ func surface(color: String, texture: String = "", tiling: float = 1.0) -> Standa
 	var material: StandardMaterial3D = StandardMaterial3D.new()
 	material.albedo_color = Color(color)
 	material.roughness = 0.95
-	material.texture_filter = BaseMaterial3D.TEXTURE_FILTER_LINEAR_WITH_MIPMAPS
+	material.texture_filter = BaseMaterial3D.TEXTURE_FILTER_LINEAR_WITH_MIPMAPS_ANISOTROPIC
 	if not texture.is_empty():
 		material.albedo_texture = load("res://content/environments/village_generated/%s.png" % texture) as Texture2D
 		material.uv1_triplanar = true
@@ -257,14 +257,16 @@ func terrain() -> void:
 	var material: ShaderMaterial = ShaderMaterial.new()
 	var shader: Shader = Shader.new()
 	shader.code = """shader_type spatial;
-uniform sampler2D stones : source_color, filter_linear_mipmap, repeat_enable;
+uniform sampler2D stones : source_color, filter_linear_mipmap_anisotropic, repeat_enable;
 varying vec3 pos;
 float hash(vec2 p) { return fract(sin(dot(p,vec2(127.1,311.7))) * 43758.5453); }
 float noise(vec2 p) { vec2 i=floor(p); vec2 f=fract(p); f=f*f*(3.0-2.0*f); return mix(mix(hash(i),hash(i+vec2(1,0)),f.x),mix(hash(i+vec2(0,1)),hash(i+vec2(1,1)),f.x),f.y); }
 void vertex() { pos = (MODEL_MATRIX * vec4(VERTEX,1.0)).xyz; }
 void fragment() {
  vec2 p=pos.xz;
- float n=noise(p*0.6)*0.6+noise(p*2.4)*0.3+noise(p*13.0)*0.1;
+ float footprint = length(fwidth(p));
+ float fine = mix(noise(p*2.4),0.5,smoothstep(0.03,0.2,footprint));
+ float n=noise(p*0.6)*0.7+fine*0.3;
  float main_path=1.0-smoothstep(2.6,4.8,abs(p.x-sin(p.y*0.16)*2.2));
  float cross_path=1.0-smoothstep(2.0,4.0,abs(p.y-sin(p.x*0.14)*1.5));
  float court=1.0-smoothstep(7.0,14.0,length(p));
@@ -276,8 +278,7 @@ void fragment() {
  float rock_mask=smoothstep(0.4,0.68,noise(p*0.23))*path;
  ALBEDO=mix(mix(dirt,rock,rock_mask*0.72),grass,vegetation);
  ROUGHNESS=mix(0.74,0.97,n);
- float h=dot(texture(stones,p*0.18).rgb,vec3(0.333));
- NORMAL_MAP=normalize(vec3(-dFdx(h)*14.0,-dFdy(h)*14.0,1.0))*0.5+0.5;
+ // Screen-space color derivatives are not a physical normal map and shimmer during motion.
 }
 """
 	material.shader = shader
