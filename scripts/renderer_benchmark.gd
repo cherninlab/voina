@@ -4,8 +4,8 @@ extends SceneTree
 
 const WARMUP_FRAMES: int = 120
 const SAMPLE_FRAMES: int = 300
-## The window is capped by display pacing, so each frame draws the view this many times offscreen
-## to make the GPU the bottleneck; divide frame time by this for a per-view estimate. Override with -- --passes=N.
+## Each frame draws the view this many times offscreen so GPU work dominates the per-frame overhead;
+## divide frame time by this for a per-view estimate. Override with -- --passes=N.
 var passes: int = 20
 const VIEWS: Array[Vector3] = [Vector3(0, 1.7, 14), Vector3(-18, 2.3, 17), Vector3(33, 28, 37)]
 const TARGETS: Array[Vector3] = [Vector3(0, 1.5, -20), Vector3(-18, 2.6, -5), Vector3(0, 0, -2)]
@@ -20,8 +20,6 @@ func run() -> void:
 		if argument.begins_with("--passes="):
 			passes = argument.trim_prefix("--passes=").to_int()
 	DisplayServer.window_set_size(Vector2i(1600, 1000))
-	# macOS stops drawing covered windows, which silently turns samples into idle frames.
-	DisplayServer.window_set_flag(DisplayServer.WINDOW_FLAG_ALWAYS_ON_TOP, true)
 	root.size = Vector2i(1600, 1000)
 	var village: Node3D = (load("res://gameplay/environment/village_arena.gd") as GDScript).new() as Node3D
 	root.add_child(village)
@@ -44,8 +42,6 @@ func run() -> void:
 		printerr("BENCH_FAIL: village has no WorldEnvironment")
 		quit(1)
 		return
-	var viewport: RID = cameras[0].get_viewport().get_viewport_rid()
-	RenderingServer.viewport_set_measure_render_time(viewport, true)
 	var method: String = str(ProjectSettings.get_setting("rendering/renderer/rendering_method"))
 	print("BENCH_RENDERER ", RenderingServer.get_current_rendering_method(), " (project ", method, ") ", RenderingServer.get_video_adapter_name(), " ", root.size, " x", passes, " passes")
 	for config: String in ["baseline", "glow_agx", "ssao", "ssil", "ssr", "sdfgi", "volumetric_fog", "all"]:
@@ -54,21 +50,22 @@ func run() -> void:
 			for camera: Camera3D in cameras:
 				camera.position = VIEWS[view]
 				camera.look_at(TARGETS[view])
+			# macOS skips the normal draw while the window counts as hidden (behind a full-screen app,
+			# another Space, a locked screen), so frames are forced; without a present the loop waits on
+			# the GPU every few frames, and wall-clock deltas stand in for Metal's missing GPU timestamps.
+			RenderingServer.render_loop_enabled = false
 			for frame: int in range(WARMUP_FRAMES):
-				await process_frame
-			# Metal returns zero GPU timestamps here, so wall-clock frame deltas stand in for GPU cost.
+				RenderingServer.force_draw(false, 0.0)
 			var frame_ms: Array[float] = []
-			var cpu: Array[float] = []
 			var last: int = Time.get_ticks_usec()
-			var drawn_before: int = Engine.get_frames_drawn()
 			for frame: int in range(SAMPLE_FRAMES):
-				await process_frame
+				RenderingServer.force_draw(false, 0.0)
 				var now: int = Time.get_ticks_usec()
 				frame_ms.append(float(now - last) / 1000.0)
 				last = now
-				cpu.append(RenderingServer.viewport_get_measured_render_time_cpu(viewport) + RenderingServer.get_frame_setup_time_cpu())
-			var drawn: float = float(Engine.get_frames_drawn() - drawn_before) / float(SAMPLE_FRAMES)
-			print("BENCH_RESULT config=%s view=%d frame_median_ms=%.2f frame_p95_ms=%.2f cpu_median_ms=%.2f drawn=%.2f" % [config, view, percentile(frame_ms, 0.5), percentile(frame_ms, 0.95), percentile(cpu, 0.5), drawn])
+			RenderingServer.render_loop_enabled = true
+			await process_frame
+			print("BENCH_RESULT config=%s view=%d frame_median_ms=%.2f frame_p95_ms=%.2f" % [config, view, percentile(frame_ms, 0.5), percentile(frame_ms, 0.95)])
 	print("BENCH_DONE")
 	quit(0)
 
