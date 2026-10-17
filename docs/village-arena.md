@@ -38,7 +38,7 @@ The supporting `daylight_sky.png` is an original generated LDR appearance panora
 
 ## Groundcover shape pass
 
-The generated groundcover study is paired with solid, three-segment tapered grass strips in `green_borders()`. Generated alpha cards were rejected for fringes and clipped silhouettes. Geometry needs no transparency sorting or alpha edge filtering. The experimental static lightmap snapshot is not enabled: the actual capture does not yet justify replacing the procedural level. The earlier empty-probe diagnosis was misleading because dummy headless rendering does not expose the same capture data as Metal.
+The generated groundcover study is paired with solid, three-segment tapered grass strips in `green_borders()`. Generated alpha cards were rejected for fringes and clipped silhouettes. Geometry needs no transparency sorting or alpha edge filtering. The earlier empty-probe diagnosis was misleading because dummy headless rendering does not expose the same capture data as Metal.
 
 ## Surrounding landscape material pass
 
@@ -54,8 +54,14 @@ Low-profile opaque stone geometry uses the paired generated schist material. Det
 
 ## Experimental static lightmap preparation
 
-Run `"$GODOT" --path . --script scripts/prepare_village_bake.gd` with the real renderer, without `--headless` or `--editor`, then open the generated `village_lit.scn` and use Bake Lightmaps. Preparation unwraps selected static meshes and adds explicit probes. It replaces local experimental bake outputs; it does not enable them in gameplay.
+Run `"$GODOT" --path . --script scripts/prepare_village_bake.gd` with the real renderer, without `--headless` or `--editor`, then open the generated `village_lit.scn` and use Bake Lightmaps. Preparation unwraps selected static meshes and adds explicit probes. It replaces the snapshot and clears its light data, so finish the editor bake before running or shipping the level.
 
-Headless inspection incorrectly suggested missing probe data. A Metal load of the baked resource shows populated probe positions. Preparing the snapshot with dummy headless rendering also lost MultiMesh instance buffers; the helper now refuses that mode. The Metal-prepared snapshot retained 5,076 grass instances and 1,167 stones in validation. The new snapshot still needs its own rebake and visual review before any runtime switch. The experimental binaries remain local and are not shipped.
+Headless inspection incorrectly suggested missing probe data. A Metal load of the baked resource shows populated probe positions. Preparing the snapshot with dummy headless rendering also lost MultiMesh instance buffers; the helper now refuses that mode. The Metal-prepared snapshot retained 5,076 grass instances and 1,167 stones in validation. The subsequent solid-surface rebake passed runtime review and is shipped as described below.
 
 AgX/lower-fill trials were rejected after actual captures looked flatter or underexposed. Live tone mapping remains ACES; directional shadow bias is reduced to improve contact placement. No GI quality or performance acceptance is implied.
+
+## Enabled static indirect lighting
+
+The verified solid-surface snapshot is now loaded by the village builder when present. The source builder remains the regeneration path and preparation explicitly bypasses the saved snapshot. After changing source geometry or lighting, regenerate and rebake before shipping the snapshot together with its data and texture. Two-sided roof/canvas surfaces retain their regular lighting: one shared UV2 chart produced black reverse faces when baked. Solid posts, rails, walls and terrain use static lightmaps, with realtime sunlight retained.
+
+The accepted Metal snapshot preserves both MultiMesh scatters and passes floor/ramp rays and actual player drops. It contains 491 baked mesh instances; the generated light texture is about 3.8 MiB. The packed geometry snapshot is substantially larger and stored with LFS. This improves local indirect-lighting depth but remains far below reference quality; no M2 performance acceptance is claimed.

@@ -15,7 +15,9 @@ func _initialize() -> void:
 
 func prepare() -> void:
 	var village: Node3D = load("res://gameplay/environment/village_arena.gd").new() as Node3D
+	village.set_meta("prepare_lightmap", true)
 	root.add_child(village)
+	village.remove_meta("prepare_lightmap")
 	var trees: Node = village.get_node("TreePack")
 	var cache: Dictionary[Mesh, ArrayMesh] = {}
 	var count: int = 0
@@ -25,6 +27,16 @@ func prepare() -> void:
 		if not node is MeshInstance3D or trees.is_ancestor_of(node) or not geometry.is_visible_in_tree():
 			continue
 		var visual: MeshInstance3D = node as MeshInstance3D
+		# One UV2 chart cannot encode different front/back irradiance on thin sheets.
+		var two_sided: bool = false
+		for surface: int in range(visual.mesh.get_surface_count()):
+			var material: Material = visual.material_override if visual.material_override != null else visual.get_active_material(surface)
+			if material is BaseMaterial3D and (material as BaseMaterial3D).cull_mode == BaseMaterial3D.CULL_DISABLED:
+				two_sided = true
+			if material is ShaderMaterial and "cull_disabled" in (material as ShaderMaterial).shader.code:
+				two_sided = true
+		if two_sided:
+			continue
 		var bounds: AABB = visual.global_transform * visual.mesh.get_aabb()
 		if bounds.size.x > 60.0 or bounds.size.z > 60.0 or absf(bounds.get_center().x) > 34.0 or absf(bounds.get_center().z) > 34.0:
 			continue

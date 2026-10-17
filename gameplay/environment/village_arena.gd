@@ -14,6 +14,16 @@ var landscape_noise: FastNoiseLite = FastNoiseLite.new()
 
 func _ready() -> void:
 	name = "WoodlandVillage"
+	# The source builder remains available to regenerate the static lightmap snapshot.
+	var baked_path: String = "res://content/environments/village_generated/village_lit.scn"
+	if not bool(get_meta("prepare_lightmap", false)) and ResourceLoader.exists(baked_path):
+		var baked: PackedScene = load(baked_path) as PackedScene
+		var snapshot: Node3D = baked.instantiate() as Node3D
+		var lightmap: LightmapGI = snapshot.get_node("VillageLightmap") as LightmapGI
+		if lightmap.light_data != null and lightmap.light_data.get_user_count() > 0:
+			add_child(snapshot)
+			return
+		snapshot.free()
 	wood = surface("b0a08a", "oak", 0.5)
 	straw = surface("bfb9aa", "reed_thatch")
 	straw.uv1_triplanar = false
