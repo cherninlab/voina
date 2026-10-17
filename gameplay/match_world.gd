@@ -95,42 +95,7 @@ func clear_players() -> void:
 	lobby_camera.make_current()
 
 func build_arena() -> void:
-	add_child(preload("res://gameplay/environment/tree_pack.tscn").instantiate())
-	add_prototype_props()
-	add_parked_cars()
-	# A 56 m greybox: the inner cover ring keeps the old spacing, an outer ring gives the extra room its own fights.
-	box(Vector3(ARENA, 1, ARENA), Vector3(0, -0.5, 0), Color("243442"))
-	for location: Vector3 in [Vector3(-5, 0.6, -4), Vector3(5, 0.6, 4), Vector3(-5, 0.6, 4), Vector3(5, 0.6, -4)]:
-		box(Vector3(3, 1.2, 2), location, Color("45606c"))
-	for location: Vector3 in [Vector3(-16, 0.6, -14), Vector3(16, 0.6, 14), Vector3(-17, 0.6, 12), Vector3(17, 0.6, -12), Vector3(0, 0.6, -19), Vector3(0, 0.6, 19), Vector3(-20, 0.6, 2), Vector3(20, 0.6, -2)]:
-		box(Vector3(3.5, 1.2, 2.2), location, Color("45606c"))
-	var half: float = ARENA / 2.0
-	for location: Vector3 in [Vector3(-half, 1, 0), Vector3(half, 1, 0)]:
-		box(Vector3(0.5, 2, ARENA), location, Color("304654"))
-	for location: Vector3 in [Vector3(0, 1, -half), Vector3(0, 1, half)]:
-		box(Vector3(ARENA, 2, 0.5), location, Color("304654"))
-	var light: DirectionalLight3D = DirectionalLight3D.new()
-	light.rotation_degrees = Vector3(-55, -30, 0)
-	light.shadow_enabled = true
-	add_child(light)
-	var environment: WorldEnvironment = WorldEnvironment.new()
-	environment.environment = Environment.new()
-	environment.environment.background_mode = Environment.BG_COLOR
-	environment.environment.background_color = Color("101e2b")
-	environment.environment.ambient_light_source = Environment.AMBIENT_SOURCE_COLOR
-	environment.environment.ambient_light_color = Color("acc7dc")
-	environment.environment.ambient_light_energy = 0.7
-	add_child(environment)
-
-func box(size: Vector3, location: Vector3, color: Color) -> void:
-	var block: CSGBox3D = CSGBox3D.new()
-	block.size = size
-	block.position = location
-	block.use_collision = true
-	var material: StandardMaterial3D = StandardMaterial3D.new()
-	material.albedo_color = color
-	block.material = material
-	add_child(block)
+	add_child(preload("res://gameplay/environment/village_arena.gd").new())
 
 func build_ui() -> void:
 	add_child(preload("res://ui/fisheye.gd").new()) # T-031: fisheye remap of the 3D frame, below the HUD
@@ -154,7 +119,7 @@ func build_ui() -> void:
 	menu.add_theme_constant_override("separation", 12)
 	canvas.add_child(menu)
 	var title: Label = Label.new()
-	title.text = "MULTIPLAYER / GREYBOX\nConnect over LAN or Tailscale"
+	title.text = "VOINA / WOODLAND VILLAGE\nConnect over LAN or Tailscale"
 	menu.add_child(title)
 	address.text = "127.0.0.1"
 	address.custom_minimum_size = Vector2(320, 40)

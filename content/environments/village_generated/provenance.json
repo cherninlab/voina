@@ -1,0 +1,6 @@
+{
+  "source": "OpenAI ImageGen, generated in this Codex conversation on 2026-10-17",
+  "purpose": "Original generated base-color candidates for village surfaces",
+  "files": ["oak.png", "thatch.png", "ground.png"],
+  "notes": "No Village House Kit geometry, textures, audio or armor files are included. Geometry is authored procedurally in village_arena.gd. Material tiling is artistic prototype quality, not a calibrated PBR scan."
+}
