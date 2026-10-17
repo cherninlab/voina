@@ -98,60 +98,13 @@ func build_arena() -> void:
 	add_child(preload("res://gameplay/environment/village_arena.gd").new())
 
 func build_ui() -> void:
-	add_child(preload("res://ui/fisheye.gd").new()) # T-031: fisheye remap of the 3D frame, below the HUD
-	var canvas: CanvasLayer = CanvasLayer.new()
-	add_child(canvas)
-	hud.position = Vector2(24, 20)
-	hud.add_theme_font_size_override("font_size", 18)
-	canvas.add_child(hud)
-	controls_button.text = "Controls"
-	controls_button.position = Vector2(24, 150)
-	controls_button.pressed.connect(func() -> void: controls_panel.visible = not controls_panel.visible)
-	canvas.add_child(controls_button)
-	canvas.add_child(controls_panel)
-	leave_button.position = Vector2(140, 150)
-	leave_button.text = "Leave game"
-	leave_button.pressed.connect(func() -> void: NetworkManager.stop("Left game"))
-	leave_button.hide()
-	canvas.add_child(leave_button)
-	canvas.add_child(preload("res://ui/sword_tweaks_panel.gd").new()) # T-014 hook: live sword tuning
-	menu.position = Vector2(440, 195)
-	menu.add_theme_constant_override("separation", 12)
-	canvas.add_child(menu)
-	var title: Label = Label.new()
-	title.text = "VOINA / WOODLAND VILLAGE\nConnect over LAN or Tailscale"
-	menu.add_child(title)
-	address.text = "127.0.0.1"
-	address.custom_minimum_size = Vector2(320, 40)
-	menu.add_child(address)
-	pve_toggle.text = "PvE · 3 hostile raiders"
-	menu.add_child(pve_toggle)
-	match_toggle.text = "Match · first to 3 round wins"
-	menu.add_child(match_toggle)
-	host_button.text = "Host game"
-	host_button.pressed.connect(func() -> void: NetworkManager.host_game(NetworkManager.port))
-	menu.add_child(host_button)
-	join_button.text = "Join game"
-	join_button.pressed.connect(func() -> void: NetworkManager.join_game(address.text, NetworkManager.port))
-	menu.add_child(join_button)
-	var reticle: Label = Label.new()
-	reticle.text = "+"
-	reticle.set_anchors_and_offsets_preset(Control.PRESET_CENTER)
-	canvas.add_child(reticle)
+	add_child(preload("res://ui/fisheye.gd").new())
+	add_child(preload("res://ui/game_ui.gd").new())
 
 func _process(_delta: float) -> void:
-	controls_button.visible = Input.mouse_mode != Input.MOUSE_MODE_CAPTURED
-	var active_peer: bool = not multiplayer.multiplayer_peer is OfflineMultiplayerPeer
-	leave_button.visible = active_peer and controls_button.visible
-	leave_button.text = "Cancel connection" if multiplayer.multiplayer_peer.get_connection_status() == MultiplayerPeer.CONNECTION_CONNECTING else "Leave game"
-	host_button.disabled = active_peer
-	join_button.disabled = active_peer
-	address.editable = not active_peer
-	pve_toggle.disabled = active_peer
-	match_toggle.disabled = active_peer
-	if not controls_button.visible:
-		controls_panel.hide()
-	hud.text = "VOINA · %s\n%s melee · %s bolt · %s block · %s dash · %s jump\n%s camera · %s turn · Esc release cursor" % [NetworkManager.status, InputSettings.key_label(&"melee"), InputSettings.key_label(&"bolt"), InputSettings.key_label(&"block"), InputSettings.key_label(&"dash"), InputSettings.key_label(&"jump"), InputSettings.key_label(&"camera_toggle"), InputSettings.key_label(&"quick_turn")]
+	if not hud.visible:
+		return
+	hud.text = "VALKA · %s\n%s melee · %s bolt · %s block · %s dash · %s jump\n%s camera · %s turn · Esc release cursor" % [NetworkManager.status, InputSettings.key_label(&"melee"), InputSettings.key_label(&"bolt"), InputSettings.key_label(&"block"), InputSettings.key_label(&"dash"), InputSettings.key_label(&"jump"), InputSettings.key_label(&"camera_toggle"), InputSettings.key_label(&"quick_turn")]
 	var local: Node = players.get_node_or_null(str(multiplayer.get_unique_id()))
 	if local != null:
 		var combat: CombatController = local.get("combat") as CombatController

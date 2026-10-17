@@ -62,6 +62,20 @@ func local_checks() -> void:
 	await frames(10)
 	check(ready_players(1) and Wildlife.active, "A fresh host has a player and birds")
 	var player: CharacterBody3D = (world.get("players") as Node).get_node("1") as CharacterBody3D
+	var ui: CanvasLayer = world.get_node("GameUI") as CanvasLayer
+	var escape: InputEventKey = InputEventKey.new()
+	escape.physical_keycode = KEY_ESCAPE
+	escape.pressed = true
+	ui.call("_input", escape)
+	check(bool(ui.get("paused")) and Input.mouse_mode == Input.MOUSE_MODE_VISIBLE, "Pause releases local input")
+	check(not get_tree().paused, "Pause menu never freezes multiplayer simulation")
+	ui.call("show_controls")
+	check((world.get("controls_panel") as Control).visible, "Pause opens existing controls")
+	ui.call("resume")
+	check(not bool(ui.get("paused")) and not (world.get("controls_panel") as Control).visible, "Resume closes menus")
+	ui.call("_input", escape)
+	ui.call("_input", escape)
+	check(not bool(ui.get("paused")), "Escape toggles pause and resume")
 	check(Projectiles.handle_fire(1, 0, player.position + HostileMob.CHEST, Vector3.UP), "Create an in-flight bolt for cleanup")
 	(world.get("leave_button") as BaseButton).pressed.emit()
 	await frames(4)
@@ -73,8 +87,9 @@ func local_checks() -> void:
 	await frames(4)
 	NetworkManager.join_game("127.0.0.1", NetworkManager.port)
 	await frames(2)
+	check((ui.get("loader_panel") as Control).visible, "Pending join displays an indeterminate loader")
 	check((world.get("leave_button") as Button).text == "Cancel connection" and (world.get("host_button") as Button).disabled, "A pending join can be cancelled and cannot overlap another host attempt")
-	(world.get("leave_button") as BaseButton).pressed.emit()
+	(ui.get("cancel_button") as Button).pressed.emit()
 	await frames(4)
 	clean_lobby()
 	NetworkManager.join_game("127.0.0.1", NetworkManager.port)

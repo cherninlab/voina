@@ -1,7 +1,9 @@
 config_version=5
 
 [application]
-config/name="Voina"
+config/name="VALKA"
+config/use_custom_user_dir=true
+config/custom_user_dir_name="Godot/app_userdata/Voina"
 run/main_scene="res://gameplay/match_world.tscn"
 config/features=PackedStringArray("4.7", "Mobile")
 

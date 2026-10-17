@@ -1,4 +1,4 @@
-# Voina
+# VALKA
 
 A Godot **4.7.2 Standard / typed GDScript** multiplayer combat starter for 2–4 friends on MacBooks. Mobile renderer, native Metal, built-in Jolt; Git for collaboration and ENet over LAN/Tailscale for game traffic.
 
