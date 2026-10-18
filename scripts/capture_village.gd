@@ -59,7 +59,7 @@ func capture() -> void:
 			printerr("VILLAGE_PLAYER_FAIL: player did not land at ", sample, " position ", player.position)
 			quit(1)
 			return
-	for sample: Vector3 in [Vector3(0,0,-40),Vector3(50,0,0),Vector3(-60,0,0),Vector3(0,0,60)]:
+	for sample: Vector3 in [Vector3(0,0,-40),Vector3(50,0,0),Vector3(-60,0,0),Vector3(0,0,60),Vector3(3.4,0,-70),Vector3(-1.8,0,-100)]:
 		var query: PhysicsRayQueryParameters3D = PhysicsRayQueryParameters3D.create(sample + Vector3.UP*150.0,sample - Vector3.UP*50.0)
 		var hit: Dictionary = space.intersect_ray(query)
 		assert(not hit.is_empty(), "Outer rendered terrain must have matching collision")
@@ -69,10 +69,20 @@ func capture() -> void:
 		for frame: int in range(120):
 			await physics_frame
 		assert(player.is_on_floor() and player.position.y >= surface.y-0.2, "Real player must land on outer terrain")
-	print("VILLAGE_OUTER_GROUND_OK: real player lands beyond all four old square edges")
+	print("VILLAGE_OUTER_GROUND_OK: real player lands beyond all four old square edges and at two woodland trail sites")
+	var village: Node3D = world.get_node("WoodlandVillage") as Node3D
+	for step: int in range(13):
+		var z: float = -38.0-float(step)*6.0
+		var x: float = float(village.call("north_trail_center",z))
+		var expected: float = float(village.call("landscape_surface_height",x,z))
+		var query: PhysicsRayQueryParameters3D = PhysicsRayQueryParameters3D.create(Vector3(x,expected+2.0,z),Vector3(x,expected-2.0,z))
+		var hit: Dictionary = space.intersect_ray(query)
+		assert(not hit.is_empty() and absf((hit["position"] as Vector3).y-expected)<0.05,"Trail collision must match rendered terrain")
+		assert((hit["normal"] as Vector3).y>0.71,"Sampled trail slopes must be walkable")
+	print("VILLAGE_TRAIL_GROUND_OK: 13 matched terrain samples with walkable normals")
 	player.position = Vector3(0, 0.95, 3)
 	player.velocity = Vector3.ZERO
-	print("VILLAGE_PLAYER_OK: real player lands at eight inner/outer terrain locations")
+	print("VILLAGE_PLAYER_OK: real player lands at ten inner/outer terrain locations")
 	var directory: String = OS.get_user_data_dir().path_join("village-screenshots")
 	for argument: String in OS.get_cmdline_user_args():
 		if argument.begins_with("--capture-dir="):
@@ -93,8 +103,8 @@ func capture() -> void:
 	assert(checked_lens, "Capture must retain the game's wide-angle pass")
 	print("VILLAGE_PROJECTION_OK: owner/capture FOV ", camera.fov, "; wide-angle source verified")
 	camera.far = 600.0
-	var positions: Array[Vector3] = [Vector3(33, 28, 37), Vector3(-18, 2.3, 17), Vector3(-13, 5, -10), Vector3(4,2.3,-20)]
-	var targets: Array[Vector3] = [Vector3(0, 0, -2), Vector3(-18, 2.6, -5), Vector3(-23, 3, 4), Vector3(0,1,-40)]
+	var positions: Array[Vector3] = [Vector3(33, 28, 37), Vector3(-18, 2.3, 17), Vector3(-13, 5, -10), Vector3(4,2.3,-20), Vector3(-6,2.2,-44)]
+	var targets: Array[Vector3] = [Vector3(0, 0, -2), Vector3(-18, 2.6, -5), Vector3(-23, 3, 4), Vector3(0,1,-40), Vector3(3,0.5,-68)]
 	for index: int in range(positions.size()):
 		camera.position = positions[index]
 		camera.look_at(targets[index])

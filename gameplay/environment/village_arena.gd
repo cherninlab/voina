@@ -28,12 +28,14 @@ func _ready() -> void:
 			refresh_landscape(snapshot)
 			refresh_ground(snapshot)
 			clover_edges()
+			clear_north_trail(snapshot)
 			refresh_foliage(snapshot)
 			woodland_edges()
 			ridge_outcrops()
 			open_north_approach(snapshot)
 			dress_north_approach(snapshot)
 			north_ferns()
+			trail_grass(snapshot)
 			return
 		snapshot.free()
 	wood = surface("b0a08a", "oak", 0.5)
@@ -120,6 +122,7 @@ func _ready() -> void:
 		var x: float = cos(angle) * radius
 		var z: float = sin(angle) * radius
 		(trees as TreePack).add_plant("tree%02d" % (1 + index % 36), Vector3(x, landscape_surface_height(x, z) - 0.05, z), forest_random.randf_range(7.0, 14.0))
+	clear_north_trail(trees)
 	if not bool(get_meta("prepare_lightmap", false)):
 		refresh_foliage(trees)
 		woodland_edges()
@@ -128,6 +131,7 @@ func _ready() -> void:
 	dress_north_approach(self)
 	if not bool(get_meta("prepare_lightmap", false)):
 		north_ferns()
+		trail_grass(self)
 
 func landscape_height(x: float, z: float) -> float:
 	var distance: float = maxf(absf(x), absf(z))
@@ -656,6 +660,8 @@ func refresh_foliage(root_node: Node3D) -> void:
 	var replacement: StandardMaterial3D
 	for node: Node in root_node.find_children("*", "MeshInstance3D", true, false):
 		var visual: MeshInstance3D = node as MeshInstance3D
+		if not visual.visible:
+			continue
 		var material: Material = visual.material_override
 		if not material is StandardMaterial3D:
 			continue
@@ -767,6 +773,8 @@ func woodland_edges() -> void:
 		var center: Vector2 = Vector2(cos(angle), sin(angle)) * radius
 		for plant: int in range(7):
 			var point: Vector2 = center + Vector2(random.randf_range(-8.0,8.0), random.randf_range(-8.0,8.0))
+			if point.y < -31.0 and point.y > -112.0 and absf(point.x-north_trail_center(point.y)) < 4.0:
+				continue
 			if maxf(absf(point.x), absf(point.y)) < 34.0 or absf(point.x) < 6.0:
 				continue
 			var height: float = landscape_surface_height(point.x, point.y)
@@ -881,6 +889,7 @@ func make_landscape_material() -> ShaderMaterial:
 	var shader: Shader = Shader.new()
 	shader.code = """shader_type spatial;
 uniform sampler2D soil : source_color, filter_linear_mipmap_anisotropic, repeat_enable;
+uniform sampler2D trail : source_color, filter_linear_mipmap_anisotropic, repeat_enable;
 uniform sampler2D rock : source_color, filter_linear_mipmap_anisotropic, repeat_enable;
 varying vec3 world_pos;
 varying vec3 world_normal;
@@ -905,11 +914,17 @@ void fragment() {
  float strata=0.93+0.07*sin(world_pos.y*1.6+noise(p*0.12)*2.0);
  stone*=mix(vec3(0.76,0.79,0.77),vec3(1.03,0.96,0.84),patch)*strata;
  ALBEDO=mix(earth,stone,exposed)*(0.87+0.13*noise(warped*0.018));
+ float center=-0.5+sin(max(-p.y-37.0,0.0)*0.055)*4.0;
+ float width=1.5+noise(p*0.22)*0.8;
+ float trail_mask=(1.0-smoothstep(width,width+1.0,abs(p.x-center)+(noise(p*0.9)-0.5)*0.65));
+ trail_mask*=smoothstep(29.0,35.0,-p.y)*(1.0-smoothstep(98.0,112.0,-p.y));
+ ALBEDO=mix(ALBEDO,texture(trail,p*0.32).rgb*mix(0.75,1.02,noise(p*0.11)),trail_mask);
  ROUGHNESS=0.95;
 }
 """
 	material.shader = shader
 	material.set_shader_parameter("soil", load("res://content/environments/valhalla/textures/KB3D_VHL_GrassGround_basecolor.png"))
+	material.set_shader_parameter("trail", load("res://content/environments/village_generated/mineral_earth.png"))
 	material.set_shader_parameter("rock", load("res://content/environments/village_generated/schist_rock.png"))
 	return material
 
@@ -1072,3 +1087,61 @@ void fragment() { ALBEDO=vec3(0.045,0.075,0.015)*COLOR.rgb; ROUGHNESS=0.88; BACK
 	visual.gi_mode = GeometryInstance3D.GI_MODE_DISABLED
 	add_child(visual)
 	print("VILLAGE_FERNS_OK: ",locations.size()," opaque clumps; northern passage excluded")
+
+func north_trail_center(z: float) -> float:
+	return -0.5+sin(maxf(-z-37.0,0.0)*0.055)*4.0
+
+func clear_north_trail(root_node: Node3D) -> void:
+	var cleared: int = 0
+	for node: Node in root_node.find_children("*","MeshInstance3D",true,false):
+		var visual: MeshInstance3D = node as MeshInstance3D
+		var material: StandardMaterial3D = visual.material_override as StandardMaterial3D
+		if material == null or material.albedo_texture == null or not "/tree_pack/textures/" in material.albedo_texture.resource_path:
+			continue
+		var bounds: AABB = visual.global_transform*visual.mesh.get_aabb()
+		var center: Vector3 = bounds.get_center()
+		if center.z < -31.0 and center.z > -112.0 and absf(center.x-north_trail_center(center.z)) < 3.1:
+			visual.visible = false
+			cleared += 1
+	print("VILLAGE_TRAIL_CLEAR: ",cleared," cosmetic tree/bush meshes excluded from trail")
+
+func trail_grass(root_node: Node3D) -> void:
+	# Reuse the original village grass mesh/material from builder or baked snapshot.
+	var source: MultiMeshInstance3D
+	for node: Node in root_node.find_children("*","MultiMeshInstance3D",true,false):
+		var candidate: MultiMeshInstance3D = node as MultiMeshInstance3D
+		var material: ShaderMaterial = candidate.material_override as ShaderMaterial
+		if material != null and "ALBEDO=vec3(0.045,0.085,0.018)" in material.shader.code:
+			source = candidate
+			break
+	assert(source != null, "Trail shoulders reuse the village grass geometry")
+	var random: RandomNumberGenerator = RandomNumberGenerator.new()
+	random.seed = 64811
+	var patches: FastNoiseLite = FastNoiseLite.new()
+	patches.seed = 63811
+	patches.frequency = 0.13
+	var locations: Array[Vector3] = []
+	for attempt: int in range(7000):
+		var z: float = random.randf_range(-110.0,-36.0)
+		var offset: float = random.randf_range(-13.0,13.0)
+		var x: float = north_trail_center(z)+offset
+		if absf(offset)<2.8 or patches.get_noise_2d(x,z)<-0.25:
+			continue
+		if random.randf()<smoothstep(7.0,13.0,absf(offset)):
+			continue
+		locations.append(Vector3(x,landscape_surface_height(x,z)+0.01,z))
+	var multi: MultiMesh = MultiMesh.new()
+	multi.transform_format = MultiMesh.TRANSFORM_3D
+	multi.use_colors = true
+	multi.mesh = source.multimesh.mesh
+	multi.instance_count = locations.size()
+	for index: int in range(locations.size()):
+		var size: float = random.randf_range(0.8,1.8)
+		multi.set_instance_transform(index,Transform3D(Basis(Vector3.UP,random.randf()*TAU).scaled(Vector3.ONE*size),locations[index]))
+		multi.set_instance_color(index,Color(random.randf_range(0.7,1.0),random.randf_range(0.75,1.0),0.65))
+	var visual: MultiMeshInstance3D = MultiMeshInstance3D.new()
+	visual.multimesh = multi
+	visual.material_override = source.material_override
+	visual.gi_mode = GeometryInstance3D.GI_MODE_DISABLED
+	add_child(visual)
+	print("VILLAGE_TRAIL_GRASS: ",locations.size()," original opaque clumps outside walking strip")

@@ -151,3 +151,13 @@ Matched capture trials isolated height fog, all fog, contrast 1.12 and ambient e
 The retained profile explicitly uses sky contribution 0.65, ambient color 53657b and ambient energy 0.4. Sun direction/energy, exposure, ACES, fog and protected lens remain unchanged. Static geometry was regenerated and the native Metal lightmap bake refreshed: 488 UV2 meshes; editor reported completed bake in 1.70 seconds. The saved scene includes the current open entrance, apron and timber frame. Temporary editor resource-busy warnings did not recur in the subsequent clean import or runtime checks.
 
 `runtime-skyfill-baked` contains four calibrated real captures. The gate and ramp remain readable without the rejected contrast grade. Gate capsule, 21 apron samples, eight inner/outer player landings and projection checks pass. This is an incremental balance improvement; it does not establish Enshrouded-level lighting, M2 performance or temporal stability.
+
+## Winding northern woodland trail
+
+The terrain shader now blends mineral earth into a winding strip from the gate approach toward z=-112, with varying width, noisy shoulders and a fading end. Its center follows the same function used by placement clearance and checks. Two existing tree/bush meshes are hidden from the corridor before nearby-tree replacement; sapling placement also excludes it. The original village grass mesh/material is reused in a live MultiMesh along the shoulders, with patchy placement, tapered density from seven to thirteen metres off the centerline, and no collision. The final pass places 3,156 clumps. No new external assets or terrain heights are introduced.
+
+A fifth calibrated camera records the actual trail. The generated `target-woodland-trail.png` is conditioned on that view and the supplied Enshrouded image, paired with mineral-earth/schist/tree textures and existing grass, fern, broadleaf and ridge shape studies. It is a target, not gameplay evidence.
+
+Checks now include 13 route samples matching terrain collision within 5cm and sampled normals above 0.71 Y, plus two extra real-player drops at z=-70 and z=-100 (ten drops total). Gate clearance, 21 apron samples and existing floor/ramp/projection checks remain. These samples do not prove exhaustive navigation or M2 performance. Tree cards, peripheral lens stretching, geological detail and broader vegetation remain below reference.
+
+The final five-view capture set is `runtime-trail-taper`; all route, approach and player-landing checks pass. The extra field view deliberately retains the real wide-angle output, including its known peripheral artifacts, for an honest target comparison.

@@ -235,6 +235,31 @@
         "fern-shape-study-prompt.md"
       ],
       "note": "Original opaque polygon fern fronds, rachis strips and folded leaflets; 127 cosmetic clumps along northern wall edges, excluding passage. Shader colors, no alpha texture. Shape sheet is reference, not exact CAD or runtime."
+    },
+    {
+      "target": "target-woodland-trail.png",
+      "source_capture": "runtime-woodland-trail/village-05.png",
+      "supporting_basecolors": [
+        "mineral_earth.png",
+        "schist_rock.png",
+        "tree01_atlas.png"
+      ],
+      "supporting_shape_references": [
+        "groundcover-shape-study.png",
+        "fern-shape-study.png",
+        "broadleaf-shape-study.png",
+        "ridge-shape-study.png"
+      ],
+      "supporting_geometry": [
+        "gameplay/environment/village_arena.gd:make_landscape_material",
+        "gameplay/environment/village_arena.gd:trail_grass",
+        "gameplay/environment/village_arena.gd:clear_north_trail"
+      ],
+      "prompts": [
+        "target-woodland-trail-prompt.md",
+        "mineral_earth-prompt.md"
+      ],
+      "note": "AI target directly conditioned on actual new route capture and Enshrouded; composition approximate. Trail material, corridor clearance and original opaque shoulder grass implemented. Dense natural vegetation, tree fidelity, geological detail and temporal rendering remain below target."
     }
   ],
   "sky_note": "Generated LDR appearance panorama, not calibrated HDR lighting. Sky shader adjusts horizon latitude and blends wrap/poles; runtime review is required."
