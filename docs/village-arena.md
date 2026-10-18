@@ -103,3 +103,7 @@ The `runtime-matched-projection` three-view capture passed floor/ramp rays, four
 ## Mineral-earth ground pass
 
 The source builder and baked scene now share the terrain-material factory. Runtime replaces only the snapshot terrain material identified by its dirt texture uniform, preserving mesh UV2, LightmapGI bindings and collision. A mipmapped mineral-earth base color blends with the existing soil at a second scale; smooth low-frequency coordinate warping and earth-tone modulation reduce uniform repetition. Grass/paving masks and their normals remain unchanged. The calibrated three-view Metal capture in `runtime-mineral-ground` passes floor/ramp rays, four player landing drops and the 108-degree lens-source assertion. This improves surface variation, not geometric ground relief or temporal antialiasing.
+
+## Nearby broadleaf variants
+
+The original branching-tree replacement now covers tree01, tree02, tree03, tree04, tree08 and tree09 within 80 metres of village origin. Source bounds determine crown width; six restrained leaf tints preserve some species variation. Conifers, other species and distant meshes retain their original geometry. This reuses the paired `broadleaf-shape-study.png` and `tree01_atlas.png`, without new external assets. `runtime-broadleaf-variety` contains three calibrated Metal views; floor/ramp, four landing checks and projection assertion pass. This is a spatial asset selection, not dynamic LOD or measured M2 performance.

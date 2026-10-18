@@ -160,7 +160,7 @@
         "broadleaf-shape-study-prompt.md",
         "tree01_atlas-prompt.md"
       ],
-      "note": "Original authored trunk/branch and curved foliage-card meshes for tree01 within 80m of village origin. Far instances retain original geometry with improved atlas. Spatial asset selection, not a measured camera LOD system. Shape sheet is reference, not exact CAD or runtime capture."
+      "note": "Original branching trunk and curved foliage meshes now replace nearby tree01/02/03/04/08/09 within 80m of village origin; crown width follows source bounds and six leaf tints vary species. Conifers and distant meshes retained. Spatial selection, not measured camera LOD. Shape sheet is reference, not exact CAD or runtime capture."
     },
     {
       "target": "target-player-projection.png",

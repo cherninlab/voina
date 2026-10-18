@@ -662,7 +662,7 @@ func roof_surface_point(location: Vector3, width: float, depth: float, side: int
 	return location + Vector3(side * (width * 0.5 * down + fringe), 2.8 * (0.5 - down) - absf(fringe), (along - 0.5) * depth)
 
 func refresh_foliage(root_node: Node3D) -> void:
-	# Preserve the existing UVs and cutout/coverage settings for this atlas trial.
+	# Upgrade nearby broadleaf species; preserve conifers and distant low-detail meshes.
 	var replacement: StandardMaterial3D
 	for node: Node in root_node.find_children("*", "MeshInstance3D", true, false):
 		var visual: MeshInstance3D = node as MeshInstance3D
@@ -670,7 +670,11 @@ func refresh_foliage(root_node: Node3D) -> void:
 		if not material is StandardMaterial3D:
 			continue
 		var original: StandardMaterial3D = material as StandardMaterial3D
-		if original.albedo_texture == null or not original.albedo_texture.resource_path.ends_with("/tree01.png"):
+		if original.albedo_texture == null:
+			continue
+		var species: String = original.albedo_texture.resource_path.get_file().get_basename()
+		var broadleaf: Array[String] = ["tree01", "tree02", "tree03", "tree04", "tree08", "tree09"]
+		if not species in broadleaf:
 			continue
 		var bounds: AABB = visual.global_transform * visual.mesh.get_aabb()
 		if Vector2(bounds.get_center().x, bounds.get_center().z).length() < 80.0:
@@ -680,7 +684,15 @@ func refresh_foliage(root_node: Node3D) -> void:
 			tree.global_position = base
 			tree.rotation.y = fposmod(base.x * 0.71 + base.z * 0.37, TAU)
 			tree.call("configure", load("res://content/environments/village_generated/tree01_atlas.png"), original, bounds.size.y)
+			var crown_width: float = clampf(bounds.size.x / bounds.size.y / 0.58, 0.8, 1.35)
+			tree.scale.x *= crown_width
+			tree.scale.z *= crown_width
+			var leaf_tones: Array[Color] = [Color("d5d9c6"), Color("b9c7a6"), Color("9fae91"), Color("d0ce9e"), Color("c3c59b"), Color("b2c3aa")]
+			var crown: MeshInstance3D = tree.get_child(1) as MeshInstance3D
+			(crown.material_override as StandardMaterial3D).albedo_color = leaf_tones[broadleaf.find(species)]
 			visual.visible = false
+			continue
+		if species != "tree01":
 			continue
 		if replacement == null:
 			replacement = original.duplicate() as StandardMaterial3D
