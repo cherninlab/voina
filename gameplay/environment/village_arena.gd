@@ -680,7 +680,7 @@ func refresh_foliage(root_node: Node3D) -> void:
 			tree.global_position = base
 			tree.rotation.y = fposmod(base.x * 0.71 + base.z * 0.37, TAU)
 			var autumn: bool = species.trim_prefix("tree").to_int() >= 28
-			var atlas: Texture2D = load("res://content/environments/village_generated/tree_autumn_atlas.png" if autumn else "res://content/environments/village_generated/tree01_atlas.png") as Texture2D
+			var atlas: Texture2D = load("res://content/environments/village_generated/oak_bough_autumn_atlas.png" if autumn else "res://content/environments/village_generated/oak_bough_atlas.png") as Texture2D
 			tree.call("configure", atlas, original, bounds.size.y)
 			var crown_width: float = clampf(bounds.size.x / bounds.size.y / 0.58, 0.8, 1.35)
 			tree.scale.x *= crown_width
@@ -824,7 +824,7 @@ func woodland_edges() -> void:
 	source.alpha_antialiasing_mode = BaseMaterial3D.ALPHA_ANTIALIASING_ALPHA_TO_COVERAGE
 	source.cull_mode = BaseMaterial3D.CULL_DISABLED
 	var prototype: Node3D = preload("res://gameplay/environment/woodland_tree.gd").new() as Node3D
-	prototype.call("configure", load("res://content/environments/village_generated/tree01_atlas.png"), source, 10.0)
+	prototype.call("configure", load("res://content/environments/village_generated/oak_bough_atlas.png"), source, 10.0)
 	for part: int in range(2):
 		var template: MeshInstance3D = prototype.get_child(part) as MeshInstance3D
 		var instances: MultiMesh = MultiMesh.new()

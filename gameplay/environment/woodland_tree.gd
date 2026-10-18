@@ -31,36 +31,44 @@ static func build_meshes() -> void:
 	leaves.begin(Mesh.PRIMITIVE_TRIANGLES)
 	var random: RandomNumberGenerator = RandomNumberGenerator.new()
 	random.seed = 64192
-	var trunk: Array[Vector3] = [Vector3(0,-0.08,0), Vector3(0.08,2.5,-0.05), Vector3(-0.12,5.0,0.12), Vector3(0.22,7.2,0.05), Vector3(0.12,8.8,-0.12)]
+	var trunk: Array[Vector3] = [Vector3(0,-0.08,0), Vector3(0.12,2.5,-0.08), Vector3(-0.18,4.8,0.16), Vector3(0.3,6.8,0.1), Vector3(0.12,8.2,-0.18)]
 	for segment: int in range(trunk.size() - 1):
-		branch(bark, trunk[segment], trunk[segment + 1], 0.24 - segment * 0.045, 0.195 - segment * 0.045)
-	for index: int in range(14):
-		var angle: float = index * 2.4
-		var height: float = 3.4 + index * 0.34
-		var reach: float = 2.1 - absf(height - 5.8) * 0.28
+		branch(bark, trunk[segment], trunk[segment + 1], 0.28 - segment * 0.06, 0.22 - segment * 0.06)
+	for index: int in range(12):
+		var angle: float = index * 2.4 + random.randf_range(-0.2, 0.2)
+		var height: float = 3.5 + index * 0.26
+		var reach: float = random.randf_range(3.0, 4.0) - absf(height - 5.0) * 0.25
+		var radial: Vector3 = Vector3(cos(angle), 0.0, sin(angle))
+		var lateral: Vector3 = Vector3(-sin(angle), 0.0, cos(angle))
 		var start: Vector3 = trunk[trunk.size() - 1]
 		for segment: int in range(trunk.size() - 1):
 			if height <= trunk[segment + 1].y:
 				var weight: float = inverse_lerp(trunk[segment].y, trunk[segment + 1].y, height)
 				start = trunk[segment].lerp(trunk[segment + 1], weight)
 				break
-		var middle: Vector3 = start + Vector3(cos(angle), 0.5, sin(angle)) * reach * 0.55
-		var finish: Vector3 = start + Vector3(cos(angle) * reach, 1.2 + random.randf() * 0.5, sin(angle) * reach)
-		branch(bark, start, middle, 0.085, 0.05)
-		branch(bark, middle, finish, 0.05, 0.015)
-		for card: int in range(3):
-			var orientation: Basis = Basis(Vector3.UP, angle + card * PI / 3.0) * Basis(Vector3.RIGHT, random.randf_range(-0.4, 0.4)) * Basis(Vector3.FORWARD, random.randf_range(-0.45, 0.45))
-			var center: Vector3 = finish + Vector3(random.randf_range(-0.25,0.25), 0.15, random.randf_range(-0.25,0.25))
-			leaf_card(leaves, center, orientation, random.randf_range(1.6,2.2), random.randf_range(1.8,2.4))
+		var middle: Vector3 = start + radial * reach * 0.5 + Vector3.UP * 0.7
+		var finish: Vector3 = start + radial * reach + Vector3.UP * random.randf_range(1.4, 2.1)
+		branch(bark, start, middle, 0.11, 0.065)
+		branch(bark, middle, finish, 0.065, 0.025)
+		for fork: int in range(2):
+			var side: float = -1.0 if fork == 0 else 1.0
+			var tip: Vector3 = finish + lateral * side * random.randf_range(0.5, 1.0) + Vector3.UP * random.randf_range(0.1, 0.6)
+			branch(bark, middle.lerp(finish, 0.65), tip, 0.035, 0.008)
+			for card: int in range(3):
+				var orientation: Basis = Basis(Vector3.UP, angle + card * PI / 3.0) * Basis(Vector3.RIGHT, random.randf_range(-0.7, 0.7)) * Basis(Vector3.FORWARD, random.randf_range(-0.6, 0.6))
+				leaf_card(leaves, tip, orientation, random.randf_range(2.0, 2.8), random.randf_range(1.5, 2.1))
 		for card: int in range(2):
-			var center: Vector3 = start.lerp(finish, 0.65) + Vector3.UP * 0.6
-			var orientation: Basis = Basis(Vector3.UP, angle + card * PI * 0.5) * Basis(Vector3.FORWARD, random.randf_range(-0.5, 0.5))
-			leaf_card(leaves, center, orientation, 2.0, 2.2)
-	for card: int in range(3):
-		leaf_card(leaves, Vector3(0.12,8.9,-0.12), Basis(Vector3.UP, card * PI / 3.0), 1.8, 2.0)
+			var center: Vector3 = start.lerp(finish, 0.6) + Vector3.UP * 0.7
+			var orientation: Basis = Basis(Vector3.UP, angle + card * PI * 0.5) * Basis(Vector3.FORWARD, random.randf_range(-0.6, 0.6))
+			leaf_card(leaves, center, orientation, 2.4, 1.9)
+	for crown: int in range(3):
+		var angle: float = crown * 2.4
+		var tip: Vector3 = trunk[4] + Vector3(cos(angle) * 0.8, 0.35, sin(angle) * 0.8)
+		branch(bark, trunk[3], tip, 0.07, 0.015)
+		for card: int in range(3):
+			leaf_card(leaves, tip, Basis(Vector3.UP, angle + card * PI / 3.0), 2.4, 2.0)
 	bark.generate_normals()
 	bark.index()
-	leaves.generate_normals()
 	leaves.index()
 	bark_mesh = bark.commit()
 	foliage_mesh = leaves.commit()
@@ -84,4 +92,7 @@ static func leaf_card(tool: SurfaceTool, center: Vector3, orientation: Basis, wi
 				var uv: Vector2 = corner / 3.0
 				var curve: float = sin(uv.x * PI) * sin(uv.y * PI) * 0.2
 				tool.set_uv(Vector2(0.31 + uv.x * 0.68, 0.99 - uv.y * 0.98))
-				tool.add_vertex(center + orientation * Vector3((uv.x - 0.5) * width, (uv.y - 0.5) * height, curve))
+				var position: Vector3 = center + orientation * Vector3((uv.x - 0.5) * width, (uv.y - 0.5) * height, curve)
+				# Artist-shaped crown normals keep intersecting foliage cards from shading as flat sheets.
+				tool.set_normal(((position - Vector3(0.0, 6.5, 0.0)) * Vector3(1.0, 0.8, 1.0)).normalized())
+				tool.add_vertex(position)
