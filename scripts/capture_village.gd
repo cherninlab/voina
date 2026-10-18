@@ -26,6 +26,30 @@ func capture() -> void:
 		quit(1)
 		return
 	var player: CharacterBody3D = world.get("players").get_child(0) as CharacterBody3D
+	var gate_shape: Shape3D
+	for child: Node in player.get_children():
+		if child is CollisionShape3D:
+			gate_shape = (child as CollisionShape3D).shape
+			break
+	assert(gate_shape != null, "Use the actual player collision shape for gate clearance")
+	var gate_query: PhysicsShapeQueryParameters3D = PhysicsShapeQueryParameters3D.new()
+	gate_query.shape = gate_shape
+	gate_query.transform = Transform3D(Basis.IDENTITY,Vector3(1.2,1.6,-24.5))
+	gate_query.motion = Vector3(0,0,-10)
+	gate_query.exclude = [player.get_rid()]
+	var gate_clearance: PackedFloat32Array = space.cast_motion(gate_query)
+	assert(gate_clearance[0] > 0.99, "Northern village approach must pass a player capsule")
+	print("VILLAGE_GATE_OK: player capsule clears northern approach")
+	var previous_height: float = 0.0
+	for step: int in range(21):
+		var z: float = -27.0-float(step)*0.5
+		var query: PhysicsRayQueryParameters3D = PhysicsRayQueryParameters3D.create(Vector3(1.2,3.0,z),Vector3(1.2,-4.0,z))
+		var hit: Dictionary = space.intersect_ray(query)
+		assert(not hit.is_empty(), "Northern approach needs continuous ground")
+		var height: float = (hit["position"] as Vector3).y
+		assert(step == 0 or absf(height-previous_height) < 0.25, "Northern approach must avoid an abrupt floor step")
+		previous_height = height
+	print("VILLAGE_APPROACH_GROUND_OK: 21 continuous ramp samples")
 	for sample: Vector3 in [Vector3(0, 0, 0), Vector3(10, 0, 10), Vector3(-10, 0, -10), Vector3(24, 0, 14)]:
 		player.position = sample + Vector3.UP * 3.0
 		player.velocity = Vector3.ZERO
@@ -35,9 +59,20 @@ func capture() -> void:
 			printerr("VILLAGE_PLAYER_FAIL: player did not land at ", sample, " position ", player.position)
 			quit(1)
 			return
+	for sample: Vector3 in [Vector3(0,0,-40),Vector3(50,0,0),Vector3(-60,0,0),Vector3(0,0,60)]:
+		var query: PhysicsRayQueryParameters3D = PhysicsRayQueryParameters3D.create(sample + Vector3.UP*150.0,sample - Vector3.UP*50.0)
+		var hit: Dictionary = space.intersect_ray(query)
+		assert(not hit.is_empty(), "Outer rendered terrain must have matching collision")
+		var surface: Vector3 = hit["position"] as Vector3
+		player.position = surface + Vector3.UP*3.0
+		player.velocity = Vector3.ZERO
+		for frame: int in range(120):
+			await physics_frame
+		assert(player.is_on_floor() and player.position.y >= surface.y-0.2, "Real player must land on outer terrain")
+	print("VILLAGE_OUTER_GROUND_OK: real player lands beyond all four old square edges")
 	player.position = Vector3(0, 0.95, 3)
 	player.velocity = Vector3.ZERO
-	print("VILLAGE_PLAYER_OK: real player lands at four terrain locations")
+	print("VILLAGE_PLAYER_OK: real player lands at eight inner/outer terrain locations")
 	var directory: String = OS.get_user_data_dir().path_join("village-screenshots")
 	for argument: String in OS.get_cmdline_user_args():
 		if argument.begins_with("--capture-dir="):
@@ -58,8 +93,8 @@ func capture() -> void:
 	assert(checked_lens, "Capture must retain the game's wide-angle pass")
 	print("VILLAGE_PROJECTION_OK: owner/capture FOV ", camera.fov, "; wide-angle source verified")
 	camera.far = 600.0
-	var positions: Array[Vector3] = [Vector3(33, 28, 37), Vector3(-18, 2.3, 17), Vector3(-13, 5, -10)]
-	var targets: Array[Vector3] = [Vector3(0, 0, -2), Vector3(-18, 2.6, -5), Vector3(-23, 3, 4)]
+	var positions: Array[Vector3] = [Vector3(33, 28, 37), Vector3(-18, 2.3, 17), Vector3(-13, 5, -10), Vector3(4,2.3,-20)]
+	var targets: Array[Vector3] = [Vector3(0, 0, -2), Vector3(-18, 2.6, -5), Vector3(-23, 3, 4), Vector3(0,1,-40)]
 	for index: int in range(positions.size()):
 		camera.position = positions[index]
 		camera.look_at(targets[index])

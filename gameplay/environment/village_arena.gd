@@ -31,6 +31,7 @@ func _ready() -> void:
 			refresh_foliage(snapshot)
 			woodland_edges()
 			ridge_outcrops()
+			open_north_approach(snapshot)
 			return
 		snapshot.free()
 	wood = surface("b0a08a", "oak", 0.5)
@@ -121,6 +122,7 @@ func _ready() -> void:
 		refresh_foliage(trees)
 		woodland_edges()
 		ridge_outcrops()
+	open_north_approach(self)
 
 func landscape_height(x: float, z: float) -> float:
 	var distance: float = maxf(absf(x), absf(z))
@@ -173,6 +175,7 @@ func landscape() -> void:
 	var material: ShaderMaterial = make_landscape_material()
 	visual.material_override = material
 	add_child(visual)
+	landscape_collision(visual)
 
 func surface(color: String, texture: String = "", tiling: float = 1.0) -> StandardMaterial3D:
 	var material: StandardMaterial3D = StandardMaterial3D.new()
@@ -906,3 +909,64 @@ func refresh_landscape(root_node: Node3D) -> void:
 		var material: ShaderMaterial = visual.material_override as ShaderMaterial
 		if material != null and material.get_shader_parameter("soil") != null and material.get_shader_parameter("rock") != null:
 			visual.material_override = make_landscape_material()
+			landscape_collision(visual)
+
+func landscape_collision(visual: MeshInstance3D) -> void:
+	for child: Node in visual.get_children():
+		if child is StaticBody3D:
+			return
+	var body: StaticBody3D = StaticBody3D.new()
+	body.name = "LandscapeGround"
+	var shape: CollisionShape3D = CollisionShape3D.new()
+	shape.shape = visual.mesh.create_trimesh_shape()
+	body.add_child(shape)
+	visual.add_child(body)
+
+func open_north_approach(root_node: Node3D) -> void:
+	if bool(root_node.get_meta("north_approach_open",false)):
+		return
+	root_node.set_meta("north_approach_open",true)
+	# The baked snapshot flattens names, so identify the north palisade by its box.
+	for node: Node in root_node.find_children("*", "CollisionShape3D", true, false):
+		var collider: CollisionShape3D = node as CollisionShape3D
+		var box: BoxShape3D = collider.shape as BoxShape3D
+		if box == null or not is_equal_approx(box.size.y,2.2) or not is_equal_approx(box.size.z,0.35):
+			continue
+		var original: MeshInstance3D = collider.get_parent().get_parent() as MeshInstance3D
+		if original == null or original.global_position.z > -24.0 or absf(original.global_position.x) > 2.0:
+			continue
+		var length: float = (box.size.x - 6.0) * 0.5
+		for side: int in [-1,1]:
+			var segment: MeshInstance3D = block(Vector3(length,2.2,0.35),Vector3.ZERO,original.material_override,true,root_node)
+			segment.global_transform = original.global_transform
+			segment.position += segment.basis.x * (side * (3.0 + length*0.5))
+		original.visible = false
+		collider.disabled = true
+		print("VILLAGE_APPROACH: opened six-metre north gate at ",original.global_position)
+		break
+	# Clear the upright decorative logs across the six-metre gate opening.
+	for node: Node in root_node.find_children("*", "MeshInstance3D", true, false):
+		var visual: MeshInstance3D = node as MeshInstance3D
+		var bounds: AABB = visual.global_transform * visual.mesh.get_aabb()
+		var center: Vector3 = bounds.get_center()
+		if absf(center.x+0.5) < 3.1 and center.z < -24.0 and center.z > -29.0 and bounds.size.y > 2.0 and bounds.size.y < 2.9 and maxf(bounds.size.x,bounds.size.z) < 0.6:
+			visual.visible = false
+	var tool: SurfaceTool = SurfaceTool.new()
+	tool.begin(Mesh.PRIMITIVE_TRIANGLES)
+	for z: int in range(20):
+		for x: int in range(12):
+			var corners: Array[Vector2] = [Vector2(x,z),Vector2(x+1,z),Vector2(x,z+1),Vector2(x+1,z),Vector2(x+1,z+1),Vector2(x,z+1)]
+			for corner: Vector2 in corners:
+				var point: Vector3 = Vector3(-3.5+corner.x*0.5,0,-37.0+corner.y*0.5)
+				var blend: float = smoothstep(27.0,34.0,-point.z)
+				point.y = lerpf(ground_height(point.x,point.z),landscape_surface_height(point.x,point.z),blend)+0.015
+				tool.set_uv(Vector2(point.x,point.z)*0.25)
+				tool.add_vertex(point)
+	tool.generate_normals()
+	tool.generate_tangents()
+	tool.index()
+	var apron: MeshInstance3D = MeshInstance3D.new()
+	apron.mesh = tool.commit()
+	apron.material_override = make_ground_material()
+	add_child(apron)
+	landscape_collision(apron)
