@@ -1059,6 +1059,7 @@ func north_ferns() -> void:
 	var leaves: SurfaceTool = SurfaceTool.new()
 	leaves.begin(Mesh.PRIMITIVE_TRIANGLES)
 	for frond: int in range(8):
+		leaves.set_uv(Vector2(-1.0,-1.0))
 		var angle: float = frond*2.4
 		var radial: Vector3 = Vector3(cos(angle),0,sin(angle))
 		var lateral: Vector3 = Vector3(-sin(angle),0,cos(angle))
@@ -1079,17 +1080,33 @@ func north_ferns() -> void:
 				var cross_leaf: Vector3 = Vector3(-direction.z,0,direction.x)
 				var shoulder: Vector3 = stem+direction*(length*0.45)
 				var ridge: Vector3 = shoulder+Vector3.UP*0.012
-				var corners: Array[Vector3] = [stem,shoulder+cross_leaf*(length*0.25),stem+direction*length+Vector3.UP*0.015,shoulder-cross_leaf*(length*0.25)]
-				for edge: int in range(4):
+				var outline: Array[Vector2] = [Vector2(0,0),Vector2(0.22,0.16),Vector2(0.5,0.23),Vector2(0.78,0.15),Vector2(1,0),Vector2(0.78,-0.15),Vector2(0.5,-0.23),Vector2(0.22,-0.16)]
+				var corners: Array[Vector3] = []
+				for point: Vector2 in outline:
+					corners.append(stem + direction * (length * point.x) + cross_leaf * (length * point.y) + Vector3.UP * (sin(point.x * PI) * 0.008 + point.x * 0.015))
+				for edge: int in range(corners.size()):
 					leaves.set_color(Color(1.0,1.0,0.8).lerp(Color(0.72,0.9,0.65),t))
+					leaves.set_uv(Vector2(0.5,0.45))
 					leaves.add_vertex(ridge)
-					leaves.add_vertex(corners[(edge+1)%4])
+					var next: int = (edge+1)%corners.size()
+					leaves.set_uv(Vector2(0.5+outline[next].y/0.46,outline[next].x))
+					leaves.add_vertex(corners[next])
+					leaves.set_uv(Vector2(0.5+outline[edge].y/0.46,outline[edge].x))
 					leaves.add_vertex(corners[edge])
 	leaves.generate_normals()
 	var shader: Shader = Shader.new()
 	shader.code = """shader_type spatial;
 render_mode cull_disabled;
-void fragment() { ALBEDO=vec3(0.045,0.075,0.015)*COLOR.rgb; ROUGHNESS=0.88; BACKLIGHT=ALBEDO*0.25; }
+void fragment() {
+ float leaf=step(0.0,UV.x);
+ float footprint=max(fwidth(UV.x),fwidth(UV.y));
+ float midrib=1.0-smoothstep(0.012,0.025+footprint,abs(UV.x-0.5));
+ float ribs=abs(fract(UV.y*6.0-abs(UV.x-0.5)*2.0)-0.5);
+ float vein=(1.0-smoothstep(0.015,0.04+footprint*6.0,ribs))*(1.0-smoothstep(0.025,0.12,footprint));
+ float variation=mix(0.85,1.15,sin(clamp(UV.y,0.0,1.0)*3.14159));
+ ALBEDO=vec3(0.045,0.075,0.015)*COLOR.rgb*mix(1.0,variation+midrib*0.15+vein*0.08,leaf);
+ ROUGHNESS=0.88; BACKLIGHT=ALBEDO*0.25;
+}
 """
 	var material: ShaderMaterial = ShaderMaterial.new()
 	material.shader = shader
@@ -1104,13 +1121,28 @@ void fragment() { ALBEDO=vec3(0.045,0.075,0.015)*COLOR.rgb; ROUGHNESS=0.88; BACK
 			if absf(point.x+0.5) < 4.0 or sin(point.x*0.9+point.y*0.6) < -0.4:
 				continue
 			locations.append(Vector3(point.x,ground_height(point.x,point.y)-0.03,point.y))
+	var wall_count: int = locations.size()
+	var patches: FastNoiseLite = FastNoiseLite.new()
+	patches.seed = 93417
+	patches.frequency = 0.19
+	for attempt: int in range(1000):
+		var z: float = random.randf_range(-107.0, -37.0)
+		var side: float = -1.0 if random.randf() < 0.5 else 1.0
+		var x: float = north_trail_center(z) + side * random.randf_range(4.2, 15.0)
+		if patches.get_noise_2d(x, z) < 0.05:
+			continue
+		var height: float = landscape_surface_height(x, z)
+		var slope: float = absf(landscape_surface_height(x + 1.0, z) - height) + absf(landscape_surface_height(x, z + 1.0) - height)
+		if slope > 0.8:
+			continue
+		locations.append(Vector3(x, height - 0.03, z))
 	var multi: MultiMesh = MultiMesh.new()
 	multi.transform_format = MultiMesh.TRANSFORM_3D
 	multi.use_colors = true
 	multi.mesh = leaves.commit()
 	multi.instance_count = locations.size()
 	for index: int in range(locations.size()):
-		var size: float = random.randf_range(0.7,1.25)
+		var size: float = random.randf_range(0.7,1.25) if index < wall_count else random.randf_range(0.9,1.65)
 		multi.set_instance_transform(index,Transform3D(Basis(Vector3.UP,random.randf()*TAU).scaled(Vector3.ONE*size),locations[index]))
 		multi.set_instance_color(index,Color(random.randf_range(0.75,1.0),random.randf_range(0.85,1.0),0.8))
 	var visual: MultiMeshInstance3D = MultiMeshInstance3D.new()
@@ -1118,7 +1150,7 @@ void fragment() { ALBEDO=vec3(0.045,0.075,0.015)*COLOR.rgb; ROUGHNESS=0.88; BACK
 	visual.material_override = material
 	visual.gi_mode = GeometryInstance3D.GI_MODE_DISABLED
 	add_child(visual)
-	print("VILLAGE_FERNS_OK: ",locations.size()," opaque clumps; northern passage excluded")
+	print("VILLAGE_FERNS_OK: ",locations.size()," opaque clumps (", wall_count, " wall, ", locations.size() - wall_count, " woodland); passage excluded")
 
 func north_trail_center(z: float) -> float:
 	return -0.5+sin(maxf(-z-37.0,0.0)*0.055)*4.0

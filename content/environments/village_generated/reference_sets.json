@@ -291,6 +291,27 @@
         "oak_bough_atlas-prompt.md"
       ],
       "note": "Generated target, not gameplay. Mature tree groups and denser grass implemented; broader canopy shapes, richer understory, geological detail and rendering remain incomplete. Nearby original tree geometry now uses a spreading forked crown and rounded bough atlases; distant original meshes retain tree silhouettes."
+    },
+    {
+      "target": "understory-placement-study.png",
+      "source_capture": "runtime-rounded-normals/village-05.png",
+      "supporting_shape_references": [
+        "fern-shape-study.png",
+        "groundcover-shape-study.png"
+      ],
+      "supporting_basecolors": [
+        "mineral_earth.png",
+        "oak_bough_atlas.png",
+        "oak_bough_autumn_atlas.png"
+      ],
+      "supporting_geometry": [
+        "gameplay/environment/village_arena.gd:north_ferns",
+        "gameplay/environment/village_arena.gd:trail_grass"
+      ],
+      "prompts": [
+        "understory-placement-study-prompt.md"
+      ],
+      "note": "AI composition/overhead/side study, not gameplay or precise CAD. Original opaque ferns extend into noisy trail-side patches, rounded leaflets and procedural vein shading implemented. Plant diversity, richer ground transitions and overall rendering remain incomplete."
     }
   ],
   "sky_note": "Generated LDR appearance panorama, not calibrated HDR lighting. Sky shader adjusts horizon latitude and blends wrap/poles; runtime review is required."
