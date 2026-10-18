@@ -242,7 +242,8 @@
       "supporting_basecolors": [
         "mineral_earth.png",
         "schist_rock.png",
-        "tree01_atlas.png"
+        "tree01_atlas.png",
+        "tree_autumn_atlas.png"
       ],
       "supporting_shape_references": [
         "groundcover-shape-study.png",
@@ -257,7 +258,8 @@
       ],
       "prompts": [
         "target-woodland-trail-prompt.md",
-        "mineral_earth-prompt.md"
+        "mineral_earth-prompt.md",
+        "tree_autumn_atlas-prompt.md"
       ],
       "note": "AI target directly conditioned on actual new route capture and Enshrouded; composition approximate. Trail material, corridor clearance and original opaque shoulder grass implemented. Dense natural vegetation, tree fidelity, geological detail and temporal rendering remain below target."
     }

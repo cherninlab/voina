@@ -669,7 +669,7 @@ func refresh_foliage(root_node: Node3D) -> void:
 		if original.albedo_texture == null:
 			continue
 		var species: String = original.albedo_texture.resource_path.get_file().get_basename()
-		var broadleaf: Array[String] = ["tree01", "tree02", "tree03", "tree04", "tree08", "tree09"]
+		var broadleaf: Array[String] = ["tree01", "tree02", "tree03", "tree04", "tree08", "tree09", "tree11", "tree12", "tree13", "tree15", "tree16", "tree17", "tree18", "tree19", "tree20", "tree21", "tree22", "tree23", "tree24", "tree25", "tree26", "tree27", "tree28", "tree29", "tree30", "tree31", "tree32", "tree33", "tree34", "tree35", "tree36"]
 		if not species in broadleaf:
 			continue
 		var bounds: AABB = visual.global_transform * visual.mesh.get_aabb()
@@ -679,13 +679,18 @@ func refresh_foliage(root_node: Node3D) -> void:
 			var base: Vector3 = Vector3(bounds.get_center().x, bounds.position.y, bounds.get_center().z)
 			tree.global_position = base
 			tree.rotation.y = fposmod(base.x * 0.71 + base.z * 0.37, TAU)
-			tree.call("configure", load("res://content/environments/village_generated/tree01_atlas.png"), original, bounds.size.y)
+			var autumn: bool = species.trim_prefix("tree").to_int() >= 28
+			var atlas: Texture2D = load("res://content/environments/village_generated/tree_autumn_atlas.png" if autumn else "res://content/environments/village_generated/tree01_atlas.png") as Texture2D
+			tree.call("configure", atlas, original, bounds.size.y)
 			var crown_width: float = clampf(bounds.size.x / bounds.size.y / 0.58, 0.8, 1.35)
 			tree.scale.x *= crown_width
 			tree.scale.z *= crown_width
-			var leaf_tones: Array[Color] = [Color("d5d9c6"), Color("b9c7a6"), Color("9fae91"), Color("d0ce9e"), Color("c3c59b"), Color("b2c3aa")]
+			var leaf_tones: Array[Color] = [Color("d5d9c6"), Color("b9c7a6"), Color("9fae91"), Color("d0ce9e"), Color("c3c59b"), Color("b2c3aa"), Color("c4cca6"), Color("adb795"), Color("d6cc8e"), Color("b8c4a0"), Color("c9d1ad"), Color("94a585"), Color("aab997"), Color("b3c69d"), Color("c6c99a"), Color("879f8e"), Color("b0bea0"), Color("c9d6b1"), Color("b8c9a5"), Color("afbd96"), Color("a2b58d"), Color("9fb58b"), Color("d3a890"), Color("d0c7ae"), Color("dbb299"), Color("cc9c84"), Color("d7bc93"), Color("aa9c81"), Color("c3ab91"), Color("d8ce9f"), Color("b2a18b")]
 			var crown: MeshInstance3D = tree.get_child(1) as MeshInstance3D
-			(crown.material_override as StandardMaterial3D).albedo_color = leaf_tones[broadleaf.find(species)]
+			var foliage: StandardMaterial3D = crown.material_override as StandardMaterial3D
+			foliage.albedo_color = leaf_tones[broadleaf.find(species)]
+			if autumn:
+				foliage.backlight = Color("695132")
 			visual.visible = false
 			continue
 		if species != "tree01":
