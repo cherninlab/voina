@@ -4,7 +4,7 @@ extends SkeletonModifier3D
 # Analytic two-bone IK. Targets/poles are in world space; bone poses are skeleton-local.
 # Hand bones on both rigs: +Y runs along the fingers, +Z from the pinky side to the thumb
 # side, and the palm faces -X on the right hand and +X on the left.
-const GRIP_ALONG: Array[float] = [0.06, 0.23] # right and left hilt points, sword-local z
+const GRIP_ALONG: Array[float] = [0.02, 0.12] # right and left hilt points, sword-local z; about a hand's width apart
 const PALM_DEPTH: float = 0.04 # wrist bone to the hilt axis, across the palm
 const PALM_LENGTH: float = 0.06 # wrist bone to where the fingers wrap
 var visual: CharacterVisual

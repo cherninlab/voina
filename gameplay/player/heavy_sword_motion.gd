@@ -18,6 +18,9 @@ const DRIVE_TIME: float = 0.20 # the cut's torque builds over this long, then th
 const FOLLOW_THROUGH_TIME: float = 0.6
 const HOLD_BEARING: float = 1.9 # the hands stay beside or ahead of the hips
 const ANCHOR_HOLD_SPEED: float = 0.6 # below this a resting tip sticks
+const MIN_REACH: float = 0.22 # a planted hilt never comes closer to the hips than this
+const CARRY_SPEED: float = 6.0 # rad/s at which a live cut catches up with the view's turn
+const MAX_CARRY: float = 2.4 # view turn one cut can absorb, so a circling drag still never orbits
 
 # Tunables: the in-game Sword tweaks panel edits these live; tests use the defaults.
 static var gravity: float = 9.8
@@ -130,6 +133,8 @@ var drive_age: float = DRIVE_TIME
 var drive_turn: float = 0.0 # signed peak heading torque of the current cut, rad/s^2
 var drive_lift: float = 0.0 # elevation torque of the current cut, rad/s^2
 var stroke_live: bool = false # an approved cut is still in the air; cleared when it lands
+var carry: float = 0.0 # view turn a live cut still owes the blade and body, rad
+var carry_left: float = 0.0 # how much more view turn the live cut may absorb, rad
 
 func reset(camera_yaw: float, origin: Vector3 = anchor, floor_y: float = ground) -> void:
 	anchor = origin
@@ -140,6 +145,8 @@ func reset(camera_yaw: float, origin: Vector3 = anchor, floor_y: float = ground)
 	sweep = 0.0
 	drive_age = DRIVE_TIME
 	stroke_live = false
+	carry = 0.0
+	carry_left = 0.0
 	elevation = rest_elevation()
 	heading_speed = 0.0
 	elevation_speed = 0.0
@@ -206,6 +213,8 @@ func strike(direction: Vector2) -> void:
 	elevation_speed = minf(elevation_speed, 0.0) if chop else maxf(elevation_speed, 0.0) * 0.5
 	drive_age = 0.0
 	stroke_live = true
+	carry = 0.0
+	carry_left = MAX_CARRY
 	planted = false
 	stroke_age = 0.0
 	var forward: Vector3 = Vector3.FORWARD.rotated(Vector3.UP, heading)
@@ -232,6 +241,12 @@ func step(delta: float, camera_yaw: float, camera_pitch: float, holding: bool, a
 		drive_age = DRIVE_TIME
 		stroke_live = false
 	var driving: bool = holding and not blocking and absf(turn) < 1.2 and absf(tilt) < 1.2 and absf(turn) + absf(tilt) > 0.00001
+	# A live cut sweeps in the view's frame: the same drag that turns the camera also carries
+	# the blade and body along, so the swing still reads as half a turn on screen.
+	if stroke_live and not blocking and absf(turn) < 1.2:
+		var absorbed: float = clampf(turn, -carry_left, carry_left)
+		carry += absorbed
+		carry_left -= absf(absorbed)
 	var start_anchor: Vector3 = anchor
 	var start_ground: float = ground
 	var remaining: float = duration
@@ -276,6 +291,13 @@ func step(delta: float, camera_yaw: float, camera_pitch: float, holding: bool, a
 				travel = clampf(heading_speed * dt, -MAX_SWEEP - sweep, MAX_SWEEP - sweep)
 				sweep += travel
 			heading = wrapf(heading + travel, -PI, PI)
+			if stroke_live and not blocking and carry != 0.0:
+				# Bounded and ramped with the cut's torque, so the heavy wind-up is never skipped.
+				var limit: float = CARRY_SPEED * (0.3 + 0.7 * drive_ramp()) * dt
+				var caught: float = clampf(carry, -limit, limit)
+				carry -= caught
+				heading = wrapf(heading + caught, -PI, PI)
+				body_yaw = wrapf(body_yaw + caught, -PI, PI)
 			elevation += elevation_speed * dt
 			if elevation > MAX_ELEVATION:
 				elevation = MAX_ELEVATION
@@ -336,16 +358,15 @@ func place_planted() -> void:
 	toward_body.y = 0.0
 	if toward_body.length_squared() < 0.000001:
 		toward_body = Vector3.BACK.rotated(Vector3.UP, heading)
-	var desired: Vector3 = tip + toward_body.normalized() * horizontal - anchor
-	desired.y = 0.0
-	stretch = clampf((desired.length() - rest_reach) / maxf(0.01, max_reach - rest_reach), 0.0, 1.0)
-	var hold: Vector3 = desired.limit_length(max_reach)
+	# The hilt sits on the line from the hips to the tip. Walking onto the blade would put it
+	# behind the hips, through the body, so the hands keep it MIN_REACH ahead and push the tip on.
+	var ahead: float = maxf(toward_body.length() - horizontal, MIN_REACH)
+	stretch = clampf((ahead - rest_reach) / maxf(0.01, max_reach - rest_reach), 0.0, 1.0)
+	var hold: Vector3 = -toward_body.normalized() * minf(ahead, max_reach)
 	hilt = anchor + Vector3(hold.x, rest_height, hold.z)
-	var flat: Vector3 = tip - hilt
-	flat.y = 0.0
-	if flat.length_squared() < 0.000001:
-		flat = Vector3.FORWARD.rotated(Vector3.UP, heading)
-	tip = hilt + flat.normalized() * horizontal
+	# Along the hips-to-tip line, so a tip the body has walked onto is pushed ahead, never flipped behind.
+	var flat: Vector3 = -toward_body.normalized()
+	tip = hilt + flat * horizontal
 	tip.y = floor_level
 	heading = atan2(-flat.x, -flat.z)
 	elevation = rest_elevation()

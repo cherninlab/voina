@@ -15,6 +15,8 @@ func run() -> void:
 	check_carry_through()
 	check_gesture_rates()
 	check_coupled_motion()
+	check_view_frame_cut()
+	check_walk_onto_blade()
 	var motion: HeavySwordMotion = HeavySwordMotion.new()
 	var origin: Vector3 = Vector3(0, 0.9, 0)
 	motion.reset(0.0, origin, 0.0)
@@ -75,7 +77,7 @@ func run() -> void:
 		spin_swept += angle_difference(spin_last, spin.blade_yaw())
 		spin_last = spin.blade_yaw()
 	check(spin_peak > 0.8, "A cut with circular input lifts the heavy blade (peak %.2f m)" % spin_peak)
-	check(spin_swept > 1.0 and spin_swept <= HeavySwordMotion.MAX_SWEEP + 0.01, "Continuous input stays within one broad arc (swept %.2f rad)" % spin_swept)
+	check(spin_swept > 1.0 and spin_swept <= HeavySwordMotion.MAX_SWEEP + HeavySwordMotion.MAX_CARRY + 0.01, "Continuous input stays within one broad arc, short of an orbit (swept %.2f rad)" % spin_swept)
 	check(spin.tip_velocity.length() <= HeavySwordMotion.MAX_TIP_SPEED, "Spin speed stays bounded")
 	check(pulled, "Heavy blade produces bounded owner pull")
 	check(absf(angle_difference(motion.body_yaw, motion.blade_yaw())) < 0.3 and motion.tip.y < 0.1, "Body follows the blade and it settles back into the ground")
@@ -196,6 +198,51 @@ func check_heavy_swing() -> void:
 			check(ramping and early < peak * 0.45 and peak_time > 0.15, "Tip speed builds up instead of peaking at launch (%.1f m/s by 0.1 s, peak %.1f m/s at %.2f s): %s" % [early, peak, peak_time, label])
 			check(mid_speed >= 7.0 and peak <= 15.0, "Mid-swing tip speed can still cut a raider (%.1f m/s): %s" % [mid_speed, label])
 			check(motion.planted and motion.tip_velocity.length() < 0.05, "The swing lands and settles: " + label)
+
+func check_view_frame_cut() -> void:
+	# The drag that fires a cut also turns the camera. The cut sweeps in the view's frame, so on
+	# screen it still turns about half a turn however far the camera went (it was ~85 deg on a
+	# 110 deg camera flick when the sweep was world-fixed).
+	var origin: Vector3 = Vector3(0.0, 0.9, 0.0)
+	for hz: int in [30, 60, 120]:
+		for side: float in [-1.0, 1.0]:
+			for camera_turn: float in [0.0, 1.0, 1.9]:
+				var motion: HeavySwordMotion = HeavySwordMotion.new()
+				motion.reset(0.0, origin, 0.0)
+				motion.strike(Vector2(side, 0.0))
+				var yaw: float = 0.0
+				var last_body: float = motion.body_yaw
+				var body_travel: float = 0.0
+				var peak: float = 0.0
+				for frame: int in range(hz * 2):
+					var time: float = float(frame + 1) / hz
+					yaw = -side * camera_turn * minf(1.0, time / 0.15)
+					motion.step(1.0 / hz, yaw, 0.0, time <= 0.25, time < 0.52, false, origin, 0.0)
+					body_travel += angle_difference(last_body, motion.body_yaw)
+					last_body = motion.body_yaw
+					peak = maxf(peak, motion.tip_velocity.length())
+				var on_screen: float = (body_travel - yaw) * -side
+				var label: String = "%d Hz, cut %+.0f, camera %.1f rad" % [hz, side, camera_turn]
+				check(on_screen > deg_to_rad(170.0) and on_screen < HeavySwordMotion.MAX_SWEEP + 0.15, "A cut turns the body about half a turn relative to the view (%.0f deg): %s" % [rad_to_deg(on_screen), label])
+				check(motion.planted and peak < HeavySwordMotion.MAX_TIP_SPEED, "A view-carried cut stays bounded and lands: " + label)
+
+func check_walk_onto_blade() -> void:
+	# Walking toward a planted tip must never fold the hilt (and the hands) back through the hips.
+	var origin: Vector3 = Vector3(0.0, 0.9, 0.0)
+	var motion: HeavySwordMotion = HeavySwordMotion.new()
+	motion.reset(0.0, origin, 0.0)
+	var start_tip: Vector3 = motion.tip
+	var ahead: bool = true
+	for frame: int in range(90):
+		origin += Vector3(0.0, 0.0, -3.0 / 60.0)
+		motion.step(1.0 / 60.0, 0.0, 0.0, false, false, false, origin, 0.0, Vector3(0.0, 0.0, -3.0))
+		var to_tip: Vector3 = motion.tip - motion.anchor
+		var to_hilt: Vector3 = motion.hilt - motion.anchor
+		to_tip.y = 0.0
+		to_hilt.y = 0.0
+		ahead = ahead and to_hilt.dot(to_tip.normalized()) >= HeavySwordMotion.MIN_REACH - 0.01 and to_tip.length() > to_hilt.length()
+	check(ahead, "Walking onto a planted blade keeps the hilt ahead of the hips and the tip beyond it")
+	check(motion.tip.z < start_tip.z - 3.0 and motion.grounded(), "Walking onto a planted blade pushes the tip along the ground")
 
 func check_carry_through() -> void:
 	var origin: Vector3 = Vector3(0.0, 0.9, 0.0)
