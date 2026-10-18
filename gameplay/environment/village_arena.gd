@@ -806,6 +806,10 @@ func woodland_edges() -> void:
 	print("VILLAGE_WOODLAND_OK: ", transforms.size(), " grounded saplings in two instanced meshes")
 
 func apply_atmosphere(environment: Environment) -> void:
+	# Energy alone is ignored at a full sky contribution; balance the source explicitly.
+	environment.ambient_light_sky_contribution = 0.65
+	environment.ambient_light_color = Color("53657b")
+	environment.ambient_light_energy = 0.4
 	environment.fog_enabled = true
 	environment.fog_light_color = Color("bdcbd2")
 	environment.fog_density = 0.0015

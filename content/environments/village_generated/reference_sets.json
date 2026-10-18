@@ -223,7 +223,8 @@
         "aged_timber-prompt.md",
         "mineral_earth-prompt.md"
       ],
-      "note": "Direct actual-camera and Enshrouded-conditioned visual target. Gate frame and original opaque fern geometry implemented; path dressing and target lighting remain incomplete. Existing generated textures reused."
+      "note": "Direct actual-camera and Enshrouded-conditioned visual target. Gate frame and original opaque fern geometry implemented; path dressing and target lighting remain incomplete. Existing generated textures reused.",
+      "lighting_update": "Explicit 0.65 sky contribution with cool ambient color and 0.4 energy; refreshed native Metal static bake including the entrance. Four calibrated views in runtime-skyfill-baked; target fidelity remains incomplete."
     },
     {
       "target": "fern-shape-study.png",
