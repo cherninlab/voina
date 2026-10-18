@@ -8,12 +8,21 @@ var overlay: ShaderMaterial = ShaderMaterial.new()
 var meshes: Array[MeshInstance3D] = []
 var clip: StringName = &""
 var model: Node3D
-var lean: Vector3 = Vector3.ZERO # tilt (radians about x and z) away from the last blade shove
-var lean_speed: Vector3 = Vector3.ZERO
-var react_left: float = 0.0
+var react_left: float = 0.0 # how long since a shove still counts as a fresh reaction
 var flash_left: float = 0.0
 var freeze_left: float = 0.0 # a short animation hitstop so the blow lands
 var skeleton: Skeleton3D
+var puppet: MobPuppet = MobPuppet.new() # bone springs: hits flex the struck chain
+var feet: MobFeet # foot planting through TwoBoneIK3D
+var ragdoll: PhysicalBoneSimulator3D # the death fall, once it starts
+# The final pose after modifiers, skeleton space; between passes the skeleton holds only the animation.
+var poses: Array[Transform3D] = []
+var locals: Array[Transform3D] = []
+var last_push: Vector3 = Vector3.ZERO # the latest shove, world space, for the direction of a fall
+var push_age: float = 99.0
+var fallen: bool = false
+var velocity: Vector3 = Vector3.ZERO
+var last_position: Vector3 = Vector3.ZERO
 # Each wound rides on its nearest bone: {bone, center, normal, travel (bone space), age}.
 var wounds: Array[Dictionary] = []
 const CUT_SHADER: Shader = preload("res://gameplay/mobs/mob_cut.gdshader")
@@ -21,6 +30,7 @@ const OVERLAY_SHADER: Shader = preload("res://gameplay/mobs/mob_overlay.gdshader
 const MAX_WOUNDS: int = 6
 const FLASH: float = 0.09
 const FREEZE: float = 0.07
+const CORPSE: float = 8.0 # a fallen or cut body stays this long after the raider node is gone
 var rendered: bool = DisplayServer.get_name() != "headless" # the dummy renderer cannot take shader parameters
 
 func _ready() -> void:
@@ -32,6 +42,13 @@ func _ready() -> void:
 	for node: Node in model.find_children("*", "MeshInstance3D", true, false):
 		meshes.append(node as MeshInstance3D)
 	skeleton = model.find_children("*", "Skeleton3D", true, false)[0] as Skeleton3D
+	# Plan the feet from the clip, flex the puppet springs over it, then solve the legs back down.
+	feet = MobFeet.install(skeleton, self)
+	puppet.name = "Puppet"
+	skeleton.add_child(puppet)
+	skeleton.move_child(puppet, feet.get_index() + 1)
+	skeleton.skeleton_updated.connect(cache_pose)
+	last_position = global_position
 	overlay.shader = OVERLAY_SHADER
 	for mesh: MeshInstance3D in meshes:
 		mesh.material_overlay = overlay
@@ -48,21 +65,58 @@ func _process(delta: float) -> void:
 	flash_left = maxf(0.0, flash_left - delta)
 	freeze_left = maxf(0.0, freeze_left - delta)
 	playback.speed_scale = 0.0 if freeze_left > 0.0 else 1.0
+	push_age += delta
+	if delta > 0.0 and not fallen:
+		velocity = velocity.lerp((global_position - last_position) / delta, minf(1.0, delta * 10.0))
+		last_position = global_position
 	update_overlay(delta)
-	# A spring tilts the body away from the shove and settles back.
-	lean_speed += (-lean * 60.0 - lean_speed * 9.0) * delta
-	lean += lean_speed * delta
-	if model != null:
-		model.rotation = Vector3(lean.x, PI, lean.z)
 
-func react(impulse: Vector3) -> void:
-	# Impulse is world space; tilt about the horizontal axis perpendicular to it, in this node's frame.
-	var local: Vector3 = impulse.rotated(Vector3.UP, -global_rotation.y)
-	lean_speed += Vector3(-local.z, 0.0, local.x) * 1.4
+func cache_pose() -> void:
+	poses.resize(skeleton.get_bone_count())
+	locals.resize(poses.size())
+	for bone: int in range(poses.size()):
+		poses[bone] = skeleton.get_bone_global_pose(bone)
+		locals[bone] = skeleton.get_bone_pose(bone)
+
+# A shove or blade contact. The struck bones spin along the blade's travel and spring back.
+# point and travel are world space; without them the blow lands on the chest along the impulse.
+func react(impulse: Vector3, point: Vector3 = Vector3.INF, travel: Vector3 = Vector3.ZERO, speed: float = 0.0) -> void:
+	last_push = impulse
+	push_age = 0.0
 	react_left = 0.45
+	if fallen or skeleton == null:
+		return
+	if not point.is_finite():
+		point = bone_world(skeleton.find_bone("spine_03")).origin
+	var along: Vector3 = travel if travel.length_squared() > 0.0001 else impulse
+	puppet.hit(point, along, speed if speed > 0.0 else impulse.length() * 1.5)
 
 func bone_world(bone: int) -> Transform3D:
-	return skeleton.global_transform * skeleton.get_bone_global_pose(bone)
+	var pose: Transform3D = poses[bone] if bone < poses.size() else skeleton.get_bone_global_pose(bone)
+	return skeleton.global_transform * pose
+
+# Write the last final pose into the skeleton itself, so physics and copies start from what was seen.
+func hold_pose(target: Skeleton3D) -> void:
+	for bone: int in range(mini(locals.size(), target.get_bone_count())):
+		target.set_bone_pose(bone, locals[bone])
+
+# Death: the raider's own body becomes a ragdoll that collapses onto the terrain. It moves into the
+# scene so it outlives the raider node, and keeps its wounds tracking the falling bones.
+func fall() -> void:
+	if fallen or model == null or not visible or not is_inside_tree() or get_tree().current_scene == null:
+		return
+	fallen = true
+	label.visible = false
+	playback.pause()
+	hold_pose(skeleton)
+	puppet.active = false
+	feet.set_enabled(false)
+	reparent(get_tree().current_scene, true)
+	# Recent blows carry the body on; otherwise it slumps back and to one side.
+	var shove: Vector3 = last_push if push_age < 1.0 else global_basis * Vector3(randf_range(-0.4, 0.4), 0.0, 0.6)
+	ragdoll = MobRagdoll.build(skeleton, Callable(), Vector3(velocity.x, minf(velocity.y, 0.0), velocity.z))
+	MobRagdoll.push(ragdoll, shove.limit_length(5.0) * 0.4 + Vector3.UP * 0.3)
+	get_tree().create_timer(CORPSE).timeout.connect(queue_free)
 
 # A damaging hit leaves a gash along the blade's plane, flashes the body and freezes the pose.
 func wound(point: Vector3, normal: Vector3, travel: Vector3) -> void:
@@ -262,35 +316,31 @@ func bisect(point: Vector3, normal: Vector3, impulse: Vector3) -> void:
 	if model == null or not visible:
 		return
 	visible = false
-	var head: Vector3 = skeleton.global_transform * skeleton.get_bone_global_pose(skeleton.find_bone("Head")).origin
+	var head: Vector3 = bone_world(skeleton.find_bone("Head")).origin
 	var top_side: float = signf(normal.dot(head - point))
+	top_side = top_side if top_side != 0.0 else 1.0
+	hold_pose(skeleton)
+	# Bake the cut once, in the pose it happened in; both halves share the meshes.
+	var cut_meshes: Array[ArrayMesh] = []
+	for mesh: MeshInstance3D in meshes:
+		cut_meshes.append(MobRagdoll.bake_cut(mesh, skeleton, point, normal))
+	var middles: Dictionary[String, Vector3] = MobRagdoll.midpoints(skeleton)
 	for side: float in [1.0, -1.0]:
-		var half: RigidBody3D = RigidBody3D.new()
-		half.global_transform = global_transform
-		half.mass = 1.0
-		half.collision_layer = 0
-		half.collision_mask = 1
-		var shape: CollisionShape3D = CollisionShape3D.new()
-		var box: BoxShape3D = BoxShape3D.new()
-		box.size = Vector3(0.45, 0.8, 0.35)
-		shape.shape = box
-		shape.position.y = 0.3 if side == top_side else -0.3
-		half.add_child(shape)
 		var copy: Node3D = MODEL.instantiate() as Node3D
-		copy.rotation.y = PI
-		copy.position.y = -0.9
-		half.add_child(copy)
+		copy.name = "RaiderHalf"
+		get_tree().current_scene.add_child(copy, true)
+		copy.global_transform = model.global_transform
 		var target: Skeleton3D = copy.find_children("*", "Skeleton3D", true, false)[0] as Skeleton3D
-		for bone: int in range(skeleton.get_bone_count()):
-			target.set_bone_pose_position(bone, skeleton.get_bone_pose_position(bone))
-			target.set_bone_pose_rotation(bone, skeleton.get_bone_pose_rotation(bone))
-			target.set_bone_pose_scale(bone, skeleton.get_bone_pose_scale(bone))
-		# The cut plane in the copy's model space, which matches ours: discard the far side.
-		var plane_point: Vector3 = model.to_local(point)
-		var plane_normal: Vector3 = (model.global_basis.inverse() * normal).normalized() * -side
-		# The dummy renderer in headless runs cannot take shader parameters; halves still exist for tests.
-		for node: Node in copy.find_children("*", "MeshInstance3D", true, false) if DisplayServer.get_name() != "headless" else []:
+		hold_pose(target)
+		var index: int = 0
+		for node: Node in copy.find_children("*", "MeshInstance3D", true, false):
 			var mesh: MeshInstance3D = node as MeshInstance3D
+			if index < cut_meshes.size():
+				mesh.mesh = cut_meshes[index]
+			index += 1
+			# The dummy renderer in headless runs cannot take shader parameters; halves still exist for tests.
+			if not rendered:
+				continue
 			for surface: int in range(mesh.mesh.get_surface_count()):
 				var base: StandardMaterial3D = mesh.get_active_material(surface) as StandardMaterial3D
 				var material: ShaderMaterial = ShaderMaterial.new()
@@ -298,15 +348,16 @@ func bisect(point: Vector3, normal: Vector3, impulse: Vector3) -> void:
 				material.set_shader_parameter("has_albedo", base != null and base.albedo_texture != null)
 				if base != null and base.albedo_texture != null:
 					material.set_shader_parameter("albedo_tex", base.albedo_texture)
-				material.set_shader_parameter("plane_point", plane_point)
-				material.set_shader_parameter("plane_normal", plane_normal)
+				material.set_shader_parameter("side", side)
 				mesh.set_surface_override_material(surface, material)
-		get_tree().current_scene.add_child(half)
-		var push: Vector3 = impulse if side == top_side else impulse * 0.25
-		half.apply_impulse(push, Vector3.UP * (0.4 if side == top_side else -0.3))
+		# Each half is a ragdoll of the parts on its side of the plane.
+		var keep: Callable = func(bone_name: String) -> bool: return signf(normal.dot(middles[bone_name] - point)) == side
+		var body: PhysicalBoneSimulator3D = MobRagdoll.build(target, keep, velocity)
+		var top: bool = side == top_side
+		var push: Vector3 = impulse if top else impulse * 0.25
 		# The top tumbles with its launch; the legs get a kick at the hip so they topple instead of standing.
-		half.apply_torque_impulse(Vector3.UP.cross(push).normalized() * (0.4 if side == top_side else 1.6))
-		get_tree().create_timer(7.0).timeout.connect(half.queue_free)
+		MobRagdoll.push(body, push, Vector3.UP.cross(push).normalized() * (2.5 if top else 4.0))
+		get_tree().create_timer(CORPSE).timeout.connect(copy.queue_free)
 
 func show_state(state: int, health: int, staggered: bool, windup: bool) -> void:
 	label.text = "RAIDER · %d" % health if health > 0 else "DEFEATED"
@@ -315,8 +366,10 @@ func show_state(state: int, health: int, staggered: bool, windup: bool) -> void:
 	label.modulate = Color("ffd052") if windup else Color("ff8888")
 	var next: StringName = &"Idle"
 	if health <= 0:
-		rotation.z = lerp_angle(rotation.z, PI / 2.0, 0.15)
-	elif staggered or react_left > 0.0:
+		if not fallen:
+			fall.call_deferred()
+		return
+	elif staggered:
 		next = &"Hit_Chest"
 	elif state == HostileMob.State.ACT:
 		next = &"Punch_Jab"

@@ -78,9 +78,9 @@ func run() -> void:
 	check(not mob.visual.visible, "The raider visual is replaced by halves")
 	var halves: int = 0
 	for node: Node in get_tree().current_scene.get_children():
-		if node is RigidBody3D:
+		if node.name.begins_with("RaiderHalf") and not node.find_children("Ragdoll", "PhysicalBoneSimulator3D", true, false).is_empty():
 			halves += 1
-	check(halves == 2, "Two tumbling halves exist (%d)" % halves)
+	check(halves == 2, "Two jointed ragdoll halves exist (%d)" % halves)
 	check(get_tree().current_scene.get_child_count() == before + 2, "Halves are the only new scene children")
 	# A cone-approved swing goes through the blade path: it wounds, and a lethal blow bisects.
 	var coned: HostileMob = spawn_mob(2, Vector3(0, 0.95, 3))

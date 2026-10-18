@@ -16,6 +16,10 @@ local = subprocess.run(base + ["--fixed-fps", "60", scene], capture_output=True,
 output = local.stdout + local.stderr
 print(output, end="")
 assert local.returncode == 0 and "MOB_OK:" in output and "ERROR" not in output
+bodies = subprocess.run(base + ["--fixed-fps", "60", "res://tests/mob_body_test.tscn"], capture_output=True, text=True, timeout=60)
+output = bodies.stdout + bodies.stderr
+print(output, end="")
+assert bodies.returncode == 0 and "MOB_BODY_OK:" in output and "ERROR" not in output
 
 with socket.socket(socket.AF_INET, socket.SOCK_DGRAM) as probe:
     probe.bind(("127.0.0.1", 0))
