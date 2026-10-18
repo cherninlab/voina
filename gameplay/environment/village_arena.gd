@@ -32,6 +32,7 @@ func _ready() -> void:
 			woodland_edges()
 			ridge_outcrops()
 			open_north_approach(snapshot)
+			dress_north_approach(snapshot)
 			return
 		snapshot.free()
 	wood = surface("b0a08a", "oak", 0.5)
@@ -123,6 +124,7 @@ func _ready() -> void:
 		woodland_edges()
 		ridge_outcrops()
 	open_north_approach(self)
+	dress_north_approach(self)
 
 func landscape_height(x: float, z: float) -> float:
 	var distance: float = maxf(absf(x), absf(z))
@@ -451,7 +453,7 @@ func terrain() -> void:
 	body.add_child(shape)
 	add_child(body)
 
-func log_post(location: Vector3, height: float, radius: float, collision: bool = false) -> void:
+func log_post(location: Vector3, height: float, radius: float, collision: bool = false) -> MeshInstance3D:
 	var mesh: CylinderMesh = CylinderMesh.new()
 	mesh.top_radius = radius * 0.9
 	mesh.bottom_radius = radius
@@ -471,6 +473,7 @@ func log_post(location: Vector3, height: float, radius: float, collision: bool =
 		shape.shape = cylinder
 		body.add_child(shape)
 		visual.add_child(body)
+	return visual
 
 func green_borders() -> void:
 	var blades: SurfaceTool = SurfaceTool.new()
@@ -970,3 +973,29 @@ func open_north_approach(root_node: Node3D) -> void:
 	apron.material_override = make_ground_material()
 	add_child(apron)
 	landscape_collision(apron)
+
+func dress_north_approach(root_node: Node3D) -> void:
+	if bool(root_node.get_meta("north_gate_framed",false)):
+		return
+	root_node.set_meta("north_gate_framed",true)
+	if timber_material == null:
+		make_timber_material()
+	var center: Vector3 = Vector3(-0.5,0,-26.5)
+	var axis: Vector3 = Vector3(17,0,3).normalized()
+	var bases: Array[Vector3] = []
+	for side: int in [-1,1]:
+		var point: Vector3 = center+axis*(side*3.2)
+		point.y = ground_height(point.x,point.z)-0.04
+		bases.append(point)
+	var header: Vector3 = (bases[0]+bases[1])*0.5+Vector3.UP*3.6
+	for point: Vector3 in bases:
+		var height: float = header.y+0.3-point.y
+		log_post(point+Vector3.UP*(height*0.5),height,0.22,true)
+	var lintel: MeshInstance3D = log_post(header,6.95,0.17,true)
+	lintel.quaternion = Quaternion(Vector3.UP,axis)
+	for index: int in range(2):
+		var point: Vector3 = bases[index]
+		var inward: Vector3 = axis if index == 0 else -axis
+		var start: Vector3 = Vector3(point.x,header.y-0.9,point.z)
+		var finish: Vector3 = Vector3(point.x,header.y-0.12,point.z)+inward*0.85
+		timber(start,finish,0.11)

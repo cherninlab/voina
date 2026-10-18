@@ -201,6 +201,28 @@
       ],
       "note": "Generated modeling guide, not exact CAD. Runtime ridge_outcrops now authors terrain-conforming stepped shoulder meshes at ten selected crest sites using schist_rock. Initial oversized boulder assembly was rejected after capture review; no new imported rock assets were required. Further sculpting remains to match the study.",
       "runtime_profiles": "Four piecewise asymmetric crest profiles with wider/lower shoulders and offset cross-sections; runtime-varied-crests. Smooth base mountains still remain below target."
+    },
+    {
+      "target": "target-north-entrance.png",
+      "source_capture": "runtime-north-shipped/village-04.png",
+      "supporting_basecolors": [
+        "aged_timber.png",
+        "mineral_earth.png",
+        "flax_weave.png"
+      ],
+      "supporting_shape_references": [
+        "groundcover-shape-study.png"
+      ],
+      "supporting_geometry": [
+        "gameplay/environment/village_arena.gd:dress_north_approach",
+        "gameplay/environment/village_arena.gd:open_north_approach"
+      ],
+      "prompts": [
+        "target-north-entrance-prompt.md",
+        "aged_timber-prompt.md",
+        "mineral_earth-prompt.md"
+      ],
+      "note": "Direct actual-camera and Enshrouded-conditioned visual target. Gate posts/lintel/inward braces implemented; dense ferns, path dressing and reference lighting remain incomplete. Existing generated texture set reused."
     }
   ],
   "sky_note": "Generated LDR appearance panorama, not calibrated HDR lighting. Sky shader adjusts horizon latitude and blends wrap/poles; runtime review is required."
