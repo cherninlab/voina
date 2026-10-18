@@ -89,3 +89,7 @@ The original tree01 atlas is 128px. A generated 1254px RGBA replacement is appli
 ## Original near-village broadleaf geometry
 
 Tree01 instances within 80m of village origin now use an original bent/tapered trunk, 14 two-segment branches, and overlapping curved foliage cards. The generated shape sheet is paired with the existing atlas; bark and leaf UVs use their separate islands. Instances share mesh resources, vary rotation, reuse original placement, and scale proportionally to original tree height. They are cosmetic with no collision. Far instances retain the original lightweight geometry. This is spatial selection around the village, not a measured camera LOD system or M2 performance result. Other tree variants still use the old assets.
+
+## Height and aerial atmosphere
+
+A shared atmosphere function applies native exponential fog with a low height component, restrained aerial perspective and directional sun scattering. It is applied after the baked snapshot loads and in the source builder, so fog adjustments do not require repacking geometry. ACES exposure, the sky image and the wide-angle shader remain unchanged. Actual captures check foreground readability against distant separation. This is non-volumetric Mobile fog, not Enshrouded-style volumetric lighting or measured M2 acceptance.

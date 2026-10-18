@@ -23,6 +23,8 @@ func _ready() -> void:
 		var lightmap: LightmapGI = snapshot.get_node("VillageLightmap") as LightmapGI
 		if lightmap.light_data != null and lightmap.light_data.get_user_count() > 0:
 			add_child(snapshot)
+			for node: Node in snapshot.find_children("*", "WorldEnvironment", true, false):
+				apply_atmosphere((node as WorldEnvironment).environment)
 			clover_edges()
 			refresh_foliage(snapshot)
 			return
@@ -431,10 +433,7 @@ void sky() {
 	environment.ambient_light_source = Environment.AMBIENT_SOURCE_SKY
 	environment.ambient_light_energy = 0.4
 	environment.tonemap_mode = Environment.TONE_MAPPER_ACES
-	environment.fog_enabled = true
-	environment.fog_light_color = Color("91b2c6")
-	environment.fog_density = 0.0012
-	environment.fog_sky_affect = 0.08
+	apply_atmosphere(environment)
 	world.environment = environment
 	add_child(world)
 
@@ -726,3 +725,13 @@ func refresh_foliage(root_node: Node3D) -> void:
 			replacement = original.duplicate() as StandardMaterial3D
 			replacement.albedo_texture = load("res://content/environments/village_generated/tree01_atlas.png") as Texture2D
 		visual.material_override = replacement
+
+func apply_atmosphere(environment: Environment) -> void:
+	environment.fog_enabled = true
+	environment.fog_light_color = Color("bdcbd2")
+	environment.fog_density = 0.0015
+	environment.fog_height = 2.0
+	environment.fog_height_density = 0.015
+	environment.fog_aerial_perspective = 0.25
+	environment.fog_sun_scatter = 0.18
+	environment.fog_sky_affect = 0.08
