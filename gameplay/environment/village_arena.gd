@@ -33,6 +33,7 @@ func _ready() -> void:
 			ridge_outcrops()
 			open_north_approach(snapshot)
 			dress_north_approach(snapshot)
+			north_ferns()
 			return
 		snapshot.free()
 	wood = surface("b0a08a", "oak", 0.5)
@@ -125,6 +126,8 @@ func _ready() -> void:
 		ridge_outcrops()
 	open_north_approach(self)
 	dress_north_approach(self)
+	if not bool(get_meta("prepare_lightmap", false)):
+		north_ferns()
 
 func landscape_height(x: float, z: float) -> float:
 	var distance: float = maxf(absf(x), absf(z))
@@ -999,3 +1002,69 @@ func dress_north_approach(root_node: Node3D) -> void:
 		var start: Vector3 = Vector3(point.x,header.y-0.9,point.z)
 		var finish: Vector3 = Vector3(point.x,header.y-0.12,point.z)+inward*0.85
 		timber(start,finish,0.11)
+
+func north_ferns() -> void:
+	# Original opaque pinnate leaves; no alpha cards or invisible gameplay obstacles.
+	var leaves: SurfaceTool = SurfaceTool.new()
+	leaves.begin(Mesh.PRIMITIVE_TRIANGLES)
+	for frond: int in range(8):
+		var angle: float = frond*2.4
+		var radial: Vector3 = Vector3(cos(angle),0,sin(angle))
+		var lateral: Vector3 = Vector3(-sin(angle),0,cos(angle))
+		for segment: int in range(10):
+			var corners: Array[Vector2] = [Vector2(0,0),Vector2(1,0),Vector2(0,1),Vector2(1,0),Vector2(1,1),Vector2(0,1)]
+			corners.reverse()
+			for corner: Vector2 in corners:
+				var t: float = (float(segment)+corner.y)/10.0
+				var stem: Vector3 = radial*(t*0.7)+Vector3.UP*(0.03+sin(t*PI*0.8)*0.6)
+				leaves.set_color(Color(0.7,0.85,0.4))
+				leaves.add_vertex(stem+lateral*((corner.x-0.5)*0.014*(1.0-t*0.8)))
+		for segment: int in range(10):
+			var t: float = 0.08+float(segment)*0.09
+			var stem: Vector3 = radial*(t*0.7)+Vector3.UP*(0.03+sin(t*PI*0.8)*0.6)
+			for side: int in [-1,1]:
+				var length: float = (0.07+sin(t*PI)*0.14)*(1.0-t*0.4)
+				var direction: Vector3 = (lateral*side+radial*0.3).normalized()
+				var cross_leaf: Vector3 = Vector3(-direction.z,0,direction.x)
+				var shoulder: Vector3 = stem+direction*(length*0.45)
+				var ridge: Vector3 = shoulder+Vector3.UP*0.012
+				var corners: Array[Vector3] = [stem,shoulder+cross_leaf*(length*0.25),stem+direction*length+Vector3.UP*0.015,shoulder-cross_leaf*(length*0.25)]
+				for edge: int in range(4):
+					leaves.set_color(Color(1.0,1.0,0.8).lerp(Color(0.72,0.9,0.65),t))
+					leaves.add_vertex(ridge)
+					leaves.add_vertex(corners[(edge+1)%4])
+					leaves.add_vertex(corners[edge])
+	leaves.generate_normals()
+	var shader: Shader = Shader.new()
+	shader.code = """shader_type spatial;
+render_mode cull_disabled;
+void fragment() { ALBEDO=vec3(0.045,0.075,0.015)*COLOR.rgb; ROUGHNESS=0.88; BACKLIGHT=ALBEDO*0.25; }
+"""
+	var material: ShaderMaterial = ShaderMaterial.new()
+	material.shader = shader
+	var random: RandomNumberGenerator = RandomNumberGenerator.new()
+	random.seed = 93117
+	var wall: PackedVector2Array = PackedVector2Array([Vector2(-24,-23),Vector2(-9,-28),Vector2(8,-25),Vector2(22,-28),Vector2(28,-16)])
+	var locations: Array[Vector3] = []
+	for edge: int in range(wall.size()-1):
+		for attempt: int in range(60):
+			var point: Vector2 = wall[edge].lerp(wall[edge+1],random.randf())
+			point -= point.normalized()*random.randf_range(0.55,1.6)
+			if absf(point.x+0.5) < 4.0 or sin(point.x*0.9+point.y*0.6) < -0.4:
+				continue
+			locations.append(Vector3(point.x,ground_height(point.x,point.y)-0.03,point.y))
+	var multi: MultiMesh = MultiMesh.new()
+	multi.transform_format = MultiMesh.TRANSFORM_3D
+	multi.use_colors = true
+	multi.mesh = leaves.commit()
+	multi.instance_count = locations.size()
+	for index: int in range(locations.size()):
+		var size: float = random.randf_range(0.7,1.25)
+		multi.set_instance_transform(index,Transform3D(Basis(Vector3.UP,random.randf()*TAU).scaled(Vector3.ONE*size),locations[index]))
+		multi.set_instance_color(index,Color(random.randf_range(0.75,1.0),random.randf_range(0.85,1.0),0.8))
+	var visual: MultiMeshInstance3D = MultiMeshInstance3D.new()
+	visual.multimesh = multi
+	visual.material_override = material
+	visual.gi_mode = GeometryInstance3D.GI_MODE_DISABLED
+	add_child(visual)
+	print("VILLAGE_FERNS_OK: ",locations.size()," opaque clumps; northern passage excluded")
