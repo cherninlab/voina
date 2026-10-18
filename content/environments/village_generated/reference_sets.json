@@ -81,7 +81,8 @@
         "target-schist-valley-prompt.md",
         "soil_gravel-prompt.md"
       ],
-      "note": "Original generated schist albedo candidate paired with 3m landscape mesh, triplanar rock mapping, slope-aligned rock scatter and denser surrounding forest. Runtime captures assess the actual result. Domain-warped ridge and softened strata height field replaces the smooth dome skyline; first serrated trial rejected during runtime review."
+      "note": "Original generated schist albedo candidate paired with 3m landscape mesh, triplanar rock mapping, slope-aligned rock scatter and denser surrounding forest. Runtime captures assess the actual result. Domain-warped ridge and softened strata height field replaces the smooth dome skyline; first serrated trial rejected during runtime review.",
+      "runtime_update": "Shared source/snapshot landscape material uses irregular slope/elevation rock exposure and grass macro variation. Calibrated runtime-rocky-slopes captures reviewed; silhouette geometry still below target."
     },
     {
       "target": "target-next-ground-pass.png",

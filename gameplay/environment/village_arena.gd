@@ -25,6 +25,7 @@ func _ready() -> void:
 			add_child(snapshot)
 			for node: Node in snapshot.find_children("*", "WorldEnvironment", true, false):
 				apply_atmosphere((node as WorldEnvironment).environment)
+			refresh_landscape(snapshot)
 			refresh_ground(snapshot)
 			clover_edges()
 			refresh_foliage(snapshot)
@@ -167,31 +168,7 @@ func landscape() -> void:
 	tool.index()
 	var visual: MeshInstance3D = MeshInstance3D.new()
 	visual.mesh = tool.commit()
-	var material: ShaderMaterial = ShaderMaterial.new()
-	var shader: Shader = Shader.new()
-	shader.code = """shader_type spatial;
-uniform sampler2D soil : source_color, filter_linear_mipmap_anisotropic, repeat_enable;
-uniform sampler2D rock : source_color, filter_linear_mipmap_anisotropic, repeat_enable;
-varying vec3 world_pos;
-varying vec3 world_normal;
-void vertex() { world_pos=(MODEL_MATRIX*vec4(VERTEX,1.0)).xyz; world_normal=normalize(MODEL_NORMAL_MATRIX*NORMAL); }
-vec3 bedrock(vec3 p,vec3 n) {
- vec3 weights=pow(abs(n),vec3(4.0));
- weights/=max(weights.x+weights.y+weights.z,0.001);
- return texture(rock,p.yz*0.12).rgb*weights.x+texture(rock,p.xz*0.12).rgb*weights.y+texture(rock,p.xy*0.12).rgb*weights.z;
-}
-void fragment() {
- float slope=normalize(world_normal).y;
- float exposed=max(1.0-smoothstep(0.55,0.85,slope),smoothstep(18.0,42.0,world_pos.y));
- vec3 earth=texture(soil,world_pos.xz*0.18).rgb*vec3(0.72,1.05,0.68);
- float macro=0.82+0.18*sin(world_pos.x*0.045+sin(world_pos.z*0.06))*cos(world_pos.z*0.035);
- ALBEDO=mix(earth,bedrock(world_pos,normalize(world_normal)),exposed)*macro;
- ROUGHNESS=0.95;
-}
-"""
-	material.shader = shader
-	material.set_shader_parameter("soil", load("res://content/environments/valhalla/textures/KB3D_VHL_GrassGround_basecolor.png"))
-	material.set_shader_parameter("rock", load("res://content/environments/village_generated/schist_rock.png"))
+	var material: ShaderMaterial = make_landscape_material()
 	visual.material_override = material
 	add_child(visual)
 
@@ -820,3 +797,47 @@ func refresh_ground(root_node: Node3D) -> void:
 		var material: ShaderMaterial = visual.material_override as ShaderMaterial
 		if material != null and material.get_shader_parameter("dirt_color") != null:
 			visual.material_override = make_ground_material()
+
+func make_landscape_material() -> ShaderMaterial:
+	var material: ShaderMaterial = ShaderMaterial.new()
+	var shader: Shader = Shader.new()
+	shader.code = """shader_type spatial;
+uniform sampler2D soil : source_color, filter_linear_mipmap_anisotropic, repeat_enable;
+uniform sampler2D rock : source_color, filter_linear_mipmap_anisotropic, repeat_enable;
+varying vec3 world_pos;
+varying vec3 world_normal;
+void vertex() { world_pos=(MODEL_MATRIX*vec4(VERTEX,1.0)).xyz; world_normal=normalize(MODEL_NORMAL_MATRIX*NORMAL); }
+vec3 bedrock(vec3 p,vec3 n) {
+ vec3 weights=pow(abs(n),vec3(4.0));
+ weights/=max(weights.x+weights.y+weights.z,0.001);
+ return texture(rock,p.yz*0.12).rgb*weights.x+texture(rock,p.xz*0.12).rgb*weights.y+texture(rock,p.xy*0.12).rgb*weights.z;
+}
+float hash(vec2 p) { return fract(sin(dot(p,vec2(127.1,311.7)))*43758.5453); }
+float noise(vec2 p) { vec2 i=floor(p); vec2 f=fract(p); f=f*f*(3.0-2.0*f); return mix(mix(hash(i),hash(i+vec2(1,0)),f.x),mix(hash(i+vec2(0,1)),hash(i+vec2(1,1)),f.x),f.y); }
+void fragment() {
+ float slope=normalize(world_normal).y;
+ vec2 p=world_pos.xz;
+ vec2 warped=p+vec2(noise(p*0.035),noise(p*0.035+47.0))*18.0;
+ float patch=noise(warped*0.065);
+ float elevation=smoothstep(7.0,26.0,world_pos.y+patch*9.0);
+ float cliff=1.0-smoothstep(0.67,0.94,slope);
+ float exposed=clamp(max(cliff,elevation*0.8)+(patch-0.5)*0.35,0.0,1.0);
+ vec3 earth=texture(soil,p*0.18).rgb*mix(vec3(0.60,0.78,0.47),vec3(0.9,0.98,0.68),noise(warped*0.027));
+ vec3 stone=bedrock(world_pos,normalize(world_normal));
+ float strata=0.93+0.07*sin(world_pos.y*1.6+noise(p*0.12)*2.0);
+ stone*=mix(vec3(0.76,0.79,0.77),vec3(1.03,0.96,0.84),patch)*strata;
+ ALBEDO=mix(earth,stone,exposed)*(0.87+0.13*noise(warped*0.018));
+ ROUGHNESS=0.95;
+}
+"""
+	material.shader = shader
+	material.set_shader_parameter("soil", load("res://content/environments/valhalla/textures/KB3D_VHL_GrassGround_basecolor.png"))
+	material.set_shader_parameter("rock", load("res://content/environments/village_generated/schist_rock.png"))
+	return material
+
+func refresh_landscape(root_node: Node3D) -> void:
+	for node: Node in root_node.find_children("*", "MeshInstance3D", true, false):
+		var visual: MeshInstance3D = node as MeshInstance3D
+		var material: ShaderMaterial = visual.material_override as ShaderMaterial
+		if material != null and material.get_shader_parameter("soil") != null and material.get_shader_parameter("rock") != null:
+			visual.material_override = make_landscape_material()
