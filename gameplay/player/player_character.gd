@@ -434,7 +434,10 @@ func resolve_attack(ranged: bool) -> void:
 		# All mobs belong to peer 1, so use their own negative IDs for swing deduplication.
 		var hit_id: int = -(targets[index] as HostileMob).mob_id if targets[index] is HostileMob else targets[index].get_multiplayer_authority()
 		if combat.strike(hit_id):
-			targets[index].call("receive_hit", 25, forward, false, self)
+			if targets[index] is HostileMob:
+				blade_contact.strike_mob(self, body.motion, targets[index] as HostileMob, forward, HitResolver.now())
+			else:
+				targets[index].call("receive_hit", 25, forward, false, self)
 			if combat.phase == CombatController.Phase.STAGGERED:
 				break
 

@@ -170,7 +170,8 @@ func receive_hit(damage: int, direction: Vector3, ranged: bool = false, attacker
 		attacker.rpc("hit_feedback", result, true)
 
 # A player's simulated blade touched this raider on the host. Speed sets the shove; a fast
-# damaging contact bisects. Damage reuses the shared combat rules through receive_hit.
+# damaging contact or a lethal blow bisects along the blade's plane. Damage reuses the shared
+# combat rules through receive_hit.
 func blade_hit(attacker: CharacterBody3D, point: Vector3, direction: Vector3, speed: float, cut: bool, damage: int, blade_direction: Vector3) -> void:
 	if not multiplayer.is_server() or state == State.DEAD:
 		return
@@ -179,19 +180,21 @@ func blade_hit(attacker: CharacterBody3D, point: Vector3, direction: Vector3, sp
 		flat = global_position - attacker.global_position
 		flat.y = 0.0
 	flat = flat.normalized() if flat.length_squared() > 0.0001 else Vector3.FORWARD
-	if cut:
-		var normal: Vector3 = blade_direction.cross(direction).normalized()
-		if normal.length_squared() < 0.5:
-			normal = Vector3.UP
+	# The plane the blade sweeps through: spanned by the blade and its travel.
+	var normal: Vector3 = blade_direction.cross(direction)
+	normal = normal.normalized() if normal.length_squared() > 0.01 else Vector3.UP
+	if cut or (damage > 0 and damage >= combat.health):
 		bisected.rpc(point, normal, flat * minf(speed, 20.0) * 0.35 + Vector3.UP * 2.0, direction)
 		receive_hit(999, direction, false, attacker)
 		return
 	var shove: float = clampf(speed * 0.8, 0.6, 7.0)
 	kick_velocity += flat * shove
 	hop = 2.0 if speed > 6.0 else (1.0 if speed > 3.0 else 0.0)
-	kicked.rpc(flat * shove, point, direction, speed)
 	if damage > 0:
+		slashed.rpc(flat * shove, point, normal, direction, speed)
 		receive_hit(damage, direction, false, attacker)
+	else:
+		kicked.rpc(flat * shove, point, direction, speed)
 
 # A player walking into this raider shoves it along; the host sees every player's replicated motion.
 func body_pushes(delta: float) -> void:
@@ -220,9 +223,16 @@ func kicked(impulse: Vector3, point: Vector3, direction: Vector3, speed: float) 
 	if speed > 0.0:
 		visual.call("splash", point, direction, clampf(speed / 10.0, 0.2, 1.0))
 
+# A damaging hit: a wound line on the body, blood thrown in the blade's plane and a slash arc.
+@rpc("authority", "call_local", "reliable")
+func slashed(impulse: Vector3, point: Vector3, normal: Vector3, direction: Vector3, speed: float) -> void:
+	visual.call("react", impulse)
+	visual.call("wound", point, normal, direction)
+	visual.call("slash_burst", point, normal, direction, clampf(speed / 6.0, 0.8, 2.0))
+
 @rpc("authority", "call_local", "reliable")
 func bisected(point: Vector3, normal: Vector3, impulse: Vector3, direction: Vector3) -> void:
-	visual.call("splash", point, direction, 2.5)
+	visual.call("slash_burst", point, normal, direction, 3.0)
 	visual.call("bisect", point, normal, impulse)
 
 func die() -> void:

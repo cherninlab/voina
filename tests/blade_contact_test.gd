@@ -55,6 +55,7 @@ func run() -> void:
 	check(mob.combat.health == 35, "A medium contact deals swing damage (health %d)" % mob.combat.health)
 	check(mob.kick_velocity.length() > 1.0 and mob.hop > 0.0, "A medium contact shoves the raider")
 	check(float(mob.visual.get("react_left")) > 0.0, "The raider visibly reacts")
+	check((mob.visual.get("wounds") as Array).size() == 1, "A damaging contact leaves a wound line on the raider")
 	contact.sweep(player, motion, true, 1.1)
 	check(mob.combat.health == 35, "Re-hit cooldown blocks an immediate second contact")
 	contact.sweep(player, motion, true, 2.0)
@@ -81,6 +82,17 @@ func run() -> void:
 			halves += 1
 	check(halves == 2, "Two tumbling halves exist (%d)" % halves)
 	check(get_tree().current_scene.get_child_count() == before + 2, "Halves are the only new scene children")
+	# A cone-approved swing goes through the blade path: it wounds, and a lethal blow bisects.
+	var coned: HostileMob = spawn_mob(2, Vector3(0, 0.95, 3))
+	motion.hilt = Vector3(-1.2, 1.0, 3)
+	motion.tip = Vector3(0.3, 1.0, 3)
+	motion.tip_velocity = Vector3(0, 0, 3.0)
+	contact.strike_mob(player, motion, coned, Vector3.RIGHT, 10.0)
+	check(coned.combat.health == 35 and (coned.visual.get("wounds") as Array).size() == 1, "A slow cone hit damages and wounds without cutting")
+	coned.combat.health = 20
+	contact.strike_mob(player, motion, coned, Vector3.RIGHT, 11.0)
+	await get_tree().process_frame
+	check(coned.state == HostileMob.State.DEAD and not coned.visual.visible, "A lethal cone hit bisects even when slow")
 	if failures == 0:
-		print("BLADE_CONTACT_OK: segment geometry, gentle shove, shove and damage, cooldown, one hit per swing, swing gate, farthest respawn, one-shot bisect")
+		print("BLADE_CONTACT_OK: segment geometry, gentle shove, shove and damage, wound, cooldown, one hit per swing, swing gate, farthest respawn, one-shot bisect, cone hit wounds, lethal bisect")
 	get_tree().quit(0 if failures == 0 else 1)

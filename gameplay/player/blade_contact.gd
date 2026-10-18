@@ -5,7 +5,7 @@ extends RefCounted
 # cosmetic between players; raiders are host-owned, so the host's own view of each blade is
 # authoritative for them. Damage still goes through the swing's one-hit-per-target rule.
 const KICK_SPEED: float = 1.0 # blade point speed that shoves a raider, swing or not
-const CUT_SPEED: float = 10.0 # blade point speed that bisects a raider
+const CUT_SPEED: float = 7.0 # blade point speed that bisects a raider; a lethal blow always does
 const DAMAGE: int = 25 # same as the cone hit; a cut is lethal
 const REHIT: float = 0.45
 const REACH: float = 0.4 + 0.06 # raider capsule radius plus blade half-width
@@ -43,9 +43,7 @@ func sweep(attacker: CharacterBody3D, motion: HeavySwordMotion, swinging: bool, 
 			continue
 		if now - float(last_hit.get(mob.mob_id, -INF)) < REHIT:
 			continue
-		var axis_bottom: Vector3 = mob.global_position + Vector3.DOWN * 0.5
-		var axis_top: Vector3 = mob.global_position + Vector3.UP * 0.5
-		var closest: Array[Vector3] = closest_points(motion.hilt, motion.tip, axis_bottom, axis_top)
+		var closest: Array[Vector3] = touch(mob, motion)
 		if closest[0].distance_to(closest[1]) > REACH:
 			continue
 		# The blade point that touched moves with the tip, scaled by how far along the blade it is.
@@ -58,4 +56,23 @@ func sweep(attacker: CharacterBody3D, motion: HeavySwordMotion, swinging: bool, 
 		# Shoves happen on any contact; damage and cuts need an approved swing and share its
 		# one-hit-per-target rule with the cone.
 		var damaging: bool = swinging and attacker_combat != null and attacker_combat.strike(-mob.mob_id)
-		mob.blade_hit(attacker, closest[0], direction, speed, damaging and speed >= CUT_SPEED, DAMAGE if damaging else 0, motion.blade_direction())
+		mob.blade_hit(attacker, surface(mob, closest), direction, speed, damaging and speed >= CUT_SPEED, DAMAGE if damaging else 0, motion.blade_direction())
+
+# Closest blade point, closest point on the raider's capsule axis and the blade fraction.
+static func touch(mob: HostileMob, motion: HeavySwordMotion) -> Array[Vector3]:
+	return closest_points(motion.hilt, motion.tip, mob.global_position + Vector3.DOWN * 0.5, mob.global_position + Vector3.UP * 0.5)
+
+# Where the blade meets the raider's skin: the axis point pushed out toward the blade.
+static func surface(mob: HostileMob, closest: Array[Vector3]) -> Vector3:
+	var out: Vector3 = closest[0] - closest[1]
+	return closest[1] + out.normalized() * 0.4 if out.length_squared() > 0.000001 else closest[0]
+
+# The swing's cone already approved this hit (and spent its one hit on this raider). Resolve it
+# with the blade's current motion so it wounds, splashes and cuts like a direct contact.
+func strike_mob(attacker: CharacterBody3D, motion: HeavySwordMotion, mob: HostileMob, forward: Vector3, now: float) -> void:
+	var closest: Array[Vector3] = touch(mob, motion)
+	var point_velocity: Vector3 = motion.tip_velocity * maxf(closest[2].x, 0.6)
+	var speed: float = point_velocity.length()
+	var direction: Vector3 = point_velocity / speed if speed > 0.5 else forward
+	last_hit[mob.mob_id] = now
+	mob.blade_hit(attacker, surface(mob, closest), direction, maxf(speed, 4.0), speed >= CUT_SPEED, DAMAGE, motion.blade_direction())
