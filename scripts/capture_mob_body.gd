@@ -1,16 +1,20 @@
 extends SceneTree
 ## Stage raider bodies and save frames: feet on a slope, a hit mid-flex, a ragdoll death and a
 ## bisect. Pass --capture-dir=DIR (outside the repository); needs a rendering display.
+## --bisect-only stages just the cuts: waist, shoulder-to-hip diagonal, chest-high and lengthwise.
 
 const MOB: PackedScene = preload("res://gameplay/mobs/hostile_mob.tscn")
 var stage: Node3D = Node3D.new()
 var camera: Camera3D = Camera3D.new()
 var directory: String = "user://mob_body"
+var bisect_only: bool = false
 
 func _initialize() -> void:
 	for argument: String in OS.get_cmdline_user_args():
 		if argument.begins_with("--capture-dir="):
 			directory = argument.get_slice("=", 1)
+		elif argument == "--bisect-only":
+			bisect_only = true
 	DirAccess.make_dir_recursive_absolute(directory)
 	capture.call_deferred()
 
@@ -71,6 +75,10 @@ func capture() -> void:
 	stage.add_child(camera)
 	camera.fov = 50
 	block(Vector3(60, 1, 60), Vector3(0, -0.5, 0))
+	if bisect_only:
+		await cuts()
+		quit()
+		return
 	# A 22 degree slope rising to +X, and a stone under one foot of a second raider.
 	block(Vector3(6, 1, 6), Vector3(10, -0.3, 0), Vector3(0, 0, deg_to_rad(22.0)), Color("7c6f4f"))
 	block(Vector3(0.5, 0.22, 0.5), Vector3(-5.12, 0.11, -0.05), Vector3(0, 0.3, 0), Color("8a8a84"))
@@ -118,3 +126,56 @@ func capture() -> void:
 	await wait(2.5)
 	await shot("bisect_rest.png", Vector3(-4, 2.4, -3.0), Vector3(-4, 0.2, 0.3))
 	quit()
+
+# One raider per cut, each seen flying, landing and at rest, plus a close look at the cut faces.
+func cuts() -> void:
+	var plans: Array[Dictionary] = [
+		{"name": "waist", "bone": "spine_02", "normal": Vector3(0.25, 1, 0.1), "impulse": Vector3(3.5, 2, 0.5)},
+		{"name": "diagonal", "bone": "spine_03", "normal": Vector3(1, 1.1, 0.15), "impulse": Vector3(2.5, 2, 1.5)},
+		{"name": "chest", "bone": "spine_03", "normal": Vector3(0.05, 1, -0.2), "impulse": Vector3(-1, 2, 3.5)},
+		{"name": "lengthwise", "bone": "spine_02", "normal": Vector3(1, 0.15, 0.1), "impulse": Vector3(3, 2, 0)},
+	]
+	for index: int in range(plans.size()):
+		var plan: Dictionary = plans[index]
+		var spot: Vector3 = Vector3(index * 8.0 - 12.0, 0.95, 0)
+		var mob: HostileMob = spawn(10 + index, spot, 0.0)
+		await wait(0.8)
+		var skeleton: Skeleton3D = mob.visual.get("skeleton") as Skeleton3D
+		var point: Vector3 = (mob.visual.call("bone_world", skeleton.find_bone(String(plan["bone"]))) as Transform3D).origin
+		var normal: Vector3 = (plan["normal"] as Vector3).normalized()
+		mob.bisected(point, normal, plan["impulse"] as Vector3, normal.cross(Vector3.FORWARD).normalized())
+		var name: String = String(plan["name"])
+		# Each cut face straight on, the other half hidden, before the halves move apart.
+		await process_frame
+		var fresh: Array[Node] = stage.find_children("RaiderHalf*", "", false, false).filter(func(node: Node) -> bool: return not node.has_meta("cut_index"))
+		for face: float in [1.0, -1.0]:
+			for node: Node in fresh:
+				(node as Node3D).visible = float(node.get_meta("side")) != face
+			var aside: Vector3 = normal.cross(Vector3.UP if absf(normal.y) < 0.9 else Vector3.RIGHT).normalized() * 0.35
+			await shot("cut_%s_face%s.png" % [name, "top" if face > 0.0 else "bottom"], point + normal * face * 1.1 + aside, point)
+		for node: Node in fresh:
+			(node as Node3D).visible = true
+		await wait(0.12)
+		await shot("cut_%s_0hit.png" % name, spot + Vector3(0.6, 0.7, -3.2), spot + Vector3(0, 0.1, 0))
+		await wait(0.3)
+		await shot("cut_%s_1flying.png" % name, spot + Vector3(1.5, 1.2, -4.0), spot + Vector3(0.6, 0.2, 0.3))
+		await wait(1.0)
+		await shot("cut_%s_2landed.png" % name, spot + Vector3(1.5, 2.2, -3.6), spot + Vector3(0.8, -0.6, 0.4))
+		await wait(2.0)
+		await shot("cut_%s_3rest.png" % name, spot + Vector3(1.0, 3.2, -3.2), spot + Vector3(1.0, -0.6, 0.6))
+		var faces: Array[Vector3] = []
+		for node: Node in stage.find_children("RaiderHalf*", "", false, false):
+			if node.get_meta("cut_index", index) == index:
+				node.set_meta("cut_index", index)
+				var rig: Skeleton3D = node.find_children("*", "Skeleton3D", true, false)[0] as Skeleton3D
+				var ragdoll: Node = rig.get_node_or_null("Ragdoll")
+				# The part that carried the cut, where the cap face is.
+				var nearest: Vector3 = Vector3.INF
+				for body: Node in ragdoll.get_children() if ragdoll != null else []:
+					var where: Vector3 = (body as Node3D).global_position
+					if not nearest.is_finite() or where.distance_to(point) < nearest.distance_to(point):
+						nearest = where
+				faces.append(nearest)
+		for face: int in range(faces.size()):
+			await shot("cut_%s_4close%d.png" % [name, face], faces[face] + Vector3(-0.5, 0.7, -0.5), faces[face])
+			await shot("cut_%s_5close%d.png" % [name, face], faces[face] + Vector3(0.55, 0.6, 0.5), faces[face])

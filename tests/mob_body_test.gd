@@ -4,6 +4,7 @@ extends Node3D
 # collapses as a ragdoll that outlives the raider node, and a bisect leaves two jointed halves.
 const MOB: PackedScene = preload("res://gameplay/mobs/hostile_mob.tscn")
 var failed: bool = false
+const STRETCH: float = 0.12
 
 func _ready() -> void:
 	run.call_deferred()
@@ -53,6 +54,49 @@ func height_under(point: Vector3) -> float:
 	query.exclude = actors
 	var hit: Dictionary = get_world_3d().direct_space_state.intersect_ray(query)
 	return (hit["position"] as Vector3).y if not hit.is_empty() else -INF
+
+# How much longer (metres) the worst edge of the skin a half shows has grown from the bind pose.
+# Folding joints stretch small triangles by centimetres; a part falling away from the skin it
+# carries pulls them into long lines.
+func stretch(half: Node) -> float:
+	var rig: Skeleton3D = half.find_children("*", "Skeleton3D", true, false)[0] as Skeleton3D
+	await rig.skeleton_updated # modifiers' poses are only held during this signal
+	var poses: Array[Transform3D] = []
+	var capture: Callable = func() -> void:
+		for bone_index: int in range(rig.get_bone_count()):
+			poses.append(rig.get_bone_global_pose(bone_index))
+	rig.skeleton_updated.connect(capture, CONNECT_ONE_SHOT)
+	await rig.skeleton_updated
+	var side: float = float(half.get_meta("side", 1.0))
+	var worst: float = 0.0
+	for node: Node in half.find_children("*", "MeshInstance3D", true, false):
+		var mesh: MeshInstance3D = node as MeshInstance3D
+		var skinning: Array[Transform3D] = []
+		for bind: int in range(mesh.skin.get_bind_count()):
+			skinning.append(poses[MobRagdoll.bind_bone(mesh.skin, rig, bind)] * mesh.skin.get_bind_pose(bind))
+		var arrays: Array = mesh.mesh.surface_get_arrays(0)
+		var vertices: PackedVector3Array = arrays[Mesh.ARRAY_VERTEX]
+		var bones: PackedInt32Array = arrays[Mesh.ARRAY_BONES]
+		var weights: PackedFloat32Array = arrays[Mesh.ARRAY_WEIGHTS]
+		var distances: PackedVector2Array = arrays[Mesh.ARRAY_TEX_UV2]
+		var indices: PackedInt32Array = arrays[Mesh.ARRAY_INDEX]
+		var per: int = bones.size() / vertices.size()
+		var posed: PackedVector3Array = PackedVector3Array()
+		for index: int in range(vertices.size()):
+			var point: Vector3 = Vector3.ZERO
+			for slot: int in range(per):
+				point += skinning[bones[index * per + slot]] * vertices[index] * weights[index * per + slot]
+			posed.append(point)
+		for corner: int in range(0, indices.size(), 3):
+			for edge: int in range(3):
+				var a: int = indices[corner + edge]
+				var b: int = indices[corner + (edge + 1) % 3]
+				var rest: float = vertices[a].distance_to(vertices[b])
+				if distances[a].x * side > 0.0 and distances[b].x * side > 0.0:
+					var growth: float = posed[a].distance_to(posed[b]) - rest
+					if growth > worst:
+						worst = growth
+	return worst
 
 func run() -> void:
 	ground(Vector3(40, 1, 40), Vector3(0, -0.5, 0))
@@ -120,13 +164,23 @@ func run() -> void:
 	await frames(2)
 	var halves: Array[Node] = find_children("RaiderHalf*", "", false, false)
 	check(halves.size() == 2, "A bisect leaves two halves (%d)" % halves.size())
-	var parts: int = 0
+	var parts: PackedStringArray = PackedStringArray()
 	for half: Node in halves:
 		var rig: Skeleton3D = half.find_children("*", "Skeleton3D", true, false)[0] as Skeleton3D
 		var ragdoll: PhysicalBoneSimulator3D = rig.get_node_or_null("Ragdoll") as PhysicalBoneSimulator3D
 		check(ragdoll != null and ragdoll.is_simulating_physics() and ragdoll.get_child_count() >= 3, "Each half is a jointed ragdoll")
-		parts += ragdoll.get_child_count() if ragdoll != null else 0
-	check(parts == MobRagdoll.PARTS.size(), "The halves split the body's parts between them (%d)" % parts)
+		var capped: bool = false
+		for node: Node in half.find_children("*", "MeshInstance3D", true, false):
+			var mesh: Mesh = (node as MeshInstance3D).mesh
+			for surface: int in range(mesh.get_surface_count()):
+				capped = capped or (mesh.surface_get_name(surface) == MobRagdoll.CAP and (mesh.surface_get_arrays(surface)[Mesh.ARRAY_INDEX] as PackedInt32Array).size() >= 60)
+		check(capped, "Each half's cut is closed by a cap face")
+		for node: Node in ragdoll.get_children() if ragdoll != null else []:
+			if not parts.has((node as PhysicalBone3D).bone_name):
+				parts.append((node as PhysicalBone3D).bone_name)
+		# A half with skin on both sides of a joint simulates both parts, so nothing is left to hang.
+		check(ragdoll == null or ragdoll.get_child_count() < MobRagdoll.PARTS.size(), "A half does not simulate the whole body")
+	check(parts.size() == MobRagdoll.PARTS.size(), "Between them the halves simulate every part (%d)" % parts.size())
 	await frames(120)
 	for half: Node in halves:
 		var rig: Skeleton3D = half.find_children("*", "Skeleton3D", true, false)[0] as Skeleton3D
@@ -134,6 +188,23 @@ func run() -> void:
 		for node: Node in ragdoll.get_children():
 			var part: PhysicalBone3D = node as PhysicalBone3D
 			check(part.global_position.y > -0.3 and part.global_position.y < 1.2, "Half part %s rests on the ground (%.2f)" % [part.bone_name, part.global_position.y])
+		var worst: float = await stretch(half)
+		check(worst < STRETCH, "A waist-cut half keeps its skin together (worst edge +%.2f m)" % worst)
+	# Lengthwise: each half has torso skin, so each simulates a spine under it and stays together.
+	var split: HostileMob = spawn(4, Vector3(4, 0.95, 0))
+	await frames(20)
+	split.bisected(bone(visual(split), "spine_02").origin, Vector3(1, 0.15, 0.1).normalized(), Vector3(3, 2, 0), Vector3.FORWARD)
+	await frames(2)
+	var sides: Array[Node] = find_children("RaiderHalf*", "", false, false).filter(func(node: Node) -> bool: return not halves.has(node))
+	check(sides.size() == 2, "A lengthwise bisect leaves two halves (%d)" % sides.size())
+	for half: Node in sides:
+		var rig: Skeleton3D = half.find_children("*", "Skeleton3D", true, false)[0] as Skeleton3D
+		var ragdoll: Node = rig.get_node_or_null("Ragdoll")
+		check(ragdoll != null and ragdoll.has_node("Body_spine_02"), "Each lengthwise half simulates the spine under its torso")
+	await frames(120)
+	for half: Node in sides:
+		var worst: float = await stretch(half)
+		check(worst < STRETCH, "A lengthwise half keeps its skin together (worst edge +%.2f m)" % worst)
 	if not failed:
 		print("MOB_BODY_OK: foot planting on a slope, hip drop, puppet flex and settle, ragdoll death, jointed bisect halves")
 	get_tree().quit(1 if failed else 0)

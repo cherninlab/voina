@@ -173,10 +173,11 @@ func bisect(point: Vector3, normal: Vector3, impulse: Vector3) -> void:
 	var cut_meshes: Array[ArrayMesh] = []
 	for mesh: MeshInstance3D in meshes:
 		cut_meshes.append(MobRagdoll.bake_cut(mesh, skeleton, point, normal))
-	var middles: Dictionary[String, Vector3] = MobRagdoll.midpoints(skeleton)
+	var kept: Array[PackedStringArray] = MobRagdoll.split(cut_meshes, meshes, skeleton)
 	for side: float in [1.0, -1.0]:
 		var copy: Node3D = MODEL.instantiate() as Node3D
 		copy.name = "RaiderHalf"
+		copy.set_meta("side", side)
 		get_tree().current_scene.add_child(copy, true)
 		copy.global_transform = model.global_transform
 		var target: Skeleton3D = copy.find_children("*", "Skeleton3D", true, false)[0] as Skeleton3D
@@ -191,6 +192,8 @@ func bisect(point: Vector3, normal: Vector3, impulse: Vector3) -> void:
 			if not rendered:
 				continue
 			for surface: int in range(mesh.mesh.get_surface_count()):
+				if mesh.mesh.surface_get_name(surface) == MobRagdoll.CAP:
+					continue
 				var base: StandardMaterial3D = mesh.get_active_material(surface) as StandardMaterial3D
 				var material: ShaderMaterial = ShaderMaterial.new()
 				material.shader = CUT_SHADER
@@ -199,21 +202,34 @@ func bisect(point: Vector3, normal: Vector3, impulse: Vector3) -> void:
 					material.set_shader_parameter("albedo_tex", base.albedo_texture)
 				material.set_shader_parameter("side", side)
 				mesh.set_surface_override_material(surface, material)
-		# Each half is a ragdoll of the parts on its side of the plane.
-		var keep: Callable = func(bone_name: String) -> bool: return signf(normal.dot(middles[bone_name] - point)) == side
-		var body: PhysicalBoneSimulator3D = MobRagdoll.build(target, keep, velocity)
-		# Blood pulses from the cut face, which points along -side * normal, on the nearest part.
-		var part: PhysicalBone3D
-		for child: Node in body.get_children() if body != null else []:
-			var bone: PhysicalBone3D = child as PhysicalBone3D
-			if bone != null and (part == null or bone.global_position.distance_squared_to(point) < part.global_position.distance_squared_to(point)):
-				part = bone
-		if part != null:
-			HitEffects.gush(part, part.to_local(point), part.global_basis.inverse() * (normal * -side))
+		# Each half is a ragdoll of the parts with skin on its side of the plane.
+		var parts: PackedStringArray = kept[0 if side > 0.0 else 1]
+		var body: PhysicalBoneSimulator3D = MobRagdoll.build(target, parts.has, velocity)
 		var top: bool = side == top_side
 		var push: Vector3 = impulse if top else impulse * 0.25
 		# The top tumbles with its launch; the legs get a kick at the hip so they topple instead of standing.
 		MobRagdoll.push(body, push, Vector3.UP.cross(push).normalized() * (2.5 if top else 4.0))
+		# Blood pours from the cut face, which points along -side * normal, on each piece's part
+		# nearest the cut: a big spill from the half itself, a shorter gush from severed limbs.
+		var heaviest: float = 0.0
+		var spills: Array[Dictionary] = []
+		for piece: Array in MobRagdoll.pieces(body):
+			var mass: float = 0.0
+			var nearest: PhysicalBone3D
+			for part: PhysicalBone3D in piece:
+				mass += part.mass
+				if nearest == null or part.global_position.distance_squared_to(point) < nearest.global_position.distance_squared_to(point):
+					nearest = part
+			heaviest = maxf(heaviest, mass)
+			spills.append({"part": nearest, "mass": mass})
+		for spill: Dictionary in spills:
+			var part: PhysicalBone3D = spill["part"] as PhysicalBone3D
+			var local_point: Vector3 = part.to_local(point)
+			var local_direction: Vector3 = part.global_basis.inverse() * (normal * -side)
+			if float(spill["mass"]) >= heaviest:
+				HitEffects.spill(part, local_point, local_direction)
+			else:
+				HitEffects.gush(part, local_point, local_direction, 1.6)
 		get_tree().create_timer(CORPSE).timeout.connect(copy.queue_free)
 
 func show_state(state: int, health: int, staggered: bool, windup: bool) -> void:

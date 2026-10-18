@@ -232,7 +232,8 @@ func slashed(impulse: Vector3, point: Vector3, normal: Vector3, direction: Vecto
 
 @rpc("authority", "call_local", "reliable")
 func bisected(point: Vector3, normal: Vector3, impulse: Vector3, direction: Vector3) -> void:
-	HitEffects.slash(get_tree().current_scene, point, normal, direction, point - global_position, 2.6)
+	HitEffects.slash(get_tree().current_scene, point, normal, direction, point - global_position, 3.2)
+	HitEffects.sever(get_tree().current_scene, point, normal, direction)
 	visual.call("bisect", point, normal, impulse)
 
 func die() -> void:

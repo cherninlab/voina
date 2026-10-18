@@ -3,16 +3,38 @@ extends RefCounted
 
 # Cosmetic blood for raider hits, run on every peer from the host's hit RPCs. Realistic in look
 # (dark, wet, gravity-driven, leaving splatter where it lands), exaggerated in quantity and reach.
-const MAX_DECALS: int = 48
-const DECAL_LIFE: float = 25.0
+# Marks are meshes laid on the surface, not Decals: the Mobile renderer lets only 8 decals touch
+# one mesh, and the terrain is one mesh, so most of a bisect's splatter would never show.
+const MAX_STAINS: int = 96
+const STAIN_LIFE: float = 25.0
 const RAY_TRIES: int = 3
 # The one blood colour: drops, mist, splatter, wounds (mob_overlay.gdshader) and cut flesh
 # (mob_cut.gdshader) all use this value so blood reads the same in every interaction.
 const BLOOD: Color = Color(0.3, 0.012, 0.01)
-static var decal_textures: Array[ImageTexture] = []
-static var decal_orm: Array[ImageTexture] = []
-static var decals: Array[Decal] = []
+static var stain_materials: Array[ShaderMaterial] = []
+static var stain_shader: Shader
+static var stains: Array[MeshInstance3D] = []
 static var materials: Dictionary[String, StandardMaterial3D] = {}
+# Splatter on a surface: the texture's alpha, wet where thick. `spread` grows a pool from its
+# centre, `fade` dims it out; both per mark.
+const STAIN_SHADER: String = """
+shader_type spatial;
+render_mode blend_mix, depth_draw_never, cull_back, shadows_disabled;
+uniform sampler2D albedo_tex : source_color, filter_linear_mipmap, repeat_disable;
+uniform sampler2D orm_tex : filter_linear_mipmap, repeat_disable;
+instance uniform float spread = 1.0;
+instance uniform float fade = 1.0;
+void fragment() {
+	vec2 uv = (UV - 0.5) / max(spread, 0.01) + 0.5;
+	vec4 color = texture(albedo_tex, uv);
+	float inside = step(0.0, uv.x) * step(uv.x, 1.0) * step(0.0, uv.y) * step(uv.y, 1.0);
+	ALBEDO = color.rgb;
+	ALPHA = color.a * inside * fade;
+	// Wet but not a mirror: a sharper gloss turns the pools white or sky-grey at low angles.
+	ROUGHNESS = max(texture(orm_tex, uv).g, 0.5);
+	SPECULAR = 0.15;
+}
+"""
 
 static func enabled(scene: Node) -> bool:
 	return scene != null and DisplayServer.get_name() != "headless"
@@ -40,6 +62,61 @@ static func slash(scene: Node, point: Vector3, normal: Vector3, travel: Vector3,
 		splat(scene, point, direction, along, randf_range(0.8, 1.3) * sqrt(amount), exclude)
 	# The pool under the raider keeps spreading for a couple of seconds.
 	splat(scene, point, Vector3.DOWN * 2.5, along, 1.4 * sqrt(amount), exclude, 2.5)
+
+# A bisect on top of the slash: both cut faces burst along the plane's normal, a ring of spray
+# flies out within the plane, heavy globs slop down, and splatter lands all around.
+static func sever(scene: Node, point: Vector3, normal: Vector3, travel: Vector3) -> void:
+	if not enabled(scene):
+		return
+	var along: Vector3 = in_plane(travel, normal)
+	var root: Node3D = holder(scene, point, 2.6)
+	for face: float in [1.0, -1.0]:
+		root.add_child(drops((normal * face + Vector3.UP * 0.3).normalized(), 64, 1.5, 5.5, 0.012, 0.04, 35.0, 1.3))
+		root.add_child(drops((normal * face * 0.4 + Vector3.UP).normalized(), 40, 0.8, 3.0, 0.03, 0.07, 30.0, 1.2))
+	for step: int in range(8):
+		var direction: Vector3 = (along.rotated(normal, TAU * step / 8.0) + Vector3.UP * 0.25).normalized()
+		root.add_child(drops(direction, 40, 2.0, 6.5, 0.01, 0.03, 12.0))
+	root.add_child(mist(along, 3.0))
+	root.add_child(mist(-along, 2.0))
+	var exclude: Array[RID] = actor_rids(scene)
+	for index: int in range(12):
+		var direction: Vector3 = along.rotated(normal, TAU * index / 12.0 + randf_range(-0.2, 0.2)) * randf_range(0.8, 3.2)
+		direction += normal * randf_range(-1.2, 1.2) + Vector3.DOWN * 2.4
+		splat(scene, point, direction, direction, randf_range(0.9, 1.6), exclude)
+
+# A bisected half bleeding out: a heavy pulsing stream from the cut face that leaves a trail of
+# splatter under it as the half tumbles, then a wide pool spreading where it comes to rest.
+static func spill(part: Node3D, local_point: Vector3, local_direction: Vector3, duration: float = 3.5) -> void:
+	if not enabled(part):
+		return
+	var direction: Vector3 = local_direction.normalized()
+	for stream: GPUParticles3D in [
+			drops(direction, 64, 1.0, 3.2, 0.016, 0.04, 14.0, 1.2),
+			drops(direction, 40, 0.4, 1.6, 0.03, 0.06, 30.0, 1.0)]:
+		stream.one_shot = false
+		stream.explosiveness = 0.0
+		stream.randomness = 0.6
+		stream.local_coords = false
+		stream.position = local_point
+		part.add_child(stream)
+		part.get_tree().create_timer(duration).timeout.connect(func() -> void:
+			if is_instance_valid(stream):
+				stream.emitting = false)
+	var scene: Node = part.get_tree().current_scene
+	var exclude: Array[RID] = actor_rids(scene)
+	var ticks: int = int(duration / 0.3)
+	for tick: int in range(ticks):
+		part.get_tree().create_timer(0.15 + tick * 0.3).timeout.connect(func() -> void:
+			if not is_instance_valid(part) or not is_instance_valid(scene):
+				return
+			var from: Vector3 = part.to_global(local_point)
+			var flow: Vector3 = part.global_basis * direction
+			var spray: Vector3 = Vector3(flow.x, 0.0, flow.z) * randf_range(0.2, 0.9) + Vector3.DOWN * 3.0
+			# The stream thins as the half empties.
+			splat(scene, from, spray, flow, lerpf(1.1, 0.5, float(tick) / ticks) * randf_range(0.8, 1.2), exclude))
+	part.get_tree().create_timer(duration * 0.6).timeout.connect(func() -> void:
+		if is_instance_valid(part) and is_instance_valid(scene):
+			splat(scene, part.to_global(local_point), Vector3.DOWN * 3.0, part.global_basis * direction, 2.6, exclude, duration))
 
 # A light contact without damage: a few drops and at most a small mark below.
 static func splash(scene: Node, point: Vector3, direction: Vector3, amount: float) -> void:
@@ -212,39 +289,73 @@ static func splat(scene: Node, from: Vector3, offset: Vector3, travel: Vector3, 
 	var surface: Vector3 = hit["normal"] as Vector3
 	scene.get_tree().create_timer(flight).timeout.connect(func() -> void:
 		if is_instance_valid(scene):
-			place_decal(scene, position, surface, travel, size, spread_time))
+			place_stain(scene, position, surface, travel, size, spread_time))
 
-static func place_decal(scene: Node, position: Vector3, normal: Vector3, travel: Vector3, size: float, spread_time: float = 0.0) -> void:
-	if decal_textures.size() < 4:
-		make_splatter(decal_textures.size())
-	var variant: int = randi() % decal_textures.size()
-	var decal: Decal = Decal.new()
-	decal.texture_albedo = decal_textures[variant]
-	decal.texture_orm = decal_orm[variant]
-	decal.albedo_mix = 1.0
-	decal.upper_fade = 0.2
-	decal.lower_fade = 0.2
+static func place_stain(scene: Node, position: Vector3, normal: Vector3, travel: Vector3, size: float, spread_time: float = 0.0) -> void:
+	if stain_materials.size() < 4:
+		make_splatter(stain_materials.size())
 	# Long axis along the spray's travel over the surface: drops trail away from the hit.
 	var forward: Vector3 = travel - normal * travel.dot(normal)
 	forward = forward.normalized() if forward.length_squared() > 0.0001 else normal.cross(Vector3.RIGHT if absf(normal.x) < 0.9 else Vector3.FORWARD).normalized()
 	var right: Vector3 = forward.cross(normal).normalized()
-	decal.size = Vector3(size, 0.4, size * 1.6)
-	scene.add_child(decal)
-	decal.global_transform = Transform3D(Basis(right, normal, -forward).orthonormalized(), position)
-	decals.append(decal)
-	while decals.size() > MAX_DECALS:
-		var old: Decal = decals.pop_front()
+	var frame: Transform3D = Transform3D(Basis(right, normal, -forward).orthonormalized(), position)
+	var stain: MeshInstance3D = MeshInstance3D.new()
+	stain.mesh = stain_mesh(scene, frame, Vector2(size, size * 1.6))
+	stain.material_override = stain_materials[randi() % stain_materials.size()]
+	stain.cast_shadow = GeometryInstance3D.SHADOW_CASTING_SETTING_OFF
+	scene.add_child(stain)
+	stain.global_transform = frame
+	stains.append(stain)
+	while stains.size() > MAX_STAINS:
+		var old: MeshInstance3D = stains.pop_front()
 		if is_instance_valid(old):
 			old.queue_free()
 	if spread_time > 0.0:
-		decal.size = Vector3(size * 0.35, 0.4, size * 0.5)
-		decal.create_tween().tween_property(decal, "size", Vector3(size, 0.4, size * 1.3), spread_time).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_CUBIC)
-	var tween: Tween = decal.create_tween()
-	tween.tween_interval(DECAL_LIFE)
-	tween.tween_property(decal, "modulate", Color(1, 1, 1, 0), 4.0)
-	tween.tween_callback(decal.queue_free)
+		stain.set_instance_shader_parameter("spread", 0.35)
+		stain.create_tween().tween_method(func(value: float) -> void: stain.set_instance_shader_parameter("spread", value), 0.35, 1.0, spread_time).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_CUBIC)
+	var tween: Tween = stain.create_tween()
+	tween.tween_interval(STAIN_LIFE)
+	tween.tween_method(func(value: float) -> void: stain.set_instance_shader_parameter("fade", value), 1.0, 0.0, 4.0)
+	tween.tween_callback(stain.queue_free)
 
-# Procedural splatter, splashed along -v (texture "up" maps to the decal's -forward): a dense
+# A sheet over the surface in the mark's frame (y along the surface normal). Small marks are flat;
+# a large one drapes over bumps, each grid point dropped onto static ground by a ray.
+static func stain_mesh(scene: Node, frame: Transform3D, extent: Vector2) -> ArrayMesh:
+	var cells: int = 1 if extent.x < 1.2 else 6
+	var space: PhysicsDirectSpaceState3D = (scene as Node3D).get_world_3d().direct_space_state if scene is Node3D else scene.get_viewport().world_3d.direct_space_state
+	var vertices: PackedVector3Array = PackedVector3Array()
+	var uvs: PackedVector2Array = PackedVector2Array()
+	var normals: PackedVector3Array = PackedVector3Array()
+	for row: int in range(cells + 1):
+		for column: int in range(cells + 1):
+			var uv: Vector2 = Vector2(float(column) / cells, float(row) / cells)
+			var local: Vector3 = Vector3((uv.x - 0.5) * extent.x, 0.0, (uv.y - 0.5) * extent.y)
+			if cells > 1:
+				var top: Vector3 = frame * (local + Vector3.UP * 0.4)
+				var hit: Dictionary = space.intersect_ray(PhysicsRayQueryParameters3D.create(top, top - frame.basis.y * 0.8))
+				if not hit.is_empty() and (hit["collider"] is StaticBody3D or hit["collider"] is CSGShape3D):
+					local.y = (frame.affine_inverse() * (hit["position"] as Vector3)).y
+			# Lifted off the surface, a little more for each newer mark so overlaps do not flicker.
+			local.y += 0.01 + 0.0005 * (stains.size() % 12)
+			vertices.append(local)
+			uvs.append(uv)
+			normals.append(Vector3.UP)
+	var indices: PackedInt32Array = PackedInt32Array()
+	for row: int in range(cells):
+		for column: int in range(cells):
+			var corner: int = row * (cells + 1) + column
+			indices.append_array([corner, corner + 1, corner + cells + 1, corner + 1, corner + cells + 2, corner + cells + 1])
+	var arrays: Array = []
+	arrays.resize(Mesh.ARRAY_MAX)
+	arrays[Mesh.ARRAY_VERTEX] = vertices
+	arrays[Mesh.ARRAY_NORMAL] = normals
+	arrays[Mesh.ARRAY_TEX_UV] = uvs
+	arrays[Mesh.ARRAY_INDEX] = indices
+	var mesh: ArrayMesh = ArrayMesh.new()
+	mesh.add_surface_from_arrays(Mesh.PRIMITIVE_TRIANGLES, arrays)
+	return mesh
+
+# Procedural splatter, splashed along -v (texture "up" maps to the mark's forward): a dense
 # pool at the impact, satellite drops and elongated streaks flung ahead, all with soft wet edges.
 static func make_splatter(seed_value: int) -> void:
 	var size: int = 128
@@ -277,6 +388,14 @@ static func make_splatter(seed_value: int) -> void:
 			# Thick blood is darker; thin edges show more red.
 			var shade: float = lerpf(1.15, 0.7, a)
 			albedo.set_pixel(x, y, Color(BLOOD.r * shade, BLOOD.g * shade, BLOOD.b * shade, a))
-			orm.set_pixel(x, y, Color(1.0, lerpf(0.45, 0.1, a), 0.0, a))
-	decal_textures.append(ImageTexture.create_from_image(albedo))
-	decal_orm.append(ImageTexture.create_from_image(orm))
+			orm.set_pixel(x, y, Color(1.0, lerpf(0.45, 0.2, a), 0.0, a))
+	albedo.generate_mipmaps()
+	orm.generate_mipmaps()
+	if stain_shader == null:
+		stain_shader = Shader.new()
+		stain_shader.code = STAIN_SHADER
+	var material: ShaderMaterial = ShaderMaterial.new()
+	material.shader = stain_shader
+	material.set_shader_parameter("albedo_tex", ImageTexture.create_from_image(albedo))
+	material.set_shader_parameter("orm_tex", ImageTexture.create_from_image(orm))
+	stain_materials.append(material)
