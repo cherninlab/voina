@@ -708,18 +708,25 @@ func ridge_outcrops() -> void:
 			continue
 		peaks.append(candidate)
 		var direction: float = random.randf_range(0.0, TAU)
-		var width: float = random.randf_range(32.0, 52.0)
-		var depth: float = random.randf_range(12.0, 22.0)
-		var rise: float = random.randf_range(12.0, 22.0)
+		var width: float = random.randf_range(44.0, 70.0)
+		var depth: float = random.randf_range(18.0, 28.0)
+		var rise: float = random.randf_range(10.0, 18.0)
 		var rotation: Basis = Basis(Vector3.UP, direction)
+		var profiles: Array[PackedFloat32Array] = [PackedFloat32Array([0,0.62,1.0,0.93,0.42,0.28,0]), PackedFloat32Array([0,0.35,0.82,0.46,0.9,0.66,0]), PackedFloat32Array([0,0.76,0.67,1.0,0.62,0.25,0]), PackedFloat32Array([0,0.28,0.53,0.92,1.0,0.58,0])]
+		var profile: PackedFloat32Array = profiles[peaks.size() % profiles.size()]
 		for z: int in range(8):
 			for x: int in range(20):
 				var corners: Array[Vector2] = [Vector2(x,z),Vector2(x+1,z),Vector2(x,z+1),Vector2(x+1,z),Vector2(x+1,z+1),Vector2(x,z+1)]
 				for corner: Vector2 in corners:
 					var uv: Vector2 = corner / Vector2(20.0,8.0)
 					var point: Vector3 = candidate + rotation * Vector3((uv.x-0.5)*width,0,(uv.y-0.5)*depth)
-					var envelope: float = pow(maxf(sin(uv.x*PI),0.0),0.65) * pow(maxf(sin(uv.y*PI),0.0),0.5)
-					var shoulder: float = lerpf(1.15,0.55,uv.x)
+					var section: float = uv.x * (profile.size()-1)
+					var near_index: int = mini(int(section),profile.size()-2)
+					var crest: float = lerpf(profile[near_index],profile[near_index+1],section-near_index)
+					var crest_line: float = 0.32+uv.x*0.25
+					var cross_section: float = clampf(minf(uv.y/crest_line,(1.0-uv.y)/(1.0-crest_line)),0.0,1.0)
+					var envelope: float = crest * pow(cross_section,0.4)
+					var shoulder: float = lerpf(1.1,0.8,uv.x)
 					var fracture: float = sin(corner.x*2.3+corner.y*1.7)*0.8
 					var raw: float = envelope*rise*shoulder + fracture*envelope
 					var stepped: float = floorf(raw/2.4)*2.4

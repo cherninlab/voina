@@ -199,7 +199,8 @@
       "prompts": [
         "ridge-shape-study-prompt.md"
       ],
-      "note": "Generated modeling guide, not exact CAD. Runtime ridge_outcrops now authors terrain-conforming stepped shoulder meshes at ten selected crest sites using schist_rock. Initial oversized boulder assembly was rejected after capture review; no new imported rock assets were required. Further sculpting remains to match the study."
+      "note": "Generated modeling guide, not exact CAD. Runtime ridge_outcrops now authors terrain-conforming stepped shoulder meshes at ten selected crest sites using schist_rock. Initial oversized boulder assembly was rejected after capture review; no new imported rock assets were required. Further sculpting remains to match the study.",
+      "runtime_profiles": "Four piecewise asymmetric crest profiles with wider/lower shoulders and offset cross-sections; runtime-varied-crests. Smooth base mountains still remain below target."
     }
   ],
   "sky_note": "Generated LDR appearance panorama, not calibrated HDR lighting. Sky shader adjusts horizon latitude and blends wrap/poles; runtime review is required."
