@@ -1,0 +1,14 @@
+[remap]
+
+importer="glsl"
+type="RDShaderFile"
+uid="uid://chh16ry3bsv5b"
+path="res://.godot/imported/ycbcr.glsl-5ef8275ac0cda92774396e9715f379f4.res"
+
+[deps]
+
+source_file="res://ui/datamosh/ycbcr.glsl"
+dest_files=["res://.godot/imported/ycbcr.glsl-5ef8275ac0cda92774396e9715f379f4.res"]
+
+[params]
+

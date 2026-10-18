@@ -1,0 +1,14 @@
+[remap]
+
+importer="glsl"
+type="RDShaderFile"
+uid="uid://btqqlkgo66nef"
+path="res://.godot/imported/display.glsl-40443afc33dd5b6ccd3ae396feaccebd.res"
+
+[deps]
+
+source_file="res://ui/datamosh/display.glsl"
+dest_files=["res://.godot/imported/display.glsl-40443afc33dd5b6ccd3ae396feaccebd.res"]
+
+[params]
+

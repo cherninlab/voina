@@ -1,0 +1,14 @@
+[remap]
+
+importer="glsl"
+type="RDShaderFile"
+uid="uid://b1ofsgvq1d8ik"
+path="res://.godot/imported/motion.glsl-dc90977de2d254aa2674caaf4bf163e0.res"
+
+[deps]
+
+source_file="res://ui/datamosh/motion.glsl"
+dest_files=["res://.godot/imported/motion.glsl-dc90977de2d254aa2674caaf4bf163e0.res"]
+
+[params]
+

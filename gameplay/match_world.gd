@@ -99,6 +99,7 @@ func build_arena() -> void:
 
 func build_ui() -> void:
 	add_child(preload("res://ui/fisheye.gd").new())
+	add_child(preload("res://ui/datamosh.gd").new())
 	add_child(preload("res://ui/game_ui.gd").new())
 
 func _process(_delta: float) -> void:
