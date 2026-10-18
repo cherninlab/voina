@@ -127,7 +127,8 @@
         "oak.png",
         "reed_thatch.png",
         "schist_rock.png",
-        "aged_timber.png"
+        "aged_timber.png",
+        "tree01_atlas.png"
       ],
       "supporting_geometry": [
         "gameplay/environment/village_arena.gd:roof",
@@ -135,11 +136,13 @@
         "gameplay/environment/village_arena.gd:landscape",
         "gameplay/environment/village_arena.gd:clover_edges",
         "gameplay/environment/village_arena.gd:timber",
-        "gameplay/environment/village_arena.gd:roof_surface_point"
+        "gameplay/environment/village_arena.gd:roof_surface_point",
+        "gameplay/environment/village_arena.gd:refresh_foliage"
       ],
       "prompts": [
         "target-enshrouded-actual-refs-prompt.md",
-        "aged_timber-prompt.md"
+        "aged_timber-prompt.md",
+        "tree01_atlas-prompt.md"
       ],
       "note": "Corrected target directly conditions on actual Enshrouded images rather than its name alone. Generated reference, not actual VALKA gameplay. Existing texture candidates are paired; broad sculpted surface detail and dense layered foliage remain implementation work.",
       "supporting_shape_reference": "groundcover-shape-study.png"

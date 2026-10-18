@@ -11,7 +11,8 @@
     "daylight_sky.png",
     "schist_rock.png",
     "soil_gravel.png",
-    "aged_timber.png"
+    "aged_timber.png",
+    "tree01_atlas.png"
   ],
   "notes": "Original ImageGen base-color candidates; generation prompts accompany new assets. Terrain/cloth geometry is authored in village_arena.gd. These images are artistic material candidates, not calibrated PBR scans; seam and motion quality require runtime review. No assets from the earlier commercial Village House Kit are included.",
   "reference_images": [

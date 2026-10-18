@@ -24,6 +24,7 @@ func _ready() -> void:
 		if lightmap.light_data != null and lightmap.light_data.get_user_count() > 0:
 			add_child(snapshot)
 			clover_edges()
+			refresh_foliage(snapshot)
 			return
 		snapshot.free()
 	wood = surface("b0a08a", "oak", 0.5)
@@ -99,6 +100,8 @@ func _ready() -> void:
 		if child is MeshInstance3D and (child as MeshInstance3D).mesh is PlaneMesh:
 			trees.remove_child(child)
 			child.queue_free()
+	for plant: Node3D in (trees as TreePack).plants:
+		plant.position.y = landscape_surface_height(plant.position.x, plant.position.z) - 0.05
 	# Additional vegetation belongs to the surrounding land, not a single circular tree row.
 	var forest_random: RandomNumberGenerator = RandomNumberGenerator.new()
 	forest_random.seed = 41271
@@ -108,6 +111,8 @@ func _ready() -> void:
 		var x: float = cos(angle) * radius
 		var z: float = sin(angle) * radius
 		(trees as TreePack).add_plant("tree%02d" % (1 + index % 36), Vector3(x, landscape_surface_height(x, z) - 0.05, z), forest_random.randf_range(7.0, 14.0))
+	if not bool(get_meta("prepare_lightmap", false)):
+		refresh_foliage(trees)
 
 func landscape_height(x: float, z: float) -> float:
 	var distance: float = maxf(absf(x), absf(z))
@@ -695,3 +700,19 @@ void fragment() {
 func roof_surface_point(location: Vector3, width: float, depth: float, side: int, down: float, along: float) -> Vector3:
 	var fringe: float = pow(down, 8.0) * sin(along * 83.0) * 0.065
 	return location + Vector3(side * (width * 0.5 * down + fringe), 2.8 * (0.5 - down) - absf(fringe), (along - 0.5) * depth)
+
+func refresh_foliage(root_node: Node3D) -> void:
+	# Preserve the existing UVs and cutout/coverage settings for this atlas trial.
+	var replacement: StandardMaterial3D
+	for node: Node in root_node.find_children("*", "MeshInstance3D", true, false):
+		var visual: MeshInstance3D = node as MeshInstance3D
+		var material: Material = visual.material_override
+		if not material is StandardMaterial3D:
+			continue
+		var original: StandardMaterial3D = material as StandardMaterial3D
+		if original.albedo_texture == null or not original.albedo_texture.resource_path.ends_with("/tree01.png"):
+			continue
+		if replacement == null:
+			replacement = original.duplicate() as StandardMaterial3D
+			replacement.albedo_texture = load("res://content/environments/village_generated/tree01_atlas.png") as Texture2D
+		visual.material_override = replacement

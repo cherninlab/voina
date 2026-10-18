@@ -81,3 +81,7 @@ A generated aged-timber albedo is paired with the actual-Enshrouded target. Post
 ## Thatch silhouette volume
 
 The roof shape study and actual-Enshrouded target now guide an underside and closed gable/eave skirts, with approximately 20cm of irregular thatch thickness. Top and lower edge samples share the same contour. This is cosmetic mesh volume; collision remains unchanged and the rafters meet the lower thatch surface. The source and static snapshot are regenerated together.
+
+## Foliage atlas trial and grounding
+
+The original tree01 atlas is 128px. A generated 1254px RGBA replacement is applied to that variant only, preserving existing UV geometry and alpha-scissor/coverage settings. Matched actual captures compare original and replacement at the same camera; bark and leaf detail improve, but the low-detail mesh and remaining original variants still limit quality. The initial TreePack ring now samples the actual surrounding landscape triangles rather than keeping a fixed height. The snapshot is regenerated for those positions; runtime atlas substitution remains separate from its static lightmaps.
