@@ -36,7 +36,7 @@ func _ready() -> void:
 	var menu: VBoxContainer = world.get("menu") as VBoxContainer
 	lobby_panel = centered_panel(menu)
 	menu.add_theme_constant_override("separation", 12)
-	add_label(menu, "VALKA", 40)
+	add_label(menu, "SECHA", 40)
 	add_label(menu, "WOODLAND VILLAGE", 12, Color("9eb1a6"))
 	menu.add_child(HSeparator.new())
 	var address: LineEdit = world.get("address") as LineEdit
@@ -290,4 +290,4 @@ func refresh() -> void:
 			bars[index].value = amounts[index]
 			values[index].text = str(int(amounts[index]))
 		var players: Node3D = world.get("players") as Node3D
-		session_label.text = "VALKA   /   %d / 4 players" % players.get_child_count()
+		session_label.text = "SECHA   /   %d / 4 players" % players.get_child_count()

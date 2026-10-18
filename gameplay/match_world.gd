@@ -106,7 +106,7 @@ func build_ui() -> void:
 func _process(_delta: float) -> void:
 	if not hud.visible:
 		return
-	hud.text = "VALKA · %s\n%s melee · %s bolt · %s block · %s dash · %s jump\n%s camera · %s turn · Esc release cursor" % [NetworkManager.status, InputSettings.key_label(&"melee"), InputSettings.key_label(&"bolt"), InputSettings.key_label(&"block"), InputSettings.key_label(&"dash"), InputSettings.key_label(&"jump"), InputSettings.key_label(&"camera_toggle"), InputSettings.key_label(&"quick_turn")]
+	hud.text = "SECHA · %s\n%s melee · %s bolt · %s block · %s dash · %s jump\n%s camera · %s turn · Esc release cursor" % [NetworkManager.status, InputSettings.key_label(&"melee"), InputSettings.key_label(&"bolt"), InputSettings.key_label(&"block"), InputSettings.key_label(&"dash"), InputSettings.key_label(&"jump"), InputSettings.key_label(&"camera_toggle"), InputSettings.key_label(&"quick_turn")]
 	var local: Node = players.get_node_or_null(str(multiplayer.get_unique_id()))
 	if local != null:
 		var combat: CombatController = local.get("combat") as CombatController

@@ -217,7 +217,7 @@ def page() -> str:
                 if pin else "")
     head_hash, _, head_subject = git("log", "-1", "--format=%h %s", REF).strip().partition(" ")
     return f"""<!doctype html><html lang="en"><head><meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1"><title>Voina board</title><style>
+<meta name="viewport" content="width=device-width, initial-scale=1"><title>SECHA board</title><style>
 :root{{color-scheme:light dark;--bg:#fbfbfa;--text:#1b1d1f;--muted:#74797f;--faint:#a3a8ad;--line:#ececea;--hover:#f4f4f2;--accent:#c2410c}}
 @media (prefers-color-scheme:dark){{:root{{--bg:#131416;--text:#e8e9ea;--muted:#8d9297;--faint:#61666b;--line:#232528;--hover:#1a1c1e;--accent:#fb923c}}}}
 *{{box-sizing:border-box}}
@@ -259,7 +259,7 @@ summary.row:hover{{background:var(--hover)}}
 .row{{grid-template-columns:1fr;gap:6px}} .row.plain{{grid-template-columns:44px 1fr}} .row.plain .side{{display:none}}
 .side{{text-align:left}} .side .m{{display:inline}} .side .m+.m::before{{content:" · "}} .more,.compact .more{{padding-left:10px}}}}
 </style></head><body><main id="board">
-<header><h1>Voina board</h1><div class="meta">main <code>{html.escape(head_hash)}</code> · {html.escape(head_subject)}</div>{pin_line}</header>
+<header><h1>SECHA board</h1><div class="meta">main <code>{html.escape(head_hash)}</code> · {html.escape(head_subject)}</div>{pin_line}</header>
 {agents_section(all_tasks)}
 {tasks_section("Unclaimed", unclaimed, finished)}
 {tasks_section("Done", done, finished, folded=True)}

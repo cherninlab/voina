@@ -1,4 +1,4 @@
-# VALKA interface
+# SECHA interface
 
 T-035 adds native Godot controls with a single restrained dark-green/ivory theme:
 
@@ -8,7 +8,7 @@ T-035 adds native Godot controls with a single restrained dark-green/ivory theme
 - Escape opens a local pause menu. Resume recaptures the cursor; Controls opens the existing key/sensitivity/fisheye panel; Leave returns to the lobby. The host simulation and networking keep running.
 - A compact health/stamina/poise HUD replaces the always-visible debug text. `--debug-hud` restores the previous detailed readout. Existing sword tuning remains accessible from the pause screen.
 
-Mik's fisheye implementation, camera controls, combat authority and ENet transport are unchanged. T-036 renames the window/menu/HUD to VALKA. The existing application data directory is explicitly retained to preserve saved bindings, sensitivity, fisheye strength and sword tuning.
+Mik's fisheye implementation, camera controls, combat authority and ENet transport are unchanged. The window, menu and HUD use the SECHA name. The existing application data directory is explicitly retained to preserve saved bindings, sensitivity, fisheye strength and sword tuning.
 
 ## Checks and captures
 
