@@ -15,6 +15,10 @@ const MAX_PARRY_GRACE: float = 0.08
 const MELEE_WINDUP: float = 0.15
 const MELEE_ACTIVE: float = 0.12
 const MELEE_RECOVERY: float = 0.25
+# A heavy cut is still flying when RECOVERY ends (it lands about 0.7 s after the swing starts).
+# Its blade may keep dealing this swing's damage while the host's own reconstruction of the
+# stroke is airborne, but never later than this long after the host approved the swing.
+const CUT_FOLLOW_THROUGH_CAP: float = 0.85
 const DASH_DURATION: float = 0.25
 const I_FRAME_DURATION: float = 0.15
 # Front guard covers about 70 degrees to each side of the defender's facing.
@@ -37,6 +41,7 @@ var next_block: float = 0.0
 var invulnerable_until: float = 0.0
 var action_ranged: bool = false
 var struck: Dictionary[int, bool] = {}
+var cut_until: float = 0.0 # host clock; end of the current melee swing's follow-through cap
 # Match flow freezes combat during countdowns: no actions start and hits are ignored.
 var frozen: bool = false
 var locked: bool = false  # match countdown: movement held in place, camera look stays free
@@ -53,6 +58,7 @@ func step(delta: float) -> void:
 	if frozen:
 		phase = Phase.IDLE
 		phase_until = clock
+		cut_until = 0.0
 		blocking = false
 		invulnerable_until = 0.0
 		return
@@ -89,6 +95,7 @@ func begin_attack(ranged: bool, head_start: float = 0.0) -> bool:
 	next_attack = clock + 0.5
 	action_ranged = ranged
 	struck.clear()
+	cut_until = 0.0 if ranged else clock + CUT_FOLLOW_THROUGH_CAP
 	phase = Phase.ACTIVE if ranged else Phase.WINDUP
 	phase_until = clock + (0.05 if ranged else MELEE_WINDUP - clampf(head_start, 0.0, MELEE_WINDUP))
 	attack_started.emit(ranged)
@@ -103,6 +110,7 @@ func begin_shot(cost: float, cooldown: float) -> bool:
 		return false
 	next_attack = clock + cooldown
 	action_ranged = true
+	cut_until = 0.0
 	phase = Phase.ACTIVE
 	phase_until = clock + 0.05
 	return true
@@ -133,8 +141,20 @@ func set_block(wants_block: bool) -> bool:
 		return false
 	blocking = true
 	block_started = clock
+	cut_until = 0.0
 	next_block = clock + 0.35
 	return true
+
+# Whether this player's blade may deal its swing's damage now. stroke_live must come from the
+# host's own HeavySwordMotion (started only by an approved swing); held intent never counts.
+# Past the swing's phases the stroke keeps cutting until it lands, capped, and blocking,
+# dashing, staggers, respawns and match freezes end it.
+func cuts(stroke_live: bool) -> bool:
+	if frozen:
+		return false
+	if phase in [Phase.WINDUP, Phase.ACTIVE, Phase.RECOVERY]:
+		return true
+	return phase == Phase.IDLE and stroke_live and not blocking and clock < cut_until
 
 func strike(target_id: int) -> bool:
 	if frozen or struck.has(target_id):
@@ -146,6 +166,7 @@ func begin_dash() -> bool:
 	if not multiplayer.is_server() or frozen or phase != Phase.IDLE or not spend(DASH_COST):
 		return false
 	blocking = false
+	cut_until = 0.0
 	phase = Phase.DASHING
 	phase_until = clock + DASH_DURATION
 	invulnerable_until = clock + I_FRAME_DURATION
@@ -153,6 +174,7 @@ func begin_dash() -> bool:
 
 func stagger(duration: float = 0.8) -> void:
 	blocking = false
+	cut_until = 0.0
 	phase = Phase.STAGGERED
 	phase_until = clock + duration
 	invulnerable_until = 0.0
@@ -202,6 +224,7 @@ func respawn() -> void:
 	blocking = false
 	phase = Phase.IDLE
 	phase_until = 0.0
+	cut_until = 0.0
 	invulnerable_until = 0.0
 	next_attack = clock + 0.5
 	next_block = clock + 0.35

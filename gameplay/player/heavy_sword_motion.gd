@@ -129,6 +129,7 @@ var stroke_pull: Vector3 = Vector3.ZERO
 var drive_age: float = DRIVE_TIME
 var drive_turn: float = 0.0 # signed peak heading torque of the current cut, rad/s^2
 var drive_lift: float = 0.0 # elevation torque of the current cut, rad/s^2
+var stroke_live: bool = false # an approved cut is still in the air; cleared when it lands
 
 func reset(camera_yaw: float, origin: Vector3 = anchor, floor_y: float = ground) -> void:
 	anchor = origin
@@ -138,6 +139,7 @@ func reset(camera_yaw: float, origin: Vector3 = anchor, floor_y: float = ground)
 	heading = camera_yaw
 	sweep = 0.0
 	drive_age = DRIVE_TIME
+	stroke_live = false
 	elevation = rest_elevation()
 	heading_speed = 0.0
 	elevation_speed = 0.0
@@ -203,6 +205,7 @@ func strike(direction: Vector2) -> void:
 	drive_lift = -12.0 if chop else (26.0 + lift_gain) * (1.0 - cut.y * 0.25)
 	elevation_speed = minf(elevation_speed, 0.0) if chop else maxf(elevation_speed, 0.0) * 0.5
 	drive_age = 0.0
+	stroke_live = true
 	planted = false
 	stroke_age = 0.0
 	var forward: Vector3 = Vector3.FORWARD.rotated(Vector3.UP, heading)
@@ -227,6 +230,7 @@ func step(delta: float, camera_yaw: float, camera_pitch: float, holding: bool, a
 		sweep = 0.0
 		stroke_age = FOLLOW_THROUGH_TIME
 		drive_age = DRIVE_TIME
+		stroke_live = false
 	var driving: bool = holding and not blocking and absf(turn) < 1.2 and absf(tilt) < 1.2 and absf(turn) + absf(tilt) > 0.00001
 	var start_anchor: Vector3 = anchor
 	var start_ground: float = ground
@@ -286,6 +290,7 @@ func step(delta: float, camera_yaw: float, camera_pitch: float, holding: bool, a
 			if tip.y <= ground + TIP_RADIUS and elevation_speed <= 0.0 and (drive_age >= DRIVE_TIME or drive_lift < 0.0):
 				elevation = rest_elevation()
 				elevation_speed = 0.0
+				stroke_live = false
 				heading_speed *= exp(-(anchor_friction + drag_friction) * dt)
 				place_blade()
 				if absf(heading_speed) * BLADE < ANCHOR_HOLD_SPEED:
