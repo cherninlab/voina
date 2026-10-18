@@ -134,7 +134,8 @@
         "gameplay/environment/village_arena.gd:green_borders",
         "gameplay/environment/village_arena.gd:landscape",
         "gameplay/environment/village_arena.gd:clover_edges",
-        "gameplay/environment/village_arena.gd:timber"
+        "gameplay/environment/village_arena.gd:timber",
+        "gameplay/environment/village_arena.gd:roof_surface_point"
       ],
       "prompts": [
         "target-enshrouded-actual-refs-prompt.md",

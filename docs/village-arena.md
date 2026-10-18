@@ -77,3 +77,7 @@ The actual-Enshrouded target is paired with the groundcover shape study and orig
 ## Structural timber material
 
 A generated aged-timber albedo is paired with the actual-Enshrouded target. Posts and cylindrical braces use local longitudinal mapping rather than the wall-of-planks world projection; boards retain their separate material. The grain repeats at a consistent length scale with high roughness. The static snapshot is regenerated and rebaked with this material. The albedo is an artistic candidate, not a calibrated normal/roughness scan.
+
+## Thatch silhouette volume
+
+The roof shape study and actual-Enshrouded target now guide an underside and closed gable/eave skirts, with approximately 20cm of irregular thatch thickness. Top and lower edge samples share the same contour. This is cosmetic mesh volume; collision remains unchanged and the rafters meet the lower thatch surface. The source and static snapshot are regenerated together.

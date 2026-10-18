@@ -247,13 +247,45 @@ func roof(location: Vector3, width: float, depth: float, parent: Node3D) -> void
 					tool.set_uv(Vector2(along * depth * 0.65, down * length * 0.65))
 					tool.set_normal(Vector3(side * rise, width * 0.5, 0).normalized())
 					tool.add_vertex(location + point)
+		for row: int in range(10):
+			for column: int in range(28):
+				var corners: Array[Vector2] = [Vector2(row,column),Vector2(row+1,column),Vector2(row,column+1),Vector2(row+1,column),Vector2(row+1,column+1),Vector2(row,column+1)]
+				if side > 0:
+					corners.reverse()
+				for corner: Vector2 in corners:
+					var down: float = corner.x / 10.0
+					var along: float = corner.y / 28.0
+					var thickness: float = 0.2 + 0.035 * sin(along * 83.0) * down
+					tool.set_uv(Vector2(along * depth * 0.65, down * length * 0.65))
+					tool.set_normal(-Vector3(side * rise, width * 0.5, 0).normalized())
+					tool.add_vertex(roof_surface_point(location, width, depth, side, down, along) - Vector3.UP * thickness)
+		# A closed, irregular edge gives thatch actual thickness at eaves and gables.
+		for edge: int in range(3):
+			var segments: int = 28 if edge == 0 else 10
+			for segment: int in range(segments):
+				var t0: float = float(segment) / segments
+				var t1: float = float(segment + 1) / segments
+				var down0: float = 1.0 if edge == 0 else t0
+				var down1: float = 1.0 if edge == 0 else t1
+				var along0: float = t0 if edge == 0 else float(edge - 1)
+				var along1: float = t1 if edge == 0 else float(edge - 1)
+				var start: Vector3 = roof_surface_point(location, width, depth, side, down0, along0)
+				var finish: Vector3 = roof_surface_point(location, width, depth, side, down1, along1)
+				var low_start: Vector3 = start - Vector3.UP * (0.2 + 0.035 * sin(along0 * 83.0) * down0)
+				var low_finish: Vector3 = finish - Vector3.UP * (0.2 + 0.035 * sin(along1 * 83.0) * down1)
+				var normal: Vector3 = Vector3(side, 0, 0) if edge == 0 else Vector3(0, 0, -1 if edge == 1 else 1)
+				var edge_points: Array[Vector3] = [start, finish, low_start, finish, low_finish, low_start]
+				for point: Vector3 in edge_points:
+					tool.set_normal(normal)
+					tool.set_uv(Vector2(point.z + point.x, point.y) * 0.65)
+					tool.add_vertex(point)
 		tool.index()
 		var visual: MeshInstance3D = MeshInstance3D.new()
 		visual.mesh = tool.commit()
 		visual.material_override = straw
 		parent.add_child(visual)
 		for z: float in [-depth*0.42, 0.0, depth*0.42]:
-			timber(location + Vector3(side*width*0.5, -rise*0.5-0.12, z), location + Vector3(0, rise*0.5-0.12, z), 0.085, parent)
+			timber(location + Vector3(side*width*0.5, -rise*0.5-0.29, z), location + Vector3(0, rise*0.5-0.29, z), 0.085, parent)
 	timber(location + Vector3(0, rise*0.5+0.04, -depth*0.53), location + Vector3(0, rise*0.5+0.04, depth*0.53), 0.11, parent)
 
 func stall(location: Vector3, cloth: StandardMaterial3D) -> void:
@@ -659,3 +691,7 @@ void fragment() {
 	timber_material = ShaderMaterial.new()
 	timber_material.shader = shader
 	timber_material.set_shader_parameter("grain", load("res://content/environments/village_generated/aged_timber.png"))
+
+func roof_surface_point(location: Vector3, width: float, depth: float, side: int, down: float, along: float) -> Vector3:
+	var fringe: float = pow(down, 8.0) * sin(along * 83.0) * 0.065
+	return location + Vector3(side * (width * 0.5 * down + fringe), 2.8 * (0.5 - down) - absf(fringe), (along - 0.5) * depth)
