@@ -146,6 +146,21 @@
       ],
       "note": "Corrected target directly conditions on actual Enshrouded images rather than its name alone. Generated reference, not actual VALKA gameplay. Existing texture candidates are paired; broad sculpted surface detail and dense layered foliage remain implementation work.",
       "supporting_shape_reference": "groundcover-shape-study.png"
+    },
+    {
+      "target": "broadleaf-shape-study.png",
+      "supporting_basecolors": [
+        "tree01_atlas.png"
+      ],
+      "supporting_geometry": [
+        "gameplay/environment/woodland_tree.gd",
+        "gameplay/environment/village_arena.gd:refresh_foliage"
+      ],
+      "prompts": [
+        "broadleaf-shape-study-prompt.md",
+        "tree01_atlas-prompt.md"
+      ],
+      "note": "Original authored trunk/branch and curved foliage-card meshes for tree01 within 80m of village origin. Far instances retain original geometry with improved atlas. Spatial asset selection, not a measured camera LOD system. Shape sheet is reference, not exact CAD or runtime capture."
     }
   ],
   "sky_note": "Generated LDR appearance panorama, not calibrated HDR lighting. Sky shader adjusts horizon latitude and blends wrap/poles; runtime review is required."

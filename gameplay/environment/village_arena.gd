@@ -712,6 +712,16 @@ func refresh_foliage(root_node: Node3D) -> void:
 		var original: StandardMaterial3D = material as StandardMaterial3D
 		if original.albedo_texture == null or not original.albedo_texture.resource_path.ends_with("/tree01.png"):
 			continue
+		var bounds: AABB = visual.global_transform * visual.mesh.get_aabb()
+		if Vector2(bounds.get_center().x, bounds.get_center().z).length() < 80.0:
+			var tree: Node3D = preload("res://gameplay/environment/woodland_tree.gd").new() as Node3D
+			root_node.add_child(tree)
+			var base: Vector3 = Vector3(bounds.get_center().x, bounds.position.y, bounds.get_center().z)
+			tree.global_position = base
+			tree.rotation.y = fposmod(base.x * 0.71 + base.z * 0.37, TAU)
+			tree.call("configure", load("res://content/environments/village_generated/tree01_atlas.png"), original, bounds.size.y)
+			visual.visible = false
+			continue
 		if replacement == null:
 			replacement = original.duplicate() as StandardMaterial3D
 			replacement.albedo_texture = load("res://content/environments/village_generated/tree01_atlas.png") as Texture2D

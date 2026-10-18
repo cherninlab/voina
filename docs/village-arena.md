@@ -85,3 +85,7 @@ The roof shape study and actual-Enshrouded target now guide an underside and clo
 ## Foliage atlas trial and grounding
 
 The original tree01 atlas is 128px. A generated 1254px RGBA replacement is applied to that variant only, preserving existing UV geometry and alpha-scissor/coverage settings. Matched actual captures compare original and replacement at the same camera; bark and leaf detail improve, but the low-detail mesh and remaining original variants still limit quality. The initial TreePack ring now samples the actual surrounding landscape triangles rather than keeping a fixed height. The snapshot is regenerated for those positions; runtime atlas substitution remains separate from its static lightmaps.
+
+## Original near-village broadleaf geometry
+
+Tree01 instances within 80m of village origin now use an original bent/tapered trunk, 14 two-segment branches, and overlapping curved foliage cards. The generated shape sheet is paired with the existing atlas; bark and leaf UVs use their separate islands. Instances share mesh resources, vary rotation, reuse original placement, and scale proportionally to original tree height. They are cosmetic with no collision. Far instances retain the original lightweight geometry. This is spatial selection around the village, not a measured camera LOD system or M2 performance result. Other tree variants still use the old assets.
