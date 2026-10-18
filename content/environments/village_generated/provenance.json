@@ -31,7 +31,8 @@
     "ridge-shape-study.png",
     "target-north-entrance.png",
     "fern-shape-study.png",
-    "target-woodland-trail.png"
+    "target-woodland-trail.png",
+    "target-woodland-stands.png"
   ],
   "reference_note": "Built-in ImageGen targets preserve actual runtime composition and use user-supplied visual references; these are not game screenshots. See target-prompts.md and reference_sets.json.",
   "new_material_candidate": {

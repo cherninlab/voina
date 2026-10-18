@@ -790,6 +790,33 @@ func woodland_edges() -> void:
 			var basis: Basis = Basis(Vector3.UP, random.randf_range(0.0, TAU)).scaled(Vector3(size * 1.25, size, size * 1.25))
 			transforms.append(Transform3D(basis, Vector3(point.x, height - 0.06, point.y)))
 			colors.append(Color("b4c29c").lerp(Color("e2e6c5"), random.randf()))
+	# Mature stands overlap the trail shoulders rather than spacing single trees evenly.
+	var mature_locations: Array[Vector2] = []
+	for group: int in range(14):
+		var center_z: float = random.randf_range(-43.0, -102.0)
+		var side: float = -1.0 if group % 2 == 0 else 1.0
+		var center_x: float = north_trail_center(center_z) + side * random.randf_range(9.0, 19.0)
+		for plant: int in range(random.randi_range(3, 7)):
+			var point: Vector2 = Vector2(center_x + random.randf_range(-5.5, 5.5), center_z + random.randf_range(-5.5, 5.5))
+			if absf(point.x - north_trail_center(point.y)) < 5.0:
+				continue
+			var crowded: bool = false
+			for previous: Vector2 in mature_locations:
+				if point.distance_squared_to(previous) < 9.0:
+					crowded = true
+					break
+			if crowded:
+				continue
+			var height: float = landscape_surface_height(point.x, point.y)
+			var slope: float = absf(landscape_surface_height(point.x + 2.0, point.y) - height) + absf(landscape_surface_height(point.x, point.y + 2.0) - height)
+			if slope > 2.0:
+				continue
+			var size: float = random.randf_range(7.5, 16.0) / 10.0
+			var width: float = random.randf_range(0.8, 1.5)
+			var basis: Basis = Basis(Vector3.UP, random.randf_range(0.0, TAU)).scaled(Vector3(size * width, size, size * width))
+			transforms.append(Transform3D(basis, Vector3(point.x, height - 0.06, point.y)))
+			colors.append(Color("a2b28e").lerp(Color("c6ceaa"), random.randf()))
+			mature_locations.append(point)
 	assert(transforms.size() > 200, "Woodland groups must contain usable grounded saplings")
 	var source: StandardMaterial3D = StandardMaterial3D.new()
 	source.transparency = BaseMaterial3D.TRANSPARENCY_ALPHA_SCISSOR
@@ -816,7 +843,7 @@ func woodland_edges() -> void:
 		visual.gi_mode = GeometryInstance3D.GI_MODE_DISABLED
 		add_child(visual)
 	prototype.free()
-	print("VILLAGE_WOODLAND_OK: ", transforms.size(), " grounded saplings in two instanced meshes")
+	print("VILLAGE_WOODLAND_OK: ", transforms.size(), " grounded saplings/mature trees in two instanced meshes")
 
 func apply_atmosphere(environment: Environment) -> void:
 	# Energy alone is ignored at a full sky contribution; balance the source explicitly.
@@ -1126,7 +1153,7 @@ func trail_grass(root_node: Node3D) -> void:
 	patches.seed = 63811
 	patches.frequency = 0.13
 	var locations: Array[Vector3] = []
-	for attempt: int in range(7000):
+	for attempt: int in range(28000):
 		var z: float = random.randf_range(-110.0,-36.0)
 		var offset: float = random.randf_range(-13.0,13.0)
 		var x: float = north_trail_center(z)+offset
