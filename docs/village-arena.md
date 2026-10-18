@@ -93,3 +93,9 @@ Tree01 instances within 80m of village origin now use an original bent/tapered t
 ## Height and aerial atmosphere
 
 A shared atmosphere function applies native exponential fog with a low height component, restrained aerial perspective and directional sun scattering. It is applied after the baked snapshot loads and in the source builder, so fog adjustments do not require repacking geometry. ACES exposure, the sky image and the wide-angle shader remain unchanged. Actual captures check foreground readability against distant separation. This is non-volumetric Mobile fog, not Enshrouded-style volumetric lighting or measured M2 acceptance.
+# Player projection calibration
+
+Art captures now copy the live owner's camera FOV and assert that it matches the retained wide-angle pass's source projection. Earlier art captures used 68 degrees while the default player/lens source uses 108 degrees. Those images remain real runtime renders and their collision checks remain valid, but their framing was not calibrated to the player's projection. Mik's shader and wrapper are unchanged.
+
+The `runtime-matched-projection` three-view capture passed floor/ramp rays, four player landing checks and the new projection assertion. Peripheral stretching remains visible; this change does not establish a fix for gameplay temporal flicker or camera feel. The new `target-player-projection.png` is an AI visual target conditioned on this calibrated capture and the supplied actual Enshrouded screenshots, not gameplay evidence.
+

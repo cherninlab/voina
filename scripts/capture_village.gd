@@ -45,7 +45,18 @@ func capture() -> void:
 	DirAccess.make_dir_recursive_absolute(directory)
 	var camera: Camera3D = Camera3D.new()
 	world.add_child(camera)
-	camera.fov = 68.0
+	var player_camera: Camera3D = player.get("camera") as Camera3D
+	camera.fov = player_camera.fov
+	var checked_lens: bool = false
+	for layer: Node in world.get_children():
+		var effect_script: Script = layer.get_script() as Script
+		if effect_script != null and effect_script.resource_path == "res://ui/fisheye.gd":
+			var lens_material: ShaderMaterial = layer.get("material") as ShaderMaterial
+			var source_half_fov: float = float(lens_material.get_shader_parameter("source_half_fov"))
+			assert(is_equal_approx(source_half_fov, deg_to_rad(camera.fov) * 0.5), "Capture and wide-angle source projection must match")
+			checked_lens = true
+	assert(checked_lens, "Capture must retain the game's wide-angle pass")
+	print("VILLAGE_PROJECTION_OK: owner/capture FOV ", camera.fov, "; wide-angle source verified")
 	camera.far = 600.0
 	var positions: Array[Vector3] = [Vector3(33, 28, 37), Vector3(-18, 2.3, 17), Vector3(-13, 5, -10)]
 	var targets: Array[Vector3] = [Vector3(0, 0, -2), Vector3(-18, 2.6, -5), Vector3(-23, 3, 4)]

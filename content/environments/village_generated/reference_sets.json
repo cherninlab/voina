@@ -161,6 +161,27 @@
         "tree01_atlas-prompt.md"
       ],
       "note": "Original authored trunk/branch and curved foliage-card meshes for tree01 within 80m of village origin. Far instances retain original geometry with improved atlas. Spatial asset selection, not a measured camera LOD system. Shape sheet is reference, not exact CAD or runtime capture."
+    },
+    {
+      "target": "target-player-projection.png",
+      "source_capture": "runtime-matched-projection/village-03.png",
+      "supporting_basecolors": [
+        "mineral_earth.png",
+        "aged_timber.png",
+        "reed_thatch.png",
+        "tree01_atlas.png",
+        "flax_weave.png"
+      ],
+      "supporting_shape_references": [
+        "broadleaf-shape-study.png",
+        "groundcover-shape-study.png",
+        "target-roof-shape.png"
+      ],
+      "prompts": [
+        "target-player-projection-prompt.md",
+        "mineral_earth-prompt.md"
+      ],
+      "note": "Generated target directly conditioned on actual Enshrouded daytime screenshots and calibrated 108-degree player-source capture. Target retains approximate scene composition; AI can alter proportions. Mineral earth is a new candidate, not yet used in runtime; tiling and motion validation pending."
     }
   ],
   "sky_note": "Generated LDR appearance panorama, not calibrated HDR lighting. Sky shader adjusts horizon latitude and blends wrap/poles; runtime review is required."
