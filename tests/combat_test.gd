@@ -115,5 +115,49 @@ func run() -> void:
 	paused.frozen = true
 	paused.step(0.01)
 	assert(not paused.evades_ranged() and paused.phase == CombatController.Phase.IDLE, "A freeze cancels dash immunity")
-	print("COMBAT_OK: parry, latency grace, recovery, block, guard break, stamina, dodge, active sweep, respawn cancellation, bolt release")
+	check_cut_follow_through()
+	print("COMBAT_OK: parry, latency grace, recovery, block, guard break, stamina, dodge, active sweep, respawn cancellation, bolt release, capped cut follow-through")
 	quit()
+
+# Blade damage may outlast the 0.52 s swing while the host's stroke flies, but only for an
+# approved melee swing, up to the cap, and never through block, dash, stagger, respawn or freeze.
+func check_cut_follow_through() -> void:
+	var cutter: CombatController = CombatController.new()
+	root.add_child(cutter)
+	cutter.set_physics_process(false)
+	var swing: float = CombatController.MELEE_WINDUP + CombatController.MELEE_ACTIVE + CombatController.MELEE_RECOVERY
+	assert(not cutter.cuts(true), "A live stroke without an approved swing never deals damage")
+	assert(cutter.begin_attack(false))
+	assert(cutter.cuts(false) and cutter.cuts(true), "The swing's own phases always cut")
+	advance(cutter, swing + 0.02)
+	assert(cutter.phase == CombatController.Phase.IDLE and is_equal_approx(cutter.stamina, 82.0))
+	assert(cutter.cuts(true) and not cutter.cuts(false), "After recovery only a still-flying stroke cuts")
+	assert(cutter.strike(5) and not cutter.strike(5), "Follow-through shares the swing's one hit per target")
+	advance(cutter, CombatController.CUT_FOLLOW_THROUGH_CAP - swing)
+	assert(not cutter.cuts(true), "Follow-through is capped even if the stroke never lands")
+	assert(cutter.begin_attack(false) and cutter.strike(5), "The cooldown is unchanged and a new swing clears struck targets")
+	var cancels: Array[Callable] = [
+		func() -> void: cutter.stagger(),
+		func() -> void: cutter.begin_dash(),
+		func() -> void: cutter.set_block(true),
+		func() -> void: cutter.respawn(),
+		func() -> void: cutter.frozen = true,
+	]
+	for index: int in range(cancels.size()):
+		cutter.respawn()
+		cutter.frozen = false
+		advance(cutter, 0.6)
+		assert(cutter.begin_attack(false))
+		advance(cutter, swing + 0.02)
+		assert(cutter.cuts(true))
+		cancels[index].call()
+		# Long enough for a dash to end, still inside the cap: only the cancellation can stop it.
+		advance(cutter, 0.26)
+		cutter.blocking = false
+		cutter.frozen = false
+		assert(not cutter.cuts(true), "Cancellation %d ends the follow-through" % index)
+	cutter.respawn()
+	advance(cutter, 0.6)
+	assert(cutter.begin_attack(true))
+	advance(cutter, 0.1)
+	assert(not cutter.cuts(true), "A ranged attack has no blade follow-through")

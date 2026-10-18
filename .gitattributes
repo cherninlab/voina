@@ -12,3 +12,6 @@
 *.gltf text eol=lf
 *.fbx filter=lfs diff=lfs merge=lfs -text
 *.res filter=lfs diff=lfs merge=lfs -text
+*.scn filter=lfs diff=lfs merge=lfs -text
+*.lmbake filter=lfs diff=lfs merge=lfs -text
+*.exr filter=lfs diff=lfs merge=lfs -text

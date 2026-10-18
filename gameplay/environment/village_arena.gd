@@ -1,6 +1,7 @@
 extends Node3D
 ## Original procedural village; cosmetic scenery never owns gameplay state.
 
+var timber_material: ShaderMaterial
 var wood: StandardMaterial3D
 var straw: StandardMaterial3D
 var stone: StandardMaterial3D
@@ -14,7 +15,31 @@ var landscape_noise: FastNoiseLite = FastNoiseLite.new()
 
 func _ready() -> void:
 	name = "WoodlandVillage"
+	# The source builder remains available to regenerate the static lightmap snapshot.
+	var baked_path: String = "res://content/environments/village_generated/village_lit.scn"
+	if not bool(get_meta("prepare_lightmap", false)) and ResourceLoader.exists(baked_path):
+		var baked: PackedScene = load(baked_path) as PackedScene
+		var snapshot: Node3D = baked.instantiate() as Node3D
+		var lightmap: LightmapGI = snapshot.get_node("VillageLightmap") as LightmapGI
+		if lightmap.light_data != null and lightmap.light_data.get_user_count() > 0:
+			add_child(snapshot)
+			for node: Node in snapshot.find_children("*", "WorldEnvironment", true, false):
+				apply_atmosphere((node as WorldEnvironment).environment)
+			refresh_landscape(snapshot)
+			refresh_ground(snapshot)
+			clover_edges()
+			clear_north_trail(snapshot)
+			refresh_foliage(snapshot)
+			woodland_edges()
+			ridge_outcrops()
+			open_north_approach(snapshot)
+			dress_north_approach(snapshot)
+			north_ferns()
+			trail_grass(snapshot)
+			return
+		snapshot.free()
 	wood = surface("b0a08a", "oak", 0.5)
+	make_timber_material()
 	straw = surface("bfb9aa", "reed_thatch")
 	straw.uv1_triplanar = false
 	straw.cull_mode = BaseMaterial3D.CULL_DISABLED
@@ -30,6 +55,8 @@ func _ready() -> void:
 	landscape()
 	green_borders()
 	ground_stones()
+	if not bool(get_meta("prepare_lightmap", false)):
+		clover_edges()
 	# Connected clearings bounded by angled palisades, rather than a square enclosure.
 	var outline: PackedVector2Array = PackedVector2Array([
 		Vector2(-28,-10), Vector2(-24,-23), Vector2(-9,-28), Vector2(8,-25),
@@ -84,6 +111,8 @@ func _ready() -> void:
 		if child is MeshInstance3D and (child as MeshInstance3D).mesh is PlaneMesh:
 			trees.remove_child(child)
 			child.queue_free()
+	for plant: Node3D in (trees as TreePack).plants:
+		plant.position.y = landscape_surface_height(plant.position.x, plant.position.z) - 0.05
 	# Additional vegetation belongs to the surrounding land, not a single circular tree row.
 	var forest_random: RandomNumberGenerator = RandomNumberGenerator.new()
 	forest_random.seed = 41271
@@ -93,6 +122,16 @@ func _ready() -> void:
 		var x: float = cos(angle) * radius
 		var z: float = sin(angle) * radius
 		(trees as TreePack).add_plant("tree%02d" % (1 + index % 36), Vector3(x, landscape_surface_height(x, z) - 0.05, z), forest_random.randf_range(7.0, 14.0))
+	clear_north_trail(trees)
+	if not bool(get_meta("prepare_lightmap", false)):
+		refresh_foliage(trees)
+		woodland_edges()
+		ridge_outcrops()
+	open_north_approach(self)
+	dress_north_approach(self)
+	if not bool(get_meta("prepare_lightmap", false)):
+		north_ferns()
+		trail_grass(self)
 
 func landscape_height(x: float, z: float) -> float:
 	var distance: float = maxf(absf(x), absf(z))
@@ -142,33 +181,10 @@ func landscape() -> void:
 	tool.index()
 	var visual: MeshInstance3D = MeshInstance3D.new()
 	visual.mesh = tool.commit()
-	var material: ShaderMaterial = ShaderMaterial.new()
-	var shader: Shader = Shader.new()
-	shader.code = """shader_type spatial;
-uniform sampler2D soil : source_color, filter_linear_mipmap_anisotropic, repeat_enable;
-uniform sampler2D rock : source_color, filter_linear_mipmap_anisotropic, repeat_enable;
-varying vec3 world_pos;
-varying vec3 world_normal;
-void vertex() { world_pos=(MODEL_MATRIX*vec4(VERTEX,1.0)).xyz; world_normal=normalize(MODEL_NORMAL_MATRIX*NORMAL); }
-vec3 bedrock(vec3 p,vec3 n) {
- vec3 weights=pow(abs(n),vec3(4.0));
- weights/=max(weights.x+weights.y+weights.z,0.001);
- return texture(rock,p.yz*0.12).rgb*weights.x+texture(rock,p.xz*0.12).rgb*weights.y+texture(rock,p.xy*0.12).rgb*weights.z;
-}
-void fragment() {
- float slope=normalize(world_normal).y;
- float exposed=max(1.0-smoothstep(0.55,0.85,slope),smoothstep(18.0,42.0,world_pos.y));
- vec3 earth=texture(soil,world_pos.xz*0.18).rgb*vec3(0.72,1.05,0.68);
- float macro=0.82+0.18*sin(world_pos.x*0.045+sin(world_pos.z*0.06))*cos(world_pos.z*0.035);
- ALBEDO=mix(earth,bedrock(world_pos,normalize(world_normal)),exposed)*macro;
- ROUGHNESS=0.95;
-}
-"""
-	material.shader = shader
-	material.set_shader_parameter("soil", load("res://content/environments/valhalla/textures/KB3D_VHL_GrassGround_basecolor.png"))
-	material.set_shader_parameter("rock", load("res://content/environments/village_generated/schist_rock.png"))
+	var material: ShaderMaterial = make_landscape_material()
 	visual.material_override = material
 	add_child(visual)
+	landscape_collision(visual)
 
 func surface(color: String, texture: String = "", tiling: float = 1.0) -> StandardMaterial3D:
 	var material: StandardMaterial3D = StandardMaterial3D.new()
@@ -208,7 +224,7 @@ func timber(start: Vector3, finish: Vector3, radius: float, parent: Node3D = sel
 	mesh.bottom_radius = radius
 	mesh.radial_segments = 10
 	visual.mesh = mesh
-	visual.material_override = wood
+	visual.material_override = timber_material
 	visual.position = (start + finish) * 0.5
 	visual.quaternion = Quaternion(Vector3.UP, (finish - start).normalized())
 	parent.add_child(visual)
@@ -232,13 +248,45 @@ func roof(location: Vector3, width: float, depth: float, parent: Node3D) -> void
 					tool.set_uv(Vector2(along * depth * 0.65, down * length * 0.65))
 					tool.set_normal(Vector3(side * rise, width * 0.5, 0).normalized())
 					tool.add_vertex(location + point)
+		for row: int in range(10):
+			for column: int in range(28):
+				var corners: Array[Vector2] = [Vector2(row,column),Vector2(row+1,column),Vector2(row,column+1),Vector2(row+1,column),Vector2(row+1,column+1),Vector2(row,column+1)]
+				if side > 0:
+					corners.reverse()
+				for corner: Vector2 in corners:
+					var down: float = corner.x / 10.0
+					var along: float = corner.y / 28.0
+					var thickness: float = 0.2 + 0.035 * sin(along * 83.0) * down
+					tool.set_uv(Vector2(along * depth * 0.65, down * length * 0.65))
+					tool.set_normal(-Vector3(side * rise, width * 0.5, 0).normalized())
+					tool.add_vertex(roof_surface_point(location, width, depth, side, down, along) - Vector3.UP * thickness)
+		# A closed, irregular edge gives thatch actual thickness at eaves and gables.
+		for edge: int in range(3):
+			var segments: int = 28 if edge == 0 else 10
+			for segment: int in range(segments):
+				var t0: float = float(segment) / segments
+				var t1: float = float(segment + 1) / segments
+				var down0: float = 1.0 if edge == 0 else t0
+				var down1: float = 1.0 if edge == 0 else t1
+				var along0: float = t0 if edge == 0 else float(edge - 1)
+				var along1: float = t1 if edge == 0 else float(edge - 1)
+				var start: Vector3 = roof_surface_point(location, width, depth, side, down0, along0)
+				var finish: Vector3 = roof_surface_point(location, width, depth, side, down1, along1)
+				var low_start: Vector3 = start - Vector3.UP * (0.2 + 0.035 * sin(along0 * 83.0) * down0)
+				var low_finish: Vector3 = finish - Vector3.UP * (0.2 + 0.035 * sin(along1 * 83.0) * down1)
+				var normal: Vector3 = Vector3(side, 0, 0) if edge == 0 else Vector3(0, 0, -1 if edge == 1 else 1)
+				var edge_points: Array[Vector3] = [start, finish, low_start, finish, low_finish, low_start]
+				for point: Vector3 in edge_points:
+					tool.set_normal(normal)
+					tool.set_uv(Vector2(point.z + point.x, point.y) * 0.65)
+					tool.add_vertex(point)
 		tool.index()
 		var visual: MeshInstance3D = MeshInstance3D.new()
 		visual.mesh = tool.commit()
 		visual.material_override = straw
 		parent.add_child(visual)
 		for z: float in [-depth*0.42, 0.0, depth*0.42]:
-			timber(location + Vector3(side*width*0.5, -rise*0.5-0.12, z), location + Vector3(0, rise*0.5-0.12, z), 0.085, parent)
+			timber(location + Vector3(side*width*0.5, -rise*0.5-0.29, z), location + Vector3(0, rise*0.5-0.29, z), 0.085, parent)
 	timber(location + Vector3(0, rise*0.5+0.04, -depth*0.53), location + Vector3(0, rise*0.5+0.04, depth*0.53), 0.11, parent)
 
 func stall(location: Vector3, cloth: StandardMaterial3D) -> void:
@@ -349,6 +397,8 @@ func lighting() -> void:
 	light.light_color = Color("fff1d8")
 	light.light_energy = 1.3
 	light.shadow_enabled = true
+	light.shadow_bias = 0.03
+	light.shadow_normal_bias = 0.8
 	light.directional_shadow_max_distance = 100.0
 	add_child(light)
 	var world: WorldEnvironment = WorldEnvironment.new()
@@ -377,10 +427,7 @@ void sky() {
 	environment.ambient_light_source = Environment.AMBIENT_SOURCE_SKY
 	environment.ambient_light_energy = 0.4
 	environment.tonemap_mode = Environment.TONE_MAPPER_ACES
-	environment.fog_enabled = true
-	environment.fog_light_color = Color("91b2c6")
-	environment.fog_density = 0.0012
-	environment.fog_sky_affect = 0.08
+	apply_atmosphere(environment)
 	world.environment = environment
 	add_child(world)
 
@@ -399,51 +446,12 @@ func terrain() -> void:
 				tool.set_uv(location * 0.25)
 				tool.add_vertex(Vector3(location.x, ground_height(location.x, location.y), location.y))
 	tool.generate_normals()
+	tool.generate_tangents()
 	tool.index()
 	var mesh: ArrayMesh = tool.commit()
 	var visual: MeshInstance3D = MeshInstance3D.new()
 	visual.mesh = mesh
-	var material: ShaderMaterial = ShaderMaterial.new()
-	var shader: Shader = Shader.new()
-	shader.code = """shader_type spatial;
-uniform sampler2D dirt_color : source_color, filter_linear_mipmap_anisotropic, repeat_enable;
-uniform sampler2D stones : source_color, filter_linear_mipmap_anisotropic, repeat_enable;
-uniform sampler2D grass_color : source_color, filter_linear_mipmap_anisotropic, repeat_enable;
-uniform sampler2D stone_normal : hint_normal, filter_linear_mipmap_anisotropic, repeat_enable;
-uniform sampler2D grass_normal : hint_normal, filter_linear_mipmap_anisotropic, repeat_enable;
-uniform sampler2D stone_roughness : filter_linear_mipmap_anisotropic, repeat_enable;
-uniform sampler2D grass_roughness : filter_linear_mipmap_anisotropic, repeat_enable;
-varying vec3 pos;
-float hash(vec2 p) { return fract(sin(dot(p,vec2(127.1,311.7))) * 43758.5453); }
-float noise(vec2 p) { vec2 i=floor(p); vec2 f=fract(p); f=f*f*(3.0-2.0*f); return mix(mix(hash(i),hash(i+vec2(1,0)),f.x),mix(hash(i+vec2(0,1)),hash(i+vec2(1,1)),f.x),f.y); }
-void vertex() { pos = (MODEL_MATRIX * vec4(VERTEX,1.0)).xyz; }
-void fragment() {
- vec2 p=pos.xz;
- float footprint = length(fwidth(p));
- float fine = mix(noise(p*2.4),0.5,smoothstep(0.03,0.2,footprint));
- float n=noise(p*0.6)*0.7+fine*0.3;
- float main_path=1.0-smoothstep(2.6,4.8,abs(p.x-sin(p.y*0.16)*2.2));
- float cross_path=1.0-smoothstep(2.0,4.0,abs(p.y-sin(p.x*0.14)*1.5));
- float court=1.0-smoothstep(7.0,14.0,length(p));
- float path=max(court,max(main_path,cross_path));
- float vegetation=(1.0-path)*smoothstep(0.2,0.7,n);
- vec3 dirt=texture(dirt_color,p*0.65).rgb * mix(0.8,1.05,n);
- vec3 grass=texture(grass_color,p*0.22).rgb * mix(0.72,1.05,n);
- vec3 rock=texture(stones,p*0.65).rgb;
- float rock_mask=smoothstep(0.4,0.68,noise(p*0.23))*path;
- ALBEDO=mix(mix(dirt,rock,rock_mask*0.38),grass,vegetation);
- ROUGHNESS=mix(texture(stone_roughness,p*0.65).r,texture(grass_roughness,p*0.22).r,vegetation);
- NORMAL_MAP=mix(texture(stone_normal,p*0.65).rgb,texture(grass_normal,p*0.22).rgb,vegetation);
- NORMAL_MAP_DEPTH=0.45;
- // Screen-space color derivatives are not a physical normal map and shimmer during motion.
-}
-"""
-	material.shader = shader
-	material.set_shader_parameter("dirt_color", load("res://content/environments/village_generated/compacted_path.png"))
-	for binding: String in ["stones", "grass_color", "stone_normal", "grass_normal", "stone_roughness", "grass_roughness"]:
-		var family: String = "GrassGround" if binding.begins_with("grass") else "StoneFloor"
-		var channel: String = "normal" if binding.ends_with("normal") else ("roughness" if binding.ends_with("roughness") else "basecolor")
-		material.set_shader_parameter(binding, load("res://content/environments/valhalla/textures/KB3D_VHL_%s_%s.png" % [family, channel]))
+	var material: ShaderMaterial = make_ground_material()
 	visual.material_override = material
 	add_child(visual)
 	var body: StaticBody3D = StaticBody3D.new()
@@ -452,7 +460,7 @@ void fragment() {
 	body.add_child(shape)
 	add_child(body)
 
-func log_post(location: Vector3, height: float, radius: float, collision: bool = false) -> void:
+func log_post(location: Vector3, height: float, radius: float, collision: bool = false) -> MeshInstance3D:
 	var mesh: CylinderMesh = CylinderMesh.new()
 	mesh.top_radius = radius * 0.9
 	mesh.bottom_radius = radius
@@ -461,7 +469,7 @@ func log_post(location: Vector3, height: float, radius: float, collision: bool =
 	var visual: MeshInstance3D = MeshInstance3D.new()
 	visual.mesh = mesh
 	visual.position = location
-	visual.material_override = wood
+	visual.material_override = timber_material
 	add_child(visual)
 	if collision:
 		var body: StaticBody3D = StaticBody3D.new()
@@ -472,6 +480,7 @@ func log_post(location: Vector3, height: float, radius: float, collision: bool =
 		shape.shape = cylinder
 		body.add_child(shape)
 		visual.add_child(body)
+	return visual
 
 func green_borders() -> void:
 	var blades: SurfaceTool = SurfaceTool.new()
@@ -569,3 +578,634 @@ func ground_stones() -> void:
 	visual.multimesh = scatter
 	visual.material_override = material
 	add_child(visual)
+
+func clover_edges() -> void:
+	# Original opaque leaf geometry follows the paired groundcover shape study.
+	# Keep this small live foliage layer outside the static lighting snapshot.
+	var leaves: SurfaceTool = SurfaceTool.new()
+	leaves.begin(Mesh.PRIMITIVE_TRIANGLES)
+	for plant: int in range(3):
+		var origin: Vector3 = Vector3(cos(plant * 2.4) * 0.055, 0.045 + plant * 0.025, sin(plant * 2.4) * 0.055)
+		for petal: int in range(3):
+			var direction: float = petal * TAU / 3.0 + plant
+			var center: Vector3 = origin + Vector3(cos(direction), 0, sin(direction)) * 0.026
+			for side: int in range(8):
+				leaves.set_color(Color(0.95, 1.0, 0.85))
+				leaves.add_vertex(center + Vector3.UP * 0.005)
+				for corner: int in [side + 1, side]:
+					var angle: float = corner * TAU / 8.0
+					var radius: float = 0.027 * (0.88 + 0.12 * cos(angle * 2.0))
+					leaves.set_color(Color(0.72, 0.88, 0.65))
+					leaves.add_vertex(center + Vector3(cos(angle) * radius, sin(angle + direction) * 0.003, sin(angle) * radius))
+	leaves.generate_normals()
+	var shader: Shader = Shader.new()
+	shader.code = """shader_type spatial;
+render_mode cull_disabled;
+void fragment() { ALBEDO=vec3(0.08,0.14,0.025)*COLOR.rgb; ROUGHNESS=0.9; BACKLIGHT=ALBEDO*0.35; }
+"""
+	var material: ShaderMaterial = ShaderMaterial.new()
+	material.shader = shader
+	var random: RandomNumberGenerator = RandomNumberGenerator.new()
+	random.seed = 91271
+	var locations: Array[Vector3] = []
+	for attempt: int in range(14000):
+		var x: float = random.randf_range(-26.0, 26.0)
+		var z: float = random.randf_range(-26.0, 26.0)
+		if Vector2(x, z).length() < 8.0 or absf(x - sin(z * 0.16) * 2.2) < 3.6 or absf(z - sin(x * 0.14) * 1.5) < 2.7:
+			continue
+		if sin(x * 0.8 + sin(z * 0.3)) * cos(z * 0.7) < 0.05:
+			continue
+		locations.append(Vector3(x, ground_height(x, z), z))
+	var multi: MultiMesh = MultiMesh.new()
+	multi.transform_format = MultiMesh.TRANSFORM_3D
+	multi.use_colors = true
+	multi.mesh = leaves.commit()
+	multi.instance_count = locations.size()
+	for index: int in range(locations.size()):
+		var size: float = random.randf_range(0.8, 1.7)
+		multi.set_instance_transform(index, Transform3D(Basis(Vector3.UP, random.randf() * TAU).scaled(Vector3.ONE * size), locations[index]))
+		multi.set_instance_color(index, Color(random.randf_range(0.65, 1.0), random.randf_range(0.8, 1.0), 0.8))
+	var visual: MultiMeshInstance3D = MultiMeshInstance3D.new()
+	visual.name = "CloverEdges"
+	visual.multimesh = multi
+	visual.material_override = material
+	visual.gi_mode = GeometryInstance3D.GI_MODE_DYNAMIC
+	visual.cast_shadow = GeometryInstance3D.SHADOW_CASTING_SETTING_OFF
+	add_child(visual)
+
+func make_timber_material() -> void:
+	# Grain follows each beam's local length rather than projecting board joints onto logs.
+	var shader: Shader = Shader.new()
+	shader.code = """shader_type spatial;
+uniform sampler2D grain : source_color, filter_linear_mipmap_anisotropic, repeat_enable;
+varying vec3 local_pos;
+void vertex() { local_pos=VERTEX; }
+void fragment() {
+ vec2 uv=vec2(UV.x*0.6,local_pos.y*0.5);
+ vec3 base=texture(grain,uv).rgb;
+ ALBEDO=base*vec3(0.82,0.78,0.70);
+ ROUGHNESS=0.88;
+}
+"""
+	timber_material = ShaderMaterial.new()
+	timber_material.shader = shader
+	timber_material.set_shader_parameter("grain", load("res://content/environments/village_generated/aged_timber.png"))
+
+func roof_surface_point(location: Vector3, width: float, depth: float, side: int, down: float, along: float) -> Vector3:
+	var fringe: float = pow(down, 8.0) * sin(along * 83.0) * 0.065
+	return location + Vector3(side * (width * 0.5 * down + fringe), 2.8 * (0.5 - down) - absf(fringe), (along - 0.5) * depth)
+
+func refresh_foliage(root_node: Node3D) -> void:
+	# Upgrade nearby broadleaf species; preserve conifers and distant low-detail meshes.
+	var replacement: StandardMaterial3D
+	for node: Node in root_node.find_children("*", "MeshInstance3D", true, false):
+		var visual: MeshInstance3D = node as MeshInstance3D
+		if not visual.visible:
+			continue
+		var material: Material = visual.material_override
+		if not material is StandardMaterial3D:
+			continue
+		var original: StandardMaterial3D = material as StandardMaterial3D
+		if original.albedo_texture == null:
+			continue
+		var species: String = original.albedo_texture.resource_path.get_file().get_basename()
+		var broadleaf: Array[String] = ["tree01", "tree02", "tree03", "tree04", "tree08", "tree09", "tree11", "tree12", "tree13", "tree15", "tree16", "tree17", "tree18", "tree19", "tree20", "tree21", "tree22", "tree23", "tree24", "tree25", "tree26", "tree27", "tree28", "tree29", "tree30", "tree31", "tree32", "tree33", "tree34", "tree35", "tree36"]
+		if not species in broadleaf:
+			continue
+		var bounds: AABB = visual.global_transform * visual.mesh.get_aabb()
+		if Vector2(bounds.get_center().x, bounds.get_center().z).length() < 80.0:
+			var tree: Node3D = preload("res://gameplay/environment/woodland_tree.gd").new() as Node3D
+			root_node.add_child(tree)
+			var base: Vector3 = Vector3(bounds.get_center().x, bounds.position.y, bounds.get_center().z)
+			tree.global_position = base
+			tree.rotation.y = fposmod(base.x * 0.71 + base.z * 0.37, TAU)
+			var autumn: bool = species.trim_prefix("tree").to_int() >= 28
+			var atlas: Texture2D = load("res://content/environments/village_generated/oak_bough_autumn_atlas.png" if autumn else "res://content/environments/village_generated/oak_bough_atlas.png") as Texture2D
+			tree.call("configure", atlas, original, bounds.size.y)
+			var crown_width: float = clampf(bounds.size.x / bounds.size.y / 0.58, 0.8, 1.35)
+			tree.scale.x *= crown_width
+			tree.scale.z *= crown_width
+			var leaf_tones: Array[Color] = [Color("d5d9c6"), Color("b9c7a6"), Color("9fae91"), Color("d0ce9e"), Color("c3c59b"), Color("b2c3aa"), Color("c4cca6"), Color("adb795"), Color("d6cc8e"), Color("b8c4a0"), Color("c9d1ad"), Color("94a585"), Color("aab997"), Color("b3c69d"), Color("c6c99a"), Color("879f8e"), Color("b0bea0"), Color("c9d6b1"), Color("b8c9a5"), Color("afbd96"), Color("a2b58d"), Color("9fb58b"), Color("d3a890"), Color("d0c7ae"), Color("dbb299"), Color("cc9c84"), Color("d7bc93"), Color("aa9c81"), Color("c3ab91"), Color("d8ce9f"), Color("b2a18b")]
+			var crown: MeshInstance3D = tree.get_child(1) as MeshInstance3D
+			var foliage: StandardMaterial3D = crown.material_override as StandardMaterial3D
+			foliage.albedo_color = leaf_tones[broadleaf.find(species)]
+			if autumn:
+				foliage.backlight = Color("695132")
+			visual.visible = false
+			continue
+		if species != "tree01":
+			continue
+		if replacement == null:
+			replacement = original.duplicate() as StandardMaterial3D
+			replacement.albedo_texture = load("res://content/environments/village_generated/tree01_atlas.png") as Texture2D
+		visual.material_override = replacement
+
+func ridge_outcrops() -> void:
+	# Terrain-conforming fractured rock shoulders interrupt selected distant crests.
+	var candidates: Array[Vector3] = []
+	for z: int in range(-240, 241, 12):
+		for x: int in range(-240, 241, 12):
+			if Vector2(x,z).length() < 145.0:
+				continue
+			var height: float = landscape_surface_height(x,z)
+			if height < 20.0:
+				continue
+			if height < landscape_surface_height(x-12,z) or height < landscape_surface_height(x+12,z) or height < landscape_surface_height(x,z-12) or height < landscape_surface_height(x,z+12):
+				continue
+			candidates.append(Vector3(x,height,z))
+	candidates.sort_custom(func(a: Vector3, b: Vector3) -> bool: return a.y > b.y)
+	var peaks: Array[Vector3] = []
+	var tool: SurfaceTool = SurfaceTool.new()
+	tool.begin(Mesh.PRIMITIVE_TRIANGLES)
+	var random: RandomNumberGenerator = RandomNumberGenerator.new()
+	random.seed = 82519
+	for candidate: Vector3 in candidates:
+		var spaced: bool = true
+		for peak: Vector3 in peaks:
+			if peak.distance_to(candidate) < 48.0:
+				spaced = false
+		if not spaced:
+			continue
+		peaks.append(candidate)
+		var direction: float = random.randf_range(0.0, TAU)
+		var width: float = random.randf_range(44.0, 70.0)
+		var depth: float = random.randf_range(18.0, 28.0)
+		var rise: float = random.randf_range(10.0, 18.0)
+		var rotation: Basis = Basis(Vector3.UP, direction)
+		var profiles: Array[PackedFloat32Array] = [PackedFloat32Array([0,0.62,1.0,0.93,0.42,0.28,0]), PackedFloat32Array([0,0.35,0.82,0.46,0.9,0.66,0]), PackedFloat32Array([0,0.76,0.67,1.0,0.62,0.25,0]), PackedFloat32Array([0,0.28,0.53,0.92,1.0,0.58,0])]
+		var profile: PackedFloat32Array = profiles[peaks.size() % profiles.size()]
+		for z: int in range(8):
+			for x: int in range(20):
+				var corners: Array[Vector2] = [Vector2(x,z),Vector2(x+1,z),Vector2(x,z+1),Vector2(x+1,z),Vector2(x+1,z+1),Vector2(x,z+1)]
+				for corner: Vector2 in corners:
+					var uv: Vector2 = corner / Vector2(20.0,8.0)
+					var point: Vector3 = candidate + rotation * Vector3((uv.x-0.5)*width,0,(uv.y-0.5)*depth)
+					var section: float = uv.x * (profile.size()-1)
+					var near_index: int = mini(int(section),profile.size()-2)
+					var crest: float = lerpf(profile[near_index],profile[near_index+1],section-near_index)
+					var crest_line: float = 0.32+uv.x*0.25
+					var cross_section: float = clampf(minf(uv.y/crest_line,(1.0-uv.y)/(1.0-crest_line)),0.0,1.0)
+					var envelope: float = crest * pow(cross_section,0.4)
+					var shoulder: float = lerpf(1.1,0.8,uv.x)
+					var fracture: float = sin(corner.x*2.3+corner.y*1.7)*0.8
+					var raw: float = envelope*rise*shoulder + fracture*envelope
+					var stepped: float = floorf(raw/2.4)*2.4
+					point.y = landscape_surface_height(point.x,point.z) - 0.25 + lerpf(raw,stepped,0.6)
+					tool.add_vertex(point)
+		if peaks.size() == 10:
+			break
+	assert(not peaks.is_empty(), "Distant terrain must provide ridge outcrop sites")
+	tool.generate_normals()
+	var visual: MeshInstance3D = MeshInstance3D.new()
+	visual.mesh = tool.commit()
+	visual.material_override = make_landscape_material()
+	visual.gi_mode = GeometryInstance3D.GI_MODE_DISABLED
+	add_child(visual)
+	print("VILLAGE_RIDGES_OK: ", peaks.size(), " spaced crest formations")
+
+func woodland_edges() -> void:
+	# Cosmetic grouped saplings share two instanced meshes, with no gameplay collision.
+	landscape_noise.seed = 41271
+	landscape_noise.frequency = 0.006
+	landscape_noise.fractal_octaves = 3
+	var random: RandomNumberGenerator = RandomNumberGenerator.new()
+	random.seed = 74219
+	var transforms: Array[Transform3D] = []
+	var colors: Array[Color] = []
+	for group: int in range(52):
+		var angle: float = random.randf_range(0.0, TAU)
+		var radius: float = random.randf_range(43.0, 126.0)
+		var center: Vector2 = Vector2(cos(angle), sin(angle)) * radius
+		for plant: int in range(7):
+			var point: Vector2 = center + Vector2(random.randf_range(-8.0,8.0), random.randf_range(-8.0,8.0))
+			if point.y < -31.0 and point.y > -112.0 and absf(point.x-north_trail_center(point.y)) < 4.0:
+				continue
+			if maxf(absf(point.x), absf(point.y)) < 34.0 or absf(point.x) < 6.0:
+				continue
+			var height: float = landscape_surface_height(point.x, point.y)
+			var slope: float = absf(landscape_surface_height(point.x + 2.0, point.y) - height) + absf(landscape_surface_height(point.x, point.y + 2.0) - height)
+			if slope > 2.0:
+				continue
+			var size: float = random.randf_range(2.5, 6.5) / 10.0
+			var basis: Basis = Basis(Vector3.UP, random.randf_range(0.0, TAU)).scaled(Vector3(size * 1.25, size, size * 1.25))
+			transforms.append(Transform3D(basis, Vector3(point.x, height - 0.06, point.y)))
+			colors.append(Color("b4c29c").lerp(Color("e2e6c5"), random.randf()))
+	# Mature stands overlap the trail shoulders rather than spacing single trees evenly.
+	var mature_locations: Array[Vector2] = []
+	for group: int in range(14):
+		var center_z: float = random.randf_range(-43.0, -102.0)
+		var side: float = -1.0 if group % 2 == 0 else 1.0
+		var center_x: float = north_trail_center(center_z) + side * random.randf_range(9.0, 19.0)
+		for plant: int in range(random.randi_range(3, 7)):
+			var point: Vector2 = Vector2(center_x + random.randf_range(-5.5, 5.5), center_z + random.randf_range(-5.5, 5.5))
+			if absf(point.x - north_trail_center(point.y)) < 5.0:
+				continue
+			var crowded: bool = false
+			for previous: Vector2 in mature_locations:
+				if point.distance_squared_to(previous) < 9.0:
+					crowded = true
+					break
+			if crowded:
+				continue
+			var height: float = landscape_surface_height(point.x, point.y)
+			var slope: float = absf(landscape_surface_height(point.x + 2.0, point.y) - height) + absf(landscape_surface_height(point.x, point.y + 2.0) - height)
+			if slope > 2.0:
+				continue
+			var size: float = random.randf_range(7.5, 16.0) / 10.0
+			var width: float = random.randf_range(0.8, 1.5)
+			var basis: Basis = Basis(Vector3.UP, random.randf_range(0.0, TAU)).scaled(Vector3(size * width, size, size * width))
+			transforms.append(Transform3D(basis, Vector3(point.x, height - 0.06, point.y)))
+			colors.append(Color("a2b28e").lerp(Color("c6ceaa"), random.randf()))
+			mature_locations.append(point)
+	assert(transforms.size() > 200, "Woodland groups must contain usable grounded saplings")
+	var source: StandardMaterial3D = StandardMaterial3D.new()
+	source.transparency = BaseMaterial3D.TRANSPARENCY_ALPHA_SCISSOR
+	source.alpha_scissor_threshold = 0.5
+	source.alpha_antialiasing_mode = BaseMaterial3D.ALPHA_ANTIALIASING_ALPHA_TO_COVERAGE
+	source.cull_mode = BaseMaterial3D.CULL_DISABLED
+	var prototype: Node3D = preload("res://gameplay/environment/woodland_tree.gd").new() as Node3D
+	prototype.call("configure", load("res://content/environments/village_generated/oak_bough_atlas.png"), source, 10.0)
+	for part: int in range(2):
+		var template: MeshInstance3D = prototype.get_child(part) as MeshInstance3D
+		var instances: MultiMesh = MultiMesh.new()
+		instances.transform_format = MultiMesh.TRANSFORM_3D
+		instances.use_colors = true
+		instances.mesh = template.mesh
+		instances.instance_count = transforms.size()
+		for index: int in range(transforms.size()):
+			instances.set_instance_transform(index, transforms[index])
+			instances.set_instance_color(index, colors[index] if part == 1 else Color.WHITE)
+		var visual: MultiMeshInstance3D = MultiMeshInstance3D.new()
+		visual.multimesh = instances
+		var material: StandardMaterial3D = template.material_override as StandardMaterial3D
+		material.vertex_color_use_as_albedo = true
+		visual.material_override = material
+		visual.gi_mode = GeometryInstance3D.GI_MODE_DISABLED
+		add_child(visual)
+	prototype.free()
+	print("VILLAGE_WOODLAND_OK: ", transforms.size(), " grounded saplings/mature trees in two instanced meshes")
+
+func apply_atmosphere(environment: Environment) -> void:
+	# Energy alone is ignored at a full sky contribution; balance the source explicitly.
+	environment.ambient_light_sky_contribution = 0.65
+	environment.ambient_light_color = Color("53657b")
+	environment.ambient_light_energy = 0.4
+	environment.fog_enabled = true
+	environment.fog_light_color = Color("bdcbd2")
+	environment.fog_density = 0.0015
+	environment.fog_height = 2.0
+	environment.fog_height_density = 0.015
+	environment.fog_aerial_perspective = 0.25
+	environment.fog_sun_scatter = 0.18
+	environment.fog_sky_affect = 0.08
+
+func make_ground_material() -> ShaderMaterial:
+	var material: ShaderMaterial = ShaderMaterial.new()
+	var shader: Shader = Shader.new()
+	shader.code = """shader_type spatial;
+uniform sampler2D dirt_color : source_color, filter_linear_mipmap_anisotropic, repeat_enable;
+uniform sampler2D mineral_color : source_color, filter_linear_mipmap_anisotropic, repeat_enable;
+uniform sampler2D stones : source_color, filter_linear_mipmap_anisotropic, repeat_enable;
+uniform sampler2D grass_color : source_color, filter_linear_mipmap_anisotropic, repeat_enable;
+uniform sampler2D stone_normal : hint_normal, filter_linear_mipmap_anisotropic, repeat_enable;
+uniform sampler2D grass_normal : hint_normal, filter_linear_mipmap_anisotropic, repeat_enable;
+uniform sampler2D stone_roughness : filter_linear_mipmap_anisotropic, repeat_enable;
+uniform sampler2D grass_roughness : filter_linear_mipmap_anisotropic, repeat_enable;
+varying vec3 pos;
+float hash(vec2 p) { return fract(sin(dot(p,vec2(127.1,311.7))) * 43758.5453); }
+float noise(vec2 p) { vec2 i=floor(p); vec2 f=fract(p); f=f*f*(3.0-2.0*f); return mix(mix(hash(i),hash(i+vec2(1,0)),f.x),mix(hash(i+vec2(0,1)),hash(i+vec2(1,1)),f.x),f.y); }
+void vertex() { pos = (MODEL_MATRIX * vec4(VERTEX,1.0)).xyz; }
+void fragment() {
+ vec2 p=pos.xz;
+ float footprint = length(fwidth(p));
+ float fine = mix(noise(p*2.4),0.5,smoothstep(0.03,0.2,footprint));
+ float n=noise(p*0.6)*0.7+fine*0.3;
+ float main_path=1.0-smoothstep(2.6,4.8,abs(p.x-sin(p.y*0.16)*2.2));
+ float cross_path=1.0-smoothstep(2.0,4.0,abs(p.y-sin(p.x*0.14)*1.5));
+ float court=1.0-smoothstep(7.0,14.0,length(p));
+ float path=max(court,max(main_path,cross_path));
+ float vegetation=(1.0-path)*smoothstep(0.2,0.7,n);
+ vec2 warped=p+vec2(noise(p*0.17),noise(p*0.17+31.0))*0.8;
+ float mineral_mask=smoothstep(0.28,0.72,noise(warped*0.16));
+ vec3 dirt=mix(texture(dirt_color,warped*0.4).rgb,texture(mineral_color,warped*0.23).rgb,mineral_mask*0.75);
+ dirt*=mix(vec3(0.72,0.68,0.60),vec3(1.04,1.0,0.91),noise(p*0.09))*mix(0.9,1.04,n);
+ vec3 grass=texture(grass_color,p*0.22).rgb * mix(0.72,1.05,n);
+ vec3 rock=texture(stones,p*0.65).rgb;
+ float rock_mask=smoothstep(0.55,0.8,noise(p*0.23))*path*0.25;
+ ALBEDO=mix(mix(dirt,rock,rock_mask),grass,vegetation);
+ ROUGHNESS=mix(mix(0.94,texture(stone_roughness,p*0.65).r,rock_mask),texture(grass_roughness,p*0.22).r,vegetation);
+ NORMAL_MAP=mix(mix(vec3(0.5,0.5,1.0),texture(stone_normal,p*0.65).rgb,rock_mask),texture(grass_normal,p*0.22).rgb,vegetation);
+ NORMAL_MAP_DEPTH=0.45;
+ // Screen-space color derivatives are not a physical normal map and shimmer during motion.
+}
+"""
+	material.shader = shader
+	material.set_shader_parameter("dirt_color", load("res://content/environments/village_generated/soil_gravel.png"))
+	material.set_shader_parameter("mineral_color", load("res://content/environments/village_generated/mineral_earth.png"))
+	for binding: String in ["stones", "grass_color", "stone_normal", "grass_normal", "stone_roughness", "grass_roughness"]:
+		var family: String = "GrassGround" if binding.begins_with("grass") else "StoneFloor"
+		var channel: String = "normal" if binding.ends_with("normal") else ("roughness" if binding.ends_with("roughness") else "basecolor")
+		material.set_shader_parameter(binding, load("res://content/environments/valhalla/textures/KB3D_VHL_%s_%s.png" % [family, channel]))
+	return material
+
+func refresh_ground(root_node: Node3D) -> void:
+	# Replace only the terrain material; baked UV2, lightmap and collision stay intact.
+	for node: Node in root_node.find_children("*", "MeshInstance3D", true, false):
+		var visual: MeshInstance3D = node as MeshInstance3D
+		var material: ShaderMaterial = visual.material_override as ShaderMaterial
+		if material != null and material.get_shader_parameter("dirt_color") != null:
+			visual.material_override = make_ground_material()
+
+func make_landscape_material() -> ShaderMaterial:
+	var material: ShaderMaterial = ShaderMaterial.new()
+	var shader: Shader = Shader.new()
+	shader.code = """shader_type spatial;
+uniform sampler2D soil : source_color, filter_linear_mipmap_anisotropic, repeat_enable;
+uniform sampler2D trail : source_color, filter_linear_mipmap_anisotropic, repeat_enable;
+uniform sampler2D rock : source_color, filter_linear_mipmap_anisotropic, repeat_enable;
+varying vec3 world_pos;
+varying vec3 world_normal;
+void vertex() { world_pos=(MODEL_MATRIX*vec4(VERTEX,1.0)).xyz; world_normal=normalize(MODEL_NORMAL_MATRIX*NORMAL); }
+vec3 bedrock(vec3 p,vec3 n) {
+ vec3 weights=pow(abs(n),vec3(4.0));
+ weights/=max(weights.x+weights.y+weights.z,0.001);
+ return texture(rock,p.yz*0.12).rgb*weights.x+texture(rock,p.xz*0.12).rgb*weights.y+texture(rock,p.xy*0.12).rgb*weights.z;
+}
+float hash(vec2 p) { return fract(sin(dot(p,vec2(127.1,311.7)))*43758.5453); }
+float noise(vec2 p) { vec2 i=floor(p); vec2 f=fract(p); f=f*f*(3.0-2.0*f); return mix(mix(hash(i),hash(i+vec2(1,0)),f.x),mix(hash(i+vec2(0,1)),hash(i+vec2(1,1)),f.x),f.y); }
+void fragment() {
+ float slope=normalize(world_normal).y;
+ vec2 p=world_pos.xz;
+ vec2 warped=p+vec2(noise(p*0.035),noise(p*0.035+47.0))*18.0;
+ float patch=noise(warped*0.065);
+ float elevation=smoothstep(7.0,26.0,world_pos.y+patch*9.0);
+ float cliff=1.0-smoothstep(0.67,0.94,slope);
+ float exposed=clamp(max(cliff,elevation*0.8)+(patch-0.5)*0.35,0.0,1.0);
+ vec3 earth=texture(soil,p*0.18).rgb*mix(vec3(0.60,0.78,0.47),vec3(0.9,0.98,0.68),noise(warped*0.027));
+ vec3 stone=bedrock(world_pos,normalize(world_normal));
+ float strata=0.93+0.07*sin(world_pos.y*1.6+noise(p*0.12)*2.0);
+ stone*=mix(vec3(0.76,0.79,0.77),vec3(1.03,0.96,0.84),patch)*strata;
+ ALBEDO=mix(earth,stone,exposed)*(0.87+0.13*noise(warped*0.018));
+ float center=-0.5+sin(max(-p.y-37.0,0.0)*0.055)*4.0;
+ float width=1.5+noise(p*0.22)*0.8;
+ float trail_mask=(1.0-smoothstep(width,width+1.0,abs(p.x-center)+(noise(p*0.9)-0.5)*0.65));
+ trail_mask*=smoothstep(29.0,35.0,-p.y)*(1.0-smoothstep(98.0,112.0,-p.y));
+ ALBEDO=mix(ALBEDO,texture(trail,p*0.32).rgb*mix(0.75,1.02,noise(p*0.11)),trail_mask);
+ ROUGHNESS=0.95;
+}
+"""
+	material.shader = shader
+	material.set_shader_parameter("soil", load("res://content/environments/valhalla/textures/KB3D_VHL_GrassGround_basecolor.png"))
+	material.set_shader_parameter("trail", load("res://content/environments/village_generated/mineral_earth.png"))
+	material.set_shader_parameter("rock", load("res://content/environments/village_generated/schist_rock.png"))
+	return material
+
+func refresh_landscape(root_node: Node3D) -> void:
+	for node: Node in root_node.find_children("*", "MeshInstance3D", true, false):
+		var visual: MeshInstance3D = node as MeshInstance3D
+		var material: ShaderMaterial = visual.material_override as ShaderMaterial
+		if material != null and material.get_shader_parameter("soil") != null and material.get_shader_parameter("rock") != null:
+			visual.material_override = make_landscape_material()
+			landscape_collision(visual)
+
+func landscape_collision(visual: MeshInstance3D) -> void:
+	for child: Node in visual.get_children():
+		if child is StaticBody3D:
+			return
+	var body: StaticBody3D = StaticBody3D.new()
+	body.name = "LandscapeGround"
+	var shape: CollisionShape3D = CollisionShape3D.new()
+	shape.shape = visual.mesh.create_trimesh_shape()
+	body.add_child(shape)
+	visual.add_child(body)
+
+func open_north_approach(root_node: Node3D) -> void:
+	if bool(root_node.get_meta("north_approach_open",false)):
+		return
+	root_node.set_meta("north_approach_open",true)
+	# The baked snapshot flattens names, so identify the north palisade by its box.
+	for node: Node in root_node.find_children("*", "CollisionShape3D", true, false):
+		var collider: CollisionShape3D = node as CollisionShape3D
+		var box: BoxShape3D = collider.shape as BoxShape3D
+		if box == null or not is_equal_approx(box.size.y,2.2) or not is_equal_approx(box.size.z,0.35):
+			continue
+		var original: MeshInstance3D = collider.get_parent().get_parent() as MeshInstance3D
+		if original == null or original.global_position.z > -24.0 or absf(original.global_position.x) > 2.0:
+			continue
+		var length: float = (box.size.x - 6.0) * 0.5
+		for side: int in [-1,1]:
+			var segment: MeshInstance3D = block(Vector3(length,2.2,0.35),Vector3.ZERO,original.material_override,true,root_node)
+			segment.global_transform = original.global_transform
+			segment.position += segment.basis.x * (side * (3.0 + length*0.5))
+		original.visible = false
+		collider.disabled = true
+		print("VILLAGE_APPROACH: opened six-metre north gate at ",original.global_position)
+		break
+	# Clear the upright decorative logs across the six-metre gate opening.
+	for node: Node in root_node.find_children("*", "MeshInstance3D", true, false):
+		var visual: MeshInstance3D = node as MeshInstance3D
+		var bounds: AABB = visual.global_transform * visual.mesh.get_aabb()
+		var center: Vector3 = bounds.get_center()
+		if absf(center.x+0.5) < 3.1 and center.z < -24.0 and center.z > -29.0 and bounds.size.y > 2.0 and bounds.size.y < 2.9 and maxf(bounds.size.x,bounds.size.z) < 0.6:
+			visual.visible = false
+	var tool: SurfaceTool = SurfaceTool.new()
+	tool.begin(Mesh.PRIMITIVE_TRIANGLES)
+	for z: int in range(20):
+		for x: int in range(12):
+			var corners: Array[Vector2] = [Vector2(x,z),Vector2(x+1,z),Vector2(x,z+1),Vector2(x+1,z),Vector2(x+1,z+1),Vector2(x,z+1)]
+			for corner: Vector2 in corners:
+				var point: Vector3 = Vector3(-3.5+corner.x*0.5,0,-37.0+corner.y*0.5)
+				var blend: float = smoothstep(27.0,34.0,-point.z)
+				point.y = lerpf(ground_height(point.x,point.z),landscape_surface_height(point.x,point.z),blend)+0.015
+				tool.set_uv(Vector2(point.x,point.z)*0.25)
+				tool.add_vertex(point)
+	tool.generate_normals()
+	tool.generate_tangents()
+	tool.index()
+	var apron: MeshInstance3D = MeshInstance3D.new()
+	apron.mesh = tool.commit()
+	apron.material_override = make_ground_material()
+	add_child(apron)
+	landscape_collision(apron)
+
+func dress_north_approach(root_node: Node3D) -> void:
+	if bool(root_node.get_meta("north_gate_framed",false)):
+		return
+	root_node.set_meta("north_gate_framed",true)
+	if timber_material == null:
+		make_timber_material()
+	var center: Vector3 = Vector3(-0.5,0,-26.5)
+	var axis: Vector3 = Vector3(17,0,3).normalized()
+	var bases: Array[Vector3] = []
+	for side: int in [-1,1]:
+		var point: Vector3 = center+axis*(side*3.2)
+		point.y = ground_height(point.x,point.z)-0.04
+		bases.append(point)
+	var header: Vector3 = (bases[0]+bases[1])*0.5+Vector3.UP*3.6
+	for point: Vector3 in bases:
+		var height: float = header.y+0.3-point.y
+		log_post(point+Vector3.UP*(height*0.5),height,0.22,true)
+	var lintel: MeshInstance3D = log_post(header,6.95,0.17,true)
+	lintel.quaternion = Quaternion(Vector3.UP,axis)
+	for index: int in range(2):
+		var point: Vector3 = bases[index]
+		var inward: Vector3 = axis if index == 0 else -axis
+		var start: Vector3 = Vector3(point.x,header.y-0.9,point.z)
+		var finish: Vector3 = Vector3(point.x,header.y-0.12,point.z)+inward*0.85
+		timber(start,finish,0.11)
+
+func north_ferns() -> void:
+	# Original opaque pinnate leaves; no alpha cards or invisible gameplay obstacles.
+	var leaves: SurfaceTool = SurfaceTool.new()
+	leaves.begin(Mesh.PRIMITIVE_TRIANGLES)
+	for frond: int in range(8):
+		leaves.set_uv(Vector2(-1.0,-1.0))
+		var angle: float = frond*2.4
+		var radial: Vector3 = Vector3(cos(angle),0,sin(angle))
+		var lateral: Vector3 = Vector3(-sin(angle),0,cos(angle))
+		for segment: int in range(10):
+			var corners: Array[Vector2] = [Vector2(0,0),Vector2(1,0),Vector2(0,1),Vector2(1,0),Vector2(1,1),Vector2(0,1)]
+			corners.reverse()
+			for corner: Vector2 in corners:
+				var t: float = (float(segment)+corner.y)/10.0
+				var stem: Vector3 = radial*(t*0.7)+Vector3.UP*(0.03+sin(t*PI*0.8)*0.6)
+				leaves.set_color(Color(0.7,0.85,0.4))
+				leaves.add_vertex(stem+lateral*((corner.x-0.5)*0.014*(1.0-t*0.8)))
+		for segment: int in range(10):
+			var t: float = 0.08+float(segment)*0.09
+			var stem: Vector3 = radial*(t*0.7)+Vector3.UP*(0.03+sin(t*PI*0.8)*0.6)
+			for side: int in [-1,1]:
+				var length: float = (0.07+sin(t*PI)*0.14)*(1.0-t*0.4)
+				var direction: Vector3 = (lateral*side+radial*0.3).normalized()
+				var cross_leaf: Vector3 = Vector3(-direction.z,0,direction.x)
+				var shoulder: Vector3 = stem+direction*(length*0.45)
+				var ridge: Vector3 = shoulder+Vector3.UP*0.012
+				var outline: Array[Vector2] = [Vector2(0,0),Vector2(0.22,0.16),Vector2(0.5,0.23),Vector2(0.78,0.15),Vector2(1,0),Vector2(0.78,-0.15),Vector2(0.5,-0.23),Vector2(0.22,-0.16)]
+				var corners: Array[Vector3] = []
+				for point: Vector2 in outline:
+					corners.append(stem + direction * (length * point.x) + cross_leaf * (length * point.y) + Vector3.UP * (sin(point.x * PI) * 0.008 + point.x * 0.015))
+				for edge: int in range(corners.size()):
+					leaves.set_color(Color(1.0,1.0,0.8).lerp(Color(0.72,0.9,0.65),t))
+					leaves.set_uv(Vector2(0.5,0.45))
+					leaves.add_vertex(ridge)
+					var next: int = (edge+1)%corners.size()
+					leaves.set_uv(Vector2(0.5+outline[next].y/0.46,outline[next].x))
+					leaves.add_vertex(corners[next])
+					leaves.set_uv(Vector2(0.5+outline[edge].y/0.46,outline[edge].x))
+					leaves.add_vertex(corners[edge])
+	leaves.generate_normals()
+	var shader: Shader = Shader.new()
+	shader.code = """shader_type spatial;
+render_mode cull_disabled;
+void fragment() {
+ float leaf=step(0.0,UV.x);
+ float footprint=max(fwidth(UV.x),fwidth(UV.y));
+ float midrib=1.0-smoothstep(0.012,0.025+footprint,abs(UV.x-0.5));
+ float ribs=abs(fract(UV.y*6.0-abs(UV.x-0.5)*2.0)-0.5);
+ float vein=(1.0-smoothstep(0.015,0.04+footprint*6.0,ribs))*(1.0-smoothstep(0.025,0.12,footprint));
+ float variation=mix(0.85,1.15,sin(clamp(UV.y,0.0,1.0)*3.14159));
+ ALBEDO=vec3(0.045,0.075,0.015)*COLOR.rgb*mix(1.0,variation+midrib*0.15+vein*0.08,leaf);
+ ROUGHNESS=0.88; BACKLIGHT=ALBEDO*0.25;
+}
+"""
+	var material: ShaderMaterial = ShaderMaterial.new()
+	material.shader = shader
+	var random: RandomNumberGenerator = RandomNumberGenerator.new()
+	random.seed = 93117
+	var wall: PackedVector2Array = PackedVector2Array([Vector2(-24,-23),Vector2(-9,-28),Vector2(8,-25),Vector2(22,-28),Vector2(28,-16)])
+	var locations: Array[Vector3] = []
+	for edge: int in range(wall.size()-1):
+		for attempt: int in range(60):
+			var point: Vector2 = wall[edge].lerp(wall[edge+1],random.randf())
+			point -= point.normalized()*random.randf_range(0.55,1.6)
+			if absf(point.x+0.5) < 4.0 or sin(point.x*0.9+point.y*0.6) < -0.4:
+				continue
+			locations.append(Vector3(point.x,ground_height(point.x,point.y)-0.03,point.y))
+	var wall_count: int = locations.size()
+	var patches: FastNoiseLite = FastNoiseLite.new()
+	patches.seed = 93417
+	patches.frequency = 0.19
+	for attempt: int in range(1000):
+		var z: float = random.randf_range(-107.0, -37.0)
+		var side: float = -1.0 if random.randf() < 0.5 else 1.0
+		var x: float = north_trail_center(z) + side * random.randf_range(4.2, 15.0)
+		if patches.get_noise_2d(x, z) < 0.05:
+			continue
+		var height: float = landscape_surface_height(x, z)
+		var slope: float = absf(landscape_surface_height(x + 1.0, z) - height) + absf(landscape_surface_height(x, z + 1.0) - height)
+		if slope > 0.8:
+			continue
+		locations.append(Vector3(x, height - 0.03, z))
+	var multi: MultiMesh = MultiMesh.new()
+	multi.transform_format = MultiMesh.TRANSFORM_3D
+	multi.use_colors = true
+	multi.mesh = leaves.commit()
+	multi.instance_count = locations.size()
+	for index: int in range(locations.size()):
+		var size: float = random.randf_range(0.7,1.25) if index < wall_count else random.randf_range(0.9,1.65)
+		multi.set_instance_transform(index,Transform3D(Basis(Vector3.UP,random.randf()*TAU).scaled(Vector3.ONE*size),locations[index]))
+		multi.set_instance_color(index,Color(random.randf_range(0.75,1.0),random.randf_range(0.85,1.0),0.8))
+	var visual: MultiMeshInstance3D = MultiMeshInstance3D.new()
+	visual.multimesh = multi
+	visual.material_override = material
+	visual.gi_mode = GeometryInstance3D.GI_MODE_DISABLED
+	add_child(visual)
+	print("VILLAGE_FERNS_OK: ",locations.size()," opaque clumps (", wall_count, " wall, ", locations.size() - wall_count, " woodland); passage excluded")
+
+func north_trail_center(z: float) -> float:
+	return -0.5+sin(maxf(-z-37.0,0.0)*0.055)*4.0
+
+func clear_north_trail(root_node: Node3D) -> void:
+	var cleared: int = 0
+	for node: Node in root_node.find_children("*","MeshInstance3D",true,false):
+		var visual: MeshInstance3D = node as MeshInstance3D
+		var material: StandardMaterial3D = visual.material_override as StandardMaterial3D
+		if material == null or material.albedo_texture == null or not "/tree_pack/textures/" in material.albedo_texture.resource_path:
+			continue
+		var bounds: AABB = visual.global_transform*visual.mesh.get_aabb()
+		var center: Vector3 = bounds.get_center()
+		if center.z < -31.0 and center.z > -112.0 and absf(center.x-north_trail_center(center.z)) < 3.1:
+			visual.visible = false
+			cleared += 1
+	print("VILLAGE_TRAIL_CLEAR: ",cleared," cosmetic tree/bush meshes excluded from trail")
+
+func trail_grass(root_node: Node3D) -> void:
+	# Reuse the original village grass mesh/material from builder or baked snapshot.
+	var source: MultiMeshInstance3D
+	for node: Node in root_node.find_children("*","MultiMeshInstance3D",true,false):
+		var candidate: MultiMeshInstance3D = node as MultiMeshInstance3D
+		var material: ShaderMaterial = candidate.material_override as ShaderMaterial
+		if material != null and "ALBEDO=vec3(0.045,0.085,0.018)" in material.shader.code:
+			source = candidate
+			break
+	assert(source != null, "Trail shoulders reuse the village grass geometry")
+	var random: RandomNumberGenerator = RandomNumberGenerator.new()
+	random.seed = 64811
+	var patches: FastNoiseLite = FastNoiseLite.new()
+	patches.seed = 63811
+	patches.frequency = 0.13
+	var locations: Array[Vector3] = []
+	for attempt: int in range(28000):
+		var z: float = random.randf_range(-110.0,-36.0)
+		var offset: float = random.randf_range(-13.0,13.0)
+		var x: float = north_trail_center(z)+offset
+		if absf(offset)<2.8 or patches.get_noise_2d(x,z)<-0.25:
+			continue
+		if random.randf()<smoothstep(7.0,13.0,absf(offset)):
+			continue
+		locations.append(Vector3(x,landscape_surface_height(x,z)+0.01,z))
+	var multi: MultiMesh = MultiMesh.new()
+	multi.transform_format = MultiMesh.TRANSFORM_3D
+	multi.use_colors = true
+	multi.mesh = source.multimesh.mesh
+	multi.instance_count = locations.size()
+	for index: int in range(locations.size()):
+		var size: float = random.randf_range(0.8,1.8)
+		multi.set_instance_transform(index,Transform3D(Basis(Vector3.UP,random.randf()*TAU).scaled(Vector3.ONE*size),locations[index]))
+		multi.set_instance_color(index,Color(random.randf_range(0.7,1.0),random.randf_range(0.75,1.0),0.65))
+	var visual: MultiMeshInstance3D = MultiMeshInstance3D.new()
+	visual.multimesh = multi
+	visual.material_override = source.material_override
+	visual.gi_mode = GeometryInstance3D.GI_MODE_DISABLED
+	add_child(visual)
+	print("VILLAGE_TRAIL_GRASS: ",locations.size()," original opaque clumps outside walking strip")

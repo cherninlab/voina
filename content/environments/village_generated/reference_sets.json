@@ -66,19 +66,252 @@
     {
       "target": "target-schist-valley.png",
       "supporting_basecolors": [
-        "schist_rock.png"
+        "schist_rock.png",
+        "soil_gravel.png"
       ],
       "supporting_geometry": [
         "gameplay/environment/village_arena.gd:landscape",
         "gameplay/environment/village_arena.gd:landscape_surface_height",
         "gameplay/environment/village_arena.gd:landscape_height",
-        "gameplay/environment/village_arena.gd:ground_stones"
+        "gameplay/environment/village_arena.gd:ground_stones",
+        "gameplay/environment/village_arena.gd:terrain"
       ],
       "prompts": [
         "schist_rock-prompt.md",
-        "target-schist-valley-prompt.md"
+        "target-schist-valley-prompt.md",
+        "soil_gravel-prompt.md"
       ],
-      "note": "Original generated schist albedo candidate paired with 3m landscape mesh, triplanar rock mapping, slope-aligned rock scatter and denser surrounding forest. Runtime captures assess the actual result. Domain-warped ridge and softened strata height field replaces the smooth dome skyline; first serrated trial rejected during runtime review."
+      "note": "Original generated schist albedo candidate paired with 3m landscape mesh, triplanar rock mapping, slope-aligned rock scatter and denser surrounding forest. Runtime captures assess the actual result. Domain-warped ridge and softened strata height field replaces the smooth dome skyline; first serrated trial rejected during runtime review.",
+      "runtime_update": "Shared source/snapshot landscape material uses irregular slope/elevation rock exposure and grass macro variation. Calibrated runtime-rocky-slopes captures reviewed; silhouette geometry still below target."
+    },
+    {
+      "target": "target-next-ground-pass.png",
+      "source_capture": "runtime-soil-material/village-03.png",
+      "supporting_basecolors": [
+        "soil_gravel.png",
+        "reed_thatch.png",
+        "oak.png",
+        "schist_rock.png"
+      ],
+      "supporting_geometry": [
+        "gameplay/environment/village_arena.gd:terrain",
+        "gameplay/environment/village_arena.gd:green_borders",
+        "gameplay/environment/village_arena.gd:ground_stones",
+        "gameplay/environment/village_arena.gd:roof"
+      ],
+      "prompts": [
+        "target-next-ground-pass-prompt.md",
+        "soil_gravel-prompt.md"
+      ],
+      "note": "User-directed closer intermediate target derived from latest actual capture. Preserve composition; next work is restrained material weathering, thatch edge thickness, clover clusters and rock breakup. Generated image is not actual gameplay."
+    },
+    {
+      "target": "target-enshrouded-pass.png",
+      "source_reference": "target-next-ground-pass.png",
+      "supporting_basecolors": [
+        "soil_gravel.png",
+        "oak.png",
+        "reed_thatch.png",
+        "schist_rock.png"
+      ],
+      "prompts": [
+        "target-enshrouded-pass-prompt.md"
+      ],
+      "note": "User-requested Enshrouded-inspired rendering treatment of the same composition. Visual target only, not implemented gameplay. Supporting material candidates are paired for subsequent implementation."
+    },
+    {
+      "target": "target-enshrouded-actual-refs.png",
+      "source_capture": "runtime-soil-material/village-03.png",
+      "style_reference": "Actual Enshrouded screenshots supplied by user; Steam app 1203620",
+      "supporting_basecolors": [
+        "soil_gravel.png",
+        "oak.png",
+        "reed_thatch.png",
+        "schist_rock.png",
+        "aged_timber.png",
+        "tree01_atlas.png"
+      ],
+      "supporting_geometry": [
+        "gameplay/environment/village_arena.gd:roof",
+        "gameplay/environment/village_arena.gd:green_borders",
+        "gameplay/environment/village_arena.gd:landscape",
+        "gameplay/environment/village_arena.gd:clover_edges",
+        "gameplay/environment/village_arena.gd:timber",
+        "gameplay/environment/village_arena.gd:roof_surface_point",
+        "gameplay/environment/village_arena.gd:refresh_foliage"
+      ],
+      "prompts": [
+        "target-enshrouded-actual-refs-prompt.md",
+        "aged_timber-prompt.md",
+        "tree01_atlas-prompt.md"
+      ],
+      "note": "Corrected target directly conditions on actual Enshrouded images rather than its name alone. Generated reference, not actual VALKA gameplay. Existing texture candidates are paired; broad sculpted surface detail and dense layered foliage remain implementation work.",
+      "supporting_shape_reference": "groundcover-shape-study.png"
+    },
+    {
+      "target": "broadleaf-shape-study.png",
+      "supporting_basecolors": [
+        "tree01_atlas.png"
+      ],
+      "supporting_geometry": [
+        "gameplay/environment/woodland_tree.gd",
+        "gameplay/environment/village_arena.gd:refresh_foliage"
+      ],
+      "prompts": [
+        "broadleaf-shape-study-prompt.md",
+        "tree01_atlas-prompt.md"
+      ],
+      "note": "Original branching trunk and curved foliage meshes now replace nearby tree01/02/03/04/08/09 within 80m of village origin; crown width follows source bounds and six leaf tints vary species. Conifers and distant meshes retained. Spatial selection, not measured camera LOD. Shape sheet is reference, not exact CAD or runtime capture."
+    },
+    {
+      "target": "target-player-projection.png",
+      "source_capture": "runtime-matched-projection/village-03.png",
+      "supporting_basecolors": [
+        "mineral_earth.png",
+        "aged_timber.png",
+        "reed_thatch.png",
+        "tree01_atlas.png",
+        "flax_weave.png"
+      ],
+      "supporting_shape_references": [
+        "broadleaf-shape-study.png",
+        "groundcover-shape-study.png",
+        "target-roof-shape.png"
+      ],
+      "prompts": [
+        "target-player-projection-prompt.md",
+        "mineral_earth-prompt.md"
+      ],
+      "note": "Generated target directly conditioned on actual Enshrouded daytime screenshots and calibrated 108-degree player-source capture. Approximate composition only; AI can alter proportions. Mineral earth now blends into runtime terrain at a second scale. Three calibrated Metal views reviewed for visible seams; human motion review remains outstanding.",
+      "supporting_geometry": [
+        "gameplay/environment/village_arena.gd:woodland_edges",
+        "gameplay/environment/village_arena.gd:refresh_foliage"
+      ]
+    },
+    {
+      "target": "ridge-shape-study.png",
+      "supporting_basecolors": [
+        "schist_rock.png"
+      ],
+      "supporting_geometry": [
+        "gameplay/environment/village_arena.gd:ridge_outcrops"
+      ],
+      "prompts": [
+        "ridge-shape-study-prompt.md"
+      ],
+      "note": "Generated modeling guide, not exact CAD. Runtime ridge_outcrops now authors terrain-conforming stepped shoulder meshes at ten selected crest sites using schist_rock. Initial oversized boulder assembly was rejected after capture review; no new imported rock assets were required. Further sculpting remains to match the study.",
+      "runtime_profiles": "Four piecewise asymmetric crest profiles with wider/lower shoulders and offset cross-sections; runtime-varied-crests. Smooth base mountains still remain below target."
+    },
+    {
+      "target": "target-north-entrance.png",
+      "source_capture": "runtime-north-shipped/village-04.png",
+      "supporting_basecolors": [
+        "aged_timber.png",
+        "mineral_earth.png",
+        "flax_weave.png"
+      ],
+      "supporting_shape_references": [
+        "groundcover-shape-study.png",
+        "fern-shape-study.png"
+      ],
+      "supporting_geometry": [
+        "gameplay/environment/village_arena.gd:dress_north_approach",
+        "gameplay/environment/village_arena.gd:open_north_approach"
+      ],
+      "prompts": [
+        "target-north-entrance-prompt.md",
+        "aged_timber-prompt.md",
+        "mineral_earth-prompt.md"
+      ],
+      "note": "Direct actual-camera and Enshrouded-conditioned visual target. Gate frame and original opaque fern geometry implemented; path dressing and target lighting remain incomplete. Existing generated textures reused.",
+      "lighting_update": "Explicit 0.65 sky contribution with cool ambient color and 0.4 energy; refreshed native Metal static bake including the entrance. Four calibrated views in runtime-skyfill-baked; target fidelity remains incomplete."
+    },
+    {
+      "target": "fern-shape-study.png",
+      "supporting_geometry": [
+        "gameplay/environment/village_arena.gd:north_ferns"
+      ],
+      "prompts": [
+        "fern-shape-study-prompt.md"
+      ],
+      "note": "Original opaque polygon fern fronds, rachis strips and folded leaflets; 127 cosmetic clumps along northern wall edges, excluding passage. Shader colors, no alpha texture. Shape sheet is reference, not exact CAD or runtime."
+    },
+    {
+      "target": "target-woodland-trail.png",
+      "source_capture": "runtime-woodland-trail/village-05.png",
+      "supporting_basecolors": [
+        "mineral_earth.png",
+        "schist_rock.png",
+        "tree01_atlas.png",
+        "tree_autumn_atlas.png"
+      ],
+      "supporting_shape_references": [
+        "groundcover-shape-study.png",
+        "fern-shape-study.png",
+        "broadleaf-shape-study.png",
+        "ridge-shape-study.png"
+      ],
+      "supporting_geometry": [
+        "gameplay/environment/village_arena.gd:make_landscape_material",
+        "gameplay/environment/village_arena.gd:trail_grass",
+        "gameplay/environment/village_arena.gd:clear_north_trail"
+      ],
+      "prompts": [
+        "target-woodland-trail-prompt.md",
+        "mineral_earth-prompt.md",
+        "tree_autumn_atlas-prompt.md"
+      ],
+      "note": "AI target directly conditioned on actual new route capture and Enshrouded; composition approximate. Trail material, corridor clearance and original opaque shoulder grass implemented. Dense natural vegetation, tree fidelity, geological detail and temporal rendering remain below target."
+    },
+    {
+      "target": "target-woodland-stands.png",
+      "source_capture": "runtime-autumn-canopies/village-05.png",
+      "supporting_basecolors": [
+        "tree01_atlas.png",
+        "tree_autumn_atlas.png",
+        "mineral_earth.png",
+        "schist_rock.png",
+        "oak_bough_atlas.png",
+        "oak_bough_autumn_atlas.png"
+      ],
+      "supporting_shape_references": [
+        "broadleaf-shape-study.png",
+        "groundcover-shape-study.png",
+        "fern-shape-study.png"
+      ],
+      "supporting_geometry": [
+        "gameplay/environment/village_arena.gd:woodland_edges",
+        "gameplay/environment/village_arena.gd:trail_grass",
+        "gameplay/environment/woodland_tree.gd"
+      ],
+      "prompts": [
+        "target-woodland-stands-prompt.md",
+        "tree01_atlas-prompt.md",
+        "tree_autumn_atlas-prompt.md",
+        "oak_bough_atlas-prompt.md"
+      ],
+      "note": "Generated target, not gameplay. Mature tree groups and denser grass implemented; broader canopy shapes, richer understory, geological detail and rendering remain incomplete. Nearby original tree geometry now uses a spreading forked crown and rounded bough atlases; distant original meshes retain tree silhouettes."
+    },
+    {
+      "target": "understory-placement-study.png",
+      "source_capture": "runtime-rounded-normals/village-05.png",
+      "supporting_shape_references": [
+        "fern-shape-study.png",
+        "groundcover-shape-study.png"
+      ],
+      "supporting_basecolors": [
+        "mineral_earth.png",
+        "oak_bough_atlas.png",
+        "oak_bough_autumn_atlas.png"
+      ],
+      "supporting_geometry": [
+        "gameplay/environment/village_arena.gd:north_ferns",
+        "gameplay/environment/village_arena.gd:trail_grass"
+      ],
+      "prompts": [
+        "understory-placement-study-prompt.md"
+      ],
+      "note": "AI composition/overhead/side study, not gameplay or precise CAD. Original opaque ferns extend into noisy trail-side patches, rounded leaflets and procedural vein shading implemented. Plant diversity, richer ground transitions and overall rendering remain incomplete."
     }
   ],
   "sky_note": "Generated LDR appearance panorama, not calibrated HDR lighting. Sky shader adjusts horizon latitude and blends wrap/poles; runtime review is required."
