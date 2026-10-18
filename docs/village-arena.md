@@ -117,3 +117,9 @@ Three Metal views are saved in `runtime-woodland-daylight`; floor/ramp rays, fou
 ## Landscape material blending
 
 The source builder and loaded snapshot share a landscape-material factory. Slope and lower elevation now reveal schist in irregular warped patches, with restrained strata and wider grass-color variation. This reuses the paired schist target/texture; no terrain vertices, tree bases or collision changed. Three calibrated Metal captures are in `runtime-rocky-slopes`; floor/ramp rays, four player landings, projection assertion, editor import and local networking smoke pass. The visual change is modest under current atmospheric lighting. Distant silhouettes are still smooth and need actual geometry work; material blending alone does not meet the reference target.
+
+## Fractured ridge silhouettes
+
+Ten high, separated terrain crest sites now receive original terrain-conforming shoulder meshes. Each 20-by-8 patch follows the sampled landscape, with an asymmetric rock envelope, stepped fracture heights and buried perimeter, using the shared triplanar schist material. This changes the skyline without moving the underlying terrain or existing plants. The meshes are distant cosmetic scenery and add no collision. Bake preparation skips the live layer.
+
+The generated `ridge-shape-study.png` provides approximate front, side and plan views paired with `schist_rock.png`; it remains a target rather than exact implemented CAD. Initial imported-boulder assemblies were rejected because exposed overhangs and excessive burial failed to give a useful result. `runtime-fractured-ridges` contains the final three calibrated Metal views. Floor/ramp rays, four real-player landings and projection checks pass. Further geological shaping, terrain detail and temporal rendering work remain.

@@ -30,6 +30,7 @@ func _ready() -> void:
 			clover_edges()
 			refresh_foliage(snapshot)
 			woodland_edges()
+			ridge_outcrops()
 			return
 		snapshot.free()
 	wood = surface("b0a08a", "oak", 0.5)
@@ -119,6 +120,7 @@ func _ready() -> void:
 	if not bool(get_meta("prepare_lightmap", false)):
 		refresh_foliage(trees)
 		woodland_edges()
+		ridge_outcrops()
 
 func landscape_height(x: float, z: float) -> float:
 	var distance: float = maxf(absf(x), absf(z))
@@ -677,6 +679,62 @@ func refresh_foliage(root_node: Node3D) -> void:
 			replacement = original.duplicate() as StandardMaterial3D
 			replacement.albedo_texture = load("res://content/environments/village_generated/tree01_atlas.png") as Texture2D
 		visual.material_override = replacement
+
+func ridge_outcrops() -> void:
+	# Terrain-conforming fractured rock shoulders interrupt selected distant crests.
+	var candidates: Array[Vector3] = []
+	for z: int in range(-240, 241, 12):
+		for x: int in range(-240, 241, 12):
+			if Vector2(x,z).length() < 145.0:
+				continue
+			var height: float = landscape_surface_height(x,z)
+			if height < 20.0:
+				continue
+			if height < landscape_surface_height(x-12,z) or height < landscape_surface_height(x+12,z) or height < landscape_surface_height(x,z-12) or height < landscape_surface_height(x,z+12):
+				continue
+			candidates.append(Vector3(x,height,z))
+	candidates.sort_custom(func(a: Vector3, b: Vector3) -> bool: return a.y > b.y)
+	var peaks: Array[Vector3] = []
+	var tool: SurfaceTool = SurfaceTool.new()
+	tool.begin(Mesh.PRIMITIVE_TRIANGLES)
+	var random: RandomNumberGenerator = RandomNumberGenerator.new()
+	random.seed = 82519
+	for candidate: Vector3 in candidates:
+		var spaced: bool = true
+		for peak: Vector3 in peaks:
+			if peak.distance_to(candidate) < 48.0:
+				spaced = false
+		if not spaced:
+			continue
+		peaks.append(candidate)
+		var direction: float = random.randf_range(0.0, TAU)
+		var width: float = random.randf_range(32.0, 52.0)
+		var depth: float = random.randf_range(12.0, 22.0)
+		var rise: float = random.randf_range(12.0, 22.0)
+		var rotation: Basis = Basis(Vector3.UP, direction)
+		for z: int in range(8):
+			for x: int in range(20):
+				var corners: Array[Vector2] = [Vector2(x,z),Vector2(x+1,z),Vector2(x,z+1),Vector2(x+1,z),Vector2(x+1,z+1),Vector2(x,z+1)]
+				for corner: Vector2 in corners:
+					var uv: Vector2 = corner / Vector2(20.0,8.0)
+					var point: Vector3 = candidate + rotation * Vector3((uv.x-0.5)*width,0,(uv.y-0.5)*depth)
+					var envelope: float = pow(maxf(sin(uv.x*PI),0.0),0.65) * pow(maxf(sin(uv.y*PI),0.0),0.5)
+					var shoulder: float = lerpf(1.15,0.55,uv.x)
+					var fracture: float = sin(corner.x*2.3+corner.y*1.7)*0.8
+					var raw: float = envelope*rise*shoulder + fracture*envelope
+					var stepped: float = floorf(raw/2.4)*2.4
+					point.y = landscape_surface_height(point.x,point.z) - 0.25 + lerpf(raw,stepped,0.6)
+					tool.add_vertex(point)
+		if peaks.size() == 10:
+			break
+	assert(not peaks.is_empty(), "Distant terrain must provide ridge outcrop sites")
+	tool.generate_normals()
+	var visual: MeshInstance3D = MeshInstance3D.new()
+	visual.mesh = tool.commit()
+	visual.material_override = make_landscape_material()
+	visual.gi_mode = GeometryInstance3D.GI_MODE_DISABLED
+	add_child(visual)
+	print("VILLAGE_RIDGES_OK: ", peaks.size(), " spaced crest formations")
 
 func woodland_edges() -> void:
 	# Cosmetic grouped saplings share two instanced meshes, with no gameplay collision.
