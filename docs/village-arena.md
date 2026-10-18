@@ -99,3 +99,7 @@ Art captures now copy the live owner's camera FOV and assert that it matches the
 
 The `runtime-matched-projection` three-view capture passed floor/ramp rays, four player landing checks and the new projection assertion. Peripheral stretching remains visible; this change does not establish a fix for gameplay temporal flicker or camera feel. The new `target-player-projection.png` is an AI visual target conditioned on this calibrated capture and the supplied actual Enshrouded screenshots, not gameplay evidence.
 
+
+## Mineral-earth ground pass
+
+The source builder and baked scene now share the terrain-material factory. Runtime replaces only the snapshot terrain material identified by its dirt texture uniform, preserving mesh UV2, LightmapGI bindings and collision. A mipmapped mineral-earth base color blends with the existing soil at a second scale; smooth low-frequency coordinate warping and earth-tone modulation reduce uniform repetition. Grass/paving masks and their normals remain unchanged. The calibrated three-view Metal capture in `runtime-mineral-ground` passes floor/ramp rays, four player landing drops and the 108-degree lens-source assertion. This improves surface variation, not geometric ground relief or temporal antialiasing.

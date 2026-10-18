@@ -33,6 +33,7 @@
     "file": "mineral_earth.png",
     "source": "Built-in ImageGen original generation",
     "prompt": "mineral_earth-prompt.md",
-    "runtime_adopted": false
+    "runtime_adopted": true,
+    "usage": "Blended with soil_gravel in village terrain at a second scale with low-frequency world-space variation; mipmapped VRAM import."
   }
 }

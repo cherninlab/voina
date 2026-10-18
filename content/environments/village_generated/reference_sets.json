@@ -181,7 +181,7 @@
         "target-player-projection-prompt.md",
         "mineral_earth-prompt.md"
       ],
-      "note": "Generated target directly conditioned on actual Enshrouded daytime screenshots and calibrated 108-degree player-source capture. Target retains approximate scene composition; AI can alter proportions. Mineral earth is a new candidate, not yet used in runtime; tiling and motion validation pending."
+      "note": "Generated target directly conditioned on actual Enshrouded daytime screenshots and calibrated 108-degree player-source capture. Approximate composition only; AI can alter proportions. Mineral earth now blends into runtime terrain at a second scale. Three calibrated Metal views reviewed for visible seams; human motion review remains outstanding."
     }
   ],
   "sky_note": "Generated LDR appearance panorama, not calibrated HDR lighting. Sky shader adjusts horizon latitude and blends wrap/poles; runtime review is required."

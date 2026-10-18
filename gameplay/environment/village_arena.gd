@@ -25,6 +25,7 @@ func _ready() -> void:
 			add_child(snapshot)
 			for node: Node in snapshot.find_children("*", "WorldEnvironment", true, false):
 				apply_atmosphere((node as WorldEnvironment).environment)
+			refresh_ground(snapshot)
 			clover_edges()
 			refresh_foliage(snapshot)
 			return
@@ -457,47 +458,7 @@ func terrain() -> void:
 	var mesh: ArrayMesh = tool.commit()
 	var visual: MeshInstance3D = MeshInstance3D.new()
 	visual.mesh = mesh
-	var material: ShaderMaterial = ShaderMaterial.new()
-	var shader: Shader = Shader.new()
-	shader.code = """shader_type spatial;
-uniform sampler2D dirt_color : source_color, filter_linear_mipmap_anisotropic, repeat_enable;
-uniform sampler2D stones : source_color, filter_linear_mipmap_anisotropic, repeat_enable;
-uniform sampler2D grass_color : source_color, filter_linear_mipmap_anisotropic, repeat_enable;
-uniform sampler2D stone_normal : hint_normal, filter_linear_mipmap_anisotropic, repeat_enable;
-uniform sampler2D grass_normal : hint_normal, filter_linear_mipmap_anisotropic, repeat_enable;
-uniform sampler2D stone_roughness : filter_linear_mipmap_anisotropic, repeat_enable;
-uniform sampler2D grass_roughness : filter_linear_mipmap_anisotropic, repeat_enable;
-varying vec3 pos;
-float hash(vec2 p) { return fract(sin(dot(p,vec2(127.1,311.7))) * 43758.5453); }
-float noise(vec2 p) { vec2 i=floor(p); vec2 f=fract(p); f=f*f*(3.0-2.0*f); return mix(mix(hash(i),hash(i+vec2(1,0)),f.x),mix(hash(i+vec2(0,1)),hash(i+vec2(1,1)),f.x),f.y); }
-void vertex() { pos = (MODEL_MATRIX * vec4(VERTEX,1.0)).xyz; }
-void fragment() {
- vec2 p=pos.xz;
- float footprint = length(fwidth(p));
- float fine = mix(noise(p*2.4),0.5,smoothstep(0.03,0.2,footprint));
- float n=noise(p*0.6)*0.7+fine*0.3;
- float main_path=1.0-smoothstep(2.6,4.8,abs(p.x-sin(p.y*0.16)*2.2));
- float cross_path=1.0-smoothstep(2.0,4.0,abs(p.y-sin(p.x*0.14)*1.5));
- float court=1.0-smoothstep(7.0,14.0,length(p));
- float path=max(court,max(main_path,cross_path));
- float vegetation=(1.0-path)*smoothstep(0.2,0.7,n);
- vec3 dirt=texture(dirt_color,p*0.4).rgb * mix(0.8,1.05,n);
- vec3 grass=texture(grass_color,p*0.22).rgb * mix(0.72,1.05,n);
- vec3 rock=texture(stones,p*0.65).rgb;
- float rock_mask=smoothstep(0.55,0.8,noise(p*0.23))*path*0.25;
- ALBEDO=mix(mix(dirt,rock,rock_mask),grass,vegetation);
- ROUGHNESS=mix(mix(0.94,texture(stone_roughness,p*0.65).r,rock_mask),texture(grass_roughness,p*0.22).r,vegetation);
- NORMAL_MAP=mix(mix(vec3(0.5,0.5,1.0),texture(stone_normal,p*0.65).rgb,rock_mask),texture(grass_normal,p*0.22).rgb,vegetation);
- NORMAL_MAP_DEPTH=0.45;
- // Screen-space color derivatives are not a physical normal map and shimmer during motion.
-}
-"""
-	material.shader = shader
-	material.set_shader_parameter("dirt_color", load("res://content/environments/village_generated/soil_gravel.png"))
-	for binding: String in ["stones", "grass_color", "stone_normal", "grass_normal", "stone_roughness", "grass_roughness"]:
-		var family: String = "GrassGround" if binding.begins_with("grass") else "StoneFloor"
-		var channel: String = "normal" if binding.ends_with("normal") else ("roughness" if binding.ends_with("roughness") else "basecolor")
-		material.set_shader_parameter(binding, load("res://content/environments/valhalla/textures/KB3D_VHL_%s_%s.png" % [family, channel]))
+	var material: ShaderMaterial = make_ground_material()
 	visual.material_override = material
 	add_child(visual)
 	var body: StaticBody3D = StaticBody3D.new()
@@ -735,3 +696,60 @@ func apply_atmosphere(environment: Environment) -> void:
 	environment.fog_aerial_perspective = 0.25
 	environment.fog_sun_scatter = 0.18
 	environment.fog_sky_affect = 0.08
+
+func make_ground_material() -> ShaderMaterial:
+	var material: ShaderMaterial = ShaderMaterial.new()
+	var shader: Shader = Shader.new()
+	shader.code = """shader_type spatial;
+uniform sampler2D dirt_color : source_color, filter_linear_mipmap_anisotropic, repeat_enable;
+uniform sampler2D mineral_color : source_color, filter_linear_mipmap_anisotropic, repeat_enable;
+uniform sampler2D stones : source_color, filter_linear_mipmap_anisotropic, repeat_enable;
+uniform sampler2D grass_color : source_color, filter_linear_mipmap_anisotropic, repeat_enable;
+uniform sampler2D stone_normal : hint_normal, filter_linear_mipmap_anisotropic, repeat_enable;
+uniform sampler2D grass_normal : hint_normal, filter_linear_mipmap_anisotropic, repeat_enable;
+uniform sampler2D stone_roughness : filter_linear_mipmap_anisotropic, repeat_enable;
+uniform sampler2D grass_roughness : filter_linear_mipmap_anisotropic, repeat_enable;
+varying vec3 pos;
+float hash(vec2 p) { return fract(sin(dot(p,vec2(127.1,311.7))) * 43758.5453); }
+float noise(vec2 p) { vec2 i=floor(p); vec2 f=fract(p); f=f*f*(3.0-2.0*f); return mix(mix(hash(i),hash(i+vec2(1,0)),f.x),mix(hash(i+vec2(0,1)),hash(i+vec2(1,1)),f.x),f.y); }
+void vertex() { pos = (MODEL_MATRIX * vec4(VERTEX,1.0)).xyz; }
+void fragment() {
+ vec2 p=pos.xz;
+ float footprint = length(fwidth(p));
+ float fine = mix(noise(p*2.4),0.5,smoothstep(0.03,0.2,footprint));
+ float n=noise(p*0.6)*0.7+fine*0.3;
+ float main_path=1.0-smoothstep(2.6,4.8,abs(p.x-sin(p.y*0.16)*2.2));
+ float cross_path=1.0-smoothstep(2.0,4.0,abs(p.y-sin(p.x*0.14)*1.5));
+ float court=1.0-smoothstep(7.0,14.0,length(p));
+ float path=max(court,max(main_path,cross_path));
+ float vegetation=(1.0-path)*smoothstep(0.2,0.7,n);
+ vec2 warped=p+vec2(noise(p*0.17),noise(p*0.17+31.0))*0.8;
+ float mineral_mask=smoothstep(0.28,0.72,noise(warped*0.16));
+ vec3 dirt=mix(texture(dirt_color,warped*0.4).rgb,texture(mineral_color,warped*0.23).rgb,mineral_mask*0.75);
+ dirt*=mix(vec3(0.72,0.68,0.60),vec3(1.04,1.0,0.91),noise(p*0.09))*mix(0.9,1.04,n);
+ vec3 grass=texture(grass_color,p*0.22).rgb * mix(0.72,1.05,n);
+ vec3 rock=texture(stones,p*0.65).rgb;
+ float rock_mask=smoothstep(0.55,0.8,noise(p*0.23))*path*0.25;
+ ALBEDO=mix(mix(dirt,rock,rock_mask),grass,vegetation);
+ ROUGHNESS=mix(mix(0.94,texture(stone_roughness,p*0.65).r,rock_mask),texture(grass_roughness,p*0.22).r,vegetation);
+ NORMAL_MAP=mix(mix(vec3(0.5,0.5,1.0),texture(stone_normal,p*0.65).rgb,rock_mask),texture(grass_normal,p*0.22).rgb,vegetation);
+ NORMAL_MAP_DEPTH=0.45;
+ // Screen-space color derivatives are not a physical normal map and shimmer during motion.
+}
+"""
+	material.shader = shader
+	material.set_shader_parameter("dirt_color", load("res://content/environments/village_generated/soil_gravel.png"))
+	material.set_shader_parameter("mineral_color", load("res://content/environments/village_generated/mineral_earth.png"))
+	for binding: String in ["stones", "grass_color", "stone_normal", "grass_normal", "stone_roughness", "grass_roughness"]:
+		var family: String = "GrassGround" if binding.begins_with("grass") else "StoneFloor"
+		var channel: String = "normal" if binding.ends_with("normal") else ("roughness" if binding.ends_with("roughness") else "basecolor")
+		material.set_shader_parameter(binding, load("res://content/environments/valhalla/textures/KB3D_VHL_%s_%s.png" % [family, channel]))
+	return material
+
+func refresh_ground(root_node: Node3D) -> void:
+	# Replace only the terrain material; baked UV2, lightmap and collision stay intact.
+	for node: Node in root_node.find_children("*", "MeshInstance3D", true, false):
+		var visual: MeshInstance3D = node as MeshInstance3D
+		var material: ShaderMaterial = visual.material_override as ShaderMaterial
+		if material != null and material.get_shader_parameter("dirt_color") != null:
+			visual.material_override = make_ground_material()
