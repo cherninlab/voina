@@ -28,6 +28,7 @@ func _ready() -> void:
 			refresh_ground(snapshot)
 			clover_edges()
 			refresh_foliage(snapshot)
+			woodland_edges()
 			return
 		snapshot.free()
 	wood = surface("b0a08a", "oak", 0.5)
@@ -116,6 +117,7 @@ func _ready() -> void:
 		(trees as TreePack).add_plant("tree%02d" % (1 + index % 36), Vector3(x, landscape_surface_height(x, z) - 0.05, z), forest_random.randf_range(7.0, 14.0))
 	if not bool(get_meta("prepare_lightmap", false)):
 		refresh_foliage(trees)
+		woodland_edges()
 
 func landscape_height(x: float, z: float) -> float:
 	var distance: float = maxf(absf(x), absf(z))
@@ -698,6 +700,59 @@ func refresh_foliage(root_node: Node3D) -> void:
 			replacement = original.duplicate() as StandardMaterial3D
 			replacement.albedo_texture = load("res://content/environments/village_generated/tree01_atlas.png") as Texture2D
 		visual.material_override = replacement
+
+func woodland_edges() -> void:
+	# Cosmetic grouped saplings share two instanced meshes, with no gameplay collision.
+	landscape_noise.seed = 41271
+	landscape_noise.frequency = 0.006
+	landscape_noise.fractal_octaves = 3
+	var random: RandomNumberGenerator = RandomNumberGenerator.new()
+	random.seed = 74219
+	var transforms: Array[Transform3D] = []
+	var colors: Array[Color] = []
+	for group: int in range(52):
+		var angle: float = random.randf_range(0.0, TAU)
+		var radius: float = random.randf_range(43.0, 126.0)
+		var center: Vector2 = Vector2(cos(angle), sin(angle)) * radius
+		for plant: int in range(7):
+			var point: Vector2 = center + Vector2(random.randf_range(-8.0,8.0), random.randf_range(-8.0,8.0))
+			if maxf(absf(point.x), absf(point.y)) < 34.0 or absf(point.x) < 6.0:
+				continue
+			var height: float = landscape_surface_height(point.x, point.y)
+			var slope: float = absf(landscape_surface_height(point.x + 2.0, point.y) - height) + absf(landscape_surface_height(point.x, point.y + 2.0) - height)
+			if slope > 2.0:
+				continue
+			var size: float = random.randf_range(2.5, 6.5) / 10.0
+			var basis: Basis = Basis(Vector3.UP, random.randf_range(0.0, TAU)).scaled(Vector3(size * 1.25, size, size * 1.25))
+			transforms.append(Transform3D(basis, Vector3(point.x, height - 0.06, point.y)))
+			colors.append(Color("b4c29c").lerp(Color("e2e6c5"), random.randf()))
+	assert(transforms.size() > 200, "Woodland groups must contain usable grounded saplings")
+	var source: StandardMaterial3D = StandardMaterial3D.new()
+	source.transparency = BaseMaterial3D.TRANSPARENCY_ALPHA_SCISSOR
+	source.alpha_scissor_threshold = 0.5
+	source.alpha_antialiasing_mode = BaseMaterial3D.ALPHA_ANTIALIASING_ALPHA_TO_COVERAGE
+	source.cull_mode = BaseMaterial3D.CULL_DISABLED
+	var prototype: Node3D = preload("res://gameplay/environment/woodland_tree.gd").new() as Node3D
+	prototype.call("configure", load("res://content/environments/village_generated/tree01_atlas.png"), source, 10.0)
+	for part: int in range(2):
+		var template: MeshInstance3D = prototype.get_child(part) as MeshInstance3D
+		var instances: MultiMesh = MultiMesh.new()
+		instances.transform_format = MultiMesh.TRANSFORM_3D
+		instances.use_colors = true
+		instances.mesh = template.mesh
+		instances.instance_count = transforms.size()
+		for index: int in range(transforms.size()):
+			instances.set_instance_transform(index, transforms[index])
+			instances.set_instance_color(index, colors[index] if part == 1 else Color.WHITE)
+		var visual: MultiMeshInstance3D = MultiMeshInstance3D.new()
+		visual.multimesh = instances
+		var material: StandardMaterial3D = template.material_override as StandardMaterial3D
+		material.vertex_color_use_as_albedo = true
+		visual.material_override = material
+		visual.gi_mode = GeometryInstance3D.GI_MODE_DISABLED
+		add_child(visual)
+	prototype.free()
+	print("VILLAGE_WOODLAND_OK: ", transforms.size(), " grounded saplings in two instanced meshes")
 
 func apply_atmosphere(environment: Environment) -> void:
 	environment.fog_enabled = true

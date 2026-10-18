@@ -107,3 +107,9 @@ The source builder and baked scene now share the terrain-material factory. Runti
 ## Nearby broadleaf variants
 
 The original branching-tree replacement now covers tree01, tree02, tree03, tree04, tree08 and tree09 within 80 metres of village origin. Source bounds determine crown width; six restrained leaf tints preserve some species variation. Conifers, other species and distant meshes retain their original geometry. This reuses the paired `broadleaf-shape-study.png` and `tree01_atlas.png`, without new external assets. `runtime-broadleaf-variety` contains three calibrated Metal views; floor/ramp, four landing checks and projection assertion pass. This is a spatial asset selection, not dynamic LOD or measured M2 performance.
+
+## Grouped woodland edge
+
+A deterministic 52-group placement pass adds 345 smaller broadleaf trees between 43 and 126 metres from village origin, rejecting the village footprint, central approach corridor and steep terrain samples. Bases use the actual landscape triangle interpolation. The existing original tree mesh and generated atlas are reused through two MultiMesh batches with varied size, orientation and leaf color, rather than hundreds of independent tree nodes. The new groups are cosmetic and add no collision. They receive realtime sun/sky lighting, without dynamic lightmap-probe sampling for the whole batch. Source-builder bake preparation skips this live layer.
+
+Three Metal views are saved in `runtime-woodland-daylight`; floor/ramp rays, four player drops and owner/lens projection checks pass. The first dark-tint trial was replaced after capture review. This is not a measured framerate or thermal claim. Old distant tree cards, smooth distant terrain and lens-edge stretching remain visible.
