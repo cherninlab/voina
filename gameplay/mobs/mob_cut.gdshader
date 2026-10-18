@@ -8,7 +8,7 @@ uniform sampler2D albedo_tex : source_color, filter_linear_mipmap;
 uniform bool has_albedo = true;
 uniform vec4 tint : source_color = vec4(1.0, 0.8, 0.8, 1.0);
 uniform float side = 1.0;
-uniform vec3 flesh : source_color = vec3(0.5, 0.04, 0.04);
+uniform vec3 flesh : source_color = vec3(0.3, 0.012, 0.01); // HitEffects.BLOOD
 varying float cut;
 
 void vertex() {

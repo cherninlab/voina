@@ -219,20 +219,20 @@ func body_pushes(delta: float) -> void:
 
 @rpc("authority", "call_local", "reliable")
 func kicked(impulse: Vector3, point: Vector3, direction: Vector3, speed: float) -> void:
-	visual.call("react", impulse)
+	visual.call("react", impulse, point, direction, speed)
 	if speed > 0.0:
-		visual.call("splash", point, direction, clampf(speed / 10.0, 0.2, 1.0))
+		HitEffects.splash(get_tree().current_scene, point, direction, clampf(speed / 10.0, 0.2, 1.0))
 
 # A damaging hit: a wound line on the body, blood thrown in the blade's plane and a slash arc.
 @rpc("authority", "call_local", "reliable")
 func slashed(impulse: Vector3, point: Vector3, normal: Vector3, direction: Vector3, speed: float) -> void:
-	visual.call("react", impulse)
+	visual.call("react", impulse, point, direction, speed)
 	visual.call("wound", point, normal, direction)
-	visual.call("slash_burst", point, normal, direction, clampf(speed / 6.0, 0.8, 2.0))
+	HitEffects.slash(get_tree().current_scene, point, normal, direction, point - global_position, clampf(speed / 6.0, 0.8, 2.0))
 
 @rpc("authority", "call_local", "reliable")
 func bisected(point: Vector3, normal: Vector3, impulse: Vector3, direction: Vector3) -> void:
-	visual.call("slash_burst", point, normal, direction, 3.0)
+	HitEffects.slash(get_tree().current_scene, point, normal, direction, point - global_position, 2.6)
 	visual.call("bisect", point, normal, impulse)
 
 func die() -> void:
