@@ -71,6 +71,8 @@ func build() -> void:
 	for child: Node in village.get_parent().get_children():
 		var script: Script = child.get_script() as Script
 		if script != null and script.resource_path == "res://ui/shading.gd":
+			var lighting: Node = child.get("lighting") as Node
+			lighting.call("set_atmosphere_base", Color("829698"), Color("303c40"), 0.006)
 			child.call("apply")
 	print("ASHEN_VILLAGE_OK: storm sky, material maps, ", lamps.size(), " practical lights")
 

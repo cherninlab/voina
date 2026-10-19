@@ -40,6 +40,10 @@ python3 scripts/session_smoke_test.py "$GODOT"
 "$GODOT" --path . --script scripts/grim_render_check.gd -- --shading-ephemeral --audit-captures-only --audit-dir=/absolute/output
 ```
 
+## Cross-agent regression correction
+
+T-092 reported that the first deferred-theme fix restored stale daylight baseline values when Natural was selected. The corrected path updates only cached atmosphere baseline fields (ambient colour, fog colour/density) before applying the selected theme. It does not clear the sun/energy originals, which would compound an already-applied Night theme. Tests now cover Natural and Night startup plus Night -> Natural restoration of fog, ambient colour and original sun energy. The main player's saved theme is respected.
+
 ## Still not accepted
 
 - Final menu art/character performance and a smoothly animated dark-comedy loop: only generated keyframes exist. Identical first/last PNGs do not establish seamless video motion.

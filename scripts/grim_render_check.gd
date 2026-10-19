@@ -29,6 +29,7 @@ func run() -> void:
 		if child.get_script() != null and (child.get_script() as Script).resource_path == "res://ui/shading.gd":
 			effects = child as CanvasLayer
 	assert(effects != null)
+	var lighting: Node = effects.get("lighting") as Node
 	var scene_environment: Environment = (world.find_children("*", "WorldEnvironment", true, false)[0] as WorldEnvironment).environment
 	assert(scene_environment.sky.sky_material == art.get("storm"))
 	assert(scene_environment.fog_light_color.get_luminance() < 0.3, "Haze must not wash mountains pale")
@@ -37,9 +38,20 @@ func run() -> void:
 	assert(art.find_children("*", "MeshInstance3D", true, false).size() <= lamps.size() * 2, "Fixture geometry must stay locally batched")
 	print("AUDIT_DEVICE ", RenderingServer.get_video_adapter_name(), " renderer=", RenderingServer.get_current_rendering_method(), " size=", root.size)
 	print("AUDIT_FIXTURE_MESHES ", art.find_children("*", "MeshInstance3D", true, false).size())
-	print("AUDIT_THEME ", effects.call("theme_name"), " expected_fog=", (effects.get("values") as Dictionary)["fog"], " actual_fog=", scene_environment.fog_density)
+	print("AUDIT_THEME ", effects.call("theme_name"), " slider_fog=", (effects.get("values") as Dictionary)["fog"], " actual_fog=", scene_environment.fog_density)
 	if "--audit-invariants-only" in OS.get_cmdline_user_args():
-		assert(is_equal_approx(scene_environment.fog_density, float((effects.get("values") as Dictionary)["fog"])), "Late village dressing must preserve the selected theme")
+		assert(is_equal_approx(float((lighting.get("original") as Dictionary)["fog_density"]), 0.006), "Natural must inherit the live grim baseline, not stale daylight fog")
+		var expected_fog: float = float((effects.get("values") as Dictionary)["fog"]) if bool(lighting.get("realtime")) else 0.006
+		assert(is_equal_approx(scene_environment.fog_density, expected_fog), "Late village dressing must preserve the selected theme")
+		var selected_theme: int = int(effects.get("theme_index"))
+		var theme_names: PackedStringArray = effects.call("theme_names") as PackedStringArray
+		effects.call("set_theme", theme_names.find("Night"))
+		effects.call("set_theme", theme_names.find("Natural"))
+		assert(is_equal_approx(scene_environment.fog_density, 0.006))
+		assert(scene_environment.fog_light_color.is_equal_approx(Color("303c40")))
+		assert(scene_environment.ambient_light_color.is_equal_approx(Color("829698")))
+		assert(is_equal_approx((lighting.get("sun") as Light3D).light_energy, float((lighting.get("original") as Dictionary)["sun_energy"])), "Theme switches must not compound sun energy")
+		effects.call("set_theme", selected_theme)
 		print("GRIM_INVARIANTS_OK")
 		quit.call_deferred()
 		return
@@ -86,7 +98,6 @@ func run() -> void:
 	await capture("game.png")
 	# Switching presets must continue to address the real sun, not the lightning light.
 	effects.call("set_theme", 1)
-	var lighting: Node = effects.get("lighting") as Node
 	assert((lighting.get("sun") as Light3D).name != "DistantRedSheetLightning")
 	effects.call("set_theme", (effects.call("theme_names") as PackedStringArray).size() - 1)
 	ui.visible = true

@@ -92,6 +92,13 @@ func find_scene() -> void:
 	if lightmap != null and lightmap_data == null:
 		lightmap_data = lightmap.light_data
 
+## The live village replaces its atmosphere after this node's first scan. Adopt only those
+## baseline fields; recapturing sun/energy here would compound an already-applied Night theme.
+func set_atmosphere_base(ambient_colour: Color, fog_colour: Color, fog_density: float) -> void:
+	original["ambient_color"] = ambient_colour
+	original["fog_color"] = fog_colour
+	original["fog_density"] = fog_density
+
 func refresh() -> void:
 	find_scene()
 	get_viewport().debug_draw = render_mode as Viewport.DebugDraw
