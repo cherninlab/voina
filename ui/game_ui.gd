@@ -6,6 +6,13 @@ var screen: Control = Control.new()
 var shade: ColorRect = ColorRect.new()
 var lobby_panel: PanelContainer
 var logo: TextureRect = TextureRect.new()
+var title_screen: Control = Control.new()
+var title_choices: VBoxContainer = VBoxContainer.new()
+var setup_mode: String = ""
+var setup_heading: Label
+var address_heading: Label
+var title_host: Button
+var title_font: SystemFont = SystemFont.new()
 var pause_panel: PanelContainer
 var loader_panel: PanelContainer
 var pause_column: VBoxContainer
@@ -37,24 +44,48 @@ func _ready() -> void:
 	screen.add_child(shade)
 	var menu: VBoxContainer = world.get("menu") as VBoxContainer
 	lobby_panel = centered_panel(menu)
-	# The logo stands above the lobby panel in the same centred column; refresh() sizes it to the window.
-	var lobby_column: VBoxContainer = VBoxContainer.new()
-	lobby_column.add_theme_constant_override("separation", -12)
-	lobby_panel.get_parent().add_child(lobby_column)
-	lobby_panel.reparent(lobby_column)
+	title_font.font_names = PackedStringArray(["Times New Roman", "Times", "serif"])
+	title_screen.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
+	title_screen.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	screen.add_child(title_screen)
 	logo.texture = preload("res://content/ui/secha_logo.png")
 	logo.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
 	logo.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
-	logo.size_flags_horizontal = Control.SIZE_SHRINK_CENTER
 	logo.mouse_filter = Control.MOUSE_FILTER_IGNORE
-	lobby_column.add_child(logo)
-	lobby_column.move_child(logo, 0)
+	var mist: ColorRect = ColorRect.new()
+	mist.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
+	mist.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	var shader: Shader = Shader.new()
+	shader.code = """shader_type canvas_item;
+float hash(vec2 p) { return fract(sin(dot(p,vec2(127.1,311.7)))*43758.5453); }
+float noise(vec2 p) {
+ vec2 i=floor(p); vec2 f=fract(p); f=f*f*(3.0-2.0*f);
+ return mix(mix(hash(i),hash(i+vec2(1,0)),f.x),mix(hash(i+vec2(0,1)),hash(i+vec2(1,1)),f.x),f.y);
+}
+void fragment() {
+ vec2 p=UV*vec2(8.0,5.0)+vec2(TIME*0.012,0.0);
+ float n=noise(p)*0.55+noise(p*2.1)*0.28+noise(p*4.3)*0.17;
+ float edge=smoothstep(0.12,0.7,abs(UV.x-0.5));
+ float fog=pow(n,3.0)*0.12*(0.35+edge);
+ COLOR=vec4(vec3(0.55,0.62,0.68),fog);
+}"""
+	var material: ShaderMaterial = ShaderMaterial.new()
+	material.shader = shader
+	mist.material = material
+	title_screen.add_child(mist)
+	title_screen.add_child(logo)
+	title_choices.add_theme_constant_override("separation", 0)
+	title_screen.add_child(title_choices)
+	title_host = title_button("Host game", func() -> void: show_setup("host"))
+	title_button("Join game", func() -> void: show_setup("join"))
+	title_button("Settings", show_controls)
+	title_button("Quit", func() -> void: get_tree().quit())
+	setup_heading = add_label(menu, "HOST GAME", 24)
+	setup_heading.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	menu.add_theme_constant_override("separation", 8)
-	var subtitle: Label = add_label(menu, "WOODLAND VILLAGE", 12, Color("8c8c8c"))
-	subtitle.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	menu.add_child(HSeparator.new())
 	var address: LineEdit = world.get("address") as LineEdit
-	add_label(menu, "Host address", 14)
+	address_heading = add_label(menu, "Host address", 14)
 	address.text = "127.0.0.1"
 	address.placeholder_text = "IP address or Tailscale hostname"
 	address.custom_minimum_size = Vector2(320, 42)
@@ -83,7 +114,7 @@ func _ready() -> void:
 	controls.text = "Controls"
 	menu.add_child(controls)
 	controls.pressed.connect(show_controls)
-	button(menu, "Quit", func() -> void: get_tree().quit())
+	button(menu, "Back", func() -> void: show_setup(""))
 	pause_column = VBoxContainer.new()
 	pause_column.add_theme_constant_override("separation", 12)
 	pause_panel = centered_panel(pause_column)
@@ -180,6 +211,7 @@ func _ready() -> void:
 	screen.add_child(reticle)
 	reticle.name = "Reticle"
 	refresh()
+	title_host.grab_focus()
 
 func centered_panel(column: VBoxContainer) -> PanelContainer:
 	var center: CenterContainer = CenterContainer.new()
@@ -311,6 +343,8 @@ func _input(event: InputEvent) -> void:
 		if bool(controls.get("waiting")):
 			return
 		controls.hide()
+	elif local_player() == null and not setup_mode.is_empty():
+		show_setup("")
 	elif local_player() != null:
 		if paused:
 			resume()
@@ -343,13 +377,16 @@ func refresh() -> void:
 	elif local != null and DisplayServer.get_name() != "headless" and Input.mouse_mode != Input.MOUSE_MODE_CAPTURED:
 		paused = true
 	var menu: VBoxContainer = world.get("menu") as VBoxContainer
-	lobby_panel.visible = not active and menu.visible and not controls.visible
+	var in_lobby: bool = not active and menu.visible and not controls.visible
+	lobby_panel.visible = in_lobby and not setup_mode.is_empty()
+	title_screen.visible = in_lobby and setup_mode.is_empty()
 	pause_panel.visible = local != null and paused and not controls.visible
 	loader_panel.visible = connecting and not controls.visible
-	logo.visible = lobby_panel.visible
+	logo.visible = title_screen.visible
 	if logo.visible:
 		fit_logo()
-	shade.visible = lobby_panel.visible or pause_panel.visible or loader_panel.visible or controls.visible
+	shade.visible = in_lobby or pause_panel.visible or loader_panel.visible or controls.visible
+	shade.color = Color(0.004, 0.005, 0.007, 1.0) if not active else Color(0, 0, 0, 0.72)
 	shade.mouse_filter = Control.MOUSE_FILTER_STOP if shade.visible else Control.MOUSE_FILTER_IGNORE
 	status_label.text = NetworkManager.status if NetworkManager.status != "Choose Host or Join" else "2–4 players · LAN / Tailscale"
 	loading_label.text = NetworkManager.status + "\nWaiting for the host…"
@@ -374,12 +411,41 @@ func refresh() -> void:
 		var players: Node3D = world.get("players") as Node3D
 		session_label.text = "SECHA   /   %d / 4 players" % players.get_child_count()
 
-# Logo width follows the window: up to 62% of its width (max 900 px), never so tall that the logo
-# and the lobby panel together overflow the window height, and never narrower than 220 px.
+func show_setup(mode: String) -> void:
+	setup_mode = mode
+	setup_heading.text = "HOST GAME" if mode == "host" else "JOIN GAME"
+	(world.get("host_button") as Control).visible = mode == "host"
+	(world.get("join_button") as Control).visible = mode == "join"
+	(world.get("address") as Control).visible = mode == "join"
+	address_heading.visible = mode == "join"
+	(world.get("pve_toggle") as Control).visible = mode == "host"
+	(world.get("match_toggle") as Control).visible = mode == "host"
+	refresh()
+	if mode.is_empty():
+		title_host.grab_focus()
+	elif mode == "join":
+		(world.get("address") as Control).grab_focus()
+	else:
+		(world.get("host_button") as Control).grab_focus()
+
+func title_button(text: String, action: Callable) -> Button:
+	var control: Button = button(title_choices, text, action)
+	control.add_theme_font_override("font", title_font)
+	for state: String in ["normal", "hover", "pressed", "focus"]:
+		control.add_theme_stylebox_override(state, StyleBoxEmpty.new())
+	control.add_theme_color_override("font_color", Color("a6aaae"))
+	for state: String in ["font_hover_color", "font_pressed_color", "font_focus_color"]:
+		control.add_theme_color_override(state, Color.WHITE)
+	return control
+
 func fit_logo() -> void:
 	var window: Vector2 = screen.get_viewport_rect().size
-	var aspect: float = logo.texture.get_width() / float(logo.texture.get_height())
-	var room: float = window.y - lobby_panel.get_combined_minimum_size().y - 32.0
-	var width: float = minf(minf(window.x * 0.62, 900.0), room * aspect)
-	width = maxf(width, minf(220.0, window.x - 32.0))
-	logo.custom_minimum_size = Vector2(width, width / aspect).round()
+	var height: float = minf(window.y * 0.58, window.x * 0.58 / 1.85)
+	logo.position = Vector2(window.x * 0.18, window.y * 0.055)
+	logo.size = Vector2(window.x * 0.64, height)
+	title_choices.position = Vector2(window.x * 0.40, window.y * 0.70)
+	title_choices.size.x = window.x * 0.20
+	for child: Node in title_choices.get_children():
+		var choice: Button = child as Button
+		choice.custom_minimum_size.y = window.y * 0.047
+		choice.add_theme_font_size_override("font_size", maxi(16, int(window.y * 0.024)))
