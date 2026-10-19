@@ -1,6 +1,7 @@
 extends CanvasLayer
 ## Local presentation only: menus release input; network and host simulation continue.
 
+var menu_music: AudioStreamPlayer = AudioStreamPlayer.new()
 var world: Node3D
 var screen: Control = Control.new()
 var shade: ColorRect = ColorRect.new()
@@ -33,6 +34,11 @@ var tweaks_list: VBoxContainer = VBoxContainer.new()
 
 func _ready() -> void:
 	name = "GameUI"
+	var soundtrack: AudioStreamMP3 = preload("res://content/audio/music/secha-menu-theme.mp3").duplicate() as AudioStreamMP3
+	soundtrack.loop = true
+	menu_music.stream = soundtrack
+	menu_music.volume_db = -10.0
+	add_child(menu_music)
 	layer = 2
 	world = get_parent() as Node3D
 	screen.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
@@ -369,6 +375,11 @@ func fold_other_tweaks(opened: PanelContainer) -> void:
 func refresh() -> void:
 	var peer: MultiplayerPeer = multiplayer.multiplayer_peer
 	var active: bool = not peer is OfflineMultiplayerPeer
+	var wants_music: bool = not active and DisplayServer.get_name() != "headless" and not NetworkManager.dedicated
+	if wants_music and not menu_music.playing:
+		menu_music.play()
+	elif not wants_music and menu_music.playing:
+		menu_music.stop()
 	var local: Node = local_player()
 	var connecting: bool = active and local == null and not NetworkManager.dedicated
 	var controls: Control = world.get("controls_panel") as Control

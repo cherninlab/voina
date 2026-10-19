@@ -149,3 +149,7 @@ copyright, disallows selling the effects as standalone sounds, and prohibits usi
 them to develop/train/enhance AI technologies. These files are curated assets for
 this game, not a standalone sound-pack release. WAV/OGG files use the repository's
 existing Git LFS rules.
+
+## Menu music
+
+The user-supplied `content/audio/music/secha-menu-theme.mp3` loops locally at -10 dB while offline in the title, host/join setup or Settings. It stops on hosting/joining and restarts on return to the lobby. It never runs on headless/dedicated servers. See the music directory README for source provenance. The original MP3 is preserved without transcoding.
