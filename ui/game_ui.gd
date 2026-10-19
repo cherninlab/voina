@@ -125,7 +125,7 @@ func _ready() -> void:
 	menu.add_child(join)
 	join.pressed.connect(func() -> void: NetworkManager.join_game(address.text, NetworkManager.port))
 	var pve: CheckButton = world.get("pve_toggle") as CheckButton
-	pve.text = "Add 3 raiders"
+	pve.text = "Possessed villagers at the church"
 	menu.add_child(pve)
 	var match_button: CheckButton = world.get("match_toggle") as CheckButton
 	match_button.text = "Rounds · first to 3 wins"
