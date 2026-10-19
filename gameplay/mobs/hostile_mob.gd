@@ -4,6 +4,7 @@ extends CharacterBody3D
 enum State { IDLE, MOVE, ACT, DEAD }
 const WINDUP: float = 0.5
 const RECOVERY: float = 0.8
+const JAB_CONTACT: float = 0.19 # Punch_Jab's lead fist is fully out 0.19 s in (0.12 s blend included)
 const REACH: float = 1.9
 const DAMAGE: int = 12
 const MEMORY: float = 3.0
@@ -227,6 +228,7 @@ func body_pushes(delta: float) -> void:
 func kicked(impulse: Vector3, point: Vector3, direction: Vector3, speed: float) -> void:
 	visual.call("react", impulse, point, direction, speed)
 	if speed > 0.0:
+		GameAudio.play(&"mob_shove", point)
 		HitEffects.splash(get_tree().current_scene, point, direction, clampf(speed / 10.0, 0.2, 1.0))
 
 # A damaging hit: a wound line on the body, blood thrown in the blade's plane and a slash arc.
@@ -234,6 +236,7 @@ func kicked(impulse: Vector3, point: Vector3, direction: Vector3, speed: float) 
 func slashed(impulse: Vector3, point: Vector3, normal: Vector3, direction: Vector3, speed: float) -> void:
 	visual.call("react", impulse, point, direction, speed)
 	visual.call("wound", point, normal, direction)
+	GameAudio.play(&"mob_slash", point)
 	HitEffects.slash(get_tree().current_scene, point, normal, direction, point - global_position, clampf(speed / 6.0, 0.8, 2.0))
 
 @rpc("authority", "call_local", "reliable")
@@ -241,6 +244,7 @@ func bisected(point: Vector3, normal: Vector3, impulse: Vector3, direction: Vect
 	HitEffects.slash(get_tree().current_scene, point, normal, direction, point - global_position, 3.2)
 	HitEffects.sever(get_tree().current_scene, HitEffects.cut_center(point, normal, global_position), normal, direction)
 	visual.call("bisect", point, normal, impulse)
+	GameAudio.play(&"mob_bisect", point)
 
 func die() -> void:
 	state = State.DEAD
@@ -256,6 +260,8 @@ func hit_feedback(_result: int, _attacking: bool) -> void:
 
 func _process(_delta: float) -> void:
 	visual.rotation.y = yaw
-	visual.call("show_state", state, combat.health, combat.phase == CombatController.Phase.STAGGERED, state == State.ACT and attack_age < WINDUP)
+	# Hold the jab until its fist reaches full extension (JAB_CONTACT into the clip) as the strike lands.
+	var shown: int = State.IDLE if state == State.ACT and attack_age < WINDUP - JAB_CONTACT else state
+	visual.call("show_state", shown, combat.health, combat.phase == CombatController.Phase.STAGGERED, state == State.ACT and attack_age < WINDUP)
 	if state == State.DEAD:
 		collision.set_deferred("disabled", true)

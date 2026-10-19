@@ -212,6 +212,7 @@ func update_feet(delta: float, velocity: Vector3, grounded: bool) -> void:
 		feet[stepping] = step_from.lerp(step_to, smoothstep(0.0, 1.0, step_time)) + Vector3.UP * sin(step_time * PI) * 0.15
 		ground_level = feet[1 - stepping].y - 0.085
 		if step_time >= 1.0:
+			GameAudio.play(&"footstep", feet[stepping])
 			stepping = -1
 	else:
 		ground_level = minf(feet[0].y, feet[1].y) - 0.085

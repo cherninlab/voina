@@ -2,8 +2,8 @@
 
 `content/audio/catalog.tres` is the Godot sound database. Each `GameSoundClip`
 references its imported `AudioStream`, so the catalog and its audio dependencies
-can be included in an exported game by referencing the resource. No autoload or
-combat/network behavior is added. Playback hooks are a separate integration step.
+can be included in an exported game by referencing the resource. Gameplay plays it
+through the `Audio` autoload (`core/game_audio.gd`, see [Playback](#playback)).
 
 `content/audio/catalog.json` contains the same clips plus detailed processing,
 provenance and timing metadata. `content/audio/audition.html` is a local browser
@@ -79,7 +79,45 @@ func assign_sword_sound(player: AudioStreamPlayer3D) -> void:
 
 `find_clip(&"sword_metal_slide_01")` provides stable-ID lookup. Use confirmed gameplay
 events to choose when to play. Do not treat an audio peak as authoritative hit timing.
-The example is usage guidance; gameplay does not yet play these sounds.
+
+## Playback
+
+`core/game_audio.gd` (class `GameAudio`, autoloaded as `/root/Audio`) maps gameplay
+events to catalog families in `GameAudio.EVENTS`. Each event has one or more layers;
+each layer plays a random variant (never the same clip twice in a row) from a pool of
+24 positional `AudioStreamPlayer3D` voices, with ±1.5 dB and ±6 % pitch jitter (per-layer override). `max_db` is raised to
++24 dB because the sword-metal takes need large boosts. The
+oldest voice is reused when all are busy.
+
+| Event | Trigger | Layers |
+| --- | --- | --- |
+| `swing` | `attack_effect` (host-approved melee, every peer) | `blade_swing_scrape` with ±14 % pitch |
+| `hit` / `block` / `parry` | `hit_feedback` on the defender | `body_punch` (from its first transient, low-passed at 700 Hz) / `sword_metal_slide` / `sword_metal_slide` + `metal_tap` |
+| `dash` | `dash_effect` | `cloth_24` or `cloth_29` |
+| `footstep` | `CharacterVisual` foot plant | `footstep_grass_flipflop_06`/`_07` only (others click), started 80 ms before the energy peak with a 20 ms fade-in, low-passed at 1.6 kHz |
+| `mob_shove` / `mob_slash` | `HostileMob.kicked` with blade speed / `slashed` | `body_punch` / `gore_heavy` + `body_punch` |
+| `mob_bisect` | `HostileMob.bisected` | `gore_heavy` + `blood_light` + `body_punch` |
+| `death_female` | host-only `died` of the female-rig player | `death_female` |
+
+Events that already run on every peer call `GameAudio.play(event, position)`.
+Host-only events call `GameAudio.broadcast`, which plays on the host and relays an
+authority-only RPC that clients accept only from peer 1. Sound never affects combat.
+Punch, footstep and blood layers go through low-pass buses (`Lowpass700`, `Lowpass1600`, `Lowpass4000`),
+created at runtime, because the takes are clicky in game. `meadow_01` (−6 dB) and
+`forest_01` (−14 dB) play as non-positional beds, crossfaded over 4 s at the
+end of each pass because no ambience is a verified loop.
+
+The autoload is disabled headless and with `--server`, so tests and dedicated servers
+stay silent; the static helpers are no-ops when it is absent or disabled (including
+`--script` runs, which do not load autoloads). `tests/game_audio_test.gd` checks every
+event family resolves, no-repeat picking, and pool reuse. Levels were retuned after one playtest:
+punches lowered and low-passed, footsteps softened, sword metal raised, gore
+added to bisection, ambience raised 10 dB, and the male creature vocal dropped (it
+repeated on every raider death). Swings use the single blade-scrape take.
+Punch takes open with 60–110 ms of handling noise, so they start 10 ms before their
+first transient. Raiders hold their idle pose until `WINDUP - JAB_CONTACT` (0.31 s)
+so `Punch_Jab`'s fist is fully extended (0.19 s into the clip) when the host strike
+lands at 0.5 s; combat timing is unchanged.
 
 ## Regeneration and verification
 

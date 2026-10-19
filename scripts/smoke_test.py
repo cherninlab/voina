@@ -24,6 +24,11 @@ print(stagger.stdout, end='')
 print(stagger.stderr, end='')
 assert stagger.returncode == 0 and 'STAGGER_OK:' in stagger.stdout
 assert 'ERROR' not in stagger.stdout + stagger.stderr
+game_audio = subprocess.run(base + ['--script', 'tests/game_audio_test.gd'], capture_output=True, text=True, timeout=30)
+print(game_audio.stdout, end='')
+print(game_audio.stderr, end='')
+assert game_audio.returncode == 0 and 'GAME_AUDIO_OK:' in game_audio.stdout
+assert 'ERROR' not in game_audio.stdout + game_audio.stderr
 assets = subprocess.run(base + ['--script', 'tests/asset_test.gd'], capture_output=True, text=True, timeout=15)
 print(assets.stdout, end='')
 print(assets.stderr, end='')

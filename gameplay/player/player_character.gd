@@ -80,6 +80,10 @@ func _ready() -> void:
 	combat.attack_started.connect(func(ranged: bool) -> void: attack_effect.rpc(ranged, approved_swing_direction))
 	combat.attack_active.connect(resolve_attack)
 	combat.respawn_requested.connect(respawn)
+	if get_multiplayer_authority() != 1: # female rig; the male rig has no fitting death vocal
+		combat.died.connect(func(_killer: CombatController) -> void: GameAudio.broadcast(&"death_female", global_position))
+	if get_multiplayer_authority() != 1: # female rig; the male rig has no fitting death vocal
+		combat.died.connect(func(_killer: CombatController) -> void: GameAudio.broadcast(&"death_female", global_position))
 	add_child(combat)
 	add_sync("CombatSync", 1, [^"Combat:health", ^"Combat:stamina", ^"Combat:poise", ^"Combat:blocking", ^"Combat:phase", ^"Combat:locked"])
 	if is_multiplayer_authority() and DisplayServer.get_name() != "headless":
@@ -232,6 +236,7 @@ func action_rejected() -> void:
 func dash_effect(direction: Vector3) -> void:
 	if not from_server():
 		return
+	GameAudio.play(&"dash", global_position)
 	if dash_pending:
 		dash_pending = false
 		return
@@ -481,6 +486,8 @@ func hit_feedback(result: int, dealt: bool) -> void:
 	if not from_server():
 		return
 	feedback = "HIT" if result == CombatController.HitResult.HIT else ("PARRY" if result == CombatController.HitResult.PARRY else "BLOCK")
+	if not dealt:
+		GameAudio.play(&"hit" if result == CombatController.HitResult.HIT else (&"parry" if result == CombatController.HitResult.PARRY else &"block"), global_position + Vector3.UP * HitResolver.CHEST_HEIGHT)
 	feedback_left = 0.6
 	hitstop_left = 0.06
 	if not dealt:
@@ -547,6 +554,8 @@ func attack_effect(ranged: bool, direction: Vector2 = Vector2.RIGHT) -> void:
 				swing_time = 0.0
 		swing_pending = false
 	body.play_attack(ranged)
+	if not ranged:
+		GameAudio.play(&"swing", global_position + Vector3.UP * HitResolver.CHEST_HEIGHT)
 	if not ranged or DisplayServer.get_name() == "headless":
 		return
 	var beam: MeshInstance3D = MeshInstance3D.new()
