@@ -38,6 +38,8 @@ func _ready() -> void:
 	mobs.name = "Mobs"
 	mobs.players = players
 	add_child(mobs)
+	# The church yard is haunted unless the host opts out (lobby switch, or --no-pve).
+	pve_toggle.button_pressed = not "--no-pve" in OS.get_cmdline_user_args()
 	match_flow.name = "Match"
 	match_flow.players = players
 	add_child(match_flow)
@@ -119,7 +121,7 @@ func _process(_delta: float) -> void:
 		if float(local.get("feedback_left")) > 0:
 			hud.text += " · " + String(local.get("feedback"))
 	if mobs.bodies.get_child_count() > 0 or mobs.started:
-		hud.text += "\nPvE · %d raiders remaining · yellow = attack windup" % mobs.living_count()
+		hud.text += "\nChurch yard · %d possessed villagers · they pounce if you come close" % mobs.living_count()
 
 func smoke_client() -> void:
 	await get_tree().create_timer(2.0).timeout

@@ -38,7 +38,7 @@ func ready_players(count: int) -> bool:
 	return (world.get("players") as Node).get_child_count() == count
 
 func encounter_ready() -> bool:
-	return ready_players(2) and (world.get("mobs") as MobSystem).bodies.get_child_count() == 3
+	return ready_players(2) and (world.get("mobs") as MobSystem).bodies.get_child_count() == MobSystem.COUNT
 
 func run() -> void:
 	world = preload("res://gameplay/match_world.tscn").instantiate() as Node3D
@@ -82,7 +82,7 @@ func local_checks() -> void:
 	clean_lobby()
 	NetworkManager.host_game(NetworkManager.port)
 	await frames(10)
-	check(ready_players(1) and (world.get("mobs") as MobSystem).bodies.get_child_count() == 3, "The same process can host a clean encounter again")
+	check(ready_players(1) and (world.get("mobs") as MobSystem).bodies.get_child_count() == MobSystem.COUNT, "The same process can host a clean encounter again")
 	NetworkManager.stop("Left game")
 	await frames(4)
 	NetworkManager.join_game("127.0.0.1", NetworkManager.port)

@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Focused PvE checks, including real ENet late joining. Usage: mob_smoke_test.py GODOT"""
+"""Possessed villager checks (church yard), including real ENet late joining. Usage: mob_smoke_test.py GODOT"""
 import os
 import pathlib
 import socket
@@ -37,7 +37,7 @@ with tempfile.TemporaryDirectory() as directory:
             while "MOB_NETWORK_READY" not in log_path.read_text():
                 assert host.poll() is None and time.monotonic() < deadline, log_path.read_text()
                 time.sleep(0.1)
-            # Join only after the host's mobs moved, dealt damage and lost health.
+            # Join only after a villager pounced on the host player and lost health itself.
             client = subprocess.run(base + [scene, "--", "--join=127.0.0.1", "--mob-network", f"--port={port}"], capture_output=True, text=True, timeout=20)
             host.wait(timeout=5)
             output = client.stdout + client.stderr + log_path.read_text()
@@ -49,4 +49,4 @@ with tempfile.TemporaryDirectory() as directory:
             if host.poll() is None:
                 host.terminate()
                 host.wait(timeout=5)
-print("PASS: PvE combat, navigation and two-process late join")
+print("PASS: villager behaviour, yard navigation, bodies, stains and two-process late join")
