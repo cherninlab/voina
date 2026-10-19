@@ -10,7 +10,6 @@ render_mode cull_disabled;
 // plane would draw it over skin in front.)
 uniform sampler2D albedo_tex : source_color, filter_linear_mipmap;
 uniform bool has_albedo = true;
-uniform vec4 tint : source_color = vec4(1.0, 0.8, 0.8, 1.0);
 uniform float side = 1.0;
 uniform vec3 flesh : source_color = vec3(0.3, 0.012, 0.01); // HitEffects.BLOOD
 uniform vec3 rim : source_color = vec3(0.42, 0.16, 0.12); // skin and fat at the edge of the cut
@@ -34,7 +33,7 @@ void fragment() {
 	float facing = dot(VIEW, normal);
 	if (FRONT_FACING) {
 		vec3 base = has_albedo ? texture(albedo_tex, UV).rgb : vec3(0.7);
-		ALBEDO = base * tint.rgb;
+		ALBEDO = base;
 		ROUGHNESS = 0.85;
 	} else {
 		// How far the view ray travels from the cap to this far wall: short near the cut's edge.

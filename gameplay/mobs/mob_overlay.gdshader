@@ -1,10 +1,9 @@
 shader_type spatial;
 render_mode blend_mix, cull_back, depth_draw_never;
 
-// Overlay pass over a raider: the state tint and up to six exaggerated wounds. Each wound is
+// Overlay pass over a raider: up to six exaggerated wounds, clear elsewhere. Each wound is
 // the strip of skin within a band of the blade's plane, tapered along the blade's travel, with
 // blood running down from it under gravity. Positions are world space, refreshed from bones.
-uniform vec4 tint : source_color = vec4(0.85, 0.12, 0.12, 0.25);
 uniform vec3 blood : source_color = vec3(0.3, 0.012, 0.01); // HitEffects.BLOOD
 uniform int wound_count = 0;
 uniform vec3 wound_center[6];
@@ -22,8 +21,8 @@ void vertex() {
 }
 
 void fragment() {
-	vec3 color = tint.rgb;
-	float alpha = tint.a;
+	vec3 color = blood;
+	float alpha = 0.0;
 	float wetness = 0.0;
 	for (int i = 0; i < 6; i++) {
 		if (i >= wound_count) {

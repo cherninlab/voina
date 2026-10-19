@@ -2,8 +2,11 @@ extends Node3D
 
 # Raider bodies: feet plant on a slope, a blow flexes the struck bones and springs back, a death
 # collapses as a ragdoll that outlives the raider node, and a bisect leaves two jointed halves.
+# Every check runs once on the male and once on the female body.
 const MOB: PackedScene = preload("res://gameplay/mobs/hostile_mob.tscn")
 var failed: bool = false
+var female: bool = false # the body under test
+var last_id: int = 0
 const STRETCH: float = 0.12
 
 func _ready() -> void:
@@ -12,7 +15,7 @@ func _ready() -> void:
 func check(condition: bool, message: String) -> void:
 	if not condition:
 		failed = true
-		printerr("MOB_BODY_FAIL: " + message)
+		printerr("MOB_BODY_FAIL: [%s] %s" % ["female" if female else "male", message])
 
 func frames(count: int) -> void:
 	for frame: int in range(count):
@@ -29,13 +32,19 @@ func ground(size: Vector3, location: Vector3, tilt: float = 0.0) -> void:
 	body.add_child(shape)
 	add_child(body)
 
-func spawn(id: int, location: Vector3) -> HostileMob:
+# The next unused id whose replicated choice is the body under test.
+func spawn(location: Vector3) -> HostileMob:
+	var id: int = last_id + 1
+	while HostileMob.is_female(id) != female:
+		id += 1
+	last_id = id
 	var mob: HostileMob = MOB.instantiate() as HostileMob
 	mob.mob_id = id
 	mob.name = "Mob%d" % id
 	mob.position = location
 	mob.sync_position = location
 	add_child(mob)
+	check(mob.visual.get("female") == female and not mob.visual.find_children("Superhero_Female" if female else "SuperHero_Male", "MeshInstance3D", true, false).is_empty(), "Raider %d wears the %s body" % [id, "female" if female else "male"])
 	return mob
 
 func visual(mob: HostileMob) -> Node3D:
@@ -102,17 +111,34 @@ func run() -> void:
 	ground(Vector3(40, 1, 40), Vector3(0, -0.5, 0))
 	# A 20 degree slope across the raider's stance: its left foot sits uphill.
 	ground(Vector3(6, 1, 6), Vector3(10, -0.35, 0), deg_to_rad(20.0))
-	var sloped: HostileMob = spawn(1, Vector3(10, 1.4, 0))
+	# The choice is a pure function of the id, and the first spawn wave of three shows both.
+	check(HostileMob.is_female(1) == HostileMob.is_female(1) and [1, 2, 3].map(HostileMob.is_female).has(true) and [1, 2, 3].map(HostileMob.is_female).has(false), "Ids 1 to 3 give both bodies")
+	for body_type: bool in [false, true]:
+		female = body_type
+		await bodies()
+		# Clear the stage for the other body: raiders, ragdolls and halves, keeping the ground.
+		for node: Node in get_children():
+			if not node is StaticBody3D:
+				node.queue_free()
+		await frames(2)
+	if not failed:
+		print("MOB_BODY_OK: male and female bodies; foot planting on a slope, hip drop, puppet flex and settle, ragdoll death, jointed bisect halves")
+	get_tree().quit(1 if failed else 0)
+
+func bodies() -> void:
+	var sloped: HostileMob = spawn(Vector3(10, 1.4, 0))
 	sloped.yaw = 0.0 # facing -Z: the raider's right is +X, downhill
 	await frames(90)
 	var body: Node3D = visual(sloped)
 	var feet: MobFeet = body.get("feet") as MobFeet
+	var sloped_rig: Skeleton3D = body.get("skeleton") as Skeleton3D
 	for side: String in ["l", "r"]:
 		var foot: Vector3 = bone(body, "foot_" + side).origin
 		var floor_height: float = height_under(foot)
-		check(absf(foot.y - floor_height - 0.0865) < 0.06, "The %s foot plants on the slope (foot %.3f, ground %.3f)" % [side, foot.y, floor_height])
+		var ankle: float = sloped_rig.get_bone_global_rest(sloped_rig.find_bone("foot_" + side)).origin.y # 8.7 cm male, 7.1 cm female
+		check(absf(foot.y - floor_height - ankle) < 0.06, "The %s foot plants on the slope (foot %.3f, ground %.3f)" % [side, foot.y, floor_height])
 	check(feet.drop < -0.03, "Hips drop to let the downhill foot reach (%.3f)" % feet.drop)
-	var flat: HostileMob = spawn(2, Vector3(0, 0.95, 0))
+	var flat: HostileMob = spawn(Vector3(0, 0.95, 0))
 	await frames(30)
 	var level: Node3D = visual(flat)
 	var level_feet: MobFeet = level.get("feet") as MobFeet
@@ -156,7 +182,7 @@ func run() -> void:
 	var wounds: Array = level.get("wounds") as Array
 	check(wounds.size() == 1, "The wound survives the fall")
 	# Bisect: two halves, each a ragdoll of the parts on its side, collapsing as jointed bodies.
-	var cut: HostileMob = spawn(3, Vector3(-4, 0.95, 0))
+	var cut: HostileMob = spawn(Vector3(-4, 0.95, 0))
 	await frames(20)
 	var cut_visual: Node3D = visual(cut)
 	var waist: Vector3 = bone(cut_visual, "spine_02").origin
@@ -191,7 +217,7 @@ func run() -> void:
 		var worst: float = await stretch(half)
 		check(worst < STRETCH, "A waist-cut half keeps its skin together (worst edge +%.2f m)" % worst)
 	# Lengthwise: each half has torso skin, so each simulates a spine under it and stays together.
-	var split: HostileMob = spawn(4, Vector3(4, 0.95, 0))
+	var split: HostileMob = spawn(Vector3(4, 0.95, 0))
 	await frames(20)
 	split.bisected(bone(visual(split), "spine_02").origin, Vector3(1, 0.15, 0.1).normalized(), Vector3(3, 2, 0), Vector3.FORWARD)
 	await frames(2)
@@ -205,6 +231,3 @@ func run() -> void:
 	for half: Node in sides:
 		var worst: float = await stretch(half)
 		check(worst < STRETCH, "A lengthwise half keeps its skin together (worst edge +%.2f m)" % worst)
-	if not failed:
-		print("MOB_BODY_OK: foot planting on a slope, hip drop, puppet flex and settle, ragdoll death, jointed bisect halves")
-	get_tree().quit(1 if failed else 0)

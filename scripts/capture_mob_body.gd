@@ -2,12 +2,16 @@ extends SceneTree
 ## Stage raider bodies and save frames: feet on a slope, a hit mid-flex, a ragdoll death and a
 ## bisect. Pass --capture-dir=DIR (outside the repository); needs a rendering display.
 ## --bisect-only stages just the cuts: waist, shoulder-to-hip diagonal, chest-high and lengthwise.
+## --model=male or --model=female stages every raider in that body (ids whose replicated choice
+## gives it); without it the staged ids pick their bodies as in play.
 
 const MOB: PackedScene = preload("res://gameplay/mobs/hostile_mob.tscn")
 var stage: Node3D = Node3D.new()
 var camera: Camera3D = Camera3D.new()
 var directory: String = "user://mob_body"
 var bisect_only: bool = false
+var model: String = ""
+var used: Dictionary[int, bool] = {}
 
 func _initialize() -> void:
 	for argument: String in OS.get_cmdline_user_args():
@@ -15,6 +19,8 @@ func _initialize() -> void:
 			directory = argument.get_slice("=", 1)
 		elif argument == "--bisect-only":
 			bisect_only = true
+		elif argument.begins_with("--model="):
+			model = argument.get_slice("=", 1)
 	DirAccess.make_dir_recursive_absolute(directory)
 	capture.call_deferred()
 
@@ -38,6 +44,9 @@ func block(size: Vector3, location: Vector3, tilt: Vector3 = Vector3.ZERO, color
 	stage.add_child(body)
 
 func spawn(id: int, location: Vector3, yaw: float) -> HostileMob:
+	while model != "" and (used.has(id) or HostileMob.is_female(id) != (model == "female")):
+		id += 1
+	used[id] = true
 	var mob: HostileMob = MOB.instantiate() as HostileMob
 	mob.mob_id = id
 	mob.name = "Mob%d" % id
@@ -51,6 +60,9 @@ func shot(file: String, eye: Vector3, target: Vector3) -> void:
 	camera.look_at_from_position(eye, target)
 	await process_frame
 	await process_frame
+	# Draw even while the window is hidden or occluded, when the main loop skips drawing and the
+	# texture would still hold an older shot.
+	RenderingServer.force_draw(false)
 	root.get_texture().get_image().save_png(directory.path_join(file))
 	print("CAPTURED ", directory.path_join(file))
 

@@ -45,6 +45,7 @@ func _ready() -> void:
 	capsule.height = 1.8
 	collision.shape = capsule
 	add_child(collision)
+	visual.set("female", is_female(mob_id))
 	add_child(visual)
 	var sync: MultiplayerSynchronizer = MultiplayerSynchronizer.new()
 	sync.name = "MobSync"
@@ -56,6 +57,11 @@ func _ready() -> void:
 		config.property_set_replication_mode(path, SceneReplicationConfig.REPLICATION_MODE_ALWAYS)
 	sync.replication_config = config
 	add_child(sync)
+
+# Male or female body from the id the spawner replicates, so every peer, late joiners included,
+# shows the same one. The top bit of a Knuth multiplicative hash mixes consecutive ids.
+static func is_female(id: int) -> bool:
+	return (posmod(id * 2654435761, 4294967296) >> 31) == 1
 
 func _physics_process(delta: float) -> void:
 	if not multiplayer.is_server():

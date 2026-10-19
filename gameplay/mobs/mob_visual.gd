@@ -1,7 +1,10 @@
 extends Node3D
 
-const MODEL: PackedScene = preload("res://content/characters/quaternius/Superhero_Male_FullBody.gltf")
-const CLIPS: AnimationLibrary = preload("res://content/animations/quaternius/male.res")
+# The two Quaternius bodies share one 65-bone skeleton, so every modifier, ragdoll part and clip
+# name below works on either; each has its own clips retargeted to its proportions.
+const MODELS: Array[PackedScene] = [preload("res://content/characters/quaternius/Superhero_Male_FullBody.gltf"), preload("res://content/characters/quaternius/Superhero_Female_FullBody.gltf")]
+const CLIPS: Array[AnimationLibrary] = [preload("res://content/animations/quaternius/male.res"), preload("res://content/animations/quaternius/female.res")]
+var female: bool = false # set by HostileMob from its replicated id before this enters the tree
 var playback: AnimationPlayer = AnimationPlayer.new()
 var label: Label3D = Label3D.new()
 var overlay: ShaderMaterial = ShaderMaterial.new()
@@ -32,7 +35,7 @@ const CORPSE: float = 8.0 # a fallen or cut body stays this long after the raide
 var rendered: bool = DisplayServer.get_name() != "headless" # the dummy renderer cannot take shader parameters
 
 func _ready() -> void:
-	model = MODEL.instantiate() as Node3D
+	model = MODELS[int(female)].instantiate() as Node3D
 	model.name = "Model"
 	model.rotation.y = PI
 	model.position.y = -0.9
@@ -51,7 +54,7 @@ func _ready() -> void:
 	for mesh: MeshInstance3D in meshes:
 		mesh.material_overlay = overlay
 	add_child(playback)
-	playback.add_animation_library(&"", CLIPS)
+	playback.add_animation_library(&"", CLIPS[int(female)])
 	label.position.y = 1.35
 	label.font_size = 28
 	label.pixel_size = 0.009
@@ -175,7 +178,7 @@ func bisect(point: Vector3, normal: Vector3, impulse: Vector3) -> void:
 		cut_meshes.append(MobRagdoll.bake_cut(mesh, skeleton, point, normal))
 	var kept: Array[PackedStringArray] = MobRagdoll.split(cut_meshes, meshes, skeleton)
 	for side: float in [1.0, -1.0]:
-		var copy: Node3D = MODEL.instantiate() as Node3D
+		var copy: Node3D = MODELS[int(female)].instantiate() as Node3D
 		copy.name = "RaiderHalf"
 		copy.set_meta("side", side)
 		get_tree().current_scene.add_child(copy, true)
@@ -234,8 +237,6 @@ func bisect(point: Vector3, normal: Vector3, impulse: Vector3) -> void:
 
 func show_state(state: int, health: int, staggered: bool, windup: bool) -> void:
 	label.text = "RAIDER · %d" % health if health > 0 else "DEFEATED"
-	if rendered:
-		overlay.set_shader_parameter("tint", Color(1.0, 0.75, 0.1, 0.65) if windup else Color(0.85, 0.12, 0.12, 0.25))
 	label.modulate = Color("ffd052") if windup else Color("ff8888")
 	var next: StringName = &"Idle"
 	if health <= 0:
