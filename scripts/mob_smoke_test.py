@@ -20,6 +20,10 @@ bodies = subprocess.run(base + ["--fixed-fps", "60", "res://tests/mob_body_test.
 output = bodies.stdout + bodies.stderr
 print(output, end="")
 assert bodies.returncode == 0 and "MOB_BODY_OK:" in output and "ERROR" not in output
+stains = subprocess.run(base + ["--script", "tests/stain_test.gd"], capture_output=True, text=True, timeout=60)
+output = stains.stdout + stains.stderr
+print(output, end="")
+assert stains.returncode == 0 and "STAIN_OK:" in output and "ERROR" not in output
 
 with socket.socket(socket.AF_INET, socket.SOCK_DGRAM) as probe:
     probe.bind(("127.0.0.1", 0))

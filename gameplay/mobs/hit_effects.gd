@@ -305,11 +305,14 @@ static func place_stain(scene: Node, position: Vector3, normal: Vector3, travel:
 	stain.cast_shadow = GeometryInstance3D.SHADOW_CASTING_SETTING_OFF
 	scene.add_child(stain)
 	stain.global_transform = frame
+	# Stains free themselves after STAIN_LIFE (and with the scene): drop those first, so the cap
+	# counts live marks and a freed one is never assigned to a typed variable.
+	for index: int in range(stains.size() - 1, -1, -1):
+		if not is_instance_valid(stains[index]):
+			stains.remove_at(index)
 	stains.append(stain)
 	while stains.size() > MAX_STAINS:
-		var old: MeshInstance3D = stains.pop_front()
-		if is_instance_valid(old):
-			old.queue_free()
+		stains.pop_front().queue_free()
 	if spread_time > 0.0:
 		stain.set_instance_shader_parameter("spread", 0.35)
 		stain.create_tween().tween_method(func(value: float) -> void: stain.set_instance_shader_parameter("spread", value), 0.35, 1.0, spread_time).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_CUBIC)
