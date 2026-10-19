@@ -1,0 +1,23 @@
+{
+  "title": "Collapsed Gothic Chapel Ruin",
+  "author": "Pigcraft (https://sketchfab.com/s8819296)",
+  "source": "https://sketchfab.com/3d-models/collapsed-gothic-chapel-ruin-993a5bada2bd4f34846051f497eb38b3",
+  "license": "CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)",
+  "credit": "This work is based on \"Collapsed Gothic Chapel Ruin\" (https://sketchfab.com/3d-models/collapsed-gothic-chapel-ruin-993a5bada2bd4f34846051f497eb38b3) by Pigcraft (https://sketchfab.com/s8819296) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)",
+  "obtained": "glTF download from Sketchfab, supplied by the user (Theo) on 2026-10-19; License.txt is the download's own license file.",
+  "source_note": "Node names (tripo_convert_..., tripo_mat_...) indicate the uploader produced the mesh with the Tripo AI 3D generator; the CC-BY-4.0 license is the uploader's.",
+  "changes": "Modified with scripts/process_chapel_ruin.py: 22 chunks joined and welded, duplicate UV sets dropped, decimated from 1818874 to 180000 triangles, uniform x12 scale baked with the origin on the ground at the centre of the collapsed front arch (front faces +Z), 8000-triangle -colonly collision copy added, maps reduced from 4096 to 2048 px PNG.",
+  "size_m": [
+    11.56,
+    11.75,
+    10.79
+  ],
+  "files": [
+    "chapel_ruin.gltf",
+    "chapel_ruin.bin",
+    "textures/chapel_ruin_baseColor.png",
+    "textures/chapel_ruin_metallicRoughness.png",
+    "textures/chapel_ruin_normal.png",
+    "License.txt"
+  ]
+}
