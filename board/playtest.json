@@ -1,6 +1,6 @@
 {
-  "commit": "1e3848988716addfc1a28e8d3ed738b4b7e9e081",
+  "commit": "29d9851b6288ac99b482c0562c9477f40ed50c0c",
   "by": "theo-codex-8",
-  "at": "2026-10-19T22:01Z",
-  "note": "Integrated shipped forest/church/road/villager work plus covered-menu culling, fixture batching, startup-theme and sky-seam fixes. Clean-snapshot verification follows; uncommitted owner work excluded."
+  "at": "2026-10-19T22:10Z",
+  "note": "Integrated shipped church/road/forest/villager changes; menu culling, fixture batching, sky seam and Natural/Night baseline fixes. Checking exact clean snapshot."
 }
