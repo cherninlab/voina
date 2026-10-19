@@ -1,0 +1,698 @@
+{
+  "schema_version": 1,
+  "collection": "Sonniss GameAudioGDC 2026 / Part 9",
+  "source_url": "https://gdc.sonniss.com/",
+  "license": "licenses/License - GDC Game Audio.pdf",
+  "sources": [
+    {
+      "id": "sword_metal_slide",
+      "label": "Sword metallic slide and impact",
+      "category": "combat",
+      "tags": [
+        "combat",
+        "sword",
+        "metal",
+        "slide"
+      ],
+      "relative_path": "344 Audio - Historical Weapons Vol. 2/WEAPSwrd_Sword Slide Cuts, Metallic, Impact CM4 2_344 Audio_Medieval Weapons Vol 2.wav",
+      "sha256": "adbe3d9d5da0a987de3d4d845b62a4231862febf9ca673f8d1067fc1787eee00",
+      "mode": "windows",
+      "windows_seconds": [
+        [
+          0,
+          2
+        ],
+        [
+          2,
+          4.15
+        ],
+        [
+          4.15,
+          6.2
+        ],
+        [
+          6.2,
+          8.3
+        ],
+        [
+          8.3,
+          10.65
+        ],
+        [
+          10.65,
+          12.96
+        ]
+      ],
+      "split_gate_dbfs": -60.0,
+      "split_gap_seconds": 0.3,
+      "trim_gate_dbfs": -70.0,
+      "expected_clips": 6,
+      "notes": "First combat candidate; inspect for usable clash and scrape variations.",
+      "audition_status": "waveform_reviewed_not_listening_tested"
+    },
+    {
+      "id": "blade_swing_scrape",
+      "label": "Blade swing and scrape",
+      "category": "combat",
+      "tags": [
+        "combat",
+        "blade",
+        "swing",
+        "scrape"
+      ],
+      "relative_path": "David Dumais Audio - Melee Weapons Sound Effects Pack 2/METLFric_SWING SCRAPE Swift Melee Weapon Swing With A Long Blade 14_DDUMAIS_MWP2.wav",
+      "sha256": "5af061af596532feef49c83274c98f26e4994aa2f4f47f573e59e075065df70b",
+      "mode": "single",
+      "windows_seconds": null,
+      "split_gate_dbfs": -60.0,
+      "split_gap_seconds": 0.3,
+      "trim_gate_dbfs": -70.0,
+      "expected_clips": 1,
+      "notes": "Candidate for a sword swing or blade scrape.",
+      "audition_status": "waveform_reviewed_not_listening_tested"
+    },
+    {
+      "id": "swing_metal_hit",
+      "label": "Swing into metallic impact",
+      "category": "combat",
+      "tags": [
+        "combat",
+        "swing",
+        "metal",
+        "hit"
+      ],
+      "relative_path": "David Dumais Audio - Melee Weapons Sound Effects Pack 2/METLImpt_METAL SWING HIT Weapon Swing To Metallic Body Impact And Resonant Tail 01_DDUMAIS_MWP2.wav",
+      "sha256": "ec264e08985af53e1ec0a8e232fc93848c451a961a16c5630c2250afd375c1c4",
+      "mode": "single",
+      "windows_seconds": null,
+      "split_gate_dbfs": -60.0,
+      "split_gap_seconds": 0.3,
+      "trim_gate_dbfs": -70.0,
+      "expected_clips": 1,
+      "notes": "Swing and hit are combined; check timing before using for parries.",
+      "audition_status": "waveform_reviewed_not_listening_tested"
+    },
+    {
+      "id": "heavy_swing_thud",
+      "label": "Heavy swing into thud",
+      "category": "combat",
+      "tags": [
+        "combat",
+        "heavy",
+        "swing",
+        "thud"
+      ],
+      "relative_path": "David Dumais Audio - Melee Weapons Sound Effects Pack 2/SWSH_SWING IMPACTS Quick Heavy Weapon Swing To Thud Impact Var 01_DDUMAIS_MWP2.wav",
+      "sha256": "d75988b9eab8e10dfbef9dc8f6297eec5c57b91e50fb09bc8b72273356a2e681",
+      "mode": "silence",
+      "windows_seconds": null,
+      "split_gate_dbfs": -60.0,
+      "split_gap_seconds": 0.3,
+      "trim_gate_dbfs": -70.0,
+      "expected_clips": 21,
+      "notes": "Combined swing and thud; possible heavy attack.",
+      "audition_status": "waveform_reviewed_not_listening_tested"
+    },
+    {
+      "id": "wood_weapon_impact",
+      "label": "Wooden spear and stick impact",
+      "category": "combat",
+      "tags": [
+        "combat",
+        "wood",
+        "weapon",
+        "impact"
+      ],
+      "relative_path": "344 Audio - Historical Weapons Vol. 2/WEAPBlnt_Spear And Stick Impact, Wooden MKH 2_344 Audio_Medieval Weapons Vol 2.wav",
+      "sha256": "ab2cd18aaac93afa77b48b74edf82257815ee16817bb2bb9bd5ba134e4cc1466",
+      "mode": "silence",
+      "windows_seconds": null,
+      "split_gate_dbfs": -60.0,
+      "split_gap_seconds": 0.15,
+      "trim_gate_dbfs": -70.0,
+      "expected_clips": 16,
+      "notes": "Candidate for a wooden block or shaft impact.",
+      "audition_status": "waveform_reviewed_not_listening_tested"
+    },
+    {
+      "id": "buckler_drop_spin",
+      "label": "Buckler dropped and spinning",
+      "category": "combat",
+      "tags": [
+        "combat",
+        "buckler",
+        "drop",
+        "spin"
+      ],
+      "relative_path": "344 Audio - Historical Weapons Vol. 2/WEAPArmr_Metal Shield Spin On Floor, Buckler MKH_344 Audio_Medieval Weapons Vol 2.wav",
+      "sha256": "b2d1b6aa9d4eafb1b1bb0f50530b129b5d14e9e54961d8077fc9fad70f6fbf2f",
+      "mode": "windows",
+      "windows_seconds": [
+        [
+          0,
+          11
+        ],
+        [
+          11,
+          23.8
+        ],
+        [
+          23.8,
+          36.25
+        ]
+      ],
+      "split_gate_dbfs": -60.0,
+      "split_gap_seconds": 0.3,
+      "trim_gate_dbfs": -70.0,
+      "expected_clips": 3,
+      "notes": "Shield drop/spin, not a shield block.",
+      "audition_status": "waveform_reviewed_not_listening_tested"
+    },
+    {
+      "id": "metal_tap",
+      "label": "Metal tap against tire iron",
+      "category": "combat",
+      "tags": [
+        "combat",
+        "metal",
+        "tap"
+      ],
+      "relative_path": "Epic Stock Media - HD Game Materials/METLImpt_Metal Old File Impact Tap Against Tire Iron Metallic Hit 01_ESM_HDGM.wav",
+      "sha256": "c60d03117c3e00aa38a121941c5f1beefd4bc195eba8b887af1bdbadbac00124",
+      "mode": "single",
+      "windows_seconds": null,
+      "split_gate_dbfs": -60.0,
+      "split_gap_seconds": 0.3,
+      "trim_gate_dbfs": -70.0,
+      "expected_clips": 1,
+      "notes": "Possible dry metallic layer for a clash; source is a tool.",
+      "audition_status": "waveform_reviewed_not_listening_tested"
+    },
+    {
+      "id": "gore_heavy",
+      "label": "Heavy gore impact",
+      "category": "combat",
+      "tags": [
+        "combat",
+        "gore",
+        "heavy"
+      ],
+      "relative_path": "Epic Stock Media - Halloween Game - Haunted House and Horror Audio Scare Kit/GORESplt_Gore Designed Transient Heavy Impact Smash 01_ESM_HALG.wav",
+      "sha256": "acbc8d2d58b21562556f6379bfbab92042fe01247cff6cf55beed6f59d5a1b32",
+      "mode": "single",
+      "windows_seconds": null,
+      "split_gate_dbfs": -60.0,
+      "split_gap_seconds": 0.3,
+      "trim_gate_dbfs": -70.0,
+      "expected_clips": 1,
+      "notes": "First candidate for a heavy flesh-hit layer.",
+      "audition_status": "waveform_reviewed_not_listening_tested"
+    },
+    {
+      "id": "blood_light",
+      "label": "Blood splat and light thump",
+      "category": "combat",
+      "tags": [
+        "combat",
+        "blood",
+        "light"
+      ],
+      "relative_path": "Epic Stock Media - Tower Defense Game/WOODImpt_Hit Blood Spill Splat Wood Impact Light Hit Squelch Small Thump 03_ESM_TDG.wav",
+      "sha256": "022152183544436b2e7ae8c82ae3cb1cff6dff5e9c0153e1096a1b638e90e518",
+      "mode": "single",
+      "windows_seconds": null,
+      "split_gate_dbfs": -60.0,
+      "split_gap_seconds": 0.3,
+      "trim_gate_dbfs": -70.0,
+      "expected_clips": 1,
+      "notes": "First candidate for a lighter flesh-hit layer.",
+      "audition_status": "waveform_reviewed_not_listening_tested"
+    },
+    {
+      "id": "body_punch",
+      "label": "Four body punches",
+      "category": "combat",
+      "tags": [
+        "combat",
+        "body",
+        "punch"
+      ],
+      "relative_path": "344 Audio - Cinematic Fight Vol. 1/FGHTImpt_4 x Punch, Body 02_344 Audio_Cinematic Fight Vol 1.wav",
+      "sha256": "606f7d8bdca261f6fee6a30e19fc8a760c469e599dc0747ecb272a24d4821a31",
+      "mode": "silence",
+      "windows_seconds": null,
+      "split_gate_dbfs": -60.0,
+      "split_gap_seconds": 0.3,
+      "trim_gate_dbfs": -70.0,
+      "expected_clips": 4,
+      "notes": "Blunt body-hit layer; file contains multiple hits to separate.",
+      "audition_status": "waveform_reviewed_not_listening_tested"
+    },
+    {
+      "id": "death_female",
+      "label": "Female dying grunt",
+      "category": "voice",
+      "tags": [
+        "voice",
+        "death",
+        "female"
+      ],
+      "relative_path": "Epic Stock Media - AAA Game Character British Female Detective/VOXReac_British Detective Pain Vocal Female Dying High Grunt Breath_ESM_AAAGCBFD.wav",
+      "sha256": "e3a515582633a52c5140083c5ca01f404996e9ec4061d79d5396b5c6d505148e",
+      "mode": "single",
+      "windows_seconds": null,
+      "split_gate_dbfs": -60.0,
+      "split_gap_seconds": 0.3,
+      "trim_gate_dbfs": -70.0,
+      "expected_clips": 1,
+      "notes": "Human pain/death vocal candidate. Preserve the complete vocal phrase; pauses are part of the performance.",
+      "audition_status": "waveform_reviewed_not_listening_tested"
+    },
+    {
+      "id": "death_male_creature",
+      "label": "Male fluttering death vocal",
+      "category": "voice",
+      "tags": [
+        "voice",
+        "death",
+        "male",
+        "creature"
+      ],
+      "relative_path": "Epic Stock Media - Humanoid Creatures Vol 4 - Monstrous and Undead Creature Vocalization Sound Sets/VOXReac_Construction Kit Male Flutter Death Vocal Stuttered Long 05_ESM_HC4.wav",
+      "sha256": "609cb0672b154a41a97f6122858d64bbd922879b0ed1c3e475b22c2d34f13d14",
+      "mode": "single",
+      "windows_seconds": null,
+      "split_gate_dbfs": -60.0,
+      "split_gap_seconds": 0.3,
+      "trim_gate_dbfs": -70.0,
+      "expected_clips": 1,
+      "notes": "From a creature library; audition for naturalness. Preserve the complete vocal phrase; pauses are part of the performance.",
+      "audition_status": "waveform_reviewed_not_listening_tested"
+    },
+    {
+      "id": "footstep_grass_flipflop",
+      "label": "Grass footsteps - flip flops",
+      "category": "footstep",
+      "tags": [
+        "footstep",
+        "grass",
+        "flipflop"
+      ],
+      "relative_path": "TheWorkRoom - Flip Flops/FFG002.wav",
+      "sha256": "8df357efde5e4c1cca10cc2739b86a1b3ba15201c34b6a0551cd27ec33d0a9d3",
+      "mode": "windows",
+      "windows_seconds": [
+        [
+          0,
+          0.7
+        ],
+        [
+          0.7,
+          1.48
+        ],
+        [
+          1.48,
+          2.2
+        ],
+        [
+          2.25,
+          3.05
+        ],
+        [
+          3.07,
+          3.85
+        ],
+        [
+          3.85,
+          4.7
+        ],
+        [
+          4.7,
+          5.4
+        ],
+        [
+          5.4,
+          6.1
+        ]
+      ],
+      "split_gate_dbfs": -60.0,
+      "split_gap_seconds": 0.3,
+      "trim_gate_dbfs": -45,
+      "expected_clips": 8,
+      "notes": "Eight representative footfalls selected from a continuous walk. Flip-flops, not boots; provisional surface layers. Remaining recording intentionally omitted.",
+      "audition_status": "waveform_reviewed_not_listening_tested"
+    },
+    {
+      "id": "footstep_wood_flipflop",
+      "label": "Wood footsteps - flip flops",
+      "category": "footstep",
+      "tags": [
+        "footstep",
+        "wood",
+        "flipflop"
+      ],
+      "relative_path": "TheWorkRoom - Flip Flops/FFW003.wav",
+      "sha256": "b41692ebd9d83e72502c84c376fb3773ea7bf3480103e416c5b2ce426c3b3d5d",
+      "mode": "windows",
+      "windows_seconds": [
+        [
+          1.15,
+          1.7
+        ],
+        [
+          1.7,
+          2.1
+        ],
+        [
+          2.1,
+          2.7
+        ],
+        [
+          2.7,
+          3.15
+        ],
+        [
+          3.15,
+          3.78
+        ],
+        [
+          3.78,
+          4.25
+        ],
+        [
+          4.25,
+          4.73
+        ],
+        [
+          5.4,
+          5.98
+        ]
+      ],
+      "split_gate_dbfs": -60.0,
+      "split_gap_seconds": 0.3,
+      "trim_gate_dbfs": -45,
+      "expected_clips": 8,
+      "notes": "Eight representative footfalls selected from a continuous walk. Flip-flops, not boots; provisional surface layers. Remaining recording intentionally omitted.",
+      "audition_status": "waveform_reviewed_not_listening_tested"
+    },
+    {
+      "id": "panting_male",
+      "label": "Male panting",
+      "category": "voice",
+      "tags": [
+        "voice",
+        "panting",
+        "male"
+      ],
+      "relative_path": "SoundBits - Vox Hominis - Human Effort Voices/HMNBrth_Panting Male 02 04_SNDBTS_VH.wav",
+      "sha256": "b85b6871d76567d93004ff3ff7274564ff8f0b81928f99a92ec62790bceed487",
+      "mode": "single",
+      "windows_seconds": null,
+      "split_gate_dbfs": -60.0,
+      "split_gap_seconds": 0.3,
+      "trim_gate_dbfs": -70.0,
+      "expected_clips": 1,
+      "notes": "Candidate for exhausted character breathing. Preserve the complete vocal phrase; pauses are part of the performance.",
+      "audition_status": "waveform_reviewed_not_listening_tested"
+    },
+    {
+      "id": "cloth_24",
+      "label": "Cloth movement 24",
+      "category": "foley",
+      "tags": [
+        "foley",
+        "cloth",
+        "24"
+      ],
+      "relative_path": "InMotionAudio - Foley T-Shirt/FOLYClth_ClothMovement24_InMotionAudio_FoleyT-Shirt.wav",
+      "sha256": "6f25057d539906f4f589ea8c9d98081bc6896737d2a5c9486d8c9cce587f7f96",
+      "mode": "single",
+      "windows_seconds": null,
+      "split_gate_dbfs": -60.0,
+      "split_gap_seconds": 0.3,
+      "trim_gate_dbfs": -70.0,
+      "expected_clips": 1,
+      "notes": "Movement layer; T-shirt fabric, not armor.",
+      "audition_status": "waveform_reviewed_not_listening_tested"
+    },
+    {
+      "id": "cloth_29",
+      "label": "Cloth movement 29",
+      "category": "foley",
+      "tags": [
+        "foley",
+        "cloth",
+        "29"
+      ],
+      "relative_path": "InMotionAudio - Foley T-Shirt/FOLYClth_ClothMovement29_InMotionAudio_FoleyT-Shirt.wav",
+      "sha256": "1846b563bf07a534a580dab0848d6c6d59b8f3d697bac328ad7d04e9dc6cdb30",
+      "mode": "single",
+      "windows_seconds": null,
+      "split_gate_dbfs": -60.0,
+      "split_gap_seconds": 0.3,
+      "trim_gate_dbfs": -70.0,
+      "expected_clips": 1,
+      "notes": "Alternative movement layer; T-shirt fabric.",
+      "audition_status": "waveform_reviewed_not_listening_tested"
+    },
+    {
+      "id": "meadow",
+      "label": "Meadow birds insects and wind",
+      "category": "ambience",
+      "tags": [
+        "ambience",
+        "meadow"
+      ],
+      "relative_path": "Just Sound Effects - Highlands of Norway/AMBSwmp_Meadow Pipits calling many Insects humming Wind blowing through Grass_JSE_HoN_Stereo.wav",
+      "sha256": "b47ac8ae869b52760bfd41e195e37a319c822ad04a734aec0c869bc4a5eee280",
+      "mode": "continuous",
+      "windows_seconds": null,
+      "split_gate_dbfs": -60.0,
+      "split_gap_seconds": 0.3,
+      "trim_gate_dbfs": -70.0,
+      "expected_clips": 1,
+      "notes": "First outdoor ambience candidate for an open grassy area.",
+      "audition_status": "waveform_reviewed_not_listening_tested"
+    },
+    {
+      "id": "forest",
+      "label": "Forest crickets and birds",
+      "category": "ambience",
+      "tags": [
+        "ambience",
+        "forest"
+      ],
+      "relative_path": "344 Audio - East Coast America Vol. 1/AMBSubn_Ambience, Forest Crickets, Birds, Connecticut 02_344 Audio_East Coast America.wav",
+      "sha256": "d227b21d2df0f329acd490ad1c4ecaddfef4e19f295880a40116a60112da147f",
+      "mode": "continuous",
+      "windows_seconds": null,
+      "split_gate_dbfs": -60.0,
+      "split_gap_seconds": 0.3,
+      "trim_gate_dbfs": -70.0,
+      "expected_clips": 1,
+      "notes": "Forest ambience candidate; audition for unwanted background activity.",
+      "audition_status": "waveform_reviewed_not_listening_tested"
+    },
+    {
+      "id": "church_bells",
+      "label": "Distant church bells",
+      "category": "ambience",
+      "tags": [
+        "ambience",
+        "church",
+        "bells"
+      ],
+      "relative_path": "Ivo Vicic - Church Bells/25 Church Bells, Far Distance, Rural Soundscape Distant, Hills Ridge, Spring 02.wav",
+      "sha256": "49af5cedf7e5dea91efb4084f8d25cb01bbf4581bc1923e31bf5dc249a381b0f",
+      "mode": "continuous",
+      "windows_seconds": null,
+      "split_gate_dbfs": -60.0,
+      "split_gap_seconds": 0.3,
+      "trim_gate_dbfs": -70.0,
+      "expected_clips": 1,
+      "notes": "Candidate for distant village bells.",
+      "audition_status": "waveform_reviewed_not_listening_tested"
+    },
+    {
+      "id": "campfire_branches",
+      "label": "Crackling campfire with branches",
+      "category": "ambience",
+      "tags": [
+        "ambience",
+        "campfire",
+        "branches"
+      ],
+      "relative_path": "Ivo Vicic - Campfire - Bonfire FX/24 Campfire, Dropping Fresh Pine Branches in Fire, Crackling, Sizzling Strong, Close 02.wav",
+      "sha256": "291f6ca6fd5f00a57d445dabedaa766f7ca6b4738bb68d6063bcbd90c6071f5d",
+      "mode": "continuous",
+      "windows_seconds": null,
+      "split_gate_dbfs": -60.0,
+      "split_gap_seconds": 0.3,
+      "trim_gate_dbfs": -70.0,
+      "expected_clips": 1,
+      "notes": "Fire with branches added; includes discrete activity, not just steady fire.",
+      "audition_status": "waveform_reviewed_not_listening_tested"
+    },
+    {
+      "id": "fire_synth",
+      "label": "Fire crackle loop - synthesized",
+      "category": "ambience",
+      "tags": [
+        "ambience",
+        "fire",
+        "synth"
+      ],
+      "relative_path": "Epic Stock Media - Synthesized Nature Loops and Sounds/FIREBurn_Loop Elements Fire Crackling Crunchy Flame Burn 03_ESM_SNLS.wav",
+      "sha256": "a3eeb0718c55fc276b0785c1b23da242ed329d4f764c6540719f471c20ef5763",
+      "mode": "continuous",
+      "windows_seconds": null,
+      "split_gate_dbfs": -60.0,
+      "split_gap_seconds": 0.3,
+      "trim_gate_dbfs": -70.0,
+      "expected_clips": 1,
+      "notes": "Designed/synthesized fire loop candidate.",
+      "audition_status": "waveform_reviewed_not_listening_tested"
+    },
+    {
+      "id": "lake_water",
+      "label": "Lake water ripples",
+      "category": "ambience",
+      "tags": [
+        "ambience",
+        "lake",
+        "water"
+      ],
+      "relative_path": "Epic Stock Media - Public Spaces - Storms Lakes Parks and Rural Nature Exteriors/WATRLap_Summer Tennessee Lake Dock Water Ripples Wake Wave Gentle 05 Distant_ESM_CPS.wav",
+      "sha256": "b9b8e2401a6a66825d97abefff1d89321eba67799a549db66ca4fef14d9749de",
+      "mode": "continuous",
+      "windows_seconds": null,
+      "split_gate_dbfs": -60.0,
+      "split_gap_seconds": 0.3,
+      "trim_gate_dbfs": -70.0,
+      "expected_clips": 1,
+      "notes": "Gentle water ambience candidate.",
+      "audition_status": "waveform_reviewed_not_listening_tested"
+    },
+    {
+      "id": "coastal_waves",
+      "label": "Soft coastal waves",
+      "category": "ambience",
+      "tags": [
+        "ambience",
+        "coastal",
+        "waves"
+      ],
+      "relative_path": "Just Sound Effects - Rocky Coast of Norway/WATRWave_Soft Waves Cliffs_JSE_RCoN_Stereo.wav",
+      "sha256": "a02f2786fc4ca34cdd4ebb130c0860f6650fff036bf5d55cbb185cdad9de32b8",
+      "mode": "continuous",
+      "windows_seconds": null,
+      "split_gate_dbfs": -60.0,
+      "split_gap_seconds": 0.3,
+      "trim_gate_dbfs": -70.0,
+      "expected_clips": 1,
+      "notes": "Candidate for coastal background ambience.",
+      "audition_status": "waveform_reviewed_not_listening_tested"
+    },
+    {
+      "id": "storm_11",
+      "label": "Garden storm 11",
+      "category": "ambience",
+      "tags": [
+        "ambience",
+        "storm",
+        "11"
+      ],
+      "relative_path": "InMotionAudio - Back Garden Storm/STORM_StormAmbience11_InMotionAudio_BackGardenStorm.wav",
+      "sha256": "26c42bf9ef86e5b5360b1773b66cc4cff2736a34c67e1f8f9744238c18623227",
+      "mode": "continuous",
+      "windows_seconds": null,
+      "split_gate_dbfs": -60.0,
+      "split_gap_seconds": 0.3,
+      "trim_gate_dbfs": -70.0,
+      "expected_clips": 1,
+      "notes": "Outdoor storm/wind/rain candidate; check for modern background sounds.",
+      "audition_status": "waveform_reviewed_not_listening_tested"
+    },
+    {
+      "id": "storm_13",
+      "label": "Garden storm 13",
+      "category": "ambience",
+      "tags": [
+        "ambience",
+        "storm",
+        "13"
+      ],
+      "relative_path": "InMotionAudio - Back Garden Storm/STORM_StormAmbience13_InMotionAudio_BackGardenStorm.wav",
+      "sha256": "ea502e8186c7e9c207b5549ffc0abc5bf7b69bea96b276fd5e8886c1741aac37",
+      "mode": "continuous",
+      "windows_seconds": null,
+      "split_gate_dbfs": -60.0,
+      "split_gap_seconds": 0.3,
+      "trim_gate_dbfs": -70.0,
+      "expected_clips": 1,
+      "notes": "Alternative outdoor storm recording.",
+      "audition_status": "waveform_reviewed_not_listening_tested"
+    },
+    {
+      "id": "chimney_wind",
+      "label": "Chimney wind",
+      "category": "ambience",
+      "tags": [
+        "ambience",
+        "chimney",
+        "wind"
+      ],
+      "relative_path": "InMotionAudio - Chimney Wind/WINDInt_ChimneyWind05_InMotionAudio_ChimneyWind.wav",
+      "sha256": "de71c402bcbc62b185b3f963d514aec61c561cda9b3c2ad15d5ab8fca57b7c68",
+      "mode": "continuous",
+      "windows_seconds": null,
+      "split_gate_dbfs": -60.0,
+      "split_gap_seconds": 0.3,
+      "trim_gate_dbfs": -70.0,
+      "expected_clips": 1,
+      "notes": "Candidate for wind inside a building.",
+      "audition_status": "waveform_reviewed_not_listening_tested"
+    },
+    {
+      "id": "thunder_interior",
+      "label": "Interior thunder rumble",
+      "category": "weather",
+      "tags": [
+        "weather",
+        "thunder",
+        "interior"
+      ],
+      "relative_path": "Jake Fielding - Interior Wind Rain and Storms/THUN_Interior Thunder Rumble_JF_INT Storm_01.wav",
+      "sha256": "d85cd25e0877ade4939f50f8f4e046b9b94e15e7f4636824066e92cffd366a8b",
+      "mode": "continuous",
+      "windows_seconds": null,
+      "split_gate_dbfs": -60.0,
+      "split_gap_seconds": 0.3,
+      "trim_gate_dbfs": -70.0,
+      "expected_clips": 1,
+      "notes": "Thunder heard from indoors.",
+      "audition_status": "waveform_reviewed_not_listening_tested"
+    },
+    {
+      "id": "forest_dark_synth",
+      "label": "Dark mystic forest synth loop",
+      "category": "ambience",
+      "tags": [
+        "ambience",
+        "forest",
+        "dark",
+        "synth"
+      ],
+      "relative_path": "Epic Stock Media - Strange Game Ambient Loops 3/DSGNSynth_Dark Loop Mystic Forest Tonal Steady Synth_ESM_SGA3.wav",
+      "sha256": "c374c5b2896c9ee3ea6383108f15c8a379b93e29d3c24f4e85542aaf7a41a450",
+      "mode": "continuous",
+      "windows_seconds": null,
+      "split_gate_dbfs": -60.0,
+      "split_gap_seconds": 0.3,
+      "trim_gate_dbfs": -70.0,
+      "expected_clips": 1,
+      "notes": "Tonal mood layer, not a natural forest recording.",
+      "audition_status": "waveform_reviewed_not_listening_tested"
+    }
+  ]
+}

@@ -1,0 +1,2032 @@
+[gd_resource type="Resource" script_class="GameSoundCatalog" load_steps=179 format=3]
+
+[ext_resource type="Script" path="res://content/audio/sound_catalog.gd" id="1"]
+[ext_resource type="Script" path="res://content/audio/sound_clip.gd" id="2"]
+[ext_resource type="AudioStream" path="res://content/audio/clips/combat/sword_metal_slide_01.wav" id="a3"]
+[ext_resource type="AudioStream" path="res://content/audio/clips/combat/sword_metal_slide_02.wav" id="a4"]
+[ext_resource type="AudioStream" path="res://content/audio/clips/combat/sword_metal_slide_03.wav" id="a5"]
+[ext_resource type="AudioStream" path="res://content/audio/clips/combat/sword_metal_slide_04.wav" id="a6"]
+[ext_resource type="AudioStream" path="res://content/audio/clips/combat/sword_metal_slide_05.wav" id="a7"]
+[ext_resource type="AudioStream" path="res://content/audio/clips/combat/sword_metal_slide_06.wav" id="a8"]
+[ext_resource type="AudioStream" path="res://content/audio/clips/combat/blade_swing_scrape_01.wav" id="a9"]
+[ext_resource type="AudioStream" path="res://content/audio/clips/combat/swing_metal_hit_01.wav" id="a10"]
+[ext_resource type="AudioStream" path="res://content/audio/clips/combat/heavy_swing_thud_01.wav" id="a11"]
+[ext_resource type="AudioStream" path="res://content/audio/clips/combat/heavy_swing_thud_02.wav" id="a12"]
+[ext_resource type="AudioStream" path="res://content/audio/clips/combat/heavy_swing_thud_03.wav" id="a13"]
+[ext_resource type="AudioStream" path="res://content/audio/clips/combat/heavy_swing_thud_04.wav" id="a14"]
+[ext_resource type="AudioStream" path="res://content/audio/clips/combat/heavy_swing_thud_05.wav" id="a15"]
+[ext_resource type="AudioStream" path="res://content/audio/clips/combat/heavy_swing_thud_06.wav" id="a16"]
+[ext_resource type="AudioStream" path="res://content/audio/clips/combat/heavy_swing_thud_07.wav" id="a17"]
+[ext_resource type="AudioStream" path="res://content/audio/clips/combat/heavy_swing_thud_08.wav" id="a18"]
+[ext_resource type="AudioStream" path="res://content/audio/clips/combat/heavy_swing_thud_09.wav" id="a19"]
+[ext_resource type="AudioStream" path="res://content/audio/clips/combat/heavy_swing_thud_10.wav" id="a20"]
+[ext_resource type="AudioStream" path="res://content/audio/clips/combat/heavy_swing_thud_11.wav" id="a21"]
+[ext_resource type="AudioStream" path="res://content/audio/clips/combat/heavy_swing_thud_12.wav" id="a22"]
+[ext_resource type="AudioStream" path="res://content/audio/clips/combat/heavy_swing_thud_13.wav" id="a23"]
+[ext_resource type="AudioStream" path="res://content/audio/clips/combat/heavy_swing_thud_14.wav" id="a24"]
+[ext_resource type="AudioStream" path="res://content/audio/clips/combat/heavy_swing_thud_15.wav" id="a25"]
+[ext_resource type="AudioStream" path="res://content/audio/clips/combat/heavy_swing_thud_16.wav" id="a26"]
+[ext_resource type="AudioStream" path="res://content/audio/clips/combat/heavy_swing_thud_17.wav" id="a27"]
+[ext_resource type="AudioStream" path="res://content/audio/clips/combat/heavy_swing_thud_18.wav" id="a28"]
+[ext_resource type="AudioStream" path="res://content/audio/clips/combat/heavy_swing_thud_19.wav" id="a29"]
+[ext_resource type="AudioStream" path="res://content/audio/clips/combat/heavy_swing_thud_20.wav" id="a30"]
+[ext_resource type="AudioStream" path="res://content/audio/clips/combat/heavy_swing_thud_21.wav" id="a31"]
+[ext_resource type="AudioStream" path="res://content/audio/clips/combat/wood_weapon_impact_01.wav" id="a32"]
+[ext_resource type="AudioStream" path="res://content/audio/clips/combat/wood_weapon_impact_02.wav" id="a33"]
+[ext_resource type="AudioStream" path="res://content/audio/clips/combat/wood_weapon_impact_03.wav" id="a34"]
+[ext_resource type="AudioStream" path="res://content/audio/clips/combat/wood_weapon_impact_04.wav" id="a35"]
+[ext_resource type="AudioStream" path="res://content/audio/clips/combat/wood_weapon_impact_05.wav" id="a36"]
+[ext_resource type="AudioStream" path="res://content/audio/clips/combat/wood_weapon_impact_06.wav" id="a37"]
+[ext_resource type="AudioStream" path="res://content/audio/clips/combat/wood_weapon_impact_07.wav" id="a38"]
+[ext_resource type="AudioStream" path="res://content/audio/clips/combat/wood_weapon_impact_08.wav" id="a39"]
+[ext_resource type="AudioStream" path="res://content/audio/clips/combat/wood_weapon_impact_09.wav" id="a40"]
+[ext_resource type="AudioStream" path="res://content/audio/clips/combat/wood_weapon_impact_10.wav" id="a41"]
+[ext_resource type="AudioStream" path="res://content/audio/clips/combat/wood_weapon_impact_11.wav" id="a42"]
+[ext_resource type="AudioStream" path="res://content/audio/clips/combat/wood_weapon_impact_12.wav" id="a43"]
+[ext_resource type="AudioStream" path="res://content/audio/clips/combat/wood_weapon_impact_13.wav" id="a44"]
+[ext_resource type="AudioStream" path="res://content/audio/clips/combat/wood_weapon_impact_14.wav" id="a45"]
+[ext_resource type="AudioStream" path="res://content/audio/clips/combat/wood_weapon_impact_15.wav" id="a46"]
+[ext_resource type="AudioStream" path="res://content/audio/clips/combat/wood_weapon_impact_16.wav" id="a47"]
+[ext_resource type="AudioStream" path="res://content/audio/clips/combat/buckler_drop_spin_01.wav" id="a48"]
+[ext_resource type="AudioStream" path="res://content/audio/clips/combat/buckler_drop_spin_02.wav" id="a49"]
+[ext_resource type="AudioStream" path="res://content/audio/clips/combat/buckler_drop_spin_03.wav" id="a50"]
+[ext_resource type="AudioStream" path="res://content/audio/clips/combat/metal_tap_01.wav" id="a51"]
+[ext_resource type="AudioStream" path="res://content/audio/clips/combat/gore_heavy_01.wav" id="a52"]
+[ext_resource type="AudioStream" path="res://content/audio/clips/combat/blood_light_01.wav" id="a53"]
+[ext_resource type="AudioStream" path="res://content/audio/clips/combat/body_punch_01.wav" id="a54"]
+[ext_resource type="AudioStream" path="res://content/audio/clips/combat/body_punch_02.wav" id="a55"]
+[ext_resource type="AudioStream" path="res://content/audio/clips/combat/body_punch_03.wav" id="a56"]
+[ext_resource type="AudioStream" path="res://content/audio/clips/combat/body_punch_04.wav" id="a57"]
+[ext_resource type="AudioStream" path="res://content/audio/clips/voice/death_female_01.wav" id="a58"]
+[ext_resource type="AudioStream" path="res://content/audio/clips/voice/death_male_creature_01.wav" id="a59"]
+[ext_resource type="AudioStream" path="res://content/audio/clips/footstep/footstep_grass_flipflop_01.wav" id="a60"]
+[ext_resource type="AudioStream" path="res://content/audio/clips/footstep/footstep_grass_flipflop_02.wav" id="a61"]
+[ext_resource type="AudioStream" path="res://content/audio/clips/footstep/footstep_grass_flipflop_03.wav" id="a62"]
+[ext_resource type="AudioStream" path="res://content/audio/clips/footstep/footstep_grass_flipflop_04.wav" id="a63"]
+[ext_resource type="AudioStream" path="res://content/audio/clips/footstep/footstep_grass_flipflop_05.wav" id="a64"]
+[ext_resource type="AudioStream" path="res://content/audio/clips/footstep/footstep_grass_flipflop_06.wav" id="a65"]
+[ext_resource type="AudioStream" path="res://content/audio/clips/footstep/footstep_grass_flipflop_07.wav" id="a66"]
+[ext_resource type="AudioStream" path="res://content/audio/clips/footstep/footstep_grass_flipflop_08.wav" id="a67"]
+[ext_resource type="AudioStream" path="res://content/audio/clips/footstep/footstep_wood_flipflop_01.wav" id="a68"]
+[ext_resource type="AudioStream" path="res://content/audio/clips/footstep/footstep_wood_flipflop_02.wav" id="a69"]
+[ext_resource type="AudioStream" path="res://content/audio/clips/footstep/footstep_wood_flipflop_03.wav" id="a70"]
+[ext_resource type="AudioStream" path="res://content/audio/clips/footstep/footstep_wood_flipflop_04.wav" id="a71"]
+[ext_resource type="AudioStream" path="res://content/audio/clips/footstep/footstep_wood_flipflop_05.wav" id="a72"]
+[ext_resource type="AudioStream" path="res://content/audio/clips/footstep/footstep_wood_flipflop_06.wav" id="a73"]
+[ext_resource type="AudioStream" path="res://content/audio/clips/footstep/footstep_wood_flipflop_07.wav" id="a74"]
+[ext_resource type="AudioStream" path="res://content/audio/clips/footstep/footstep_wood_flipflop_08.wav" id="a75"]
+[ext_resource type="AudioStream" path="res://content/audio/clips/voice/panting_male_01.wav" id="a76"]
+[ext_resource type="AudioStream" path="res://content/audio/clips/foley/cloth_24_01.wav" id="a77"]
+[ext_resource type="AudioStream" path="res://content/audio/clips/foley/cloth_29_01.wav" id="a78"]
+[ext_resource type="AudioStream" path="res://content/audio/clips/ambience/meadow_01.ogg" id="a79"]
+[ext_resource type="AudioStream" path="res://content/audio/clips/ambience/forest_01.ogg" id="a80"]
+[ext_resource type="AudioStream" path="res://content/audio/clips/ambience/church_bells_01.ogg" id="a81"]
+[ext_resource type="AudioStream" path="res://content/audio/clips/ambience/campfire_branches_01.ogg" id="a82"]
+[ext_resource type="AudioStream" path="res://content/audio/clips/ambience/fire_synth_01.ogg" id="a83"]
+[ext_resource type="AudioStream" path="res://content/audio/clips/ambience/lake_water_01.ogg" id="a84"]
+[ext_resource type="AudioStream" path="res://content/audio/clips/ambience/coastal_waves_01.ogg" id="a85"]
+[ext_resource type="AudioStream" path="res://content/audio/clips/ambience/storm_11_01.ogg" id="a86"]
+[ext_resource type="AudioStream" path="res://content/audio/clips/ambience/storm_13_01.ogg" id="a87"]
+[ext_resource type="AudioStream" path="res://content/audio/clips/ambience/chimney_wind_01.ogg" id="a88"]
+[ext_resource type="AudioStream" path="res://content/audio/clips/weather/thunder_interior_01.ogg" id="a89"]
+[ext_resource type="AudioStream" path="res://content/audio/clips/ambience/forest_dark_synth_01.ogg" id="a90"]
+
+[sub_resource type="Resource" id="c3"]
+script = ExtResource("2")
+id = "sword_metal_slide_01"
+family = "sword_metal_slide"
+category = "combat"
+sample_rate = 48000
+frame_count = 71520
+duration_seconds = 1.49
+source_gain_db = -0.643248
+notes = "First combat candidate; inspect for usable clash and scrape variations."
+onset_frame = 2160
+energy_peak_frame = 2520
+amplitude_peak_frame = 2401
+active_end_frame = 25920
+source_path = "344 Audio - Historical Weapons Vol. 2/WEAPSwrd_Sword Slide Cuts, Metallic, Impact CM4 2_344 Audio_Medieval Weapons Vol 2.wav"
+source_sha256 = "adbe3d9d5da0a987de3d4d845b62a4231862febf9ca673f8d1067fc1787eee00"
+source_start_frame = 5040
+source_end_frame = 76560
+stream = ExtResource("a3")
+tags = PackedStringArray("combat", "sword", "metal", "slide")
+transient_frames = PackedInt32Array(2400)
+
+[sub_resource type="Resource" id="c4"]
+script = ExtResource("2")
+id = "sword_metal_slide_02"
+family = "sword_metal_slide"
+category = "combat"
+sample_rate = 48000
+frame_count = 61680
+duration_seconds = 1.285
+source_gain_db = -0.643248
+notes = "First combat candidate; inspect for usable clash and scrape variations."
+onset_frame = 3120
+energy_peak_frame = 3480
+amplitude_peak_frame = 3380
+active_end_frame = 27360
+source_path = "344 Audio - Historical Weapons Vol. 2/WEAPSwrd_Sword Slide Cuts, Metallic, Impact CM4 2_344 Audio_Medieval Weapons Vol 2.wav"
+source_sha256 = "adbe3d9d5da0a987de3d4d845b62a4231862febf9ca673f8d1067fc1787eee00"
+source_start_frame = 105360
+source_end_frame = 167040
+stream = ExtResource("a4")
+tags = PackedStringArray("combat", "sword", "metal", "slide")
+transient_frames = PackedInt32Array(3360, 9360)
+
+[sub_resource type="Resource" id="c5"]
+script = ExtResource("2")
+id = "sword_metal_slide_03"
+family = "sword_metal_slide"
+category = "combat"
+sample_rate = 48000
+frame_count = 90000
+duration_seconds = 1.875
+source_gain_db = -0.643248
+notes = "First combat candidate; inspect for usable clash and scrape variations."
+onset_frame = 5280
+energy_peak_frame = 5400
+amplitude_peak_frame = 5402
+active_end_frame = 27120
+source_path = "344 Audio - Historical Weapons Vol. 2/WEAPSwrd_Sword Slide Cuts, Metallic, Impact CM4 2_344 Audio_Medieval Weapons Vol 2.wav"
+source_sha256 = "adbe3d9d5da0a987de3d4d845b62a4231862febf9ca673f8d1067fc1787eee00"
+source_start_frame = 203040
+source_end_frame = 293040
+stream = ExtResource("a5")
+tags = PackedStringArray("combat", "sword", "metal", "slide")
+transient_frames = PackedInt32Array(5280, 10320)
+
+[sub_resource type="Resource" id="c6"]
+script = ExtResource("2")
+id = "sword_metal_slide_04"
+family = "sword_metal_slide"
+category = "combat"
+sample_rate = 48000
+frame_count = 93120
+duration_seconds = 1.94
+source_gain_db = -0.643248
+notes = "First combat candidate; inspect for usable clash and scrape variations."
+onset_frame = 4320
+energy_peak_frame = 4440
+amplitude_peak_frame = 4391
+active_end_frame = 31200
+source_path = "344 Audio - Historical Weapons Vol. 2/WEAPSwrd_Sword Slide Cuts, Metallic, Impact CM4 2_344 Audio_Medieval Weapons Vol 2.wav"
+source_sha256 = "adbe3d9d5da0a987de3d4d845b62a4231862febf9ca673f8d1067fc1787eee00"
+source_start_frame = 300240
+source_end_frame = 393360
+stream = ExtResource("a6")
+tags = PackedStringArray("combat", "sword", "metal", "slide")
+transient_frames = PackedInt32Array(4320, 10560)
+
+[sub_resource type="Resource" id="c7"]
+script = ExtResource("2")
+id = "sword_metal_slide_05"
+family = "sword_metal_slide"
+category = "combat"
+sample_rate = 48000
+frame_count = 95520
+duration_seconds = 1.99
+source_gain_db = -0.643248
+notes = "First combat candidate; inspect for usable clash and scrape variations."
+onset_frame = 4080
+energy_peak_frame = 6360
+amplitude_peak_frame = 6274
+active_end_frame = 49680
+source_path = "344 Audio - Historical Weapons Vol. 2/WEAPSwrd_Sword Slide Cuts, Metallic, Impact CM4 2_344 Audio_Medieval Weapons Vol 2.wav"
+source_sha256 = "adbe3d9d5da0a987de3d4d845b62a4231862febf9ca673f8d1067fc1787eee00"
+source_start_frame = 401280
+source_end_frame = 496800
+stream = ExtResource("a7")
+tags = PackedStringArray("combat", "sword", "metal", "slide")
+transient_frames = PackedInt32Array(6240, 12240)
+
+[sub_resource type="Resource" id="c8"]
+script = ExtResource("2")
+id = "sword_metal_slide_06"
+family = "sword_metal_slide"
+category = "combat"
+sample_rate = 48000
+frame_count = 105840
+duration_seconds = 2.205
+source_gain_db = -0.643248
+notes = "First combat candidate; inspect for usable clash and scrape variations."
+onset_frame = 3120
+energy_peak_frame = 3240
+amplitude_peak_frame = 3163
+active_end_frame = 79920
+source_path = "344 Audio - Historical Weapons Vol. 2/WEAPSwrd_Sword Slide Cuts, Metallic, Impact CM4 2_344 Audio_Medieval Weapons Vol 2.wav"
+source_sha256 = "adbe3d9d5da0a987de3d4d845b62a4231862febf9ca673f8d1067fc1787eee00"
+source_start_frame = 516240
+source_end_frame = 622080
+stream = ExtResource("a8")
+tags = PackedStringArray("combat", "sword", "metal", "slide")
+transient_frames = PackedInt32Array(3120, 9120)
+
+[sub_resource type="Resource" id="c9"]
+script = ExtResource("2")
+id = "blade_swing_scrape_01"
+family = "blade_swing_scrape"
+category = "combat"
+sample_rate = 48000
+frame_count = 98400
+duration_seconds = 2.05
+source_gain_db = -2.48963
+notes = "Candidate for a sword swing or blade scrape."
+onset_frame = 240
+energy_peak_frame = 5400
+amplitude_peak_frame = 4804
+active_end_frame = 50160
+source_path = "David Dumais Audio - Melee Weapons Sound Effects Pack 2/METLFric_SWING SCRAPE Swift Melee Weapon Swing With A Long Blade 14_DDUMAIS_MWP2.wav"
+source_sha256 = "5af061af596532feef49c83274c98f26e4994aa2f4f47f573e59e075065df70b"
+source_start_frame = 0
+source_end_frame = 98400
+stream = ExtResource("a9")
+tags = PackedStringArray("combat", "blade", "swing", "scrape")
+transient_frames = PackedInt32Array(2160)
+
+[sub_resource type="Resource" id="c10"]
+script = ExtResource("2")
+id = "swing_metal_hit_01"
+family = "swing_metal_hit"
+category = "combat"
+sample_rate = 48000
+frame_count = 133440
+duration_seconds = 2.78
+source_gain_db = -3.244691
+notes = "Swing and hit are combined; check timing before using for parries."
+onset_frame = 1440
+energy_peak_frame = 20280
+amplitude_peak_frame = 20216
+active_end_frame = 114480
+source_path = "David Dumais Audio - Melee Weapons Sound Effects Pack 2/METLImpt_METAL SWING HIT Weapon Swing To Metallic Body Impact And Resonant Tail 01_DDUMAIS_MWP2.wav"
+source_sha256 = "ec264e08985af53e1ec0a8e232fc93848c451a961a16c5630c2250afd375c1c4"
+source_start_frame = 0
+source_end_frame = 133440
+stream = ExtResource("a10")
+tags = PackedStringArray("combat", "swing", "metal", "hit")
+transient_frames = PackedInt32Array(9840, 14640, 20160, 29040)
+
+[sub_resource type="Resource" id="c11"]
+script = ExtResource("2")
+id = "heavy_swing_thud_01"
+family = "heavy_swing_thud"
+category = "combat"
+sample_rate = 48000
+frame_count = 74400
+duration_seconds = 1.55
+source_gain_db = -4.795625
+notes = "Combined swing and thud; possible heavy attack."
+onset_frame = 480
+energy_peak_frame = 9720
+amplitude_peak_frame = 9685
+active_end_frame = 44880
+source_path = "David Dumais Audio - Melee Weapons Sound Effects Pack 2/SWSH_SWING IMPACTS Quick Heavy Weapon Swing To Thud Impact Var 01_DDUMAIS_MWP2.wav"
+source_sha256 = "d75988b9eab8e10dfbef9dc8f6297eec5c57b91e50fb09bc8b72273356a2e681"
+source_start_frame = 0
+source_end_frame = 74400
+stream = ExtResource("a11")
+tags = PackedStringArray("combat", "heavy", "swing", "thud")
+transient_frames = PackedInt32Array(4560, 9600, 16320, 26640)
+
+[sub_resource type="Resource" id="c12"]
+script = ExtResource("2")
+id = "heavy_swing_thud_02"
+family = "heavy_swing_thud"
+category = "combat"
+sample_rate = 48000
+frame_count = 77040
+duration_seconds = 1.605
+source_gain_db = -4.795625
+notes = "Combined swing and thud; possible heavy attack."
+onset_frame = 1200
+energy_peak_frame = 12600
+amplitude_peak_frame = 10665
+active_end_frame = 51120
+source_path = "David Dumais Audio - Melee Weapons Sound Effects Pack 2/SWSH_SWING IMPACTS Quick Heavy Weapon Swing To Thud Impact Var 01_DDUMAIS_MWP2.wav"
+source_sha256 = "d75988b9eab8e10dfbef9dc8f6297eec5c57b91e50fb09bc8b72273356a2e681"
+source_start_frame = 142920
+source_end_frame = 219960
+stream = ExtResource("a12")
+tags = PackedStringArray("combat", "heavy", "swing", "thud")
+transient_frames = PackedInt32Array(5040, 10560, 17520, 23280, 28080)
+
+[sub_resource type="Resource" id="c13"]
+script = ExtResource("2")
+id = "heavy_swing_thud_03"
+family = "heavy_swing_thud"
+category = "combat"
+sample_rate = 48000
+frame_count = 60720
+duration_seconds = 1.265
+source_gain_db = -4.795625
+notes = "Combined swing and thud; possible heavy attack."
+onset_frame = 960
+energy_peak_frame = 10920
+amplitude_peak_frame = 8401
+active_end_frame = 40080
+source_path = "David Dumais Audio - Melee Weapons Sound Effects Pack 2/SWSH_SWING IMPACTS Quick Heavy Weapon Swing To Thud Impact Var 01_DDUMAIS_MWP2.wav"
+source_sha256 = "d75988b9eab8e10dfbef9dc8f6297eec5c57b91e50fb09bc8b72273356a2e681"
+source_start_frame = 289560
+source_end_frame = 350280
+stream = ExtResource("a13")
+tags = PackedStringArray("combat", "heavy", "swing", "thud")
+transient_frames = PackedInt32Array(1920, 8400, 16080, 22080)
+
+[sub_resource type="Resource" id="c14"]
+script = ExtResource("2")
+id = "heavy_swing_thud_04"
+family = "heavy_swing_thud"
+category = "combat"
+sample_rate = 48000
+frame_count = 68880
+duration_seconds = 1.435
+source_gain_db = -4.795625
+notes = "Combined swing and thud; possible heavy attack."
+onset_frame = 1200
+energy_peak_frame = 8520
+amplitude_peak_frame = 8461
+active_end_frame = 45600
+source_path = "David Dumais Audio - Melee Weapons Sound Effects Pack 2/SWSH_SWING IMPACTS Quick Heavy Weapon Swing To Thud Impact Var 01_DDUMAIS_MWP2.wav"
+source_sha256 = "d75988b9eab8e10dfbef9dc8f6297eec5c57b91e50fb09bc8b72273356a2e681"
+source_start_frame = 432840
+source_end_frame = 501720
+stream = ExtResource("a14")
+tags = PackedStringArray("combat", "heavy", "swing", "thud")
+transient_frames = PackedInt32Array(2640, 8400, 15600, 24960)
+
+[sub_resource type="Resource" id="c15"]
+script = ExtResource("2")
+id = "heavy_swing_thud_05"
+family = "heavy_swing_thud"
+category = "combat"
+sample_rate = 48000
+frame_count = 62880
+duration_seconds = 1.31
+source_gain_db = -4.795625
+notes = "Combined swing and thud; possible heavy attack."
+onset_frame = 1680
+energy_peak_frame = 12600
+amplitude_peak_frame = 8735
+active_end_frame = 38400
+source_path = "David Dumais Audio - Melee Weapons Sound Effects Pack 2/SWSH_SWING IMPACTS Quick Heavy Weapon Swing To Thud Impact Var 01_DDUMAIS_MWP2.wav"
+source_sha256 = "d75988b9eab8e10dfbef9dc8f6297eec5c57b91e50fb09bc8b72273356a2e681"
+source_start_frame = 577560
+source_end_frame = 640440
+stream = ExtResource("a15")
+tags = PackedStringArray("combat", "heavy", "swing", "thud")
+transient_frames = PackedInt32Array(3360, 8640, 16560, 23280)
+
+[sub_resource type="Resource" id="c16"]
+script = ExtResource("2")
+id = "heavy_swing_thud_06"
+family = "heavy_swing_thud"
+category = "combat"
+sample_rate = 48000
+frame_count = 72720
+duration_seconds = 1.515
+source_gain_db = -4.795625
+notes = "Combined swing and thud; possible heavy attack."
+onset_frame = 2160
+energy_peak_frame = 10440
+amplitude_peak_frame = 10254
+active_end_frame = 40560
+source_path = "David Dumais Audio - Melee Weapons Sound Effects Pack 2/SWSH_SWING IMPACTS Quick Heavy Weapon Swing To Thud Impact Var 01_DDUMAIS_MWP2.wav"
+source_sha256 = "d75988b9eab8e10dfbef9dc8f6297eec5c57b91e50fb09bc8b72273356a2e681"
+source_start_frame = 720240
+source_end_frame = 792960
+stream = ExtResource("a16")
+tags = PackedStringArray("combat", "heavy", "swing", "thud")
+transient_frames = PackedInt32Array(2880, 10080, 18000, 26640)
+
+[sub_resource type="Resource" id="c17"]
+script = ExtResource("2")
+id = "heavy_swing_thud_07"
+family = "heavy_swing_thud"
+category = "combat"
+sample_rate = 48000
+frame_count = 68880
+duration_seconds = 1.435
+source_gain_db = -4.795625
+notes = "Combined swing and thud; possible heavy attack."
+onset_frame = 1920
+energy_peak_frame = 9000
+amplitude_peak_frame = 8997
+active_end_frame = 43680
+source_path = "David Dumais Audio - Melee Weapons Sound Effects Pack 2/SWSH_SWING IMPACTS Quick Heavy Weapon Swing To Thud Impact Var 01_DDUMAIS_MWP2.wav"
+source_sha256 = "d75988b9eab8e10dfbef9dc8f6297eec5c57b91e50fb09bc8b72273356a2e681"
+source_start_frame = 864240
+source_end_frame = 933120
+stream = ExtResource("a17")
+tags = PackedStringArray("combat", "heavy", "swing", "thud")
+transient_frames = PackedInt32Array(3840, 8640, 13920, 26160)
+
+[sub_resource type="Resource" id="c18"]
+script = ExtResource("2")
+id = "heavy_swing_thud_08"
+family = "heavy_swing_thud"
+category = "combat"
+sample_rate = 48000
+frame_count = 73200
+duration_seconds = 1.525
+source_gain_db = -4.795625
+notes = "Combined swing and thud; possible heavy attack."
+onset_frame = 1200
+energy_peak_frame = 10920
+amplitude_peak_frame = 10085
+active_end_frame = 48720
+source_path = "David Dumais Audio - Melee Weapons Sound Effects Pack 2/SWSH_SWING IMPACTS Quick Heavy Weapon Swing To Thud Impact Var 01_DDUMAIS_MWP2.wav"
+source_sha256 = "d75988b9eab8e10dfbef9dc8f6297eec5c57b91e50fb09bc8b72273356a2e681"
+source_start_frame = 1006920
+source_end_frame = 1080120
+stream = ExtResource("a18")
+tags = PackedStringArray("combat", "heavy", "swing", "thud")
+transient_frames = PackedInt32Array(2160, 10080, 16560, 22320, 30240)
+
+[sub_resource type="Resource" id="c19"]
+script = ExtResource("2")
+id = "heavy_swing_thud_09"
+family = "heavy_swing_thud"
+category = "combat"
+sample_rate = 48000
+frame_count = 73200
+duration_seconds = 1.525
+source_gain_db = -4.795625
+notes = "Combined swing and thud; possible heavy attack."
+onset_frame = 1200
+energy_peak_frame = 10200
+amplitude_peak_frame = 10133
+active_end_frame = 44400
+source_path = "David Dumais Audio - Melee Weapons Sound Effects Pack 2/SWSH_SWING IMPACTS Quick Heavy Weapon Swing To Thud Impact Var 01_DDUMAIS_MWP2.wav"
+source_sha256 = "d75988b9eab8e10dfbef9dc8f6297eec5c57b91e50fb09bc8b72273356a2e681"
+source_start_frame = 1151160
+source_end_frame = 1224360
+stream = ExtResource("a19")
+tags = PackedStringArray("combat", "heavy", "swing", "thud")
+transient_frames = PackedInt32Array(4080, 10080, 20640, 26640)
+
+[sub_resource type="Resource" id="c20"]
+script = ExtResource("2")
+id = "heavy_swing_thud_10"
+family = "heavy_swing_thud"
+category = "combat"
+sample_rate = 48000
+frame_count = 84480
+duration_seconds = 1.76
+source_gain_db = -4.795625
+notes = "Combined swing and thud; possible heavy attack."
+onset_frame = 1440
+energy_peak_frame = 14520
+amplitude_peak_frame = 12272
+active_end_frame = 41280
+source_path = "David Dumais Audio - Melee Weapons Sound Effects Pack 2/SWSH_SWING IMPACTS Quick Heavy Weapon Swing To Thud Impact Var 01_DDUMAIS_MWP2.wav"
+source_sha256 = "d75988b9eab8e10dfbef9dc8f6297eec5c57b91e50fb09bc8b72273356a2e681"
+source_start_frame = 1293360
+source_end_frame = 1377840
+stream = ExtResource("a20")
+tags = PackedStringArray("combat", "heavy", "swing", "thud")
+transient_frames = PackedInt32Array(2640, 11760, 17520, 24480, 32160)
+
+[sub_resource type="Resource" id="c21"]
+script = ExtResource("2")
+id = "heavy_swing_thud_11"
+family = "heavy_swing_thud"
+category = "combat"
+sample_rate = 48000
+frame_count = 94800
+duration_seconds = 1.975
+source_gain_db = -4.795625
+notes = "Combined swing and thud; possible heavy attack."
+onset_frame = 1440
+energy_peak_frame = 13800
+amplitude_peak_frame = 12915
+active_end_frame = 62880
+source_path = "David Dumais Audio - Melee Weapons Sound Effects Pack 2/SWSH_SWING IMPACTS Quick Heavy Weapon Swing To Thud Impact Var 01_DDUMAIS_MWP2.wav"
+source_sha256 = "d75988b9eab8e10dfbef9dc8f6297eec5c57b91e50fb09bc8b72273356a2e681"
+source_start_frame = 1436640
+source_end_frame = 1531440
+stream = ExtResource("a21")
+tags = PackedStringArray("combat", "heavy", "swing", "thud")
+transient_frames = PackedInt32Array(3840, 9120, 23040, 31680, 36480)
+
+[sub_resource type="Resource" id="c22"]
+script = ExtResource("2")
+id = "heavy_swing_thud_12"
+family = "heavy_swing_thud"
+category = "combat"
+sample_rate = 48000
+frame_count = 60960
+duration_seconds = 1.27
+source_gain_db = -4.795625
+notes = "Combined swing and thud; possible heavy attack."
+onset_frame = 1200
+energy_peak_frame = 10920
+amplitude_peak_frame = 8510
+active_end_frame = 36960
+source_path = "David Dumais Audio - Melee Weapons Sound Effects Pack 2/SWSH_SWING IMPACTS Quick Heavy Weapon Swing To Thud Impact Var 01_DDUMAIS_MWP2.wav"
+source_sha256 = "d75988b9eab8e10dfbef9dc8f6297eec5c57b91e50fb09bc8b72273356a2e681"
+source_start_frame = 1584720
+source_end_frame = 1645680
+stream = ExtResource("a22")
+tags = PackedStringArray("combat", "heavy", "swing", "thud")
+transient_frames = PackedInt32Array(1920, 8400, 16320, 22320)
+
+[sub_resource type="Resource" id="c23"]
+script = ExtResource("2")
+id = "heavy_swing_thud_13"
+family = "heavy_swing_thud"
+category = "combat"
+sample_rate = 48000
+frame_count = 94080
+duration_seconds = 1.96
+source_gain_db = -4.795625
+notes = "Combined swing and thud; possible heavy attack."
+onset_frame = 2400
+energy_peak_frame = 14520
+amplitude_peak_frame = 13191
+active_end_frame = 57360
+source_path = "David Dumais Audio - Melee Weapons Sound Effects Pack 2/SWSH_SWING IMPACTS Quick Heavy Weapon Swing To Thud Impact Var 01_DDUMAIS_MWP2.wav"
+source_sha256 = "d75988b9eab8e10dfbef9dc8f6297eec5c57b91e50fb09bc8b72273356a2e681"
+source_start_frame = 1723800
+source_end_frame = 1817880
+stream = ExtResource("a23")
+tags = PackedStringArray("combat", "heavy", "swing", "thud")
+transient_frames = PackedInt32Array(7920, 12720, 18480, 25920, 34320)
+
+[sub_resource type="Resource" id="c24"]
+script = ExtResource("2")
+id = "heavy_swing_thud_14"
+family = "heavy_swing_thud"
+category = "combat"
+sample_rate = 48000
+frame_count = 66960
+duration_seconds = 1.395
+source_gain_db = -4.795625
+notes = "Combined swing and thud; possible heavy attack."
+onset_frame = 1200
+energy_peak_frame = 9240
+amplitude_peak_frame = 9270
+active_end_frame = 43920
+source_path = "David Dumais Audio - Melee Weapons Sound Effects Pack 2/SWSH_SWING IMPACTS Quick Heavy Weapon Swing To Thud Impact Var 01_DDUMAIS_MWP2.wav"
+source_sha256 = "d75988b9eab8e10dfbef9dc8f6297eec5c57b91e50fb09bc8b72273356a2e681"
+source_start_frame = 1873080
+source_end_frame = 1940040
+stream = ExtResource("a24")
+tags = PackedStringArray("combat", "heavy", "swing", "thud")
+transient_frames = PackedInt32Array(3600, 9120, 15120, 27600)
+
+[sub_resource type="Resource" id="c25"]
+script = ExtResource("2")
+id = "heavy_swing_thud_15"
+family = "heavy_swing_thud"
+category = "combat"
+sample_rate = 48000
+frame_count = 61680
+duration_seconds = 1.285
+source_gain_db = -4.795625
+notes = "Combined swing and thud; possible heavy attack."
+onset_frame = 1200
+energy_peak_frame = 9000
+amplitude_peak_frame = 8502
+active_end_frame = 45120
+source_path = "David Dumais Audio - Melee Weapons Sound Effects Pack 2/SWSH_SWING IMPACTS Quick Heavy Weapon Swing To Thud Impact Var 01_DDUMAIS_MWP2.wav"
+source_sha256 = "d75988b9eab8e10dfbef9dc8f6297eec5c57b91e50fb09bc8b72273356a2e681"
+source_start_frame = 2017560
+source_end_frame = 2079240
+stream = ExtResource("a25")
+tags = PackedStringArray("combat", "heavy", "swing", "thud")
+transient_frames = PackedInt32Array(3360, 8400, 16320, 22320)
+
+[sub_resource type="Resource" id="c26"]
+script = ExtResource("2")
+id = "heavy_swing_thud_16"
+family = "heavy_swing_thud"
+category = "combat"
+sample_rate = 48000
+frame_count = 90240
+duration_seconds = 1.88
+source_gain_db = -4.795625
+notes = "Combined swing and thud; possible heavy attack."
+onset_frame = 1440
+energy_peak_frame = 15960
+amplitude_peak_frame = 12489
+active_end_frame = 54960
+source_path = "David Dumais Audio - Melee Weapons Sound Effects Pack 2/SWSH_SWING IMPACTS Quick Heavy Weapon Swing To Thud Impact Var 01_DDUMAIS_MWP2.wav"
+source_sha256 = "d75988b9eab8e10dfbef9dc8f6297eec5c57b91e50fb09bc8b72273356a2e681"
+source_start_frame = 2157120
+source_end_frame = 2247360
+stream = ExtResource("a26")
+tags = PackedStringArray("combat", "heavy", "swing", "thud")
+transient_frames = PackedInt32Array(2640, 12240, 23520, 28800, 35040)
+
+[sub_resource type="Resource" id="c27"]
+script = ExtResource("2")
+id = "heavy_swing_thud_17"
+family = "heavy_swing_thud"
+category = "combat"
+sample_rate = 48000
+frame_count = 94080
+duration_seconds = 1.96
+source_gain_db = -4.795625
+notes = "Combined swing and thud; possible heavy attack."
+onset_frame = 1440
+energy_peak_frame = 13800
+amplitude_peak_frame = 12928
+active_end_frame = 57600
+source_path = "David Dumais Audio - Melee Weapons Sound Effects Pack 2/SWSH_SWING IMPACTS Quick Heavy Weapon Swing To Thud Impact Var 01_DDUMAIS_MWP2.wav"
+source_sha256 = "d75988b9eab8e10dfbef9dc8f6297eec5c57b91e50fb09bc8b72273356a2e681"
+source_start_frame = 2299800
+source_end_frame = 2393880
+stream = ExtResource("a27")
+tags = PackedStringArray("combat", "heavy", "swing", "thud")
+transient_frames = PackedInt32Array(2640, 12720, 28320, 36480)
+
+[sub_resource type="Resource" id="c28"]
+script = ExtResource("2")
+id = "heavy_swing_thud_18"
+family = "heavy_swing_thud"
+category = "combat"
+sample_rate = 48000
+frame_count = 66960
+duration_seconds = 1.395
+source_gain_db = -4.795625
+notes = "Combined swing and thud; possible heavy attack."
+onset_frame = 1200
+energy_peak_frame = 10440
+amplitude_peak_frame = 9504
+active_end_frame = 44640
+source_path = "David Dumais Audio - Melee Weapons Sound Effects Pack 2/SWSH_SWING IMPACTS Quick Heavy Weapon Swing To Thud Impact Var 01_DDUMAIS_MWP2.wav"
+source_sha256 = "d75988b9eab8e10dfbef9dc8f6297eec5c57b91e50fb09bc8b72273356a2e681"
+source_start_frame = 2448600
+source_end_frame = 2515560
+stream = ExtResource("a28")
+tags = PackedStringArray("combat", "heavy", "swing", "thud")
+transient_frames = PackedInt32Array(3840, 9120, 15360, 20400, 27600)
+
+[sub_resource type="Resource" id="c29"]
+script = ExtResource("2")
+id = "heavy_swing_thud_19"
+family = "heavy_swing_thud"
+category = "combat"
+sample_rate = 48000
+frame_count = 63600
+duration_seconds = 1.325
+source_gain_db = -4.795625
+notes = "Combined swing and thud; possible heavy attack."
+onset_frame = 1920
+energy_peak_frame = 9720
+amplitude_peak_frame = 8886
+active_end_frame = 38640
+source_path = "David Dumais Audio - Melee Weapons Sound Effects Pack 2/SWSH_SWING IMPACTS Quick Heavy Weapon Swing To Thud Impact Var 01_DDUMAIS_MWP2.wav"
+source_sha256 = "d75988b9eab8e10dfbef9dc8f6297eec5c57b91e50fb09bc8b72273356a2e681"
+source_start_frame = 2592720
+source_end_frame = 2656320
+stream = ExtResource("a29")
+tags = PackedStringArray("combat", "heavy", "swing", "thud")
+transient_frames = PackedInt32Array(3600, 8640, 14640, 23280)
+
+[sub_resource type="Resource" id="c30"]
+script = ExtResource("2")
+id = "heavy_swing_thud_20"
+family = "heavy_swing_thud"
+category = "combat"
+sample_rate = 48000
+frame_count = 66240
+duration_seconds = 1.38
+source_gain_db = -4.795625
+notes = "Combined swing and thud; possible heavy attack."
+onset_frame = 1200
+energy_peak_frame = 9960
+amplitude_peak_frame = 8913
+active_end_frame = 42240
+source_path = "David Dumais Audio - Melee Weapons Sound Effects Pack 2/SWSH_SWING IMPACTS Quick Heavy Weapon Swing To Thud Impact Var 01_DDUMAIS_MWP2.wav"
+source_sha256 = "d75988b9eab8e10dfbef9dc8f6297eec5c57b91e50fb09bc8b72273356a2e681"
+source_start_frame = 2736480
+source_end_frame = 2802720
+stream = ExtResource("a30")
+tags = PackedStringArray("combat", "heavy", "swing", "thud")
+transient_frames = PackedInt32Array(2160, 8880, 18960, 24240)
+
+[sub_resource type="Resource" id="c31"]
+script = ExtResource("2")
+id = "heavy_swing_thud_21"
+family = "heavy_swing_thud"
+category = "combat"
+sample_rate = 48000
+frame_count = 84000
+duration_seconds = 1.75
+source_gain_db = -4.795625
+notes = "Combined swing and thud; possible heavy attack."
+onset_frame = 2400
+energy_peak_frame = 13560
+amplitude_peak_frame = 12431
+active_end_frame = 37440
+source_path = "David Dumais Audio - Melee Weapons Sound Effects Pack 2/SWSH_SWING IMPACTS Quick Heavy Weapon Swing To Thud Impact Var 01_DDUMAIS_MWP2.wav"
+source_sha256 = "d75988b9eab8e10dfbef9dc8f6297eec5c57b91e50fb09bc8b72273356a2e681"
+source_start_frame = 2877960
+source_end_frame = 2961960
+stream = ExtResource("a31")
+tags = PackedStringArray("combat", "heavy", "swing", "thud")
+transient_frames = PackedInt32Array(5520, 11760, 16800, 31920)
+
+[sub_resource type="Resource" id="c32"]
+script = ExtResource("2")
+id = "wood_weapon_impact_01"
+family = "wood_weapon_impact"
+category = "combat"
+sample_rate = 48000
+frame_count = 16320
+duration_seconds = 0.34
+source_gain_db = -1.993527
+notes = "Candidate for a wooden block or shaft impact."
+onset_frame = 720
+energy_peak_frame = 2760
+amplitude_peak_frame = 2523
+active_end_frame = 12240
+source_path = "344 Audio - Historical Weapons Vol. 2/WEAPBlnt_Spear And Stick Impact, Wooden MKH 2_344 Audio_Medieval Weapons Vol 2.wav"
+source_sha256 = "ab2cd18aaac93afa77b48b74edf82257815ee16817bb2bb9bd5ba134e4cc1466"
+source_start_frame = 0
+source_end_frame = 16320
+stream = ExtResource("a32")
+tags = PackedStringArray("combat", "wood", "weapon", "impact")
+transient_frames = PackedInt32Array(960, 10320)
+
+[sub_resource type="Resource" id="c33"]
+script = ExtResource("2")
+id = "wood_weapon_impact_02"
+family = "wood_weapon_impact"
+category = "combat"
+sample_rate = 48000
+frame_count = 18000
+duration_seconds = 0.375
+source_gain_db = -1.993527
+notes = "Candidate for a wooden block or shaft impact."
+onset_frame = 960
+energy_peak_frame = 2760
+amplitude_peak_frame = 2626
+active_end_frame = 13440
+source_path = "344 Audio - Historical Weapons Vol. 2/WEAPBlnt_Spear And Stick Impact, Wooden MKH 2_344 Audio_Medieval Weapons Vol 2.wav"
+source_sha256 = "ab2cd18aaac93afa77b48b74edf82257815ee16817bb2bb9bd5ba134e4cc1466"
+source_start_frame = 29040
+source_end_frame = 47040
+stream = ExtResource("a33")
+tags = PackedStringArray("combat", "wood", "weapon", "impact")
+transient_frames = PackedInt32Array(2640, 11040)
+
+[sub_resource type="Resource" id="c34"]
+script = ExtResource("2")
+id = "wood_weapon_impact_03"
+family = "wood_weapon_impact"
+category = "combat"
+sample_rate = 48000
+frame_count = 19200
+duration_seconds = 0.4
+source_gain_db = -1.993527
+notes = "Candidate for a wooden block or shaft impact."
+onset_frame = 960
+energy_peak_frame = 3240
+amplitude_peak_frame = 3225
+active_end_frame = 14880
+source_path = "344 Audio - Historical Weapons Vol. 2/WEAPBlnt_Spear And Stick Impact, Wooden MKH 2_344 Audio_Medieval Weapons Vol 2.wav"
+source_sha256 = "ab2cd18aaac93afa77b48b74edf82257815ee16817bb2bb9bd5ba134e4cc1466"
+source_start_frame = 61440
+source_end_frame = 80640
+stream = ExtResource("a34")
+tags = PackedStringArray("combat", "wood", "weapon", "impact")
+transient_frames = PackedInt32Array(960, 7920, 13680)
+
+[sub_resource type="Resource" id="c35"]
+script = ExtResource("2")
+id = "wood_weapon_impact_04"
+family = "wood_weapon_impact"
+category = "combat"
+sample_rate = 48000
+frame_count = 16800
+duration_seconds = 0.35
+source_gain_db = -1.993527
+notes = "Candidate for a wooden block or shaft impact."
+onset_frame = 960
+energy_peak_frame = 2760
+amplitude_peak_frame = 2558
+active_end_frame = 12960
+source_path = "344 Audio - Historical Weapons Vol. 2/WEAPBlnt_Spear And Stick Impact, Wooden MKH 2_344 Audio_Medieval Weapons Vol 2.wav"
+source_sha256 = "ab2cd18aaac93afa77b48b74edf82257815ee16817bb2bb9bd5ba134e4cc1466"
+source_start_frame = 93360
+source_end_frame = 110160
+stream = ExtResource("a35")
+tags = PackedStringArray("combat", "wood", "weapon", "impact")
+transient_frames = PackedInt32Array(2640, 8880)
+
+[sub_resource type="Resource" id="c36"]
+script = ExtResource("2")
+id = "wood_weapon_impact_05"
+family = "wood_weapon_impact"
+category = "combat"
+sample_rate = 48000
+frame_count = 18720
+duration_seconds = 0.39
+source_gain_db = -1.993527
+notes = "Candidate for a wooden block or shaft impact."
+onset_frame = 2160
+energy_peak_frame = 2520
+amplitude_peak_frame = 2385
+active_end_frame = 13200
+source_path = "344 Audio - Historical Weapons Vol. 2/WEAPBlnt_Spear And Stick Impact, Wooden MKH 2_344 Audio_Medieval Weapons Vol 2.wav"
+source_sha256 = "ab2cd18aaac93afa77b48b74edf82257815ee16817bb2bb9bd5ba134e4cc1466"
+source_start_frame = 121440
+source_end_frame = 140160
+stream = ExtResource("a36")
+tags = PackedStringArray("combat", "wood", "weapon", "impact")
+transient_frames = PackedInt32Array(2400)
+
+[sub_resource type="Resource" id="c37"]
+script = ExtResource("2")
+id = "wood_weapon_impact_06"
+family = "wood_weapon_impact"
+category = "combat"
+sample_rate = 48000
+frame_count = 23280
+duration_seconds = 0.485
+source_gain_db = -1.993527
+notes = "Candidate for a wooden block or shaft impact."
+onset_frame = 720
+energy_peak_frame = 2520
+amplitude_peak_frame = 2313
+active_end_frame = 18480
+source_path = "344 Audio - Historical Weapons Vol. 2/WEAPBlnt_Spear And Stick Impact, Wooden MKH 2_344 Audio_Medieval Weapons Vol 2.wav"
+source_sha256 = "ab2cd18aaac93afa77b48b74edf82257815ee16817bb2bb9bd5ba134e4cc1466"
+source_start_frame = 164160
+source_end_frame = 187440
+stream = ExtResource("a37")
+tags = PackedStringArray("combat", "wood", "weapon", "impact")
+transient_frames = PackedInt32Array(2160)
+
+[sub_resource type="Resource" id="c38"]
+script = ExtResource("2")
+id = "wood_weapon_impact_07"
+family = "wood_weapon_impact"
+category = "combat"
+sample_rate = 48000
+frame_count = 20880
+duration_seconds = 0.435
+source_gain_db = -1.993527
+notes = "Candidate for a wooden block or shaft impact."
+onset_frame = 960
+energy_peak_frame = 2760
+amplitude_peak_frame = 2675
+active_end_frame = 16560
+source_path = "344 Audio - Historical Weapons Vol. 2/WEAPBlnt_Spear And Stick Impact, Wooden MKH 2_344 Audio_Medieval Weapons Vol 2.wav"
+source_sha256 = "ab2cd18aaac93afa77b48b74edf82257815ee16817bb2bb9bd5ba134e4cc1466"
+source_start_frame = 208080
+source_end_frame = 228960
+stream = ExtResource("a38")
+tags = PackedStringArray("combat", "wood", "weapon", "impact")
+transient_frames = PackedInt32Array(2160, 13200)
+
+[sub_resource type="Resource" id="c39"]
+script = ExtResource("2")
+id = "wood_weapon_impact_08"
+family = "wood_weapon_impact"
+category = "combat"
+sample_rate = 48000
+frame_count = 19680
+duration_seconds = 0.41
+source_gain_db = -1.993527
+notes = "Candidate for a wooden block or shaft impact."
+onset_frame = 1200
+energy_peak_frame = 2760
+amplitude_peak_frame = 2705
+active_end_frame = 15600
+source_path = "344 Audio - Historical Weapons Vol. 2/WEAPBlnt_Spear And Stick Impact, Wooden MKH 2_344 Audio_Medieval Weapons Vol 2.wav"
+source_sha256 = "ab2cd18aaac93afa77b48b74edf82257815ee16817bb2bb9bd5ba134e4cc1466"
+source_start_frame = 240120
+source_end_frame = 259800
+stream = ExtResource("a39")
+tags = PackedStringArray("combat", "wood", "weapon", "impact")
+transient_frames = PackedInt32Array(2640, 10080)
+
+[sub_resource type="Resource" id="c40"]
+script = ExtResource("2")
+id = "wood_weapon_impact_09"
+family = "wood_weapon_impact"
+category = "combat"
+sample_rate = 48000
+frame_count = 21360
+duration_seconds = 0.445
+source_gain_db = -1.993527
+notes = "Candidate for a wooden block or shaft impact."
+onset_frame = 960
+energy_peak_frame = 2760
+amplitude_peak_frame = 2644
+active_end_frame = 17280
+source_path = "344 Audio - Historical Weapons Vol. 2/WEAPBlnt_Spear And Stick Impact, Wooden MKH 2_344 Audio_Medieval Weapons Vol 2.wav"
+source_sha256 = "ab2cd18aaac93afa77b48b74edf82257815ee16817bb2bb9bd5ba134e4cc1466"
+source_start_frame = 276120
+source_end_frame = 297480
+stream = ExtResource("a40")
+tags = PackedStringArray("combat", "wood", "weapon", "impact")
+transient_frames = PackedInt32Array(2640, 7440, 13440)
+
+[sub_resource type="Resource" id="c41"]
+script = ExtResource("2")
+id = "wood_weapon_impact_10"
+family = "wood_weapon_impact"
+category = "combat"
+sample_rate = 48000
+frame_count = 19440
+duration_seconds = 0.405
+source_gain_db = -1.993527
+notes = "Candidate for a wooden block or shaft impact."
+onset_frame = 960
+energy_peak_frame = 2520
+amplitude_peak_frame = 2634
+active_end_frame = 15120
+source_path = "344 Audio - Historical Weapons Vol. 2/WEAPBlnt_Spear And Stick Impact, Wooden MKH 2_344 Audio_Medieval Weapons Vol 2.wav"
+source_sha256 = "ab2cd18aaac93afa77b48b74edf82257815ee16817bb2bb9bd5ba134e4cc1466"
+source_start_frame = 308520
+source_end_frame = 327960
+stream = ExtResource("a41")
+tags = PackedStringArray("combat", "wood", "weapon", "impact")
+transient_frames = PackedInt32Array(2400, 8640)
+
+[sub_resource type="Resource" id="c42"]
+script = ExtResource("2")
+id = "wood_weapon_impact_11"
+family = "wood_weapon_impact"
+category = "combat"
+sample_rate = 48000
+frame_count = 18480
+duration_seconds = 0.385
+source_gain_db = -1.993527
+notes = "Candidate for a wooden block or shaft impact."
+onset_frame = 960
+energy_peak_frame = 3720
+amplitude_peak_frame = 3294
+active_end_frame = 14640
+source_path = "344 Audio - Historical Weapons Vol. 2/WEAPBlnt_Spear And Stick Impact, Wooden MKH 2_344 Audio_Medieval Weapons Vol 2.wav"
+source_sha256 = "ab2cd18aaac93afa77b48b74edf82257815ee16817bb2bb9bd5ba134e4cc1466"
+source_start_frame = 336600
+source_end_frame = 355080
+stream = ExtResource("a42")
+tags = PackedStringArray("combat", "wood", "weapon", "impact")
+transient_frames = PackedInt32Array(3360, 13200)
+
+[sub_resource type="Resource" id="c43"]
+script = ExtResource("2")
+id = "wood_weapon_impact_12"
+family = "wood_weapon_impact"
+category = "combat"
+sample_rate = 48000
+frame_count = 19920
+duration_seconds = 0.415
+source_gain_db = -1.993527
+notes = "Candidate for a wooden block or shaft impact."
+onset_frame = 960
+energy_peak_frame = 2760
+amplitude_peak_frame = 2800
+active_end_frame = 15840
+source_path = "344 Audio - Historical Weapons Vol. 2/WEAPBlnt_Spear And Stick Impact, Wooden MKH 2_344 Audio_Medieval Weapons Vol 2.wav"
+source_sha256 = "ab2cd18aaac93afa77b48b74edf82257815ee16817bb2bb9bd5ba134e4cc1466"
+source_start_frame = 376680
+source_end_frame = 396600
+stream = ExtResource("a43")
+tags = PackedStringArray("combat", "wood", "weapon", "impact")
+transient_frames = PackedInt32Array(2640, 7440)
+
+[sub_resource type="Resource" id="c44"]
+script = ExtResource("2")
+id = "wood_weapon_impact_13"
+family = "wood_weapon_impact"
+category = "combat"
+sample_rate = 48000
+frame_count = 19440
+duration_seconds = 0.405
+source_gain_db = -1.993527
+notes = "Candidate for a wooden block or shaft impact."
+onset_frame = 720
+energy_peak_frame = 2520
+amplitude_peak_frame = 2491
+active_end_frame = 15120
+source_path = "344 Audio - Historical Weapons Vol. 2/WEAPBlnt_Spear And Stick Impact, Wooden MKH 2_344 Audio_Medieval Weapons Vol 2.wav"
+source_sha256 = "ab2cd18aaac93afa77b48b74edf82257815ee16817bb2bb9bd5ba134e4cc1466"
+source_start_frame = 410040
+source_end_frame = 429480
+stream = ExtResource("a44")
+tags = PackedStringArray("combat", "wood", "weapon", "impact")
+transient_frames = PackedInt32Array(2640)
+
+[sub_resource type="Resource" id="c45"]
+script = ExtResource("2")
+id = "wood_weapon_impact_14"
+family = "wood_weapon_impact"
+category = "combat"
+sample_rate = 48000
+frame_count = 28800
+duration_seconds = 0.6
+source_gain_db = -1.993527
+notes = "Candidate for a wooden block or shaft impact."
+onset_frame = 960
+energy_peak_frame = 2040
+amplitude_peak_frame = 1851
+active_end_frame = 24240
+source_path = "344 Audio - Historical Weapons Vol. 2/WEAPBlnt_Spear And Stick Impact, Wooden MKH 2_344 Audio_Medieval Weapons Vol 2.wav"
+source_sha256 = "ab2cd18aaac93afa77b48b74edf82257815ee16817bb2bb9bd5ba134e4cc1466"
+source_start_frame = 446760
+source_end_frame = 475560
+stream = ExtResource("a45")
+tags = PackedStringArray("combat", "wood", "weapon", "impact")
+transient_frames = PackedInt32Array(1920, 12960, 18720)
+
+[sub_resource type="Resource" id="c46"]
+script = ExtResource("2")
+id = "wood_weapon_impact_15"
+family = "wood_weapon_impact"
+category = "combat"
+sample_rate = 48000
+frame_count = 22320
+duration_seconds = 0.465
+source_gain_db = -1.993527
+notes = "Candidate for a wooden block or shaft impact."
+onset_frame = 960
+energy_peak_frame = 2520
+amplitude_peak_frame = 2601
+active_end_frame = 18000
+source_path = "344 Audio - Historical Weapons Vol. 2/WEAPBlnt_Spear And Stick Impact, Wooden MKH 2_344 Audio_Medieval Weapons Vol 2.wav"
+source_sha256 = "ab2cd18aaac93afa77b48b74edf82257815ee16817bb2bb9bd5ba134e4cc1466"
+source_start_frame = 490320
+source_end_frame = 512640
+stream = ExtResource("a46")
+tags = PackedStringArray("combat", "wood", "weapon", "impact")
+transient_frames = PackedInt32Array(2640, 7680, 14400)
+
+[sub_resource type="Resource" id="c47"]
+script = ExtResource("2")
+id = "wood_weapon_impact_16"
+family = "wood_weapon_impact"
+category = "combat"
+sample_rate = 48000
+frame_count = 14333
+duration_seconds = 0.29860416666666667
+source_gain_db = -1.993527
+notes = "Candidate for a wooden block or shaft impact."
+onset_frame = 2160
+energy_peak_frame = 2760
+amplitude_peak_frame = 2425
+active_end_frame = 13920
+source_path = "344 Audio - Historical Weapons Vol. 2/WEAPBlnt_Spear And Stick Impact, Wooden MKH 2_344 Audio_Medieval Weapons Vol 2.wav"
+source_sha256 = "ab2cd18aaac93afa77b48b74edf82257815ee16817bb2bb9bd5ba134e4cc1466"
+source_start_frame = 527760
+source_end_frame = 542093
+stream = ExtResource("a47")
+tags = PackedStringArray("combat", "wood", "weapon", "impact")
+transient_frames = PackedInt32Array(2400, 10560)
+
+[sub_resource type="Resource" id="c48"]
+script = ExtResource("2")
+id = "buckler_drop_spin_01"
+family = "buckler_drop_spin"
+category = "combat"
+sample_rate = 48000
+frame_count = 425760
+duration_seconds = 8.87
+source_gain_db = 0.0
+notes = "Shield drop/spin, not a shield block."
+onset_frame = 3600
+energy_peak_frame = 144120
+amplitude_peak_frame = 144076
+active_end_frame = 420720
+source_path = "344 Audio - Historical Weapons Vol. 2/WEAPArmr_Metal Shield Spin On Floor, Buckler MKH_344 Audio_Medieval Weapons Vol 2.wav"
+source_sha256 = "b2d1b6aa9d4eafb1b1bb0f50530b129b5d14e9e54961d8077fc9fad70f6fbf2f"
+source_start_frame = 8160
+source_end_frame = 433920
+stream = ExtResource("a48")
+tags = PackedStringArray("combat", "buckler", "drop", "spin")
+transient_frames = PackedInt32Array(12960, 21120, 37920, 59760, 67920, 79200, 99360, 108240, 118800, 126720, 136080, 141840, 147840, 156960, 175200, 184320, 192480, 225600, 233280, 240480, 291360, 360720)
+
+[sub_resource type="Resource" id="c49"]
+script = ExtResource("2")
+id = "buckler_drop_spin_02"
+family = "buckler_drop_spin"
+category = "combat"
+sample_rate = 48000
+frame_count = 498960
+duration_seconds = 10.395
+source_gain_db = 0.0
+notes = "Shield drop/spin, not a shield block."
+onset_frame = 960
+energy_peak_frame = 259320
+amplitude_peak_frame = 256076
+active_end_frame = 489120
+source_path = "344 Audio - Historical Weapons Vol. 2/WEAPArmr_Metal Shield Spin On Floor, Buckler MKH_344 Audio_Medieval Weapons Vol 2.wav"
+source_sha256 = "b2d1b6aa9d4eafb1b1bb0f50530b129b5d14e9e54961d8077fc9fad70f6fbf2f"
+source_start_frame = 565200
+source_end_frame = 1064160
+stream = ExtResource("a49")
+tags = PackedStringArray("combat", "buckler", "drop", "spin")
+transient_frames = PackedInt32Array(8160, 25920, 37200, 50880, 66240, 81120, 87840, 98160, 104640, 112800, 117600, 129360, 144960, 149760, 166320, 203520, 216000, 226560, 235440, 256080, 262800, 270000, 279120, 288000, 296400, 322080, 339600, 344880, 353520, 362160, 372480, 384000, 391920, 400320, 408720, 417360, 424080, 442320, 450480, 465840)
+
+[sub_resource type="Resource" id="c50"]
+script = ExtResource("2")
+id = "buckler_drop_spin_03"
+family = "buckler_drop_spin"
+category = "combat"
+sample_rate = 48000
+frame_count = 479520
+duration_seconds = 9.99
+source_gain_db = 0.0
+notes = "Shield drop/spin, not a shield block."
+onset_frame = 4800
+energy_peak_frame = 322440
+amplitude_peak_frame = 374738
+active_end_frame = 462480
+source_path = "344 Audio - Historical Weapons Vol. 2/WEAPArmr_Metal Shield Spin On Floor, Buckler MKH_344 Audio_Medieval Weapons Vol 2.wav"
+source_sha256 = "b2d1b6aa9d4eafb1b1bb0f50530b129b5d14e9e54961d8077fc9fad70f6fbf2f"
+source_start_frame = 1176000
+source_end_frame = 1655520
+stream = ExtResource("a50")
+tags = PackedStringArray("combat", "buckler", "drop", "spin")
+transient_frames = PackedInt32Array(8880, 19200, 24480, 47040, 64560, 73680, 125520, 130320, 143280, 152400, 158880, 168480, 176400, 187440, 197760, 211200, 216480, 224400, 232080, 240000, 248880, 259920, 267840, 276960, 283440, 290880, 303840, 327360, 336000, 342960, 348000, 352800, 366480, 374640, 382320, 389280, 398160, 403440, 411600, 420240, 439440)
+
+[sub_resource type="Resource" id="c51"]
+script = ExtResource("2")
+id = "metal_tap_01"
+family = "metal_tap"
+category = "combat"
+sample_rate = 48000
+frame_count = 21814
+duration_seconds = 0.45445833333333335
+source_gain_db = -3.579473
+notes = "Possible dry metallic layer for a clash; source is a tool."
+onset_frame = 5280
+energy_peak_frame = 5640
+amplitude_peak_frame = 5786
+active_end_frame = 18960
+source_path = "Epic Stock Media - HD Game Materials/METLImpt_Metal Old File Impact Tap Against Tire Iron Metallic Hit 01_ESM_HDGM.wav"
+source_sha256 = "c60d03117c3e00aa38a121941c5f1beefd4bc195eba8b887af1bdbadbac00124"
+source_start_frame = 720
+source_end_frame = 22534
+stream = ExtResource("a51")
+tags = PackedStringArray("combat", "metal", "tap")
+transient_frames = PackedInt32Array(5520, 13440)
+
+[sub_resource type="Resource" id="c52"]
+script = ExtResource("2")
+id = "gore_heavy_01"
+family = "gore_heavy"
+category = "combat"
+sample_rate = 48000
+frame_count = 78000
+duration_seconds = 1.625
+source_gain_db = -5.011937
+notes = "First candidate for a heavy flesh-hit layer."
+onset_frame = 0
+energy_peak_frame = 4920
+amplitude_peak_frame = 797
+active_end_frame = 53520
+source_path = "Epic Stock Media - Halloween Game - Haunted House and Horror Audio Scare Kit/GORESplt_Gore Designed Transient Heavy Impact Smash 01_ESM_HALG.wav"
+source_sha256 = "acbc8d2d58b21562556f6379bfbab92042fe01247cff6cf55beed6f59d5a1b32"
+source_start_frame = 0
+source_end_frame = 78000
+stream = ExtResource("a52")
+tags = PackedStringArray("combat", "gore", "heavy")
+transient_frames = PackedInt32Array(3360, 10560, 24960, 30480, 35520, 41760, 50160)
+
+[sub_resource type="Resource" id="c53"]
+script = ExtResource("2")
+id = "blood_light_01"
+family = "blood_light"
+category = "combat"
+sample_rate = 48000
+frame_count = 15946
+duration_seconds = 0.3322083333333333
+source_gain_db = -4.000902
+notes = "First candidate for a lighter flesh-hit layer."
+onset_frame = 0
+energy_peak_frame = 2040
+amplitude_peak_frame = 110
+active_end_frame = 14400
+source_path = "Epic Stock Media - Tower Defense Game/WOODImpt_Hit Blood Spill Splat Wood Impact Light Hit Squelch Small Thump 03_ESM_TDG.wav"
+source_sha256 = "022152183544436b2e7ae8c82ae3cb1cff6dff5e9c0153e1096a1b638e90e518"
+source_start_frame = 0
+source_end_frame = 15946
+stream = ExtResource("a53")
+tags = PackedStringArray("combat", "blood", "light")
+transient_frames = PackedInt32Array(12240)
+
+[sub_resource type="Resource" id="c54"]
+script = ExtResource("2")
+id = "body_punch_01"
+family = "body_punch"
+category = "combat"
+sample_rate = 48000
+frame_count = 35760
+duration_seconds = 0.745
+source_gain_db = -4.970727
+notes = "Blunt body-hit layer; file contains multiple hits to separate."
+onset_frame = 2880
+energy_peak_frame = 10680
+amplitude_peak_frame = 10301
+active_end_frame = 19680
+source_path = "344 Audio - Cinematic Fight Vol. 1/FGHTImpt_4 x Punch, Body 02_344 Audio_Cinematic Fight Vol 1.wav"
+source_sha256 = "606f7d8bdca261f6fee6a30e19fc8a760c469e599dc0747ecb272a24d4821a31"
+source_start_frame = 4800
+source_end_frame = 40560
+stream = ExtResource("a54")
+tags = PackedStringArray("combat", "body", "punch")
+transient_frames = PackedInt32Array(3840, 13200)
+
+[sub_resource type="Resource" id="c55"]
+script = ExtResource("2")
+id = "body_punch_02"
+family = "body_punch"
+category = "combat"
+sample_rate = 48000
+frame_count = 34560
+duration_seconds = 0.72
+source_gain_db = -4.970727
+notes = "Blunt body-hit layer; file contains multiple hits to separate."
+onset_frame = 3360
+energy_peak_frame = 6120
+amplitude_peak_frame = 5993
+active_end_frame = 23760
+source_path = "344 Audio - Cinematic Fight Vol. 1/FGHTImpt_4 x Punch, Body 02_344 Audio_Cinematic Fight Vol 1.wav"
+source_sha256 = "606f7d8bdca261f6fee6a30e19fc8a760c469e599dc0747ecb272a24d4821a31"
+source_start_frame = 50880
+source_end_frame = 85440
+stream = ExtResource("a55")
+tags = PackedStringArray("combat", "body", "punch")
+transient_frames = PackedInt32Array(5040, 12240, 18480)
+
+[sub_resource type="Resource" id="c56"]
+script = ExtResource("2")
+id = "body_punch_03"
+family = "body_punch"
+category = "combat"
+sample_rate = 48000
+frame_count = 30960
+duration_seconds = 0.645
+source_gain_db = -4.970727
+notes = "Blunt body-hit layer; file contains multiple hits to separate."
+onset_frame = 2880
+energy_peak_frame = 5400
+amplitude_peak_frame = 5511
+active_end_frame = 18480
+source_path = "344 Audio - Cinematic Fight Vol. 1/FGHTImpt_4 x Punch, Body 02_344 Audio_Cinematic Fight Vol 1.wav"
+source_sha256 = "606f7d8bdca261f6fee6a30e19fc8a760c469e599dc0747ecb272a24d4821a31"
+source_start_frame = 101640
+source_end_frame = 132600
+stream = ExtResource("a56")
+tags = PackedStringArray("combat", "body", "punch")
+transient_frames = PackedInt32Array(5280, 15120)
+
+[sub_resource type="Resource" id="c57"]
+script = ExtResource("2")
+id = "body_punch_04"
+family = "body_punch"
+category = "combat"
+sample_rate = 48000
+frame_count = 32640
+duration_seconds = 0.68
+source_gain_db = -4.970727
+notes = "Blunt body-hit layer; file contains multiple hits to separate."
+onset_frame = 3600
+energy_peak_frame = 8520
+amplitude_peak_frame = 8433
+active_end_frame = 24960
+source_path = "344 Audio - Cinematic Fight Vol. 1/FGHTImpt_4 x Punch, Body 02_344 Audio_Cinematic Fight Vol 1.wav"
+source_sha256 = "606f7d8bdca261f6fee6a30e19fc8a760c469e599dc0747ecb272a24d4821a31"
+source_start_frame = 149040
+source_end_frame = 181680
+stream = ExtResource("a57")
+tags = PackedStringArray("combat", "body", "punch")
+transient_frames = PackedInt32Array(5520, 18480)
+
+[sub_resource type="Resource" id="c58"]
+script = ExtResource("2")
+id = "death_female_01"
+family = "death_female"
+category = "voice"
+sample_rate = 48000
+frame_count = 99120
+duration_seconds = 2.065
+source_gain_db = -5.026147
+notes = "Human pain/death vocal candidate. Preserve the complete vocal phrase; pauses are part of the performance."
+onset_frame = 480
+energy_peak_frame = 8520
+amplitude_peak_frame = 9380
+active_end_frame = 71040
+source_path = "Epic Stock Media - AAA Game Character British Female Detective/VOXReac_British Detective Pain Vocal Female Dying High Grunt Breath_ESM_AAAGCBFD.wav"
+source_sha256 = "e3a515582633a52c5140083c5ca01f404996e9ec4061d79d5396b5c6d505148e"
+source_start_frame = 0
+source_end_frame = 99120
+stream = ExtResource("a58")
+tags = PackedStringArray("voice", "death", "female")
+transient_frames = PackedInt32Array(720, 57840)
+
+[sub_resource type="Resource" id="c59"]
+script = ExtResource("2")
+id = "death_male_creature_01"
+family = "death_male_creature"
+category = "voice"
+sample_rate = 48000
+frame_count = 235680
+duration_seconds = 4.91
+source_gain_db = -4.650791
+notes = "From a creature library; audition for naturalness. Preserve the complete vocal phrase; pauses are part of the performance."
+onset_frame = 720
+energy_peak_frame = 203400
+amplitude_peak_frame = 54476
+active_end_frame = 228000
+source_path = "Epic Stock Media - Humanoid Creatures Vol 4 - Monstrous and Undead Creature Vocalization Sound Sets/VOXReac_Construction Kit Male Flutter Death Vocal Stuttered Long 05_ESM_HC4.wav"
+source_sha256 = "609cb0672b154a41a97f6122858d64bbd922879b0ed1c3e475b22c2d34f13d14"
+source_start_frame = 0
+source_end_frame = 235680
+stream = ExtResource("a59")
+tags = PackedStringArray("voice", "death", "male", "creature")
+transient_frames = PackedInt32Array(4080, 10080, 15840, 24960, 30240, 36960, 46320, 53760, 70320, 98160, 107040, 113040, 120720, 132960, 144240, 156720, 170880, 180960, 186480, 200400, 212880, 223440)
+
+[sub_resource type="Resource" id="c60"]
+script = ExtResource("2")
+id = "footstep_grass_flipflop_01"
+family = "footstep_grass_flipflop"
+category = "footstep"
+sample_rate = 48000
+frame_count = 31920
+duration_seconds = 0.665
+source_gain_db = -4.888776
+notes = "Eight representative footfalls selected from a continuous walk. Flip-flops, not boots; provisional surface layers. Remaining recording intentionally omitted."
+onset_frame = 480
+energy_peak_frame = 22680
+amplitude_peak_frame = 22409
+active_end_frame = 31680
+source_path = "TheWorkRoom - Flip Flops/FFG002.wav"
+source_sha256 = "8df357efde5e4c1cca10cc2739b86a1b3ba15201c34b6a0551cd27ec33d0a9d3"
+source_start_frame = 960
+source_end_frame = 32880
+stream = ExtResource("a60")
+tags = PackedStringArray("footstep", "grass", "flipflop")
+transient_frames = PackedInt32Array(6480, 13200, 22320)
+
+[sub_resource type="Resource" id="c61"]
+script = ExtResource("2")
+id = "footstep_grass_flipflop_02"
+family = "footstep_grass_flipflop"
+category = "footstep"
+sample_rate = 48000
+frame_count = 35040
+duration_seconds = 0.73
+source_gain_db = -4.888776
+notes = "Eight representative footfalls selected from a continuous walk. Flip-flops, not boots; provisional surface layers. Remaining recording intentionally omitted."
+onset_frame = 0
+energy_peak_frame = 25560
+amplitude_peak_frame = 23109
+active_end_frame = 34800
+source_path = "TheWorkRoom - Flip Flops/FFG002.wav"
+source_sha256 = "8df357efde5e4c1cca10cc2739b86a1b3ba15201c34b6a0551cd27ec33d0a9d3"
+source_start_frame = 35760
+source_end_frame = 70800
+stream = ExtResource("a61")
+tags = PackedStringArray("footstep", "grass", "flipflop")
+transient_frames = PackedInt32Array(6960, 14640, 20400, 25440, 30960)
+
+[sub_resource type="Resource" id="c62"]
+script = ExtResource("2")
+id = "footstep_grass_flipflop_03"
+family = "footstep_grass_flipflop"
+category = "footstep"
+sample_rate = 48000
+frame_count = 34320
+duration_seconds = 0.715
+source_gain_db = -4.888776
+notes = "Eight representative footfalls selected from a continuous walk. Flip-flops, not boots; provisional surface layers. Remaining recording intentionally omitted."
+onset_frame = 0
+energy_peak_frame = 25560
+amplitude_peak_frame = 5726
+active_end_frame = 34080
+source_path = "TheWorkRoom - Flip Flops/FFG002.wav"
+source_sha256 = "8df357efde5e4c1cca10cc2739b86a1b3ba15201c34b6a0551cd27ec33d0a9d3"
+source_start_frame = 71280
+source_end_frame = 105600
+stream = ExtResource("a62")
+tags = PackedStringArray("footstep", "grass", "flipflop")
+transient_frames = PackedInt32Array(720, 5520, 12960, 20400, 25440, 32640)
+
+[sub_resource type="Resource" id="c63"]
+script = ExtResource("2")
+id = "footstep_grass_flipflop_04"
+family = "footstep_grass_flipflop"
+category = "footstep"
+sample_rate = 48000
+frame_count = 38400
+duration_seconds = 0.8
+source_gain_db = -4.888776
+notes = "Eight representative footfalls selected from a continuous walk. Flip-flops, not boots; provisional surface layers. Remaining recording intentionally omitted."
+onset_frame = 0
+energy_peak_frame = 23160
+amplitude_peak_frame = 23153
+active_end_frame = 38160
+source_path = "TheWorkRoom - Flip Flops/FFG002.wav"
+source_sha256 = "8df357efde5e4c1cca10cc2739b86a1b3ba15201c34b6a0551cd27ec33d0a9d3"
+source_start_frame = 108000
+source_end_frame = 146400
+stream = ExtResource("a63")
+tags = PackedStringArray("footstep", "grass", "flipflop")
+transient_frames = PackedInt32Array(2640, 9840, 14880, 23040, 28800, 33840)
+
+[sub_resource type="Resource" id="c64"]
+script = ExtResource("2")
+id = "footstep_grass_flipflop_05"
+family = "footstep_grass_flipflop"
+category = "footstep"
+sample_rate = 48000
+frame_count = 37440
+duration_seconds = 0.78
+source_gain_db = -4.888776
+notes = "Eight representative footfalls selected from a continuous walk. Flip-flops, not boots; provisional surface layers. Remaining recording intentionally omitted."
+onset_frame = 0
+energy_peak_frame = 26280
+amplitude_peak_frame = 12300
+active_end_frame = 37200
+source_path = "TheWorkRoom - Flip Flops/FFG002.wav"
+source_sha256 = "8df357efde5e4c1cca10cc2739b86a1b3ba15201c34b6a0551cd27ec33d0a9d3"
+source_start_frame = 147360
+source_end_frame = 184800
+stream = ExtResource("a64")
+tags = PackedStringArray("footstep", "grass", "flipflop")
+transient_frames = PackedInt32Array(5520, 13440, 19680, 26160, 35520)
+
+[sub_resource type="Resource" id="c65"]
+script = ExtResource("2")
+id = "footstep_grass_flipflop_06"
+family = "footstep_grass_flipflop"
+category = "footstep"
+sample_rate = 48000
+frame_count = 39600
+duration_seconds = 0.825
+source_gain_db = -4.888776
+notes = "Eight representative footfalls selected from a continuous walk. Flip-flops, not boots; provisional surface layers. Remaining recording intentionally omitted."
+onset_frame = 0
+energy_peak_frame = 6840
+amplitude_peak_frame = 22521
+active_end_frame = 39360
+source_path = "TheWorkRoom - Flip Flops/FFG002.wav"
+source_sha256 = "8df357efde5e4c1cca10cc2739b86a1b3ba15201c34b6a0551cd27ec33d0a9d3"
+source_start_frame = 186000
+source_end_frame = 225600
+stream = ExtResource("a65")
+tags = PackedStringArray("footstep", "grass", "flipflop")
+transient_frames = PackedInt32Array(4080, 10080, 14880, 19680, 25200, 35040)
+
+[sub_resource type="Resource" id="c66"]
+script = ExtResource("2")
+id = "footstep_grass_flipflop_07"
+family = "footstep_grass_flipflop"
+category = "footstep"
+sample_rate = 48000
+frame_count = 33600
+duration_seconds = 0.7
+source_gain_db = -4.888776
+notes = "Eight representative footfalls selected from a continuous walk. Flip-flops, not boots; provisional surface layers. Remaining recording intentionally omitted."
+onset_frame = 0
+energy_peak_frame = 5400
+amplitude_peak_frame = 5850
+active_end_frame = 33600
+source_path = "TheWorkRoom - Flip Flops/FFG002.wav"
+source_sha256 = "8df357efde5e4c1cca10cc2739b86a1b3ba15201c34b6a0551cd27ec33d0a9d3"
+source_start_frame = 225600
+source_end_frame = 259200
+stream = ExtResource("a66")
+tags = PackedStringArray("footstep", "grass", "flipflop")
+transient_frames = PackedInt32Array(4560, 11760, 16800, 22080, 28320)
+
+[sub_resource type="Resource" id="c67"]
+script = ExtResource("2")
+id = "footstep_grass_flipflop_08"
+family = "footstep_grass_flipflop"
+category = "footstep"
+sample_rate = 48000
+frame_count = 33600
+duration_seconds = 0.7
+source_gain_db = -4.888776
+notes = "Eight representative footfalls selected from a continuous walk. Flip-flops, not boots; provisional surface layers. Remaining recording intentionally omitted."
+onset_frame = 0
+energy_peak_frame = 16680
+amplitude_peak_frame = 16624
+active_end_frame = 33360
+source_path = "TheWorkRoom - Flip Flops/FFG002.wav"
+source_sha256 = "8df357efde5e4c1cca10cc2739b86a1b3ba15201c34b6a0551cd27ec33d0a9d3"
+source_start_frame = 259200
+source_end_frame = 292800
+stream = ExtResource("a67")
+tags = PackedStringArray("footstep", "grass", "flipflop")
+transient_frames = PackedInt32Array(4320, 11520, 18240, 27600)
+
+[sub_resource type="Resource" id="c68"]
+script = ExtResource("2")
+id = "footstep_wood_flipflop_01"
+family = "footstep_wood_flipflop"
+category = "footstep"
+sample_rate = 48000
+frame_count = 26400
+duration_seconds = 0.55
+source_gain_db = -5.623714
+notes = "Eight representative footfalls selected from a continuous walk. Flip-flops, not boots; provisional surface layers. Remaining recording intentionally omitted."
+onset_frame = 0
+energy_peak_frame = 12600
+amplitude_peak_frame = 12482
+active_end_frame = 26160
+source_path = "TheWorkRoom - Flip Flops/FFW003.wav"
+source_sha256 = "b41692ebd9d83e72502c84c376fb3773ea7bf3480103e416c5b2ce426c3b3d5d"
+source_start_frame = 55200
+source_end_frame = 81600
+stream = ExtResource("a68")
+tags = PackedStringArray("footstep", "wood", "flipflop")
+transient_frames = PackedInt32Array(4560, 12240, 17760)
+
+[sub_resource type="Resource" id="c69"]
+script = ExtResource("2")
+id = "footstep_wood_flipflop_02"
+family = "footstep_wood_flipflop"
+category = "footstep"
+sample_rate = 48000
+frame_count = 19200
+duration_seconds = 0.4
+source_gain_db = -5.623714
+notes = "Eight representative footfalls selected from a continuous walk. Flip-flops, not boots; provisional surface layers. Remaining recording intentionally omitted."
+onset_frame = 0
+energy_peak_frame = 12600
+amplitude_peak_frame = 12469
+active_end_frame = 19200
+source_path = "TheWorkRoom - Flip Flops/FFW003.wav"
+source_sha256 = "b41692ebd9d83e72502c84c376fb3773ea7bf3480103e416c5b2ce426c3b3d5d"
+source_start_frame = 81600
+source_end_frame = 100800
+stream = ExtResource("a69")
+tags = PackedStringArray("footstep", "wood", "flipflop")
+transient_frames = PackedInt32Array(2880, 12480)
+
+[sub_resource type="Resource" id="c70"]
+script = ExtResource("2")
+id = "footstep_wood_flipflop_03"
+family = "footstep_wood_flipflop"
+category = "footstep"
+sample_rate = 48000
+frame_count = 28800
+duration_seconds = 0.6
+source_gain_db = -5.623714
+notes = "Eight representative footfalls selected from a continuous walk. Flip-flops, not boots; provisional surface layers. Remaining recording intentionally omitted."
+onset_frame = 0
+energy_peak_frame = 17400
+amplitude_peak_frame = 17277
+active_end_frame = 28560
+source_path = "TheWorkRoom - Flip Flops/FFW003.wav"
+source_sha256 = "b41692ebd9d83e72502c84c376fb3773ea7bf3480103e416c5b2ce426c3b3d5d"
+source_start_frame = 100800
+source_end_frame = 129600
+stream = ExtResource("a70")
+tags = PackedStringArray("footstep", "wood", "flipflop")
+transient_frames = PackedInt32Array(1920, 7440, 17280)
+
+[sub_resource type="Resource" id="c71"]
+script = ExtResource("2")
+id = "footstep_wood_flipflop_04"
+family = "footstep_wood_flipflop"
+category = "footstep"
+sample_rate = 48000
+frame_count = 21600
+duration_seconds = 0.45
+source_gain_db = -5.623714
+notes = "Eight representative footfalls selected from a continuous walk. Flip-flops, not boots; provisional surface layers. Remaining recording intentionally omitted."
+onset_frame = 0
+energy_peak_frame = 13800
+amplitude_peak_frame = 13780
+active_end_frame = 21360
+source_path = "TheWorkRoom - Flip Flops/FFW003.wav"
+source_sha256 = "b41692ebd9d83e72502c84c376fb3773ea7bf3480103e416c5b2ce426c3b3d5d"
+source_start_frame = 129600
+source_end_frame = 151200
+stream = ExtResource("a71")
+tags = PackedStringArray("footstep", "wood", "flipflop")
+transient_frames = PackedInt32Array(5040, 13680)
+
+[sub_resource type="Resource" id="c72"]
+script = ExtResource("2")
+id = "footstep_wood_flipflop_05"
+family = "footstep_wood_flipflop"
+category = "footstep"
+sample_rate = 48000
+frame_count = 27360
+duration_seconds = 0.57
+source_gain_db = -5.623714
+notes = "Eight representative footfalls selected from a continuous walk. Flip-flops, not boots; provisional surface layers. Remaining recording intentionally omitted."
+onset_frame = 0
+energy_peak_frame = 15000
+amplitude_peak_frame = 14886
+active_end_frame = 26880
+source_path = "TheWorkRoom - Flip Flops/FFW003.wav"
+source_sha256 = "b41692ebd9d83e72502c84c376fb3773ea7bf3480103e416c5b2ce426c3b3d5d"
+source_start_frame = 154080
+source_end_frame = 181440
+stream = ExtResource("a72")
+tags = PackedStringArray("footstep", "wood", "flipflop")
+transient_frames = PackedInt32Array(720, 7200, 14880)
+
+[sub_resource type="Resource" id="c73"]
+script = ExtResource("2")
+id = "footstep_wood_flipflop_06"
+family = "footstep_wood_flipflop"
+category = "footstep"
+sample_rate = 48000
+frame_count = 21840
+duration_seconds = 0.455
+source_gain_db = -5.623714
+notes = "Eight representative footfalls selected from a continuous walk. Flip-flops, not boots; provisional surface layers. Remaining recording intentionally omitted."
+onset_frame = 0
+energy_peak_frame = 4440
+amplitude_peak_frame = 4330
+active_end_frame = 21840
+source_path = "TheWorkRoom - Flip Flops/FFW003.wav"
+source_sha256 = "b41692ebd9d83e72502c84c376fb3773ea7bf3480103e416c5b2ce426c3b3d5d"
+source_start_frame = 182160
+source_end_frame = 204000
+stream = ExtResource("a73")
+tags = PackedStringArray("footstep", "wood", "flipflop")
+transient_frames = PackedInt32Array(2400, 13440, 18480)
+
+[sub_resource type="Resource" id="c74"]
+script = ExtResource("2")
+id = "footstep_wood_flipflop_07"
+family = "footstep_wood_flipflop"
+category = "footstep"
+sample_rate = 48000
+frame_count = 23040
+duration_seconds = 0.48
+source_gain_db = -5.623714
+notes = "Eight representative footfalls selected from a continuous walk. Flip-flops, not boots; provisional surface layers. Remaining recording intentionally omitted."
+onset_frame = 0
+energy_peak_frame = 9720
+amplitude_peak_frame = 15121
+active_end_frame = 23040
+source_path = "TheWorkRoom - Flip Flops/FFW003.wav"
+source_sha256 = "b41692ebd9d83e72502c84c376fb3773ea7bf3480103e416c5b2ce426c3b3d5d"
+source_start_frame = 204000
+source_end_frame = 227040
+stream = ExtResource("a74")
+tags = PackedStringArray("footstep", "wood", "flipflop")
+transient_frames = PackedInt32Array(6240, 13440)
+
+[sub_resource type="Resource" id="c75"]
+script = ExtResource("2")
+id = "footstep_wood_flipflop_08"
+family = "footstep_wood_flipflop"
+category = "footstep"
+sample_rate = 48000
+frame_count = 27840
+duration_seconds = 0.58
+source_gain_db = -5.623714
+notes = "Eight representative footfalls selected from a continuous walk. Flip-flops, not boots; provisional surface layers. Remaining recording intentionally omitted."
+onset_frame = 0
+energy_peak_frame = 12120
+amplitude_peak_frame = 12099
+active_end_frame = 27600
+source_path = "TheWorkRoom - Flip Flops/FFW003.wav"
+source_sha256 = "b41692ebd9d83e72502c84c376fb3773ea7bf3480103e416c5b2ce426c3b3d5d"
+source_start_frame = 259200
+source_end_frame = 287040
+stream = ExtResource("a75")
+tags = PackedStringArray("footstep", "wood", "flipflop")
+transient_frames = PackedInt32Array(3600, 12000)
+
+[sub_resource type="Resource" id="c76"]
+script = ExtResource("2")
+id = "panting_male_01"
+family = "panting_male"
+category = "voice"
+sample_rate = 48000
+frame_count = 429360
+duration_seconds = 8.945
+source_gain_db = 0.0
+notes = "Candidate for exhausted character breathing. Preserve the complete vocal phrase; pauses are part of the performance."
+onset_frame = 0
+energy_peak_frame = 191400
+amplitude_peak_frame = 332067
+active_end_frame = 423600
+source_path = "SoundBits - Vox Hominis - Human Effort Voices/HMNBrth_Panting Male 02 04_SNDBTS_VH.wav"
+source_sha256 = "b85b6871d76567d93004ff3ff7274564ff8f0b81928f99a92ec62790bceed487"
+source_start_frame = 0
+source_end_frame = 429360
+stream = ExtResource("a76")
+tags = PackedStringArray("voice", "panting", "male")
+transient_frames = PackedInt32Array(480, 58320, 84240, 120480, 151200, 191280, 290880, 327360, 360480, 397920)
+
+[sub_resource type="Resource" id="c77"]
+script = ExtResource("2")
+id = "cloth_24_01"
+family = "cloth_24"
+category = "foley"
+sample_rate = 48000
+frame_count = 105840
+duration_seconds = 2.205
+source_gain_db = -2.728588
+notes = "Movement layer; T-shirt fabric, not armor."
+onset_frame = 1680
+energy_peak_frame = 37320
+amplitude_peak_frame = 33191
+active_end_frame = 98640
+source_path = "InMotionAudio - Foley T-Shirt/FOLYClth_ClothMovement24_InMotionAudio_FoleyT-Shirt.wav"
+source_sha256 = "6f25057d539906f4f589ea8c9d98081bc6896737d2a5c9486d8c9cce587f7f96"
+source_start_frame = 0
+source_end_frame = 105840
+stream = ExtResource("a77")
+tags = PackedStringArray("foley", "cloth", "24")
+transient_frames = PackedInt32Array(19920, 27600, 37200, 49920, 67920, 83280)
+
+[sub_resource type="Resource" id="c78"]
+script = ExtResource("2")
+id = "cloth_29_01"
+family = "cloth_29"
+category = "foley"
+sample_rate = 48000
+frame_count = 70320
+duration_seconds = 1.465
+source_gain_db = 0.0
+notes = "Alternative movement layer; T-shirt fabric."
+onset_frame = 480
+energy_peak_frame = 52440
+amplitude_peak_frame = 52029
+active_end_frame = 64080
+source_path = "InMotionAudio - Foley T-Shirt/FOLYClth_ClothMovement29_InMotionAudio_FoleyT-Shirt.wav"
+source_sha256 = "1846b563bf07a534a580dab0848d6c6d59b8f3d697bac328ad7d04e9dc6cdb30"
+source_start_frame = 0
+source_end_frame = 70320
+stream = ExtResource("a78")
+tags = PackedStringArray("foley", "cloth", "29")
+transient_frames = PackedInt32Array()
+
+[sub_resource type="Resource" id="c79"]
+script = ExtResource("2")
+id = "meadow_01"
+family = "meadow"
+category = "ambience"
+sample_rate = 48000
+frame_count = 4151808
+duration_seconds = 86.496
+source_gain_db = 0.0
+notes = "First outdoor ambience candidate for an open grassy area."
+onset_frame = 0
+energy_peak_frame = 3397560
+amplitude_peak_frame = 3184266
+active_end_frame = 4151760
+source_path = "Just Sound Effects - Highlands of Norway/AMBSwmp_Meadow Pipits calling many Insects humming Wind blowing through Grass_JSE_HoN_Stereo.wav"
+source_sha256 = "b47ac8ae869b52760bfd41e195e37a319c822ad04a734aec0c869bc4a5eee280"
+source_start_frame = 0
+source_end_frame = 4151808
+stream = ExtResource("a79")
+tags = PackedStringArray("ambience", "meadow")
+transient_frames = PackedInt32Array(1920, 11520, 32400, 39360, 50160, 80880, 91680, 100080, 126960, 131760, 138720, 149760, 168720, 180480, 220320, 228480, 239280, 250320, 255120, 268560, 282480, 288480, 311520, 324480, 355920, 361200, 376320, 387600, 447600, 461280, 471360, 481200, 487440, 525840, 536400, 549600, 565440, 573360, 598800, 608880, 616320, 626880, 645840, 672720, 692640, 709920, 751200, 768960, 777120, 810720, 822480, 857040, 901680, 918480, 928080, 967920, 979440, 987600, 994800, 1002240, 1008480, 1020240, 1026720, 1036320, 1049040, 1089120, 1100640, 1105920, 1112640, 1121280, 1130880, 1148880, 1155120, 1165680, 1189200, 1207200, 1213680, 1222320, 1233840, 1238640, 1250160, 1258800, 1273440, 1288320, 1293840, 1307760, 1321920, 1410000, 1437360, 1452960, 1464000, 1473120, 1485840, 1513920, 1599600, 1606080, 1617840, 1630080, 1635120, 1657920, 1679520, 1687200, 1712160, 1742640, 1803600, 1833840, 1848480, 1869120, 1897200, 1905360, 1911360, 1940880, 1953120, 1961520, 1977120, 1986480, 1992480, 2003040, 2015520, 2028000, 2034000, 2041680, 2050320, 2057040, 2065200, 2088480, 2096880, 2114400, 2127600, 2132400, 2148720, 2158800, 2169360, 2188320, 2199840, 2213040, 2228160, 2248320, 2256000, 2270640, 2282160, 2290560, 2303280, 2332080, 2372160, 2378640, 2383680, 2395200, 2416320, 2429520, 2434800, 2447520, 2453040, 2463360, 2484000, 2491440, 2499360, 2526240, 2532240, 2541840, 2548560, 2568000, 2596560, 2601600, 2629200, 2641680, 2664960, 2696640, 2708880, 2713680, 2720880, 2785920, 2803680, 2825520, 2839680, 2849760, 2855760, 2888880, 2917200, 2934480, 2956560, 2977680, 2989200, 3077280, 3086640, 3104880, 3120480, 3128400, 3138240, 3151920, 3164640, 3173520, 3184080, 3197520, 3222000, 3230640, 3269760, 3288960, 3300240, 3319680, 3336000, 3358080, 3372000, 3380640, 3389760, 3410160, 3426000, 3432480, 3443280, 3470880, 3484560, 3499920, 3513840, 3524160, 3565680, 3575280, 3598800, 3610080, 3615360, 3656160, 3673440, 3693840, 3706320, 3720720, 3728880, 3757920, 3774480, 3789600, 3796560, 3803520, 3808320, 3820800, 3831600, 3837360, 3846960, 3858720, 3893280, 3921360, 3937200, 3943200, 3957120, 3979440, 3998400, 4035600, 4043040, 4048560, 4071600, 4102560, 4116720, 4125600)
+
+[sub_resource type="Resource" id="c80"]
+script = ExtResource("2")
+id = "forest_01"
+family = "forest"
+category = "ambience"
+sample_rate = 48000
+frame_count = 2510508
+duration_seconds = 52.30225
+source_gain_db = 0.0
+notes = "Forest ambience candidate; audition for unwanted background activity."
+onset_frame = 1920
+energy_peak_frame = 2153880
+amplitude_peak_frame = 1376831
+active_end_frame = 2499600
+source_path = "344 Audio - East Coast America Vol. 1/AMBSubn_Ambience, Forest Crickets, Birds, Connecticut 02_344 Audio_East Coast America.wav"
+source_sha256 = "d227b21d2df0f329acd490ad1c4ecaddfef4e19f295880a40116a60112da147f"
+source_start_frame = 0
+source_end_frame = 2510508
+stream = ExtResource("a80")
+tags = PackedStringArray("ambience", "forest")
+transient_frames = PackedInt32Array(2160, 67200, 90960, 100320, 113040, 120720, 137520, 174000, 180480, 190320, 206880, 216000, 243600, 257760, 264960, 300480, 331200, 358320, 364560, 370320, 377520, 383280, 398160, 411600, 518400, 544320, 565680, 583200, 609600, 637920, 660480, 665280, 682800, 690240, 708000, 717360, 728160, 735120, 746640, 820080, 827520, 837120, 855360, 891360, 903120, 909120, 917520, 962640, 990960, 1038240, 1064400, 1156560, 1163520, 1169280, 1222560, 1230960, 1241520, 1304160, 1311120, 1339200, 1376160, 1461600, 1512000, 1525200, 1585200, 1606560, 1694640, 1784880, 1869600, 1880640, 1961760, 1969920, 1983360, 2027760, 2033760, 2048400, 2153760, 2207760, 2320560, 2402880, 2467920)
+
+[sub_resource type="Resource" id="c81"]
+script = ExtResource("2")
+id = "church_bells_01"
+family = "church_bells"
+category = "ambience"
+sample_rate = 48000
+frame_count = 4347845
+duration_seconds = 90.58010416666667
+source_gain_db = 0.0
+notes = "Candidate for distant village bells."
+onset_frame = 480
+energy_peak_frame = 2966760
+amplitude_peak_frame = 600496
+active_end_frame = 4320960
+source_path = "Ivo Vicic - Church Bells/25 Church Bells, Far Distance, Rural Soundscape Distant, Hills Ridge, Spring 02.wav"
+source_sha256 = "49af5cedf7e5dea91efb4084f8d25cb01bbf4581bc1923e31bf5dc249a381b0f"
+source_start_frame = 0
+source_end_frame = 4347845
+stream = ExtResource("a81")
+tags = PackedStringArray("ambience", "church", "bells")
+transient_frames = PackedInt32Array(2160, 26400, 210240, 372720, 390000, 567360, 572160, 599280, 691680, 739920, 791520, 931440, 1072080, 1104960, 1200000, 1292160, 1337280, 1398480, 1406160, 1428000, 1441440, 1610880, 1738320, 1750080, 1775760, 1826880, 1845120, 2089680, 2129280, 2173680, 2232480, 2243280, 2248560, 2272800, 2278800, 2301840, 2313120, 2344560, 2349600, 2456880, 2512320, 2553600, 2584800, 2751600, 2757840, 2808240, 2903280, 2909280, 2937840, 2998320, 3012480, 3018480, 3051360, 3090000, 3110400, 3154320, 3189120, 3225840, 3268320, 3292320, 3299040, 3324000, 3335760, 3378480, 3401040, 3409920, 3429840, 3440400, 3471840, 3504240, 3511440, 3519600, 3647040, 3653520, 3669840, 3679440, 3695280, 3717840, 3738960, 3750000, 3762720, 3777360, 3810480, 3824400, 3837840, 3850560, 3864480, 3893280, 3901920, 3907440, 3922080, 3929520, 3936960, 4005840, 4012800, 4020720, 4050720, 4055520, 4067040, 4105680, 4114080, 4124400, 4129200, 4141440, 4155600, 4161840, 4168080, 4173120, 4195680, 4206720, 4230480, 4242960, 4266480, 4278720, 4308480)
+
+[sub_resource type="Resource" id="c82"]
+script = ExtResource("2")
+id = "campfire_branches_01"
+family = "campfire_branches"
+category = "ambience"
+sample_rate = 48000
+frame_count = 5787645
+duration_seconds = 120.5759375
+source_gain_db = 0.0
+notes = "Fire with branches added; includes discrete activity, not just steady fire."
+onset_frame = 13200
+energy_peak_frame = 2044200
+amplitude_peak_frame = 886793
+active_end_frame = 5746800
+source_path = "Ivo Vicic - Campfire - Bonfire FX/24 Campfire, Dropping Fresh Pine Branches in Fire, Crackling, Sizzling Strong, Close 02.wav"
+source_sha256 = "291f6ca6fd5f00a57d445dabedaa766f7ca6b4738bb68d6063bcbd90c6071f5d"
+source_start_frame = 0
+source_end_frame = 5787645
+stream = ExtResource("a82")
+tags = PackedStringArray("ambience", "campfire", "branches")
+transient_frames = PackedInt32Array(23760, 32640, 55440, 61680, 71040, 76560, 87600, 107280, 116880, 122400, 132720, 143280, 171840, 177360, 192000, 197760, 215520, 236640, 250560, 275760, 281760, 289440, 296400, 307680, 315360, 320400, 329520, 334560, 340560, 345600, 350400, 368400, 373440, 378240, 388560, 394320, 400560, 411120, 418800, 424080, 429360, 434880, 446880, 451680, 458880, 464160, 472800, 481440, 490320, 497040, 504000, 514800, 525360, 531840, 539280, 548880, 554400, 562080, 570000, 575280, 582240, 588480, 594240, 602160, 606960, 612960, 619920, 628800, 634320, 641520, 656160, 669840, 675360, 682800, 690720, 697440, 705120, 710160, 715920, 721200, 726720, 736560, 741840, 749040, 754320, 761280, 768000, 777840, 790800, 799680, 807120, 813360, 818880, 826800, 834720, 842400, 847440, 853440, 859680, 872400, 877920, 886560, 894240, 905040, 915600, 921840, 927120, 932160, 939360, 944400, 953280, 961680, 967680, 972960, 979680, 987120, 996480, 1008480, 1014720, 1020960, 1025760, 1035600, 1043040, 1048800, 1062960, 1071840, 1082640, 1092240, 1103280, 1113600, 1121760, 1127280, 1136160, 1145520, 1151760, 1160160, 1166640, 1172880, 1177680, 1185360, 1192800, 1198080, 1206480, 1217520, 1228320, 1233120, 1237920, 1242720, 1253520, 1261200, 1267200, 1273440, 1281600, 1294560, 1301280, 1307280, 1314000, 1319280, 1325280, 1330320, 1338480, 1346160, 1353600, 1361760, 1373520, 1381680, 1396800, 1402800, 1410960, 1416480, 1421520, 1428000, 1440240, 1454400, 1459440, 1470960, 1476480, 1483200, 1491840, 1496640, 1505040, 1512000, 1520640, 1528800, 1534080, 1539120, 1545120, 1551120, 1556400, 1566960, 1572480, 1577760, 1583760, 1592160, 1600800, 1606080, 1617120, 1621920, 1628880, 1637280, 1643040, 1650720, 1660080, 1670160, 1674960, 1687200, 1692720, 1698240, 1705200, 1710240, 1715760, 1729680, 1735680, 1744800, 1750800, 1758000, 1771200, 1779360, 1784880, 1791600, 1799520, 1810320, 1815360, 1825200, 1831200, 1849680, 1858080, 1868160, 1876560, 1881840, 1893120, 1902000, 1907280, 1915680, 1923600, 1930560, 1935360, 1944240, 1952640, 1961760, 1967760, 1974480, 1980720, 1987200, 1993440, 2000880, 2010240, 2019360, 2026560, 2031360, 2037840, 2044080, 2053200, 2058720, 2063520, 2070000, 2076960, 2083680, 2088480, 2096400, 2106000, 2113440, 2118960, 2126160, 2132640, 2138880, 2144640, 2149440, 2154480, 2161680, 2168640, 2176320, 2184240, 2190240, 2199120, 2208000, 2214960, 2221440, 2230320, 2240640, 2245680, 2255280, 2263200, 2271600, 2282640, 2287440, 2292240, 2302320, 2308320, 2313600, 2320800, 2325840, 2332560, 2338560, 2347680, 2355600, 2363760, 2372640, 2377440, 2385360, 2395680, 2405040, 2410320, 2415600, 2422080, 2427360, 2434560, 2440800, 2445840, 2457120, 2463120, 2472240, 2477280, 2482560, 2490480, 2495760, 2500560, 2507760, 2514720, 2525520, 2534880, 2541600, 2546640, 2556960, 2566320, 2572800, 2578800, 2583600, 2591520, 2603280, 2610960, 2616000, 2624160, 2629680, 2638320, 2645040, 2651280, 2657520, 2663040, 2671200, 2677200, 2682000, 2695440, 2702400, 2708880, 2720160, 2725680, 2738640, 2746800, 2752800, 2761920, 2771760, 2776560, 2781360, 2786400, 2793120, 2804880, 2814000, 2821200, 2829120, 2835360, 2844240, 2850240, 2855040, 2863200, 2868240, 2876400, 2885280, 2891520, 2896320, 2904000, 2908800, 2913840, 2923200, 2931600, 2939520, 2951520, 2957040, 2963280, 2968080, 2979120, 2985840, 2995440, 3000720, 3005760, 3012960, 3018960, 3024480, 3029520, 3036000, 3042240, 3049440, 3058080, 3063840, 3071280, 3078240, 3088320, 3097680, 3107040, 3113280, 3126960, 3136080, 3140880, 3149760, 3156000, 3161520, 3168240, 3174000, 3181680, 3188160, 3197280, 3206640, 3215280, 3220800, 3228000, 3233520, 3240000, 3248160, 3256560, 3265920, 3272400, 3277920, 3288000, 3295440, 3300480, 3306480, 3312240, 3318240, 3328080, 3340320, 3345840, 3351360, 3359040, 3368160, 3377520, 3382320, 3389280, 3396960, 3405360, 3411360, 3418560, 3428160, 3437040, 3447120, 3455040, 3461040, 3467520, 3474000, 3481440, 3489360, 3497760, 3504240, 3512880, 3517680, 3523680, 3528480, 3536160, 3545760, 3552240, 3559920, 3565200, 3573600, 3580320, 3586800, 3592320, 3598560, 3608640, 3615120, 3621360, 3628320, 3639600, 3645360, 3651120, 3658080, 3664320, 3674160, 3679200, 3691680, 3697920, 3704880, 3713040, 3719280, 3724080, 3736080, 3740880, 3749280, 3754320, 3759360, 3764880, 3770160, 3776880, 3782880, 3788880, 3797520, 3806160, 3812160, 3823200, 3829200, 3834960, 3843840, 3849600, 3856320, 3862800, 3868560, 3874560, 3882000, 3886800, 3896640, 3903600, 3912960, 3919680, 3929040, 3936000, 3948480, 3957840, 3963600, 3969120, 3973920, 3981360, 3991920, 4000800, 4005840, 4018560, 4023360, 4032000, 4040400, 4047600, 4052880, 4059360, 4068720, 4077840, 4084800, 4089840, 4097520, 4105200, 4112880, 4121760, 4130640, 4137840, 4148880, 4157760, 4162800, 4169520, 4176000, 4182720, 4188480, 4201920, 4207920, 4213440, 4220400, 4225920, 4235280, 4242720, 4251120, 4260720, 4265520, 4273440, 4282080, 4289040, 4293840, 4299600, 4310160, 4318080, 4326000, 4332000, 4340400, 4350000, 4358400, 4364400, 4369200, 4375680, 4386480, 4393200, 4400640, 4405680, 4413120, 4422000, 4428240, 4433520, 4438800, 4445760, 4451280, 4459680, 4464960, 4470240, 4479600, 4488960, 4495200, 4500480, 4505280, 4512960, 4532880, 4539600, 4544640, 4551840, 4569120, 4575840, 4586160, 4593840, 4607760, 4614960, 4624800, 4631040, 4638480, 4645680, 4654560, 4665600, 4670880, 4679280, 4689120, 4693920, 4698720, 4703760, 4710720, 4725360, 4739040, 4743840, 4752000, 4761120, 4766400, 4773600, 4782240, 4789920, 4804800, 4812000, 4822320, 4833360, 4842480, 4858320, 4896480, 4908720, 4930080, 4935840, 4941120, 4948320, 4953600, 4960320, 4970640, 4977840, 4997520, 5005200, 5015040, 5026080, 5033520, 5039040, 5047680, 5053920, 5060640, 5070240, 5082240, 5087760, 5096880, 5106000, 5112240, 5128800, 5142480, 5155440, 5176320, 5199840, 5205360, 5217360, 5228160, 5239680, 5252160, 5258160, 5266320, 5273760, 5280960, 5288400, 5306640, 5329680, 5335680, 5342880, 5350800, 5362080, 5421360, 5437200, 5448720, 5455920, 5462640, 5478480, 5490480, 5495760, 5510160, 5516160, 5525760, 5554320, 5562240, 5567520, 5612160, 5648640)
+
+[sub_resource type="Resource" id="c83"]
+script = ExtResource("2")
+id = "fire_synth_01"
+family = "fire_synth"
+category = "ambience"
+sample_rate = 48000
+frame_count = 592814
+duration_seconds = 12.350291666666667
+source_gain_db = 0.0
+notes = "Designed/synthesized fire loop candidate."
+onset_frame = 0
+energy_peak_frame = 201240
+amplitude_peak_frame = 520362
+active_end_frame = 592800
+source_path = "Epic Stock Media - Synthesized Nature Loops and Sounds/FIREBurn_Loop Elements Fire Crackling Crunchy Flame Burn 03_ESM_SNLS.wav"
+source_sha256 = "a3eeb0718c55fc276b0785c1b23da242ed329d4f764c6540719f471c20ef5763"
+source_start_frame = 0
+source_end_frame = 592814
+stream = ExtResource("a83")
+tags = PackedStringArray("ambience", "fire", "synth")
+transient_frames = PackedInt32Array(480, 10800, 20160, 28560, 35040, 44400, 50880, 59280, 69120, 79200, 85200, 95280, 102480, 107520, 113520, 118320, 123840, 130320, 136560, 142560, 148800, 155280, 162720, 167520, 174000, 180480, 186240, 191520, 201120, 210480, 218880, 226560, 234960, 241680, 251280, 256080, 261120, 268560, 273840, 283200, 289440, 295200, 300480, 305760, 312240, 320400, 330480, 335280, 342720, 347520, 353040, 360480, 370560, 377280, 382800, 392160, 396960, 402240, 409680, 417600, 424800, 429600, 434640, 441360, 449520, 454800, 463920, 470880, 477120, 483840, 490080, 495360, 502080, 510000, 519600, 524880, 531120, 538080, 545520, 550320, 555600, 563760, 570720, 575520, 582960, 589920)
+
+[sub_resource type="Resource" id="c84"]
+script = ExtResource("2")
+id = "lake_water_01"
+family = "lake_water"
+category = "ambience"
+sample_rate = 48000
+frame_count = 4942848
+duration_seconds = 102.976
+source_gain_db = -1.955261
+notes = "Gentle water ambience candidate."
+onset_frame = 1920
+energy_peak_frame = 1395480
+amplitude_peak_frame = 1395417
+active_end_frame = 4936560
+source_path = "Epic Stock Media - Public Spaces - Storms Lakes Parks and Rural Nature Exteriors/WATRLap_Summer Tennessee Lake Dock Water Ripples Wake Wave Gentle 05 Distant_ESM_CPS.wav"
+source_sha256 = "b9b8e2401a6a66825d97abefff1d89321eba67799a549db66ca4fef14d9749de"
+source_start_frame = 0
+source_end_frame = 4942848
+stream = ExtResource("a84")
+tags = PackedStringArray("ambience", "lake", "water")
+transient_frames = PackedInt32Array(78000, 89280, 153120, 190560, 205920, 214800, 265200, 282720, 333360, 346560, 357600, 365520, 379200, 390240, 395280, 481200, 501600, 520560, 531840, 560880, 569520, 594480, 641760, 669360, 678960, 732480, 744000, 769920, 816480, 822000, 919440, 928320, 937920, 942960, 963120, 968880, 979680, 1018320, 1028160, 1034400, 1044960, 1120320, 1136640, 1157760, 1165920, 1195440, 1206720, 1214640, 1220640, 1230480, 1256640, 1264560, 1274640, 1280400, 1286400, 1294320, 1308960, 1314720, 1342800, 1365120, 1374240, 1381200, 1433760, 1444080, 1472400, 1508880, 1514880, 1534320, 1541040, 1571520, 1595520, 1645680, 1654800, 1662480, 1680960, 1687920, 1760400, 1770240, 1786080, 1800000, 1810800, 1816320, 1823760, 1835280, 1854960, 1882080, 1888320, 1908000, 1931280, 1949520, 1961760, 1971120, 1979040, 1986240, 1999920, 2008560, 2044080, 2052480, 2072160, 2084400, 2096640, 2112720, 2125440, 2139840, 2182800, 2192640, 2230560, 2237520, 2262480, 2280240, 2344080, 2379120, 2389680, 2404080, 2417520, 2425680, 2430720, 2436240, 2468160, 2478960, 2516640, 2525760, 2531520, 2545680, 2556960, 2582160, 2601360, 2606640, 2623200, 2639280, 2696640, 2727840, 2736240, 2797680, 2821200, 2849760, 2854800, 2879520, 2913840, 2978640, 3004320, 3033120, 3063120, 3114480, 3123360, 3137280, 3151200, 3159840, 3181680, 3187440, 3222000, 3240240, 3249360, 3282720, 3294240, 3370080, 3392400, 3399120, 3420000, 3425520, 3437040, 3443760, 3449040, 3486960, 3517200, 3543840, 3558240, 3565680, 3600480, 3609840, 3621360, 3657120, 3663360, 3669600, 3678480, 3696240, 3717360, 3740160, 3749760, 3763680, 3773280, 3783120, 3813120, 3820560, 3831600, 3848160, 3863760, 3876720, 3911280, 3919680, 3953280, 3968640, 3983280, 3992640, 4051200, 4116000, 4124640, 4177440, 4182960, 4197360, 4228080, 4239840, 4258800, 4288320, 4312080, 4322640, 4331040, 4351440, 4368720, 4387920, 4397520, 4417440, 4430640, 4451040, 4458720, 4489200, 4499280, 4506480, 4524960, 4562640, 4573680, 4579920, 4594560, 4603920, 4610160, 4630800, 4658880, 4665840, 4676160, 4689600, 4701600, 4714560, 4727040, 4739280, 4750560, 4758960, 4782240, 4791600, 4815600, 4887600, 4892400, 4902720, 4916400)
+
+[sub_resource type="Resource" id="c85"]
+script = ExtResource("2")
+id = "coastal_waves_01"
+family = "coastal_waves"
+category = "ambience"
+sample_rate = 48000
+frame_count = 11682024
+duration_seconds = 243.3755
+source_gain_db = 0.0
+notes = "Candidate for coastal background ambience."
+onset_frame = 0
+energy_peak_frame = 485160
+amplitude_peak_frame = 834783
+active_end_frame = 11682000
+source_path = "Just Sound Effects - Rocky Coast of Norway/WATRWave_Soft Waves Cliffs_JSE_RCoN_Stereo.wav"
+source_sha256 = "a02f2786fc4ca34cdd4ebb130c0860f6650fff036bf5d55cbb185cdad9de32b8"
+source_start_frame = 0
+source_end_frame = 11682024
+stream = ExtResource("a85")
+tags = PackedStringArray("ambience", "coastal", "waves")
+transient_frames = PackedInt32Array(4320, 24240, 29760, 40080, 45840, 53040, 60960, 67200, 75840, 80880, 85920, 92400, 104400, 116640, 122160, 129120, 146640, 159120, 179520, 189840, 210720, 271440, 304560, 356400, 365040, 431040, 437040, 446640, 451680, 460080, 472800, 478080, 501360, 512640, 520560, 541440, 551520, 579120, 590880, 619680, 625920, 633360, 723840, 729600, 751200, 774000, 779280, 793440, 803040, 823200, 831840, 840480, 856080, 871680, 882240, 892800, 904080, 911280, 916800, 935520, 943440, 960240, 970080, 1041600, 1053120, 1060080, 1080480, 1093440, 1113840, 1124640, 1138800, 1167120, 1176000, 1214640, 1221840, 1227600, 1255440, 1291920, 1297200, 1325280, 1339200, 1375920, 1399920, 1463280, 1477200, 1498080, 1511040, 1516320, 1527600, 1533840, 1563600, 1579200, 1587840, 1606320, 1649040, 1657440, 1669200, 1677840, 1689840, 1697040, 1711440, 1717920, 1742160, 1753680, 1799520, 1824240, 1859760, 1867200, 1882560, 1896960, 1911360, 1916160, 1933200, 1985280, 2025600, 2112480, 2142480, 2222160, 2269920, 2311680, 2322240, 2352000, 2385360, 2412240, 2430480, 2455920, 2513760, 2560800, 2681040, 2697840, 2742960, 2751840, 2757840, 2765040, 2779920, 2787360, 2792400, 2798640, 2845440, 2851440, 2868960, 2890080, 2898240, 3076800, 3084720, 3092160, 3098640, 3106560, 3115200, 3125760, 3135600, 3143280, 3148320, 3166080, 3252000, 3336000, 3364080, 3370080, 3398880, 3408000, 3415440, 3433920, 3456000, 3487200, 3492240, 3645600, 3662160, 3673920, 3814080, 3866640, 3899040, 3946800, 3967680, 4082640, 4108800, 4204800, 4264080, 4321440, 4392000, 4535520, 4551360, 4563600, 4589520, 4599840, 4621200, 4668240, 4682400, 4689120, 4703040, 4803120, 4949040, 4963920, 4976640, 4983840, 4990560, 5001120, 5015520, 5022240, 5057520, 5095440, 5108880, 5165520, 5183280, 5197920, 5366880, 5407440, 5417280, 5426880, 5465280, 5472000, 5494080, 5527920, 5552880, 5636160, 5744400, 5751120, 5783280, 5831280, 5842080, 5856000, 5929200, 5954160, 5962800, 5996880, 6011280, 6033360, 6047280, 6054960, 6108720, 6179280, 6196560, 6203760, 6317040, 6323760, 6344160, 6361920, 6461280, 6485760, 6511440, 6523440, 6531600, 6557280, 6572400, 6584400, 6595200, 6606240, 6626160, 6645120, 6747120, 6767280, 6779040, 6791040, 6804240, 6812640, 6844560, 6862320, 6875520, 6885600, 6904800, 6912000, 6920400, 6941040, 6946800, 6963600, 6995280, 7056240, 7112640, 7194720, 7239600, 7305360, 7414800, 7424400, 7446240, 7452480, 7458720, 7484640, 7511280, 7522320, 7536240, 7543440, 7549440, 7576080, 7596960, 7657200, 7670880, 7678560, 7688160, 7719600, 7758480, 7782720, 7811760, 7824720, 7835280, 7868640, 7878720, 7894560, 7950240, 7965360, 8034000, 8044320, 8053200, 8063280, 8068560, 8094240, 8099520, 8128320, 8235120, 8285040, 8303520, 8321280, 8377200, 8423760, 8453760, 8569200, 8584080, 8595120, 8611920, 8617920, 8628960, 8642400, 8770560, 8775600, 8786880, 8793360, 8807040, 8816640, 8828880, 8840160, 8847120, 8863440, 8880240, 8895600, 8996880, 9134160, 9227520, 9240000, 9249600, 9254400, 9287760, 9326160, 9491040, 9497040, 9513600, 9541920, 9577680, 9674880, 9774000, 9782880, 9800880, 9815280, 9845280, 9876720, 9899040, 9915600, 9931200, 9939360, 9952560, 9985680, 9992640, 10020720, 10118640, 10126080, 10145520, 10150800, 10159200, 10175760, 10191120, 10210080, 10225680, 10230720, 10268640, 10288800, 10319280, 10426560, 10439520, 10458480, 10482000, 10490880, 10500960, 10509360, 10544880, 10554240, 10559040, 10568880, 10576800, 10588800, 10602240, 10618800, 10630320, 10662480, 10669680, 10676880, 10689600, 10702560, 10710480, 10715760, 10721040, 10742160, 10757520, 10782960, 10793760, 10811520, 10854240, 10915920, 10942080, 10947360, 10968720, 11030880, 11047920, 11066400, 11080800, 11096160, 11119920, 11215920, 11284080, 11312400, 11319360, 11334720, 11340720, 11352480, 11365440, 11376240, 11388480, 11404800, 11422080, 11429280, 11434320, 11442480, 11460000, 11493120, 11540880, 11617440, 11628240, 11652240)
+
+[sub_resource type="Resource" id="c86"]
+script = ExtResource("2")
+id = "storm_11_01"
+family = "storm_11"
+category = "ambience"
+sample_rate = 48000
+frame_count = 9858240
+duration_seconds = 205.38
+source_gain_db = 0.0
+notes = "Outdoor storm/wind/rain candidate; check for modern background sounds."
+onset_frame = 240
+energy_peak_frame = 6551640
+amplitude_peak_frame = 5851711
+active_end_frame = 9858240
+source_path = "InMotionAudio - Back Garden Storm/STORM_StormAmbience11_InMotionAudio_BackGardenStorm.wav"
+source_sha256 = "26c42bf9ef86e5b5360b1773b66cc4cff2736a34c67e1f8f9744238c18623227"
+source_start_frame = 0
+source_end_frame = 9858240
+stream = ExtResource("a86")
+tags = PackedStringArray("ambience", "storm", "11")
+transient_frames = PackedInt32Array(480, 26880, 120480, 127200, 135360, 140880, 150480, 172560, 234240, 241440, 267600, 275520, 288480, 301920, 312960, 324480, 339600, 355440, 368880, 395280, 402480, 410880, 426000, 438480, 444000, 454320, 473760, 482880, 494880, 509760, 516480, 522240, 538320, 545040, 558480, 593040, 608640, 650160, 673680, 688560, 701760, 709920, 727440, 749520, 762240, 796800, 807120, 813360, 822960, 828480, 833280, 864000, 870480, 875760, 881520, 889200, 895200, 906720, 911760, 922080, 928560, 947280, 953520, 967440, 988800, 1000080, 1015200, 1025040, 1050240, 1057920, 1081440, 1092720, 1150320, 1167360, 1180080, 1194000, 1207920, 1218000, 1257120, 1261920, 1267680, 1274400, 1284480, 1352880, 1360080, 1370400, 1389840, 1413600, 1440240, 1448400, 1462560, 1473600, 1479600, 1488240, 1500720, 1513680, 1523760, 1550640, 1652880, 1699920, 1707120, 1711920, 1727040, 1733040, 1746960, 1758480, 1779840, 1787280, 1796400, 1821840, 1829520, 1900560, 1938480, 1964880, 1984080, 1998000, 2058720, 2082480, 2105520, 2140080, 2145360, 2156400, 2162400, 2171760, 2182080, 2213040, 2219520, 2227440, 2235600, 2245680, 2258160, 2263440, 2282880, 2370480, 2390160, 2399280, 2451840, 2476080, 2485920, 2493840, 2503920, 2511120, 2552640, 2557440, 2570640, 2592240, 2600880, 2660880, 2680080, 2725920, 2826480, 2852640, 2892480, 2929200, 2964480, 3011760, 3017520, 3041520, 3059280, 3102480, 3129120, 3143040, 3189840, 3210480, 3226800, 3252960, 3373200, 3380880, 3399120, 3408720, 3419760, 3429360, 3445440, 3476400, 3486000, 3518880, 3524400, 3566640, 3576000, 3581040, 3591600, 3602400, 3642240, 3649920, 3658320, 3691200, 3717600, 3734880, 3742320, 3753360, 3760080, 3781200, 3788160, 3802080, 3816240, 3847680, 3875040, 3888480, 3901920, 3928080, 3950640, 3963600, 3970320, 3998880, 4009200, 4017120, 4027440, 4035600, 4047600, 4061760, 4079760, 4102800, 4121280, 4126320, 4134960, 4140240, 4145760, 4158240, 4177440, 4183920, 4206720, 4212000, 4224720, 4257600, 4262400, 4272480, 4278240, 4285920, 4296480, 4301280, 4310160, 4325280, 4349280, 4354560, 4382400, 4394640, 4403760, 4411680, 4416720, 4456800, 4463280, 4474320, 4498560, 4506000, 4514400, 4535040, 4542720, 4552320, 4569840, 4596000, 4602960, 4617600, 4656480, 4671360, 4683120, 4694880, 4701120, 4709520, 4714800, 4745040, 4754880, 4761360, 4774080, 4783200, 4802160, 4807920, 4821360, 4826640, 4834320, 4847040, 4851840, 4858080, 4863840, 4872480, 4880400, 4889040, 4903920, 4909920, 4919040, 4924320, 4947600, 4954080, 4965360, 4972080, 4989360, 5007840, 5020080, 5029440, 5034720, 5043120, 5048400, 5058960, 5078640, 5093280, 5102400, 5112000, 5117040, 5124960, 5134560, 5160960, 5185440, 5194320, 5202000, 5209200, 5236560, 5246880, 5251680, 5278800, 5287920, 5301840, 5330640, 5365920, 5390880, 5406000, 5418000, 5454480, 5467200, 5500560, 5542800, 5574000, 5598240, 5605680, 5614800, 5624400, 5637360, 5651520, 5680320, 5706960, 5720640, 5729520, 5754240, 5772480, 5792400, 5807280, 5823360, 5858880, 5864880, 5876400, 5883840, 5891280, 5901360, 5911920, 5940480, 5952960, 5975520, 6001920, 6007920, 6016320, 6024480, 6042000, 6053520, 6062160, 6066960, 6104880, 6109680, 6120000, 6127440, 6133440, 6147840, 6212400, 6240480, 6255360, 6272640, 6279120, 6304560, 6315120, 6340800, 6397440, 6412080, 6450720, 6464880, 6515520, 6523200, 6528480, 6551280, 6558960, 6569520, 6594000, 6603840, 6617520, 6632400, 6662640, 6669840, 6687120, 6693360, 6734160, 6745440, 6767760, 6784560, 6810960, 6833280, 6843600, 6856080, 6861600, 6868800, 6883440, 6889440, 6895200, 6909120, 6917040, 6921840, 6943920, 6953280, 6965040, 7004400, 7027440, 7049760, 7100400, 7122480, 7128480, 7144080, 7149120, 7180320, 7188720, 7193760, 7218240, 7245120, 7250160, 7260000, 7267200, 7273920, 7287600, 7296240, 7319280, 7324560, 7330320, 7336320, 7343520, 7348320, 7362240, 7367520, 7387200, 7400160, 7434000, 7446720, 7459920, 7470240, 7484160, 7492080, 7512720, 7528560, 7542960, 7582800, 7595760, 7620000, 7627200, 7633680, 7650480, 7660800, 7679520, 7719120, 7772880, 7782240, 7789680, 7809600, 7814880, 7832160, 7847040, 7852800, 7857840, 7868640, 7888320, 7910160, 7915200, 7956000, 7975200, 7980240, 7988400, 7997040, 8009760, 8027280, 8040000, 8054640, 8127840, 8148240, 8166480, 8211840, 8225040, 8230560, 8238000, 8260080, 8264880, 8275200, 8299440, 8313600, 8322720, 8344320, 8353440, 8390400, 8412720, 8426400, 8434320, 8464080, 8500800, 8508240, 8526720, 8545440, 8586240, 8596320, 8613120, 8623680, 8641680, 8667600, 8712720, 8733600, 8747520, 8785920, 8802240, 8811840, 8816880, 8861520, 8882400, 8908800, 8943840, 8948880, 8963280, 8980320, 8992560, 8999520, 9004800, 9022320, 9030960, 9037440, 9080400, 9092880, 9104640, 9112320, 9141360, 9146160, 9190560, 9199680, 9217200, 9226320, 9285360, 9296160, 9351840, 9361920, 9388560, 9394800, 9422640, 9431280, 9437520, 9444960, 9457920, 9481440, 9493920, 9508320, 9538320, 9550560, 9577920, 9604800, 9612000, 9621600, 9632880, 9638400, 9660240, 9665040, 9672240, 9703680, 9715200, 9737280, 9749040, 9781680, 9795840, 9812640, 9835200, 9855840)
+
+[sub_resource type="Resource" id="c87"]
+script = ExtResource("2")
+id = "storm_13_01"
+family = "storm_13"
+category = "ambience"
+sample_rate = 48000
+frame_count = 7230720
+duration_seconds = 150.64
+source_gain_db = 0.0
+notes = "Alternative outdoor storm recording."
+onset_frame = 240
+energy_peak_frame = 2058840
+amplitude_peak_frame = 2058575
+active_end_frame = 7230720
+source_path = "InMotionAudio - Back Garden Storm/STORM_StormAmbience13_InMotionAudio_BackGardenStorm.wav"
+source_sha256 = "ea502e8186c7e9c207b5549ffc0abc5bf7b69bea96b276fd5e8886c1741aac37"
+source_start_frame = 0
+source_end_frame = 7230720
+stream = ExtResource("a87")
+tags = PackedStringArray("ambience", "storm", "13")
+transient_frames = PackedInt32Array(960, 20400, 57600, 81360, 106080, 155520, 205200, 223200, 228240, 254640, 264960, 283440, 293520, 305760, 324960, 335280, 370560, 382560, 401520, 412320, 423360, 454320, 464400, 500640, 508080, 518640, 530880, 537600, 548880, 566640, 580080, 593040, 603360, 609840, 624960, 682800, 708960, 714720, 798000, 809760, 835440, 851520, 870960, 882960, 892800, 901920, 908400, 919920, 933120, 947760, 964560, 977760, 985920, 992160, 1015200, 1073280, 1096800, 1107120, 1169040, 1208400, 1232400, 1266480, 1289040, 1299600, 1320720, 1338480, 1345200, 1350000, 1370640, 1376160, 1383840, 1391280, 1401360, 1422000, 1433520, 1462320, 1469040, 1474080, 1487760, 1496640, 1505280, 1510080, 1525200, 1554720, 1568880, 1655520, 1665600, 1680480, 1694640, 1703760, 1709760, 1725600, 1759680, 1766880, 1773360, 1782480, 1808640, 1841040, 1860720, 1888800, 1893840, 1940160, 1999200, 2004000, 2010000, 2021280, 2038560, 2046960, 2058240, 2090640, 2107920, 2117280, 2129040, 2156160, 2172000, 2182320, 2193360, 2203200, 2237760, 2255280, 2260320, 2272800, 2285040, 2290800, 2296080, 2305440, 2322960, 2333280, 2346240, 2352000, 2381760, 2392560, 2413440, 2437920, 2490720, 2500560, 2508480, 2518560, 2556720, 2585520, 2602320, 2635200, 2647680, 2653200, 2658240, 2700480, 2705520, 2755440, 2767920, 2775600, 2791200, 2797440, 2815680, 2826000, 2878080, 2894640, 2903760, 2942160, 2973120, 2980800, 2993760, 3013920, 3039840, 3045120, 3064800, 3085680, 3093360, 3124560, 3176400, 3198240, 3217680, 3237600, 3262560, 3273600, 3280320, 3287520, 3299280, 3320160, 3341520, 3346560, 3364560, 3504720, 3524160, 3560160, 3582720, 3603120, 3609360, 3616800, 3621600, 3627360, 3638160, 3643200, 3673440, 3684720, 3693360, 3706800, 3726720, 3740160, 3753120, 3768000, 3773760, 3780960, 3793200, 3798960, 3823440, 3829680, 3839520, 3847920, 3865440, 3875520, 3884160, 3892320, 3897600, 3937440, 3942240, 3951360, 3978960, 3984960, 3995760, 4008720, 4023120, 4041600, 4107840, 4131360, 4148400, 4164240, 4170480, 4177680, 4190880, 4198560, 4206480, 4219440, 4231680, 4240320, 4264800, 4272480, 4279440, 4284720, 4295040, 4309440, 4318560, 4323840, 4334880, 4350960, 4358880, 4368240, 4378560, 4389600, 4397040, 4402320, 4407840, 4421760, 4431120, 4438080, 4444800, 4452240, 4459920, 4471920, 4476720, 4484880, 4494240, 4500240, 4506000, 4510800, 4534560, 4557600, 4594320, 4599360, 4643280, 4650720, 4657920, 4666320, 4672080, 4684800, 4705440, 4714560, 4749600, 4763040, 4783200, 4800720, 4822320, 4829280, 4846800, 4852320, 4857120, 4890000, 4900560, 4919520, 4943280, 4965840, 4973520, 4987920, 4994880, 5000640, 5019120, 5030400, 5083920, 5091600, 5098320, 5103600, 5115360, 5122080, 5135760, 5165760, 5171040, 5178000, 5192400, 5222400, 5230560, 5240880, 5246880, 5251680, 5256720, 5326560, 5340720, 5350080, 5355120, 5418240, 5429760, 5435520, 5447760, 5478960, 5512800, 5545920, 5557920, 5580480, 5589360, 5632080, 5652720, 5707920, 5724480, 5738160, 5804880, 5828400, 5874480, 5907600, 5914560, 5921520, 5926800, 5933040, 5940240, 5951280, 5958720, 5974080, 5979120, 5985120, 5991360, 6002640, 6013200, 6018960, 6038160, 6047040, 6054240, 6064560, 6082560, 6101760, 6110640, 6125280, 6132960, 6138240, 6145920, 6151440, 6185760, 6202080, 6209760, 6225120, 6231120, 6251280, 6278400, 6289440, 6309600, 6341040, 6351120, 6361200, 6379200, 6400320, 6405600, 6410880, 6437040, 6461280, 6486480, 6499680, 6535680, 6556560, 6572160, 6619440, 6655920, 6673440, 6687840, 6720480, 6737520, 6743040, 6764640, 6770400, 6776640, 6800640, 6840960, 6858960, 6873600, 6882000, 6888960, 6900000, 6906240, 6911280, 6929760, 6945600, 6958320, 6964560, 6984960, 7001520, 7007280, 7015920, 7021680, 7027200, 7038000, 7051680, 7107600, 7117440, 7126080, 7132800, 7140000, 7148640, 7157280, 7162560, 7196400, 7203840, 7216320)
+
+[sub_resource type="Resource" id="c88"]
+script = ExtResource("2")
+id = "chimney_wind_01"
+family = "chimney_wind"
+category = "ambience"
+sample_rate = 48000
+frame_count = 5533606
+duration_seconds = 115.28345833333333
+source_gain_db = 0.0
+notes = "Candidate for wind inside a building."
+onset_frame = 720
+energy_peak_frame = 750120
+amplitude_peak_frame = 750119
+active_end_frame = 5481120
+source_path = "InMotionAudio - Chimney Wind/WINDInt_ChimneyWind05_InMotionAudio_ChimneyWind.wav"
+source_sha256 = "de71c402bcbc62b185b3f963d514aec61c561cda9b3c2ad15d5ab8fca57b7c68"
+source_start_frame = 0
+source_end_frame = 5533606
+stream = ExtResource("a88")
+tags = PackedStringArray("ambience", "chimney", "wind")
+transient_frames = PackedInt32Array(14160, 19920, 30240, 36480, 42240, 53040, 59760, 67200, 74160, 78960, 83760, 88560, 97200, 105600, 110640, 115920, 127440, 137520, 143760, 154080, 162000, 166800, 178320, 187920, 192720, 236400, 314880, 321360, 326400, 333840, 345360, 354720, 366720, 376800, 383280, 389760, 398640, 404880, 412800, 420960, 428400, 436800, 442560, 448800, 454800, 461040, 468960, 474720, 480480, 494640, 499440, 509520, 515280, 525600, 534720, 540000, 545040, 551280, 561120, 575520, 582960, 590880, 600720, 607200, 614400, 622800, 627840, 639600, 649920, 657120, 666000, 675840, 681600, 694800, 701760, 707040, 711840, 718560, 726960, 732720, 737520, 749280, 760080, 767280, 772080, 779520, 789600, 794880, 799920, 808320, 813360, 820320, 828480, 833760, 839520, 846960, 852960, 858720, 864960, 870000, 881040, 887760, 895680, 900960, 909600, 920640, 929520, 938160, 945840, 953040, 958080, 967200, 975600, 983040, 993840, 998880, 1004640, 1009920, 1014960, 1020000, 1026480, 1035120, 1043280, 1051920, 1059120, 1063920, 1069200, 1079280, 1086240, 1092240, 1099200, 1105200, 1110000, 1120320, 1129680, 1139760, 1147680, 1153680, 1159440, 1164960, 1171440, 1180560, 1186560, 1198560, 1205760, 1211040, 1220640, 1232640, 1240080, 1245600, 1250400, 1255440, 1260480, 1268640, 1275840, 1281600, 1286880, 1295760, 1301280, 1308480, 1315920, 1320720, 1328640, 1335120, 1340160, 1347840, 1358400, 1366800, 1374240, 1385520, 1392720, 1402560, 1408080, 1418400, 1424640, 1433760, 1444800, 1449600, 1454400, 1460880, 1468320, 1480800, 1487760, 1494240, 1502880, 1510560, 1521120, 1530240, 1536000, 1540800, 1548480, 1553760, 1560960, 1566720, 1573680, 1580640, 1585680, 1591680, 1602480, 1608720, 1617360, 1623840, 1629360, 1638000, 1644240, 1651680, 1657440, 1666800, 1671600, 1679280, 1685280, 1692960, 1701360, 1708560, 1716480, 1722240, 1728240, 1733520, 1738800, 1745760, 1750560, 1756080, 1763760, 1769280, 1778400, 1786560, 1794960, 1805280, 1814400, 1821360, 1827120, 1834080, 1844880, 1851120, 1858800, 1868640, 1874880, 1883280, 1890240, 1898640, 1903920, 1910160, 1919280, 1924800, 1932000, 1938480, 1949040, 1955520, 1961280, 1967760, 1972800, 1978800, 1987920, 1993200, 1999680, 2006640, 2012880, 2018160, 2026320, 2035920, 2044560, 2056320, 2064000, 2072160, 2079600, 2085840, 2090880, 2098560, 2105280, 2110800, 2116080, 2124240, 2129040, 2143680, 2149920, 2156880, 2161920, 2170560, 2180640, 2189520, 2199360, 2207040, 2213280, 2219520, 2226240, 2233440, 2241360, 2248320, 2253120, 2262000, 2266800, 2278560, 2285280, 2294400, 2300880, 2305920, 2315520, 2324640, 2329920, 2340480, 2345760, 2353200, 2359200, 2368800, 2377200, 2386800, 2396880, 2405280, 2411760, 2421120, 2426160, 2432640, 2437680, 2445600, 2453760, 2463120, 2468160, 2473200, 2481840, 2486880, 2491920, 2498400, 2503680, 2513760, 2519760, 2529600, 2540400, 2546400, 2552160, 2557200, 2567280, 2575440, 2589840, 2598240, 2606400, 2611920, 2621760, 2627760, 2635440, 2646720, 2658480, 2666640, 2677680, 2686080, 2694240, 2704560, 2709840, 2714640, 2721840, 2728320, 2737200, 2744640, 2752320, 2758320, 2766240, 2773680, 2779200, 2788080, 2792880, 2799120, 2809680, 2816640, 2823120, 2831520, 2836320, 2841600, 2848800, 2857200, 2866320, 2876640, 2882400, 2887440, 2897280, 2905920, 2915040, 2920320, 2928000, 2936160, 2947680, 2958240, 2968560, 2975280, 2982480, 2997120, 3004560, 3026160, 3035520, 3057120, 3061920, 3068400, 3073440, 3110400, 3121440, 3127920, 3185280, 3196320, 3204240, 3210000, 3218400, 3223200, 3258000, 3263760, 3271680, 3279840, 3287280, 3292320, 3299280, 3306240, 3312720, 3319920, 3327360, 3333360, 3344400, 3350640, 3360960, 3367920, 3380160, 3385680, 3393360, 3399120, 3404160, 3409920, 3415680, 3425040, 3432960, 3443520, 3449520, 3456960, 3462960, 3473280, 3485280, 3492480, 3497520, 3505920, 3511200, 3519360, 3528720, 3541680, 3548160, 3556320, 3562800, 3568080, 3576000, 3582720, 3590640, 3597600, 3602400, 3609840, 3616800, 3621840, 3628080, 3636960, 3646320, 3653520, 3661440, 3666480, 3672480, 3681600, 3695040, 3699840, 3707040, 3719520, 3733200, 3738480, 3776880, 3787200, 3793680, 3799920, 3805200, 3810480, 3817920, 3823200, 3832320, 3844080, 3850320, 3857040, 3888480, 3893760, 3899520, 3932640, 3972960, 3996000, 4015680, 4044480, 4061280, 4075200, 4083360, 4088640, 4113360, 4119840, 4133520, 4152960, 4182480, 4199760, 4210800, 4217760, 4223760, 4238160, 4243920, 4248720, 4257840, 4263360, 4269360, 4276560, 4282080, 4292880, 4302240, 4311120, 4317120, 4322160, 4328400, 4333680, 4340880, 4346160, 4352880, 4358640, 4366080, 4375440, 4380720, 4390800, 4397280, 4405920, 4416000, 4423680, 4428720, 4434720, 4441200, 4449840, 4460640, 4466640, 4472880, 4479840, 4484640, 4491360, 4498080, 4506480, 4512480, 4517760, 4527360, 4535280, 4543200, 4551600, 4558080, 4572480, 4582320, 4589520, 4594320, 4601280, 4609680, 4619040, 4625520, 4630320, 4637040, 4643760, 4654800, 4663920, 4671360, 4677840, 4684800, 4692240, 4700160, 4716720, 4721520, 4729440, 4735920, 4745280, 4785360, 4794720, 4834560, 4842000, 4848000, 4855440, 4862160, 4870320, 4877040, 4881840, 4889280, 4896000, 4903920, 4908720, 4914720, 4920240, 4925280, 4930080, 4935840, 4944480, 4953600, 4960080, 4974000, 4995600, 5001120, 5005920, 5034240, 5039520, 5046000, 5051040, 5080800, 5086080, 5091600, 5103840, 5128320)
+
+[sub_resource type="Resource" id="c89"]
+script = ExtResource("2")
+id = "thunder_interior_01"
+family = "thunder_interior"
+category = "weather"
+sample_rate = 48000
+frame_count = 893952
+duration_seconds = 18.624
+source_gain_db = 0.0
+notes = "Thunder heard from indoors."
+onset_frame = 2880
+energy_peak_frame = 382440
+amplitude_peak_frame = 307387
+active_end_frame = 856800
+source_path = "Jake Fielding - Interior Wind Rain and Storms/THUN_Interior Thunder Rumble_JF_INT Storm_01.wav"
+source_sha256 = "d85cd25e0877ade4939f50f8f4e046b9b94e15e7f4636824066e92cffd366a8b"
+source_start_frame = 0
+source_end_frame = 893952
+stream = ExtResource("a89")
+tags = PackedStringArray("weather", "thunder", "interior")
+transient_frames = PackedInt32Array(29040, 41520, 48480, 55440, 63120, 69120, 75600, 81360, 88560, 95520, 103920, 110880, 115680, 123600, 130080, 136800, 145680, 154560, 159360, 164400, 181680, 191040, 195840, 202080, 207360, 214560, 219840, 225360, 230160, 237600, 245760, 252240, 258240, 264000, 271440, 278640, 283680, 290640, 301680, 307440, 315360, 323040, 327840, 336240, 343680, 350880, 362880, 370800, 381600, 390480, 397680, 407280, 414000, 422160, 432720, 438000, 446160, 450960, 456240, 465120, 470160, 479760, 490560, 499920, 507600, 513120, 521040, 528240, 536880, 543600, 548640, 557040, 563280, 570480, 575280, 580800, 590880, 596160, 605040, 610560, 616560, 623040, 628800, 637200, 651120, 660480, 674400, 683520, 692400, 703200, 710640, 720720, 727200)
+
+[sub_resource type="Resource" id="c90"]
+script = ExtResource("2")
+id = "forest_dark_synth_01"
+family = "forest_dark_synth"
+category = "ambience"
+sample_rate = 48000
+frame_count = 2863547
+duration_seconds = 59.65722916666667
+source_gain_db = -1.999605
+notes = "Tonal mood layer, not a natural forest recording."
+onset_frame = 0
+energy_peak_frame = 745320
+amplitude_peak_frame = 745288
+active_end_frame = 2863547
+source_path = "Epic Stock Media - Strange Game Ambient Loops 3/DSGNSynth_Dark Loop Mystic Forest Tonal Steady Synth_ESM_SGA3.wav"
+source_sha256 = "c374c5b2896c9ee3ea6383108f15c8a379b93e29d3c24f4e85542aaf7a41a450"
+source_start_frame = 0
+source_end_frame = 2863547
+stream = ExtResource("a90")
+tags = PackedStringArray("ambience", "forest", "dark", "synth")
+transient_frames = PackedInt32Array(3360, 10080, 18960, 25440, 30960, 40080, 59520, 69120, 74400, 87360, 100320, 113280, 119040, 140160, 147600, 155520, 166560, 180720, 196560, 216720, 259680, 277680, 285360, 294480, 316080, 321600, 336720, 345120, 351360, 442800, 487920, 508560, 515760, 522240, 530640, 536640, 549600, 558720, 569040, 576480, 582000, 590640, 597120, 602880, 616080, 628800, 635760, 658080, 662880, 671040, 678000, 685680, 696720, 705840, 716400, 726480, 754080, 763920, 773280, 781920, 787920, 803280, 808320, 832800, 841440, 846960, 852720, 862080, 873120, 879360, 895680, 909600, 915120, 926880, 933360, 950880, 957120, 967920, 976080, 988080, 994560, 1016400, 1026240, 1036080, 1041840, 1051440, 1059600, 1064400, 1070880, 1083840, 1092000, 1100160, 1105920, 1116720, 1126560, 1131360, 1140240, 1151040, 1158960, 1166160, 1174560, 1186560, 1202880, 1217760, 1226160, 1234800, 1264800, 1282080, 1287120, 1296000, 1303200, 1309920, 1327200, 1348080, 1356240, 1363440, 1370880, 1378800, 1409760, 1416720, 1422240, 1430400, 1446480, 1451760, 1461840, 1473600, 1517280, 1524000, 1536000, 1543680, 1554720, 1561920, 1571040, 1579440, 1585920, 1591440, 1609440, 1625040, 1632240, 1643760, 1650720, 1656240, 1664640, 1670160, 1677120, 1694160, 1700640, 1718400, 1735200, 1743120, 1750800, 1761360, 1769280, 1790400, 1813680, 1819200, 1840080, 1848000, 1854000, 1861680, 1870320, 1881840, 1900080, 1924320, 1989360, 2028000, 2038800, 2058960, 2077680, 2082960, 2108160, 2126880, 2138640, 2144160, 2155920, 2166960, 2172960, 2181360, 2190720, 2201040, 2206560, 2214000, 2231280, 2252400, 2261520, 2273280, 2305680, 2312880, 2320800, 2326560, 2331600, 2340240, 2346240, 2351520, 2362080, 2372640, 2377920, 2388480, 2393760, 2401680, 2409360, 2414880, 2421840, 2428800, 2444640, 2455680, 2473200, 2478480, 2490720, 2495760, 2503440, 2512080, 2521680, 2531040, 2539920, 2546640, 2552160, 2561040, 2573520, 2583360, 2590560, 2600880, 2620080, 2629440, 2636640, 2643360, 2652240, 2661600, 2681040, 2686080, 2704800, 2712000, 2723280, 2732640, 2745120, 2768640, 2783520, 2791440, 2797200, 2804640, 2812800, 2820720, 2831040, 2836800, 2843760, 2853600, 2861760)
+
+[resource]
+script = ExtResource("1")
+clips = Array[ExtResource("2")]([SubResource("c3"), SubResource("c4"), SubResource("c5"), SubResource("c6"), SubResource("c7"), SubResource("c8"), SubResource("c9"), SubResource("c10"), SubResource("c11"), SubResource("c12"), SubResource("c13"), SubResource("c14"), SubResource("c15"), SubResource("c16"), SubResource("c17"), SubResource("c18"), SubResource("c19"), SubResource("c20"), SubResource("c21"), SubResource("c22"), SubResource("c23"), SubResource("c24"), SubResource("c25"), SubResource("c26"), SubResource("c27"), SubResource("c28"), SubResource("c29"), SubResource("c30"), SubResource("c31"), SubResource("c32"), SubResource("c33"), SubResource("c34"), SubResource("c35"), SubResource("c36"), SubResource("c37"), SubResource("c38"), SubResource("c39"), SubResource("c40"), SubResource("c41"), SubResource("c42"), SubResource("c43"), SubResource("c44"), SubResource("c45"), SubResource("c46"), SubResource("c47"), SubResource("c48"), SubResource("c49"), SubResource("c50"), SubResource("c51"), SubResource("c52"), SubResource("c53"), SubResource("c54"), SubResource("c55"), SubResource("c56"), SubResource("c57"), SubResource("c58"), SubResource("c59"), SubResource("c60"), SubResource("c61"), SubResource("c62"), SubResource("c63"), SubResource("c64"), SubResource("c65"), SubResource("c66"), SubResource("c67"), SubResource("c68"), SubResource("c69"), SubResource("c70"), SubResource("c71"), SubResource("c72"), SubResource("c73"), SubResource("c74"), SubResource("c75"), SubResource("c76"), SubResource("c77"), SubResource("c78"), SubResource("c79"), SubResource("c80"), SubResource("c81"), SubResource("c82"), SubResource("c83"), SubResource("c84"), SubResource("c85"), SubResource("c86"), SubResource("c87"), SubResource("c88"), SubResource("c89"), SubResource("c90")])
