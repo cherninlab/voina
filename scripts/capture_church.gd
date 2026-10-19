@@ -44,13 +44,13 @@ func capture() -> void:
 	for frame: int in range(120):
 		await process_frame
 	# Walls block: horizontal rays from outside hit the nave sides, back and tower.
-	var probes: Array[Array] = [[door + Vector3(-9.0, 2.0, -8.0), door + Vector3(0.0, 2.0, -8.0), "west nave wall"], [door + Vector3(9.0, 2.0, -10.0), door + Vector3(0.0, 2.0, -10.0), "east nave wall"], [door + Vector3(0.0, 1.5, 4.0), door + Vector3(0.0, 1.5, -3.0), "closed door"], [Vector3(-14.0, ground(-14.0, -95.0) + 1.0, -95.0), Vector3(-26.0, ground(-14.0, -95.0) + 1.0, -95.0), "west yard wall"], [Vector3(6.0, ground(6.0, -84.0) + 1.0, -84.0), Vector3(6.0, ground(6.0, -84.0) + 1.0, -92.0), "front yard wall"]]
+	var probes: Array[Array] = [[door + Vector3(5.0, -1.0, 3.0), door + Vector3(5.0, -1.0, -1.0), "terrace front"], [door + Vector3(0.0, 15.0, -5.0), door + Vector3(0.0, -3.0, -5.0), "ruin floor"], [Vector3(-14.0, ground(-14.0, -95.0) + 1.0, -95.0), Vector3(-26.0, ground(-14.0, -95.0) + 1.0, -95.0), "west yard wall"], [Vector3(6.0, ground(6.0, -84.0) + 1.0, -84.0), Vector3(6.0, ground(6.0, -84.0) + 1.0, -92.0), "front yard wall"]]
 	for probe: Array in probes:
 		var hit: Dictionary = space.intersect_ray(PhysicsRayQueryParameters3D.create(probe[0] as Vector3, probe[1] as Vector3))
 		if hit.is_empty():
 			fail("no collision on the " + String(probe[2]))
 			return
-	print("CHURCH_WALLS_OK: nave sides, closed door, yard walls block rays")
+	print("CHURCH_WALLS_OK: terrace front, ruin floor, yard walls have collision")
 	if world.get("players").get_child_count() == 0:
 		fail("capture requires --host")
 		return
@@ -61,6 +61,7 @@ func capture() -> void:
 			capsule = (child as CollisionShape3D).shape
 			break
 	var gate_x: float = ChurchSite.road_x(-87.5)
+	var stair: Vector2 = church.get("stair_foot") as Vector2
 	var gate_query: PhysicsShapeQueryParameters3D = PhysicsShapeQueryParameters3D.new()
 	gate_query.shape = capsule
 	gate_query.exclude = [player.get_rid()]
@@ -71,7 +72,10 @@ func capture() -> void:
 		fail("player capsule does not clear the open gate (%.2f)" % clearance[0])
 		return
 	print("CHURCH_GATE_OK: player capsule passes the open graveyard gate")
-	# The real player lands on the path, the steps and the terrace in front of the door.
+	# Villagers would shove the probe player around; hold them still while it lands.
+	var mobs: Node = world.get("mobs") as Node
+	mobs.process_mode = Node.PROCESS_MODE_DISABLED
+	# The real player lands on the path, the steps and the terrace in front of the arch.
 	var drops: Array[Vector3] = [Vector3(ChurchSite.road_x(-92.0), 0.0, -92.0), Vector3(ChurchSite.road_x(-102.0), 0.0, -102.0), Vector3(door.x, 0.0, door.z + 2.4), Vector3(door.x + 1.5, 0.0, door.z + 0.8)]
 	for sample: Vector3 in drops:
 		var hit: Dictionary = space.intersect_ray(PhysicsRayQueryParameters3D.create(Vector3(sample.x, 60.0, sample.z), Vector3(sample.x, -20.0, sample.z)))
@@ -86,7 +90,25 @@ func capture() -> void:
 		if not player.is_on_floor() or player.position.y < surface.y - 0.2:
 			fail("player did not land at %s (now %s)" % [surface, player.position])
 			return
-	print("CHURCH_PLAYER_OK: real player lands on the yard path, steps and door terrace")
+	print("CHURCH_PLAYER_OK: real player lands on the yard path, steps and terrace")
+	# Walk the real player up the steps and over the threshold into the ruin.
+	player.position = Vector3(stair.x, ground(stair.x, stair.y) + 1.2, stair.y + 0.6)
+	player.velocity = Vector3.ZERO
+	for frame: int in range(30):
+		await physics_frame
+	var climbed: bool = false
+	for frame: int in range(360):
+		player.velocity.x = 0.0
+		player.velocity.z = -3.0
+		await physics_frame
+		if player.position.z < door.z - 2.0 and player.position.y > floor_y:
+			climbed = true
+			break
+	if not climbed:
+		fail("player could not walk up the steps into the ruin (stopped at %s)" % player.position)
+		return
+	print("CHURCH_STAIRS_OK: real player walks up the steps into the ruin, now at ", player.position.snapped(Vector3.ONE * 0.01))
+	mobs.process_mode = Node.PROCESS_MODE_INHERIT
 	# Villager spawn graves stay free of collision within a metre.
 	for spot: Vector2 in MobSystem.SPAWN_SPOTS:
 		var point: Vector2 = ChurchSite.YARD_CENTER + spot
@@ -130,11 +152,11 @@ func capture() -> void:
 		["gate", Vector3(ChurchSite.road_x(-79.0) + 0.6, ground(ChurchSite.road_x(-79.0), -79.0) + 1.7, -79.0), Vector3(gate_x - 1.0, floor_y + 4.0, -100.0)],
 		["path", Vector3(ChurchSite.road_x(-97.0) + 0.4, ground(ChurchSite.road_x(-97.0), -97.0) + 1.7, -97.0), Vector3(door.x, floor_y + 5.0, door.z)],
 		["facade", Vector3(5.5, ground(5.5, -101.0) + 2.0, -101.0), Vector3(door.x, floor_y + 5.5, door.z - 2.0)],
-		["slope", Vector3(-19.0, ground(-19.0, -124.0) + 2.5, -124.0), Vector3(door.x, floor_y + 3.0, door.z - 6.0)],
-		["door", Vector3(door.x + 3.2, floor_y + 0.9, door.z + 5.2), Vector3(door.x - 0.2, floor_y + 1.6, door.z)],
+		["slope", Vector3(13.0, ground(13.0, -119.0) + 2.0, -119.0), Vector3(door.x, floor_y + 1.0, door.z - 4.0)],
+		["door", Vector3(door.x + 1.2, floor_y + 1.7, door.z + 3.0), Vector3(door.x - 0.3, floor_y + 4.5, door.z - 10.0)],
 		["crow", Vector3(ChurchSite.road_x(-90.5), ground(ChurchSite.road_x(-90.5), -90.5) + 1.6, -90.5), Vector3(-3.4, ground(-3.4, -91.4) + 0.9, -91.4)],
 		["grave", Vector3(7.6, ground(7.6, -96.6) + 1.7, -96.6), Vector3(6.0, ground(6.0, -99.0) - 0.5, -99.4)],
-		["overview", Vector3(ChurchSite.road_x(-70.0), 32.0, -70.0), Vector3(-4.0, 2.0, -103.0)],
+		["overview", Vector3(14.0, 34.0, -80.0), Vector3(-4.0, 2.0, -105.0)],
 	]
 	for view: Array in views:
 		camera.position = view[1] as Vector3

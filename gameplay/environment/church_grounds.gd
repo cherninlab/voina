@@ -7,25 +7,16 @@ const TEXTURES: String = "res://content/environments/valhalla/textures/KB3D_VHL_
 const GENERATED: String = "res://content/environments/village_generated/"
 const SHADERS: String = "res://content/environments/church/"
 const AMBIENCE: String = "res://content/audio/clips/ambience/"
-# Church frame: x east, y up from the nave floor, z = 0 on the door plane and negative northward.
-const TOWER_HALF: float = 2.6
-const TOWER_BACK: float = -5.2
-const TOWER_TOP: float = 16.5
-const NAVE_HALF: float = ChurchSite.NAVE_WIDTH * 0.5
-const NAVE_FRONT: float = -1.6
-const NAVE_BACK: float = -ChurchSite.NAVE_LENGTH
-const EAVES: float = 8.0
-const RIDGE: float = 15.4
-const WALL: float = 0.9
-const BELFRY_RADIUS: float = 2.15
-const BELFRY_TOP: float = 21.8
-const SPIRE_TIP: float = 35.0
-const PODIUM_HALF: float = 6.4
-const PODIUM_FRONT: float = 1.7
-const PODIUM_BACK: float = -17.6
-const BURIED: float = -2.4 # walls reach this far below the floor, so the slope never shows a gap
-const DOOR_HALF: float = 1.0
-const DOOR_SPRING: float = 2.5
+# Church frame: x east, y up from the ruin's base, z = 0 at its front arch and negative northward.
+const RUIN: PackedScene = preload("res://content/environments/chapel_ruin/chapel_ruin.gltf")
+const RUIN_HALF: float = 5.78
+const RUIN_DEPTH: float = 10.79
+const TERRACE_HALF: float = 6.4
+const TERRACE_FRONT: float = 1.3
+const TERRACE_BACK: float = -11.4
+const STAIR_HALF: float = 1.5
+const STEP_RISE: float = 0.27
+const STAIR_SLOPE: float = deg_to_rad(27.0)
 # Graveyard enclosure in world x/z.
 const WALL_FRONT_Z: float = -87.5
 const WALL_BACK_Z: float = -111.0
@@ -49,15 +40,14 @@ const TALL_TREES: Array[Vector3] = [Vector3(-16.6, -96.6, 13.0), Vector3(9.6, -9
 const GATE_TREES: Array[Vector3] = [Vector3(-5.6, -85.1, 8.0), Vector3(7.4, -85.5, 7.0)]
 const BOULDERS: Array[Vector3] = [Vector3(-18.6, -89.9, 0.9), Vector3(10.8, -109.5, 1.1), Vector3(-18.9, -108.9, 0.8), Vector3(11.0, -90.2, 0.65), Vector3(-9.0, -89.0, 0.55)]
 const EMBERS: Array[Vector3] = [Vector3(-8.4, -108.9, 1.2), Vector3(-7.9, -103.6, 1.15), Vector3(8.4, -107.2, 1.3), Vector3(10.0, -102.0, 0.9)]
-enum Glass { DARK, AMBER, RED, BROKEN, BOARDED }
 
 var village: Node3D
 var floor_y: float = 0.0
 var gate_x: float = 0.0
+var stair_foot: Vector2 = Vector2.ZERO
 var random: RandomNumberGenerator = RandomNumberGenerator.new()
 var batches: Dictionary[String, SurfaceTool] = {}
 var materials: Dictionary[String, Material] = {}
-var glass_materials: Dictionary[int, ShaderMaterial] = {}
 var collision: StaticBody3D
 var shape_count: int = 0
 var flames: Array[Transform3D] = []
@@ -110,10 +100,8 @@ func build() -> void:
 	transform = Transform3D.IDENTITY
 	random.seed = 851127
 	gate_x = ChurchSite.road_x(WALL_FRONT_Z)
-	var front: float = -INF
-	for offset: float in [-TOWER_HALF, 0.0, TOWER_HALF]:
-		front = maxf(front, ground(ChurchSite.DOOR.x + offset, ChurchSite.DOOR.y))
-	floor_y = front + 0.62
+	# The ruin's flat base sits a little below the slope behind it; a terrace carries the front.
+	floor_y = ground(ChurchSite.DOOR.x, ChurchSite.DOOR.y - RUIN_DEPTH) - 0.35
 	collision = StaticBody3D.new()
 	collision.name = "ChurchCollision"
 	add_child(collision)
@@ -152,13 +140,9 @@ func vary(amount: float, tone: Color = Color.WHITE) -> Color:
 # --- Materials -----------------------------------------------------------------------------
 
 func make_materials() -> void:
-	materials["stone"] = stone_material("StoneGeneric", Color(0.36, 0.37, 0.35), 0.42, 0.65, 0.22)
 	materials["trim"] = stone_material("StoneGeneric", Color(0.46, 0.46, 0.43), 0.6, 0.45, 0.12)
 	materials["base"] = stone_material("StoneFloor", Color(0.42, 0.41, 0.38), 0.5, 0.55, 0.1)
 	materials["grave"] = stone_material("StoneGeneric", Color(0.5, 0.5, 0.47), 0.9, 0.55, 0.15)
-	var slate: ShaderMaterial = ShaderMaterial.new()
-	slate.shader = load(SHADERS + "church_slate.gdshader") as Shader
-	materials["slate"] = slate
 	materials["iron"] = pbr("MetalHammeredDark", Color(0.4, 0.34, 0.3), 2.0, 0.65, 0.5)
 	materials["wood"] = pbr("WoodPlanksSeededDark", Color(0.5, 0.46, 0.42), 0.7, 0.0, 0.9)
 	var bark: StandardMaterial3D = pbr("LogBark", Color(0.46, 0.45, 0.42), 0.9, 0.0, 0.95)
@@ -199,15 +183,6 @@ func make_materials() -> void:
 	strand.set_shader_parameter("sway", 0.14)
 	strand.set_shader_parameter("backlight", 0.2)
 	materials["strand"] = strand
-	var states: Dictionary[int, Array] = {Glass.DARK: [Color(1.0, 0.5, 0.2), 0.0, 0.0], Glass.AMBER: [Color(1.0, 0.5, 0.16), 1.7, 0.0], Glass.RED: [Color(0.9, 0.12, 0.05), 0.8, 0.0], Glass.BROKEN: [Color(1.0, 0.5, 0.2), 0.0, 0.85], Glass.BOARDED: [Color(1.0, 0.5, 0.2), 0.0, 0.4]}
-	for state: int in states:
-		var glass: ShaderMaterial = ShaderMaterial.new()
-		glass.shader = load(SHADERS + "church_glass.gdshader") as Shader
-		var values: Array = states[state]
-		glass.set_shader_parameter("glow_color", values[0])
-		glass.set_shader_parameter("glow", values[1])
-		glass.set_shader_parameter("broken", values[2])
-		glass_materials[state] = glass
 
 func stone_material(family: String, tint: Color, scale: float, moss: float, ash: float) -> ShaderMaterial:
 	var material: ShaderMaterial = ShaderMaterial.new()
@@ -501,33 +476,6 @@ func circle(center: Vector2, radius: float, steps: int) -> PackedVector2Array:
 		points.append(center + Vector2(cos(angle), sin(angle)) * radius)
 	return points
 
-# A wall slab with a pointed opening: front face at local z = 0, back at -depth.
-func arch_panel(surface: SurfaceTool, transform: Transform3D, half_width: float, bottom: float, top: float, opening: float, sill: float, spring: float, ratio: float, depth: float, color: Color) -> void:
-	var outline: PackedVector2Array = lancet(opening, sill, spring, ratio)
-	var arch: PackedVector2Array = outline.slice(2)
-	for z: float in [0.0, -depth]:
-		var outward: Vector3 = transform.basis * (Vector3.BACK if z == 0.0 else Vector3.FORWARD)
-		if sill > bottom:
-			quad(surface, transform * Vector3(-half_width, bottom, z), transform * Vector3(half_width, bottom, z), transform * Vector3(half_width, sill, z), transform * Vector3(-half_width, sill, z), outward, color)
-		quad(surface, transform * Vector3(-half_width, sill, z), transform * Vector3(-opening, sill, z), transform * Vector3(-opening, top, z), transform * Vector3(-half_width, top, z), outward, color)
-		quad(surface, transform * Vector3(opening, sill, z), transform * Vector3(half_width, sill, z), transform * Vector3(half_width, top, z), transform * Vector3(opening, top, z), outward, color)
-		for index: int in range(arch.size() - 1):
-			var p: Vector2 = arch[index]
-			var q: Vector2 = arch[index + 1]
-			quad(surface, transform * Vector3(p.x, p.y, z), transform * Vector3(q.x, q.y, z), transform * Vector3(q.x, top, z), transform * Vector3(p.x, top, z), outward, color)
-	quad(surface, transform * Vector3(-opening, sill, 0.0), transform * Vector3(-opening, spring, 0.0), transform * Vector3(-opening, spring, -depth), transform * Vector3(-opening, sill, -depth), transform.basis * Vector3.RIGHT, color)
-	quad(surface, transform * Vector3(opening, sill, 0.0), transform * Vector3(opening, spring, 0.0), transform * Vector3(opening, spring, -depth), transform * Vector3(opening, sill, -depth), transform.basis * Vector3.LEFT, color)
-	if sill > bottom:
-		quad(surface, transform * Vector3(-opening, sill, 0.0), transform * Vector3(opening, sill, 0.0), transform * Vector3(opening, sill, -depth), transform * Vector3(-opening, sill, -depth), transform.basis * Vector3.UP, color)
-	for index: int in range(arch.size() - 1):
-		var p: Vector2 = arch[index]
-		var q: Vector2 = arch[index + 1]
-		var mid: Vector2 = (p + q) * 0.5
-		quad(surface, transform * Vector3(p.x, p.y, 0.0), transform * Vector3(q.x, q.y, 0.0), transform * Vector3(q.x, q.y, -depth), transform * Vector3(p.x, p.y, -depth), transform.basis * Vector3(-mid.x, spring - mid.y, 0.0), color)
-	for x: float in [-half_width, half_width]:
-		quad(surface, transform * Vector3(x, bottom, 0.0), transform * Vector3(x, top, 0.0), transform * Vector3(x, top, -depth), transform * Vector3(x, bottom, -depth), transform.basis * Vector3(x, 0.0, 0.0), color)
-	quad(surface, transform * Vector3(-half_width, top, 0.0), transform * Vector3(half_width, top, 0.0), transform * Vector3(half_width, top, -depth), transform * Vector3(-half_width, top, -depth), transform.basis * Vector3.UP, color)
-
 # Static collision: unscaled boxes and cylinders sized through their resources.
 func solid(shape_transform: Transform3D, size: Vector3) -> void:
 	var shape: CollisionShape3D = CollisionShape3D.new()
@@ -549,398 +497,95 @@ func post_shape(base: Vector3, radius: float, height: float) -> void:
 	shape_count += 1
 
 # --- Church building ------------------------------------------------------------------------
-# Everything inside CHURCH_CLEAR (terrace, steps, nave, tower, spire, turret, door light) is built
-# from here, so the procedural building can be swapped for an imported model in one place.
+# The chapel ruin (content/environments/chapel_ruin, CC-BY, T-094) on a stone terrace cut into the
+# slope, with steps down to the yard. Everything inside CHURCH_CLEAR is built from here.
 
 func build_building() -> void:
-	build_church()
-	build_tower()
-	build_turret()
-	# The cold doorway light spills out over the threshold and steps.
-	lamp(at(0.0, 1.9, -1.7), Color(0.7, 0.82, 1.0), 2.4, 7.5, 0.0)
+	var ruin: Node3D = RUIN.instantiate() as Node3D
+	ruin.name = "ChapelRuin"
+	add_child(ruin)
+	# The model carries its own trimesh collision; keep it unscaled.
+	ruin.position = at(0.0, 0.0, 0.0)
+	weather_ruin(ruin)
+	build_terrace()
 
-func build_church() -> void:
-	var stone: SurfaceTool = tool("stone|church")
-	var trim: SurfaceTool = tool("trim|church")
+# Darker, greyer and mossier than the source's pale beige, matching the yard's stone.
+func weather_ruin(ruin: Node3D) -> void:
+	var shader: Shader = load(SHADERS + "church_ruin.gdshader") as Shader
+	for node: Node in ruin.find_children("*", "MeshInstance3D", true, false):
+		var visual: MeshInstance3D = node as MeshInstance3D
+		for surface: int in range(visual.mesh.get_surface_count()):
+			var source: BaseMaterial3D = visual.mesh.surface_get_material(surface) as BaseMaterial3D
+			if source == null:
+				continue
+			var material: ShaderMaterial = ShaderMaterial.new()
+			material.shader = shader
+			material.set_shader_parameter("albedo_map", source.albedo_texture)
+			material.set_shader_parameter("normal_map", source.normal_texture)
+			material.set_shader_parameter("orm_map", source.roughness_texture)
+			material.set_shader_parameter("base_height", floor_y)
+			visual.set_surface_override_material(surface, material)
+
+func build_terrace() -> void:
 	var base: SurfaceTool = tool("base|church")
-	# Terrace: flush with the floor at the door, buried into the hillside behind.
-	var podium_z: float = (PODIUM_FRONT + PODIUM_BACK) * 0.5
-	var podium_size: Vector3 = Vector3(PODIUM_HALF * 2.0, -0.18 - BURIED, PODIUM_FRONT - PODIUM_BACK)
-	box(base, frame(Vector3(0.0, (BURIED - 0.18) * 0.5, podium_z)), podium_size, Color.WHITE)
-	box(trim, frame(Vector3(0.0, -0.1, podium_z)), Vector3(podium_size.x + 0.16, 0.2, podium_size.z + 0.16), Color(0.85, 0.85, 0.82))
-	solid(frame(Vector3(0.0, BURIED * 0.5, podium_z)), Vector3(podium_size.x + 0.16, -BURIED, podium_size.z + 0.16))
-	# Worn steps down to the path.
-	var foot: float = ground(ChurchSite.DOOR.x, ChurchSite.DOOR.y + PODIUM_FRONT + 0.6)
-	var drop: float = floor_y - foot
-	var count: int = clampi(ceili(drop / 0.23), 2, 6)
-	var rise: float = drop / (float(count) + 0.4)
+	var trim: SurfaceTool = tool("trim|church")
+	var lowest: float = INF
+	for x: float in [-TERRACE_HALF, 0.0, TERRACE_HALF]:
+		for z: float in [TERRACE_FRONT, -RUIN_DEPTH * 0.5]:
+			lowest = minf(lowest, ground(ChurchSite.DOOR.x + x, ChurchSite.DOOR.y + z) - floor_y)
+	var bottom: float = lowest - 0.7
+	var center: Vector3 = Vector3(0.0, (bottom - 0.04) * 0.5, (TERRACE_FRONT + TERRACE_BACK) * 0.5)
+	var size: Vector3 = Vector3(TERRACE_HALF * 2.0, -0.04 - bottom, TERRACE_FRONT - TERRACE_BACK)
+	box(base, frame(center), size, Color.WHITE)
+	solid(frame(center), size)
+	# A coping band around the edge, outside the ruin's own walls.
+	for side: float in [-1.0, 1.0]:
+		box(trim, frame(Vector3(side * (TERRACE_HALF - 0.22), -0.06, center.z)), Vector3(0.56, 0.2, size.z + 0.12), Color(0.85, 0.85, 0.82))
+	for z: float in [TERRACE_FRONT - 0.22, TERRACE_BACK + 0.22]:
+		box(trim, frame(Vector3(0.0, -0.06, z)), Vector3(size.x + 0.12, 0.2, 0.56), Color(0.85, 0.85, 0.82))
+	box(trim, frame(Vector3(0.0, -0.08, (TERRACE_FRONT + 0.2) * 0.5)), Vector3(RUIN_HALF * 2.0, 0.16, TERRACE_FRONT - 0.2), Color(0.8, 0.8, 0.78))
+	# Steps down to the yard, at most STEP_RISE each and gentle enough for a single collision ramp.
+	var run: float = 0.0
+	var drop: float = 0.0
+	for pass_index: int in range(3):
+		drop = floor_y - ground(ChurchSite.DOOR.x, ChurchSite.DOOR.y + TERRACE_FRONT + run)
+		run = drop / tan(STAIR_SLOPE)
+	var count: int = ceili(drop / STEP_RISE)
+	var rise: float = drop / float(count)
+	var tread: float = run / float(count)
 	for step: int in range(1, count + 1):
 		var top: float = -float(step) * rise
-		var center: Vector3 = Vector3(0.0, (top + BURIED - 1.0) * 0.5, PODIUM_FRONT + (float(step) - 0.5) * 0.44)
-		var size: Vector3 = Vector3(4.4 - float(step) * 0.05, top - BURIED + 1.0, 0.46)
-		box(base, frame(center), size, vary(0.08))
-		solid(frame(center), size)
-	var landing: float = -float(count) * rise
+		var front: float = TERRACE_FRONT + float(step) * tread
+		var foot: float = ground(ChurchSite.DOOR.x, ChurchSite.DOOR.y + front) - floor_y - 0.5
+		var step_center: Vector3 = Vector3(0.0, (top + foot) * 0.5, front - tread * 0.5 - 0.03)
+		box(base, frame(step_center), Vector3(STAIR_HALF * 2.0, top - foot, tread + 0.06), vary(0.1))
+		if step % 2 == 0 and random.randf() < 0.8:
+			for side: float in [-1.0, 1.0]:
+				candle(at(side * random.randf_range(STAIR_HALF - 0.45, STAIR_HALF - 0.15), top, front - tread * 0.5))
+	var slope_length: float = sqrt(run * run + drop * drop)
+	var tilt: Basis = Basis(Vector3.RIGHT, atan2(drop, run))
+	var ramp_center: Vector3 = Vector3(0.0, -drop * 0.5, TERRACE_FRONT + run * 0.5) + tilt * Vector3(0.0, -0.3, 0.0)
+	solid(frame(ramp_center, tilt), Vector3(STAIR_HALF * 2.0, 0.6, slope_length))
+	# Thin sloping cheek walls; candles on their feet.
 	for side: float in [-1.0, 1.0]:
-		var plinth: Vector3 = Vector3(side * 2.75, (landing + 0.55 + BURIED - 1.0) * 0.5, PODIUM_FRONT + float(count) * 0.44 - 0.35)
-		var plinth_size: Vector3 = Vector3(0.62, landing + 0.55 - BURIED + 1.0, 0.62)
-		box(base, frame(plinth), plinth_size, vary(0.06))
-		box(trim, frame(Vector3(plinth.x, landing + 0.6, plinth.z)), Vector3(0.74, 0.1, 0.74), Color.WHITE)
-		solid(frame(plinth), plinth_size)
-		candle_cluster(at(plinth.x, landing + 0.65, plinth.z), 3, 0.22)
-	# Door-side candles on the terrace and the treads.
-	for index: int in range(7):
-		var side: float = -1.0 if index % 2 == 0 else 1.0
-		candle(at(side * random.randf_range(1.35, 2.1), 0.0, random.randf_range(0.35, 1.5)))
-	for step: int in range(1, mini(count, 3) + 1):
-		for side: float in [-1.0, 1.0]:
-			if random.randf() < 0.7:
-				candle(at(side * random.randf_range(1.2, 1.9), -float(step) * rise, PODIUM_FRONT + (float(step) - 0.5) * 0.44 + random.randf_range(-0.12, 0.12)))
-	# Nave shell: side, front and back walls reach below the sloping ground.
-	var wall_height: float = EAVES - BURIED
-	var wall_mid: float = (EAVES + BURIED) * 0.5
-	for side: float in [-1.0, 1.0]:
-		var center: Vector3 = Vector3(side * (NAVE_HALF - WALL * 0.5), wall_mid, (NAVE_FRONT + NAVE_BACK) * 0.5)
-		var size: Vector3 = Vector3(WALL, wall_height, NAVE_FRONT - NAVE_BACK)
-		box(stone, frame(center), size, Color.WHITE)
-		solid(frame(center), size)
-	var back: Vector3 = Vector3(0.0, wall_mid, NAVE_BACK + WALL * 0.5)
-	box(stone, frame(back), Vector3(NAVE_HALF * 2.0, wall_height, WALL), Color.WHITE)
-	solid(frame(back), Vector3(NAVE_HALF * 2.0, wall_height, WALL))
-	# The front wall stops at the tower so the vestibule behind the door stays open.
-	for side: float in [-1.0, 1.0]:
-		var shoulder: Vector3 = Vector3(side * (TOWER_HALF + NAVE_HALF - 0.1) * 0.5, wall_mid, NAVE_FRONT - WALL * 0.5)
-		var size: Vector3 = Vector3(NAVE_HALF - TOWER_HALF + 0.1, wall_height, WALL)
-		box(stone, frame(shoulder), size, Color.WHITE)
-		solid(frame(shoulder), size)
-	# Gables, coped with stone along their raking edges.
-	for z: float in [NAVE_FRONT - WALL * 0.5, NAVE_BACK + WALL * 0.5]:
-		var outline: PackedVector2Array = PackedVector2Array([Vector2(-NAVE_HALF, EAVES - 0.05), Vector2(NAVE_HALF, EAVES - 0.05), Vector2(0.0, RIDGE + 0.35)])
-		extrude(stone, frame(Vector3(0.0, 0.0, z)), outline, WALL, Color.WHITE)
-		for side: float in [-1.0, 1.0]:
-			beam(trim, at(side * (NAVE_HALF + 0.12), EAVES + 0.12, z), at(0.0, RIDGE + 0.6, z), 1.06, 0.26, Color(0.9, 0.9, 0.88))
-	cross_finial(at(0.0, RIDGE + 0.7, NAVE_BACK + WALL * 0.5), 1.5, Basis(Vector3.BACK, 0.05))
-	# Cornice, ragged parapet, buttresses with pinnacles, and the lancet windows between them.
-	for side: float in [-1.0, 1.0]:
-		box(trim, frame(Vector3(side * (NAVE_HALF + 0.08), EAVES - 0.22, (NAVE_FRONT + NAVE_BACK) * 0.5)), Vector3(0.36, 0.3, NAVE_FRONT - NAVE_BACK + 0.3), Color.WHITE)
-		box(stone, frame(Vector3(side * (NAVE_HALF - 0.2), EAVES + 0.24, (NAVE_FRONT + NAVE_BACK) * 0.5)), Vector3(0.46, 0.6, NAVE_FRONT - NAVE_BACK), Color.WHITE)
-		var z: float = NAVE_FRONT - 0.4
-		while z > NAVE_BACK + 0.3:
-			var height: float = random.randf_range(0.42, 0.72)
-			if random.randf() < 0.18:
-				height = random.randf_range(0.08, 0.25)
-			if random.randf() > 0.1:
-				var merlon: Basis = Basis(Vector3.BACK, random.randf_range(-0.05, 0.05)) * Basis(Vector3.UP, random.randf_range(-0.06, 0.06))
-				box(stone, frame(Vector3(side * (NAVE_HALF - 0.2), EAVES + 0.54 + height * 0.5, z), merlon), Vector3(0.46, height, 0.52), vary(0.08))
-			z -= random.randf_range(0.95, 1.2)
-	for z: float in [-5.9, -9.0, -12.5, -15.6]:
-		for side: float in [-1.0, 1.0]:
-			buttress(side, z)
-	var states: Array[int] = [Glass.AMBER, Glass.BROKEN, Glass.BOARDED, Glass.DARK, Glass.RED, Glass.DARK]
-	var index: int = 0
-	for side: float in [-1.0, 1.0]:
-		for z: float in [-7.45, -10.75, -14.05]:
-			var facing: Basis = Basis(Vector3.UP, side * PI * 0.5)
-			window(frame(Vector3(side * NAVE_HALF, 0.0, z), facing), 0.55, 2.3, 5.3, states[index], float(index) * 1.37)
-			index += 1
-	window(frame(Vector3(0.0, 0.0, NAVE_BACK), Basis(Vector3.UP, PI)), 0.8, 5.6, 10.2, Glass.AMBER, 9.1)
-	build_roof()
-
-func buttress(side: float, z: float) -> void:
-	var stone: SurfaceTool = tool("stone|church")
-	var trim: SurfaceTool = tool("trim|church")
-	var basis: Basis = Basis(Vector3(side, 0.0, 0.0), Vector3.UP, Vector3.BACK)
-	var outline: PackedVector2Array = PackedVector2Array([Vector2(-0.1, BURIED), Vector2(1.3, BURIED), Vector2(1.3, 4.6), Vector2(0.78, 5.35), Vector2(0.78, 7.3), Vector2(-0.1, 8.25)])
-	extrude(stone, frame(Vector3(side * NAVE_HALF, 0.0, z), basis), outline, 0.86, vary(0.05))
-	solid(frame(Vector3(side * (NAVE_HALF + 0.6), (BURIED + 4.6) * 0.5, z)), Vector3(1.4, 4.6 - BURIED, 0.86))
-	box(trim, frame(Vector3(side * (NAVE_HALF + 0.66), 4.62, z)), Vector3(1.36, 0.1, 0.94), Color.WHITE)
-	pinnacle(trim, at(side * (NAVE_HALF + 0.32), 8.1, z), 0.24, 1.7, 1.4)
-
-func pinnacle(surface: SurfaceTool, base: Vector3, half: float, shaft: float, spire_height: float) -> void:
-	box(surface, Transform3D(Basis.IDENTITY, base + Vector3.UP * shaft * 0.5), Vector3(half * 2.0, shaft, half * 2.0), vary(0.06))
-	box(surface, Transform3D(Basis.IDENTITY, base + Vector3.UP * (shaft + 0.05)), Vector3(half * 2.5, 0.1, half * 2.5), Color.WHITE)
-	pyramid(surface, base + Vector3.UP * (shaft + 0.1), half * 1.45, spire_height, 4, vary(0.06))
-
-func cross_finial(base: Vector3, height: float, tilt: Basis) -> void:
-	var trim: SurfaceTool = tool("trim|church")
-	var outline: PackedVector2Array = PackedVector2Array([Vector2(-0.09, 0.0), Vector2(0.09, 0.0), Vector2(0.09, height * 0.62), Vector2(0.36, height * 0.62), Vector2(0.36, height * 0.76), Vector2(0.09, height * 0.76), Vector2(0.09, height), Vector2(-0.09, height), Vector2(-0.09, height * 0.76), Vector2(-0.36, height * 0.76), Vector2(-0.36, height * 0.62), Vector2(-0.09, height * 0.62)])
-	extrude(trim, Transform3D(tilt, base), outline, 0.16, Color.WHITE)
-	ring(trim, Transform3D(tilt, base + tilt * Vector3(0.0, 0.0, -0.04)), circle(Vector2(0.0, height * 0.69), 0.27, 16), circle(Vector2(0.0, height * 0.69), 0.21, 16), 0.08, Color.WHITE)
-
-func build_roof() -> void:
-	var slate: SurfaceTool = tool("slate|church")
-	var trim: SurfaceTool = tool("trim|church")
-	var z0: float = NAVE_FRONT + 0.25
-	var z1: float = NAVE_BACK - 0.4
-	var columns: int = 14
-	var rows: int = 6
-	var ridge_points: Array[Vector3] = []
-	var edge_uv: PackedVector2Array = PackedVector2Array([Vector2(0, 0), Vector2(0.3, 0), Vector2(0.3, 0.2), Vector2(0, 0.2)])
-	for side: float in [-1.0, 1.0]:
-		var eave: Vector2 = Vector2(side * (NAVE_HALF - 0.45), EAVES + 0.3)
-		var crest: Vector2 = Vector2(0.0, RIDGE)
-		var slope_length: float = eave.distance_to(crest)
-		var grid: Array[PackedVector3Array] = []
-		for i: int in range(columns + 1):
-			var row: PackedVector3Array = PackedVector3Array()
-			var z: float = lerpf(z0, z1, float(i) / float(columns))
-			for j: int in range(rows + 1):
-				var t: float = float(j) / float(rows)
-				var point: Vector2 = eave.lerp(crest, t)
-				var sag: float = 0.3 * sin(PI * float(i) / float(columns)) * (0.35 + 0.65 * sin(PI * t))
-				if i > 0 and i < columns and j > 0 and j < rows:
-					sag += random.randf_range(-0.03, 0.05)
-				row.append(at(point.x, point.y - sag, z))
-			grid.append(row)
-		var lift: Vector3 = Vector3(side * 0.6, 1.0, 0.0).normalized()
-		var down: Vector3 = Vector3.DOWN * 0.24
-		for i: int in range(columns):
-			for j: int in range(rows):
-				var a: Vector3 = grid[i][j]
-				var b: Vector3 = grid[i + 1][j]
-				var c: Vector3 = grid[i + 1][j + 1]
-				var d: Vector3 = grid[i][j + 1]
-				var u0: float = absf(a.z - at(0, 0, z0).z)
-				var u1: float = absf(b.z - at(0, 0, z0).z)
-				var v0: float = (1.0 - float(j) / float(rows)) * slope_length
-				var v1: float = (1.0 - float(j + 1) / float(rows)) * slope_length
-				var uv: PackedVector2Array = PackedVector2Array([Vector2(u0, v0), Vector2(u1, v0), Vector2(u1, v1), Vector2(u0, v1)])
-				quad(slate, a, b, c, d, lift, Color.WHITE, uv)
-				quad(slate, a + down, b + down, c + down, d + down, -lift, Color(0.5, 0.5, 0.5), uv)
-		for i: int in range(columns):
-			var a: Vector3 = grid[i][0]
-			var b: Vector3 = grid[i + 1][0]
-			quad(slate, a, b, b + down, a + down, Vector3(side, -0.3, 0.0), Color(0.6, 0.6, 0.6), edge_uv)
-		for i: int in [0, columns]:
-			var outward: Vector3 = Vector3.BACK if i == 0 else Vector3.FORWARD
-			for j: int in range(rows):
-				var a: Vector3 = grid[i][j]
-				var b: Vector3 = grid[i][j + 1]
-				quad(slate, a, b, b + down, a + down, outward, Color(0.6, 0.6, 0.6), edge_uv)
-		if side < 0.0:
-			for i: int in range(columns + 1):
-				ridge_points.append(grid[i][rows])
-		var mid_point: Vector2 = eave.lerp(crest, 0.5)
-		var angle: float = atan2(crest.y - eave.y, crest.x - eave.x)
-		solid(frame(Vector3(mid_point.x, mid_point.y - 0.12, (z0 + z1) * 0.5), Basis(Vector3.BACK, angle)), Vector3(slope_length, 0.3, z0 - z1))
-	for i: int in range(ridge_points.size() - 1):
-		beam(trim, ridge_points[i] + Vector3.UP * 0.06, ridge_points[i + 1] + Vector3.UP * 0.06, 0.34, 0.24, vary(0.05))
-
-# Lancet window on a wall face; the frame origin sits on the face at floor height, +z outward.
-func window(transform: Transform3D, half_width: float, sill: float, spring: float, state: int, seed_value: float) -> void:
-	var trim: SurfaceTool = tool("trim|church")
-	var ratio: float = 1.6
-	var radius: float = ratio * half_width
-	var surround: float = 0.17
-	var inner: PackedVector2Array = lancet(half_width, sill, spring, ratio)
-	var outer: PackedVector2Array = lancet(half_width + surround, sill - surround, spring, (radius + surround) / (half_width + surround))
-	ring(trim, transform, outer, inner, 0.13, vary(0.05))
-	box(trim, transform * Transform3D(Basis.IDENTITY, Vector3(0.0, sill - surround - 0.06, 0.1)), Vector3(half_width * 2.0 + 0.6, 0.12, 0.26), Color.WHITE)
-	if half_width > 0.45:
-		box(trim, transform * Transform3D(Basis.IDENTITY, Vector3(0.0, (sill + spring + 0.4) * 0.5, 0.05)), Vector3(0.09, spring + 0.4 - sill, 0.1), Color.WHITE)
-	glass_pane(transform * Transform3D(Basis.IDENTITY, Vector3(0.0, 0.0, 0.025)), inner, Vector2(-half_width, sill), state, seed_value)
-	if state == Glass.BOARDED:
-		var wood: SurfaceTool = tool("wood|church")
-		for plank: int in range(4):
-			var y: float = sill + 0.5 + float(plank) * (spring - sill) / 4.0
-			var tilt: Basis = Basis(Vector3.BACK, random.randf_range(-0.25, 0.25))
-			box(wood, transform * Transform3D(tilt, Vector3(random.randf_range(-0.05, 0.05), y, 0.11)), Vector3(half_width * 2.0 + 0.45, 0.2, 0.05), vary(0.15))
-
-func glass_pane(transform: Transform3D, outline: PackedVector2Array, origin: Vector2, state: int, seed_value: float) -> void:
-	var surface: SurfaceTool = SurfaceTool.new()
-	surface.begin(Mesh.PRIMITIVE_TRIANGLES)
-	var triangles: PackedInt32Array = Geometry2D.triangulate_polygon(outline)
-	var front: Vector3 = transform.basis * Vector3.BACK
-	for index: int in range(0, triangles.size(), 3):
-		var points: Array[Vector3] = []
-		var uv: PackedVector2Array = PackedVector2Array()
-		for corner: int in range(3):
-			var p: Vector2 = outline[triangles[index + corner]]
-			points.append(transform * Vector3(p.x, p.y, 0.0))
-			uv.append(p - origin)
-		tri(surface, points[0], points[1], points[2], front, Color.WHITE, uv)
-	var visual: MeshInstance3D = MeshInstance3D.new()
-	visual.name = "Glass"
-	visual.mesh = surface.commit()
-	visual.material_override = glass_materials[state]
-	visual.cast_shadow = GeometryInstance3D.SHADOW_CASTING_SETTING_OFF
-	add_child(visual)
-	visual.set_instance_shader_parameter("seed", seed_value)
-
-# --- Tower, belfry, spire and turret --------------------------------------------------------
-
-func build_tower() -> void:
-	var stone: SurfaceTool = tool("stone|church")
-	var trim: SurfaceTool = tool("trim|church")
-	# Front face with the portal, side walls and a closed vestibule behind the door.
-	arch_panel(stone, frame(Vector3.ZERO), TOWER_HALF, BURIED, TOWER_TOP, DOOR_HALF, 0.02, DOOR_SPRING, 1.5, WALL, Color.WHITE)
-	for side: float in [-1.0, 1.0]:
-		box(stone, frame(Vector3(side * (TOWER_HALF - 0.45), (BURIED + TOWER_TOP) * 0.5, (-WALL + TOWER_BACK) * 0.5)), Vector3(0.9, TOWER_TOP - BURIED, -TOWER_BACK - WALL), Color.WHITE)
-	box(stone, frame(Vector3(0.0, (BURIED + TOWER_TOP) * 0.5, (-2.6 + TOWER_BACK) * 0.5)), Vector3(TOWER_HALF * 2.0 - 1.8, TOWER_TOP - BURIED, -TOWER_BACK - 2.6), Color.WHITE)
-	box(stone, frame(Vector3(0.0, (4.4 + TOWER_TOP) * 0.5, (-WALL - 2.6) * 0.5)), Vector3(TOWER_HALF * 2.0 - 1.8, TOWER_TOP - 4.4, 2.6 - WALL), Color.WHITE)
-	solid(frame(Vector3(0.0, (BURIED + TOWER_TOP) * 0.5, TOWER_BACK * 0.5)), Vector3(TOWER_HALF * 2.0, TOWER_TOP - BURIED, -TOWER_BACK))
-	# The vestibule is filled with pale light, so the ajar door shows it from any approach angle:
-	# the only bright opening in the building.
-	var vestibule: float = TOWER_HALF - 0.9
-	glow_panel(frame(Vector3(0.0, 0.0, -2.58)), PackedVector2Array([Vector2(-vestibule, 0.0), Vector2(vestibule, 0.0), Vector2(vestibule, 4.4), Vector2(-vestibule, 4.4)]))
-	for side: float in [-1.0, 1.0]:
-		glow_panel(frame(Vector3(side * (vestibule - 0.02), 0.0, -1.75), Basis(Vector3.UP, -side * PI * 0.5)), PackedVector2Array([Vector2(-0.85, 0.0), Vector2(0.85, 0.0), Vector2(0.85, 4.4), Vector2(-0.85, 4.4)]))
-	# Portal mouldings in two orders, a gabled hood, and the heavy door leaves, one ajar.
-	var orders: Array[float] = [0.42, 0.22]
-	for order: int in range(2):
-		var grow: float = orders[order]
-		var radius: float = 1.5 * DOOR_HALF
-		var inner_grow: float = grow - 0.2
-		var outer: PackedVector2Array = lancet(DOOR_HALF + grow, 0.0, DOOR_SPRING, (radius + grow) / (DOOR_HALF + grow))
-		var inner: PackedVector2Array = lancet(DOOR_HALF + inner_grow, 0.0, DOOR_SPRING, (radius + inner_grow) / (DOOR_HALF + inner_grow))
-		# Drop the sill edge: an open moulding from the right jamb foot over the arch to the left.
-		outer.remove_at(0)
-		inner.remove_at(0)
-		ring(trim, frame(Vector3(0.0, 0.0, -0.02)), outer, inner, 0.24 - float(order) * 0.1, Color.WHITE, false)
-	extrude(trim, frame(Vector3(0.0, 0.0, 0.1)), PackedVector2Array([Vector2(-1.95, 3.7), Vector2(1.95, 3.7), Vector2(0.0, 6.05)]), 0.2, Color.WHITE)
-	pinnacle(trim, at(0.0, 6.0, 0.1), 0.1, 0.4, 0.55)
-	door_leaf(-1.0, 0.0)
-	door_leaf(1.0, 0.8)
-	# Corner buttresses rise in three set-backs.
-	var stages: PackedVector2Array = PackedVector2Array([Vector2(-0.1, BURIED), Vector2(0.9, BURIED), Vector2(0.9, 4.4), Vector2(0.6, 5.0), Vector2(0.6, 9.0), Vector2(0.35, 9.6), Vector2(0.35, 12.6), Vector2(-0.1, 13.2)])
-	for side: float in [-1.0, 1.0]:
-		extrude(stone, frame(Vector3(side * (TOWER_HALF - 0.45), 0.0, 0.0), Basis(Vector3(0, 0, 1), Vector3.UP, Vector3(-1, 0, 0))), stages, 0.9, vary(0.05))
-		extrude(stone, frame(Vector3(side * TOWER_HALF, 0.0, -0.45), Basis(Vector3(side, 0, 0), Vector3.UP, Vector3.BACK)), stages, 0.9, vary(0.05))
-		solid(frame(Vector3(side * (TOWER_HALF - 0.45), (BURIED + 4.4) * 0.5, 0.45)), Vector3(0.9, 4.4 - BURIED, 0.9))
-		solid(frame(Vector3(side * (TOWER_HALF + 0.45), (BURIED + 4.4) * 0.5, -0.45)), Vector3(0.9, 4.4 - BURIED, 0.9))
-	# String courses and cornice.
-	for y: float in [6.4, 11.0]:
-		box(trim, frame(Vector3(0.0, y, TOWER_BACK * 0.5)), Vector3(TOWER_HALF * 2.0 + 0.24, 0.22, -TOWER_BACK + 0.24), Color.WHITE)
-	box(trim, frame(Vector3(0.0, TOWER_TOP - 0.12, TOWER_BACK * 0.5)), Vector3(TOWER_HALF * 2.0 + 0.5, 0.3, -TOWER_BACK + 0.5), Color.WHITE)
-	# Rose window over the door, with stone tracery.
-	var rose: Vector2 = Vector2(0.0, 8.3)
-	ring(trim, frame(Vector3.ZERO), circle(rose, 1.38, 32), circle(rose, 1.15, 32), 0.16, Color.WHITE)
-	glass_pane(frame(Vector3(0.0, 0.0, 0.025)), circle(rose, 1.15, 32), rose - Vector2(1.15, 1.15), Glass.RED, 4.4)
-	ring(trim, frame(Vector3(0.0, 0.0, 0.02)), circle(rose, 0.36, 16), circle(rose, 0.26, 16), 0.1, Color.WHITE)
-	for spoke: int in range(8):
-		var angle: float = TAU * float(spoke) / 8.0
-		var direction: Vector3 = Vector3(cos(angle), sin(angle), 0.0)
-		beam(trim, at(rose.x, rose.y, 0.07) + direction * 0.32, at(rose.x, rose.y, 0.07) + direction * 1.16, 0.07, 0.07, Color.WHITE)
-	# Paired dark lancets on the upper stage.
-	var faces: Array[Basis] = [Basis.IDENTITY, Basis(Vector3.UP, PI * 0.5), Basis(Vector3.UP, -PI * 0.5)]
-	var origins: Array[Vector3] = [Vector3(0.0, 0.0, 0.0), Vector3(TOWER_HALF, 0.0, TOWER_BACK * 0.5), Vector3(-TOWER_HALF, 0.0, TOWER_BACK * 0.5)]
-	for face: int in range(3):
-		for offset: float in [-0.75, 0.75]:
-			var origin: Vector3 = origins[face] + faces[face] * Vector3(offset, 0.0, 0.0)
-			window(frame(origin, faces[face]), 0.26, 11.8, 14.3, Glass.BROKEN if face == 1 and offset > 0.0 else Glass.DARK, float(face) * 2.1 + offset)
-	# Square-top parapet and corner pinnacles around the octagonal belfry.
-	for corner: int in range(4):
-		var cx: float = TOWER_HALF - 0.3 if corner % 2 == 0 else -TOWER_HALF + 0.3
-		var cz: float = -0.3 if corner < 2 else TOWER_BACK + 0.3
-		pinnacle(trim, at(cx, TOWER_TOP, cz), 0.3, 2.1, 1.9)
-	for side: float in [-1.0, 1.0]:
-		box(stone, frame(Vector3(side * (TOWER_HALF - 0.15), TOWER_TOP + 0.3, TOWER_BACK * 0.5)), Vector3(0.3, 0.6, -TOWER_BACK), vary(0.05))
-		box(stone, frame(Vector3(0.0, TOWER_TOP + 0.3, -0.15 if side > 0.0 else TOWER_BACK + 0.15)), Vector3(TOWER_HALF * 2.0, 0.6, 0.3), vary(0.05))
-	build_belfry()
-
-func glow_panel(panel: Transform3D, outline: PackedVector2Array) -> void:
-	var surface: SurfaceTool = tool("glow|church")
-	var triangles: PackedInt32Array = Geometry2D.triangulate_polygon(outline)
-	for index: int in range(0, triangles.size(), 3):
-		var a: Vector2 = outline[triangles[index]]
-		var b: Vector2 = outline[triangles[index + 1]]
-		var c: Vector2 = outline[triangles[index + 2]]
-		tri(surface, panel * Vector3(a.x, a.y, 0.0), panel * Vector3(b.x, b.y, 0.0), panel * Vector3(c.x, c.y, 0.0), panel.basis * Vector3.BACK, Color.WHITE)
-
-# One leaf of the double door, hinged at x = side * DOOR_HALF; swing opens it into the vestibule.
-func door_leaf(side: float, swing: float) -> void:
-	var wood: SurfaceTool = tool("wood|church")
-	var iron: SurfaceTool = tool("iron|church")
-	var outline: PackedVector2Array = lancet(DOOR_HALF - 0.02, 0.03, DOOR_SPRING, 1.5 * DOOR_HALF / (DOOR_HALF - 0.02))
-	var half: PackedVector2Array = PackedVector2Array([Vector2(0.0, 0.03)])
-	if side < 0.0:
-		half = PackedVector2Array([Vector2(-(DOOR_HALF - 0.02), 0.03), Vector2(0.0, 0.03)])
-		for point: Vector2 in outline.slice(2):
-			if point.x <= 0.0001:
-				half.append(point)
-	else:
-		half = PackedVector2Array([Vector2(0.0, 0.03), Vector2(DOOR_HALF - 0.02, 0.03)])
-		for point: Vector2 in outline.slice(2):
-			if point.x >= -0.0001:
-				half.append(point)
-	var local: PackedVector2Array = PackedVector2Array()
-	for point: Vector2 in half:
-		local.append(point - Vector2(side * DOOR_HALF, 0.0))
-	var hinge: Transform3D = frame(Vector3(side * DOOR_HALF, 0.0, -0.4), Basis(Vector3.UP, -side * swing))
-	extrude(wood, hinge, local, 0.12, Color(0.7, 0.66, 0.62))
-	for y: float in [0.55, 1.6, 2.6]:
-		box(iron, hinge * Transform3D(Basis.IDENTITY, Vector3(-side * 0.42, y, 0.07)), Vector3(0.8, 0.07, 0.025), Color.WHITE)
-	ring(iron, hinge * Transform3D(Basis.IDENTITY, Vector3(-side * 0.82, 1.3, 0.07)), circle(Vector2.ZERO, 0.1, 10), circle(Vector2.ZERO, 0.075, 10), 0.03, Color.WHITE)
-
-func build_belfry() -> void:
-	var stone: SurfaceTool = tool("stone|church")
-	var trim: SurfaceTool = tool("trim|church")
-	var slate: SurfaceTool = tool("slate|church")
-	var iron: SurfaceTool = tool("iron|church")
-	var axis: Vector3 = Vector3(0.0, 0.0, TOWER_BACK * 0.5)
-	var apothem: float = BELFRY_RADIUS * cos(PI / 8.0)
-	var half_face: float = BELFRY_RADIUS * sin(PI / 8.0)
-	for face: int in range(8):
-		var angle: float = TAU * float(face) / 8.0
-		var basis: Basis = Basis(Vector3.UP, angle)
-		var origin: Vector3 = axis + basis * Vector3(0.0, 0.0, apothem)
-		arch_panel(stone, frame(origin, basis), half_face, TOWER_TOP - 0.1, BELFRY_TOP, 0.4, 17.3, 19.9, 1.6, 0.35, vary(0.04))
-		ring(trim, frame(origin, basis), lancet(0.52, 17.18, 19.9, 0.76 / 0.52), lancet(0.4, 17.3, 19.9, 1.6), 0.08, Color.WHITE)
-		var corner_angle: float = angle + PI / 8.0
-		var corner: Vector3 = axis + Basis(Vector3.UP, corner_angle) * Vector3(0.0, 0.0, BELFRY_RADIUS)
-		box(trim, frame(corner + Vector3(0.0, (TOWER_TOP + BELFRY_TOP) * 0.5, 0.0), Basis(Vector3.UP, corner_angle)), Vector3(0.26, BELFRY_TOP - TOWER_TOP, 0.26), Color.WHITE)
-	prism(stone, ring_points(at(axis.x, TOWER_TOP - 0.05, axis.z), BELFRY_RADIUS - 0.1, 8, PI / 8.0), ring_points(at(axis.x, TOWER_TOP + 0.12, axis.z), BELFRY_RADIUS - 0.1, 8, PI / 8.0), Color(0.3, 0.3, 0.3))
-	prism(trim, ring_points(at(axis.x, BELFRY_TOP - 0.05, axis.z), BELFRY_RADIUS + 0.3, 8, PI / 8.0), ring_points(at(axis.x, BELFRY_TOP + 0.35, axis.z), BELFRY_RADIUS + 0.3, 8, PI / 8.0), Color.WHITE)
-	# The bell hangs from a beam, a silhouette against the far openings.
-	beam(tool("wood|church"), at(axis.x - 1.7, 20.9, axis.z), at(axis.x + 1.7, 20.9, axis.z), 0.22, 0.26, Color(0.5, 0.48, 0.45))
-	var bell_profile: PackedVector2Array = PackedVector2Array([Vector2(0.62, 0.0), Vector2(0.6, 0.08), Vector2(0.5, 0.2), Vector2(0.42, 0.45), Vector2(0.39, 0.75), Vector2(0.33, 0.95), Vector2(0.18, 1.04), Vector2(0.0, 1.06)])
-	lathe(iron, frame(axis + Vector3(0.0, 19.7, 0.0)), bell_profile, 16, Color(0.75, 0.62, 0.45))
-	# Spire, leaning very slightly, with lucarnes and a crooked iron cross.
-	var base: Vector3 = at(axis.x, BELFRY_TOP + 0.35, axis.z)
-	var tip: Vector3 = at(axis.x + 0.3, SPIRE_TIP, axis.z + 0.12)
-	spire(slate, base, BELFRY_RADIUS + 0.12, tip, 8)
-	for face: int in range(4):
-		lucarne(Basis(Vector3.UP, TAU * float(face) / 4.0), axis)
-	var tilt: Basis = Basis(Vector3.UP, 0.35) * Basis(Vector3.BACK, 0.24)
-	var cross_base: Vector3 = tip + Vector3.DOWN * 0.3
-	box(iron, Transform3D(tilt, cross_base + tilt * Vector3(0.0, 1.3, 0.0)), Vector3(0.1, 2.6, 0.1), Color.WHITE)
-	box(iron, Transform3D(tilt, cross_base + tilt * Vector3(0.0, 1.85, 0.0)), Vector3(1.3, 0.1, 0.1), Color.WHITE)
-
-func spire(surface: SurfaceTool, base: Vector3, radius: float, tip: Vector3, sides: int) -> void:
-	var points: PackedVector3Array = ring_points(base, radius, sides, PI / 8.0)
-	for index: int in range(sides):
-		var a: Vector3 = points[index]
-		var b: Vector3 = points[(index + 1) % sides]
-		var outward: Vector3 = (a + b) * 0.5 - base
-		var edge: Vector3 = (b - a).normalized()
-		var uv: PackedVector2Array = PackedVector2Array([Vector2((a - tip).dot(edge), a.distance_to(tip)), Vector2((b - tip).dot(edge), b.distance_to(tip)), Vector2(0.0, 0.0)])
-		tri(surface, a, b, tip, outward + Vector3.UP * 0.3, Color.WHITE, uv)
-
-func lucarne(basis: Basis, axis: Vector3) -> void:
-	var slate: SurfaceTool = tool("slate|church")
-	var trim: SurfaceTool = tool("trim|church")
-	var origin: Vector3 = axis + basis * Vector3(0.0, 0.0, BELFRY_RADIUS * 0.8)
-	var dormer: Transform3D = frame(origin, basis)
-	extrude(trim, dormer, PackedVector2Array([Vector2(-0.42, BELFRY_TOP + 0.3), Vector2(0.42, BELFRY_TOP + 0.3), Vector2(0.42, BELFRY_TOP + 1.2), Vector2(0.0, BELFRY_TOP + 1.85), Vector2(-0.42, BELFRY_TOP + 1.2)]), 0.9, Color.WHITE)
-	glass_pane(dormer * Transform3D(Basis.IDENTITY, Vector3(0.0, 0.0, 0.46)), lancet(0.2, BELFRY_TOP + 0.45, BELFRY_TOP + 1.05, 1.5, 8), Vector2(-0.2, BELFRY_TOP + 0.45), Glass.DARK, 3.3)
-	for side: float in [-1.0, 1.0]:
-		beam(slate, dormer * Vector3(side * 0.5, BELFRY_TOP + 1.13, 0.5), dormer * Vector3(0.0, BELFRY_TOP + 1.95, 0.5), 0.06, 0.06, Color.WHITE)
-
-func build_turret() -> void:
-	var stone: SurfaceTool = tool("stone|church")
-	var trim: SurfaceTool = tool("trim|church")
-	var slate: SurfaceTool = tool("slate|church")
-	var center: Vector3 = Vector3(NAVE_HALF + 0.3, 0.0, NAVE_FRONT - 0.3)
-	prism(stone, ring_points(at(center.x, BURIED, center.z), 0.95, 8, PI / 8.0), ring_points(at(center.x, 12.0, center.z), 0.95, 8, PI / 8.0), Color.WHITE)
-	post_shape(at(center.x, BURIED, center.z), 0.95, 12.0 - BURIED)
-	prism(trim, ring_points(at(center.x, 11.9, center.z), 1.12, 8, PI / 8.0), ring_points(at(center.x, 12.25, center.z), 1.12, 8, PI / 8.0), Color.WHITE)
-	spire(slate, at(center.x, 12.25, center.z), 1.08, at(center.x - 0.08, 16.6, center.z + 0.05), 8)
-	pyramid(tool("iron|church"), at(center.x - 0.08, 16.5, center.z + 0.05), 0.05, 0.9, 4, Color.WHITE)
-	for height: float in [3.2, 6.6, 9.8]:
-		for angle: float in [PI * 0.25, PI * 0.75]:
-			var basis: Basis = Basis(Vector3.UP, angle)
-			var origin: Vector3 = center + basis * Vector3(0.0, 0.0, 0.95 * cos(PI / 8.0))
-			window(frame(origin, basis), 0.12, height, height + 0.7, Glass.DARK, height + angle)
+		var x: float = side * (STAIR_HALF + 0.22)
+		var outline: PackedVector2Array = PackedVector2Array([Vector2(TERRACE_FRONT - 0.5, 0.7), Vector2(TERRACE_FRONT + run, -drop + 0.55), Vector2(TERRACE_FRONT + run, -drop - 1.2), Vector2(TERRACE_FRONT - 0.5, -drop - 1.2)])
+		extrude(base, frame(Vector3(x, 0.0, 0.0), Basis(Vector3(0, 0, 1), Vector3.UP, Vector3(-1, 0, 0))), outline, 0.44, vary(0.06))
+		solid(frame(Vector3(x, -drop * 0.5 + 0.15, TERRACE_FRONT + run * 0.5 - 0.25), tilt), Vector3(0.44, 1.3, slope_length + 0.5))
+		candle_cluster(at(x, -drop + 0.56, TERRACE_FRONT + run - 0.2), 2, 0.08)
+	stair_foot = Vector2(ChurchSite.DOOR.x, ChurchSite.DOOR.y + TERRACE_FRONT + run)
+	# The ruin's floor sits 0.25 m above the terrace: a gentle invisible ramp over the threshold.
+	var lip: Basis = Basis(Vector3.RIGHT, atan2(0.3, 2.2))
+	solid(frame(Vector3(0.0, 0.11, -0.5), lip) * Transform3D(Basis.IDENTITY, Vector3(0.0, -0.15, 0.0)), Vector3(RUIN_HALF * 1.4, 0.3, 2.25))
+	# Candles at the threshold under the broken arch.
+	for index: int in range(9):
+		candle(at(random.randf_range(-2.2, 2.2), 0.0, random.randf_range(-0.6, TERRACE_FRONT - 0.3)))
+	# Cold pale light behind the back window's tracery: the one bright opening, seen through the
+	# collapsed arch from the yard, with a cold lamp washing the inner walls.
+	var glow: SurfaceTool = tool("glow|church")
+	var corners: Array[Vector3] = [at(-1.8, 3.6, -10.3), at(1.25, 3.6, -10.3), at(1.25, 9.4, -10.3), at(-1.8, 9.4, -10.3)]
+	quad(glow, corners[0], corners[1], corners[2], corners[3], Vector3.BACK, Color.WHITE)
+	lamp(at(-0.1, 4.6, -7.6), Color(0.68, 0.8, 1.0), 2.2, 9.0, 0.0)
 
 # --- Graveyard enclosure -------------------------------------------------------------------
 
@@ -951,8 +596,8 @@ func build_enclosure() -> void:
 	wall_run(Vector2(gate_right, WALL_FRONT_Z), Vector2(WALL_EAST_X, WALL_FRONT_Z), -1000.0)
 	wall_run(Vector2(WALL_WEST_X, WALL_FRONT_Z), Vector2(WALL_WEST_X, WALL_BACK_Z), WALL_FRONT_Z - WEST_GAP_Z)
 	wall_run(Vector2(WALL_EAST_X, WALL_FRONT_Z), Vector2(WALL_EAST_X, WALL_BACK_Z), WALL_FRONT_Z - EAST_GAP_Z)
-	wall_run(Vector2(WALL_WEST_X, WALL_BACK_Z), Vector2(ChurchSite.DOOR.x - PODIUM_HALF - 0.1, WALL_BACK_Z), -1000.0)
-	wall_run(Vector2(ChurchSite.DOOR.x + PODIUM_HALF + 0.1, WALL_BACK_Z), Vector2(WALL_EAST_X, WALL_BACK_Z), -1000.0)
+	wall_run(Vector2(WALL_WEST_X, WALL_BACK_Z), Vector2(ChurchSite.DOOR.x - TERRACE_HALF - 0.1, WALL_BACK_Z), -1000.0)
+	wall_run(Vector2(ChurchSite.DOOR.x + TERRACE_HALF + 0.1, WALL_BACK_Z), Vector2(WALL_EAST_X, WALL_BACK_Z), -1000.0)
 
 # Mossy waist-high wall topped by a spiked railing, in ~2.4 m bays with piers between them.
 func wall_run(start: Vector2, finish: Vector2, gap_at: float) -> void:
@@ -1131,13 +776,19 @@ func reserve_features() -> void:
 	for patch: Vector3 in EMBERS:
 		reserved.append(Vector3(patch.x, patch.y, patch.z + 0.3))
 
+# The terrace front and the stairs with their cheek walls, grown by margin.
+func near_terrace(x: float, z: float, margin: float) -> bool:
+	var terrace: Rect2 = Rect2(ChurchSite.DOOR.x - TERRACE_HALF, ChurchSite.DOOR.y - RUIN_DEPTH, TERRACE_HALF * 2.0, RUIN_DEPTH + TERRACE_FRONT).grow(margin)
+	var stairs: Rect2 = Rect2(ChurchSite.DOOR.x - STAIR_HALF - 0.45, ChurchSite.DOOR.y, STAIR_HALF * 2.0 + 0.9, stair_foot.y - ChurchSite.DOOR.y).grow(margin)
+	return terrace.has_point(Vector2(x, z)) or stairs.has_point(Vector2(x, z))
+
 func grave_site_clear(x: float, z: float) -> bool:
 	if x < WALL_WEST_X + 1.0 or x > WALL_EAST_X - 1.0 or z < WALL_BACK_Z + 1.0 or z > WALL_FRONT_Z - 2.4:
 		return false
 	for along: float in [0.0, 1.0, 2.0]:
 		if absf(x - ChurchSite.road_x(z + along)) < 1.95:
 			return false
-	if x > ChurchSite.DOOR.x - PODIUM_HALF - 1.2 and x < ChurchSite.DOOR.x + PODIUM_HALF + 1.2 and z < -106.4:
+	if near_terrace(x, z, 1.2):
 		return false
 	for site: Vector3 in reserved:
 		if Vector2(x, z).distance_to(Vector2(site.x, site.y)) < site.z or Vector2(x, z + 1.0).distance_to(Vector2(site.x, site.y)) < site.z:
@@ -1182,7 +833,7 @@ func scatter_grass() -> void:
 		placed += 1
 		if absf(x - ChurchSite.road_x(z)) < 1.3:
 			continue
-		if x > ChurchSite.DOOR.x - PODIUM_HALF - 0.3 and x < ChurchSite.DOOR.x + PODIUM_HALF + 0.3 and z < ChurchSite.DOOR.y + PODIUM_FRONT + 2.6:
+		if near_terrace(x, z, 0.3):
 			continue
 		var pit: bool = false
 		for site: Vector2 in OPEN_GRAVES:
@@ -1631,7 +1282,7 @@ func terrain_sheet(x0: int, x1: int, z0: int, z1: int, lift: float) -> MeshInsta
 
 func flagstones() -> void:
 	var z: float = WALL_FRONT_Z + 0.4
-	var foot: float = ChurchSite.DOOR.y + PODIUM_FRONT + 2.3
+	var foot: float = stair_foot.y + 0.3
 	while z > foot:
 		for slot: int in range(2):
 			if random.randf() < 0.15:
@@ -1711,8 +1362,6 @@ func finish_batches() -> void:
 	for key: String in batches:
 		var surface: SurfaceTool = batches[key]
 		var kind: String = key.get_slice("|", 0)
-		if kind == "slate":
-			surface.generate_tangents()
 		var visual: MeshInstance3D = MeshInstance3D.new()
 		visual.name = kind.capitalize() + key.get_slice("|", 1).capitalize()
 		visual.mesh = surface.commit()
@@ -1874,7 +1523,7 @@ func build_audio() -> void:
 	bell.max_distance = 170.0
 	bell.max_db = 6.0
 	bell.volume_db = -50.0
-	bell.position = at(0.0, 20.0, TOWER_BACK * 0.5)
+	bell.position = at(0.0, 16.0, -5.0)
 	add_child(bell)
 	bell_wait = random.randf_range(12.0, 30.0)
 

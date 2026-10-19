@@ -1,14 +1,15 @@
 # Church and graveyard content
 
-Shaders for `gameplay/environment/church_grounds.gd` (task T-085). All geometry is generated
-procedurally at load time by that script; this folder holds only original shader code written
-for the task. No new external assets are added here.
+Shaders for `gameplay/environment/church_grounds.gd` (task T-085). The church building is the
+imported "Collapsed Gothic Chapel Ruin" by Pigcraft (CC-BY-4.0), processed and documented in
+`content/environments/chapel_ruin/` (task T-094; attribution in its `provenance.json`). Everything
+else (terrace, steps, walls, gate, graves, trees, props) is generated procedurally at load time.
+This folder holds only original shader code written for the task; no new external assets.
 
 | Shader | Use |
 | --- | --- |
+| `church_ruin.gdshader` | Runtime weathering of the chapel ruin's own PBR maps: greyer, darker, grime, moss |
 | `church_stone.gdshader` | World-triplanar weathered stone with grime streaks, moss and a light ash dusting |
-| `church_slate.gdshader` | Procedural wet slate shingles (roofs, spires) |
-| `church_glass.gdshader` | Leaded glass: dim uneven flicker, dark, broken or boarded states |
 | `church_flame.gdshader` | Y-billboarded candle, torch and grave-fire flames (one MultiMesh) |
 | `church_mist.gdshader` | Thin terrain-following ground mist layers, depth-softened |
 | `church_embers.gdshader` | Smouldering Voronoi ground cracks |
@@ -20,9 +21,9 @@ for the task. No new external assets are added here.
 
 Textures (already in the repository; provenance in their own folders):
 
-- `content/environments/valhalla/textures/KB3D_VHL_StoneGeneric_*`, `StoneFloor_*` (stone, walls,
-  headstones, terrace), `MetalHammeredDark_*` (railing, gate, bell, cross), `WoodPlanksSeededDark_*`
-  (door, boards, wooden crosses), `LogBark_*` (dead trees) — user-authorized KitBash Valhalla
+- `content/environments/valhalla/textures/KB3D_VHL_StoneGeneric_*`, `StoneFloor_*` (yard wall,
+  headstones, terrace, steps), `MetalHammeredDark_*` (railing, gate, torch brackets),
+  `WoodPlanksSeededDark_*` (wooden crosses, torch shafts, shovel), `LogBark_*` (dead trees) — user-authorized KitBash Valhalla
   textures, see `content/environments/valhalla/provenance.json`.
 - `content/environments/village_generated/soil_gravel.png`, `mineral_earth.png` (graves, yard
   earth) — original generated textures, prompts beside them.
