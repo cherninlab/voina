@@ -1,6 +1,6 @@
 {
-  "commit": "29d9851b6288ac99b482c0562c9477f40ed50c0c",
-  "by": "theo-codex-8",
-  "at": "2026-10-19T22:10Z",
-  "note": "Integrated shipped church/road/forest/villager changes; menu culling, fixture batching, sky seam and Natural/Night baseline fixes. Checking exact clean snapshot."
+  "commit": "51f66faf880ec2dafd64fba49c404e09fe966a15",
+  "by": "host-mac",
+  "at": "2026-10-19T22:17Z",
+  "note": "hosting on Mac"
 }
