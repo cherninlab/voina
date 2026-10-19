@@ -1,6 +1,8 @@
 extends CanvasLayer
 ## Local presentation only: menus release input; network and host simulation continue.
 
+var menu_backdrop: ColorRect = ColorRect.new()
+var menu_video: VideoStreamPlayer = VideoStreamPlayer.new()
 var menu_music: AudioStreamPlayer = AudioStreamPlayer.new()
 var world: Node3D
 var screen: Control = Control.new()
@@ -47,6 +49,16 @@ func _ready() -> void:
 	add_child(screen)
 	shade.color = Color(0, 0, 0, 0.72)
 	shade.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
+	menu_backdrop.color = Color.BLACK
+	menu_backdrop.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
+	menu_backdrop.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	screen.add_child(menu_backdrop)
+	menu_video.stream = preload("res://content/ui/secha-menu-background.ogv")
+	menu_video.expand = true
+	menu_video.loop = true
+	menu_video.volume_db = -80.0
+	menu_video.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	menu_backdrop.add_child(menu_video)
 	screen.add_child(shade)
 	var menu: VBoxContainer = world.get("menu") as VBoxContainer
 	lobby_panel = centered_panel(menu)
@@ -58,27 +70,6 @@ func _ready() -> void:
 	logo.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
 	logo.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
 	logo.mouse_filter = Control.MOUSE_FILTER_IGNORE
-	var mist: ColorRect = ColorRect.new()
-	mist.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
-	mist.mouse_filter = Control.MOUSE_FILTER_IGNORE
-	var shader: Shader = Shader.new()
-	shader.code = """shader_type canvas_item;
-float hash(vec2 p) { return fract(sin(dot(p,vec2(127.1,311.7)))*43758.5453); }
-float noise(vec2 p) {
- vec2 i=floor(p); vec2 f=fract(p); f=f*f*(3.0-2.0*f);
- return mix(mix(hash(i),hash(i+vec2(1,0)),f.x),mix(hash(i+vec2(0,1)),hash(i+vec2(1,1)),f.x),f.y);
-}
-void fragment() {
- vec2 p=UV*vec2(8.0,5.0)+vec2(TIME*0.012,0.0);
- float n=noise(p)*0.55+noise(p*2.1)*0.28+noise(p*4.3)*0.17;
- float edge=smoothstep(0.12,0.7,abs(UV.x-0.5));
- float fog=pow(n,3.0)*0.12*(0.35+edge);
- COLOR=vec4(vec3(0.55,0.62,0.68),fog);
-}"""
-	var material: ShaderMaterial = ShaderMaterial.new()
-	material.shader = shader
-	mist.material = material
-	title_screen.add_child(mist)
 	title_screen.add_child(logo)
 	title_choices.add_theme_constant_override("separation", 0)
 	title_screen.add_child(title_choices)
@@ -380,6 +371,12 @@ func refresh() -> void:
 		menu_music.play()
 	elif not wants_music and menu_music.playing:
 		menu_music.stop()
+	menu_backdrop.visible = wants_music
+	if wants_music and not menu_video.is_playing():
+		menu_video.play()
+	elif not wants_music and menu_video.is_playing():
+		menu_video.stop()
+	fit_logo()
 	var local: Node = local_player()
 	var connecting: bool = active and local == null and not NetworkManager.dedicated
 	var controls: Control = world.get("controls_panel") as Control
@@ -397,7 +394,7 @@ func refresh() -> void:
 	if logo.visible:
 		fit_logo()
 	shade.visible = in_lobby or pause_panel.visible or loader_panel.visible or controls.visible
-	shade.color = Color(0.004, 0.005, 0.007, 1.0) if not active else Color(0, 0, 0, 0.72)
+	shade.color = Color(0, 0, 0, 0.0) if title_screen.visible else Color(0, 0, 0, 0.72)
 	shade.mouse_filter = Control.MOUSE_FILTER_STOP if shade.visible else Control.MOUSE_FILTER_IGNORE
 	status_label.text = NetworkManager.status if NetworkManager.status != "Choose Host or Join" else "2–4 players · LAN / Tailscale"
 	loading_label.text = NetworkManager.status + "\nWaiting for the host…"
@@ -444,19 +441,28 @@ func title_button(text: String, action: Callable) -> Button:
 	control.add_theme_font_override("font", title_font)
 	for state: String in ["normal", "hover", "pressed", "focus"]:
 		control.add_theme_stylebox_override(state, StyleBoxEmpty.new())
-	control.add_theme_color_override("font_color", Color("a6aaae"))
+	control.alignment = HORIZONTAL_ALIGNMENT_LEFT
+	control.add_theme_color_override("font_color", Color("eee4cc"))
+	control.add_theme_color_override("font_shadow_color", Color(0, 0, 0, 0.7))
+	control.add_theme_constant_override("shadow_offset_x", 1)
+	control.add_theme_constant_override("shadow_offset_y", 2)
 	for state: String in ["font_hover_color", "font_pressed_color", "font_focus_color"]:
 		control.add_theme_color_override(state, Color.WHITE)
 	return control
 
 func fit_logo() -> void:
 	var window: Vector2 = screen.get_viewport_rect().size
-	var height: float = minf(window.y * 0.58, window.x * 0.58 / 1.85)
-	logo.position = Vector2(window.x * 0.18, window.y * 0.055)
-	logo.size = Vector2(window.x * 0.64, height)
-	title_choices.position = Vector2(window.x * 0.40, window.y * 0.70)
-	title_choices.size.x = window.x * 0.20
+	# Fit the whole illustration rather than cropping away the swordsman or menu-safe area.
+	var scale_factor: float = minf(window.x / 1916.0, window.y / 1080.0)
+	var frame: Vector2 = Vector2(1916.0, 1080.0) * scale_factor
+	var origin: Vector2 = (window - frame) * 0.5
+	menu_video.position = origin
+	menu_video.size = frame
+	logo.position = origin + Vector2(frame.x * 0.018, frame.y * 0.025)
+	logo.size = Vector2(frame.x * 0.43, frame.y * 0.43)
+	title_choices.position = origin + Vector2(frame.x * 0.05, frame.y * 0.51)
+	title_choices.size.x = frame.x * 0.24
 	for child: Node in title_choices.get_children():
 		var choice: Button = child as Button
-		choice.custom_minimum_size.y = window.y * 0.047
-		choice.add_theme_font_size_override("font_size", maxi(16, int(window.y * 0.024)))
+		choice.custom_minimum_size.y = frame.y * 0.068
+		choice.add_theme_font_size_override("font_size", maxi(16, int(frame.y * 0.038)))

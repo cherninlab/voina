@@ -1,6 +1,6 @@
 # SECHA interface
 
-The title screen uses the supplied branching white SECHA logo on near-black with faint slow mist. Four borderless serif text choices sit beneath it: Host game, Join game, Settings and Quit.
+The title screen loops the supplied illustrated village video (`content/ui/secha-menu-background.ogv`, silent Theora at 12 fps). The branching white logo and four ivory serif choices occupy the clear purple left side; the swordsman remains unobstructed. The complete frame fits the viewport with black letterboxing where needed. Music is a separate looping MP3. The short source clip repeats directly; a seamless motion join is not claimed.
 
 - Host game opens raider/round options and a Host game action.
 - Join game opens the host address and Join game action. Enter submits the address.
