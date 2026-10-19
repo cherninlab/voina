@@ -3,19 +3,24 @@ extends Node
 # Scene lighting for the shading themes (ui/shading.gd). The village's bounce light is baked into
 # a LightmapGI; only the sun's direct light is realtime. Dimming the sun alone would leave the
 # baked bounce lighting the village, so a lit theme detaches the lightmap data (and keeps the sun
-# BAKE_DYNAMIC). Sun, ambient, sky, fog, exposure, glow, a warm lantern and a hard camera flash
-# then all follow the theme. Natural restores the baked look.
-# The lantern and flash hang on a rig that copies the current camera's transform every frame.
-# They are never parented to a camera: players (and their cameras) are freed on leave or rejoin,
-# which used to free the lantern with them.
+# BAKE_DYNAMIC). Sun, ambient, sky, fog, exposure, glow and a camera lantern then all follow the
+# theme. Natural restores the baked look.
+# The lantern is one tunable light carried at the camera: Spread 180 shines all around (an omni
+# light, a carried lantern); anything narrower is a cone along the view (a spot light: a torch, or
+# a point-and-shoot flash when wide, cold, strong and shadowed). Godot needs a different node type
+# for each shape, so both exist and only the active one is lit.
+# The lights hang on a rig that copies the current camera's transform every frame. They are never
+# parented to a camera: players (and their cameras) are freed on leave or rejoin, which used to
+# free the lantern with them.
 # Local presentation only; every original value is kept and put back.
 
 var sun: DirectionalLight3D
 var environment: Environment
 var lightmap: LightmapGI
 var rig: Node3D = Node3D.new()
-var lantern: OmniLight3D = OmniLight3D.new()
-var flash: SpotLight3D = SpotLight3D.new()
+var omni: OmniLight3D = OmniLight3D.new()
+var spot: SpotLight3D = SpotLight3D.new()
+var lantern: Light3D = omni # whichever shape is active
 var original: Dictionary = {}
 var lightmap_data: LightmapGIData
 var realtime: bool = false
@@ -25,30 +30,20 @@ var render_mode: int = Viewport.DEBUG_DRAW_DISABLED
 var next_scan: float = 0.0
 
 func _ready() -> void:
-	lantern.name = "ShadingLantern"
-	lantern.omni_range = 16.0
-	lantern.omni_attenuation = 1.4
-	lantern.shadow_enabled = false
-	lantern.light_bake_mode = Light3D.BAKE_DISABLED
-	lantern.position = Vector3(0.35, 0.1, 0.2)
-	# A flash just above the lens: hard, cold, frontal light that falls off fast, with crisp
-	# shadows dropping below and behind what it hits.
-	flash.name = "ShadingFlash"
-	flash.spot_angle = 48.0
-	flash.spot_angle_attenuation = 0.6
-	flash.spot_range = 30.0
-	flash.spot_attenuation = 2.0
-	flash.shadow_enabled = true
-	flash.light_bake_mode = Light3D.BAKE_DISABLED
-	flash.position = Vector3(0.0, 0.22, 0.0)
+	omni.name = "ShadingLantern"
+	spot.name = "ShadingLanternCone"
+	for light: Light3D in [omni, spot]:
+		light.light_bake_mode = Light3D.BAKE_DISABLED
+		light.visible = false
+	spot.spot_angle_attenuation = 0.6
 	rig.name = "ShadingLightRig"
-	rig.add_child(lantern)
-	rig.add_child(flash)
+	rig.add_child(omni)
+	rig.add_child(spot)
 	add_child(rig)
 
-## settings: sun, sun_angle, ambient, sky, fog, exposure, glow, lantern, flash (see SPECS in
-## shading.gd). colours: optional sun_color, ambient_color, fog_color, lantern_color, flash_color. realtime: whether
-## the theme needs the realtime path at all.
+## settings: sun, sun_angle, ambient, sky, fog, exposure, glow and the lantern_* values (see SPECS
+## in shading.gd). colours: optional sun_color, ambient_color, fog_color. realtime: whether the
+## theme needs the realtime path at all.
 func apply(new_settings: Dictionary, new_colours: Dictionary, want_realtime: bool, new_render_mode: int) -> void:
 	settings = new_settings
 	colours = new_colours
@@ -124,12 +119,31 @@ func refresh() -> void:
 		var glow: float = float(settings.get("glow", 0.0)) if lit else 0.0
 		environment.glow_enabled = glow > 0.001 or bool(original["glow"])
 		environment.glow_intensity = glow if glow > 0.001 else float(original["glow_intensity"])
-	lantern.light_energy = float(settings.get("lantern", 0.0)) if realtime else 0.0
-	lantern.light_color = colour("lantern_color", Color("ffb060"))
-	lantern.visible = lantern.light_energy > 0.001
-	flash.light_energy = float(settings.get("flash", 0.0)) if realtime else 0.0
-	flash.light_color = colour("flash_color", Color("f2f6ff"))
-	flash.visible = flash.light_energy > 0.001
+	refresh_lantern()
+
+## Warmth 0 is cold flash white, 1 is warm lantern orange.
+const COLD: Color = Color("eef3ff")
+const WARM: Color = Color("ffa850")
+
+func refresh_lantern() -> void:
+	var energy: float = float(settings.get("lantern", 0.0)) if realtime else 0.0
+	var spread: float = float(settings.get("lantern_spread", 180.0))
+	lantern = omni if spread >= 179.5 else spot
+	var other: Light3D = spot if lantern == omni else omni
+	other.visible = false
+	other.light_energy = 0.0
+	lantern.light_energy = energy
+	lantern.visible = energy > 0.001
+	lantern.light_color = COLD.lerp(WARM, clampf(float(settings.get("lantern_warmth", 1.0)), 0.0, 1.0))
+	lantern.shadow_enabled = float(settings.get("lantern_shadows", 0.0)) >= 0.5
+	lantern.position = Vector3(0.0, float(settings.get("lantern_height", 0.1)), 0.0)
+	var reach: float = float(settings.get("lantern_range", 16.0))
+	var falloff: float = float(settings.get("lantern_falloff", 1.4))
+	omni.omni_range = reach
+	omni.omni_attenuation = falloff
+	spot.spot_range = reach
+	spot.spot_attenuation = falloff
+	spot.spot_angle = minf(spread * 0.5, 89.0)
 
 func colour(key: String, fallback: Color) -> Color:
 	return Color(colours[key] as String) if colours.has(key) else fallback

@@ -19,8 +19,13 @@ const SPECS: Array[Dictionary] = [
 	{"name": "fog", "label": "Fog density", "min": 0.0, "max": 0.08, "step": 0.0005, "default": 0.0015},
 	{"name": "scene_exposure", "label": "Scene exposure", "min": 0.1, "max": 4.0, "step": 0.05, "default": 1.0},
 	{"name": "glow", "label": "Glow", "min": 0.0, "max": 2.0, "step": 0.05, "default": 0.0},
-	{"name": "lantern", "label": "Lantern", "min": 0.0, "max": 8.0, "step": 0.1, "default": 0.0},
-	{"name": "flash", "label": "Camera flash", "min": 0.0, "max": 80.0, "step": 0.5, "default": 0.0},
+	{"name": "lantern", "label": "Lantern", "min": 0.0, "max": 80.0, "step": 0.1, "default": 0.0},
+	{"name": "lantern_spread", "label": "Lantern spread (deg)", "min": 20.0, "max": 180.0, "step": 1.0, "default": 180.0},
+	{"name": "lantern_range", "label": "Lantern range", "min": 2.0, "max": 60.0, "step": 0.5, "default": 16.0},
+	{"name": "lantern_falloff", "label": "Lantern falloff", "min": 0.2, "max": 4.0, "step": 0.05, "default": 1.4},
+	{"name": "lantern_warmth", "label": "Lantern warmth", "min": 0.0, "max": 1.0, "step": 0.01, "default": 1.0},
+	{"name": "lantern_height", "label": "Lantern height", "min": -0.5, "max": 1.5, "step": 0.01, "default": 0.1},
+	{"name": "lantern_shadows", "label": "Lantern shadows", "min": 0.0, "max": 1.0, "step": 1.0, "default": 0.0},
 	{"group": "Image"},
 	{"name": "strength", "label": "Strength", "min": 0.0, "max": 1.0, "step": 0.01, "default": 1.0},
 	{"name": "exposure", "label": "Exposure", "min": -2.0, "max": 2.0, "step": 0.05, "default": 0.0},
@@ -52,25 +57,26 @@ const SPECS: Array[Dictionary] = [
 ]
 const INT_PARAMS: Array[String] = ["flat_radius"]
 const LIGHT_PARAMS: Array[String] = ["sun", "sun_angle", "ambient", "sky", "fog", "scene_exposure", "glow", "lantern",
-	"flash"]
+	"lantern_spread", "lantern_range", "lantern_falloff", "lantern_warmth", "lantern_height", "lantern_shadows"]
 const RENDER_MODES: Dictionary[String, int] = {"unshaded": Viewport.DEBUG_DRAW_UNSHADED}
 # Each theme: "values" override SPECS defaults. Colours are sRGB hex: "palette" (with "mode"
 # 0 = luminance ramp dark to light, 1 = nearest colour), "ink", "paper", "tint", "blood", and
-# "light" (sun_color, ambient_color, fog_color, lantern_color, flash_color). A "light" entry, or any Lighting
+# "light" (sun_color, ambient_color, fog_color). The camera lantern's shape and colour are sliders. A "light" entry, or any Lighting
 # slider off its default, switches the village to realtime light. "render": "unshaded" draws
 # material colour only: true flat shading, no light at all.
-const NIGHT: Dictionary = {"sun_color": "7d96ff", "ambient_color": "1a2a55", "fog_color": "0a1020",
-	"lantern_color": "ffb060"}
+const NIGHT: Dictionary = {"sun_color": "7d96ff", "ambient_color": "1a2a55", "fog_color": "0a1020"}
 const THEMES: Array[Dictionary] = [
 	{"name": "Natural", "values": {"strength": 0.0}},
 	# Lighting
 	{"name": "Night", "light": NIGHT, "values": {"sun": 0.12, "sun_angle": 40.0, "ambient": 0.3, "sky": 0.05,
 		"fog": 0.012, "scene_exposure": 1.3, "lantern": 3.0, "saturation": 0.8, "vignette": 0.35}},
-	# A point-and-shoot flash at night: hard cold light from just above the lens, blown-out near
-	# faces, crisp drop shadows, and the background falling off into black. Warm faded print.
-	{"name": "Night Flash", "light": {"sun_color": "7d96ff", "ambient_color": "10141f", "fog_color": "05070c",
-		"flash_color": "f2f6ff"}, "tint": "ffe2c4", "values": {"sun": 0.06, "sun_angle": 40.0, "ambient": 0.15,
-		"sky": 0.04, "fog": 0.01, "scene_exposure": 1.2, "flash": 45.0, "exposure": 0.15, "contrast": 1.3,
+	# The same lantern shaped as a point-and-shoot flash: a wide cold cone from just above the lens,
+	# strong and shadowed, blown-out near faces and the background falling off into black.
+	{"name": "Night Flash", "light": {"sun_color": "7d96ff", "ambient_color": "10141f", "fog_color": "05070c"},
+		"tint": "ffe2c4", "values": {"sun": 0.06, "sun_angle": 40.0, "ambient": 0.15, "sky": 0.04, "fog": 0.01,
+		"scene_exposure": 1.2, "lantern": 45.0, "lantern_spread": 150.0, "lantern_range": 30.0,
+		"lantern_falloff": 2.0, "lantern_warmth": 0.05, "lantern_height": 0.22, "lantern_shadows": 1.0,
+		"exposure": 0.15, "contrast": 1.3,
 		"saturation": 0.85, "tint": 0.12, "vignette": 0.45, "grain": 0.08}},
 	{"name": "Golden Hour", "light": {"sun_color": "ffaa55", "ambient_color": "7a5a4a", "fog_color": "ffcf9a"},
 		"tint": "ffc890", "values": {"sun": 1.6, "sun_angle": 14.0, "ambient": 1.8, "sky": 0.9, "fog": 0.006,
@@ -81,8 +87,7 @@ const THEMES: Array[Dictionary] = [
 		"contrast": 0.9}},
 	{"name": "Overexposed", "light": {}, "values": {"sun": 2.2, "sun_angle": 70.0, "scene_exposure": 1.9,
 		"glow": 1.2, "saturation": 0.85, "contrast": 1.15}},
-	{"name": "Blood Moon", "light": {"sun_color": "ff3b2a", "ambient_color": "3a0808", "fog_color": "2a0505",
-		"lantern_color": "ff5a3a"}, "values": {"sun": 0.35, "sun_angle": 25.0, "ambient": 0.5, "sky": 0.2,
+	{"name": "Blood Moon", "light": {"sun_color": "ff3b2a", "ambient_color": "3a0808", "fog_color": "2a0505"}, "values": {"sun": 0.35, "sun_angle": 25.0, "ambient": 0.5, "sky": 0.2,
 		"fog": 0.006, "scene_exposure": 1.1, "lantern": 1.5, "glow": 0.4, "saturation": 0.75, "vignette": 0.4,
 		"blood_keep": 0.6}, "blood": "ff0000"},
 	{"name": "Night Vision", "light": NIGHT, "mode": 0, "palette": ["001100", "003b00", "00a000", "33ff33", "ccffcc"],
