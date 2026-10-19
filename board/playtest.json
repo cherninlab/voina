@@ -1,6 +1,6 @@
 {
-  "commit": "1ba6e54f7749dc14a745f2282ca1a982fe8ab244",
+  "commit": "1e3848988716addfc1a28e8d3ed738b4b7e9e081",
   "by": "theo-codex-8",
-  "at": "2026-10-19T21:09Z",
-  "note": "Dark mountain haze correction and refreshed native menu background; generated polished menu remains a concept."
+  "at": "2026-10-19T22:01Z",
+  "note": "Integrated shipped forest/church/road/villager work plus covered-menu culling, fixture batching, startup-theme and sky-seam fixes. Clean-snapshot verification follows; uncommitted owner work excluded."
 }
