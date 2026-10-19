@@ -93,6 +93,10 @@ func capture() -> void:
 			print("FOREST_CAPTURE: %s weight %.2f fog %.4f colour %s sky %.2f aerial %.2f ambient %.2f %s | %d draws %d primitives" % [path, weight, environment.fog_density, environment.fog_light_color.to_html(false), environment.fog_sky_affect, environment.fog_aerial_perspective, environment.ambient_light_energy, environment.ambient_light_color.to_html(false), draws, primitives])
 		else:
 			print("FOREST_CAPTURE: ", path)
+	# Free the world first so GPU resources are released before exit.
+	world.queue_free()
+	for frame: int in range(3):
+		await process_frame
 	quit()
 
 func ground_y(space: PhysicsDirectSpaceState3D, x: float, z: float) -> float:

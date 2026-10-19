@@ -13,8 +13,8 @@ const BARK_MAPS: String = "res://content/environments/valhalla/textures/KB3D_VHL
 const WOODLAND_TREE: Script = preload("res://gameplay/environment/woodland_tree.gd")
 
 # The forest grade, reached at weight 1. Densities and colours are absolute; the rest scale the base.
-const FOG_COLOR: Color = Color("6c7c86")
-const FOG_DENSITY: float = 0.042
+const FOG_COLOR: Color = Color("65757f")
+const FOG_DENSITY: float = 0.044
 const FOG_SKY_AFFECT: float = 0.8
 const FOG_AERIAL: float = 0.1
 const AMBIENT_COLOR: Color = Color("5a6a74")
@@ -52,6 +52,7 @@ var moss: ShaderMaterial
 var shaft_material: ShaderMaterial
 var mist_material: ShaderMaterial
 var water_materials: Array[ShaderMaterial] = []
+var ash: CPUParticles3D = CPUParticles3D.new()
 var strands_added: int = 0
 var counts: Dictionary[String, int] = {}
 
@@ -76,6 +77,8 @@ func _ready() -> void:
 	flush_batches()
 	hang_light_shafts()
 	spread_ground_mist()
+	smoulder()
+	drift_ash()
 	finish.call_deferred()
 
 func finish() -> void:
@@ -84,7 +87,7 @@ func finish() -> void:
 		await get_tree().process_frame
 	subdue_village_trees()
 	find_grade_targets()
-	tune_cards()
+	tune_cards(null)
 	grading = true
 	print("HAUNTED_FOREST_OK: ", counts)
 
@@ -107,12 +110,16 @@ func _process(delta: float) -> void:
 	layer(environment, ENVIRONMENT_KEYS, "environment/")
 	if sun != null:
 		layer(sun, SUN_KEYS, "sun/")
-	tune_cards()
+	tune_cards(camera)
 	applied = weight
 
-## Shafts only shine under the forest grade; mist and still water take the current fog colour.
-func tune_cards() -> void:
+## Shafts only shine under the forest grade; mist and still water take the current fog colour;
+## the ash drift follows the camera and thins out toward the village.
+func tune_cards(camera: Camera3D) -> void:
 	shaft_material.set_shader_parameter("intensity", SHAFT_INTENSITY * smoothstep(0.5, 1.0, weight))
+	ash.emitting = weight > 0.35
+	if camera != null:
+		ash.global_position = camera.global_position
 	mist_material.set_shader_parameter("opacity", MIST_OPACITY * lerpf(0.55, 1.0, weight))
 	if environment != null:
 		mist_material.set_shader_parameter("color", environment.fog_light_color.lightened(0.08))
@@ -205,16 +212,22 @@ func forbidden(point: Vector2, clearance: float, avoid_pools: bool = true) -> bo
 		return true
 	if point.y > -116.0 and absf(trail_offset(point)) < clearance:
 		return true
-	if point.distance_to(ChurchSite.YARD_CENTER) < ChurchSite.YARD_RADIUS + 1.5:
-		return true
-	var door: Vector2 = ChurchSite.DOOR
-	if absf(point.x - door.x) < ChurchSite.NAVE_WIDTH * 0.5 + 4.0 and point.y < door.y + 2.0 and point.y > door.y - ChurchSite.NAVE_LENGTH - 7.0:
+	if churchyard(point):
 		return true
 	if avoid_pools:
 		for pool: Vector2 in pools:
 			if point.distance_to(pool) < 5.5:
 				return true
 	return false
+
+## theo-claude-7's ground (T-085): the graveyard ring, its walled rectangle (x -21..13,
+## z -112..-87) and the church footprint (x -11..3, z -132..-106), each with a metre of margin.
+static func churchyard(point: Vector2) -> bool:
+	if point.distance_to(ChurchSite.YARD_CENTER) < ChurchSite.YARD_RADIUS + 1.5:
+		return true
+	if point.x > -22.0 and point.x < 14.0 and point.y > -113.0 and point.y < -86.0:
+		return true
+	return point.x > -12.0 and point.x < 4.0 and point.y > -133.0 and point.y < -105.0
 
 func in_pool(point: Vector2) -> bool:
 	for pool: Vector2 in pools:
@@ -722,7 +735,7 @@ func flood_bogs() -> void:
 		pools.append(point)
 		var patch: MeshInstance3D = MeshInstance3D.new()
 		patch.name = "BogPool"
-		patch.mesh = terrain_patch(point, Vector2(12.0, 10.0))
+		patch.mesh = terrain_patch([point], Vector2(12.0, 10.0))
 		var surface: ShaderMaterial = water.duplicate() as ShaderMaterial
 		surface.set_shader_parameter("seed", float(pools.size()) * 13.7)
 		water_materials.append(surface)
@@ -732,17 +745,19 @@ func flood_bogs() -> void:
 		add_child(patch)
 	count("bog pools", pools.size())
 
-func terrain_patch(centre: Vector2, size: Vector2) -> ArrayMesh:
+## Terrain-hugging grids (one per centre, UV 0..1 each) a few centimetres above the ground.
+func terrain_patch(centres: Array[Vector2], size: Vector2) -> ArrayMesh:
 	var tool: SurfaceTool = SurfaceTool.new()
 	tool.begin(Mesh.PRIMITIVE_TRIANGLES)
-	var cells: Vector2i = Vector2i(int(size.x / 0.5), int(size.y / 0.5))
-	for z: int in range(cells.y):
-		for x: int in range(cells.x):
-			for corner: Vector2i in [Vector2i(x, z), Vector2i(x + 1, z), Vector2i(x + 1, z + 1), Vector2i(x, z), Vector2i(x + 1, z + 1), Vector2i(x, z + 1)]:
-				var uv: Vector2 = Vector2(corner) / Vector2(cells)
-				var point: Vector2 = centre + (uv - Vector2(0.5, 0.5)) * size
-				tool.set_uv(uv)
-				tool.add_vertex(Vector3(point.x, ground(point.x, point.y) + 0.035, point.y))
+	var cells: Vector2i = Vector2i(maxi(int(size.x / 0.5), 4), maxi(int(size.y / 0.5), 4))
+	for centre: Vector2 in centres:
+		for z: int in range(cells.y):
+			for x: int in range(cells.x):
+				for corner: Vector2i in [Vector2i(x, z), Vector2i(x + 1, z), Vector2i(x + 1, z + 1), Vector2i(x, z), Vector2i(x + 1, z + 1), Vector2i(x, z + 1)]:
+					var uv: Vector2 = Vector2(corner) / Vector2(cells)
+					var point: Vector2 = centre + (uv - Vector2(0.5, 0.5)) * size
+					tool.set_uv(uv)
+					tool.add_vertex(Vector3(point.x, ground(point.x, point.y) + 0.035, point.y))
 	tool.generate_normals()
 	tool.index()
 	return tool.commit()
@@ -830,8 +845,8 @@ func hang_light_shafts() -> void:
 	var transforms: Array[Transform3D] = []
 	for z: float in [-39.0, -48.0, -57.0, -64.0, -71.0, -78.0, -84.0, -95.0]:
 		var landing: Vector2 = Vector2(ChurchSite.road_x(z) + random.randf_range(-7.0, 7.0), z + random.randf_range(-2.0, 2.0))
-		if landing.distance_to(ChurchSite.YARD_CENTER) < ChurchSite.YARD_RADIUS:
-			landing.x = ChurchSite.YARD_CENTER.x + ChurchSite.YARD_RADIUS + 3.0
+		if churchyard(landing):
+			landing.x = 17.0
 		var foot: Vector3 = Vector3(landing.x, ground(landing.x, landing.y) - 0.5, landing.y)
 		var axis: Vector3 = slant * random.randf_range(16.0, 20.0)
 		var across: Vector3 = axis.cross(Vector3.UP).normalized() * random.randf_range(1.4, 2.8)
@@ -840,6 +855,60 @@ func hang_light_shafts() -> void:
 	var shafts: MultiMeshInstance3D = card_batch(transforms, shaft_material)
 	shafts.name = "LightShafts"
 	count("light shafts", transforms.size())
+
+## A few smouldering ember patches beside the trail: warm accents in the grey, no lights.
+func smoulder() -> void:
+	var random: RandomNumberGenerator = RandomNumberGenerator.new()
+	random.seed = 19403
+	var centres: Array[Vector2] = []
+	for attempt: int in range(300):
+		if centres.size() >= 7:
+			break
+		var z: float = random.randf_range(-86.0, -36.0)
+		var point: Vector2 = Vector2(ChurchSite.road_x(z) + random.randf_range(3.8, 10.0) * (-1.0 if random.randf() < 0.5 else 1.0), z)
+		if forbidden(point, 3.6) or steepness(point.x, point.y) > 1.2:
+			continue
+		var crowded: bool = false
+		for other: Vector2 in centres:
+			crowded = crowded or point.distance_to(other) < 8.0
+		if not crowded:
+			centres.append(point)
+	var patches: MeshInstance3D = MeshInstance3D.new()
+	patches.name = "Embers"
+	patches.mesh = terrain_patch(centres, Vector2(2.2, 2.2))
+	patches.material_override = material("embers")
+	patches.cast_shadow = GeometryInstance3D.SHADOW_CASTING_SETTING_OFF
+	patches.gi_mode = GeometryInstance3D.GI_MODE_DISABLED
+	add_child(patches)
+	count("ember patches", centres.size())
+
+## Sparse grey ash drifting down around the camera while it is in the forest (cosmetic, per peer;
+## CPU particles, so no particle shader variants).
+func drift_ash() -> void:
+	var flake: QuadMesh = QuadMesh.new()
+	flake.size = Vector2(0.045, 0.045)
+	var look: StandardMaterial3D = StandardMaterial3D.new()
+	look.shading_mode = BaseMaterial3D.SHADING_MODE_UNSHADED
+	look.billboard_mode = BaseMaterial3D.BILLBOARD_PARTICLES
+	look.albedo_color = Color(0.52, 0.54, 0.56)
+	flake.material = look
+	ash.name = "AshDrift"
+	ash.amount = 240
+	ash.lifetime = 14.0
+	ash.local_coords = false
+	ash.emitting = false
+	ash.mesh = flake
+	ash.emission_shape = CPUParticles3D.EMISSION_SHAPE_BOX
+	ash.emission_box_extents = Vector3(16.0, 7.0, 16.0)
+	ash.gravity = Vector3(0.0, -0.22, 0.0)
+	ash.direction = Vector3(1.0, 0.0, 0.4)
+	ash.spread = 180.0
+	ash.initial_velocity_min = 0.05
+	ash.initial_velocity_max = 0.3
+	ash.scale_amount_min = 0.6
+	ash.scale_amount_max = 1.3
+	ash.cast_shadow = GeometryInstance3D.SHADOW_CASTING_SETTING_OFF
+	add_child(ash)
 
 func spread_ground_mist() -> void:
 	var random: RandomNumberGenerator = RandomNumberGenerator.new()
@@ -854,7 +923,7 @@ func spread_ground_mist() -> void:
 		var crossing: bool = random.randf() < 0.35
 		var offset: float = random.randf_range(-3.0, 3.0) if crossing else random.randf_range(4.0, 22.0) * (-1.0 if random.randf() < 0.5 else 1.0)
 		var point: Vector2 = Vector2(ChurchSite.road_x(z) + offset, z)
-		if point.distance_to(ChurchSite.YARD_CENTER) < ChurchSite.YARD_RADIUS + 1.0:
+		if churchyard(point):
 			continue
 		var size: Vector3 = Vector3(random.randf_range(7.0, 14.0), random.randf_range(1.3, 2.4), 1.0)
 		transforms.append(Transform3D(Basis.from_scale(size), Vector3(point.x, ground(point.x, point.y) - 0.35, point.y)))
