@@ -1,50 +1,76 @@
 # Shading themes
 
-`ui/shading.gd` adds one full-screen pass, `ui/shading.gdshader`, over the 3D frame. It is canvas layer 1: above the fisheye (layer 0), whose output it reads through a `BackBufferCopy`, and below the HUD (layer 2), which stays untouched. It is local presentation only and nothing is networked.
+A theme is a whole rendering look: scene lighting plus an image pass. Cycle with **T** (Shift+T back), pick one, then tune it. Everything is local presentation; nothing is networked.
 
-- **T** next theme, **Shift+T** previous. A short "Shading: name" label confirms the switch. T is ignored while it is bound to a game action in Controls.
-- **Shading tweaks** (bottom right, shown with the pause menu like the sword and MPEG tweaks): theme picker and sliders for the current theme. Each theme keeps its own tuning in `user://shading_tweaks.cfg`. **Theme defaults** clears it, and **Print values** logs a line that pastes into `THEMES`.
-- `--shading=Concrete` (a name or an index) on the command line starts with that theme.
+- `ui/shading.gd` holds the theme list and the T key. It owns two parts:
+  - `ui/shading_lighting.gd`: the scene's sun, ambient, sky, fog, exposure, glow, a lantern on the camera, and the unshaded render mode.
+  - `ui/shading.gdshader`: a full-screen pass on canvas layer 1. It sits above the fisheye (layer 0), whose output it reads through a `BackBufferCopy`, and below the HUD (layer 2).
+- **Shading tweaks** (bottom right, shown with the pause menu like the sword and MPEG tweaks): a theme picker and about 30 sliders in four groups, in a scrolling box. Each theme keeps its own tuning in `user://shading_tweaks.cfg`. **Theme defaults** clears it, and **Print values** logs a line that pastes into `THEMES`.
+- `--shading=Night` (a name or an index) starts with that theme. `--shading-ephemeral` neither loads nor saves the tweaks file; captures use it so they never touch a player's settings.
+- T is ignored while it is bound to a game action in Controls.
 
-## The pass
+## Lighting
 
-Pixelate → flatten → grade → posterize → palette → blood → ink, then mix with the untouched frame by **Strength**.
+The village's bounce light is baked into a `LightmapGI`; only the sun's direct light is realtime (`BAKE_DYNAMIC`). Dimming the sun alone would leave the baked bounce lighting the village, so night would still look like day. A theme with a `"light"` entry, or any Lighting slider moved off its default, therefore detaches the lightmap data and drives the scene directly:
 
 | Slider | Effect |
 | --- | --- |
+| Sun, Sun height | sun energy (× original) and elevation in degrees; low sun means long shadows |
+| Ambient, Sky | ambient light energy and sky brightness (× original) |
+| Fog density | absolute; the village default is 0.0015 |
+| Scene exposure | tonemap exposure (× original) |
+| Glow | environment glow intensity |
+| Lantern | warm omni light carried by the current camera |
+
+Theme colours set the sun, ambient, fog and lantern tints. Natural, or any theme without lighting, puts back the lightmap, sun, environment and render mode exactly as they were. Without the lightmap's bounce light, shadows are only filled by ambient light; themes raise Ambient to compensate. The realtime path's frame cost against the baked one is not measured.
+
+`"render": "unshaded"` (the **Flat** theme) switches the viewport to `DEBUG_DRAW_UNSHADED`. Every surface shows its material colour with no light or shadow at all: true flat shading.
+
+## Image pass
+
+Pixelate → flatten → grade → hue → spectrum → cel bands → tint → posterize → palette → invert → outline paper → blood → ink → vignette → grain, then mix with the untouched frame by **Strength**.
+
+| Slider | Effect |
+| --- | --- |
+| Exposure, Contrast, Saturation | grading |
+| Hue shift, Hue cycling | rotation about the grey axis; cycling animates it (turns per second) |
+| Tint | recolours by luminance toward the theme's tint colour (sepia, rose) |
+| Invert | negative |
+| Vignette, Grain | corner darkening and animated noise |
 | Pixel size | block size; every later step works on the block grid |
-| Flat shading | Kuwahara radius: of four quadrants around the pixel, the one with the least colour variance wins, so gradients turn into flat patches and edges stay sharp. Cost grows with (r+1)² × 4 taps |
-| Exposure, Contrast, Saturation | grading before quantising; saturation 0 is greyscale |
-| Posterize levels | steps per channel (below 2 is off) |
-| Palette mix | themes with a palette map to it, either as a dark-to-light ramp or to the nearest colour |
-| Dither | 4×4 ordered Bayer offset before posterize and palette |
-| Ink outlines, Ink threshold | Sobel edges on the block grid's luminance, painted in the theme's ink colour |
-| Blood override, Blood redness, Blood hue, Blood shading | see below |
+| Flatten (paint) | Kuwahara radius: of four quadrants around the pixel, the one with the least colour variance wins. Gradients become painted patches and edges stay sharp. Cost grows with (r+1)² × 4 taps |
+| Cel bands | luminance steps that keep each pixel's hue (toon shading) |
+| Posterize levels | steps per channel |
+| Spectrum, Spectrum bands | rainbow indexed by luminance; with Hue cycling it flows |
+| Palette mix, Dither | themes with a palette map to it, as a dark-to-light ramp or by nearest colour, with 4×4 Bayer dither |
+| Ink outlines, Ink threshold | Sobel edges on the block grid's luminance in the theme's ink colour |
+| Outline only | replaces the picture with the theme's paper colour, leaving just the ink |
 
 ## Blood
 
-The pass finds blood in the source frame by colour. On screen the raider blood (`hit_effects.gd`, albedo 0.3, 0.012, 0.01) is a dark crimson, about (53, 23, 29) in sRGB on the village ground. Lit skin is just as red by a red/max(green, blue) ratio, but it leans orange: its green is at or above its blue. So a pixel counts as blood when red / blue ≥ **Blood redness** (1.5) and blue / green ≥ **Blood hue** (1.12). On a test frame, that mask covered the spray and the puddles but not skin. It caught only the rims of the red shorts and of the pink name labels.
-
-Blood pixels are repainted with the theme's blood colour. **Blood shading** 0 paints it flat; 1 keeps the source's light and dark. Blood is painted after posterize and palette, so it stays vivid red in the grey, green and four-colour themes.
+Off by default (**Blood override** 0). Four lo-fi themes use it as a red accent, and Blood Moon uses it partly. The pass finds blood in the source frame by colour. Raider blood is a dark crimson, about (53, 23, 29) in sRGB on the village ground. Lit skin is as red but leans orange (green ≥ blue). A pixel counts as blood when red / blue ≥ **Blood redness** (1.5) and blue / green ≥ **Blood hue** (1.12). It is repainted with the theme's blood colour, flat or keeping its light and dark (**Blood shading**), after posterize and palette.
 
 ## Themes
 
-| Theme | Look |
+| Group | Themes |
 | --- | --- |
-| Natural | off |
-| Red Only | greyscale, high contrast, shaded red blood |
-| Brutalist Web | black, white, #0000ff, #ffff00, silver and magenta by nearest colour; 2 px blocks, dither, flat shading, black ink |
-| Concrete | six-grey ramp, flat shading, heavy ink, flat #ff0a0a blood |
-| Acid Poster | saturation 2.2, 3 levels per channel, dither, purple ink |
-| Terminal | green phosphor ramp, 3 px blocks, heavy dither, red blood |
-| Risograph | paper, fluorescent pink, blue, yellow and black by nearest colour; dither |
-| Bleach Bypass | saturation 0.3, 6 levels, darker shaded blood |
-| Hyper Flat | full colour, 5 levels, flat shading, black ink, flat red blood |
+| Lighting | Night (moonlight, lantern), Golden Hour (low warm sun, glow), Fog, Overexposed, Blood Moon, Night Vision (night light amplified into a green ramp, grain), Neon Noir (dim blue light, cyan ink) |
+| Shading models | Flat (unshaded), Cel (3 bands, ink), Outline (black on paper), Blueprint (white on blue), Painterly (Kuwahara) |
+| Colour | Spectrum, Inverted, Acid Trip (posterized, cycling hue), Thermal, Silent Film (sepia, vignette, grain), Pastel (bright soft light), Bleach Bypass, Vaporwave (pink sun, palette) |
+| Lo-fi with a red accent | Red Only, Concrete, Brutalist Web, Risograph, 1-Bit |
 
 ## Verify
 
 ```sh
-"$GODOT" --path . --resolution 1152x720 --script scripts/capture_shading.gd -- --host --pve --port=7796 --capture-dir=/absolute/output
+"$GODOT" --path . --resolution 1152x720 --script scripts/capture_shading.gd -- --host --pve --port=7796 --shading-ephemeral --capture-dir=/absolute/output
 ```
 
-It cuts a raider in half in front of a fixed camera and saves one frame per theme. It then checks that Natural leaves the frame untouched, that every other theme changes it, that Concrete shows thousands of vivid red pixels where the plain frame has none, and that a T key event advances the theme. The script prints `SHADING_OK`. The 1152 × 720 run on an M2 passed. Frame cost on the target Macs and how the themes look in motion are not measured.
+It cuts a raider in half in front of a fixed camera and saves one frame per theme. It then checks that:
+
+- Natural leaves the frame untouched and every other theme changes it;
+- Night is darker than Natural;
+- Concrete shows vivid red where the plain frame has none;
+- returning to Natural restores the lightmap, the sun and normal rendering;
+- a T key event advances the theme.
+
+It prints `SHADING_OK`. The 1152 × 720 run on an M2 passed. Frame cost on the target Macs and how the themes look in motion are not measured.

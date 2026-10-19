@@ -1,10 +1,12 @@
 extends SceneTree
 ## Render the real world through every shading theme (ui/shading.gd) and save frames outside the
 ## repository: --capture-dir=/absolute/dir. Needs --host --pve and a real window.
-##   "$GODOT" --path . --resolution 1152x720 --script scripts/capture_shading.gd -- --host --pve --port=7796 --capture-dir=/tmp/shading
+##   "$GODOT" --path . --resolution 1152x720 --script scripts/capture_shading.gd -- --host --pve --port=7796 --shading-ephemeral --capture-dir=/tmp/shading
+## --shading-ephemeral keeps this machine's user://shading_tweaks.cfg out of the run (no load, no save).
 ## Cuts a raider in half in front of a fixed camera so there is blood on screen, then checks that
-## Natural leaves the frame untouched, that every other theme changes it, that the grey Concrete
-## theme still shows vibrant red where the blood is, and that T advances the theme.
+## Natural leaves the frame untouched, that every other theme changes it, that Night darkens it,
+## that the grey Concrete theme still shows vibrant red where the blood is, that returning to
+## Natural restores the baked lightmap, the sun and normal rendering, and that T advances the theme.
 
 var directory: String = ""
 var world: Node3D
@@ -78,6 +80,9 @@ func capture() -> void:
 		if difference < 0.01:
 			fail("theme %s does not change the frame" % names[index])
 			return
+		if names[index] == "Night" and mean_luma(image) > mean_luma(plain) * 0.6:
+			fail("Night is not darker than Natural (%.3f vs %.3f)" % [mean_luma(image), mean_luma(plain)])
+			return
 		if names[index] == "Concrete":
 			var red: int = vivid_red(image)
 			print("SHADING_BLOOD: Concrete vivid red pixels ", red, " (plain frame ", vivid_red(plain), ")")
@@ -87,6 +92,19 @@ func capture() -> void:
 
 	paused = false
 	shading.call("set_theme", 0)
+	# Natural must hand the village back its baked light.
+	var lighting: Node = shading.get("lighting") as Node
+	var lightmap: LightmapGI = lighting.get("lightmap") as LightmapGI
+	var sun: DirectionalLight3D = lighting.get("sun") as DirectionalLight3D
+	var original: Dictionary = lighting.get("original") as Dictionary
+	if lightmap == null or lightmap.light_data == null or sun == null or sun.light_bake_mode != original["sun_bake"] \
+			or not is_equal_approx(sun.light_energy, original["sun_energy"] as float):
+		fail("Natural did not restore the baked lightmap and the sun")
+		return
+	if root.debug_draw != Viewport.DEBUG_DRAW_DISABLED:
+		fail("Natural left the unshaded render mode on")
+		return
+	print("SHADING_RESTORE_OK: lightmap and sun back")
 	var press: InputEventKey = InputEventKey.new()
 	press.physical_keycode = KEY_T
 	press.keycode = KEY_T
@@ -112,6 +130,15 @@ func shot(name: String) -> Image:
 	image.save_png(path)
 	print("SHADING_CAPTURE: ", path)
 	return image
+
+func mean_luma(image: Image) -> float:
+	var total: float = 0.0
+	var count: int = 0
+	for y: int in range(0, image.get_height(), 4):
+		for x: int in range(0, image.get_width(), 4):
+			total += image.get_pixel(x, y).get_luminance()
+			count += 1
+	return total / float(count)
 
 func vivid_red(image: Image) -> int:
 	var count: int = 0
