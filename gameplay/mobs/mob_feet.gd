@@ -5,6 +5,8 @@ extends SkeletonModifier3D
 # foot keeps its height above the terrain under it, the hips drop so the lower foot can reach, and
 # an engine TwoBoneIK3D bends the legs to the targets. A second MobFeet after the solver tilts each
 # foot onto the ground's slope. Rays only see layer 1 statics; actors' capsules are skipped.
+# A possessed villager's own stances (MobPossession) can steer each foot to a goal instead of the
+# clip's foot, raise it onto its toes and send the knee another way, backward for reversed knees.
 
 const LEGS: Array[Array] = [["thigh_l", "calf_l", "foot_l"], ["thigh_r", "calf_r", "foot_r"]]
 const REACH: float = 0.4 # the most a foot rises or the hips drop
@@ -21,6 +23,12 @@ var normals: Array[Vector3] = [Vector3.UP, Vector3.UP]
 var foot_bases: Array[Basis] = [Basis.IDENTITY, Basis.IDENTITY] # animated foot rotations, skeleton space
 var drop: float = 0.0
 var primed: bool = false
+# World positions the feet reach for instead of the animated feet, by goal_weight; their heights
+# count from the ground under the capsule, so the terrain under each still lifts or lowers it.
+var goals: Array[Vector3] = [Vector3.ZERO, Vector3.ZERO]
+var goal_weight: float = 0.0
+var raise: Array[float] = [0.0, 0.0] # extra target height, such as an ankle lifted by a raised heel
+var pole_dirs: Array[Vector3] = [Vector3.BACK, Vector3.BACK] # where each knee points, skeleton space (+Z forward)
 
 # Adds planner, solver and aligner under the skeleton, after any modifiers already there.
 static func install(rig: Skeleton3D, visual: Node3D) -> MobFeet:
@@ -78,22 +86,27 @@ func plan(rig: Skeleton3D, delta: float) -> void:
 	for index: int in range(2):
 		var foot: Transform3D = rig.get_bone_global_pose(legs[index][2])
 		foot_bases[index] = foot.basis
-		feet.append(rig.global_transform * foot.origin)
+		var animated: Vector3 = rig.global_transform * foot.origin
+		feet.append(animated.lerp(goals[index], goal_weight) if goal_weight > 0.0 else animated)
 		var ground: Dictionary = probe(feet[index], base)
 		var want: float = clampf(float(ground.get("height", base)) - base, -REACH, REACH)
 		lifts[index] = lerpf(lifts[index], want, follow)
 		# Normalized lerp, not slerp: Vector3.slerp builds its axis from the cross product, and for
 		# the nearly parallel normals of a settled foot that axis is off unit length (engine error).
 		normals[index] = normals[index].lerp(ground.get("normal", Vector3.UP) as Vector3, follow).normalized()
-	drop = lerpf(drop, minf(0.0, minf(lifts[0], lifts[1])), follow)
+	# Stances with goals already set their hips for the ground they stand on.
+	drop = lerpf(drop, minf(0.0, minf(lifts[0], lifts[1])) * (1.0 - goal_weight), follow)
 	var hips: Transform3D = rig.get_bone_global_pose(pelvis)
 	hips.origin += rig.global_basis.inverse() * Vector3.UP * drop
 	rig.set_bone_global_pose(pelvis, hips)
-	var forward: Vector3 = -body.global_basis.z
 	for index: int in range(2):
-		targets[index].global_position = feet[index] + Vector3.UP * lifts[index]
+		targets[index].global_position = feet[index] + Vector3.UP * (lifts[index] + raise[index])
+		# The knee is pushed toward its pole from the animated knee or, for a goal the clip knows
+		# nothing about, from the middle of the leg.
 		var knee: Vector3 = rig.global_transform * rig.get_bone_global_pose(legs[index][1]).origin
-		poles[index].global_position = knee + forward * 0.6
+		var hip: Vector3 = rig.global_transform * rig.get_bone_global_pose(legs[index][0]).origin
+		var middle: Vector3 = knee.lerp((hip + targets[index].global_position) * 0.5, goal_weight)
+		poles[index].global_position = middle + rig.global_basis * pole_dirs[index].normalized() * 0.6
 
 func align(rig: Skeleton3D) -> void:
 	for index: int in range(2):

@@ -7,7 +7,7 @@ const CAP_SHADER: Shader = preload("res://gameplay/mobs/mob_cap.gdshader")
 # PhysicalBoneSimulator3D: a whole-body ragdoll for a death, or the bodies with skin on one side
 # of a cut for a bisected half. Bodies sit on layer 0 with mask 1, so they land on the terrain and are
 # shoved by actors without blocking anyone or colliding with each other. Shapes are sized
-# through their resources; no node is scaled.
+# through their resources; no node is scaled, and bones carry no scale either.
 
 # bone, child for the segment (empty: straight along the bone for `length`), shape, radius or box
 # half-width, mass (kg), joint, swing (cone) or bend limit (hinge, degrees), twist.
@@ -36,9 +36,11 @@ static func segment_of(rig: Skeleton3D, part: Dictionary) -> Array[Vector3]:
 	var along: Vector3 = local_along(rig, part)
 	return [pose.origin, pose * along]
 
+# The child's offset in the current pose, so a possessed villager's longer or shorter limbs (child
+# bones slid along their parents, never scaled) get parts of their real length.
 static func local_along(rig: Skeleton3D, part: Dictionary) -> Vector3:
 	if part.has("to"):
-		var child: Vector3 = rig.get_bone_rest(rig.find_bone(String(part["to"]))).origin
+		var child: Vector3 = rig.get_bone_pose_position(rig.find_bone(String(part["to"])))
 		return child + child.normalized() * float(part.get("extra", 0.0))
 	return Vector3.UP * float(part["length"])
 

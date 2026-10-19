@@ -5,9 +5,14 @@ extends Node3D
 const MODELS: Array[PackedScene] = [preload("res://content/characters/quaternius/Superhero_Male_FullBody.gltf"), preload("res://content/characters/quaternius/Superhero_Female_FullBody.gltf")]
 const CLIPS: Array[AnimationLibrary] = [preload("res://content/animations/quaternius/male.res"), preload("res://content/animations/quaternius/female.res")]
 var female: bool = false # set by HostileMob from its replicated id before this enters the tree
+# Which possessed villager this is; read from the parent's replicated mob_id when it enters the tree,
+# or set directly where there is no HostileMob (captures, tests).
+var mob_id: int = 1
 var playback: AnimationPlayer = AnimationPlayer.new()
-var label: Label3D = Label3D.new()
 var overlay: ShaderMaterial = ShaderMaterial.new()
+var possession: MobPossession = MobPossession.new() # the variant's distortion, stances and quirks
+var hands: MobPossession.Hands # arm IK for the crawl, coil and leap
+var look_at_node: Node3D # a fallback stare target where there are no players (captures)
 var meshes: Array[MeshInstance3D] = []
 var clip: StringName = &""
 var model: Node3D
@@ -31,10 +36,27 @@ const CUT_SHADER: Shader = preload("res://gameplay/mobs/mob_cut.gdshader")
 const OVERLAY_SHADER: Shader = preload("res://gameplay/mobs/mob_overlay.gdshader")
 const MAX_WOUNDS: int = 6
 const FREEZE: float = 0.07
+# HostileMob.State, including the possessed villagers' states (the host enum may not have them yet).
+const IDLE: int = 0
+const MOVE: int = 1
+const ACT: int = 2
+const STARE: int = 4
+const CRAWL: int = 5
+const LEAP: int = 6
+const WALK_SPEED: float = 0.86 # ground speed of the Walk clip at speed 1 (m/s)
+const SIGHT: float = 14.0 # how far a villager's head follows a player
+# Eye sockets in each body's skin texture (UV), darkened by the overlay: male then female, each
+# the two centres and the radii.
+const SOCKETS: Array[Vector2] = [Vector2(0.139, 0.177), Vector2(0.235, 0.177), Vector2(0.032, 0.022), Vector2(0.131, 0.176), Vector2(0.234, 0.176), Vector2(0.03, 0.02)]
+var clip_speed: float = 1.0 # this state's base playback speed, before the stutter
+var streak_bones: PackedInt32Array = PackedInt32Array()
 const CORPSE: float = 8.0 # a fallen or cut body stays this long after the raider node is gone
 var rendered: bool = DisplayServer.get_name() != "headless" # the dummy renderer cannot take shader parameters
 
 func _ready() -> void:
+	var parent_id: Variant = get_parent().get("mob_id") if get_parent() != null else null
+	if parent_id is int:
+		mob_id = int(parent_id)
 	model = MODELS[int(female)].instantiate() as Node3D
 	model.name = "Model"
 	model.rotation.y = PI
@@ -43,33 +65,92 @@ func _ready() -> void:
 	for node: Node in model.find_children("*", "MeshInstance3D", true, false):
 		meshes.append(node as MeshInstance3D)
 	skeleton = model.find_children("*", "Skeleton3D", true, false)[0] as Skeleton3D
-	# Plan the feet from the clip, flex the puppet springs over it, then solve the legs back down.
+	# Possess the clip (proportions, stance, head), plan the feet from it, flex the puppet springs
+	# over it, solve the legs back down, then plant or reach with the hands.
+	possession.name = "Possession"
+	possession.configure(mob_id)
+	possession.body = self
+	skeleton.add_child(possession)
 	feet = MobFeet.install(skeleton, self)
+	possession.feet = feet
 	puppet.name = "Puppet"
 	skeleton.add_child(puppet)
 	skeleton.move_child(puppet, feet.get_index() + 1)
+	hands = MobPossession.Hands.install(skeleton, possession)
 	skeleton.skeleton_updated.connect(cache_pose)
 	last_position = global_position
 	overlay.shader = OVERLAY_SHADER
 	for mesh: MeshInstance3D in meshes:
 		mesh.material_overlay = overlay
+	for bone_name: String in ["lowerarm_l", "lowerarm_r", "calf_l", "calf_r"]:
+		streak_bones.append(skeleton.find_bone(bone_name))
+	if rendered:
+		possess_skin(overlay)
+		for mesh: MeshInstance3D in meshes:
+			mesh.set_instance_shader_parameter("surface_role", role_of(mesh))
 	add_child(playback)
 	playback.add_animation_library(&"", CLIPS[int(female)])
-	label.position.y = 1.35
-	label.font_size = 28
-	label.pixel_size = 0.009
-	label.billboard = BaseMaterial3D.BILLBOARD_ENABLED
-	add_child(label)
+
+# Each mesh's part in the overlay: 0 hair (only wounds), 1 skin, 2 eyes.
+func role_of(mesh: MeshInstance3D) -> int:
+	var material: StandardMaterial3D = mesh.get_active_material(0) as StandardMaterial3D
+	var texture: String = material.albedo_texture.resource_path if material != null and material.albedo_texture != null else ""
+	return 2 if texture.contains("Eye") else (1 if texture.contains("Superhero") else 0)
+
+# Pale, bruised skin and dull eyes for this villager, drawn by the overlay over the body's texture.
+func possess_skin(material: ShaderMaterial) -> void:
+	var body: StandardMaterial3D
+	for mesh: MeshInstance3D in meshes:
+		if role_of(mesh) == 1:
+			body = mesh.get_active_material(0) as StandardMaterial3D
+	if body != null:
+		material.set_shader_parameter("skin_albedo", body.albedo_texture)
+		material.set_shader_parameter("skin_normal", body.normal_texture)
+		material.set_shader_parameter("use_normal", body.normal_texture != null)
+	material.set_shader_parameter("possessed", 1.0)
+	material.set_shader_parameter("skin_tint", possession.skin)
+	material.set_shader_parameter("bruise_amount", possession.bruises)
+	material.set_shader_parameter("bruise_seed", float(possession.mob_id % 97) * 1.37)
+	material.set_shader_parameter("streak_amount", possession.streaks)
+	material.set_shader_parameter("eye_glow", possession.glow)
+	var first: int = 3 * int(female)
+	material.set_shader_parameter("socket_a", SOCKETS[first])
+	material.set_shader_parameter("socket_b", SOCKETS[first + 1])
+	material.set_shader_parameter("socket_size", SOCKETS[first + 2])
 
 func _process(delta: float) -> void:
 	react_left = maxf(0.0, react_left - delta)
 	freeze_left = maxf(0.0, freeze_left - delta)
-	playback.speed_scale = 0.0 if freeze_left > 0.0 else 1.0
+	var stutter: float = possession.clip_speed(delta)
+	playback.speed_scale = 0.0 if freeze_left > 0.0 else clip_speed * stutter
 	push_age += delta
 	if delta > 0.0 and not fallen:
 		velocity = velocity.lerp((global_position - last_position) / delta, minf(1.0, delta * 10.0))
 		last_position = global_position
+	possession.velocity = velocity
+	update_look()
 	update_overlay(delta)
+
+# The head follows the nearest player in sight range: hard while staring, crawling or coiled, idly
+# otherwise. Players come from the encounter on every peer.
+func update_look() -> void:
+	var best: Vector3 = Vector3.INF
+	var nearest: float = SIGHT
+	var host: HostileMob = get_parent() as HostileMob
+	var players: Node3D = host.system.players if host != null and host.system != null else null
+	for node: Node in players.get_children() if players != null else []:
+		var player: Node3D = node as Node3D
+		if player == null or player.is_queued_for_deletion():
+			continue
+		var distance: float = player.global_position.distance_to(global_position)
+		if distance < nearest:
+			nearest = distance
+			best = player.global_position + Vector3.UP * 0.75
+	if not best.is_finite() and is_instance_valid(look_at_node):
+		best = look_at_node.global_position
+	possession.look_target = best
+	var focus: float = 1.0 if possession.mode != MobPossession.Mode.UPRIGHT else 0.45
+	possession.look_weight = focus if best.is_finite() else 0.0
 
 func cache_pose() -> void:
 	poses.resize(skeleton.get_bone_count())
@@ -106,10 +187,11 @@ func fall() -> void:
 	if fallen or model == null or not visible or not is_inside_tree() or get_tree().current_scene == null:
 		return
 	fallen = true
-	label.visible = false
 	playback.pause()
 	hold_pose(skeleton)
 	puppet.active = false
+	possession.active = false
+	hands.set_enabled(false)
 	feet.set_enabled(false)
 	reparent(get_tree().current_scene, true)
 	# Recent blows carry the body on; otherwise it slumps back and to one side.
@@ -153,6 +235,23 @@ func update_overlay(delta: float) -> void:
 		ages.append(float(entry["age"]))
 	if not rendered:
 		return
+	# Dried blood runs down the forearms and shins: their frames, for the overlay.
+	var origins: PackedVector3Array = PackedVector3Array()
+	var axes: PackedVector3Array = PackedVector3Array()
+	var sides: PackedVector3Array = PackedVector3Array()
+	var lengths: PackedFloat32Array = PackedFloat32Array()
+	for bone: int in streak_bones:
+		var frame: Transform3D = bone_world(bone)
+		var child: PackedInt32Array = skeleton.get_bone_children(bone)
+		origins.append(frame.origin)
+		axes.append(frame.basis.y.normalized())
+		sides.append(frame.basis.x.normalized())
+		lengths.append(skeleton.get_bone_pose_position(child[0]).length() * (possession.arm_length if bone == streak_bones[0] or bone == streak_bones[1] else possession.leg_length) if not child.is_empty() else 0.25)
+	overlay.set_shader_parameter("streak_origin", origins)
+	overlay.set_shader_parameter("streak_axis", axes)
+	overlay.set_shader_parameter("streak_side", sides)
+	overlay.set_shader_parameter("streak_length", lengths)
+	overlay.set_shader_parameter("glow_strength", 0.3 + 3.0 * possession.flare())
 	for index: int in range(centers.size(), MAX_WOUNDS):
 		centers.append(Vector3.ZERO)
 		normals.append(Vector3.UP)
@@ -178,6 +277,14 @@ func bisect(point: Vector3, normal: Vector3, impulse: Vector3) -> void:
 	for mesh: MeshInstance3D in meshes:
 		cut_meshes.append(MobRagdoll.bake_cut(mesh, skeleton, point, normal))
 	var kept: Array[PackedStringArray] = MobRagdoll.split(cut_meshes, meshes, skeleton)
+	# The halves keep the pale skin: the same overlay without wounds, cut away on the other side.
+	var half_overlay: ShaderMaterial
+	if rendered:
+		half_overlay = ShaderMaterial.new()
+		half_overlay.shader = OVERLAY_SHADER
+		possess_skin(half_overlay)
+		half_overlay.set_shader_parameter("use_normal", false) # the cut bake rewrote the tangents
+		half_overlay.set_shader_parameter("streak_amount", 0.0)
 	for side: float in [1.0, -1.0]:
 		var copy: Node3D = MODELS[int(female)].instantiate() as Node3D
 		copy.name = "RaiderHalf"
@@ -195,6 +302,9 @@ func bisect(point: Vector3, normal: Vector3, impulse: Vector3) -> void:
 			# The dummy renderer in headless runs cannot take shader parameters; halves still exist for tests.
 			if not rendered:
 				continue
+			mesh.material_overlay = half_overlay
+			mesh.set_instance_shader_parameter("surface_role", role_of(meshes[mini(index - 1, meshes.size() - 1)]))
+			mesh.set_instance_shader_parameter("cut_side", side)
 			for surface: int in range(mesh.mesh.get_surface_count()):
 				if mesh.mesh.surface_get_name(surface) == MobRagdoll.CAP:
 					continue
@@ -237,20 +347,39 @@ func bisect(point: Vector3, normal: Vector3, impulse: Vector3) -> void:
 				HitEffects.gush(part, local_point, local_direction, 1.6)
 		get_tree().create_timer(CORPSE).timeout.connect(copy.queue_free)
 
+# The host's state, shown as the possessed body: a lingering idle, a slow stuttering shamble, the
+# staring squat, the all-fours crawl, the pounce coil (the attack's telegraph, read from the body,
+# not a label) and the leap. Unknown states idle.
 func show_state(state: int, health: int, staggered: bool, windup: bool) -> void:
-	label.text = "RAIDER · %d" % health if health > 0 else "DEFEATED"
-	label.modulate = Color("ffd052") if windup else Color("ff8888")
 	var next: StringName = &"Idle"
+	var stance: int = MobPossession.Mode.UPRIGHT
+	var speed: float = Vector2(velocity.x, velocity.z).length()
+	clip_speed = 0.75
 	if health <= 0:
 		if not fallen:
 			fall.call_deferred()
 		return
-	elif staggered:
+	if windup or state == ACT:
+		stance = MobPossession.Mode.COIL
+		clip_speed = 0.3
+	elif state == MOVE:
+		# The shamble's clip follows the ground speed; anything faster jogs.
+		next = &"Walk" if speed < 1.9 else &"Jog_Fwd"
+		clip_speed = clampf(speed / WALK_SPEED, 0.5, 1.6) if next == &"Walk" else 1.0
+	elif state == STARE:
+		stance = MobPossession.Mode.SQUAT
+		clip_speed = 0.05
+	elif state == CRAWL:
+		stance = MobPossession.Mode.CRAWL
+		clip_speed = 0.5
+	elif state == LEAP:
+		stance = MobPossession.Mode.LEAP
+		clip_speed = 0.5
+	if staggered:
 		next = &"Hit_Chest"
-	elif state == HostileMob.State.ACT:
-		next = &"Punch_Jab"
-	elif state == HostileMob.State.MOVE:
-		next = &"Jog_Fwd"
+		clip_speed = 1.0
+		stance = possession.mode if possession.mode != MobPossession.Mode.LEAP else MobPossession.Mode.UPRIGHT
+	possession.mode = stance
 	if clip != next:
 		clip = next
 		playback.play(clip, 0.12)

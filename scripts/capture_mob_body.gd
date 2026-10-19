@@ -4,14 +4,20 @@ extends SceneTree
 ## --bisect-only stages just the cuts: waist, shoulder-to-hip diagonal, chest-high and lengthwise.
 ## --model=male or --model=female stages every raider in that body (ids whose replicated choice
 ## gives it); without it the staged ids pick their bodies as in play.
+## --lineup stages possessed villagers 1 to 6 (each id's own distortion) side by side and each
+## state in turn: idle, stare, crawl mid-stride, the pounce coil and the leap. --dusk renders it
+## under a dim blue-grey fog instead of daylight.
 
 const MOB: PackedScene = preload("res://gameplay/mobs/hostile_mob.tscn")
 var stage: Node3D = Node3D.new()
 var camera: Camera3D = Camera3D.new()
 var directory: String = "user://mob_body"
 var bisect_only: bool = false
+var lineup_only: bool = false
+var dusk: bool = false
 var model: String = ""
 var used: Dictionary[int, bool] = {}
+var drives: Dictionary[HostileMob, Vector3] = {} # raiders pushed along at a steady velocity
 
 func _initialize() -> void:
 	for argument: String in OS.get_cmdline_user_args():
@@ -19,6 +25,10 @@ func _initialize() -> void:
 			directory = argument.get_slice("=", 1)
 		elif argument == "--bisect-only":
 			bisect_only = true
+		elif argument == "--lineup":
+			lineup_only = true
+		elif argument == "--dusk":
+			dusk = true
 		elif argument.begins_with("--model="):
 			model = argument.get_slice("=", 1)
 	DirAccess.make_dir_recursive_absolute(directory)
@@ -83,10 +93,23 @@ func capture() -> void:
 	environment.environment.background_color = Color("9bb3c9")
 	environment.environment.ambient_light_source = Environment.AMBIENT_SOURCE_COLOR
 	environment.environment.ambient_light_color = Color(0.55, 0.58, 0.62)
+	if dusk:
+		sun.light_energy = 0.25
+		sun.light_color = Color(0.62, 0.7, 0.9)
+		environment.environment.background_color = Color("2a3038")
+		environment.environment.ambient_light_color = Color(0.3, 0.34, 0.42)
+		environment.environment.fog_enabled = true
+		environment.environment.fog_light_color = Color(0.32, 0.36, 0.42)
+		environment.environment.fog_density = 0.035
 	stage.add_child(environment)
 	stage.add_child(camera)
 	camera.fov = 50
-	block(Vector3(60, 1, 60), Vector3(0, -0.5, 0))
+	block(Vector3(60, 1, 60), Vector3(0, -0.5, 0), Vector3.ZERO, Color("3d4434") if dusk else Color("6d7a4f"))
+	process_frame.connect(drive)
+	if lineup_only:
+		await lineup()
+		quit()
+		return
 	if bisect_only:
 		# Patchy dirt under the cuts, so the way blood sits in a textured ground shows.
 		var floor_mesh: MeshInstance3D = stage.get_child(stage.get_child_count() - 1).get_child(1) as MeshInstance3D
@@ -211,3 +234,92 @@ func cuts() -> void:
 		for face: int in range(faces.size()):
 			await shot("cut_%s_4close%d.png" % [name, face], faces[face] + Vector3(-0.5, 0.7, -0.5), faces[face])
 			await shot("cut_%s_5close%d.png" % [name, face], faces[face] + Vector3(0.55, 0.6, 0.5), faces[face])
+
+func drive() -> void:
+	for mob: HostileMob in drives:
+		if is_instance_valid(mob):
+			mob.kick_velocity = drives[mob]
+
+# Villagers 1 to 6 side by side, each in its own distortion, then every state in turn.
+func lineup() -> void:
+	# A gentle 12 degree slope behind the line, for the crawl on uneven ground.
+	block(Vector3(10, 1, 8), Vector3(0, -0.25, 3.0), Vector3(deg_to_rad(-12.0), 0, 0), Color("4a4f3a") if dusk else Color("7c6f4f"))
+	var eye: Node3D = Node3D.new()
+	stage.add_child(eye)
+	eye.position = Vector3(0, 1.6, -5.5)
+	var mobs: Array[HostileMob] = []
+	for index: int in range(6):
+		var mob: HostileMob = spawn(index + 1, Vector3(index * 1.7 - 4.25, 0.95, 0), 0.0)
+		mob.visual.set("look_at_node", eye)
+		mobs.append(mob)
+		print("VARIANT ", (mob.visual.get("possession") as MobPossession).describe(), " female=", mob.visual.get("female"))
+	await wait(1.6)
+	await shot("lineup_front.png", Vector3(0, 1.5, -7.6), Vector3(0, 0.85, 0))
+	await shot("lineup_side.png", Vector3(7.5, 1.3, -3.2), Vector3(0, 0.8, 0))
+	for index: int in range(mobs.size()):
+		var at: Vector3 = mobs[index].global_position
+		await shot("variant_%d_front.png" % (index + 1), at + Vector3(0.0, 0.45, -2.3), at + Vector3(0, 0.05, 0))
+		await shot("variant_%d_side.png" % (index + 1), at + Vector3(2.1, 0.35, -0.9), at + Vector3(0, -0.05, 0))
+	await shot("face_%d.png" % 3, mobs[2].global_position + Vector3(0.0, 0.75, -0.9), mobs[2].global_position + Vector3(0, 0.7, 0))
+	# The shamble: a slow, stuttering walk toward the camera.
+	for mob: HostileMob in mobs:
+		mob.state = 1
+		drives[mob] = Vector3(0, 0, -1.2)
+	await wait(1.2)
+	await shot("state_shamble.png", Vector3(0, 1.4, mobs[0].global_position.z - 6.0), Vector3(0, 0.8, mobs[0].global_position.z))
+	await shot("state_shamble_side.png", mobs[3].global_position + Vector3(3.2, 0.4, -0.6), mobs[3].global_position + Vector3(0, -0.1, 0))
+	for mob: HostileMob in mobs:
+		drives.erase(mob)
+		mob.state = 0
+	# Stare: the squat, arms hanging, head on the camera.
+	for mob: HostileMob in mobs:
+		mob.state = 4
+	await wait(1.4)
+	await shot("state_stare.png", Vector3(0, 1.3, -6.5), Vector3(0, 0.6, 0))
+	await shot("state_stare_side.png", Vector3(6.5, 1.0, -2.5), Vector3(0, 0.5, 0))
+	await shot("state_stare_close.png", mobs[0].global_position + Vector3(0.6, 0.3, -1.9), mobs[0].global_position + Vector3(0, -0.2, 0))
+	# Crawl: all fours toward +Z, up the slope, filmed mid-stride.
+	for mob: HostileMob in mobs:
+		mob.state = 5
+		mob.yaw = PI
+		drives[mob] = Vector3(0, 0, 2.4)
+	await wait(0.9)
+	await shot("state_crawl_side.png", mobs[2].global_position + Vector3(3.6, 0.9, 0.6), mobs[2].global_position + Vector3(0, -0.4, 0.3))
+	await wait(0.17)
+	await shot("state_crawl_side2.png", mobs[2].global_position + Vector3(3.6, 0.9, 0.6), mobs[2].global_position + Vector3(0, -0.4, 0.3))
+	await shot("state_crawl_front.png", mobs[2].global_position + Vector3(1.0, 0.7, 3.0), mobs[2].global_position + Vector3(0, -0.4, 0))
+	await wait(0.6)
+	await shot("state_crawl_slope.png", mobs[0].global_position + Vector3(3.4, 1.2, -0.5), mobs[0].global_position + Vector3(0, -0.4, 0.3))
+	for mob: HostileMob in mobs:
+		drives.erase(mob)
+		mob.state = 5
+	await wait(0.8)
+	await shot("state_crawl_still.png", mobs[3].global_position + Vector3(2.8, 0.9, -1.2), mobs[3].global_position + Vector3(0, -0.4, 0))
+	# Coil: the attack's telegraph, read from the body.
+	for mob: HostileMob in mobs:
+		mob.state = 2
+		mob.yaw = 0.0
+		mob.attack_age = 0.0
+	await wait(0.4)
+	await shot("state_coil_side.png", mobs[1].global_position + Vector3(2.8, 0.7, -1.0), mobs[1].global_position + Vector3(0, -0.4, 0))
+	await shot("state_coil_front.png", mobs[4].global_position + Vector3(0.5, 0.7, -2.6), mobs[4].global_position + Vector3(0, -0.35, 0))
+	# Leap: launched forward and up, filmed in the air.
+	for mob: HostileMob in mobs:
+		mob.state = 6
+		mob.hop = 4.6
+		drives[mob] = Vector3(0, 0, -7.0)
+	await wait(0.22)
+	await shot("state_leap_side.png", mobs[2].global_position + Vector3(4.2, 0.2, 0.3), mobs[2].global_position)
+	await shot("state_leap_front.png", mobs[3].global_position + Vector3(1.2, 0.3, -3.2), mobs[3].global_position)
+	for mob: HostileMob in mobs:
+		drives.erase(mob)
+	await wait(0.35)
+	for mob: HostileMob in mobs:
+		mob.state = 4
+	await wait(0.05)
+	await shot("state_land.png", mobs[2].global_position + Vector3(3.4, 0.8, 0.5), mobs[2].global_position + Vector3(0, -0.4, 0))
+	await wait(1.2)
+	for mob: HostileMob in mobs:
+		mob.state = 0
+	await wait(1.6)
+	await shot("state_idle_again.png", Vector3(0, 1.4, mobs[0].global_position.z - 7.0), Vector3(0, 0.8, mobs[0].global_position.z))
