@@ -34,11 +34,11 @@ func build() -> void:
 		environment.sky = sky
 		environment.ambient_light_sky_contribution = 0.25
 		environment.ambient_light_color = Color("829698")
-		environment.fog_light_color = Color("586d73")
-		environment.fog_density = 0.009
+		environment.fog_light_color = Color("303c40")
+		environment.fog_density = 0.006
 		environment.fog_height_density = 0.0
-		environment.fog_aerial_perspective = 0.35
-		environment.fog_sky_affect = 0.2
+		environment.fog_aerial_perspective = 0.0
+		environment.fog_sky_affect = 0.08
 		environment.fog_sun_scatter = 0.04
 	refresh_materials(village)
 	for x: float in [-15.0, 15.0]:
