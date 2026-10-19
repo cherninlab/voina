@@ -15,11 +15,15 @@ var landscape_noise: FastNoiseLite = FastNoiseLite.new()
 
 func _ready() -> void:
 	name = "WoodlandVillage"
+	# Heights are sampled before the landscape is built (snapshot refresh, other scenery's _ready).
+	configure_landscape_noise()
 	if not bool(get_meta("prepare_lightmap", false)):
 		add_child(preload("res://gameplay/environment/grim_village.gd").new())
 	# The source builder remains available to regenerate the static lightmap snapshot.
 	var baked_path: String = "res://content/environments/village_generated/village_lit.scn"
-	if not bool(get_meta("prepare_lightmap", false)) and ResourceLoader.exists(baked_path):
+	# --village-source builds from source for audits (scripts/terrain_audit.gd) without a rebake.
+	var use_snapshot: bool = not "--village-source" in OS.get_cmdline_user_args()
+	if use_snapshot and not bool(get_meta("prepare_lightmap", false)) and ResourceLoader.exists(baked_path):
 		var baked: PackedScene = load(baked_path) as PackedScene
 		var snapshot: Node3D = baked.instantiate() as Node3D
 		var lightmap: LightmapGI = snapshot.get_node("VillageLightmap") as LightmapGI
@@ -29,6 +33,9 @@ func _ready() -> void:
 				apply_atmosphere((node as WorldEnvironment).environment)
 			refresh_landscape(snapshot)
 			refresh_ground(snapshot)
+			retire_north_apron(snapshot)
+			village_skirt(snapshot)
+			ground_plants(snapshot)
 			clover_edges()
 			clear_north_trail(snapshot)
 			refresh_foliage(snapshot)
@@ -55,6 +62,7 @@ func _ready() -> void:
 	lighting()
 	terrain()
 	landscape()
+	village_skirt(self)
 	green_borders()
 	ground_stones()
 	if not bool(get_meta("prepare_lightmap", false)):
@@ -97,7 +105,7 @@ func _ready() -> void:
 		var radius: float = rock_random.randf_range(34.0, 155.0)
 		var location: Vector3 = Vector3(cos(angle) * radius, 0, sin(angle) * radius)
 		var width: float = rock_random.randf_range(2.5, 7.5)
-		location.y = landscape_surface_height(location.x, location.z) - width * 0.12
+		# ground_plants() sets the height once every rock exists.
 		kit_prop("rock_a" if index % 2 == 0 else "rock_b", location, width, angle, false)
 	for side: int in [-1, 1]:
 		stall(Vector3(side * 15, 0, -8), red if side < 0 else teal)
@@ -124,6 +132,7 @@ func _ready() -> void:
 		var x: float = cos(angle) * radius
 		var z: float = sin(angle) * radius
 		(trees as TreePack).add_plant("tree%02d" % (1 + index % 36), Vector3(x, landscape_surface_height(x, z) - 0.05, z), forest_random.randf_range(7.0, 14.0))
+	ground_plants(self)
 	clear_north_trail(trees)
 	if not bool(get_meta("prepare_lightmap", false)):
 		refresh_foliage(trees)
@@ -149,7 +158,40 @@ func landscape_height(x: float, z: float) -> float:
 	var raw_height: float = ridge + crags * 10.0 + detail + 3.0
 	var layer: float = raw_height / 5.5
 	var shelves: float = (floorf(layer) + smoothstep(0.1, 0.9, fposmod(layer, 1.0))) * 5.5
-	return -0.7 + foothills + mountains * lerpf(raw_height, shelves, 0.65)
+	var outer: float = -0.7 + foothills + mountains * lerpf(raw_height, shelves, 0.65)
+	# Vertices under the village ground (3 m grid lines up to 27 m) sink 1.5 m below it, so the
+	# hidden cells rise steeply to meet the skirt at its outer seam instead of grazing under it.
+	# From the 30 m line, which the village skirt meets exactly, the land continues the village
+	# undulation and fades into the foothills by 44 m; the church site beyond is unchanged.
+	if distance < 29.0:
+		return minf(outer, ground_height(x, z) - 1.5)
+	return lerpf(ground_height(x, z), outer, smoothstep(30.0, 44.0, distance))
+
+## Two hidden cells under the village skirt's +x+z and -x-z corners would otherwise have one
+## triangle whose three vertices all lie on the skirt's 30 m outer edge, level with the skirt.
+## Splitting them along the other diagonal gives every triangle there a sunken inner vertex.
+func main_diagonal_cell(base: Vector2) -> bool:
+	return base.is_equal_approx(Vector2(27.0, 27.0)) or base.is_equal_approx(Vector2(-30.0, -30.0))
+
+func configure_landscape_noise() -> void:
+	landscape_noise.seed = 41271
+	landscape_noise.frequency = 0.006
+	landscape_noise.fractal_octaves = 3
+
+## The ground a player sees and stands on: village mesh, its skirt, then the outer landscape.
+func visible_ground_height(x: float, z: float) -> float:
+	var distance: float = maxf(absf(x), absf(z))
+	if distance <= 28.0:
+		return ground_height(x, z)
+	if distance <= 30.0:
+		return skirt_height(x, z)
+	return landscape_surface_height(x, z)
+
+## The 2 m ring from the village mesh edge (28 m) to the landscape's 30 m grid line.
+func skirt_height(x: float, z: float) -> float:
+	var distance: float = maxf(maxf(absf(x), absf(z)), 0.001)
+	var edge: Vector2 = Vector2(x, z) * (30.0 / distance)
+	return lerpf(ground_height(x, z), landscape_surface_height(edge.x, edge.y), smoothstep(28.0, 30.0, distance))
 
 func landscape_surface_height(x: float, z: float) -> float:
 	# Match the actual three-metre mesh triangles, not an unsampled noise peak.
@@ -159,34 +201,70 @@ func landscape_surface_height(x: float, z: float) -> float:
 	var near_height: float = landscape_height(base.x, base.y)
 	var right_height: float = landscape_height(base.x + 3.0, base.y)
 	var far_height: float = landscape_height(base.x, base.y + 3.0)
+	if main_diagonal_cell(base):
+		var corner_height: float = landscape_height(base.x + 3.0, base.y + 3.0)
+		if offset.x >= offset.y:
+			return near_height + (right_height - near_height) * offset.x + (corner_height - right_height) * offset.y
+		return near_height + (corner_height - far_height) * offset.x + (far_height - near_height) * offset.y
 	if offset.x + offset.y <= 1.0:
 		return near_height + (right_height-near_height)*offset.x + (far_height-near_height)*offset.y
 	var diagonal: float = landscape_height(base.x + 3.0, base.y + 3.0)
 	return diagonal + (far_height-diagonal)*(1.0-offset.x) + (right_height-diagonal)*(1.0-offset.y)
 
 func landscape() -> void:
-	landscape_noise.seed = 41271
-	landscape_noise.frequency = 0.006
-	landscape_noise.fractal_octaves = 3
-	var tool: SurfaceTool = SurfaceTool.new()
-	tool.begin(Mesh.PRIMITIVE_TRIANGLES)
-	for z: int in range(192):
-		for x: int in range(192):
-			var corners: Array[Vector2] = [Vector2(x,z), Vector2(x+1,z), Vector2(x,z+1), Vector2(x+1,z), Vector2(x+1,z+1), Vector2(x,z+1)]
-			for corner: Vector2 in corners:
-				var point: Vector2 = corner * 3.0 - Vector2.ONE * 288.0
-				var height: float = landscape_height(point.x, point.y)
-				var rocky: float = smoothstep(12.0, 42.0, height)
-				tool.set_color(Color("637457").lerp(Color("858780"), rocky))
-				tool.add_vertex(Vector3(point.x, height, point.y))
-	tool.generate_normals()
-	tool.index()
+	configure_landscape_noise()
 	var visual: MeshInstance3D = MeshInstance3D.new()
-	visual.mesh = tool.commit()
+	visual.mesh = build_landscape_mesh()
 	var material: ShaderMaterial = make_landscape_material()
 	visual.material_override = material
 	add_child(visual)
 	landscape_collision(visual)
+
+## The 576 m landscape on its 3 m grid, split along the (x+1, z)-(x, z+1) diagonal that
+## landscape_surface_height interpolates. Indexed, with area-weighted smooth normals.
+func build_landscape_mesh() -> ArrayMesh:
+	var size: int = 193
+	var vertices: PackedVector3Array = PackedVector3Array()
+	var colors: PackedColorArray = PackedColorArray()
+	var normals: PackedVector3Array = PackedVector3Array()
+	vertices.resize(size * size)
+	colors.resize(size * size)
+	normals.resize(size * size)
+	for z: int in range(size):
+		for x: int in range(size):
+			var point: Vector2 = Vector2(x, z) * 3.0 - Vector2.ONE * 288.0
+			var height: float = landscape_height(point.x, point.y)
+			vertices[z * size + x] = Vector3(point.x, height, point.y)
+			colors[z * size + x] = Color("637457").lerp(Color("858780"), smoothstep(12.0, 42.0, height))
+	var indices: PackedInt32Array = PackedInt32Array()
+	indices.resize(192 * 192 * 6)
+	var cursor: int = 0
+	for z: int in range(192):
+		for x: int in range(192):
+			var near: int = z * size + x
+			var corners: Array[int] = [near, near + 1, near + size, near + 1, near + size + 1, near + size]
+			if main_diagonal_cell(Vector2(x, z) * 3.0 - Vector2.ONE * 288.0):
+				corners = [near, near + 1, near + size + 1, near, near + size + 1, near + size]
+			for corner: int in corners:
+				indices[cursor] = corner
+				cursor += 1
+	for index: int in range(0, indices.size(), 3):
+		var a: Vector3 = vertices[indices[index]]
+		# Clockwise from above (Godot's front face): this cross product points up.
+		var face: Vector3 = (vertices[indices[index + 2]] - a).cross(vertices[indices[index + 1]] - a)
+		for corner: int in range(3):
+			normals[indices[index + corner]] += face
+	for index: int in range(normals.size()):
+		normals[index] = normals[index].normalized()
+	var arrays: Array = []
+	arrays.resize(Mesh.ARRAY_MAX)
+	arrays[Mesh.ARRAY_VERTEX] = vertices
+	arrays[Mesh.ARRAY_NORMAL] = normals
+	arrays[Mesh.ARRAY_COLOR] = colors
+	arrays[Mesh.ARRAY_INDEX] = indices
+	var mesh: ArrayMesh = ArrayMesh.new()
+	mesh.add_surface_from_arrays(Mesh.PRIMITIVE_TRIANGLES, arrays)
+	return mesh
 
 func surface(color: String, texture: String = "", tiling: float = 1.0) -> StandardMaterial3D:
 	var material: StandardMaterial3D = StandardMaterial3D.new()
@@ -974,23 +1052,139 @@ void fragment() {
 	return material
 
 func refresh_landscape(root_node: Node3D) -> void:
+	# The landscape is not lightmapped, so the snapshot's copy is rebuilt from the current height
+	# function; its collision always copies the rebuilt mesh.
 	for node: Node in root_node.find_children("*", "MeshInstance3D", true, false):
 		var visual: MeshInstance3D = node as MeshInstance3D
 		var material: ShaderMaterial = visual.material_override as ShaderMaterial
 		if material != null and material.get_shader_parameter("soil") != null and material.get_shader_parameter("rock") != null:
 			visual.material_override = make_landscape_material()
+			if visual.mesh.get_aabb().size.x > 500.0:
+				visual.mesh = build_landscape_mesh()
 			landscape_collision(visual)
 
 func landscape_collision(visual: MeshInstance3D) -> void:
+	var trimesh: Shape3D = visual.mesh.create_trimesh_shape()
 	for child: Node in visual.get_children():
 		if child is StaticBody3D:
-			return
+			for shape: Node in child.get_children():
+				if shape is CollisionShape3D:
+					(shape as CollisionShape3D).shape = trimesh
+					return
 	var body: StaticBody3D = StaticBody3D.new()
 	body.name = "LandscapeGround"
-	var shape: CollisionShape3D = CollisionShape3D.new()
-	shape.shape = visual.mesh.create_trimesh_shape()
-	body.add_child(shape)
+	var collider: CollisionShape3D = CollisionShape3D.new()
+	collider.shape = trimesh
+	body.add_child(collider)
 	visual.add_child(body)
+
+func village_skirt(root_node: Node3D) -> void:
+	# A 2 m ring closes the step between the village mesh edge and the landscape: it starts on the
+	# village mesh's own edge vertices and ends on the landscape's 30 m grid line, so neither seam
+	# has a gap, a cliff or an exposed underside a capsule could slip beneath.
+	if bool(root_node.get_meta("village_skirt", false)):
+		return
+	root_node.set_meta("village_skirt", true)
+	var tool: SurfaceTool = SurfaceTool.new()
+	tool.begin(Mesh.PRIMITIVE_TRIANGLES)
+	for z: int in range(120):
+		for x: int in range(120):
+			if x >= 4 and x < 116 and z >= 4 and z < 116:
+				continue
+			var corners: Array[Vector2] = [Vector2(x, z), Vector2(x + 1, z), Vector2(x, z + 1), Vector2(x + 1, z), Vector2(x + 1, z + 1), Vector2(x, z + 1)]
+			for corner: Vector2 in corners:
+				var location: Vector2 = corner * 0.5 - Vector2.ONE * 30.0
+				var height: float = skirt_height(location.x, location.y)
+				# Normals from the joined surface, so neither seam shows a shading crease.
+				var dx: float = visible_ground_height(location.x + 0.5, location.y) - visible_ground_height(location.x - 0.5, location.y)
+				var dz: float = visible_ground_height(location.x, location.y + 0.5) - visible_ground_height(location.x, location.y - 0.5)
+				tool.set_normal(Vector3(-dx, 1.0, -dz).normalized())
+				tool.set_uv(location * 0.25)
+				tool.add_vertex(Vector3(location.x, height, location.y))
+	tool.generate_tangents()
+	tool.index()
+	var skirt: MeshInstance3D = MeshInstance3D.new()
+	skirt.name = "VillageSkirt"
+	skirt.mesh = tool.commit()
+	skirt.material_override = make_ground_material()
+	add_child(skirt)
+	landscape_collision(skirt)
+
+func ground_plants(root_node: Node3D) -> void:
+	# Seats TreePack trees/bushes and the outer rocks on the visible ground, in the source builder
+	# and on the baked snapshot. Trunks sit below the lowest ground under them (no downhill gap),
+	# bushes inside the village no longer hide under its mesh, and rocks lose the stray village
+	# ground_height offset kit_prop added to them.
+	var trees: int = 0
+	var rocks: int = 0
+	var seen: Dictionary[Node3D, bool] = {}
+	for node: Node in root_node.find_children("*", "MeshInstance3D", true, false):
+		var visual: MeshInstance3D = node as MeshInstance3D
+		var material: StandardMaterial3D = visual.get_active_material(0) as StandardMaterial3D
+		if material == null or material.albedo_texture == null:
+			continue
+		var path: String = material.albedo_texture.resource_path
+		var tree: bool = "/tree_pack/textures/" in path
+		if not tree and not "StoneGeneric" in path:
+			continue
+		# The plant root sits two levels below root_node (under TreePack), a kit prop one level.
+		var holder: Node3D = visual
+		while holder.get_parent() != null and holder.get_parent() != root_node and (not tree or holder.get_parent().get_parent() != root_node):
+			holder = holder.get_parent() as Node3D
+		if holder.get_parent() == null or seen.has(holder):
+			continue
+		seen[holder] = true
+		var center: Vector3 = holder.global_position
+		if not tree and Vector2(center.x, center.z).length() < 22.0:
+			continue # the well and other village stonework keep their own footing
+		var bounds: AABB = AABB()
+		var first: bool = true
+		var all_stone: bool = true
+		for part: Node in holder.find_children("*", "MeshInstance3D", true, false):
+			var piece: MeshInstance3D = part as MeshInstance3D
+			var piece_bounds: AABB = piece.global_transform * piece.mesh.get_aabb()
+			bounds = piece_bounds if first else bounds.merge(piece_bounds)
+			first = false
+			var piece_material: StandardMaterial3D = piece.get_active_material(0) as StandardMaterial3D
+			all_stone = all_stone and piece_material != null and piece_material.albedo_texture != null and "StoneGeneric" in piece_material.albedo_texture.resource_path
+		if not tree and not all_stone:
+			continue # buildings with stone parts are not loose rocks
+		var width: float = minf(bounds.size.x, bounds.size.z)
+		var radius: float = clampf(bounds.size.y * 0.03, 0.12, 0.4)
+		var sink: float = 0.05
+		if not tree:
+			radius = width * 0.25
+			sink = width * 0.08
+		elif "bush" in path.get_file():
+			radius = width * 0.3
+		var middle: float = visible_ground_height(center.x, center.z)
+		var lowest: float = middle
+		for angle: int in range(6):
+			var offset: Vector2 = Vector2.from_angle(angle * TAU / 6.0) * radius
+			lowest = minf(lowest, visible_ground_height(center.x + offset.x, center.z + offset.y))
+		# Rocks on steep ground stay mostly exposed: never more than 45 % of their height buried.
+		holder.global_position.y = lowest - sink if tree else maxf(lowest - sink, middle - bounds.size.y * 0.45)
+		if tree:
+			trees += 1
+		else:
+			rocks += 1
+	print("VILLAGE_GROUNDED: ", trees, " tree/bush plants and ", rocks, " rocks seated on the visible ground")
+
+func retire_north_apron(root_node: Node3D) -> void:
+	# Older snapshots carry a separate gate apron laid 1.5 cm over the village and landscape meshes,
+	# with open 1 m side edges. The skirt and the reshaped landscape now join the gate seamlessly.
+	for node: Node in root_node.find_children("*", "MeshInstance3D", true, false):
+		var visual: MeshInstance3D = node as MeshInstance3D
+		var material: ShaderMaterial = visual.material_override as ShaderMaterial
+		if material == null or material.get_shader_parameter("dirt_color") == null:
+			continue
+		var bounds: AABB = visual.global_transform * visual.mesh.get_aabb()
+		if absf(bounds.get_center().x + 0.5) > 1.0 or absf(bounds.get_center().z + 32.0) > 1.0 or bounds.size.x > 7.0:
+			continue
+		visual.visible = false
+		for shape: Node in visual.find_children("*", "CollisionShape3D", true, false):
+			(shape as CollisionShape3D).disabled = true
+		print("VILLAGE_APRON_RETIRED: gate apron overlay replaced by the village skirt")
 
 func open_north_approach(root_node: Node3D) -> void:
 	if bool(root_node.get_meta("north_approach_open",false)):
@@ -1021,25 +1215,6 @@ func open_north_approach(root_node: Node3D) -> void:
 		var center: Vector3 = bounds.get_center()
 		if absf(center.x+0.5) < 3.1 and center.z < -24.0 and center.z > -29.0 and bounds.size.y > 2.0 and bounds.size.y < 2.9 and maxf(bounds.size.x,bounds.size.z) < 0.6:
 			visual.visible = false
-	var tool: SurfaceTool = SurfaceTool.new()
-	tool.begin(Mesh.PRIMITIVE_TRIANGLES)
-	for z: int in range(20):
-		for x: int in range(12):
-			var corners: Array[Vector2] = [Vector2(x,z),Vector2(x+1,z),Vector2(x,z+1),Vector2(x+1,z),Vector2(x+1,z+1),Vector2(x,z+1)]
-			for corner: Vector2 in corners:
-				var point: Vector3 = Vector3(-3.5+corner.x*0.5,0,-37.0+corner.y*0.5)
-				var blend: float = smoothstep(27.0,34.0,-point.z)
-				point.y = lerpf(ground_height(point.x,point.z),landscape_surface_height(point.x,point.z),blend)+0.015
-				tool.set_uv(Vector2(point.x,point.z)*0.25)
-				tool.add_vertex(point)
-	tool.generate_normals()
-	tool.generate_tangents()
-	tool.index()
-	var apron: MeshInstance3D = MeshInstance3D.new()
-	apron.mesh = tool.commit()
-	apron.material_override = make_ground_material()
-	add_child(apron)
-	landscape_collision(apron)
 
 func dress_north_approach(root_node: Node3D) -> void:
 	if bool(root_node.get_meta("north_gate_framed",false)):

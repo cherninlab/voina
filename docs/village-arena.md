@@ -128,7 +128,7 @@ Ridge follow-up: four piecewise asymmetric crest profiles replace the shared sin
 
 ## Northern approach and outer ground
 
-The visible 576-by-576-metre landscape now receives Jolt triangle collision from its exact mesh, including when the old baked snapshot is loaded. The village palisade has a six-metre opening on the northern segment. Split wall pieces keep collision on either side; decorative uprights are cleared through the opening. A small terrain-matched apron blends the village floor down to the outer landscape, with matching collision. The source builder includes the opening during future bake preparation; a saved metadata flag avoids applying it twice to newly prepared snapshots.
+The visible 576-by-576-metre landscape now receives Jolt triangle collision from its exact mesh, including when the old baked snapshot is loaded. The village palisade has a six-metre opening on the northern segment. Split wall pieces keep collision on either side; decorative uprights are cleared through the opening. A small terrain-matched apron blended the village floor down to the outer landscape, with matching collision; it has since been replaced by the village skirt (see Terrain audit below). The source builder includes the opening during future bake preparation; a saved metadata flag avoids applying it twice to newly prepared snapshots.
 
 The real-world capture check sweeps the actual player collision shape through the gate, checks 21 continuous ground samples along the apron, and drops the real player at four inner and four outer locations. All passed in `runtime-north-shipped` (four views, including the gate approach), alongside the floor/ramp and 108-degree lens-source checks. Outer test points are north z=-40, east x=50, west x=-60 and south z=60. This proves those locations and approach clearance, not exhaustive navigation of the entire landscape or two-machine acceptance. Outer decorative vegetation and rock dressing remain cosmetic. The terrain ends at its finite mesh boundary; this is not an infinite world.
 
@@ -201,3 +201,27 @@ Real Mobile/Metal captures and import/combat/network checks accompany this pass.
 ## Threatening distant ridges
 
 The distant cosmetic ridge overlays have taller narrower fractured crests. Mountain slopes use existing Valhalla StoneGeneric basecolor, matching roughness and triplanar normal detail, with cooler dark rock, stronger irregular strata and greater bare-rock coverage at elevation. This replaces the pale generated schist on the surrounding landscape material. The north trail material and all terrain/collision height sampling stay unchanged; the crest overlays are cosmetic and distant. Existing Valhalla provenance applies; no external assets were added.
+
+## Terrain audit and seamless village border (T-097)
+
+`scripts/terrain_audit.gd` checks what a player sees against what they stand on, in the real match world (baked snapshot path, or the source builder with `--village-source`):
+
+```sh
+"$GODOT" --headless --fixed-fps 60 --path . --script scripts/terrain_audit.gd -- --host --no-pve --port=7795 --json=/abs/audit.json
+"$GODOT" --fixed-fps 60 --path . --script scripts/terrain_audit.gd -- --host --no-pve --port=7796 --quick --capture-dir=/abs/folder
+```
+
+It rays the physics world over dense grids (village 0.25 m, gate 0.1 m, trail 0.5 m, church yard 0.25 m, landscape 1.5 m out to 176 m) and compares the first ground-collider hit with the topmost visible ground triangle; checks every ground collider's faces against its own mesh; reports collision holes, invisible ground, a lower mesh showing through, sustained coplanar overlaps (z-fight risk), visible steps over 8 cm, the step at the village mesh edge, steep (>45 degree) or spiky landscape near routes, downward normals, trees/rocks/bushes floating or buried (and, with the real renderer, every MultiMesh scatter: the dummy renderer keeps no instance buffers), and invisible colliders. Capsules with the player's shape, speed, gravity and floor settings are dropped on about 2,900 points and walked from the village through the gate and trail onto the church terrace, around the palisade inside and outside, up the lookout ramp, across the village edge on all sides and round a 50 m foothill loop; terrain-only capsules collide with ground colliders alone so props cannot hide a ground fault. The real host player is also dropped at ten points. `--strict` exits 1 on any failing check.
+
+The first audit found the village ground mesh ending at 28 m in a 0.05-1.41 m cliff or gap against the landscape all round (868 of 900 edge samples over 5 cm), visible outside the palisade and through the gate; capsules walking outside the wall slipped under that one-sided ground sheet and were trapped about 1 m below it; the gate apron had 1.15 m open side edges and lay 1.5 cm over the village and landscape meshes; the landscape under the village (-0.7 m) showed through where the village ground dips lower; TreePack trunks floated up to 0.25 m on their downhill side, two bushes were buried 1.1 m under the village ground, and the outer rocks carried a stray village `ground_height` offset (floating up to 0.25 m or buried up to 1.2 m). Collision matched the visible triangles everywhere else, with no holes, no steep landscape within 15 m of the routes and no spikes.
+
+Fixes, applied at runtime on top of the baked snapshot exactly as in the source builder:
+- A 2 m `VillageSkirt` ring (0.5 m grid, ground material, matching trimesh collision) starts on the village mesh's own edge vertices at 28 m and ends on the landscape's 30 m grid line, so both seams are exact and no edge is exposed.
+- `landscape_height` sinks the hidden grid vertices under the village 1.5 m below the village ground, continues the village undulation from the 30 m line and fades into the original foothills by 44 m; the church site and everything beyond 44 m are unchanged (about 3.5 m at (-4,-112) and 6.3 m at (-4,-123)). Two hidden corner cells split along the other diagonal so no landscape triangle lies level with the skirt; `landscape_surface_height` follows them.
+- The landscape is not lightmapped, so the snapshot's copy is rebuilt from the current function (indexed, smooth area-weighted normals) and its collision copies the rebuilt mesh.
+- The old gate apron is hidden and its collision disabled; the skirt and reshaped landscape join the gate.
+- `ground_plants` seats TreePack trees and bushes below the lowest visible ground under their trunk/footprint and the outer rocks on the visible ground (never more than 45 % buried).
+- `visible_ground_height(x, z)` returns the ground a player sees anywhere: village mesh, skirt, then landscape. `ground_height`, `landscape_surface_height` and `north_trail_center` keep their meaning.
+
+After the fix: the edge step is at most 9 mm, collision equals the visible ground over every grid, no capsule falls through, gets trapped or snags on ground, and all walks finish within 0-9 % of the ideal time. The torch road's mud strip (`church_road.gd`) still samples the retired apron formula and sits up to 7.7 cm above the ground at the gate (3 cm intended); switching its `surface_height` to `visible_ground_height` would make it exact. A future lightmap rebake from the source builder includes the skirt and drops the apron.
+
