@@ -137,10 +137,10 @@ const THEMES: Array[Dictionary] = [
 	{"name": "1-Bit", "mode": 0, "palette": ["000000", "ffffff"],
 		"values": {"pixel": 2.0, "contrast": 1.2, "dither": 1.0, "blood_keep": 1.0}, "blood": "ff0000"},
 	# Full-colour atmosphere: no palette quantisation, paint filter or ink pass.
-	{"name": "Folk Ink", "light": {"sun_color": "b6c2d3", "ambient_color": "697488", "fog_color": "657181"},
-		"values": {"sun": 0.65, "sun_angle": 24.0, "ambient": 1.35, "sky": 0.48,
-			"fog": 0.002, "scene_exposure": 0.95, "exposure": -0.12,
-			"contrast": 1.08, "saturation": 0.82, "vignette": 0.12,
+	{"name": "Folk Ink", "light": {"sun_color": "b6c2d3", "ambient_color": "829698", "fog_color": "586d73"},
+		"values": {"sun": 0.38, "sun_angle": 38.0, "ambient": 2.3, "sky": 0.8,
+			"fog": 0.009, "scene_exposure": 1.05, "exposure": 0.0,
+			"contrast": 1.05, "saturation": 0.86, "vignette": 0.10,
 			"palette_mix": 0.0, "bands": 0.0, "levels": 0.0, "ink": 0.0,
 			"flat_radius": 0.0, "pixel": 1.0, "dither": 0.0, "blood_keep": 0.0}},
 ]

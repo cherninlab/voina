@@ -86,3 +86,9 @@ It prints `SHADING_OK`. The 1152 × 720 run on an M2 passed. Frame cost on the t
 ## Folk Ink and menu grading
 
 Folk Ink is the default for new settings. Following visual feedback it now uses full-colour cool, subdued lighting with light distance haze, restrained saturation and deeper shadows. It has no palette mapping, posterisation, cel bands, flattening, dithering or added ink outlines; texture detail and smooth gradients are retained. Saved theme choices remain respected. All themes share the same image-grading material with the menu video; changing T/Shift+T updates both. Logo and controls draw after grading for readability. Lighting-only values affect the 3D world, not baked video lighting.
+
+## Default grim village pass
+
+The existing **Folk Ink** default now uses full-colour cold overcast lighting, distance fog at 0.009 and restrained grading. No palette reduction or painting effect. Saved per-theme slider overrides still take precedence; choose **Theme defaults** to see the new untuned look if you previously adjusted that preset. The menu video retains the shared colour pass; it is prerecorded footage, so scene fog and practical lights apply to the 3D world only.
+
+The village additionally loads `gameplay/environment/grim_village.gd`: a generated storm panorama, matching basecolor/normal/roughness maps on structural wood, rougher/tinted imported materials, quieter mineral earth blending, four market lanterns and collision-ray-positioned house windows/lanterns. Existing materials/maps are reused, not replaced with colour-derived fake normals. `content/environments/grim/README.md` records panorama prompt and provenance. Slow sky drift and restrained red sheet-lightning pulses are local cosmetics. The lightning light is excluded from shading's sun lookup. No lightning damage, thunder, volumetric fog or renderer switch is added.

@@ -15,6 +15,8 @@ var landscape_noise: FastNoiseLite = FastNoiseLite.new()
 
 func _ready() -> void:
 	name = "WoodlandVillage"
+	if not bool(get_meta("prepare_lightmap", false)):
+		add_child(preload("res://gameplay/environment/grim_village.gd").new())
 	# The source builder remains available to regenerate the static lightmap snapshot.
 	var baked_path: String = "res://content/environments/village_generated/village_lit.scn"
 	if not bool(get_meta("prepare_lightmap", false)) and ResourceLoader.exists(baked_path):
@@ -887,13 +889,13 @@ void fragment() {
  float vegetation=(1.0-path)*smoothstep(0.2,0.7,n);
  vec2 warped=p+vec2(noise(p*0.17),noise(p*0.17+31.0))*0.8;
  float mineral_mask=smoothstep(0.28,0.72,noise(warped*0.16));
- vec3 dirt=mix(texture(dirt_color,warped*0.4).rgb,texture(mineral_color,warped*0.23).rgb,mineral_mask*0.75);
+ vec3 dirt=mix(texture(dirt_color,warped*0.4).rgb,texture(mineral_color,warped*0.23).rgb,0.6+mineral_mask*0.35);
  dirt*=mix(vec3(0.72,0.68,0.60),vec3(1.04,1.0,0.91),noise(p*0.09))*mix(0.9,1.04,n);
- vec3 grass=texture(grass_color,p*0.22).rgb * mix(0.72,1.05,n);
+ vec3 grass=texture(grass_color,p*0.22).rgb * vec3(0.68,0.76,0.62) * mix(0.72,1.05,n);
  vec3 rock=texture(stones,p*0.65).rgb;
- float rock_mask=smoothstep(0.55,0.8,noise(p*0.23))*path*0.25;
+ float rock_mask=smoothstep(0.55,0.8,noise(p*0.23))*path*0.18;
  ALBEDO=mix(mix(dirt,rock,rock_mask),grass,vegetation);
- ROUGHNESS=mix(mix(0.94,texture(stone_roughness,p*0.65).r,rock_mask),texture(grass_roughness,p*0.22).r,vegetation);
+ ROUGHNESS=max(0.83,mix(mix(0.94,texture(stone_roughness,p*0.65).r,rock_mask),texture(grass_roughness,p*0.22).r,vegetation));
  NORMAL_MAP=mix(mix(vec3(0.5,0.5,1.0),texture(stone_normal,p*0.65).rgb,rock_mask),texture(grass_normal,p*0.22).rgb,vegetation);
  NORMAL_MAP_DEPTH=0.45;
  // Screen-space color derivatives are not a physical normal map and shimmer during motion.

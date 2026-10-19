@@ -65,6 +65,8 @@ func find_scene() -> void:
 	environment = null
 	lightmap = null
 	for node: Node in tree_root.find_children("*", "DirectionalLight3D", true, false):
+		if node.name == "DistantRedSheetLightning":
+			continue
 		sun = node as DirectionalLight3D
 		break
 	for node: Node in tree_root.find_children("*", "WorldEnvironment", true, false):
