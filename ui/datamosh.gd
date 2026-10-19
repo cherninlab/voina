@@ -3,7 +3,7 @@ extends CanvasLayer
 # Owns the MPEG datamosh effect (ui/datamosh_effect.gd): attaches it to whichever camera is
 # current, and decides when to mosh from what the local player goes through. Local
 # presentation only; nothing here is networked.
-#   F8  effect on / off (on by default; the choice persists in user://mpeg_tweaks.cfg)
+#   F8  effect on / off (off by default; the choice persists in user://mpeg_tweaks.cfg)
 #   F7  cycle debug views (Y, Cb/Cr, motion vectors, residual, I/P)
 #   F6  manual mosh burst
 # Cutting a raider in half moshes (both halves fly apart dragging the old picture with them),
@@ -15,7 +15,7 @@ extends CanvasLayer
 
 const RESPAWN_JUMP: float = 3.0 # metres in one frame: a teleport, not movement
 const TOGGLES: Array[Dictionary] = [
-	{"name": "enabled", "label": "Effect on (F8)", "default": true},
+	{"name": "enabled", "label": "Effect on (F8)", "default": false},
 	{"name": "always_mosh", "label": "Datamosh always (no I-frames)", "default": false},
 	{"name": "mosh_through_cuts", "label": "Mosh through camera cuts", "default": false},
 	{"name": "triggers", "label": "Gameplay triggers (bisect, dash, respawn)", "default": true},

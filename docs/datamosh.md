@@ -10,7 +10,7 @@ It is local presentation only. Nothing is networked, and each machine's settings
 
 | Key | Action |
 | --- | --- |
-| F8 | Effect on/off (on by default; the choice persists) |
+| F8 | Effect on/off (off by default; the choice persists) |
 | F7 | Cycle debug views: Y, Cb/Cr, motion vectors, residual, I/P |
 | F6 | Manual mosh burst |
 
