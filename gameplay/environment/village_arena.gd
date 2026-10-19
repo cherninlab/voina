@@ -43,6 +43,7 @@ func _ready() -> void:
 			ridge_outcrops()
 			open_north_approach(snapshot)
 			dress_north_approach(snapshot)
+			seat_palisade(snapshot)
 			north_ferns()
 			trail_grass(snapshot)
 			return
@@ -140,6 +141,7 @@ func _ready() -> void:
 		ridge_outcrops()
 	open_north_approach(self)
 	dress_north_approach(self)
+	seat_palisade(self)
 	if not bool(get_meta("prepare_lightmap", false)):
 		north_ferns()
 		trail_grass(self)
@@ -993,7 +995,7 @@ func refresh_ground(root_node: Node3D) -> void:
 	for node: Node in root_node.find_children("*", "MeshInstance3D", true, false):
 		var visual: MeshInstance3D = node as MeshInstance3D
 		var material: ShaderMaterial = visual.material_override as ShaderMaterial
-		if material != null and material.get_shader_parameter("dirt_color") != null:
+		if material != null and material.get_shader_parameter("dirt_color") != null and material.get_shader_parameter("soil") == null:
 			visual.material_override = make_ground_material()
 
 func make_landscape_material() -> ShaderMaterial:
@@ -1170,13 +1172,93 @@ func ground_plants(root_node: Node3D) -> void:
 			rocks += 1
 	print("VILLAGE_GROUNDED: ", trees, " tree/bush plants and ", rocks, " rocks seated on the visible ground")
 
+func seat_palisade(root_node: Node3D) -> void:
+	# Each palisade wall is one flat-bottomed box set on the ground at its midpoint, so along its
+	# length the ground drops away beneath it (gaps up to 0.6 m, seen inside and out). A plinth of
+	# the same boards follows the ground under every wall, 15 cm into it; walls and posts keep
+	# their collision. Live layer: never baked, rebuilt on the source and on the snapshot.
+	var walls: int = 0
+	var deepest: float = 0.0
+	for node: Node in root_node.find_children("*", "CollisionShape3D", true, false):
+		var collider: CollisionShape3D = node as CollisionShape3D
+		var box: BoxShape3D = collider.shape as BoxShape3D
+		if collider.disabled or box == null or not is_equal_approx(box.size.y, 2.2) or not is_equal_approx(box.size.z, 0.35):
+			continue
+		var wall: MeshInstance3D = collider.get_parent().get_parent() as MeshInstance3D
+		if wall == null or not wall.visible or wall.has_node("PalisadePlinth"):
+			continue
+		var half: float = box.size.x * 0.5
+		var steps: int = maxi(ceili(box.size.x / 0.5), 1)
+		var bottoms: PackedFloat32Array = PackedFloat32Array()
+		var needed: bool = false
+		for step: int in range(steps + 1):
+			var along: float = -half + box.size.x * float(step) / float(steps)
+			var low: float = INF
+			for side: float in [-0.2, 0.2]:
+				var point: Vector3 = wall.global_transform * Vector3(along, -1.1, side)
+				low = minf(low, visible_ground_height(point.x, point.z))
+			# Local height of the plinth bottom (the wall's bottom face is at -1.1).
+			var bottom: float = low - 0.15 - (wall.global_transform * Vector3(along, -1.1, 0.0)).y - 1.1
+			bottoms.append(minf(bottom, -1.12))
+			needed = needed or bottom < -1.1
+			deepest = maxf(deepest, -1.1 - (bottom + 0.15))
+		if not needed:
+			continue
+		var tool: SurfaceTool = SurfaceTool.new()
+		tool.begin(Mesh.PRIMITIVE_TRIANGLES)
+		var depth: float = box.size.z * 0.5 - 0.005
+		for step: int in range(steps):
+			var x0: float = -half + box.size.x * float(step) / float(steps)
+			var x1: float = -half + box.size.x * float(step + 1) / float(steps)
+			var b0: float = bottoms[step]
+			var b1: float = bottoms[step + 1]
+			# Front (+z) and back (-z) boards, then the underside; corners anticlockwise from outside.
+			plinth_quad(tool, Vector3(x0, -1.1, depth), Vector3(x0, b0, depth), Vector3(x1, b1, depth), Vector3(x1, -1.1, depth), Vector3(0, 0, 1))
+			plinth_quad(tool, Vector3(x1, -1.1, -depth), Vector3(x1, b1, -depth), Vector3(x0, b0, -depth), Vector3(x0, -1.1, -depth), Vector3(0, 0, -1))
+			plinth_quad(tool, Vector3(x0, b0, depth), Vector3(x0, b0, -depth), Vector3(x1, b1, -depth), Vector3(x1, b1, depth), Vector3(0, -1, 0))
+		plinth_quad(tool, Vector3(-half, -1.1, -depth), Vector3(-half, bottoms[0], -depth), Vector3(-half, bottoms[0], depth), Vector3(-half, -1.1, depth), Vector3(-1, 0, 0))
+		plinth_quad(tool, Vector3(half, -1.1, depth), Vector3(half, bottoms[steps], depth), Vector3(half, bottoms[steps], -depth), Vector3(half, -1.1, -depth), Vector3(1, 0, 0))
+		var plinth: MeshInstance3D = MeshInstance3D.new()
+		plinth.name = "PalisadePlinth"
+		plinth.mesh = tool.commit()
+		plinth.material_override = wall.material_override
+		plinth.gi_mode = GeometryInstance3D.GI_MODE_DISABLED
+		wall.add_child(plinth)
+		walls += 1
+	# Upright palisade logs vary in length about a fixed centre, so short ones hovered up to 10 cm.
+	var posts: int = 0
+	for node: Node in root_node.find_children("*", "MeshInstance3D", true, false):
+		var post: MeshInstance3D = node as MeshInstance3D
+		var timber_look: ShaderMaterial = post.material_override as ShaderMaterial
+		if not post.visible or timber_look == null or timber_look.get_shader_parameter("grain") == null:
+			continue
+		var bounds: AABB = post.global_transform * post.mesh.get_aabb()
+		if bounds.size.y < 2.25 or bounds.size.y > 2.75 or maxf(bounds.size.x, bounds.size.z) > 0.35:
+			continue
+		var center: Vector3 = bounds.get_center()
+		var lowest: float = visible_ground_height(center.x, center.z)
+		for angle: int in range(6):
+			var offset: Vector2 = Vector2.from_angle(angle * TAU / 6.0) * 0.15
+			lowest = minf(lowest, visible_ground_height(center.x + offset.x, center.z + offset.y))
+		if bounds.position.y > lowest - 0.08:
+			post.global_position.y -= bounds.position.y - (lowest - 0.12)
+			posts += 1
+	print("VILLAGE_PALISADE_SEATED: ", walls, " wall plinths follow the ground (deepest gap closed ", snappedf(deepest, 0.01), " m), ", posts, " posts lowered onto it")
+
+func plinth_quad(tool: SurfaceTool, a: Vector3, b: Vector3, c: Vector3, d: Vector3, normal: Vector3) -> void:
+	# Corners arrive anticlockwise as seen from outside; Godot's front faces are clockwise.
+	for point: Vector3 in [a, c, b, a, d, c]:
+		tool.set_normal(normal)
+		tool.set_uv(Vector2(point.x + point.z, point.y) * 0.5)
+		tool.add_vertex(point)
+
 func retire_north_apron(root_node: Node3D) -> void:
 	# Older snapshots carry a separate gate apron laid 1.5 cm over the village and landscape meshes,
 	# with open 1 m side edges. The skirt and the reshaped landscape now join the gate seamlessly.
 	for node: Node in root_node.find_children("*", "MeshInstance3D", true, false):
 		var visual: MeshInstance3D = node as MeshInstance3D
 		var material: ShaderMaterial = visual.material_override as ShaderMaterial
-		if material == null or material.get_shader_parameter("dirt_color") == null:
+		if material == null or material.get_shader_parameter("dirt_color") == null or material.get_shader_parameter("soil") != null:
 			continue
 		var bounds: AABB = visual.global_transform * visual.mesh.get_aabb()
 		if absf(bounds.get_center().x + 0.5) > 1.0 or absf(bounds.get_center().z + 32.0) > 1.0 or bounds.size.x > 7.0:

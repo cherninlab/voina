@@ -191,6 +191,7 @@ func run() -> void:
 	check_scatter()
 	check_props()
 	check_invisible_colliders()
+	check_palisade()
 	check_overlays()
 	if not flag("--quick"):
 		await drop_capsules()
@@ -224,7 +225,7 @@ func collect_surfaces() -> void:
 			continue
 		var label: String = ""
 		var size: Vector3 = (visual.global_transform * visual.mesh.get_aabb()).size
-		if material.get_shader_parameter("dirt_color") != null:
+		if material.get_shader_parameter("dirt_color") != null and material.get_shader_parameter("soil") == null:
 			label = "village" if size.x > 40.0 else "apron"
 			if String(visual.name).begins_with("VillageSkirt"):
 				label = "skirt"
@@ -691,6 +692,10 @@ func prop_label(visual: MeshInstance3D) -> String:
 	if visual.get_parent() != null and visual.get_parent().get_script() == preload("res://gameplay/environment/woodland_tree.gd"):
 		return "woodland_tree" if visual.get_index() == 0 else ""
 	var material: Material = visual.material_override if visual.material_override != null else visual.get_active_material(0)
+	if material is ShaderMaterial and ((material as ShaderMaterial).get_shader_parameter("grain") != null or (material as ShaderMaterial).get_shader_parameter("basecolor") != null):
+		var bounds: AABB = visual.global_transform * visual.mesh.get_aabb()
+		if bounds.size.y > 2.2 and bounds.size.y < 2.8 and maxf(bounds.size.x, bounds.size.z) < 0.4:
+			return "palisade_post"
 	if material is StandardMaterial3D and (material as StandardMaterial3D).albedo_texture != null:
 		var path: String = (material as StandardMaterial3D).albedo_texture.resource_path
 		if "/tree_pack/" in path:
@@ -698,6 +703,64 @@ func prop_label(visual: MeshInstance3D) -> String:
 		if "StoneGeneric" in path or "Rock" in path or "rock" in path.get_file():
 			return "rock"
 	return ""
+
+func check_palisade() -> void:
+	# Daylight under a palisade wall: its visible bottom (box, plus any child plinth) against the
+	# lower of the two ground heights beside it, every 0.25 m along every wall.
+	var walls: int = 0
+	var gaps: int = 0
+	var worst: float = 0.0
+	var where: String = ""
+	var box_worst: float = 0.0
+	var box_gaps: int = 0
+	for node: Node in world.find_children("*", "CollisionShape3D", true, false):
+		var collider: CollisionShape3D = node as CollisionShape3D
+		var box: BoxShape3D = collider.shape as BoxShape3D
+		if collider.disabled or box == null or not is_equal_approx(box.size.y, 2.2) or not is_equal_approx(box.size.z, 0.35):
+			continue
+		var wall: MeshInstance3D = collider.get_parent().get_parent() as MeshInstance3D
+		if wall == null or not wall.is_visible_in_tree():
+			continue
+		walls += 1
+		var columns: Dictionary[float, float] = {}
+		for child: Node in wall.get_children():
+			if child is MeshInstance3D and (child as MeshInstance3D).is_visible_in_tree():
+				var plinth: MeshInstance3D = child as MeshInstance3D
+				for vertex: Vector3 in plinth.mesh.get_faces():
+					var local: Vector3 = plinth.transform * vertex
+					var key: float = snappedf(local.x, 0.01)
+					columns[key] = minf(columns.get(key, INF), local.y)
+		var keys: Array[float] = columns.keys()
+		keys.sort()
+		var half: float = box.size.x * 0.5
+		var along: float = -half + 0.05
+		while along <= half - 0.05:
+			var bottom: float = -1.1
+			for index: int in range(keys.size() - 1):
+				if keys[index] <= along and along <= keys[index + 1]:
+					var t: float = (along - keys[index]) / maxf(keys[index + 1] - keys[index], 0.001)
+					bottom = minf(bottom, lerpf(columns[keys[index]], columns[keys[index + 1]], t))
+			var low: float = INF
+			for side: float in [-0.18, 0.18]:
+				var point: Vector3 = wall.global_transform * Vector3(along, 0.0, side)
+				low = minf(low, float(visible_ground(point.x, point.z)[0]))
+			var world_bottom: float = (wall.global_transform * Vector3(along, bottom, 0.0)).y
+			var gap: float = world_bottom - low
+			# The same wall without any plinth: the gap the flat box alone leaves.
+			var box_gap: float = (wall.global_transform * Vector3(along, -1.1, 0.0)).y - low
+			box_worst = maxf(box_worst, box_gap)
+			if box_gap > 0.02:
+				box_gaps += 1
+			if gap > 0.02:
+				gaps += 1
+			if gap > worst:
+				worst = gap
+				where = str((wall.global_transform * Vector3(along, bottom, 0.0)).snappedf(0.1))
+			along += 0.25
+	summary["palisade"] = {"walls": walls, "gap_samples": gaps, "max_gap": snappedf(worst, 0.001), "at": where, "box_only_gap_samples": box_gaps, "box_only_max_gap": snappedf(box_worst, 0.001)}
+	note("palisade walls %d: %d samples with daylight under the wall, max gap %.3f m at %s (flat boxes alone: %d samples, max %.3f m)" % [walls, gaps, worst, where, box_gaps, box_worst])
+	if gaps > 0:
+		fail("palisade_gaps", "%d samples with a gap under a wall (max %.3f m at %s)" % [gaps, worst, where])
 
 func check_overlays() -> void:
 	# Ground-hugging meshes other scenery lays on the terrain (torch road mud strip): their vertices
@@ -940,7 +1003,8 @@ func capture_views(directory: String) -> void:
 		["border_south", Vector2(6, 35), 1.7, Vector2(4, 28), 0.0],
 		["border_west", Vector2(-35, 12), 1.7, Vector2(-28, 10), 0.0],
 		["border_corner_nw", Vector2(-35, -32), 1.7, Vector2(-27, -26), 0.0],
-		["inside_north_wall", Vector2(10, -16), 1.7, Vector2(16, -26.5), 0.3],
+		["inside_north_wall", Vector2(4.5, -19), 1.7, Vector2(5.5, -25.5), 0.3],
+		["wall_base_east_outside", Vector2(31, -6), 1.2, Vector2(26.5, -8), 0.2],
 		["inside_west_wall", Vector2(-18, 14), 1.7, Vector2(-27, 22), 0.3],
 		["aerial_border", Vector2(44, -44), 18.0, Vector2(22, -22), 0.0],
 		["trail_mid", Vector2(3, -58), 1.7, Vector2(1, -80), 0.5],
