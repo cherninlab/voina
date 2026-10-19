@@ -3,14 +3,19 @@ extends Node
 # Scene lighting for the shading themes (ui/shading.gd). The village's bounce light is baked into
 # a LightmapGI; only the sun's direct light is realtime. Dimming the sun alone would leave the
 # baked bounce lighting the village, so a lit theme detaches the lightmap data (and keeps the sun
-# BAKE_DYNAMIC). Sun, ambient, sky, fog, exposure, glow and a lantern on the current camera then
-# all follow the theme. Natural restores the baked look.
+# BAKE_DYNAMIC). Sun, ambient, sky, fog, exposure, glow, a warm lantern and a hard camera flash
+# then all follow the theme. Natural restores the baked look.
+# The lantern and flash hang on a rig that copies the current camera's transform every frame.
+# They are never parented to a camera: players (and their cameras) are freed on leave or rejoin,
+# which used to free the lantern with them.
 # Local presentation only; every original value is kept and put back.
 
 var sun: DirectionalLight3D
 var environment: Environment
 var lightmap: LightmapGI
+var rig: Node3D = Node3D.new()
 var lantern: OmniLight3D = OmniLight3D.new()
+var flash: SpotLight3D = SpotLight3D.new()
 var original: Dictionary = {}
 var lightmap_data: LightmapGIData
 var realtime: bool = false
@@ -25,9 +30,24 @@ func _ready() -> void:
 	lantern.omni_attenuation = 1.4
 	lantern.shadow_enabled = false
 	lantern.light_bake_mode = Light3D.BAKE_DISABLED
+	lantern.position = Vector3(0.35, 0.1, 0.2)
+	# A flash just above the lens: hard, cold, frontal light that falls off fast, with crisp
+	# shadows dropping below and behind what it hits.
+	flash.name = "ShadingFlash"
+	flash.spot_angle = 48.0
+	flash.spot_angle_attenuation = 0.6
+	flash.spot_range = 30.0
+	flash.spot_attenuation = 2.0
+	flash.shadow_enabled = true
+	flash.light_bake_mode = Light3D.BAKE_DISABLED
+	flash.position = Vector3(0.0, 0.22, 0.0)
+	rig.name = "ShadingLightRig"
+	rig.add_child(lantern)
+	rig.add_child(flash)
+	add_child(rig)
 
-## settings: sun, sun_angle, ambient, sky, fog, exposure, glow, lantern (see SPECS in shading.gd).
-## colours: optional sun_color, ambient_color, fog_color, lantern_color (hex). realtime: whether
+## settings: sun, sun_angle, ambient, sky, fog, exposure, glow, lantern, flash (see SPECS in
+## shading.gd). colours: optional sun_color, ambient_color, fog_color, lantern_color, flash_color. realtime: whether
 ## the theme needs the realtime path at all.
 func apply(new_settings: Dictionary, new_colours: Dictionary, want_realtime: bool, new_render_mode: int) -> void:
 	settings = new_settings
@@ -42,7 +62,7 @@ func _process(_delta: float) -> void:
 		next_scan = now + 1000.0
 		if not is_instance_valid(sun) or not is_instance_valid(environment):
 			refresh()
-	attach_lantern()
+	follow_camera()
 
 func find_scene() -> void:
 	var tree_root: Node = get_tree().current_scene if get_tree().current_scene != null else get_tree().root
@@ -107,24 +127,14 @@ func refresh() -> void:
 	lantern.light_energy = float(settings.get("lantern", 0.0)) if realtime else 0.0
 	lantern.light_color = colour("lantern_color", Color("ffb060"))
 	lantern.visible = lantern.light_energy > 0.001
+	flash.light_energy = float(settings.get("flash", 0.0)) if realtime else 0.0
+	flash.light_color = colour("flash_color", Color("f2f6ff"))
+	flash.visible = flash.light_energy > 0.001
 
 func colour(key: String, fallback: Color) -> Color:
 	return Color(colours[key] as String) if colours.has(key) else fallback
 
-func attach_lantern() -> void:
+func follow_camera() -> void:
 	var camera: Camera3D = get_viewport().get_camera_3d()
-	if camera == null or lantern.get_parent() == camera:
-		return
-	if lantern.get_parent() != null:
-		lantern.get_parent().remove_child(lantern)
-	camera.add_child(lantern)
-	lantern.position = Vector3(0.35, 0.1, 0.2)
-
-func _exit_tree() -> void:
-	# The lantern lives under the camera, or nowhere yet (headless, or no camera so far).
-	if not is_instance_valid(lantern):
-		return
-	if lantern.get_parent() == null:
-		lantern.free()
-	else:
-		lantern.queue_free()
+	if camera != null:
+		rig.global_transform = camera.global_transform

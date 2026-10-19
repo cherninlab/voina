@@ -20,7 +20,10 @@ The village's bounce light is baked into a `LightmapGI`; only the sun's direct l
 | Fog density | absolute; the village default is 0.0015 |
 | Scene exposure | tonemap exposure (× original) |
 | Glow | environment glow intensity |
-| Lantern | warm omni light carried by the current camera |
+| Lantern | warm omni light that follows the current camera |
+| Camera flash | hard cold spot light 22 cm above the lens, with shadows: a point-and-shoot flash |
+
+The lantern and the flash hang on a rig that copies the current camera's transform every frame. They are never children of a camera, because the player and its camera are freed on leave or rejoin. That used to free the lantern with them, and the Night lantern stayed dark afterwards.
 
 Theme colours set the sun, ambient, fog and lantern tints. Natural, or any theme without lighting, puts back the lightmap, sun, environment and render mode exactly as they were. Without the lightmap's bounce light, shadows are only filled by ambient light; themes raise Ambient to compensate. The realtime path's frame cost against the baked one is not measured.
 
@@ -54,7 +57,7 @@ Off by default (**Blood override** 0). Four lo-fi themes use it as a red accent,
 
 | Group | Themes |
 | --- | --- |
-| Lighting | Night (moonlight, lantern), Golden Hour (low warm sun, glow), Fog, Overexposed, Blood Moon, Night Vision (night light amplified into a green ramp, grain), Neon Noir (dim blue light, cyan ink) |
+| Lighting | Night (moonlight, lantern), Night Flash (polaroid-style camera flash, blown-out foreground falling off to black, warm print tint), Golden Hour (low warm sun, glow), Fog, Overexposed, Blood Moon, Night Vision (night light amplified into a green ramp, grain), Neon Noir (dim blue light, cyan ink) |
 | Shading models | Flat (unshaded), Cel (3 bands, ink), Outline (black on paper), Blueprint (white on blue), Painterly (Kuwahara) |
 | Colour | Spectrum, Inverted, Acid Trip (posterized, cycling hue), Thermal, Silent Film (sepia, vignette, grain), Pastel (bright soft light), Bleach Bypass, Vaporwave (pink sun, palette) |
 | Lo-fi with a red accent | Red Only, Concrete, Brutalist Web, Risograph, 1-Bit |
@@ -69,6 +72,7 @@ It cuts a raider in half in front of a fixed camera and saves one frame per them
 
 - Natural leaves the frame untouched and every other theme changes it;
 - Night is darker than Natural;
+- the lantern still lights and follows a new camera after its camera is freed;
 - Concrete shows vivid red where the plain frame has none;
 - returning to Natural restores the lightmap, the sun and normal rendering;
 - a T key event advances the theme.

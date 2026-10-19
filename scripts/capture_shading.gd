@@ -6,7 +6,8 @@ extends SceneTree
 ## Cuts a raider in half in front of a fixed camera so there is blood on screen, then checks that
 ## Natural leaves the frame untouched, that every other theme changes it, that Night darkens it,
 ## that the grey Concrete theme still shows vibrant red where the blood is, that returning to
-## Natural restores the baked lightmap, the sun and normal rendering, and that T advances the theme.
+## Natural restores the baked lightmap, the sun and normal rendering, that the lantern survives
+## its camera being freed, and that T advances the theme.
 
 var directory: String = ""
 var world: Node3D
@@ -91,6 +92,22 @@ func capture() -> void:
 				return
 
 	paused = false
+	# The lantern must outlive the camera it follows: players (and their cameras) are freed on
+	# leave or rejoin. Free this camera, switch to a new one, and the lantern must follow it.
+	shading.call("set_theme", names.find("Night"))
+	await frames(3)
+	var lantern: OmniLight3D = (shading.get("lighting") as Node).get("lantern") as OmniLight3D
+	camera.queue_free()
+	var replacement: Camera3D = Camera3D.new()
+	world.add_child(replacement)
+	replacement.global_position = Vector3(4.0, 2.0, 6.0)
+	replacement.make_current()
+	await frames(3)
+	if not is_instance_valid(lantern) or not lantern.visible or lantern.light_energy < 0.1 \
+			or lantern.global_position.distance_to(replacement.global_position) > 1.0:
+		fail("lantern did not survive its camera being freed")
+		return
+	print("SHADING_LANTERN_OK: lantern follows the new camera after the old one was freed")
 	shading.call("set_theme", 0)
 	# Natural must hand the village back its baked light.
 	var lighting: Node = shading.get("lighting") as Node

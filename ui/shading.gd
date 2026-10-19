@@ -20,6 +20,7 @@ const SPECS: Array[Dictionary] = [
 	{"name": "scene_exposure", "label": "Scene exposure", "min": 0.1, "max": 4.0, "step": 0.05, "default": 1.0},
 	{"name": "glow", "label": "Glow", "min": 0.0, "max": 2.0, "step": 0.05, "default": 0.0},
 	{"name": "lantern", "label": "Lantern", "min": 0.0, "max": 8.0, "step": 0.1, "default": 0.0},
+	{"name": "flash", "label": "Camera flash", "min": 0.0, "max": 80.0, "step": 0.5, "default": 0.0},
 	{"group": "Image"},
 	{"name": "strength", "label": "Strength", "min": 0.0, "max": 1.0, "step": 0.01, "default": 1.0},
 	{"name": "exposure", "label": "Exposure", "min": -2.0, "max": 2.0, "step": 0.05, "default": 0.0},
@@ -50,11 +51,12 @@ const SPECS: Array[Dictionary] = [
 	{"name": "blood_shade", "label": "Blood shading", "min": 0.0, "max": 1.0, "step": 0.01, "default": 0.0},
 ]
 const INT_PARAMS: Array[String] = ["flat_radius"]
-const LIGHT_PARAMS: Array[String] = ["sun", "sun_angle", "ambient", "sky", "fog", "scene_exposure", "glow", "lantern"]
+const LIGHT_PARAMS: Array[String] = ["sun", "sun_angle", "ambient", "sky", "fog", "scene_exposure", "glow", "lantern",
+	"flash"]
 const RENDER_MODES: Dictionary[String, int] = {"unshaded": Viewport.DEBUG_DRAW_UNSHADED}
 # Each theme: "values" override SPECS defaults. Colours are sRGB hex: "palette" (with "mode"
 # 0 = luminance ramp dark to light, 1 = nearest colour), "ink", "paper", "tint", "blood", and
-# "light" (sun_color, ambient_color, fog_color, lantern_color). A "light" entry, or any Lighting
+# "light" (sun_color, ambient_color, fog_color, lantern_color, flash_color). A "light" entry, or any Lighting
 # slider off its default, switches the village to realtime light. "render": "unshaded" draws
 # material colour only: true flat shading, no light at all.
 const NIGHT: Dictionary = {"sun_color": "7d96ff", "ambient_color": "1a2a55", "fog_color": "0a1020",
@@ -64,6 +66,12 @@ const THEMES: Array[Dictionary] = [
 	# Lighting
 	{"name": "Night", "light": NIGHT, "values": {"sun": 0.12, "sun_angle": 40.0, "ambient": 0.3, "sky": 0.05,
 		"fog": 0.012, "scene_exposure": 1.3, "lantern": 3.0, "saturation": 0.8, "vignette": 0.35}},
+	# A point-and-shoot flash at night: hard cold light from just above the lens, blown-out near
+	# faces, crisp drop shadows, and the background falling off into black. Warm faded print.
+	{"name": "Night Flash", "light": {"sun_color": "7d96ff", "ambient_color": "10141f", "fog_color": "05070c",
+		"flash_color": "f2f6ff"}, "tint": "ffe2c4", "values": {"sun": 0.06, "sun_angle": 40.0, "ambient": 0.15,
+		"sky": 0.04, "fog": 0.01, "scene_exposure": 1.2, "flash": 45.0, "exposure": 0.15, "contrast": 1.3,
+		"saturation": 0.85, "tint": 0.12, "vignette": 0.45, "grain": 0.08}},
 	{"name": "Golden Hour", "light": {"sun_color": "ffaa55", "ambient_color": "7a5a4a", "fog_color": "ffcf9a"},
 		"tint": "ffc890", "values": {"sun": 1.6, "sun_angle": 14.0, "ambient": 1.8, "sky": 0.9, "fog": 0.006,
 		"scene_exposure": 1.25,
