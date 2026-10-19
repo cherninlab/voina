@@ -19,6 +19,8 @@ var host_button: Button = Button.new()
 var join_button: Button = Button.new()
 
 func _ready() -> void:
+	if "--full" in OS.get_cmdline_user_args() and DisplayServer.get_name() != "headless":
+		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN)
 	add_to_group("match_world")
 	Engine.max_fps = 60
 	players.name = "Players"

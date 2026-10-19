@@ -82,3 +82,7 @@ It cuts a raider in half in front of a fixed camera and saves one frame per them
 - a T key event advances the theme.
 
 It prints `SHADING_OK`. The 1152 × 720 run on an M2 passed. Frame cost on the target Macs and how the themes look in motion are not measured.
+
+## Folk Ink and menu grading
+
+Folk Ink is the default for new settings: plum ink shadows, crimson/pink accents, cyan, muted gold and warm ivory, with restrained palette mapping and cel/edge treatment. Saved theme choices remain respected. All themes share the same image-grading material with the menu video; changing T/Shift+T updates both. Logo and controls draw after grading for readability. Lighting-only values affect the 3D world, not baked video lighting.

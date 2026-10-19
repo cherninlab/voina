@@ -48,3 +48,5 @@ Movement replicates at 60 Hz. Remote bodies show their latest snapshot projected
 ## Verify
 
 `scripts/smoke_test.py` runs a two-process pair with a deliberately different fingerprint (`--fake-build`). The joiner must be refused during authentication with the host's commit, and the host must never spawn it. All other pairs pass the same check with matching builds.
+
+Use `--full` with `playtest.py host` or `playtest.py join ADDRESS` for fullscreen. Direct launch: `"$GODOT" --path . -- --full` opens the title screen fullscreen.

@@ -136,6 +136,13 @@ const THEMES: Array[Dictionary] = [
 		"ink": "1a1a1a"},
 	{"name": "1-Bit", "mode": 0, "palette": ["000000", "ffffff"],
 		"values": {"pixel": 2.0, "contrast": 1.2, "dither": 1.0, "blood_keep": 1.0}, "blood": "ff0000"},
+	# Original palette inspired by the supplied folk/punk references, not their art assets.
+	{"name": "Folk Ink", "mode": 1,
+		"palette": ["171322", "31203f", "514579", "a63858", "f52960", "39bfce", "dfad59", "f6e8cf"],
+		"ink": "191326", "blood": "fa2459",
+		"values": {"contrast": 1.08, "saturation": 1.15, "palette_mix": 0.45,
+			"bands": 0.0, "ink": 0.18, "ink_threshold": 0.5, "blood_keep": 0.0,
+			"blood_shade": 0.45, "vignette": 0.12}},
 ]
 
 var rect: ColorRect = ColorRect.new()
@@ -146,7 +153,7 @@ var label: Label = Label.new()
 var label_until: float = 0.0
 var tweaks: PanelContainer
 var lighting: Node = preload("res://ui/shading_lighting.gd").new()
-var theme_index: int = 0
+var theme_index: int = THEMES.size() - 1
 var ephemeral: bool = "--shading-ephemeral" in OS.get_cmdline_user_args() # captures: no load, no save
 var values: Dictionary[String, float] = {}
 # Per-theme slider overrides the player made: theme name -> {param: value}.

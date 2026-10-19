@@ -3,6 +3,8 @@ extends CanvasLayer
 
 var menu_backdrop: ColorRect = ColorRect.new()
 var menu_video: VideoStreamPlayer = VideoStreamPlayer.new()
+var menu_grade: ColorRect = ColorRect.new()
+var colour_shading: CanvasLayer
 var menu_music: AudioStreamPlayer = AudioStreamPlayer.new()
 var world: Node3D
 var screen: Control = Control.new()
@@ -59,6 +61,20 @@ func _ready() -> void:
 	menu_video.volume_db = -80.0
 	menu_video.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	menu_backdrop.add_child(menu_video)
+	# Capture the video after drawing it, then reuse the world grading material.
+	# Logo, navigation and setup controls are drawn afterwards and stay readable.
+	for child: Node in world.get_children():
+		if child.get_script() == preload("res://ui/shading.gd"):
+			colour_shading = child as CanvasLayer
+			break
+	var menu_copy: BackBufferCopy = BackBufferCopy.new()
+	menu_copy.copy_mode = BackBufferCopy.COPY_MODE_VIEWPORT
+	menu_backdrop.add_child(menu_copy)
+	menu_grade.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
+	menu_grade.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	if colour_shading != null:
+		menu_grade.material = colour_shading.get("material") as ShaderMaterial
+	menu_backdrop.add_child(menu_grade)
 	screen.add_child(shade)
 	var menu: VBoxContainer = world.get("menu") as VBoxContainer
 	lobby_panel = centered_panel(menu)
@@ -372,6 +388,7 @@ func refresh() -> void:
 	elif not wants_music and menu_music.playing:
 		menu_music.stop()
 	menu_backdrop.visible = wants_music
+	menu_grade.visible = colour_shading != null and (colour_shading.get("values") as Dictionary).get("strength", 0.0) > 0.001
 	if wants_music and not menu_video.is_playing():
 		menu_video.play()
 	elif not wants_music and menu_video.is_playing():

@@ -151,7 +151,7 @@ def cmd_host(args: argparse.Namespace) -> None:
     if not pin or pin["commit"] != sha:
         publish_pin(sha, host_name(args), f"hosting on {socket.gethostname().split('.')[0]}")
         print(f"pinned {sha[:7]}: the board now names the build this host runs")
-    modes = (["--match"] if args.match else []) + (["--pve"] if args.pve else [])
+    modes = (["--match"] if args.match else []) + (["--pve"] if args.pve else []) + (["--full"] if args.full else [])
     launch(path, godot, ["--host", f"--port={args.port}", *modes], args.detach)
 
 
@@ -160,7 +160,7 @@ def cmd_host(args: argparse.Namespace) -> None:
 def cmd_join(args: argparse.Namespace) -> None:
     godot = godot_binary(args.godot)
     commit = args.commit
-    game_args = [f"--join={args.address}", f"--port={args.port}"]
+    game_args = [f"--join={args.address}", f"--port={args.port}"] + (["--full"] if args.full else [])
     if args.detach:
         launch(sync(commit, godot), godot, game_args, True)
         return
@@ -205,6 +205,7 @@ def main() -> None:
         if name != "sync":
             command.add_argument("--port", type=int, default=7777)
             command.add_argument("--detach", action="store_true", help="return after launching the game")
+            command.add_argument("--full", action="store_true", help="open fullscreen")
         if name == "host":
             command.add_argument("--match", action="store_true", help="first to three round wins")
             command.add_argument("--pve", action="store_true", help="add hostile PvE raiders")
