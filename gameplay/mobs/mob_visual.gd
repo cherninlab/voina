@@ -169,6 +169,7 @@ func bisect(point: Vector3, normal: Vector3, impulse: Vector3) -> void:
 		return
 	visible = false
 	var head: Vector3 = bone_world(skeleton.find_bone("Head")).origin
+	var center: Vector3 = HitEffects.cut_center(point, normal, global_position)
 	var top_side: float = signf(normal.dot(head - point))
 	top_side = top_side if top_side != 0.0 else 1.0
 	hold_pose(skeleton)
@@ -214,6 +215,7 @@ func bisect(point: Vector3, normal: Vector3, impulse: Vector3) -> void:
 		MobRagdoll.push(body, push, Vector3.UP.cross(push).normalized() * (2.5 if top else 4.0))
 		# Blood pours from the cut face, which points along -side * normal, on each piece's part
 		# nearest the cut: a big spill from the half itself, a shorter gush from severed limbs.
+		# The stream starts from the middle of each stump, not the skin the blade touched.
 		var heaviest: float = 0.0
 		var spills: Array[Dictionary] = []
 		for piece: Array in MobRagdoll.pieces(body):
@@ -221,13 +223,13 @@ func bisect(point: Vector3, normal: Vector3, impulse: Vector3) -> void:
 			var nearest: PhysicalBone3D
 			for part: PhysicalBone3D in piece:
 				mass += part.mass
-				if nearest == null or part.global_position.distance_squared_to(point) < nearest.global_position.distance_squared_to(point):
+				if nearest == null or part.global_position.distance_squared_to(center) < nearest.global_position.distance_squared_to(center):
 					nearest = part
 			heaviest = maxf(heaviest, mass)
 			spills.append({"part": nearest, "mass": mass})
 		for spill: Dictionary in spills:
 			var part: PhysicalBone3D = spill["part"] as PhysicalBone3D
-			var local_point: Vector3 = part.to_local(point)
+			var local_point: Vector3 = part.to_local(HitEffects.part_face(part, center, normal))
 			var local_direction: Vector3 = part.global_basis.inverse() * (normal * -side)
 			if float(spill["mass"]) >= heaviest:
 				HitEffects.spill(part, local_point, local_direction)

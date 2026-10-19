@@ -88,6 +88,20 @@ func capture() -> void:
 	camera.fov = 50
 	block(Vector3(60, 1, 60), Vector3(0, -0.5, 0))
 	if bisect_only:
+		# Patchy dirt under the cuts, so the way blood sits in a textured ground shows.
+		var floor_mesh: MeshInstance3D = stage.get_child(stage.get_child_count() - 1).get_child(1) as MeshInstance3D
+		var dirt: StandardMaterial3D = StandardMaterial3D.new()
+		var noise: NoiseTexture2D = NoiseTexture2D.new()
+		noise.noise = FastNoiseLite.new()
+		noise.noise.frequency = 0.05
+		noise.seamless = true
+		noise.color_ramp = Gradient.new()
+		noise.color_ramp.set_color(0, Color("4a3a28"))
+		noise.color_ramp.set_color(1, Color("8b7a5a"))
+		dirt.albedo_texture = noise
+		dirt.uv1_scale = Vector3(40, 40, 40)
+		dirt.roughness = 0.95
+		floor_mesh.material_override = dirt
 		await cuts()
 		quit()
 		return
@@ -150,12 +164,16 @@ func cuts() -> void:
 	for index: int in range(plans.size()):
 		var plan: Dictionary = plans[index]
 		var spot: Vector3 = Vector3(index * 8.0 - 12.0, 0.95, 0)
+		# A crate beside each raider: splatter landing on it must stop at its edges.
+		block(Vector3(0.6, 0.5, 0.6), Vector3(spot.x + 1.1, 0.25, 0.5), Vector3.ZERO, Color("8a6a45"))
 		var mob: HostileMob = spawn(10 + index, spot, 0.0)
 		await wait(0.8)
 		var skeleton: Skeleton3D = mob.visual.get("skeleton") as Skeleton3D
 		var point: Vector3 = (mob.visual.call("bone_world", skeleton.find_bone(String(plan["bone"]))) as Transform3D).origin
 		var normal: Vector3 = (plan["normal"] as Vector3).normalized()
-		mob.bisected(point, normal, plan["impulse"] as Vector3, normal.cross(Vector3.FORWARD).normalized())
+		# The blade meets the skin on the camera's side, as in play, not at the bone.
+		var skin: Vector3 = Vector3(0, 0, -0.18)
+		mob.bisected(point + skin - normal * normal.dot(skin), normal, plan["impulse"] as Vector3, normal.cross(Vector3.FORWARD).normalized())
 		var name: String = String(plan["name"])
 		# Each cut face straight on, the other half hidden, before the halves move apart.
 		await process_frame
@@ -175,6 +193,8 @@ func cuts() -> void:
 		await shot("cut_%s_2landed.png" % name, spot + Vector3(1.5, 2.2, -3.6), spot + Vector3(0.8, -0.6, 0.4))
 		await wait(2.0)
 		await shot("cut_%s_3rest.png" % name, spot + Vector3(1.0, 3.2, -3.2), spot + Vector3(1.0, -0.6, 0.6))
+		# The pools low and close, where their edges and reflection show.
+		await shot("cut_%s_6pool.png" % name, spot + Vector3(-0.6, 0.9, -2.2), spot + Vector3(0.7, -0.9, 0.4))
 		var faces: Array[Vector3] = []
 		for node: Node in stage.find_children("RaiderHalf*", "", false, false):
 			if node.get_meta("cut_index", index) == index:
