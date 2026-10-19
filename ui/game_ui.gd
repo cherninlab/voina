@@ -5,6 +5,7 @@ var world: Node3D
 var screen: Control = Control.new()
 var shade: ColorRect = ColorRect.new()
 var lobby_panel: PanelContainer
+var logo: TextureRect = TextureRect.new()
 var pause_panel: PanelContainer
 var loader_panel: PanelContainer
 var pause_column: VBoxContainer
@@ -31,14 +32,26 @@ func _ready() -> void:
 	screen.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	screen.theme = make_theme()
 	add_child(screen)
-	shade.color = Color(0.025, 0.04, 0.04, 0.68)
+	shade.color = Color(0, 0, 0, 0.72)
 	shade.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
 	screen.add_child(shade)
 	var menu: VBoxContainer = world.get("menu") as VBoxContainer
 	lobby_panel = centered_panel(menu)
-	menu.add_theme_constant_override("separation", 12)
-	add_label(menu, "SECHA", 40)
-	add_label(menu, "WOODLAND VILLAGE", 12, Color("9eb1a6"))
+	# The logo stands above the lobby panel in the same centred column; refresh() sizes it to the window.
+	var lobby_column: VBoxContainer = VBoxContainer.new()
+	lobby_column.add_theme_constant_override("separation", -12)
+	lobby_panel.get_parent().add_child(lobby_column)
+	lobby_panel.reparent(lobby_column)
+	logo.texture = preload("res://content/ui/secha_logo.png")
+	logo.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
+	logo.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
+	logo.size_flags_horizontal = Control.SIZE_SHRINK_CENTER
+	logo.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	lobby_column.add_child(logo)
+	lobby_column.move_child(logo, 0)
+	menu.add_theme_constant_override("separation", 8)
+	var subtitle: Label = add_label(menu, "WOODLAND VILLAGE", 12, Color("8c8c8c"))
+	subtitle.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	menu.add_child(HSeparator.new())
 	var address: LineEdit = world.get("address") as LineEdit
 	add_label(menu, "Host address", 14)
@@ -63,7 +76,7 @@ func _ready() -> void:
 	menu.add_child(match_button)
 	status_label.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 	status_label.custom_minimum_size.x = 320
-	status_label.add_theme_color_override("font_color", Color("b5c4ba"))
+	status_label.add_theme_color_override("font_color", Color("b4b4b4"))
 	status_label.add_theme_font_size_override("font_size", 14)
 	menu.add_child(status_label)
 	var controls: Button = world.get("controls_button") as Button
@@ -75,7 +88,7 @@ func _ready() -> void:
 	pause_column.add_theme_constant_override("separation", 12)
 	pause_panel = centered_panel(pause_column)
 	add_label(pause_column, "PAUSED", 30)
-	pause_status = add_label(pause_column, "The multiplayer match continues.", 14, Color("a7b7ad"))
+	pause_status = add_label(pause_column, "The multiplayer match continues.", 14, Color("a0a0a0"))
 	resume_button = button(pause_column, "Resume", resume)
 	button(pause_column, "Controls", show_controls)
 	var leave: Button = world.get("leave_button") as Button
@@ -179,7 +192,7 @@ func centered_panel(column: VBoxContainer) -> PanelContainer:
 	panel.add_child(column)
 	return panel
 
-func add_label(parent: Node, text: String, size: int, color: Color = Color("eee9db")) -> Label:
+func add_label(parent: Node, text: String, size: int, color: Color = Color.WHITE) -> Label:
 	var label: Label = Label.new()
 	label.text = text
 	label.add_theme_font_size_override("font_size", size)
@@ -205,23 +218,61 @@ func box(color: Color, radius: int = 8, padding: int = 0) -> StyleBoxFlat:
 	style.content_margin_bottom = padding
 	return style
 
+# Black and white only: black fills, white hairlines and text; hover inverts.
 func make_theme() -> Theme:
 	var theme: Theme = Theme.new()
 	theme.default_font_size = 16
-	theme.set_color("font_color", "Label", Color("eee9db"))
-	theme.set_stylebox("panel", "PanelContainer", box(Color(0.065, 0.09, 0.085, 0.97), 10, 24))
-	theme.set_stylebox("normal", "Button", box(Color("293a32"), 6, 8))
-	theme.set_stylebox("hover", "Button", box(Color("3c5345"), 6, 8))
-	theme.set_stylebox("pressed", "Button", box(Color("526b57"), 6, 8))
-	var focus: StyleBoxFlat = box(Color(0, 0, 0, 0), 6)
+	theme.set_color("font_color", "Label", Color.WHITE)
+	theme.set_stylebox("panel", "PanelContainer", outlined(Color(0, 0, 0, 0.94), Color(1, 1, 1, 0.22), 24))
+	theme.set_stylebox("normal", "Button", outlined(Color.BLACK, Color.WHITE, 8))
+	theme.set_stylebox("hover", "Button", outlined(Color.WHITE, Color.WHITE, 8))
+	theme.set_stylebox("pressed", "Button", outlined(Color("bdbdbd"), Color.WHITE, 8))
+	theme.set_stylebox("disabled", "Button", outlined(Color.BLACK, Color("4a4a4a"), 8))
+	theme.set_color("font_color", "Button", Color.WHITE)
+	theme.set_color("font_focus_color", "Button", Color.WHITE)
+	theme.set_color("font_hover_color", "Button", Color.BLACK)
+	theme.set_color("font_hover_pressed_color", "Button", Color.BLACK)
+	theme.set_color("font_pressed_color", "Button", Color.BLACK)
+	theme.set_color("font_disabled_color", "Button", Color("6a6a6a"))
+	# Switches keep a quiet row instead of inverting, so their white knob stays visible.
+	theme.set_stylebox("normal", "CheckButton", box(Color(0, 0, 0, 0), 0, 6))
+	theme.set_stylebox("hover", "CheckButton", box(Color(1, 1, 1, 0.1), 0, 6))
+	theme.set_stylebox("pressed", "CheckButton", box(Color(0, 0, 0, 0), 0, 6))
+	theme.set_stylebox("hover_pressed", "CheckButton", box(Color(1, 1, 1, 0.1), 0, 6))
+	theme.set_stylebox("disabled", "CheckButton", box(Color(0, 0, 0, 0), 0, 6))
+	for state: String in ["font_hover_color", "font_hover_pressed_color", "font_pressed_color"]:
+		theme.set_color(state, "CheckButton", Color.WHITE)
+	var focus: StyleBoxFlat = box(Color(0, 0, 0, 0), 0)
 	focus.set_border_width_all(2)
-	focus.border_color = Color("c4d7b1")
+	focus.border_color = Color("9a9a9a")
+	focus.expand_margin_left = 3
+	focus.expand_margin_right = 3
+	focus.expand_margin_top = 3
+	focus.expand_margin_bottom = 3
 	theme.set_stylebox("focus", "Button", focus)
-	theme.set_stylebox("normal", "LineEdit", box(Color("101a16"), 6, 10))
-	theme.set_stylebox("focus", "LineEdit", focus)
-	theme.set_stylebox("background", "ProgressBar", box(Color("1c2822"), 3))
-	theme.set_stylebox("fill", "ProgressBar", box(Color("96b294"), 3))
+	theme.set_stylebox("focus", "CheckButton", focus)
+	theme.set_stylebox("normal", "LineEdit", outlined(Color.BLACK, Color("5c5c5c"), 10))
+	theme.set_stylebox("focus", "LineEdit", outlined(Color(0, 0, 0, 0), Color.WHITE, 0))
+	theme.set_color("font_color", "LineEdit", Color.WHITE)
+	theme.set_color("font_placeholder_color", "LineEdit", Color("6a6a6a"))
+	theme.set_color("caret_color", "LineEdit", Color.WHITE)
+	theme.set_color("selection_color", "LineEdit", Color(1, 1, 1, 0.3))
+	theme.set_stylebox("separator", "HSeparator", line(Color(1, 1, 1, 0.22)))
+	theme.set_stylebox("background", "ProgressBar", box(Color("1c1c1c"), 0))
+	theme.set_stylebox("fill", "ProgressBar", box(Color.WHITE, 0))
 	return theme
+
+func outlined(fill: Color, border: Color, padding: int) -> StyleBoxFlat:
+	var style: StyleBoxFlat = box(fill, 0, padding)
+	style.set_border_width_all(1)
+	style.border_color = border
+	return style
+
+func line(color: Color) -> StyleBoxLine:
+	var style: StyleBoxLine = StyleBoxLine.new()
+	style.color = color
+	style.thickness = 1
+	return style
 
 func local_player() -> Node:
 	var players: Node3D = world.get("players") as Node3D
@@ -295,6 +346,9 @@ func refresh() -> void:
 	lobby_panel.visible = not active and menu.visible and not controls.visible
 	pause_panel.visible = local != null and paused and not controls.visible
 	loader_panel.visible = connecting and not controls.visible
+	logo.visible = lobby_panel.visible
+	if logo.visible:
+		fit_logo()
 	shade.visible = lobby_panel.visible or pause_panel.visible or loader_panel.visible or controls.visible
 	shade.mouse_filter = Control.MOUSE_FILTER_STOP if shade.visible else Control.MOUSE_FILTER_IGNORE
 	status_label.text = NetworkManager.status if NetworkManager.status != "Choose Host or Join" else "2–4 players · LAN / Tailscale"
@@ -319,3 +373,13 @@ func refresh() -> void:
 			values[index].text = str(int(amounts[index]))
 		var players: Node3D = world.get("players") as Node3D
 		session_label.text = "SECHA   /   %d / 4 players" % players.get_child_count()
+
+# Logo width follows the window: up to 62% of its width (max 900 px), never so tall that the logo
+# and the lobby panel together overflow the window height, and never narrower than 220 px.
+func fit_logo() -> void:
+	var window: Vector2 = screen.get_viewport_rect().size
+	var aspect: float = logo.texture.get_width() / float(logo.texture.get_height())
+	var room: float = window.y - lobby_panel.get_combined_minimum_size().y - 32.0
+	var width: float = minf(minf(window.x * 0.62, 900.0), room * aspect)
+	width = maxf(width, minf(220.0, window.x - 32.0))
+	logo.custom_minimum_size = Vector2(width, width / aspect).round()

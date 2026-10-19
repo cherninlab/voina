@@ -1,7 +1,8 @@
 # SECHA interface
 
-T-035 adds native Godot controls with a single restrained dark-green/ivory theme:
+T-035 adds native Godot controls. T-072 makes the theme strictly black and white (black fills, white hairlines and text, hover inverts) and puts the SECHA logo above the lobby panel:
 
+- The logo (`content/ui/secha_logo.png`, white with alpha, cut from the supplied white-on-black artwork) scales with the window: up to 62% of its width or 900 px, shrinking so logo plus panel fit the window height, never under 220 px.
 - A centered host/join menu with host address, existing raider/round switches and Controls.
 - An indeterminate connection loader with cancellation while awaiting the host and player spawn. It does not invent completion percentages or pretend to asynchronously load assets.
 - Connection errors return to the lobby with the real status message.
