@@ -76,7 +76,7 @@ func capture() -> void:
 	var mobs: Node = world.get("mobs") as Node
 	mobs.process_mode = Node.PROCESS_MODE_DISABLED
 	# The real player lands on the path, the steps and the terrace in front of the arch.
-	var drops: Array[Vector3] = [Vector3(ChurchSite.road_x(-92.0), 0.0, -92.0), Vector3(ChurchSite.road_x(-102.0), 0.0, -102.0), Vector3(door.x, 0.0, door.z + 2.4), Vector3(door.x + 1.5, 0.0, door.z + 0.8)]
+	var drops: Array[Vector3] = [Vector3(ChurchSite.road_x(-92.0), 0.0, -92.0), Vector3(ChurchSite.road_x(-102.0), 0.0, -102.0), Vector3(door.x, 0.0, door.z + 2.4), Vector3(door.x + 3.6, 0.0, door.z + 0.5)]
 	for sample: Vector3 in drops:
 		var hit: Dictionary = space.intersect_ray(PhysicsRayQueryParameters3D.create(Vector3(sample.x, 60.0, sample.z), Vector3(sample.x, -20.0, sample.z)))
 		if hit.is_empty():
@@ -101,7 +101,7 @@ func capture() -> void:
 		player.velocity.x = 0.0
 		player.velocity.z = -3.0
 		await physics_frame
-		if player.position.z < door.z - 2.0 and player.position.y > floor_y:
+		if player.position.z < door.z - 1.0 and player.position.y > floor_y:
 			climbed = true
 			break
 	if not climbed:
