@@ -17,7 +17,7 @@ enum Kind { BACKWARD_KNEES, SHORT_LEGS, CROOKED_NECK, HUNCHED, LONG_ARMS }
 const KIND_NAMES: PackedStringArray = ["backward knees", "short legs, long arms", "crooked neck", "hunched, dangling arm", "long arms"]
 # How fast each mode takes over once chosen (1/s): rising is slow and uncanny, the leap explosive.
 const RATES: PackedFloat32Array = [2.4, 3.5, 6.0, 10.0, 14.0]
-const SKINS: Array[Color] = [Color(0.8, 0.79, 0.76), Color(0.72, 0.76, 0.8), Color(0.77, 0.79, 0.69), Color(0.84, 0.8, 0.72)]
+const SKINS: Array[Color] = [Color(0.71, 0.7, 0.67), Color(0.64, 0.68, 0.72), Color(0.69, 0.71, 0.61), Color(0.75, 0.71, 0.63)]
 const GLOWS: Array[Color] = [Color(0.95, 0.86, 0.5), Color(0.66, 0.84, 1.0), Color(0.76, 1.0, 0.58)]
 const DUTY: float = 0.6 # share of a crawl cycle each limb is planted
 const CYCLE: float = 0.9 # metres travelled per crawl cycle
@@ -46,6 +46,8 @@ var streaks: float = 0.2 # share of forearm and shin with dried blood running do
 var stutter_rate: float = 0.5 # clip holds per second
 var twitch_rate: float = 0.3 # twitches per second
 var gait_skew: float = 0.0 # the hind legs a little out of step
+var trait_seed: int = 0
+var trait_draw: int = 0
 
 # Driven by the visual every frame.
 var mode: int = Mode.UPRIGHT
@@ -75,6 +77,7 @@ var twitch_left: float = 2.0
 var twitch_angles: Array[Vector3] = []
 var twitch_spins: Array[Vector3] = []
 var land_left: float = 0.0
+var crouch_left: float = 0.0 # after a landing, standing up waits this long (the host's 0.7 s recovery)
 var coil_time: float = 0.0
 var ground_front: float = 0.0
 var ground_back: float = 0.0
@@ -121,60 +124,66 @@ static func hash32(value: int) -> int:
 func configure(id: int) -> void:
 	mob_id = id
 	kind = posmod(id - 1, Kind.size())
-	var traits: RandomNumberGenerator = RandomNumberGenerator.new()
-	traits.seed = hash32(id * 7919 + 104729)
-	var side: float = 1.0 if traits.randf() < 0.5 else -1.0
-	head_roll = side * traits.randf_range(0.05, 0.12)
-	arm_length = 1.0 + traits.randf_range(0.0, 0.05)
-	hunch = traits.randf_range(0.06, 0.14)
-	head_thrust = traits.randf_range(0.1, 0.22)
-	crouch = traits.randf_range(0.02, 0.05)
-	shoulder_drop = Vector2(traits.randf_range(0.0, 0.07), traits.randf_range(0.0, 0.07))
+	trait_seed = hash32(id * 7919 + 104729)
+	trait_draw = 0
+	var side: float = 1.0 if pick(0.0, 1.0) < 0.5 else -1.0
+	head_roll = side * pick(0.05, 0.12)
+	arm_length = 1.0 + pick(0.0, 0.05)
+	hunch = pick(0.06, 0.14)
+	head_thrust = pick(0.1, 0.22)
+	crouch = pick(0.02, 0.05)
+	shoulder_drop = Vector2(pick(0.0, 0.07), pick(0.0, 0.07))
 	match kind:
 		Kind.BACKWARD_KNEES:
 			backward_knees = true
-			crouch = traits.randf_range(0.07, 0.09)
-			heel = traits.randf_range(0.3, 0.42)
+			crouch = pick(0.035, 0.05)
+			heel = pick(0.26, 0.36)
 			hunch += 0.05
 		Kind.SHORT_LEGS:
-			leg_length = traits.randf_range(0.87, 0.9)
-			arm_length = traits.randf_range(1.12, 1.17)
-			backward_knees = traits.randf() < 0.3
-			crouch = 0.05 if backward_knees else crouch
+			leg_length = pick(0.87, 0.9)
+			arm_length = pick(1.12, 1.17)
+			backward_knees = pick(0.0, 1.0) < 0.3
+			crouch = 0.035 if backward_knees else crouch
 		Kind.CROOKED_NECK:
-			neck_stretch = traits.randf_range(0.035, 0.045)
-			head_roll = side * traits.randf_range(0.26, 0.36)
+			neck_stretch = pick(0.035, 0.045)
+			head_roll = side * pick(0.26, 0.36)
 			head_thrust += 0.08
 			# The shoulder under the tilted head hikes; the other drops.
-			shoulder_drop[0 if side < 0.0 else 1] = traits.randf_range(0.12, 0.2)
+			shoulder_drop[0 if side < 0.0 else 1] = pick(0.12, 0.2)
 		Kind.HUNCHED:
-			hunch = traits.randf_range(0.4, 0.48)
+			hunch = pick(0.4, 0.48)
 			head_thrust += 0.1
-			var limp: int = 0 if traits.randf() < 0.5 else 1
-			dangle[limp] = traits.randf_range(0.8, 0.9)
-			shoulder_drop[limp] = traits.randf_range(0.15, 0.22)
-			head_roll = (1.0 if limp == 0 else -1.0) * traits.randf_range(0.1, 0.18)
+			var limp: int = 0 if pick(0.0, 1.0) < 0.5 else 1
+			dangle[limp] = pick(0.8, 0.9)
+			shoulder_drop[limp] = pick(0.15, 0.22)
+			head_roll = (1.0 if limp == 0 else -1.0) * pick(0.1, 0.18)
 		Kind.LONG_ARMS:
-			arm_length = traits.randf_range(1.16, 1.2)
-			neck_stretch = traits.randf_range(0.015, 0.025)
+			arm_length = pick(1.16, 1.2)
+			neck_stretch = pick(0.015, 0.025)
 			hunch += 0.06
-			backward_knees = traits.randf() < 0.25
-			crouch = 0.06 if backward_knees else crouch
+			backward_knees = pick(0.0, 1.0) < 0.25
+			crouch = 0.035 if backward_knees else crouch
 	# Long arms hang a little limp, so their length shows.
 	dangle = dangle.max(Vector2.ONE * clampf((arm_length - 1.0) * 2.5, 0.0, 0.4))
-	claw = traits.randf_range(0.35, 0.65)
-	skin = SKINS[traits.randi() % SKINS.size()]
-	glow = GLOWS[traits.randi() % GLOWS.size()]
-	bruises = traits.randf_range(0.3, 0.8)
-	streaks = traits.randf_range(0.0, 0.35)
-	stutter_rate = traits.randf_range(0.3, 0.8)
-	twitch_rate = traits.randf_range(0.2, 0.45)
-	gait_skew = traits.randf_range(-0.06, 0.06)
+	claw = pick(0.35, 0.65)
+	skin = SKINS[mini(int(pick(0.0, SKINS.size())), SKINS.size() - 1)]
+	glow = GLOWS[mini(int(pick(0.0, GLOWS.size())), GLOWS.size() - 1)]
+	bruises = pick(0.3, 0.8)
+	streaks = pick(0.0, 0.35)
+	stutter_rate = pick(0.3, 0.8)
+	twitch_rate = pick(0.2, 0.45)
+	gait_skew = pick(-0.06, 0.06)
 	rng.seed = hash32(id * 31 + 7)
 	snap_left = rng.randf_range(1.5, 5.0)
 	stutter_left = rng.randf_range(0.3, 1.5)
 	twitch_left = rng.randf_range(0.5, 3.0)
 	clock = rng.randf_range(0.0, 50.0)
+
+# The next trait of this id, uniform in [low, high): each draw hashes the id's seed with its index.
+# (RandomNumberGenerator's first draws come out nearly equal for some pairs of seeds.)
+func pick(low: float, high: float) -> float:
+	trait_draw += 1
+	return lerpf(low, high, float(hash32(trait_seed ^ ((trait_draw * 0x9E3779B9) & 0xFFFFFFFF))) / 4294967296.0)
 
 func describe() -> String:
 	return "%d %s: arms %.2f legs %.2f neck +%.3f knees %s roll %.2f hunch %.2f" % [mob_id, KIND_NAMES[kind], arm_length, leg_length, neck_stretch, "backward" if backward_knees else "forward", head_roll, hunch]
@@ -263,8 +272,10 @@ func advance(rig: Skeleton3D, delta: float) -> void:
 	# told to stand lands in a crouch first.
 	if mode != Mode.LEAP and weights[Mode.LEAP] > 0.5 and land_left <= 0.0:
 		land_left = 0.4
+		crouch_left = 0.7
 	land_left = maxf(0.0, land_left - delta)
-	var target: int = Mode.SQUAT if mode == Mode.UPRIGHT and land_left > 0.0 else mode
+	crouch_left = 0.0 if mode == Mode.LEAP else maxf(0.0, crouch_left - delta)
+	var target: int = Mode.SQUAT if mode == Mode.UPRIGHT and crouch_left > 0.0 else mode
 	var blend: float = 1.0 - exp(-(RATES[target] if weights[Mode.LEAP] < 0.3 or target == Mode.LEAP else 9.0) * delta)
 	for index: int in range(weights.size()):
 		weights[index] = lerpf(weights[index], 1.0 if index == target else 0.0, blend)

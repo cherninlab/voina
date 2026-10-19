@@ -49,6 +49,8 @@ const SIGHT: float = 14.0 # how far a villager's head follows a player
 # the two centres and the radii.
 const SOCKETS: Array[Vector2] = [Vector2(0.139, 0.177), Vector2(0.235, 0.177), Vector2(0.032, 0.022), Vector2(0.131, 0.176), Vector2(0.234, 0.176), Vector2(0.03, 0.02)]
 var clip_speed: float = 1.0 # this state's base playback speed, before the stutter
+var stare_time: float = 0.0 # how long the current stare has held
+var staring: bool = false
 var streak_bones: PackedInt32Array = PackedInt32Array()
 const CORPSE: float = 8.0 # a fallen or cut body stays this long after the raider node is gone
 var rendered: bool = DisplayServer.get_name() != "headless" # the dummy renderer cannot take shader parameters
@@ -121,6 +123,7 @@ func possess_skin(material: ShaderMaterial) -> void:
 func _process(delta: float) -> void:
 	react_left = maxf(0.0, react_left - delta)
 	freeze_left = maxf(0.0, freeze_left - delta)
+	stare_time = stare_time + delta if staring else 0.0
 	var stutter: float = possession.clip_speed(delta)
 	playback.speed_scale = 0.0 if freeze_left > 0.0 else clip_speed * stutter
 	push_age += delta
@@ -348,13 +351,15 @@ func bisect(point: Vector3, normal: Vector3, impulse: Vector3) -> void:
 		get_tree().create_timer(CORPSE).timeout.connect(copy.queue_free)
 
 # The host's state, shown as the possessed body: a lingering idle, a slow stuttering shamble, the
-# staring squat, the all-fours crawl, the pounce coil (the attack's telegraph, read from the body,
-# not a label) and the leap. Unknown states idle.
+# stare, the all-fours crawl, the pounce coil (the attack's telegraph, read from the body, not a
+# label) and the leap. A stare freezes whatever stance it caught, so a crawler's short stops stay
+# on all fours; an upright villager that keeps staring sinks into a crouch. Unknown states idle.
 func show_state(state: int, health: int, staggered: bool, windup: bool) -> void:
 	var next: StringName = &"Idle"
 	var stance: int = MobPossession.Mode.UPRIGHT
 	var speed: float = Vector2(velocity.x, velocity.z).length()
 	clip_speed = 0.75
+	staring = state == STARE and not windup
 	if health <= 0:
 		if not fallen:
 			fall.call_deferred()
@@ -367,7 +372,8 @@ func show_state(state: int, health: int, staggered: bool, windup: bool) -> void:
 		next = &"Walk" if speed < 1.9 else &"Jog_Fwd"
 		clip_speed = clampf(speed / WALK_SPEED, 0.5, 1.6) if next == &"Walk" else 1.0
 	elif state == STARE:
-		stance = MobPossession.Mode.SQUAT
+		var low: bool = possession.weights[MobPossession.Mode.CRAWL] + possession.weights[MobPossession.Mode.COIL] > 0.5
+		stance = MobPossession.Mode.CRAWL if low else (MobPossession.Mode.SQUAT if stare_time > 0.6 or possession.mode == MobPossession.Mode.SQUAT else MobPossession.Mode.UPRIGHT)
 		clip_speed = 0.05
 	elif state == CRAWL:
 		stance = MobPossession.Mode.CRAWL
