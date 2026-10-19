@@ -45,7 +45,7 @@ func _ready() -> void:
 	add_child(menu_music)
 	layer = 2
 	world = get_parent() as Node3D
-	screen.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
+	screen.set_anchors_and_offsets_preset(Control.PRESET_TOP_LEFT)
 	screen.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	screen.theme = make_theme()
 	add_child(screen)
@@ -267,17 +267,17 @@ func box(color: Color, radius: int = 8, padding: int = 0) -> StyleBoxFlat:
 func make_theme() -> Theme:
 	var theme: Theme = Theme.new()
 	theme.default_font_size = 16
-	theme.set_color("font_color", "Label", Color.WHITE)
-	theme.set_stylebox("panel", "PanelContainer", outlined(Color(0, 0, 0, 0.94), Color(1, 1, 1, 0.22), 24))
-	theme.set_stylebox("normal", "Button", outlined(Color.BLACK, Color.WHITE, 8))
-	theme.set_stylebox("hover", "Button", outlined(Color.WHITE, Color.WHITE, 8))
-	theme.set_stylebox("pressed", "Button", outlined(Color("bdbdbd"), Color.WHITE, 8))
+	theme.set_color("font_color", "Label", Color("eee4cc"))
+	theme.set_stylebox("panel", "PanelContainer", outlined(Color(0.075, 0.05, 0.10, 0.97), Color("65546b"), 28))
+	theme.set_stylebox("normal", "Button", outlined(Color("231b2d"), Color("67546b"), 10))
+	theme.set_stylebox("hover", "Button", outlined(Color("813b50"), Color("d7b79e"), 10))
+	theme.set_stylebox("pressed", "Button", outlined(Color("512b40"), Color("d7b79e"), 10))
 	theme.set_stylebox("disabled", "Button", outlined(Color.BLACK, Color("4a4a4a"), 8))
-	theme.set_color("font_color", "Button", Color.WHITE)
+	theme.set_color("font_color", "Button", Color("eee4cc"))
 	theme.set_color("font_focus_color", "Button", Color.WHITE)
-	theme.set_color("font_hover_color", "Button", Color.BLACK)
-	theme.set_color("font_hover_pressed_color", "Button", Color.BLACK)
-	theme.set_color("font_pressed_color", "Button", Color.BLACK)
+	theme.set_color("font_hover_color", "Button", Color("fff3dc"))
+	theme.set_color("font_hover_pressed_color", "Button", Color("fff3dc"))
+	theme.set_color("font_pressed_color", "Button", Color("fff3dc"))
 	theme.set_color("font_disabled_color", "Button", Color("6a6a6a"))
 	# Switches keep a quiet row instead of inverting, so their white knob stays visible.
 	theme.set_stylebox("normal", "CheckButton", box(Color(0, 0, 0, 0), 0, 6))
@@ -380,6 +380,12 @@ func fold_other_tweaks(opened: PanelContainer) -> void:
 			toggle.pressed.emit()
 
 func refresh() -> void:
+	# Keep controls comfortably sized on Retina/fullscreen displays, while layout works in
+	# logical coordinates. The proportional title composition keeps the same framing.
+	var viewport_size: Vector2 = get_viewport().get_visible_rect().size
+	var ui_scale: float = clampf(viewport_size.y / 900.0, 1.0, 2.5)
+	screen.scale = Vector2.ONE * ui_scale
+	screen.size = viewport_size / ui_scale
 	var peer: MultiplayerPeer = multiplayer.multiplayer_peer
 	var active: bool = not peer is OfflineMultiplayerPeer
 	var wants_music: bool = not active and DisplayServer.get_name() != "headless" and not NetworkManager.dedicated
@@ -458,6 +464,11 @@ func title_button(text: String, action: Callable) -> Button:
 	control.add_theme_font_override("font", title_font)
 	for state: String in ["normal", "hover", "pressed", "focus"]:
 		control.add_theme_stylebox_override(state, StyleBoxEmpty.new())
+	var selection: StyleBoxFlat = box(Color(0, 0, 0, 0), 0)
+	selection.border_color = Color("c37679")
+	selection.border_width_bottom = 1
+	control.add_theme_stylebox_override("focus", selection)
+	control.add_theme_stylebox_override("hover", selection)
 	control.alignment = HORIZONTAL_ALIGNMENT_LEFT
 	control.add_theme_color_override("font_color", Color("eee4cc"))
 	control.add_theme_color_override("font_shadow_color", Color(0, 0, 0, 0.7))
@@ -468,7 +479,7 @@ func title_button(text: String, action: Callable) -> Button:
 	return control
 
 func fit_logo() -> void:
-	var window: Vector2 = screen.get_viewport_rect().size
+	var window: Vector2 = screen.size
 	# Fit the whole illustration rather than cropping away the swordsman or menu-safe area.
 	var scale_factor: float = minf(window.x / 1916.0, window.y / 1080.0)
 	var frame: Vector2 = Vector2(1916.0, 1080.0) * scale_factor
