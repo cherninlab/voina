@@ -85,4 +85,4 @@ It prints `SHADING_OK`. The 1152 × 720 run on an M2 passed. Frame cost on the t
 
 ## Folk Ink and menu grading
 
-Folk Ink is the default for new settings: plum ink shadows, crimson/pink accents, cyan, muted gold and warm ivory, with restrained palette mapping and cel/edge treatment. Saved theme choices remain respected. All themes share the same image-grading material with the menu video; changing T/Shift+T updates both. Logo and controls draw after grading for readability. Lighting-only values affect the 3D world, not baked video lighting.
+Folk Ink is the default for new settings. Following visual feedback it now uses full-colour cool, subdued lighting with light distance haze, restrained saturation and deeper shadows. It has no palette mapping, posterisation, cel bands, flattening, dithering or added ink outlines; texture detail and smooth gradients are retained. Saved theme choices remain respected. All themes share the same image-grading material with the menu video; changing T/Shift+T updates both. Logo and controls draw after grading for readability. Lighting-only values affect the 3D world, not baked video lighting.

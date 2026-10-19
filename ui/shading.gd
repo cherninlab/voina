@@ -136,13 +136,13 @@ const THEMES: Array[Dictionary] = [
 		"ink": "1a1a1a"},
 	{"name": "1-Bit", "mode": 0, "palette": ["000000", "ffffff"],
 		"values": {"pixel": 2.0, "contrast": 1.2, "dither": 1.0, "blood_keep": 1.0}, "blood": "ff0000"},
-	# Original palette inspired by the supplied folk/punk references, not their art assets.
-	{"name": "Folk Ink", "mode": 1,
-		"palette": ["171322", "31203f", "514579", "a63858", "f52960", "39bfce", "dfad59", "f6e8cf"],
-		"ink": "191326", "blood": "fa2459",
-		"values": {"contrast": 1.08, "saturation": 1.15, "palette_mix": 0.45,
-			"bands": 0.0, "ink": 0.18, "ink_threshold": 0.5, "blood_keep": 0.0,
-			"blood_shade": 0.45, "vignette": 0.12}},
+	# Full-colour atmosphere: no palette quantisation, paint filter or ink pass.
+	{"name": "Folk Ink", "light": {"sun_color": "b6c2d3", "ambient_color": "697488", "fog_color": "657181"},
+		"values": {"sun": 0.65, "sun_angle": 24.0, "ambient": 1.35, "sky": 0.48,
+			"fog": 0.002, "scene_exposure": 0.95, "exposure": -0.12,
+			"contrast": 1.08, "saturation": 0.82, "vignette": 0.12,
+			"palette_mix": 0.0, "bands": 0.0, "levels": 0.0, "ink": 0.0,
+			"flat_radius": 0.0, "pixel": 1.0, "dither": 0.0, "blood_keep": 0.0}},
 ]
 
 var rect: ColorRect = ColorRect.new()
