@@ -91,6 +91,9 @@ func cut(approved: bool, gate: Callable, act: Callable = Callable()) -> Dictiona
 	return result
 
 func run() -> void:
+	# The geometry needs a cut still flying after the window; faster tuned defaults reach 170
+	# degrees inside it, so pin the cut speed this test was built around.
+	HeavySwordMotion.cut_speed = 7.0
 	player = PLAYER.instantiate() as CharacterBody3D
 	player.position = ORIGIN
 	add_child(player)

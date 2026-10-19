@@ -28,7 +28,7 @@ static var follow_spring: float = 60.0 # gesture impulse gain; never a spring to
 static var follow_damping: float = 1.5
 static var body_stiffness: float = 160.0 # how hard the body follows the blade while swinging
 static var body_top_speed: float = 14.0 # rad/s cap on the body's turn while swinging
-static var cut_speed: float = 7.0 # rad/s a level cut builds up to over DRIVE_TIME (was strike_turn)
+static var cut_speed: float = 7.5 # rad/s a level cut builds up to over DRIVE_TIME (was strike_turn)
 static var air_damping: float = 0.3
 static var lift_gain: float = 3.0 # tip m/s per radian of camera pitch while dragging
 static var drag_friction: float = 3.0 # angular braking on ground contact
@@ -38,7 +38,7 @@ static var max_reach: float = 0.44 # arms plus lean reach this far before the an
 static var rest_height: float = 0.12
 static var raised_height: float = 0.36
 static var resist_pull: float = 1.0 # m/s the owner is pulled toward a stretched anchored blade
-static var pull_gain: float = 0.1 # owner follow-through per m/s of tip speed while attacking
+static var pull_gain: float = 0.5 # owner follow-through per m/s of tip speed while attacking (capped at MAX_PULL)
 
 static func tunable_specs() -> Array[Dictionary]:
 	return [
@@ -46,7 +46,7 @@ static func tunable_specs() -> Array[Dictionary]:
 		{"name": "follow_damping", "label": "Gesture damping", "min": 0.0, "max": 10.0, "default": 1.5},
 		{"name": "body_stiffness", "label": "Body follow", "min": 10.0, "max": 400.0, "default": 160.0},
 		{"name": "body_top_speed", "label": "Body turn cap", "min": 2.0, "max": 30.0, "default": 14.0},
-		{"name": "cut_speed", "label": "Cut speed", "min": 1.0, "max": 7.5, "default": 7.0},
+		{"name": "cut_speed", "label": "Cut speed", "min": 1.0, "max": 7.5, "default": 7.5},
 		{"name": "air_damping", "label": "Air damping", "min": 0.0, "max": 3.0, "default": 0.3},
 		{"name": "gravity", "label": "Gravity", "min": 1.0, "max": 30.0, "default": 9.8},
 		{"name": "lift_gain", "label": "Mouse lift", "min": 0.0, "max": 12.0, "default": 3.0},
@@ -56,7 +56,7 @@ static func tunable_specs() -> Array[Dictionary]:
 		{"name": "rest_height", "label": "Hilt rest height", "min": -0.2, "max": 0.5, "default": 0.12},
 		{"name": "raised_height", "label": "Hilt raised height", "min": 0.0, "max": 0.8, "default": 0.36},
 		{"name": "resist_pull", "label": "Anchor pull-back", "min": 0.0, "max": 4.0, "default": 1.0},
-		{"name": "pull_gain", "label": "Swing follow-through", "min": 0.0, "max": 0.5, "default": 0.1},
+		{"name": "pull_gain", "label": "Swing follow-through", "min": 0.0, "max": 0.5, "default": 0.5},
 	]
 
 static func get_tunable(name: String) -> float:
