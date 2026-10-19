@@ -5,6 +5,7 @@ var menu_backdrop: ColorRect = ColorRect.new()
 var menu_image: TextureRect = TextureRect.new()
 var menu_grade: ColorRect = ColorRect.new()
 var colour_shading: CanvasLayer
+var world_image_effects: Array[CanvasLayer] = []
 var menu_music: AudioStreamPlayer = AudioStreamPlayer.new()
 var world: Node3D
 var screen: Control = Control.new()
@@ -64,9 +65,11 @@ func _ready() -> void:
 	# Capture the native character render, then reuse the world grading material.
 	# Logo, navigation and setup controls are drawn afterwards and stay readable.
 	for child: Node in world.get_children():
+		var script: Script = child.get_script() as Script
+		if script != null and script.resource_path in ["res://ui/shading.gd", "res://ui/fisheye.gd"]:
+			world_image_effects.append(child as CanvasLayer)
 		if child.get_script() == preload("res://ui/shading.gd"):
 			colour_shading = child as CanvasLayer
-			break
 	var menu_copy: BackBufferCopy = BackBufferCopy.new()
 	menu_copy.copy_mode = BackBufferCopy.COPY_MODE_VIEWPORT
 	menu_backdrop.add_child(menu_copy)
@@ -406,6 +409,10 @@ func refresh() -> void:
 	elif not wants_music and menu_music.playing:
 		menu_music.stop()
 	menu_backdrop.visible = wants_music
+	# An opaque title image covers the 3D world. Resume it before hosting/joining/connecting.
+	get_viewport().disable_3d = wants_music
+	for effect: CanvasLayer in world_image_effects:
+		effect.visible = not wants_music
 	menu_grade.visible = colour_shading != null and (colour_shading.get("values") as Dictionary).get("strength", 0.0) > 0.001
 	fit_logo()
 	var local: Node = local_player()

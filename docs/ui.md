@@ -29,3 +29,5 @@ Fullscreen panels use a viewport-height UI scale (900 logical pixels, capped at 
 ## Grim village title
 
 The default menu uses `content/ui/secha-menu-grim.png`, a real render of the actual playable male model and procedural sword stance. It replaces the comic video as the default backdrop. The soundtrack loop and shared grading remain; logo/navigation draw above the image and grade. A charcoal left-to-right scrim preserves readability, with aged ivory text, amber selection rules, charcoal panels and warm focus states. Logo/navigation positions use viewport-relative logical coordinates, with cover-fit image scaling, verified at 16:10 and 16:9.
+
+While the opaque title still is visible offline, its viewport skips covered 3D drawing and hides the covered world fisheye/colour pass. The menu's own shared grading remains active. Host/join/connecting transitions restore rendering, and leaving restores title culling. This is a presentation optimisation only; game/network clocks continue. See `docs/graphics-audit.md` for measured limits and the remaining animation/art acceptance gap.

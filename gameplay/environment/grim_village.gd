@@ -67,6 +67,11 @@ func build() -> void:
 	storm_light.rotation_degrees = Vector3(-25, 145, 0)
 	storm_light.light_bake_mode = Light3D.BAKE_DISABLED
 	add_child(storm_light)
+	# Dressing builds after the UI; restore the player's selected theme instead of overwriting it.
+	for child: Node in village.get_parent().get_children():
+		var script: Script = child.get_script() as Script
+		if script != null and script.resource_path == "res://ui/shading.gd":
+			child.call("apply")
 	print("ASHEN_VILLAGE_OK: storm sky, material maps, ", lamps.size(), " practical lights")
 
 func refresh_materials(village: Node3D) -> void:
@@ -75,7 +80,8 @@ func refresh_materials(village: Node3D) -> void:
 		var visual: MeshInstance3D = node as MeshInstance3D
 		if visual.mesh == null:
 			continue
-		for surface: int in range(visual.mesh.get_surface_count()):
+		var surface_count: int = 1 if visual.material_override != null else visual.mesh.get_surface_count()
+		for surface: int in range(surface_count):
 			var source: Material = visual.get_active_material(surface)
 			if source == null:
 				continue
@@ -153,6 +159,7 @@ func lantern(point: Vector3) -> void:
 	# Small non-shadowing pool keeps Mobile's light cost bounded.
 	fixture.add_child(light)
 	lamps.append(light)
+	merge_fixture(fixture)
 
 func window(point: Vector3, normal: Vector3) -> void:
 	var frame: Node3D = Node3D.new()
@@ -165,6 +172,30 @@ func window(point: Vector3, normal: Vector3) -> void:
 		box(Vector3(0.055,0.95,0.065), Vector3(x,0,-0.03), iron, frame)
 	for y: float in [-0.45,0.0,0.45]:
 		box(Vector3(0.73,0.055,0.065), Vector3(0,y,-0.03), iron, frame)
+
+	merge_fixture(frame)
+
+func merge_fixture(fixture: Node3D) -> void:
+	# One compact mesh per fixture keeps light pairing local (Mobile has eight lights per mesh).
+	# Preserve both material surfaces, all geometry and normals; merge no distant fixtures together.
+	var combined: ArrayMesh = ArrayMesh.new()
+	for material: Material in [iron, amber]:
+		var tool: SurfaceTool = SurfaceTool.new()
+		tool.begin(Mesh.PRIMITIVE_TRIANGLES)
+		for child: Node in fixture.get_children():
+			var visual: MeshInstance3D = child as MeshInstance3D
+			if visual != null and visual.material_override == material:
+				tool.append_from(visual.mesh, 0, visual.transform)
+		tool.index()
+		tool.commit(combined)
+		combined.surface_set_material(combined.get_surface_count() - 1, material)
+	for child: Node in fixture.get_children():
+		if child is MeshInstance3D:
+			child.free()
+	var merged: MeshInstance3D = MeshInstance3D.new()
+	merged.name = "FixtureGeometry"
+	merged.mesh = combined
+	fixture.add_child(merged)
 
 func _process(delta: float) -> void:
 	elapsed += delta

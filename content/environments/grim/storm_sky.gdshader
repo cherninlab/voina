@@ -4,8 +4,9 @@ uniform float lightning = 0.0;
 void sky() {
  vec2 uv=SKY_COORDS;
  uv.x=fract(uv.x+TIME*0.00012);
- vec3 base=texture(panorama,uv).rgb;
- vec3 opposite=texture(panorama,vec2(1.0-uv.x,uv.y)).rgb;
+ // Explicit LOD avoids a bright mip stripe where the spherical UV wraps.
+ vec3 base=textureLod(panorama,uv,0.0).rgb;
+ vec3 opposite=textureLod(panorama,vec2(1.0-uv.x,uv.y),0.0).rgb;
  float seam=smoothstep(0.0,0.025,min(uv.x,1.0-uv.x));
  vec3 c=mix((base+opposite)*0.5,base,seam);
  // Soft pole blending avoids the generated LDR panorama's pinched zenith.
