@@ -20,7 +20,8 @@ var paused: bool = false
 var resume_button: Button
 var cancel_button: Button
 var tweaks: PanelContainer
-var tweaks_wrapper: Control = Control.new()
+var tweaks_wrapper: ScrollContainer = ScrollContainer.new()
+var tweaks_list: VBoxContainer = VBoxContainer.new()
 
 func _ready() -> void:
 	name = "GameUI"
@@ -104,10 +105,28 @@ func _ready() -> void:
 		var label: Label = child as Label
 		label.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 		label.custom_minimum_size.x = 320
+	# Every tweaks panel (sword, camera, and the shading and MPEG layers' own) in one column on the
+	# left, shown with the pause menu. Opening one folds the others; the column scrolls if needed.
 	tweaks = preload("res://ui/sword_tweaks_panel.gd").new()
-	tweaks_wrapper.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	tweaks_wrapper.set_anchors_and_offsets_preset(Control.PRESET_LEFT_WIDE)
+	tweaks_wrapper.offset_left = 24
+	tweaks_wrapper.offset_top = 24
+	tweaks_wrapper.offset_bottom = -40
+	tweaks_wrapper.horizontal_scroll_mode = ScrollContainer.SCROLL_MODE_DISABLED
+	tweaks_wrapper.mouse_filter = Control.MOUSE_FILTER_PASS
+	tweaks_list.add_theme_constant_override("separation", 8)
+	tweaks_wrapper.add_child(tweaks_list)
 	screen.add_child(tweaks_wrapper)
-	tweaks_wrapper.add_child(tweaks)
+	var panels: Array[PanelContainer] = [tweaks, preload("res://ui/camera_tweaks_panel.gd").new()]
+	for layer: Node in world.get_children():
+		if layer != self and layer.get("tweaks") is PanelContainer:
+			panels.append(layer.get("tweaks") as PanelContainer)
+	for panel: PanelContainer in panels:
+		if panel.get_parent() == null:
+			tweaks_list.add_child(panel)
+		else:
+			panel.reparent(tweaks_list, false)
+		(panel.get("toggle") as Button).pressed.connect(fold_other_tweaks.bind(panel))
 	var hud: Label = world.get("hud") as Label
 	hud.position = Vector2(24, 24)
 	hud.visible = "--debug-hud" in OS.get_cmdline_user_args()
@@ -252,6 +271,15 @@ func _input(event: InputEvent) -> void:
 
 func _process(_delta: float) -> void:
 	refresh()
+
+# Runs after the panel's own toggle handler; an open panel's toggle reads "... ▾".
+func fold_other_tweaks(opened: PanelContainer) -> void:
+	if not (opened.get("toggle") as Button).text.ends_with("▾"):
+		return
+	for panel: Node in tweaks_list.get_children():
+		var toggle: Button = panel.get("toggle") as Button
+		if panel != opened and toggle.text.ends_with("▾"):
+			toggle.pressed.emit()
 
 func refresh() -> void:
 	var peer: MultiplayerPeer = multiplayer.multiplayer_peer

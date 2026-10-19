@@ -27,6 +27,7 @@ var shake_left: float = 0.0
 var hitstop_left: float = 0.0
 var aim_friction: float = 1.0
 var swing_camera: SwingCamera = SwingCamera.new() # owner-only view sway from the blade
+var walk_camera: WalkCamera = WalkCamera.new() # owner-only handheld shake while walking
 var flash_left: float = 0.0
 var flash_color: Color = Color.WHITE
 var accepted_position: Vector3 = Vector3.ZERO
@@ -131,7 +132,7 @@ func _unhandled_input(event: InputEvent) -> void:
 		var motion: InputEventMouseMotion = event as InputEventMouseMotion
 		if not motion.screen_relative.is_finite():
 			return
-		var sensitivity: float = InputSettings.sensitivity * aim_friction
+		var sensitivity: float = InputSettings.sensitivity * (CameraTuning.value("aim_friction") if aim_friction < 1.0 else 1.0)
 		yaw -= motion.screen_relative.x * sensitivity
 		pitch = clampf(pitch - motion.screen_relative.y * sensitivity, -1.39, 1.39)
 		# Camera and sword share the same look input, including after the initial attack.
@@ -244,8 +245,8 @@ func from_server() -> bool:
 func set_camera_mode(use_third_person: bool) -> void:
 	drag_gesture.cancel()
 	third_person = use_third_person
-	arm.spring_length = 2.6 if third_person else 0.0
-	arm.position.x = 0.55 if third_person else 0.0
+	arm.spring_length = CameraTuning.value("arm_length") if third_person else 0.0
+	arm.position.x = CameraTuning.value("shoulder") if third_person else 0.0
 	body.set_first_person(not third_person)
 
 func _physics_process(delta: float) -> void:
@@ -327,9 +328,15 @@ func _process(delta: float) -> void:
 	body.set_highlight(flash_left > 0 or combat.blocking, flash_color if flash_left > 0 else Color("fff1a2"))
 	if is_multiplayer_authority():
 		camera.fov = preload("res://ui/fisheye.gd").camera_fov(InputSettings.fisheye)
-		camera.h_offset = sin(Time.get_ticks_msec() * 0.07) * shake_left * 0.12
-		camera.v_offset = cos(Time.get_ticks_msec() * 0.09) * shake_left * 0.1
-		camera.rotation = swing_camera.step(delta, body.motion.heading_speed, body.motion.elevation_speed)
+		# Every number here is live-tunable from the Camera tweaks panel (CameraTuning).
+		if third_person:
+			arm.spring_length = CameraTuning.value("arm_length")
+			arm.position.x = CameraTuning.value("shoulder")
+		walk_camera.step(delta, Vector2(velocity.x, velocity.z).length(), grounded)
+		var shake_time: float = Time.get_ticks_msec() / 1000.0 * CameraTuning.value("shake_rate")
+		camera.h_offset = sin(shake_time) * shake_left * CameraTuning.value("shake_side") + walk_camera.shift.x
+		camera.v_offset = cos(shake_time * 9.0 / 7.0) * shake_left * CameraTuning.value("shake_lift") + walk_camera.shift.y
+		camera.rotation = swing_camera.step(delta, body.motion.heading_speed, body.motion.elevation_speed) + walk_camera.turn
 
 # A staggered owner should only slide from knockback. The host clamps horizontal drift
 # around where it saw the stagger begin, allowing walking until the stagger reaches the owner.
@@ -480,7 +487,7 @@ func hit_feedback(result: int, dealt: bool) -> void:
 		flash_left = 0.12
 		flash_color = Color("ff5656") if result == CombatController.HitResult.HIT else Color("fff1a2")
 	if is_multiplayer_authority():
-		shake_left = 0.14 if dealt else 0.3
+		shake_left = CameraTuning.value("shake_dealt" if dealt else "shake_taken")
 
 func interrupt() -> void:
 	drag_gesture.cancel()
