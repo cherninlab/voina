@@ -82,7 +82,9 @@ func plan(rig: Skeleton3D, delta: float) -> void:
 		var ground: Dictionary = probe(feet[index], base)
 		var want: float = clampf(float(ground.get("height", base)) - base, -REACH, REACH)
 		lifts[index] = lerpf(lifts[index], want, follow)
-		normals[index] = normals[index].slerp(ground.get("normal", Vector3.UP) as Vector3, follow).normalized()
+		# Normalized lerp, not slerp: Vector3.slerp builds its axis from the cross product, and for
+		# the nearly parallel normals of a settled foot that axis is off unit length (engine error).
+		normals[index] = normals[index].lerp(ground.get("normal", Vector3.UP) as Vector3, follow).normalized()
 	drop = lerpf(drop, minf(0.0, minf(lifts[0], lifts[1])), follow)
 	var hips: Transform3D = rig.get_bone_global_pose(pelvis)
 	hips.origin += rig.global_basis.inverse() * Vector3.UP * drop
