@@ -66,11 +66,13 @@ func _ready() -> void:
 	add_child(model)
 	for node: Node in model.find_children("*", "MeshInstance3D", true, false):
 		meshes.append(node as MeshInstance3D)
+		if role_of(node as MeshInstance3D) == 1:
+			(node as MeshInstance3D).mesh = with_rest((node as MeshInstance3D).mesh)
 	skeleton = model.find_children("*", "Skeleton3D", true, false)[0] as Skeleton3D
 	# Possess the clip (proportions, stance, head), plan the feet from it, flex the puppet springs
 	# over it, solve the legs back down, then plant or reach with the hands.
 	possession.name = "Possession"
-	possession.configure(mob_id)
+	possession.configure(mob_id, int(female))
 	possession.body = self
 	skeleton.add_child(possession)
 	feet = MobFeet.install(skeleton, self)
@@ -92,6 +94,36 @@ func _ready() -> void:
 			mesh.set_instance_shader_parameter("surface_role", role_of(mesh))
 	add_child(playback)
 	playback.add_animation_library(&"", CLIPS[int(female)])
+
+# The body mesh with each vertex's rest (T pose) position in CUSTOM3, so the overlay paints clothes
+# that stay on the body however it bends, and the bisect bake carries them into both halves.
+# Built once per body and shared.
+static var rested: Dictionary[Mesh, ArrayMesh] = {}
+
+static func with_rest(source: Mesh) -> ArrayMesh:
+	if rested.has(source):
+		return rested[source]
+	var result: ArrayMesh = ArrayMesh.new()
+	for surface: int in range(source.get_surface_count()):
+		var arrays: Array = source.surface_get_arrays(surface)
+		var vertices: PackedVector3Array = arrays[Mesh.ARRAY_VERTEX]
+		var rest: PackedFloat32Array = PackedFloat32Array()
+		rest.resize(vertices.size() * 3)
+		for index: int in range(vertices.size()):
+			rest[index * 3] = vertices[index].x
+			rest[index * 3 + 1] = vertices[index].y
+			rest[index * 3 + 2] = vertices[index].z
+		arrays[Mesh.ARRAY_CUSTOM3] = rest
+		var format: int = source.surface_get_format(surface)
+		var flags: int = (Mesh.ARRAY_FLAG_USE_8_BONE_WEIGHTS & format) | (Mesh.ARRAY_CUSTOM_RGB_FLOAT << Mesh.ARRAY_FORMAT_CUSTOM3_SHIFT)
+		for channel: int in range(3):
+			var shift: int = Mesh.ARRAY_FORMAT_CUSTOM_BASE + channel * Mesh.ARRAY_FORMAT_CUSTOM_BITS
+			flags |= format & (Mesh.ARRAY_FORMAT_CUSTOM_MASK << shift)
+		result.add_surface_from_arrays(source.surface_get_primitive_type(surface), arrays, [], {}, flags)
+		result.surface_set_material(surface, source.surface_get_material(surface))
+		result.surface_set_name(surface, source.surface_get_name(surface))
+	rested[source] = result
+	return result
 
 # Each mesh's part in the overlay: 0 hair (only wounds), 1 skin, 2 eyes.
 func role_of(mesh: MeshInstance3D) -> int:
@@ -115,6 +147,24 @@ func possess_skin(material: ShaderMaterial) -> void:
 	material.set_shader_parameter("bruise_seed", float(possession.mob_id % 97) * 1.37)
 	material.set_shader_parameter("streak_amount", possession.streaks)
 	material.set_shader_parameter("eye_glow", possession.glow)
+	# Clothes, in the rest pose of this body.
+	material.set_shader_parameter("cloth", 1.0)
+	material.set_shader_parameter("shirt_color", possession.shirt)
+	material.set_shader_parameter("lower_color", possession.lower)
+	material.set_shader_parameter("dress", 1.0 if possession.dress else 0.0)
+	material.set_shader_parameter("hem", possession.hem)
+	material.set_shader_parameter("sleeve", possession.sleeve)
+	material.set_shader_parameter("lower_end", possession.lower_end)
+	material.set_shader_parameter("collar_drop", possession.collar_drop)
+	material.set_shader_parameter("belt", 1.0 if possession.belt else 0.0)
+	material.set_shader_parameter("tears", possession.tears)
+	material.set_shader_parameter("stains", possession.stains)
+	material.set_shader_parameter("mud", possession.mud)
+	material.set_shader_parameter("cloth_seed", float(possession.mob_id % 89) * 2.13)
+	var shoulder: Vector3 = skeleton.get_bone_global_rest(skeleton.find_bone("upperarm_l")).origin
+	material.set_shader_parameter("arm_span", Vector2(shoulder.x, skeleton.get_bone_global_rest(skeleton.find_bone("hand_l")).origin.x))
+	material.set_shader_parameter("collar", skeleton.get_bone_global_rest(skeleton.find_bone("clavicle_l")).origin.y - 0.03)
+	material.set_shader_parameter("waist", skeleton.get_bone_global_rest(skeleton.find_bone("pelvis")).origin.y + 0.04)
 	var first: int = 3 * int(female)
 	material.set_shader_parameter("socket_a", SOCKETS[first])
 	material.set_shader_parameter("socket_b", SOCKETS[first + 1])

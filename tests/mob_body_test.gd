@@ -130,7 +130,7 @@ func run() -> void:
 		await frames(2)
 	variants()
 	if not failed:
-		print("MOB_BODY_OK: male and female bodies; foot planting on a slope, hip drop, puppet flex and settle, ragdoll death, jointed bisect halves; possessed variants, backward knees, crawl, coil, leap, stare, unscaled distorted ragdolls")
+		print("MOB_BODY_OK: male and female bodies; foot planting on a slope, hip drop, puppet flex and settle, ragdoll death, jointed bisect halves; possessed variants and clothes, backward knees, crawl, coil, leap, stare, unscaled distorted ragdolls")
 	get_tree().quit(1 if failed else 0)
 
 func bodies() -> void:
@@ -254,6 +254,9 @@ func variants() -> void:
 		check(a.describe() == b.describe() and a.skin == b.skin and a.streaks == b.streaks, "Villager %d's possession is a pure function of its id" % id)
 		check(a.arm_length >= 1.0 and a.arm_length <= 1.2 and a.leg_length >= 0.86 and a.leg_length <= 1.0, "Villager %d's limbs stay mild (arms %.2f, legs %.2f)" % [id, a.arm_length, a.leg_length])
 		check(a.neck_stretch <= 0.05 and absf(a.head_roll) <= 0.4 and a.hunch <= 0.55 and a.crouch <= 0.1, "Villager %d's neck, tilt and hunch stay mild" % id)
+		check(a.shirt == b.shirt and a.lower == b.lower and a.dress == b.dress and a.sleeve == b.sleeve and a.hem == b.hem, "Villager %d's clothes are a pure function of its id" % id)
+		check(MobPossession.SHIRTS.has(a.shirt) and (a.dress or MobPossession.WOOLS.has(a.lower)) and (not a.dress or HostileMob.is_female(id)), "Villager %d wears drab peasant cloth, a dress only on a female body" % id)
+		check(a.sleeve >= 0.0 and a.sleeve <= 0.85 and a.hem > a.lower_end and a.mud < a.lower_end + 0.15 and a.tears <= 0.25, "Villager %d's clothes fit the body (sleeve %.2f, hem %.2f, legs to %.2f)" % [id, a.sleeve, a.hem, a.lower_end])
 		if id <= 5:
 			kinds[a.kind] = true
 		if not bodies_by_kind.has(a.kind):
@@ -306,6 +309,8 @@ func possessed() -> void:
 		var raised: float = knee_possession.heel_rise(knee_possession.toes)
 		check(raised > 0.02 and absf(foot.y - height_under(foot) - ankle - raised) < 0.04, "The %s backward-kneed foot plants on its toes (foot %.3f, toes lift the ankle %.3f)" % [side, foot.y, raised])
 	check(unscaled_pose(knee_visual), "A distorted pose holds no bone scale")
+	# The clothes are painted from each vertex's rest position, carried in the body mesh's CUSTOM3.
+	check(rest_carried(knee_visual.get("meshes") as Array[MeshInstance3D], true), "The body mesh carries every vertex's rest position for the clothes")
 	# A hitch (quarter-second frames) with fresh twitches must not blow up the twitch springs.
 	var knee_possession_hitch: MobPossession = knee_visual.get("possession") as MobPossession
 	Engine.time_scale = 15.0
@@ -408,10 +413,33 @@ func possessed() -> void:
 		var half_rig: Skeleton3D = half.find_children("*", "Skeleton3D", true, false)[0] as Skeleton3D
 		var ragdoll: PhysicalBoneSimulator3D = half_rig.get_node_or_null("Ragdoll") as PhysicalBoneSimulator3D
 		check(ragdoll != null and ragdoll.get_child_count() >= 3 and unscaled_ragdoll(ragdoll), "Each possessed half is an unscaled jointed ragdoll")
+		var half_meshes: Array[MeshInstance3D] = []
+		for node: Node in half.find_children("*", "MeshInstance3D", true, false):
+			half_meshes.append(node as MeshInstance3D)
+		check(rest_carried(half_meshes, false), "Each half keeps the rest positions, so its clothes match the body's")
 	await frames(90)
 	for half: Node in halves:
 		var worst: float = await stretch(half)
 		check(worst < STRETCH, "A possessed half keeps its skin together (worst edge +%.2f m)" % worst)
+
+# True when the skin mesh (the one with the most vertices) carries CUSTOM3 rest positions; exact
+# checks them against the vertices (the live body: its mesh is still in the rest pose).
+func rest_carried(mesh_nodes: Array[MeshInstance3D], exact: bool) -> bool:
+	var body: Mesh
+	for node: MeshInstance3D in mesh_nodes:
+		if body == null or (node.mesh.surface_get_arrays(0)[Mesh.ARRAY_VERTEX] as PackedVector3Array).size() > (body.surface_get_arrays(0)[Mesh.ARRAY_VERTEX] as PackedVector3Array).size():
+			body = node.mesh
+	if body == null or (body.surface_get_format(0) & Mesh.ARRAY_FORMAT_CUSTOM3) == 0:
+		return false
+	var arrays: Array = body.surface_get_arrays(0)
+	var vertices: PackedVector3Array = arrays[Mesh.ARRAY_VERTEX]
+	var rest: PackedFloat32Array = arrays[Mesh.ARRAY_CUSTOM3]
+	if rest.size() != vertices.size() * 3:
+		return false
+	for index: int in range(0, vertices.size(), 97) if exact else []:
+		if Vector3(rest[index * 3], rest[index * 3 + 1], rest[index * 3 + 2]).distance_to(vertices[index]) > 0.0001:
+			return false
+	return true
 
 func pelvis_height(mob: HostileMob) -> float:
 	return bone(visual(mob), "pelvis").origin.y - mob.global_position.y + 0.9

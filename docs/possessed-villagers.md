@@ -16,6 +16,14 @@ The church yard villagers ([mobs.md](mobs.md) describes their brain) are the exi
 
 Every villager also gets a small head tilt (3–7°), a slight crouch and hunch, arms up to 5% longer, hooked claw fingers instead of the clips' fists, a skin tint (ashen, cold blue-grey, sickly or waxy), an eye glow colour, a bruise pattern, an amount of dried blood down the forearms and shins (sometimes none), and its own stutter and twitch rates.
 
+It also wears what it had on when it was taken (`MobPossession.dress_up`, from the same hash):
+
+- **Top:** a torn shirt or smock in linen, oatmeal, grey-brown, faded madder or dark umber. The sleeves run anywhere from torn off at the shoulder to near the wrist, and the hem sits at the hips or, on a smock, at mid thigh.
+- **Bottom:** most women (75%) wear a dress in the shirt's colour with a linen apron over the skirt. Everyone else wears dark wool trousers ending somewhere on the shin.
+- **Details:** often a rope belt, a few rents and stains, and mud soaked up the legs.
+
+Skin shows at the tears, forearms, shins, neck and face, and never the models' underwear.
+
 ## Stances for the host's states
 
 `MobVisual.show_state` maps the replicated state to a clip and a `MobPossession.Mode`. Mode weights blend smoothly: rising is slow and uncanny, the leap snaps in.
@@ -42,6 +50,11 @@ The cached final pose already holds the distortion, so the death ragdoll (`MobRa
 
 `gameplay/mobs/mob_overlay.gdshader`, the wound overlay pass, also paints the possession, so it costs no extra draw:
 
+- **Clothes**: painted in the rest (T) pose. `MobVisual.with_rest` copies each vertex's rest position into the body mesh's `CUSTOM3` channel. It does this once per body, and the copy is shared. Garment masks compare heights and distances from the middle in that pose, so the clothes stay on the body however it bends.
+  - Hems, cuffs and the neckline wander with noise into torn edges with a darker frayed lip.
+  - The weave, hanging folds, bunching at the knees and elbows, and the shirt's shadow over the trousers give the paint some cloth.
+  - The body's muscle normal map is flattened under the cloth.
+  - The bisect bake already carries custom channels, so both halves keep the same clothes. The cut faces and the flesh inside are unchanged.
 - **Skin**: the body's own texture, desaturated to the villager's chalky tint with deepened creases so it reads gaunt. It also gets darker bruised patches, sunken dark eye sockets (per-body UVs in `MobVisual.SOCKETS`) and thin dried streaks down the forearms and shins, placed in each bone's frame. Clothes keep their colour, because the overlay only covers the warm skin colours.
 - **Eyes**: milky irises with pinprick pupils in greyed whites, with a faint emission that flares during the coil.
 - **Bisect halves**: they get the same skin through a wound-free copy of the overlay. Each half discards the other side by the cut distance baked in `UV2`, and the caps keep their flesh. The halves skip the normal map, because the cut bake rewrote the tangents.
@@ -64,4 +77,5 @@ Run the captures without `--headless`, on the Metal renderer. `--lineup` stands 
 - The crawl's gait runs from the visual's measured speed. On a client it follows the interpolated motion, so a stalled or teleported body can briefly skate.
 - Backward knees fold the skin at the back of the knee the other way. This reads as a hyperextended joint, not a separate digitigrade leg.
 - Dried streaks use bone frames, so they are skipped on bisect halves.
+- The clothes are paint on the body's own silhouette, with no new geometry. A dress or smock cannot hang between the legs, and nothing flaps. The rest-pose body mesh copy has no LODs.
 - Cost: with 5 villagers, a headless frame on an M5 Max took about 0.7 ms of CPU (physics, animation, every modifier). Disabling the possession stages barely changed that. The GPU cost of the extra overlay maths was not measured. Thermal behaviour on battery was not measured either.

@@ -4,7 +4,10 @@ render_mode blend_mix, cull_back, depth_draw_never;
 // Overlay pass over a possessed villager. Its skin turns chalky and pale (the body's own texture,
 // desaturated with the creases deepened, so it looks gaunt), with darker bruised patches, sunken
 // dark eye sockets and a little dried blood down the forearms and shins; the eyes go milky with
-// a faint glow that flares during the pounce coil. Clothes and hair keep their colours. On top
+// a faint glow that flares during the pounce coil. Over the body it paints ragged peasant clothes:
+// a torn linen shirt or smock with sleeves of any length, wool trousers or a dress, a rope belt,
+// stains and mud up the legs. Their masks live in the rest (T) pose, carried per vertex in CUSTOM3,
+// so they stay on the body however it bends, and their edges are torn by noise. On top
 // sit up to six exaggerated wounds, each the strip of skin within a band of the blade's plane,
 // tapered along the blade's travel, with blood running down from it under gravity. Positions
 // are world space, refreshed from bones. A bisected half (cut_side +-1) shows only its own side.
@@ -32,10 +35,31 @@ uniform vec3 streak_side[4];
 uniform float streak_length[4];
 uniform vec3 eye_glow : source_color = vec3(0.95, 0.86, 0.5);
 uniform float glow_strength = 0.5;
+uniform float cloth = 0.0;
+uniform vec3 shirt_color : source_color = vec3(0.6, 0.55, 0.45);
+uniform vec3 lower_color : source_color = vec3(0.34, 0.31, 0.27);
+uniform vec3 belt_color : source_color = vec3(0.44, 0.38, 0.28);
+uniform vec3 mud_color : source_color = vec3(0.24, 0.18, 0.12);
+uniform vec3 stain_color : source_color = vec3(0.16, 0.07, 0.05);
+uniform float dress = 0.0; // a dress rather than trousers, with an apron over the skirt
+uniform vec3 apron_color : source_color = vec3(0.6, 0.55, 0.45);
+uniform float hem = 0.8; // shirt hem height, rest pose (m over the soles)
+uniform float sleeve = 0.4; // sleeve reach, shoulder (0) to wrist (1)
+uniform float lower_end = 0.4; // trousers or skirt end height
+uniform float collar = 1.46; // neckline height at the back
+uniform float collar_drop = 0.06; // its dip at the front
+uniform float waist = 0.99;
+uniform float belt = 1.0;
+uniform float tears = 0.2;
+uniform float stains = 0.4;
+uniform float mud = 0.3;
+uniform float cloth_seed = 0.0;
+uniform vec2 arm_span = vec2(0.21, 0.71); // shoulder and wrist distance from the middle, rest pose
 instance uniform int surface_role = 0; // 0 hair: wounds only, 1 skin, 2 eyes
 instance uniform float cut_side = 0.0;
 
 varying vec3 world_pos;
+varying vec3 rest; // this vertex in the rest pose
 varying vec4 limb; // along the nearest limb (0..1), direction around it (cos, sin), found
 varying float limb_index;
 
@@ -54,8 +78,22 @@ float noise2(vec2 p) {
 	return mix(mix(a, b, f.x), mix(c, d, f.x), f.y);
 }
 
+float hash3(vec3 p) {
+	return fract(sin(dot(p, vec3(127.1, 311.7, 74.7))) * 43758.5453);
+}
+
+float noise3(vec3 p) {
+	vec3 i = floor(p);
+	vec3 f = fract(p);
+	f = f * f * (3.0 - 2.0 * f);
+	float a = mix(mix(hash3(i), hash3(i + vec3(1.0, 0.0, 0.0)), f.x), mix(hash3(i + vec3(0.0, 1.0, 0.0)), hash3(i + vec3(1.0, 1.0, 0.0)), f.x), f.y);
+	float b = mix(mix(hash3(i + vec3(0.0, 0.0, 1.0)), hash3(i + vec3(1.0, 0.0, 1.0)), f.x), mix(hash3(i + vec3(0.0, 1.0, 1.0)), hash3(i + vec3(1.0, 1.0, 1.0)), f.x), f.y);
+	return mix(a, b, f.z);
+}
+
 void vertex() {
 	world_pos = (MODEL_MATRIX * vec4(VERTEX, 1.0)).xyz;
+	rest = CUSTOM3.xyz;
 	limb = vec4(0.0);
 	limb_index = 0.0;
 	if (surface_role == 1 && streak_amount > 0.0) {
@@ -116,11 +154,65 @@ void fragment() {
 			float streak = step(hash(id + bruise_seed * 3.1), streak_amount) * step(0.0, u) * (1.0 - smoothstep(0.85, 1.0, u)) * (1.0 - smoothstep(width * 0.6, width, across));
 			chalk = mix(chalk, vec3(0.075, 0.03, 0.022), streak * 0.7);
 		}
-		color = chalk;
-		alpha = skin * possessed * 0.96;
-		roughness = 0.78;
+		float worn = 0.0; // how much cloth covers this point
+		vec3 fabric = vec3(0.0);
+		float wet = 0.0;
+		if (cloth > 0.0) {
+			vec3 r = rest;
+			float ax = abs(r.x);
+			bool arm = ax > arm_span.x - 0.01 && r.y > collar - 0.35;
+			// Torn edges: every hem wanders by a few centimetres.
+			float rag = (noise3(r * 9.0 + cloth_seed) - 0.5) * 0.07 + (noise3(r * 26.0 + cloth_seed * 1.7) - 0.5) * 0.03;
+			float neck = ax < 0.1 ? collar - collar_drop * smoothstep(-0.02, 0.09, r.z) * (1.0 - ax / 0.1) : 9.0;
+			float sleeve_end = mix(arm_span.x, arm_span.y, sleeve);
+			float shirt = step(hem + rag, r.y) * step(r.y, neck + rag * 0.4) * (arm ? step(ax, sleeve_end + rag) : 1.0);
+			float lower = arm ? 0.0 : step(r.y, waist + 0.01) * step(lower_end + rag, r.y);
+			float region = max(shirt, lower);
+			// A few small rents where skin shows through, each with a dark frayed lip.
+			float rent = noise3(r * 17.0 + cloth_seed * 3.1) * 0.6 + noise3(r * 45.0 + cloth_seed) * 0.4;
+			float cut = 0.86 - tears * 0.3;
+			float hole = smoothstep(cut, cut + 0.015, rent);
+			float lip = smoothstep(cut - 0.05, cut, rent) * (1.0 - hole);
+			worn = region * (1.0 - hole);
+			fabric = shirt > 0.5 ? shirt_color : lower_color;
+			// Cloth bunches at the knees and elbows, and the shirt shades the trousers under its hem.
+			float knee = 1.0 - 0.18 * smoothstep(0.06, 0.0, abs(r.y - 0.52)) * noise3(vec3(r.x * 40.0, r.y * 90.0, r.z * 40.0));
+			float elbow = arm ? 1.0 - 0.15 * smoothstep(0.05, 0.0, abs(ax - mix(arm_span.x, arm_span.y, 0.5))) * noise3(r * 80.0) : 1.0;
+			float overhang = shirt > 0.5 ? 1.0 : 1.0 - 0.3 * smoothstep(0.05, 0.0, hem + rag - r.y);
+			// A dress carries an apron over the front of its skirt.
+			if (dress > 0.5 && !arm && r.z > -0.005 + rag * 0.2 && ax < 0.21 && r.y < waist - 0.01 && r.y > lower_end + 0.07 + rag) {
+				fabric = apron_color;
+			}
+			fabric *= knee * elbow * overhang * (1.0 - 0.45 * lip);
+			// Weave, hanging folds, a frayed darker edge at each hem and darker stains.
+			float weave = 0.84 + 0.16 * noise3(r * 170.0);
+			float fold = 0.7 + 0.3 * noise3(vec3(r.x * 28.0, r.y * 4.0, r.z * 28.0) + cloth_seed);
+			float frayed = shirt > 0.5 ? 1.0 - smoothstep(0.0, 0.025, r.y - hem - rag) : 1.0 - smoothstep(0.0, 0.025, r.y - lower_end - rag);
+			fabric *= weave * fold * (1.0 - 0.35 * frayed);
+			float stain = smoothstep(0.6, 0.72, noise3(r * 4.5 + cloth_seed * 5.0)) * stains;
+			fabric = mix(fabric, stain_color, stain * 0.75);
+			fabric = mix(fabric, mud_color, smoothstep(waist, 0.15, r.y) * 0.3);
+			// A rope belt, a thin twisted cord.
+			if (belt > 0.5 && !arm && abs(r.y - waist + 0.005) < 0.011) {
+				float twist = 0.8 + 0.2 * sin((r.y * 2.0 + atan(r.z, r.x) * 0.35) * 70.0);
+				fabric = belt_color * twist * fold;
+				worn = 1.0;
+			}
+			// Under the clothes there is skin, even where the texture paints underwear.
+			chalk = mix(chalk, skin_tint * 0.9, 1.0 - skin);
+			skin = 1.0;
+			// Mud soaked up the legs, over skin and cloth alike: thickest at the feet, patchy above.
+			float splash = noise3(r * 13.0 + cloth_seed * 0.7) * 0.6 + noise3(r * 37.0) * 0.4;
+			float height = clamp((mud - r.y) / mud, 0.0, 1.0);
+			wet = smoothstep(0.4, 0.75, splash * 0.6 + height * 0.8) * step(r.y, mud + 0.1);
+		}
+		color = mix(chalk, fabric, worn);
+		color = mix(color, mud_color * (0.65 + 0.35 * noise3(rest * 40.0)), wet * 0.75);
+		alpha = max(skin * 0.96, max(worn, wet)) * possessed;
+		roughness = mix(mix(0.78, 0.93, worn), 0.55, wet);
 		if (use_normal) {
-			NORMAL_MAP = texture(skin_normal, UV).rgb;
+			// The body's muscles do not show through cloth.
+			NORMAL_MAP = mix(texture(skin_normal, UV).rgb, vec3(0.5, 0.5, 1.0), worn);
 		}
 	} else if (possessed > 0.0 && surface_role == 2) {
 		// Milky irises with a pinprick pupil in a dull, greyed eye, glowing faintly.

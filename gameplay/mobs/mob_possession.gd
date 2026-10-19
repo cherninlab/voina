@@ -19,6 +19,10 @@ const KIND_NAMES: PackedStringArray = ["backward knees", "short legs, long arms"
 const RATES: PackedFloat32Array = [2.4, 3.5, 6.0, 10.0, 14.0]
 const SKINS: Array[Color] = [Color(0.71, 0.7, 0.67), Color(0.64, 0.68, 0.72), Color(0.69, 0.71, 0.61), Color(0.75, 0.71, 0.63)]
 const GLOWS: Array[Color] = [Color(0.95, 0.86, 0.5), Color(0.66, 0.84, 1.0), Color(0.76, 1.0, 0.58)]
+# Drab peasant cloth: undyed linen, oatmeal, grey-brown, faded madder, dark umber; and darker
+# wool for trousers and skirts.
+const SHIRTS: Array[Color] = [Color(0.6, 0.55, 0.44), Color(0.53, 0.47, 0.37), Color(0.42, 0.38, 0.33), Color(0.46, 0.34, 0.3), Color(0.32, 0.26, 0.2)]
+const WOOLS: Array[Color] = [Color(0.41, 0.37, 0.32), Color(0.33, 0.28, 0.23), Color(0.41, 0.32, 0.28), Color(0.32, 0.32, 0.31), Color(0.47, 0.42, 0.34)]
 const DUTY: float = 0.6 # share of a crawl cycle each limb is planted
 const CYCLE: float = 0.9 # metres travelled per crawl cycle
 const WRIST: float = 0.055 # wrist height over the ground with the palm flat
@@ -50,6 +54,18 @@ var twitch_rate: float = 0.3 # twitches per second
 var gait_skew: float = 0.0 # the hind legs a little out of step
 var trait_seed: int = 0
 var trait_draw: int = 0
+# Ragged clothes, painted by the overlay in the rest pose (heights in metres over the soles).
+var shirt: Color = SHIRTS[0]
+var lower: Color = WOOLS[0] # trousers, or the skirt of a dress
+var dress: bool = false
+var sleeve: float = 0.4 # how far the sleeves reach, shoulder (0) to wrist (1)
+var hem: float = 0.8 # the shirt's hem
+var lower_end: float = 0.4 # where the trousers or skirt end
+var collar_drop: float = 0.06 # how far the neckline dips at the front
+var belt: bool = true
+var tears: float = 0.2
+var stains: float = 0.4
+var mud: float = 0.3 # mud up the legs to this height
 
 # Driven by the visual every frame.
 var mode: int = Mode.UPRIGHT
@@ -123,7 +139,7 @@ static func hash32(value: int) -> int:
 
 # The distortion every peer shows for this id. The main kind cycles with the id, so any five
 # consecutive villagers (a wave and its replacements) show all five; the rest comes from the hash.
-func configure(id: int) -> void:
+func configure(id: int, female: int = -1) -> void:
 	mob_id = id
 	kind = posmod(id - 1, Kind.size())
 	trait_seed = hash32(id * 7919 + 104729)
@@ -175,11 +191,30 @@ func configure(id: int) -> void:
 	stutter_rate = pick(0.3, 0.8)
 	twitch_rate = pick(0.2, 0.45)
 	gait_skew = pick(-0.06, 0.06)
+	dress_up(female if female >= 0 else int(HostileMob.is_female(id)))
 	rng.seed = hash32(id * 31 + 7)
 	snap_left = rng.randf_range(1.5, 5.0)
 	stutter_left = rng.randf_range(0.3, 1.5)
 	twitch_left = rng.randf_range(0.5, 3.0)
 	clock = rng.randf_range(0.0, 50.0)
+
+# What this villager wore when it was taken: a torn linen shirt or smock with sleeves of any
+# length, wool trousers or a dress, often a rope belt, mud up the legs and a few stains.
+func dress_up(female: int) -> void:
+	dress = female == 1 and pick(0.0, 1.0) < 0.75
+	var smock: bool = not dress and pick(0.0, 1.0) < 0.3
+	shirt = SHIRTS[mini(int(pick(0.0, SHIRTS.size())), SHIRTS.size() - 1)]
+	lower = WOOLS[mini(int(pick(0.0, WOOLS.size())), WOOLS.size() - 1)]
+	if dress:
+		lower = shirt.lerp(WOOLS[1], pick(0.2, 0.5))
+	sleeve = 0.0 if pick(0.0, 1.0) < 0.2 else pick(0.15, 0.85)
+	hem = pick(0.62, 0.72) if smock else pick(0.78, 0.9)
+	lower_end = pick(0.42, 0.6) if dress else pick(0.28, 0.5)
+	collar_drop = pick(0.03, 0.12)
+	belt = pick(0.0, 1.0) < 0.7
+	tears = pick(0.08, 0.25)
+	stains = pick(0.2, 0.7)
+	mud = pick(0.18, 0.42)
 
 # The next trait of this id, uniform in [low, high): each draw hashes the id's seed with its index.
 # (RandomNumberGenerator's first draws come out nearly equal for some pairs of seeds.)
