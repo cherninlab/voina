@@ -8,6 +8,7 @@ const SAVE_PATH: String = "user://shading_tweaks.cfg"
 
 var shading: CanvasLayer
 var toggle: Button = Button.new()
+var scroll: ScrollContainer = ScrollContainer.new()
 var body: VBoxContainer = VBoxContainer.new()
 var picker: OptionButton = OptionButton.new()
 var sliders: Dictionary[String, HSlider] = {}
@@ -26,13 +27,17 @@ func _ready() -> void:
 	column.add_theme_constant_override("separation", 6)
 	add_child(column)
 	toggle.pressed.connect(func() -> void:
-		body.visible = not body.visible
+		scroll.visible = not scroll.visible
 		refresh_toggle()
 	)
 	column.add_child(toggle)
-	body.visible = false
 	body.add_theme_constant_override("separation", 2)
-	column.add_child(body)
+	# Over thirty sliders: they scroll inside a box that fits a 720 px window.
+	scroll.visible = false
+	scroll.custom_minimum_size = Vector2(430, 520)
+	scroll.horizontal_scroll_mode = ScrollContainer.SCROLL_MODE_DISABLED
+	scroll.add_child(body)
+	column.add_child(scroll)
 
 	var picker_row: HBoxContainer = HBoxContainer.new()
 	var picker_label: Label = Label.new()
@@ -50,6 +55,12 @@ func _ready() -> void:
 	body.add_child(picker_row)
 
 	for spec: Dictionary in shading.call("specs") as Array[Dictionary]:
+		if spec.has("group"):
+			var heading: Label = Label.new()
+			heading.text = spec["group"] as String
+			heading.add_theme_color_override("font_color", Color("9eb1a6"))
+			body.add_child(heading)
+			continue
 		var name: String = spec["name"] as String
 		var row: HBoxContainer = HBoxContainer.new()
 		var label: Label = Label.new()
@@ -93,7 +104,9 @@ func add_button(parent: Container, text: String, action: Callable) -> void:
 	parent.add_child(button)
 
 func format(value: float) -> String:
-	return "%.0f" % value if absf(value) >= 10.0 or is_equal_approx(value, roundf(value)) else "%.2f" % value
+	if absf(value) >= 10.0 or is_equal_approx(value, roundf(value)):
+		return "%.0f" % value
+	return "%.4f" % value if absf(value) < 0.1 else "%.2f" % value
 
 ## Pull every control from the current theme's values (after T, defaults or loading).
 func refresh() -> void:
@@ -104,7 +117,7 @@ func refresh() -> void:
 	picker.select(shading.get("theme_index") as int)
 
 func refresh_toggle() -> void:
-	toggle.text = "Shading tweaks " + ("▾" if body.visible else "▸")
+	toggle.text = "Shading tweaks " + ("▾" if scroll.visible else "▸")
 
 func _process(_delta: float) -> void:
 	# Shown with the pause menu (Esc); the HUD theme is borrowed once.
@@ -124,6 +137,8 @@ func summary() -> String:
 	return ", ".join(parts)
 
 func save() -> void:
+	if bool(shading.get("ephemeral")):
+		return
 	var config: ConfigFile = ConfigFile.new()
 	config.set_value("shading", "theme", shading.call("theme_name"))
 	var overrides: Dictionary = shading.get("overrides") as Dictionary
@@ -141,6 +156,8 @@ func load_saved() -> void:
 	var names: PackedStringArray = shading.call("theme_names") as PackedStringArray
 	var ranges: Dictionary[String, Vector2] = {}
 	for spec: Dictionary in shading.call("specs") as Array[Dictionary]:
+		if not spec.has("name"):
+			continue
 		ranges[spec["name"] as String] = Vector2(spec["min"] as float, spec["max"] as float)
 	for theme_name: String in names:
 		var section: String = "theme " + theme_name
