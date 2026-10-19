@@ -2,7 +2,7 @@ extends CanvasLayer
 ## Local presentation only: menus release input; network and host simulation continue.
 
 var menu_backdrop: ColorRect = ColorRect.new()
-var menu_video: VideoStreamPlayer = VideoStreamPlayer.new()
+var menu_image: TextureRect = TextureRect.new()
 var menu_grade: ColorRect = ColorRect.new()
 var colour_shading: CanvasLayer
 var menu_music: AudioStreamPlayer = AudioStreamPlayer.new()
@@ -55,13 +55,13 @@ func _ready() -> void:
 	menu_backdrop.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
 	menu_backdrop.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	screen.add_child(menu_backdrop)
-	menu_video.stream = preload("res://content/ui/secha-menu-background.ogv")
-	menu_video.expand = true
-	menu_video.loop = true
-	menu_video.volume_db = -80.0
-	menu_video.mouse_filter = Control.MOUSE_FILTER_IGNORE
-	menu_backdrop.add_child(menu_video)
-	# Capture the video after drawing it, then reuse the world grading material.
+	menu_image.texture = preload("res://content/ui/secha-menu-grim.png")
+	menu_image.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
+	menu_image.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_COVERED
+	menu_image.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
+	menu_image.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	menu_backdrop.add_child(menu_image)
+	# Capture the native character render, then reuse the world grading material.
 	# Logo, navigation and setup controls are drawn afterwards and stay readable.
 	for child: Node in world.get_children():
 		if child.get_script() == preload("res://ui/shading.gd"):
@@ -75,6 +75,18 @@ func _ready() -> void:
 	if colour_shading != null:
 		menu_grade.material = colour_shading.get("material") as ShaderMaterial
 	menu_backdrop.add_child(menu_grade)
+	var scrim: TextureRect = TextureRect.new()
+	var gradient: Gradient = Gradient.new()
+	gradient.set_color(0, Color(0.015,0.022,0.025,0.96))
+	gradient.set_color(1, Color(0.015,0.022,0.025,0.0))
+	gradient.add_point(0.32, Color(0.015,0.022,0.025,0.70))
+	gradient.add_point(0.60, Color(0.015,0.022,0.025,0.0))
+	var fade: GradientTexture2D = GradientTexture2D.new()
+	fade.gradient = gradient
+	scrim.texture = fade
+	scrim.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
+	scrim.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	menu_backdrop.add_child(scrim)
 	screen.add_child(shade)
 	var menu: VBoxContainer = world.get("menu") as VBoxContainer
 	lobby_panel = centered_panel(menu)
@@ -263,15 +275,15 @@ func box(color: Color, radius: int = 8, padding: int = 0) -> StyleBoxFlat:
 	style.content_margin_bottom = padding
 	return style
 
-# Black and white only: black fills, white hairlines and text; hover inverts.
+# Charcoal iron, aged ivory and warm amber echo the village practical lights.
 func make_theme() -> Theme:
 	var theme: Theme = Theme.new()
 	theme.default_font_size = 16
 	theme.set_color("font_color", "Label", Color("eee4cc"))
-	theme.set_stylebox("panel", "PanelContainer", outlined(Color(0.075, 0.05, 0.10, 0.97), Color("65546b"), 28))
-	theme.set_stylebox("normal", "Button", outlined(Color("231b2d"), Color("67546b"), 10))
-	theme.set_stylebox("hover", "Button", outlined(Color("813b50"), Color("d7b79e"), 10))
-	theme.set_stylebox("pressed", "Button", outlined(Color("512b40"), Color("d7b79e"), 10))
+	theme.set_stylebox("panel", "PanelContainer", outlined(Color(0.025, 0.035, 0.038, 0.97), Color("625b49"), 28))
+	theme.set_stylebox("normal", "Button", outlined(Color("192124"), Color("5d645d"), 10))
+	theme.set_stylebox("hover", "Button", outlined(Color("524332"), Color("d9b47b"), 10))
+	theme.set_stylebox("pressed", "Button", outlined(Color("342e26"), Color("d9b47b"), 10))
 	theme.set_stylebox("disabled", "Button", outlined(Color.BLACK, Color("4a4a4a"), 8))
 	theme.set_color("font_color", "Button", Color("eee4cc"))
 	theme.set_color("font_focus_color", "Button", Color.WHITE)
@@ -395,10 +407,6 @@ func refresh() -> void:
 		menu_music.stop()
 	menu_backdrop.visible = wants_music
 	menu_grade.visible = colour_shading != null and (colour_shading.get("values") as Dictionary).get("strength", 0.0) > 0.001
-	if wants_music and not menu_video.is_playing():
-		menu_video.play()
-	elif not wants_music and menu_video.is_playing():
-		menu_video.stop()
 	fit_logo()
 	var local: Node = local_player()
 	var connecting: bool = active and local == null and not NetworkManager.dedicated
@@ -465,7 +473,7 @@ func title_button(text: String, action: Callable) -> Button:
 	for state: String in ["normal", "hover", "pressed", "focus"]:
 		control.add_theme_stylebox_override(state, StyleBoxEmpty.new())
 	var selection: StyleBoxFlat = box(Color(0, 0, 0, 0), 0)
-	selection.border_color = Color("c37679")
+	selection.border_color = Color("b98b4c")
 	selection.border_width_bottom = 1
 	control.add_theme_stylebox_override("focus", selection)
 	control.add_theme_stylebox_override("hover", selection)
@@ -480,16 +488,12 @@ func title_button(text: String, action: Callable) -> Button:
 
 func fit_logo() -> void:
 	var window: Vector2 = screen.size
-	# Fit the whole illustration rather than cropping away the swordsman or menu-safe area.
-	var scale_factor: float = minf(window.x / 1916.0, window.y / 1080.0)
-	var frame: Vector2 = Vector2(1916.0, 1080.0) * scale_factor
-	var origin: Vector2 = (window - frame) * 0.5
-	menu_video.position = origin
-	menu_video.size = frame
-	logo.position = origin + Vector2(frame.x * 0.018, frame.y * 0.025)
-	logo.size = Vector2(frame.x * 0.43, frame.y * 0.43)
-	title_choices.position = origin + Vector2(frame.x * 0.05, frame.y * 0.51)
-	title_choices.size.x = frame.x * 0.24
+	# Keep navigation inside the viewport at 16:9, 16:10 and ultrawide sizes.
+	var frame: Vector2 = window
+	logo.position = Vector2(window.x * 0.04, window.y * 0.075)
+	logo.size = Vector2(window.x * 0.36, window.y * 0.32)
+	title_choices.position = Vector2(window.x * 0.065, window.y * 0.49)
+	title_choices.size.x = window.x * 0.25
 	for child: Node in title_choices.get_children():
 		var choice: Button = child as Button
 		choice.custom_minimum_size.y = frame.y * 0.068

@@ -25,3 +25,7 @@ python3 scripts/smoke_test.py "$GODOT"
 The session check covers Escape pause/resume, controls, keeping simulation unpaused, the pending loader and its actual Cancel button, failure return, leave/rehost and authenticated two-process reconnect. The capture script saves lobby, connecting, failure-return, gameplay, pause and controls frames from the real game. Its failure-return capture deliberately exercises a failure state; it is not a recorded internet outage. Live trackpad usability and two-Mac Tailscale acceptance remain human checks.
 
 Fullscreen panels use a viewport-height UI scale (900 logical pixels, capped at 2.5×), so setup, pause, settings, HUD and tuning controls remain readable on Retina displays. Title composition retains its video-relative placement. Original GUI styling uses dark plum surfaces, ivory text and muted crimson highlights inspired by the supplied references, without importing their artwork.
+
+## Grim village title
+
+The default menu uses `content/ui/secha-menu-grim.png`, a real render of the actual playable male model and procedural sword stance. It replaces the comic video as the default backdrop. The soundtrack loop and shared grading remain; logo/navigation draw above the image and grade. A charcoal left-to-right scrim preserves readability, with aged ivory text, amber selection rules, charcoal panels and warm focus states. Logo/navigation positions use viewport-relative logical coordinates, with cover-fit image scaling, verified at 16:10 and 16:9.

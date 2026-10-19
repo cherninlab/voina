@@ -731,8 +731,8 @@ func ridge_outcrops() -> void:
 		peaks.append(candidate)
 		var direction: float = random.randf_range(0.0, TAU)
 		var width: float = random.randf_range(44.0, 70.0)
-		var depth: float = random.randf_range(18.0, 28.0)
-		var rise: float = random.randf_range(10.0, 18.0)
+		var depth: float = random.randf_range(13.0, 21.0)
+		var rise: float = random.randf_range(19.0, 31.0)
 		var rotation: Basis = Basis(Vector3.UP, direction)
 		var profiles: Array[PackedFloat32Array] = [PackedFloat32Array([0,0.62,1.0,0.93,0.42,0.28,0]), PackedFloat32Array([0,0.35,0.82,0.46,0.9,0.66,0]), PackedFloat32Array([0,0.76,0.67,1.0,0.62,0.25,0]), PackedFloat32Array([0,0.28,0.53,0.92,1.0,0.58,0])]
 		var profile: PackedFloat32Array = profiles[peaks.size() % profiles.size()]
@@ -747,7 +747,7 @@ func ridge_outcrops() -> void:
 					var crest: float = lerpf(profile[near_index],profile[near_index+1],section-near_index)
 					var crest_line: float = 0.32+uv.x*0.25
 					var cross_section: float = clampf(minf(uv.y/crest_line,(1.0-uv.y)/(1.0-crest_line)),0.0,1.0)
-					var envelope: float = crest * pow(cross_section,0.4)
+					var envelope: float = crest * pow(cross_section,0.75)
 					var shoulder: float = lerpf(1.1,0.8,uv.x)
 					var fracture: float = sin(corner.x*2.3+corner.y*1.7)*0.8
 					var raw: float = envelope*rise*shoulder + fracture*envelope
@@ -925,6 +925,8 @@ func make_landscape_material() -> ShaderMaterial:
 uniform sampler2D soil : source_color, filter_linear_mipmap_anisotropic, repeat_enable;
 uniform sampler2D trail : source_color, filter_linear_mipmap_anisotropic, repeat_enable;
 uniform sampler2D rock : source_color, filter_linear_mipmap_anisotropic, repeat_enable;
+uniform sampler2D rock_roughness : filter_linear_mipmap_anisotropic, repeat_enable;
+uniform sampler2D rock_normal : hint_normal, filter_linear_mipmap_anisotropic, repeat_enable;
 varying vec3 world_pos;
 varying vec3 world_normal;
 void vertex() { world_pos=(MODEL_MATRIX*vec4(VERTEX,1.0)).xyz; world_normal=normalize(MODEL_NORMAL_MATRIX*NORMAL); }
@@ -940,26 +942,35 @@ void fragment() {
  vec2 p=world_pos.xz;
  vec2 warped=p+vec2(noise(p*0.035),noise(p*0.035+47.0))*18.0;
  float patch=noise(warped*0.065);
- float elevation=smoothstep(7.0,26.0,world_pos.y+patch*9.0);
+ float elevation=smoothstep(5.0,20.0,world_pos.y+patch*9.0);
  float cliff=1.0-smoothstep(0.67,0.94,slope);
- float exposed=clamp(max(cliff,elevation*0.8)+(patch-0.5)*0.35,0.0,1.0);
+ float exposed=clamp(max(cliff,elevation)+(patch-0.5)*0.25,0.0,1.0);
  vec3 earth=texture(soil,p*0.18).rgb*mix(vec3(0.60,0.78,0.47),vec3(0.9,0.98,0.68),noise(warped*0.027));
  vec3 stone=bedrock(world_pos,normalize(world_normal));
- float strata=0.93+0.07*sin(world_pos.y*1.6+noise(p*0.12)*2.0);
- stone*=mix(vec3(0.76,0.79,0.77),vec3(1.03,0.96,0.84),patch)*strata;
+ float strata=0.78+0.22*smoothstep(-0.3,0.3,sin(world_pos.y*0.65+world_pos.x*0.18+noise(p*0.035)*3.0));
+ stone*=mix(vec3(0.33,0.39,0.42),vec3(0.63,0.66,0.65),patch)*strata;
  ALBEDO=mix(earth,stone,exposed)*(0.87+0.13*noise(warped*0.018));
  float center=-0.5+sin(max(-p.y-37.0,0.0)*0.055)*4.0;
  float width=1.5+noise(p*0.22)*0.8;
  float trail_mask=(1.0-smoothstep(width,width+1.0,abs(p.x-center)+(noise(p*0.9)-0.5)*0.65));
  trail_mask*=smoothstep(29.0,35.0,-p.y)*(1.0-smoothstep(98.0,112.0,-p.y));
  ALBEDO=mix(ALBEDO,texture(trail,p*0.32).rgb*mix(0.75,1.02,noise(p*0.11)),trail_mask);
- ROUGHNESS=0.95;
+ ROUGHNESS=max(0.85,texture(rock_roughness,p*0.12).r);
+ vec3 weights=pow(abs(normalize(world_normal)),vec3(4.0));
+ weights/=max(weights.x+weights.y+weights.z,0.001);
+ vec2 nx=texture(rock_normal,world_pos.yz*0.12).xy*2.0-1.0;
+ vec2 ny=texture(rock_normal,world_pos.xz*0.12).xy*2.0-1.0;
+ vec2 nz=texture(rock_normal,world_pos.xy*0.12).xy*2.0-1.0;
+ vec3 detail=vec3(0.0,nx.x,nx.y)*weights.x+vec3(ny.x,0.0,ny.y)*weights.y+vec3(nz.x,nz.y,0.0)*weights.z;
+ NORMAL=normalize((VIEW_MATRIX*vec4(normalize(world_normal+detail*exposed*0.4),0.0)).xyz);
 }
 """
 	material.shader = shader
 	material.set_shader_parameter("soil", load("res://content/environments/valhalla/textures/KB3D_VHL_GrassGround_basecolor.png"))
 	material.set_shader_parameter("trail", load("res://content/environments/village_generated/mineral_earth.png"))
-	material.set_shader_parameter("rock", load("res://content/environments/village_generated/schist_rock.png"))
+	material.set_shader_parameter("rock", load("res://content/environments/valhalla/textures/KB3D_VHL_StoneGeneric_basecolor.png"))
+	material.set_shader_parameter("rock_roughness", load("res://content/environments/valhalla/textures/KB3D_VHL_StoneGeneric_roughness.png"))
+	material.set_shader_parameter("rock_normal", load("res://content/environments/valhalla/textures/KB3D_VHL_StoneGeneric_normal.png"))
 	return material
 
 func refresh_landscape(root_node: Node3D) -> void:
