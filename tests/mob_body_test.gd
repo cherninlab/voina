@@ -306,6 +306,21 @@ func possessed() -> void:
 		var raised: float = knee_possession.heel_rise(knee_possession.toes)
 		check(raised > 0.02 and absf(foot.y - height_under(foot) - ankle - raised) < 0.04, "The %s backward-kneed foot plants on its toes (foot %.3f, toes lift the ankle %.3f)" % [side, foot.y, raised])
 	check(unscaled_pose(knee_visual), "A distorted pose holds no bone scale")
+	# A hitch (quarter-second frames) with fresh twitches must not blow up the twitch springs.
+	var knee_possession_hitch: MobPossession = knee_visual.get("possession") as MobPossession
+	Engine.time_scale = 15.0
+	for frame: int in range(12):
+		knee_possession_hitch.twitch_spins[frame % knee_possession_hitch.twitch_spins.size()] += Vector3(0.3, 1.0, 0.2) * 9.0
+		await get_tree().process_frame
+	Engine.time_scale = 1.0
+	await frames(2)
+	var settled_twitch: bool = true
+	for twitch_angle: Vector3 in knee_possession_hitch.twitch_angles:
+		settled_twitch = settled_twitch and twitch_angle.is_finite() and twitch_angle.length() <= MobPossession.TWITCH_MAX + 0.001
+	var finite_pose: bool = true
+	for pose: Transform3D in knee_visual.get("poses") as Array[Transform3D]:
+		finite_pose = finite_pose and pose.is_finite()
+	check(settled_twitch and finite_pose, "Twitches stay finite and small through long frames")
 	# The crawl on flat ground, moving: hands down near the ground, hips low, head ahead.
 	var crawler: HostileMob = spawn(Vector3(-4, 0.95, 4), MobPossession.Kind.LONG_ARMS)
 	crawler.state = 5

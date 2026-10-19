@@ -23,6 +23,8 @@ const DUTY: float = 0.6 # share of a crawl cycle each limb is planted
 const CYCLE: float = 0.9 # metres travelled per crawl cycle
 const WRIST: float = 0.055 # wrist height over the ground with the palm flat
 const TWITCH_BONES: PackedStringArray = ["Head", "neck_01", "spine_03", "clavicle_l", "clavicle_r", "hand_l", "hand_r"]
+const MAX_STEP: float = 0.2 # longest frame the stances integrate (s)
+const TWITCH_MAX: float = 0.5 # largest twitch (rad)
 
 # The variant, a pure function of the id (configure).
 var mob_id: int = 0
@@ -257,6 +259,7 @@ func _process_modification_with_delta(delta: float) -> void:
 	var rig: Skeleton3D = get_skeleton()
 	if rig == null or pelvis < 0:
 		return
+	delta = clampf(delta, 0.0, MAX_STEP) # a hitch must not throw the springs or the gait
 	advance(rig, delta)
 	stretch(rig)
 	stance(rig)
@@ -284,7 +287,9 @@ func advance(rig: Skeleton3D, delta: float) -> void:
 	flat.y = 0.0
 	var speed: float = flat.length()
 	if speed > 0.1:
-		travel = travel.lerp(flat / speed, 1.0 - exp(-8.0 * delta)).normalized()
+		var turned: Vector3 = travel.lerp(flat / speed, 1.0 - exp(-8.0 * delta))
+		if turned.length_squared() > 0.0001:
+			travel = turned.normalized()
 	stride = lerpf(stride, clampf(speed / 1.0, 0.0, 1.0), 1.0 - exp(-6.0 * delta))
 	phase = fposmod(phase + speed * delta / cycle_length(), 1.0)
 	# Head snaps while standing: a jerk far too fast, a hold, then a slow drift back.
@@ -465,10 +470,12 @@ func aim_head(rig: Skeleton3D, delta: float) -> void:
 			var tilt: float = clampf(atan2(to.y, Vector2(to.x, to.z).length()), -0.8, 0.6)
 			var target: Vector3 = Vector3(sin(yaw) * cos(tilt), sin(tilt), cos(yaw) * cos(tilt))
 			want = want.lerp(target, look_weight).normalized()
-	# Slow, steady tracking: the stare never darts.
+	# Slow, steady tracking: the stare never darts. (want always faces forward, so the blend never
+	# passes through zero; the guard only catches a bad target.)
 	var angle: float = head_dir.angle_to(want)
 	if angle > 0.0001:
-		head_dir = head_dir.lerp(want, minf(1.0, 1.1 * delta / angle)).normalized()
+		var turned: Vector3 = head_dir.lerp(want, minf(1.0, 1.1 * delta / angle))
+		head_dir = turned.normalized() if turned.is_finite() and turned.length_squared() > 0.0001 else want
 	var facing: Vector3 = (Quaternion(Vector3.UP, snap.x) * Quaternion(Vector3.RIGHT, -snap.y)) * head_dir
 	var roll: float = head_roll * (1.0 + w[Mode.SQUAT] * 0.6) + snap.z
 	var goal: Basis = Basis(Quaternion(facing, roll)) * looking(facing)
@@ -521,13 +528,28 @@ func legs(rig: Skeleton3D) -> void:
 		feet.pole_dirs[index] = knee if knee.length_squared() > 0.0001 else Vector3.BACK
 
 func twitch(rig: Skeleton3D, delta: float) -> void:
-	var omega: float = TAU * 6.5
+	step_twitches(delta)
 	for index: int in range(twitch_bones.size()):
-		twitch_spins[index] += (-twitch_angles[index] * omega * omega - twitch_spins[index] * 2.0 * 0.38 * omega) * delta
-		twitch_angles[index] += twitch_spins[index] * delta
 		var angle: float = twitch_angles[index].length()
 		if angle > 0.0005 and twitch_bones[index] >= 0:
-			turn(rig, twitch_bones[index], Quaternion(twitch_angles[index] / angle, minf(angle, 0.5)))
+			turn(rig, twitch_bones[index], Quaternion(twitch_angles[index] / angle, angle))
+
+# The stiff twitch springs, in steps of at most 1/120 s: one long step (a hitch) would make the
+# integration unstable and blow the angles up.
+func step_twitches(delta: float) -> void:
+	var omega: float = TAU * 6.5
+	var steps: int = clampi(ceili(delta / (1.0 / 120.0)), 1, 32)
+	var step: float = delta / steps
+	for index: int in range(twitch_bones.size()):
+		for repeat: int in range(steps):
+			twitch_spins[index] += (-twitch_angles[index] * omega * omega - twitch_spins[index] * 2.0 * 0.38 * omega) * step
+			twitch_angles[index] += twitch_spins[index] * step
+		if not twitch_angles[index].is_finite() or not twitch_spins[index].is_finite():
+			twitch_angles[index] = Vector3.ZERO
+			twitch_spins[index] = Vector3.ZERO
+		elif twitch_angles[index].length() > TWITCH_MAX:
+			twitch_angles[index] = twitch_angles[index].normalized() * TWITCH_MAX
+			twitch_spins[index] *= 0.5
 
 # The arm IK's two stages, after the feet: the planner sets each hand's target (on the ground under
 # a crawl or coil) and elbow pole; the aligner, after the solver, lays the palm on the ground.
