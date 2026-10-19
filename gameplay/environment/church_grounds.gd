@@ -7,6 +7,8 @@ const TEXTURES: String = "res://content/environments/valhalla/textures/KB3D_VHL_
 const GENERATED: String = "res://content/environments/village_generated/"
 const SHADERS: String = "res://content/environments/church/"
 const AMBIENCE: String = "res://content/audio/clips/ambience/"
+# Torch and grave-fire flames reuse the road torches' shaders (church_road.gd, T-086), one fire look.
+const ROAD_FIRE: String = "res://content/environments/church_road/"
 # Church frame: x east, y up from the ruin's base, z = 0 at its front arch and negative northward.
 const RUIN: PackedScene = preload("res://content/environments/chapel_ruin/chapel_ruin.gltf")
 const RUIN_HALF: float = 5.78
@@ -58,6 +60,14 @@ var reserved: Array[Vector3] = []
 var lamps: Array[OmniLight3D] = []
 var lamp_energy: PackedFloat32Array = PackedFloat32Array()
 var lamp_flicker: PackedFloat32Array = PackedFloat32Array()
+var fire_flame: ShaderMaterial = ShaderMaterial.new()
+var fire_halo: ShaderMaterial = ShaderMaterial.new()
+var fire_spark: ShaderMaterial = ShaderMaterial.new()
+var fire_smoke: ShaderMaterial = ShaderMaterial.new()
+var fire_head: ShaderMaterial = ShaderMaterial.new()
+var fire_glows: Array[GeometryInstance3D] = []
+var fire_lamps: PackedInt32Array = PackedInt32Array()
+var fog_wait: float = 0.0
 var crow_head: Node3D
 var crow_body: Node3D
 var crow_rest: Vector3 = Vector3.ZERO
@@ -175,6 +185,11 @@ func make_materials() -> void:
 	var crow: StandardMaterial3D = flat(Color(0.022, 0.022, 0.028), 0.35)
 	crow.metallic = 0.25
 	materials["crow"] = crow
+	fire_flame.shader = load(ROAD_FIRE + "torch_flame.gdshader") as Shader
+	fire_halo.shader = load(ROAD_FIRE + "torch_halo.gdshader") as Shader
+	fire_spark.shader = load(ROAD_FIRE + "torch_spark.gdshader") as Shader
+	fire_smoke.shader = load(ROAD_FIRE + "torch_smoke.gdshader") as Shader
+	fire_head.shader = load(ROAD_FIRE + "torch_head.gdshader") as Shader
 	var grass: ShaderMaterial = ShaderMaterial.new()
 	grass.shader = load(SHADERS + "church_grass.gdshader") as Shader
 	materials["grass"] = grass
@@ -750,12 +765,168 @@ func torch(point: Vector3, side: float) -> void:
 	ring(iron, Transform3D(Basis(Vector3.RIGHT, PI * 0.5), point + Vector3(0.0, -0.1, 0.3)), circle(Vector2.ZERO, 0.08, 10), circle(Vector2.ZERO, 0.06, 10), 0.04, Color.WHITE)
 	var lean: Vector3 = Vector3(side * 0.12, 1.0, 0.28).normalized()
 	var shaft_base: Vector3 = point + Vector3(0.0, -0.35, 0.3)
-	var head: Vector3 = shaft_base + lean * 0.72
-	cylinder(tool("wood|" + key), shaft_base, head, 0.035, 0.045, 7, Color(0.6, 0.55, 0.5))
-	cylinder(tool("cloth|" + key), head - lean * 0.1, head + lean * 0.08, 0.07, 0.065, 8, Color.WHITE, Color.WHITE, true)
-	flame(head + lean * 0.05, 0.36, 0.55, 1.0, 0.9)
-	flame(head + lean * 0.1 + Vector3(0.03, 0, 0.02), 0.24, 0.42, 0.85, 1.0)
-	lamp(head + Vector3.UP * 0.35, Color(1.0, 0.55, 0.22), 1.3, 6.5, 1.0)
+	var head_base: Vector3 = shaft_base + lean * 0.6
+	var rim: Vector3 = shaft_base + lean * 0.82
+	cylinder(tool("wood|" + key), shaft_base, head_base + lean * 0.02, 0.035, 0.042, 7, Color(0.6, 0.55, 0.5))
+	pitch_head(head_base, rim, 0.058, 0.07)
+	lamp(rim + Vector3.UP * 0.3, Color(1.0, 0.52, 0.2), 1.6, 6.5, 1.0)
+	live_fire(rim, [Vector3(0.0, 0.3, 0.52)], 1.6, 12, 4)
+
+# A charred pitch-soaked rag round the torch top, built about its own base so the head shader's
+# local-space noise stays fine; UV.y runs 0 at the wrap to 1 at the rim.
+func pitch_head(bottom: Vector3, top: Vector3, bottom_radius: float, top_radius: float) -> void:
+	var surface: SurfaceTool = SurfaceTool.new()
+	surface.begin(Mesh.PRIMITIVE_TRIANGLES)
+	var axis: Vector3 = (top - bottom).normalized()
+	var u: Vector3 = axis.cross(Vector3.RIGHT).normalized()
+	var v: Vector3 = axis.cross(u).normalized()
+	var rings: int = 4
+	var sides: int = 10
+	for ring_index: int in range(rings):
+		for side: int in range(sides):
+			var corners: Array[Vector2] = [Vector2(side, ring_index), Vector2(side + 1, ring_index), Vector2(side + 1, ring_index + 1), Vector2(side, ring_index + 1)]
+			var points: Array[Vector3] = []
+			var normals: Array[Vector3] = []
+			var uvs: PackedVector2Array = PackedVector2Array()
+			for corner: Vector2 in corners:
+				var t: float = corner.y / float(rings)
+				var angle: float = TAU * corner.x / float(sides)
+				var radial: Vector3 = u * cos(angle) + v * sin(angle)
+				var bulge: float = 1.0 + 0.12 * sin(t * PI) + 0.05 * sin(angle * 3.0 + t * 7.0)
+				points.append(bottom.lerp(top, t) - bottom + radial * lerpf(bottom_radius, top_radius, t) * bulge)
+				normals.append(radial)
+				uvs.append(Vector2(corner.x / float(sides), t))
+			var triangles: Array[PackedInt32Array] = [PackedInt32Array([0, 1, 2]), PackedInt32Array([0, 2, 3])]
+			for triangle: PackedInt32Array in triangles:
+				var face: Vector3 = (points[triangle[2]] - points[triangle[0]]).cross(points[triangle[1]] - points[triangle[0]])
+				var order: PackedInt32Array = triangle if face.dot(normals[triangle[0]]) >= 0.0 else PackedInt32Array([triangle[0], triangle[2], triangle[1]])
+				for index: int in order:
+					surface.set_normal(normals[index])
+					surface.set_uv(uvs[index])
+					surface.add_vertex(points[index])
+	var cap: Vector3 = top - bottom
+	for side: int in range(sides):
+		var a0: float = TAU * float(side) / float(sides)
+		var a1: float = TAU * float(side + 1) / float(sides)
+		var p0: Vector3 = cap + (u * cos(a0) + v * sin(a0)) * top_radius
+		var p1: Vector3 = cap + (u * cos(a1) + v * sin(a1)) * top_radius
+		var order: Array[Vector3] = [cap + axis * 0.02, p0, p1]
+		if (p1 - order[0]).cross(p0 - order[0]).dot(axis) < 0.0:
+			order = [cap + axis * 0.02, p1, p0]
+		for point: Vector3 in order:
+			surface.set_normal(axis)
+			surface.set_uv(Vector2(0.5, 1.15))
+			surface.add_vertex(point)
+	var visual: MeshInstance3D = MeshInstance3D.new()
+	visual.name = "PitchHead"
+	visual.mesh = surface.commit()
+	visual.material_override = fire_head
+	visual.cast_shadow = GeometryInstance3D.SHADOW_CASTING_SETTING_OFF
+	add_child(visual)
+	visual.position = bottom
+	visual.set_instance_shader_parameter(&"seed", random.randf_range(0.0, 50.0))
+	fire_glows.append(visual)
+	fire_lamps.append(lamps.size())
+
+# Live fire at a point: noise-torn flame quads (offset x/z, width, height each), a soft halo,
+# rising sparks and a thin smoke wisp. Heat follows the most recently placed lamp's flicker.
+func live_fire(point: Vector3, tongues: Array[Vector3], halo: float, sparks: int, wisps: int) -> void:
+	var lamp_index: int = lamps.size() - 1
+	for tongue: Vector3 in tongues:
+		var size: Vector2 = Vector2(tongue.y, tongue.z)
+		var flame_visual: MeshInstance3D = fire_quad("Flame", size, fire_flame, point + Vector3(tongue.x, -0.06, tongue.x * 0.6))
+		(flame_visual.mesh as QuadMesh).center_offset = Vector3(0.0, size.y * 0.5, 0.0)
+		flame_visual.set_instance_shader_parameter(&"seed", random.randf_range(0.0, 50.0))
+		fire_glows.append(flame_visual)
+		fire_lamps.append(lamp_index)
+	var glow: MeshInstance3D = fire_quad("Glow", Vector2.ONE * halo, fire_halo, point + Vector3.UP * 0.18)
+	fire_glows.append(glow)
+	fire_lamps.append(lamp_index)
+	add_child(fire_particles("Embers", point, sparks, 1.5, fire_spark, true))
+	add_child(fire_particles("SmokeWisp", point + Vector3.UP * 0.35, wisps, 3.4, fire_smoke, false))
+
+func fire_quad(label: String, size: Vector2, material: ShaderMaterial, point: Vector3) -> MeshInstance3D:
+	var quad_mesh: QuadMesh = QuadMesh.new()
+	quad_mesh.size = size
+	var visual: MeshInstance3D = MeshInstance3D.new()
+	visual.name = label
+	visual.mesh = quad_mesh
+	visual.material_override = material
+	visual.position = point
+	visual.cast_shadow = GeometryInstance3D.SHADOW_CASTING_SETTING_OFF
+	visual.gi_mode = GeometryInstance3D.GI_MODE_DISABLED
+	visual.extra_cull_margin = maxf(size.x, size.y)
+	add_child(visual)
+	return visual
+
+# Settings match church_road.gd's embers and smoke so every fire in the level behaves alike.
+func fire_particles(label: String, point: Vector3, amount: int, lifetime: float, material: ShaderMaterial, sparks: bool) -> CPUParticles3D:
+	var emitter: CPUParticles3D = CPUParticles3D.new()
+	emitter.name = label
+	emitter.position = point
+	emitter.amount = maxi(amount, 1)
+	emitter.lifetime = lifetime
+	emitter.preprocess = lifetime
+	emitter.randomness = 0.6
+	emitter.fixed_fps = 30
+	emitter.local_coords = false
+	emitter.cast_shadow = GeometryInstance3D.SHADOW_CASTING_SETTING_OFF
+	emitter.extra_cull_margin = 1.5
+	emitter.emission_shape = CPUParticles3D.EMISSION_SHAPE_SPHERE
+	emitter.direction = Vector3.UP
+	var ramp: Gradient = Gradient.new()
+	if sparks:
+		emitter.emission_sphere_radius = 0.05
+		emitter.spread = 28.0
+		emitter.initial_velocity_min = 0.25
+		emitter.initial_velocity_max = 0.75
+		emitter.gravity = Vector3(0.12, 0.45, 0.05)
+		emitter.damping_min = 0.2
+		emitter.damping_max = 0.5
+		emitter.tangential_accel_min = -0.5
+		emitter.tangential_accel_max = 0.5
+		emitter.scale_amount_min = 0.012
+		emitter.scale_amount_max = 0.028
+		ramp.set_color(0, Color(1.0, 0.75, 0.32, 1.0))
+		ramp.set_color(1, Color(0.7, 0.06, 0.0, 0.0))
+		ramp.add_point(0.45, Color(1.0, 0.32, 0.04, 0.9))
+	else:
+		emitter.emission_sphere_radius = 0.04
+		emitter.spread = 10.0
+		emitter.initial_velocity_min = 0.25
+		emitter.initial_velocity_max = 0.4
+		emitter.gravity = Vector3(0.08, 0.12, 0.03)
+		emitter.damping_min = 0.05
+		emitter.damping_max = 0.1
+		emitter.scale_amount_min = 0.12
+		emitter.scale_amount_max = 0.2
+		var growth: Curve = Curve.new()
+		growth.max_value = 4.0
+		growth.add_point(Vector2(0.0, 0.6))
+		growth.add_point(Vector2(1.0, 3.2))
+		emitter.scale_amount_curve = growth
+		emitter.angle_min = -180.0
+		emitter.angle_max = 180.0
+		ramp.set_color(0, Color(1.0, 1.0, 1.0, 0.0))
+		ramp.set_color(1, Color(1.0, 1.0, 1.0, 0.0))
+		ramp.add_point(0.18, Color(1.0, 1.0, 1.0, 0.12))
+	emitter.color_ramp = ramp
+	var quad_mesh: QuadMesh = QuadMesh.new()
+	quad_mesh.material = material
+	emitter.mesh = quad_mesh
+	return emitter
+
+# The fire shaders skip engine fog (it would brighten additive light) and fade by the same haze.
+func update_fire_fog() -> void:
+	var environment: Environment = get_world_3d().environment if get_world_3d() != null else null
+	if environment == null:
+		for node: Node in get_tree().root.find_children("*", "WorldEnvironment", true, false):
+			environment = (node as WorldEnvironment).environment
+	var density: float = 0.0
+	if environment != null and environment.fog_enabled:
+		density = 3.0 / maxf(environment.fog_depth_end, 1.0) if environment.fog_mode == Environment.FOG_MODE_DEPTH else environment.fog_density
+	for material: ShaderMaterial in [fire_flame, fire_halo, fire_spark]:
+		material.set_shader_parameter(&"fog_density", density)
 
 # --- Graves --------------------------------------------------------------------------------
 
@@ -1136,10 +1307,8 @@ func build_props() -> void:
 		var angle: float = PI * 0.25 + float(index) * PI * 0.5 + random.randf_range(-0.3, 0.3)
 		var out: Vector3 = Vector3(cos(angle), 0.0, sin(angle))
 		cylinder(tool("bark|" + fire_key), Vector3(FIRE.x, fire_ground + 0.32, FIRE.y) + out * 0.08, Vector3(FIRE.x, fire_ground + 0.04, FIRE.y) + out * 0.55, 0.05, 0.06, 6, Color(0.18, 0.15, 0.13))
-	for index: int in range(4):
-		var offset: Vector3 = Vector3(random.randf_range(-0.16, 0.16), 0.05, random.randf_range(-0.16, 0.16))
-		flame(Vector3(FIRE.x, fire_ground, FIRE.y) + offset, random.randf_range(0.35, 0.55), random.randf_range(0.55, 0.95), random.randf_range(0.8, 1.0), 1.0)
 	lamp(Vector3(FIRE.x, fire_ground + 0.8, FIRE.y), Color(1.0, 0.5, 0.2), 1.8, 6.0, 1.0)
+	live_fire(Vector3(FIRE.x, fire_ground + 0.16, FIRE.y), [Vector3(0.0, 0.62, 0.82), Vector3(0.12, 0.42, 0.6), Vector3(-0.13, 0.38, 0.5)], 2.6, 16, 6)
 
 # A faceless hooded watcher just inside the gate, turned toward the road.
 func cloaked_figure() -> void:
@@ -1638,6 +1807,14 @@ func _process(delta: float) -> void:
 		var wobble: float = 0.1 * sin(phase * 7.3) + 0.06 * sin(phase * 13.1 + 1.2) + 0.04 * sin(phase * 23.7)
 		var slow: float = 0.08 * sin(elapsed * 0.6 + float(index))
 		lamps[index].light_energy = lamp_energy[index] * (1.0 + wobble * flicker * 1.6 + slow * (1.0 - flicker))
+	fog_wait -= delta
+	if fog_wait <= 0.0:
+		fog_wait = 0.5
+		update_fire_fog()
+	for index: int in range(fire_glows.size()):
+		var lamp_index: int = fire_lamps[index]
+		var heat: float = lamps[lamp_index].light_energy / lamp_energy[lamp_index] if lamp_index >= 0 and lamp_index < lamps.size() else 1.0
+		fire_glows[index].set_instance_shader_parameter(&"heat", clampf(heat, 0.6, 1.3))
 	if crow_head != null:
 		crow_wait -= delta
 		if crow_wait <= 0.0:

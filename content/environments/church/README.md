@@ -10,7 +10,7 @@ This folder holds only original shader code written for the task; no new externa
 | --- | --- |
 | `church_ruin.gdshader` | Runtime weathering of the chapel ruin's own PBR maps: greyer, darker, grime, moss |
 | `church_stone.gdshader` | World-triplanar weathered stone with grime streaks, moss and a light ash dusting |
-| `church_flame.gdshader` | Y-billboarded candle, torch and grave-fire flames (one MultiMesh) |
+| `church_flame.gdshader` | Y-billboarded candle flames (one MultiMesh) |
 | `church_mist.gdshader` | Thin terrain-following ground mist layers, depth-softened |
 | `church_embers.gdshader` | Smouldering Voronoi ground cracks |
 | `church_pit.gdshader` | Open grave: ray-marched earthen pit on a flat quad |
@@ -18,6 +18,10 @@ This folder holds only original shader code written for the task; no new externa
 | `church_ground.gdshader` | Dark trampled graveyard earth laid over the landscape |
 
 ## Reused repository assets
+
+The gate torches and the grave fire reuse the road torches' fire shaders from
+`content/environments/church_road/` (`torch_flame`, `torch_halo`, `torch_head`, `torch_spark`,
+`torch_smoke`; original SECHA code, T-086) so every fire in the level has one look.
 
 Textures (already in the repository; provenance in their own folders):
 
