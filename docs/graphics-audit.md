@@ -51,3 +51,11 @@ T-092 reported that the first deferred-theme fix restored stale daylight baselin
 - Terrain seams, collision/material alignment and prop grounding are being audited by the terrain owner (T-097); church refinement/chapel and forest refinements remain in their owners' scopes. Their final combined acceptance is not implied by a clean import.
 - A new clean, fixed-content performance baseline on the target lower-spec Macs, sustained native fullscreen motion, four-player load, GPU/CPU profiling, and thermal checks. The submitted primitive/draw counts merit further local batching/LOD work, guided by measurement and preserving Mobile light pairing.
 - Manual trackpad/camera acceptance and a two-Mac Tailscale playtest. Headless suites and isolated frame samples do not prove these.
+
+## Final guarded snapshot: 29d9851
+
+The clean pinned playtest at 29d9851 includes the shipped chapel/church, torch road, haunted forest embers/ash, possessed villagers and ragged clothing, plus both T-095 fixes. Clean import, main smoke, session/reconnect, Natural startup and Night -> Natural invariants passed. The real-render check passed with no shader/script errors or exit-resource warnings.
+
+In the guarded same-content run (no other graphical Godot process detected at either sample boundary): menu world-on median/p95 5.44/5.88ms, 1747 draws; menu world-off 0.14/0.17ms, 10 draws. Fixed 75-degree game view: dynamic/static sky both 3.71ms median. Actual owner projection: 4.24/4.55ms, 1676 draws, about 16.8m submitted primitives. These remain forced-draw wall samples on M5 Max; they do not certify a lower-spec Mac or sustained native fullscreen FPS.
+
+Latest board review also records concrete unresolved issues: T-097 found 0.05–1.41m border gaps/cliffs, player-under-ground cases and apron overlap/steps and is fixing them. T-085 notes church visibility from the village is blocked by trees/fog, villagers cannot navigate onto the terrace, and audio is unmixed. T-091 owns combined encounter acceptance; T-099 refreshes reference material. Those findings are not hidden by this scoped rendering pass.
