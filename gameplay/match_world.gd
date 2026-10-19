@@ -103,6 +103,7 @@ func build_arena() -> void:
 	# After the village, whose landscape heights they sample.
 	add_child(preload("res://gameplay/environment/church_grounds.gd").new())
 	add_child(preload("res://gameplay/environment/church_road.gd").new())
+	add_child(preload("res://gameplay/environment/haunted_forest.gd").new())
 
 func build_ui() -> void:
 	add_child(preload("res://ui/fisheye.gd").new())
