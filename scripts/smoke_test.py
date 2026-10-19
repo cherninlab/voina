@@ -45,7 +45,7 @@ print(projectiles.stdout, end='')
 print(projectiles.stderr, end='')
 assert projectiles.returncode == 0 and 'PROJECTILE_OK:' in projectiles.stdout
 assert 'ERROR' not in projectiles.stdout + projectiles.stderr
-for test, marker in ((['--script', 'tests/remote_motion_test.gd'], 'REMOTE_MOTION_OK:'), (['--fixed-fps', '60', 'res://tests/net_test.tscn'], 'NET_OK:'), (['--fixed-fps', '60', 'res://tests/match_test.tscn'], 'MATCH_OK:'), (['--fixed-fps', '60', 'res://tests/blade_contact_test.tscn'], 'BLADE_CONTACT_OK:'), (['--fixed-fps', '60', 'res://tests/stroke_contact_test.tscn'], 'STROKE_CONTACT_OK:')):
+for test, marker in ((['--script', 'tests/remote_motion_test.gd'], 'REMOTE_MOTION_OK:'), (['--script', 'tests/swing_camera_test.gd'], 'SWING_CAMERA_OK:'), (['--fixed-fps', '60', 'res://tests/net_test.tscn'], 'NET_OK:'), (['--fixed-fps', '60', 'res://tests/match_test.tscn'], 'MATCH_OK:'), (['--fixed-fps', '60', 'res://tests/blade_contact_test.tscn'], 'BLADE_CONTACT_OK:'), (['--fixed-fps', '60', 'res://tests/stroke_contact_test.tscn'], 'STROKE_CONTACT_OK:')):
     run = subprocess.run(base + test, capture_output=True, text=True, timeout=60)
     print(run.stdout, end='')
     print(run.stderr, end='')

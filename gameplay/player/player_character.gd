@@ -26,6 +26,7 @@ var feedback_left: float = 0.0
 var shake_left: float = 0.0
 var hitstop_left: float = 0.0
 var aim_friction: float = 1.0
+var swing_camera: SwingCamera = SwingCamera.new() # owner-only view sway from the blade
 var flash_left: float = 0.0
 var flash_color: Color = Color.WHITE
 var accepted_position: Vector3 = Vector3.ZERO
@@ -328,6 +329,7 @@ func _process(delta: float) -> void:
 		camera.fov = preload("res://ui/fisheye.gd").camera_fov(InputSettings.fisheye)
 		camera.h_offset = sin(Time.get_ticks_msec() * 0.07) * shake_left * 0.12
 		camera.v_offset = cos(Time.get_ticks_msec() * 0.09) * shake_left * 0.1
+		camera.rotation = swing_camera.step(delta, body.motion.heading_speed, body.motion.elevation_speed)
 
 # A staggered owner should only slide from knockback. The host clamps horizontal drift
 # around where it saw the stagger begin, allowing walking until the stagger reaches the owner.
