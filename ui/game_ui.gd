@@ -127,6 +127,12 @@ func _ready() -> void:
 	join.text = "Join game"
 	menu.add_child(join)
 	join.pressed.connect(func() -> void: NetworkManager.join_game(address.text, NetworkManager.port))
+	var village_raiders: CheckButton = world.get("village_raiders_toggle") as CheckButton
+	village_raiders.text = "Raiders in the village"
+	menu.add_child(village_raiders)
+	var forest_raiders: CheckButton = world.get("forest_raiders_toggle") as CheckButton
+	forest_raiders.text = "Raiders in the woods"
+	menu.add_child(forest_raiders)
 	var pve: CheckButton = world.get("pve_toggle") as CheckButton
 	pve.text = "Possessed villagers at the church"
 	menu.add_child(pve)
@@ -439,7 +445,8 @@ func refresh() -> void:
 	(world.get("host_button") as Button).disabled = active
 	(world.get("join_button") as Button).disabled = active
 	(world.get("address") as LineEdit).editable = not active
-	(world.get("pve_toggle") as CheckButton).disabled = active
+	for toggle: String in ["pve_toggle", "village_raiders_toggle", "forest_raiders_toggle"]:
+		(world.get(toggle) as CheckButton).disabled = active
 	(world.get("match_toggle") as CheckButton).disabled = active
 	var leave: Button = world.get("leave_button") as Button
 	leave.text = "Cancel connection" if connecting else "Leave game"
@@ -464,7 +471,8 @@ func show_setup(mode: String) -> void:
 	(world.get("join_button") as Control).visible = mode == "join"
 	(world.get("address") as Control).visible = mode == "join"
 	address_heading.visible = mode == "join"
-	(world.get("pve_toggle") as Control).visible = mode == "host"
+	for toggle: String in ["pve_toggle", "village_raiders_toggle", "forest_raiders_toggle"]:
+		(world.get(toggle) as Control).visible = mode == "host"
 	(world.get("match_toggle") as Control).visible = mode == "host"
 	refresh()
 	if mode.is_empty():

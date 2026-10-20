@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Possessed villager checks (church yard), including real ENet late joining. Usage: mob_smoke_test.py GODOT"""
+"""Possessed villager (church yard) and raider (village, forest) checks, including real ENet late joining. Usage: mob_smoke_test.py GODOT"""
 import os
 import pathlib
 import socket
@@ -20,6 +20,10 @@ bodies = subprocess.run(base + ["--fixed-fps", "60", "res://tests/mob_body_test.
 output = bodies.stdout + bodies.stderr
 print(output, end="")
 assert bodies.returncode == 0 and "MOB_BODY_OK:" in output and "ERROR" not in output
+raiders = subprocess.run(base + ["--fixed-fps", "60", "res://tests/raider_test.tscn"], capture_output=True, text=True, timeout=90)
+output = raiders.stdout + raiders.stderr
+print(output, end="")
+assert raiders.returncode == 0 and "RAIDER_OK:" in output and "ERROR" not in output
 stains = subprocess.run(base + ["--script", "tests/stain_test.gd"], capture_output=True, text=True, timeout=60)
 output = stains.stdout + stains.stderr
 print(output, end="")
@@ -49,4 +53,4 @@ with tempfile.TemporaryDirectory() as directory:
             if host.poll() is None:
                 host.terminate()
                 host.wait(timeout=5)
-print("PASS: villager behaviour, yard navigation, bodies, stains and two-process late join")
+print("PASS: villager behaviour, yard navigation, raiders, bodies, stains and two-process late join")

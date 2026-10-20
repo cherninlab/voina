@@ -5,6 +5,9 @@ extends Node3D
 const MODELS: Array[PackedScene] = [preload("res://content/characters/quaternius/Superhero_Male_FullBody.gltf"), preload("res://content/characters/quaternius/Superhero_Female_FullBody.gltf")]
 const CLIPS: Array[AnimationLibrary] = [preload("res://content/animations/quaternius/male.res"), preload("res://content/animations/quaternius/female.res")]
 var female: bool = false # set by HostileMob from its replicated id before this enters the tree
+# A forest raider (RaiderMob) rather than a possessed villager: the models' own colours and
+# undistorted clips, jogging and jabbing.
+var raider: bool = false
 # Which possessed villager this is; read from the parent's replicated mob_id when it enters the tree,
 # or set directly where there is no HostileMob (captures, tests).
 var mob_id: int = 1
@@ -81,6 +84,9 @@ func _ready() -> void:
 	skeleton.add_child(puppet)
 	skeleton.move_child(puppet, feet.get_index() + 1)
 	hands = MobPossession.Hands.install(skeleton, possession)
+	if raider:
+		possession.active = false
+		hands.set_enabled(false)
 	skeleton.skeleton_updated.connect(cache_pose)
 	last_position = global_position
 	overlay.shader = OVERLAY_SHADER
@@ -89,7 +95,8 @@ func _ready() -> void:
 	for bone_name: String in ["lowerarm_l", "lowerarm_r", "calf_l", "calf_r"]:
 		streak_bones.append(skeleton.find_bone(bone_name))
 	if rendered:
-		possess_skin(overlay)
+		if not raider:
+			possess_skin(overlay)
 		for mesh: MeshInstance3D in meshes:
 			mesh.set_instance_shader_parameter("surface_role", role_of(mesh))
 	add_child(playback)
@@ -174,14 +181,15 @@ func _process(delta: float) -> void:
 	react_left = maxf(0.0, react_left - delta)
 	freeze_left = maxf(0.0, freeze_left - delta)
 	stare_time = stare_time + delta if staring else 0.0
-	var stutter: float = possession.clip_speed(delta)
+	var stutter: float = possession.clip_speed(delta) if not raider else 1.0
 	playback.speed_scale = 0.0 if freeze_left > 0.0 else clip_speed * stutter
 	push_age += delta
 	if delta > 0.0 and not fallen:
 		velocity = velocity.lerp((global_position - last_position) / delta, minf(1.0, delta * 10.0))
 		last_position = global_position
 	possession.velocity = velocity
-	update_look()
+	if not raider:
+		update_look()
 	update_overlay(delta)
 
 # The head follows the nearest player in sight range: hard while staring, crawling or coiled, idly
@@ -335,7 +343,8 @@ func bisect(point: Vector3, normal: Vector3, impulse: Vector3) -> void:
 	if rendered:
 		half_overlay = ShaderMaterial.new()
 		half_overlay.shader = OVERLAY_SHADER
-		possess_skin(half_overlay)
+		if not raider:
+			possess_skin(half_overlay)
 		half_overlay.set_shader_parameter("use_normal", false) # the cut bake rewrote the tangents
 		half_overlay.set_shader_parameter("streak_amount", 0.0)
 	for side: float in [1.0, -1.0]:
@@ -405,6 +414,9 @@ func bisect(point: Vector3, normal: Vector3, impulse: Vector3) -> void:
 # label) and the leap. A stare freezes whatever stance it caught, so a crawler's short stops stay
 # on all fours; an upright villager that keeps staring sinks into a crouch. Unknown states idle.
 func show_state(state: int, health: int, staggered: bool, windup: bool) -> void:
+	if raider:
+		show_raider(state, health, staggered, windup)
+		return
 	var next: StringName = &"Idle"
 	var stance: int = MobPossession.Mode.UPRIGHT
 	var speed: float = Vector2(velocity.x, velocity.z).length()
@@ -436,6 +448,24 @@ func show_state(state: int, health: int, staggered: bool, windup: bool) -> void:
 		clip_speed = 1.0
 		stance = possession.mode if possession.mode != MobPossession.Mode.LEAP else MobPossession.Mode.UPRIGHT
 	possession.mode = stance
+	if clip != next:
+		clip = next
+		playback.play(clip, 0.12)
+
+# A raider shows the host's state with the plain clips: idle, jog, the jab, the hit.
+func show_raider(state: int, health: int, staggered: bool, _windup: bool) -> void:
+	clip_speed = 1.0
+	var next: StringName = &"Idle"
+	if health <= 0:
+		if not fallen:
+			fall.call_deferred()
+		return
+	elif staggered:
+		next = &"Hit_Chest"
+	elif state == ACT:
+		next = &"Punch_Jab"
+	elif state == MOVE:
+		next = &"Jog_Fwd"
 	if clip != next:
 		clip = next
 		playback.play(clip, 0.12)

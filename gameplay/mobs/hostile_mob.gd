@@ -320,7 +320,7 @@ func walk(destination: Vector3, speed: float, gait_state: int, delta: float) -> 
 		return true
 	path_left -= delta
 	if path_left <= 0.0 or route.is_empty() or route_goal.distance_to(destination) > 1.0:
-		route = system.navigation.path(global_position, destination)
+		route = grid().path(global_position, destination)
 		route_goal = destination
 		path_left = 0.4
 	while not route.is_empty() and Vector2(route[0].x - global_position.x, route[0].z - global_position.z).length() < 0.22:
@@ -335,6 +335,10 @@ func walk(destination: Vector3, speed: float, gait_state: int, delta: float) -> 
 	yaw = facing(direction)
 	state = gait_state
 	return false
+
+# The grid this mob walks on: the church yard's. RaiderMob walks the forest's.
+func grid() -> MobNavigation:
+	return system.navigation
 
 func facing(direction: Vector3) -> float:
 	return atan2(-direction.x, -direction.z)

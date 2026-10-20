@@ -9,7 +9,9 @@ var menu: VBoxContainer = VBoxContainer.new()
 var address: LineEdit = LineEdit.new()
 var controls_button: Button = Button.new()
 var controls_panel: PanelContainer = preload("res://ui/controls_panel.gd").new()
-var pve_toggle: CheckButton = CheckButton.new()
+var pve_toggle: CheckButton = CheckButton.new() # possessed villagers at the church
+var village_raiders_toggle: CheckButton = CheckButton.new()
+var forest_raiders_toggle: CheckButton = CheckButton.new()
 var mobs: MobSystem = MobSystem.new()
 var match_toggle: CheckButton = CheckButton.new()
 var match_flow: MatchFlow = MatchFlow.new()
@@ -38,8 +40,13 @@ func _ready() -> void:
 	mobs.name = "Mobs"
 	mobs.players = players
 	add_child(mobs)
-	# The church yard is haunted unless the host opts out (lobby switch, or --no-pve).
-	pve_toggle.button_pressed = not "--no-pve" in OS.get_cmdline_user_args()
+	# Lobby switches for each encounter. The church yard is haunted and raiders wait in the woods
+	# unless the host opts out; raiders in the village are opt-in. In Terminal: --no-pve,
+	# --no-forest-raiders, --village-raiders.
+	var arguments: PackedStringArray = OS.get_cmdline_user_args()
+	pve_toggle.button_pressed = not "--no-pve" in arguments
+	forest_raiders_toggle.button_pressed = not "--no-forest-raiders" in arguments
+	village_raiders_toggle.button_pressed = "--village-raiders" in arguments
 	match_flow.name = "Match"
 	match_flow.players = players
 	add_child(match_flow)
@@ -65,7 +72,10 @@ func host_started() -> void:
 	menu.hide()
 	if not NetworkManager.dedicated:
 		spawner.spawn([1, 0])
-	if pve_toggle.button_pressed or "--pve" in OS.get_cmdline_user_args():
+	mobs.villagers = pve_toggle.button_pressed or "--pve" in OS.get_cmdline_user_args()
+	mobs.village_raiders = village_raiders_toggle.button_pressed
+	mobs.forest_raiders = forest_raiders_toggle.button_pressed
+	if mobs.villagers or mobs.village_raiders or mobs.forest_raiders:
 		mobs.start()
 	if match_toggle.button_pressed or "--match" in OS.get_cmdline_user_args():
 		match_flow.start()
@@ -121,8 +131,10 @@ func _process(_delta: float) -> void:
 		hud.text += "\nHealth %d · Stamina %d · Poise %d · %s · players %d / 4" % [combat.health, int(combat.stamina), int(combat.poise), CombatController.Phase.keys()[combat.phase], players.get_child_count()]
 		if float(local.get("feedback_left")) > 0:
 			hud.text += " · " + String(local.get("feedback"))
-	if mobs.bodies.get_child_count() > 0 or mobs.started:
+	if mobs.bodies.get_child_count() > 0 or (mobs.started and mobs.villagers):
 		hud.text += "\nChurch yard · %d possessed villagers · they pounce if you come close" % mobs.living_count()
+	if mobs.raiders.get_child_count() > 0:
+		hud.text += "\nPvE · %d raiders" % mobs.living_count(mobs.raiders)
 
 func smoke_client() -> void:
 	await get_tree().create_timer(2.0).timeout

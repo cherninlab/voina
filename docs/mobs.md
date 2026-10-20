@@ -1,19 +1,43 @@
-# Possessed villagers at the church
+# Hostile mobs
 
-The graveyard in front of the hillside church north of the village (`ChurchSite`, yard centre (-4, -103), 16 m ring) is haunted by four possessed villagers. They are on by default: the lobby switch **Possessed villagers at the church** starts ticked, and turning it off before **Host game** gives a church yard without them. Joining players receive the host's villagers automatically, including a late join. In Terminal:
+The host chooses the PvE encounters with three lobby switches before **Host game**; each one works on its own:
+
+| Switch | Default | Terminal |
+| --- | --- | --- |
+| **Raiders in the village** | off | `--village-raiders` |
+| **Raiders in the woods** | on | `--no-forest-raiders` turns it off |
+| **Possessed villagers at the church** | on | `--no-pve` turns it off, `--pve` forces it on |
+
+`MatchWorld.host_started` copies them into `MobSystem.villagers`, `village_raiders` and `forest_raiders` and starts the encounter when any is on. Joining players receive every mob automatically, including a late join.
+
+## Raiders
+
+The raiders are the game's first enemy (before T-087 replaced them with the villagers), brought back as `RaiderMob`, a `HostileMob` subclass with the original brain and body. There are three per zone (`MobSystem.Zone`), each zone with its own `MobNavigation` grid (44 m at 0.5 m, sampled when the encounter starts) and five posts, the first three the opening places:
+
+- **Village**: grid centred on the square; posts around it (`VILLAGE_POSTS`), the first three the old arena spawns at (-8, 0), (8, 0) and (0, -13). They see 30 m, so they go straight for players at the spawn, as the old opt-in encounter did.
+- **Woods**: grid centred on the church road at z -62, covering the haunted forest from z -84 to -40; posts 7 to 11 m off the road among the trees (`FOREST_POSTS`, offsets from `ChurchSite.road_x`), each raider waiting there facing the road. They see 22 m, about where the forest fog swallows a figure.
+
+Each raider has **60 health**, in the models' own colours with no possession (no distortion, overlay, clothes or stutter) and no name label. It runs (2.7 m/s) at the last place it saw a player who is on its zone's grid, stops within 1.65 m, winds up for **0.5 seconds** and jabs (`Punch_Jab`, held until the fist is out as the hit lands, so the stop is the only telegraph): **12 melee damage** in a 45 degree, 1.9 m cone checked again at impact, then **0.8 seconds recovery**. Block and parry work as against a player. A hit from a player in its zone makes that player its target. Once its target leaves the zone or stays hidden for 3 seconds it walks back to its post (1.6 m/s) and waits. A dead raider is replaced after 5 seconds at its zone's post farthest from the players. Raider ids start at 1001, apart from the villagers', because player swings key their hit ids on `-mob_id`. Blade contact, wounds, blood, ragdolls and the bisect are the shared mob pipeline described below.
+
+The raider brain uses only `IDLE`, `MOVE`, `ACT` (windup, jab and recovery) and `DEAD`. Spawn data is `[id, post, yaw, zone]`, so every peer builds the same raider in the same zone without a new synchronized property. `tests/raider_test.tscn` (run by `scripts/mob_smoke_test.py`) checks the forest posts, facing the road, ignoring a player in the village, pursuit and one 12-damage jab per attack, giving up and walking home, replacement at the farthest post, clearing, and then the village switch alone.
+
+## Possessed villagers
+
+The graveyard in front of the hillside church north of the village (`ChurchSite`, yard centre (-4, -103), 16 m ring) is haunted by four possessed villagers. In Terminal:
 
 ```sh
-"$GODOT" --path . -- --host            # villagers at the church (default)
-"$GODOT" --path . -- --host --no-pve   # an empty church yard
-# A dedicated server haunts the yard too; --pve still forces it on.
+"$GODOT" --path . -- --host                    # villagers at the church and raiders in the woods (default)
+"$GODOT" --path . -- --host --village-raiders  # raiders in the village too
+"$GODOT" --path . -- --host --no-pve --no-forest-raiders  # no PvE
+# A dedicated server takes the same flags.
 "$GODOT" --headless --path . -- --server --port=7777
 # Other players join normally; they need no flag.
 "$GODOT" --path . -- --join=your-host-magicdns-name
 ```
 
-They are the first enemies in the game and a light threat: they never hunt anyone across the map and never follow a player out of the yard. How their bodies look possessed (proportions, joints, crawl and pounce poses) is described in [possessed-villagers.md](possessed-villagers.md).
+They are a light threat: they never hunt anyone across the map and never follow a player out of the yard. How their bodies look possessed (proportions, joints, crawl and pounce poses) is described in [possessed-villagers.md](possessed-villagers.md).
 
-## Behaviour
+### Behaviour
 
 Each villager has **60 health** and haunts the grave it rose from (`HostileMob`, host only):
 
@@ -36,7 +60,7 @@ Each villager is the already imported CC0 Quaternius male or female model with i
 
 A different model works with this pipeline once it has, in Godot: a `Skeleton3D` using the bone names in `mob_feet.gd` (`thigh/calf/foot/ball_l/r`, `pelvis`), `mob_puppet.gd` (`spine_01`–`spine_03`, `neck_01`, `Head`, `upperarm/lowerarm_l/r`) and `MobRagdoll.PARTS` (also `hand_l/r`), with a humanoid rest pose about 1.8 m tall, feet at the origin and facing +Z before the visual's 180 degree turn; an `AnimationLibrary` with `Idle`, `Jog_Fwd`, `Punch_Jab` and `Hit_Chest` retargeted to that skeleton with tracks under `Model/Armature/Skeleton3D` (as `scripts/build_character_animations.gd` builds for the Quaternius bodies); and skinned, indexed triangle meshes, each with a `Skin`, 4 or 8 weights per vertex, and `UV2` and `TANGENT` free to overwrite (the cut bakes each vertex's plane distance into `UV2.x` and the plane normal into `TANGENT`), with `StandardMaterial3D` albedo textures that the cut shader can copy. Closed, watertight meshes cap best: the cap is built from the edges where the plane crosses the skin.
 
-## Ownership and replication
+### Ownership and replication
 
 Peer 1 owns villager spawning, movement, perception, pounce timing, health and death. Clients display synchronized snapshots at 30 Hz (`sync_position`, `yaw`, `state`, `attack_age`, health and combat phase); there is no client mob-damage or mob-spawn request RPC. Villager bodies expose the same combat interface as players, so bolts, block, parry and poise reuse the current rules. Player swing hit IDs use negative mob IDs because every mob has the same server authority.
 
@@ -54,7 +78,7 @@ Peer 1 owns villager spawning, movement, perception, pounce timing, health and d
 
 The brain separates perception from action. It checks sight every 0.2 seconds; static cover blocks sight, and a hidden player's last seen position is remembered for 3 seconds. Movement never reads a hidden player's position. Stagger cancels a coil or a leap.
 
-## Navigation
+### Navigation
 
 The yard is a slope (ground from about 1.4 m to 5 m), so `MobNavigation` keeps the ground height of every cell of an `AStarGrid2D` covering 44 by 44 m around the yard centre at 0.5 m (89 by 89 cells). When the encounter starts the host samples the static collision once, in about 20 ms: a ray finds the lowest surface under each cell (a ray stopped by a roof, branch or gravestone top keeps going down from just below it), a capsule wider than the villager's checks clearance from 0.35 m above that ground, and neighbouring cells more than 0.3 m apart in height are both closed, which cuts off ledges and tomb tops. Path points stand 0.95 m above their cell's ground. `nearest()` searches outward ring by ring from the cell under a point, so open ground costs one lookup. Routes refresh every 0.4 seconds; physics keeps bodies out of actors and walls.
 
