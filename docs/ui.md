@@ -9,7 +9,7 @@ The title screen loops the supplied illustrated village video (`content/ui/secha
 - An indeterminate connection loader with cancellation while awaiting the host and player spawn. It does not invent completion percentages or pretend to asynchronously load assets.
 - Connection errors return to the lobby with the real status message.
 - Escape opens a local pause menu. Resume recaptures the cursor; Controls opens the existing key/sensitivity/fisheye panel; Leave returns to the lobby. The host simulation and networking keep running.
-- A compact health/stamina/poise HUD replaces the always-visible debug text. `--debug-hud` restores the previous detailed readout. Existing sword tuning remains accessible from the pause screen.
+- A compact health/stamina/poise HUD replaces the always-visible debug text. `--debug-hud` restores the previous detailed readout. Existing sword tuning remains accessible from the pause screen: the sword, camera, shading and MPEG tweaks fold out down the top-right corner while paused, in a compact look (white 12 px type on a thin black wash, flat buttons; `GameUI.compact_theme`, T-116).
 
 Mik's fisheye implementation, camera controls, combat authority and ENet transport are unchanged. The window, menu and HUD use the SECHA name. The existing application data directory is explicitly retained to preserve saved bindings, sensitivity, fisheye strength and sword tuning.
 
@@ -34,7 +34,7 @@ While the opaque title still is visible offline, its viewport skips covered 3D d
 
 ## Perf meter
 
-F3 (rebindable as "Perf Overlay" in Controls) toggles a compact meter in the bottom-right corner, off by default (`ui/perf_meter.gd`, T-111). A big FPS number, coloured by the verdict, sits above short caption lines:
+A compact meter sits in the top-left corner from the start; F3 (fn+F3 on a Mac keyboard, where F3 alone is Mission Control; rebindable as "Perf Overlay" in Controls) hides and shows it (`ui/perf_meter.gd`, T-111, shown by default since T-116). A big FPS number, coloured by the verdict, sits above short caption lines:
 
 - `fps · 1% <low> · <frame>/<budget> ms`: the 1 % low is the 99th-percentile frame of the last 300 frames (about 5 s). The budget comes from `Engine.max_fps` (60, set in `match_world.gd`).
 - `cpu <sum>  scr / phy / rnd`: main-thread milliseconds per frame for scripts (all `_process` callbacks plus the deferred-call flush), physics (first `_physics_process` to the start of `_process`, so the Jolt step is included) and render CPU (`viewport_get_measured_render_time_cpu` plus frame setup).

@@ -49,15 +49,16 @@ func _ready() -> void:
 	clock.process_priority = 1000000
 	clock.process_physics_priority = -1000000
 	add_child(clock)
-	column.set_anchors_and_offsets_preset(Control.PRESET_BOTTOM_RIGHT)
-	column.grow_horizontal = Control.GROW_DIRECTION_BEGIN
-	column.grow_vertical = Control.GROW_DIRECTION_BEGIN
-	column.position += Vector2(-14, -12)
+	# Top-left corner, under the session line (game_ui.gd, at 24, 22) (T-116).
+	column.set_anchors_and_offsets_preset(Control.PRESET_TOP_LEFT)
+	column.grow_horizontal = Control.GROW_DIRECTION_END
+	column.grow_vertical = Control.GROW_DIRECTION_END
+	column.position = Vector2(24, 48)
 	column.add_theme_constant_override("separation", -4)
 	column.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	add_child(column)
 	for label: Label in [big, detail]:
-		label.horizontal_alignment = HORIZONTAL_ALIGNMENT_RIGHT
+		label.horizontal_alignment = HORIZONTAL_ALIGNMENT_LEFT
 		label.mouse_filter = Control.MOUSE_FILTER_IGNORE
 		label.add_theme_font_size_override("font_size", 30 if label == big else 11)
 		label.add_theme_constant_override("outline_size", 5 if label == big else 3)
@@ -65,7 +66,8 @@ func _ready() -> void:
 		label.add_theme_constant_override("line_spacing", -2)
 		column.add_child(label)
 	frame_times.resize(HISTORY)
-	set_shown(false)
+	# Shown from the start (T-116): on a Mac, F3 alone is Mission Control. The key hides it.
+	set_shown(true)
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed(&"perf_overlay"):
@@ -134,8 +136,8 @@ func _process(_delta: float) -> void:
 		big.text = lines[0]
 		big.add_theme_color_override("font_color", verdict_color(lines[lines.size() - 1]))
 		detail.text = "\n".join(lines.slice(1))
-		# Same viewport-height UI scale as game_ui.gd, pivoting on the bottom-right corner.
-		column.pivot_offset = column.size
+		# Same viewport-height UI scale as game_ui.gd, pivoting on the top-left corner.
+		column.pivot_offset = Vector2.ZERO
 		column.scale = Vector2.ONE * clampf(get_viewport().get_visible_rect().size.y / 900.0, 1.0, 2.5)
 		sums.fill(0.0)
 		samples = 0

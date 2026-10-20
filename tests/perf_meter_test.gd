@@ -43,24 +43,24 @@ func run() -> void:
 
 	var meter: CanvasLayer = PERF_METER.new() as CanvasLayer
 	add_child(meter)
-	check(not meter.visible and not meter.is_processing(), "hidden by default and not processing")
-	for frame: int in range(5):
-		await get_tree().process_frame
-	check(int(meter.get("samples")) == 0, "a hidden meter samples nothing")
-	check(not (meter.get("measured") as RID).is_valid(), "a hidden meter leaves render-time measurement off")
-	var press: InputEventAction = InputEventAction.new()
-	press.action = &"perf_overlay"
-	press.pressed = true
-	meter._unhandled_input(press)
-	check(meter.visible and meter.is_processing(), "the key shows the meter")
+	check(meter.visible and meter.is_processing(), "shown from the start")
 	for frame: int in range(5):
 		await get_tree().process_frame
 	check(int(meter.get("samples")) > 0, "a shown meter samples frames")
 	var lines: PackedStringArray = meter.call("report") as PackedStringArray
 	check(lines.size() == 6 and lines[0].is_valid_int() and lines[1].begins_with("fps") and lines[2].begins_with("cpu") and lines[3].begins_with("gpu") and lines[4].contains("draws"), "compact report: big fps number, fps/cpu/gpu/draws captions and a verdict")
+	var press: InputEventAction = InputEventAction.new()
+	press.action = &"perf_overlay"
+	press.pressed = true
 	meter._unhandled_input(press)
-	check(not meter.visible and not meter.is_processing(), "the key hides it again and stops processing")
+	check(not meter.visible and not meter.is_processing(), "the key hides it and stops processing")
 	check(not (meter.get("measured") as RID).is_valid(), "hiding switches measurement off")
+	var samples: int = int(meter.get("samples"))
+	for frame: int in range(5):
+		await get_tree().process_frame
+	check(int(meter.get("samples")) == samples, "a hidden meter samples nothing")
+	meter._unhandled_input(press)
+	check(meter.visible and meter.is_processing(), "the key shows it again")
 	if failed:
 		get_tree().quit(1)
 		return

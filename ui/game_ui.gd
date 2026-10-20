@@ -36,6 +36,7 @@ var cancel_button: Button
 var tweaks: PanelContainer
 var tweaks_wrapper: ScrollContainer = ScrollContainer.new()
 var tweaks_list: VBoxContainer = VBoxContainer.new()
+const TWEAKS_WIDTH: float = 360.0 # the tweaks column's width at the right edge (px)
 var perf_meter: CanvasLayer = preload("res://ui/perf_meter.gd").new()
 
 func _ready() -> void:
@@ -187,13 +188,17 @@ func _ready() -> void:
 	# Every tweaks panel (sword, camera, and the shading and MPEG layers' own) in one column on the
 	# left, shown with the pause menu. Opening one folds the others; the column scrolls if needed.
 	tweaks = preload("res://ui/sword_tweaks_panel.gd").new()
-	tweaks_wrapper.set_anchors_and_offsets_preset(Control.PRESET_LEFT_WIDE)
-	tweaks_wrapper.offset_left = 24
+	# Down the right-hand side from the top-right corner (T-116); the perf meter has the top left.
+	tweaks_wrapper.set_anchors_and_offsets_preset(Control.PRESET_RIGHT_WIDE)
+	tweaks_wrapper.offset_right = -24
+	tweaks_wrapper.offset_left = -24 - TWEAKS_WIDTH
 	tweaks_wrapper.offset_top = 24
 	tweaks_wrapper.offset_bottom = -40
+	tweaks_list.size_flags_horizontal = Control.SIZE_EXPAND_FILL # each panel then sits at its right
+	var compact_look: Theme = compact_theme()
 	tweaks_wrapper.horizontal_scroll_mode = ScrollContainer.SCROLL_MODE_DISABLED
 	tweaks_wrapper.mouse_filter = Control.MOUSE_FILTER_PASS
-	tweaks_list.add_theme_constant_override("separation", 8)
+	tweaks_list.add_theme_constant_override("separation", 2)
 	tweaks_wrapper.add_child(tweaks_list)
 	screen.add_child(tweaks_wrapper)
 	var panels: Array[PanelContainer] = [tweaks, preload("res://ui/camera_tweaks_panel.gd").new()]
@@ -206,6 +211,10 @@ func _ready() -> void:
 		else:
 			panel.reparent(tweaks_list, false)
 		(panel.get("toggle") as Button).pressed.connect(fold_other_tweaks.bind(panel))
+		# On the panel itself: the shading and MPEG panels otherwise borrow the HUD's theme when shown.
+		panel.theme = compact_look
+		panel.size_flags_horizontal = Control.SIZE_SHRINK_END
+		compact(panel)
 	var hud: Label = world.get("hud") as Label
 	hud.position = Vector2(24, 24)
 	hud.visible = "--debug-hud" in OS.get_cmdline_user_args()
@@ -394,6 +403,37 @@ func _process(_delta: float) -> void:
 	refresh()
 
 # Runs after the panel's own toggle handler; an open panel's toggle reads "... ▾".
+# The tweaks column, compact (T-116): white text on a thin black wash, flat buttons, small type.
+static func compact_theme() -> Theme:
+	var theme: Theme = Theme.new()
+	theme.default_font_size = 12
+	var wash: StyleBoxFlat = StyleBoxFlat.new()
+	wash.bg_color = Color(0.0, 0.0, 0.0, 0.45)
+	wash.set_content_margin_all(6.0)
+	wash.set_corner_radius_all(2)
+	theme.set_stylebox(&"panel", &"PanelContainer", wash)
+	var flat: StyleBoxEmpty = StyleBoxEmpty.new()
+	flat.set_content_margin_all(2.0)
+	var hover: StyleBoxFlat = StyleBoxFlat.new()
+	hover.bg_color = Color(1.0, 1.0, 1.0, 0.08)
+	hover.set_content_margin_all(2.0)
+	for style: StringName in [&"normal", &"pressed", &"focus", &"disabled"]:
+		theme.set_stylebox(style, &"Button", flat)
+	theme.set_stylebox(&"hover", &"Button", hover)
+	for type: StringName in [&"Label", &"Button", &"CheckBox", &"OptionButton"]:
+		theme.set_color(&"font_color", type, Color.WHITE)
+	theme.set_color(&"font_hover_color", &"Button", Color.WHITE)
+	theme.set_color(&"font_pressed_color", &"Button", Color.WHITE)
+	return theme
+
+# The panels' own fixed widths, three quarters as wide.
+static func compact(node: Node) -> void:
+	var control: Control = node as Control
+	if control != null and control.custom_minimum_size.x > 0.0:
+		control.custom_minimum_size.x = roundf(control.custom_minimum_size.x * 0.75)
+	for child: Node in node.get_children():
+		compact(child)
+
 func fold_other_tweaks(opened: PanelContainer) -> void:
 	if not (opened.get("toggle") as Button).text.ends_with("▾"):
 		return
