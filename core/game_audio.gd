@@ -42,7 +42,7 @@ const MUSIC: Array[String] = [
 	"res://content/audio/music/beneath-my-own-design-track-1.ogg",
 	"res://content/audio/music/beneath-my-own-design-track-2.ogg",
 ]
-const MUSIC_DB: float = -10.0
+const MUSIC_DB: float = 0.0 # loud: Mike asked for the playlist at full level (T-114)
 
 var enabled: bool = false
 var pool: Array[AudioStreamPlayer3D] = []
