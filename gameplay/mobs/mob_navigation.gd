@@ -49,10 +49,14 @@ func build(space: PhysicsDirectSpaceState3D, exclude: Array[RID], center: Vector
 					grid.set_point_solid(cell, true)
 					grid.set_point_solid(other, true)
 
-# The lowest surface under a point: a ray stopped by a roof, branch or gravestone top keeps going
-# down from just below it, so the ground itself decides the cell's height. NAN where nothing is.
+# The lowest open surface under a point: a ray stopped by a roof, branch or gravestone top keeps
+# going down from just below it, so the ground itself decides the cell's height. A surface with
+# less than a body's height of room under the one above it is buried (the old landscape 1.5 m under
+# the village floor) and does not count. NAN where nothing is.
+const HEADROOM: float = 1.9
 func lowest_ground(space: PhysicsDirectSpaceState3D, ray: PhysicsRayQueryParameters3D, point: Vector2) -> float:
 	var ground: float = NAN
+	var above: float = INF
 	var top: float = 60.0
 	for attempt: int in range(6):
 		ray.from = Vector3(point.x, top, point.y)
@@ -60,8 +64,11 @@ func lowest_ground(space: PhysicsDirectSpaceState3D, ray: PhysicsRayQueryParamet
 		var hit: Dictionary = space.intersect_ray(ray)
 		if hit.is_empty():
 			break
-		ground = (hit["position"] as Vector3).y
-		top = ground - 0.02
+		var surface: float = (hit["position"] as Vector3).y
+		if is_nan(ground) or above - surface >= HEADROOM:
+			ground = surface
+		above = surface
+		top = surface - 0.02
 	return ground
 
 func height(cell: Vector2i) -> float:

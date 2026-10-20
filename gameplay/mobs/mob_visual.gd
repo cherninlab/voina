@@ -5,9 +5,14 @@ extends Node3D
 const MODELS: Array[PackedScene] = [preload("res://content/characters/quaternius/Superhero_Male_FullBody.gltf"), preload("res://content/characters/quaternius/Superhero_Female_FullBody.gltf")]
 const CLIPS: Array[AnimationLibrary] = [preload("res://content/animations/quaternius/male.res"), preload("res://content/animations/quaternius/female.res")]
 var female: bool = false # set by HostileMob from its replicated id before this enters the tree
-# A forest raider (RaiderMob) rather than a possessed villager: the models' own colours and
+# A raider (RaiderMob) rather than a possessed villager: the models' own colours and
 # undistorted clips, jogging and jabbing.
 var raider: bool = false
+# A village raider dressed as a hooded cultist (T-107): the male body under a hood and robe on the
+# same skeleton, with the male clips. Loaded at runtime, so without the asset it stays a plain raider.
+var cultist: bool = false
+const CULTIST: String = "res://content/mobs/hooded_cultist/hooded_cultist.glb"
+var body_scene: PackedScene # the model this body and its bisect halves instantiate
 # Which possessed villager this is; read from the parent's replicated mob_id when it enters the tree,
 # or set directly where there is no HostileMob (captures, tests).
 var mob_id: int = 1
@@ -62,7 +67,11 @@ func _ready() -> void:
 	var parent_id: Variant = get_parent().get("mob_id") if get_parent() != null else null
 	if parent_id is int:
 		mob_id = int(parent_id)
-	model = MODELS[int(female)].instantiate() as Node3D
+	body_scene = MODELS[int(female)]
+	if cultist and ResourceLoader.exists(CULTIST):
+		female = false
+		body_scene = load(CULTIST) as PackedScene
+	model = body_scene.instantiate() as Node3D
 	model.name = "Model"
 	model.rotation.y = PI
 	model.position.y = -0.9
@@ -348,7 +357,7 @@ func bisect(point: Vector3, normal: Vector3, impulse: Vector3) -> void:
 		half_overlay.set_shader_parameter("use_normal", false) # the cut bake rewrote the tangents
 		half_overlay.set_shader_parameter("streak_amount", 0.0)
 	for side: float in [1.0, -1.0]:
-		var copy: Node3D = MODELS[int(female)].instantiate() as Node3D
+		var copy: Node3D = body_scene.instantiate() as Node3D
 		copy.name = "RaiderHalf"
 		copy.set_meta("side", side)
 		get_tree().current_scene.add_child(copy, true)

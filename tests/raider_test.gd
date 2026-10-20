@@ -4,6 +4,7 @@ extends Node3D
 # the village, pursuit and one 12-damage jab per attack, giving up and walking home, replacement;
 # then each lobby switch on its own: village raiders without villagers or forest raiders.
 const PLAYER: PackedScene = preload("res://gameplay/player/player_character.tscn")
+const CULTIST: String = "res://content/mobs/hooded_cultist/hooded_cultist.glb" # the village raiders' body, T-107
 var players: Node3D = Node3D.new()
 var mobs: MobSystem = MobSystem.new()
 var failed: bool = false
@@ -55,6 +56,15 @@ func run() -> void:
 	body.position = Vector3(0, -1, -65)
 	body.add_child(shape)
 	add_child(body)
+	# Like the real village: an older landscape buried 1.5 m under the walkable floor.
+	var buried: StaticBody3D = StaticBody3D.new()
+	var buried_shape: CollisionShape3D = CollisionShape3D.new()
+	var slab: BoxShape3D = BoxShape3D.new()
+	slab.size = Vector3(40, 1, 40)
+	buried_shape.shape = slab
+	buried.position = Vector3(0, -2.0, 0)
+	buried.add_child(buried_shape)
+	add_child(buried)
 	var player: CharacterBody3D = PLAYER.instantiate() as CharacterBody3D
 	player.name = "1"
 	players.add_child(player)
@@ -128,6 +138,9 @@ func run() -> void:
 	check(village_raiders.size() == MobSystem.RAIDER_COUNT and mobs.bodies.get_child_count() == 0 and mobs.zone_raiders(MobSystem.Zone.FOREST).is_empty(), "The village switch alone spawns three village raiders (%d raiders, %d villagers)" % [village_raiders.size(), mobs.bodies.get_child_count()])
 	for raider: RaiderMob in village_raiders:
 		check(raider.zone == MobSystem.Zone.VILLAGE and flat_distance(raider.global_position, Vector3.ZERO) < 16.0, "Raider %d waits in the village" % raider.mob_id)
+		check(absf(raider.home.y - (MobNavigation.STAND + 0.05)) < 0.1, "Raider %d stands on the village floor, not the buried ground (%.2f)" % [raider.mob_id, raider.home.y])
+		var dressed: bool = (raider.visual.get("body_scene") as PackedScene).resource_path == CULTIST
+		check(dressed == ResourceLoader.exists(CULTIST), "Raider %d wears the cultist robe when the asset exists" % raider.mob_id)
 	await frames(30)
 	check(village_raiders[0].target == null, "A player in the woods is beyond the village raiders")
 	place(player, Vector3(0, MobNavigation.STAND, 3))

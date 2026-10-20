@@ -20,6 +20,7 @@ const RETURN_SPEED: float = 1.6
 
 func _ready() -> void:
 	visual.set("raider", true)
+	visual.set("cultist", zone == MobSystem.Zone.VILLAGE)
 	super._ready()
 
 # Raiders walk their zone's grid, not the church yard's.
