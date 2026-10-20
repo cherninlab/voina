@@ -31,3 +31,22 @@ Fullscreen panels use a viewport-height UI scale (900 logical pixels, capped at 
 The default menu uses `content/ui/secha-menu-grim.png`, a real render of the actual playable male model and procedural sword stance. It replaces the comic video as the default backdrop. The soundtrack loop and shared grading remain; logo/navigation draw above the image and grade. A charcoal left-to-right scrim preserves readability, with aged ivory text, amber selection rules, charcoal panels and warm focus states. Logo/navigation positions use viewport-relative logical coordinates, with cover-fit image scaling, verified at 16:10 and 16:9.
 
 While the opaque title still is visible offline, its viewport skips covered 3D drawing and hides the covered world fisheye/colour pass. The menu's own shared grading remains active. Host/join/connecting transitions restore rendering, and leaving restores title culling. This is a presentation optimisation only; game/network clocks continue. See `docs/graphics-audit.md` for measured limits and the remaining animation/art acceptance gap.
+
+## Perf meter
+
+F3 (rebindable as "Perf Overlay" in Controls) toggles a compact meter in the bottom-right corner, off by default (`ui/perf_meter.gd`, T-111). A big FPS number, coloured by the verdict, sits above short caption lines:
+
+- `fps · 1% <low> · <frame>/<budget> ms`: the 1 % low is the 99th-percentile frame of the last 300 frames (about 5 s). The budget comes from `Engine.max_fps` (60, set in `match_world.gd`).
+- `cpu <sum>  scr / phy / rnd`: main-thread milliseconds per frame for scripts (all `_process` callbacks plus the deferred-call flush), physics (first `_physics_process` to the start of `_process`, so the Jolt step is included) and render CPU (`viewport_get_measured_render_time_cpu` plus frame setup).
+- `gpu <ms>|n/a  wait <ms> idle <ms>`: GPU time from `viewport_get_measured_render_time_gpu`; `wait` is draw wall time (`frame_pre_draw` to `frame_post_draw`) minus render CPU, i.e. the main thread blocked on the GPU or swapchain; `idle` is from the end of drawing to the next iteration (the fps-cap sleep, input, audio). Together they add up to the frame time.
+- `draws · obj · tris`: Performance render counters for the frame.
+- Verdict: `under budget (capped at 60)` when neither side reaches 85 % of the budget; otherwise `GPU-bound` or `CPU-bound (scripts|physics|render)`, whichever is larger. A slow frame with no large term reads `over budget, cause unclear (OS / sync)`.
+
+Limits:
+
+- Godot 4.7.2's Metal driver returns 0 for GPU timestamps, so on Macs `gpu` reads n/a and the draw wait stands in for the GPU. It counts only while frames miss the cap, because at the cap that wait can be vsync, so a GPU close to its budget but still holding 60 fps reads "under budget".
+- Timings are wall-clock microsecond stamps averaged over 0.5 s. The process delta is not used, because delta smoothing hides spikes. `Performance.TIME_PROCESS` is not used either: it is a once-per-second maximum that also includes drawing.
+- Headless runs draw nothing, so there are no GPU, wait or render times.
+- Hidden, the meter does no per-frame work: processing is off, the draw signals are disconnected and render-time measurement is switched off. `tests/perf_meter_test.tscn` checks this, together with the classification from fake timings.
+
+Measured on this Apple M2 Mac in a 1152×720 window (2026-10-20, host offline, T-111): village about 31 fps (25.7 M triangles, about 860 draw calls), GPU-bound with cpu 4.3 ms and wait 27 ms. The haunted forest ran 39 fps (GPU-bound, wait 22 ms) to a capped 60 fps depending on the view. A forced 22 ms script busy-loop read `CPU-bound (scripts)`, and a heavy full-screen shader read `GPU-bound`.

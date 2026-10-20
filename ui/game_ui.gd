@@ -36,6 +36,7 @@ var cancel_button: Button
 var tweaks: PanelContainer
 var tweaks_wrapper: ScrollContainer = ScrollContainer.new()
 var tweaks_list: VBoxContainer = VBoxContainer.new()
+var perf_meter: CanvasLayer = preload("res://ui/perf_meter.gd").new()
 
 func _ready() -> void:
 	name = "GameUI"
@@ -244,6 +245,7 @@ func _ready() -> void:
 	reticle.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	screen.add_child(reticle)
 	reticle.name = "Reticle"
+	add_child(perf_meter) # hidden until the perf overlay key; see ui/perf_meter.gd
 	refresh()
 	title_host.grab_focus()
 
