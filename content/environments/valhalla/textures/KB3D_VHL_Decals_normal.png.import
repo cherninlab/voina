@@ -4,15 +4,16 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://bgxc3tyf7h4f4"
 path.s3tc="res://.godot/imported/KB3D_VHL_Decals_normal.png-66f10e366ff175fd4a79ee247b0d70de.s3tc.ctex"
+path.etc2="res://.godot/imported/KB3D_VHL_Decals_normal.png-66f10e366ff175fd4a79ee247b0d70de.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 
 [deps]
 
 source_file="res://content/environments/valhalla/textures/KB3D_VHL_Decals_normal.png"
-dest_files=["res://.godot/imported/KB3D_VHL_Decals_normal.png-66f10e366ff175fd4a79ee247b0d70de.s3tc.ctex"]
+dest_files=["res://.godot/imported/KB3D_VHL_Decals_normal.png-66f10e366ff175fd4a79ee247b0d70de.s3tc.ctex", "res://.godot/imported/KB3D_VHL_Decals_normal.png-66f10e366ff175fd4a79ee247b0d70de.etc2.ctex"]
 
 [params]
 

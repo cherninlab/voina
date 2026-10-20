@@ -4,15 +4,16 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://bji0pgv4pch3j"
 path.s3tc="res://.godot/imported/tree01_atlas.png-24970166d13c14647db5c9a7506bd6ad.s3tc.ctex"
+path.etc2="res://.godot/imported/tree01_atlas.png-24970166d13c14647db5c9a7506bd6ad.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 
 [deps]
 
 source_file="res://content/environments/village_generated/tree01_atlas.png"
-dest_files=["res://.godot/imported/tree01_atlas.png-24970166d13c14647db5c9a7506bd6ad.s3tc.ctex"]
+dest_files=["res://.godot/imported/tree01_atlas.png-24970166d13c14647db5c9a7506bd6ad.s3tc.ctex", "res://.godot/imported/tree01_atlas.png-24970166d13c14647db5c9a7506bd6ad.etc2.ctex"]
 
 [params]
 

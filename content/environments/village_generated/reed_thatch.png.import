@@ -4,15 +4,16 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://d4lyhjursbolu"
 path.s3tc="res://.godot/imported/reed_thatch.png-a4d181238492d91e862d6ab37ed356ad.s3tc.ctex"
+path.etc2="res://.godot/imported/reed_thatch.png-a4d181238492d91e862d6ab37ed356ad.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 
 [deps]
 
 source_file="res://content/environments/village_generated/reed_thatch.png"
-dest_files=["res://.godot/imported/reed_thatch.png-a4d181238492d91e862d6ab37ed356ad.s3tc.ctex"]
+dest_files=["res://.godot/imported/reed_thatch.png-a4d181238492d91e862d6ab37ed356ad.s3tc.ctex", "res://.godot/imported/reed_thatch.png-a4d181238492d91e862d6ab37ed356ad.etc2.ctex"]
 
 [params]
 

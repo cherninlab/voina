@@ -4,15 +4,16 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://dyvnatg8c08du"
 path.s3tc="res://.godot/imported/KB3D_VHL_GrassGround_roughness.png-53fee67981ebf37a4e8cc0f1447b45bf.s3tc.ctex"
+path.etc2="res://.godot/imported/KB3D_VHL_GrassGround_roughness.png-53fee67981ebf37a4e8cc0f1447b45bf.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 
 [deps]
 
 source_file="res://content/environments/valhalla/textures/KB3D_VHL_GrassGround_roughness.png"
-dest_files=["res://.godot/imported/KB3D_VHL_GrassGround_roughness.png-53fee67981ebf37a4e8cc0f1447b45bf.s3tc.ctex"]
+dest_files=["res://.godot/imported/KB3D_VHL_GrassGround_roughness.png-53fee67981ebf37a4e8cc0f1447b45bf.s3tc.ctex", "res://.godot/imported/KB3D_VHL_GrassGround_roughness.png-53fee67981ebf37a4e8cc0f1447b45bf.etc2.ctex"]
 
 [params]
 

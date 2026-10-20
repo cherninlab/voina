@@ -4,15 +4,16 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://diuvhmk1wt4h8"
 path.s3tc="res://.godot/imported/T_Superhero_Male_Roughness.png-10c4dacf54a978052141d4149748cc03.s3tc.ctex"
+path.etc2="res://.godot/imported/T_Superhero_Male_Roughness.png-10c4dacf54a978052141d4149748cc03.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 
 [deps]
 
 source_file="res://content/characters/quaternius/T_Superhero_Male_Roughness.png"
-dest_files=["res://.godot/imported/T_Superhero_Male_Roughness.png-10c4dacf54a978052141d4149748cc03.s3tc.ctex"]
+dest_files=["res://.godot/imported/T_Superhero_Male_Roughness.png-10c4dacf54a978052141d4149748cc03.s3tc.ctex", "res://.godot/imported/T_Superhero_Male_Roughness.png-10c4dacf54a978052141d4149748cc03.etc2.ctex"]
 
 [params]
 

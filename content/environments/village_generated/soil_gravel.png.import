@@ -4,15 +4,16 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://62vavxgpyjpi"
 path.s3tc="res://.godot/imported/soil_gravel.png-bf48279fd5de95ea5990d618db868a58.s3tc.ctex"
+path.etc2="res://.godot/imported/soil_gravel.png-bf48279fd5de95ea5990d618db868a58.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 
 [deps]
 
 source_file="res://content/environments/village_generated/soil_gravel.png"
-dest_files=["res://.godot/imported/soil_gravel.png-bf48279fd5de95ea5990d618db868a58.s3tc.ctex"]
+dest_files=["res://.godot/imported/soil_gravel.png-bf48279fd5de95ea5990d618db868a58.s3tc.ctex", "res://.godot/imported/soil_gravel.png-bf48279fd5de95ea5990d618db868a58.etc2.ctex"]
 
 [params]
 

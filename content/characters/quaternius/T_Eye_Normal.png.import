@@ -4,15 +4,16 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://dahw3pf27tunb"
 path.s3tc="res://.godot/imported/T_Eye_Normal.png-8aee1fe216a189107467d3849edd08be.s3tc.ctex"
+path.etc2="res://.godot/imported/T_Eye_Normal.png-8aee1fe216a189107467d3849edd08be.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 
 [deps]
 
 source_file="res://content/characters/quaternius/T_Eye_Normal.png"
-dest_files=["res://.godot/imported/T_Eye_Normal.png-8aee1fe216a189107467d3849edd08be.s3tc.ctex"]
+dest_files=["res://.godot/imported/T_Eye_Normal.png-8aee1fe216a189107467d3849edd08be.s3tc.ctex", "res://.godot/imported/T_Eye_Normal.png-8aee1fe216a189107467d3849edd08be.etc2.ctex"]
 
 [params]
 

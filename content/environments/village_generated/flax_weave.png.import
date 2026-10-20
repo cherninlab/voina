@@ -4,15 +4,16 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://bh08f54xe652n"
 path.s3tc="res://.godot/imported/flax_weave.png-1b582a25440a4901073870443b7680d8.s3tc.ctex"
+path.etc2="res://.godot/imported/flax_weave.png-1b582a25440a4901073870443b7680d8.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 
 [deps]
 
 source_file="res://content/environments/village_generated/flax_weave.png"
-dest_files=["res://.godot/imported/flax_weave.png-1b582a25440a4901073870443b7680d8.s3tc.ctex"]
+dest_files=["res://.godot/imported/flax_weave.png-1b582a25440a4901073870443b7680d8.s3tc.ctex", "res://.godot/imported/flax_weave.png-1b582a25440a4901073870443b7680d8.etc2.ctex"]
 
 [params]
 

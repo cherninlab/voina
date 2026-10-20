@@ -4,15 +4,16 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://bhf5qib0clila"
 path.s3tc="res://.godot/imported/tree15.png-5bb45bb02bdaa2485da866d8ba12cf8d.s3tc.ctex"
+path.etc2="res://.godot/imported/tree15.png-5bb45bb02bdaa2485da866d8ba12cf8d.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 
 [deps]
 
 source_file="res://content/environments/tree_pack/textures/tree15.png"
-dest_files=["res://.godot/imported/tree15.png-5bb45bb02bdaa2485da866d8ba12cf8d.s3tc.ctex"]
+dest_files=["res://.godot/imported/tree15.png-5bb45bb02bdaa2485da866d8ba12cf8d.s3tc.ctex", "res://.godot/imported/tree15.png-5bb45bb02bdaa2485da866d8ba12cf8d.etc2.ctex"]
 
 [params]
 

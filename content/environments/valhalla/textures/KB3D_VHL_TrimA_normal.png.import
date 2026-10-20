@@ -4,15 +4,16 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://g1m5kx02cfxq"
 path.s3tc="res://.godot/imported/KB3D_VHL_TrimA_normal.png-bca733c4e6574b6bc81013aad0ee5f91.s3tc.ctex"
+path.etc2="res://.godot/imported/KB3D_VHL_TrimA_normal.png-bca733c4e6574b6bc81013aad0ee5f91.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 
 [deps]
 
 source_file="res://content/environments/valhalla/textures/KB3D_VHL_TrimA_normal.png"
-dest_files=["res://.godot/imported/KB3D_VHL_TrimA_normal.png-bca733c4e6574b6bc81013aad0ee5f91.s3tc.ctex"]
+dest_files=["res://.godot/imported/KB3D_VHL_TrimA_normal.png-bca733c4e6574b6bc81013aad0ee5f91.s3tc.ctex", "res://.godot/imported/KB3D_VHL_TrimA_normal.png-bca733c4e6574b6bc81013aad0ee5f91.etc2.ctex"]
 
 [params]
 

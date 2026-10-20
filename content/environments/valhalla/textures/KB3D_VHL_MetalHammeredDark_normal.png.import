@@ -4,15 +4,16 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://cstkto8307ley"
 path.s3tc="res://.godot/imported/KB3D_VHL_MetalHammeredDark_normal.png-86cbe56e292b63f6f0caa57610f412bd.s3tc.ctex"
+path.etc2="res://.godot/imported/KB3D_VHL_MetalHammeredDark_normal.png-86cbe56e292b63f6f0caa57610f412bd.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 
 [deps]
 
 source_file="res://content/environments/valhalla/textures/KB3D_VHL_MetalHammeredDark_normal.png"
-dest_files=["res://.godot/imported/KB3D_VHL_MetalHammeredDark_normal.png-86cbe56e292b63f6f0caa57610f412bd.s3tc.ctex"]
+dest_files=["res://.godot/imported/KB3D_VHL_MetalHammeredDark_normal.png-86cbe56e292b63f6f0caa57610f412bd.s3tc.ctex", "res://.godot/imported/KB3D_VHL_MetalHammeredDark_normal.png-86cbe56e292b63f6f0caa57610f412bd.etc2.ctex"]
 
 [params]
 

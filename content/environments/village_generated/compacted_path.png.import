@@ -4,15 +4,16 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://b5x0tte0pbrfk"
 path.s3tc="res://.godot/imported/compacted_path.png-ab84132a2450969833f7188c226e9539.s3tc.ctex"
+path.etc2="res://.godot/imported/compacted_path.png-ab84132a2450969833f7188c226e9539.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 
 [deps]
 
 source_file="res://content/environments/village_generated/compacted_path.png"
-dest_files=["res://.godot/imported/compacted_path.png-ab84132a2450969833f7188c226e9539.s3tc.ctex"]
+dest_files=["res://.godot/imported/compacted_path.png-ab84132a2450969833f7188c226e9539.s3tc.ctex", "res://.godot/imported/compacted_path.png-ab84132a2450969833f7188c226e9539.etc2.ctex"]
 
 [params]
 

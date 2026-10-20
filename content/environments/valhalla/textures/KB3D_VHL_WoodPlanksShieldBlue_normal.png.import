@@ -4,15 +4,16 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://brqa1uc6f6wol"
 path.s3tc="res://.godot/imported/KB3D_VHL_WoodPlanksShieldBlue_normal.png-5079275c4cd98ef10064605ed77dc669.s3tc.ctex"
+path.etc2="res://.godot/imported/KB3D_VHL_WoodPlanksShieldBlue_normal.png-5079275c4cd98ef10064605ed77dc669.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 
 [deps]
 
 source_file="res://content/environments/valhalla/textures/KB3D_VHL_WoodPlanksShieldBlue_normal.png"
-dest_files=["res://.godot/imported/KB3D_VHL_WoodPlanksShieldBlue_normal.png-5079275c4cd98ef10064605ed77dc669.s3tc.ctex"]
+dest_files=["res://.godot/imported/KB3D_VHL_WoodPlanksShieldBlue_normal.png-5079275c4cd98ef10064605ed77dc669.s3tc.ctex", "res://.godot/imported/KB3D_VHL_WoodPlanksShieldBlue_normal.png-5079275c4cd98ef10064605ed77dc669.etc2.ctex"]
 
 [params]
 

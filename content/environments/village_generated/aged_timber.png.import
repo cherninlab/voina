@@ -4,15 +4,16 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://b6572sgqlyybw"
 path.s3tc="res://.godot/imported/aged_timber.png-7cb9642e29583a51a6ea2a20ffe40de8.s3tc.ctex"
+path.etc2="res://.godot/imported/aged_timber.png-7cb9642e29583a51a6ea2a20ffe40de8.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 
 [deps]
 
 source_file="res://content/environments/village_generated/aged_timber.png"
-dest_files=["res://.godot/imported/aged_timber.png-7cb9642e29583a51a6ea2a20ffe40de8.s3tc.ctex"]
+dest_files=["res://.godot/imported/aged_timber.png-7cb9642e29583a51a6ea2a20ffe40de8.s3tc.ctex", "res://.godot/imported/aged_timber.png-7cb9642e29583a51a6ea2a20ffe40de8.etc2.ctex"]
 
 [params]
 

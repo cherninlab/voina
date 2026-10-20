@@ -4,15 +4,16 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://cspikqeraxrpo"
 path.s3tc="res://.godot/imported/KB3D_VHL_MetalHammeredDark_metallic-KB3D_VHL_MetalHammeredDark_roughness.png-3643429856f8ba82ed979a4d8e3bd4f5.s3tc.ctex"
+path.etc2="res://.godot/imported/KB3D_VHL_MetalHammeredDark_metallic-KB3D_VHL_MetalHammeredDark_roughness.png-3643429856f8ba82ed979a4d8e3bd4f5.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 
 [deps]
 
 source_file="res://content/environments/valhalla/textures/KB3D_VHL_MetalHammeredDark_metallic-KB3D_VHL_MetalHammeredDark_roughness.png"
-dest_files=["res://.godot/imported/KB3D_VHL_MetalHammeredDark_metallic-KB3D_VHL_MetalHammeredDark_roughness.png-3643429856f8ba82ed979a4d8e3bd4f5.s3tc.ctex"]
+dest_files=["res://.godot/imported/KB3D_VHL_MetalHammeredDark_metallic-KB3D_VHL_MetalHammeredDark_roughness.png-3643429856f8ba82ed979a4d8e3bd4f5.s3tc.ctex", "res://.godot/imported/KB3D_VHL_MetalHammeredDark_metallic-KB3D_VHL_MetalHammeredDark_roughness.png-3643429856f8ba82ed979a4d8e3bd4f5.etc2.ctex"]
 
 [params]
 

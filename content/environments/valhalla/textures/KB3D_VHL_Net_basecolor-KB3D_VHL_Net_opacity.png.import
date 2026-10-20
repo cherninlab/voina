@@ -4,15 +4,16 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://bw1x3sx5m58y"
 path.s3tc="res://.godot/imported/KB3D_VHL_Net_basecolor-KB3D_VHL_Net_opacity.png-ce523e476a431772f7d5719d0f75e15c.s3tc.ctex"
+path.etc2="res://.godot/imported/KB3D_VHL_Net_basecolor-KB3D_VHL_Net_opacity.png-ce523e476a431772f7d5719d0f75e15c.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 
 [deps]
 
 source_file="res://content/environments/valhalla/textures/KB3D_VHL_Net_basecolor-KB3D_VHL_Net_opacity.png"
-dest_files=["res://.godot/imported/KB3D_VHL_Net_basecolor-KB3D_VHL_Net_opacity.png-ce523e476a431772f7d5719d0f75e15c.s3tc.ctex"]
+dest_files=["res://.godot/imported/KB3D_VHL_Net_basecolor-KB3D_VHL_Net_opacity.png-ce523e476a431772f7d5719d0f75e15c.s3tc.ctex", "res://.godot/imported/KB3D_VHL_Net_basecolor-KB3D_VHL_Net_opacity.png-ce523e476a431772f7d5719d0f75e15c.etc2.ctex"]
 
 [params]
 

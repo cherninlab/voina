@@ -4,15 +4,16 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://b3jqjf1u558va"
 path.s3tc="res://.godot/imported/KB3D_VHL_MetalSheetLight_normal.png-77ea72853706d92b2c4dfa945daf495d.s3tc.ctex"
+path.etc2="res://.godot/imported/KB3D_VHL_MetalSheetLight_normal.png-77ea72853706d92b2c4dfa945daf495d.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 
 [deps]
 
 source_file="res://content/environments/valhalla/textures/KB3D_VHL_MetalSheetLight_normal.png"
-dest_files=["res://.godot/imported/KB3D_VHL_MetalSheetLight_normal.png-77ea72853706d92b2c4dfa945daf495d.s3tc.ctex"]
+dest_files=["res://.godot/imported/KB3D_VHL_MetalSheetLight_normal.png-77ea72853706d92b2c4dfa945daf495d.s3tc.ctex", "res://.godot/imported/KB3D_VHL_MetalSheetLight_normal.png-77ea72853706d92b2c4dfa945daf495d.etc2.ctex"]
 
 [params]
 

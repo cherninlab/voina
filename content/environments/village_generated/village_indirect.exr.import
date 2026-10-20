@@ -4,15 +4,16 @@ importer="2d_array_texture"
 type="CompressedTexture2DArray"
 uid="uid://c6k6tessgj7x8"
 path.bptc="res://.godot/imported/village_indirect.exr-78616e0b57d95a8f442a5e06b49564ad.bptc.ctexarray"
+path.astc="res://.godot/imported/village_indirect.exr-78616e0b57d95a8f442a5e06b49564ad.astc.ctexarray"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 
 [deps]
 
 source_file="res://content/environments/village_generated/village_indirect.exr"
-dest_files=["res://.godot/imported/village_indirect.exr-78616e0b57d95a8f442a5e06b49564ad.bptc.ctexarray"]
+dest_files=["res://.godot/imported/village_indirect.exr-78616e0b57d95a8f442a5e06b49564ad.bptc.ctexarray", "res://.godot/imported/village_indirect.exr-78616e0b57d95a8f442a5e06b49564ad.astc.ctexarray"]
 
 [params]
 

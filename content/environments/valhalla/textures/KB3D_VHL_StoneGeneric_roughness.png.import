@@ -4,15 +4,16 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://cq2ftrgcxar6o"
 path.s3tc="res://.godot/imported/KB3D_VHL_StoneGeneric_roughness.png-c7add7f7c84890d0a2062c0bea08be38.s3tc.ctex"
+path.etc2="res://.godot/imported/KB3D_VHL_StoneGeneric_roughness.png-c7add7f7c84890d0a2062c0bea08be38.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 
 [deps]
 
 source_file="res://content/environments/valhalla/textures/KB3D_VHL_StoneGeneric_roughness.png"
-dest_files=["res://.godot/imported/KB3D_VHL_StoneGeneric_roughness.png-c7add7f7c84890d0a2062c0bea08be38.s3tc.ctex"]
+dest_files=["res://.godot/imported/KB3D_VHL_StoneGeneric_roughness.png-c7add7f7c84890d0a2062c0bea08be38.s3tc.ctex", "res://.godot/imported/KB3D_VHL_StoneGeneric_roughness.png-c7add7f7c84890d0a2062c0bea08be38.etc2.ctex"]
 
 [params]
 

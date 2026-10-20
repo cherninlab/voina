@@ -65,7 +65,10 @@ func compute_fingerprint() -> String:
 	context.start(HashingContext.HASH_SHA256)
 	for path: String in files:
 		context.update(path.to_utf8_buffer())
-		context.update(FileAccess.get_file_as_bytes(path))
+		# Exported games keep only compiled scripts, so a source file may read back empty.
+		var bytes: PackedByteArray = FileAccess.get_file_as_bytes(path)
+		if not bytes.is_empty():
+			context.update(bytes)
 	return context.finish().hex_encode().left(12)
 
 func collect(directory: String, files: Array[String]) -> void:

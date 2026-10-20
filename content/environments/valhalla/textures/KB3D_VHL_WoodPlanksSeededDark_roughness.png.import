@@ -4,15 +4,16 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://ckqb7fgt4h5bl"
 path.s3tc="res://.godot/imported/KB3D_VHL_WoodPlanksSeededDark_roughness.png-57cf24facb8c05e671d3ab28e8b542a0.s3tc.ctex"
+path.etc2="res://.godot/imported/KB3D_VHL_WoodPlanksSeededDark_roughness.png-57cf24facb8c05e671d3ab28e8b542a0.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 
 [deps]
 
 source_file="res://content/environments/valhalla/textures/KB3D_VHL_WoodPlanksSeededDark_roughness.png"
-dest_files=["res://.godot/imported/KB3D_VHL_WoodPlanksSeededDark_roughness.png-57cf24facb8c05e671d3ab28e8b542a0.s3tc.ctex"]
+dest_files=["res://.godot/imported/KB3D_VHL_WoodPlanksSeededDark_roughness.png-57cf24facb8c05e671d3ab28e8b542a0.s3tc.ctex", "res://.godot/imported/KB3D_VHL_WoodPlanksSeededDark_roughness.png-57cf24facb8c05e671d3ab28e8b542a0.etc2.ctex"]
 
 [params]
 

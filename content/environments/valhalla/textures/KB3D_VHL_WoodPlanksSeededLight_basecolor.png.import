@@ -4,15 +4,16 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://8eu8xqyk8aux"
 path.s3tc="res://.godot/imported/KB3D_VHL_WoodPlanksSeededLight_basecolor.png-bbe55f67a7697a8c6bd5379d91313fca.s3tc.ctex"
+path.etc2="res://.godot/imported/KB3D_VHL_WoodPlanksSeededLight_basecolor.png-bbe55f67a7697a8c6bd5379d91313fca.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 
 [deps]
 
 source_file="res://content/environments/valhalla/textures/KB3D_VHL_WoodPlanksSeededLight_basecolor.png"
-dest_files=["res://.godot/imported/KB3D_VHL_WoodPlanksSeededLight_basecolor.png-bbe55f67a7697a8c6bd5379d91313fca.s3tc.ctex"]
+dest_files=["res://.godot/imported/KB3D_VHL_WoodPlanksSeededLight_basecolor.png-bbe55f67a7697a8c6bd5379d91313fca.s3tc.ctex", "res://.godot/imported/KB3D_VHL_WoodPlanksSeededLight_basecolor.png-bbe55f67a7697a8c6bd5379d91313fca.etc2.ctex"]
 
 [params]
 

@@ -4,15 +4,16 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://b37j4h1mknff4"
 path.s3tc="res://.godot/imported/car5_police.png-4363b3cdebf6a844fd8505c7217cc6c2.s3tc.ctex"
+path.etc2="res://.godot/imported/car5_police.png-4363b3cdebf6a844fd8505c7217cc6c2.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 
 [deps]
 
 source_file="res://content/vehicles/ggbot_psx_cars/Car 05/car5_police.png"
-dest_files=["res://.godot/imported/car5_police.png-4363b3cdebf6a844fd8505c7217cc6c2.s3tc.ctex"]
+dest_files=["res://.godot/imported/car5_police.png-4363b3cdebf6a844fd8505c7217cc6c2.s3tc.ctex", "res://.godot/imported/car5_police.png-4363b3cdebf6a844fd8505c7217cc6c2.etc2.ctex"]
 
 [params]
 
