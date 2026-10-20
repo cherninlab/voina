@@ -75,7 +75,7 @@ func run() -> void:
 	mobs.start()
 	await frames(4)
 	var raiders: Array[RaiderMob] = raider_list()
-	check(raiders.size() == MobSystem.RAIDER_COUNT and mobs.raider_points[MobSystem.Zone.FOREST].size() == MobSystem.FOREST_POSTS.size() and mobs.raider_points[MobSystem.Zone.VILLAGE].is_empty(), "The forest posts are found and three raiders spawn, none in the village (%d)" % raiders.size())
+	check(raiders.size() == MobSystem.RAIDER_COUNTS[MobSystem.Zone.FOREST] and mobs.raider_points[MobSystem.Zone.FOREST].size() == MobSystem.FOREST_POSTS.size() and mobs.raider_points[MobSystem.Zone.VILLAGE].is_empty(), "The forest posts are found and three raiders spawn, none in the village (%d)" % raiders.size())
 	check(mobs.bodies.get_child_count() == MobSystem.COUNT, "The church yard keeps its villagers")
 	for raider: RaiderMob in raiders:
 		check(absf(raider.global_position.y - (MobNavigation.STAND + 0.05)) < 0.1 and raider.mob_id > MobSystem.RAIDER_ID and raider.zone == MobSystem.Zone.FOREST, "Raider %d stands on the forest ground with a raider id" % raider.mob_id)
@@ -120,10 +120,10 @@ func run() -> void:
 	var replacement: RaiderMob
 	for frame: int in range(600):
 		await get_tree().physics_frame
-		replacement = mobs.raiders.get_node_or_null("Raider%d" % (MobSystem.RAIDER_COUNT + 1)) as RaiderMob
+		replacement = mobs.raiders.get_node_or_null("Raider%d" % (MobSystem.RAIDER_COUNTS[MobSystem.Zone.FOREST] + 1)) as RaiderMob
 		if replacement != null:
 			break
-	check(replacement != null and flat_distance(replacement.global_position, expected) < 0.1 and mobs.raiders.get_child_count() == MobSystem.RAIDER_COUNT, "A replacement raider arrives at the farthest post")
+	check(replacement != null and flat_distance(replacement.global_position, expected) < 0.1 and mobs.raiders.get_child_count() == MobSystem.RAIDER_COUNTS[MobSystem.Zone.FOREST], "A replacement raider arrives at the farthest post")
 	mobs.clear()
 	await frames(2)
 	check(mobs.raiders.get_child_count() == 0, "Clearing the encounter removes the raiders")
@@ -135,7 +135,7 @@ func run() -> void:
 	mobs.start()
 	await frames(4)
 	var village_raiders: Array[RaiderMob] = raider_list()
-	check(village_raiders.size() == MobSystem.RAIDER_COUNT and mobs.bodies.get_child_count() == 0 and mobs.zone_raiders(MobSystem.Zone.FOREST).is_empty(), "The village switch alone spawns three village raiders (%d raiders, %d villagers)" % [village_raiders.size(), mobs.bodies.get_child_count()])
+	check(village_raiders.size() == MobSystem.RAIDER_COUNTS[MobSystem.Zone.VILLAGE] and mobs.bodies.get_child_count() == 0 and mobs.zone_raiders(MobSystem.Zone.FOREST).is_empty(), "The village switch alone spawns five village raiders (%d raiders, %d villagers)" % [village_raiders.size(), mobs.bodies.get_child_count()])
 	for raider: RaiderMob in village_raiders:
 		check(raider.zone == MobSystem.Zone.VILLAGE and flat_distance(raider.global_position, Vector3.ZERO) < 16.0, "Raider %d waits in the village" % raider.mob_id)
 		check(absf(raider.home.y - (MobNavigation.STAND + 0.05)) < 0.1, "Raider %d stands on the village floor, not the buried ground (%.2f)" % [raider.mob_id, raider.home.y])

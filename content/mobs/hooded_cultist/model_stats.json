@@ -1,0 +1,17 @@
+{
+  "mesh_objects_source": 33,
+  "vertices_blender": 23392,
+  "triangles": 44382,
+  "bones": 65,
+  "maximum_skin_influences": 4,
+  "units": "metres",
+  "height_rest_m": 2.1577,
+  "blender_version": "5.2.2 LTS",
+  "base_model": "content/characters/quaternius/Superhero_Male_FullBody.gltf",
+  "runtime_animation_library": "content/animations/quaternius/male.res",
+  "blender_inspection_clips": [
+    "cultist_idle",
+    "cultist_shamble_preview",
+    "cultist_reach_preview"
+  ]
+}

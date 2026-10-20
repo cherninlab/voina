@@ -1,0 +1,34 @@
+{
+  "asset": "Hooded cultist",
+  "task": "T-107",
+  "created": "2026-10-20",
+  "authoring": "Existing Quaternius male raider body, textures and 65-bone skeleton preserved; original hood, gown, sleeves, cowl, rope, linen textures and Blender inspection poses authored for this repository.",
+  "reference": {
+    "filename": "Cults Beneath the Midnight Debug Light.png",
+    "provided_by": "User in task conversation",
+    "usage": "Visual reference for pointed hood, eye openings, pale robe and rope girdle. No image pixels, meshes or textures were extracted or redistributed.",
+    "reference_rights": "Not independently established; reference image is not bundled.",
+    "sha256": "59008c7b8a4a468a8e9bfdcf88c4ee3d078c5b38d5c9f2fc4ee0fbe48756546c"
+  },
+  "third_party_assets": [
+    {
+      "asset": "Quaternius Universal Base Characters [Standard], male",
+      "source": "content/characters/quaternius/Superhero_Male_FullBody.gltf",
+      "license": "CC0 1.0",
+      "license_file": "content/characters/quaternius/License_Standard.txt",
+      "provenance": "content/characters/quaternius/provenance.json"
+    },
+    {
+      "asset": "Existing retargeted Universal Animation Library, male",
+      "source": "content/animations/quaternius/male.res",
+      "license_file": "content/animations/quaternius/License.txt",
+      "provenance": "content/animations/quaternius/provenance.json",
+      "usage": "Referenced by standalone Godot wrapper; not changed."
+    }
+  ],
+  "license": "Base human and its textures retain CC0 1.0. Existing animations retain their bundled license. Original garments follow the repository owner licensing terms.",
+  "source": "source/hooded_cultist.blend",
+  "generator": "scripts/art/build_hooded_cultist.py",
+  "runtime": "hooded_cultist.glb",
+  "integration": "Standalone art only. Not registered, spawned, or referenced by gameplay."
+}

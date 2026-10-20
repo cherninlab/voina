@@ -27,15 +27,15 @@ const SPAWN_SPOTS: Array[Vector2] = [Vector2(-8, -6), Vector2(8, -5), Vector2(-1
 var spawn_points: Array[Vector3] = [] # host only: the spots on the sampled ground
 var next_id: int = COUNT + 1
 var respawn_left: float = RESPAWN_DELAY
-const RAIDER_COUNT: int = 3 # per zone
+const RAIDER_COUNTS: PackedInt32Array = [5, 3] # by Zone: five cultists in the village, three in the woods
 const RAIDER_ID: int = 1000 # raider ids start above this, apart from the villagers' (swing hit ids)
 # Each zone's grid centre: the village square, and the road at z -62, whose 44 m cover the woods
 # from z -84 to -40.
 const FOREST_Z: float = -62.0
-# Raider posts; the first RAIDER_COUNT of each zone are the opening places. In the village, the
-# first raiders' places around the square (x, z). In the forest, among the trees: (metres off the
+# Raider posts; the first RAIDER_COUNTS[zone] of each zone are the opening places. In the village, the
+# old arena spawns first, around the square (x, z). In the forest, among the trees: (metres off the
 # road's centre line, z); the road runs from the gate (z -30) to the church yard (z -90).
-const VILLAGE_POSTS: Array[Vector2] = [Vector2(-8, 0), Vector2(8, 0), Vector2(0, -13), Vector2(-12, 10), Vector2(12, 10)]
+const VILLAGE_POSTS: Array[Vector2] = [Vector2(-8, 0), Vector2(8, 0), Vector2(0, -13), Vector2(-12, 10), Vector2(12, 10), Vector2(-14, -8), Vector2(14, -8)]
 const FOREST_POSTS: Array[Vector2] = [Vector2(-8, -48), Vector2(8, -60), Vector2(-7, -73), Vector2(9, -80), Vector2(7, -44)]
 var raider_grids: Array[MobNavigation] = [MobNavigation.new(), MobNavigation.new()] # by Zone
 var raider_points: Array[Array] = [[], []] # host only, by Zone: the posts on the sampled ground
@@ -54,7 +54,7 @@ func _ready() -> void:
 	add_child(raiders)
 	raider_spawner.name = "RaiderSpawner"
 	raider_spawner.spawn_path = NodePath("../Raiders")
-	raider_spawner.spawn_limit = RAIDER_COUNT * Zone.size()
+	raider_spawner.spawn_limit = RAIDER_COUNTS[Zone.VILLAGE] + RAIDER_COUNTS[Zone.FOREST]
 	raider_spawner.spawn_function = create_raider
 	add_child(raider_spawner)
 
@@ -126,7 +126,7 @@ func start_raiders(zone: int) -> void:
 		if grid.grid.is_point_solid(cell) or grid.height(cell) < -999.0:
 			continue
 		points.append(grid.point_of(cell) + Vector3.UP * 0.05)
-	for index: int in range(mini(RAIDER_COUNT, points.size())):
+	for index: int in range(mini(RAIDER_COUNTS[zone], points.size())):
 		spawn_raider(zone, points[index] as Vector3)
 
 func spawn_raider(zone: int, point: Vector3) -> void:
@@ -161,7 +161,7 @@ func _process(delta: float) -> void:
 func respawn_raiders(zone: int, delta: float) -> void:
 	var points: Array[Vector3] = []
 	points.assign(raider_points[zone])
-	if points.is_empty() or zone_raiders(zone).size() >= mini(RAIDER_COUNT, points.size()):
+	if points.is_empty() or zone_raiders(zone).size() >= mini(RAIDER_COUNTS[zone], points.size()):
 		raider_respawn_left[zone] = RESPAWN_DELAY
 		return
 	raider_respawn_left[zone] -= delta
