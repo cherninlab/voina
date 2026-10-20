@@ -412,9 +412,10 @@ func refresh() -> void:
 	var peer: MultiplayerPeer = multiplayer.multiplayer_peer
 	var active: bool = not peer is OfflineMultiplayerPeer
 	var wants_music: bool = not active and DisplayServer.get_name() != "headless" and not NetworkManager.dedicated
-	if wants_music and not menu_music.playing:
+	var wants_theme: bool = wants_music and not GameAudio.music_playing()
+	if wants_theme and not menu_music.playing:
 		menu_music.play()
-	elif not wants_music and menu_music.playing:
+	elif not wants_theme and menu_music.playing:
 		menu_music.stop()
 	menu_backdrop.visible = wants_music
 	# An opaque title image covers the 3D world. Resume it before hosting/joining/connecting.

@@ -36,6 +36,13 @@ const EVENTS: Dictionary[StringName, Array] = {
 const AMBIENCE: Dictionary[StringName, float] = {&"meadow_01": -6.0, &"forest_01": -14.0}
 ## Fade applied when a clip starts mid-recording (`from_peak`), so the cut does not click.
 const OFFSET_FADE: float = 0.02
+## Background playlist toggled with the `music_toggle` key (P): plays in order and wraps around.
+## Paths, loaded on demand so headless runs never decode them.
+const MUSIC: Array[String] = [
+	"res://content/audio/music/beneath-my-own-design-track-1.ogg",
+	"res://content/audio/music/beneath-my-own-design-track-2.ogg",
+]
+const MUSIC_DB: float = -10.0
 
 var enabled: bool = false
 var pool: Array[AudioStreamPlayer3D] = []
@@ -43,6 +50,8 @@ var next_voice: int = 0
 var last_pick: Dictionary[StringName, StringName] = {}
 var beds: Array[Dictionary] = []
 var fades: Dictionary[AudioStreamPlayer3D, Tween] = {}
+var music: AudioStreamPlayer
+var music_track: int = 0
 
 static func instance() -> GameAudio:
 	var tree: SceneTree = Engine.get_main_loop() as SceneTree
@@ -68,6 +77,11 @@ static func broadcast(event: StringName, at: Vector3) -> void:
 	if node.multiplayer.has_multiplayer_peer() and node.multiplayer.get_peers().size() > 0:
 		node.relay.rpc(event, at)
 
+## True while the P-key playlist is playing; the title menu keeps its own theme quiet then.
+static func music_playing() -> bool:
+	var audio: GameAudio = instance()
+	return audio != null and audio.music.playing
+
 func _ready() -> void:
 	set_multiplayer_authority(1)
 	enabled = DisplayServer.get_name() != "headless" and not "--server" in OS.get_cmdline_user_args()
@@ -86,6 +100,28 @@ func setup() -> void:
 		voice.attenuation_filter_cutoff_hz = 9000.0
 		add_child(voice)
 		pool.append(voice)
+	music = AudioStreamPlayer.new()
+	music.volume_db = MUSIC_DB
+	music.finished.connect(next_track)
+	add_child(music)
+
+func _unhandled_input(event: InputEvent) -> void:
+	if enabled and event.is_action_pressed(&"music_toggle"):
+		toggle_music()
+		get_viewport().set_input_as_handled()
+
+## Starts the current track from the top, or stops it (stop() does not emit `finished`).
+func toggle_music() -> void:
+	if music.playing:
+		music.stop()
+		return
+	music.stream = load(MUSIC[music_track]) as AudioStream
+	music.play()
+
+func next_track() -> void:
+	music_track = (music_track + 1) % MUSIC.size()
+	music.stream = load(MUSIC[music_track]) as AudioStream
+	music.play()
 
 @rpc("authority", "call_remote", "reliable")
 func relay(event: StringName, at: Vector3) -> void:

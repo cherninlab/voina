@@ -153,3 +153,7 @@ existing Git LFS rules.
 ## Menu music
 
 The user-supplied `content/audio/music/secha-menu-theme.mp3` loops locally at -10 dB while offline in the title, host/join setup or Settings. It stops on hosting/joining and restarts on return to the lobby. It never runs on headless/dedicated servers. See the music directory README for source provenance. The original MP3 is preserved without transcoding.
+
+## Background music (P)
+
+The `music_toggle` action (default P, rebindable in Controls) starts or stops a local, non-positional playlist in the `Audio` autoload: `content/audio/music/beneath-my-own-design-track-1.ogg` then `-track-2.ogg`, at -10 dB, wrapping around. Stopping and restarting begins the current track from the top. While it plays, the menu theme stays silent so the two never overlap. It is per-player presentation only: nothing is replicated, and headless/dedicated runs ignore the key. Provenance is in the music directory README. `tests/game_audio_test.gd` checks the tracks load with looping off and that track end advances the playlist; playback was checked windowed, because the headless dummy driver leaks stopped Ogg playbacks.

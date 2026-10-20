@@ -32,6 +32,14 @@ func _initialize() -> void:
 	assert(audio.play_event(&"unknown", Vector3.ZERO) == 0)
 	assert(audio.play_event(&"swing", Vector3(INF, 0, 0)) == 0)
 
+	# P-key playlist: two long tracks with looping off, so `finished` advances the playlist.
+	# Playback itself is checked windowed: the headless dummy driver leaks stopped Ogg playbacks.
+	assert(GameAudio.MUSIC.size() == 2)
+	for path: String in GameAudio.MUSIC:
+		var track: AudioStreamOggVorbis = load(path) as AudioStreamOggVorbis
+		assert(track != null and track.get_length() > 60.0 and not track.loop)
+	assert(audio.music != null and audio.music.finished.is_connected(audio.next_track))
+
 	# No immediate repeats inside a family pool.
 	var previous: StringName = &""
 	for index: int in range(40):
