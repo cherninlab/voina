@@ -12,6 +12,12 @@ extends Node
 # The lights hang on a rig that copies the current camera's transform every frame. They are never
 # parented to a camera: players (and their cameras) are freed on leave or rejoin, which used to
 # free the lantern with them.
+# Fog scatter (ui/flash_fog.gdshader): Mobile has no volumetric fog, so depth fog only fades to its
+# colour. A full-screen pass on the rig adds the light the lantern and the nearest fire lights put
+# into the fog, in their own colours; with a black fog colour the rest fades into black.
+# Flame grade: the global shader parameter flash_grade (project.godot) turns the fire shaders from
+# deep red into how flames come out on a flash photo (yellow-white clipped cores, thin orange
+# edges), and the fire lights' colour toward the same less-red orange.
 # Local presentation only; every original value is kept and put back.
 
 var sun: DirectionalLight3D
@@ -28,6 +34,13 @@ var settings: Dictionary = {}
 var colours: Dictionary = {}
 var render_mode: int = Viewport.DEBUG_DRAW_DISABLED
 var next_scan: float = 0.0
+var fog_pass: MeshInstance3D = MeshInstance3D.new()
+var fog_material: ShaderMaterial = ShaderMaterial.new()
+var fires: Array[OmniLight3D] = []
+const MAX_FIRES: int = 16
+# A fire light is a warm omni light: torches, grave fires, lanterns, candles.
+const FIRE_META: StringName = &"shading_fire_color"
+const FLASH_FIRE: Color = Color(1.0, 0.72, 0.46)
 
 func _ready() -> void:
 	# The haunted forest reads forest_fog / forest_ambient from settings (see forest_scale()).
@@ -41,6 +54,19 @@ func _ready() -> void:
 	rig.name = "ShadingLightRig"
 	rig.add_child(omni)
 	rig.add_child(spot)
+	fog_material.shader = preload("res://ui/flash_fog.gdshader")
+	# After the other transparents (foliage, flames, the road overlay) so the haze lies over them too.
+	fog_material.render_priority = 100
+	var quad: QuadMesh = QuadMesh.new()
+	quad.size = Vector2(2.0, 2.0)
+	quad.material = fog_material
+	fog_pass.name = "ShadingFogScatter"
+	fog_pass.mesh = quad
+	fog_pass.cast_shadow = GeometryInstance3D.SHADOW_CASTING_SETTING_OFF
+	fog_pass.extra_cull_margin = 16384.0
+	fog_pass.custom_aabb = AABB(Vector3.ONE * -1000.0, Vector3.ONE * 2000.0)
+	fog_pass.visible = false
+	rig.add_child(fog_pass)
 	add_child(rig)
 
 ## settings: sun, sun_angle, ambient, sky, fog, exposure, glow and the lantern_* values (see SPECS
@@ -59,7 +85,10 @@ func _process(_delta: float) -> void:
 		next_scan = now + 1000.0
 		if not is_instance_valid(sun) or not is_instance_valid(environment):
 			refresh()
+		elif float(settings.get("flame_grade", 0.0)) > 0.0 or float(settings.get("fog_fire", 0.0)) > 0.0:
+			find_fires() # torches built or relit since the last scan
 	follow_camera()
+	update_fog_scatter()
 
 func find_scene() -> void:
 	var tree_root: Node = get_tree().current_scene if get_tree().current_scene != null else get_tree().root
@@ -93,6 +122,21 @@ func find_scene() -> void:
 		original["glow_intensity"] = environment.glow_intensity
 	if lightmap != null and lightmap_data == null:
 		lightmap_data = lightmap.light_data
+	find_fires()
+
+func find_fires() -> void:
+	var tree_root: Node = get_tree().current_scene if get_tree().current_scene != null else get_tree().root
+	fires.clear()
+	for node: Node in tree_root.find_children("*", "OmniLight3D", true, false):
+		var light: OmniLight3D = node as OmniLight3D
+		if light == omni:
+			continue
+		var tint: Color = light.get_meta(FIRE_META, light.light_color) as Color
+		if tint.r > 0.85 and tint.r - tint.b > 0.5:
+			if not light.has_meta(FIRE_META):
+				light.set_meta(FIRE_META, light.light_color)
+			fires.append(light)
+	grade_fires()
 
 ## The live village replaces its atmosphere after this node's first scan. Adopt only those
 ## baseline fields; recapturing sun/energy here would compound an already-applied Night theme.
@@ -131,6 +175,58 @@ func refresh() -> void:
 		environment.glow_enabled = glow > 0.001 or bool(original["glow"])
 		environment.glow_intensity = glow if glow > 0.001 else float(original["glow_intensity"])
 	refresh_lantern()
+	grade_fires()
+
+## Flash photo flames: shaders through the global parameter, lights by colour (their energy
+## flickers every frame in the environment scripts, their colour does not).
+func grade_fires() -> void:
+	var grade: float = clampf(float(settings.get("flame_grade", 0.0)), 0.0, 1.0)
+	RenderingServer.global_shader_parameter_set(&"flash_grade", grade)
+	for light: OmniLight3D in fires:
+		if is_instance_valid(light):
+			var tint: Color = light.get_meta(FIRE_META) as Color
+			light.light_color = tint.lerp(FLASH_FIRE, grade * 0.8)
+
+## Feed the fog pass the lantern and the fire lights nearest the camera.
+func update_fog_scatter() -> void:
+	var flash_haze: float = float(settings.get("fog_flash", 0.0))
+	var fire_haze: float = float(settings.get("fog_fire", 0.0))
+	var density: float = environment.fog_density if is_instance_valid(environment) and environment.fog_enabled else 0.0
+	var camera: Camera3D = get_viewport().get_camera_3d()
+	fog_pass.visible = camera != null and density > 0.0 and (flash_haze > 0.0 or fire_haze > 0.0)
+	if not fog_pass.visible:
+		return
+	fog_material.set_shader_parameter(&"density", density)
+	var flash: Color = lantern.light_color.srgb_to_linear() * lantern.light_energy * flash_haze if lantern.visible else Color.BLACK
+	fog_material.set_shader_parameter(&"flash_color", Vector3(flash.r, flash.g, flash.b))
+	fog_material.set_shader_parameter(&"flash_range", maxf(float(settings.get("lantern_range", 16.0)), 0.5))
+	fog_material.set_shader_parameter(&"flash_decay", float(settings.get("lantern_falloff", 1.4)))
+	fog_material.set_shader_parameter(&"flash_cos", -1.0 if lantern == omni else cos(deg_to_rad(spot.spot_angle)))
+	fog_material.set_shader_parameter(&"flash_near", maxf(0.6, absf(lantern.position.y) * 3.0))
+	var eye: Vector3 = camera.global_position
+	var nearest: Array[OmniLight3D] = []
+	if fire_haze > 0.0:
+		for light: OmniLight3D in fires:
+			if is_instance_valid(light) and light.is_visible_in_tree() and light.light_energy > 0.001 \
+					and eye.distance_to(light.global_position) < light.omni_range + 80.0:
+				nearest.append(light)
+		if nearest.size() > MAX_FIRES:
+			nearest.sort_custom(func(a: OmniLight3D, b: OmniLight3D) -> bool:
+				return eye.distance_squared_to(a.global_position) < eye.distance_squared_to(b.global_position))
+			nearest.resize(MAX_FIRES)
+	var positions: PackedVector4Array = PackedVector4Array()
+	var colors: PackedVector4Array = PackedVector4Array()
+	positions.resize(MAX_FIRES)
+	colors.resize(MAX_FIRES)
+	for index: int in range(nearest.size()):
+		var light: OmniLight3D = nearest[index]
+		var point: Vector3 = light.global_position
+		var tint: Color = light.light_color.srgb_to_linear() * light.light_energy * fire_haze
+		positions[index] = Vector4(point.x, point.y, point.z, light.omni_range)
+		colors[index] = Vector4(tint.r, tint.g, tint.b, 0.0)
+	fog_material.set_shader_parameter(&"fire_count", nearest.size())
+	fog_material.set_shader_parameter(&"fire_position", positions)
+	fog_material.set_shader_parameter(&"fire_color", colors)
 
 ## Warmth 0 is cold flash white, 1 is warm lantern orange.
 const COLD: Color = Color("eef3ff")

@@ -5,6 +5,8 @@ render_mode unshaded, blend_add, depth_draw_never, cull_disabled, shadows_disabl
 uniform vec3 core : source_color = vec3(1.0, 0.86, 0.55);
 uniform vec3 outer : source_color = vec3(1.0, 0.34, 0.06);
 uniform float energy = 1.6;
+global uniform float flash_grade; // flash photo: clipped yellow-white core, orange edge
+
 varying float seed;
 varying float bright;
 
@@ -31,7 +33,9 @@ void fragment() {
 	float profile = sqrt(max(y, 0.0)) * pow(max(1.0 - y, 0.0), 0.75) * 1.9;
 	float body = 1.0 - smoothstep(profile * 0.35, profile + 0.02, abs(x));
 	float hot = (1.0 - smoothstep(0.0, profile * 0.5 + 0.05, abs(x))) * (1.0 - smoothstep(0.15, 0.6, y));
-	vec3 color = mix(outer, core, clamp(hot * 1.4, 0.0, 1.0));
+	vec3 edge = mix(outer, vec3(1.0, 0.62, 0.22), flash_grade);
+	vec3 centre = mix(core, vec3(1.0, 0.97, 0.88), flash_grade);
+	vec3 color = mix(edge, centre, clamp(hot * (1.4 + flash_grade * 0.8), 0.0, 1.0));
 	ALBEDO = color * energy * bright;
 	ALPHA = clamp(body, 0.0, 1.0);
 }

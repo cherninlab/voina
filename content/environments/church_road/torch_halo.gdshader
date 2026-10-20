@@ -6,6 +6,7 @@ instance uniform float heat = 1.0;
 uniform vec3 tint : source_color = vec3(1.0, 0.4, 0.08);
 uniform float strength = 0.42;
 uniform float fog_density = 0.0;
+global uniform float flash_grade; // flash photo: yellower, smaller glow (see torch_flame.gdshader)
 varying float fade;
 
 void vertex() {
@@ -19,6 +20,7 @@ void fragment() {
 	// Two gaussians windowed to exactly zero at the quad's rim: no visible disc edge.
 	float window = (1.0 - r2) * (1.0 - r2);
 	float glow = (exp(-r2 * 14.0) * 0.6 + exp(-r2 * 4.5) * 0.4) * window * step(r2, 1.0);
-	ALBEDO = tint * glow * strength * heat * fade;
+	vec3 colour = mix(tint, vec3(1.0, 0.66, 0.32), flash_grade);
+	ALBEDO = colour * glow * strength * (1.0 - flash_grade * 0.35) * heat * fade;
 	ALPHA = 1.0;
 }

@@ -34,3 +34,10 @@ textures/default_filters/use_nearest_mipmap_filter=false
 
 [debug]
 gdscript/warnings/untyped_declaration=2
+
+[shader_globals]
+
+flash_grade={
+"type": "float",
+"value": 0.0
+}

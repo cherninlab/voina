@@ -10,6 +10,9 @@ instance uniform float seed = 0.0;
 uniform float brightness = 1.0;
 uniform float cover = 0.55;
 uniform float fog_density = 0.0;
+// 0 is the eye's deep-red fire; 1 is fire on a flash photo (ui/shading_lighting.gd): the short
+// exposure clips the core to yellow-white and loses the dim red edges, so tongues read thinner.
+global uniform float flash_grade;
 varying float fade;
 
 float hash(vec2 p) { return fract(sin(dot(p, vec2(127.1, 311.7))) * 43758.5453); }
@@ -55,7 +58,11 @@ void fragment() {
 	vec3 color = mix(vec3(0.5, 0.035, 0.004), vec3(1.0, 0.27, 0.015), smoothstep(0.04, 0.32, fire));
 	color = mix(color, vec3(1.0, 0.43, 0.05), smoothstep(0.32, 0.62, fire));
 	color = mix(color, vec3(1.0, 0.56, 0.15), smoothstep(0.78, 1.0, fire));
-	float body = smoothstep(0.015, 0.18, fire);
-	ALBEDO = color * body * (0.6 + fire * 1.05) * brightness * heat * fade;
+	vec3 shot = mix(vec3(0.85, 0.3, 0.06), vec3(1.0, 0.6, 0.2), smoothstep(0.08, 0.34, fire));
+	shot = mix(shot, vec3(1.0, 0.82, 0.48), smoothstep(0.34, 0.62, fire));
+	shot = mix(shot, vec3(1.0, 0.96, 0.84), smoothstep(0.66, 0.95, fire));
+	color = mix(color, shot, flash_grade);
+	float body = smoothstep(0.015 + flash_grade * 0.07, 0.18 + flash_grade * 0.06, fire);
+	ALBEDO = color * body * (0.6 + fire * (1.05 + flash_grade * 0.5)) * brightness * heat * fade;
 	ALPHA = body * cover * fade;
 }

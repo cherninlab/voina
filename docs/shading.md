@@ -27,6 +27,18 @@ The village's bounce light is baked into a `LightmapGI`; only the sun's direct l
 | Lantern height | metres above the lens; a little height drops crisp shadows below what it hits |
 | Lantern shadows | 0 or 1 |
 
+### Fog light and flash-photo flames
+
+The Mobile renderer has no volumetric fog: the environment's depth fog only fades things into its colour, and lights never show in it. `ui/flash_fog.gdshader` is a full-screen pass on the light rig that reads the depth buffer and adds the light that lights scatter back to the lens along each view ray, in their own colour, at the environment's live fog density (the haunted forest raises it to about 0.04). With a black fog colour everything else still fades into black.
+
+| Slider | Effect |
+| --- | --- |
+| Lantern in fog | the lantern's veil: integrated out from 0.6 m in front of the lens (a flash sits above it) to the first surface or the lantern's range, inverse power of its falloff, extinction both ways, brightest along the beam's axis |
+| Fires in fog | a haze ball around each of the 16 fire lights nearest the camera (warm omni lights: torches, grave fires, lanterns), the closed-form point-light airlight cut off at the first surface, so a wall in front hides it; it flickers with the light |
+| Flash-photo flames | the global shader parameter `flash_grade` (`project.godot`): torch, grave-fire and candle flames turn from deep red into how they come out on a flash photo, a clipped yellow-white core, thin orange edge, smaller yellower halo; fire lights' colour moves toward a less red orange |
+
+Isotropic scattering (1/4π) keeps the haze in the same units as lit surfaces. The pass draws after every other transparent, so it also lies over foliage and flames; it only adds light. None of the three switches the village to realtime light. Night Flash uses 0.12, 1.2 and 1. `scripts/capture_flash_fog.gd` (run through `scripts/godot_bg.sh`, same arguments as the road capture plus `--capture-dir`) saves a torch close-up and the road with them off and on, checks the frame brightens and the flames get less red, and prints `FLASH_FOG_OK`. Its frame cost is not measured.
+
 **Forest fog** and **Forest ambient** (own group) scale the brightness of the haunted forest's blue-grey grade outside the palisade: its fog colour (and light shafts) and its ambient colour. 1 is the grade as tuned for Folk Ink; Night Flash uses 0.08 and 0.2 so the forest stays dark. They do not switch the village to realtime light on their own. See `docs/haunted-forest.md`.
 
 There is one lantern, shaped by its sliders. Night uses it as a warm all-around lantern. Night Flash uses it as a point-and-shoot flash: a wide 150° cold cone, energy 45, 22 cm above the lens, with shadows. Godot needs an omni light for 180° and a spot light for a cone, so both nodes exist and only the active one is lit. They hang on a rig that copies the current camera's transform every frame. They are never children of a camera, because the player and its camera are freed on leave or rejoin. That used to free the lantern with them, and the Night lantern stayed dark afterwards.
@@ -63,7 +75,7 @@ Off by default (**Blood override** 0). Four lo-fi themes use it as a red accent,
 
 | Group | Themes |
 | --- | --- |
-| Lighting | Night (moonlight, lantern), Night Flash (the lantern shaped as a polaroid-style flash: blown-out foreground falling off to black, warm print tint), Golden Hour (low warm sun, glow), Fog, Overexposed, Blood Moon, Night Vision (night light amplified into a green ramp, grain), Neon Noir (dim blue light, cyan ink) |
+| Lighting | Night (moonlight, lantern), Night Flash (the lantern shaped as a polaroid-style flash: blown-out foreground falling off to black, flash- and fire-lit fog, flash-photo flames, warm print tint), Golden Hour (low warm sun, glow), Fog, Overexposed, Blood Moon, Night Vision (night light amplified into a green ramp, grain), Neon Noir (dim blue light, cyan ink) |
 | Shading models | Flat (unshaded), Cel (3 bands, ink), Outline (black on paper), Blueprint (white on blue), Painterly (Kuwahara) |
 | Colour | Spectrum, Inverted, Acid Trip (posterized, cycling hue), Thermal, Silent Film (sepia, vignette, grain), Pastel (bright soft light), Bleach Bypass, Vaporwave (pink sun, palette) |
 | Lo-fi with a red accent | Red Only, Concrete, Brutalist Web, Risograph, 1-Bit |

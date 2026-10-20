@@ -26,6 +26,10 @@ const SPECS: Array[Dictionary] = [
 	{"name": "lantern_warmth", "label": "Lantern warmth", "min": 0.0, "max": 1.0, "step": 0.01, "default": 1.0},
 	{"name": "lantern_height", "label": "Lantern height", "min": -0.5, "max": 1.5, "step": 0.01, "default": 0.1},
 	{"name": "lantern_shadows", "label": "Lantern shadows", "min": 0.0, "max": 1.0, "step": 1.0, "default": 0.0},
+	{"group": "Fog light and flames (no realtime switch on their own)"},
+	{"name": "fog_flash", "label": "Lantern in fog", "min": 0.0, "max": 2.0, "step": 0.01, "default": 0.0},
+	{"name": "fog_fire", "label": "Fires in fog", "min": 0.0, "max": 4.0, "step": 0.01, "default": 0.0},
+	{"name": "flame_grade", "label": "Flash-photo flames", "min": 0.0, "max": 1.0, "step": 0.01, "default": 0.0},
 	{"group": "Haunted forest grade (outside the palisade)"},
 	{"name": "forest_fog", "label": "Forest fog", "min": 0.0, "max": 1.5, "step": 0.01, "default": 1.0},
 	{"name": "forest_ambient", "label": "Forest ambient", "min": 0.0, "max": 1.5, "step": 0.01, "default": 1.0},
@@ -61,10 +65,11 @@ const SPECS: Array[Dictionary] = [
 const INT_PARAMS: Array[String] = ["flat_radius"]
 const LIGHT_PARAMS: Array[String] = ["sun", "sun_angle", "ambient", "sky", "fog", "scene_exposure", "glow", "lantern",
 	"lantern_spread", "lantern_range", "lantern_falloff", "lantern_warmth", "lantern_height", "lantern_shadows",
-	"forest_fog", "forest_ambient"]
+	"forest_fog", "forest_ambient", "fog_flash", "fog_fire", "flame_grade"]
 # Brightness of the haunted forest's blue-grey grade (gameplay/environment/haunted_forest.gd); 1 is
 # the grade as tuned for Folk Ink. They never switch the village to realtime light on their own.
-const FOREST_PARAMS: Array[String] = ["forest_fog", "forest_ambient"]
+# The fog-light and flame sliders (ui/flash_fog.gdshader, flame shaders) do not either.
+const FOREST_PARAMS: Array[String] = ["forest_fog", "forest_ambient", "fog_flash", "fog_fire", "flame_grade"]
 const RENDER_MODES: Dictionary[String, int] = {"unshaded": Viewport.DEBUG_DRAW_UNSHADED}
 # Each theme: "values" override SPECS defaults. Colours are sRGB hex: "palette" (with "mode"
 # 0 = luminance ramp dark to light, 1 = nearest colour), "ink", "paper", "tint", "blood", and
@@ -78,14 +83,16 @@ const THEMES: Array[Dictionary] = [
 	{"name": "Night", "light": NIGHT, "values": {"sun": 0.12, "sun_angle": 40.0, "ambient": 0.3, "sky": 0.05,
 		"fog": 0.012, "scene_exposure": 1.3, "lantern": 3.0, "saturation": 0.8, "vignette": 0.35}},
 	# The same lantern shaped as a point-and-shoot flash: a wide cold cone from just above the lens,
-	# strong and shadowed, blown-out near faces and the background falling off into black.
+	# strong and shadowed, blown-out near faces and the background falling off into black. The fog
+	# fades to black too, lit only where the flash and the fires reach into it; flames come out
+	# yellow-white like on a flash photo instead of deep red.
 	{"name": "Night Flash", "light": {"sun_color": "7d96ff", "ambient_color": "10141f", "fog_color": "05070c"},
 		"tint": "ffe2c4", "values": {"sun": 0.06, "sun_angle": 40.0, "ambient": 0.15, "sky": 0.04, "fog": 0.01,
 		"scene_exposure": 1.2, "lantern": 45.0, "lantern_spread": 150.0, "lantern_range": 30.0,
 		"lantern_falloff": 2.0, "lantern_warmth": 0.05, "lantern_height": 0.22, "lantern_shadows": 1.0,
 		"exposure": 0.15, "contrast": 1.3,
 		"saturation": 0.85, "tint": 0.12, "vignette": 0.45, "grain": 0.08,
-		"forest_fog": 0.08, "forest_ambient": 0.2}},
+		"forest_fog": 0.08, "forest_ambient": 0.2, "fog_flash": 0.12, "fog_fire": 1.2, "flame_grade": 1.0}},
 	{"name": "Golden Hour", "light": {"sun_color": "ffaa55", "ambient_color": "7a5a4a", "fog_color": "ffcf9a"},
 		"tint": "ffc890", "values": {"sun": 1.6, "sun_angle": 14.0, "ambient": 1.8, "sky": 0.9, "fog": 0.006,
 		"scene_exposure": 1.25,
