@@ -27,6 +27,8 @@ The village's bounce light is baked into a `LightmapGI`; only the sun's direct l
 | Lantern height | metres above the lens; a little height drops crisp shadows below what it hits |
 | Lantern shadows | 0 or 1 |
 
+**Forest fog** and **Forest ambient** (own group) scale the brightness of the haunted forest's blue-grey grade outside the palisade: its fog colour (and light shafts) and its ambient colour. 1 is the grade as tuned for Folk Ink; Night Flash uses 0.08 and 0.2 so the forest stays dark. They do not switch the village to realtime light on their own. See `docs/haunted-forest.md`.
+
 There is one lantern, shaped by its sliders. Night uses it as a warm all-around lantern. Night Flash uses it as a point-and-shoot flash: a wide 150° cold cone, energy 45, 22 cm above the lens, with shadows. Godot needs an omni light for 180° and a spot light for a cone, so both nodes exist and only the active one is lit. They hang on a rig that copies the current camera's transform every frame. They are never children of a camera, because the player and its camera are freed on leave or rejoin. That used to free the lantern with them, and the Night lantern stayed dark afterwards.
 
 Theme colours set the sun, ambient, fog and lantern tints. Natural, or any theme without lighting, puts back the lightmap, sun, environment and render mode exactly as they were. Without the lightmap's bounce light, shadows are only filled by ambient light; themes raise Ambient to compensate. The realtime path's frame cost against the baked one is not measured.

@@ -30,6 +30,8 @@ var render_mode: int = Viewport.DEBUG_DRAW_DISABLED
 var next_scan: float = 0.0
 
 func _ready() -> void:
+	# The haunted forest reads forest_fog / forest_ambient from settings (see forest_scale()).
+	add_to_group(&"shading_lighting")
 	omni.name = "ShadingLantern"
 	spot.name = "ShadingLanternCone"
 	for light: Light3D in [omni, spot]:
@@ -153,6 +155,11 @@ func refresh_lantern() -> void:
 	spot.spot_range = reach
 	spot.spot_attenuation = falloff
 	spot.spot_angle = minf(spread * 0.5, 89.0)
+
+## Brightness multiplier the haunted forest applies to its grade's fog or ambient colour: 1 keeps
+## the grade as tuned (Folk Ink); night themes dim it so the forest does not glow blue-grey.
+func forest_scale(key: String) -> float:
+	return float(settings.get(key, 1.0))
 
 func colour(key: String, fallback: Color) -> Color:
 	return Color(colours[key] as String) if colours.has(key) else fallback

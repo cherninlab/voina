@@ -7,6 +7,8 @@ extends Node3D
 ## Environment and the sun ease from whatever grade is active (the grim village grade or a shading
 ## theme) toward a dense, cold forest grade. A value another script writes becomes the new base, and
 ## the base comes back exactly inside the village and for the high lobby camera.
+## The grade's colours are tuned for Folk Ink; the active shading theme can dim its fog and ambient
+## colours (Forest fog / Forest ambient sliders) so night looks stay dark out here.
 
 const ART: String = "res://content/environments/haunted_forest/"
 const BARK_MAPS: String = "res://content/environments/valhalla/textures/KB3D_VHL_LogBark_"
@@ -36,6 +38,8 @@ var environment: Environment # the shared grade being blended (the capture scrip
 var sun: DirectionalLight3D
 var weight: float = 0.0 # 0 = base grade, 1 = full forest grade (the capture script reads it)
 var applied: float = 0.0
+var fog_scale: float = 1.0 # Forest fog slider of the active shading theme
+var ambient_scale: float = 1.0 # Forest ambient slider of the active shading theme
 var grading: bool = false
 var base: Dictionary[String, Variant] = {}
 var written: Dictionary[String, Variant] = {}
@@ -100,12 +104,20 @@ func _process(delta: float) -> void:
 		find_grade_targets()
 		if environment == null:
 			return
+	var lighting: Node = get_tree().get_first_node_in_group(&"shading_lighting")
+	var scales_changed: bool = false
+	if lighting != null:
+		var fog_wanted: float = float(lighting.call("forest_scale", "forest_fog"))
+		var ambient_wanted: float = float(lighting.call("forest_scale", "forest_ambient"))
+		scales_changed = fog_wanted != fog_scale or ambient_wanted != ambient_scale
+		fog_scale = fog_wanted
+		ambient_scale = ambient_wanted
 	var camera: Camera3D = get_viewport().get_camera_3d()
 	var target: float = zone_weight(camera.global_position) if camera != null else 0.0
 	weight = lerpf(weight, target, 1.0 - exp(-delta * 2.5))
 	if absf(weight - target) < 0.002:
 		weight = target
-	if weight == 0.0 and applied == 0.0:
+	if weight == 0.0 and applied == 0.0 and not scales_changed:
 		return
 	layer(environment, ENVIRONMENT_KEYS, "environment/")
 	if sun != null:
@@ -116,7 +128,7 @@ func _process(delta: float) -> void:
 ## Shafts only shine under the forest grade; mist and still water take the current fog colour;
 ## the ash drift follows the camera and thins out toward the village.
 func tune_cards(camera: Camera3D) -> void:
-	shaft_material.set_shader_parameter("intensity", SHAFT_INTENSITY * smoothstep(0.5, 1.0, weight))
+	shaft_material.set_shader_parameter("intensity", SHAFT_INTENSITY * minf(fog_scale, 1.0) * smoothstep(0.5, 1.0, weight))
 	ash.emitting = weight > 0.35
 	if camera != null:
 		ash.global_position = camera.global_position
@@ -153,7 +165,7 @@ func graded(key: StringName, value: Variant, amount: float) -> Variant:
 		&"fog_density":
 			return lerpf(float(value), maxf(float(value), FOG_DENSITY), amount)
 		&"fog_light_color":
-			return (value as Color).lerp(FOG_COLOR, amount)
+			return (value as Color).lerp(dimmed(FOG_COLOR, fog_scale), amount)
 		&"fog_sky_affect":
 			return lerpf(float(value), maxf(float(value), FOG_SKY_AFFECT), amount)
 		&"fog_aerial_perspective":
@@ -163,7 +175,7 @@ func graded(key: StringName, value: Variant, amount: float) -> Variant:
 		&"ambient_light_energy":
 			return float(value) * lerpf(1.0, AMBIENT_SCALE, amount)
 		&"ambient_light_color":
-			return (value as Color).lerp(AMBIENT_COLOR, amount)
+			return (value as Color).lerp(dimmed(AMBIENT_COLOR, ambient_scale), amount)
 		&"tonemap_exposure":
 			return float(value) * lerpf(1.0, EXPOSURE_SCALE, amount)
 		&"light_energy":
@@ -171,6 +183,9 @@ func graded(key: StringName, value: Variant, amount: float) -> Variant:
 		&"light_color":
 			return (value as Color).lerp(SUN_COLOR, amount)
 	return value
+
+static func dimmed(colour: Color, scale: float) -> Color:
+	return Color(colour.r * scale, colour.g * scale, colour.b * scale, colour.a)
 
 static func same(a: Variant, b: Variant) -> bool:
 	if a is Color and b is Color:

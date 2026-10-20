@@ -23,6 +23,8 @@ The blend is a layer over whatever grade is active, not a replacement. Every fra
 | `tonemap_exposure` | base | × 0.95 |
 | sun `light_energy` / colour | base | × 0.45 / toward `aebdcc` |
 
+The forest grade's fog and ambient colours are tuned for Folk Ink, the default theme. Each shading theme can scale them with the **Forest fog** and **Forest ambient** sliders (Shading tweaks, own group; 1 keeps the colours above, 0 is black). The zone reads them from `ui/shading_lighting.gd` every frame, so moving a slider shows at once. Forest fog also dims the light shafts. Night Flash sets Forest fog 0.08 and Forest ambient 0.2: the flash still lights the near trail and the dense fog swallows the distance into black, instead of the forest glowing blue-grey like an overcast day. Other themes keep 1.
+
 The Mobile renderer has no volumetric fog. At 0.044 exponential density, 10 m is about 36 % fog, 25 m about 67 % and 40 m about 83 %: near trunks stay dark while the next rows fade into grey silhouettes. The church road's additive torch glows read the live fog density, so they sink into the forest fog with distance.
 
 ## Dressing
