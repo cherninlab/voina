@@ -16,7 +16,16 @@ func _validate() -> void:
 	var skeletons: Array[Node] = model.find_children("*", "Skeleton3D", true, false)
 	assert(skeletons.size() == 1, "One deform skeleton")
 	var skeleton: Skeleton3D = skeletons[0] as Skeleton3D
-	assert(skeleton.get_bone_count() == 65, "Keep the raider's original 65-bone skeleton")
+	# The raider's 65 bones plus the robe's: 8 skirt chains of 4 under the pelvis and a droop bone
+	# in each sleeve (T-110, gameplay/mobs/robe_cloth.gd).
+	assert(skeleton.get_bone_count() == 65 + 8 * 4 + 2, "The raider's 65 bones plus the robe's 34")
+	for column: int in range(8):
+		for joint: int in range(4):
+			var robe: int = skeleton.find_bone("robe_%02d_%d" % [column, joint])
+			assert(robe >= 0, "Robe bone %d/%d" % [column, joint])
+			assert(skeleton.get_bone_name(skeleton.get_bone_parent(robe)) == ("pelvis" if joint == 0 else "robe_%02d_%d" % [column, joint - 1]), "Skirt chains hang from the pelvis")
+	for side: String in ["l", "r"]:
+		assert(skeleton.get_bone_name(skeleton.get_bone_parent(skeleton.find_bone("sleeve_" + side))) == "lowerarm_" + side, "Sleeve droop bone on the forearm")
 	for bone_name: String in ["root", "pelvis", "Head", "hand_l", "hand_r",
 			"foot_l", "foot_r", "spine_03", "neck_01", "lowerarm_l"]:
 		assert(skeleton.find_bone(bone_name) >= 0, "Missing bone: " + bone_name)
@@ -40,11 +49,8 @@ func _validate() -> void:
 		assert(preserved_mesh.mesh.get_surface_count() == original_mesh.mesh.get_surface_count())
 		var original_bounds: AABB = original_mesh.mesh.get_aabb()
 		var preserved_bounds: AABB = preserved_mesh.mesh.get_aabb()
-		# The legs and feet under the gown are removed (build_hooded_cultist.py LEG_HIDE): the body
-		# keeps its height at the top and its arm span; only its bottom rises to the hips.
-		assert(absf(original_bounds.end.y - preserved_bounds.end.y) < 0.001, "Original body proportions (top)")
-		assert(absf(original_bounds.position.x - preserved_bounds.position.x) < 0.001 and absf(original_bounds.size.x - preserved_bounds.size.x) < 0.001, "Original arm span")
-		assert(preserved_bounds.position.y <= 0.96 or preserved_mesh.name != &"SuperHero_Male", "Body kept from the hips up")
+		# The whole body stays, legs and feet included: the robe keeps clear of them (T-110).
+		assert(original_bounds.position.distance_to(preserved_bounds.position) < 0.001 and original_bounds.size.distance_to(preserved_bounds.size) < 0.001, "Original body, legs included")
 	for node: Node in meshes:
 		var mesh_node: MeshInstance3D = node as MeshInstance3D
 		assert(mesh_node.skin != null, "Mesh must have skin bind data")
@@ -81,7 +87,7 @@ func _validate() -> void:
 	player.seek(player.current_animation_length * 0.5, true)
 	var reach_hand: Vector3 = skeleton.get_bone_global_pose(hand_index).origin
 	assert(idle_hand.distance_to(reach_hand) > 0.1, "Existing jab must articulate the arm")
-	print("CULTIST_OK: original 65-bone rest rig, human plus garments, normalized weights, existing raider clips")
+	print("CULTIST_OK: original 65-bone rest rig plus 34 robe bones, whole human plus garments, normalized weights, existing raider clips")
 	base.free()
 	model.queue_free()
 	quit()

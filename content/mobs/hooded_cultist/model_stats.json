@@ -1,8 +1,9 @@
 {
   "mesh_objects_source": 33,
-  "vertices_blender": 23392,
-  "triangles": 44382,
-  "bones": 65,
+  "vertices_blender": 19756,
+  "triangles": 36738,
+  "bones": 99,
+  "robe_bones": 34,
   "maximum_skin_influences": 4,
   "units": "metres",
   "height_rest_m": 2.1577,

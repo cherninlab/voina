@@ -254,8 +254,10 @@ static func bake_cut(mesh: MeshInstance3D, rig: Skeleton3D, point: Vector3, norm
 					blend = Basis(blend.x + bases[bind].x * weight, blend.y + bases[bind].y * weight, blend.z + bases[bind].z * weight)
 					posed[index] += skinnings[bind] * vertex * weight
 			cut[index] = Vector2(distance * metres, 0.0)
-			# The bind-space vector that skinning in this pose turns back onto the plane normal.
-			var tangent: Vector3 = (blend.inverse() * local_normal).normalized() if absf(blend.determinant()) > 0.000001 else local_normal
+			# The bind-space vector that skinning in this pose turns back onto the plane normal. The
+			# blend of bone rotations is close to a rotation, so its transpose stands in for the
+			# inverse: the direction only shades the inside of the cut, and it is far cheaper.
+			var tangent: Vector3 = (blend.transposed() * local_normal).normalized() if absf(blend.determinant()) > 0.000001 else local_normal
 			tangents[index * 4] = tangent.x
 			tangents[index * 4 + 1] = tangent.y
 			tangents[index * 4 + 2] = tangent.z

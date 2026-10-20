@@ -13,6 +13,12 @@ var raider: bool = false
 var cultist: bool = false
 const CULTIST: String = "res://content/mobs/hooded_cultist/hooded_cultist.glb"
 var body_scene: PackedScene # the model this body and its bisect halves instantiate
+
+# The cultist model takes almost half a second to load: start it on a worker thread as soon as the
+# mob scripts load, so the first village raider does not stall the frame it spawns in (T-110).
+static func _static_init() -> void:
+	if ResourceLoader.exists(CULTIST):
+		ResourceLoader.load_threaded_request(CULTIST)
 # Which possessed villager this is; read from the parent's replicated mob_id when it enters the tree,
 # or set directly where there is no HostileMob (captures, tests).
 var mob_id: int = 1
@@ -30,9 +36,11 @@ var skeleton: Skeleton3D
 var puppet: MobPuppet = MobPuppet.new() # bone springs: hits flex the struck chain
 var feet: MobFeet # foot planting through TwoBoneIK3D
 var ragdoll: PhysicalBoneSimulator3D # the death fall, once it starts
+var cloth: RobeCloth # the cultist's robe hanging as heavy linen (T-110); null on other bodies
 # The final pose after modifiers, skeleton space; between passes the skeleton holds only the animation.
 var poses: Array[Transform3D] = []
 var locals: Array[Transform3D] = []
+var posed_bones: PackedInt32Array = PackedInt32Array() # the bones cache_pose keeps: all but the robe's
 var last_push: Vector3 = Vector3.ZERO # the latest shove, world space, for the direction of a fall
 var push_age: float = 99.0
 var fallen: bool = false
@@ -70,7 +78,9 @@ func _ready() -> void:
 	body_scene = MODELS[int(female)]
 	if cultist and ResourceLoader.exists(CULTIST):
 		female = false
-		body_scene = load(CULTIST) as PackedScene
+		# Started on a worker thread when this script loaded (_static_init); waits only if unfinished.
+		var threaded: bool = ResourceLoader.load_threaded_get_status(CULTIST) != ResourceLoader.THREAD_LOAD_INVALID_RESOURCE
+		body_scene = (ResourceLoader.load_threaded_get(CULTIST) if threaded else load(CULTIST)) as PackedScene
 	model = body_scene.instantiate() as Node3D
 	model.name = "Model"
 	model.rotation.y = PI
@@ -96,6 +106,13 @@ func _ready() -> void:
 	if raider:
 		possession.active = false
 		hands.set_enabled(false)
+	# Last, so the robe hangs from the final pose with the legs planted.
+	var garments: MeshInstance3D = model.find_child("Cultist_Garments", true, false) as MeshInstance3D
+	cloth = RobeCloth.install(skeleton, garments)
+	# The robe's own bones are never looked up by pose (wounds, ragdoll, copies keep to the body's).
+	for bone: int in range(skeleton.get_bone_count()):
+		if not skeleton.get_bone_name(bone).begins_with("robe_"):
+			posed_bones.append(bone)
 	skeleton.skeleton_updated.connect(cache_pose)
 	last_position = global_position
 	overlay.shader = OVERLAY_SHADER
@@ -223,9 +240,14 @@ func update_look() -> void:
 	possession.look_weight = focus if best.is_finite() else 0.0
 
 func cache_pose() -> void:
-	poses.resize(skeleton.get_bone_count())
-	locals.resize(poses.size())
-	for bone: int in range(poses.size()):
+	if posed_bones.is_empty():
+		posed_bones = PackedInt32Array(range(skeleton.get_bone_count()))
+	if poses.size() != skeleton.get_bone_count():
+		poses.resize(skeleton.get_bone_count())
+		locals.resize(poses.size())
+		for bone: int in range(poses.size()):
+			locals[bone] = skeleton.get_bone_pose(bone) # the robe's bones keep their first pose
+	for bone: int in posed_bones:
 		poses[bone] = skeleton.get_bone_global_pose(bone)
 		locals[bone] = skeleton.get_bone_pose(bone)
 
@@ -268,6 +290,9 @@ func fall() -> void:
 	var shove: Vector3 = last_push if push_age < 1.0 else global_basis * Vector3(randf_range(-0.4, 0.4), 0.0, 0.6)
 	ragdoll = MobRagdoll.build(skeleton, Callable(), Vector3(velocity.x, minf(velocity.y, 0.0), velocity.z))
 	MobRagdoll.push(ragdoll, shove.limit_length(5.0) * 0.4 + Vector3.UP * 0.3)
+	if cloth != null:
+		var under: Array[Vector3] = RobeCloth.floor_under(get_world_3d(), global_position)
+		cloth.drape(under[0], under[1])
 	get_tree().create_timer(CORPSE).timeout.connect(queue_free)
 
 # A damaging hit leaves a gash along the blade's plane and briefly freezes the pose.
@@ -281,7 +306,7 @@ func wound(point: Vector3, normal: Vector3, travel: Vector3) -> void:
 		along = normal.cross(Vector3.UP if absf(normal.y) < 0.9 else Vector3.RIGHT)
 	var nearest: int = 0
 	var best: float = INF
-	for bone: int in range(skeleton.get_bone_count()):
+	for bone: int in posed_bones:
 		var distance: float = bone_world(bone).origin.distance_squared_to(point)
 		if distance < best:
 			best = distance
@@ -339,9 +364,12 @@ func bisect(point: Vector3, normal: Vector3, impulse: Vector3) -> void:
 	visible = false
 	var head: Vector3 = bone_world(skeleton.find_bone("Head")).origin
 	var center: Vector3 = HitEffects.cut_center(point, normal, global_position)
+	var under: Array[Vector3] = RobeCloth.floor_under(get_world_3d(), global_position)
 	var top_side: float = signf(normal.dot(head - point))
 	top_side = top_side if top_side != 0.0 else 1.0
 	hold_pose(skeleton)
+	if cloth != null and cloth.push != null:
+		cloth.push.restore()
 	# Bake the cut once, in the pose it happened in; both halves share the meshes.
 	var cut_meshes: Array[ArrayMesh] = []
 	for mesh: MeshInstance3D in meshes:
@@ -394,6 +422,10 @@ func bisect(point: Vector3, normal: Vector3, impulse: Vector3) -> void:
 		var push: Vector3 = impulse if top else impulse * 0.25
 		# The top tumbles with its launch; the legs get a kick at the hip so they topple instead of standing.
 		MobRagdoll.push(body, push, Vector3.UP.cross(push).normalized() * (2.5 if top else 4.0))
+		# The robe on each half falls loose from the cut, draping over what is left of the body.
+		var robe: RobeCloth = RobeCloth.install(target, copy.find_child("Cultist_Garments", true, false) as MeshInstance3D, false)
+		if robe != null:
+			robe.drape(under[0], under[1])
 		# Blood pours from the cut face, which points along -side * normal, on each piece's part
 		# nearest the cut: a big spill from the half itself, a shorter gush from severed limbs.
 		# The stream starts from the middle of each stump, not the skin the blade touched.

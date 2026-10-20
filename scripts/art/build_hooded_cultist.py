@@ -189,31 +189,122 @@ def torso_weights(z: float) -> dict[str, float]:
     return {"spine_03": 1}
 
 
+# The skirt hangs from the hips on ROBE_COLUMNS chains of spring bones (T-110): bone j of column c
+# runs from height ROBE_Z[j] to ROBE_Z[j+1] on the gown's surface. In Godot a SpringBoneSimulator3D
+# swings them with the body's motion and gravity and keeps them outside capsules on the thighs and
+# calves (gameplay/mobs/robe_cloth.gd), so the legs stay inside the robe while they stride.
+ROBE_COLUMNS = 8
+ROBE_Z = (1.0, .75, .5, .28, .115)
+SKIRT_ROW = .04
+GOWN_PROFILE = [
+    (.115, .435, .305), (.16, .43, .300), (.24, .414, .29),
+    (.34, .39, .278), (.46, .361, .263), (.58, .332, .244),
+    (.70, .304, .222), (.81, .276, .204), (.91, .246, .183),
+    (1.00, .208, .157), (1.045, .186, .141), (1.075, .184, .14),
+    (1.11, .212, .157), (1.18, .222, .164), (1.27, .241, .176),
+    (1.36, .266, .178), (1.43, .286, .163), (1.49, .283, .143),
+    (1.535, .222, .123), (1.57, .135, .105), (1.585, .098, .09),
+]
+
+
+def robe_bone(column: int, joint: int) -> str:
+    return f"robe_{column % ROBE_COLUMNS:02d}_{joint}"
+
+
+def gown_radius(z: float) -> tuple[float, float]:
+    for (z0, rx0, ry0), (z1, rx1, ry1) in zip(GOWN_PROFILE, GOWN_PROFILE[1:]):
+        if z <= z1:
+            t = max(0.0, min(1.0, (z - z0) / (z1 - z0)))
+            return rx0 + (rx1 - rx0) * t, ry0 + (ry1 - ry0) * t
+    return GOWN_PROFILE[-1][1], GOWN_PROFILE[-1][2]
+
+
+def robe_joint(column: int, joint: int) -> Vector:
+    theta = TAU * column / ROBE_COLUMNS
+    rx, ry = gown_radius(ROBE_Z[joint])
+    return Vector((rx * math.sin(theta), -ry * math.cos(theta), ROBE_Z[joint]))
+
+
+def make_robe_bones() -> None:
+    """Skirt chains under the pelvis and a droop bone in each sleeve, added to the existing rig
+    without touching its 65 original bones."""
+    bpy.context.view_layer.objects.active = RIG
+    bpy.ops.object.mode_set(mode="EDIT")
+    bones = RIG.data.edit_bones
+    to_rig = RIG.matrix_world.inverted()
+    for column in range(ROBE_COLUMNS):
+        parent = bones["pelvis"]
+        for joint in range(len(ROBE_Z) - 1):
+            bone = bones.new(robe_bone(column, joint))
+            bone.head = to_rig @ robe_joint(column, joint)
+            bone.tail = to_rig @ robe_joint(column, joint + 1)
+            bone.roll = 0.0
+            bone.parent = parent
+            bone.use_connect = joint > 0
+            bone.use_deform = True
+            parent = bone
+    for sign in (1, -1):
+        suffix = "l" if sign > 0 else "r"
+        bone = bones.new(f"sleeve_{suffix}")
+        bone.head = to_rig @ Vector((sign*SLEEVE_HANG[0], .06, 1.4555))
+        bone.tail = to_rig @ Vector((sign*SLEEVE_HANG[1], .06, 1.43))
+        bone.parent = bones[f"lowerarm_{suffix}"]
+        bone.use_deform = True
+    bpy.ops.object.mode_set(mode="OBJECT")
+
+
+# The bell sleeve's loose end hangs from its own bone between these distances from the body's axis.
+SLEEVE_HANG = (.45, .70)
+
+
 def skirt_weights(theta: float, z: float) -> dict[str, float]:
-    left = max(0, min(1, .5 + math.sin(theta)*1.4))
-    leg = max(0, min(.3, (1.0-z)/.70))  # the hem sways with the stride without tearing open
-    return {"pelvis": 1-leg, "thigh_l": leg*left, "thigh_r": leg*(1-left)}
+    """Below the hips the gown rides two neighbouring skirt chains; near each joint it blends the
+    bones above and below it so the cloth bends smoothly, and at the hips it blends into the pelvis."""
+    f = (theta / TAU * ROBE_COLUMNS) % ROBE_COLUMNS
+    c0 = int(f)
+    across = f - c0
+    z = min(z, ROBE_Z[0])
+    joint = 0
+    while joint < len(ROBE_Z) - 2 and z < ROBE_Z[joint + 1]:
+        joint += 1
+    top, bottom = ROBE_Z[joint], ROBE_Z[joint + 1]
+    t = max(0.0, min(1.0, (top - z) / (top - bottom)))  # 0 at this bone's head, 1 at its tail
+    last = joint == len(ROBE_Z) - 2
+    # Half and half at each joint, all its own bone mid-segment; full pelvis at the hips.
+    if joint == 0 and t < .5:
+        neighbour, blend = None, max(0.0, 1 - t / .15)
+    elif t < .5:
+        neighbour, blend = joint - 1, .5 - t
+    else:
+        neighbour, blend = (joint, 0.0) if last else (joint + 1, t - .5)
+    weights: dict[str, float] = {}
+    for column, share in ((c0, 1 - across), (c0 + 1, across)):
+        if share <= .0001:
+            continue
+        own = robe_bone(column, joint)
+        other = "pelvis" if neighbour is None else robe_bone(column, neighbour)
+        weights[own] = weights.get(own, 0) + share * (1 - blend)
+        if blend > .0001:
+            weights[other] = weights.get(other, 0) + share * blend
+    return weights
 
 
 def make_body(linen: bpy.types.Material, seam: bpy.types.Material) -> None:
-    """Continuous gown, shaped with broad gravity folds and tighter waist gathers."""
-    profile = [
-        (.115, .435, .305), (.16, .43, .300), (.24, .414, .29),
-        (.34, .39, .278), (.46, .361, .263), (.58, .332, .244),
-        (.70, .304, .222), (.81, .276, .204), (.91, .246, .183),
-        (1.00, .208, .157), (1.045, .186, .141), (1.075, .184, .14),
-        (1.11, .212, .157), (1.18, .222, .164), (1.27, .241, .176),
-        (1.36, .266, .178), (1.43, .286, .163), (1.49, .283, .143),
-        (1.535, .222, .123), (1.57, .135, .105), (1.585, .098, .09),
-    ]
-    sides = 64
+    """Continuous gown, shaped with broad gravity folds and tighter waist gathers. Below the hips
+    the skirt bends on its spring chains, so it has a ring every SKIRT_ROW metres (one on each
+    joint) and shallow folds: the springs fold it, and deep sculpted folds would crush."""
+    rows = int(round((ROBE_Z[0] - ROBE_Z[-1]) / SKIRT_ROW))
+    skirt_z = sorted({round(ROBE_Z[-1] + (ROBE_Z[0] - ROBE_Z[-1]) * i / rows, 4) for i in range(rows)}
+                     | {round(z, 4) for z in ROBE_Z[1:-1]})
+    profile = [(z, *gown_radius(z)) for z in skirt_z] + [row for row in GOWN_PROFILE if row[0] >= ROBE_Z[0]]
+    sides = 48  # a bisect bakes every vertex in script, so the garments stay lean (T-110)
     verts, faces, skin, uv = [], [], [], []
     for i, (z, rx, ry) in enumerate(profile):
         for j in range(sides):
             theta = j / sides * TAU
             broad = math.sin(12 * theta + .28 * math.sin(z * 5 + theta))
             small = .35 * math.sin(24 * theta - z * 4)
-            amp = .010 + .027 * max(0, (1.07 - z) / .95)
+            amp = .007 + .012 * max(0, (1.07 - z) / .95)
             if 1.09 < z < 1.4:
                 amp = .012 + .007 * math.sin((z-1.09) / .31 * math.pi)
             fold = amp * (broad + small)
@@ -224,7 +315,7 @@ def make_body(linen: bpy.types.Material, seam: bpy.types.Material) -> None:
             y -= max(0, z - 1.3) * .10
             verts.append((x, y, z + hem))
             uv.append((j / sides, (z - .115) / 1.47))
-            skin.append(skirt_weights(theta, z) if z < .99 else torso_weights(z))
+            skin.append(skirt_weights(theta, z) if z < ROBE_Z[0] else torso_weights(z))
         if i:
             for j in range(sides):
                 faces.append(((i-1)*sides+j, (i-1)*sides+(j+1)%sides,
@@ -232,15 +323,17 @@ def make_body(linen: bpy.types.Material, seam: bpy.types.Material) -> None:
     body = mesh_object("Gown | continuous folded linen", verts, faces, linen, skin, uv)
     thickness(body)
     # Raised hem seam follows every fold, with exactly the same skinning.
-    for row, label, radius in ((1, "Double-turned hem", .0028), (11, "Waist gather seam", .002)):
+    waist = min(range(len(profile)), key=lambda i: abs(profile[i][0] - 1.075))
+    for row, label, radius in ((1, "Double-turned hem", .0028), (waist, "Waist gather seam", .002)):
         points = [verts[row*sides+j] for j in range(sides)] + [verts[row*sides]]
         ws = [skin[row*sides+j] for j in range(sides)] + [skin[row*sides]]
         tube(label, points, [radius]*len(points), seam, ws, 5)
     # One discreet, raised front panel seam down each side.
+    panel = [i for i, row in enumerate(profile) if row[0] <= 1.18]
     for j in (3, sides-3):
-        points = [Vector(verts[i*sides+j]) + Vector((0, -.002, 0)) for i in range(14)]
+        points = [Vector(verts[i*sides+j]) + Vector((0, -.002, 0)) for i in panel]
         tube("Gown panel stitch", points, [.0017]*len(points), seam,
-             [skin[i*sides+j] for i in range(14)], 5)
+             [skin[i*sides+j] for i in panel], 5)
 
 
 def make_sleeve(sign: int, linen: bpy.types.Material, lining: bpy.types.Material,
@@ -252,7 +345,7 @@ def make_sleeve(sign: int, linen: bpy.types.Material, lining: bpy.types.Material
     a = Vector((0, -1, 0))
     b = axis.cross(a).normalized()
     verts, faces, ws, uv = [], [], [], []
-    sides, rings = 32, 15
+    sides, rings = 24, 15
     for i in range(rings):
         t = i/(rings-1)
         center = shoulder.lerp(wrist, t)
@@ -268,8 +361,13 @@ def make_sleeve(sign: int, linen: bpy.types.Material, lining: bpy.types.Material
             if t < .26:
                 ws.append(blend_weights("spine_03", f"upperarm_{suffix}", t/.26))
             else:
-                ws.append(blend_weights(f"upperarm_{suffix}", f"lowerarm_{suffix}",
-                                        max(0, min(1, (t-.35)/.34))))
+                arm = blend_weights(f"upperarm_{suffix}", f"lowerarm_{suffix}",
+                                    max(0, min(1, (t-.35)/.34)))
+                # The loose bell rides its droop bone toward the cuff.
+                hang = max(0, min(1, (abs(p.x) - SLEEVE_HANG[0]) / (SLEEVE_HANG[1] - SLEEVE_HANG[0])))
+                arm = {bone: weight*(1-hang) for bone, weight in arm.items()}
+                arm[f"sleeve_{suffix}"] = hang
+                ws.append(arm)
         if i:
             for j in range(sides):
                 faces.append(((i-1)*sides+j, (i-1)*sides+(j+1)%sides,
@@ -305,7 +403,7 @@ def hood_point(theta: float, t: float) -> Vector:
 
 def make_hood(linen: bpy.types.Material, lining: bpy.types.Material,
               seam: bpy.types.Material) -> None:
-    sides, rings = 64, 33
+    sides, rings = 40, 22
     verts, faces, uv, ws = [], [], [], []
     for i in range(rings):
         t = i/(rings-1)
@@ -362,43 +460,46 @@ def make_hood(linen: bpy.types.Material, lining: bpy.types.Material,
     mesh_object("Recessed eye lining", inner_verts, inner_faces, lining,
                 [{"Head": 1}]*len(inner_verts))
     for theta in (math.pi, .64, TAU-.64):
-        points = [hood_point(theta, i/48) for i in range(49)]
+        points = [hood_point(theta, i/24) for i in range(25)]
         tube("Hood flat-felled seam", points, [.0017]*49, seam,
-             [blend_weights("neck_01", "Head", min(1, i/48/.2)) for i in range(49)], 5)
+             [blend_weights("neck_01", "Head", min(1, i/24/.2)) for i in range(25)], 5)
     # Cowl overlays the shoulder joints and gives the hood a sewn, layered base.
     verts, faces, ws, uv = [], [], [], []
     for i in range(9):
         t = i/8
-        for j in range(64):
-            th = TAU*j/64
+        for j in range(COWL_SIDES):
+            th = TAU*j/COWL_SIDES
             rx = .118 + .205*t
             ry = .098 + .096*t
             z = 1.58 - .125*t - .035*t*math.cos(th)**2 + .025*t*abs(math.sin(th))
             ripple = .006*math.sin(13*th)*(t**2)
             verts.append(((rx+ripple)*math.sin(th), -(ry+ripple)*math.cos(th)-.016, z))
             ws.append(blend_weights("neck_01", "spine_03", t))
-            uv.append((j/64, .45+.4*(1-t)))
+            uv.append((j/COWL_SIDES, .45+.4*(1-t)))
         if i:
-            for j in range(64):
-                faces.append((i*64+j, i*64+(j+1)%64, (i-1)*64+(j+1)%64, (i-1)*64+j))
+            for j in range(COWL_SIDES):
+                faces.append((i*COWL_SIDES+j, i*COWL_SIDES+(j+1)%COWL_SIDES, (i-1)*COWL_SIDES+(j+1)%COWL_SIDES, (i-1)*COWL_SIDES+j))
     cowl = mesh_object("Shoulder cowl", verts, faces, linen, ws, uv)
     thickness(cowl, .006)
-    edge = verts[-64:] + [verts[-64]]
-    tube("Cowl stitched edge", edge, [.0028]*65, seam, ws[-64:]+[ws[-64]], 6)
+    edge = verts[-COWL_SIDES:] + [verts[-COWL_SIDES]]
+    tube("Cowl stitched edge", edge, [.0028]*(COWL_SIDES+1), seam, ws[-COWL_SIDES:]+[ws[-COWL_SIDES]], 5)
+
+
+COWL_SIDES = 40
 
 
 def make_rope(rope: bpy.types.Material) -> None:
-    count = 192
+    count = 96
     for strand in range(3):
         points = []
         for i in range(count+1):
             theta = TAU*i/count
-            twist = theta*42 + strand*TAU/3
+            twist = theta*24 + strand*TAU/3
             r = .006*math.cos(twist)
             points.append(((.194+r)*math.sin(theta), -(.149+r)*math.cos(theta),
                            1.073 + .005*math.sin(theta) + .006*math.sin(twist)))
         tube("Twisted rope girdle", points, [.0045]*len(points), rope,
-             [{"pelvis": 1}]*len(points), 6)
+             [{"pelvis": 1}]*len(points), 4)
     ellipsoid("Rope knot", (-.065, -.17, 1.073), (.024, .018, .019), rope, "pelvis")
     for strand in range(2):
         points = []
@@ -406,12 +507,15 @@ def make_rope(rope: bpy.types.Material) -> None:
             t = i/21
             points.append((-.065 + (.053 if strand else -.023)*t + .012*math.sin(t*7),
                            -.174-.055*t, 1.07-(.27 if strand else .35)*t))
+        # The ends hang over the skirt's front, so they swing with its chains.
+        hang = [skirt_weights(math.atan2(x, -y), z) if z < ROBE_Z[0] else {"pelvis": 1}
+                for x, y, z in points]
         tube("Hanging belt end", points, [.007*(1-.3*i/21) for i in range(22)],
-             rope, [{"pelvis": 1}]*22, 8)
+             rope, hang, 8)
         for j in range(4):
             end = Vector(points[-1])
             tube("Rope tassel", [end, end+Vector(((j-1.5)*.003, -.003, -.021))],
-                 [.0018, .0007], rope, [{"pelvis": 1}]*2, 5)
+                 [.0018, .0007], rope, [hang[-1]]*2, 5)
 
 
 def import_raider_base() -> bpy.types.Object:
@@ -429,25 +533,6 @@ def import_raider_base() -> bpy.types.Object:
         if image.has_data:
             image.pack()
     return rig
-
-
-# The gown is a stiff bell weighted mostly to the pelvis, so a striding leg swings out through it,
-# and a foot left below the hem would float ahead of it. The legs and feet it covers are removed
-# from the body: faces whose vertices all lie below the hips in the rest pose. The cultist glides.
-LEG_HIDE = (-1.0, .95)
-
-
-def hide_covered_legs() -> int:
-    body = max(BASE_MESHES, key=lambda obj: len(obj.data.vertices))
-    bm = bmesh.new()
-    bm.from_mesh(body.data)
-    low, high = LEG_HIDE
-    covered = [face for face in bm.faces
-               if all(low <= (body.matrix_world @ vert.co).z <= high for vert in face.verts)]
-    bmesh.ops.delete(bm, geom=covered, context="FACES")
-    bm.to_mesh(body.data)
-    bm.free()
-    return len(covered)
 
 
 def bind_garments() -> None:
@@ -542,6 +627,7 @@ def verify_rig() -> dict:
             assert all(math.isfinite(c) for c in vertex.co)
     return {"mesh_objects_source": len(ASSETS), "vertices_blender": vertices,
             "triangles": triangles, "bones": len(RIG.data.bones),
+            "robe_bones": ROBE_COLUMNS * (len(ROBE_Z) - 1) + 2,
             "maximum_skin_influences": 4, "units": "metres",
             "height_rest_m": round(max((obj.matrix_world @ vertex.co).z
                                       for obj in ASSETS for vertex in obj.data.vertices), 4),
@@ -639,7 +725,7 @@ def main() -> None:
     bpy.ops.object.delete(use_global=False)
     RIG = import_raider_base()
     BASE_MESHES.extend(ASSETS)
-    print("CULTIST_LEGS_HIDDEN:", hide_covered_legs(), "faces")
+    make_robe_bones()
     bpy.context.scene.unit_settings.system = "METRIC"
     bpy.context.scene.render.fps = 24
     linen = fabric_material()

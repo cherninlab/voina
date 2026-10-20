@@ -14,9 +14,16 @@ uniform float side = 1.0;
 uniform vec3 flesh : source_color = vec3(0.3, 0.012, 0.01); // HitEffects.BLOOD
 uniform vec3 rim : source_color = vec3(0.42, 0.16, 0.12); // skin and fat at the edge of the cut
 varying float cut;
+varying float robe; // 1 on a cultist's robe: thin cloth, its inside is cloth too, not flesh
 varying vec3 cut_normal; // view space, toward the kept side
 
+// A hooded cultist's robe on this half (T-110, RobeCloth.Push): kept out of the legs and hands as
+// on a whole body. Only the robe mesh gets the ends; on any other mesh they stay zero.
+#include "res://content/mobs/hooded_cultist/robe_shape.gdshaderinc"
+
 void vertex() {
+	robe = robe_active() ? 1.0 : 0.0;
+	VERTEX = robe_shape(VERTEX);
 	cut = UV2.x * side;
 	cut_normal = (MODELVIEW_MATRIX * vec4(TANGENT * side, 0.0)).xyz;
 }
@@ -31,9 +38,9 @@ void fragment() {
 	}
 	vec3 normal = normalize(cut_normal);
 	float facing = dot(VIEW, normal);
-	if (FRONT_FACING) {
+	if (FRONT_FACING || robe > 0.5) {
 		vec3 base = has_albedo ? texture(albedo_tex, UV).rgb : vec3(0.7);
-		ALBEDO = base;
+		ALBEDO = FRONT_FACING ? base : base * 0.55; // the robe's inside is in its own shade
 		ROUGHNESS = 0.85;
 	} else {
 		// How far the view ray travels from the cap to this far wall: short near the cut's edge.
