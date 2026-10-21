@@ -101,12 +101,10 @@ func _ready() -> void:
 	menu.add_child(address)
 	address.text_submitted.connect(func(_text: String) -> void: (world.get("join_button") as Button).pressed.emit())
 	var host: Button = world.get("host_button") as Button
-	host.text = "Host game"
-	menu.add_child(host)
+	host.text = "Start game"
 	host.pressed.connect(func() -> void: NetworkManager.host_game(NetworkManager.port))
 	var join: Button = world.get("join_button") as Button
 	join.text = "Join game"
-	menu.add_child(join)
 	join.pressed.connect(func() -> void: NetworkManager.join_game(address.text, NetworkManager.port))
 	var village_raiders: CheckButton = world.get("village_raiders_toggle") as CheckButton
 	village_raiders.text = "Raiders in the village"
@@ -125,11 +123,13 @@ func _ready() -> void:
 	status_label.add_theme_font_size_override("font_size", BODY_SIZE)
 	status_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	menu.add_child(status_label)
-	var controls: Button = world.get("controls_button") as Button
-	controls.text = "Controls"
-	menu.add_child(controls)
-	controls.pressed.connect(show_controls)
+	# Controls stay on the title (Settings) and pause menus; the setup column has no copy.
+	(world.get("controls_button") as Button).queue_free()
 	button(menu, "Back", func() -> void: show_setup(""))
+	# The setup's one primary action closes the column (only one of the two is shown).
+	for primary: Button in [host, join]:
+		menu.add_child(primary)
+		style_primary(primary)
 	pause_column = VBoxContainer.new()
 	pause_column.add_theme_constant_override("separation", 10)
 	pause_panel = centered_panel(pause_column)
@@ -291,6 +291,16 @@ func style_caps(label: Label, size: int) -> void:
 	label.uppercase = true
 	label.add_theme_font_override("font", caps_font)
 	label.add_theme_font_size_override("font_size", size)
+
+# White fill, black text. fade_on_hover's self_modulate turns the white fill red and leaves the black text black.
+func style_primary(control: Button) -> void:
+	var fill: StyleBoxFlat = box(Color.WHITE, 0, 10)
+	for state: String in ["normal", "hover", "pressed", "hover_pressed"]:
+		control.add_theme_stylebox_override(state, fill)
+	control.add_theme_stylebox_override("disabled", box(DIM_WHITE, 0, 10))
+	control.add_theme_stylebox_override("focus", StyleBoxEmpty.new())
+	for state: String in ["font_color", "font_focus_color", "font_hover_color", "font_hover_pressed_color", "font_pressed_color", "font_disabled_color"]:
+		control.add_theme_color_override(state, Color.BLACK)
 
 func button(parent: Node, text: String, action: Callable) -> Button:
 	var control: Button = Button.new()
@@ -481,7 +491,9 @@ func refresh() -> void:
 	shade.visible = in_lobby or pause_panel.visible or loader_panel.visible or controls.visible
 	shade.color = Color(0, 0, 0, 0.0) if title_screen.visible else Color(0, 0, 0, 0.72)
 	shade.mouse_filter = Control.MOUSE_FILTER_STOP if shade.visible else Control.MOUSE_FILTER_IGNORE
-	status_label.text = NetworkManager.status if NetworkManager.status != "Choose Host or Join" else "2–4 players · LAN / Tailscale"
+	# Idle statuses (nothing joined yet, or the player left on purpose) show the player count instead.
+	var idle: bool = NetworkManager.status in ["Choose Host or Join", "Left game"]
+	status_label.text = "2–4 players · LAN / Tailscale" if idle else NetworkManager.status
 	loading_label.text = NetworkManager.status + "\nWaiting for the host…"
 	(world.get("host_button") as Button).disabled = active
 	(world.get("join_button") as Button).disabled = active
@@ -525,7 +537,8 @@ func show_setup(mode: String) -> void:
 	elif mode == "join":
 		(world.get("address") as Control).grab_focus()
 	else:
-		(world.get("host_button") as Control).grab_focus()
+		# Not START GAME: focus would show it red before the player has chosen it.
+		(world.get("village_raiders_toggle") as Control).grab_focus()
 
 func title_button(text: String, action: Callable) -> Button:
 	var control: Button = button(title_choices, text, action)
@@ -537,10 +550,10 @@ func fit_logo() -> void:
 	# Keep navigation inside the viewport at 16:9, 16:10 and ultrawide sizes.
 	var frame: Vector2 = window
 	# Logo and choices share one centred column.
-	logo.size = Vector2(window.x * 0.36, window.y * 0.32)
-	logo.position = Vector2((window.x - logo.size.x) * 0.5, window.y * 0.12)
+	logo.size = Vector2(window.x * 0.54, window.y * 0.48)
+	logo.position = Vector2((window.x - logo.size.x) * 0.5, window.y * 0.06)
 	title_choices.size.x = window.x * 0.25
-	title_choices.position = Vector2((window.x - title_choices.size.x) * 0.5, window.y * 0.49)
+	title_choices.position = Vector2((window.x - title_choices.size.x) * 0.5, window.y * 0.57)
 	for child: Node in title_choices.get_children():
 		var choice: Button = child as Button
 		choice.custom_minimum_size.y = frame.y * 0.058
