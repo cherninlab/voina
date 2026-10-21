@@ -1,6 +1,6 @@
 # Beneath the forest — revised visual target
 
-Status: generated proposal awaiting human review. The previous four fantasy crypts were rejected. This image is not an implemented map or an approved art target.
+Status: on 22 October 2026 the user said this was better, but not quite, and asked to continue with additional horror references. Retain it as a partial direction. The next exploration is in `../surreal_horror/`; no final image target has been accepted. The previous four fantasy crypts were rejected.
 
 Generated with built-in Codex ImageGen using all three user-supplied images as actual image inputs, rather than text descriptions alone. The exact prompt is in `01-under-the-forest.prompt.txt`; output is `01-under-the-forest.png`.
 

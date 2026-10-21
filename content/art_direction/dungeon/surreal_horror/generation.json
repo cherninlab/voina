@@ -1,0 +1,58 @@
+{
+  "created": "2026-10-22",
+  "generator": "built-in Codex ImageGen",
+  "status": "proposals-awaiting-review",
+  "images": [
+    {
+      "key": "01-watching-walls",
+      "title": "The Watching Walls",
+      "prompt_file": "01-watching-walls.prompt.txt",
+      "image_file": "01-watching-walls.png",
+      "input_references": [
+        "codex-clipboard-28792e6d-688d-494b-b582-ad77afe37764.png",
+        "codex-clipboard-8dc3d123-ef41-4989-b7d1-03f32966785b.png",
+        "codex-clipboard-05c7ed81-734c-4c34-a2bc-26c861890a46.png",
+        "codex-clipboard-88b6150d-ce0a-421d-aedd-9befeb8e0a87.png",
+        "codex-clipboard-3fe95d61-73ab-4750-83ae-5508da8be3e7.png"
+      ],
+      "width": 1672,
+      "height": 941,
+      "bytes": 2439340,
+      "sha256": "a4f754fb4c8c77de47b90658ebcbea75466e36a5a9fb35b1158d7e15b3a453ff"
+    },
+    {
+      "key": "02-ceiling-witness",
+      "title": "The Ceiling Witness",
+      "prompt_file": "02-ceiling-witness.prompt.txt",
+      "image_file": "02-ceiling-witness.png",
+      "input_references": [
+        "codex-clipboard-28792e6d-688d-494b-b582-ad77afe37764.png",
+        "01-under-the-forest.png",
+        "codex-clipboard-3fe95d61-73ab-4750-83ae-5508da8be3e7.png",
+        "codex-clipboard-05c7ed81-734c-4c34-a2bc-26c861890a46.png",
+        "codex-clipboard-88b6150d-ce0a-421d-aedd-9befeb8e0a87.png"
+      ],
+      "width": 1672,
+      "height": 941,
+      "bytes": 2477411,
+      "sha256": "b385a5d31e03bcb43793df38edb4fdac29b8318177a94caf86ed7ab1520eacf0"
+    },
+    {
+      "key": "03-red-descent",
+      "title": "The Red Descent",
+      "prompt_file": "03-red-descent.prompt.txt",
+      "image_file": "03-red-descent.png",
+      "input_references": [
+        "codex-clipboard-28792e6d-688d-494b-b582-ad77afe37764.png",
+        "codex-clipboard-96af9f61-b508-4ddc-8374-c13bace83c58.png",
+        "codex-clipboard-dc535fd8-cdc5-4359-a865-cbcf6a9656e4.png",
+        "codex-clipboard-0f17a291-6c4e-4243-b939-83b061e59102.png",
+        "codex-clipboard-e1f750ce-3b85-4930-a596-31a760ecdd76.png"
+      ],
+      "width": 1672,
+      "height": 941,
+      "bytes": 2237563,
+      "sha256": "b569df6f6b811ea4864f25ef77aa09450dc3548181c4ede44f0b79c0207d76be"
+    }
+  ]
+}
