@@ -1,6 +1,6 @@
 # Dungeon visual exploration — 21 October 2026
 
-Status: four generated proposals for human selection. None is an approved target or an implemented scene. The first procedural crypt was rejected for its visual quality and uninteresting space; the next implementation should start from a selected image and be compared against it from matching gameplay views.
+Status: all four proposals below were rejected by the user on 21 October 2026. They do not look like SECHA, are not scary, and do not align with the supplied horror references. Preserve them as rejected explorations, not candidates to implement. The revised reference-led target is in `folk_horror/`; it is still awaiting human review.
 
 All four images were created using built-in Codex ImageGen from original text prompts, without input images or imported art. Exact prompts are preserved beside the images. They are concept references, not textures or meshes. `.gdignore` keeps this exploration out of Godot imports and exports.
 
