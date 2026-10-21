@@ -55,8 +55,10 @@ uniform float stains = 0.4;
 uniform float mud = 0.3;
 uniform float cloth_seed = 0.0;
 uniform vec2 arm_span = vec2(0.21, 0.71); // shoulder and wrist distance from the middle, rest pose
-instance uniform int surface_role = 0; // 0 hair: wounds only, 1 skin, 2 eyes
-instance uniform float cut_side = 0.0;
+// Explicit slots past the cultist robe's (robe_shape.gdshaderinc takes 0-10): a cut half's or a
+// robe's own shader shares this instance, and two names on one slot overwrite each other.
+instance uniform int surface_role : instance_index(14) = 0; // 0 hair: wounds only, 1 skin, 2 eyes
+instance uniform float cut_side : instance_index(15) = 0.0;
 
 varying vec3 world_pos;
 varying vec3 rest; // this vertex in the rest pose
