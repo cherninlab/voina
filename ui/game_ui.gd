@@ -370,16 +370,21 @@ func make_theme() -> Theme:
 # Keyboard focus leaves the colour alone, so no button looks preselected.
 func fade_on_hover(control: BaseButton) -> void:
 	control.self_modulate = MENU_RED
-	var update: Callable = func() -> void:
-		var lit: bool = not control.disabled and control.is_hovered()
-		if control.has_meta(&"hover_fade"):
-			(control.get_meta(&"hover_fade") as Tween).kill()
-		var fade: Tween = control.create_tween()
-		fade.tween_property(control, "self_modulate", Color.WHITE if lit else MENU_RED, HOVER_FADE)
-		control.set_meta(&"hover_fade", fade)
-	# Deferred so is_hovered() already reflects the change that fired the signal.
+	# Deferred so is_hovered() already reflects the change that fired the signal. The button goes by
+	# instance id: one freed before the deferred call (leaving, quitting) is skipped, not an error.
 	for changed: Signal in [control.mouse_entered, control.mouse_exited]:
-		changed.connect(update.call_deferred)
+		changed.connect(hover_changed.bind(control.get_instance_id()), CONNECT_DEFERRED)
+
+func hover_changed(button_id: int) -> void:
+	var control: BaseButton = instance_from_id(button_id) as BaseButton
+	if control == null:
+		return
+	var lit: bool = not control.disabled and control.is_hovered()
+	if control.has_meta(&"hover_fade"):
+		(control.get_meta(&"hover_fade") as Tween).kill()
+	var fade: Tween = control.create_tween()
+	fade.tween_property(control, "self_modulate", Color.WHITE if lit else MENU_RED, HOVER_FADE)
+	control.set_meta(&"hover_fade", fade)
 
 func local_player() -> Node:
 	var players: Node3D = world.get("players") as Node3D
