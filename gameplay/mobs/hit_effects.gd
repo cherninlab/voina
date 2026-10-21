@@ -68,6 +68,14 @@ vec2 screen(vec3 view, mat4 projection) {
 	return clip.xy / clip.w * 0.5 + 0.5;
 }
 
+// Drawn a few centimetres nearer the camera along its own view ray: same place on screen, but it
+// wins the depth test against ground overlays laid just above the collision it was placed on
+// (church yard earth, torch-road mud, bog pools: 3-3.5 cm).
+void vertex() {
+	vec3 view = (MODELVIEW_MATRIX * vec4(VERTEX, 1.0)).xyz;
+	POSITION = PROJECTION_MATRIX * vec4(view * max(0.0, 1.0 - 0.05 / max(length(view), 0.001)), 1.0);
+}
+
 void fragment() {
 	// Nothing solid right behind this fragment: the mark ran off an edge into the air.
 	vec3 behind = scene_view(SCREEN_UV, INV_PROJECTION_MATRIX);

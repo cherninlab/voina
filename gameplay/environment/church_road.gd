@@ -124,6 +124,8 @@ func make_materials() -> void:
 	mud_material.shader = load(SHADERS + "road_mud.gdshader") as Shader
 	mud_material.set_shader_parameter("trail", load("res://content/environments/village_generated/mineral_earth.png"))
 	mud_material.set_shader_parameter("gravel", load("res://content/environments/village_generated/soil_gravel.png"))
+	# Transparent, so sorted per 8 m chunk against blood marks and mist: drawn first, under both.
+	mud_material.render_priority = -1
 	fog_materials = [flame_material, halo_material, spark_material]
 
 func road_strip() -> void:

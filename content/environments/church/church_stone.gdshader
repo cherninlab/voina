@@ -10,6 +10,11 @@ uniform float moss = 0.6;
 uniform float ash = 0.25;
 uniform float grime = 0.55;
 uniform float normal_strength = 0.8;
+// As on the ruin (church_ruin.gdshader): the texture greyed toward its luma, and grime darkening
+// stone within a few metres above `base_height`, so the terrace meets the ruin's floor in kind.
+uniform float desaturate = 0.0;
+uniform float base_height = -1000.0;
+uniform float base_grime = 0.0;
 varying vec3 world_pos;
 varying vec3 world_normal;
 
@@ -49,9 +54,11 @@ void fragment() {
 	NORMAL = normalize((VIEW_MATRIX * vec4(bent, 0.0)).xyz);
 	float broad = noise(world_pos.xz * 0.35 + vec2(world_pos.y * 0.21));
 	float streak = noise(vec2((world_pos.x + world_pos.z) * 3.1, world_pos.y * 0.22));
+	color = mix(color, vec3(dot(color, vec3(0.299, 0.587, 0.114))), desaturate);
 	color *= tint * COLOR.rgb;
 	color *= mix(1.0, 0.5 + 0.5 * streak, grime * (1.0 - abs(n.y)));
 	color *= 0.82 + 0.32 * broad;
+	color *= mix(1.0 - base_grime, 1.0, smoothstep(0.0, 4.0, world_pos.y - base_height + (broad - 0.5) * 2.0));
 	float up = smoothstep(0.35, 0.85, n.y);
 	float moss_mask = smoothstep(0.42, 0.78, noise(world_pos.xz * 0.9 + vec2(world_pos.y * 0.7)) * 0.7 + broad * 0.5) * moss;
 	color = mix(color, vec3(0.045, 0.07, 0.032), moss_mask * max(up, 0.4 * (1.0 - streak)));

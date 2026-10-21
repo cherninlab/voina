@@ -34,9 +34,11 @@ void fragment() {
 	vec4 view = INV_PROJECTION_MATRIX * vec4(SCREEN_UV * 2.0 - 1.0, depth, 1.0);
 	view.xyz /= view.w;
 	float behind = clamp((-view.z + VERTEX.z) / soft, 0.0, 1.0);
-	// Clear at the feet, thicker with distance; seen from above it must not read as a pond.
+	// Clear at the feet, thicker with distance; seen from above it must not read as a pond, nor
+	// edge-on across the yard as a pale flat floor laid over the dark earth.
 	float near = smoothstep(1.0, 10.0, length(VERTEX));
-	float grazing = 1.0 - 0.7 * abs(normalize((INV_VIEW_MATRIX * vec4(VIEW, 0.0)).xyz).y);
+	float steep = abs(normalize((INV_VIEW_MATRIX * vec4(VIEW, 0.0)).xyz).y);
+	float grazing = (1.0 - 0.7 * steep) * mix(0.4, 1.0, smoothstep(0.04, 0.3, steep));
 	ALBEDO = mist_color;
 	ROUGHNESS = 1.0;
 	ALPHA = clamp(density * n * fade * behind * near * grazing, 0.0, 1.0);

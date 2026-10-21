@@ -1,8 +1,9 @@
 extends SceneTree
 ## Render the hillside church and graveyard in the real running world and probe its collision.
-## "$GODOT" --path . --script scripts/capture_church.gd -- --host --capture-dir=/absolute/folder [--fog]
+## "$GODOT" --path . --script scripts/capture_church.gd -- --host --capture-dir=/absolute/folder [--fog] [--bright] [--hide=NodePattern]
 ## Run without --headless so frames come from the Metal renderer. --fog approximates the coming
-## haunted-forest grade (denser blue-grey fog) inside this script only.
+## haunted-forest grade (denser blue-grey fog) inside this script only. --bright adds capture-only
+## ambient light so ground textures and seams can be judged in the otherwise night-dark frames.
 
 var world: Node3D
 var church: Node3D
@@ -147,6 +148,37 @@ func capture() -> void:
 	camera.far = 600.0
 	var presentation: CanvasLayer = world.get_node("GameUI") as CanvasLayer
 	presentation.visible = false
+	if "--bright" in OS.get_cmdline_user_args():
+		# The haunted forest regrades fog and ambient every frame; hold it still for these frames.
+		var forest: Node = world.find_child("HauntedForest", true, false)
+		if forest != null:
+			forest.set_process(false)
+		for node: Node in world.find_children("*", "WorldEnvironment", true, false):
+			var lit: Environment = (node as WorldEnvironment).environment
+			lit.ambient_light_source = Environment.AMBIENT_SOURCE_COLOR
+			lit.ambient_light_color = Color(0.75, 0.75, 0.8)
+			lit.ambient_light_energy = 1.6
+			lit.fog_enabled = false
+			lit.volumetric_fog_enabled = false
+		print("CHURCH_BRIGHT: capture-only ambient light, no fog")
+	# --hide=Pattern (repeatable) hides church meshes by node name, e.g. GroundMist* or Earth*, to
+	# tell which layer draws what.
+	for argument: String in OS.get_cmdline_user_args():
+		if argument.begins_with("--hide="):
+			for node: Node in church.find_children(argument.trim_prefix("--hide="), "MeshInstance3D", true, false):
+				(node as MeshInstance3D).visible = false
+	# Blood on the yard earth, the torch-road mud and bare landscape: each must show above the
+	# ground overlay laid over the collision it lands on.
+	var blood_spots: Array[Vector2] = [Vector2(-4.5, -95.0), Vector2(ChurchSite.road_x(-84.0), -84.0), Vector2(-14.0, -84.5)]
+	for spot: Vector2 in blood_spots:
+		var down: Dictionary = space.intersect_ray(PhysicsRayQueryParameters3D.create(Vector3(spot.x, 60.0, spot.y), Vector3(spot.x, -20.0, spot.y)))
+		if down.is_empty():
+			fail("no ground under blood spot %s" % spot)
+			return
+		HitEffects.place_stain(world, down["position"] as Vector3, down["normal"] as Vector3, Vector3.RIGHT, 1.4, 1.5)
+		for index: int in range(5):
+			var offset: Vector3 = Vector3(randf_range(-1.4, 1.4), 0.0, randf_range(-1.4, 1.4))
+			HitEffects.splat(world, (down["position"] as Vector3) + offset + Vector3.UP * 1.2, Vector3.DOWN * 3.0, offset, 0.35, [])
 	var views: Array[Array] = [
 		["trail", Vector3(ChurchSite.road_x(-30.0), ground(ChurchSite.road_x(-30.0), -30.0) + 1.7, -30.0), Vector3(door.x, floor_y + 16.0, door.z)],
 		["gate", Vector3(ChurchSite.road_x(-79.0) + 0.6, ground(ChurchSite.road_x(-79.0), -79.0) + 1.7, -79.0), Vector3(gate_x - 1.0, floor_y + 4.0, -100.0)],
@@ -157,6 +189,12 @@ func capture() -> void:
 		["crow", Vector3(ChurchSite.road_x(-90.5), ground(ChurchSite.road_x(-90.5), -90.5) + 1.6, -90.5), Vector3(-3.4, ground(-3.4, -91.4) + 0.9, -91.4)],
 		["grave", Vector3(7.6, ground(7.6, -96.6) + 1.7, -96.6), Vector3(6.0, ground(6.0, -99.0) - 0.5, -99.4)],
 		["overview", Vector3(14.0, 34.0, -80.0), Vector3(-4.0, 2.0, -105.0)],
+		# Where the haunted forest's ground meets the yard earth, off the road on both sides.
+		["seam-west", Vector3(-16.0, ground(-16.0, -76.0) + 2.2, -76.0), Vector3(-12.0, ground(-12.0, -88.0), -88.0)],
+		["seam-east", Vector3(19.0, ground(19.0, -96.0) + 3.0, -96.0), Vector3(9.0, ground(9.0, -96.0), -96.0)],
+		["terrace", Vector3(door.x + 3.5, floor_y + 2.4, door.z + 4.5), Vector3(door.x - 0.5, floor_y, door.z - 1.5)],
+		["blood-yard", Vector3(-4.5, ground(-4.5, -91.5) + 2.0, -91.5), Vector3(-4.5, ground(-4.5, -95.0), -95.0)],
+		["blood-road", Vector3(ChurchSite.road_x(-80.5), ground(ChurchSite.road_x(-80.5), -80.5) + 2.0, -80.5), Vector3(ChurchSite.road_x(-84.0), ground(ChurchSite.road_x(-84.0), -84.0), -84.0)],
 	]
 	for view: Array in views:
 		camera.position = view[1] as Vector3
@@ -166,7 +204,7 @@ func capture() -> void:
 			await process_frame
 		await RenderingServer.frame_post_draw
 		var image: Image = root.get_texture().get_image()
-		var path: String = directory.path_join("church-%s%s.png" % [String(view[0]), "-fog" if "--fog" in OS.get_cmdline_user_args() else ""])
+		var path: String = directory.path_join("church-%s%s%s.png" % [String(view[0]), "-fog" if "--fog" in OS.get_cmdline_user_args() else "", "-bright" if "--bright" in OS.get_cmdline_user_args() else ""])
 		if image.save_png(path) != OK:
 			fail("could not save " + path)
 			return

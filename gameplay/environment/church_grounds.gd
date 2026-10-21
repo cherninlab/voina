@@ -152,6 +152,15 @@ func vary(amount: float, tone: Color = Color.WHITE) -> Color:
 func make_materials() -> void:
 	materials["trim"] = stone_material("StoneGeneric", Color(0.46, 0.46, 0.43), 0.6, 0.45, 0.12)
 	materials["base"] = stone_material("StoneFloor", Color(0.42, 0.41, 0.38), 0.5, 0.55, 0.1)
+	# Terrace, steps and their coping meet the ruin's own floor: weathered like it (its tint,
+	# greying and grime near the floor) with less moss on the treads players walk.
+	materials["terrace"] = stone_material("StoneFloor", Color(0.52, 0.53, 0.5), 0.5, 0.3, 0.12)
+	materials["coping"] = stone_material("StoneGeneric", Color(0.52, 0.53, 0.5), 0.6, 0.3, 0.12)
+	for key: String in ["terrace", "coping"]:
+		var stone: ShaderMaterial = materials[key] as ShaderMaterial
+		stone.set_shader_parameter("desaturate", 0.6)
+		stone.set_shader_parameter("base_height", floor_y)
+		stone.set_shader_parameter("base_grime", 0.5)
 	materials["grave"] = stone_material("StoneGeneric", Color(0.5, 0.5, 0.47), 0.9, 0.55, 0.15)
 	materials["iron"] = pbr("MetalHammeredDark", Color(0.4, 0.34, 0.3), 2.0, 0.65, 0.5)
 	materials["wood"] = pbr("WoodPlanksSeededDark", Color(0.5, 0.46, 0.42), 0.7, 0.0, 0.9)
@@ -542,8 +551,8 @@ func weather_ruin(ruin: Node3D) -> void:
 			visual.set_surface_override_material(surface, material)
 
 func build_terrace() -> void:
-	var base: SurfaceTool = tool("base|church")
-	var trim: SurfaceTool = tool("trim|church")
+	var base: SurfaceTool = tool("terrace|church")
+	var trim: SurfaceTool = tool("coping|church")
 	var lowest: float = INF
 	for x: float in [-TERRACE_HALF, 0.0, TERRACE_HALF]:
 		for z: float in [TERRACE_FRONT, -RUIN_DEPTH * 0.5]:
@@ -1396,18 +1405,28 @@ func grass_at(x: float, z: float, size: float, reed: bool) -> void:
 # --- Ground: dark earth, flagstone path, ember cracks, mist ---------------------------------
 
 func build_ground_layers() -> void:
-	# Terrain-following sheets exactly on the landscape's 3 m triangles.
+	# Terrain-following sheets exactly on the landscape's 3 m triangles, with its smooth normals.
+	# Toward their edge the shader draws the landscape's own colours, so the yard has no seam.
 	var earth: ShaderMaterial = ShaderMaterial.new()
 	earth.shader = load(SHADERS + "church_ground.gdshader") as Shader
 	earth.set_shader_parameter("dirt_map", load(GENERATED + "soil_gravel.png"))
 	earth.set_shader_parameter("earth_map", load(GENERATED + "mineral_earth.png"))
+	earth.set_shader_parameter("soil", load(TEXTURES + "GrassGround_basecolor.png"))
+	earth.set_shader_parameter("trail", load(GENERATED + "mineral_earth.png"))
+	earth.set_shader_parameter("rock", load(TEXTURES + "StoneGeneric_basecolor.png"))
+	earth.set_shader_parameter("rock_roughness", load(TEXTURES + "StoneGeneric_roughness.png"))
+	earth.set_shader_parameter("rock_normal", load(TEXTURES + "StoneGeneric_normal.png"))
 	# Reaches past the gate so the pillar torches' light pools fall on it, not on the landscape
-	# mesh, which already spends its Mobile per-mesh light slots on the village lamps.
-	earth.set_shader_parameter("region", Vector4(-22.0, -113.0, 14.0, -83.0))
-	for half: int in range(2):
-		var sheet: MeshInstance3D = terrain_sheet(-24, 15, -114 if half == 0 else -99, -99 if half == 0 else -81, 0.03)
-		sheet.name = "YardEarth"
-		sheet.material_override = earth
+	# mesh, which already spends its Mobile per-mesh light slots on the village lamps. Its outer
+	# 6 m blend into the forest floor, so it reaches well outside the yard walls.
+	earth.set_shader_parameter("region", Vector4(-29.0, -119.0, 20.0, -76.0))
+	earth.set_shader_parameter("edge", 6.0)
+	# Eight pieces, so each meets only the lights near it (Mobile per-mesh limit).
+	for x0: int in [-30, -6]:
+		for z0: int in [-120, -108, -96, -84]:
+			var sheet: MeshInstance3D = earth_sheet(x0, -6 if x0 == -30 else 21, z0, mini(z0 + 12, -75), 0.03)
+			sheet.name = "YardEarth"
+			sheet.material_override = earth
 	var mist_shader: Shader = load(SHADERS + "church_mist.gdshader") as Shader
 	var layers: Array[Vector2] = [Vector2(0.3, 0.42), Vector2(0.72, 0.3), Vector2(1.15, 0.18)]
 	for index: int in range(layers.size()):
@@ -1448,6 +1467,40 @@ func terrain_sheet(x0: int, x1: int, z0: int, z1: int, lift: float) -> MeshInsta
 	visual.mesh = surface.commit()
 	add_child(visual)
 	return visual
+
+# Like terrain_sheet, with the landscape mesh's area-weighted vertex normals (village_arena.gd
+# build_landscape_mesh), so it shades exactly like the ground it blends into.
+func earth_sheet(x0: int, x1: int, z0: int, z1: int, lift: float) -> MeshInstance3D:
+	var surface: SurfaceTool = SurfaceTool.new()
+	surface.begin(Mesh.PRIMITIVE_TRIANGLES)
+	var x: int = x0
+	while x < x1:
+		var z: int = z0
+		while z < z1:
+			var corners: Array[Vector2i] = [Vector2i(x, z), Vector2i(x + 3, z), Vector2i(x, z + 3), Vector2i(x + 3, z), Vector2i(x + 3, z + 3), Vector2i(x, z + 3)]
+			for corner: Vector2i in corners:
+				surface.set_normal(landscape_normal(corner))
+				surface.add_vertex(Vector3(corner.x, ground(corner.x, corner.y) + lift, corner.y))
+			z += 3
+		x += 3
+	var visual: MeshInstance3D = MeshInstance3D.new()
+	visual.mesh = surface.commit()
+	add_child(visual)
+	return visual
+
+# The sum of the face normals of the six landscape triangles around a grid vertex.
+func landscape_normal(vertex: Vector2i) -> Vector3:
+	var sum: Vector3 = Vector3.ZERO
+	for cell: Vector2i in [vertex, vertex - Vector2i(3, 0), vertex - Vector2i(0, 3), vertex - Vector2i(3, 3)]:
+		var a: Vector3 = Vector3(cell.x, ground(cell.x, cell.y), cell.y)
+		var b: Vector3 = Vector3(cell.x + 3, ground(cell.x + 3, cell.y), cell.y)
+		var c: Vector3 = Vector3(cell.x, ground(cell.x, cell.y + 3), cell.y + 3)
+		var d: Vector3 = Vector3(cell.x + 3, ground(cell.x + 3, cell.y + 3), cell.y + 3)
+		if vertex != cell + Vector2i(3, 3):
+			sum += (c - a).cross(b - a)
+		if vertex != cell:
+			sum += (c - b).cross(d - b)
+	return sum.normalized()
 
 func flagstones() -> void:
 	var z: float = WALL_FRONT_Z + 0.4
