@@ -1,0 +1,66 @@
+{
+  "created": "2026-10-22",
+  "generator": "built-in Codex ImageGen",
+  "selected_anchor": "../surreal_horror/03-red-descent.png",
+  "status": "new-views-awaiting-review",
+  "images": [
+    {
+      "key": "01-cellar-threshold",
+      "title": "The Cellar Threshold",
+      "prompt_file": "01-cellar-threshold.prompt.txt",
+      "image_file": "01-cellar-threshold.png",
+      "input_references": [
+        "codex-clipboard-33877322-9193-4c75-840c-58d7fc965cf6.png",
+        "codex-clipboard-28792e6d-688d-494b-b582-ad77afe37764.png"
+      ],
+      "width": 1672,
+      "height": 941,
+      "bytes": 2480899,
+      "sha256": "69bcd1acace1f2c099c2060c65cb9c930723a075b2956fe912a6a91662405505"
+    },
+    {
+      "key": "02-side-tunnel",
+      "title": "Behind the Black Door",
+      "prompt_file": "02-side-tunnel.prompt.txt",
+      "image_file": "02-side-tunnel.png",
+      "input_references": [
+        "codex-clipboard-33877322-9193-4c75-840c-58d7fc965cf6.png",
+        "codex-clipboard-0f471e77-5952-4f1b-bb36-e9065b7051e4.png",
+        "codex-clipboard-0f17a291-6c4e-4243-b939-83b061e59102.png"
+      ],
+      "width": 1672,
+      "height": 941,
+      "bytes": 2345578,
+      "sha256": "4f125d3461ea94b3342b93388a2fadde06048266551b7a43a5879616584e6676"
+    },
+    {
+      "key": "03-lower-crossing",
+      "title": "The Lower Crossing",
+      "prompt_file": "03-lower-crossing.prompt.txt",
+      "image_file": "03-lower-crossing.png",
+      "input_references": [
+        "codex-clipboard-33877322-9193-4c75-840c-58d7fc965cf6.png",
+        "codex-clipboard-96af9f61-b508-4ddc-8374-c13bace83c58.png"
+      ],
+      "width": 1672,
+      "height": 941,
+      "bytes": 2342159,
+      "sha256": "36d862d759365e7e31aa14f98a503a1bdd2ec478cc0e3a9b2e0d590a36b4eb6e"
+    },
+    {
+      "key": "04-bottom-chamber",
+      "title": "At the Bottom",
+      "prompt_file": "04-bottom-chamber.prompt.txt",
+      "image_file": "04-bottom-chamber.png",
+      "input_references": [
+        "codex-clipboard-33877322-9193-4c75-840c-58d7fc965cf6.png",
+        "codex-clipboard-dc535fd8-cdc5-4359-a865-cbcf6a9656e4.png",
+        "codex-clipboard-e1f750ce-3b85-4930-a596-31a760ecdd76.png"
+      ],
+      "width": 1672,
+      "height": 941,
+      "bytes": 2265490,
+      "sha256": "91c09e9df9df999fd1424e04783fe99768553d1e47e25a63cd46ba69c00e4ca8"
+    }
+  ]
+}

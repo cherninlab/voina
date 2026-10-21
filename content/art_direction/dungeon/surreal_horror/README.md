@@ -1,6 +1,6 @@
 # Surreal folk-horror exploration — 22 October 2026
 
-Status: three generated proposals for review. The user called the preceding earth-and-root cellar better but not quite, then supplied nine references and five further references during this pass. No final direction is assumed accepted; no game code changed.
+Status: the user called `03-red-descent.png` good and asked for more on 22 October 2026. Use that specific image as the selected anchor for continued visual exploration in `../red_descent/`. This feedback does not approve the other two images, later derivatives or a game implementation. The preceding earth-and-root cellar was better but not quite; nine references and five later references informed this pass. No game code changed.
 
 Generated with built-in Codex ImageGen and actual image inputs. Exact prompts are preserved beside each PNG; `generation.json` records the selected input filenames, output hashes and dimensions. User-supplied references are not redistributed or used as runtime assets. The parent `.gdignore` excludes this folder from Godot import/export.
 
