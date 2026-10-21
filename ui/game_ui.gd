@@ -125,11 +125,11 @@ func _ready() -> void:
 	menu.add_child(status_label)
 	# Controls stay on the title (Settings) and pause menus; the setup column has no copy.
 	(world.get("controls_button") as Button).queue_free()
-	button(menu, "Back", func() -> void: show_setup(""))
-	# The setup's one primary action closes the column (only one of the two is shown).
+	# The setup's one primary action (only one of the two is shown), then Back to close the column.
 	for primary: Button in [host, join]:
 		menu.add_child(primary)
 		style_primary(primary)
+	button(menu, "Back", func() -> void: show_setup(""))
 	pause_column = VBoxContainer.new()
 	pause_column.add_theme_constant_override("separation", 10)
 	pause_panel = centered_panel(pause_column)
