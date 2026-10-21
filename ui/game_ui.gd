@@ -16,6 +16,8 @@ var setup_heading: Label
 var address_heading: Label
 var title_host: Button
 var ui_font: SystemFont = SystemFont.new()
+var caps_font: FontVariation = FontVariation.new() # ui_font tracked about 105 % at menu sizes
+var menu_buttons: Array[Button] = [] # menu items, kept in capitals by refresh()
 var pause_panel: PanelContainer
 var loader_panel: PanelContainer
 var pause_column: VBoxContainer
@@ -37,6 +39,11 @@ const TWEAKS_WIDTH: float = 360.0 # the tweaks column's width at the right edge 
 const HOVER_RED: Color = Color("e0262b") # menu text fades to this while hovered or focused
 const HOVER_FADE: float = 0.2 # seconds
 const DIM_WHITE: Color = Color(1, 1, 1, 0.4) # disabled and placeholder text
+# Menu type scale (logical px): capitals for headings, items and field captions; body copy stays as written.
+const HEADING_SIZE: int = 20
+const ITEM_SIZE: int = 13
+const CAPTION_SIZE: int = 11
+const BODY_SIZE: int = 13
 var perf_meter: CanvasLayer = preload("res://ui/perf_meter.gd").new()
 
 func _ready() -> void:
@@ -51,6 +58,8 @@ func _ready() -> void:
 	screen.set_anchors_and_offsets_preset(Control.PRESET_TOP_LEFT)
 	screen.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	ui_font.font_names = PackedStringArray(["Helvetica Neue", "Helvetica", "Arial", "sans-serif"])
+	caps_font.base_font = ui_font
+	caps_font.spacing_glyph = 1 # 5 % of 13-20 px type, rounded to whole pixels
 	screen.theme = make_theme()
 	add_child(screen)
 	shade.color = Color(0, 0, 0, 0.72)
@@ -81,15 +90,14 @@ func _ready() -> void:
 	title_button("Join game", func() -> void: show_setup("join"))
 	title_button("Settings", show_controls)
 	title_button("Quit", func() -> void: get_tree().quit())
-	setup_heading = add_label(menu, "HOST GAME", 24)
-	setup_heading.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
-	menu.add_theme_constant_override("separation", 8)
+	setup_heading = heading(menu, "Host game")
+	menu.add_theme_constant_override("separation", 10)
 	menu.add_child(HSeparator.new())
 	var address: LineEdit = world.get("address") as LineEdit
-	address_heading = add_label(menu, "Host address", 14)
+	address_heading = caption(menu, "Host address")
 	address.text = "127.0.0.1"
 	address.placeholder_text = "IP address or Tailscale hostname"
-	address.custom_minimum_size = Vector2(320, 42)
+	address.custom_minimum_size = Vector2(320, 36)
 	menu.add_child(address)
 	address.text_submitted.connect(func(_text: String) -> void: (world.get("join_button") as Button).pressed.emit())
 	var host: Button = world.get("host_button") as Button
@@ -114,7 +122,8 @@ func _ready() -> void:
 	menu.add_child(match_button)
 	status_label.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 	status_label.custom_minimum_size.x = 320
-	status_label.add_theme_font_size_override("font_size", 14)
+	status_label.add_theme_font_size_override("font_size", BODY_SIZE)
+	status_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	menu.add_child(status_label)
 	var controls: Button = world.get("controls_button") as Button
 	controls.text = "Controls"
@@ -122,10 +131,11 @@ func _ready() -> void:
 	controls.pressed.connect(show_controls)
 	button(menu, "Back", func() -> void: show_setup(""))
 	pause_column = VBoxContainer.new()
-	pause_column.add_theme_constant_override("separation", 12)
+	pause_column.add_theme_constant_override("separation", 10)
 	pause_panel = centered_panel(pause_column)
-	add_label(pause_column, "PAUSED", 30)
-	pause_status = add_label(pause_column, "The multiplayer match continues.", 14)
+	heading(pause_column, "Paused")
+	pause_status = add_label(pause_column, "The multiplayer match continues.", BODY_SIZE)
+	pause_status.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	resume_button = button(pause_column, "Resume", resume)
 	button(pause_column, "Controls", show_controls)
 	var leave: Button = world.get("leave_button") as Button
@@ -133,11 +143,12 @@ func _ready() -> void:
 	pause_column.add_child(leave)
 	leave.pressed.connect(func() -> void: NetworkManager.stop("Left game"))
 	var loading: VBoxContainer = VBoxContainer.new()
-	loading.add_theme_constant_override("separation", 16)
+	loading.add_theme_constant_override("separation", 10)
 	loader_panel = centered_panel(loading)
-	add_label(loading, "CONNECTING", 26)
+	heading(loading, "Connecting")
 	loading_label.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 	loading_label.custom_minimum_size.x = 320
+	loading_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	loading.add_child(loading_label)
 	var progress: ProgressBar = ProgressBar.new()
 	progress.indeterminate = true
@@ -155,6 +166,14 @@ func _ready() -> void:
 		var label: Label = child as Label
 		label.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 		label.custom_minimum_size.x = 320
+		if label == controls_panel.get("message"):
+			label.add_theme_font_size_override("font_size", BODY_SIZE)
+		elif label.text.begins_with("CONTROLS"):
+			label.text = "Controls"
+			style_caps(label, HEADING_SIZE)
+			label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+		else:
+			style_caps(label, CAPTION_SIZE)
 	# Every tweaks panel (sword, camera, and the shading and MPEG layers' own) in one column on the
 	# left, shown with the pause menu. Opening one folds the others; the column scrolls if needed.
 	tweaks = preload("res://ui/sword_tweaks_panel.gd").new()
@@ -229,6 +248,12 @@ func _ready() -> void:
 	for menu_root: Control in menus:
 		for child: Node in menu_root.find_children("*", "BaseButton", true, false):
 			fade_on_hover(child as BaseButton)
+			var options: OptionButton = child as OptionButton
+			if options != null:
+				for index: int in range(options.item_count):
+					options.set_item_text(index, options.get_item_text(index).to_upper())
+			elif child is Button:
+				menu_buttons.append(child as Button)
 	refresh()
 	title_host.grab_focus()
 
@@ -251,10 +276,26 @@ func add_label(parent: Node, text: String, size: int, color: Color = Color.WHITE
 	parent.add_child(label)
 	return label
 
+func heading(parent: Node, text: String) -> Label:
+	var label: Label = add_label(parent, text, HEADING_SIZE)
+	style_caps(label, HEADING_SIZE)
+	label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER # centred like the items below it
+	return label
+
+func caption(parent: Node, text: String) -> Label:
+	var label: Label = add_label(parent, text, CAPTION_SIZE)
+	style_caps(label, CAPTION_SIZE)
+	return label
+
+func style_caps(label: Label, size: int) -> void:
+	label.uppercase = true
+	label.add_theme_font_override("font", caps_font)
+	label.add_theme_font_size_override("font_size", size)
+
 func button(parent: Node, text: String, action: Callable) -> Button:
 	var control: Button = Button.new()
 	control.text = text
-	control.custom_minimum_size.y = 42
+	control.custom_minimum_size.y = 36
 	control.pressed.connect(action)
 	parent.add_child(control)
 	return control
@@ -273,7 +314,7 @@ func box(color: Color, radius: int = 8, padding: int = 0) -> StyleBoxFlat:
 func make_theme() -> Theme:
 	var theme: Theme = Theme.new()
 	theme.default_font = ui_font
-	theme.default_font_size = 16
+	theme.default_font_size = BODY_SIZE
 	theme.set_color("font_color", "Label", Color.WHITE)
 	theme.set_stylebox("panel", "PanelContainer", box(Color.BLACK, 0, 28))
 	for type: String in ["Button", "CheckButton"]:
@@ -282,6 +323,9 @@ func make_theme() -> Theme:
 		for state: String in ["font_color", "font_focus_color", "font_hover_color", "font_hover_pressed_color", "font_pressed_color"]:
 			theme.set_color(state, type, Color.WHITE)
 		theme.set_color("font_disabled_color", type, DIM_WHITE)
+	for type: String in ["Button", "CheckButton", "OptionButton"]:
+		theme.set_font("font", type, caps_font)
+		theme.set_font_size("font_size", type, ITEM_SIZE)
 	theme.set_stylebox("normal", "LineEdit", box(Color(1, 1, 1, 0.08), 0, 10))
 	theme.set_stylebox("focus", "LineEdit", StyleBoxEmpty.new())
 	theme.set_color("font_color", "LineEdit", Color.WHITE)
@@ -452,6 +496,10 @@ func refresh() -> void:
 	session_label.visible = resources.visible
 	(screen.get_node("Reticle") as Label).visible = resources.visible
 	tweaks_wrapper.visible = pause_panel.visible
+	# Menu item text is set in many places (and in other scripts); show it in capitals.
+	for item: Button in menu_buttons:
+		if item.is_visible_in_tree() and item.text != item.text.to_upper():
+			item.text = item.text.to_upper()
 	if local != null:
 		var combat: CombatController = local.get("combat") as CombatController
 		var amounts: Array[float] = [float(combat.health), combat.stamina, combat.poise]
@@ -463,7 +511,7 @@ func refresh() -> void:
 
 func show_setup(mode: String) -> void:
 	setup_mode = mode
-	setup_heading.text = "HOST GAME" if mode == "host" else "JOIN GAME"
+	setup_heading.text = "Host game" if mode == "host" else "Join game"
 	(world.get("host_button") as Control).visible = mode == "host"
 	(world.get("join_button") as Control).visible = mode == "join"
 	(world.get("address") as Control).visible = mode == "join"
@@ -495,5 +543,5 @@ func fit_logo() -> void:
 	title_choices.position = Vector2((window.x - title_choices.size.x) * 0.5, window.y * 0.49)
 	for child: Node in title_choices.get_children():
 		var choice: Button = child as Button
-		choice.custom_minimum_size.y = frame.y * 0.068
-		choice.add_theme_font_size_override("font_size", maxi(16, int(frame.y * 0.038)))
+		choice.custom_minimum_size.y = frame.y * 0.058
+		choice.add_theme_font_size_override("font_size", maxi(ITEM_SIZE, int(frame.y * 0.022)))
