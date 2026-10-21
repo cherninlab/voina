@@ -34,6 +34,9 @@ var tweaks: PanelContainer
 var tweaks_wrapper: ScrollContainer = ScrollContainer.new()
 var tweaks_list: VBoxContainer = VBoxContainer.new()
 const TWEAKS_WIDTH: float = 360.0 # the tweaks column's width at the right edge (px)
+const HOVER_RED: Color = Color("e0262b") # menu text fades to this while hovered or focused
+const HOVER_FADE: float = 0.2 # seconds
+const DIM_WHITE: Color = Color(1, 1, 1, 0.4) # disabled and placeholder text
 var perf_meter: CanvasLayer = preload("res://ui/perf_meter.gd").new()
 
 func _ready() -> void:
@@ -111,7 +114,6 @@ func _ready() -> void:
 	menu.add_child(match_button)
 	status_label.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 	status_label.custom_minimum_size.x = 320
-	status_label.add_theme_color_override("font_color", Color("b4b4b4"))
 	status_label.add_theme_font_size_override("font_size", 14)
 	menu.add_child(status_label)
 	var controls: Button = world.get("controls_button") as Button
@@ -123,7 +125,7 @@ func _ready() -> void:
 	pause_column.add_theme_constant_override("separation", 12)
 	pause_panel = centered_panel(pause_column)
 	add_label(pause_column, "PAUSED", 30)
-	pause_status = add_label(pause_column, "The multiplayer match continues.", 14, Color("a0a0a0"))
+	pause_status = add_label(pause_column, "The multiplayer match continues.", 14)
 	resume_button = button(pause_column, "Resume", resume)
 	button(pause_column, "Controls", show_controls)
 	var leave: Button = world.get("leave_button") as Button
@@ -223,6 +225,10 @@ func _ready() -> void:
 	screen.add_child(reticle)
 	reticle.name = "Reticle"
 	add_child(perf_meter) # hidden until the perf overlay key; see ui/perf_meter.gd
+	var menus: Array[Control] = [title_choices, lobby_panel, pause_panel, loader_panel, controls_panel]
+	for menu_root: Control in menus:
+		for child: Node in menu_root.find_children("*", "BaseButton", true, false):
+			fade_on_hover(child as BaseButton)
 	refresh()
 	title_host.grab_focus()
 
@@ -263,62 +269,42 @@ func box(color: Color, radius: int = 8, padding: int = 0) -> StyleBoxFlat:
 	style.content_margin_bottom = padding
 	return style
 
-# Charcoal iron, aged ivory and warm amber echo the village practical lights.
+# Plain white on black, no outlines; buttons fade to red while hovered or focused (fade_on_hover).
 func make_theme() -> Theme:
 	var theme: Theme = Theme.new()
 	theme.default_font = ui_font
 	theme.default_font_size = 16
-	theme.set_color("font_color", "Label", Color("eee4cc"))
-	theme.set_stylebox("panel", "PanelContainer", outlined(Color(0.025, 0.035, 0.038, 0.97), Color("625b49"), 28))
-	theme.set_stylebox("normal", "Button", outlined(Color("192124"), Color("5d645d"), 10))
-	theme.set_stylebox("hover", "Button", outlined(Color("524332"), Color("d9b47b"), 10))
-	theme.set_stylebox("pressed", "Button", outlined(Color("342e26"), Color("d9b47b"), 10))
-	theme.set_stylebox("disabled", "Button", outlined(Color.BLACK, Color("4a4a4a"), 8))
-	theme.set_color("font_color", "Button", Color("eee4cc"))
-	theme.set_color("font_focus_color", "Button", Color.WHITE)
-	theme.set_color("font_hover_color", "Button", Color("fff3dc"))
-	theme.set_color("font_hover_pressed_color", "Button", Color("fff3dc"))
-	theme.set_color("font_pressed_color", "Button", Color("fff3dc"))
-	theme.set_color("font_disabled_color", "Button", Color("6a6a6a"))
-	# Switches keep a quiet row instead of inverting, so their white knob stays visible.
-	theme.set_stylebox("normal", "CheckButton", box(Color(0, 0, 0, 0), 0, 6))
-	theme.set_stylebox("hover", "CheckButton", box(Color(1, 1, 1, 0.1), 0, 6))
-	theme.set_stylebox("pressed", "CheckButton", box(Color(0, 0, 0, 0), 0, 6))
-	theme.set_stylebox("hover_pressed", "CheckButton", box(Color(1, 1, 1, 0.1), 0, 6))
-	theme.set_stylebox("disabled", "CheckButton", box(Color(0, 0, 0, 0), 0, 6))
-	for state: String in ["font_hover_color", "font_hover_pressed_color", "font_pressed_color"]:
-		theme.set_color(state, "CheckButton", Color.WHITE)
-	var focus: StyleBoxFlat = box(Color(0, 0, 0, 0), 0)
-	focus.set_border_width_all(2)
-	focus.border_color = Color("9a9a9a")
-	focus.expand_margin_left = 3
-	focus.expand_margin_right = 3
-	focus.expand_margin_top = 3
-	focus.expand_margin_bottom = 3
-	theme.set_stylebox("focus", "Button", focus)
-	theme.set_stylebox("focus", "CheckButton", focus)
-	theme.set_stylebox("normal", "LineEdit", outlined(Color.BLACK, Color("5c5c5c"), 10))
-	theme.set_stylebox("focus", "LineEdit", outlined(Color(0, 0, 0, 0), Color.WHITE, 0))
+	theme.set_color("font_color", "Label", Color.WHITE)
+	theme.set_stylebox("panel", "PanelContainer", box(Color.BLACK, 0, 28))
+	for type: String in ["Button", "CheckButton"]:
+		for state: String in ["normal", "hover", "pressed", "hover_pressed", "disabled", "focus"]:
+			theme.set_stylebox(state, type, box(Color(0, 0, 0, 0), 0, 10))
+		for state: String in ["font_color", "font_focus_color", "font_hover_color", "font_hover_pressed_color", "font_pressed_color"]:
+			theme.set_color(state, type, Color.WHITE)
+		theme.set_color("font_disabled_color", type, DIM_WHITE)
+	theme.set_stylebox("normal", "LineEdit", box(Color(1, 1, 1, 0.08), 0, 10))
+	theme.set_stylebox("focus", "LineEdit", StyleBoxEmpty.new())
 	theme.set_color("font_color", "LineEdit", Color.WHITE)
-	theme.set_color("font_placeholder_color", "LineEdit", Color("6a6a6a"))
+	theme.set_color("font_placeholder_color", "LineEdit", DIM_WHITE)
 	theme.set_color("caret_color", "LineEdit", Color.WHITE)
 	theme.set_color("selection_color", "LineEdit", Color(1, 1, 1, 0.3))
-	theme.set_stylebox("separator", "HSeparator", line(Color(1, 1, 1, 0.22)))
-	theme.set_stylebox("background", "ProgressBar", box(Color("1c1c1c"), 0))
+	theme.set_stylebox("separator", "HSeparator", StyleBoxEmpty.new())
+	theme.set_stylebox("background", "ProgressBar", box(Color(1, 1, 1, 0.12), 0))
 	theme.set_stylebox("fill", "ProgressBar", box(Color.WHITE, 0))
 	return theme
 
-func outlined(fill: Color, border: Color, padding: int) -> StyleBoxFlat:
-	var style: StyleBoxFlat = box(fill, 0, padding)
-	style.set_border_width_all(1)
-	style.border_color = border
-	return style
-
-func line(color: Color) -> StyleBoxLine:
-	var style: StyleBoxLine = StyleBoxLine.new()
-	style.color = color
-	style.thickness = 1
-	return style
+# White text fades to HOVER_RED while the button is hovered or focused, and back when it is not.
+func fade_on_hover(control: BaseButton) -> void:
+	var update: Callable = func() -> void:
+		var lit: bool = not control.disabled and (control.is_hovered() or control.has_focus())
+		if control.has_meta(&"hover_fade"):
+			(control.get_meta(&"hover_fade") as Tween).kill()
+		var fade: Tween = control.create_tween()
+		fade.tween_property(control, "self_modulate", HOVER_RED if lit else Color.WHITE, HOVER_FADE)
+		control.set_meta(&"hover_fade", fade)
+	# Deferred so is_hovered() and has_focus() already reflect the change that fired the signal.
+	for changed: Signal in [control.mouse_entered, control.mouse_exited, control.focus_entered, control.focus_exited]:
+		changed.connect(update.call_deferred)
 
 func local_player() -> Node:
 	var players: Node3D = world.get("players") as Node3D
@@ -495,20 +481,7 @@ func show_setup(mode: String) -> void:
 
 func title_button(text: String, action: Callable) -> Button:
 	var control: Button = button(title_choices, text, action)
-	for state: String in ["normal", "hover", "pressed", "focus"]:
-		control.add_theme_stylebox_override(state, StyleBoxEmpty.new())
-	var selection: StyleBoxFlat = box(Color(0, 0, 0, 0), 0)
-	selection.border_color = Color("b98b4c")
-	selection.border_width_bottom = 1
-	control.add_theme_stylebox_override("focus", selection)
-	control.add_theme_stylebox_override("hover", selection)
 	control.alignment = HORIZONTAL_ALIGNMENT_CENTER
-	control.add_theme_color_override("font_color", Color("eee4cc"))
-	control.add_theme_color_override("font_shadow_color", Color(0, 0, 0, 0.7))
-	control.add_theme_constant_override("shadow_offset_x", 1)
-	control.add_theme_constant_override("shadow_offset_y", 2)
-	for state: String in ["font_hover_color", "font_pressed_color", "font_focus_color"]:
-		control.add_theme_color_override(state, Color.WHITE)
 	return control
 
 func fit_logo() -> void:

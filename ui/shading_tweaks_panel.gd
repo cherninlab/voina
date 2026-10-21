@@ -58,7 +58,7 @@ func _ready() -> void:
 		if spec.has("group"):
 			var heading: Label = Label.new()
 			heading.text = spec["group"] as String
-			heading.add_theme_color_override("font_color", Color("9eb1a6"))
+			heading.add_theme_color_override("font_color", Color(1, 1, 1, 0.6))
 			body.add_child(heading)
 			continue
 		var name: String = spec["name"] as String
