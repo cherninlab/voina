@@ -24,7 +24,6 @@ func _ready() -> void:
 	if "--full" in OS.get_cmdline_user_args() and DisplayServer.get_name() != "headless":
 		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN)
 	add_to_group("match_world")
-	Engine.max_fps = 60
 	players.name = "Players"
 	add_child(players)
 	spawner.name = "Spawner"
@@ -33,6 +32,8 @@ func _ready() -> void:
 	spawner.spawn_function = create_player
 	add_child(spawner)
 	build_arena()
+	# Frame cap, render scale, sun shadows and ground cover follow Settings > Graphics.
+	GraphicsSettings.register_world(self)
 	lobby_camera.position = Vector3(34, 26, 38)
 	add_child(lobby_camera)
 	lobby_camera.look_at(Vector3.ZERO)

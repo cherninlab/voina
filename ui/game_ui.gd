@@ -45,6 +45,7 @@ const ITEM_SIZE: int = 13
 const CAPTION_SIZE: int = 11
 const BODY_SIZE: int = 13
 var perf_meter: CanvasLayer = preload("res://ui/perf_meter.gd").new()
+var graphics_panel: PanelContainer = preload("res://ui/graphics_panel.gd").new() # beside the controls, shown with them
 
 func _ready() -> void:
 	name = "GameUI"
@@ -138,7 +139,7 @@ func _ready() -> void:
 	pause_status = add_label(pause_column, "The multiplayer match continues.", BODY_SIZE)
 	pause_status.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	resume_button = button(pause_column, "Resume", resume)
-	button(pause_column, "Controls", show_controls)
+	button(pause_column, "Settings", show_controls)
 	var leave: Button = world.get("leave_button") as Button
 	leave.text = "Leave game"
 	pause_column.add_child(leave)
@@ -160,9 +161,26 @@ func _ready() -> void:
 	controls_center.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
 	controls_center.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	screen.add_child(controls_center)
+	# Settings: controls and graphics side by side.
+	var settings_row: HBoxContainer = HBoxContainer.new()
+	settings_row.add_theme_constant_override("separation", 12)
+	controls_center.add_child(settings_row)
 	var controls_panel: PanelContainer = world.get("controls_panel") as PanelContainer
-	controls_center.add_child(controls_panel)
+	settings_row.add_child(controls_panel)
 	controls_panel.custom_minimum_size.x = 380
+	settings_row.add_child(graphics_panel)
+	graphics_panel.custom_minimum_size.x = 380
+	for child: Node in graphics_panel.find_children("*", "Label", true, false):
+		var label: Label = child as Label
+		label.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+		label.custom_minimum_size.x = 320
+		if label == graphics_panel.get("title"):
+			style_caps(label, HEADING_SIZE)
+			label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+		elif label in (graphics_panel.get("captions") as Array):
+			style_caps(label, CAPTION_SIZE)
+		else:
+			label.add_theme_font_size_override("font_size", BODY_SIZE)
 	for child: Node in controls_panel.find_children("*", "Label", true, false):
 		var label: Label = child as Label
 		label.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
@@ -245,7 +263,7 @@ func _ready() -> void:
 	screen.add_child(reticle)
 	reticle.name = "Reticle"
 	add_child(perf_meter) # hidden until the perf overlay key; see ui/perf_meter.gd
-	var menus: Array[Control] = [title_choices, lobby_panel, pause_panel, loader_panel, controls_panel]
+	var menus: Array[Control] = [title_choices, lobby_panel, pause_panel, loader_panel, controls_panel, graphics_panel]
 	for menu_root: Control in menus:
 		for child: Node in menu_root.find_children("*", "BaseButton", true, false):
 			fade_on_hover(child as BaseButton)
@@ -478,6 +496,7 @@ func refresh() -> void:
 	var local: Node = local_player()
 	var connecting: bool = active and local == null and not NetworkManager.dedicated
 	var controls: Control = world.get("controls_panel") as Control
+	graphics_panel.visible = controls.visible
 	if not active:
 		paused = false
 	elif local != null and DisplayServer.get_name() != "headless" and Input.mouse_mode != Input.MOUSE_MODE_CAPTURED:
