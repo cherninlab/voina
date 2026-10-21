@@ -36,7 +36,7 @@ var tweaks: PanelContainer
 var tweaks_wrapper: ScrollContainer = ScrollContainer.new()
 var tweaks_list: VBoxContainer = VBoxContainer.new()
 const TWEAKS_WIDTH: float = 360.0 # the tweaks column's width at the right edge (px)
-const HOVER_RED: Color = Color("e0262b") # menu text fades to this while hovered or focused
+const MENU_RED: Color = Color("e0262b") # menu buttons and the title logo; buttons fade to white under the mouse
 const HOVER_FADE: float = 0.2 # seconds
 const DIM_WHITE: Color = Color(1, 1, 1, 0.4) # disabled and placeholder text
 # Menu type scale (logical px): capitals for headings, items and field captions; body copy stays as written.
@@ -83,6 +83,7 @@ func _ready() -> void:
 	logo.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
 	logo.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
 	logo.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	logo.self_modulate = MENU_RED # the white artwork, tinted
 	title_screen.add_child(logo)
 	title_choices.add_theme_constant_override("separation", 0)
 	title_screen.add_child(title_choices)
@@ -292,7 +293,7 @@ func style_caps(label: Label, size: int) -> void:
 	label.add_theme_font_override("font", caps_font)
 	label.add_theme_font_size_override("font_size", size)
 
-# White fill, black text. fade_on_hover's self_modulate turns the white fill red and leaves the black text black.
+# White fill, black text. fade_on_hover's self_modulate tints the fill red (the black text stays black) until hovered.
 func style_primary(control: Button) -> void:
 	var fill: StyleBoxFlat = box(Color.WHITE, 0, 10)
 	for state: String in ["normal", "hover", "pressed", "hover_pressed"]:
@@ -347,17 +348,19 @@ func make_theme() -> Theme:
 	theme.set_stylebox("fill", "ProgressBar", box(Color.WHITE, 0))
 	return theme
 
-# White text fades to HOVER_RED while the button is hovered or focused, and back when it is not.
+# The white-styled button is tinted MENU_RED at rest and fades to white while the mouse is over it.
+# Keyboard focus leaves the colour alone, so no button looks preselected.
 func fade_on_hover(control: BaseButton) -> void:
+	control.self_modulate = MENU_RED
 	var update: Callable = func() -> void:
-		var lit: bool = not control.disabled and (control.is_hovered() or control.has_focus())
+		var lit: bool = not control.disabled and control.is_hovered()
 		if control.has_meta(&"hover_fade"):
 			(control.get_meta(&"hover_fade") as Tween).kill()
 		var fade: Tween = control.create_tween()
-		fade.tween_property(control, "self_modulate", HOVER_RED if lit else Color.WHITE, HOVER_FADE)
+		fade.tween_property(control, "self_modulate", Color.WHITE if lit else MENU_RED, HOVER_FADE)
 		control.set_meta(&"hover_fade", fade)
-	# Deferred so is_hovered() and has_focus() already reflect the change that fired the signal.
-	for changed: Signal in [control.mouse_entered, control.mouse_exited, control.focus_entered, control.focus_exited]:
+	# Deferred so is_hovered() already reflects the change that fired the signal.
+	for changed: Signal in [control.mouse_entered, control.mouse_exited]:
 		changed.connect(update.call_deferred)
 
 func local_player() -> Node:
@@ -537,8 +540,7 @@ func show_setup(mode: String) -> void:
 	elif mode == "join":
 		(world.get("address") as Control).grab_focus()
 	else:
-		# Not START GAME: focus would show it red before the player has chosen it.
-		(world.get("village_raiders_toggle") as Control).grab_focus()
+		(world.get("host_button") as Control).grab_focus()
 
 func title_button(text: String, action: Callable) -> Button:
 	var control: Button = button(title_choices, text, action)
@@ -551,9 +553,9 @@ func fit_logo() -> void:
 	var frame: Vector2 = window
 	# Logo and choices share one centred column.
 	logo.size = Vector2(window.x * 0.54, window.y * 0.48)
-	logo.position = Vector2((window.x - logo.size.x) * 0.5, window.y * 0.06)
+	logo.position = Vector2((window.x - logo.size.x) * 0.5, window.y * 0.16)
 	title_choices.size.x = window.x * 0.25
-	title_choices.position = Vector2((window.x - title_choices.size.x) * 0.5, window.y * 0.57)
+	title_choices.position = Vector2((window.x - title_choices.size.x) * 0.5, window.y * 0.65)
 	for child: Node in title_choices.get_children():
 		var choice: Button = child as Button
 		choice.custom_minimum_size.y = frame.y * 0.058
