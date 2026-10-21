@@ -2,7 +2,8 @@ extends Node
 ## Debug builds only play against the same build. The fingerprint hashes every gameplay script,
 ## scene, resource and project setting, so uncommitted agent edits count as a different build.
 ## Peers compare it during SceneMultiplayer authentication, before peer_connected, so a
-## mismatched joiner never spawns. Release builds and --allow-version-mismatch skip the check.
+## mismatched joiner never spawns. Release builds and --allow-version-mismatch skip source checks;
+## map agreement is always required.
 ## See docs/playtest.md.
 
 const SOURCES: Array[String] = ["res://core", "res://gameplay", "res://ui"]
@@ -12,6 +13,7 @@ var fingerprint: String = ""
 var commit: String = "unknown"
 var enforced: bool = false
 var expecting_refusal: bool = false
+var map_id: String = "crypt" if "--dungeon" in OS.get_cmdline_user_args() else "village"
 
 func _ready() -> void:
 	commit = describe_commit()
@@ -22,7 +24,8 @@ func _ready() -> void:
 	print("BUILD: " + label())
 	enforced = OS.is_debug_build() and not ("--allow-version-mismatch" in OS.get_cmdline_user_args())
 	var scene_multiplayer: SceneMultiplayer = multiplayer as SceneMultiplayer
-	if not enforced or scene_multiplayer == null:
+	# Map agreement remains mandatory in exports and with --allow-version-mismatch.
+	if scene_multiplayer == null:
 		return
 	scene_multiplayer.auth_callback = receive_auth
 	scene_multiplayer.auth_timeout = 5.0
@@ -94,16 +97,17 @@ static func decode(data: PackedByteArray) -> Dictionary:
 # The joining side speaks first; the host answers after comparing.
 func authenticating(peer: int) -> void:
 	if not multiplayer.is_server():
-		(multiplayer as SceneMultiplayer).send_auth(peer, encode({"fingerprint": fingerprint, "commit": commit}))
+		(multiplayer as SceneMultiplayer).send_auth(peer, encode({"fingerprint": fingerprint, "commit": commit, "map": map_id}))
 
 func receive_auth(peer: int, data: PackedByteArray) -> void:
 	var scene_multiplayer: SceneMultiplayer = multiplayer as SceneMultiplayer
 	var info: Dictionary = decode(data)
 	var remote_fingerprint: String = str(info.get("fingerprint", ""))
 	var remote_commit: String = str(info.get("commit", "unknown"))
+	var remote_map: String = str(info.get("map", "village"))
 	if multiplayer.is_server():
-		var matches: bool = not remote_fingerprint.is_empty() and remote_fingerprint == fingerprint
-		scene_multiplayer.send_auth(peer, encode({"fingerprint": fingerprint, "commit": commit, "accepted": matches}))
+		var matches: bool = remote_map == map_id and (not enforced or (not remote_fingerprint.is_empty() and remote_fingerprint == fingerprint))
+		scene_multiplayer.send_auth(peer, encode({"fingerprint": fingerprint, "commit": commit, "map": map_id, "accepted": matches}))
 		if matches:
 			scene_multiplayer.complete_auth(peer)
 		else:
@@ -112,6 +116,14 @@ func receive_auth(peer: int, data: PackedByteArray) -> void:
 		return
 	if bool(info.get("accepted", false)):
 		scene_multiplayer.complete_auth(peer)
+		return
+	if remote_map != map_id:
+		var map_message: String = "Host map is %s; your map is %s. Restart %s --dungeon on both host and joiner." % [remote_map, map_id, "with" if remote_map == "crypt" else "without"]
+		print("MAP_MISMATCH: " + map_message)
+		NetworkManager.stop(map_message)
+		if expecting_refusal:
+			print("VERSION_MISMATCH_OK: map refused before spawn")
+			get_tree().quit()
 		return
 	var message: String = "Host runs %s [%s], you run %s. Run: python3 scripts/playtest.py sync --commit %s" % [remote_commit, remote_fingerprint, label(), remote_commit.trim_suffix("+dirty")]
 	print("VERSION_MISMATCH: " + message)

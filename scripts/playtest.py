@@ -85,7 +85,7 @@ def sync(commit: Optional[str], godot: str) -> Path:
 
 
 def launch(path: Path, godot: str, game_args: List[str], detach: bool) -> None:
-    command = [godot, "--path", str(path), "--", *game_args]
+    command = ["/usr/bin/env", f"GODOT={godot}", str(path / "scripts/godot_bg.sh"), "--path", str(path), "--", *game_args]
     if detach:
         process = subprocess.Popen(command, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL, start_new_session=True)
         print(f"launched pid {process.pid}: {' '.join(command)}")
@@ -151,7 +151,7 @@ def cmd_host(args: argparse.Namespace) -> None:
     if not pin or pin["commit"] != sha:
         publish_pin(sha, host_name(args), f"hosting on {socket.gethostname().split('.')[0]}")
         print(f"pinned {sha[:7]}: the board now names the build this host runs")
-    modes = (["--match"] if args.match else []) + (["--pve"] if args.pve else []) + (["--full"] if args.full else [])
+    modes = (["--match"] if args.match else []) + (["--pve"] if args.pve else []) + (["--full"] if args.full else []) + (["--dungeon"] if args.dungeon else [])
     launch(path, godot, ["--host", f"--port={args.port}", *modes], args.detach)
 
 
@@ -160,13 +160,13 @@ def cmd_host(args: argparse.Namespace) -> None:
 def cmd_join(args: argparse.Namespace) -> None:
     godot = godot_binary(args.godot)
     commit = args.commit
-    game_args = [f"--join={args.address}", f"--port={args.port}"] + (["--full"] if args.full else [])
+    game_args = [f"--join={args.address}", f"--port={args.port}"] + (["--full"] if args.full else []) + (["--dungeon"] if args.dungeon else [])
     if args.detach:
         launch(sync(commit, godot), godot, game_args, True)
         return
     for attempt in range(3):
         path = sync(commit, godot)
-        process = subprocess.Popen([godot, "--path", str(path), "--", *game_args], stdout=subprocess.PIPE, stderr=subprocess.STDOUT, text=True)
+        process = subprocess.Popen(["/usr/bin/env", f"GODOT={godot}", str(path / "scripts/godot_bg.sh"), "--path", str(path), "--", *game_args], stdout=subprocess.PIPE, stderr=subprocess.STDOUT, text=True)
         follow = None
         for line in process.stdout:
             print(line, end="", flush=True)
@@ -206,6 +206,7 @@ def main() -> None:
             command.add_argument("--port", type=int, default=7777)
             command.add_argument("--detach", action="store_true", help="return after launching the game")
             command.add_argument("--full", action="store_true", help="open fullscreen")
+            command.add_argument("--dungeon", action="store_true", help="play the Cinder Crypt instead of the village (both host and joiner)")
         if name == "host":
             command.add_argument("--match", action="store_true", help="first to three round wins")
             command.add_argument("--pve", action="store_true", help="add hostile PvE raiders")

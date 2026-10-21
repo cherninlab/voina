@@ -87,8 +87,11 @@ func _ready() -> void:
 	enabled = DisplayServer.get_name() != "headless" and not "--server" in OS.get_cmdline_user_args()
 	if enabled:
 		setup()
-		for id: StringName in AMBIENCE:
-			start_bed(id, AMBIENCE[id])
+		var ambience: Dictionary[StringName, float] = AMBIENCE
+		if "--dungeon" in OS.get_cmdline_user_args():
+			ambience = {&"chimney_wind_01": -22.0, &"fire_synth_01": -26.0}
+		for id: StringName in ambience:
+			start_bed(id, ambience[id])
 
 func setup() -> void:
 	enabled = true

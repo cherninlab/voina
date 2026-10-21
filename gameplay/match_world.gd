@@ -12,7 +12,8 @@ var controls_panel: PanelContainer = preload("res://ui/controls_panel.gd").new()
 var pve_toggle: CheckButton = CheckButton.new() # possessed villagers at the church
 var village_raiders_toggle: CheckButton = CheckButton.new()
 var forest_raiders_toggle: CheckButton = CheckButton.new()
-var mobs: MobSystem = MobSystem.new()
+var dungeon: bool = "--dungeon" in OS.get_cmdline_user_args()
+var mobs: MobSystem = preload("res://gameplay/mobs/dungeon_mobs.gd").new() if dungeon else MobSystem.new()
 var match_toggle: CheckButton = CheckButton.new()
 var match_flow: MatchFlow = MatchFlow.new()
 var lobby_camera: Camera3D = Camera3D.new()
@@ -64,15 +65,23 @@ func create_player(data: Variant) -> Node:
 	player.name = str(int(info[0]))
 	player.set_multiplayer_authority(int(info[0]))
 	# Spawns stay 6 m apart: the host's movement envelope must still accept the smoke client's hop.
-	player.position = Vector3(0, 0.95, 3.0 if int(info[1]) % 2 == 0 else -3.0)
+	player.position = player_spawn(int(info[1]))
 	player.set("sync_position", player.position)
-	player.set("yaw", 0.0 if int(info[1]) % 2 == 0 else PI)
+	player.set("yaw", 0.0 if dungeon or int(info[1]) % 2 == 0 else PI)
 	return player
+
+func player_spawn(slot: int) -> Vector3:
+	if dungeon:
+		return Vector3(-1.5 + float(slot % 2) * 3.0, 0.95, 17.0 + float(slot / 2) * 2.0)
+	return Vector3(0, 0.95, 3.0 if slot % 2 == 0 else -3.0)
 
 func host_started() -> void:
 	menu.hide()
 	if not NetworkManager.dedicated:
 		spawner.spawn([1, 0])
+	if dungeon:
+		mobs.start()
+		return
 	mobs.villagers = pve_toggle.button_pressed or "--pve" in OS.get_cmdline_user_args()
 	mobs.village_raiders = village_raiders_toggle.button_pressed
 	mobs.forest_raiders = forest_raiders_toggle.button_pressed
@@ -110,6 +119,11 @@ func clear_players() -> void:
 	lobby_camera.make_current()
 
 func build_arena() -> void:
+	if dungeon:
+		Wildlife.remove_from_group("match_world")
+		add_child(preload("res://gameplay/environment/crypt_dungeon.gd").new())
+		print("MAP: Cinder Crypt (--dungeon)")
+		return
 	add_child(preload("res://gameplay/environment/village_arena.gd").new())
 	# After the village, whose landscape heights they sample.
 	add_child(preload("res://gameplay/environment/church_grounds.gd").new())
