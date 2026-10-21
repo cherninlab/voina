@@ -6,6 +6,9 @@ config/version="0.1.0"
 config/use_custom_user_dir=true
 config/custom_user_dir_name="Godot/app_userdata/Voina"
 run/main_scene="res://gameplay/match_world.tscn"
+boot_splash/bg_color=Color(0, 0, 0, 1)
+boot_splash/image="res://content/ui/itsnotthat_splash.png"
+config/icon="res://content/ui/itsnotthat_icon.png"
 config/features=PackedStringArray("4.7", "Mobile")
 
 [autoload]

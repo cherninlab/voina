@@ -2,9 +2,6 @@ extends CanvasLayer
 ## Local presentation only: menus release input; network and host simulation continue.
 
 var menu_backdrop: ColorRect = ColorRect.new()
-var menu_image: TextureRect = TextureRect.new()
-var menu_grade: ColorRect = ColorRect.new()
-var colour_shading: CanvasLayer
 var world_image_effects: Array[CanvasLayer] = []
 var menu_music: AudioStreamPlayer = AudioStreamPlayer.new()
 var world: Node3D
@@ -18,7 +15,7 @@ var setup_mode: String = ""
 var setup_heading: Label
 var address_heading: Label
 var title_host: Button
-var title_font: SystemFont = SystemFont.new()
+var ui_font: SystemFont = SystemFont.new()
 var pause_panel: PanelContainer
 var loader_panel: PanelContainer
 var pause_column: VBoxContainer
@@ -50,6 +47,7 @@ func _ready() -> void:
 	world = get_parent() as Node3D
 	screen.set_anchors_and_offsets_preset(Control.PRESET_TOP_LEFT)
 	screen.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	ui_font.font_names = PackedStringArray(["Helvetica Neue", "Helvetica", "Arial", "sans-serif"])
 	screen.theme = make_theme()
 	add_child(screen)
 	shade.color = Color(0, 0, 0, 0.72)
@@ -58,44 +56,14 @@ func _ready() -> void:
 	menu_backdrop.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
 	menu_backdrop.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	screen.add_child(menu_backdrop)
-	menu_image.texture = preload("res://content/ui/secha-menu-grim.png")
-	menu_image.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
-	menu_image.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_COVERED
-	menu_image.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
-	menu_image.mouse_filter = Control.MOUSE_FILTER_IGNORE
-	menu_backdrop.add_child(menu_image)
-	# Capture the native character render, then reuse the world grading material.
-	# Logo, navigation and setup controls are drawn afterwards and stay readable.
+	# Plain black behind the title; the world's image effects are hidden while it covers the 3D view.
 	for child: Node in world.get_children():
 		var script: Script = child.get_script() as Script
 		if script != null and script.resource_path in ["res://ui/shading.gd", "res://ui/fisheye.gd"]:
 			world_image_effects.append(child as CanvasLayer)
-		if child.get_script() == preload("res://ui/shading.gd"):
-			colour_shading = child as CanvasLayer
-	var menu_copy: BackBufferCopy = BackBufferCopy.new()
-	menu_copy.copy_mode = BackBufferCopy.COPY_MODE_VIEWPORT
-	menu_backdrop.add_child(menu_copy)
-	menu_grade.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
-	menu_grade.mouse_filter = Control.MOUSE_FILTER_IGNORE
-	if colour_shading != null:
-		menu_grade.material = colour_shading.get("material") as ShaderMaterial
-	menu_backdrop.add_child(menu_grade)
-	var scrim: TextureRect = TextureRect.new()
-	var gradient: Gradient = Gradient.new()
-	gradient.set_color(0, Color(0.015,0.022,0.025,0.96))
-	gradient.set_color(1, Color(0.015,0.022,0.025,0.0))
-	gradient.add_point(0.32, Color(0.015,0.022,0.025,0.70))
-	gradient.add_point(0.60, Color(0.015,0.022,0.025,0.0))
-	var fade: GradientTexture2D = GradientTexture2D.new()
-	fade.gradient = gradient
-	scrim.texture = fade
-	scrim.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
-	scrim.mouse_filter = Control.MOUSE_FILTER_IGNORE
-	menu_backdrop.add_child(scrim)
 	screen.add_child(shade)
 	var menu: VBoxContainer = world.get("menu") as VBoxContainer
 	lobby_panel = centered_panel(menu)
-	title_font.font_names = PackedStringArray(["Times New Roman", "Times", "serif"])
 	title_screen.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
 	title_screen.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	screen.add_child(title_screen)
@@ -298,6 +266,7 @@ func box(color: Color, radius: int = 8, padding: int = 0) -> StyleBoxFlat:
 # Charcoal iron, aged ivory and warm amber echo the village practical lights.
 func make_theme() -> Theme:
 	var theme: Theme = Theme.new()
+	theme.default_font = ui_font
 	theme.default_font_size = 16
 	theme.set_color("font_color", "Label", Color("eee4cc"))
 	theme.set_stylebox("panel", "PanelContainer", outlined(Color(0.025, 0.035, 0.038, 0.97), Color("625b49"), 28))
@@ -462,7 +431,6 @@ func refresh() -> void:
 	get_viewport().disable_3d = wants_music
 	for effect: CanvasLayer in world_image_effects:
 		effect.visible = not wants_music
-	menu_grade.visible = colour_shading != null and (colour_shading.get("values") as Dictionary).get("strength", 0.0) > 0.001
 	fit_logo()
 	var local: Node = local_player()
 	var connecting: bool = active and local == null and not NetworkManager.dedicated
@@ -527,7 +495,6 @@ func show_setup(mode: String) -> void:
 
 func title_button(text: String, action: Callable) -> Button:
 	var control: Button = button(title_choices, text, action)
-	control.add_theme_font_override("font", title_font)
 	for state: String in ["normal", "hover", "pressed", "focus"]:
 		control.add_theme_stylebox_override(state, StyleBoxEmpty.new())
 	var selection: StyleBoxFlat = box(Color(0, 0, 0, 0), 0)
@@ -535,7 +502,7 @@ func title_button(text: String, action: Callable) -> Button:
 	selection.border_width_bottom = 1
 	control.add_theme_stylebox_override("focus", selection)
 	control.add_theme_stylebox_override("hover", selection)
-	control.alignment = HORIZONTAL_ALIGNMENT_LEFT
+	control.alignment = HORIZONTAL_ALIGNMENT_CENTER
 	control.add_theme_color_override("font_color", Color("eee4cc"))
 	control.add_theme_color_override("font_shadow_color", Color(0, 0, 0, 0.7))
 	control.add_theme_constant_override("shadow_offset_x", 1)
@@ -548,10 +515,11 @@ func fit_logo() -> void:
 	var window: Vector2 = screen.size
 	# Keep navigation inside the viewport at 16:9, 16:10 and ultrawide sizes.
 	var frame: Vector2 = window
-	logo.position = Vector2(window.x * 0.04, window.y * 0.075)
+	# Logo and choices share one centred column.
 	logo.size = Vector2(window.x * 0.36, window.y * 0.32)
-	title_choices.position = Vector2(window.x * 0.065, window.y * 0.49)
+	logo.position = Vector2((window.x - logo.size.x) * 0.5, window.y * 0.12)
 	title_choices.size.x = window.x * 0.25
+	title_choices.position = Vector2((window.x - title_choices.size.x) * 0.5, window.y * 0.49)
 	for child: Node in title_choices.get_children():
 		var choice: Button = child as Button
 		choice.custom_minimum_size.y = frame.y * 0.068
