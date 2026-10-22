@@ -1,0 +1,816 @@
+{
+  "title": "Red Descent",
+  "status": "proposed layout for review; not implemented",
+  "units": "metres",
+  "axes": "x east; z south; y elevation",
+  "footprint": [
+    36,
+    44
+  ],
+  "shaft": [
+    12,
+    14,
+    24,
+    30
+  ],
+  "levels": [
+    {
+      "id": "upper",
+      "file": "01-upper-floor",
+      "title": "THE FIRST CROSSING",
+      "level": 0,
+      "subtitle": "Arrival / exposure / restraint cell",
+      "rects": [
+        {
+          "name": "Arrival",
+          "bounds": [
+            14,
+            2,
+            22,
+            10
+          ],
+          "kind": "stone"
+        },
+        {
+          "name": "North landing",
+          "bounds": [
+            7,
+            10,
+            24,
+            14
+          ],
+          "kind": "stone"
+        },
+        {
+          "name": "West gallery",
+          "bounds": [
+            7,
+            12,
+            12,
+            25
+          ],
+          "kind": "stone"
+        },
+        {
+          "name": "Upper bridge",
+          "bounds": [
+            12,
+            17,
+            24,
+            20
+          ],
+          "kind": "timber"
+        },
+        {
+          "name": "East gallery",
+          "bounds": [
+            24,
+            14,
+            29,
+            29
+          ],
+          "kind": "stone"
+        },
+        {
+          "name": "Restraint cell",
+          "bounds": [
+            29,
+            15,
+            35,
+            23
+          ],
+          "kind": "stone"
+        },
+        {
+          "name": "S1 approach",
+          "bounds": [
+            25,
+            26,
+            29,
+            31
+          ],
+          "kind": "stone"
+        },
+        {
+          "name": "S1",
+          "bounds": [
+            25,
+            27,
+            33,
+            40
+          ],
+          "kind": "stairs"
+        }
+      ],
+      "route": [
+        [
+          18,
+          6
+        ],
+        [
+          18,
+          12
+        ],
+        [
+          9.5,
+          12
+        ],
+        [
+          9.5,
+          18.5
+        ],
+        [
+          26.5,
+          18.5
+        ],
+        [
+          27,
+          28
+        ]
+      ],
+      "markers": [
+        [
+          "01",
+          18,
+          6
+        ],
+        [
+          "02",
+          17,
+          18.5
+        ],
+        [
+          "03",
+          32,
+          17.5
+        ],
+        [
+          "S1",
+          29,
+          37
+        ]
+      ],
+      "threats": [
+        [
+          33,
+          21
+        ]
+      ],
+      "notes": [
+        [
+          "01",
+          "ARRIVAL",
+          "A cold stone stair from the forest. The first view opens onto the shaft."
+        ],
+        [
+          "02",
+          "FIRST CROSSING",
+          "A 3 m timber bridge exposes the route. Black openings sit across the void."
+        ],
+        [
+          "03",
+          "RESTRAINT CELL",
+          "An optional 6 x 8 m alcove. One occupied frame; space to pass it."
+        ],
+        [
+          "S1",
+          "DESCEND TO THE TUNNELS",
+          "A paired dogleg stair takes the route down 6 m."
+        ]
+      ],
+      "purpose": "Show the depth before asking players to enter it.",
+      "partitions": [
+        [
+          [
+            29,
+            15
+          ],
+          [
+            29,
+            17
+          ]
+        ],
+        [
+          [
+            29,
+            20
+          ],
+          [
+            29,
+            23
+          ]
+        ]
+      ]
+    },
+    {
+      "id": "middle",
+      "file": "02-middle-floor",
+      "title": "THE BLIND PASSAGES",
+      "level": -6,
+      "subtitle": "Low tunnel / lower crossing / distant witness",
+      "rects": [
+        {
+          "name": "S1",
+          "bounds": [
+            25,
+            27,
+            33,
+            40
+          ],
+          "kind": "stairs"
+        },
+        {
+          "name": "South gallery",
+          "bounds": [
+            4,
+            40,
+            36,
+            44
+          ],
+          "kind": "stone"
+        },
+        {
+          "name": "S1 exit landing",
+          "bounds": [
+            32,
+            26,
+            36,
+            44
+          ],
+          "kind": "stone"
+        },
+        {
+          "name": "Bent tunnel",
+          "bounds": [
+            4,
+            19,
+            8,
+            44
+          ],
+          "kind": "stone"
+        },
+        {
+          "name": "Tunnel bend",
+          "bounds": [
+            4,
+            18,
+            12,
+            22
+          ],
+          "kind": "stone"
+        },
+        {
+          "name": "West landing",
+          "bounds": [
+            8,
+            18,
+            12,
+            28
+          ],
+          "kind": "stone"
+        },
+        {
+          "name": "Lower bridge",
+          "bounds": [
+            12,
+            23,
+            24,
+            26
+          ],
+          "kind": "timber"
+        },
+        {
+          "name": "East landing",
+          "bounds": [
+            24,
+            22,
+            30,
+            27
+          ],
+          "kind": "stone"
+        },
+        {
+          "name": "Witness passage",
+          "bounds": [
+            26,
+            8,
+            30,
+            24
+          ],
+          "kind": "stone"
+        },
+        {
+          "name": "Side recess",
+          "bounds": [
+            30,
+            14,
+            35,
+            20
+          ],
+          "kind": "stone"
+        },
+        {
+          "name": "S2 approach",
+          "bounds": [
+            22,
+            8,
+            30,
+            12
+          ],
+          "kind": "stone"
+        },
+        {
+          "name": "S2",
+          "bounds": [
+            14,
+            0,
+            24,
+            12
+          ],
+          "kind": "stairs"
+        }
+      ],
+      "route": [
+        [
+          31,
+          28
+        ],
+        [
+          34,
+          28
+        ],
+        [
+          34,
+          42
+        ],
+        [
+          6,
+          42
+        ],
+        [
+          6,
+          20
+        ],
+        [
+          10,
+          20
+        ],
+        [
+          10,
+          24.5
+        ],
+        [
+          28,
+          24.5
+        ],
+        [
+          28,
+          10
+        ],
+        [
+          22,
+          10
+        ]
+      ],
+      "markers": [
+        [
+          "S1",
+          29,
+          37
+        ],
+        [
+          "04",
+          6,
+          28
+        ],
+        [
+          "05",
+          17,
+          24.5
+        ],
+        [
+          "06",
+          28,
+          17
+        ],
+        [
+          "S2",
+          19,
+          6
+        ]
+      ],
+      "threats": [
+        [
+          6,
+          24
+        ],
+        [
+          28,
+          12
+        ]
+      ],
+      "notes": [
+        [
+          "S1",
+          "ARRIVE FROM ABOVE",
+          "The same southeast stair footprint as the upper floor."
+        ],
+        [
+          "04",
+          "LOW TUNNEL",
+          "A 4 m passage bends before a ceiling threat. Keep the floor route clear."
+        ],
+        [
+          "05",
+          "LOWER CROSSING",
+          "A second 3 m bridge crosses beneath the first at a different depth."
+        ],
+        [
+          "06",
+          "WITNESS PASSAGE",
+          "A long sightline ends in a partly hidden figure. A black side recess breaks the rhythm."
+        ],
+        [
+          "S2",
+          "DESCEND TO THE BASE",
+          "The northwest dogleg stair drops another 6 m."
+        ]
+      ],
+      "purpose": "Alternate exposure with spaces that hide the next threat.",
+      "partitions": [
+        [
+          [
+            30,
+            14
+          ],
+          [
+            30,
+            16
+          ]
+        ],
+        [
+          [
+            30,
+            19
+          ],
+          [
+            30,
+            20
+          ]
+        ],
+        [
+          [
+            25,
+            27
+          ],
+          [
+            33,
+            27
+          ]
+        ],
+        [
+          [
+            25,
+            27
+          ],
+          [
+            25,
+            40
+          ]
+        ],
+        [
+          [
+            25,
+            40
+          ],
+          [
+            33,
+            40
+          ]
+        ],
+        [
+          [
+            33,
+            30
+          ],
+          [
+            33,
+            40
+          ]
+        ]
+      ]
+    },
+    {
+      "id": "lower",
+      "file": "03-lower-floor",
+      "title": "THE SHAFT FLOOR",
+      "level": -12,
+      "subtitle": "Reveal / room to fight / return loop",
+      "rects": [
+        {
+          "name": "S2",
+          "bounds": [
+            14,
+            0,
+            24,
+            12
+          ],
+          "kind": "stairs"
+        },
+        {
+          "name": "North landing",
+          "bounds": [
+            7,
+            10,
+            28,
+            14
+          ],
+          "kind": "stone"
+        },
+        {
+          "name": "West passage",
+          "bounds": [
+            7,
+            12,
+            12,
+            34
+          ],
+          "kind": "stone"
+        },
+        {
+          "name": "Side cells",
+          "bounds": [
+            2,
+            22,
+            8,
+            29
+          ],
+          "kind": "stone"
+        },
+        {
+          "name": "Hearth chamber",
+          "bounds": [
+            12,
+            14,
+            24,
+            30
+          ],
+          "kind": "stone"
+        },
+        {
+          "name": "South floor",
+          "bounds": [
+            8,
+            30,
+            30,
+            36
+          ],
+          "kind": "stone"
+        },
+        {
+          "name": "East passage",
+          "bounds": [
+            24,
+            12,
+            29,
+            34
+          ],
+          "kind": "stone"
+        }
+      ],
+      "route": [
+        [
+          16,
+          10
+        ],
+        [
+          16,
+          12
+        ],
+        [
+          9.5,
+          12
+        ],
+        [
+          9.5,
+          32.5
+        ],
+        [
+          18,
+          32.5
+        ],
+        [
+          18,
+          28
+        ]
+      ],
+      "loop": [
+        [
+          18,
+          28
+        ],
+        [
+          18,
+          32.5
+        ],
+        [
+          26.5,
+          32.5
+        ],
+        [
+          26.5,
+          12
+        ],
+        [
+          16,
+          12
+        ]
+      ],
+      "markers": [
+        [
+          "07",
+          21,
+          12
+        ],
+        [
+          "08",
+          18,
+          20
+        ],
+        [
+          "09",
+          4.5,
+          25
+        ],
+        [
+          "S2",
+          19,
+          6
+        ]
+      ],
+      "threats": [],
+      "notes": [
+        [
+          "S2",
+          "ARRIVE AT THE BASE",
+          "The same northwest stair footprint as the middle floor."
+        ],
+        [
+          "07",
+          "BOTTOM LANDING",
+          "The shaft is now a room. Both crossings are visible overhead."
+        ],
+        [
+          "08",
+          "HEARTH FLOOR",
+          "A 12 x 16 m central chamber with a small ember hearth and clear space around it."
+        ],
+        [
+          "09",
+          "SIDE CELLS",
+          "A short optional detour off the west passage."
+        ],
+        [
+          "OUT",
+          "RETURN LOOP",
+          "East and west passages reconnect. Leave by S2, S1 and the arrival stair."
+        ]
+      ],
+      "purpose": "Release the tightness into a memorable final fighting space.",
+      "partitions": [
+        [
+          [
+            12,
+            14
+          ],
+          [
+            16,
+            14
+          ]
+        ],
+        [
+          [
+            20,
+            14
+          ],
+          [
+            24,
+            14
+          ]
+        ],
+        [
+          [
+            12,
+            30
+          ],
+          [
+            16,
+            30
+          ]
+        ],
+        [
+          [
+            20,
+            30
+          ],
+          [
+            24,
+            30
+          ]
+        ],
+        [
+          [
+            12,
+            14
+          ],
+          [
+            12,
+            24
+          ]
+        ],
+        [
+          [
+            12,
+            27
+          ],
+          [
+            12,
+            30
+          ]
+        ],
+        [
+          [
+            24,
+            14
+          ],
+          [
+            24,
+            20
+          ]
+        ],
+        [
+          [
+            24,
+            23
+          ],
+          [
+            24,
+            30
+          ]
+        ]
+      ]
+    }
+  ],
+  "stairs": [
+    {
+      "id": "S1",
+      "floors": [
+        "upper",
+        "middle"
+      ],
+      "elevations": [
+        0,
+        -6
+      ],
+      "bounds": [
+        25,
+        27,
+        33,
+        40
+      ],
+      "type": "dogleg; two 3 m clear flights; 1 m central well; 3 m landings"
+    },
+    {
+      "id": "S2",
+      "floors": [
+        "middle",
+        "lower"
+      ],
+      "elevations": [
+        -6,
+        -12
+      ],
+      "bounds": [
+        14,
+        0,
+        24,
+        12
+      ],
+      "type": "dogleg; two 3 m clear flights; 1 m central well; 3 m landings"
+    }
+  ],
+  "design_clearances": {
+    "bridge_width": 3,
+    "minimum_tunnel_width": 4,
+    "stair_flight_width": 3,
+    "stair_landing_depth": 3,
+    "stair_half_flight_risers": 20,
+    "stair_rise": 0.15,
+    "stair_tread": 0.3,
+    "ordinary_ceiling_height": 3.4,
+    "ceiling_threat_keeps_clear_headroom": 2.6,
+    "stairs_clear_headroom": 2.6
+  },
+  "entry_exit": "Same upper arrival stair. No lift, locked gate or new travel mechanic required.",
+  "encounters": "Positions are concept markers. Creature assets and encounter behavior are not implemented."
+}

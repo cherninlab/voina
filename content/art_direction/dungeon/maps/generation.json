@@ -1,0 +1,105 @@
+{
+  "created": "2026-10-22",
+  "status": "proposed maps awaiting user review",
+  "overview": {
+    "generator": "built-in Codex ImageGen",
+    "image": "00-cutaway.png",
+    "prompts": [
+      "00-cutaway.prompt.txt",
+      "00-cutaway-refinement.prompt.txt"
+    ],
+    "initial_inputs": [
+      "../surreal_horror/03-red-descent.png",
+      "01-upper-floor.png",
+      "02-middle-floor.png",
+      "03-lower-floor.png",
+      "../encounter_refinements/02-restraint-cell.png"
+    ],
+    "initial_input_note": "The three floor-plan drafts were subsequently refined for route and stair circulation. The final middle-floor plan was supplied to the refinement call.",
+    "refinement_inputs": [
+      "ImageGen initial cutaway draft",
+      "02-middle-floor.png"
+    ],
+    "scope": "Atmospheric axonometric illustration. Use floor-plan SVGs and layout.json for exact spatial coordinates."
+  },
+  "floor_plans": {
+    "generator": "deterministic SVG and Pillow drawing",
+    "source": "layout.json",
+    "units": "metres",
+    "dimensions": [
+      1680,
+      1440
+    ],
+    "files": [
+      "01-upper-floor",
+      "02-middle-floor",
+      "03-lower-floor"
+    ]
+  },
+  "validation": {
+    "kind": "Static plan checks only; not Godot or human playtest validation",
+    "floors": [
+      {
+        "floor": "upper",
+        "walkable_cells": 7072,
+        "connected": true,
+        "route_inside_floor": true,
+        "route_avoids_partitions": true
+      },
+      {
+        "floor": "middle",
+        "walkable_cells": 10928,
+        "connected": true,
+        "route_inside_floor": true,
+        "route_avoids_partitions": true
+      },
+      {
+        "floor": "lower",
+        "walkable_cells": 11344,
+        "connected": true,
+        "route_inside_floor": true,
+        "route_avoids_partitions": true
+      }
+    ],
+    "stair_pairs_match": true,
+    "stair_vertical_separation": 6
+  },
+  "images": [
+    {
+      "file": "00-cutaway.png",
+      "dimensions": [
+        1536,
+        1024
+      ],
+      "bytes": 2581590,
+      "sha256": "b7ef3b35d058465d3c76dcb7c213d6221b1c5c3a550fc436460a8ff7e357cff9"
+    },
+    {
+      "file": "01-upper-floor.png",
+      "dimensions": [
+        1680,
+        1440
+      ],
+      "bytes": 110982,
+      "sha256": "1830a27e47c431b00b89ccf2029a50b15637ec37a2c792ce17c096d1069b5405"
+    },
+    {
+      "file": "02-middle-floor.png",
+      "dimensions": [
+        1680,
+        1440
+      ],
+      "bytes": 120603,
+      "sha256": "61da8847d025204ae96b086dc986fe4650119fd93ca7361f8fd967573d719e53"
+    },
+    {
+      "file": "03-lower-floor.png",
+      "dimensions": [
+        1680,
+        1440
+      ],
+      "bytes": 113732,
+      "sha256": "a8b6ba7e6f4fb2b2e726aa1582bd7d1ea593c15df9cdb43a75613d816abe0cb2"
+    }
+  ]
+}
