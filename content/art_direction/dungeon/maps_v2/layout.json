@@ -1,0 +1,2349 @@
+{
+  "title": "Red Descent \u2014 irregular continuous descent",
+  "status": "proposed revision after user feedback; not implemented",
+  "units": "metres",
+  "axes": "x east; y up; z south",
+  "envelope": [
+    100,
+    102
+  ],
+  "hall": {
+    "outline": [
+      [
+        34,
+        22
+      ],
+      [
+        48,
+        20
+      ],
+      [
+        58,
+        24
+      ],
+      [
+        66,
+        22
+      ],
+      [
+        75,
+        29
+      ],
+      [
+        78,
+        43
+      ],
+      [
+        72,
+        50
+      ],
+      [
+        77,
+        60
+      ],
+      [
+        68,
+        74
+      ],
+      [
+        54,
+        78
+      ],
+      [
+        43,
+        72
+      ],
+      [
+        31,
+        74
+      ],
+      [
+        25,
+        62
+      ],
+      [
+        28,
+        49
+      ],
+      [
+        24,
+        38
+      ],
+      [
+        29,
+        28
+      ]
+    ],
+    "roof": 14,
+    "base": -48,
+    "base_walkable": false,
+    "central_wall_outline": [
+      [
+        55,
+        39
+      ],
+      [
+        61,
+        41
+      ],
+      [
+        59,
+        46
+      ],
+      [
+        62,
+        50
+      ],
+      [
+        58,
+        55
+      ],
+      [
+        53,
+        52
+      ],
+      [
+        54,
+        47
+      ],
+      [
+        51,
+        44
+      ]
+    ]
+  },
+  "route_bands": [
+    {
+      "id": "upper",
+      "file": "02-upper-plan",
+      "title": "ARRIVAL / SLOPING HIGH TRAVERSE",
+      "height": 0,
+      "color": "#d9b77e",
+      "spaces": [
+        {
+          "name": "Forest threshold",
+          "shape": "poly",
+          "points": [
+            [
+              2,
+              21
+            ],
+            [
+              8,
+              18
+            ],
+            [
+              16,
+              20
+            ],
+            [
+              18,
+              25
+            ],
+            [
+              16,
+              32
+            ],
+            [
+              10,
+              35
+            ],
+            [
+              4,
+              32
+            ],
+            [
+              2,
+              28
+            ]
+          ],
+          "kind": "cave",
+          "floor_anchor": 0
+        },
+        {
+          "name": "Entry neck",
+          "shape": "rect",
+          "bounds": [
+            16,
+            25,
+            24,
+            29
+          ],
+          "kind": "room",
+          "floor_anchor": 0
+        },
+        {
+          "name": "Antechamber",
+          "shape": "poly",
+          "points": [
+            [
+              24,
+              19
+            ],
+            [
+              32,
+              19
+            ],
+            [
+              34,
+              21
+            ],
+            [
+              34,
+              31
+            ],
+            [
+              32,
+              33
+            ],
+            [
+              24,
+              33
+            ],
+            [
+              22,
+              31
+            ],
+            [
+              22,
+              21
+            ]
+          ],
+          "kind": "room",
+          "floor_anchor": 0
+        },
+        {
+          "name": "West approach",
+          "shape": "rect",
+          "bounds": [
+            26,
+            31,
+            30,
+            40
+          ],
+          "kind": "room",
+          "floor_anchor": 0
+        },
+        {
+          "name": "West landing",
+          "shape": "rect",
+          "bounds": [
+            26,
+            36,
+            34,
+            48
+          ],
+          "kind": "room",
+          "floor_anchor": 0
+        },
+        {
+          "name": "East landing",
+          "shape": "rect",
+          "bounds": [
+            66,
+            36,
+            74,
+            48
+          ],
+          "kind": "room",
+          "floor_anchor": -4
+        },
+        {
+          "name": "Hall doorway",
+          "shape": "rect",
+          "bounds": [
+            72,
+            39.5,
+            78,
+            43.5
+          ],
+          "kind": "room",
+          "floor_anchor": -4
+        },
+        {
+          "name": "Restraint hall",
+          "shape": "poly",
+          "points": [
+            [
+              79,
+              27
+            ],
+            [
+              89,
+              27
+            ],
+            [
+              92,
+              30
+            ],
+            [
+              92,
+              45
+            ],
+            [
+              89,
+              48
+            ],
+            [
+              79,
+              48
+            ],
+            [
+              76,
+              45
+            ],
+            [
+              76,
+              30
+            ]
+          ],
+          "kind": "room",
+          "floor_anchor": -4
+        },
+        {
+          "name": "S1 approach",
+          "shape": "rect",
+          "bounds": [
+            84,
+            20,
+            88,
+            30
+          ],
+          "kind": "room",
+          "floor_anchor": -6
+        },
+        {
+          "name": "S1",
+          "shape": "rect",
+          "bounds": [
+            78,
+            6,
+            90,
+            22
+          ],
+          "kind": "stair",
+          "floor_anchor": -4
+        },
+        {
+          "name": "Cell neck",
+          "shape": "rect",
+          "bounds": [
+            82,
+            46,
+            86,
+            52
+          ],
+          "kind": "room",
+          "floor_anchor": -4
+        },
+        {
+          "name": "Holding cells",
+          "shape": "poly",
+          "points": [
+            [
+              82,
+              50
+            ],
+            [
+              90,
+              50
+            ],
+            [
+              92,
+              52
+            ],
+            [
+              92,
+              60
+            ],
+            [
+              90,
+              62
+            ],
+            [
+              82,
+              62
+            ],
+            [
+              80,
+              60
+            ],
+            [
+              80,
+              52
+            ]
+          ],
+          "kind": "room",
+          "floor_anchor": -6
+        },
+        {
+          "name": "Service neck",
+          "shape": "rect",
+          "bounds": [
+            88,
+            54,
+            98,
+            58
+          ],
+          "kind": "room",
+          "floor_anchor": -6
+        },
+        {
+          "name": "Service passage",
+          "shape": "rect",
+          "bounds": [
+            94,
+            22,
+            98,
+            58
+          ],
+          "kind": "room",
+          "floor_anchor": -6
+        },
+        {
+          "name": "Service return",
+          "shape": "stroke",
+          "bounds": [
+            84,
+            22,
+            98,
+            26
+          ],
+          "kind": "room",
+          "points": [
+            [
+              86,
+              24
+            ],
+            [
+              95,
+              21
+            ],
+            [
+              97,
+              29
+            ]
+          ],
+          "width": 4,
+          "floor_anchor": -6
+        },
+        {
+          "name": "A",
+          "shape": "stroke",
+          "points": [
+            [
+              28,
+              34
+            ],
+            [
+              38,
+              36
+            ],
+            [
+              47,
+              38
+            ],
+            [
+              53,
+              35
+            ],
+            [
+              65,
+              35
+            ],
+            [
+              74,
+              40
+            ]
+          ],
+          "width": 3,
+          "kind": "bridge",
+          "floor_anchor": -4
+        }
+      ],
+      "pillars": [
+        [
+          80,
+          32,
+          1.2
+        ],
+        [
+          88,
+          32,
+          1.2
+        ],
+        [
+          80,
+          43,
+          1.2
+        ],
+        [
+          90,
+          43,
+          1.2
+        ]
+      ],
+      "holes": [],
+      "route": [
+        [
+          8,
+          26
+        ],
+        [
+          25,
+          27
+        ],
+        [
+          28,
+          27
+        ],
+        [
+          28,
+          34
+        ],
+        [
+          38,
+          36
+        ],
+        [
+          47,
+          38
+        ],
+        [
+          53,
+          35
+        ],
+        [
+          65,
+          35
+        ],
+        [
+          74,
+          40
+        ],
+        [
+          84,
+          41.5
+        ],
+        [
+          86,
+          30
+        ],
+        [
+          86,
+          21
+        ]
+      ],
+      "branches": [
+        [
+          [
+            86,
+            30
+          ],
+          [
+            86,
+            24
+          ],
+          [
+            96,
+            24
+          ],
+          [
+            96,
+            56
+          ],
+          [
+            86,
+            56
+          ],
+          [
+            84,
+            47
+          ],
+          [
+            84,
+            41.5
+          ]
+        ]
+      ],
+      "marks": [
+        [
+          "01",
+          9,
+          26
+        ],
+        [
+          "02",
+          43,
+          37
+        ],
+        [
+          "03",
+          84,
+          37
+        ],
+        [
+          "04",
+          86,
+          56
+        ]
+      ],
+      "stairs": [
+        [
+          "S1",
+          84,
+          13
+        ]
+      ],
+      "notes": [
+        [
+          "01",
+          "Forest threshold"
+        ],
+        [
+          "02",
+          "High bridge A"
+        ],
+        [
+          "03",
+          "Tall restraint hall"
+        ],
+        [
+          "04",
+          "Cells / service loop"
+        ]
+      ],
+      "band": "0 to -6 m",
+      "bridge": {
+        "id": "A",
+        "nodes": [
+          [
+            28,
+            0,
+            34
+          ],
+          [
+            38,
+            -0.7,
+            36
+          ],
+          [
+            47,
+            -1.4,
+            38
+          ],
+          [
+            53,
+            -2,
+            35
+          ],
+          [
+            65,
+            -3,
+            35
+          ],
+          [
+            74,
+            -4,
+            40
+          ]
+        ],
+        "width": 3,
+        "type": "Timber spans with kinked landings; continuous fall from 0 to -4 m"
+      },
+      "height_marks": [
+        [
+          "0 m",
+          28,
+          31
+        ],
+        [
+          "-2 m",
+          54,
+          31
+        ],
+        [
+          "-4 m",
+          75,
+          45
+        ]
+      ]
+    },
+    {
+      "id": "middle",
+      "file": "03-middle-plan",
+      "title": "THE CENTRAL WALL / BROKEN NAVE",
+      "height": -12,
+      "color": "#83b4b0",
+      "spaces": [
+        {
+          "name": "S1",
+          "shape": "rect",
+          "bounds": [
+            78,
+            6,
+            90,
+            22
+          ],
+          "kind": "stair",
+          "floor_anchor": -10
+        },
+        {
+          "name": "North chapel",
+          "shape": "poly",
+          "points": [
+            [
+              41,
+              7
+            ],
+            [
+              65,
+              7
+            ],
+            [
+              68,
+              10
+            ],
+            [
+              68,
+              23
+            ],
+            [
+              65,
+              26
+            ],
+            [
+              41,
+              26
+            ],
+            [
+              38,
+              23
+            ],
+            [
+              38,
+              10
+            ]
+          ],
+          "kind": "room",
+          "floor_anchor": -10
+        },
+        {
+          "name": "Broken nave",
+          "shape": "poly",
+          "points": [
+            [
+              39,
+              78
+            ],
+            [
+              61,
+              78
+            ],
+            [
+              64,
+              81
+            ],
+            [
+              64,
+              96
+            ],
+            [
+              61,
+              99
+            ],
+            [
+              39,
+              99
+            ],
+            [
+              36,
+              96
+            ],
+            [
+              36,
+              81
+            ]
+          ],
+          "kind": "room",
+          "floor_anchor": -18
+        },
+        {
+          "name": "S2 approach",
+          "shape": "rect",
+          "bounds": [
+            38,
+            74,
+            42,
+            84
+          ],
+          "kind": "room",
+          "floor_anchor": -20
+        },
+        {
+          "name": "West stair neck",
+          "shape": "rect",
+          "bounds": [
+            20,
+            72,
+            40,
+            76
+          ],
+          "kind": "room",
+          "floor_anchor": -20
+        },
+        {
+          "name": "S2",
+          "shape": "rect",
+          "bounds": [
+            12,
+            72,
+            24,
+            90
+          ],
+          "kind": "stair",
+          "floor_anchor": -10
+        },
+        {
+          "name": "Crypt neck",
+          "shape": "rect",
+          "bounds": [
+            26,
+            14,
+            40,
+            18
+          ],
+          "kind": "room",
+          "floor_anchor": -11
+        },
+        {
+          "name": "Ossuary",
+          "shape": "poly",
+          "points": [
+            [
+              11,
+              7
+            ],
+            [
+              25,
+              7
+            ],
+            [
+              28,
+              10
+            ],
+            [
+              28,
+              22
+            ],
+            [
+              25,
+              25
+            ],
+            [
+              11,
+              25
+            ],
+            [
+              8,
+              22
+            ],
+            [
+              8,
+              10
+            ]
+          ],
+          "kind": "room",
+          "floor_anchor": -11
+        },
+        {
+          "name": "Low tunnel",
+          "shape": "rect",
+          "bounds": [
+            14,
+            23,
+            18,
+            34
+          ],
+          "kind": "room",
+          "floor_anchor": -11
+        },
+        {
+          "name": "Bone gallery",
+          "shape": "poly",
+          "points": [
+            [
+              9.5,
+              30
+            ],
+            [
+              26.5,
+              30
+            ],
+            [
+              28,
+              31.5
+            ],
+            [
+              28,
+              36.5
+            ],
+            [
+              26.5,
+              38
+            ],
+            [
+              9.5,
+              38
+            ],
+            [
+              8,
+              36.5
+            ],
+            [
+              8,
+              31.5
+            ]
+          ],
+          "kind": "room",
+          "floor_anchor": -11
+        },
+        {
+          "name": "Window approach",
+          "shape": "rect",
+          "bounds": [
+            24,
+            36,
+            28,
+            46
+          ],
+          "kind": "room",
+          "floor_anchor": -11
+        },
+        {
+          "name": "Watcher window",
+          "shape": "rect",
+          "bounds": [
+            24,
+            40,
+            34,
+            48
+          ],
+          "kind": "room",
+          "floor_anchor": -11
+        },
+        {
+          "name": "Crypt return",
+          "shape": "rect",
+          "bounds": [
+            30,
+            18,
+            34,
+            44
+          ],
+          "kind": "room",
+          "floor_anchor": -11
+        },
+        {
+          "name": "Chapel return",
+          "shape": "rect",
+          "bounds": [
+            30,
+            18,
+            40,
+            22
+          ],
+          "kind": "room",
+          "floor_anchor": -11
+        },
+        {
+          "name": "Bell chamber",
+          "shape": "poly",
+          "points": [
+            [
+              79,
+              79
+            ],
+            [
+              93,
+              79
+            ],
+            [
+              96,
+              82
+            ],
+            [
+              96,
+              96
+            ],
+            [
+              93,
+              99
+            ],
+            [
+              79,
+              99
+            ],
+            [
+              76,
+              96
+            ],
+            [
+              76,
+              82
+            ]
+          ],
+          "kind": "room",
+          "floor_anchor": -20
+        },
+        {
+          "name": "Bell entry",
+          "shape": "rect",
+          "bounds": [
+            62,
+            84,
+            78,
+            88
+          ],
+          "kind": "room",
+          "floor_anchor": -20
+        },
+        {
+          "name": "Bell return",
+          "shape": "rect",
+          "bounds": [
+            62,
+            92,
+            82,
+            96
+          ],
+          "kind": "room",
+          "floor_anchor": -20
+        },
+        {
+          "name": "B",
+          "shape": "stroke",
+          "points": [
+            [
+              44,
+              22
+            ],
+            [
+              43,
+              31
+            ],
+            [
+              45,
+              36
+            ],
+            [
+              49,
+              41
+            ],
+            [
+              52,
+              47
+            ],
+            [
+              51,
+              51.5
+            ],
+            [
+              54,
+              57
+            ],
+            [
+              60,
+              63
+            ],
+            [
+              57,
+              71
+            ]
+          ],
+          "width": 4,
+          "kind": "bridge",
+          "floor_anchor": -10
+        },
+        {
+          "name": "South landing",
+          "shape": "poly",
+          "points": [
+            [
+              52,
+              66
+            ],
+            [
+              61,
+              68
+            ],
+            [
+              64,
+              75
+            ],
+            [
+              59,
+              80
+            ],
+            [
+              51,
+              77
+            ]
+          ],
+          "kind": "room",
+          "floor_anchor": -18
+        },
+        {
+          "name": "North approach",
+          "shape": "stroke",
+          "points": [
+            [
+              82,
+              21
+            ],
+            [
+              72,
+              20
+            ],
+            [
+              64,
+              17
+            ],
+            [
+              60,
+              18
+            ]
+          ],
+          "width": 4,
+          "kind": "cave",
+          "floor_anchor": -10
+        },
+        {
+          "name": "S3",
+          "shape": "rect",
+          "bounds": [
+            80,
+            58,
+            92,
+            76
+          ],
+          "kind": "stair",
+          "floor_anchor": -10
+        },
+        {
+          "name": "S3 return",
+          "shape": "rect",
+          "bounds": [
+            70,
+            58,
+            84,
+            62
+          ],
+          "kind": "room",
+          "floor_anchor": -10
+        },
+        {
+          "name": "East return gallery",
+          "shape": "stroke",
+          "points": [
+            [
+              72,
+              60
+            ],
+            [
+              76,
+              49
+            ],
+            [
+              75,
+              36
+            ],
+            [
+              72,
+              26
+            ],
+            [
+              72,
+              20
+            ]
+          ],
+          "width": 4,
+          "kind": "cave",
+          "floor_anchor": -10
+        },
+        {
+          "name": "Window spur",
+          "shape": "rect",
+          "bounds": [
+            68,
+            70,
+            72,
+            86
+          ],
+          "kind": "room",
+          "floor_anchor": -20
+        },
+        {
+          "name": "South window",
+          "shape": "rect",
+          "bounds": [
+            64,
+            68,
+            76,
+            74
+          ],
+          "kind": "room",
+          "floor_anchor": -20
+        }
+      ],
+      "pillars": [
+        [
+          43,
+          12,
+          1.2
+        ],
+        [
+          63,
+          12,
+          1.2
+        ],
+        [
+          43,
+          24,
+          1.2
+        ],
+        [
+          63,
+          24,
+          1.2
+        ],
+        [
+          40,
+          84,
+          1.4
+        ],
+        [
+          60,
+          84,
+          1.4
+        ],
+        [
+          40,
+          94,
+          1.4
+        ],
+        [
+          60,
+          94,
+          1.4
+        ],
+        [
+          82,
+          84,
+          1.2
+        ],
+        [
+          90,
+          94,
+          1.2
+        ]
+      ],
+      "holes": [
+        [
+          47,
+          87,
+          53,
+          93
+        ]
+      ],
+      "route": [
+        [
+          82,
+          21
+        ],
+        [
+          72,
+          20
+        ],
+        [
+          64,
+          17
+        ],
+        [
+          50,
+          18
+        ],
+        [
+          44,
+          22
+        ],
+        [
+          43,
+          31
+        ],
+        [
+          45,
+          36
+        ],
+        [
+          49,
+          41
+        ],
+        [
+          52,
+          47
+        ],
+        [
+          51,
+          51.5
+        ],
+        [
+          54,
+          57
+        ],
+        [
+          60,
+          63
+        ],
+        [
+          57,
+          71
+        ],
+        [
+          57,
+          84
+        ],
+        [
+          44,
+          84
+        ],
+        [
+          44,
+          80
+        ],
+        [
+          40,
+          80
+        ],
+        [
+          40,
+          74
+        ],
+        [
+          20,
+          74
+        ]
+      ],
+      "branches": [
+        [
+          [
+            40,
+            20
+          ],
+          [
+            32,
+            20
+          ],
+          [
+            32,
+            44
+          ],
+          [
+            26,
+            44
+          ],
+          [
+            26,
+            36
+          ],
+          [
+            16,
+            34
+          ],
+          [
+            16,
+            25
+          ],
+          [
+            18,
+            16
+          ],
+          [
+            38,
+            16
+          ],
+          [
+            40,
+            20
+          ]
+        ],
+        [
+          [
+            50,
+            84
+          ],
+          [
+            50,
+            86
+          ],
+          [
+            66,
+            86
+          ],
+          [
+            86,
+            86
+          ],
+          [
+            86,
+            94
+          ],
+          [
+            64,
+            94
+          ],
+          [
+            64,
+            92
+          ],
+          [
+            56,
+            92
+          ],
+          [
+            56,
+            84
+          ]
+        ],
+        [
+          [
+            70,
+            86
+          ],
+          [
+            70,
+            71
+          ]
+        ]
+      ],
+      "return_route": [
+        [
+          84,
+          60
+        ],
+        [
+          72,
+          60
+        ],
+        [
+          76,
+          49
+        ],
+        [
+          75,
+          36
+        ],
+        [
+          72,
+          26
+        ],
+        [
+          72,
+          20
+        ],
+        [
+          82,
+          21
+        ]
+      ],
+      "marks": [
+        [
+          "05",
+          53,
+          16
+        ],
+        [
+          "06",
+          18,
+          16
+        ],
+        [
+          "07",
+          51,
+          50
+        ],
+        [
+          "08",
+          52,
+          84
+        ],
+        [
+          "09",
+          86,
+          88
+        ]
+      ],
+      "stairs": [
+        [
+          "S1",
+          84,
+          13
+        ],
+        [
+          "S2",
+          18,
+          83
+        ],
+        [
+          "S3",
+          86,
+          67
+        ]
+      ],
+      "notes": [
+        [
+          "05",
+          "North chapel / 16 m high"
+        ],
+        [
+          "06",
+          "Ossuary loop / low tunnel"
+        ],
+        [
+          "07",
+          "Ledge around central wall"
+        ],
+        [
+          "08",
+          "Broken nave / 20 m high"
+        ],
+        [
+          "09",
+          "Bell chamber / window loop"
+        ]
+      ],
+      "band": "-10 to -20 m",
+      "bridge": {
+        "id": "B",
+        "nodes": [
+          [
+            44,
+            -10,
+            22
+          ],
+          [
+            43,
+            -11,
+            31
+          ],
+          [
+            45,
+            -12,
+            36
+          ],
+          [
+            49,
+            -13,
+            41
+          ],
+          [
+            52,
+            -14,
+            47
+          ],
+          [
+            51,
+            -15,
+            51.5
+          ],
+          [
+            54,
+            -16,
+            57
+          ],
+          [
+            60,
+            -17,
+            63
+          ],
+          [
+            57,
+            -18,
+            71
+          ]
+        ],
+        "width": 4,
+        "type": "Short stone/timber crossings become a ledge wrapped around the central wall; -10 to -18 m"
+      },
+      "height_marks": [
+        [
+          "-10 m",
+          42,
+          18
+        ],
+        [
+          "-14 m",
+          45,
+          47
+        ],
+        [
+          "-18 m",
+          61,
+          71
+        ]
+      ]
+    },
+    {
+      "id": "lower",
+      "file": "04-lower-plan",
+      "title": "LOW TUNNEL / CROOKED LOWER CROSSING",
+      "height": -24,
+      "color": "#c68c73",
+      "spaces": [
+        {
+          "name": "S2",
+          "shape": "rect",
+          "bounds": [
+            12,
+            72,
+            24,
+            90
+          ],
+          "kind": "stair",
+          "floor_anchor": -28
+        },
+        {
+          "name": "Cave bypass",
+          "shape": "stroke",
+          "points": [
+            [
+              9,
+              64
+            ],
+            [
+              4,
+              57
+            ],
+            [
+              7,
+              44
+            ],
+            [
+              20,
+              41.5
+            ]
+          ],
+          "width": 4.5,
+          "kind": "cave",
+          "floor_anchor": -23
+        },
+        {
+          "name": "Side cave",
+          "shape": "poly",
+          "points": [
+            [
+              4,
+              49
+            ],
+            [
+              10,
+              49
+            ],
+            [
+              12,
+              51
+            ],
+            [
+              12,
+              59
+            ],
+            [
+              10,
+              61
+            ],
+            [
+              4,
+              61
+            ],
+            [
+              2,
+              59
+            ],
+            [
+              2,
+              51
+            ]
+          ],
+          "kind": "room",
+          "floor_anchor": -28
+        },
+        {
+          "name": "Low root tunnel",
+          "shape": "stroke",
+          "points": [
+            [
+              16,
+              74
+            ],
+            [
+              9,
+              74
+            ],
+            [
+              9,
+              64
+            ],
+            [
+              19,
+              56
+            ],
+            [
+              12,
+              48
+            ],
+            [
+              20,
+              41.5
+            ],
+            [
+              27,
+              34
+            ]
+          ],
+          "width": 5,
+          "kind": "cave",
+          "floor_anchor": -23
+        },
+        {
+          "name": "C",
+          "shape": "stroke",
+          "points": [
+            [
+              27,
+              34
+            ],
+            [
+              36,
+              34
+            ],
+            [
+              41,
+              42
+            ],
+            [
+              47,
+              54
+            ],
+            [
+              55,
+              59
+            ],
+            [
+              62,
+              58
+            ],
+            [
+              66,
+              53
+            ],
+            [
+              75,
+              56
+            ]
+          ],
+          "width": 3.5,
+          "kind": "bridge",
+          "floor_anchor": -28
+        },
+        {
+          "name": "Choir doorway",
+          "shape": "rect",
+          "bounds": [
+            72,
+            53.5,
+            80,
+            57.5
+          ],
+          "kind": "room",
+          "floor_anchor": -28
+        },
+        {
+          "name": "Deep choir",
+          "shape": "poly",
+          "points": [
+            [
+              79,
+              37
+            ],
+            [
+              93,
+              37
+            ],
+            [
+              96,
+              40
+            ],
+            [
+              96,
+              55
+            ],
+            [
+              93,
+              58
+            ],
+            [
+              79,
+              58
+            ],
+            [
+              76,
+              55
+            ],
+            [
+              76,
+              40
+            ]
+          ],
+          "kind": "room",
+          "floor_anchor": -28
+        },
+        {
+          "name": "S3 approach",
+          "shape": "rect",
+          "bounds": [
+            86,
+            56,
+            90,
+            62
+          ],
+          "kind": "room",
+          "floor_anchor": -28
+        },
+        {
+          "name": "S3",
+          "shape": "rect",
+          "bounds": [
+            80,
+            58,
+            92,
+            76
+          ],
+          "kind": "stair",
+          "floor_anchor": -28
+        }
+      ],
+      "pillars": [
+        [
+          80,
+          42,
+          1.2
+        ],
+        [
+          92,
+          42,
+          1.2
+        ],
+        [
+          80,
+          54,
+          1.2
+        ],
+        [
+          92,
+          54,
+          1.2
+        ]
+      ],
+      "holes": [],
+      "route": [
+        [
+          16,
+          74
+        ],
+        [
+          9,
+          74
+        ],
+        [
+          9,
+          64
+        ],
+        [
+          19,
+          56
+        ],
+        [
+          12,
+          48
+        ],
+        [
+          20,
+          41.5
+        ],
+        [
+          27,
+          34
+        ],
+        [
+          36,
+          34
+        ],
+        [
+          41,
+          42
+        ],
+        [
+          47,
+          54
+        ],
+        [
+          55,
+          59
+        ],
+        [
+          62,
+          58
+        ],
+        [
+          66,
+          53
+        ],
+        [
+          75,
+          56
+        ],
+        [
+          83,
+          55
+        ],
+        [
+          88,
+          48
+        ]
+      ],
+      "branches": [
+        [
+          [
+            9,
+            64
+          ],
+          [
+            4,
+            57
+          ],
+          [
+            7,
+            44
+          ],
+          [
+            20,
+            41.5
+          ]
+        ]
+      ],
+      "return_route": [
+        [
+          88,
+          48
+        ],
+        [
+          88,
+          57
+        ],
+        [
+          88,
+          60
+        ]
+      ],
+      "marks": [
+        [
+          "10",
+          15,
+          52
+        ],
+        [
+          "11",
+          44,
+          48
+        ],
+        [
+          "12",
+          86,
+          47
+        ]
+      ],
+      "stairs": [
+        [
+          "S2",
+          18,
+          83
+        ],
+        [
+          "S3",
+          86,
+          67
+        ]
+      ],
+      "notes": [
+        [
+          "10",
+          "Low tunnel / cave bypass"
+        ],
+        [
+          "11",
+          "Lower crossing / under earlier paths"
+        ],
+        [
+          "12",
+          "Deep choir / 22 m high"
+        ],
+        [
+          "S3",
+          "Return stair / latch from below"
+        ]
+      ],
+      "band": "-23 to -28 m",
+      "bridge": {
+        "id": "C",
+        "nodes": [
+          [
+            27,
+            -23,
+            34
+          ],
+          [
+            36,
+            -24,
+            34
+          ],
+          [
+            41,
+            -24.5,
+            42
+          ],
+          [
+            47,
+            -25,
+            54
+          ],
+          [
+            55,
+            -26,
+            59
+          ],
+          [
+            62,
+            -27,
+            58
+          ],
+          [
+            66,
+            -27.3,
+            53
+          ],
+          [
+            75,
+            -28,
+            56
+          ]
+        ],
+        "width": 3.5,
+        "type": "Crooked lower crossing; -23 to -28 m; under earlier routes at different points"
+      },
+      "height_marks": [
+        [
+          "-23 m",
+          23,
+          31
+        ],
+        [
+          "-25 m",
+          41,
+          56
+        ],
+        [
+          "-28 m",
+          74,
+          61
+        ]
+      ]
+    }
+  ],
+  "bridges": [
+    {
+      "id": "A",
+      "nodes": [
+        [
+          28,
+          0,
+          34
+        ],
+        [
+          38,
+          -0.7,
+          36
+        ],
+        [
+          47,
+          -1.4,
+          38
+        ],
+        [
+          53,
+          -2,
+          35
+        ],
+        [
+          65,
+          -3,
+          35
+        ],
+        [
+          74,
+          -4,
+          40
+        ]
+      ],
+      "width": 3,
+      "type": "Timber spans with kinked landings; continuous fall from 0 to -4 m",
+      "max_grade_degrees": 5.54765627378992
+    },
+    {
+      "id": "B",
+      "nodes": [
+        [
+          44,
+          -10,
+          22
+        ],
+        [
+          43,
+          -11,
+          31
+        ],
+        [
+          45,
+          -12,
+          36
+        ],
+        [
+          49,
+          -13,
+          41
+        ],
+        [
+          52,
+          -14,
+          47
+        ],
+        [
+          51,
+          -15,
+          51.5
+        ],
+        [
+          54,
+          -16,
+          57
+        ],
+        [
+          60,
+          -17,
+          63
+        ],
+        [
+          57,
+          -18,
+          71
+        ]
+      ],
+      "width": 4,
+      "type": "Short stone/timber crossings become a ledge wrapped around the central wall; -10 to -18 m",
+      "max_grade_degrees": 12.23955829777656
+    },
+    {
+      "id": "C",
+      "nodes": [
+        [
+          27,
+          -23,
+          34
+        ],
+        [
+          36,
+          -24,
+          34
+        ],
+        [
+          41,
+          -24.5,
+          42
+        ],
+        [
+          47,
+          -25,
+          54
+        ],
+        [
+          55,
+          -26,
+          59
+        ],
+        [
+          62,
+          -27,
+          58
+        ],
+        [
+          66,
+          -27.3,
+          53
+        ],
+        [
+          75,
+          -28,
+          56
+        ]
+      ],
+      "width": 3.5,
+      "type": "Crooked lower crossing; -23 to -28 m; under earlier routes at different points",
+      "max_grade_degrees": 8.049466975528397
+    }
+  ],
+  "stairs": [
+    {
+      "id": "S1",
+      "bounds": [
+        78,
+        6,
+        90,
+        22
+      ],
+      "from_height": -6,
+      "to_height": -10,
+      "from_group": "upper",
+      "to_group": "middle"
+    },
+    {
+      "id": "S2",
+      "bounds": [
+        12,
+        72,
+        24,
+        90
+      ],
+      "from_height": -20,
+      "to_height": -23,
+      "from_group": "middle",
+      "to_group": "lower"
+    },
+    {
+      "id": "S3",
+      "bounds": [
+        80,
+        58,
+        92,
+        76
+      ],
+      "from_height": -28,
+      "to_height": -10,
+      "from_group": "lower",
+      "to_group": "middle",
+      "note": "Proposed return stair with latch opened from lower side; stacked flights inside one well"
+    }
+  ],
+  "notes": [
+    "Colored map groups are portions of a continuous descent, not flat floors.",
+    "Bridge bends are structural landings supported by masonry shoulders or timber trestles.",
+    "B changes between open spans and wall-supported ledge, hugging the irregular central mass.",
+    "Bridge projections overlap at several points, with vertical clearance, not as a perpendicular grid.",
+    "Room anchor heights show intended levels; short floor pitches or stone steps reconcile connected thresholds during blockout."
+  ],
+  "halls": [
+    {
+      "name": "Upper restraint hall",
+      "floor": -4,
+      "roof": 10
+    },
+    {
+      "name": "North chapel",
+      "floor": -10,
+      "roof": 6
+    },
+    {
+      "name": "Broken nave",
+      "floor": -18,
+      "roof": 2
+    },
+    {
+      "name": "Deep choir",
+      "floor": -28,
+      "roof": -6
+    }
+  ],
+  "route": "Entry > A > restraint hall > S1 > north chapel > B > nave > S2 > low tunnel > C > deep choir",
+  "return_path": "Deep choir > S3 > eastern wall gallery > S1 > A > entry",
+  "validation_scope": "Schematic layout and 3D bridge profiles. Surface construction, headroom, transitions, camera and combat require runtime blockout validation.",
+  "bridge_crossings": [
+    {
+      "paths": [
+        "A",
+        "B"
+      ],
+      "point": [
+        46.513513513513516,
+        37.891891891891895
+      ],
+      "heights": [
+        -1.362162162162162,
+        -12.378378378378379
+      ],
+      "clearance": 11.016216216216216
+    },
+    {
+      "paths": [
+        "A",
+        "C"
+      ],
+      "point": [
+        28.0,
+        34.0
+      ],
+      "heights": [
+        0.0,
+        -23.11111111111111
+      ],
+      "clearance": 23.11111111111111
+    },
+    {
+      "paths": [
+        "A",
+        "C"
+      ],
+      "point": [
+        37.14285714285714,
+        35.82857142857143
+      ],
+      "heights": [
+        -0.6399999999999999,
+        -24.114285714285714
+      ],
+      "clearance": 23.474285714285713
+    },
+    {
+      "paths": [
+        "B",
+        "C"
+      ],
+      "point": [
+        55.875,
+        58.875
+      ],
+      "heights": [
+        -16.3125,
+        -26.125
+      ],
+      "clearance": 9.8125
+    }
+  ]
+}

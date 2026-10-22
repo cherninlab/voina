@@ -1,0 +1,124 @@
+{
+  "created": "2026-10-22",
+  "generator": "Deterministic plans and spatial map; built-in Codex ImageGen for 05-cutaway.png",
+  "prompt": "05-cutaway.prompt.txt",
+  "inputs": [
+    "01-spatial-map.png",
+    "00-connected-map.png",
+    "user selected entry scene",
+    "user selected tall-hall scene"
+  ],
+  "status": "design direction for the first implementation; visual concept does not certify navigation",
+  "bridge_crossings": [
+    {
+      "paths": [
+        "A",
+        "B"
+      ],
+      "point": [
+        46.513513513513516,
+        37.891891891891895
+      ],
+      "heights": [
+        -1.362162162162162,
+        -12.378378378378379
+      ],
+      "clearance": 11.016216216216216
+    },
+    {
+      "paths": [
+        "A",
+        "C"
+      ],
+      "point": [
+        28.0,
+        34.0
+      ],
+      "heights": [
+        0.0,
+        -23.11111111111111
+      ],
+      "clearance": 23.11111111111111
+    },
+    {
+      "paths": [
+        "A",
+        "C"
+      ],
+      "point": [
+        37.14285714285714,
+        35.82857142857143
+      ],
+      "heights": [
+        -0.6399999999999999,
+        -24.114285714285714
+      ],
+      "clearance": 23.474285714285713
+    },
+    {
+      "paths": [
+        "B",
+        "C"
+      ],
+      "point": [
+        55.875,
+        58.875
+      ],
+      "heights": [
+        -16.3125,
+        -26.125
+      ],
+      "clearance": 9.8125
+    }
+  ],
+  "images": [
+    {
+      "file": "00-connected-map.png",
+      "dimensions": [
+        3300,
+        1680
+      ],
+      "sha256": "81ed80ea3588fab56c0e741ac68e6142e891515da0d9b6fcb7fed56385a8bbec"
+    },
+    {
+      "file": "01-spatial-map.png",
+      "dimensions": [
+        1900,
+        1720
+      ],
+      "sha256": "a7b7356ae712f08391ae14502765c59217127ca10391edeabe22b8c4d4648b76"
+    },
+    {
+      "file": "02-upper-plan.png",
+      "dimensions": [
+        1600,
+        1780
+      ],
+      "sha256": "16ca4936238c650d1244ea9169f1abd4edd78c16d6e3b62ced0f89ed8ac78830"
+    },
+    {
+      "file": "03-middle-plan.png",
+      "dimensions": [
+        1600,
+        1780
+      ],
+      "sha256": "b0757f0d47376012d9f2fe7febf4885eb4750ad8df464314e04ea0754e8bf859"
+    },
+    {
+      "file": "04-lower-plan.png",
+      "dimensions": [
+        1600,
+        1780
+      ],
+      "sha256": "936cbbea022264b152920104ccb9e16919869ae6008289bad0e571df7c63a71c"
+    },
+    {
+      "file": "05-cutaway.png",
+      "dimensions": [
+        1122,
+        1402
+      ],
+      "sha256": "1453292041d569d7676a64648f3c88a12e1ccd8b7a35a227396fd6514fe48b22"
+    }
+  ]
+}
