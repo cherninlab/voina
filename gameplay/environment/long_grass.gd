@@ -1,7 +1,9 @@
 class_name LongGrass
 extends Node3D
 ## A long night walk: a trodden road winds through a field of tall grass, opening now and then
-## into a campfire clearing whose cultists wake as players approach (CampMobs). Everything comes
+## into a campfire clearing whose cultists wake as players approach, and midway between two fires
+## into a small trampled space where more rise from the grass (CampMobs). Camps and ambushes are
+## the road's encounter sites, in road order (site_*). Everything comes
 ## from long_grass.tres (LongGrassSettings) and its seed, so every peer generates the same road.
 ## Flat ground at y = 0; the grass is cosmetic (no collision) and an invisible fence keeps players
 ## within field_half_width of the road. The road ends in a last clearing around its final fire.
@@ -18,6 +20,13 @@ var camp_stations: PackedFloat32Array = PackedFloat32Array() # road distance of 
 var camps: PackedVector3Array = PackedVector3Array() # clearing centres, on the road
 var fires: PackedVector3Array = PackedVector3Array() # each camp's fire, beside the road
 var camp_cultists: PackedInt32Array = PackedInt32Array()
+var ambush_stations: PackedFloat32Array = PackedFloat32Array() # midway between two camps
+# Every encounter in road order: its road distance, where its cultists gather (a camp's fire, an
+# ambush's centre), how many, and whether it is a camp (else an ambush).
+var site_stations: PackedFloat32Array = PackedFloat32Array()
+var site_anchors: PackedVector3Array = PackedVector3Array()
+var site_cultists: PackedInt32Array = PackedInt32Array()
+var site_camp: Array[bool] = []
 var grass_clumps: int = 0
 var tree_count: int = 0
 var objective: Label = Label.new()
@@ -34,11 +43,13 @@ func _ready() -> void:
 	flame.shader = preload("res://content/environments/church_road/torch_flame.gdshader")
 	for index: int in range(camps.size()):
 		camp(index, flame)
+	for station: float in ambush_stations:
+		ambush_space(station)
 	# Grass is presentation only; headless tests and servers skip the field.
 	if DisplayServer.get_name() != "headless":
 		grass()
 	hud()
-	print("LONG_GRASS_READY: %d m road, %d camps (%s cultists), %d grass clumps, %d trees, seed %d" % [roundi(settings.length), camps.size(), ",".join(PackedStringArray(Array(camp_cultists).map(func(count: int) -> String: return str(count)))), grass_clumps, tree_count, settings.road_seed])
+	print("LONG_GRASS_READY: %d m road, %d camps (%s cultists), %d ambushes, %d grass clumps, %d trees, seed %d" % [roundi(settings.length), camps.size(), ",".join(PackedStringArray(Array(camp_cultists).map(func(count: int) -> String: return str(count)))), ambush_stations.size(), grass_clumps, tree_count, settings.road_seed])
 
 ## The road, then the clearings along it. Only the seed and settings decide them.
 func generate() -> void:
@@ -68,6 +79,18 @@ func generate() -> void:
 		fires.append(centre + normal_at(camp_stations[index]) * side * aside)
 		var count: int = mini(settings.cultists_max, settings.cultists_first + floori(float(index) * settings.camp_growth))
 		camp_cultists.append(settings.cultists_max if index == camp_stations.size() - 1 else count)
+	for index: int in range(camp_stations.size()):
+		site_stations.append(camp_stations[index])
+		site_anchors.append(fires[index])
+		site_cultists.append(camp_cultists[index])
+		site_camp.append(true)
+		if settings.ambushes and index + 1 < camp_stations.size():
+			var middle: float = (camp_stations[index] + camp_stations[index + 1]) * 0.5
+			ambush_stations.append(middle)
+			site_stations.append(middle)
+			site_anchors.append(point_at(middle))
+			site_cultists.append(settings.ambush_cultists)
+			site_camp.append(false)
 
 func road_length() -> float:
 	return float(points.size() - 1) * settings.step
@@ -118,7 +141,11 @@ func station_of(at: Vector3, near: float = -1.0, window: int = 8) -> float:
 	return best_station
 
 func distance_to_road(at: Vector3, near: float) -> float:
-	return point_at(station_of(at, near, ceili(settings.field_half_width / settings.step))).distance_to(at)
+	return point_at(station_of(at, near, ceili(grass_half_width() / settings.step))).distance_to(at)
+
+# The fence stands at field_half_width; the grass carries on past it.
+func grass_half_width() -> float:
+	return settings.field_half_width + settings.grass_beyond_fence
 
 func player_spawn(slot: int) -> Vector3:
 	var station: float = 4.0 + float(slot / 2) * 2.0
@@ -247,7 +274,7 @@ func treeline() -> void:
 	rng.seed = settings.road_seed + 2
 	var placements: Array[Transform3D] = []
 	var variants: Array[float] = []
-	var near: float = maxf(settings.trees_near, settings.field_half_width + 8.0)
+	var near: float = maxf(settings.trees_near, grass_half_width() + 8.0)
 	var far: float = maxf(settings.trees_far, near + 10.0)
 	var stand: float = 0.0
 	var station: float = -far
@@ -406,12 +433,12 @@ func grass() -> void:
 		while station < minf(chunk_start + CHUNK, field_end()):
 			var normal: Vector3 = normal_at(station)
 			var lateral: float = clear_path
-			while lateral < settings.field_half_width:
+			while lateral < grass_half_width():
 				for side: float in [-1.0, 1.0]:
 					var along: float = station + rng.randf_range(-0.5, 0.5) * cell
 					var across: float = (lateral + rng.randf_range(0.0, 1.0) * cell) * side
 					var at: Vector3 = point_at(along) + normal * across
-					if absf(across) > settings.field_half_width or in_clearing(at, along) or distance_to_road(at, along) < clear_path:
+					if absf(across) > grass_half_width() or in_clearing(at, along) or distance_to_road(at, along) < clear_path:
 						continue
 					var height: float = rng.randf_range(settings.grass_height_min, settings.grass_height_max)
 					var width: float = rng.randf_range(0.8, 1.3)
@@ -445,7 +472,19 @@ func in_clearing(at: Vector3, station: float) -> bool:
 	for index: int in range(camps.size()):
 		if absf(camp_stations[index] - station) < settings.camp_radius * 2.0 and camps[index].distance_to(at) < settings.camp_radius:
 			return true
+	for middle: float in ambush_stations:
+		if absf(middle - station) < settings.ambush_radius * 2.0 and point_at(middle).distance_to(at) < settings.ambush_radius:
+			return true
 	return false
+
+# A small trampled patch with no fire: the grass parts, and what waits in it does not show.
+func ambush_space(station: float) -> void:
+	var trampled: CylinderMesh = CylinderMesh.new()
+	trampled.top_radius = settings.ambush_radius
+	trampled.bottom_radius = settings.ambush_radius
+	trampled.height = 0.02
+	trampled.radial_segments = 24
+	add_mesh(trampled, point_at(station) + Vector3.UP * 0.006, dirt("soil_gravel.png", 2.5, Color(0.42, 0.42, 0.4)))
 
 # BLADES thin triangles around a 0.3 m clump, 1 m tall before each instance's height scale.
 func clump_mesh() -> ArrayMesh:
@@ -493,10 +532,11 @@ func _process(_delta: float) -> void:
 		return
 	var mobs: Node = world.get("mobs") as Node
 	var cleared: int = int(mobs.get("cleared"))
+	var active: int = int(mobs.get("active"))
 	var left: int = roundi(road_length() - station_of(local.position))
 	var line: String = "%d m to the last fire" % left
-	if int(mobs.get("active")) >= 0 and int(mobs.get("alive")) > 0:
-		line = "%d cultists at the fire" % int(mobs.get("alive"))
+	if active >= 0 and active < site_camp.size() and int(mobs.get("alive")) > 0:
+		line = "%d cultists %s" % [int(mobs.get("alive")), "at the fire" if site_camp[active] else "in the grass"]
 	elif local.position.distance_to(fires[fires.size() - 1]) < settings.camp_radius:
 		line = "The road ends here."
-	objective.text = "LONG GRASS  ·  camps %d / %d cleared\n%s" % [cleared, camps.size(), line]
+	objective.text = "LONG GRASS  ·  %d / %d fights won\n%s" % [cleared, site_stations.size(), line]

@@ -1,6 +1,6 @@
 # Long Grass
 
-A night map for a long walk: a trodden road winds through a field of grass taller than a person, opening every so often into a campfire clearing. Hooded cultists at each fire wake when a player comes near. The road ends in a last clearing around its final fire, where the corner label reads "The road ends here." Pick **Long Grass** under Host game → Map, or `python3 scripts/playtest.py host --map long_grass`.
+A night map for a long walk: a trodden road winds through a field of grass taller than a person, opening every so often into a campfire clearing. Hooded cultists at each fire wake when a player comes near, and midway between every two fires a small trampled space hides an ambush in the grass. The road ends in a last clearing around its final fire, where the corner label reads "The road ends here." Pick **Long Grass** under Host game → Map, or `python3 scripts/playtest.py host --map long_grass`.
 
 ## Tweaking the generation
 
@@ -18,6 +18,7 @@ Every knob lives in [`gameplay/environment/long_grass.tres`](../gameplay/environ
 | Field | `field_half_width` | Grass and the invisible fence sit this far from the road's centre line. |
 | | `grass_height_min`, `grass_height_max` | Clump heights in metres. |
 | | `grass_density` | Clumps per square metre; each clump is 11 blades. |
+| | `grass_beyond_fence` | Grass carries on this far past the fence, so the field never visibly stops where walking does. |
 | | `grass_view_distance` | Grass beyond this is not drawn. |
 | | `grass_root`, `grass_tip`, `wind` | Blade colours and sway. |
 | Treeline | `trees_near`, `trees_far` | Spruce silhouettes stand this near and far from the road, beyond both ends too. |
@@ -28,17 +29,21 @@ Every knob lives in [`gameplay/environment/long_grass.tres`](../gameplay/environ
 | | `camp_radius` | Clearing size. |
 | | `cultists_first`, `camp_growth`, `cultists_max` | Cultists per camp, growing along the road; the last camp holds the most. |
 | | `wake_distance` | How close a player gets to a fire before its cultists wake. |
+| Ambushes | `ambushes` | A trampled space midway between each pair of fires, with cultists in the grass around it. |
+| | `ambush_cultists`, `ambush_radius` | How many rise, and the size of the space. |
+| | `ambush_wake` | How close to the middle of the space a player gets before they rise. |
 | Night | `moon_yaw`, `moon_height`, `moon_size`, `moonlight` | Moon position, size and light. |
 | | `fog_density` | Night haze. |
 
-Keep `turn` modest: a very tight bend can bring the inner fence closer than `field_half_width` to the road. The host prints the result on load, for example `LONG_GRASS_READY: 900 m road, 6 camps (2,2,3,3,4,5 cultists), 35394 grass clumps, 912 trees, seed 1337`.
+Keep `turn` modest: a very tight bend can bring the inner fence closer than `field_half_width` to the road. The host prints the result on load, for example `LONG_GRASS_READY: 900 m road, 6 camps (2,2,3,3,4,5 cultists), 5 ambushes, 66213 grass clumps, 840 trees, seed 1337`. Planting that much grass takes about half a second at load..
 
 ## How it plays
 
-- Players start at the south end of the road. The corner label shows camps cleared and either the distance to the road's end or the cultists at the live fire.
-- One camp is live at a time. Its cultists use the existing host-owned raider AI on a navigation grid centred on the clearing. Walk on past a camp and its survivors give up and vanish when the next camp wakes; only camps whose cultists all fell count as cleared. Camps do not respawn. Leave and host again for a fresh road.
+- Players start at the south end of the road. The corner label shows fights won (camps and ambushes) and either the distance to the last fire or the cultists still standing.
+- Encounters come in road order: camp, ambush, camp ... A camp wakes at `wake_distance` from its fire; an ambush springs at `ambush_wake` from the middle of its space, its cultists rising just inside the grass around it.
+- One site is live at a time. Its cultists use the existing host-owned raider AI on a navigation grid centred on the clearing. Walk on past a site and its survivors give up and vanish when the next one wakes; only sites whose cultists all fell count as won. Nothing respawns. Leave and host again for a fresh road.
 - Under the Risograph theme this map brightens the image by 1.4 stops, so the night falls across the inks instead of onto black (`GameMaps.SHADING_ADJUST`, see docs/shading.md). Other maps and themes are untouched.
-- The grass has no collision and does not hide players from cultists. The fence keeps everyone within `field_half_width` of the road.
+- The grass has no collision and does not hide players from cultists. The fence keeps everyone within `field_half_width` of the road; the grass runs `grass_beyond_fence` further.
 
 ## Scenery and cost
 

@@ -71,6 +71,14 @@ func run() -> void:
 	check(is_equal_approx(field.camp_stations[last], field.road_length()) and field.fires[last].distance_to(field.points[field.points.size() - 1]) < 0.01, "The road ends at the last fire")
 	check(field.tree_count > 200, "Trees line the horizon (%d)" % field.tree_count)
 	check(field.camp_cultists[field.camps.size() - 1] == settings.cultists_max, "The road's end holds the most cultists")
+	# Sites alternate camp, ambush, camp ... with each ambush midway between its two fires.
+	check(field.ambush_stations.size() == field.camps.size() - 1 and field.site_stations.size() == field.camps.size() * 2 - 1, "An ambush between every pair of camps")
+	for index: int in range(field.site_stations.size()):
+		check(field.site_camp[index] == (index % 2 == 0), "Site %d is a %s" % [index, "camp" if index % 2 == 0 else "ambush"])
+		if index > 0:
+			check(field.site_stations[index] > field.site_stations[index - 1], "Sites run in road order")
+	check(is_equal_approx(field.ambush_stations[0], (field.camp_stations[0] + field.camp_stations[1]) * 0.5), "The first ambush is midway between the first two fires")
+	check(field.grass_half_width() > settings.field_half_width + 5.0, "Grass reaches past the fence")
 	var started_at: int = Time.get_ticks_msec()
 	field.grass()
 	print("LONG_GRASS_GRASS: %d clumps in %d ms" % [field.grass_clumps, Time.get_ticks_msec() - started_at])
@@ -101,7 +109,7 @@ func run() -> void:
 	await frames(30)
 	check(mobs().active == -1 and mobs().raiders.get_child_count() == 0, "Camps sleep until approached")
 	await visit(player, field, 0)
-	check(mobs().active == 0 and mobs().raiders.get_child_count() == field.camp_cultists[0], "The first camp wakes with %d cultists" % field.camp_cultists[0])
+	check(mobs().active == 0 and mobs().raiders.get_child_count() == field.site_cultists[0], "The first camp wakes with %d cultists" % field.site_cultists[0])
 	print("LONG_GRASS_HOST_READY: first camp awake")
 	check(await wait_for(func() -> bool: return players().get_child_count() == 2, 1800), "A joiner arrives")
 	check(await wait_for(func() -> bool: return players().get_child_count() == 1, 1800), "The joiner leaves")
@@ -109,11 +117,14 @@ func run() -> void:
 		(node as HostileMob).receive_hit(999, Vector3.FORWARD)
 	check(await wait_for(func() -> bool: return mobs().cleared == 1 and mobs().alive == 0, 120), "Felling the camp clears it")
 	await visit(player, field, 1)
-	check(mobs().active == 1 and mobs().alive == field.camp_cultists[1], "The second camp wakes")
-	# Walk on past the survivors: they give up, and the third camp wakes instead.
+	check(mobs().active == 1 and mobs().alive == settings.ambush_cultists, "The ambush midway springs with %d cultists" % settings.ambush_cultists)
+	for node: Node in mobs().raiders.get_children():
+		var at: Vector3 = (node as Node3D).global_position
+		check(field.distance_to_road(at, field.site_stations[1]) > settings.path_width * 0.5 and at.distance_to(field.site_anchors[1]) > settings.ambush_radius, "Ambushers rise from the grass, off the road and outside the space")
+	# Walk on past the survivors: they give up, and the next camp wakes instead.
 	await visit(player, field, 2)
-	check(await wait_for(func() -> bool: return mobs().raiders.get_child_count() == field.camp_cultists[2], 120), "Survivors of a camp left behind vanish")
-	check(mobs().active == 2 and mobs().cleared == 1, "Only felled camps count as cleared")
+	check(await wait_for(func() -> bool: return mobs().raiders.get_child_count() == field.site_cultists[2], 120), "Survivors of a site left behind vanish")
+	check(mobs().active == 2 and mobs().cleared == 1, "Only felled sites count as cleared")
 	NetworkManager.stop("Left game")
 	await frames(3)
 	NetworkManager.host_game(NetworkManager.port)
@@ -123,9 +134,10 @@ func run() -> void:
 		print("LONG_GRASS_OK: deterministic road, camps, fence, planted field, wake/clear/abandon, rehost")
 		get_tree().quit()
 
-# Put the player on the road beside a camp and wait for it to wake.
+# Put the player on the road short of a site and wait for it to wake.
 func visit(player: CharacterBody3D, field: LongGrass, index: int) -> void:
-	player.position = field.point_at(field.camp_stations[index] - field.settings.wake_distance * 0.5) + Vector3.UP * 0.95
+	var reach: float = field.settings.wake_distance if field.site_camp[index] else field.settings.ambush_wake
+	player.position = field.point_at(field.site_stations[index] - reach * 0.5) + Vector3.UP * 0.95
 	player.set("sync_position", player.position)
-	check(await wait_for(func() -> bool: return mobs().active == index, 120), "Camp %d wakes when approached" % index)
+	check(await wait_for(func() -> bool: return mobs().active == index, 120), "Site %d wakes when approached" % index)
 	await frames(5)

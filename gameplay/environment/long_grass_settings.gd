@@ -28,6 +28,8 @@ extends Resource
 @export_range(0.5, 4.0, 0.05) var grass_height_max: float = 2.5
 ## Grass clumps per square metre (each clump is several blades).
 @export_range(0.1, 4.0, 0.05) var grass_density: float = 1.2
+## Grass carries on this far past the fence, so the field never visibly stops where walking does.
+@export_range(0.0, 60.0, 1.0) var grass_beyond_fence: float = 14.0
 ## Grass beyond this many metres from the camera is not drawn.
 @export_range(20.0, 200.0, 5.0) var grass_view_distance: float = 75.0
 @export var grass_root: Color = Color(0.05, 0.08, 0.06)
@@ -62,6 +64,14 @@ extends Resource
 @export_range(1, 8, 1) var cultists_max: int = 5
 ## A camp wakes when a player comes this close to its fire.
 @export_range(10.0, 60.0, 1.0) var wake_distance: float = 32.0
+
+@export_group("Ambushes")
+## A small trampled space midway between each pair of campfires, where cultists rise from the grass.
+@export var ambushes: bool = true
+@export_range(1, 8, 1) var ambush_cultists: int = 2
+@export_range(2.0, 12.0, 0.5) var ambush_radius: float = 5.0
+## An ambush springs when a player comes this close to the middle of its space.
+@export_range(4.0, 40.0, 1.0) var ambush_wake: float = 12.0
 
 @export_group("Night")
 ## Compass direction of the moon (0 = straight ahead along the road) and its height, in degrees.
