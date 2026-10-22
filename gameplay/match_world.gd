@@ -178,7 +178,7 @@ func apply_map_shading() -> void:
 	for child: Node in get_children():
 		var script: Script = child.get_script() as Script
 		if script != null and script.resource_path == "res://ui/shading.gd":
-			child.call("set_map_theme", GameMaps.shading(map_id))
+			child.call("set_map_theme", GameMaps.shading(map_id), GameMaps.shading_adjust(map_id))
 
 func add_map_node(node: Node) -> void:
 	add_child(node)

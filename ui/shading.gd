@@ -174,6 +174,9 @@ var values: Dictionary[String, float] = {}
 # Per-theme slider overrides the player made: theme name -> {param: value}.
 # While a map imposes its theme (set_map_theme), the player's own, restored when it leaves.
 var own_theme: int = -1
+# The map's own adjustments, theme name -> {param: value} (GameMaps.SHADING_ADJUST): laid over a
+# theme's defaults and under the player's slider overrides, on that map only. Never saved.
+var map_adjust: Dictionary = {}
 var overrides: Dictionary[String, Dictionary] = {}
 
 func _init() -> void:
@@ -243,14 +246,20 @@ func _ready() -> void:
 func set_theme(index: int) -> void:
 	theme_index = posmod(index, THEMES.size())
 	values = theme_defaults(theme_index)
+	var adjust: Dictionary = map_adjust.get(theme_name(), {}) as Dictionary
+	for name: String in adjust:
+		if values.has(name):
+			values[name] = float(adjust[name])
 	var saved: Dictionary = overrides.get(theme_name(), {}) as Dictionary
 	for name: String in saved:
 		if values.has(name):
 			values[name] = float(saved[name])
 	apply()
 
-## A map's theme by name, or "" to give the player their own back. Never saved as their choice.
-func set_map_theme(wanted: String) -> void:
+## A map's theme by name, or "" to give the player their own back, plus the map's adjustments for
+## any theme. Neither is saved as the player's choice.
+func set_map_theme(wanted: String, adjust: Dictionary = {}) -> void:
+	map_adjust = adjust
 	var found: int = theme_names().find(wanted)
 	if found >= 0:
 		if own_theme < 0:
@@ -260,6 +269,8 @@ func set_map_theme(wanted: String) -> void:
 		var back: int = own_theme
 		own_theme = -1
 		set_theme(back)
+	else:
+		set_theme(theme_index)
 	if tweaks != null and tweaks.is_inside_tree():
 		tweaks.call("refresh")
 

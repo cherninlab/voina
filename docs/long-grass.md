@@ -36,6 +36,7 @@ Keep `turn` modest: a very tight bend can bring the inner fence closer than `fie
 
 - Players start at the south end of the road. The corner label shows camps cleared and either the distance to the road's end or the cultists at the live fire.
 - One camp is live at a time. Its cultists use the existing host-owned raider AI on a navigation grid centred on the clearing. Walk on past a camp and its survivors give up and vanish when the next camp wakes; only camps whose cultists all fell count as cleared. Camps do not respawn. Leave and host again for a fresh road.
+- Under the Risograph theme this map brightens the image by 1.4 stops, so the night falls across the inks instead of onto black (`GameMaps.SHADING_ADJUST`, see docs/shading.md). Other maps and themes are untouched.
 - The grass has no collision and does not hide players from cultists. The fence keeps everyone within `field_half_width` of the road.
 
 ## Scenery and cost

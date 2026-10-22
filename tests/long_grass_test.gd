@@ -45,6 +45,17 @@ func run() -> void:
 			get_tree().quit()
 		return
 	var field: LongGrass = world.get_node("LongGrass") as LongGrass
+	# Risograph is brightened on this map only (GameMaps.SHADING_ADJUST); other themes keep theirs.
+	var shading: Node = null
+	for child: Node in world.get_children():
+		if child.get_script() == preload("res://ui/shading.gd"):
+			shading = child
+	var before: int = int(shading.get("theme_index"))
+	shading.call("set_theme", (shading.call("theme_names") as PackedStringArray).find("Risograph"))
+	check(is_equal_approx(float((shading.get("values") as Dictionary)["exposure"]), float(GameMaps.SHADING_ADJUST[GameMaps.LONG_GRASS]["Risograph"]["exposure"])), "Risograph is brightened on the long grass")
+	shading.call("set_theme", (shading.call("theme_names") as PackedStringArray).find("Natural"))
+	check(is_zero_approx(float((shading.get("values") as Dictionary)["exposure"])), "Other themes keep their own exposure")
+	shading.call("set_theme", before)
 	var settings: LongGrassSettings = field.settings
 	# The same seed must give every peer the same road and camps.
 	var again: LongGrass = LongGrass.new()

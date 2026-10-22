@@ -80,6 +80,10 @@ Off by default (**Blood override** 0). Four lo-fi themes use it as a red accent,
 | Colour | Spectrum, Inverted, Acid Trip (posterized, cycling hue), Thermal, Silent Film (sepia, vignette, grain), Pastel (bright soft light), Bleach Bypass, Vaporwave (pink sun, palette) |
 | Lo-fi with a red accent | Red Only, Concrete, Brutalist Web, Risograph, 1-Bit |
 
+### Per-map adjustments
+
+A map can show a theme of its own (`GameMaps.SHADING`: the White Room is Overexposed) and can adjust any theme on that map only (`GameMaps.SHADING_ADJUST`, map id → theme name → values). Adjustments sit over the theme's defaults and under the player's own slider overrides, and are never saved. Palette themes map brightness to inks, so a night map can fall entirely onto the darkest ink: Long Grass lifts Risograph's image exposure by 1.4 stops there, while Risograph on every other map and every other theme on Long Grass stay as they were.
+
 ## Verify
 
 ```sh
