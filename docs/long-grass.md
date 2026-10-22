@@ -15,18 +15,22 @@ Every knob lives in [`gameplay/environment/long_grass.tres`](../gameplay/environ
 | | `straighten` | Pull back toward the overall direction (0 wanders freely, 1 stays straight). |
 | | `max_heading` | The road never points further than this from straight ahead. |
 | | `path_width` | Width of the trodden path. |
+| | `path_fray` | The path's dirt frays into the field's soil over this many metres past each edge. |
 | Field | `field_half_width` | Grass and the invisible fence sit this far from the road's centre line. |
 | | `grass_height_min`, `grass_height_max` | Clump heights in metres. |
 | | `grass_density` | Clumps per square metre; each clump is 11 blades. |
 | | `grass_beyond_fence` | Grass carries on this far past the fence, so the field never visibly stops where walking does. |
 | | `grass_view_distance` | Grass beyond this is not drawn. |
-| | `grass_root`, `grass_tip`, `wind` | Blade colours and sway. |
+| | `grass_root`, `grass_tip`, `wind` | Blade colours, and how far tips lean in a gust. |
+| Wind | `wind_yaw`, `wind_speed`, `gust_size` | Where gusts blow toward, how fast they roll across the field, and the metres between them. |
+| | `tree_sway` | How far the pine crowns lean in a gust. |
 | Treeline | `trees_near`, `trees_far` | Spruce silhouettes stand this near and far from the road, beyond both ends too. |
 | | `tree_spacing`, `tree_gaps` | Road metres between rows of three trees per side; the share of horizon left open between stands. |
 | | `tree_height_min`, `tree_height_max` | Tree heights in metres. |
 | | `tree_tint` | Multiplies the pine sprites' colours; low keeps the wood dark against the night sky. |
 | Camps | `first_camp`, `camp_spacing`, `camp_jitter` | Where clearings fall along the road. The road always ends in a clearing around the last fire. |
 | | `camp_radius` | Clearing size. |
+| | `clearing_fray` | Clearings (and ambush spaces) fade into the soil and road over this many metres past their radius. |
 | | `cultists_first`, `camp_growth`, `cultists_max` | Cultists per camp, growing along the road; the last camp holds the most. |
 | | `wake_distance` | How close a player gets to a fire before its cultists wake. |
 | Ambushes | `ambushes` | A trampled space midway between each pair of fires, with cultists in the grass around it. |
@@ -47,6 +51,8 @@ Keep `turn` modest: a very tight bend can bring the inner fence closer than `fie
 
 ## Scenery and cost
 
-Flat ground, one road ribbon, one clearing disc and a stone ring with logs per camp, and grass in 30 m multimesh chunks culled past `grass_view_distance` with no shadows. The road, clearings and soil use the village's generated dirt albedos (`compacted_path`, `soil_gravel`, `mineral_earth` in `content/environments/village_generated/`), projected from above in world metres. The treeline is one multimesh of about 850 pines, each three crossed quads (6 triangles) showing one of three sprites from `content/environments/long_grass/horizon_pines.png`, unlit, darkened by `tree_tint` and unfogged so they hold against the sky. The atlas comes from a sprite sheet the project owner supplied; its licence is still to be confirmed (see that folder's README). Headless servers and tests skip the grass. The sky reuses the village's storm panorama (`content/environments/grim/storm_sky.png`), darkened, with an original procedural full moon (`gameplay/environment/moon_sky.gdshader`). Campfires reuse the church road's flame shader. No other new external assets.
+Flat ground, one road ribbon, one clearing disc and a stone ring with logs per camp, and grass in 30 m multimesh chunks culled past `grass_view_distance` with no shadows. The road, clearings and soil use the village's generated dirt albedos (`compacted_path`, `soil_gravel`, `mineral_earth` in `content/environments/village_generated/`), projected from above in world metres. The field plane and the road ribbon share `trail_ground.gdshader`, so the road's frayed edge ends in exactly the field's soil; clearings fade out over it (`trail_clearing.gdshader`), broken up by the gravel's own grain.
+
+Wind is per-vertex arithmetic in the grass and pine shaders: one phase per clump or tree from its origin, gust bands rolling along `wind_yaw`, the tips leaning most, and grass tips catching a little more moonlight inside a gust. No textures, passes or scripts run for it. The treeline is one multimesh of about 850 pines, each three crossed quads (6 triangles) showing one of three sprites from `content/environments/long_grass/horizon_pines.png`, unlit, darkened by `tree_tint` and unfogged so they hold against the sky. The atlas comes from a sprite sheet the project owner supplied; its licence is still to be confirmed (see that folder's README). Headless servers and tests skip the grass. The sky reuses the village's storm panorama (`content/environments/grim/storm_sky.png`), darkened, with an original procedural full moon (`gameplay/environment/moon_sky.gdshader`). Campfires reuse the church road's flame shader. No other new external assets.
 
 Verification: `python3 scripts/dungeon_smoke_test.py "$GODOT"` runs `tests/long_grass_test.tscn` over ENet: determinism, fence, planting, wake/clear/abandon, rehost and a joiner adopting the map.

@@ -198,7 +198,7 @@ func ground() -> void:
 	var margin: float = settings.trees_far + 20.0
 	var size: Vector3 = Vector3(high.x - low.x + margin * 2.0, 1.0, high.z - low.z + margin * 2.0)
 	var centre: Vector3 = (low + high) * 0.5
-	var soil: StandardMaterial3D = dirt("mineral_earth.png", 2.5, Color(0.32, 0.36, 0.3))
+	var soil: ShaderMaterial = trail_material(true)
 	var plane: PlaneMesh = PlaneMesh.new()
 	plane.size = Vector2(size.x, size.z)
 	var visual: MeshInstance3D = MeshInstance3D.new()
@@ -215,13 +215,15 @@ func ground() -> void:
 	body.add_child(collision)
 	add_child(body)
 
-# One flat ribbon along the centre line, a hair above the soil.
+# One flat ribbon along the centre line, a hair above the soil: the path, plus path_fray either
+# side where its dirt frays into the soil (trail_ground.gdshader, UV.x across).
 func road() -> void:
-	var path: StandardMaterial3D = dirt("compacted_path.png", 1.5, Color(0.5, 0.48, 0.45))
+	var half: float = settings.path_width * 0.5 + settings.path_fray
+	var path: ShaderMaterial = trail_material(false)
+	path.set_shader_parameter("core", maxf(0.0, settings.path_width * 0.5 - 0.3) / half)
 	var surface: SurfaceTool = SurfaceTool.new()
 	surface.begin(Mesh.PRIMITIVE_TRIANGLES)
 	surface.set_normal(Vector3.UP)
-	var half: float = settings.path_width * 0.5
 	for index: int in range(points.size() - 1):
 		var a: float = float(index) * settings.step
 		var b: float = a + settings.step
@@ -229,8 +231,9 @@ func road() -> void:
 		var a_right: Vector3 = points[index] - normal_at(a) * half + Vector3.UP * 0.012
 		var b_left: Vector3 = points[index + 1] + normal_at(minf(b, road_length() - 0.01)) * half + Vector3.UP * 0.012
 		var b_right: Vector3 = points[index + 1] - normal_at(minf(b, road_length() - 0.01)) * half + Vector3.UP * 0.012
-		for vertex: Vector3 in [a_left, b_left, a_right, a_right, b_left, b_right]:
-			surface.add_vertex(vertex)
+		for corner: Array in [[a_left, 0.0], [b_left, 0.0], [a_right, 1.0], [a_right, 1.0], [b_left, 0.0], [b_right, 1.0]]:
+			surface.set_uv(Vector2(float(corner[1]), 0.0))
+			surface.add_vertex(corner[0] as Vector3)
 	var visual: MeshInstance3D = MeshInstance3D.new()
 	visual.mesh = surface.commit()
 	visual.material_override = path
@@ -254,17 +257,33 @@ func fence() -> void:
 		var across: Vector3 = normal_at(end) * settings.field_half_width
 		wall(body, point_at(end) - across, point_at(end) + across)
 
-func dirt(file: String, metres: float, tint: Color) -> StandardMaterial3D:
-	var material: StandardMaterial3D = StandardMaterial3D.new()
-	material.albedo_texture = load(GROUND + file) as Texture2D
-	material.albedo_color = tint
-	material.roughness = 1.0
-	# Projected from above in world metres: no UVs to build, and every piece tiles seamlessly.
-	material.uv1_triplanar = true
-	material.uv1_world_triplanar = true
-	material.uv1_scale = Vector3.ONE / metres
-	material.texture_filter = BaseMaterial3D.TEXTURE_FILTER_LINEAR_WITH_MIPMAPS_ANISOTROPIC
+# The field's soil (soil_only) or the road: village dirt textures projected from above in world
+# metres, so the road's frayed edge meets the field in the very same soil.
+func trail_material(soil_only: bool) -> ShaderMaterial:
+	var material: ShaderMaterial = ShaderMaterial.new()
+	material.shader = preload("res://gameplay/environment/trail_ground.gdshader")
+	material.set_shader_parameter("path_texture", load(GROUND + "compacted_path.png"))
+	material.set_shader_parameter("soil_texture", load(GROUND + "mineral_earth.png"))
+	material.set_shader_parameter("soil_only", soil_only)
 	return material
+
+# A clearing floor of trodden gravel that fades out over clearing_fray past `radius`.
+func clearing_floor(at: Vector3, radius: float, tint: Color) -> void:
+	var outer: float = radius + settings.clearing_fray
+	var disc: CylinderMesh = CylinderMesh.new()
+	disc.top_radius = outer
+	disc.bottom_radius = outer
+	disc.height = 0.002
+	disc.radial_segments = 32
+	disc.rings = 1
+	var material: ShaderMaterial = ShaderMaterial.new()
+	material.shader = preload("res://gameplay/environment/trail_clearing.gdshader")
+	material.set_shader_parameter("gravel_texture", load(GROUND + "soil_gravel.png"))
+	material.set_shader_parameter("tint", tint)
+	material.set_shader_parameter("radius", outer)
+	material.set_shader_parameter("core", maxf(0.0, radius - 1.0) / outer)
+	# Above the road ribbon (0.012), so a clearing's gravel covers the road through it.
+	add_mesh(disc, at + Vector3.UP * 0.02, material).cast_shadow = GeometryInstance3D.SHADOW_CASTING_SETTING_OFF
 
 ## Pines in stands either side of the road and beyond both ends, past the fence, three per side
 ## every tree_spacing metres where a stand stands. Each is three crossed sprites of one of three
@@ -306,6 +325,8 @@ func treeline() -> void:
 	dark.shader = preload("res://gameplay/environment/horizon_pines.gdshader")
 	dark.set_shader_parameter("atlas", load("res://content/environments/long_grass/horizon_pines.png"))
 	dark.set_shader_parameter("tint", settings.tree_tint)
+	dark.set_shader_parameter("sway", settings.tree_sway)
+	wind_parameters(dark)
 	var wood: MultiMeshInstance3D = MultiMeshInstance3D.new()
 	wood.name = "Treeline"
 	wood.multimesh = multi
@@ -345,13 +366,7 @@ func wall(body: StaticBody3D, a: Vector3, b: Vector3) -> void:
 	body.add_child(collision)
 
 func camp(index: int, flame: ShaderMaterial) -> void:
-	var trodden: StandardMaterial3D = dirt("soil_gravel.png", 2.5, Color(0.5, 0.48, 0.45))
-	var clearing: CylinderMesh = CylinderMesh.new()
-	clearing.top_radius = settings.camp_radius
-	clearing.bottom_radius = settings.camp_radius
-	clearing.height = 0.02
-	clearing.radial_segments = 32
-	add_mesh(clearing, camps[index] + Vector3.UP * 0.006, trodden)
+	clearing_floor(camps[index], settings.camp_radius, Color(0.5, 0.48, 0.45))
 	var fire: Vector3 = fires[index]
 	var stone: StandardMaterial3D = StandardMaterial3D.new()
 	stone.albedo_color = Color(0.22, 0.21, 0.2)
@@ -419,6 +434,7 @@ func grass() -> void:
 	material.set_shader_parameter("root_color", settings.grass_root)
 	material.set_shader_parameter("tip_color", settings.grass_tip)
 	material.set_shader_parameter("wind", settings.wind)
+	wind_parameters(material)
 	var clump: ArrayMesh = clump_mesh()
 	var rng: RandomNumberGenerator = RandomNumberGenerator.new()
 	rng.seed = settings.road_seed + 1
@@ -468,6 +484,13 @@ func grass() -> void:
 			grass_clumps += placements.size()
 		chunk_start += CHUNK
 
+# The one wind the grass and the pines share, so a gust rolls through both together.
+func wind_parameters(material: ShaderMaterial) -> void:
+	var yaw: float = deg_to_rad(settings.wind_yaw)
+	material.set_shader_parameter("wind_dir", Vector2(sin(yaw), -cos(yaw)))
+	material.set_shader_parameter("wind_speed", settings.wind_speed)
+	material.set_shader_parameter("gust_size", settings.gust_size)
+
 func in_clearing(at: Vector3, station: float) -> bool:
 	for index: int in range(camps.size()):
 		if absf(camp_stations[index] - station) < settings.camp_radius * 2.0 and camps[index].distance_to(at) < settings.camp_radius:
@@ -479,12 +502,7 @@ func in_clearing(at: Vector3, station: float) -> bool:
 
 # A small trampled patch with no fire: the grass parts, and what waits in it does not show.
 func ambush_space(station: float) -> void:
-	var trampled: CylinderMesh = CylinderMesh.new()
-	trampled.top_radius = settings.ambush_radius
-	trampled.bottom_radius = settings.ambush_radius
-	trampled.height = 0.02
-	trampled.radial_segments = 24
-	add_mesh(trampled, point_at(station) + Vector3.UP * 0.006, dirt("soil_gravel.png", 2.5, Color(0.42, 0.42, 0.4)))
+	clearing_floor(point_at(station), settings.ambush_radius, Color(0.42, 0.42, 0.4))
 
 # BLADES thin triangles around a 0.3 m clump, 1 m tall before each instance's height scale.
 func clump_mesh() -> ArrayMesh:

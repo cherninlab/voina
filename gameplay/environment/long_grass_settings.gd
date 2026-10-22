@@ -19,6 +19,8 @@ extends Resource
 @export_range(0.0, 85.0, 1.0) var max_heading: float = 55.0
 ## Width of the trodden path.
 @export_range(1.0, 8.0, 0.1) var path_width: float = 2.6
+## The path's dirt frays into the field's soil over this many metres beyond each edge.
+@export_range(0.0, 4.0, 0.1) var path_fray: float = 1.4
 
 @export_group("Field")
 ## Tall grass fills this far from the road's centre line on each side; an invisible fence stops
@@ -34,8 +36,18 @@ extends Resource
 @export_range(20.0, 200.0, 5.0) var grass_view_distance: float = 75.0
 @export var grass_root: Color = Color(0.05, 0.08, 0.06)
 @export var grass_tip: Color = Color(0.32, 0.4, 0.33)
-## Sway amplitude of the blade tips in metres.
+## How far grass tips lean in a gust, in metres.
 @export_range(0.0, 0.6, 0.01) var wind: float = 0.18
+
+@export_group("Wind")
+## Where the wind blows toward, in degrees (0 = along the road, as for moon_yaw).
+@export_range(-180.0, 180.0, 1.0) var wind_yaw: float = 60.0
+## How fast gusts roll across the field, in metres per second.
+@export_range(0.0, 20.0, 0.1) var wind_speed: float = 4.0
+## Metres between gust fronts.
+@export_range(4.0, 80.0, 1.0) var gust_size: float = 18.0
+## How far the pine crowns lean in a gust, in metres.
+@export_range(0.0, 2.0, 0.05) var tree_sway: float = 0.35
 
 @export_group("Treeline")
 ## Dark spruce silhouettes on the horizon, beyond the fence: this near and far from the road.
@@ -57,6 +69,8 @@ extends Resource
 @export_range(40.0, 600.0, 5.0) var camp_spacing: float = 150.0
 @export_range(0.0, 200.0, 5.0) var camp_jitter: float = 40.0
 @export_range(4.0, 20.0, 0.5) var camp_radius: float = 9.0
+## Clearings fade out into the soil and the road over this many metres past their radius.
+@export_range(0.0, 6.0, 0.1) var clearing_fray: float = 2.0
 ## Cultists at the first camp, then camp_growth more per camp (rounded down), capped at
 ## cultists_max. The road ends in a last clearing around a fire, which always holds cultists_max.
 @export_range(1, 8, 1) var cultists_first: int = 2
