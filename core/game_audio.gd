@@ -49,6 +49,7 @@ var pool: Array[AudioStreamPlayer3D] = []
 var next_voice: int = 0
 var last_pick: Dictionary[StringName, StringName] = {}
 var beds: Array[Dictionary] = []
+var ambience_map: String = ""
 var fades: Dictionary[AudioStreamPlayer3D, Tween] = {}
 var music: AudioStreamPlayer
 var music_track: int = 0
@@ -87,11 +88,26 @@ func _ready() -> void:
 	enabled = DisplayServer.get_name() != "headless" and not "--server" in OS.get_cmdline_user_args()
 	if enabled:
 		setup()
-		var ambience: Dictionary[StringName, float] = AMBIENCE
-		if "--dungeon" in OS.get_cmdline_user_args():
-			ambience = {&"chimney_wind_01": -22.0, &"fire_synth_01": -26.0}
-		for id: StringName in ambience:
-			start_bed(id, ambience[id])
+
+## Swaps the ambience beds for a map's (GameMaps id); MatchWorld calls it whenever it loads one.
+static func set_map(map_id: String) -> void:
+	var audio: GameAudio = instance()
+	if audio == null or audio.ambience_map == map_id:
+		return
+	audio.ambience_map = map_id
+	for bed: Dictionary in audio.beds:
+		for player: AudioStreamPlayer in bed["players"]:
+			var fade: Tween = audio.create_tween()
+			fade.tween_property(player, "volume_db", -60.0, 1.0)
+			fade.tween_callback(player.queue_free)
+	audio.beds.clear()
+	var ambience: Dictionary[StringName, float] = AMBIENCE
+	if map_id == GameMaps.CRYPT:
+		ambience = {&"chimney_wind_01": -22.0, &"fire_synth_01": -26.0}
+	elif map_id == GameMaps.WHITE_ROOM:
+		ambience = {} # deliberately quiet: only the fight is heard
+	for id: StringName in ambience:
+		audio.start_bed(id, ambience[id])
 
 func setup() -> void:
 	enabled = true

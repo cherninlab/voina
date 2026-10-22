@@ -151,16 +151,20 @@ def cmd_host(args: argparse.Namespace) -> None:
     if not pin or pin["commit"] != sha:
         publish_pin(sha, host_name(args), f"hosting on {socket.gethostname().split('.')[0]}")
         print(f"pinned {sha[:7]}: the board now names the build this host runs")
-    modes = (["--match"] if args.match else []) + (["--pve"] if args.pve else []) + (["--full"] if args.full else []) + (["--dungeon"] if args.dungeon else [])
+    modes = (["--match"] if args.match else []) + (["--pve"] if args.pve else []) + (["--full"] if args.full else []) + [f"--map={map_choice(args)}"]
     launch(path, godot, ["--host", f"--port={args.port}", *modes], args.detach)
 
 
-# A joiner refused for another build reads the host's commit from the refusal, syncs to it and
+def map_choice(args: argparse.Namespace) -> str:
+    return "crypt" if args.dungeon else args.map
+
+
+# A joiner takes the host's map by itself. A joiner refused for another build reads the host's commit from the refusal, syncs to it and
 # rejoins, at most twice. A host on uncommitted (+dirty) edits cannot be followed.
 def cmd_join(args: argparse.Namespace) -> None:
     godot = godot_binary(args.godot)
     commit = args.commit
-    game_args = [f"--join={args.address}", f"--port={args.port}"] + (["--full"] if args.full else []) + (["--dungeon"] if args.dungeon else [])
+    game_args = [f"--join={args.address}", f"--port={args.port}"] + (["--full"] if args.full else [])
     if args.detach:
         launch(sync(commit, godot), godot, game_args, True)
         return
@@ -206,8 +210,11 @@ def main() -> None:
             command.add_argument("--port", type=int, default=7777)
             command.add_argument("--detach", action="store_true", help="return after launching the game")
             command.add_argument("--full", action="store_true", help="open fullscreen")
-            command.add_argument("--dungeon", action="store_true", help="play the Cinder Crypt instead of the village (both host and joiner)")
+        if name == "join":
+            command.add_argument("--dungeon", action="store_true", help=argparse.SUPPRESS) # old habit; joiners take the host's map
         if name == "host":
+            command.add_argument("--map", choices=["village", "crypt", "white_room"], default="village", help="map to host; joiners follow it (the lobby menu also picks one)")
+            command.add_argument("--dungeon", action="store_true", help="same as --map crypt")
             command.add_argument("--match", action="store_true", help="first to three round wins")
             command.add_argument("--pve", action="store_true", help="add hostile PvE raiders")
         command.set_defaults(fn=fn)

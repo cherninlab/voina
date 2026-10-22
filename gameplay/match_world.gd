@@ -12,8 +12,11 @@ var controls_panel: PanelContainer = preload("res://ui/controls_panel.gd").new()
 var pve_toggle: CheckButton = CheckButton.new() # possessed villagers at the church
 var village_raiders_toggle: CheckButton = CheckButton.new()
 var forest_raiders_toggle: CheckButton = CheckButton.new()
-var dungeon: bool = "--dungeon" in OS.get_cmdline_user_args()
-var mobs: MobSystem = preload("res://gameplay/mobs/dungeon_mobs.gd").new() if dungeon else MobSystem.new()
+# The lobby's map choice; load_map() rebuilds the world for it. See gameplay/maps.gd.
+var map_select: OptionButton = OptionButton.new()
+var map_id: String = ""
+var map_nodes: Array[Node] = []
+var mobs: MobSystem
 var match_toggle: CheckButton = CheckButton.new()
 var match_flow: MatchFlow = MatchFlow.new()
 var lobby_camera: Camera3D = Camera3D.new()
@@ -32,16 +35,11 @@ func _ready() -> void:
 	spawner.spawn_limit = 4
 	spawner.spawn_function = create_player
 	add_child(spawner)
-	build_arena()
-	# Frame cap, render scale, sun shadows and ground cover follow Settings > Graphics.
-	GraphicsSettings.register_world(self)
 	lobby_camera.position = Vector3(34, 26, 38)
 	add_child(lobby_camera)
 	lobby_camera.look_at(Vector3.ZERO)
 	lobby_camera.make_current()
-	mobs.name = "Mobs"
-	mobs.players = players
-	add_child(mobs)
+	load_map(GameMaps.from_arguments(OS.get_cmdline_user_args()))
 	# Lobby switches for each encounter. The church yard is haunted and raiders wait in the woods
 	# unless the host opts out; raiders in the village are opt-in. In Terminal: --no-pve,
 	# --no-forest-raiders, --village-raiders.
@@ -67,19 +65,22 @@ func create_player(data: Variant) -> Node:
 	# Spawns stay 6 m apart: the host's movement envelope must still accept the smoke client's hop.
 	player.position = player_spawn(int(info[1]))
 	player.set("sync_position", player.position)
-	player.set("yaw", 0.0 if dungeon or int(info[1]) % 2 == 0 else PI)
+	player.set("yaw", 0.0 if map_id != GameMaps.VILLAGE or int(info[1]) % 2 == 0 else PI)
 	return player
 
 func player_spawn(slot: int) -> Vector3:
-	if dungeon:
+	if map_id == GameMaps.CRYPT:
 		return Vector3(-1.5 + float(slot % 2) * 3.0, 0.95, 17.0 + float(slot / 2) * 2.0)
+	if map_id == GameMaps.WHITE_ROOM:
+		return Vector3(-1.5 + float(slot % 2) * 3.0, 0.95, 10.0 + float(slot / 2) * 2.0)
 	return Vector3(0, 0.95, 3.0 if slot % 2 == 0 else -3.0)
 
 func host_started() -> void:
 	menu.hide()
 	if not NetworkManager.dedicated:
 		spawner.spawn([1, 0])
-	if dungeon:
+	# The dungeons run their own encounter; the lobby's switches only shape the village.
+	if map_id != GameMaps.VILLAGE:
 		mobs.start()
 		return
 	mobs.villagers = pve_toggle.button_pressed or "--pve" in OS.get_cmdline_user_args()
@@ -118,17 +119,56 @@ func clear_players() -> void:
 	leave_button.hide()
 	lobby_camera.make_current()
 
-func build_arena() -> void:
-	if dungeon:
-		Wildlife.remove_from_group("match_world")
-		add_child(preload("res://gameplay/environment/crypt_dungeon.gd").new())
-		print("MAP: Cinder Crypt (--dungeon)")
+## Builds a map and its encounter in place of the current ones. The host loads its lobby choice
+## before listening; a joiner loads the host's map during authentication, before anyone spawns.
+func load_map(id: String) -> void:
+	if not id in GameMaps.IDS:
+		id = GameMaps.VILLAGE
+	if map_select.item_count == GameMaps.IDS.size():
+		map_select.select(GameMaps.IDS.find(id))
+	if id == map_id:
 		return
-	add_child(preload("res://gameplay/environment/village_arena.gd").new())
+	map_id = id
+	BuildSync.map_id = id
+	# Out of the tree at once, so the replacements keep the replicated names (Mobs, ...).
+	for node: Node in map_nodes:
+		remove_child(node)
+		node.queue_free()
+	map_nodes.clear()
+	if mobs != null:
+		remove_child(mobs)
+		mobs.queue_free()
+	build_arena()
+	mobs = GameMaps.create_mobs(id)
+	mobs.name = "Mobs"
+	mobs.players = players
+	add_child(mobs)
+	# Birds belong to the outdoor village only.
+	if id == GameMaps.VILLAGE and not Wildlife.is_in_group("match_world"):
+		Wildlife.add_to_group("match_world")
+	elif id != GameMaps.VILLAGE and Wildlife.is_in_group("match_world"):
+		Wildlife.remove_from_group("match_world")
+	GameAudio.set_map(id)
+	# Frame cap, render scale, sun shadows and ground cover follow Settings > Graphics.
+	GraphicsSettings.register_world(self)
+	print("MAP: %s (%s)" % [GameMaps.title(id), id])
+
+func build_arena() -> void:
+	if map_id == GameMaps.CRYPT:
+		add_map_node(preload("res://gameplay/environment/crypt_dungeon.gd").new())
+		return
+	if map_id == GameMaps.WHITE_ROOM:
+		add_map_node(preload("res://gameplay/environment/white_room.gd").new())
+		return
+	add_map_node(preload("res://gameplay/environment/village_arena.gd").new())
 	# After the village, whose landscape heights they sample.
-	add_child(preload("res://gameplay/environment/church_grounds.gd").new())
-	add_child(preload("res://gameplay/environment/church_road.gd").new())
-	add_child(preload("res://gameplay/environment/haunted_forest.gd").new())
+	add_map_node(preload("res://gameplay/environment/church_grounds.gd").new())
+	add_map_node(preload("res://gameplay/environment/church_road.gd").new())
+	add_map_node(preload("res://gameplay/environment/haunted_forest.gd").new())
+
+func add_map_node(node: Node) -> void:
+	add_child(node)
+	map_nodes.append(node)
 
 func build_ui() -> void:
 	add_child(preload("res://ui/fisheye.gd").new())

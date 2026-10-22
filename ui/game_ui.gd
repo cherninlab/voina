@@ -14,6 +14,7 @@ var title_choices: VBoxContainer = VBoxContainer.new()
 var setup_mode: String = ""
 var setup_heading: Label
 var address_heading: Label
+var map_heading: Label
 var title_host: Button
 var ui_font: SystemFont = SystemFont.new()
 var caps_font: FontVariation = FontVariation.new() # ui_font tracked about 105 % at menu sizes
@@ -104,10 +105,21 @@ func _ready() -> void:
 	address.text_submitted.connect(func(_text: String) -> void: (world.get("join_button") as Button).pressed.emit())
 	var host: Button = world.get("host_button") as Button
 	host.text = "Start game"
-	host.pressed.connect(func() -> void: NetworkManager.host_game(NetworkManager.port))
+	var map_select: OptionButton = world.get("map_select") as OptionButton
+	host.pressed.connect(func() -> void:
+		world.call("load_map", GameMaps.IDS[maxi(0, map_select.selected)])
+		NetworkManager.host_game(NetworkManager.port))
 	var join: Button = world.get("join_button") as Button
 	join.text = "Join game"
 	join.pressed.connect(func() -> void: NetworkManager.join_game(address.text, NetworkManager.port))
+	map_heading = caption(menu, "Map")
+	for title: String in GameMaps.TITLES:
+		map_select.add_item(title)
+	map_select.select(GameMaps.IDS.find(str(world.get("map_id"))))
+	map_select.custom_minimum_size = Vector2(320, 36)
+	# The encounter switches below only shape the village.
+	map_select.item_selected.connect(func(_index: int) -> void: show_setup(setup_mode))
+	menu.add_child(map_select)
 	var village_raiders: CheckButton = world.get("village_raiders_toggle") as CheckButton
 	village_raiders.text = "Raiders in the village"
 	menu.add_child(village_raiders)
@@ -528,6 +540,7 @@ func refresh() -> void:
 	for toggle: String in ["pve_toggle", "village_raiders_toggle", "forest_raiders_toggle"]:
 		(world.get(toggle) as CheckButton).disabled = active
 	(world.get("match_toggle") as CheckButton).disabled = active
+	(world.get("map_select") as OptionButton).disabled = active
 	var leave: Button = world.get("leave_button") as Button
 	leave.text = "Cancel connection" if connecting else "Leave game"
 	leave.visible = active
@@ -555,9 +568,11 @@ func show_setup(mode: String) -> void:
 	(world.get("join_button") as Control).visible = mode == "join"
 	(world.get("address") as Control).visible = mode == "join"
 	address_heading.visible = mode == "join"
-	for toggle: String in ["pve_toggle", "village_raiders_toggle", "forest_raiders_toggle"]:
-		(world.get(toggle) as Control).visible = mode == "host"
-	(world.get("match_toggle") as Control).visible = mode == "host"
+	var village: bool = (world.get("map_select") as OptionButton).selected == GameMaps.IDS.find(GameMaps.VILLAGE)
+	(world.get("map_select") as Control).visible = mode == "host"
+	map_heading.visible = mode == "host"
+	for toggle: String in ["pve_toggle", "village_raiders_toggle", "forest_raiders_toggle", "match_toggle"]:
+		(world.get(toggle) as Control).visible = mode == "host" and village
 	refresh()
 	if mode.is_empty():
 		title_host.grab_focus()

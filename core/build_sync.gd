@@ -2,8 +2,8 @@ extends Node
 ## Debug builds only play against the same build. The fingerprint hashes every gameplay script,
 ## scene, resource and project setting, so uncommitted agent edits count as a different build.
 ## Peers compare it during SceneMultiplayer authentication, before peer_connected, so a
-## mismatched joiner never spawns. Release builds and --allow-version-mismatch skip source checks;
-## map agreement is always required.
+## mismatched joiner never spawns. Release builds and --allow-version-mismatch skip source checks.
+## The host's answer also names its map, which the joiner loads before completing authentication.
 ## See docs/playtest.md.
 
 const SOURCES: Array[String] = ["res://core", "res://gameplay", "res://ui"]
@@ -13,7 +13,7 @@ var fingerprint: String = ""
 var commit: String = "unknown"
 var enforced: bool = false
 var expecting_refusal: bool = false
-var map_id: String = "crypt" if "--dungeon" in OS.get_cmdline_user_args() else "village"
+var map_id: String = GameMaps.VILLAGE # set by MatchWorld.load_map
 
 func _ready() -> void:
 	commit = describe_commit()
@@ -24,11 +24,11 @@ func _ready() -> void:
 	print("BUILD: " + label())
 	enforced = OS.is_debug_build() and not ("--allow-version-mismatch" in OS.get_cmdline_user_args())
 	var scene_multiplayer: SceneMultiplayer = multiplayer as SceneMultiplayer
-	# Map agreement remains mandatory in exports and with --allow-version-mismatch.
 	if scene_multiplayer == null:
 		return
 	scene_multiplayer.auth_callback = receive_auth
-	scene_multiplayer.auth_timeout = 5.0
+	# Room for a joiner to build the host's map (the village takes a few seconds) inside the check.
+	scene_multiplayer.auth_timeout = 30.0
 	scene_multiplayer.peer_authenticating.connect(authenticating)
 	scene_multiplayer.peer_authentication_failed.connect(authentication_failed)
 	expecting_refusal = "--expect-version-mismatch" in OS.get_cmdline_user_args()
@@ -106,7 +106,7 @@ func receive_auth(peer: int, data: PackedByteArray) -> void:
 	var remote_commit: String = str(info.get("commit", "unknown"))
 	var remote_map: String = str(info.get("map", "village"))
 	if multiplayer.is_server():
-		var matches: bool = remote_map == map_id and (not enforced or (not remote_fingerprint.is_empty() and remote_fingerprint == fingerprint))
+		var matches: bool = not enforced or (not remote_fingerprint.is_empty() and remote_fingerprint == fingerprint)
 		scene_multiplayer.send_auth(peer, encode({"fingerprint": fingerprint, "commit": commit, "map": map_id, "accepted": matches}))
 		if matches:
 			scene_multiplayer.complete_auth(peer)
@@ -115,15 +115,15 @@ func receive_auth(peer: int, data: PackedByteArray) -> void:
 			NetworkManager.report("Refused a player on build %s; you run %s" % [remote_commit, label()])
 		return
 	if bool(info.get("accepted", false)):
+		if remote_map != map_id:
+			if not remote_map in GameMaps.IDS:
+				NetworkManager.stop("The host plays map '%s', which this build does not have." % remote_map)
+				return
+			print("MAP_ADOPTED: %s" % remote_map)
+			for world: Node in get_tree().get_nodes_in_group("match_world"):
+				if world.has_method("load_map"):
+					world.call("load_map", remote_map)
 		scene_multiplayer.complete_auth(peer)
-		return
-	if remote_map != map_id:
-		var map_message: String = "Host map is %s; your map is %s. Restart %s --dungeon on both host and joiner." % [remote_map, map_id, "with" if remote_map == "crypt" else "without"]
-		print("MAP_MISMATCH: " + map_message)
-		NetworkManager.stop(map_message)
-		if expecting_refusal:
-			print("VERSION_MISMATCH_OK: map refused before spawn")
-			get_tree().quit()
 		return
 	var message: String = "Host runs %s [%s], you run %s. Run: python3 scripts/playtest.py sync --commit %s" % [remote_commit, remote_fingerprint, label(), remote_commit.trim_suffix("+dirty")]
 	print("VERSION_MISMATCH: " + message)

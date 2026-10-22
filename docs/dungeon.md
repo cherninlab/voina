@@ -1,21 +1,27 @@
-# Cinder Crypt — first dungeon playtest
+# Maps: Village, Cinder Crypt, White Room
 
-The village remains the default map. Only `--dungeon` selects this second map; there is no map menu or village portal yet. Both host and joiners must use the flag. Map disagreement is refused during authentication, before players spawn, including when build checks are bypassed.
+Host game → **Map** picks the map before Start game: Village (the default), Cinder Crypt or White Room. The village's encounter and round switches only appear for the village. Joiners need nothing: the host's authentication answer names its map and the joiner builds it before anyone spawns (`MAP_ADOPTED: <id>` in its log). The list lives in `gameplay/maps.gd`.
 
-From any checkout, with Godot 4.7.2 configured:
-
-```sh
-python3 scripts/playtest.py host --dungeon
-python3 scripts/playtest.py join HOST_ADDRESS --dungeon
-```
-
-These use the clean, pinned playtest copy. Direct development launch:
+Without the menu, `--map=village|crypt|white_room` (or `--dungeon`, the same as `--map=crypt`) chooses the map for an automatic `--host` or `--server`:
 
 ```sh
-GODOT=/path/to/Godot scripts/godot_bg.sh --path . -- --host --dungeon
-# Dedicated host; joiners still need --dungeon:
-"$GODOT" --headless --path . -- --server --dungeon
+python3 scripts/playtest.py host --map crypt
+python3 scripts/playtest.py host --map white_room
+python3 scripts/playtest.py join HOST_ADDRESS
 ```
+
+`playtest.py host` uses the clean copy of the tip of main. Direct development launch:
+
+```sh
+GODOT=/path/to/Godot scripts/godot_bg.sh --path . -- --host --map=white_room
+"$GODOT" --headless --path . -- --server --map=crypt
+```
+
+## White Room
+
+A plain, evenly lit 20 × 28 m room with a faint 2 m floor grid, for combat testing. Players start at the south end. Classic (unhooded) raiders arrive from four gates at the far corners and sides: three at once, then one every 4 s while fewer than six are present, for as long as the session lasts. They hold the middle of the room, from where the whole room is in sight. The corner label counts raiders present and felled. No ambience plays. Esc → Leave game ends it.
+
+## Cinder Crypt
 
 Start in a sheltered entrance. Pass either side of the inscription screen into the burial hall. Its central sarcophagus and columns make two reconnecting routes for fighting and retreating. Continue through the north arch to the blue altar chamber. Defeat all five cultists and reach the altar to see **CLEARED**. The objective appears while the cursor is captured.
 
