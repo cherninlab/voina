@@ -56,7 +56,9 @@ func run() -> void:
 	check(field.camps.size() >= 3 and field.camps.size() == field.fires.size(), "Several camps along the road (%d)" % field.camps.size())
 	for index: int in range(1, field.camps.size()):
 		check(field.camp_stations[index] - field.camp_stations[index - 1] > settings.camp_radius * 2.0, "Camps %d and %d do not overlap" % [index - 1, index])
-	check(field.camp_stations[field.camps.size() - 1] > field.road_length() - settings.camp_radius - 10.0, "The last camp is at the road's end")
+	var last: int = field.camps.size() - 1
+	check(is_equal_approx(field.camp_stations[last], field.road_length()) and field.fires[last].distance_to(field.points[field.points.size() - 1]) < 0.01, "The road ends at the last fire")
+	check(field.tree_count > 200, "Trees line the horizon (%d)" % field.tree_count)
 	check(field.camp_cultists[field.camps.size() - 1] == settings.cultists_max, "The road's end holds the most cultists")
 	var started_at: int = Time.get_ticks_msec()
 	field.grass()
@@ -75,6 +77,13 @@ func run() -> void:
 			check(space.intersect_shape(query).is_empty(), "Open ground %.0f m along, %.1f m aside" % [station, lateral])
 		var beyond: Vector3 = field.point_at(station) + normal * (settings.field_half_width + 0.1) + Vector3.UP * 1.0
 		check(not space.intersect_ray(PhysicsRayQueryParameters3D.create(beyond - normal * 3.0, beyond + normal * 3.0)).is_empty(), "The fence stops players %.0f m along" % station)
+	# The final clearing is open all round; the fence closes the field just past it.
+	for angle: float in [0.0, PI * 0.5, PI, PI * 1.5]:
+		query.transform = Transform3D(Basis.IDENTITY, field.fires[last] + Vector3(cos(angle), 0.0, sin(angle)) * (settings.camp_radius - 1.5) + Vector3.UP * 1.0)
+		check(space.intersect_shape(query).is_empty(), "The last clearing is open toward %.1f rad" % angle)
+	var beyond_end: Vector3 = field.point_at(field.field_end()) + Vector3.UP * 1.0
+	var tangent: Vector3 = field.tangent_at(field.road_length())
+	check(not space.intersect_ray(PhysicsRayQueryParameters3D.create(beyond_end - tangent * 3.0, beyond_end + tangent * 3.0)).is_empty(), "The field is fenced beyond the road's end")
 	check(players().get_child_count() == 1, "The host spawns at the road's start")
 	var player: CharacterBody3D = players().get_child(0) as CharacterBody3D
 	check(player.position.distance_to(field.point_at(4.0)) < 2.0, "Spawn is on the road")

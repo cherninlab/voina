@@ -35,6 +35,17 @@ extends Resource
 ## Sway amplitude of the blade tips in metres.
 @export_range(0.0, 0.6, 0.01) var wind: float = 0.18
 
+@export_group("Treeline")
+## Dark spruce silhouettes on the horizon, beyond the fence: this near and far from the road.
+@export_range(25.0, 300.0, 5.0) var trees_near: float = 60.0
+@export_range(30.0, 400.0, 5.0) var trees_far: float = 160.0
+## Road metres between rows of three trees on each side; smaller is a denser wood.
+@export_range(1.0, 30.0, 0.5) var tree_spacing: float = 5.0
+## Share of the horizon left open between stands of trees (0 = an unbroken wall of wood).
+@export_range(0.0, 0.9, 0.05) var tree_gaps: float = 0.35
+@export_range(3.0, 40.0, 0.5) var tree_height_min: float = 9.0
+@export_range(3.0, 40.0, 0.5) var tree_height_max: float = 19.0
+
 @export_group("Camps")
 ## Where the first clearing sits along the road, in metres.
 @export_range(20.0, 500.0, 5.0) var first_camp: float = 90.0
@@ -43,7 +54,7 @@ extends Resource
 @export_range(0.0, 200.0, 5.0) var camp_jitter: float = 40.0
 @export_range(4.0, 20.0, 0.5) var camp_radius: float = 9.0
 ## Cultists at the first camp, then camp_growth more per camp (rounded down), capped at
-## cultists_max. The camp at the road's end always holds cultists_max.
+## cultists_max. The road ends in a last clearing around a fire, which always holds cultists_max.
 @export_range(1, 8, 1) var cultists_first: int = 2
 @export_range(0.0, 3.0, 0.1) var camp_growth: float = 0.5
 @export_range(1, 8, 1) var cultists_max: int = 5

@@ -1,6 +1,6 @@
 # Long Grass
 
-A night map for a long walk: a trodden road winds through a field of grass taller than a person, opening every so often into a campfire clearing. Hooded cultists at each fire wake when a player comes near. Pick **Long Grass** under Host game → Map, or `python3 scripts/playtest.py host --map long_grass`.
+A night map for a long walk: a trodden road winds through a field of grass taller than a person, opening every so often into a campfire clearing. Hooded cultists at each fire wake when a player comes near. The road ends in a last clearing around its final fire, where the corner label reads "The road ends here." Pick **Long Grass** under Host game → Map, or `python3 scripts/playtest.py host --map long_grass`.
 
 ## Tweaking the generation
 
@@ -20,14 +20,17 @@ Every knob lives in [`gameplay/environment/long_grass.tres`](../gameplay/environ
 | | `grass_density` | Clumps per square metre; each clump is 11 blades. |
 | | `grass_view_distance` | Grass beyond this is not drawn. |
 | | `grass_root`, `grass_tip`, `wind` | Blade colours and sway. |
-| Camps | `first_camp`, `camp_spacing`, `camp_jitter` | Where clearings fall along the road. The road's end is always a camp. |
+| Treeline | `trees_near`, `trees_far` | Spruce silhouettes stand this near and far from the road, beyond both ends too. |
+| | `tree_spacing`, `tree_gaps` | Road metres between rows of three trees per side; the share of horizon left open between stands. |
+| | `tree_height_min`, `tree_height_max` | Tree heights in metres. |
+| Camps | `first_camp`, `camp_spacing`, `camp_jitter` | Where clearings fall along the road. The road always ends in a clearing around the last fire. |
 | | `camp_radius` | Clearing size. |
 | | `cultists_first`, `camp_growth`, `cultists_max` | Cultists per camp, growing along the road; the last camp holds the most. |
 | | `wake_distance` | How close a player gets to a fire before its cultists wake. |
 | Night | `moon_yaw`, `moon_height`, `moon_size`, `moonlight` | Moon position, size and light. |
 | | `fog_density` | Night haze. |
 
-Keep `turn` modest: a very tight bend can bring the inner fence closer than `field_half_width` to the road. The host prints the result on load, for example `LONG_GRASS_READY: 900 m road, 6 camps (2,2,3,3,4,5 cultists), 34431 grass clumps, seed 1337`.
+Keep `turn` modest: a very tight bend can bring the inner fence closer than `field_half_width` to the road. The host prints the result on load, for example `LONG_GRASS_READY: 900 m road, 6 camps (2,2,3,3,4,5 cultists), 35394 grass clumps, 912 trees, seed 1337`.
 
 ## How it plays
 
@@ -37,6 +40,6 @@ Keep `turn` modest: a very tight bend can bring the inner fence closer than `fie
 
 ## Scenery and cost
 
-Flat ground, one road ribbon, one clearing disc and a stone ring with logs per camp, and grass in 30 m multimesh chunks culled past `grass_view_distance` with no shadows. Headless servers and tests skip the grass. The sky reuses the village's storm panorama (`content/environments/grim/storm_sky.png`), darkened, with an original procedural full moon (`gameplay/environment/moon_sky.gdshader`). Campfires reuse the church road's flame shader. No new external assets.
+Flat ground, one road ribbon, one clearing disc and a stone ring with logs per camp, and grass in 30 m multimesh chunks culled past `grass_view_distance` with no shadows. The road, clearings and soil use the village's generated dirt albedos (`compacted_path`, `soil_gravel`, `mineral_earth` in `content/environments/village_generated/`), projected from above in world metres. The treeline is one multimesh of original low-poly spruces (about 900, roughly 50 triangles each), unlit and unfogged so they read as a dark cut-out against the sky. Headless servers and tests skip the grass. The sky reuses the village's storm panorama (`content/environments/grim/storm_sky.png`), darkened, with an original procedural full moon (`gameplay/environment/moon_sky.gdshader`). Campfires reuse the church road's flame shader. No new external assets.
 
 Verification: `python3 scripts/dungeon_smoke_test.py "$GODOT"` runs `tests/long_grass_test.tscn` over ENet: determinism, fence, planting, wake/clear/abandon, rehost and a joiner adopting the map.

@@ -4,11 +4,14 @@ extends Node3D
 ## into a campfire clearing whose cultists wake as players approach (CampMobs). Everything comes
 ## from long_grass.tres (LongGrassSettings) and its seed, so every peer generates the same road.
 ## Flat ground at y = 0; the grass is cosmetic (no collision) and an invisible fence keeps players
-## within field_half_width of the road. See docs/long-grass.md.
+## within field_half_width of the road. The road ends in a last clearing around its final fire.
+## Dirt textures are the village's (content/environments/village_generated); spruce silhouettes
+## line the horizon. See docs/long-grass.md.
 
 const SETTINGS: LongGrassSettings = preload("res://gameplay/environment/long_grass.tres")
 const CHUNK: float = 30.0 # road metres per grass multimesh, so far chunks are culled whole
 const BLADES: int = 11
+const GROUND: String = "res://content/environments/village_generated/"
 var settings: LongGrassSettings = SETTINGS
 var points: PackedVector3Array = PackedVector3Array() # road centre line, one per settings.step
 var camp_stations: PackedFloat32Array = PackedFloat32Array() # road distance of each clearing
@@ -16,6 +19,7 @@ var camps: PackedVector3Array = PackedVector3Array() # clearing centres, on the 
 var fires: PackedVector3Array = PackedVector3Array() # each camp's fire, beside the road
 var camp_cultists: PackedInt32Array = PackedInt32Array()
 var grass_clumps: int = 0
+var tree_count: int = 0
 var objective: Label = Label.new()
 
 func _ready() -> void:
@@ -25,6 +29,7 @@ func _ready() -> void:
 	ground()
 	road()
 	fence()
+	treeline()
 	var flame: ShaderMaterial = ShaderMaterial.new()
 	flame.shader = preload("res://content/environments/church_road/torch_flame.gdshader")
 	for index: int in range(camps.size()):
@@ -33,7 +38,7 @@ func _ready() -> void:
 	if DisplayServer.get_name() != "headless":
 		grass()
 	hud()
-	print("LONG_GRASS_READY: %d m road, %d camps (%s cultists), %d grass clumps, seed %d" % [roundi(settings.length), camps.size(), ",".join(PackedStringArray(Array(camp_cultists).map(func(count: int) -> String: return str(count)))), grass_clumps, settings.road_seed])
+	print("LONG_GRASS_READY: %d m road, %d camps (%s cultists), %d grass clumps, %d trees, seed %d" % [roundi(settings.length), camps.size(), ",".join(PackedStringArray(Array(camp_cultists).map(func(count: int) -> String: return str(count)))), grass_clumps, tree_count, settings.road_seed])
 
 ## The road, then the clearings along it. Only the seed and settings decide them.
 func generate() -> void:
@@ -50,26 +55,39 @@ func generate() -> void:
 		at += Vector3(sin(heading), 0.0, -cos(heading)) * settings.step
 		points.append(at)
 	var station: float = settings.first_camp
-	var last: float = road_length() - settings.camp_radius - 4.0
+	var last: float = road_length()
 	while station < last - settings.camp_spacing * 0.5:
 		camp_stations.append(station)
 		station += settings.camp_spacing + rng.randf_range(-settings.camp_jitter, settings.camp_jitter)
-	camp_stations.append(last) # the road's end is always a camp
+	camp_stations.append(last) # the road ends in a clearing around the last fire
 	for index: int in range(camp_stations.size()):
 		var centre: Vector3 = point_at(camp_stations[index])
 		camps.append(centre)
 		var side: float = -1.0 if rng.randf() < 0.5 else 1.0
-		fires.append(centre + normal_at(camp_stations[index]) * side * 3.2)
+		var aside: float = 0.0 if index == camp_stations.size() - 1 else 3.2
+		fires.append(centre + normal_at(camp_stations[index]) * side * aside)
 		var count: int = mini(settings.cultists_max, settings.cultists_first + floori(float(index) * settings.camp_growth))
 		camp_cultists.append(settings.cultists_max if index == camp_stations.size() - 1 else count)
 
 func road_length() -> float:
 	return float(points.size() - 1) * settings.step
 
+# Past either end it continues straight on, for the field and fence around the road's ends.
 func point_at(station: float) -> Vector3:
-	var at: float = clampf(station / settings.step, 0.0, float(points.size() - 1))
+	if station < 0.0:
+		return points[0] + tangent_at(0.0) * station
+	if station > road_length():
+		return points[points.size() - 1] + tangent_at(road_length()) * (station - road_length())
+	var at: float = station / settings.step
 	var index: int = mini(floori(at), points.size() - 2)
 	return points[index].lerp(points[index + 1], at - float(index))
+
+## Where the field and fence stop: a little behind the start, and around the final clearing.
+func field_start() -> float:
+	return -8.0
+
+func field_end() -> float:
+	return road_length() + settings.camp_radius + 6.0
 
 func tangent_at(station: float) -> Vector3:
 	var index: int = clampi(floori(station / settings.step), 0, points.size() - 2)
@@ -150,12 +168,10 @@ func ground() -> void:
 	for point: Vector3 in points:
 		low = Vector3(minf(low.x, point.x), 0, minf(low.z, point.z))
 		high = Vector3(maxf(high.x, point.x), 0, maxf(high.z, point.z))
-	var margin: float = settings.field_half_width + 40.0
+	var margin: float = settings.trees_far + 20.0
 	var size: Vector3 = Vector3(high.x - low.x + margin * 2.0, 1.0, high.z - low.z + margin * 2.0)
 	var centre: Vector3 = (low + high) * 0.5
-	var soil: StandardMaterial3D = StandardMaterial3D.new()
-	soil.albedo_color = Color(0.045, 0.055, 0.04)
-	soil.roughness = 1.0
+	var soil: StandardMaterial3D = dirt("mineral_earth.png", 2.5, Color(0.32, 0.36, 0.3))
 	var plane: PlaneMesh = PlaneMesh.new()
 	plane.size = Vector2(size.x, size.z)
 	var visual: MeshInstance3D = MeshInstance3D.new()
@@ -174,9 +190,7 @@ func ground() -> void:
 
 # One flat ribbon along the centre line, a hair above the soil.
 func road() -> void:
-	var dirt: StandardMaterial3D = StandardMaterial3D.new()
-	dirt.albedo_color = Color(0.15, 0.13, 0.1)
-	dirt.roughness = 1.0
+	var path: StandardMaterial3D = dirt("compacted_path.png", 1.5, Color(0.5, 0.48, 0.45))
 	var surface: SurfaceTool = SurfaceTool.new()
 	surface.begin(Mesh.PRIMITIVE_TRIANGLES)
 	surface.set_normal(Vector3.UP)
@@ -192,7 +206,7 @@ func road() -> void:
 			surface.add_vertex(vertex)
 	var visual: MeshInstance3D = MeshInstance3D.new()
 	visual.mesh = surface.commit()
-	visual.material_override = dirt
+	visual.material_override = path
 	visual.cast_shadow = GeometryInstance3D.SHADOW_CASTING_SETTING_OFF
 	add_child(visual)
 
@@ -202,17 +216,103 @@ func fence() -> void:
 	var body: StaticBody3D = StaticBody3D.new()
 	body.name = "Fence"
 	add_child(body)
-	var stride: int = 4
-	for index: int in range(0, points.size() - 1, stride):
-		var next: int = mini(index + stride, points.size() - 1)
+	var stride: float = settings.step * 4.0
+	var station: float = field_start()
+	while station < field_end():
+		var next: float = minf(station + stride, field_end())
 		for side: float in [-1.0, 1.0]:
-			var a: Vector3 = points[index] + normal_at(float(index) * settings.step) * side * settings.field_half_width
-			var b: Vector3 = points[next] + normal_at(minf(float(next) * settings.step, road_length() - 0.01)) * side * settings.field_half_width
-			wall(body, a, b)
-	for station: float in [-1.0, road_length() + 1.0]:
-		var at: Vector3 = point_at(station) + tangent_at(station) * (-1.0 if station < 0.0 else 1.0)
-		var across: Vector3 = normal_at(clampf(station, 0.0, road_length() - 0.01)) * settings.field_half_width
-		wall(body, at - across, at + across)
+			wall(body, point_at(station) + normal_at(station) * side * settings.field_half_width, point_at(next) + normal_at(next) * side * settings.field_half_width)
+		station = next
+	for end: float in [field_start(), field_end()]:
+		var across: Vector3 = normal_at(end) * settings.field_half_width
+		wall(body, point_at(end) - across, point_at(end) + across)
+
+func dirt(file: String, metres: float, tint: Color) -> StandardMaterial3D:
+	var material: StandardMaterial3D = StandardMaterial3D.new()
+	material.albedo_texture = load(GROUND + file) as Texture2D
+	material.albedo_color = tint
+	material.roughness = 1.0
+	# Projected from above in world metres: no UVs to build, and every piece tiles seamlessly.
+	material.uv1_triplanar = true
+	material.uv1_world_triplanar = true
+	material.uv1_scale = Vector3.ONE / metres
+	material.texture_filter = BaseMaterial3D.TEXTURE_FILTER_LINEAR_WITH_MIPMAPS_ANISOTROPIC
+	return material
+
+## Spruce silhouettes in stands either side of the road and beyond both ends, past the fence, three
+## per side every tree_spacing metres where a stand stands. Fog
+## would swallow them at this range, so they ignore it and stay dark against the sky.
+func treeline() -> void:
+	var rng: RandomNumberGenerator = RandomNumberGenerator.new()
+	rng.seed = settings.road_seed + 2
+	var placements: Array[Transform3D] = []
+	var near: float = maxf(settings.trees_near, settings.field_half_width + 8.0)
+	var far: float = maxf(settings.trees_far, near + 10.0)
+	var stand: float = 0.0
+	var station: float = -far
+	while station < road_length() + far:
+		# Stands come and go along the road; tree_gaps of it is left open.
+		if absf(fmod(station, 60.0)) < settings.tree_spacing:
+			stand = rng.randf()
+		if stand >= settings.tree_gaps:
+			for side: float in [-1.0, 1.0, -1.0, 1.0, -1.0, 1.0]:
+				var at: Vector3 = point_at(station + rng.randf_range(-0.5, 0.5) * settings.tree_spacing) + normal_at(clampf(station, 0.0, road_length())) * side * rng.randf_range(near, far)
+				if distance_to_road(at, clampf(station, 0.0, road_length())) < near * 0.8 or end_distance(at) < near * 0.8:
+					continue
+				var height: float = rng.randf_range(settings.tree_height_min, settings.tree_height_max)
+				var girth: float = height * rng.randf_range(0.28, 0.38)
+				placements.append(Transform3D(Basis(Vector3.UP, rng.randf() * TAU).scaled(Vector3(girth, height, girth)), at))
+		station += settings.tree_spacing
+	if placements.is_empty():
+		return
+	var multi: MultiMesh = MultiMesh.new()
+	multi.transform_format = MultiMesh.TRANSFORM_3D
+	multi.mesh = spruce_mesh()
+	multi.instance_count = placements.size()
+	for index: int in range(placements.size()):
+		multi.set_instance_transform(index, placements[index])
+	# Unlit: a cut-out of the wood against the sky, never catching the moon.
+	var dark: StandardMaterial3D = StandardMaterial3D.new()
+	dark.shading_mode = BaseMaterial3D.SHADING_MODE_UNSHADED
+	dark.albedo_color = Color(0.012, 0.016, 0.02)
+	dark.disable_fog = true
+	var wood: MultiMeshInstance3D = MultiMeshInstance3D.new()
+	wood.name = "Treeline"
+	wood.multimesh = multi
+	wood.material_override = dark
+	wood.cast_shadow = GeometryInstance3D.SHADOW_CASTING_SETTING_OFF
+	add_child(wood)
+	tree_count = placements.size()
+
+# Distance to the road's start or end point, which station_of() clamps to.
+func end_distance(at: Vector3) -> float:
+	return minf(points[0].distance_to(at), points[points.size() - 1].distance_to(at))
+
+# A trunk and three stacked cones, 1 m tall and 1 m wide before scaling.
+func spruce_mesh() -> ArrayMesh:
+	var surface: SurfaceTool = SurfaceTool.new()
+	surface.begin(Mesh.PRIMITIVE_TRIANGLES)
+	var sides: int = 7
+	for tier: Vector3 in [Vector3(0.12, 0.55, 0.5), Vector3(0.4, 0.8, 0.38), Vector3(0.65, 1.0, 0.24)]:
+		# (base height, tip height, base radius)
+		for side: int in range(sides):
+			var a: float = TAU * float(side) / float(sides)
+			var b: float = TAU * float(side + 1) / float(sides)
+			var tip: Vector3 = Vector3(0.0, tier.y, 0.0)
+			var left: Vector3 = Vector3(cos(a) * tier.z, tier.x, sin(a) * tier.z)
+			var right: Vector3 = Vector3(cos(b) * tier.z, tier.x, sin(b) * tier.z)
+			surface.set_normal((left + right).normalized() + Vector3.UP * 0.6)
+			for vertex: Vector3 in [tip, right, left]:
+				surface.add_vertex(vertex)
+	for side: int in range(4):
+		var a: float = TAU * float(side) / 4.0
+		var b: float = TAU * float(side + 1) / 4.0
+		var low_a: Vector3 = Vector3(cos(a), 0.0, sin(a)) * 0.04
+		var low_b: Vector3 = Vector3(cos(b), 0.0, sin(b)) * 0.04
+		surface.set_normal(Vector3(cos(a), 0.0, sin(a)))
+		for vertex: Vector3 in [low_a, low_b + Vector3.UP * 0.2, low_b, low_a, low_a + Vector3.UP * 0.2, low_b + Vector3.UP * 0.2]:
+			surface.add_vertex(vertex)
+	return surface.commit()
 
 func wall(body: StaticBody3D, a: Vector3, b: Vector3) -> void:
 	var collision: CollisionShape3D = CollisionShape3D.new()
@@ -224,9 +324,7 @@ func wall(body: StaticBody3D, a: Vector3, b: Vector3) -> void:
 	body.add_child(collision)
 
 func camp(index: int, flame: ShaderMaterial) -> void:
-	var trodden: StandardMaterial3D = StandardMaterial3D.new()
-	trodden.albedo_color = Color(0.12, 0.1, 0.08)
-	trodden.roughness = 1.0
+	var trodden: StandardMaterial3D = dirt("soil_gravel.png", 2.5, Color(0.5, 0.48, 0.45))
 	var clearing: CylinderMesh = CylinderMesh.new()
 	clearing.top_radius = settings.camp_radius
 	clearing.bottom_radius = settings.camp_radius
@@ -305,13 +403,13 @@ func grass() -> void:
 	rng.seed = settings.road_seed + 1
 	var cell: float = 1.0 / sqrt(settings.grass_density)
 	var clear_path: float = settings.path_width * 0.5 + 0.15
-	var chunk_start: float = 0.0
-	while chunk_start < road_length():
+	var chunk_start: float = field_start()
+	while chunk_start < field_end():
 		var origin: Vector3 = point_at(chunk_start + CHUNK * 0.5)
 		var placements: Array[Transform3D] = []
 		var shades: Array[Color] = []
 		var station: float = chunk_start
-		while station < minf(chunk_start + CHUNK, road_length()):
+		while station < minf(chunk_start + CHUNK, field_end()):
 			var normal: Vector3 = normal_at(station)
 			var lateral: float = clear_path
 			while lateral < settings.field_half_width:
@@ -402,7 +500,9 @@ func _process(_delta: float) -> void:
 	var mobs: Node = world.get("mobs") as Node
 	var cleared: int = int(mobs.get("cleared"))
 	var left: int = roundi(road_length() - station_of(local.position))
-	var line: String = "%d m to the road's end" % left if left > 6 else "The road's end"
+	var line: String = "%d m to the last fire" % left
 	if int(mobs.get("active")) >= 0 and int(mobs.get("alive")) > 0:
 		line = "%d cultists at the fire" % int(mobs.get("alive"))
+	elif local.position.distance_to(fires[fires.size() - 1]) < settings.camp_radius:
+		line = "The road ends here."
 	objective.text = "LONG GRASS  ·  camps %d / %d cleared\n%s" % [cleared, camps.size(), line]
