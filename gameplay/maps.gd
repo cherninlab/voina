@@ -9,6 +9,8 @@ const CRYPT: String = "crypt"
 const WHITE_ROOM: String = "white_room"
 const IDS: Array[String] = [VILLAGE, CRYPT, WHITE_ROOM]
 const TITLES: Array[String] = ["Village", "Cinder Crypt", "White Room"]
+# A shading theme (ui/shading.gd) the map is shown in; empty keeps the player's own.
+const SHADING: Array[String] = ["", "", "Overexposed"]
 
 static func from_arguments(arguments: PackedStringArray) -> String:
 	for argument: String in arguments:
@@ -18,6 +20,9 @@ static func from_arguments(arguments: PackedStringArray) -> String:
 
 static func title(id: String) -> String:
 	return TITLES[maxi(0, IDS.find(id))]
+
+static func shading(id: String) -> String:
+	return SHADING[maxi(0, IDS.find(id))]
 
 # Each map's encounter: the village's switchable church yard and raiders, the crypt's five
 # cultists, or the white room's endless raiders.

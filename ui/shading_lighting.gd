@@ -21,6 +21,8 @@ extends Node
 # Local presentation only; every original value is kept and put back.
 
 var sun: DirectionalLight3D
+var original_sun: DirectionalLight3D # the sun and sky whose values `original` holds
+var original_environment: Environment
 var environment: Environment
 var lightmap: LightmapGI
 var rig: Node3D = Node3D.new()
@@ -106,12 +108,15 @@ func find_scene() -> void:
 	for node: Node in tree_root.find_children("*", "LightmapGI", true, false):
 		lightmap = node as LightmapGI
 		break
-	if sun != null and not original.has("sun_energy"):
+	# A new map brings its own sun and sky: learn their originals again.
+	if sun != null and sun != original_sun:
+		original_sun = sun
 		original["sun_energy"] = sun.light_energy
 		original["sun_color"] = sun.light_color
 		original["sun_rotation"] = sun.rotation
 		original["sun_bake"] = sun.light_bake_mode
-	if environment != null and not original.has("ambient_energy"):
+	if environment != null and environment != original_environment:
+		original_environment = environment
 		original["ambient_energy"] = environment.ambient_light_energy
 		original["ambient_color"] = environment.ambient_light_color
 		original["sky_energy"] = environment.background_energy_multiplier

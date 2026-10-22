@@ -29,6 +29,12 @@ func wait_for(condition: Callable, limit: int = 900) -> bool:
 func mobs() -> MobSystem:
 	return world.get("mobs") as MobSystem
 
+func shading() -> Node:
+	for child: Node in world.get_children():
+		if child.get_script() == preload("res://ui/shading.gd"):
+			return child
+	return null
+
 func players() -> Node3D:
 	return world.get("players") as Node3D
 
@@ -40,9 +46,12 @@ func run() -> void:
 		await joiner()
 		return
 	check(str(world.get("map_id")) == GameMaps.VILLAGE and world.has_node("WoodlandVillage") and Wildlife.is_in_group("match_world"), "The lobby starts on the village")
+	var own_theme: String = str(shading().call("theme_name"))
+	check(own_theme != "Overexposed", "The village keeps the player's theme")
 	await host_map(GameMaps.WHITE_ROOM)
 	check(world.has_node("WhiteRoom") and not world.has_node("WoodlandVillage") and not world.has_node("CinderCrypt"), "Only the white room is built")
 	check(not Wildlife.is_in_group("match_world") and not Wildlife.active, "No birds indoors")
+	check(str(shading().call("theme_name")) == "Overexposed" and str(shading().call("preferred_theme_name")) == own_theme, "The white room is overexposed without changing the saved theme")
 	check(mobs().name == "Mobs" and mobs().get("felled") != null, "The replacement encounter keeps the replicated name")
 	check(mobs().raiders.get_child_count() == WaveMobs.OPENING, "The white room opens with %d raiders" % WaveMobs.OPENING)
 	for node: Node in mobs().raiders.get_children():
@@ -61,6 +70,7 @@ func run() -> void:
 	check(await wait_for(func() -> bool: return int(mobs().get("alive")) >= 2, 900), "Raiders keep coming after the room is cleared")
 	await host_map(GameMaps.CRYPT)
 	check(world.has_node("CinderCrypt") and not world.has_node("WhiteRoom") and mobs().name == "Mobs", "The crypt replaces the white room")
+	check(str(shading().call("theme_name")) == own_theme, "Leaving the white room restores the player's theme")
 	check(mobs().raiders.get_child_count() == 5 and int(mobs().get("remaining")) == 5, "The crypt starts its five cultists")
 	await host_map(GameMaps.VILLAGE)
 	check(world.has_node("WoodlandVillage") and not world.has_node("CinderCrypt") and Wildlife.is_in_group("match_world"), "The village comes back, birds included")

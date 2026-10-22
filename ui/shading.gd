@@ -172,6 +172,8 @@ var theme_index: int = THEMES.size() - 1
 var ephemeral: bool = "--shading-ephemeral" in OS.get_cmdline_user_args() # captures: no load, no save
 var values: Dictionary[String, float] = {}
 # Per-theme slider overrides the player made: theme name -> {param: value}.
+# While a map imposes its theme (set_map_theme), the player's own, restored when it leaves.
+var own_theme: int = -1
 var overrides: Dictionary[String, Dictionary] = {}
 
 func _init() -> void:
@@ -247,6 +249,24 @@ func set_theme(index: int) -> void:
 			values[name] = float(saved[name])
 	apply()
 
+## A map's theme by name, or "" to give the player their own back. Never saved as their choice.
+func set_map_theme(wanted: String) -> void:
+	var found: int = theme_names().find(wanted)
+	if found >= 0:
+		if own_theme < 0:
+			own_theme = theme_index
+		set_theme(found)
+	elif own_theme >= 0:
+		var back: int = own_theme
+		own_theme = -1
+		set_theme(back)
+	if tweaks != null and tweaks.is_inside_tree():
+		tweaks.call("refresh")
+
+## The theme to save: the player's own, even while a map shows another.
+func preferred_theme_name() -> String:
+	return THEMES[own_theme]["name"] as String if own_theme >= 0 else theme_name()
+
 func set_value(name: String, value: float) -> void:
 	values[name] = value
 	if not overrides.has(theme_name()):
@@ -258,8 +278,14 @@ func reset_theme() -> void:
 	overrides.erase(theme_name())
 	set_theme(theme_index)
 
+## A theme the player picked by hand (T or the tweaks panel): their own, inside a themed map too.
+func choose_theme(index: int) -> void:
+	set_theme(index)
+	if own_theme >= 0:
+		own_theme = theme_index
+
 func cycle(direction: int) -> void:
-	set_theme(theme_index + direction)
+	choose_theme(theme_index + direction)
 	show_status("Shading: %s" % theme_name())
 	tweaks.call("refresh")
 	tweaks.call("save")

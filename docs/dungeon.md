@@ -19,7 +19,7 @@ GODOT=/path/to/Godot scripts/godot_bg.sh --path . -- --host --map=white_room
 
 ## White Room
 
-A plain, evenly lit 20 × 28 m room with a faint 2 m floor grid, for combat testing. Players start at the south end. Classic (unhooded) raiders arrive from four gates at the far corners and sides: three at once, then one every 4 s while fewer than six are present, for as long as the session lasts. They hold the middle of the room, from where the whole room is in sight. The corner label counts raiders present and felled. No ambience plays. Esc → Leave game ends it.
+A plain, evenly lit, blank 20 × 28 m room for combat testing, shown in the **Overexposed** shading theme. Your own theme comes back on the other maps; picking one with T or the tweaks panel inside the room makes it yours. Each map's theme is `GameMaps.SHADING`. Players start at the south end. Classic (unhooded) raiders arrive from four gates at the far corners and sides: three at once, then one every 4 s while fewer than six are present, for as long as the session lasts. They hold the middle of the room, from where the whole room is in sight. The corner label counts raiders present and felled. No ambience plays. Esc → Leave game ends it.
 
 ## Cinder Crypt
 

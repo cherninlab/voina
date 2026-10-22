@@ -1,6 +1,7 @@
 extends Node3D
-## A plain, evenly lit test room: 20 x 28 m, walls on every side, players at the south end and
-## raiders arriving from the far corners for as long as the session lasts (WaveMobs).
+## A plain, evenly lit test room, shown in the Overexposed shading theme (GameMaps.SHADING):
+## 20 x 28 m, walls on every side, players at the south end and raiders arriving from the far
+## corners for as long as the session lasts (WaveMobs).
 
 const HALF: Vector2 = Vector2(10, 14)
 const HEIGHT: float = 6.0
@@ -14,8 +15,6 @@ func _ready() -> void:
 	var floor_material: StandardMaterial3D = StandardMaterial3D.new()
 	floor_material.albedo_color = Color(0.8, 0.8, 0.79)
 	floor_material.roughness = 0.95
-	var lines: StandardMaterial3D = StandardMaterial3D.new()
-	lines.albedo_color = Color(0.62, 0.62, 0.62)
 	var environment: Environment = Environment.new()
 	environment.background_mode = Environment.BG_COLOR
 	environment.background_color = Color(0.95, 0.95, 0.95)
@@ -36,11 +35,6 @@ func _ready() -> void:
 	for side: float in [-1.0, 1.0]:
 		box(Vector3(0.5, HEIGHT, HALF.y * 2.0 + 1.0), Vector3(side * (HALF.x + 0.25), HEIGHT * 0.5, 0), white)
 		box(Vector3(HALF.x * 2.0, HEIGHT, 0.5), Vector3(0, HEIGHT * 0.5, side * (HALF.y + 0.25)), white)
-	# A faint 2 m floor grid, so distance and speed still read on a blank floor. Cosmetic only.
-	for x: int in range(-4, 5):
-		box(Vector3(0.04, 0.01, HALF.y * 2.0), Vector3(x * 2.0, 0.005, 0), lines, false)
-	for z: int in range(-6, 7):
-		box(Vector3(HALF.x * 2.0, 0.01, 0.04), Vector3(0, 0.005, z * 2.0), lines, false)
 	var layer: CanvasLayer = CanvasLayer.new()
 	layer.layer = 2
 	add_child(layer)

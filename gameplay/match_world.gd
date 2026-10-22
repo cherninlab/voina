@@ -51,6 +51,7 @@ func _ready() -> void:
 	match_flow.players = players
 	add_child(match_flow)
 	build_ui()
+	apply_map_shading()
 	multiplayer.peer_connected.connect(peer_connected)
 	multiplayer.peer_disconnected.connect(peer_disconnected)
 	NetworkManager.start_from_arguments()
@@ -149,6 +150,7 @@ func load_map(id: String) -> void:
 	elif id != GameMaps.VILLAGE and Wildlife.is_in_group("match_world"):
 		Wildlife.remove_from_group("match_world")
 	GameAudio.set_map(id)
+	apply_map_shading()
 	# Frame cap, render scale, sun shadows and ground cover follow Settings > Graphics.
 	GraphicsSettings.register_world(self)
 	print("MAP: %s (%s)" % [GameMaps.title(id), id])
@@ -165,6 +167,13 @@ func build_arena() -> void:
 	add_map_node(preload("res://gameplay/environment/church_grounds.gd").new())
 	add_map_node(preload("res://gameplay/environment/church_road.gd").new())
 	add_map_node(preload("res://gameplay/environment/haunted_forest.gd").new())
+
+# The shading layer is built after the first map (build_ui), so _ready applies this once more.
+func apply_map_shading() -> void:
+	for child: Node in get_children():
+		var script: Script = child.get_script() as Script
+		if script != null and script.resource_path == "res://ui/shading.gd":
+			child.call("set_map_theme", GameMaps.shading(map_id))
 
 func add_map_node(node: Node) -> void:
 	add_child(node)

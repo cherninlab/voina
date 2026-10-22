@@ -47,7 +47,7 @@ func _ready() -> void:
 	for name: String in shading.call("theme_names") as PackedStringArray:
 		picker.add_item(name)
 	picker.item_selected.connect(func(index: int) -> void:
-		shading.call("set_theme", index)
+		shading.call("choose_theme", index)
 		refresh()
 		save()
 	)
@@ -140,7 +140,7 @@ func save() -> void:
 	if bool(shading.get("ephemeral")):
 		return
 	var config: ConfigFile = ConfigFile.new()
-	config.set_value("shading", "theme", shading.call("theme_name"))
+	config.set_value("shading", "theme", shading.call("preferred_theme_name"))
 	var overrides: Dictionary = shading.get("overrides") as Dictionary
 	for theme_name: String in overrides:
 		var tuned: Dictionary = overrides[theme_name] as Dictionary
