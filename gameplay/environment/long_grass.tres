@@ -25,6 +25,7 @@ tree_spacing = 5.0
 tree_gaps = 0.35
 tree_height_min = 9.0
 tree_height_max = 19.0
+tree_tint = Color(0.13, 0.15, 0.17, 1)
 first_camp = 90.0
 camp_spacing = 150.0
 camp_jitter = 40.0

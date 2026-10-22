@@ -23,6 +23,7 @@ Every knob lives in [`gameplay/environment/long_grass.tres`](../gameplay/environ
 | Treeline | `trees_near`, `trees_far` | Spruce silhouettes stand this near and far from the road, beyond both ends too. |
 | | `tree_spacing`, `tree_gaps` | Road metres between rows of three trees per side; the share of horizon left open between stands. |
 | | `tree_height_min`, `tree_height_max` | Tree heights in metres. |
+| | `tree_tint` | Multiplies the pine sprites' colours; low keeps the wood dark against the night sky. |
 | Camps | `first_camp`, `camp_spacing`, `camp_jitter` | Where clearings fall along the road. The road always ends in a clearing around the last fire. |
 | | `camp_radius` | Clearing size. |
 | | `cultists_first`, `camp_growth`, `cultists_max` | Cultists per camp, growing along the road; the last camp holds the most. |
@@ -41,6 +42,6 @@ Keep `turn` modest: a very tight bend can bring the inner fence closer than `fie
 
 ## Scenery and cost
 
-Flat ground, one road ribbon, one clearing disc and a stone ring with logs per camp, and grass in 30 m multimesh chunks culled past `grass_view_distance` with no shadows. The road, clearings and soil use the village's generated dirt albedos (`compacted_path`, `soil_gravel`, `mineral_earth` in `content/environments/village_generated/`), projected from above in world metres. The treeline is one multimesh of original low-poly spruces (about 900, roughly 50 triangles each), unlit and unfogged so they read as a dark cut-out against the sky. Headless servers and tests skip the grass. The sky reuses the village's storm panorama (`content/environments/grim/storm_sky.png`), darkened, with an original procedural full moon (`gameplay/environment/moon_sky.gdshader`). Campfires reuse the church road's flame shader. No new external assets.
+Flat ground, one road ribbon, one clearing disc and a stone ring with logs per camp, and grass in 30 m multimesh chunks culled past `grass_view_distance` with no shadows. The road, clearings and soil use the village's generated dirt albedos (`compacted_path`, `soil_gravel`, `mineral_earth` in `content/environments/village_generated/`), projected from above in world metres. The treeline is one multimesh of about 850 pines, each three crossed quads (6 triangles) showing one of three sprites from `content/environments/long_grass/horizon_pines.png`, unlit, darkened by `tree_tint` and unfogged so they hold against the sky. The atlas comes from a sprite sheet the project owner supplied; its licence is still to be confirmed (see that folder's README). Headless servers and tests skip the grass. The sky reuses the village's storm panorama (`content/environments/grim/storm_sky.png`), darkened, with an original procedural full moon (`gameplay/environment/moon_sky.gdshader`). Campfires reuse the church road's flame shader. No other new external assets.
 
 Verification: `python3 scripts/dungeon_smoke_test.py "$GODOT"` runs `tests/long_grass_test.tscn` over ENet: determinism, fence, planting, wake/clear/abandon, rehost and a joiner adopting the map.

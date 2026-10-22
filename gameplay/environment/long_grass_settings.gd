@@ -45,6 +45,8 @@ extends Resource
 @export_range(0.0, 0.9, 0.05) var tree_gaps: float = 0.35
 @export_range(3.0, 40.0, 0.5) var tree_height_min: float = 9.0
 @export_range(3.0, 40.0, 0.5) var tree_height_max: float = 19.0
+## Multiplies the pine sprites' own colours: low keeps them a dark wood against the night sky.
+@export var tree_tint: Color = Color(0.13, 0.15, 0.17)
 
 @export_group("Camps")
 ## Where the first clearing sits along the road, in metres.

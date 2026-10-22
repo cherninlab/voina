@@ -5,8 +5,8 @@ extends Node3D
 ## from long_grass.tres (LongGrassSettings) and its seed, so every peer generates the same road.
 ## Flat ground at y = 0; the grass is cosmetic (no collision) and an invisible fence keeps players
 ## within field_half_width of the road. The road ends in a last clearing around its final fire.
-## Dirt textures are the village's (content/environments/village_generated); spruce silhouettes
-## line the horizon. See docs/long-grass.md.
+## Dirt textures are the village's (content/environments/village_generated); pine sprites line the
+## horizon (content/environments/long_grass). See docs/long-grass.md.
 
 const SETTINGS: LongGrassSettings = preload("res://gameplay/environment/long_grass.tres")
 const CHUNK: float = 30.0 # road metres per grass multimesh, so far chunks are culled whole
@@ -239,13 +239,14 @@ func dirt(file: String, metres: float, tint: Color) -> StandardMaterial3D:
 	material.texture_filter = BaseMaterial3D.TEXTURE_FILTER_LINEAR_WITH_MIPMAPS_ANISOTROPIC
 	return material
 
-## Spruce silhouettes in stands either side of the road and beyond both ends, past the fence, three
-## per side every tree_spacing metres where a stand stands. Fog
-## would swallow them at this range, so they ignore it and stay dark against the sky.
+## Pines in stands either side of the road and beyond both ends, past the fence, three per side
+## every tree_spacing metres where a stand stands. Each is three crossed sprites of one of three
+## pines; fog would swallow them at this range, so they ignore it (horizon_pines.gdshader).
 func treeline() -> void:
 	var rng: RandomNumberGenerator = RandomNumberGenerator.new()
 	rng.seed = settings.road_seed + 2
 	var placements: Array[Transform3D] = []
+	var variants: Array[float] = []
 	var near: float = maxf(settings.trees_near, settings.field_half_width + 8.0)
 	var far: float = maxf(settings.trees_far, near + 10.0)
 	var stand: float = 0.0
@@ -260,22 +261,24 @@ func treeline() -> void:
 				if distance_to_road(at, clampf(station, 0.0, road_length())) < near * 0.8 or end_distance(at) < near * 0.8:
 					continue
 				var height: float = rng.randf_range(settings.tree_height_min, settings.tree_height_max)
-				var girth: float = height * rng.randf_range(0.28, 0.38)
-				placements.append(Transform3D(Basis(Vector3.UP, rng.randf() * TAU).scaled(Vector3(girth, height, girth)), at))
+				var width: float = height * rng.randf_range(0.85, 1.15)
+				placements.append(Transform3D(Basis(Vector3.UP, rng.randf() * TAU).scaled(Vector3(width, height, width)), at))
+				variants.append(float(rng.randi_range(0, 2)))
 		station += settings.tree_spacing
 	if placements.is_empty():
 		return
 	var multi: MultiMesh = MultiMesh.new()
 	multi.transform_format = MultiMesh.TRANSFORM_3D
-	multi.mesh = spruce_mesh()
+	multi.use_custom_data = true
+	multi.mesh = pine_mesh()
 	multi.instance_count = placements.size()
 	for index: int in range(placements.size()):
 		multi.set_instance_transform(index, placements[index])
-	# Unlit: a cut-out of the wood against the sky, never catching the moon.
-	var dark: StandardMaterial3D = StandardMaterial3D.new()
-	dark.shading_mode = BaseMaterial3D.SHADING_MODE_UNSHADED
-	dark.albedo_color = Color(0.012, 0.016, 0.02)
-	dark.disable_fog = true
+		multi.set_instance_custom_data(index, Color(variants[index], 0.0, 0.0, 0.0))
+	var dark: ShaderMaterial = ShaderMaterial.new()
+	dark.shader = preload("res://gameplay/environment/horizon_pines.gdshader")
+	dark.set_shader_parameter("atlas", load("res://content/environments/long_grass/horizon_pines.png"))
+	dark.set_shader_parameter("tint", settings.tree_tint)
 	var wood: MultiMeshInstance3D = MultiMeshInstance3D.new()
 	wood.name = "Treeline"
 	wood.multimesh = multi
@@ -288,30 +291,21 @@ func treeline() -> void:
 func end_distance(at: Vector3) -> float:
 	return minf(points[0].distance_to(at), points[points.size() - 1].distance_to(at))
 
-# A trunk and three stacked cones, 1 m tall and 1 m wide before scaling.
-func spruce_mesh() -> ArrayMesh:
+# Three quads crossed at 60 degrees, 1 m tall and as wide as an atlas cell (512 x 768) allows, the
+# trunk foot at the origin.
+func pine_mesh() -> ArrayMesh:
 	var surface: SurfaceTool = SurfaceTool.new()
 	surface.begin(Mesh.PRIMITIVE_TRIANGLES)
-	var sides: int = 7
-	for tier: Vector3 in [Vector3(0.12, 0.55, 0.5), Vector3(0.4, 0.8, 0.38), Vector3(0.65, 1.0, 0.24)]:
-		# (base height, tip height, base radius)
-		for side: int in range(sides):
-			var a: float = TAU * float(side) / float(sides)
-			var b: float = TAU * float(side + 1) / float(sides)
-			var tip: Vector3 = Vector3(0.0, tier.y, 0.0)
-			var left: Vector3 = Vector3(cos(a) * tier.z, tier.x, sin(a) * tier.z)
-			var right: Vector3 = Vector3(cos(b) * tier.z, tier.x, sin(b) * tier.z)
-			surface.set_normal((left + right).normalized() + Vector3.UP * 0.6)
-			for vertex: Vector3 in [tip, right, left]:
-				surface.add_vertex(vertex)
-	for side: int in range(4):
-		var a: float = TAU * float(side) / 4.0
-		var b: float = TAU * float(side + 1) / 4.0
-		var low_a: Vector3 = Vector3(cos(a), 0.0, sin(a)) * 0.04
-		var low_b: Vector3 = Vector3(cos(b), 0.0, sin(b)) * 0.04
-		surface.set_normal(Vector3(cos(a), 0.0, sin(a)))
-		for vertex: Vector3 in [low_a, low_b + Vector3.UP * 0.2, low_b, low_a, low_a + Vector3.UP * 0.2, low_b + Vector3.UP * 0.2]:
-			surface.add_vertex(vertex)
+	var half: float = 512.0 / 768.0 * 0.5
+	for quad: int in range(3):
+		var angle: float = PI * float(quad) / 3.0
+		var across: Vector3 = Vector3(cos(angle), 0.0, sin(angle)) * half
+		surface.set_normal(Vector3(-sin(angle), 0.0, cos(angle)))
+		var corners: Array[Vector3] = [-across, across, across + Vector3.UP, -across + Vector3.UP]
+		var uvs: Array[Vector2] = [Vector2(0, 1), Vector2(1, 1), Vector2(1, 0), Vector2(0, 0)]
+		for corner: int in [0, 1, 2, 0, 2, 3]:
+			surface.set_uv(uvs[corner])
+			surface.add_vertex(corners[corner])
 	return surface.commit()
 
 func wall(body: StaticBody3D, a: Vector3, b: Vector3) -> void:
