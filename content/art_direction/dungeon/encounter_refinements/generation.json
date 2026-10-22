@@ -1,0 +1,54 @@
+{
+  "created": "2026-10-22",
+  "generator": "built-in Codex ImageGen",
+  "status": "refinements-awaiting-review",
+  "images": [
+    {
+      "key": "01-overhead-presence",
+      "title": "Above the Doorway",
+      "prompt_file": "01-overhead-presence.prompt.txt",
+      "image_file": "01-overhead-presence.png",
+      "input_references": [
+        "02-side-tunnel.png",
+        "codex-clipboard-3181b3e4-3439-4326-a023-c2fc8f26c7ba.png",
+        "codex-clipboard-d8ec055f-6a5c-4bd4-8334-51e1c374b33a.png",
+        "03-red-descent.png"
+      ],
+      "width": 1672,
+      "height": 941,
+      "bytes": 2396597,
+      "sha256": "b8444f8b9cccf46ec79e8d9dfbb692ba59a5f7f4a3a37b23a0f2c8576d85c2cb"
+    },
+    {
+      "key": "02-restraint-cell",
+      "title": "The Occupied Frame",
+      "prompt_file": "02-restraint-cell.prompt.txt",
+      "image_file": "02-restraint-cell.png",
+      "input_references": [
+        "04-bottom-chamber.png",
+        "codex-clipboard-c8487793-f292-445b-b3d7-f5e5a9da1368.png",
+        "codex-clipboard-d8ec055f-6a5c-4bd4-8334-51e1c374b33a.png",
+        "03-red-descent.png"
+      ],
+      "width": 1672,
+      "height": 941,
+      "bytes": 2355000,
+      "sha256": "322fbb7a52ea4307d39d5381e465b1e323dcaf9709cdbf9dfaa5cdbd1c4ba7e4"
+    },
+    {
+      "key": "03-distant-witness",
+      "title": "At the End of the Passage",
+      "prompt_file": "03-distant-witness.prompt.txt",
+      "image_file": "03-distant-witness.png",
+      "input_references": [
+        "03-red-descent.png",
+        "codex-clipboard-d8ec055f-6a5c-4bd4-8334-51e1c374b33a.png",
+        "03-lower-crossing.png"
+      ],
+      "width": 1672,
+      "height": 941,
+      "bytes": 2357389,
+      "sha256": "c2180bf8bb816a6591babde48aea7b1bce4bcf0f4a2f2e765bc7a83510f5d369"
+    }
+  ]
+}
