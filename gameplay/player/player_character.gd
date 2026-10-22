@@ -63,12 +63,14 @@ func _ready() -> void:
 	arm.spring_length = 2.6
 	arm.position.x = 0.55
 	arm.margin = 0.2
+	arm.collision_mask = 1
 	var sphere: SphereShape3D = SphereShape3D.new()
-	sphere.radius = 0.2
+	sphere.radius = 0.25
 	arm.shape = sphere
 	arm.add_excluded_object(get_rid())
 	pivot.add_child(arm)
 	arm.add_child(camera)
+	camera.near = 0.05
 	camera.current = is_multiplayer_authority() and not NetworkManager.dedicated
 	# Every network frame (60/s at the game's 60 fps cap), so remote bodies trail by network transit,
 	# not by half a slow snapshot interval. An interval equal to the frame time would skip frames.
@@ -254,6 +256,19 @@ func set_camera_mode(use_third_person: bool) -> void:
 	arm.position.x = CameraTuning.value("shoulder") if third_person else 0.0
 	body.set_first_person(not third_person)
 
+func update_camera_shoulder() -> void:
+	# The arm casts backward from its origin. Sweep the shoulder offset too, otherwise
+	# that origin can already be inside a side wall before the arm starts its cast.
+	var shoulder: float = CameraTuning.value("shoulder")
+	var query: PhysicsShapeQueryParameters3D = PhysicsShapeQueryParameters3D.new()
+	query.shape = arm.shape
+	query.transform = Transform3D(Basis.IDENTITY, pivot.global_position)
+	query.motion = pivot.global_basis.x * shoulder
+	query.collision_mask = arm.collision_mask
+	query.exclude = [get_rid()]
+	var fractions: PackedFloat32Array = get_world_3d().direct_space_state.cast_motion(query)
+	arm.position.x = shoulder * maxf(0.0, fractions[0] - 0.02)
+
 func _physics_process(delta: float) -> void:
 	rotation.y = yaw
 	pivot.rotation.x = pitch
@@ -336,7 +351,7 @@ func _process(delta: float) -> void:
 		# Every number here is live-tunable from the Camera tweaks panel (CameraTuning).
 		if third_person:
 			arm.spring_length = CameraTuning.value("arm_length")
-			arm.position.x = CameraTuning.value("shoulder")
+			update_camera_shoulder()
 		walk_camera.step(delta, Vector2(velocity.x, velocity.z).length(), grounded)
 		var shake_time: float = Time.get_ticks_msec() / 1000.0 * CameraTuning.value("shake_rate")
 		camera.h_offset = sin(shake_time) * shake_left * CameraTuning.value("shake_side") + walk_camera.shift.x
