@@ -1,0 +1,34 @@
+[gd_resource type="Resource" script_class="LongGrassSettings" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://gameplay/environment/long_grass_settings.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+road_seed = 1337
+length = 900.0
+step = 3.0
+turn = 7.0
+straighten = 0.06
+max_heading = 55.0
+path_width = 2.6
+field_half_width = 18.0
+grass_height_min = 1.6
+grass_height_max = 2.5
+grass_density = 1.2
+grass_view_distance = 75.0
+grass_root = Color(0.05, 0.08, 0.06, 1)
+grass_tip = Color(0.32, 0.4, 0.33, 1)
+wind = 0.18
+first_camp = 90.0
+camp_spacing = 150.0
+camp_jitter = 40.0
+camp_radius = 9.0
+cultists_first = 2
+camp_growth = 0.5
+cultists_max = 5
+wake_distance = 32.0
+moon_yaw = 25.0
+moon_height = 32.0
+moon_size = 2.2
+moonlight = 0.45
+fog_density = 0.022

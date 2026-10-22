@@ -1,8 +1,8 @@
-# Maps: Village, Cinder Crypt, White Room
+# Maps: Village, Cinder Crypt, White Room, Long Grass
 
-Host game → **Map** picks the map before Start game: Village (the default), Cinder Crypt or White Room. The village's encounter and round switches only appear for the village. Joiners need nothing: the host's authentication answer names its map and the joiner builds it before anyone spawns (`MAP_ADOPTED: <id>` in its log). The list lives in `gameplay/maps.gd`.
+Host game → **Map** picks the map before Start game: Village (the default), Cinder Crypt, White Room or Long Grass ([long-grass.md](long-grass.md)). The village's encounter and round switches only appear for the village. Joiners need nothing: the host's authentication answer names its map and the joiner builds it before anyone spawns (`MAP_ADOPTED: <id>` in its log). The list lives in `gameplay/maps.gd`.
 
-Without the menu, `--map=village|crypt|white_room` (or `--dungeon`, the same as `--map=crypt`) chooses the map for an automatic `--host` or `--server`:
+Without the menu, `--map=village|crypt|white_room|long_grass` (or `--dungeon`, the same as `--map=crypt`) chooses the map for an automatic `--host` or `--server`:
 
 ```sh
 python3 scripts/playtest.py host --map crypt

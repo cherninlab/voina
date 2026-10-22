@@ -88,4 +88,23 @@ with tempfile.TemporaryDirectory() as directory:
                 if process is not None and process.poll() is None:
                     process.terminate()
                     process.wait(timeout=5)
+    # Long Grass: the road, its camps one by one, and a joiner from another map.
+    pair_port = port()
+    grass_scene = "res://tests/long_grass_test.tscn"
+    with log_path.open("w") as log:
+        host = subprocess.Popen(base + [grass_scene, "--", "--host", "--map=long_grass", f"--port={pair_port}"], stdout=log, stderr=subprocess.STDOUT)
+        try:
+            wait_for(log_path, "LONG_GRASS_HOST_READY:", host, timeout=60)
+            client = subprocess.run(base + [grass_scene, "--", "--join=127.0.0.1", f"--port={pair_port}"], capture_output=True, text=True, timeout=90)
+            print(client.stdout + client.stderr)
+            assert client.returncode == 0 and "MAP_ADOPTED: long_grass" in client.stdout and "LONG_GRASS_CLIENT_OK:" in client.stdout
+            host.wait(timeout=120)
+            output = log_path.read_text()
+            print(output)
+            assert host.returncode == 0 and "LONG_GRASS_OK:" in output
+            assert "ERROR" not in output + client.stdout + client.stderr
+        finally:
+            if host.poll() is None:
+                host.terminate()
+                host.wait(timeout=5)
 print("PASS: dungeon geometry, gameplay, finite encounter, late join, lobby map picker and joiners adopting the host map")

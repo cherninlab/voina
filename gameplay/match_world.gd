@@ -74,6 +74,8 @@ func player_spawn(slot: int) -> Vector3:
 		return Vector3(-1.5 + float(slot % 2) * 3.0, 0.95, 17.0 + float(slot / 2) * 2.0)
 	if map_id == GameMaps.WHITE_ROOM:
 		return Vector3(-1.5 + float(slot % 2) * 3.0, 0.95, 10.0 + float(slot / 2) * 2.0)
+	if map_id == GameMaps.LONG_GRASS:
+		return (map_nodes[0] as LongGrass).player_spawn(slot)
 	return Vector3(0, 0.95, 3.0 if slot % 2 == 0 else -3.0)
 
 func host_started() -> void:
@@ -161,6 +163,9 @@ func build_arena() -> void:
 		return
 	if map_id == GameMaps.WHITE_ROOM:
 		add_map_node(preload("res://gameplay/environment/white_room.gd").new())
+		return
+	if map_id == GameMaps.LONG_GRASS:
+		add_map_node(preload("res://gameplay/environment/long_grass.gd").new())
 		return
 	add_map_node(preload("res://gameplay/environment/village_arena.gd").new())
 	# After the village, whose landscape heights they sample.

@@ -7,10 +7,11 @@ extends RefCounted
 const VILLAGE: String = "village"
 const CRYPT: String = "crypt"
 const WHITE_ROOM: String = "white_room"
-const IDS: Array[String] = [VILLAGE, CRYPT, WHITE_ROOM]
-const TITLES: Array[String] = ["Village", "Cinder Crypt", "White Room"]
+const LONG_GRASS: String = "long_grass"
+const IDS: Array[String] = [VILLAGE, CRYPT, WHITE_ROOM, LONG_GRASS]
+const TITLES: Array[String] = ["Village", "Cinder Crypt", "White Room", "Long Grass"]
 # A shading theme (ui/shading.gd) the map is shown in; empty keeps the player's own.
-const SHADING: Array[String] = ["", "", "Overexposed"]
+const SHADING: Array[String] = ["", "", "Overexposed", ""]
 
 static func from_arguments(arguments: PackedStringArray) -> String:
 	for argument: String in arguments:
@@ -25,10 +26,12 @@ static func shading(id: String) -> String:
 	return SHADING[maxi(0, IDS.find(id))]
 
 # Each map's encounter: the village's switchable church yard and raiders, the crypt's five
-# cultists, or the white room's endless raiders.
+# cultists, the white room's endless raiders, or the long grass's campfire cultists.
 static func create_mobs(id: String) -> MobSystem:
 	if id == CRYPT:
 		return preload("res://gameplay/mobs/dungeon_mobs.gd").new()
 	if id == WHITE_ROOM:
 		return preload("res://gameplay/mobs/wave_mobs.gd").new()
+	if id == LONG_GRASS:
+		return preload("res://gameplay/mobs/camp_mobs.gd").new()
 	return MobSystem.new()

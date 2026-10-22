@@ -213,7 +213,7 @@ def main() -> None:
         if name == "join":
             command.add_argument("--dungeon", action="store_true", help=argparse.SUPPRESS) # old habit; joiners take the host's map
         if name == "host":
-            command.add_argument("--map", choices=["village", "crypt", "white_room"], default="village", help="map to host; joiners follow it (the lobby menu also picks one)")
+            command.add_argument("--map", choices=["village", "crypt", "white_room", "long_grass"], default="village", help="map to host; joiners follow it (the lobby menu also picks one)")
             command.add_argument("--dungeon", action="store_true", help="same as --map crypt")
             command.add_argument("--match", action="store_true", help="first to three round wins")
             command.add_argument("--pve", action="store_true", help="add hostile PvE raiders")

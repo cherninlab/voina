@@ -106,6 +106,8 @@ static func set_map(map_id: String) -> void:
 		ambience = {&"chimney_wind_01": -22.0, &"fire_synth_01": -26.0}
 	elif map_id == GameMaps.WHITE_ROOM:
 		ambience = {} # deliberately quiet: only the fight is heard
+	elif map_id == GameMaps.LONG_GRASS:
+		ambience = {&"forest_01": -16.0, &"chimney_wind_01": -26.0}
 	for id: StringName in ambience:
 		audio.start_bed(id, ambience[id])
 
