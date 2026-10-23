@@ -1,0 +1,3 @@
+Use case: precise-object-edit
+Asset type: tangent-space OpenGL normal map of the supplied stone albedo, same dimensions and exactly matching stone edges, joints and cracks.
+Edit target: supplied generated albedo texture. Change only its map encoding. Preserve every stone shape and pixel location, crop, tile boundary and scale. Encode shallow stone surface relief and recessed mortar as a tangent-space normal map. Flat outward surfaces are RGB approximately 128,128,255; positive Y is green-up. Fine relief is subtle, broad stone faces mostly flat. No color albedo, lighting, shadows, text, frames or perspective. Opaque; seamless tile boundaries unchanged.

@@ -1,0 +1,71 @@
+{
+  "date": "2026-10-23",
+  "assets": [
+    {
+      "output": "stone_albedo.png",
+      "provider": "OpenAI native ImageGen",
+      "source": "/Users/theochernin/.codex/generated_images/01a1603d-46cd-7341-8808-066c20827d8b/exec-ff7eebb2-d147-4ae5-b6c3-756c493712e0.png",
+      "prompt": "review/texture_prompts/stone-albedo.prompt.txt",
+      "sha256": "3b73fa400b650ad7eb115bac9ffc2162e25a59d1f1a3474375c9ab554a069538",
+      "dimensions": [
+        1254,
+        1254
+      ]
+    },
+    {
+      "output": "stone_normal.png",
+      "provider": "OpenAI native ImageGen",
+      "source": "/Users/theochernin/.codex/generated_images/01a1603d-46cd-7341-8808-066c20827d8b/exec-543e46d8-2ac0-44e5-9abb-972e7ef277ca.png",
+      "prompt": "review/texture_prompts/stone-normal.prompt.txt",
+      "sha256": "3facb38f230c6ba6872481400334d52ff9759fc5c4aa7ad0c5cfe1be30c51455",
+      "dimensions": [
+        1254,
+        1254
+      ]
+    },
+    {
+      "output": "stone_roughness.png",
+      "provider": "OpenAI native ImageGen",
+      "source": "/Users/theochernin/.codex/generated_images/01a1603d-46cd-7341-8808-066c20827d8b/exec-b366f17f-b073-4ad1-86be-c37f478e9e80.png",
+      "prompt": "review/texture_prompts/stone-roughness.prompt.txt",
+      "sha256": "0fb75c5afc200023edbe5e125f5064de6c8d564312aa120ef5bcb52189072de0",
+      "dimensions": [
+        1254,
+        1254
+      ]
+    },
+    {
+      "output": "wood_albedo.png",
+      "provider": "OpenAI native ImageGen",
+      "source": "/Users/theochernin/.codex/generated_images/01a1603d-8229-7a10-9477-72554fa5887f/exec-eef53c30-e142-42a4-9cd8-278f17393d4b.png",
+      "prompt": "review/texture_prompts/wood-albedo.prompt.txt",
+      "sha256": "a550e029c43356313a7eb41f6c7ad622e40ac92dfcb22c66b8c9097e0deb923e",
+      "dimensions": [
+        1254,
+        1254
+      ]
+    },
+    {
+      "output": "wood_normal.png",
+      "provider": "OpenAI native ImageGen",
+      "source": "/Users/theochernin/.codex/generated_images/01a1603d-8229-7a10-9477-72554fa5887f/exec-cfd9df59-22bc-43da-97d9-0cdb8f7ba18c.png",
+      "prompt": "review/texture_prompts/wood-normal.prompt.txt",
+      "sha256": "8f02ff27e22cee5164c4b0559bed9b7779600b94e826cb971a04cfd7118b2dc8",
+      "dimensions": [
+        1254,
+        1254
+      ]
+    },
+    {
+      "output": "review/03-render-material-study.png",
+      "provider": "OpenAI native ImageGen",
+      "source": "/Users/theochernin/.codex/generated_images/01a1603d-bb81-7940-85fa-146e0f9afbd1/exec-3886b7ca-b87c-4ce0-89e1-6976941cc574.png",
+      "prompt": "review/texture_prompts/render-study.prompt.txt",
+      "sha256": "27cd0f16c809d596191d469a1a96bed0cec94a1f1d5a775608601340b3898e74",
+      "dimensions": [
+        1586,
+        992
+      ]
+    }
+  ]
+}

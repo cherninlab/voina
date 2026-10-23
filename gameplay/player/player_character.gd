@@ -303,7 +303,7 @@ func _physics_process(delta: float) -> void:
 		elif Input.mouse_mode == Input.MOUSE_MODE_CAPTURED and Input.is_action_just_pressed(&"jump") and combat.phase != CombatController.Phase.STAGGERED and not combat.locked:
 			velocity.y = 5.5
 		move_and_slide()
-		if position.y < -10:
+		if position.y < (RedDescentLayout.FALL_LIMIT if BuildSync.map_id == GameMaps.CRYPT else -10.0):
 			position = spawn_position
 			body.reset_motion(yaw)
 		sync_position = position

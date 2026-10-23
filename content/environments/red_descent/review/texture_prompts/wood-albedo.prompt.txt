@@ -1,0 +1,4 @@
+Use case: stylized-concept
+Asset type: seamless original weathered timber albedo texture for the SECHA dungeon, 2048 x 2048 square.
+Inputs: actual game render provides usage context; selected dungeon concept provides the old grey-brown timber material. Generate an original texture, not a scene crop.
+Flat orthographic diffuse texture filling the canvas: dense longitudinal wood grain, worn grey-brown old heartwood, a few long thin splits, crushed fibres and rubbed edges, restrained knots. Grain runs vertically. This is one continuous material surface; geometry already supplies separate bridge boards, so do not paint a grid of planks or gaps into the texture. Muted weathered brown/grey, not orange varnish. Neutral even reflectance without torch color, specular shine or directional shadows. No props, metal bands, text, borders or perspective. Opposing edges tile seamlessly. Opaque.

@@ -1,0 +1,5 @@
+Use case: stylized-concept
+Asset type: original seamless tileable PBR stone-wall ALBEDO texture for the SECHA dungeon, 2048 x 2048 square.
+Inputs: actual game render is a material-context reference; selected dungeon concept is the material and scale reference. Extract no image pixels; generate an original texture.
+Show only the flat texture, orthographic and filling all pixels. Rough grey-brown fieldstone masonry with eight to ten uneven horizontal courses across a physical 4 x 4 metre tile. Medium large irregular stones, broken chamfered edges, shallow narrow mortar, tiny cracks, sparse dusty mineral deposits and dark damp seams. Hand-built, worn and restrained, matching SECHA's dead-forest folk horror. Enough broad shape separation to read at game camera distance; avoid high-frequency speckle everywhere.
+Neutral diffuse reflectance only: no orange torch color, directional shadows, ambient occlusion painted as heavy black outlines, highlights, perspective, frame, text, props, vines or symbols. Muted grey with a little earth, not glossy marble. Opposing edges must tile seamlessly; no visible central motif or dark border. Opaque background.

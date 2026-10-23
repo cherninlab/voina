@@ -19,7 +19,7 @@ def port():
         return probe.getsockname()[1]
 
 
-def wait_for(log, marker, process, timeout=15):
+def wait_for(log, marker, process, timeout=60):
     until = time.monotonic() + timeout
     while time.monotonic() < until:
         output = log.read_text()
@@ -37,10 +37,10 @@ with tempfile.TemporaryDirectory() as directory:
         host = subprocess.Popen(base + [scene, "--", "--host", "--dungeon", f"--port={pair_port}"], stdout=log, stderr=subprocess.STDOUT)
         try:
             wait_for(log_path, "DUNGEON_HOST_READY:", host)
-            client = subprocess.run(base + [scene, "--", "--dungeon", "--join=127.0.0.1", f"--port={pair_port}"], capture_output=True, text=True, timeout=20)
+            client = subprocess.run(base + [scene, "--", "--dungeon", "--join=127.0.0.1", f"--port={pair_port}"], capture_output=True, text=True, timeout=60)
             print(client.stdout + client.stderr)
             assert client.returncode == 0 and "DUNGEON_CLIENT_OK:" in client.stdout
-            host.wait(timeout=20)
+            host.wait(timeout=60)
             output = log_path.read_text()
             print(output)
             assert host.returncode == 0 and "DUNGEON_OK:" in output

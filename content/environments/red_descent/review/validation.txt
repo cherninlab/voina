@@ -1,0 +1,9 @@
+2026-10-23 — Godot 4.7.2 Standard, Apple Silicon, Mobile/Metal captures.
+Headless editor import: passed, no ERROR/WARNING.
+Main smoke: passed, combat/rules and real two-process ENet/disconnect checks.
+Dungeon smoke: passed, safe spawns, two hall elevations, real guard pursuit/hit, late join with three survivors, client damage rejection, finite clear, rehost, map adoption regressions.
+Traversal: DUNGEON_TRAVERSAL_OK, about 1050m actual capsule movement over descent, return, egress and four optional loops. Four-times simulation speed; no jump between spans. Actual player update on the deep floor preserves elevation.
+Camera regression: CAMERA_WALL_OK across rear/side walls, corners, four yaws, three pitches and both modes.
+Final windowed render: six actual frames, no ERROR/WARNING. Frame-rate overlay is incidental, not a controlled performance measurement.
+Some standalone test processes log ObjectDB instance-leak warnings at shutdown (also present in main smoke); they do not produce test failures. No error-free shutdown claim is made for those processes.
+Human input/camera feel and two-Mac/Tailscale multiplayer acceptance remain unverified.

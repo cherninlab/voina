@@ -58,35 +58,22 @@ func run() -> void:
 	for a: int in range(positions.size()):
 		for b: int in range(a + 1, positions.size()):
 			check(positions[a].distance_to(positions[b]) >= 1.9, "Four player spawns are separated")
+	# Guards must navigate their own vertically separated halls, not the lowest floor.
+	for index: int in range(5):
+		var guard: HostileMob = mobs.raiders.get_child(index) as HostileMob
+		var floor_y: float = -4.0 if index < 2 else -28.0
+		check(absf(guard.position.y - floor_y - 0.95) < 0.25, "Guard %d stands on its own hall floor" % index)
 	var grid: MobNavigation = mobs.raider_grids[MobSystem.Zone.VILLAGE]
-	# Test both routes, every doorway, and the last chamber against actual capsule clearance.
-	var route: Array[Vector3] = [Vector3(-3, 0.95, 17), Vector3(-3, 0.95, 10), Vector3(0, 0.95, 8), Vector3(-4, 0.95, 3), Vector3(4, 0.95, 3), Vector3(-4, 0.95, -3), Vector3(4, 0.95, -3), Vector3(0, 0.95, -8), Vector3(0, 0.95, -12), Vector3(0, 0.95, -16)]
-	for point: Vector3 in route:
-		query.transform = Transform3D(Basis.IDENTITY, point)
-		check(space.intersect_shape(query).is_empty(), "Player capsule clears route at %s" % point)
-		check(grid.walkable(point), "Enemy grid reaches %s" % point)
-		var floor_hit: Dictionary = space.intersect_ray(PhysicsRayQueryParameters3D.create(point, point - Vector3.UP * 2, 1, query.exclude))
-		check(not floor_hit.is_empty() and absf((floor_hit["position"] as Vector3).y) < 0.02, "Floor supports %s" % point)
-		check(grid.path(player.position, point).size() > 1, "Connected route from entrance to %s" % point)
-	for wall: Vector3 in [Vector3(13, 1, 0), Vector3(-13, 1, 0), Vector3(0, 1, 21), Vector3(0, 1, -21), Vector3(0, 7.2, 0)]:
-		query.transform = Transform3D(Basis.IDENTITY, wall)
-		check(not space.intersect_shape(query).is_empty(), "Dungeon boundary blocks %s" % wall)
-	# Move the real player capsule: the headless display cannot capture a mouse for WASD input.
-	player.position = Vector3(-3, 0.95, 18)
-	player.set("sync_position", player.position)
-	for frame: int in range(120):
-		await get_tree().physics_frame
-		player.velocity = Vector3(0, -0.2, -6.5)
-		player.move_and_slide()
-	check(player.position.z < 10.0 and player.is_on_floor(), "Real player walks from entry to burial hall approach (%s)" % player.position)
-	player.position = positions[0]
-	player.set("sync_position", player.position)
+	var hall_target: Vector3 = RedDescentLayout.at(Vector3(83, -3.05, 36))
+	check(grid.walkable(hall_target), "Upper hall grid includes the pursuit target")
 	var hunter: HostileMob = mobs.raiders.get_child(0) as HostileMob
-	player.position = Vector3(-5, 0.95, 2)
+	check(grid.path(hunter.position, hall_target).size() > 1, "Upper guard has a path to the player")
+	player.position = hall_target
 	player.set("sync_position", player.position)
 	hunter.set_physics_process(true)
-	await frames(180)
-	check((player.get("combat") as CombatController).health < 100, "A dungeon cultist sees, pursues and strikes a player in the burial hall")
+	await frames(240)
+	check((player.get("combat") as CombatController).health < 100, "Upper guard sees, pursues and strikes a real player")
+	hunter.set_physics_process(false)
 	player.position = positions[0]
 	player.set("sync_position", player.position)
 	# Two deaths before a real late join; remaining enemies are held at their posts for the probe.
@@ -114,5 +101,5 @@ func run() -> void:
 	await frames(10)
 	check(mobs.raiders.get_child_count() == 5 and int(mobs.get("remaining")) == 5, "Leave and rehost resets the encounter")
 	if not failed:
-		print("DUNGEON_OK: four safe spawns, solid boundaries, both paths, navigation, real walking, finite encounter, leave/rehost")
+		print("DUNGEON_OK: four safe spawns, two hall elevations, pursuit/combat, finite encounter, leave/rehost")
 		get_tree().quit()

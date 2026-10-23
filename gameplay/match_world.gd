@@ -66,12 +66,14 @@ func create_player(data: Variant) -> Node:
 	# Spawns stay 6 m apart: the host's movement envelope must still accept the smoke client's hop.
 	player.position = player_spawn(int(info[1]))
 	player.set("sync_position", player.position)
-	player.set("yaw", 0.0 if map_id != GameMaps.VILLAGE or int(info[1]) % 2 == 0 else PI)
+	player.set("yaw", -PI * 0.5 if map_id == GameMaps.CRYPT else (0.0 if map_id != GameMaps.VILLAGE or int(info[1]) % 2 == 0 else PI))
+	if map_id == GameMaps.CRYPT:
+		player.floor_snap_length = 0.35
 	return player
 
 func player_spawn(slot: int) -> Vector3:
 	if map_id == GameMaps.CRYPT:
-		return Vector3(-1.5 + float(slot % 2) * 3.0, 0.95, 17.0 + float(slot / 2) * 2.0)
+		return RedDescentLayout.player_spawn(slot)
 	if map_id == GameMaps.WHITE_ROOM:
 		return Vector3(-1.5 + float(slot % 2) * 3.0, 0.95, 10.0 + float(slot / 2) * 2.0)
 	if map_id == GameMaps.LONG_GRASS:
