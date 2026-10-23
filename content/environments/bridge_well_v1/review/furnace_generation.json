@@ -1,0 +1,205 @@
+{
+  "task": "T-149",
+  "worker": "furnace_image",
+  "route": "native ImageGen",
+  "requested_dimensions": [
+    2048,
+    2048
+  ],
+  "source_scene": "/Users/theochernin/Projects/MultiPlayerProject-agents/theo-codex-12/content/environments/bridge_well_v1/review/selected_bridge.png",
+  "limitations": "Native image edits do not prove exact pixel alignment, physical calibration, seamless repeat or tangent-normal convention. Review in-engine before use.",
+  "outputs": [
+    {
+      "family": "bridge_oak",
+      "map": "albedo",
+      "attempt": 1,
+      "prompt": "Use case: photorealistic-natural. Asset type: original PBR BASE COLOR / ALBEDO texture of worn bridge oak for SECHA. Input1 selected bridge image is ONLY a material-character reference, not an edit target, camera or lighting reference. Generate ONE edge-to-edge flat orthographic UNLIT seamless square texture, requested2048x2048 pixels, of a close crop WITHIN ONE SINGLE BROAD OAK BOARD FACE. The 3D mesh supplies the separate bridge boards: absolutely no painted plank grid, straight full-length board boundaries, deep black separations, multiple side-by-side planks, nails or hardware. A continuous connected dark neutral-brown oak field with broad low-contrast VERTICAL fibrous grain, a few shallow splintered checks that terminate, occasional gentle tool scars, and smoother worn walking ridges among rougher fibres. Variation comes from physical wear: a few subtly paler rubbed fibre tops and faint small irregular dark iron/nail-stain discolorations, with NO actual nail heads, rings, drilled holes or metal. Large calm worn timber areas are essential, not bark texture. Actual dry DIFFUSE material colour independent of warm torch lighting or wet reflections; keep true dark brown/quiet grey-brown fibres, not orange torch tint. Wetness and highlights will be generated later in a shader, so no glossy white highlight streaks, varnish, wet reflections, directional lighting, cast shadows, AO or bevel shading baked into this ALBEDO. No perspective, border, vignette, text, object, scene, sphere or texture collage. Match opposite tile edges seamlessly on both axes. One flat continuous oak albedo texture only.",
+      "reference_paths": [
+        "/Users/theochernin/Projects/MultiPlayerProject-agents/theo-codex-12/content/environments/bridge_well_v1/review/selected_bridge.png"
+      ],
+      "reference_roles": [
+        "Selected bridge material-character reference only; not scene lighting or camera."
+      ],
+      "output_path": "/Users/theochernin/Projects/MultiPlayerProject-agents/theo-codex-12/content/environments/bridge_well_v1/bridge_oak/albedo.png",
+      "native_source_path": "/Users/theochernin/.codex/generated_images/01a1603d-bb81-7940-85fa-146e0f9afbd1/exec-dffc2416-db1d-42af-a8bc-022c72be054d.png",
+      "qa": {
+        "visual": "Continuous vertical oak grain with worn lighter fibres and dark stain variation, no hardware or perspective. Several long narrow checks could read as board divisions at some UV scales; the face is more splintered than smoothly worn.",
+        "seam": "Not verified across repeated tiles.",
+        "alignment": "Base albedo is authoritative family geometry; native resolution recorded rather than upscaled.",
+        "status": "Accepted as bridge-oak candidate for parent review."
+      },
+      "width": 1254,
+      "height": 1254,
+      "bytes": 3589708,
+      "sha256": "0c6218a7d69d44818ad48d4b68d75934be7380272246281b7e0d681f79ad98cd"
+    },
+    {
+      "family": "bridge_oak",
+      "map": "height",
+      "attempt": 1,
+      "prompt": "Use case: precise-object-edit. Asset type: physically shallow PBR HEIGHT texture for the supplied continuous worn bridge oak ALBEDO. Input1 is the exact authoritative crop, grain/check/stain layout and pixel geometry. Create ONE flat grayscale square 1254 x 1254 pixels; preserve every feature at exactly the same coordinates, size, shape and crop including edge continuity. No rotation, scale, translation, new grain, seams or feature additions. White means physically high, black deep. Derive believable shallow wood geometry, NOT grayscale albedo brightness: dark brown pigment/iron stain variations stay flush instead of becoming depressions. Most broad worn walking ridges lie near neutral midgrey128 and should be fairly smooth/flat, with gentle long-wave adze facets, subtle raised fibres and shallow splinters; the existing narrow checks alone are deeper. Don't turn the entire material into bark-like high ridges or a deeply corrugated surface. No plank/grid divisions, nails or new full-height separations. Absolutely no directional lighting, bevel shadows/highlights, AO, broad gradient, specular, color, border, labels or text. One registered edge-to-edge square grayscale HEIGHT MAP, not a scene, sphere or comparison sheet.",
+      "reference_paths": [
+        "/Users/theochernin/Projects/MultiPlayerProject-agents/theo-codex-12/content/environments/bridge_well_v1/bridge_oak/albedo.png"
+      ],
+      "reference_roles": [
+        "Authoritative albedo crop, layout and exact feature positions; pigment brightness is not physical height."
+      ],
+      "output_path": "/Users/theochernin/Projects/MultiPlayerProject-agents/theo-codex-12/content/environments/bridge_well_v1/bridge_oak/height.png",
+      "native_source_path": "/Users/theochernin/.codex/generated_images/01a1603d-bb81-7940-85fa-146e0f9afbd1/exec-3d063839-fbd0-4190-b4ae-f062fc01541d.png",
+      "qa": {
+        "visual": "Main grain/check/stain arrangement retained as relief; dark pigment stains are less depressed than the real narrow checks. Fine splinter ridges and white edge contrast are stronger than ideal shallow wear.",
+        "seam": "Not verified across repeats.",
+        "alignment": "Major features visually registered; exact pixel alignment and physical amplitude require parent checks.",
+        "status": "Accepted height candidate; conservative relief strength advised."
+      },
+      "width": 1254,
+      "height": 1254,
+      "bytes": 3716993,
+      "sha256": "af06fa9d65698da1184c56da5587a67f108b783246f2015000e6edb8acbe9e0e"
+    },
+    {
+      "family": "bridge_oak",
+      "map": "normal_gl",
+      "attempt": 1,
+      "prompt": "Use case: precise-object-edit. Asset type: true OPENGL tangent-space NORMAL MAP of the supplied worn bridge oak HEIGHT. Input1 HEIGHT is authoritative relief; Input2 ALBEDO is only the exact corresponding feature-layout reference. Create ONE flat 1254x1254 pixel square normal map with the identical crop, pixel coordinates, check/grain layout and matching edge relationships. No rescaling, rotation, translation, feature addition/removal or repainting. Mathematically derive BOTH red and green channels from height gradients, not from blue-tinted emboss or baked lighting: N=normalize((-dH/du,+dH/d(imageVdown),1)); encode RGB=(128+127*Nx,128+127*Ny,128+127*Nz), flat=(128,128,255). ImageU increases RIGHT, imageVdown increases DOWN; OpenGL tangentY points UP. Thus height increasing to the RIGHT lowers R below128; height increasing DOWN raises G above128. Concave narrow checks remain depressions; brown pigment stains do not become relief. Restrained shallow wood fibres and gentle worn ridges, not exaggerated bark ridges. Most broad smooth worn ridges should remain close to neutral blue-violet with limited colored transitions on relief, no global red/green tint drift. No directional lighting, shadows, highlights, albedo coloration, grayscale height/AO rendering, border or text. Exact pixel registration to source, one edge-to-edge tangent normal MAP only, no scene/sphere/multimap sheet.",
+      "reference_paths": [
+        "/Users/theochernin/Projects/MultiPlayerProject-agents/theo-codex-12/content/environments/bridge_well_v1/bridge_oak/height.png",
+        "/Users/theochernin/Projects/MultiPlayerProject-agents/theo-codex-12/content/environments/bridge_well_v1/bridge_oak/albedo.png"
+      ],
+      "reference_roles": [
+        "HEIGHT first: authoritative physical relief and gradient geometry.",
+        "ALBEDO second: exact matching feature positions; pigment is not slope."
+      ],
+      "output_path": "/Users/theochernin/Projects/MultiPlayerProject-agents/theo-codex-12/content/environments/bridge_well_v1/bridge_oak/normal_gl.png",
+      "native_source_path": "/Users/theochernin/.codex/generated_images/01a1603d-bb81-7940-85fa-146e0f9afbd1/exec-592cacbc-aa03-4d49-952a-bae73382b0bc.png",
+      "qa": {
+        "visual": "Blue-violet normal field tracks the vertical splinter/check layout with colored slope transitions. Strong fine relief remains; smooth walking ridges need conservative normal strength.",
+        "seam": "Not verified across repeats.",
+        "alignment": "Height-first references and explicit OpenGL derivative formula used; exact gradient direction/correlation and vector length are unverified until numerical checks.",
+        "status": "Accepted generated normal candidate, not a calibrated derivative guarantee."
+      },
+      "width": 1254,
+      "height": 1254,
+      "bytes": 3027806,
+      "sha256": "933eb3dd9b18ffc9a7264dce951a035915986a89fec3dcd3cfd7ba3514033c2e"
+    },
+    {
+      "family": "bridge_oak",
+      "map": "roughness",
+      "attempt": 1,
+      "prompt": "Use case: precise-object-edit. Asset type: PBR DRY ROUGHNESS MAP for worn bridge oak, NOT glossiness. Input1 ALBEDO is authoritative feature/color-wear layout; Input2 HEIGHT is authoritative relief. Produce ONE flat grayscale square 1254x1254 pixels at exactly identical crop and pixel feature coordinates. Preserve all long grain, check shapes, worn fibre/stain positions and seamless edge relationships; no shifts, scaling, rotations or new details. White means rough, black means smooth. Dry rough oak regions should have roughness0.7-0.9 (gray179-230); the same broad mechanically rubbed walking ridges and fibre tops should be modestly smoother around0.5-0.65 (gray128-166). This is microfacet material response, not simulated light: no white reflected highlight streaks or dark cast shadows. Don't simply copy albedo luminance or height shading. No wet mask baked in, no black oily/puddle zones; shader wetness will be separate. Smooth worn portions should be quiet continuous grey areas between rougher splintered fibres, preserving source geometry. No bevel/emboss shading, AO, directional lighting, global gradient, color, text, border, scene or sphere. One continuous edge-to-edge grayscale registered ROUGHNESS map only.",
+      "reference_paths": [
+        "/Users/theochernin/Projects/MultiPlayerProject-agents/theo-codex-12/content/environments/bridge_well_v1/bridge_oak/albedo.png",
+        "/Users/theochernin/Projects/MultiPlayerProject-agents/theo-codex-12/content/environments/bridge_well_v1/bridge_oak/height.png"
+      ],
+      "reference_roles": [
+        "ALBEDO: exact source feature locations, fibre wear and stain layout.",
+        "HEIGHT: relief reference; roughness is physical response rather than relief brightness."
+      ],
+      "output_path": null,
+      "native_source_path": "/Users/theochernin/.codex/generated_images/01a1603d-bb81-7940-85fa-146e0f9afbd1/exec-0e95b520-4e0c-424d-84e6-0bc3e39f39be.png",
+      "intended_output_path": "/Users/theochernin/Projects/MultiPlayerProject-agents/theo-codex-12/content/environments/bridge_well_v1/bridge_oak/roughness.png",
+      "qa": {
+        "visual": "Rejected: result reads as a grayscale embossed height image, with bright raised splinters and black checks instead of physical roughness values; polished walking ridges are not distinctly smoother.",
+        "status": "Invalid first roughness attempt; not copied."
+      },
+      "width": 1254,
+      "height": 1254,
+      "bytes": 3361636,
+      "sha256": "a6ccd10325397aa1a52d412f1c643a7af2f4b72bc94248f5f10a619a6505271e"
+    },
+    {
+      "family": "bridge_oak",
+      "map": "roughness",
+      "attempt": 2,
+      "prompt": "Use case: precise-object-edit. Asset type: physically meaningful PBR ROUGHNESS, NOT height and NOT glossiness. The supplied oak ALBEDO is the exact crop/layout reference. Produce ONE 1254x1254 square registered grayscale roughness texture, exact same feature coordinates/crop. Crucial: the output MUST NOT look like a grayscale photograph, an embossed height map, lit relief or shaded wood. Flatten out ALL white edge highlights, bevel shading and black crack shading. Roughness is a MATERIAL PARAMETER independent of orientation and illumination. Most dry rough fibre areas should be quiet uniform PALE GRAY220 (roughness0.86). Dark deep checks are ALSO rough, use pale gray225 there, NEVER BLACK. Broad mechanically rubbed fibre tops and walking ridges, corresponding to the subtly lighter worn wood fibres in the albedo, should be slightly DARKER gentle gray130-160 (roughness0.5-0.63). Other dry wood varies modestly around195-225. Keep low-frequency continuous response patches following the existing vertical grain; do not outline or emboss every grain edge. No black pixels, no pure-white highlights, no directional gradient, no reflected light, no AO, no simulated volume, no height shading. It should look like a flatter low-contrast GRAY CONTROL MASK, only subdued wear-vs-roughness variation, not beauty wood. Preserve exact source pixel registration and edge continuity. No colors, stains turned into height, new details, boards, sphere, scene, text or borders. One edge-to-edge roughness map.",
+      "reference_paths": [
+        "/Users/theochernin/Projects/MultiPlayerProject-agents/theo-codex-12/content/environments/bridge_well_v1/bridge_oak/albedo.png"
+      ],
+      "reference_roles": [
+        "Authoritative albedo crop and wear-pattern locations; sole reference to avoid copying height shading into roughness."
+      ],
+      "output_path": "/Users/theochernin/Projects/MultiPlayerProject-agents/theo-codex-12/content/environments/bridge_well_v1/bridge_oak/roughness.png",
+      "native_source_path": "/Users/theochernin/.codex/generated_images/01a1603d-bb81-7940-85fa-146e0f9afbd1/exec-6a604187-0d34-401e-a2ce-95f9a5609d24.png",
+      "qa": {
+        "visual": "Best available after two attempts: flatter/lower-contrast grey response than attempt1, but relief-like fine contrast persists and polished-ridge roughness is not cleanly isolated. Dark checks still imply smoother values than intended.",
+        "seam": "Not verified across repeats.",
+        "alignment": "Same macro geometry visually retained; scalar range and whether to use this versus constant dry roughness require parent numerical/render decision.",
+        "status": "Delivered as limited roughness candidate after retry limit; not a calibrated physical roughness map."
+      },
+      "width": 1254,
+      "height": 1254,
+      "bytes": 3033336,
+      "sha256": "f18884adf1451580c907577acb1d2d62663150782a150053fd7ec3ca3401f11c"
+    },
+    {
+      "family": "bridge_oak",
+      "map": "ao",
+      "attempt": 1,
+      "prompt": "Use case: precise-object-edit. Asset type: PBR ambient-occlusion map for the exact worn bridge oak HEIGHT. Input1 HEIGHT is the authoritative geometry; Input2 ALBEDO only identifies exact corresponding features. ONE flat 1254x1254 square grayscale registered AO map with the identical crop, same pixel positions, grain/check shapes and seamless edge relationships. White means unoccluded ambient visibility. Most open worn timber surface must be nearly WHITE; only narrow existing cracks/checks, undercut splinter cavities and sheltered fine fibre crevices darken modestly. Do NOT simply shade or emboss the wood, do not copy albedo pigment darkness. Occlusion is nondirectional local cavity visibility: no directional highlight/shadow pairs, no broad cast shadows, no grey illumination gradient or sheen. Deep narrow checks may be dark, broad smooth walking ridges stay white. Very shallow AO only in fine grain, not a grey coat over every ridge. No new plank gaps, seams, holes, hardware, detail or perspective. No colour, border, text, sphere/scene or multimap sheet. One edge-to-edge mostly-white AO map retaining exact source geometry.",
+      "reference_paths": [
+        "/Users/theochernin/Projects/MultiPlayerProject-agents/theo-codex-12/content/environments/bridge_well_v1/bridge_oak/height.png",
+        "/Users/theochernin/Projects/MultiPlayerProject-agents/theo-codex-12/content/environments/bridge_well_v1/bridge_oak/albedo.png"
+      ],
+      "reference_roles": [
+        "HEIGHT first: authoritative cavity geometry.",
+        "ALBEDO second: corresponding layout only; pigment is not occlusion."
+      ],
+      "output_path": "/Users/theochernin/Projects/MultiPlayerProject-agents/theo-codex-12/content/environments/bridge_well_v1/bridge_oak/ao.png",
+      "native_source_path": "/Users/theochernin/.codex/generated_images/01a1603d-bb81-7940-85fa-146e0f9afbd1/exec-776416f2-7e78-43a8-b5c9-34654f2566c9.png",
+      "qa": {
+        "visual": "Mostly white with dark same-position checks and splinter cavities, retaining the source grain. Fine cavity contrast is strong and can over-darken timber if applied at full weight.",
+        "seam": "Not verified across repeats.",
+        "alignment": "Macro grain/check geometry visually corresponds; exact registration and nondirectional cavity validity require parent checks.",
+        "status": "Accepted AO candidate with conservative material influence."
+      },
+      "width": 1254,
+      "height": 1254,
+      "bytes": 2947244,
+      "sha256": "b3eaf987d5d43b126d887c626ebbbdc1d94b2c34d64a18cd96388835a2eb822a"
+    },
+    {
+      "family": "masks",
+      "map": "wet_patches",
+      "attempt": 1,
+      "prompt": "Use case: infographic-diagram. Asset type: independent grayscale WET PATCHES BLEND MASK for oak bridge boards. Input1 selected bridge is only a reference for plausible uneven damp coverage, not camera, perspective or scene lighting. Generate ONE flat orthographic edge-to-edge seamless square 1254x1254 pixel texture. WHITE means damp/wet; BLACK means dry; gentle local grey transitions represent partially damp margins, not lighting. A few QUIET BROAD UNEVEN DAMP AREAS, with broad solid nearly-white coherent cores and broad calm black dry regions, about40percent wet coverage. Shapes should be irregular soft-edged elongated patches suggesting moisture collecting across worn timber, with a SMALL NUMBER of long narrow VERTICAL grain-following streaks extending from patch margins. No uniformly distributed fractal clouds, speckle, noisy pores, detailed wood-grain pattern, painted planks, grid, nails or black board separations. Do not depict highlights, reflections, puddle color, droplets, perspective or 3D wood. Coverage geometry must be usable as a shader control mask, not a beauty image. No directional gradient, cast shadows, vignette, bevel lighting, AO, text, labels, border, scene, sphere or panels. Opposite tile edges must continue matching features for a seamless repeat; avoid an obvious symmetric shape or perimeter ring. One restrained grayscale damp-coverage mask only.",
+      "reference_paths": [
+        "/Users/theochernin/Projects/MultiPlayerProject-agents/theo-codex-12/content/environments/bridge_well_v1/review/selected_bridge.png"
+      ],
+      "reference_roles": [
+        "Selected bridge damp-coverage character only; independent mask, no scene geometry or lighting transfer."
+      ],
+      "output_path": null,
+      "native_source_path": "/Users/theochernin/.codex/generated_images/01a1603d-bb81-7940-85fa-146e0f9afbd1/exec-e4bad599-a8b9-48ac-9c5a-7623e0027b7a.png",
+      "intended_output_path": "/Users/theochernin/Projects/MultiPlayerProject-agents/theo-codex-12/content/environments/bridge_well_v1/masks/wet_patches.png",
+      "qa": {
+        "visual": "Rejected: the result has cloudy high-frequency fractal coverage rather than quiet broad damp patches; not suitable as the requested restrained wetness control.",
+        "status": "Invalid first mask attempt; not copied."
+      },
+      "width": 1254,
+      "height": 1254,
+      "bytes": 2843015,
+      "sha256": "34200c87d22f8b4c0e536a0f97dccc8a85927a65632e2567adcc1fe1575e587f"
+    },
+    {
+      "family": "masks",
+      "map": "wet_patches",
+      "attempt": 2,
+      "prompt": "Create ONE purely GRAPHIC GRAYSCALE SHADER CONTROL MASK, a flat square 1254x1254 image. It is NOT a photograph, material texture, weather, clouds, rock, smoke, organic fuzz or noise. Use a calm solid BLACK background (dry), interrupted by THREE OR FOUR LARGE SOLID nearly-WHITE irregular rounded elongated patches (damp), occupying together about35percent of the tile. Each patch has a broad clean QUIET INTERIOR of almost-uniform white, without mottling, pores, spots, fractal detail or fine texture. Patch outlines are asymmetrical smoothly irregular, not perfect ovals, and have only a narrow soft grey transition fringe at their edges. A very small number of LONG THIN VERTICAL offshoot streaks extend from the large patch edges, suggesting moisture following timber grain; no all-over wood-grain texture. Design has large calm black empty regions, large calm white damp cores, and low detail overall. WHITE wet, BLACK dry; no directional lighting, no gradients across the whole image, no highlights, shadows, simulated depth or AO. Think a clean low-frequency painted material blending stencil with a few elongated wet islands, NOT a cloudy procedural grunge map. Seamless matching opposite edges on both axes, no border, vignetting, text, captions, logos, scene, boards, sphere or collage. One deliberately simple flat edge-to-edge grayscale blend-mask image.",
+      "reference_paths": [],
+      "reference_roles": [],
+      "output_path": "/Users/theochernin/Projects/MultiPlayerProject-agents/theo-codex-12/content/environments/bridge_well_v1/masks/wet_patches.png",
+      "native_source_path": "/Users/theochernin/.codex/generated_images/01a1603d-bb81-7940-85fa-146e0f9afbd1/exec-4a0cab83-f993-47ea-a460-f68c21a86655.png",
+      "qa": {
+        "visual": "Retry produces three broad quiet white damp cores, large calm black dry regions and a few long narrow vertical offshoots; no all-over fractal grain/noise or directional lighting. Shapes are rather smooth/lobed, so shader variation/UV scale should avoid an obvious repeated motif.",
+        "seam": "Opposite-edge periodic matching not numerically verified.",
+        "alignment": "Independent broad damp-coverage control; intentionally not pixel-registered to albedo microfeatures.",
+        "status": "Accepted wetness mask candidate."
+      },
+      "width": 1254,
+      "height": 1254,
+      "bytes": 832488,
+      "sha256": "e5cb8ff6cbc964431794ac33be1f6ce1171e3abf77bf029ffdb6fe7c4321cc31"
+    }
+  ]
+}

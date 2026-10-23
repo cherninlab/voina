@@ -1,0 +1,191 @@
+[
+  {
+    "scan": "001",
+    "blender_world_bounds": [
+      [
+        -102.66061401367188,
+        85.45198059082031,
+        -17.739953994750977
+      ],
+      [
+        -69.04193115234375,
+        115.48529815673828,
+        -2.889019727706909
+      ]
+    ],
+    "size": [
+      33.618682861328125,
+      30.03331756591797,
+      14.850934028625488
+    ],
+    "objects": [
+      {
+        "name": "Model_material0_0",
+        "vertices": 65532,
+        "polygons": 21844
+      },
+      {
+        "name": "Model_material0_0.001",
+        "vertices": 65532,
+        "polygons": 21844
+      },
+      {
+        "name": "Model_material0_0.002",
+        "vertices": 65532,
+        "polygons": 21844
+      },
+      {
+        "name": "Model_material0_0.003",
+        "vertices": 65532,
+        "polygons": 21844
+      },
+      {
+        "name": "Model_material0_0.004",
+        "vertices": 65532,
+        "polygons": 21844
+      },
+      {
+        "name": "Model_material0_0.005",
+        "vertices": 18963,
+        "polygons": 6321
+      },
+      {
+        "name": "Model_material2_0",
+        "vertices": 65532,
+        "polygons": 21844
+      },
+      {
+        "name": "Model_material2_0.001",
+        "vertices": 65532,
+        "polygons": 21844
+      },
+      {
+        "name": "Model_material2_0.002",
+        "vertices": 65532,
+        "polygons": 21844
+      },
+      {
+        "name": "Model_material2_0.003",
+        "vertices": 65532,
+        "polygons": 21844
+      },
+      {
+        "name": "Model_material2_0.004",
+        "vertices": 65532,
+        "polygons": 21844
+      },
+      {
+        "name": "Model_material2_0.005",
+        "vertices": 63432,
+        "polygons": 21144
+      },
+      {
+        "name": "Model_material1_0",
+        "vertices": 65532,
+        "polygons": 21844
+      },
+      {
+        "name": "Model_material1_0.001",
+        "vertices": 65532,
+        "polygons": 21844
+      },
+      {
+        "name": "Model_material1_0.002",
+        "vertices": 65532,
+        "polygons": 21844
+      },
+      {
+        "name": "Model_material1_0.003",
+        "vertices": 65532,
+        "polygons": 21844
+      },
+      {
+        "name": "Model_material1_0.004",
+        "vertices": 65532,
+        "polygons": 21844
+      },
+      {
+        "name": "Model_material1_0.005",
+        "vertices": 65532,
+        "polygons": 21844
+      },
+      {
+        "name": "Model_material1_0.006",
+        "vertices": 8808,
+        "polygons": 2936
+      }
+    ]
+  },
+  {
+    "scan": "002",
+    "blender_world_bounds": [
+      [
+        -2.722784996032715,
+        -5.549465179443359,
+        -1.726947546005249
+      ],
+      [
+        9.77438735961914,
+        2.2973620891571045,
+        4.197816848754883
+      ]
+    ],
+    "size": [
+      12.497172355651855,
+      7.846827507019043,
+      5.924764633178711
+    ],
+    "objects": [
+      {
+        "name": "Object_3",
+        "vertices": 65532,
+        "polygons": 97669
+      },
+      {
+        "name": "Object_4",
+        "vertices": 65533,
+        "polygons": 94498
+      },
+      {
+        "name": "Object_5",
+        "vertices": 17492,
+        "polygons": 18281
+      },
+      {
+        "name": "Object_6",
+        "vertices": 65532,
+        "polygons": 86721
+      },
+      {
+        "name": "Object_7",
+        "vertices": 65532,
+        "polygons": 91538
+      },
+      {
+        "name": "Object_8",
+        "vertices": 65532,
+        "polygons": 92297
+      },
+      {
+        "name": "Object_9",
+        "vertices": 65532,
+        "polygons": 79424
+      },
+      {
+        "name": "Object_10",
+        "vertices": 16094,
+        "polygons": 14411
+      },
+      {
+        "name": "Object_11",
+        "vertices": 56,
+        "polygons": 0
+      },
+      {
+        "name": "Object_12",
+        "vertices": 11701,
+        "polygons": 8122
+      }
+    ]
+  }
+]

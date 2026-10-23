@@ -1,0 +1,1315 @@
+{
+  "task": "T-149",
+  "native_map_count": 20,
+  "families": [
+    {
+      "id": "bridge_oak",
+      "starting_tile_width_m": 0.4,
+      "normal_scale": 0.35,
+      "maps": {
+        "albedo": {
+          "path": "bridge_oak/albedo.png",
+          "sha256": "0c6218a7d69d44818ad48d4b68d75934be7380272246281b7e0d681f79ad98cd",
+          "bytes": 3589708,
+          "size": [
+            1254,
+            1254
+          ],
+          "source_mode": "RGB",
+          "channel_means": [
+            74.95,
+            53.68,
+            36.75
+          ],
+          "channel_extrema": [
+            [
+              0,
+              255
+            ],
+            [
+              0,
+              232
+            ],
+            [
+              0,
+              197
+            ]
+          ],
+          "max_rgb_channel_difference": 63,
+          "opposite_edge_mean_difference_255": {
+            "u": 13.09,
+            "v": 13.54
+          }
+        },
+        "height": {
+          "path": "bridge_oak/height.png",
+          "sha256": "af06fa9d65698da1184c56da5587a67f108b783246f2015000e6edb8acbe9e0e",
+          "bytes": 3716993,
+          "size": [
+            1254,
+            1254
+          ],
+          "source_mode": "RGB",
+          "channel_means": [
+            125.86,
+            125.64,
+            125.26
+          ],
+          "channel_extrema": [
+            [
+              0,
+              255
+            ],
+            [
+              0,
+              255
+            ],
+            [
+              0,
+              255
+            ]
+          ],
+          "max_rgb_channel_difference": 16,
+          "opposite_edge_mean_difference_255": {
+            "u": 23.08,
+            "v": 21.73
+          }
+        },
+        "normal_gl": {
+          "path": "bridge_oak/normal_gl.png",
+          "sha256": "933eb3dd9b18ffc9a7264dce951a035915986a89fec3dcd3cfd7ba3514033c2e",
+          "bytes": 3027806,
+          "size": [
+            1254,
+            1254
+          ],
+          "source_mode": "RGB",
+          "channel_means": [
+            118.5,
+            127.13,
+            241.57
+          ],
+          "channel_extrema": [
+            [
+              0,
+              255
+            ],
+            [
+              0,
+              255
+            ],
+            [
+              6,
+              255
+            ]
+          ],
+          "max_rgb_channel_difference": 237,
+          "opposite_edge_mean_difference_255": {
+            "u": 17.06,
+            "v": 17.09
+          }
+        },
+        "roughness": {
+          "path": "bridge_oak/roughness.png",
+          "sha256": "f18884adf1451580c907577acb1d2d62663150782a150053fd7ec3ca3401f11c",
+          "bytes": 3033336,
+          "size": [
+            1254,
+            1254
+          ],
+          "source_mode": "RGB",
+          "channel_means": [
+            161.47,
+            161.16,
+            161.35
+          ],
+          "channel_extrema": [
+            [
+              32,
+              248
+            ],
+            [
+              33,
+              249
+            ],
+            [
+              33,
+              248
+            ]
+          ],
+          "max_rgb_channel_difference": 8,
+          "opposite_edge_mean_difference_255": {
+            "u": 17.11,
+            "v": 14.79
+          }
+        },
+        "ao": {
+          "path": "bridge_oak/ao.png",
+          "sha256": "b3eaf987d5d43b126d887c626ebbbdc1d94b2c34d64a18cd96388835a2eb822a",
+          "bytes": 2947244,
+          "size": [
+            1254,
+            1254
+          ],
+          "source_mode": "RGB",
+          "channel_means": [
+            223.4,
+            223.51,
+            223.59
+          ],
+          "channel_extrema": [
+            [
+              0,
+              255
+            ],
+            [
+              0,
+              255
+            ],
+            [
+              0,
+              255
+            ]
+          ],
+          "max_rgb_channel_difference": 10,
+          "opposite_edge_mean_difference_255": {
+            "u": 19.87,
+            "v": 16.77
+          }
+        }
+      },
+      "normal_diagnostic": {
+        "height_slope_correlation_x_y": [
+          0.694,
+          0.151
+        ],
+        "normal_vector_length_mean": 0.971,
+        "normal_vector_length_std": 0.089,
+        "method": "Stride4 sample; height Gaussian radius2; X=-dH/dU, Y=+dH/d(image V). Diagnostic only."
+      },
+      "import_flip_y": false
+    },
+    {
+      "id": "mineral_plaster",
+      "starting_tile_width_m": 2.5,
+      "normal_scale": 0.32,
+      "maps": {
+        "albedo": {
+          "path": "mineral_plaster/albedo.png",
+          "sha256": "623d72af21c81f898f530fa980d136b3e05607042007f8f40a8cebaaf7dcdb6a",
+          "bytes": 4167364,
+          "size": [
+            1254,
+            1254
+          ],
+          "source_mode": "RGB",
+          "channel_means": [
+            186.54,
+            168.72,
+            143.51
+          ],
+          "channel_extrema": [
+            [
+              0,
+              255
+            ],
+            [
+              0,
+              255
+            ],
+            [
+              0,
+              255
+            ]
+          ],
+          "max_rgb_channel_difference": 71,
+          "opposite_edge_mean_difference_255": {
+            "u": 20.96,
+            "v": 21.3
+          }
+        },
+        "height": {
+          "path": "mineral_plaster/height.png",
+          "sha256": "8f7b1db5a820a0c41573d2bfe5cd70ef8919a19e919286eecc87f6b43f134fa3",
+          "bytes": 3746568,
+          "size": [
+            1254,
+            1254
+          ],
+          "source_mode": "RGB",
+          "channel_means": [
+            167.81,
+            167.58,
+            167.38
+          ],
+          "channel_extrema": [
+            [
+              0,
+              255
+            ],
+            [
+              0,
+              255
+            ],
+            [
+              0,
+              255
+            ]
+          ],
+          "max_rgb_channel_difference": 14,
+          "opposite_edge_mean_difference_255": {
+            "u": 25.67,
+            "v": 25.5
+          }
+        },
+        "normal_gl": {
+          "path": "mineral_plaster/normal_dx.png",
+          "sha256": "0bb9dd66642f1b43cbfca508ab79703c3593e79f77ccc05edbeb2890aeed1d76",
+          "bytes": 2918076,
+          "size": [
+            1254,
+            1254
+          ],
+          "source_mode": "RGB",
+          "channel_means": [
+            124.87,
+            127.21,
+            245.35
+          ],
+          "channel_extrema": [
+            [
+              0,
+              255
+            ],
+            [
+              0,
+              255
+            ],
+            [
+              19,
+              255
+            ]
+          ],
+          "max_rgb_channel_difference": 250,
+          "opposite_edge_mean_difference_255": {
+            "u": 21.66,
+            "v": 19.56
+          }
+        },
+        "roughness": {
+          "path": "mineral_plaster/roughness.png",
+          "sha256": "c11be557cda1aa175878f48a5c7ba9e73b0a12a6f6346d5d5232a62e62830f48",
+          "bytes": 3363407,
+          "size": [
+            1254,
+            1254
+          ],
+          "source_mode": "RGB",
+          "channel_means": [
+            195.04,
+            194.87,
+            195.15
+          ],
+          "channel_extrema": [
+            [
+              32,
+              255
+            ],
+            [
+              31,
+              255
+            ],
+            [
+              31,
+              255
+            ]
+          ],
+          "max_rgb_channel_difference": 8,
+          "opposite_edge_mean_difference_255": {
+            "u": 19.13,
+            "v": 17.11
+          }
+        },
+        "ao": {
+          "path": "mineral_plaster/ao.png",
+          "sha256": "14d18b594deac98c1ee5279e358a0c215bf2164b630355c10cc9dfd761ad7eb7",
+          "bytes": 2668137,
+          "size": [
+            1254,
+            1254
+          ],
+          "source_mode": "RGB",
+          "channel_means": [
+            233.51,
+            233.55,
+            233.7
+          ],
+          "channel_extrema": [
+            [
+              0,
+              255
+            ],
+            [
+              0,
+              255
+            ],
+            [
+              0,
+              255
+            ]
+          ],
+          "max_rgb_channel_difference": 11,
+          "opposite_edge_mean_difference_255": {
+            "u": 23.17,
+            "v": 21.78
+          }
+        }
+      },
+      "normal_diagnostic": {
+        "height_slope_correlation_x_y": [
+          0.569,
+          -0.281
+        ],
+        "normal_vector_length_mean": 1.0,
+        "normal_vector_length_std": 0.081,
+        "method": "Stride4 sample; height Gaussian radius2; X=-dH/dU, Y=+dH/d(image V). Diagnostic only."
+      },
+      "import_flip_y": true
+    },
+    {
+      "id": "damp_masonry",
+      "starting_tile_width_m": 2.5,
+      "normal_scale": 0.6,
+      "maps": {
+        "albedo": {
+          "path": "damp_masonry/albedo.png",
+          "sha256": "3baf0199e2d8b74d05928c08901ddaeab07e3ecb35b4439b1b5e9b2235599232",
+          "bytes": 3845242,
+          "size": [
+            1254,
+            1254
+          ],
+          "source_mode": "RGB",
+          "channel_means": [
+            50.97,
+            47.66,
+            38.03
+          ],
+          "channel_extrema": [
+            [
+              0,
+              228
+            ],
+            [
+              0,
+              227
+            ],
+            [
+              0,
+              222
+            ]
+          ],
+          "max_rgb_channel_difference": 71,
+          "opposite_edge_mean_difference_255": {
+            "u": 14.03,
+            "v": 15.09
+          }
+        },
+        "height": {
+          "path": "damp_masonry/height.png",
+          "sha256": "711753da222aeda9392dc5d4dbdc600b3ff5fca5757f3a629e83e867a22922bf",
+          "bytes": 3988923,
+          "size": [
+            1254,
+            1254
+          ],
+          "source_mode": "RGB",
+          "channel_means": [
+            125.19,
+            125.25,
+            125.38
+          ],
+          "channel_extrema": [
+            [
+              0,
+              251
+            ],
+            [
+              0,
+              252
+            ],
+            [
+              0,
+              251
+            ]
+          ],
+          "max_rgb_channel_difference": 14,
+          "opposite_edge_mean_difference_255": {
+            "u": 25.89,
+            "v": 29.35
+          }
+        },
+        "normal_gl": {
+          "path": "damp_masonry/normal_gl.png",
+          "sha256": "a280152789fa07325f6c8085f6e51304c558a52e63ee7a6b44e5ecc38d304f59",
+          "bytes": 3315928,
+          "size": [
+            1254,
+            1254
+          ],
+          "source_mode": "RGB",
+          "channel_means": [
+            118.17,
+            127.69,
+            234.2
+          ],
+          "channel_extrema": [
+            [
+              0,
+              255
+            ],
+            [
+              0,
+              255
+            ],
+            [
+              14,
+              255
+            ]
+          ],
+          "max_rgb_channel_difference": 250,
+          "opposite_edge_mean_difference_255": {
+            "u": 22.71,
+            "v": 34.47
+          }
+        },
+        "roughness": {
+          "path": "damp_masonry/roughness.png",
+          "sha256": "f0c91dfb35a07d5262cd6b67713aad595eaea023a21ccdcc72775a83c0b4f35c",
+          "bytes": 3967979,
+          "size": [
+            1254,
+            1254
+          ],
+          "source_mode": "RGB",
+          "channel_means": [
+            180.32,
+            180.29,
+            180.56
+          ],
+          "channel_extrema": [
+            [
+              28,
+              255
+            ],
+            [
+              26,
+              255
+            ],
+            [
+              29,
+              255
+            ]
+          ],
+          "max_rgb_channel_difference": 13,
+          "opposite_edge_mean_difference_255": {
+            "u": 17.19,
+            "v": 18.3
+          }
+        },
+        "ao": {
+          "path": "damp_masonry/ao.png",
+          "sha256": "d276c748a504d04bdcf6d6e0a147f111e9d6cb4dc4efa54b15ce0f866ceb9272",
+          "bytes": 3097578,
+          "size": [
+            1254,
+            1254
+          ],
+          "source_mode": "RGB",
+          "channel_means": [
+            214.09,
+            214.24,
+            214.36
+          ],
+          "channel_extrema": [
+            [
+              0,
+              255
+            ],
+            [
+              0,
+              255
+            ],
+            [
+              0,
+              255
+            ]
+          ],
+          "max_rgb_channel_difference": 11,
+          "opposite_edge_mean_difference_255": {
+            "u": 26.31,
+            "v": 32.28
+          }
+        }
+      },
+      "normal_diagnostic": {
+        "height_slope_correlation_x_y": [
+          0.574,
+          0.387
+        ],
+        "normal_vector_length_mean": 0.999,
+        "normal_vector_length_std": 0.117,
+        "method": "Stride4 sample; height Gaussian radius2; X=-dH/dU, Y=+dH/d(image V). Diagnostic only."
+      },
+      "import_flip_y": false
+    }
+  ],
+  "maps": [
+    {
+      "path": "bridge_oak/albedo.png",
+      "sha256": "0c6218a7d69d44818ad48d4b68d75934be7380272246281b7e0d681f79ad98cd",
+      "bytes": 3589708,
+      "size": [
+        1254,
+        1254
+      ],
+      "source_mode": "RGB",
+      "channel_means": [
+        74.95,
+        53.68,
+        36.75
+      ],
+      "channel_extrema": [
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          232
+        ],
+        [
+          0,
+          197
+        ]
+      ],
+      "max_rgb_channel_difference": 63,
+      "opposite_edge_mean_difference_255": {
+        "u": 13.09,
+        "v": 13.54
+      }
+    },
+    {
+      "path": "bridge_oak/height.png",
+      "sha256": "af06fa9d65698da1184c56da5587a67f108b783246f2015000e6edb8acbe9e0e",
+      "bytes": 3716993,
+      "size": [
+        1254,
+        1254
+      ],
+      "source_mode": "RGB",
+      "channel_means": [
+        125.86,
+        125.64,
+        125.26
+      ],
+      "channel_extrema": [
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ]
+      ],
+      "max_rgb_channel_difference": 16,
+      "opposite_edge_mean_difference_255": {
+        "u": 23.08,
+        "v": 21.73
+      }
+    },
+    {
+      "path": "bridge_oak/normal_gl.png",
+      "sha256": "933eb3dd9b18ffc9a7264dce951a035915986a89fec3dcd3cfd7ba3514033c2e",
+      "bytes": 3027806,
+      "size": [
+        1254,
+        1254
+      ],
+      "source_mode": "RGB",
+      "channel_means": [
+        118.5,
+        127.13,
+        241.57
+      ],
+      "channel_extrema": [
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ],
+        [
+          6,
+          255
+        ]
+      ],
+      "max_rgb_channel_difference": 237,
+      "opposite_edge_mean_difference_255": {
+        "u": 17.06,
+        "v": 17.09
+      }
+    },
+    {
+      "path": "bridge_oak/roughness.png",
+      "sha256": "f18884adf1451580c907577acb1d2d62663150782a150053fd7ec3ca3401f11c",
+      "bytes": 3033336,
+      "size": [
+        1254,
+        1254
+      ],
+      "source_mode": "RGB",
+      "channel_means": [
+        161.47,
+        161.16,
+        161.35
+      ],
+      "channel_extrema": [
+        [
+          32,
+          248
+        ],
+        [
+          33,
+          249
+        ],
+        [
+          33,
+          248
+        ]
+      ],
+      "max_rgb_channel_difference": 8,
+      "opposite_edge_mean_difference_255": {
+        "u": 17.11,
+        "v": 14.79
+      }
+    },
+    {
+      "path": "bridge_oak/ao.png",
+      "sha256": "b3eaf987d5d43b126d887c626ebbbdc1d94b2c34d64a18cd96388835a2eb822a",
+      "bytes": 2947244,
+      "size": [
+        1254,
+        1254
+      ],
+      "source_mode": "RGB",
+      "channel_means": [
+        223.4,
+        223.51,
+        223.59
+      ],
+      "channel_extrema": [
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ]
+      ],
+      "max_rgb_channel_difference": 10,
+      "opposite_edge_mean_difference_255": {
+        "u": 19.87,
+        "v": 16.77
+      }
+    },
+    {
+      "path": "mineral_plaster/albedo.png",
+      "sha256": "623d72af21c81f898f530fa980d136b3e05607042007f8f40a8cebaaf7dcdb6a",
+      "bytes": 4167364,
+      "size": [
+        1254,
+        1254
+      ],
+      "source_mode": "RGB",
+      "channel_means": [
+        186.54,
+        168.72,
+        143.51
+      ],
+      "channel_extrema": [
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ]
+      ],
+      "max_rgb_channel_difference": 71,
+      "opposite_edge_mean_difference_255": {
+        "u": 20.96,
+        "v": 21.3
+      }
+    },
+    {
+      "path": "mineral_plaster/height.png",
+      "sha256": "8f7b1db5a820a0c41573d2bfe5cd70ef8919a19e919286eecc87f6b43f134fa3",
+      "bytes": 3746568,
+      "size": [
+        1254,
+        1254
+      ],
+      "source_mode": "RGB",
+      "channel_means": [
+        167.81,
+        167.58,
+        167.38
+      ],
+      "channel_extrema": [
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ]
+      ],
+      "max_rgb_channel_difference": 14,
+      "opposite_edge_mean_difference_255": {
+        "u": 25.67,
+        "v": 25.5
+      }
+    },
+    {
+      "path": "mineral_plaster/normal_dx.png",
+      "sha256": "0bb9dd66642f1b43cbfca508ab79703c3593e79f77ccc05edbeb2890aeed1d76",
+      "bytes": 2918076,
+      "size": [
+        1254,
+        1254
+      ],
+      "source_mode": "RGB",
+      "channel_means": [
+        124.87,
+        127.21,
+        245.35
+      ],
+      "channel_extrema": [
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ],
+        [
+          19,
+          255
+        ]
+      ],
+      "max_rgb_channel_difference": 250,
+      "opposite_edge_mean_difference_255": {
+        "u": 21.66,
+        "v": 19.56
+      }
+    },
+    {
+      "path": "mineral_plaster/roughness.png",
+      "sha256": "c11be557cda1aa175878f48a5c7ba9e73b0a12a6f6346d5d5232a62e62830f48",
+      "bytes": 3363407,
+      "size": [
+        1254,
+        1254
+      ],
+      "source_mode": "RGB",
+      "channel_means": [
+        195.04,
+        194.87,
+        195.15
+      ],
+      "channel_extrema": [
+        [
+          32,
+          255
+        ],
+        [
+          31,
+          255
+        ],
+        [
+          31,
+          255
+        ]
+      ],
+      "max_rgb_channel_difference": 8,
+      "opposite_edge_mean_difference_255": {
+        "u": 19.13,
+        "v": 17.11
+      }
+    },
+    {
+      "path": "mineral_plaster/ao.png",
+      "sha256": "14d18b594deac98c1ee5279e358a0c215bf2164b630355c10cc9dfd761ad7eb7",
+      "bytes": 2668137,
+      "size": [
+        1254,
+        1254
+      ],
+      "source_mode": "RGB",
+      "channel_means": [
+        233.51,
+        233.55,
+        233.7
+      ],
+      "channel_extrema": [
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ]
+      ],
+      "max_rgb_channel_difference": 11,
+      "opposite_edge_mean_difference_255": {
+        "u": 23.17,
+        "v": 21.78
+      }
+    },
+    {
+      "path": "damp_masonry/albedo.png",
+      "sha256": "3baf0199e2d8b74d05928c08901ddaeab07e3ecb35b4439b1b5e9b2235599232",
+      "bytes": 3845242,
+      "size": [
+        1254,
+        1254
+      ],
+      "source_mode": "RGB",
+      "channel_means": [
+        50.97,
+        47.66,
+        38.03
+      ],
+      "channel_extrema": [
+        [
+          0,
+          228
+        ],
+        [
+          0,
+          227
+        ],
+        [
+          0,
+          222
+        ]
+      ],
+      "max_rgb_channel_difference": 71,
+      "opposite_edge_mean_difference_255": {
+        "u": 14.03,
+        "v": 15.09
+      }
+    },
+    {
+      "path": "damp_masonry/height.png",
+      "sha256": "711753da222aeda9392dc5d4dbdc600b3ff5fca5757f3a629e83e867a22922bf",
+      "bytes": 3988923,
+      "size": [
+        1254,
+        1254
+      ],
+      "source_mode": "RGB",
+      "channel_means": [
+        125.19,
+        125.25,
+        125.38
+      ],
+      "channel_extrema": [
+        [
+          0,
+          251
+        ],
+        [
+          0,
+          252
+        ],
+        [
+          0,
+          251
+        ]
+      ],
+      "max_rgb_channel_difference": 14,
+      "opposite_edge_mean_difference_255": {
+        "u": 25.89,
+        "v": 29.35
+      }
+    },
+    {
+      "path": "damp_masonry/normal_gl.png",
+      "sha256": "a280152789fa07325f6c8085f6e51304c558a52e63ee7a6b44e5ecc38d304f59",
+      "bytes": 3315928,
+      "size": [
+        1254,
+        1254
+      ],
+      "source_mode": "RGB",
+      "channel_means": [
+        118.17,
+        127.69,
+        234.2
+      ],
+      "channel_extrema": [
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ],
+        [
+          14,
+          255
+        ]
+      ],
+      "max_rgb_channel_difference": 250,
+      "opposite_edge_mean_difference_255": {
+        "u": 22.71,
+        "v": 34.47
+      }
+    },
+    {
+      "path": "damp_masonry/roughness.png",
+      "sha256": "f0c91dfb35a07d5262cd6b67713aad595eaea023a21ccdcc72775a83c0b4f35c",
+      "bytes": 3967979,
+      "size": [
+        1254,
+        1254
+      ],
+      "source_mode": "RGB",
+      "channel_means": [
+        180.32,
+        180.29,
+        180.56
+      ],
+      "channel_extrema": [
+        [
+          28,
+          255
+        ],
+        [
+          26,
+          255
+        ],
+        [
+          29,
+          255
+        ]
+      ],
+      "max_rgb_channel_difference": 13,
+      "opposite_edge_mean_difference_255": {
+        "u": 17.19,
+        "v": 18.3
+      }
+    },
+    {
+      "path": "damp_masonry/ao.png",
+      "sha256": "d276c748a504d04bdcf6d6e0a147f111e9d6cb4dc4efa54b15ce0f866ceb9272",
+      "bytes": 3097578,
+      "size": [
+        1254,
+        1254
+      ],
+      "source_mode": "RGB",
+      "channel_means": [
+        214.09,
+        214.24,
+        214.36
+      ],
+      "channel_extrema": [
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ]
+      ],
+      "max_rgb_channel_difference": 11,
+      "opposite_edge_mean_difference_255": {
+        "u": 26.31,
+        "v": 32.28
+      }
+    },
+    {
+      "path": "water/ripple_height.png",
+      "sha256": "001a583de9b12aad1cb71425ded0450d29cc1a8c3f3fd26c0addc032e0643779",
+      "bytes": 1504536,
+      "size": [
+        1254,
+        1254
+      ],
+      "source_mode": "RGB",
+      "channel_means": [
+        126.49,
+        125.85,
+        125.35
+      ],
+      "channel_extrema": [
+        [
+          104,
+          169
+        ],
+        [
+          104,
+          168
+        ],
+        [
+          104,
+          167
+        ]
+      ],
+      "max_rgb_channel_difference": 4,
+      "opposite_edge_mean_difference_255": {
+        "u": 2.22,
+        "v": 2.41
+      }
+    },
+    {
+      "path": "water/ripple_normal_dx.png",
+      "sha256": "72f4a50c59eea04b12936b6d554a31b7df9a9bd96f0dde37f60b2f9f44c33700",
+      "bytes": 1660462,
+      "size": [
+        1254,
+        1254
+      ],
+      "source_mode": "RGB",
+      "channel_means": [
+        134.1,
+        131.91,
+        246.28
+      ],
+      "channel_extrema": [
+        [
+          76,
+          242
+        ],
+        [
+          56,
+          239
+        ],
+        [
+          146,
+          255
+        ]
+      ],
+      "max_rgb_channel_difference": 192,
+      "opposite_edge_mean_difference_255": {
+        "u": 3.72,
+        "v": 11.1
+      }
+    },
+    {
+      "path": "water/foam_mask.png",
+      "sha256": "8e057e57788dbb599aa98c68e4ce8952ed9bfd90607394b5bcbc0ad0756ef48f",
+      "bytes": 672553,
+      "size": [
+        1254,
+        1254
+      ],
+      "source_mode": "RGB",
+      "channel_means": [
+        1.52,
+        1.46,
+        1.4
+      ],
+      "channel_extrema": [
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ]
+      ],
+      "max_rgb_channel_difference": 14,
+      "opposite_edge_mean_difference_255": {
+        "u": 1.19,
+        "v": 0.18
+      }
+    },
+    {
+      "path": "masks/wet_patches.png",
+      "sha256": "e5cb8ff6cbc964431794ac33be1f6ce1171e3abf77bf029ffdb6fe7c4321cc31",
+      "bytes": 832488,
+      "size": [
+        1254,
+        1254
+      ],
+      "source_mode": "RGB",
+      "channel_means": [
+        110.04,
+        109.97,
+        109.95
+      ],
+      "channel_extrema": [
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ]
+      ],
+      "max_rgb_channel_difference": 9,
+      "opposite_edge_mean_difference_255": {
+        "u": 0.17,
+        "v": 3.74
+      }
+    },
+    {
+      "path": "masks/algae_coverage.png",
+      "sha256": "96a3322d1f058ec7a8a9cff37949b92ced8fd76b2830dedb693ddf4110f1a5e0",
+      "bytes": 1437431,
+      "size": [
+        1254,
+        1254
+      ],
+      "source_mode": "RGB",
+      "channel_means": [
+        54.49,
+        54.17,
+        54.02
+      ],
+      "channel_extrema": [
+        [
+          0,
+          235
+        ],
+        [
+          0,
+          235
+        ],
+        [
+          0,
+          235
+        ]
+      ],
+      "max_rgb_channel_difference": 4,
+      "opposite_edge_mean_difference_255": {
+        "u": 2.06,
+        "v": 2.19
+      }
+    }
+  ],
+  "reuse": [
+    "res://content/environments/red_nave_v1/oxidized_iron/material.tres",
+    "res://content/environments/red_nave_v1/pale_limestone/material.tres"
+  ],
+  "source_sha256": "3def73d0e82c80e2c2c84c344baa9fe8019bd825dba23652567b274170094630",
+  "normal_convention": "OpenGL X+ Y+ Z+ in engine; sources named _dx use import green inversion (plaster and water).",
+  "scalar_convention": "Linear red channel; white high/rough/open/coverage respectively",
+  "scan_fragments": [
+    {
+      "scan": "001",
+      "file": "scan_fragments/scan_001_wall_fragment.glb",
+      "selection_bins": [
+        1,
+        -1,
+        205,
+        -36,
+        -5
+      ],
+      "source_world_patch_center": {
+        "normal": 102.75,
+        "tangent": -88.75,
+        "height": -13.5
+      },
+      "selection_half_extents_m": [
+        1.35,
+        0.48,
+        1.6
+      ],
+      "polygons_before": 725,
+      "polygons_after": 725,
+      "bytes": 10917380,
+      "changes": "Selected existing wall faces, removed loose vertices, welded0.5mm, reoriented, decimated; UVs and source bitmap textures retained. No collision."
+    },
+    {
+      "scan": "002",
+      "file": "scan_fragments/scan_002_wall_fragment.glb",
+      "selection_bins": [
+        0,
+        -1,
+        17,
+        0,
+        0
+      ],
+      "source_world_patch_center": {
+        "normal": 8.75,
+        "tangent": 1.25,
+        "height": 1.5
+      },
+      "selection_half_extents_m": [
+        1.35,
+        0.48,
+        1.6
+      ],
+      "polygons_before": 28514,
+      "polygons_after": 12000,
+      "bytes": 27914148,
+      "changes": "Selected existing wall faces, removed loose vertices, welded0.5mm, reoriented, decimated; UVs and source bitmap textures retained. No collision."
+    }
+  ],
+  "limits": [
+    "Generated scalar maps are approximations; fine detail is not an exact derivative.",
+    "Wet shader defaults to finite-difference normal from scalar height; native normal is an optional alternate.",
+    "Wet shader clamps dry roughness to0.68..0.95 before controlled damp blending.",
+    "Height maps do not supply structural geometry or collision.",
+    "Water uses depth color, specular and animated normal/height; no SSR/refraction."
+  ]
+}

@@ -1,0 +1,52 @@
+[
+  {
+    "scan": "001",
+    "file": "scan_fragments/scan_001_wall_fragment.glb",
+    "selection_bins": [
+      1,
+      -1,
+      205,
+      -36,
+      -5
+    ],
+    "source_world_patch_center": {
+      "normal": 102.75,
+      "tangent": -88.75,
+      "height": -13.5
+    },
+    "selection_half_extents_m": [
+      1.35,
+      0.48,
+      1.6
+    ],
+    "polygons_before": 725,
+    "polygons_after": 725,
+    "bytes": 10917380,
+    "changes": "Selected existing wall faces, removed loose vertices, welded0.5mm, reoriented, decimated; UVs and source bitmap textures retained. No collision."
+  },
+  {
+    "scan": "002",
+    "file": "scan_fragments/scan_002_wall_fragment.glb",
+    "selection_bins": [
+      0,
+      -1,
+      17,
+      0,
+      0
+    ],
+    "source_world_patch_center": {
+      "normal": 8.75,
+      "tangent": 1.25,
+      "height": 1.5
+    },
+    "selection_half_extents_m": [
+      1.35,
+      0.48,
+      1.6
+    ],
+    "polygons_before": 28514,
+    "polygons_after": 12000,
+    "bytes": 27914148,
+    "changes": "Selected existing wall faces, removed loose vertices, welded0.5mm, reoriented, decimated; UVs and source bitmap textures retained. No collision."
+  }
+]

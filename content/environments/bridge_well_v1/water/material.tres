@@ -1,0 +1,13 @@
+[gd_resource type="ShaderMaterial" load_steps=5 format=3]
+
+[ext_resource type="Shader" path="res://content/environments/bridge_well_v1/water.gdshader" id="1"]
+[ext_resource type="Texture2D" path="res://content/environments/bridge_well_v1/water/ripple_normal_dx.png" id="2"]
+[ext_resource type="Texture2D" path="res://content/environments/bridge_well_v1/water/ripple_height.png" id="3"]
+[ext_resource type="Texture2D" path="res://content/environments/bridge_well_v1/water/foam_mask.png" id="4"]
+
+[resource]
+resource_name = "Bridge Well / deep green water"
+shader = ExtResource("1")
+shader_parameter/ripple_normal = ExtResource("2")
+shader_parameter/ripple_height = ExtResource("3")
+shader_parameter/foam_map = ExtResource("4")

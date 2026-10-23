@@ -1,0 +1,32 @@
+[
+  {
+    "asset": "scan_001_wall_fragment.glb",
+    "images": [
+      {
+        "sha256": "02209a982d1408a41cd7f4966481efa8e1303178893638d02cc77fae5b4d402d",
+        "bytes": 10897370,
+        "byte_identical_source": "material0_baseColor.jpeg",
+        "mime": "image/jpeg"
+      }
+    ],
+    "triangles": 725
+  },
+  {
+    "asset": "scan_002_wall_fragment.glb",
+    "images": [
+      {
+        "sha256": "4bd1368abd28af8d0423c150d299ce921b848ad0c924aadb76b959860b6d612a",
+        "bytes": 12917973,
+        "byte_identical_source": "tex_one_uv_per_vertex_0_baseColor.jpeg",
+        "mime": "image/jpeg"
+      },
+      {
+        "sha256": "09b89785ac4a28c2ae3fa0d19c394cadf99d123ca90985ec1cc6e9c5dbbe0f67",
+        "bytes": 14684615,
+        "byte_identical_source": "tex_one_uv_per_vertex_1_baseColor.jpeg",
+        "mime": "image/jpeg"
+      }
+    ],
+    "triangles": 12000
+  }
+]

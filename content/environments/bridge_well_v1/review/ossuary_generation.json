@@ -1,0 +1,369 @@
+{
+  "task": "T-149",
+  "worker": "ossuary_image",
+  "records": [
+    {
+      "family": "mineral_plaster",
+      "map": "albedo",
+      "attempt": 1,
+      "reference_roles": [
+        "selected bridge scene: material context only"
+      ],
+      "prompt": "Use case: stylized-concept. Asset type: original seamless tileable PBR MINERAL/LIME PLASTER ALBEDO, requested2048 x2048 opaque square. The supplied selected bridge-well image is a MATERIAL CONTEXT reference only: use its pale buff/warm-grey decayed mineral plaster, independent of torches, wet reflections, architecture and perspective. Generate an original flat orthographic edge-to-edge material swatch over a physical3 x3 metre wall area. The majority, about75percent, is BROAD QUIET INTACT matte warm-grey/buff lime plaster with very subtle mineral tone variation. A few sparse irregular shallow chipped exposures reveal earthy grey-brown stone backing and coarse lime undercoat, 15to25percent area, with thin layered broken plaster rims. A handful of hairline fissures and small mineral pores follow local stress. Large-scale material history and quiet surfaces first; restrained fine detail. Pale sandy limestone/lime mineral response, not bright white, not red plaster. No all-over rubble, masonry grid, floor slabs, uniform grain, dense speckle, repeated crack pattern or identical islands. Neutral diffuse reflectance ONLY: NO baked lighting, dark AO outlines, cast shadows, specular, highlights, torch reflection, orange tint or algae. Opposing edges must tile seamlessly in both axes without border or center motif. No text, labels, symbols, panels, scene props or perspective. One standalone albedo texture.",
+      "refs": [
+        "/Users/theochernin/Projects/MultiPlayerProject-agents/theo-codex-12/content/environments/bridge_well_v1/review/selected_bridge.png"
+      ],
+      "native_path": "/Users/theochernin/.codex/generated_images/01a1603d-46cd-7341-8808-066c20827d8b/exec-9716dfc7-1a44-4340-b04f-ffbedc46d91d.png",
+      "final_path": "/Users/theochernin/Projects/MultiPlayerProject-agents/theo-codex-12/content/environments/bridge_well_v1/mineral_plaster/albedo.png",
+      "qa": "Buff warm-grey lime/mineral plaster with broad intact fields and several shallow chipped exposures into earthy stone backing. No orange torch tint or perspective, though thin darkened relief rims remain in color despite no baked-AO request. Native1254square; tiling remains a preview check.",
+      "route": "native image_gen",
+      "requested_dimensions": [
+        2048,
+        2048
+      ],
+      "output_dimensions": [
+        1254,
+        1254
+      ],
+      "sha256": "623d72af21c81f898f530fa980d136b3e05607042007f8f40a8cebaaf7dcdb6a",
+      "mode": "RGB",
+      "bytes": 4167364,
+      "opposite_edge_mean_absolute_difference": {
+        "horizontal": 20.964,
+        "vertical": 21.302
+      },
+      "channel_means": [
+        186.539,
+        168.717,
+        143.514
+      ],
+      "channel_extrema": [
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ]
+      ]
+    },
+    {
+      "family": "mineral_plaster",
+      "map": "height",
+      "attempt": 1,
+      "reference_roles": [
+        "albedo: authoritative exact pixel layout/edit target"
+      ],
+      "prompt": "Use case: precise-object-edit. Asset type: scalar HEIGHT map of the supplied mineral lime-plaster albedo. Sole input is the authoritative EDIT TARGET; preserve its exact pixel layout, crop, all plaster chipped boundaries, hairline fissures and1254 x1254 dimensions. No zoom, shift, added geometry or new damage. Encode surface elevation only, white high black recessed. Broad intact plaster is a thin raised layer, mostly quiet mid/lightgrey with slight trowel/mineral variation. Existing chipped exposures recess gently to lower stone/lime backing, thin rims show the millimetre plaster layer. Fine existing cracks recede narrowly; backing's stone grains have very subtle relief. Preserve periodic tile edges. Do NOT simply desaturate the color: color minerals are not height. No embossed directional illumination, cast shadow, highlight, albedo color, AO shading, perspective, text, border or panels. Grayscale opaque seamless square, one true height texture.",
+      "refs": [
+        "/Users/theochernin/Projects/MultiPlayerProject-agents/theo-codex-12/content/environments/bridge_well_v1/mineral_plaster/albedo.png"
+      ],
+      "native_path": "/Users/theochernin/.codex/generated_images/01a1603d-46cd-7341-8808-066c20827d8b/exec-80b005fd-1545-4c40-a4af-5355777db641.png",
+      "final_path": "/Users/theochernin/Projects/MultiPlayerProject-agents/theo-codex-12/content/environments/bridge_well_v1/mineral_plaster/height.png",
+      "qa": "Apparent chipped boundaries and fissures retained with upper plaster layer and recessed backing. Height looks somewhat embossed/microtextured despite requested scalar encoding, so use thin physical displacement. Exact alignment and normal-gradient correlation require parent numeric checks.",
+      "route": "native image_gen",
+      "requested_dimensions": [
+        2048,
+        2048
+      ],
+      "output_dimensions": [
+        1254,
+        1254
+      ],
+      "sha256": "8f7b1db5a820a0c41573d2bfe5cd70ef8919a19e919286eecc87f6b43f134fa3",
+      "mode": "RGB",
+      "bytes": 3746568,
+      "opposite_edge_mean_absolute_difference": {
+        "horizontal": 25.665,
+        "vertical": 25.495
+      },
+      "channel_means": [
+        167.81,
+        167.58,
+        167.383
+      ],
+      "channel_extrema": [
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ]
+      ]
+    },
+    {
+      "family": "mineral_plaster",
+      "map": "normal_gl",
+      "attempt": 1,
+      "reference_roles": [
+        "height: authoritative depth and gradient target",
+        "albedo: secondary exact registration context"
+      ],
+      "prompt": "Use case: precise-object-edit. Technical material-map conversion, ONE OpenGL tangent-space normal texture. Image1 is the AUTHORITATIVE SCALAR HEIGHT TARGET H(u,v): white high, black deep. Image2 is secondary ALBEDO registration context only. The output MUST encode the actual spatial gradient of Image1 at every pixel, not blue-tinted height, not embossed shading, not albedo brightness. Preserve EXACT1254x1254 dimensions, crop, plaster-chip geometry, fissure/pore coordinates and tile edges. u is image horizontal to the right; image v is vertically down. Compute tangent normal direction N=normalize((-strength*dH/du,+strength*dH/d(image v),1)). Encode red=128+127*N.x, green=128+127*N.y, blue=128+127*N.z. Therefore flat outward face is RGB128,128,255; where height increases to right RED must decrease; where height increases downward GREEN must increase. BOTH red and green must respond to the true local height slopes, including vertical gradients; do not leave green neutral or invent a light source. Convention X+right,Y+up,Z+outward, green-up OpenGL. Thin mineral lime plaster: broad upper intact fields with tiny surface gradients, shallow flaked rims descending into backing, fine existing cracks recessed. Stronger slopes only at existing chip boundaries, quiet field interiors close to neutral-blue. No new geometry, zoom, cracks, blocks, grid or altered boundaries. Recesses point inward using correct slope directions. No physical lighting, grayscale shading, cast shadows, specular, albedo, AO, text, border, vignette or perspective. Opaque seamless square normal only, exactly registered to height.",
+      "refs": [
+        "/Users/theochernin/Projects/MultiPlayerProject-agents/theo-codex-12/content/environments/bridge_well_v1/mineral_plaster/height.png",
+        "/Users/theochernin/Projects/MultiPlayerProject-agents/theo-codex-12/content/environments/bridge_well_v1/mineral_plaster/albedo.png"
+      ],
+      "native_path": "/Users/theochernin/.codex/generated_images/01a1603d-46cd-7341-8808-066c20827d8b/exec-c2f1be6a-8911-427c-96fd-d20faef1b44b.png",
+      "final_path": "/Users/theochernin/Projects/MultiPlayerProject-agents/theo-codex-12/content/environments/bridge_well_v1/mineral_plaster/normal_dx.png",
+      "qa": "Apparent original plaster-chip boundaries retained with normal gradients around flake rims. Explicit height-first two-channel gradient convention requested; parent numeric correlation must verify both channels. Stronger edge relief than a very thin plaster layer, so keep normal/parallax modest.",
+      "route": "native image_gen",
+      "requested_dimensions": [
+        2048,
+        2048
+      ],
+      "output_dimensions": [
+        1254,
+        1254
+      ],
+      "sha256": "0bb9dd66642f1b43cbfca508ab79703c3593e79f77ccc05edbeb2890aeed1d76",
+      "mode": "RGB",
+      "bytes": 2918076,
+      "opposite_edge_mean_absolute_difference": {
+        "horizontal": 21.659,
+        "vertical": 19.565
+      },
+      "channel_means": [
+        124.869,
+        127.208,
+        245.349
+      ],
+      "channel_extrema": [
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ],
+        [
+          19,
+          255
+        ]
+      ],
+      "root_status": "accepted_as_directx",
+      "root_qa": "Original is X+.569,Y-.281. Renamednormal_dx.png; Godot import flips green to correct target normal convention without editing native PNG."
+    },
+    {
+      "family": "mineral_plaster",
+      "map": "roughness",
+      "attempt": 1,
+      "reference_roles": [
+        "albedo: authoritative pixel layout",
+        "height: secondary relief/material boundary context"
+      ],
+      "prompt": "Use case: precise-object-edit. Asset type: scalar ROUGHNESS map of supplied mineral lime plaster. Image1 authoritative ALBEDO registration, Image2 its HEIGHT. Preserve exact1254 x1254 dimensions, crop, chipped plaster contours, crack positions and tile boundaries. Encode ONLY physical surface roughness as grayscale, white rough black smooth. Matte intact plaster mostly0.88 to0.95 roughness (RGB224 to242), exposed earthy stone backing around0.80 to0.90 (204 to230), shallow cracks also matte and never black baked shadows. Broad plaster fields have nearly uniform quiet light-grey values with only restrained mineral variation; exposed backing can vary gently. Do not desaturate albedo or copy height; recessed areas are not automatically smooth/dark. No glossy plaster, shiny rock, wet reflections, new damage, colored pixels, lighting, highlights, AO, cast shadow, border, label, text, vignette or perspective. One opaque seamless registered square roughness texture.",
+      "refs": [
+        "/Users/theochernin/Projects/MultiPlayerProject-agents/theo-codex-12/content/environments/bridge_well_v1/mineral_plaster/albedo.png",
+        "/Users/theochernin/Projects/MultiPlayerProject-agents/theo-codex-12/content/environments/bridge_well_v1/mineral_plaster/height.png"
+      ],
+      "native_path": "/Users/theochernin/.codex/generated_images/01a1603d-46cd-7341-8808-066c20827d8b/exec-968db8f5-1563-4893-b1d0-c021a6f083e4.png",
+      "final_path": "/Users/theochernin/Projects/MultiPlayerProject-agents/theo-codex-12/content/environments/bridge_well_v1/mineral_plaster/roughness.png",
+      "qa": "Predominantly pale matte grayscale roughness with apparent chip-layout alignment. Fine grayscale relief pattern persists more strongly than ideal physical roughness, and small dark fissures may fall below nominal0.8; inspect scalar behavior/specular response before accepting defaults.",
+      "route": "native image_gen",
+      "requested_dimensions": [
+        2048,
+        2048
+      ],
+      "output_dimensions": [
+        1254,
+        1254
+      ],
+      "sha256": "c11be557cda1aa175878f48a5c7ba9e73b0a12a6f6346d5d5232a62e62830f48",
+      "mode": "RGB",
+      "bytes": 3363407,
+      "opposite_edge_mean_absolute_difference": {
+        "horizontal": 19.135,
+        "vertical": 17.107
+      },
+      "channel_means": [
+        195.044,
+        194.866,
+        195.149
+      ],
+      "channel_extrema": [
+        [
+          32,
+          255
+        ],
+        [
+          31,
+          255
+        ],
+        [
+          31,
+          255
+        ]
+      ]
+    },
+    {
+      "family": "mineral_plaster",
+      "map": "ao",
+      "attempt": 1,
+      "reference_roles": [
+        "height: authoritative cavity geometry",
+        "albedo: exact pixel registration context only"
+      ],
+      "prompt": "Use case: precise-object-edit. Asset type: ambient occlusion AO map of supplied mineral lime plaster. Image1 authoritative HEIGHT geometry, Image2 ALBEDO registration context. Preserve every original pixel coordinate of chip outlines, fissures, pores and underlying exposures; exact1254 x1254 dimensions, crop, scale and periodic tile edges. Encode ONLY local geometric cavity occlusion in opaque grayscale, mostly white. Broad exposed intact plaster fields white RGB250to255, backing faces also mostlywhite, only thin flake overhang rims, true crack recesses and tiny pores darken locally. No directional shading over fields, no use of darker albedo as AO, no invertedheight broad dark backing patches. Natural weak local contact occlusion not blackcartoon outlines. No new cracks, blocks, masonry grid, lighting, highlights, shadow gradients, color, text, border, labels, vignette or perspective. One seamless registered AO texture, quiet white broad faces with limited dark cavities.",
+      "refs": [
+        "/Users/theochernin/Projects/MultiPlayerProject-agents/theo-codex-12/content/environments/bridge_well_v1/mineral_plaster/height.png",
+        "/Users/theochernin/Projects/MultiPlayerProject-agents/theo-codex-12/content/environments/bridge_well_v1/mineral_plaster/albedo.png"
+      ],
+      "native_path": "/Users/theochernin/.codex/generated_images/01a1603d-46cd-7341-8808-066c20827d8b/exec-71f666ee-5943-4243-a4b1-bb69faf2dcfc.png",
+      "final_path": "/Users/theochernin/Projects/MultiPlayerProject-agents/theo-codex-12/content/environments/bridge_well_v1/mineral_plaster/ao.png",
+      "qa": "Broad exposed plaster faces are nearwhite, with darkening limited mainly to chipped rims/fissures and backing cavities. Apparent geometry retained; AO edging is comparatively strong and can read embossed at fullstrength. Apply conservatively and confirm in actual material.",
+      "route": "native image_gen",
+      "requested_dimensions": [
+        2048,
+        2048
+      ],
+      "output_dimensions": [
+        1254,
+        1254
+      ],
+      "sha256": "14d18b594deac98c1ee5279e358a0c215bf2164b630355c10cc9dfd761ad7eb7",
+      "mode": "RGB",
+      "bytes": 2668137,
+      "opposite_edge_mean_absolute_difference": {
+        "horizontal": 23.166,
+        "vertical": 21.783
+      },
+      "channel_means": [
+        233.508,
+        233.55,
+        233.696
+      ],
+      "channel_extrema": [
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ]
+      ]
+    },
+    {
+      "family": "masks",
+      "map": "algae_coverage",
+      "attempt": 1,
+      "reference_roles": [],
+      "prompt": "Use case: stylized-concept. Asset type: original grayscale ALGAE/BIOFILM COVERAGE BLEND MASK, requested2048 x2048 opaque square. This is a simple scalar material mask, NOT a photograph, algae texture, noise map, height map, terrain or artwork. White means biofilm coverage, pureblack means bare dry material. White/grey coverage about25to35percent, with large quiet black negative areas. Several BROAD QUIET SMOOTH connected patches of uneven organic shape, as algae clings along a moist old wall base; a few long sparse soft narrow strands branch gently from the larger patches. Keep the shape scale large and lowfrequency. Shape interiors are almost uniform white or uniform grey, bare interiors almost uniform black. Boundaries have simple mediumsoft feathered transition, smooth and not densely serrated/fractal. Restrained branching, no small dots, no grain, no stipple, no noise flecks, no cloudlike fractal texture, no masonry pattern, no repeated geometric shapes, no fine roots. Coverage wraps seamlessly across opposing edges in both axes with no border or obvious center motif. Flat orthographic grayscale edge-to-edge square. No color, lighting, highlights, shadow, text, labels, vignette, panels or perspective. One repeatable blend mask only.",
+      "refs": [],
+      "native_path": "/Users/theochernin/.codex/generated_images/01a1603d-46cd-7341-8808-066c20827d8b/exec-8ada73bb-05f1-4563-83a1-61af9295c402.png",
+      "final_path": "/Users/theochernin/Projects/MultiPlayerProject-agents/theo-codex-12/content/environments/bridge_well_v1/masks/algae_coverage.png",
+      "qa": "Broad smooth connected patches with sparse soft joining strands and quiet black bare areas, substantially lower-frequency than a fractal grime texture. White fields carry mild broad grey mottling rather than perfectly uniform coverage; repeatability/seams require preview.",
+      "route": "native image_gen",
+      "requested_dimensions": [
+        2048,
+        2048
+      ],
+      "output_dimensions": [
+        1254,
+        1254
+      ],
+      "sha256": "96a3322d1f058ec7a8a9cff37949b92ced8fd76b2830dedb693ddf4110f1a5e0",
+      "mode": "RGB",
+      "bytes": 1437431,
+      "opposite_edge_mean_absolute_difference": {
+        "horizontal": 2.059,
+        "vertical": 2.186
+      },
+      "channel_means": [
+        54.488,
+        54.166,
+        54.021
+      ],
+      "channel_extrema": [
+        [
+          0,
+          235
+        ],
+        [
+          0,
+          235
+        ],
+        [
+          0,
+          235
+        ]
+      ]
+    },
+    {
+      "family": "review",
+      "map": "plaster-normal-correction",
+      "material_family": "mineral_plaster",
+      "material_map": "normal_gl",
+      "attempt": 2,
+      "retry_candidate": true,
+      "replaces_only_if_root_accepts": true,
+      "reference_roles": [
+        "current normal: exact edit target, invert green only",
+        "height: secondary OpenGL direction authority"
+      ],
+      "prompt": "Use case: precise-object-edit. TECHNICAL ONE-CHANNEL CORRECTION of an existing tangent-space normal texture. Image1 is the exact normal-map EDIT TARGET. It has an inverted Y direction. Invert its GREEN channel ONLY at every identical pixel: R_new=R_old; G_new=255-G_old; B_new=B_old. Preserve RED and BLUE exactly. Preserve every feature, chip outline, pore, fine detail, geometry, crop, resolution1254x1254 and tile boundary exactly. No shift, scaling, zoom, smoothing, added detail, invented features or recomputation of R/B. This is not a new material generation, not blue tinting of a photograph, not a recoloring by eye. Change only green direction so all old positive green deviations become equally negative and vice versa, with neutral127/128 remaining neutral. Image2 is secondary authoritative HEIGHT reference confirming OpenGL convention: normal red follows -dH/du; normal green follows +dH/d(image v down). A true flat face remains approximatelyRGB128,128,255. In Image1 the red direction is already correct and the blue outward channel is already valid: do not modify them. Correct green inversion only, all images remain precisely registered. No albedo, lighting, specular, shadows, AO, labels, text, border, vignette, panels or perspective. Output one opaque1254x1254 corrected normal image only.",
+      "refs": [
+        "/Users/theochernin/Projects/MultiPlayerProject-agents/theo-codex-12/content/environments/bridge_well_v1/mineral_plaster/normal_gl.png",
+        "/Users/theochernin/Projects/MultiPlayerProject-agents/theo-codex-12/content/environments/bridge_well_v1/mineral_plaster/height.png"
+      ],
+      "native_path": "/Users/theochernin/.codex/generated_images/01a1603d-46cd-7341-8808-066c20827d8b/exec-0e8119cc-6a62-422d-a653-e39bca2bfde1.png",
+      "final_path": null,
+      "qa": "Single permitted direction-error correction candidate. Chip layout appears unchanged and green-edge polarity visibly changes relative to original; prompt requested exact G_new=255-G_old with R/B unchanged. Native generation cannot establish exact channel invariance, so root should compare numeric slope direction and channel deltas before replacing currentnormal. Currentnormal untouched.",
+      "route": "native image_gen",
+      "requested_dimensions": [
+        2048,
+        2048
+      ],
+      "output_dimensions": [
+        1254,
+        1254
+      ],
+      "sha256": "13ee96768f9f960deae21dc1cbd56d358975a547f5bba3b8c0a27f832f7807f5",
+      "mode": "RGB",
+      "bytes": 2867224,
+      "opposite_edge_mean_absolute_difference": {
+        "horizontal": 20.498,
+        "vertical": 18.871
+      },
+      "channel_means": [
+        120.547,
+        129.628,
+        245.642
+      ],
+      "channel_extrema": [
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ],
+        [
+          12,
+          255
+        ]
+      ],
+      "root_status": "rejected",
+      "root_qa": "Correction degraded height slope correlation toX-.223,Y+.009. Native path retained; candidate not delivered.",
+      "discarded_working_path": "/Users/theochernin/Projects/MultiPlayerProject-agents/theo-codex-12/content/environments/bridge_well_v1/review/plaster-normal-correction.png"
+    }
+  ]
+}

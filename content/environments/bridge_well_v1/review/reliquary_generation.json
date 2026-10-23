@@ -1,0 +1,465 @@
+{
+  "task": "T-149",
+  "worker": "reliquary_image",
+  "generator": "built-in ImageGen",
+  "requested_size": [
+    2048,
+    2048
+  ],
+  "limitations": [
+    "Generative registered maps, not mathematical derivations.",
+    "Seamless tiling, exact pixel registration, normal convention and physical calibration require runtime validation."
+  ],
+  "outputs": [
+    {
+      "family": "damp_masonry",
+      "map": "albedo",
+      "prompt": "Use case: photorealistic-natural.\nAsset type: original seamless PBR diffuse albedo for near-black old dungeon masonry, requested 2048 x 2048 square opaque.\nInput is selected bridge-well context only: use the dark earthy near-black coursed stone and fine pale mortar seen down the shaft, not the bridge layout, torch lighting or brown floor rubble. Generate an original FLAT ORTHOGRAPHIC edge-to-edge wall surface, not a scene crop.\nCharcoal grey to almost black earthy old dungeon stones in imperfect varied courses: broad irregular worn stone faces in varied lengths and heights, recessed fine pale grey mortar seams, occasional subtle grey-green mineral staining and sparse tiny moss remnants only in a few joints. Stones have distinct quiet broad faces, chips and limited shallow pits; avoid identical noise stamped on every stone. Rough construction with human-laid courses but no perfect brick grid, not homogeneous pavement/cobblestones, not a jumble of loose rubble. A sober dark wall material distinct from the prior brown rubble floor.\nEncode neutral DIFFUSE BASE COLOUR only. Even neutral illumination, no baked wet reflection or shine, torch-orange cast, cast shadow, ambient occlusion, directional gradient, highlighted rims, glow or perspective. Any dampness is restrained local material darkening, never a reflection. No objects, windows, doors, arches, props, text, borders, vignette or material sphere. Seamlessly matching opposing edges in both axes, square canvas completely filled.",
+      "ordered_references": [
+        "/Users/theochernin/Projects/MultiPlayerProject-agents/theo-codex-12/content/environments/bridge_well_v1/review/selected_bridge.png"
+      ],
+      "reference_roles": [
+        "Material/neutral base-colour context only; not an edit target or replacement geometry."
+      ],
+      "native_path": "/Users/theochernin/.codex/generated_images/01a1603d-8229-7a10-9477-72554fa5887f/exec-425488a8-f7f8-4bd5-b6aa-abd7baa817d1.png",
+      "attempt": 1,
+      "qa": "Near-black earthy charcoal courses, fine lighter mortar, limited moss/mineral staining. Distinct from brown floor rubble, no obvious torch tint or shiny reflection; residual dark joint shading and seamless edges require checks.",
+      "dimensions": [
+        1254,
+        1254
+      ],
+      "sha256": "3baf0199e2d8b74d05928c08901ddaeab07e3ecb35b4439b1b5e9b2235599232",
+      "bytes": 3845242,
+      "recorded_at_utc": "2026-10-23T13:00:46.330126+00:00",
+      "workspace_path": "/Users/theochernin/Projects/MultiPlayerProject-agents/theo-codex-12/content/environments/bridge_well_v1/damp_masonry/albedo.png",
+      "final_file_verification": {
+        "map": "damp_masonry/albedo.png",
+        "dimensions": [
+          1254,
+          1254
+        ],
+        "byte_identical_to_native": true,
+        "mean_gray": 47.558,
+        "fraction_above_32": 0.716746,
+        "fraction_above_128": 0.008058
+      }
+    },
+    {
+      "family": "damp_masonry",
+      "map": "height",
+      "prompt": "Use case: precise-object-edit.\nAsset type: registered grayscale physical HEIGHT map of this dark irregular coursed dungeon masonry, exactly 1254 x 1254 square.\nThe supplied albedo is the exact EDIT TARGET. Preserve each stone shape, position, mortar seam, chip, pit and mineral/moss patch boundary, exact crop and native dimensions, and seamless tile edges. Change only map encoding, never move/add/delete a stone.\nLinear grayscale: white high, black deepest. Stone faces are a few related mid-high grey elevations with subtle shallow pitting and natural unevenness; fine recessed mortar seams are lower dark grey/black, with chipped lips descending into them. Large quiet stone face planes remain coherent. Mineral colour, dark albedo and tiny moss colour must not become mountains or holes: infer physical geometry, not luminance. Wall relief is modest, no separated pile of rocks. No directional light, illuminated bevels, shadows, ambient occlusion, colour, perspective, text, border, invented fractures or new detail. Flat seamless opaque technical texture with exact pixel registration.",
+      "ordered_references": [
+        "/Users/theochernin/Projects/MultiPlayerProject-agents/theo-codex-12/content/environments/bridge_well_v1/damp_masonry/albedo.png"
+      ],
+      "reference_roles": [
+        "Exact albedo edit target; authoritative pixel layout and crop."
+      ],
+      "native_path": "/Users/theochernin/.codex/generated_images/01a1603d-8229-7a10-9477-72554fa5887f/exec-c5e2e923-1f1a-4a8c-be38-6aeac8471821.png",
+      "attempt": 1,
+      "qa": "Coursed stone boundaries remain visually registered, with raised mid-high faces and recessed mortar. Fine relief has embossed-looking detail and is not numerically reconstructed; use moderate height strength and validate.",
+      "dimensions": [
+        1254,
+        1254
+      ],
+      "sha256": "711753da222aeda9392dc5d4dbdc600b3ff5fca5757f3a629e83e867a22922bf",
+      "bytes": 3988923,
+      "recorded_at_utc": "2026-10-23T13:03:39.104866+00:00",
+      "workspace_path": "/Users/theochernin/Projects/MultiPlayerProject-agents/theo-codex-12/content/environments/bridge_well_v1/damp_masonry/height.png",
+      "final_file_verification": {
+        "map": "damp_masonry/height.png",
+        "dimensions": [
+          1254,
+          1254
+        ],
+        "byte_identical_to_native": true,
+        "mean_gray": 125.255,
+        "fraction_above_32": 0.94315,
+        "fraction_above_128": 0.577196
+      }
+    },
+    {
+      "family": "damp_masonry",
+      "map": "normal_gl",
+      "prompt": "Use case: precise-object-edit.\nAsset type: registered tangent-space OpenGL NORMAL texture, 1254 x 1254 square.\nINPUT 1 is the HEIGHT FIELD and is the authoritative EDIT TARGET; input 2 is the corresponding albedo ONLY to confirm exact registration. Preserve every pixel position, stone/mortar outline, pit, chip, dimensions, crop and seamless edges. Do not create a purple-tinted or colourized copy of the height.\nCompute actual local surface GRADIENT directions from HEIGHT INPUT 1. The mathematical convention is: u increases to image RIGHT, imageVdown increases DOWN. Let dx = dH/du and dy = dH/d(imageVdown). OpenGL normal N = normalize((-dx, +dy, 1)). Encode RGB = 128 + 127 * N. A flat face must be RGB(128,128,255).\nBoth RED and GREEN must follow these gradients: height rising to image-right gives red BELOW 128; falling right gives red ABOVE 128. Height rising downward gives green ABOVE 128; falling downward gives green BELOW 128. Blue stays predominantly high. The SAME joint must have opposite facing slopes on its two sides, never just a uniform bevel tint. Keep sensible moderate shallow stone relief and mostly neutral blue broad faces. No albedo colour, grayscale embossing, directional illumination, shadow, highlights, AO, text, borders, new features, shifted geometry or resampling. One exact registered seamless opaque square OpenGL normal map.",
+      "ordered_references": [
+        "/Users/theochernin/Projects/MultiPlayerProject-agents/theo-codex-12/content/environments/bridge_well_v1/damp_masonry/height.png",
+        "/Users/theochernin/Projects/MultiPlayerProject-agents/theo-codex-12/content/environments/bridge_well_v1/damp_masonry/albedo.png"
+      ],
+      "reference_roles": [
+        "Authoritative height edit target for derivative directions.",
+        "Albedo for exact pixel layout registration confirmation only."
+      ],
+      "native_path": "/Users/theochernin/.codex/generated_images/01a1603d-8229-7a10-9477-72554fa5887f/exec-3dfde0b2-eb45-40f0-962f-6a1757e74948.png",
+      "attempt": 1,
+      "other_attempts": [
+        {
+          "prompt": "Use case: precise-object-edit.\nProduce ONLY a technically correct 1254 x 1254 tangent-space OpenGL normal map from HEIGHT IMAGE 1. Image 2 albedo is supplied for pixel registration confirmation ONLY and must NOT drive the vector field.\nKeep exact input1 coordinates and every existing feature. Do not sharpen, move, redraw or invent any detail. Do not make a beauty render, tinted purple height map, or a standard embossed texture. Every red/green value must describe the LOCAL DERIVATIVE of height1, never its brightness.\nAt each pixel let dx=H(x+1,y)-H(x-1,y), dy=H(x,y+1)-H(x,y-1). X points right, image y points down. Compute N=normalize((-k*dx,+k*dy,1)), using a moderate single uniform k throughout. RGB=(128+127*Nx,128+127*Ny,128+127*Nz). Output has no grayscale components added after this conversion.\nCritical checks: flat height1 -> RGB128,128,255; increasing height toward right -> R<128; increasing height toward down -> G>128. Opposite slopes of the same mortar trench have opposite R/G excursions. RED and GREEN are equally important and must both independently track the supplied scalar height. Blue stays high for this restrained relief. No illumination, albedo colour, AO, directional shading, newly embossed bevels, new cracks or texture synthesis. Exact same crop, dimensions and seamless edges; opaque square.",
+          "ordered_references": [
+            "/Users/theochernin/Projects/MultiPlayerProject-agents/theo-codex-12/content/environments/bridge_well_v1/damp_masonry/height.png",
+            "/Users/theochernin/Projects/MultiPlayerProject-agents/theo-codex-12/content/environments/bridge_well_v1/damp_masonry/albedo.png"
+          ],
+          "native_path": "/Users/theochernin/.codex/generated_images/01a1603d-8229-7a10-9477-72554fa5887f/exec-436a2def-480e-46c8-b157-89a013081faf.png",
+          "analysis": {
+            "dimensions": [
+              1254,
+              1254
+            ],
+            "signed_gradient_correlations": {
+              "1": {
+                "R_vs_negative_dHdx": 0.2641917271618994,
+                "G_vs_positive_dHdy_down": 0.11777804517862102
+              },
+              "4": {
+                "R_vs_negative_dHdx": 0.449265730682147,
+                "G_vs_positive_dHdy_down": 0.2766165130713531
+              },
+              "8": {
+                "R_vs_negative_dHdx": 0.42667039871837387,
+                "G_vs_positive_dHdy_down": 0.27657539947027754
+              }
+            }
+          },
+          "qa": "Second/final attempt did not improve green derivative correspondence; first candidate retained for stronger balanced agreement."
+        }
+      ],
+      "analysis": {
+        "scale4_R_vs_negative_dHdx": 0.43016964077473013,
+        "scale4_G_vs_positive_dHdy_down": 0.34723570754648375
+      },
+      "validation_status": "Approximate native candidate; exact-gradient criterion not met.",
+      "qa": "Correct coarse sign tendencies and registered stone layout, but only moderate height-gradient correlations. Two native attempts exhausted; this is NOT an exact mathematical derivative and must not be described as one. Runtime shader can derive exact normal from scalar height if required.",
+      "dimensions": [
+        1254,
+        1254
+      ],
+      "sha256": "a280152789fa07325f6c8085f6e51304c558a52e63ee7a6b44e5ecc38d304f59",
+      "bytes": 3315928,
+      "recorded_at_utc": "2026-10-23T13:12:40.346348+00:00",
+      "workspace_path": "/Users/theochernin/Projects/MultiPlayerProject-agents/theo-codex-12/content/environments/bridge_well_v1/damp_masonry/normal_gl.png",
+      "final_file_verification": {
+        "map": "damp_masonry/normal_gl.png",
+        "dimensions": [
+          1254,
+          1254
+        ],
+        "byte_identical_to_native": true,
+        "mean_gray": 136.982,
+        "fraction_above_32": 0.998581,
+        "fraction_above_128": 0.701309
+      }
+    },
+    {
+      "family": "damp_masonry",
+      "map": "roughness",
+      "prompt": "Use case: precise-object-edit.\nProduce an exact registered 1254 x 1254 grayscale ROUGHNESS MASK of supplied masonry albedo. Preserve stone layout, mortar, chips, pits, crop and seamless edges. Change only microsurface finish encoding, never geometry.\nThe shader adds localized dampness later; this base map is DRY. White means rough, black smooth. Rough stone faces and mortar are mostly RGB(200,200,200) to RGB(242,242,242), roughness0.78-0.95. A few quiet broad worn stone patches may be RGB(191,191,191) to RGB(211,211,211), roughness0.75-0.83. Recessed mortar stays LIGHT and rough, not shadow-black. Sparse mineral/moss patches remain matte. No wet shiny areas.\nThis flat utility mask must not mirror albedo luminance or height. No cast shadows, AO, darkened mortar troughs, glowing bevel edges, embossed shading, colour, reflections, perspective, new cracks, text, borders or vignette. Mostly pale grey technical mask with small restrained natural roughness variation. Exact same native pixel dimensions, opaque seamless square.",
+      "ordered_references": [
+        "/Users/theochernin/Projects/MultiPlayerProject-agents/theo-codex-12/content/environments/bridge_well_v1/damp_masonry/albedo.png"
+      ],
+      "reference_roles": [
+        "Exact albedo edit target; authoritative material-region registration."
+      ],
+      "native_path": "/Users/theochernin/.codex/generated_images/01a1603d-8229-7a10-9477-72554fa5887f/exec-36da2795-f160-48f6-8c9a-8ba891b76bf8.png",
+      "attempt": 1,
+      "qa": "Predominantly pale dry roughness; some mortar/pit darkening and relief-like texture remain despite mask-only instruction. Intended 0.75-0.95 must be numerically checked; shader should add dampness separately. Measured grayscale mean is 180.338/255 = 0.7072; the native output falls below requested dry 0.75-0.95 and contains darker joint detail. Use an engine-side lower clamp or remap for a consistently dry base. Native bytes are preserved.",
+      "dimensions": [
+        1254,
+        1254
+      ],
+      "sha256": "f0c91dfb35a07d5262cd6b67713aad595eaea023a21ccdcc72775a83c0b4f35c",
+      "bytes": 3967979,
+      "recorded_at_utc": "2026-10-23T13:15:38.691677+00:00",
+      "workspace_path": "/Users/theochernin/Projects/MultiPlayerProject-agents/theo-codex-12/content/environments/bridge_well_v1/damp_masonry/roughness.png",
+      "final_file_verification": {
+        "map": "damp_masonry/roughness.png",
+        "dimensions": [
+          1254,
+          1254
+        ],
+        "byte_identical_to_native": true,
+        "mean_gray": 180.338,
+        "fraction_above_32": 0.999997,
+        "fraction_above_128": 0.960026
+      }
+    },
+    {
+      "family": "damp_masonry",
+      "map": "ao",
+      "prompt": "Use case: precise-object-edit.\nAsset type: exact registered grayscale ambient-occlusion mask for the same masonry, 1254 x 1254 square.\nInput1 is the HEIGHT edit target, authoritative for geometry. Input2 albedo is for registration only. Preserve every stone/mortar boundary, pit, chip, crop, image dimensions and seamless edges. Change only map encoding.\nWhite = unoccluded. All broad stone faces must be WHITE or nearly white, including the dark charcoal stones. Only recessed mortar seams, small pits and narrow contacts immediately under chipped lips should darken. No broad grey shading on whole stones, no directional cast shadows, no highlighted rims, no albedo or material colour copied, no specular reflection or light. Infer local geometry occlusion only, NOT grayscale height or photo. One restrained mostly-white seamless opaque utility map, with exact original layout; no objects, text, border or perspective.",
+      "ordered_references": [
+        "/Users/theochernin/Projects/MultiPlayerProject-agents/theo-codex-12/content/environments/bridge_well_v1/damp_masonry/height.png",
+        "/Users/theochernin/Projects/MultiPlayerProject-agents/theo-codex-12/content/environments/bridge_well_v1/damp_masonry/albedo.png"
+      ],
+      "reference_roles": [
+        "Authoritative physical height edit target.",
+        "Albedo for exact feature registration only."
+      ],
+      "native_path": "/Users/theochernin/.codex/generated_images/01a1603d-8229-7a10-9477-72554fa5887f/exec-fddeee52-ce9e-4b1a-abdb-7532b15fd155.png",
+      "attempt": 1,
+      "qa": "White broad stone faces with dark recessed mortar and small pit contacts. Fine relief still apparent and AO contrast strong; use measured influence, exact derivative/registration/seams unverified.",
+      "dimensions": [
+        1254,
+        1254
+      ],
+      "sha256": "d276c748a504d04bdcf6d6e0a147f111e9d6cb4dc4efa54b15ce0f866ceb9272",
+      "bytes": 3097578,
+      "recorded_at_utc": "2026-10-23T13:17:45.035703+00:00",
+      "workspace_path": "/Users/theochernin/Projects/MultiPlayerProject-agents/theo-codex-12/content/environments/bridge_well_v1/damp_masonry/ao.png",
+      "final_file_verification": {
+        "map": "damp_masonry/ao.png",
+        "dimensions": [
+          1254,
+          1254
+        ],
+        "byte_identical_to_native": true,
+        "mean_gray": 214.233,
+        "fraction_above_32": 0.967503,
+        "fraction_above_128": 0.876903
+      }
+    },
+    {
+      "family": "water",
+      "map": "ripple_height",
+      "prompt": "Use case: stylized-concept.\nAsset type: one original seamless square scalar HEIGHT FIELD for subtle water ripples in a dark underground well, requested 2048 x 2048 pixels. This is a technical grayscale texture, not a photograph of water.\nFlat orthographic top-down edge-to-edge surface. Gentle low-amplitude irregular overlapping circular ripple fragments at different centres blend with a few crossing uneven small wavelets. Natural quiet areas and varied spacing; no single bullseye, perfect repetitive concentric target, uniform grid, huge choppy waves or complex noise. White is a slightly higher water crest, black lower water trough; restrained grayscale range around middle grey (approximately 100-160), smooth transitions and soft curvature. Low physical height suitable for calm water under a bridge.\nNo illumination, reflection, directional light, bright shiny crests, cast shadow, objects, reflected objects, environment, foam, sediment, colour, perspective, horizon, border, vignette, text, material sphere or frame. Only a coherent smooth scalar elevation field. Opposite edges tile seamlessly in both axes with matching height and smooth gradients. Opaque square completely filled.",
+      "ordered_references": [],
+      "reference_roles": [],
+      "native_path": "/Users/theochernin/.codex/generated_images/01a1603d-8229-7a10-9477-72554fa5887f/exec-f5ee273d-98e5-4d63-b957-e5c19fa55720.png",
+      "attempt": 1,
+      "qa": "Smooth low-amplitude overlapping broken rings and crossing wavelets around middle grey, no objects/reflections/foam. Not a photographed surface; periodic height/gradient seam continuity still requires checking.",
+      "dimensions": [
+        1254,
+        1254
+      ],
+      "sha256": "001a583de9b12aad1cb71425ded0450d29cc1a8c3f3fd26c0addc032e0643779",
+      "bytes": 1504536,
+      "recorded_at_utc": "2026-10-23T13:21:02.784761+00:00",
+      "workspace_path": "/Users/theochernin/Projects/MultiPlayerProject-agents/theo-codex-12/content/environments/bridge_well_v1/water/ripple_height.png",
+      "final_file_verification": {
+        "map": "water/ripple_height.png",
+        "dimensions": [
+          1254,
+          1254
+        ],
+        "byte_identical_to_native": true,
+        "mean_gray": 125.882,
+        "fraction_above_32": 1,
+        "fraction_above_128": 0.335902
+      }
+    },
+    {
+      "family": "water",
+      "map": "ripple_normal_dx",
+      "prompt": "Use case: precise-object-edit.\nAsset type: exact registered tangent-space OpenGL normal map DERIVED FROM supplied water ripple HEIGHT FIELD, 1254 x 1254 pixels.\nThe input is the authoritative scalar HEIGHT edit target. Preserve its exact overlapping ring fragments and small crossing wavelet positions, pixel registration, square crop, dimensions and tile edges. Change only encoding to actual height GRADIENTS.\nTechnical formula: u increases to image RIGHT, imageVdown increases DOWN. dx = H(x+1,y)-H(x-1,y); dy = H(x,y+1)-H(x,y-1). Compute N=normalize((-k*dx,+k*dy,1)) with one small uniform k because ripples are shallow. RGB=(128+127*Nx,128+127*Ny,128+127*Nz). Flat water is RGB(128,128,255).\nRED must vary below/above128 as height rises/falls toward right. GREEN must vary above/below128 as height rises/falls downward. BOTH channels must independently describe their directional height slope, not a colour tint of the scalar field. A ripple crest has opposite colours on its two flanks. Mostly neutral lavender-blue with subtle smooth red/green excursions and blue near255, no strong neon saturation or vertical slopes. No new rings, shifted wavelets, albedo, reflectance, lighting, foam, specular shine, shadows, tinted emboss, text, border, perspective or objects. Seamless opaque technical square; exact input pixel geometry.",
+      "ordered_references": [
+        "/Users/theochernin/Projects/MultiPlayerProject-agents/theo-codex-12/content/environments/bridge_well_v1/water/ripple_height.png"
+      ],
+      "reference_roles": [
+        "Authoritative scalar height edit target; exact ripple geometry and crop."
+      ],
+      "native_path": "/Users/theochernin/.codex/generated_images/01a1603d-8229-7a10-9477-72554fa5887f/exec-679f822c-1428-4271-8aaf-63944f0a2182.png",
+      "attempt": 1,
+      "other_attempts": [
+        {
+          "attempt": 2,
+          "prompt": "Use case: precise-object-edit.\nAsset type: corrected exact registered OpenGL water normal map, 1254 x 1254 pixels.\nINPUT1 is the authoritative scalar ripple HEIGHT FIELD. INPUT2 is an already spatially registered normal map whose RED and BLUE are good but whose GREEN CHANNEL IS REVERSED. Make a precise channel correction of INPUT2 only, preserving every wavelet pixel, crop and dimensions. Do not redraw ripples or synthesize a new pattern.\nFor every pixel output Rnew=Rold, Bnew=Bold, Gnew=255-Gold. In words: invert ONLY the green channel of input2, leave red and blue unchanged. The original has the wrong green sign. This correction implements N=normalize((-dH/du,+dH/d(imageVdown),1)) for height1.\nCheck against HEIGHT1: where height increases going DOWN the image, corrected G must be ABOVE128; where height decreases going down, G BELOW128. Increasing height going RIGHT still gives R BELOW128. This independent R/G gradient direction is essential. The flat surface remains about RGB128,128,255.\nNo new geometry, blur, sharpening, lighting, highlights, albedo, foam, shadows, added noise, text, border, perspective, resampling or crop changes. Only the requested green-channel inversion of the registered normal map. Opaque seamless square same exact 1254 resolution.",
+          "ordered_references": [
+            "/Users/theochernin/Projects/MultiPlayerProject-agents/theo-codex-12/content/environments/bridge_well_v1/water/ripple_height.png",
+            "/Users/theochernin/.codex/generated_images/01a1603d-8229-7a10-9477-72554fa5887f/exec-679f822c-1428-4271-8aaf-63944f0a2182.png"
+          ],
+          "native_path": "/Users/theochernin/.codex/generated_images/01a1603d-8229-7a10-9477-72554fa5887f/exec-1f3e5f29-13f3-4cf9-96af-714c71f6177c.png",
+          "analysis": {
+            "dimensions": [
+              1254,
+              1254
+            ],
+            "signed_gradient_correlations": {
+              "1": {
+                "R_vs_negative_dHdx": 0.14871639614883528,
+                "G_vs_positive_dHdy_down": -0.012630868796870351
+              },
+              "4": {
+                "R_vs_negative_dHdx": 0.19367552552561737,
+                "G_vs_positive_dHdy_down": -0.030846650671902412
+              },
+              "8": {
+                "R_vs_negative_dHdx": 0.19759462030031502,
+                "G_vs_positive_dHdy_down": -0.057302220287901606
+              }
+            }
+          },
+          "qa": "Rejected: requested native green inversion instead degraded directional correlation and modified the ripple pattern."
+        }
+      ],
+      "analysis": {
+        "dimensions": [
+          1254,
+          1254
+        ],
+        "signed_gradient_correlations": {
+          "1": {
+            "R_vs_negative_dHdx": 0.6162287639335243,
+            "G_vs_positive_dHdy_down": -0.663652510532182
+          },
+          "4": {
+            "R_vs_negative_dHdx": 0.7909402571576798,
+            "G_vs_positive_dHdy_down": -0.7383212683088012
+          },
+          "8": {
+            "R_vs_negative_dHdx": 0.8145580350567703,
+            "G_vs_positive_dHdy_down": -0.731407078976952
+          }
+        }
+      },
+      "source_normal_convention": "DirectX: G follows negative image-down height derivative, opposite the requested OpenGL Y convention.",
+      "required_import_operation": "Godot standard normal import green-channel inversion; native source bytes unchanged.",
+      "qa": "Accepted first native candidate under accurate _dx filename. Strong approximate height registration at broad scales; not an exact mathematical gradient. Parent explicitly accepts source DirectX with Godot import green inversion. Tile boundary and runtime water appearance still require verification.",
+      "dimensions": [
+        1254,
+        1254
+      ],
+      "sha256": "72f4a50c59eea04b12936b6d554a31b7df9a9bd96f0dde37f60b2f9f44c33700",
+      "bytes": 1660462,
+      "recorded_at_utc": "2026-10-23T13:31:18.919137+00:00",
+      "workspace_path": "/Users/theochernin/Projects/MultiPlayerProject-agents/theo-codex-12/content/environments/bridge_well_v1/water/ripple_normal_dx.png",
+      "final_file_verification": {
+        "map": "water/ripple_normal_dx.png",
+        "dimensions": [
+          1254,
+          1254
+        ],
+        "byte_identical_to_native": true,
+        "mean_gray": 145.605,
+        "fraction_above_32": 1,
+        "fraction_above_128": 0.957097
+      }
+    },
+    {
+      "family": "water",
+      "map": "foam_mask",
+      "prompt": "Use case: texture-asset.\nAsset type: one square seamless grayscale foam/sediment coverage MASK for a dark dungeon water shader, requested 2048 x 2048 pixels, opaque edge-to-edge technical texture.\nGenerate an independent flat orthographic mask: near-black background across almost the whole image, with only very sparse, thin, irregular broken white and pale-gray filaments suggesting tiny shoreline foam and floating sediment strings. Coverage should stay under about 5 percent; preserve large quiet empty regions. Use a few branching or gently curved incomplete threads, small disconnected flecks and short dissolving chains; fine soft irregular antialiased edges with restrained detail. Organic uneven distribution that tiles naturally in both axes, without an obvious motif or grid. Filaments may cross tile boundaries only sparsely and must continue seamlessly; do not form a white frame or filled white edge bands.\nScalar coverage data only. No actual shoreline, rocks, architecture, water reflections, objects, light, shadows, directional gradients, perspective, glossy effects, blue color, text, labels, watermark, borders, previews, multiple panels or packed maps. One finished seamless black-and-white mask.",
+      "ordered_references": [],
+      "reference_roles": [],
+      "native_path": "/Users/theochernin/.codex/generated_images/01a1603d-8229-7a10-9477-72554fa5887f/exec-c461b21e-5f37-4cc1-a588-9d605dfd8580.png",
+      "attempt": 1,
+      "qa": "Sparse disconnected pale filaments and flecks on black, large quiet regions, no objects or filled white border. Visually suitable as an independent foam/sediment coverage mask. Seamlessness and shader threshold appearance require runtime verification. Measured coverage is 1.1308 percent above 32/255 and 0.3077 percent above 128/255.",
+      "dimensions": [
+        1254,
+        1254
+      ],
+      "sha256": "8e057e57788dbb599aa98c68e4ce8952ed9bfd90607394b5bcbc0ad0756ef48f",
+      "bytes": 672553,
+      "recorded_at_utc": "2026-10-23T13:31:57.301801+00:00",
+      "workspace_path": "/Users/theochernin/Projects/MultiPlayerProject-agents/theo-codex-12/content/environments/bridge_well_v1/water/foam_mask.png",
+      "final_file_verification": {
+        "map": "water/foam_mask.png",
+        "dimensions": [
+          1254,
+          1254
+        ],
+        "byte_identical_to_native": true,
+        "mean_gray": 1.461,
+        "fraction_above_32": 0.011308,
+        "fraction_above_128": 0.003077
+      }
+    }
+  ],
+  "final_verification": {
+    "recorded_at_utc": "2026-10-23T13:32:24.564152+00:00",
+    "count": 8,
+    "maps": [
+      {
+        "map": "damp_masonry/albedo.png",
+        "dimensions": [
+          1254,
+          1254
+        ],
+        "byte_identical_to_native": true,
+        "mean_gray": 47.558,
+        "fraction_above_32": 0.716746,
+        "fraction_above_128": 0.008058
+      },
+      {
+        "map": "damp_masonry/height.png",
+        "dimensions": [
+          1254,
+          1254
+        ],
+        "byte_identical_to_native": true,
+        "mean_gray": 125.255,
+        "fraction_above_32": 0.94315,
+        "fraction_above_128": 0.577196
+      },
+      {
+        "map": "damp_masonry/normal_gl.png",
+        "dimensions": [
+          1254,
+          1254
+        ],
+        "byte_identical_to_native": true,
+        "mean_gray": 136.982,
+        "fraction_above_32": 0.998581,
+        "fraction_above_128": 0.701309
+      },
+      {
+        "map": "damp_masonry/roughness.png",
+        "dimensions": [
+          1254,
+          1254
+        ],
+        "byte_identical_to_native": true,
+        "mean_gray": 180.338,
+        "fraction_above_32": 0.999997,
+        "fraction_above_128": 0.960026
+      },
+      {
+        "map": "damp_masonry/ao.png",
+        "dimensions": [
+          1254,
+          1254
+        ],
+        "byte_identical_to_native": true,
+        "mean_gray": 214.233,
+        "fraction_above_32": 0.967503,
+        "fraction_above_128": 0.876903
+      },
+      {
+        "map": "water/ripple_height.png",
+        "dimensions": [
+          1254,
+          1254
+        ],
+        "byte_identical_to_native": true,
+        "mean_gray": 125.882,
+        "fraction_above_32": 1,
+        "fraction_above_128": 0.335902
+      },
+      {
+        "map": "water/ripple_normal_dx.png",
+        "dimensions": [
+          1254,
+          1254
+        ],
+        "byte_identical_to_native": true,
+        "mean_gray": 145.605,
+        "fraction_above_32": 1,
+        "fraction_above_128": 0.957097
+      },
+      {
+        "map": "water/foam_mask.png",
+        "dimensions": [
+          1254,
+          1254
+        ],
+        "byte_identical_to_native": true,
+        "mean_gray": 1.461,
+        "fraction_above_32": 0.011308,
+        "fraction_above_128": 0.003077
+      }
+    ],
+    "limitations": [
+      "Seamlessness and runtime appearance have not been tested by this worker.",
+      "Generated map registration and normals are approximate, not exact mathematical derivatives.",
+      "Water normal is saved with accurate DirectX source convention and requires standard Godot green inversion at import.",
+      "Masonry roughness native values are lower than the requested dry range; use engine material remapping."
+    ]
+  }
+}

@@ -1,0 +1,24 @@
+[gd_resource type="ShaderMaterial" load_steps=9 format=3]
+
+[ext_resource type="Shader" path="res://content/environments/bridge_well_v1/wet_surface.gdshader" id="1"]
+[ext_resource type="Texture2D" path="res://content/environments/bridge_well_v1/damp_masonry/albedo.png" id="2"]
+[ext_resource type="Texture2D" path="res://content/environments/bridge_well_v1/damp_masonry/normal_gl.png" id="3"]
+[ext_resource type="Texture2D" path="res://content/environments/bridge_well_v1/damp_masonry/roughness.png" id="4"]
+[ext_resource type="Texture2D" path="res://content/environments/bridge_well_v1/damp_masonry/ao.png" id="5"]
+[ext_resource type="Texture2D" path="res://content/environments/bridge_well_v1/masks/wet_patches.png" id="6"]
+[ext_resource type="Texture2D" path="res://content/environments/bridge_well_v1/masks/algae_coverage.png" id="7"]
+[ext_resource type="Texture2D" path="res://content/environments/bridge_well_v1/damp_masonry/height.png" id="8"]
+
+[resource]
+resource_name = "Bridge Well / wet damp_masonry"
+shader = ExtResource("1")
+shader_parameter/albedo_map = ExtResource("2")
+shader_parameter/normal_map = ExtResource("3")
+shader_parameter/roughness_map = ExtResource("4")
+shader_parameter/ao_map = ExtResource("5")
+shader_parameter/wet_map = ExtResource("6")
+shader_parameter/algae_map = ExtResource("7")
+shader_parameter/height_map = ExtResource("8")
+shader_parameter/normal_strength = 0.6
+shader_parameter/wetness = 0.8
+shader_parameter/algae_amount = 0.16
