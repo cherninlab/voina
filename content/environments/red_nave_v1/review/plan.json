@@ -1,0 +1,27 @@
+{
+  "version": 1,
+  "task": "T-148",
+  "source": "review/selected_nave.png",
+  "families": [
+    "red_lime_plaster",
+    "pale_limestone",
+    "rubble_masonry",
+    "broken_stone_floor",
+    "aged_oak",
+    "oxidized_iron"
+  ],
+  "maps": [
+    "albedo",
+    "height",
+    "normal_gl",
+    "roughness",
+    "ao"
+  ],
+  "extras": [
+    "oxidized_iron/metallic",
+    "masks/plaster_peel",
+    "masks/damp_grime"
+  ],
+  "goal": "Distinct materials from the selected nave; flat albedo, shallow relief, restrained specular response. Native generated maps, inspected in Godot.",
+  "native_resolution": "Record actual outputs; do not claim requested resolution unless verified."
+}

@@ -1,0 +1,228 @@
+{
+  "task": "T-148",
+  "worker": "reliquary_image",
+  "generator": "built-in ImageGen",
+  "requested_size": [
+    2048,
+    2048
+  ],
+  "limitations": [
+    "Generative registered maps, not mathematical derivations.",
+    "Seamless tiling, exact pixel registration, normal convention and physical calibration require runtime validation."
+  ],
+  "outputs": [
+    {
+      "family": "broken_stone_floor",
+      "map": "albedo",
+      "prompt": "Use case: photorealistic-natural.\nAsset type: original seamless PBR diffuse albedo texture for broken stone floor in SECHA red nave, requested 2048 x 2048 square, opaque.\nInput image is material and colour-family context ONLY, not an edit target or a scene layout. Extract no scene crop. Create an original flat orthographic edge-to-edge 4 x 4 metre floor material under completely uniform neutral diffuse illumination.\nWorn broad irregular flagstones of earthy grey and desaturated grey-brown, with chipped edges, compacted grit and dark earth in narrow joints, shallow pitting and a few quiet mineral variations. Large and medium stone sizes vary naturally; broad flat worn faces remain quiet and readable for gameplay. Low, shallow physical relief suitable for walking, no individually scattered 3D rocks. Different from vertically coursed wall masonry: no rows of bricks, no small cobblestone grid. Do not repeat identical crack shapes.\nEncode only neutral diffuse base colour: no orange torch cast, no directional light, shadows, baked ambient occlusion, wet reflections, specular glints or highlights. No perspective, objects, text, borders, vignette or material sphere. Opposing image edges match seamlessly in both axes; fill the entire square.",
+      "ordered_references": [
+        "/Users/theochernin/Projects/MultiPlayerProject-agents/theo-codex-12/content/environments/red_nave_v1/review/selected_nave.png"
+      ],
+      "native_path": "/Users/theochernin/.codex/generated_images/01a1603d-8229-7a10-9477-72554fa5887f/exec-32ddfb5c-fb96-40d3-845e-fd720304d835.png",
+      "qa": "Broad irregular flat floor faces, earthy grey/brown and gritty joints; finer pit detail is fairly dense. Neutral diffuse presentation without visible directional specular lighting. Tiling not verified.",
+      "dimensions": [
+        1254,
+        1254
+      ],
+      "sha256": "e37a31f792ae1e6e3de83856755d3865828b13a7bda8889883e04bd83e5d539f",
+      "bytes": 4146639,
+      "recorded_at_utc": "2026-10-23T12:15:53.768800+00:00",
+      "workspace_path": "/Users/theochernin/Projects/MultiPlayerProject-agents/theo-codex-12/content/environments/red_nave_v1/broken_stone_floor/albedo.png"
+    },
+    {
+      "family": "broken_stone_floor",
+      "map": "height",
+      "prompt": "Use case: precise-object-edit.\nAsset type: one registered grayscale physical height map for the supplied broken stone floor albedo. The input is the exact edit target, not loose inspiration.\nKeep precisely the same pixel geometry, flagstone outlines, joints, chips, grit, pits, crop, square dimensions and seamless tile edges. Change only material encoding into physical elevation. White means highest, black means deepest, linear grayscale with no colour.\nRepresent a shallow walkable floor: broad worn stone faces at similar mid-high heights, subtly uneven and gently pitted, with narrow chipped lips and compacted grit/earth in the lower joints. Deepest thin joint crevices dark, grit mid-low, quietly worn stone faces mostly middle grey to light grey, only a few small highest edges near white. Do NOT turn pale mineral stains or albedo colour variation into mountains: height follows physical relief, not brightness. No light direction, highlights, shadows, ambient occlusion, perspective, added stones or invented fractures. One edge-to-edge seamless opaque map, exact registration with the albedo.",
+      "ordered_references": [
+        "/Users/theochernin/Projects/MultiPlayerProject-agents/theo-codex-12/content/environments/red_nave_v1/broken_stone_floor/albedo.png"
+      ],
+      "native_path": "/Users/theochernin/.codex/generated_images/01a1603d-8229-7a10-9477-72554fa5887f/exec-cc3a3cca-0e56-4ab6-98ee-b61e36f76a8b.png",
+      "qa": "Major flagstone boundaries visually register with albedo; broad faces raised above lower gritty joints. Fine relief has an embossed appearance; not a mathematically derived or calibrated height field. Exact registration and seamless repeat unverified.",
+      "dimensions": [
+        1254,
+        1254
+      ],
+      "sha256": "33a7ce5926424db9410a869f227d1d92274269dd647a9ea803edd3f044233d0a",
+      "bytes": 3891238,
+      "recorded_at_utc": "2026-10-23T12:19:06.837213+00:00",
+      "workspace_path": "/Users/theochernin/Projects/MultiPlayerProject-agents/theo-codex-12/content/environments/red_nave_v1/broken_stone_floor/height.png"
+    },
+    {
+      "family": "broken_stone_floor",
+      "map": "normal_gl",
+      "prompt": "Use case: precise-object-edit.\nAsset type: registered tangent-space OpenGL normal map for this same shallow broken-stone floor, 1254 x 1254 square, opaque.\nInput 1 is the physical height field, authoritative for relief; input 2 is matching albedo, for registration only. Preserve all pixel positions, broad flagstone silhouettes, chipped edges, gritty joints, shallow pits, crop, dimensions and seamless tile boundaries exactly. Change only encoding to a normal map, not a shaded beauty image.\nOutput OpenGL right-handed tangent-space X+ Y+ Z+ normals. Positive Y is green UP. A surface facing straight outward is RGB (128,128,255). Flat broad stone faces must be mostly this neutral lavender-blue. Encode subtle gradients of the shallow height: narrow recessed joints, chipped lips, gently pitted stone and low gritty particles. Red carries tangent X and green carries tangent Y; blue stays predominantly high. Keep the relief shallow, no exaggerated melted ridges, vertical cliffs or inflated stones. No grayscale/albedo colour, no directional illumination, specular highlights, ambient shadows, perspective, extra geometry or new noise. Precisely align every feature to the supplied height and albedo.",
+      "ordered_references": [
+        "/Users/theochernin/Projects/MultiPlayerProject-agents/theo-codex-12/content/environments/red_nave_v1/broken_stone_floor/height.png",
+        "/Users/theochernin/Projects/MultiPlayerProject-agents/theo-codex-12/content/environments/red_nave_v1/broken_stone_floor/albedo.png"
+      ],
+      "native_path": "/Users/theochernin/.codex/generated_images/01a1603d-8229-7a10-9477-72554fa5887f/exec-52873863-4d78-4c40-9430-c333d300a69c.png",
+      "qa": "Lavender flat faces and coloured recessed boundaries follow the same broad stone arrangement. Edge normal response is strong despite shallow-relief request; geometric registration and OpenGL Y convention need numeric/runtime checking.",
+      "dimensions": [
+        1254,
+        1254
+      ],
+      "sha256": "be3e727827867090ab1b2f25505562e20f86bf1ce98e4327519d7a7616539518",
+      "bytes": 3154586,
+      "recorded_at_utc": "2026-10-23T12:20:58.572859+00:00",
+      "workspace_path": "/Users/theochernin/Projects/MultiPlayerProject-agents/theo-codex-12/content/environments/red_nave_v1/broken_stone_floor/normal_gl.png"
+    },
+    {
+      "family": "broken_stone_floor",
+      "map": "roughness",
+      "prompt": "Use case: precise-object-edit.\nTurn the supplied albedo into one FLAT LINEAR GRAYSCALE ROUGHNESS MASK, not a shaded image. Exact same 1254 x 1254 canvas, stone outlines, joints, crop and tile edges.\nThe whole surface is DRY and MATTE. Output is almost uniformly pale grey, centred at RGB(224,224,224). Large coarse stone faces range only RGB(211,211,211) to RGB(240,240,240). All dirt and grit in EVERY joint is very rough and MUST be RGB(230,230,230) or lighter. Deep joints are therefore LIGHT in this map, never dark. Only a few restrained rubbed areas within broad stone faces can be RGB(190,190,190) to RGB(205,205,205); soft mottled boundaries, no hard highlights.\nWhite = rough, black = smooth. No pixel should be near black: no mirror, wet patch or polished crevice. Preserve the input geometry but IGNORE input light/darkness, mineral stains and elevation when setting roughness. Remove every shadow, highlighted rim, bevel shading, height shading and ambient occlusion from this mask. A smooth flat technical map of microsurface roughness, NOT a grayscale photo, NOT a height map, NOT embossed. Opaque seamless square, no text or border.",
+      "ordered_references": [
+        "/Users/theochernin/Projects/MultiPlayerProject-agents/theo-codex-12/content/environments/red_nave_v1/broken_stone_floor/albedo.png"
+      ],
+      "native_path": "/Users/theochernin/.codex/generated_images/01a1603d-8229-7a10-9477-72554fa5887f/exec-a7dbd7ec-5e69-411b-bfb5-e9636c6d1514.png",
+      "prior_attempts": [
+        {
+          "prompt": "Use case: precise-object-edit.\nAsset type: registered linear grayscale PBR roughness map for the supplied broken stone floor, exactly 1254 x 1254 pixels.\nInput 1 is the exact albedo edit target; input 2 is matching physical height for registration. Lock every stone outline, joint, pit, grit particle, crop and tile edge. Change only encoding into microsurface roughness, not a height or ambient-occlusion map.\nWhite means fully rough, black fully smooth. This is a dry rough stone floor: most rock faces and compacted grit should be 0.80 to 0.95 roughness (RGB 204 to 242). A few limited foot-worn broad face patches may be gently smoother around 0.70 to 0.78, with soft natural transitions. Gritty joints stay rough and light, not black. Do not mirror the albedo brightness or height contrast: pale minerals are not automatically smooth, and deep cracks are not dark in roughness. No puddles or glossy wet regions. No directionally lit edges, colour, shadows, reflections, text, vignette, perspective, new geometry or extra cracks. One edge-to-edge seamless opaque map with exactly matching dimensions and registration.",
+          "ordered_references": [
+            "/Users/theochernin/Projects/MultiPlayerProject-agents/theo-codex-12/content/environments/red_nave_v1/broken_stone_floor/albedo.png",
+            "/Users/theochernin/Projects/MultiPlayerProject-agents/theo-codex-12/content/environments/red_nave_v1/broken_stone_floor/height.png"
+          ],
+          "native_path": "/Users/theochernin/.codex/generated_images/01a1603d-8229-7a10-9477-72554fa5887f/exec-eb065884-dfd4-4c44-99fe-85d295d19360.png",
+          "qa": "Not accepted: joint troughs were darkened as if a shaded relief/occlusion map, contradicting the high-roughness dry grit request."
+        }
+      ],
+      "qa": "Second/final attempt greatly reduces relief shading and keeps the map pale/high roughness. Joint troughs remain a little darker than desired; inspect numeric range and dry-surface response before final material approval. Major stone registration appears consistent.",
+      "dimensions": [
+        1254,
+        1254
+      ],
+      "sha256": "3c302b7cbec33d6027928899879891eb75ab283111a2dc49c000dd92e6443011",
+      "bytes": 3035733,
+      "recorded_at_utc": "2026-10-23T12:24:39.872996+00:00",
+      "workspace_path": "/Users/theochernin/Projects/MultiPlayerProject-agents/theo-codex-12/content/environments/red_nave_v1/broken_stone_floor/roughness.png"
+    },
+    {
+      "family": "broken_stone_floor",
+      "map": "ao",
+      "prompt": "Use case: precise-object-edit.\nAsset type: registered grayscale ambient occlusion map of the supplied shallow broken-stone floor, exact 1254 x 1254 pixel square.\nInput 1 is matching physical height, and input 2 is the exact albedo for registration only. Preserve the same flagstone boundaries, pits, joints, grit, crop, dimensions and seamless edges.\nMostly WHITE means open/unoccluded. Broad stone faces must be white or almost white regardless of their albedo colour or physical height. Darkening belongs ONLY in narrow joints under chipped lips, the deepest crevices between stones and grit, and a few small recessed pits. Use restrained soft local contact occlusion only; no broad grey lighting falloff, no black rock faces, no directionally cast shadows, no embossed highlighted rims, no diffuse colour, no specular light. This is an AO utility mask, NOT a grayscale photograph or height map. Do not add geometry or detail. Flat edge-to-edge seamless opaque technical texture.",
+      "ordered_references": [
+        "/Users/theochernin/Projects/MultiPlayerProject-agents/theo-codex-12/content/environments/red_nave_v1/broken_stone_floor/height.png",
+        "/Users/theochernin/Projects/MultiPlayerProject-agents/theo-codex-12/content/environments/red_nave_v1/broken_stone_floor/albedo.png"
+      ],
+      "native_path": "/Users/theochernin/.codex/generated_images/01a1603d-8229-7a10-9477-72554fa5887f/exec-b6179430-508d-4474-8d80-bb93278e532c.png",
+      "qa": "Mostly white open stone faces with local dark joint contact and occasional pits. Joint AO is fairly strong and may need reduced engine influence; exact registration/seams not mathematically established.",
+      "dimensions": [
+        1254,
+        1254
+      ],
+      "sha256": "5223b85b23f01af7ef13964d03e555817d4c460fdf5e608096755fdf735d5846",
+      "bytes": 2923715,
+      "recorded_at_utc": "2026-10-23T12:26:26.582663+00:00",
+      "workspace_path": "/Users/theochernin/Projects/MultiPlayerProject-agents/theo-codex-12/content/environments/red_nave_v1/broken_stone_floor/ao.png"
+    },
+    {
+      "family": "oxidized_iron",
+      "map": "albedo",
+      "prompt": "Use case: photorealistic-natural.\nAsset type: original seamless PBR diffuse albedo of oxidized forged iron for SECHA dungeon torch hardware, requested 2048 x 2048 square, opaque.\nThe supplied red nave scene is material context ONLY; do not crop it or show a scene or object. Generate a flat orthographic edge-to-edge continuous metal surface in uniform NEUTRAL diffuse illumination.\nAlmost-black forged iron with dull charcoal black oxide, restrained broad hammer marks, sparse irregular dark brown/red rusty patches and a few small rubbed exposed metallic grey patches. The surface is dark and dry, ancient practical iron hardware, not polished steel or orange rust everywhere. Varied large, medium and fine scales with some quiet iron areas: no repeated identical pits, no all-over sandpaper noise. Rust has a coarse matte mineral body; worn iron patches remain neutral grey in albedo, not bright reflective highlights.\nThis is ONLY diffuse base colour with no baked torch cast, orange lighting, specular shine, glints, cast shadow, ambient occlusion, bevel lighting, directional gradient or dramatic reflections. No objects, torch, bolts, rivets, seams, grid, plate border, frame, text, material sphere or perspective. Opposing edges tile seamlessly in both axes; one continuous original opaque square texture.",
+      "ordered_references": [
+        "/Users/theochernin/Projects/MultiPlayerProject-agents/theo-codex-12/content/environments/red_nave_v1/review/selected_nave.png"
+      ],
+      "native_path": "/Users/theochernin/.codex/generated_images/01a1603d-8229-7a10-9477-72554fa5887f/exec-bff54df1-bc03-4adf-8250-b48d6ad94fe8.png",
+      "qa": "Near-black charcoal iron, localized dark rust and small neutral rubbed patches; distinct from stone. Corrosion is fairly widespread fine crust rather than isolated large hammer impressions. No obvious baked torch tint or specular shine; tiling unverified.",
+      "dimensions": [
+        1254,
+        1254
+      ],
+      "sha256": "fd679b5372d63ac1ad973a6cf709a8af4ae53e6a47cd7be176b020cc4d4d0043",
+      "bytes": 3437390,
+      "recorded_at_utc": "2026-10-23T12:28:31.684869+00:00",
+      "workspace_path": "/Users/theochernin/Projects/MultiPlayerProject-agents/theo-codex-12/content/environments/red_nave_v1/oxidized_iron/albedo.png"
+    },
+    {
+      "family": "oxidized_iron",
+      "map": "height",
+      "prompt": "Use case: precise-object-edit.\nAsset type: exact registered grayscale physical HEIGHT map for the supplied oxidized forged iron albedo, 1254 x 1254 square. The input is the edit target.\nPreserve precisely the same pixel positions, oxide crust boundaries, rusty patches, rubbed exposed patches, pits, hammer marks, crop, dimensions and seamless tile edges. Change only encoding to physical elevation. White high, black deep, linear grayscale. This is nearly FLAT forged iron, not a cliff or brick relief.\nBroad black-oxide metal surfaces sit around middle grey with restrained shallow irregular hammer impressions. Rust/oxide flakes may sit only slightly higher; minute corrosion pits are lower; smooth rubbed exposed metal is comparatively flat, close to the substrate. Do not equate albedo darkness or redness to depth: physical crust and pits determine height. Narrow shallow relief only, no high extruded rust islands. No directional light, shadows, highlights, diffuse colour, ambient occlusion, perspective, objects, new cracks, text or borders. Same exact seamless opaque square and registration as the albedo.",
+      "ordered_references": [
+        "/Users/theochernin/Projects/MultiPlayerProject-agents/theo-codex-12/content/environments/red_nave_v1/oxidized_iron/albedo.png"
+      ],
+      "native_path": "/Users/theochernin/.codex/generated_images/01a1603d-8229-7a10-9477-72554fa5887f/exec-42c83c08-d2ab-4d89-a954-864a486630ec.png",
+      "qa": "Crust/pit arrangement visually follows albedo, with middle-grey substrate and lighter crust. Fine relief looks embossed and is not a numerical physical reconstruction; use low displacement strength and check registration/seams.",
+      "dimensions": [
+        1254,
+        1254
+      ],
+      "sha256": "77d6ef4cd37dd17efaec6e85f795412ade74c3d6c6444b08647ee2efee3e0633",
+      "bytes": 3994810,
+      "recorded_at_utc": "2026-10-23T12:30:37.816945+00:00",
+      "workspace_path": "/Users/theochernin/Projects/MultiPlayerProject-agents/theo-codex-12/content/environments/red_nave_v1/oxidized_iron/height.png"
+    },
+    {
+      "family": "oxidized_iron",
+      "map": "normal_gl",
+      "prompt": "Use case: precise-object-edit.\nAsset type: registered tangent-space OpenGL NORMAL map for the same oxidized forged iron, exactly 1254 x 1254 pixels.\nInput 1 is the physical height field; input 2 is matching albedo for registration only. Preserve exact pixel geometry, oxide/rust crust shapes, small rubbed metal regions, hammer pits, crop, dimensions and seamless tile edges. Change only the encoding.\nOpenGL tangent space X+ Y+ Z+, positive Y is GREEN UP. Straight outward flat metal = RGB(128,128,255). The nearly flat substrate should remain predominantly neutral lavender-blue. Encode only subtle shallow changes: broad worn hammer dents, minute recessed pits, very thin slightly raised oxide flakes. Red encodes X slope, green Y slope, blue stays predominantly high. Tiny restrained relief suitable for iron hardware, no inflated scales or craggy rocks. No albedo colour, grayscale photo, lighting, specular shine, cast shadows, ambient occlusion, new surface features, text or border. One seamless opaque square, exact registration to both inputs.",
+      "ordered_references": [
+        "/Users/theochernin/Projects/MultiPlayerProject-agents/theo-codex-12/content/environments/red_nave_v1/oxidized_iron/height.png",
+        "/Users/theochernin/Projects/MultiPlayerProject-agents/theo-codex-12/content/environments/red_nave_v1/oxidized_iron/albedo.png"
+      ],
+      "native_path": "/Users/theochernin/.codex/generated_images/01a1603d-8229-7a10-9477-72554fa5887f/exec-cb0622b9-81f7-4f53-9826-7c120879310e.png",
+      "qa": "Predominantly lavender-blue substrate with localized coloured crust/pit normals. Arrangement visually matches height; micro-normal strength is fairly pronounced and should be calibrated. Exact registered derivatives and OpenGL Y sign unverified.",
+      "dimensions": [
+        1254,
+        1254
+      ],
+      "sha256": "cac7e72cf57247edea09085e091b3ce466842718f829800676d3f1ba86ab6e1b",
+      "bytes": 3061089,
+      "recorded_at_utc": "2026-10-23T12:32:19.270287+00:00",
+      "workspace_path": "/Users/theochernin/Projects/MultiPlayerProject-agents/theo-codex-12/content/environments/red_nave_v1/oxidized_iron/normal_gl.png"
+    },
+    {
+      "family": "oxidized_iron",
+      "map": "roughness",
+      "prompt": "Use case: precise-object-edit.\nAsset type: flat linear grayscale PBR ROUGHNESS MASK of this exact oxidized forged iron albedo, 1254 x 1254 pixels.\nThe input is the edit target for exact material-region registration. Preserve every rust patch, black oxide region, rubbed bare-metal patch, pit position, crop and seamless edge. Change only encoding to microsurface roughness.\nWhite = rough, black = smooth. Black oxide is not black in a roughness mask: dry oxide regions should be pale middle grey RGB(175,175,175) to RGB(215,215,215), 0.69-0.84 roughness. Coarse dark-brown rust and powdery flaked oxide should be lighter RGB(215,215,215) to RGB(230,230,230), 0.84-0.90. Only a few small rubbed bare-metal grey patches may be darker RGB(102,102,102) to RGB(140,140,140), around 0.4-0.55. Majority dry surface must remain 0.6-0.9. No perfectly polished black regions.\nEncode material finish, NOT albedo luminance or height: do not put shadows in pits or glowing white bevel outlines. This utility mask has no light, ambient occlusion, specular highlights, reflection, colour, embossed shading, objects, text, borders, perspective or extra surface detail. One flat seamless opaque square, unchanged geometry and dimensions.",
+      "ordered_references": [
+        "/Users/theochernin/Projects/MultiPlayerProject-agents/theo-codex-12/content/environments/red_nave_v1/oxidized_iron/albedo.png"
+      ],
+      "native_path": "/Users/theochernin/.codex/generated_images/01a1603d-8229-7a10-9477-72554fa5887f/exec-78e48923-0389-4cff-8b39-654066c813ad.png",
+      "qa": "Pale/medium grey dry finish with lighter corrosion fields and limited darker wear. Fine outlined relief remains visible despite mask-only request; numerical roughness range and independence from height need validation.",
+      "dimensions": [
+        1254,
+        1254
+      ],
+      "sha256": "87ac1981f81a71009adf051f260590ca32206fe491dc0a6401e052cec9acb221",
+      "bytes": 3557507,
+      "recorded_at_utc": "2026-10-23T12:34:00.222957+00:00",
+      "workspace_path": "/Users/theochernin/Projects/MultiPlayerProject-agents/theo-codex-12/content/environments/red_nave_v1/oxidized_iron/roughness.png"
+    },
+    {
+      "family": "oxidized_iron",
+      "map": "ao",
+      "prompt": "Use case: precise-object-edit.\nAsset type: matching grayscale ambient occlusion utility map for the supplied almost-flat forged iron, exactly 1254 x 1254 pixels.\nInput 1 is the physical height field, authoritative for shallow relief. Input 2 is albedo for exact registration of material regions only. Keep identical crust outlines, rust patches, pitting, rubbed-metal regions, crop, dimensions and seamless edges.\nThe overwhelming majority of this map is WHITE (fully open/unoccluded), because the iron is nearly flat. Only the minute recessed pits and tiny crevices directly under flaking oxide may have local small dark contacts; keep their footprint narrow. All broad iron substrate and broad raised crust faces are white, irrespective of their dark/rusty albedo. Do not paint black oxide black: AO is geometry occlusion, not colour or metallic content. No directional light, cast shadows, grey large-scale gradients, raised-edge highlights, embossed shading, albedo, reflection, new geometry or extra detail. A flat seamless opaque technical mask, no objects, text or border.",
+      "ordered_references": [
+        "/Users/theochernin/Projects/MultiPlayerProject-agents/theo-codex-12/content/environments/red_nave_v1/oxidized_iron/height.png",
+        "/Users/theochernin/Projects/MultiPlayerProject-agents/theo-codex-12/content/environments/red_nave_v1/oxidized_iron/albedo.png"
+      ],
+      "native_path": "/Users/theochernin/.codex/generated_images/01a1603d-8229-7a10-9477-72554fa5887f/exec-ebb55b2b-d29d-4c92-b95b-2fdccfdd0dba.png",
+      "qa": "Predominantly white shallow surface with localized tiny pit/flaking crevices darkened. Strongest contacts may need low AO influence; no large-scale directional gradient visible. Exact registration/seams remain unchecked.",
+      "dimensions": [
+        1254,
+        1254
+      ],
+      "sha256": "f4eacb409d233e2b08cd0081a344640e0a482da82808ef47a4e6132267ea3247",
+      "bytes": 2927449,
+      "recorded_at_utc": "2026-10-23T12:36:12.103774+00:00",
+      "workspace_path": "/Users/theochernin/Projects/MultiPlayerProject-agents/theo-codex-12/content/environments/red_nave_v1/oxidized_iron/ao.png"
+    },
+    {
+      "family": "oxidized_iron",
+      "map": "metallic",
+      "prompt": "Use case: precise-object-edit.\nAsset type: exact registered linear grayscale METALLIC MASK for this oxidized forged-iron albedo, exactly 1254 x 1254 pixels.\nInput is the exact albedo edit target, authoritative for region boundaries, rust patches, black oxide, rubbed grey iron, crop, image dimensions and seamless edges. Change only material classification encoding, never surface geometry.\nWHITE RGB(255,255,255) = the few small genuinely bare rubbed metallic iron patches visible as neutral worn grey in the albedo. BLACK RGB(0,0,0) = the dark brown/orange mineral rust and thick charcoal-black oxide crust, both dielectric surface layers. Mixed GREY is allowed only in patchy thin oxide transition areas where underlying iron partly contributes; make those natural mid-grey blends. The surface is mostly oxidized, so black/dark dominates, white bare-metal wear is sparse. Register each white wear patch and each black rust field to the albedo exactly.\nThis is a METALLIC classification mask, NOT roughness, height, a grayscale photo or ambient occlusion. Do not paint raised faces white or pits black merely because of relief. No lighting, highlights, shadows, coloured pixels, embossed bevels, extra cracks, objects, text, border, perspective or vignette. Same seamless opaque 1254-square canvas with exact matching region positions.",
+      "ordered_references": [
+        "/Users/theochernin/Projects/MultiPlayerProject-agents/theo-codex-12/content/environments/red_nave_v1/oxidized_iron/albedo.png"
+      ],
+      "native_path": "/Users/theochernin/.codex/generated_images/01a1603d-8229-7a10-9477-72554fa5887f/exec-6ad54d52-0b53-4576-8cd5-cb9ca31d6567.png",
+      "qa": "Mostly black oxide/rust with sparse bright worn-metal patches and grey transitions, broadly aligned to albedo wear. Fine relief-like modulation remains in grey regions; material classification is generative, not a pixel-exact analytical segmentation.",
+      "dimensions": [
+        1254,
+        1254
+      ],
+      "sha256": "11f35395d816d5ee41ba611146f0db9795448c8872db8bd108bdd9bd31a5f141",
+      "bytes": 2878304,
+      "recorded_at_utc": "2026-10-23T12:38:52.163552+00:00",
+      "workspace_path": "/Users/theochernin/Projects/MultiPlayerProject-agents/theo-codex-12/content/environments/red_nave_v1/oxidized_iron/metallic.png"
+    }
+  ]
+}

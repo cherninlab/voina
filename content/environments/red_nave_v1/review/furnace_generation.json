@@ -1,0 +1,270 @@
+{
+  "task": "T-148",
+  "worker": "furnace_image",
+  "route": "native ImageGen",
+  "requested_dimensions": [
+    2048,
+    2048
+  ],
+  "source_scene": "/Users/theochernin/Projects/MultiPlayerProject-agents/theo-codex-12/content/environments/red_nave_v1/review/selected_nave.png",
+  "limitations": "Native image edits do not prove exact pixel alignment, physical calibration, seamless repeat or tangent-normal convention. Review in-engine before use.",
+  "outputs": [
+    {
+      "family": "red_lime_plaster",
+      "map": "albedo",
+      "attempt": 1,
+      "prompt": "Use case: photorealistic-natural. Asset type: original PBR BASE COLOR / ALBEDO texture for red lime plaster in the SECHA red nave. The supplied selected nave image is ONLY a material character reference, not an edit target or scene composition. Create ONE flat orthographic unlit seamless edge-to-edge square texture, requested 2048 x 2048 pixels, depicting about 4 x 4 metres of a continuous old wall plaster surface. Actual material colour independent of the reference's warm torch lighting: quiet matte dark iron-oxide red lime plaster, naturally muted burgundy/earth red, slight warm mineral and pale dusty variation. Broad relatively calm lime-plaster areas, subtle irregular hand-trowel variation, a few hairline fissures and sparse small pale spalls exposing a thin lime undercoat. Main color must remain red, not grey stone. Keep damage sparse, physically plausible, irregular and scale-varied; dirt is only slight at fissures. NO masonry block or brick grid, no roots, no hanging fibres, no giant peeling islands, no wet sheen, no blood, no torchlight or orange light baked in. Diffuse base colour only: absolutely no directional lighting, cast shadows, baked ambient occlusion, glossy/specular highlights, perspective, vignetting, borders, text or objects. Seamless repeat on both axes with corresponding features continuing over image edges. ONE texture map, not a material sphere, scene, sheet or multimap collage.",
+      "reference_paths": [
+        "/Users/theochernin/Projects/MultiPlayerProject-agents/theo-codex-12/content/environments/red_nave_v1/review/selected_nave.png"
+      ],
+      "output_path": "/Users/theochernin/Projects/MultiPlayerProject-agents/theo-codex-12/content/environments/red_nave_v1/red_lime_plaster/albedo.png",
+      "native_source_path": "/Users/theochernin/.codex/generated_images/01a1603d-bb81-7940-85fa-146e0f9afbd1/exec-6b712737-acc9-4eff-8df9-9fb6b47770b6.png",
+      "qa": {
+        "visual": "Flat iron-oxide red plaster with a few pale spalls and small fissures; no masonry grid, roots or torch lighting. Fine granularity is somewhat busy at full resolution.",
+        "seam": "Not verified across a repeated tile.",
+        "alignment": "Albedo is the family geometry reference; native dimensions may differ from the 2048 request.",
+        "status": "Accepted as candidate for runtime review."
+      },
+      "width": 1254,
+      "height": 1254,
+      "bytes": 3177686,
+      "sha256": "177a6916856becf1b1763a0e7c53ad9389fa5b8a2a7589ca47ea29735619f6af"
+    },
+    {
+      "family": "red_lime_plaster",
+      "map": "height",
+      "attempt": 1,
+      "prompt": "Use case: precise-object-edit. Asset type: PBR HEIGHT map for the supplied red lime plaster ALBEDO. Input 1 is the authoritative geometry and crop reference. Derive ONE grayscale height texture of exactly 1254 x 1254 pixels from this exact image; do not redesign, shift, crop, scale, rotate, add, remove or relocate any fissure, pale spall, trowel mark or edge feature. Lock exact pixel locations and seamless edge relationships. This is shallow physical relief, NOT grayscale luminance conversion: dark red pigment variations stay at the same surface height; pale undercoat exposed by a spall lies slightly LOWER than the red plaster, although its albedo is lighter. White means physically higher and black means deeper. Most intact smooth plaster sits near mid grey 128, gentle hand-trowel undulations vary only subtly around it; broken coating edges rise slightly, shallow spall interiors are lower, aligned hairline fissures are thin darker depressions. Very low amplitude fine porous plaster grain, no coarse pebbles. No broad directional gradients, shadows, AO, specular highlights, colors, borders, text or lighting. One flat orthographic edge-to-edge square grayscale HEIGHT map only, not a scene, sphere, normal map or comparison sheet. Preserve the reference arrangement exactly, including small features at the image edges.",
+      "reference_paths": [
+        "/Users/theochernin/Projects/MultiPlayerProject-agents/theo-codex-12/content/environments/red_nave_v1/red_lime_plaster/albedo.png"
+      ],
+      "output_path": "/Users/theochernin/Projects/MultiPlayerProject-agents/theo-codex-12/content/environments/red_nave_v1/red_lime_plaster/height.png",
+      "native_source_path": "/Users/theochernin/.codex/generated_images/01a1603d-bb81-7940-85fa-146e0f9afbd1/exec-9b124c55-5b58-4bec-a1a3-d9c8472fef86.png",
+      "qa": {
+        "visual": "Grayscale relief follows the major crack/spall arrangement; pale albedo spalls become dark depressions rather than brightness-based peaks. Fine texture contains bevel-like microcontrast and needs low runtime strength.",
+        "seam": "Not verified across repeats.",
+        "alignment": "Major features visually correspond to albedo; exact pixel registration and shallow physical calibration are unverified.",
+        "status": "Accepted as height candidate pending numeric/render checks."
+      },
+      "width": 1254,
+      "height": 1254,
+      "bytes": 3666939,
+      "sha256": "431e4710f450669e8c6f37edd0b2d8a15c5b159c3f8e86de4c936f6ecab6dc92"
+    },
+    {
+      "family": "red_lime_plaster",
+      "map": "normal_gl",
+      "attempt": 1,
+      "prompt": "Use case: precise-object-edit. Asset type: OPENGL TANGENT-SPACE NORMAL map for red lime plaster. Input 1 is the authoritative HEIGHT map; Input 2 is its aligned ALBEDO, used only to identify corresponding features. Produce ONE square 1254 x 1254 pixel OpenGL normal image with exactly the same crop, pixel positions and feature geometry as both inputs. Do not redesign, shift, rescale, rotate, relocate, add or remove cracks/spalls or edge features. Derive shallow surface-normal orientation from HEIGHT relief, not albedo brightness or lighting: mostly flat plaster should be neutral RGB(128,128,255), positive tangent X points right, positive tangent Y points UP, tangent Z points out of the surface (OpenGL +X,+Y,+Z). Encode vector components with RGB = vector*0.5+0.5. Height gradients toward image TOP use the corresponding OpenGL green-channel direction; preserve the correct concave depression shape of the spall interiors and thin fissures. Use subtle physically shallow plaster grain and very gentle trowel undulations, not bumpy rock. The small depressed pale spalls stay depressed even though bright in ALBEDO. Keep normals overwhelmingly near neutral blue-violet with only restrained cyan/pink transitions at relief edges; no broad colour gradients. No grayscale height output, lighting, shadows, AO, specular reflection, color tint from albedo, border or text. Seamless matching edges on both axes, exact pixel geometry. One flat normal MAP only, no sphere, scene or comparison.",
+      "reference_paths": [
+        "/Users/theochernin/Projects/MultiPlayerProject-agents/theo-codex-12/content/environments/red_nave_v1/red_lime_plaster/height.png",
+        "/Users/theochernin/Projects/MultiPlayerProject-agents/theo-codex-12/content/environments/red_nave_v1/red_lime_plaster/albedo.png"
+      ],
+      "output_path": "/Users/theochernin/Projects/MultiPlayerProject-agents/theo-codex-12/content/environments/red_nave_v1/red_lime_plaster/normal_gl.png",
+      "native_source_path": "/Users/theochernin/.codex/generated_images/01a1603d-bb81-7940-85fa-146e0f9afbd1/exec-c3dc3115-7db0-439e-a9fe-6e8bf4bc6af4.png",
+      "qa": {
+        "visual": "Near-neutral blue-violet normal field with colored transitions at the same main fissures and spalls; fine grain may read stronger than desired on a large wall.",
+        "seam": "Not verified across repeats.",
+        "alignment": "Major relief locations visually retained. OpenGL Y sign, vector validity, pixel registration and height-gradient correlation require numerical checks.",
+        "status": "Accepted as generated normal candidate, not a calibrated normal proof."
+      },
+      "width": 1254,
+      "height": 1254,
+      "bytes": 2994977,
+      "sha256": "51dd706a2b932e01bffe5ea5e0011c56c840d10ecfcca5d207f30d45a00a921f"
+    },
+    {
+      "family": "red_lime_plaster",
+      "map": "roughness",
+      "attempt": 1,
+      "prompt": "Use case: precise-object-edit. Asset type: PBR ROUGHNESS map for red lime plaster, not glossiness. Input 1 is the exact aligned ALBEDO and Input 2 the authoritative HEIGHT. Produce ONE grayscale square 1254 x 1254 pixels with identical crop and exact feature/pixel positions. Do not shift, rescale, rotate, invent or relocate fissures, spalls or trowel marks. White is rough; black is smooth. This is dry absorptive matte lime plaster: intact red coating has high roughness around 0.85-0.93 (8-bit gray about217-237), powdery exposed pale lime undercoat slightly rougher around0.94-0.97, aligned shallow depressions retain roughness rather than becoming shiny. Very restrained physical roughness variation follows pore/tool/surface-wear structure, NOT albedo brightness or lighting. No broadly black patches, polished/wet areas or specular highlights; keep most of this map pale grey to off-white. No directional illumination, ambient occlusion, shading, height/bevel rendering, color tint, text or border. Maintain exact reference geometry and dimensions and seamless edge relationships. One flat edge-to-edge ROUGHNESS map only, no sphere/scene/multimap sheet.",
+      "reference_paths": [
+        "/Users/theochernin/Projects/MultiPlayerProject-agents/theo-codex-12/content/environments/red_nave_v1/red_lime_plaster/albedo.png",
+        "/Users/theochernin/Projects/MultiPlayerProject-agents/theo-codex-12/content/environments/red_nave_v1/red_lime_plaster/height.png"
+      ],
+      "output_path": "/Users/theochernin/Projects/MultiPlayerProject-agents/theo-codex-12/content/environments/red_nave_v1/red_lime_plaster/roughness.png",
+      "native_source_path": "/Users/theochernin/.codex/generated_images/01a1603d-bb81-7940-85fa-146e0f9afbd1/exec-495b9b53-7d30-40b2-b6e9-ba5d016718c1.png",
+      "qa": {
+        "visual": "Pale high-roughness field with brighter powdery spalls; no broad wet/black zones. Fine relief-like contrast persists and may need flattening through shader range controls.",
+        "seam": "Not verified across repeats.",
+        "alignment": "Major crack/spall locations visually correspond. Numeric roughness range and per-pixel registration require analysis.",
+        "status": "Accepted as dry roughness candidate pending numerical/render checks."
+      },
+      "width": 1254,
+      "height": 1254,
+      "bytes": 3370563,
+      "sha256": "37c870dbdb93c1eca8f88867fb865125e7b51c0bcd6b9efb1d34184a02dfc093"
+    },
+    {
+      "family": "red_lime_plaster",
+      "map": "ao",
+      "attempt": 1,
+      "prompt": "Use case: precise-object-edit. Asset type: PBR AMBIENT OCCLUSION map for the exact red lime plaster surface. Input1 HEIGHT is authoritative for geometry; Input2 ALBEDO identifies corresponding locations only. ONE flat grayscale square 1254 x 1254 pixels, identical crop, exact feature/pixel locations and seamless edge correspondence. Do not shift, rescale, rotate, invent or relocate fissures or pale spalls. Mostly WHITE because open shallow plaster receives unoccluded ambient light; use grey/darker values ONLY inside the same thin cracks, sheltered chip edges and shallow spall depressions in the height map. Occlusion is isotropic local cavity visibility, not side lighting: no directional highlights, no broad shadows, no bevel-style lighting and no grey lighting gradient across the map. A depression's open flat center should remain largely white, with only modest grey along its narrow occluded edge; no pitch-black wide spall silhouettes. Do not copy albedo pigment or roughness brightness. Intact calm plaster stays clean nearly white, fine pores only barely visible. No colors, normal map, text, border, material sphere or scene. One edge-to-edge AO texture registered exactly to the source relief.",
+      "reference_paths": [
+        "/Users/theochernin/Projects/MultiPlayerProject-agents/theo-codex-12/content/environments/red_nave_v1/red_lime_plaster/height.png",
+        "/Users/theochernin/Projects/MultiPlayerProject-agents/theo-codex-12/content/environments/red_nave_v1/red_lime_plaster/albedo.png"
+      ],
+      "output_path": "/Users/theochernin/Projects/MultiPlayerProject-agents/theo-codex-12/content/environments/red_nave_v1/red_lime_plaster/ao.png",
+      "native_source_path": "/Users/theochernin/.codex/generated_images/01a1603d-bb81-7940-85fa-146e0f9afbd1/exec-06bd3f68-42ae-4ece-88a1-3f4171f38eaa.png",
+      "qa": {
+        "visual": "Mostly white AO with dark narrow fissures and sheltered spall edges. A few larger spall interiors are darker than the conservative shallow-occlusion request; use restrained AO influence.",
+        "seam": "Not verified across repeats.",
+        "alignment": "Major cavities visually follow height. Pixel registration, cavity width and lack of directional micro-shading remain unverified.",
+        "status": "Accepted as AO candidate pending root analysis/render."
+      },
+      "width": 1254,
+      "height": 1254,
+      "bytes": 2709791,
+      "sha256": "1e8a35e42611ed5421d3fbbde1df28cfa54c7349ebba600357c48e349364a3e2"
+    },
+    {
+      "family": "aged_oak",
+      "map": "albedo",
+      "attempt": 1,
+      "prompt": "Use case: photorealistic-natural. Asset type: original PBR BASE COLOR / ALBEDO texture for aged hand-hewn oak in the SECHA red nave. The selected nave image is ONLY a reference for the old nearly-black rafters' material character, not an edit target or scene. Create ONE flat orthographic unlit seamless edge-to-edge square texture, requested 2048 x 2048 pixels, covering about 1 x 1 metre of a CONTINUOUS SINGLE TIMBER SURFACE, not a set of planks. Base colour independent of torch lighting: very dark charcoal brown oak with subtly lighter worn hand-cut fibres, quiet reddish-brown heartwood variation and occasional pale grey weathering. The wood grain runs VERTICALLY from bottom to top, long natural fibrous grain and modest hand-adze/tool marks. Sparse thin checks run mostly along grain with only a few quiet irregular knots; material is old and dry, not rotten crumbling bark. Preserve broad relatively calm timber areas between grain strands. NO plank seams, gaps between boards, nails, bolts, iron straps, end grain, deep drilled holes, bark pattern, grid or random stone-like noise. Diffuse BASE COLOR only, no directional lighting, cast shadows, AO, bevel shadows, specular highlights or wet varnish baked in. No perspective, vignette, frame, border, letters, objects, material sphere, scene or multimap sheet. Matching seamless edge features on both axes; one square ALBEDO texture only.",
+      "reference_paths": [
+        "/Users/theochernin/Projects/MultiPlayerProject-agents/theo-codex-12/content/environments/red_nave_v1/review/selected_nave.png"
+      ],
+      "output_path": null,
+      "native_source_path": "/Users/theochernin/.codex/generated_images/01a1603d-bb81-7940-85fa-146e0f9afbd1/exec-a07a4027-ae47-44c4-a156-99821320036e.png",
+      "intended_output_path": "/Users/theochernin/Projects/MultiPlayerProject-agents/theo-codex-12/content/environments/red_nave_v1/aged_oak/albedo.png",
+      "qa": {
+        "visual": "Rejected: long straight full-height dark boundaries read like multiple plank seams/gaps, contrary to the continuous single-timber requirement. Grain is also quite rough.",
+        "status": "Invalid first attempt; not copied into the family."
+      },
+      "width": 1254,
+      "height": 1254,
+      "bytes": 3196304,
+      "sha256": "feabf2d691b49449d6f27ea0559ff3bdf8693fa89a48f791928f43681353226a"
+    },
+    {
+      "family": "aged_oak",
+      "map": "albedo",
+      "attempt": 2,
+      "prompt": "Use case: photorealistic-natural. Asset type: original PBR BASE COLOR / ALBEDO of ONE CONTINUOUS HAND-HEWN AGED OAK BEAM FACE. The selected red nave scene is only a reference for its very dark dry rafters, not scene lighting. Produce ONE square flat orthographic unlit seamless texture, requested2048x2048 pixels, edge-to-edge. This image is a zoomed crop WITHIN ONE SINGLE WIDE TIMBER FACE, so absolutely NO plank layout, NO full-height straight seam lines, NO separate vertical board strips, NO black gaps or divisions between boards, NO borders of a beam. The grain must flow as a continuous connected organic wood structure ACROSS THE ENTIRE WIDTH. One or two broad gently curving vertically oriented grain whorls and elongated natural fibres, quiet hand-adze facets and subtle tool scars, a few short shallow hairline checks that END WITHIN the image and never divide its whole height. Mostly calm dry almost-black CHARCOAL BROWN oak base colour, naturally slightly varied dark brown and occasional subtle grey rubbed fibres. No bark-like chunky crust, deep rotten grooves, row of knots, regular stripes, nails or iron. True diffuse base colour independent of warm torch lighting: no baked directional shadows, AO, bevel lighting, gloss, wet highlights or gradient. Image must be a single continuous matte material field with matching seamless edges, no scene, object, sphere, planks, grid, perspective, text or multimap sheet. Vertically flowing oak grain is fine structure within one large surface, never a set of narrow boards.",
+      "reference_paths": [
+        "/Users/theochernin/Projects/MultiPlayerProject-agents/theo-codex-12/content/environments/red_nave_v1/review/selected_nave.png"
+      ],
+      "output_path": "/Users/theochernin/Projects/MultiPlayerProject-agents/theo-codex-12/content/environments/red_nave_v1/aged_oak/albedo.png",
+      "native_source_path": "/Users/theochernin/.codex/generated_images/01a1603d-bb81-7940-85fa-146e0f9afbd1/exec-2bbc02b6-970e-4f37-8c9c-6b8a9c84a190.png",
+      "qa": {
+        "visual": "Accepted retry: continuous vertically flowing broad oak grain with one broad whorl and a few terminating checks; no separated plank layout, hardware or full-height board gaps. Dry dark brown, somewhat strongly textured.",
+        "seam": "Not verified across repeats; broad grain whorl may become recognizable when tiled.",
+        "alignment": "Albedo is the oak geometry reference; native dimensions recorded rather than upscaled.",
+        "status": "Accepted as oak base-color candidate."
+      },
+      "width": 1254,
+      "height": 1254,
+      "bytes": 3427547,
+      "sha256": "e33b37602e77f2b02602222f18af8540adb5d84939f3294d9e547825324ac884"
+    },
+    {
+      "family": "aged_oak",
+      "map": "height",
+      "attempt": 1,
+      "prompt": "Use case: precise-object-edit. Asset type: PBR HEIGHT MAP for one continuous old oak beam-face texture. Input1 ALBEDO is authoritative for exact grain, checks, tool marks, crop and pixel arrangement. Produce ONE flat grayscale square 1254 x 1254 pixels, exact same crop and pixel locations. Do not redesign, scale, rotate, shift, add, remove or relocate any whorl, fibre, tool scar or terminating check; preserve seamless edge relationships. White is high; black is deep. This is shallow physical timber relief, NOT brightness-to-height conversion. The dark pigment and reddish-brown color variations need NOT be low: intact broad hand-hewn wood surface should remain centered near mid-grey128, with gentle long-wave adze facets, subtle fibrous raised ridges, narrow deeper terminating checks exactly aligned with the albedo, and only shallow relief in the large curved grain whorl. Avoid deep bark-like corrugation or mountains, preserve low amplitude calm surface between fibres. No full-height plank seams, no new gaps, holes, nails or board divisions. No directional light, bevel lighting, AO, cast shadows, color, specular, vignette, borders or text. One continuous edge-to-edge grayscale HEIGHT texture only, no scene, sphere or comparison sheet.",
+      "reference_paths": [
+        "/Users/theochernin/Projects/MultiPlayerProject-agents/theo-codex-12/content/environments/red_nave_v1/aged_oak/albedo.png"
+      ],
+      "output_path": "/Users/theochernin/Projects/MultiPlayerProject-agents/theo-codex-12/content/environments/red_nave_v1/aged_oak/height.png",
+      "native_source_path": "/Users/theochernin/.codex/generated_images/01a1603d-bb81-7940-85fa-146e0f9afbd1/exec-57811a7e-961f-4b1a-b165-d89c6191f0f7.png",
+      "qa": {
+        "visual": "Grayscale continuous grain relief retains the broad right-side whorl and narrow terminating checks. Fine flake-like ridges are stronger than an ideal calm hand-hewn finish.",
+        "seam": "Not verified across repeats.",
+        "alignment": "Major grain/check locations visually correspond to albedo; exact registration and real-world height amplitude are not calibrated.",
+        "status": "Accepted oak height candidate; low runtime amplitude advised."
+      },
+      "width": 1254,
+      "height": 1254,
+      "bytes": 3694684,
+      "sha256": "3e0e4c254b8c61a49194ff3cf553eb76382bb45be6e06ab4a91c3a048b1c2279"
+    },
+    {
+      "family": "aged_oak",
+      "map": "normal_gl",
+      "attempt": 1,
+      "prompt": "Use case: precise-object-edit. Asset type: OPENGL TANGENT-SPACE NORMAL MAP for continuous aged oak. Input1 HEIGHT is authoritative for physical relief; Input2 ALBEDO only identifies corresponding feature locations. Produce ONE flat square 1254 x 1254 pixel normal texture with exactly identical crop, pixel feature positions and seamless edge relationships. Do not shift, scale, rotate, redraw, add or remove any grain whorl, terminating check, tool scar or fibre. Derive the vector field from shallow HEIGHT relief, not albedo pigment or lighting. Positive tangent X points image-right, positive tangent Y points image-UP, positive tangent Z points out toward viewer; OpenGL RGB encodes normal*0.5+0.5, neutral flat RGB(128,128,255). Height increasing to the RIGHT yields a slightly smaller red channel; height increasing DOWN the image yields a slightly greater green channel. The narrow checks are concave depressions, not raised seams. Most of the dry broad oak face remains very close to neutral blue-violet with restrained cyan/pink gradients on fine fibres and tool marks. Keep shallow believable relief rather than bark-like exaggerated ridges. Absolutely no baked lighting, specular highlights, color copied from albedo, grayscale AO/height, broad color gradients, borders or text. One flat registered normal MAP only, not sphere, scene, planks or multimap sheet.",
+      "reference_paths": [
+        "/Users/theochernin/Projects/MultiPlayerProject-agents/theo-codex-12/content/environments/red_nave_v1/aged_oak/height.png",
+        "/Users/theochernin/Projects/MultiPlayerProject-agents/theo-codex-12/content/environments/red_nave_v1/aged_oak/albedo.png"
+      ],
+      "output_path": "/Users/theochernin/Projects/MultiPlayerProject-agents/theo-codex-12/content/environments/red_nave_v1/aged_oak/normal_gl.png",
+      "native_source_path": "/Users/theochernin/.codex/generated_images/01a1603d-bb81-7940-85fa-146e0f9afbd1/exec-2ecdcebc-0b33-4f74-b1b1-eb216533a102.png",
+      "qa": {
+        "visual": "Blue-violet normal texture follows the same continuous grain whorl and narrow checks. Colored fine relief is fairly strong; low runtime normal strength is appropriate.",
+        "seam": "Not verified across repeats.",
+        "alignment": "Macro grain/check placement visually retained; OpenGL Y sign, normal length and height-gradient correlation require numerical validation.",
+        "status": "Accepted normal candidate pending numeric/render checks."
+      },
+      "width": 1254,
+      "height": 1254,
+      "bytes": 3311958,
+      "sha256": "55d7c7b46d2e7a7024a8b8ad5e46020b034cfdf8d8ac2f0d57936fccc530848c"
+    },
+    {
+      "family": "aged_oak",
+      "map": "roughness",
+      "attempt": 1,
+      "prompt": "Use case: precise-object-edit. Asset type: PBR ROUGHNESS MAP of continuous dry aged oak, not glossiness. Input1 ALBEDO and Input2 HEIGHT are aligned authoritative feature references. Produce ONE flat grayscale square 1254 x 1254 pixels with EXACT same crop, grain whorl, check positions and seamless edge relationships. Do not shift, scale, rotate, invent or relocate features. White is rough, black is smooth. Most dry absorptive aged oak has roughness0.75-0.9 (8-bit gray about191-230), raised worn fibre/tool-rubbed areas may be slightly smoother around0.7; shallow open checks and powdery fibres remain rough. Very subtle material response variation follows fibre wear and real surface condition, NOT albedo brightness or directional lighting. Keep image overall pale/mid-light grey with no black wet/oily zones. No glossy varnish, specular highlights, grayscale height/bevel rendering, AO, directional shading, broad illumination gradient, color, border or text. One continuous edge-to-edge registered oak ROUGHNESS texture only, no separate planks, sphere, scene or multimap sheet.",
+      "reference_paths": [
+        "/Users/theochernin/Projects/MultiPlayerProject-agents/theo-codex-12/content/environments/red_nave_v1/aged_oak/albedo.png",
+        "/Users/theochernin/Projects/MultiPlayerProject-agents/theo-codex-12/content/environments/red_nave_v1/aged_oak/height.png"
+      ],
+      "output_path": "/Users/theochernin/Projects/MultiPlayerProject-agents/theo-codex-12/content/environments/red_nave_v1/aged_oak/roughness.png",
+      "native_source_path": "/Users/theochernin/.codex/generated_images/01a1603d-bb81-7940-85fa-146e0f9afbd1/exec-483b4a03-ef40-4a50-b51e-de527179d122.png",
+      "qa": {
+        "visual": "Light-grey dry roughness follows grain/check layout, with no broad black wet zones. Relief-like microcontrast remains and the average may be lower than the desired 0.75-0.9; numeric range controls may be needed.",
+        "seam": "Not verified across repeats.",
+        "alignment": "Macro grain locations retained visually; exact registration and intended scalar range require analysis.",
+        "status": "Accepted roughness candidate pending range/render check."
+      },
+      "width": 1254,
+      "height": 1254,
+      "bytes": 3301932,
+      "sha256": "f358f980a54c32f326d34f9cea5520308a97fb14af572a5af77b45e44ef67a06"
+    },
+    {
+      "family": "aged_oak",
+      "map": "ao",
+      "attempt": 1,
+      "prompt": "Use case: precise-object-edit. Asset type: PBR AMBIENT OCCLUSION texture of continuous hand-hewn aged oak. Input1 HEIGHT is authoritative geometry; Input2 ALBEDO identifies exact locations only. One flat grayscale square 1254 x 1254 pixels with exact same crop, grain whorl, terminating checks, fine fibres and edge correspondence. No shifting, scaling, rotation or feature redesign. Open exposed wood face is mostly WHITE. Only the narrow existing checks, undercut fibre crevices and a few sheltered tool scars receive restrained darker occlusion; most grain contours and large whorl stay nearly white. AO represents nondirectional local cavity visibility, NOT lighting or height: no directional shadows, bevel highlights, broad grey gradient, copied pigment stripes or ambient scene shading. Do not introduce black plank gaps or separate boards. Subtle physical occlusion only; no dirty grey coating on every grain ridge. Exact geometry/crop/alignment and seamless edge relationships locked to sources. No color, specular, text, border, sphere, scene or multimap sheet. One registered edge-to-edge mostly-white AO map.",
+      "reference_paths": [
+        "/Users/theochernin/Projects/MultiPlayerProject-agents/theo-codex-12/content/environments/red_nave_v1/aged_oak/height.png",
+        "/Users/theochernin/Projects/MultiPlayerProject-agents/theo-codex-12/content/environments/red_nave_v1/aged_oak/albedo.png"
+      ],
+      "output_path": "/Users/theochernin/Projects/MultiPlayerProject-agents/theo-codex-12/content/environments/red_nave_v1/aged_oak/ao.png",
+      "native_source_path": "/Users/theochernin/.codex/generated_images/01a1603d-bb81-7940-85fa-146e0f9afbd1/exec-04c37dc6-4122-4643-a82c-8cea8034e0df.png",
+      "qa": {
+        "visual": "Mostly white AO over the same broad grain whorl, with narrow checks and fine fibre cavities darkened. Fine grain occlusion is denser than requested and should be weighted conservatively.",
+        "seam": "Not verified across repeats.",
+        "alignment": "Major grain/check layout retained visually. Numeric registration and nondirectional cavity correctness remain for analysis/render.",
+        "status": "Accepted AO candidate pending root checks."
+      },
+      "width": 1254,
+      "height": 1254,
+      "bytes": 3203580,
+      "sha256": "6d259500813c76172e10ae2f238b7799a20f136275fec29611e92bc29d02c2f9"
+    },
+    {
+      "family": "masks",
+      "map": "plaster_peel",
+      "attempt": 1,
+      "prompt": "Use case: infographic-diagram. Asset type: original grayscale TILEABLE PLASTER PEEL BLEND MASK for a PBR red lime-plaster wall. Supplied selected nave image is ONLY a reference for the broad irregular broken plaster distribution, never a scene edit. Create ONE flat orthographic edge-to-edge seamless square 1254 x 1254 pixels. WHITE (255) means expose the underlying limestone/rubble substrate; BLACK (0) means intact red plaster remains. Mostly solid BLACK with a few broad coherent, asymmetric irregular WHITE peeling islands occupying about20-30 percent of the area; choose varied sizes, with a couple larger connected white exposed patches and a few smaller isolated chips. Broad quiet intact black regions must remain. The outline of each white island has chipped thin ragged edge erosion and a narrow grey antialias/transition fringe only, not a blurred cloudy field. No albedo paint, no colored red material, no actual bricks or stones, no block grid, no roots/fibres, no fine speckle noise filling the black regions, no endless hairline-crack network. Think a practical shader material blend mask with physically plausible localized plaster loss, not a beauty texture. Absolutely no directional illumination, gradients across the tile, shading, AO, bevels, dimensional highlights, shadows, text, border, object, sphere or scene. Matching periodic features at opposite tile edges on both axes. One clean grayscale MASK only, crisp broad islands and restrained irregular edges; no texture-sheet panels. This is an independent large-scale material blending mask, not a height/normal/AO map.",
+      "reference_paths": [
+        "/Users/theochernin/Projects/MultiPlayerProject-agents/theo-codex-12/content/environments/red_nave_v1/review/selected_nave.png"
+      ],
+      "output_path": "/Users/theochernin/Projects/MultiPlayerProject-agents/theo-codex-12/content/environments/red_nave_v1/masks/plaster_peel.png",
+      "native_source_path": "/Users/theochernin/.codex/generated_images/01a1603d-bb81-7940-85fa-146e0f9afbd1/exec-df2980c4-2c38-4357-a9a3-e640d460e44c.png",
+      "qa": {
+        "visual": "Mostly black blend mask with broad irregular white exposed-substrate islands, one connected broken band and sparse isolated chips. No scene lighting or directional gradient. Distribution is biased toward the perimeter; test visible repetition before large-area use.",
+        "seam": "Periodic edge matching not numerically verified.",
+        "alignment": "Independent large-scale blend mask, not derived microrelief; not intended as a pixel-registered replacement for albedo spalls.",
+        "status": "Accepted independent material mask candidate."
+      },
+      "width": 1254,
+      "height": 1254,
+      "bytes": 1066545,
+      "sha256": "cfd7c19063a30c140dac1319385e4420672a51e86a63dac0b01833d6675f4df8"
+    }
+  ]
+}

@@ -1,0 +1,1250 @@
+{
+  "version": 1,
+  "task": "T-148",
+  "generation": "Built-in ImageGen; exact prompts and ordered inputs in review/*_generation.json",
+  "source": "review/selected_nave.png",
+  "source_sha256": "80bd0fc9d3cc9406b6d46543a2e2fddf0e1082f541be0e9d8ce21703229f0a54",
+  "source_provenance": "Pixel-identical to the built-in generated quality_studies_v2/03-red-plaster-nave.png selected by the user.",
+  "map_count": 33,
+  "families": [
+    {
+      "id": "red_lime_plaster",
+      "description": "Matte iron-oxide red lime plaster, shallow fissures and small spalls",
+      "starting_tile_width_m": 2.5,
+      "normal_scale": 0.45,
+      "maps": {
+        "albedo": {
+          "path": "red_lime_plaster/albedo.png",
+          "sha256": "177a6916856becf1b1763a0e7c53ad9389fa5b8a2a7589ca47ea29735619f6af",
+          "bytes": 3177686,
+          "size": [
+            1254,
+            1254
+          ],
+          "source_mode": "RGB",
+          "channel_means": [
+            119.78,
+            36.31,
+            21.83
+          ],
+          "channel_extrema": [
+            [
+              27,
+              223
+            ],
+            [
+              0,
+              176
+            ],
+            [
+              0,
+              157
+            ]
+          ],
+          "max_rgb_channel_difference": 107,
+          "opposite_edge_mean_difference_255": {
+            "u": 8.14,
+            "v": 7.24
+          }
+        },
+        "height": {
+          "path": "red_lime_plaster/height.png",
+          "sha256": "431e4710f450669e8c6f37edd0b2d8a15c5b159c3f8e86de4c936f6ecab6dc92",
+          "bytes": 3666939,
+          "size": [
+            1254,
+            1254
+          ],
+          "source_mode": "RGB",
+          "channel_means": [
+            137.59,
+            137.38,
+            137.65
+          ],
+          "channel_extrema": [
+            [
+              0,
+              255
+            ],
+            [
+              0,
+              255
+            ],
+            [
+              0,
+              255
+            ]
+          ],
+          "max_rgb_channel_difference": 16,
+          "opposite_edge_mean_difference_255": {
+            "u": 11.43,
+            "v": 9.9
+          }
+        },
+        "normal_gl": {
+          "path": "red_lime_plaster/normal_gl.png",
+          "sha256": "51dd706a2b932e01bffe5ea5e0011c56c840d10ecfcca5d207f30d45a00a921f",
+          "bytes": 2994977,
+          "size": [
+            1254,
+            1254
+          ],
+          "source_mode": "RGB",
+          "channel_means": [
+            126.96,
+            131.0,
+            249.74
+          ],
+          "channel_extrema": [
+            [
+              0,
+              255
+            ],
+            [
+              0,
+              255
+            ],
+            [
+              39,
+              255
+            ]
+          ],
+          "max_rgb_channel_difference": 237,
+          "opposite_edge_mean_difference_255": {
+            "u": 8.34,
+            "v": 8.6
+          }
+        },
+        "roughness": {
+          "path": "red_lime_plaster/roughness.png",
+          "sha256": "37c870dbdb93c1eca8f88867fb865125e7b51c0bcd6b9efb1d34184a02dfc093",
+          "bytes": 3370563,
+          "size": [
+            1254,
+            1254
+          ],
+          "source_mode": "RGB",
+          "channel_means": [
+            195.18,
+            195.04,
+            195.47
+          ],
+          "channel_extrema": [
+            [
+              26,
+              255
+            ],
+            [
+              25,
+              255
+            ],
+            [
+              27,
+              255
+            ]
+          ],
+          "max_rgb_channel_difference": 9,
+          "opposite_edge_mean_difference_255": {
+            "u": 9.45,
+            "v": 8.76
+          }
+        },
+        "ao": {
+          "path": "red_lime_plaster/ao.png",
+          "sha256": "1e8a35e42611ed5421d3fbbde1df28cfa54c7349ebba600357c48e349364a3e2",
+          "bytes": 2709791,
+          "size": [
+            1254,
+            1254
+          ],
+          "source_mode": "RGB",
+          "channel_means": [
+            233.98,
+            233.94,
+            234.14
+          ],
+          "channel_extrema": [
+            [
+              0,
+              255
+            ],
+            [
+              0,
+              255
+            ],
+            [
+              0,
+              255
+            ]
+          ],
+          "max_rgb_channel_difference": 9,
+          "opposite_edge_mean_difference_255": {
+            "u": 6.74,
+            "v": 7.58
+          }
+        }
+      },
+      "normal_diagnostic": {
+        "height_slope_correlation_x_y": [
+          0.51,
+          0.308
+        ],
+        "normal_vector_length_mean": 0.984,
+        "normal_vector_length_std": 0.054,
+        "method": "Stride4 sample; height Gaussian radius2; X=-dH/dU, Y=+dH/d(image V). Diagnostic only."
+      }
+    },
+    {
+      "id": "rubble_masonry",
+      "description": "Dark exposed structural rubble and recessed mortar",
+      "starting_tile_width_m": 2.5,
+      "normal_scale": 0.75,
+      "maps": {
+        "albedo": {
+          "path": "rubble_masonry/albedo.png",
+          "sha256": "7a6f978b4a320c87ebfffe0d19944b52ff7f5348430b63db27bae449a5fa959e",
+          "bytes": 4186691,
+          "size": [
+            1254,
+            1254
+          ],
+          "source_mode": "RGB",
+          "channel_means": [
+            83.31,
+            69.18,
+            55.01
+          ],
+          "channel_extrema": [
+            [
+              0,
+              240
+            ],
+            [
+              0,
+              234
+            ],
+            [
+              0,
+              216
+            ]
+          ],
+          "max_rgb_channel_difference": 52,
+          "opposite_edge_mean_difference_255": {
+            "u": 19.88,
+            "v": 20.58
+          }
+        },
+        "height": {
+          "path": "rubble_masonry/height.png",
+          "sha256": "421de651a4eebea02fe6c1f4d2b85ffa62d2a4c4f026463afce5c078e35b0b44",
+          "bytes": 3766620,
+          "size": [
+            1254,
+            1254
+          ],
+          "source_mode": "RGB",
+          "channel_means": [
+            126.7,
+            126.69,
+            126.81
+          ],
+          "channel_extrema": [
+            [
+              0,
+              255
+            ],
+            [
+              0,
+              255
+            ],
+            [
+              0,
+              255
+            ]
+          ],
+          "max_rgb_channel_difference": 11,
+          "opposite_edge_mean_difference_255": {
+            "u": 19.0,
+            "v": 26.68
+          }
+        },
+        "normal_gl": {
+          "path": "rubble_masonry/normal_gl.png",
+          "sha256": "ffd751fc81a6b69f0acd39d7e56bea5da207558441365b03fc860d15401ebbd2",
+          "bytes": 3170816,
+          "size": [
+            1254,
+            1254
+          ],
+          "source_mode": "RGB",
+          "channel_means": [
+            129.14,
+            131.63,
+            227.05
+          ],
+          "channel_extrema": [
+            [
+              0,
+              255
+            ],
+            [
+              0,
+              255
+            ],
+            [
+              2,
+              255
+            ]
+          ],
+          "max_rgb_channel_difference": 252,
+          "opposite_edge_mean_difference_255": {
+            "u": 21.45,
+            "v": 42.48
+          }
+        },
+        "roughness": {
+          "path": "rubble_masonry/roughness.png",
+          "sha256": "1cd8f5ef19f21a4c03994eefef12dc3306349c65ea7f923d713ec7f3b48655e6",
+          "bytes": 3973256,
+          "size": [
+            1254,
+            1254
+          ],
+          "source_mode": "RGB",
+          "channel_means": [
+            184.51,
+            184.45,
+            184.66
+          ],
+          "channel_extrema": [
+            [
+              8,
+              255
+            ],
+            [
+              7,
+              255
+            ],
+            [
+              7,
+              255
+            ]
+          ],
+          "max_rgb_channel_difference": 10,
+          "opposite_edge_mean_difference_255": {
+            "u": 20.61,
+            "v": 25.47
+          }
+        },
+        "ao": {
+          "path": "rubble_masonry/ao.png",
+          "sha256": "c7856b420e43a8343d1103f7f652eafd65bcbcc9e3cdc95dcbcf4848ccbf855e",
+          "bytes": 2396155,
+          "size": [
+            1254,
+            1254
+          ],
+          "source_mode": "RGB",
+          "channel_means": [
+            200.17,
+            200.13,
+            200.14
+          ],
+          "channel_extrema": [
+            [
+              0,
+              255
+            ],
+            [
+              0,
+              255
+            ],
+            [
+              0,
+              255
+            ]
+          ],
+          "max_rgb_channel_difference": 12,
+          "opposite_edge_mean_difference_255": {
+            "u": 14.06,
+            "v": 35.07
+          }
+        }
+      },
+      "normal_diagnostic": {
+        "height_slope_correlation_x_y": [
+          0.673,
+          0.444
+        ],
+        "normal_vector_length_mean": 1.012,
+        "normal_vector_length_std": 0.126,
+        "method": "Stride4 sample; height Gaussian radius2; X=-dH/dU, Y=+dH/d(image V). Diagnostic only."
+      }
+    },
+    {
+      "id": "pale_limestone",
+      "description": "Pale limestone arch stones and exposed mineral substrate",
+      "starting_tile_width_m": 1.0,
+      "normal_scale": 0.35,
+      "maps": {
+        "albedo": {
+          "path": "pale_limestone/albedo.png",
+          "sha256": "636fd3ffe8bb33a3798c80232c57dc729d194d73d2ce580629d18bb7a908e26a",
+          "bytes": 3631619,
+          "size": [
+            1254,
+            1254
+          ],
+          "source_mode": "RGB",
+          "channel_means": [
+            216.53,
+            198.43,
+            175.01
+          ],
+          "channel_extrema": [
+            [
+              39,
+              255
+            ],
+            [
+              18,
+              255
+            ],
+            [
+              2,
+              254
+            ]
+          ],
+          "max_rgb_channel_difference": 64,
+          "opposite_edge_mean_difference_255": {
+            "u": 10.86,
+            "v": 11.72
+          }
+        },
+        "height": {
+          "path": "pale_limestone/height.png",
+          "sha256": "677bb8d896e24124a1e384e9d81dc84d15ca25b0c0eea435f6b8116386e490cf",
+          "bytes": 3332011,
+          "size": [
+            1254,
+            1254
+          ],
+          "source_mode": "RGB",
+          "channel_means": [
+            171.0,
+            170.7,
+            170.95
+          ],
+          "channel_extrema": [
+            [
+              0,
+              255
+            ],
+            [
+              0,
+              255
+            ],
+            [
+              0,
+              255
+            ]
+          ],
+          "max_rgb_channel_difference": 9,
+          "opposite_edge_mean_difference_255": {
+            "u": 12.64,
+            "v": 11.05
+          }
+        },
+        "normal_gl": {
+          "path": "pale_limestone/normal_gl.png",
+          "sha256": "74ceffbbee84dec92c39fa8ce6cec2ecf4ea81fd26a99f079f3af35ba30e35aa",
+          "bytes": 2969845,
+          "size": [
+            1254,
+            1254
+          ],
+          "source_mode": "RGB",
+          "channel_means": [
+            128.21,
+            131.12,
+            248.21
+          ],
+          "channel_extrema": [
+            [
+              0,
+              255
+            ],
+            [
+              0,
+              255
+            ],
+            [
+              0,
+              255
+            ]
+          ],
+          "max_rgb_channel_difference": 231,
+          "opposite_edge_mean_difference_255": {
+            "u": 13.37,
+            "v": 13.88
+          }
+        },
+        "roughness": {
+          "path": "pale_limestone/roughness.png",
+          "sha256": "070913c636538693d46cee003339fd45ca6ad979f5b41c2ab8c6a91511923a17",
+          "bytes": 2870430,
+          "size": [
+            1254,
+            1254
+          ],
+          "source_mode": "RGB",
+          "channel_means": [
+            200.78,
+            200.56,
+            200.86
+          ],
+          "channel_extrema": [
+            [
+              30,
+              255
+            ],
+            [
+              29,
+              255
+            ],
+            [
+              27,
+              255
+            ]
+          ],
+          "max_rgb_channel_difference": 6,
+          "opposite_edge_mean_difference_255": {
+            "u": 9.66,
+            "v": 8.79
+          }
+        },
+        "ao": {
+          "path": "pale_limestone/ao.png",
+          "sha256": "839010c438b19b6364432aaabe7013120315f7d04f3bb77ea7d256aa9cfe5051",
+          "bytes": 2405731,
+          "size": [
+            1254,
+            1254
+          ],
+          "source_mode": "RGB",
+          "channel_means": [
+            239.87,
+            239.85,
+            239.99
+          ],
+          "channel_extrema": [
+            [
+              3,
+              255
+            ],
+            [
+              2,
+              255
+            ],
+            [
+              3,
+              255
+            ]
+          ],
+          "max_rgb_channel_difference": 6,
+          "opposite_edge_mean_difference_255": {
+            "u": 6.09,
+            "v": 5.62
+          }
+        }
+      },
+      "normal_diagnostic": {
+        "height_slope_correlation_x_y": [
+          0.531,
+          0.329
+        ],
+        "normal_vector_length_mean": 0.985,
+        "normal_vector_length_std": 0.055,
+        "method": "Stride4 sample; height Gaussian radius2; X=-dH/dU, Y=+dH/d(image V). Diagnostic only."
+      }
+    },
+    {
+      "id": "broken_stone_floor",
+      "description": "Worn irregular floor slabs, grit-filled joints",
+      "starting_tile_width_m": 3.0,
+      "normal_scale": 0.6,
+      "maps": {
+        "albedo": {
+          "path": "broken_stone_floor/albedo.png",
+          "sha256": "e37a31f792ae1e6e3de83856755d3865828b13a7bda8889883e04bd83e5d539f",
+          "bytes": 4146639,
+          "size": [
+            1254,
+            1254
+          ],
+          "source_mode": "RGB",
+          "channel_means": [
+            100.73,
+            80.77,
+            62.8
+          ],
+          "channel_extrema": [
+            [
+              0,
+              249
+            ],
+            [
+              0,
+              234
+            ],
+            [
+              0,
+              215
+            ]
+          ],
+          "max_rgb_channel_difference": 61,
+          "opposite_edge_mean_difference_255": {
+            "u": 19.61,
+            "v": 18.42
+          }
+        },
+        "height": {
+          "path": "broken_stone_floor/height.png",
+          "sha256": "33a7ce5926424db9410a869f227d1d92274269dd647a9ea803edd3f044233d0a",
+          "bytes": 3891238,
+          "size": [
+            1254,
+            1254
+          ],
+          "source_mode": "RGB",
+          "channel_means": [
+            126.42,
+            126.4,
+            126.65
+          ],
+          "channel_extrema": [
+            [
+              0,
+              255
+            ],
+            [
+              0,
+              255
+            ],
+            [
+              0,
+              255
+            ]
+          ],
+          "max_rgb_channel_difference": 12,
+          "opposite_edge_mean_difference_255": {
+            "u": 23.35,
+            "v": 24.97
+          }
+        },
+        "normal_gl": {
+          "path": "broken_stone_floor/normal_gl.png",
+          "sha256": "be3e727827867090ab1b2f25505562e20f86bf1ce98e4327519d7a7616539518",
+          "bytes": 3154586,
+          "size": [
+            1254,
+            1254
+          ],
+          "source_mode": "RGB",
+          "channel_means": [
+            129.69,
+            125.93,
+            233.83
+          ],
+          "channel_extrema": [
+            [
+              0,
+              255
+            ],
+            [
+              0,
+              255
+            ],
+            [
+              19,
+              255
+            ]
+          ],
+          "max_rgb_channel_difference": 249,
+          "opposite_edge_mean_difference_255": {
+            "u": 18.75,
+            "v": 20.61
+          }
+        },
+        "roughness": {
+          "path": "broken_stone_floor/roughness.png",
+          "sha256": "3c302b7cbec33d6027928899879891eb75ab283111a2dc49c000dd92e6443011",
+          "bytes": 3035733,
+          "size": [
+            1254,
+            1254
+          ],
+          "source_mode": "RGB",
+          "channel_means": [
+            206.4,
+            206.25,
+            206.62
+          ],
+          "channel_extrema": [
+            [
+              115,
+              255
+            ],
+            [
+              113,
+              255
+            ],
+            [
+              117,
+              255
+            ]
+          ],
+          "max_rgb_channel_difference": 9,
+          "opposite_edge_mean_difference_255": {
+            "u": 7.21,
+            "v": 8.59
+          }
+        },
+        "ao": {
+          "path": "broken_stone_floor/ao.png",
+          "sha256": "5223b85b23f01af7ef13964d03e555817d4c460fdf5e608096755fdf735d5846",
+          "bytes": 2923715,
+          "size": [
+            1254,
+            1254
+          ],
+          "source_mode": "RGB",
+          "channel_means": [
+            205.67,
+            205.72,
+            205.79
+          ],
+          "channel_extrema": [
+            [
+              0,
+              255
+            ],
+            [
+              0,
+              255
+            ],
+            [
+              0,
+              255
+            ]
+          ],
+          "max_rgb_channel_difference": 9,
+          "opposite_edge_mean_difference_255": {
+            "u": 23.5,
+            "v": 31.83
+          }
+        }
+      },
+      "normal_diagnostic": {
+        "height_slope_correlation_x_y": [
+          0.701,
+          0.402
+        ],
+        "normal_vector_length_mean": 0.964,
+        "normal_vector_length_std": 0.096,
+        "method": "Stride4 sample; height Gaussian radius2; X=-dH/dU, Y=+dH/d(image V). Diagnostic only."
+      }
+    },
+    {
+      "id": "aged_oak",
+      "description": "Dark hand-hewn structural timber; grain follows texture V",
+      "starting_tile_width_m": 2.5,
+      "normal_scale": 0.45,
+      "maps": {
+        "albedo": {
+          "path": "aged_oak/albedo.png",
+          "sha256": "e33b37602e77f2b02602222f18af8540adb5d84939f3294d9e547825324ac884",
+          "bytes": 3427547,
+          "size": [
+            1254,
+            1254
+          ],
+          "source_mode": "RGB",
+          "channel_means": [
+            52.48,
+            40.04,
+            31.07
+          ],
+          "channel_extrema": [
+            [
+              0,
+              202
+            ],
+            [
+              0,
+              186
+            ],
+            [
+              0,
+              158
+            ]
+          ],
+          "max_rgb_channel_difference": 35,
+          "opposite_edge_mean_difference_255": {
+            "u": 10.81,
+            "v": 10.26
+          }
+        },
+        "height": {
+          "path": "aged_oak/height.png",
+          "sha256": "3e0e4c254b8c61a49194ff3cf553eb76382bb45be6e06ab4a91c3a048b1c2279",
+          "bytes": 3694684,
+          "size": [
+            1254,
+            1254
+          ],
+          "source_mode": "RGB",
+          "channel_means": [
+            135.54,
+            135.43,
+            135.63
+          ],
+          "channel_extrema": [
+            [
+              0,
+              244
+            ],
+            [
+              0,
+              244
+            ],
+            [
+              0,
+              243
+            ]
+          ],
+          "max_rgb_channel_difference": 9,
+          "opposite_edge_mean_difference_255": {
+            "u": 14.57,
+            "v": 17.28
+          }
+        },
+        "normal_gl": {
+          "path": "aged_oak/normal_gl.png",
+          "sha256": "55d7c7b46d2e7a7024a8b8ad5e46020b034cfdf8d8ac2f0d57936fccc530848c",
+          "bytes": 3311958,
+          "size": [
+            1254,
+            1254
+          ],
+          "source_mode": "RGB",
+          "channel_means": [
+            124.9,
+            132.6,
+            246.5
+          ],
+          "channel_extrema": [
+            [
+              0,
+              255
+            ],
+            [
+              0,
+              250
+            ],
+            [
+              63,
+              255
+            ]
+          ],
+          "max_rgb_channel_difference": 229,
+          "opposite_edge_mean_difference_255": {
+            "u": 16.13,
+            "v": 20.58
+          }
+        },
+        "roughness": {
+          "path": "aged_oak/roughness.png",
+          "sha256": "f358f980a54c32f326d34f9cea5520308a97fb14af572a5af77b45e44ef67a06",
+          "bytes": 3301932,
+          "size": [
+            1254,
+            1254
+          ],
+          "source_mode": "RGB",
+          "channel_means": [
+            151.08,
+            150.89,
+            151.04
+          ],
+          "channel_extrema": [
+            [
+              22,
+              244
+            ],
+            [
+              21,
+              243
+            ],
+            [
+              21,
+              244
+            ]
+          ],
+          "max_rgb_channel_difference": 7,
+          "opposite_edge_mean_difference_255": {
+            "u": 11.83,
+            "v": 13.33
+          }
+        },
+        "ao": {
+          "path": "aged_oak/ao.png",
+          "sha256": "6d259500813c76172e10ae2f238b7799a20f136275fec29611e92bc29d02c2f9",
+          "bytes": 3203580,
+          "size": [
+            1254,
+            1254
+          ],
+          "source_mode": "RGB",
+          "channel_means": [
+            216.81,
+            216.85,
+            216.99
+          ],
+          "channel_extrema": [
+            [
+              0,
+              255
+            ],
+            [
+              0,
+              255
+            ],
+            [
+              0,
+              255
+            ]
+          ],
+          "max_rgb_channel_difference": 8,
+          "opposite_edge_mean_difference_255": {
+            "u": 12.41,
+            "v": 19.25
+          }
+        }
+      },
+      "normal_diagnostic": {
+        "height_slope_correlation_x_y": [
+          0.474,
+          0.239
+        ],
+        "normal_vector_length_mean": 1.0,
+        "normal_vector_length_std": 0.087,
+        "method": "Stride4 sample; height Gaussian radius2; X=-dH/dU, Y=+dH/d(image V). Diagnostic only."
+      }
+    },
+    {
+      "id": "oxidized_iron",
+      "description": "Forged torch hardware with sparse rust and worn metal",
+      "starting_tile_width_m": 0.5,
+      "normal_scale": 0.4,
+      "maps": {
+        "albedo": {
+          "path": "oxidized_iron/albedo.png",
+          "sha256": "fd679b5372d63ac1ad973a6cf709a8af4ae53e6a47cd7be176b020cc4d4d0043",
+          "bytes": 3437390,
+          "size": [
+            1254,
+            1254
+          ],
+          "source_mode": "RGB",
+          "channel_means": [
+            40.5,
+            31.01,
+            25.96
+          ],
+          "channel_extrema": [
+            [
+              0,
+              245
+            ],
+            [
+              0,
+              201
+            ],
+            [
+              0,
+              171
+            ]
+          ],
+          "max_rgb_channel_difference": 72,
+          "opposite_edge_mean_difference_255": {
+            "u": 10.17,
+            "v": 9.21
+          }
+        },
+        "height": {
+          "path": "oxidized_iron/height.png",
+          "sha256": "77d6ef4cd37dd17efaec6e85f795412ade74c3d6c6444b08647ee2efee3e0633",
+          "bytes": 3994810,
+          "size": [
+            1254,
+            1254
+          ],
+          "source_mode": "RGB",
+          "channel_means": [
+            113.51,
+            113.21,
+            113.18
+          ],
+          "channel_extrema": [
+            [
+              0,
+              255
+            ],
+            [
+              0,
+              255
+            ],
+            [
+              0,
+              255
+            ]
+          ],
+          "max_rgb_channel_difference": 18,
+          "opposite_edge_mean_difference_255": {
+            "u": 25.09,
+            "v": 19.44
+          }
+        },
+        "normal_gl": {
+          "path": "oxidized_iron/normal_gl.png",
+          "sha256": "cac7e72cf57247edea09085e091b3ce466842718f829800676d3f1ba86ab6e1b",
+          "bytes": 3061089,
+          "size": [
+            1254,
+            1254
+          ],
+          "source_mode": "RGB",
+          "channel_means": [
+            123.77,
+            131.11,
+            244.37
+          ],
+          "channel_extrema": [
+            [
+              0,
+              255
+            ],
+            [
+              0,
+              255
+            ],
+            [
+              51,
+              255
+            ]
+          ],
+          "max_rgb_channel_difference": 250,
+          "opposite_edge_mean_difference_255": {
+            "u": 22.11,
+            "v": 15.83
+          }
+        },
+        "roughness": {
+          "path": "oxidized_iron/roughness.png",
+          "sha256": "87ac1981f81a71009adf051f260590ca32206fe491dc0a6401e052cec9acb221",
+          "bytes": 3557507,
+          "size": [
+            1254,
+            1254
+          ],
+          "source_mode": "RGB",
+          "channel_means": [
+            165.55,
+            165.17,
+            165.3
+          ],
+          "channel_extrema": [
+            [
+              28,
+              255
+            ],
+            [
+              28,
+              255
+            ],
+            [
+              28,
+              255
+            ]
+          ],
+          "max_rgb_channel_difference": 13,
+          "opposite_edge_mean_difference_255": {
+            "u": 17.47,
+            "v": 16.54
+          }
+        },
+        "ao": {
+          "path": "oxidized_iron/ao.png",
+          "sha256": "f4eacb409d233e2b08cd0081a344640e0a482da82808ef47a4e6132267ea3247",
+          "bytes": 2927449,
+          "size": [
+            1254,
+            1254
+          ],
+          "source_mode": "RGB",
+          "channel_means": [
+            236.64,
+            236.77,
+            236.87
+          ],
+          "channel_extrema": [
+            [
+              0,
+              255
+            ],
+            [
+              0,
+              255
+            ],
+            [
+              0,
+              255
+            ]
+          ],
+          "max_rgb_channel_difference": 14,
+          "opposite_edge_mean_difference_255": {
+            "u": 22.7,
+            "v": 12.21
+          }
+        },
+        "metallic": {
+          "path": "oxidized_iron/metallic.png",
+          "sha256": "11f35395d816d5ee41ba611146f0db9795448c8872db8bd108bdd9bd31a5f141",
+          "bytes": 2878304,
+          "size": [
+            1254,
+            1254
+          ],
+          "source_mode": "RGB",
+          "channel_means": [
+            20.72,
+            20.61,
+            20.43
+          ],
+          "channel_extrema": [
+            [
+              0,
+              255
+            ],
+            [
+              0,
+              255
+            ],
+            [
+              0,
+              255
+            ]
+          ],
+          "max_rgb_channel_difference": 17,
+          "opposite_edge_mean_difference_255": {
+            "u": 13.24,
+            "v": 11.77
+          }
+        }
+      },
+      "normal_diagnostic": {
+        "height_slope_correlation_x_y": [
+          0.45,
+          0.151
+        ],
+        "normal_vector_length_mean": 0.981,
+        "normal_vector_length_std": 0.079,
+        "method": "Stride4 sample; height Gaussian radius2; X=-dH/dU, Y=+dH/d(image V). Diagnostic only."
+      }
+    }
+  ],
+  "masks": [
+    {
+      "path": "masks/plaster_peel.png",
+      "sha256": "cfd7c19063a30c140dac1319385e4420672a51e86a63dac0b01833d6675f4df8",
+      "bytes": 1066545,
+      "size": [
+        1254,
+        1254
+      ],
+      "source_mode": "RGB",
+      "channel_means": [
+        50.07,
+        50.0,
+        49.99
+      ],
+      "channel_extrema": [
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ]
+      ],
+      "max_rgb_channel_difference": 14,
+      "opposite_edge_mean_difference_255": {
+        "u": 12.36,
+        "v": 3.2
+      }
+    },
+    {
+      "path": "masks/damp_grime.png",
+      "sha256": "8de3165a4c7afbac2c463107f967c8f91a37b29b4ba08ae46fc49e5640875103",
+      "bytes": 2696863,
+      "size": [
+        1254,
+        1254
+      ],
+      "source_mode": "RGB",
+      "channel_means": [
+        67.8,
+        67.81,
+        67.87
+      ],
+      "channel_extrema": [
+        [
+          5,
+          212
+        ],
+        [
+          4,
+          213
+        ],
+        [
+          6,
+          211
+        ]
+      ],
+      "max_rgb_channel_difference": 8,
+      "opposite_edge_mean_difference_255": {
+        "u": 12.76,
+        "v": 10.29
+      }
+    }
+  ],
+  "conventions": {
+    "normal": "OpenGL tangent-space X+ Y+ Z+",
+    "height": "white high; black recessed; 8-bit native source",
+    "roughness": "white rough; black smooth",
+    "ao": "white open; black occluded",
+    "metallic": "white exposed metal; black rust/oxide",
+    "masks": "white coverage; black no coverage"
+  },
+  "limitations": [
+    "Native generated map correspondences are inspected, not a mathematically derived scan.",
+    "Tile borders are not certified seamless; use repeat preview and hide remaining seams with material blending.",
+    "Height/parallax does not fix geometry or collision. Presets leave parallax disabled."
+  ]
+}

@@ -1,0 +1,558 @@
+{
+  "task": "T-148",
+  "worker": "ossuary_image",
+  "records": [
+    {
+      "family": "rubble_masonry",
+      "map": "albedo",
+      "prompt": "Use case: stylized-concept. Asset type: original seamless tileable PBR ALBEDO, 2048 x 2048 square, for SECHA's red-nave exposed rubble-masonry pilasters. The supplied scene is MATERIAL CONTEXT ONLY: extract the grey-brown stone identity without its orange torch illumination. Generate an original flat orthographic texture, edge-to-edge, opaque square. Rough irregular dark grey/brown rubble masonry: varied interlocking angular and rounded stones, large and small sizes mixed naturally, subdued neutral earthy base, thin crumbling pale mortar, some chipped corners and shallow fine cracks. A physical 3 x 3 metre tile, roughly 7 to 10 loose irregular courses, not ordered bricks. Dark stone faces must remain readable as base color; modest natural tonal variation, relatively quiet stone interiors, no high-frequency noise coating every pixel. Stone mostly matte and dry. This is WALL/PILASTER masonry, not flat floor slabs, gravel or uniformly-sized cobblestones. Neutral diffuse reflectance only, NO baked directional lighting, specular highlights, shadows, ambient occlusion, orange/red tint, perspective, border, props, roots, text or symbols. No distinct central motif. Opposing edges must tile seamlessly in both axes. One texture only, no panels or labels.",
+      "refs": [
+        "/Users/theochernin/Projects/MultiPlayerProject-agents/theo-codex-12/content/environments/red_nave_v1/review/selected_nave.png"
+      ],
+      "native_path": "/Users/theochernin/.codex/generated_images/01a1603d-46cd-7341-8808-066c20827d8b/exec-4864fd2c-c61c-4ed8-8695-b583366100c5.png",
+      "final_path": "/Users/theochernin/Projects/MultiPlayerProject-agents/theo-codex-12/content/environments/red_nave_v1/rubble_masonry/albedo.png",
+      "qa": "Grey-brown irregular rubble wall with pale thin mortar and varied stones; slightly darkened fine seams remain visually present despite no baked-AO request. Native output is lower than requested 2048. No torch tint or perspective. Seam/registration acceptance requires material preview.",
+      "route": "native image_gen",
+      "requested_dimensions": [
+        2048,
+        2048
+      ],
+      "output_dimensions": [
+        1254,
+        1254
+      ],
+      "mode": "RGB",
+      "bytes": 4186691,
+      "opposite_edge_mean_absolute_difference": {
+        "horizontal": 19.882,
+        "vertical": 20.578
+      },
+      "channel_means": [
+        83.308,
+        69.182,
+        55.006
+      ],
+      "channel_extrema": [
+        [
+          0,
+          240
+        ],
+        [
+          0,
+          234
+        ],
+        [
+          0,
+          216
+        ]
+      ]
+    },
+    {
+      "family": "rubble_masonry",
+      "map": "height",
+      "prompt": "Use case: precise-object-edit. Asset type: seamless scalar HEIGHT map for the supplied rubble-masonry albedo. The sole supplied image is the EDIT TARGET. Preserve every stone outline, mortar joint, crack, chip and pixel location exactly; preserve original square dimensions, crop, tile boundary, physical scale and all edge alignments. Change ONLY map encoding. White/light grey means higher protruding rubble-stone faces; dark grey/black means recessed thin mortar joints and small deep cracks. Stone faces have gentle broad relief, modest chips at boundaries, subtle irregular mineral surface; recess mortar rather than raising it. Use broad mostly quiet face areas instead of intense micro-noise. This is true relative surface elevation, NOT desaturated albedo, not diffuse shading, not specular, not AO. No directional illumination, highlights, colored pixels, border, labels, text, vignette or perspective. Grayscale, opaque, edge-to-edge. Seamless periodic relief at opposite tile edges. One height-map image only, no panels.",
+      "refs": [
+        "/Users/theochernin/Projects/MultiPlayerProject-agents/theo-codex-12/content/environments/red_nave_v1/rubble_masonry/albedo.png"
+      ],
+      "native_path": "/Users/theochernin/.codex/generated_images/01a1603d-46cd-7341-8808-066c20827d8b/exec-296cdc1c-22cb-4d82-a85a-e1b4d4832f1e.png",
+      "final_path": "/Users/theochernin/Projects/MultiPlayerProject-agents/theo-codex-12/content/environments/red_nave_v1/rubble_masonry/height.png",
+      "qa": "Stone outlines appear visually aligned with albedo and mortar is recessed. Generated height has fairly strong fine relief and rounded edge rolloff, so use modest height/normal strength; exact pixel registration and true scalar-height behavior remain unverified.",
+      "route": "native image_gen",
+      "requested_dimensions": [
+        2048,
+        2048
+      ],
+      "output_dimensions": [
+        1254,
+        1254
+      ],
+      "mode": "RGB",
+      "bytes": 3766620,
+      "opposite_edge_mean_absolute_difference": {
+        "horizontal": 18.997,
+        "vertical": 26.675
+      },
+      "channel_means": [
+        126.703,
+        126.686,
+        126.81
+      ],
+      "channel_extrema": [
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ]
+      ]
+    },
+    {
+      "family": "rubble_masonry",
+      "map": "normal_gl",
+      "prompt": "Use case: precise-object-edit. Asset type: OpenGL tangent-space NORMAL map for rubble masonry. Image 1 is authoritative scalar HEIGHT relief (white high, black deep); Image 2 is the registered ALBEDO layout reference. Change ONLY the map encoding into a technically meaningful tangent-space normal map. Preserve every stone boundary, mortar joint, chip and crack at the identical pixel coordinate, preserve crop, original square resolution and periodic tile edges. Encode X+ right, Y+ up, Z+ outward, green-up OpenGL convention. A flat outward face is neutral RGB (128,128,255). Relief gradients follow Image 1; the albedo brightness is NOT surface height. Protruding stones with gentle broad faces, recessed narrow mortar and subtle chipped edges. Fine relief should be restrained rather than embossed high-frequency grit. Normal vectors point outward and use full blue channel, no albedo or grayscale light/shadow data. No illumination, painted highlights, cast shadows, AO, text, labels, borders, perspective or panels. Seamless opaque edge-to-edge square. Produce only the normal map.",
+      "refs": [
+        "/Users/theochernin/Projects/MultiPlayerProject-agents/theo-codex-12/content/environments/red_nave_v1/rubble_masonry/height.png",
+        "/Users/theochernin/Projects/MultiPlayerProject-agents/theo-codex-12/content/environments/red_nave_v1/rubble_masonry/albedo.png"
+      ],
+      "native_path": "/Users/theochernin/.codex/generated_images/01a1603d-46cd-7341-8808-066c20827d8b/exec-04e028d3-0787-4b5d-855c-0dd6ebda7d5e.png",
+      "final_path": "/Users/theochernin/Projects/MultiPlayerProject-agents/theo-codex-12/content/environments/red_nave_v1/rubble_masonry/normal_gl.png",
+      "qa": "Blue-purple normal encoding follows the same apparent rubble layout; upper edges green and right edges red are visually consistent with requested OpenGL convention. Relief is comparatively strong and should be scaled moderately in preview. Exact normalized vectors, registration and seam continuity are not certified from visual appearance.",
+      "route": "native image_gen",
+      "requested_dimensions": [
+        2048,
+        2048
+      ],
+      "output_dimensions": [
+        1254,
+        1254
+      ],
+      "mode": "RGB",
+      "bytes": 3170816,
+      "opposite_edge_mean_absolute_difference": {
+        "horizontal": 21.446,
+        "vertical": 42.48
+      },
+      "channel_means": [
+        129.141,
+        131.626,
+        227.054
+      ],
+      "channel_extrema": [
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ],
+        [
+          2,
+          255
+        ]
+      ]
+    },
+    {
+      "family": "rubble_masonry",
+      "map": "roughness",
+      "prompt": "Use case: precise-object-edit. Asset type: scalar ROUGHNESS map for the supplied rubble masonry. Image 1 is the authoritative ALBEDO layout and Image 2 its HEIGHT relief. Preserve all stone and mortar boundaries at exactly the same pixels and preserve original1254 x1254 square dimensions, crop, scale and tile edges. Change only material encoding into opaque GRAYSCALE roughness: white is rough, black smooth. Stone faces mostly0.8 to0.95 roughness (RGB204 to242), mortar mostly0.9 to0.98 (230 to250); restrained broad natural variation between stones and tiny local mineral variation. This is dry rough rubble wall, not shiny polished or uniformly wet boulders. Do not copy height as brightness: the high faces should mostly remain pale, joints also rough and not black baked shadow. No directional light, albedo color, shadows, highlights, specular, text, labels, borders, gradient vignette or perspective. One seamless registered roughness texture only.",
+      "refs": [
+        "/Users/theochernin/Projects/MultiPlayerProject-agents/theo-codex-12/content/environments/red_nave_v1/rubble_masonry/albedo.png",
+        "/Users/theochernin/Projects/MultiPlayerProject-agents/theo-codex-12/content/environments/red_nave_v1/rubble_masonry/height.png"
+      ],
+      "native_path": "/Users/theochernin/.codex/generated_images/01a1603d-46cd-7341-8808-066c20827d8b/exec-94c83d5f-e99b-4c72-90b1-17f3c08e5e10.png",
+      "final_path": "/Users/theochernin/Projects/MultiPlayerProject-agents/theo-codex-12/content/environments/red_nave_v1/rubble_masonry/roughness.png",
+      "qa": "Predominantly pale grayscale roughness with pale rough mortar rather than black AO joints. Albedo stone layout appears retained; fine face variation is stronger than requested and some pixels may fall below nominal0.8. Check scalar range and specular response in preview.",
+      "route": "native image_gen",
+      "requested_dimensions": [
+        2048,
+        2048
+      ],
+      "output_dimensions": [
+        1254,
+        1254
+      ],
+      "mode": "RGB",
+      "bytes": 3973256,
+      "opposite_edge_mean_absolute_difference": {
+        "horizontal": 20.606,
+        "vertical": 25.47
+      },
+      "channel_means": [
+        184.514,
+        184.453,
+        184.659
+      ],
+      "channel_extrema": [
+        [
+          8,
+          255
+        ],
+        [
+          7,
+          255
+        ],
+        [
+          7,
+          255
+        ]
+      ]
+    },
+    {
+      "family": "rubble_masonry",
+      "map": "ao",
+      "prompt": "Use case: precise-object-edit. Asset type: ambient occlusion AO map of supplied rubble masonry. Image1 is authoritative HEIGHT relief; Image2 is registered ALBEDO layout. Preserve exact pixel registration, stone/mortar boundaries, crop, original1254 x1254 square dimensions and all periodic tile edges. Encode ONLY local cavity occlusion in GRAYSCALE. MOST OF IMAGE IS WHITE: exposed broad stone faces RGB245 to255 and almost no broad face variation. Only narrow recessed mortar joints, deep cracks and local contact crevices darken to grey; the deepest tiny recesses can reach black. AO is not albedo luminance and not inverted height; absence of illumination is limited to cavities from Image1's geometry, not every darker-colored patch. Do not shade stone faces like a photograph. No directional shadows, highlights, color, vignette, border, labels, text or perspective. Seamless opaque edge-to-edge square. One AO map only.",
+      "refs": [
+        "/Users/theochernin/Projects/MultiPlayerProject-agents/theo-codex-12/content/environments/red_nave_v1/rubble_masonry/height.png",
+        "/Users/theochernin/Projects/MultiPlayerProject-agents/theo-codex-12/content/environments/red_nave_v1/rubble_masonry/albedo.png"
+      ],
+      "native_path": "/Users/theochernin/.codex/generated_images/01a1603d-46cd-7341-8808-066c20827d8b/exec-1a072438-1ff2-4970-987b-7f4454cd8116.png",
+      "final_path": "/Users/theochernin/Projects/MultiPlayerProject-agents/theo-codex-12/content/environments/red_nave_v1/rubble_masonry/ao.png",
+      "qa": "Exposed faces are near-white and cavities/joints darken without an overall directional-light gradient. Apparent layout retained, with some broad edge halos; use AO conservatively. Exact registration/seams remain preview checks.",
+      "route": "native image_gen",
+      "requested_dimensions": [
+        2048,
+        2048
+      ],
+      "output_dimensions": [
+        1254,
+        1254
+      ],
+      "mode": "RGB",
+      "bytes": 2396155,
+      "opposite_edge_mean_absolute_difference": {
+        "horizontal": 14.06,
+        "vertical": 35.066
+      },
+      "channel_means": [
+        200.17,
+        200.133,
+        200.136
+      ],
+      "channel_extrema": [
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ]
+      ]
+    },
+    {
+      "family": "pale_limestone",
+      "map": "albedo",
+      "prompt": "Use case: stylized-concept. Asset type: original seamless PBR ALBEDO texture for SECHA's PALE LIMESTONE arch stones and pale plaster undercoat. Supplied scene is material context ONLY: derive the pale neutral mineral identity, never its warm torch cast. Create ONE flat orthographic edge-to-edge opaque square texture, requested2048 x2048. A continuous individual ivory/sandy pale limestone surface across a physical2 x2 metre swatch, not a wall of blocks. BROAD QUIET matte pale stone fields with delicate sedimentary tone shifts, sparse shallow pinholes, a few tiny weathered chips and very faint fine mineral veins. Warm-neutral off-white, dusty pale sand and restrained cool grey undertones; natural limestone with minimal visual noise. The stone must contrast clearly with dark rough rubble masonry and rough red wall plaster. NO masonry grid, no individual blocks, no large mortar gaps, no floor slabs, no repeated cracks, no black outlines, no dense speckle. Neutral diffuse reflectance ONLY, no directional illumination, baked ambient occlusion, shadows, highlights, shine, vignette, orange/red lighting, perspective, props, frame, labels or text. Opposing edges must tile seamlessly both axes, no central motif, one material texture only.",
+      "refs": [
+        "/Users/theochernin/Projects/MultiPlayerProject-agents/theo-codex-12/content/environments/red_nave_v1/review/selected_nave.png"
+      ],
+      "native_path": "/Users/theochernin/.codex/generated_images/01a1603d-46cd-7341-8808-066c20827d8b/exec-00cac69a-1c79-4317-af44-95c0933cc15e.png",
+      "final_path": "/Users/theochernin/Projects/MultiPlayerProject-agents/theo-codex-12/content/environments/red_nave_v1/pale_limestone/albedo.png",
+      "qa": "Continuous ivory/sandy limestone without masonry grid or large mortar gaps. Broad pale quiet fields contrast with rubble; sparse shallow pits and faint mineral patches. No torch-color cast or perspective. Some fine natural mottling remains; edge continuity requires preview.",
+      "route": "native image_gen",
+      "requested_dimensions": [
+        2048,
+        2048
+      ],
+      "output_dimensions": [
+        1254,
+        1254
+      ],
+      "mode": "RGB",
+      "bytes": 3631619,
+      "opposite_edge_mean_absolute_difference": {
+        "horizontal": 10.856,
+        "vertical": 11.723
+      },
+      "channel_means": [
+        216.53,
+        198.431,
+        175.011
+      ],
+      "channel_extrema": [
+        [
+          39,
+          255
+        ],
+        [
+          18,
+          255
+        ],
+        [
+          2,
+          254
+        ]
+      ]
+    },
+    {
+      "family": "pale_limestone",
+      "map": "height",
+      "prompt": "Use case: precise-object-edit. Asset type: scalar HEIGHT map of the supplied PALE LIMESTONE albedo. Sole supplied image is authoritative EDIT TARGET. Preserve every subtle vein, pinhole, chip and mineral patch at exact same pixel positions, original1254 x1254 dimensions, crop, continuous-stone scale and periodic tile edges. Encode actual shallow surface elevation ONLY, white higher and black deeper. Most of this individual limestone surface is gently varying mid/light grey and nearly flat. Only existing small pores, shallow pits and chips recede locally a few millimetres; delicate mineral veins mostly have almost no relief. Do not infer dark-colored mineral patches as deep holes. NO masonry grid, mortar, tile boundaries, new large cracks, invented blocks or raised islands. Quiet broad face fields with subtle fine grain, not chunky relief. No illumination, directional shading, specular highlights, albedo colors, AO, vignette, borders, labels, text or perspective. A seamless opaque edge-to-edge square, one grayscale height texture only.",
+      "refs": [
+        "/Users/theochernin/Projects/MultiPlayerProject-agents/theo-codex-12/content/environments/red_nave_v1/pale_limestone/albedo.png"
+      ],
+      "native_path": "/Users/theochernin/.codex/generated_images/01a1603d-46cd-7341-8808-066c20827d8b/exec-59f54a6a-4e5e-4a1e-a012-70c111eeb7f6.png",
+      "final_path": "/Users/theochernin/Projects/MultiPlayerProject-agents/theo-codex-12/content/environments/red_nave_v1/pale_limestone/height.png",
+      "qa": "Continuous shallow limestone relief with existing pinholes/mineral boundaries apparently retained; no invented masonry. Fine relief looks more textured than the very quiet requested limit, so restrict height amplitude to millimetres. Exact registration remains a numeric check.",
+      "route": "native image_gen",
+      "requested_dimensions": [
+        2048,
+        2048
+      ],
+      "output_dimensions": [
+        1254,
+        1254
+      ],
+      "mode": "RGB",
+      "bytes": 3332011,
+      "opposite_edge_mean_absolute_difference": {
+        "horizontal": 12.641,
+        "vertical": 11.046
+      },
+      "channel_means": [
+        171.0,
+        170.697,
+        170.95
+      ],
+      "channel_extrema": [
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ]
+      ]
+    },
+    {
+      "family": "pale_limestone",
+      "map": "normal_gl",
+      "prompt": "Use case: precise-object-edit. Asset type: OpenGL tangent-space NORMAL map for continuous pale limestone. Image1 is authoritative shallow scalar HEIGHT, Image2 its ALBEDO layout. Preserve exact pixel locations of all pits, chips and very faint veins, square1254 x1254 dimensions, crop, scale and seamless tile edges. Change ONLY encoding to tangent-space normals, X+ right, Y+ up/green-up, Z+ outward. Flat surfaces RGB128,128,255; MOST of this quiet fine-grained limestone should remain very close to that neutral blue with only gentle purple/cyan variations. Shallow millimetre pits yield small gradients, not exaggerated rocky ridges or strong embossed shading. Mineral color patches should not become raised shapes. No masonry grid, mortar seams, new cracks or invented geometric features. Follow the relief in Image1, not albedo brightness. No albedo color, physical illumination, cast shadows, specular, AO, text, labels, border, vignette, panels or perspective. One opaque seamless normal texture only.",
+      "refs": [
+        "/Users/theochernin/Projects/MultiPlayerProject-agents/theo-codex-12/content/environments/red_nave_v1/pale_limestone/height.png",
+        "/Users/theochernin/Projects/MultiPlayerProject-agents/theo-codex-12/content/environments/red_nave_v1/pale_limestone/albedo.png"
+      ],
+      "native_path": "/Users/theochernin/.codex/generated_images/01a1603d-46cd-7341-8808-066c20827d8b/exec-cff08b46-7611-4b10-a789-74914efeaafa.png",
+      "final_path": "/Users/theochernin/Projects/MultiPlayerProject-agents/theo-codex-12/content/environments/red_nave_v1/pale_limestone/normal_gl.png",
+      "qa": "Predominantly neutral-blue normal map with subtle broad limestone fields and small pit gradients, no grid. Apparent albedo/height layout preserved. Fine detail remains moderately pronounced relative to requested very shallow mineral relief, so parent should verify strength and positive-Y correlation. Root diagnostic found Y slope correlation -0.004; replaced by logged attempt2 after comparison.",
+      "route": "native image_gen",
+      "requested_dimensions": [
+        2048,
+        2048
+      ],
+      "output_dimensions": [
+        1254,
+        1254
+      ],
+      "mode": "RGB",
+      "bytes": 2779890,
+      "opposite_edge_mean_absolute_difference": {
+        "horizontal": 11.254,
+        "vertical": 10.981
+      },
+      "channel_means": [
+        131.14,
+        137.884,
+        251.263
+      ],
+      "channel_extrema": [
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ],
+        [
+          47,
+          255
+        ]
+      ],
+      "status": "superseded"
+    },
+    {
+      "family": "pale_limestone",
+      "map": "roughness",
+      "prompt": "Use case: precise-object-edit. Asset type: scalar ROUGHNESS map of supplied continuous pale limestone. Image1 is authoritative ALBEDO layout and Image2 its HEIGHT relief. Preserve original1254 x1254 dimensions, crop, scale, edge tiling and exact pixel positions of all existing pits/veins. Change ONLY into grayscale physical roughness. White rough, black smooth. Matte chalky limestone is mostly0.85 to0.95 roughness (RGB217 to242), shallow pits similarly rough and never black. Subtle broad natural mineral variation; most face areas remain quiet uniform light grey. A few compact denser mineral deposits may be slightly less rough around0.8, no polished sheen. This is NOT grayscale albedo and NOT height: do not reproduce every dark mineral vein as a dark glossy line. No geometry changes, masonry grid, new cracks or tiles. No lighting, specular highlights, AO, cast shadows, colored pixels, border, text, labels, perspective or vignette. Single opaque seamless square roughness map.",
+      "refs": [
+        "/Users/theochernin/Projects/MultiPlayerProject-agents/theo-codex-12/content/environments/red_nave_v1/pale_limestone/albedo.png",
+        "/Users/theochernin/Projects/MultiPlayerProject-agents/theo-codex-12/content/environments/red_nave_v1/pale_limestone/height.png"
+      ],
+      "native_path": "/Users/theochernin/.codex/generated_images/01a1603d-46cd-7341-8808-066c20827d8b/exec-43609be6-1bcb-4e0f-89dc-dea842153954.png",
+      "final_path": "/Users/theochernin/Projects/MultiPlayerProject-agents/theo-codex-12/content/environments/red_nave_v1/pale_limestone/roughness.png",
+      "qa": "Mostly high grayscale matte roughness, retaining limestone pattern. The generated map echoes more fine pit/height contrast than requested quiet physical roughness; tiny dark points should be checked for unintended sparkle. All family outputs remain1254square.",
+      "route": "native image_gen",
+      "requested_dimensions": [
+        2048,
+        2048
+      ],
+      "output_dimensions": [
+        1254,
+        1254
+      ],
+      "mode": "RGB",
+      "bytes": 2870430,
+      "opposite_edge_mean_absolute_difference": {
+        "horizontal": 9.657,
+        "vertical": 8.794
+      },
+      "channel_means": [
+        200.783,
+        200.564,
+        200.856
+      ],
+      "channel_extrema": [
+        [
+          30,
+          255
+        ],
+        [
+          29,
+          255
+        ],
+        [
+          27,
+          255
+        ]
+      ]
+    },
+    {
+      "family": "pale_limestone",
+      "map": "ao",
+      "prompt": "Use case: precise-object-edit. Asset type: ambient occlusion AO map of continuous pale limestone. Image1 is authoritative shallow HEIGHT map; Image2 is its ALBEDO registration reference. Preserve exact pixel coordinates, original1254 x1254 square dimensions, crop, scale and periodic tile boundaries. Encode ONLY weak local micro-cavity occlusion: almost the whole surface WHITE RGB250 to255. Small existing pinholes and chips alone become light or medium grey inside their recesses; only a tiny fraction of deepest points can be dark. Broad mineral color patches remain white, no tracing of albedo brightness or visible photograph shading. Continuous individual stone, no masonry grid, mortar joints or invented broad cracks. No directional light or shadows, highlights, albedo color, borders, labels, text, vignette, perspective or panels. One opaque seamless square AO texture, broadly very quiet.",
+      "refs": [
+        "/Users/theochernin/Projects/MultiPlayerProject-agents/theo-codex-12/content/environments/red_nave_v1/pale_limestone/height.png",
+        "/Users/theochernin/Projects/MultiPlayerProject-agents/theo-codex-12/content/environments/red_nave_v1/pale_limestone/albedo.png"
+      ],
+      "native_path": "/Users/theochernin/.codex/generated_images/01a1603d-46cd-7341-8808-066c20827d8b/exec-1a4b0b0b-46d7-4024-8b1a-75a623c3ad2c.png",
+      "final_path": "/Users/theochernin/Projects/MultiPlayerProject-agents/theo-codex-12/content/environments/red_nave_v1/pale_limestone/ao.png",
+      "qa": "Nearly white continuous surface with only local pores/chips darkening. Apparent limestone layout retained without a wall grid, though subtle fine-relief shading remains in AO. Preview AO strength conservatively and verify exact alignment.",
+      "route": "native image_gen",
+      "requested_dimensions": [
+        2048,
+        2048
+      ],
+      "output_dimensions": [
+        1254,
+        1254
+      ],
+      "mode": "RGB",
+      "bytes": 2405731,
+      "opposite_edge_mean_absolute_difference": {
+        "horizontal": 6.087,
+        "vertical": 5.619
+      },
+      "channel_means": [
+        239.871,
+        239.85,
+        239.991
+      ],
+      "channel_extrema": [
+        [
+          3,
+          255
+        ],
+        [
+          2,
+          255
+        ],
+        [
+          3,
+          255
+        ]
+      ]
+    },
+    {
+      "family": "masks",
+      "map": "damp_grime",
+      "prompt": "Use case: stylized-concept. Asset type: original seamless grayscale DAMP/GRIME BLEND MASK for medieval dungeon stone and plaster, requested2048 x2048 square. This is a scalar coverage mask, NOT a photograph, material albedo, height map, terrain or decorative illustration. White means covered by damp/darkened grime; black means dry/clean base material; midgreys feather only transitions. Broad organic quiet fields joined by a few irregular meandering flowing branches and soft blotchy mineral-water trails. About one-third to one-half white/grey coverage and substantial quiet black areas, asymmetrical distribution without a central motif. Mix large broad smooth patches and restrained branching trickles with irregular natural feathered edges. Avoid dense micro-noise, mottled speckling everywhere, scratches, masonry outlines, sharp geometric lines, repeating stripe bands or tiny isolated dots. No directional gradient from top to bottom; mask must wrap seamlessly on both axes for repeatable material blending. Pure grayscale, opaque, flat orthographic edge-to-edge square. No lighting, shadows, perspective, highlights, color, text, labels, borders, frames or panels. One standalone coverage mask only.",
+      "refs": [],
+      "native_path": "/Users/theochernin/.codex/generated_images/01a1603d-46cd-7341-8808-066c20827d8b/exec-2acfe31d-737d-44cb-a4e7-a45899f6e493.png",
+      "final_path": "/Users/theochernin/Projects/MultiPlayerProject-agents/theo-codex-12/content/environments/red_nave_v1/masks/damp_grime.png",
+      "qa": "Broad connected white/grey organic patches and substantial quiet dark fields, no masonry pattern or directional lighting. Patch boundaries have more fine fractal detail than the requested smooth quiet mask, so use low-frequency sampling or mild blend contrast in preview. Seam continuity remains unchecked.",
+      "route": "native image_gen",
+      "requested_dimensions": [
+        2048,
+        2048
+      ],
+      "output_dimensions": [
+        1254,
+        1254
+      ],
+      "mode": "RGB",
+      "bytes": 2696863,
+      "opposite_edge_mean_absolute_difference": {
+        "horizontal": 12.756,
+        "vertical": 10.293
+      },
+      "channel_means": [
+        67.802,
+        67.813,
+        67.869
+      ],
+      "channel_extrema": [
+        [
+          5,
+          212
+        ],
+        [
+          4,
+          213
+        ],
+        [
+          6,
+          211
+        ]
+      ]
+    },
+    {
+      "family": "review",
+      "map": "limestone-normal-retry",
+      "material_family": "pale_limestone",
+      "material_map": "normal_gl",
+      "attempt": 2,
+      "retry_candidate": false,
+      "replaces_only_if_root_accepts": false,
+      "prompt": "Use case: precise-object-edit. Technical material-map conversion, ONE corrected OpenGL tangent-space normal texture. Image1 is the AUTHORITATIVE SCALAR HEIGHT TARGET H(u,v): white high, black deep. Image2 is secondary ALBEDO registration context only. The output MUST encode the actual spatial gradient of Image1 at every pixel, not blue-tinted height, not embossed shading, not albedo brightness. Preserve EXACT1254x1254 dimensions, crop, geometry, pitted-feature coordinates and tile edges. u is image horizontal to the right; image v is vertically down. Compute tangent normal direction N=normalize((-strength*dH/du,+strength*dH/d(image v),1)). Encode red=128+127*N.x, green=128+127*N.y, blue=128+127*N.z. Therefore a flat outward face is RGB128,128,255; where height increases to the right RED must decrease; where height increases downward GREEN must increase. BOTH red and green must respond to the real local height slopes, including vertical gradients; do not leave green as a flat neutral channel or invent a directional light source. Requested convention X+ right,Y+ up,Z+ outward, standard green-up OpenGL normal. Shallow continuous limestone: subtle millimetre pits and chips, quiet mostly neutral-blue broad faces, restrained relief strength. No invented cracks, blocks or grid. Recesses point inward through proper slope directions, no occlusion or shaded gray brightness encoded. No physical lighting, specular highlights, shadow, albedo color, AO, text, border, perspective or panels. Opaque seamless square normal map only, exact height registration.",
+      "refs": [
+        "/Users/theochernin/Projects/MultiPlayerProject-agents/theo-codex-12/content/environments/red_nave_v1/pale_limestone/height.png",
+        "/Users/theochernin/Projects/MultiPlayerProject-agents/theo-codex-12/content/environments/red_nave_v1/pale_limestone/albedo.png"
+      ],
+      "native_path": "/Users/theochernin/.codex/generated_images/01a1603d-46cd-7341-8808-066c20827d8b/exec-a434ac27-52f1-447b-adae-33ed4407ea25.png",
+      "final_path": "/Users/theochernin/Projects/MultiPlayerProject-agents/theo-codex-12/content/environments/red_nave_v1/pale_limestone/normal_gl.png",
+      "qa": "Targeted second-attempt normal candidate, with explicit red=-dH/du and green=+dH/d(image v) formula. Pits/mineral outlines appear retained and both red/green have visible gradients; no certification of corrected correlation until root numeric comparison. Existing pale_limestone/normal_gl.png was not replaced. Root accepted: height-slope correlations X/Y improved to +0.531/+0.329 from +0.623/-0.004. Macro feature placement preserved. Replaced pale_limestone/normal_gl.png.",
+      "route": "native image_gen",
+      "requested_dimensions": [
+        2048,
+        2048
+      ],
+      "output_dimensions": [
+        1254,
+        1254
+      ],
+      "mode": "RGB",
+      "bytes": 2969845,
+      "opposite_edge_mean_absolute_difference": {
+        "horizontal": 13.373,
+        "vertical": 13.881
+      },
+      "channel_means": [
+        128.207,
+        131.125,
+        248.213
+      ],
+      "channel_extrema": [
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ]
+      ],
+      "status": "accepted_by_root"
+    }
+  ]
+}
