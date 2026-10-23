@@ -1,0 +1,37 @@
+{
+  "source": "https://polyhaven.com/a/marble_rock_03",
+  "author": "Amal Kumar",
+  "license": "CC0-1.0",
+  "files": [
+    {
+      "path": "marble_rock_03/albedo.png",
+      "url": "https://dl.polyhaven.org/file/ph-assets/Textures/png/2k/marble_rock_03/marble_rock_03_diff_2k.png",
+      "md5": "5c5cc6a35f4560013f43db4f390322f3",
+      "sha256": "7d09f5596a69ebc176a92a0973a464bcdec073babcd57a0ff1fcde758d5bcae0"
+    },
+    {
+      "path": "marble_rock_03/normal_gl.png",
+      "url": "https://dl.polyhaven.org/file/ph-assets/Textures/png/2k/marble_rock_03/marble_rock_03_nor_gl_2k.png",
+      "md5": "fadf84281791b54093894ea67555a2e7",
+      "sha256": "4b2c521e00120af06fcf01cc7a5fea17a1a26b9e41066559b4e19b8e6af165d7"
+    },
+    {
+      "path": "marble_rock_03/roughness.png",
+      "url": "https://dl.polyhaven.org/file/ph-assets/Textures/png/2k/marble_rock_03/marble_rock_03_rough_2k.png",
+      "md5": "f511614c153ffb8e1be3ca5c5a75fe9e",
+      "sha256": "b0160aaf9cc6da5a6092fbc53fb4312001dce44517239e54e06fb316fb6c781b"
+    },
+    {
+      "path": "marble_rock_03/ao.png",
+      "url": "https://dl.polyhaven.org/file/ph-assets/Textures/png/2k/marble_rock_03/marble_rock_03_ao_2k.png",
+      "md5": "dc5a8b9864ec749477d4cf36e2cc57e9",
+      "sha256": "956fa3aabd0e7bdb85a076695f3ed081a470d8d066f9c764ca5e8f28fb7925dc"
+    },
+    {
+      "path": "marble_rock_03/height.png",
+      "url": "https://dl.polyhaven.org/file/ph-assets/Textures/png/2k/marble_rock_03/marble_rock_03_disp_2k.png",
+      "md5": "97d0600f93a7768c690a3da67cc280f3",
+      "sha256": "b022aaa9a22d160ce66bc0b053d8683f4b7de7f6c26d672dd31a2183dd02e7e7"
+    }
+  ]
+}

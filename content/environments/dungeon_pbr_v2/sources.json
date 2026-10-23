@@ -1,0 +1,294 @@
+{
+  "retrieved_at": "2026-10-23T18:49:45.611303+00:00",
+  "license_url": "https://docs.ambientcg.com/license/",
+  "assets": [
+    {
+      "id": "Bricks089",
+      "source": "https://ambientcg.com/a/Bricks089",
+      "license": "CC0-1.0",
+      "download": {
+        "attributes": "2K-PNG",
+        "extension": "zip",
+        "url": "https://ambientcg.com/get?file=Bricks089_2K-PNG.zip",
+        "size": 34761634
+      },
+      "archive_sha256": "d53734f522ad5773624e40b5f48a8c55adbb23f2b97c1315a6d6be6e6732abd5",
+      "technique": "surface-photogrammetry",
+      "dimensions_cm": {
+        "width": 220,
+        "height": 110,
+        "depth": 0
+      },
+      "maps": [
+        {
+          "source_member": "Bricks089_2K-PNG_AmbientOcclusion.png",
+          "path": "Bricks089/ao.png",
+          "sha256": "91fc66e4e3519e875ea865d0e2049412b0476135c243566d252a746f67c5b951",
+          "bytes": 1447633
+        },
+        {
+          "source_member": "Bricks089_2K-PNG_Color.png",
+          "path": "Bricks089/albedo.png",
+          "sha256": "d9010391051da26d1604989504708073dd2bca178a072f7ba86c416ae36b912a",
+          "bytes": 4405048
+        },
+        {
+          "source_member": "Bricks089_2K-PNG_Displacement.png",
+          "path": "Bricks089/height.png",
+          "sha256": "5a4279c00d17837114820cf35fbea374b0c9d7fc6bb17c693b5b50041866d87c",
+          "bytes": 3173268
+        },
+        {
+          "source_member": "Bricks089_2K-PNG_NormalGL.png",
+          "path": "Bricks089/normal_gl.png",
+          "sha256": "2cdaa22760bd7d5e0b6b82ab6f8f5f54a05779be5f44e11eceb21494c2d8a303",
+          "bytes": 11476667
+        },
+        {
+          "source_member": "Bricks089_2K-PNG_Roughness.png",
+          "path": "Bricks089/roughness.png",
+          "sha256": "b6ff3e268c7554a342d91618490a6477c21189326641e8aebf153f645726a0ff",
+          "bytes": 1192737
+        }
+      ]
+    },
+    {
+      "id": "Metal041B",
+      "source": "https://ambientcg.com/a/Metal041B",
+      "license": "CC0-1.0",
+      "download": {
+        "attributes": "2K-PNG",
+        "extension": "zip",
+        "url": "https://ambientcg.com/get?file=Metal041B_2K-PNG.zip",
+        "size": 60954287
+      },
+      "archive_sha256": "707c047c96ec64278438b5483c83de81957bf2e9f5b8bafc031b69c8e4b4a69f",
+      "technique": "surface-fully-procedural",
+      "dimensions_cm": {
+        "width": 0,
+        "height": 0,
+        "depth": 0
+      },
+      "maps": [
+        {
+          "source_member": "Metal041B_2K-PNG_Color.png",
+          "path": "Metal041B/albedo.png",
+          "sha256": "c09ec26bde1e2540b9510644c558f31c16b77cad91d4a54b8aae38b406740d00",
+          "bytes": 7521316
+        },
+        {
+          "source_member": "Metal041B_2K-PNG_Displacement.png",
+          "path": "Metal041B/height.png",
+          "sha256": "e15d02714dfaf9d3cbe8bc63464ce87995931ed55ffbb0dc1f43555f55f8babf",
+          "bytes": 7100147
+        },
+        {
+          "source_member": "Metal041B_2K-PNG_Metalness.png",
+          "path": "Metal041B/metallic.png",
+          "sha256": "b8b7de63dcf4d14b39b13e0ca4b47e595c52909b7e8bc91b33728655b1abae4d",
+          "bytes": 2263418
+        },
+        {
+          "source_member": "Metal041B_2K-PNG_NormalGL.png",
+          "path": "Metal041B/normal_gl.png",
+          "sha256": "46c0506ca2a2e7ca28d739b4686c168499fedf9b50868966e1cb5c658fd2a044",
+          "bytes": 20085563
+        },
+        {
+          "source_member": "Metal041B_2K-PNG_Roughness.png",
+          "path": "Metal041B/roughness.png",
+          "sha256": "545ed7f5b23b5f6b0f8a70b30e59c044d74afb8e067eeb0a41de53f479f325d1",
+          "bytes": 2387679
+        }
+      ]
+    },
+    {
+      "id": "Bricks083",
+      "source": "https://ambientcg.com/a/Bricks083",
+      "license": "CC0-1.0",
+      "download": {
+        "attributes": "2K-PNG",
+        "extension": "zip",
+        "url": "https://ambientcg.com/get?file=Bricks083_2K-PNG.zip",
+        "size": 33640995
+      },
+      "archive_sha256": "bb85ab6414754dc7037e8c7d09655d555c7ce95bf7a7781ef24064f1e0d0bc26",
+      "technique": "surface-fully-procedural",
+      "dimensions_cm": {
+        "width": 300,
+        "height": 150,
+        "depth": 0
+      },
+      "maps": [
+        {
+          "source_member": "Bricks083_2K-PNG_AmbientOcclusion.png",
+          "path": "Bricks083/ao.png",
+          "sha256": "6fe785cdf486a8566d77b7ae5f8954f15fa66f290415d98598f7f8bab245f3fe",
+          "bytes": 1197235
+        },
+        {
+          "source_member": "Bricks083_2K-PNG_Color.png",
+          "path": "Bricks083/albedo.png",
+          "sha256": "010392f5e45f05a0f6c35e91b32666bfb164543a3ee242df46ed60ca8fe95c39",
+          "bytes": 4135205
+        },
+        {
+          "source_member": "Bricks083_2K-PNG_Displacement.png",
+          "path": "Bricks083/height.png",
+          "sha256": "2b4a01ff17576629a06bb8314c50487e7b7d7096541bfcbaa7662c21c0033dbc",
+          "bytes": 3207372
+        },
+        {
+          "source_member": "Bricks083_2K-PNG_NormalGL.png",
+          "path": "Bricks083/normal_gl.png",
+          "sha256": "d52c46d3ee8aee4136a357af15efac65f6ce9874e293ab0140b66b967d2250ba",
+          "bytes": 11362094
+        },
+        {
+          "source_member": "Bricks083_2K-PNG_Roughness.png",
+          "path": "Bricks083/roughness.png",
+          "sha256": "5ac020ea25a90f8ed20ce14aa863abb6b3d7ed4a584e4596c18ef4c88aa3d339",
+          "bytes": 919501
+        }
+      ]
+    },
+    {
+      "id": "Rocks025",
+      "source": "https://ambientcg.com/a/Rocks025",
+      "license": "CC0-1.0",
+      "download": {
+        "attributes": "2K-PNG",
+        "extension": "zip",
+        "url": "https://ambientcg.com/get?file=Rocks025_2K-PNG.zip",
+        "size": 66941810
+      },
+      "archive_sha256": "5b18053d7d7ad2f2c65afd088930e88b59ac61c02798285acaba8b7f4af30f73",
+      "technique": "surface-photogrammetry",
+      "dimensions_cm": {
+        "width": 190,
+        "height": 190,
+        "depth": 0
+      },
+      "maps": [
+        {
+          "source_member": "Rocks025_2K-PNG_AmbientOcclusion.png",
+          "path": "Rocks025/ao.png",
+          "sha256": "ce46cecfc16cacbb8de5038834055bd7396680b8eea61624905b6880cc10a7d6",
+          "bytes": 2559915
+        },
+        {
+          "source_member": "Rocks025_2K-PNG_Color.png",
+          "path": "Rocks025/albedo.png",
+          "sha256": "e9a8aaeaa764f5039f26aab1467c34d5bfa259bec178affd607fff0f8ec877bd",
+          "bytes": 8929251
+        },
+        {
+          "source_member": "Rocks025_2K-PNG_Displacement.png",
+          "path": "Rocks025/height.png",
+          "sha256": "6c984d50a2bfdb2b6b786e506f98dd43e23ee5333dd634779481dccb67aa91aa",
+          "bytes": 6358594
+        },
+        {
+          "source_member": "Rocks025_2K-PNG_NormalGL.png",
+          "path": "Rocks025/normal_gl.png",
+          "sha256": "1139317b7ab5ee810156db0960e2766ec244fe24d268756cc235a4391bc0a26d",
+          "bytes": 22557550
+        },
+        {
+          "source_member": "Rocks025_2K-PNG_Roughness.png",
+          "path": "Rocks025/roughness.png",
+          "sha256": "920da7fcb605d36bfead08d960be04a1614353627b25205c16384583f548bf8a",
+          "bytes": 2391749
+        }
+      ]
+    },
+    {
+      "id": "Concrete012",
+      "source": "https://ambientcg.com/a/Concrete012",
+      "license": "CC0-1.0",
+      "download": {
+        "attributes": "2K-PNG",
+        "extension": "zip",
+        "url": "https://ambientcg.com/get?file=Concrete012_2K-PNG.zip",
+        "size": 63957959
+      },
+      "archive_sha256": "5bea76a2ed36d04e488e21e9c8b917b83d3a6c2c309c84b4f57184d5d42a1d13",
+      "technique": "surface-approximated",
+      "dimensions_cm": {
+        "width": 0,
+        "height": 0,
+        "depth": 0
+      },
+      "maps": [
+        {
+          "source_member": "Concrete012_2K-PNG_Color.png",
+          "path": "Concrete012/albedo.png",
+          "sha256": "40eead4440d8897c2d4a51e52e9af682f6dca968cc7e3fb75f8b85a9d6c3679c",
+          "bytes": 7752360
+        },
+        {
+          "source_member": "Concrete012_2K-PNG_Displacement.png",
+          "path": "Concrete012/height.png",
+          "sha256": "f7cc801c2293576bf6cd2814c4db4e376aff5786239c0b9af5f93fb926665b14",
+          "bytes": 6206684
+        },
+        {
+          "source_member": "Concrete012_2K-PNG_NormalGL.png",
+          "path": "Concrete012/normal_gl.png",
+          "sha256": "c991bef67d8e09ce40781ecd057f1877fea4e3af878e1ba53169fda4eb0edac0",
+          "bytes": 22777003
+        },
+        {
+          "source_member": "Concrete012_2K-PNG_Roughness.png",
+          "path": "Concrete012/roughness.png",
+          "sha256": "dee868d1a4dda76f06e7dbdac56e2edd5c6a35af58dee9c49b619f41901d40d6",
+          "bytes": 2963099
+        }
+      ]
+    },
+    {
+      "id": "Wood035",
+      "source": "https://ambientcg.com/a/Wood035",
+      "license": "CC0-1.0",
+      "download": {
+        "attributes": "2K-PNG",
+        "extension": "zip",
+        "url": "https://ambientcg.com/get?file=Wood035_2K-PNG.zip",
+        "size": 64765313
+      },
+      "archive_sha256": "3dfd2500d70d5a929b3ca9136ed31df473256c3fff473b2d038dd0cb05b64070",
+      "technique": "surface-fully-procedural",
+      "dimensions_cm": {
+        "width": 0,
+        "height": 0,
+        "depth": 0
+      },
+      "maps": [
+        {
+          "source_member": "Wood035_2K-PNG_Color.png",
+          "path": "Wood035/albedo.png",
+          "sha256": "4640668b8134a4b045c001fe57ddc5a5a84ec5b987c7b9c60c3a0bcb6cf03259",
+          "bytes": 8348938
+        },
+        {
+          "source_member": "Wood035_2K-PNG_Displacement.png",
+          "path": "Wood035/height.png",
+          "sha256": "de02809af9469180df441f769192ae1e6dcfacd82d71b3dd448758b9702065b7",
+          "bytes": 6900420
+        },
+        {
+          "source_member": "Wood035_2K-PNG_NormalGL.png",
+          "path": "Wood035/normal_gl.png",
+          "sha256": "37519ed8a13c2efd3a37128ccd24458e7311d8bcecd6aee406bbec2932b35b63",
+          "bytes": 22722659
+        },
+        {
+          "source_member": "Wood035_2K-PNG_Roughness.png",
+          "path": "Wood035/roughness.png",
+          "sha256": "cfc6c972e713d6e128449e939df863b5f57997ea4e070b357ab439e43e234484",
+          "bytes": 2684592
+        }
+      ]
+    }
+  ]
+}

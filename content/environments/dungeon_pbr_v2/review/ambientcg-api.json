@@ -1,0 +1,487 @@
+{
+  "totalResults": 6,
+  "nextPageHttp": null,
+  "currentPageHttp": "https://ambientcg.com/api/v3/assets?id=bricks089%2Cbricks083%2Cconcrete012%2Cwood036%2Crocks025%2Cmetal041b&sort=popular&limit=100&include=title%2Curl%2Ctags%2Cdimensions%2Cdownloads%2Ctechnique%2Cmaps",
+  "previousPageHttp": null,
+  "assets": [
+    {
+      "id": "Bricks089",
+      "title": "Bricks 089",
+      "url": "https://ambientcg.com/a/Bricks089",
+      "tags": [
+        "89",
+        "brick",
+        "bricks",
+        "dark",
+        "gray",
+        "medieval",
+        "random",
+        "stone",
+        "wall"
+      ],
+      "dimensions": {
+        "width": 220,
+        "height": 110,
+        "depth": 0
+      },
+      "downloads": [
+        {
+          "attributes": "1K-JPG",
+          "extension": "zip",
+          "url": "https://ambientcg.com/get?file=Bricks089_1K-JPG.zip",
+          "size": 5317280
+        },
+        {
+          "attributes": "2K-JPG",
+          "extension": "zip",
+          "url": "https://ambientcg.com/get?file=Bricks089_2K-JPG.zip",
+          "size": 16445459
+        },
+        {
+          "attributes": "4K-JPG",
+          "extension": "zip",
+          "url": "https://ambientcg.com/get?file=Bricks089_4K-JPG.zip",
+          "size": 59014330
+        },
+        {
+          "attributes": "8K-JPG",
+          "extension": "zip",
+          "url": "https://ambientcg.com/get?file=Bricks089_8K-JPG.zip",
+          "size": 213096530
+        },
+        {
+          "attributes": "1K-PNG",
+          "extension": "zip",
+          "url": "https://ambientcg.com/get?file=Bricks089_1K-PNG.zip",
+          "size": 9888419
+        },
+        {
+          "attributes": "2K-PNG",
+          "extension": "zip",
+          "url": "https://ambientcg.com/get?file=Bricks089_2K-PNG.zip",
+          "size": 34761634
+        },
+        {
+          "attributes": "4K-PNG",
+          "extension": "zip",
+          "url": "https://ambientcg.com/get?file=Bricks089_4K-PNG.zip",
+          "size": 132821693
+        },
+        {
+          "attributes": "8K-PNG",
+          "extension": "zip",
+          "url": "https://ambientcg.com/get?file=Bricks089_8K-PNG.zip",
+          "size": 515023118
+        }
+      ],
+      "technique": "surface-photogrammetry",
+      "maps": [
+        "color",
+        "displacement",
+        "normal",
+        "roughness",
+        "ambient-occlusion"
+      ]
+    },
+    {
+      "id": "Metal041B",
+      "title": "Metal 041 B",
+      "url": "https://ambientcg.com/a/Metal041B",
+      "tags": [
+        "41",
+        "iron",
+        "metal",
+        "rust"
+      ],
+      "dimensions": {
+        "width": 0,
+        "height": 0,
+        "depth": 0
+      },
+      "downloads": [
+        {
+          "attributes": "1K-JPG",
+          "extension": "zip",
+          "url": "https://ambientcg.com/get?file=Metal041B_1K-JPG.zip",
+          "size": 6924078
+        },
+        {
+          "attributes": "2K-JPG",
+          "extension": "zip",
+          "url": "https://ambientcg.com/get?file=Metal041B_2K-JPG.zip",
+          "size": 24013330
+        },
+        {
+          "attributes": "4K-JPG",
+          "extension": "zip",
+          "url": "https://ambientcg.com/get?file=Metal041B_4K-JPG.zip",
+          "size": 97441469
+        },
+        {
+          "attributes": "8K-JPG",
+          "extension": "zip",
+          "url": "https://ambientcg.com/get?file=Metal041B_8K-JPG.zip",
+          "size": 462386881
+        },
+        {
+          "attributes": "1K-PNG",
+          "extension": "zip",
+          "url": "https://ambientcg.com/get?file=Metal041B_1K-PNG.zip",
+          "size": 16306584
+        },
+        {
+          "attributes": "2K-PNG",
+          "extension": "zip",
+          "url": "https://ambientcg.com/get?file=Metal041B_2K-PNG.zip",
+          "size": 60954287
+        },
+        {
+          "attributes": "4K-PNG",
+          "extension": "zip",
+          "url": "https://ambientcg.com/get?file=Metal041B_4K-PNG.zip",
+          "size": 242934250
+        },
+        {
+          "attributes": "8K-PNG",
+          "extension": "zip",
+          "url": "https://ambientcg.com/get?file=Metal041B_8K-PNG.zip",
+          "size": 1030934178
+        }
+      ],
+      "technique": "surface-fully-procedural",
+      "maps": [
+        "color",
+        "displacement",
+        "normal",
+        "roughness",
+        "metalness"
+      ]
+    },
+    {
+      "id": "Bricks083",
+      "title": "Bricks 083",
+      "url": "https://ambientcg.com/a/Bricks083",
+      "tags": [
+        "83",
+        "beige",
+        "bricks",
+        "medieval",
+        "sandstone"
+      ],
+      "dimensions": {
+        "width": 300,
+        "height": 150,
+        "depth": 0
+      },
+      "downloads": [
+        {
+          "attributes": "1K-JPG",
+          "extension": "zip",
+          "url": "https://ambientcg.com/get?file=Bricks083_1K-JPG.zip",
+          "size": 5237054
+        },
+        {
+          "attributes": "2K-JPG",
+          "extension": "zip",
+          "url": "https://ambientcg.com/get?file=Bricks083_2K-JPG.zip",
+          "size": 15747884
+        },
+        {
+          "attributes": "4K-JPG",
+          "extension": "zip",
+          "url": "https://ambientcg.com/get?file=Bricks083_4K-JPG.zip",
+          "size": 56095757
+        },
+        {
+          "attributes": "8K-JPG",
+          "extension": "zip",
+          "url": "https://ambientcg.com/get?file=Bricks083_8K-JPG.zip",
+          "size": 204238786
+        },
+        {
+          "attributes": "12K-JPG",
+          "extension": "zip",
+          "url": "https://ambientcg.com/get?file=Bricks083_12K-JPG.zip",
+          "size": 419186499
+        },
+        {
+          "attributes": "16K-JPG",
+          "extension": "zip",
+          "url": "https://ambientcg.com/get?file=Bricks083_16K-JPG.zip",
+          "size": 696122438
+        },
+        {
+          "attributes": "1K-PNG",
+          "extension": "zip",
+          "url": "https://ambientcg.com/get?file=Bricks083_1K-PNG.zip",
+          "size": 9675506
+        },
+        {
+          "attributes": "2K-PNG",
+          "extension": "zip",
+          "url": "https://ambientcg.com/get?file=Bricks083_2K-PNG.zip",
+          "size": 33640995
+        },
+        {
+          "attributes": "4K-PNG",
+          "extension": "zip",
+          "url": "https://ambientcg.com/get?file=Bricks083_4K-PNG.zip",
+          "size": 129231252
+        },
+        {
+          "attributes": "8K-PNG",
+          "extension": "zip",
+          "url": "https://ambientcg.com/get?file=Bricks083_8K-PNG.zip",
+          "size": 499127943
+        },
+        {
+          "attributes": "12K-PNG",
+          "extension": "zip",
+          "url": "https://ambientcg.com/get?file=Bricks083_12K-PNG.zip",
+          "size": 1083261376
+        },
+        {
+          "attributes": "16K-PNG",
+          "extension": "zip",
+          "url": "https://ambientcg.com/get?file=Bricks083_16K-PNG.zip",
+          "size": 1850819836
+        }
+      ],
+      "technique": "surface-fully-procedural",
+      "maps": [
+        "color",
+        "displacement",
+        "normal",
+        "roughness",
+        "ambient-occlusion"
+      ]
+    },
+    {
+      "id": "Rocks025",
+      "title": "Rocks 025",
+      "url": "https://ambientcg.com/a/Rocks025",
+      "tags": [
+        "25",
+        "floor",
+        "medieval",
+        "rocks",
+        "stone",
+        "wall"
+      ],
+      "dimensions": {
+        "width": 190,
+        "height": 190,
+        "depth": 0
+      },
+      "downloads": [
+        {
+          "attributes": "1K-JPG",
+          "extension": "zip",
+          "url": "https://ambientcg.com/get?file=Rocks025_1K-JPG.zip",
+          "size": 9037823
+        },
+        {
+          "attributes": "2K-JPG",
+          "extension": "zip",
+          "url": "https://ambientcg.com/get?file=Rocks025_2K-JPG.zip",
+          "size": 31048874
+        },
+        {
+          "attributes": "4K-JPG",
+          "extension": "zip",
+          "url": "https://ambientcg.com/get?file=Rocks025_4K-JPG.zip",
+          "size": 113431073
+        },
+        {
+          "attributes": "8K-JPG",
+          "extension": "zip",
+          "url": "https://ambientcg.com/get?file=Rocks025_8K-JPG.zip",
+          "size": 385663403
+        },
+        {
+          "attributes": "1K-PNG",
+          "extension": "zip",
+          "url": "https://ambientcg.com/get?file=Rocks025_1K-PNG.zip",
+          "size": 18008784
+        },
+        {
+          "attributes": "2K-PNG",
+          "extension": "zip",
+          "url": "https://ambientcg.com/get?file=Rocks025_2K-PNG.zip",
+          "size": 66941810
+        },
+        {
+          "attributes": "4K-PNG",
+          "extension": "zip",
+          "url": "https://ambientcg.com/get?file=Rocks025_4K-PNG.zip",
+          "size": 258219080
+        },
+        {
+          "attributes": "8K-PNG",
+          "extension": "zip",
+          "url": "https://ambientcg.com/get?file=Rocks025_8K-PNG.zip",
+          "size": 957981602
+        }
+      ],
+      "technique": "surface-photogrammetry",
+      "maps": [
+        "color",
+        "displacement",
+        "normal",
+        "roughness",
+        "ambient-occlusion"
+      ]
+    },
+    {
+      "id": "Concrete012",
+      "title": "Concrete 012",
+      "url": "https://ambientcg.com/a/Concrete012",
+      "tags": [
+        "12",
+        "brown",
+        "church",
+        "concrete",
+        "old",
+        "plaster",
+        "sandstone",
+        "wall"
+      ],
+      "dimensions": {
+        "width": 0,
+        "height": 0,
+        "depth": 0
+      },
+      "downloads": [
+        {
+          "attributes": "1K-JPG",
+          "extension": "zip",
+          "url": "https://ambientcg.com/get?file=Concrete012_1K-JPG.zip",
+          "size": 8171336
+        },
+        {
+          "attributes": "2K-JPG",
+          "extension": "zip",
+          "url": "https://ambientcg.com/get?file=Concrete012_2K-JPG.zip",
+          "size": 27251536
+        },
+        {
+          "attributes": "4K-JPG",
+          "extension": "zip",
+          "url": "https://ambientcg.com/get?file=Concrete012_4K-JPG.zip",
+          "size": 97050499
+        },
+        {
+          "attributes": "8K-JPG",
+          "extension": "zip",
+          "url": "https://ambientcg.com/get?file=Concrete012_8K-JPG.zip",
+          "size": 398228819
+        },
+        {
+          "attributes": "1K-PNG",
+          "extension": "zip",
+          "url": "https://ambientcg.com/get?file=Concrete012_1K-PNG.zip",
+          "size": 17298194
+        },
+        {
+          "attributes": "2K-PNG",
+          "extension": "zip",
+          "url": "https://ambientcg.com/get?file=Concrete012_2K-PNG.zip",
+          "size": 63957959
+        },
+        {
+          "attributes": "4K-PNG",
+          "extension": "zip",
+          "url": "https://ambientcg.com/get?file=Concrete012_4K-PNG.zip",
+          "size": 245063526
+        },
+        {
+          "attributes": "8K-PNG",
+          "extension": "zip",
+          "url": "https://ambientcg.com/get?file=Concrete012_8K-PNG.zip",
+          "size": 305289739
+        }
+      ],
+      "technique": "surface-approximated",
+      "maps": [
+        "color",
+        "displacement",
+        "normal",
+        "roughness"
+      ]
+    },
+    {
+      "id": "Wood036",
+      "title": "Wood 036",
+      "url": "https://ambientcg.com/a/Wood036",
+      "tags": [
+        "36",
+        "dark",
+        "old",
+        "rough",
+        "wood"
+      ],
+      "dimensions": {
+        "width": 0,
+        "height": 0,
+        "depth": 0
+      },
+      "downloads": [
+        {
+          "attributes": "1K-JPG",
+          "extension": "zip",
+          "url": "https://ambientcg.com/get?file=Wood036_1K-JPG.zip",
+          "size": 7510904
+        },
+        {
+          "attributes": "2K-JPG",
+          "extension": "zip",
+          "url": "https://ambientcg.com/get?file=Wood036_2K-JPG.zip",
+          "size": 27810442
+        },
+        {
+          "attributes": "4K-JPG",
+          "extension": "zip",
+          "url": "https://ambientcg.com/get?file=Wood036_4K-JPG.zip",
+          "size": 113223112
+        },
+        {
+          "attributes": "8K-JPG",
+          "extension": "zip",
+          "url": "https://ambientcg.com/get?file=Wood036_8K-JPG.zip",
+          "size": 497196198
+        },
+        {
+          "attributes": "1K-PNG",
+          "extension": "zip",
+          "url": "https://ambientcg.com/get?file=Wood036_1K-PNG.zip",
+          "size": 16451574
+        },
+        {
+          "attributes": "2K-PNG",
+          "extension": "zip",
+          "url": "https://ambientcg.com/get?file=Wood036_2K-PNG.zip",
+          "size": 62821941
+        },
+        {
+          "attributes": "4K-PNG",
+          "extension": "zip",
+          "url": "https://ambientcg.com/get?file=Wood036_4K-PNG.zip",
+          "size": 250808232
+        },
+        {
+          "attributes": "8K-PNG",
+          "extension": "zip",
+          "url": "https://ambientcg.com/get?file=Wood036_8K-PNG.zip",
+          "size": 1003742374
+        }
+      ],
+      "technique": "surface-fully-procedural",
+      "maps": [
+        "color",
+        "displacement",
+        "normal",
+        "roughness"
+      ]
+    }
+  ]
+}
