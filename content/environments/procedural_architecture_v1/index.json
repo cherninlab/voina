@@ -1,16 +1,843 @@
 {
+  "files": [
+    {
+      "file": "passages/entry.glb",
+      "routes": {
+        "entry": "20aa6015a7f9f4f7c12b59b90acfe080b07298d8b2b180c7054b532be72d00d4"
+      }
+    },
+    {
+      "file": "passages/upper_hall.glb",
+      "routes": {
+        "upper_hall": "56384f8b20344e6f8f3a85aad938a2120e7b5ede367b93efc7953afcc5387b25"
+      }
+    },
+    {
+      "file": "passages/chapel_approach.glb",
+      "routes": {
+        "chapel_approach": "844dc747e5dad4a6f828d2fdf3b787713be8bbb885076d3e1451256fe4f5625c"
+      }
+    },
+    {
+      "file": "passages/nave.glb",
+      "routes": {
+        "nave": "7c51b81a0749b81ca08abdd730ba502d27a7bb17cd731ccc12c18e4331a21cf2"
+      }
+    },
+    {
+      "file": "passages/root_tunnel.glb",
+      "routes": {
+        "root_tunnel": "0a7f77c625fe702318914cc3c05c313540627801ab267bbb81f2db78b3f73c1d"
+      }
+    },
+    {
+      "file": "passages/return_gallery.glb",
+      "routes": {
+        "return_gallery": "e6b840df7e0af7915c1bfd575585aaba886004f4ed2e8f7017119579130ab719"
+      }
+    },
+    {
+      "file": "passages/upper_cells.glb",
+      "routes": {
+        "upper_cells": "56847e1d52770abab28d04528d36b3bb2319becf6dfde3d9dbaa9b847761a999"
+      }
+    },
+    {
+      "file": "passages/ossuary_loop.glb",
+      "routes": {
+        "ossuary_loop": "ad0cef25f33e70eb6d54b86925b87e78bfaa6f4cba9085e39be674245f5f4801"
+      }
+    },
+    {
+      "file": "passages/bell_loop.glb",
+      "routes": {
+        "bell_loop": "d7303872457ea00139883b59e8e40422be81d5b1a2aeab7f7b684f7a2bc97b8d"
+      }
+    },
+    {
+      "file": "passages/cave_bypass.glb",
+      "routes": {
+        "cave_bypass": "3a84aa68d4569f39d804e593f96de273561d221312fcda6b7c6aef33f8edb2de"
+      }
+    },
+    {
+      "file": "passages/node_-46_-23_7.glb",
+      "routes": {
+        "cave_bypass": "3a84aa68d4569f39d804e593f96de273561d221312fcda6b7c6aef33f8edb2de"
+      }
+    },
+    {
+      "file": "passages/node_-43_-23_-6.glb",
+      "routes": {
+        "cave_bypass": "3a84aa68d4569f39d804e593f96de273561d221312fcda6b7c6aef33f8edb2de"
+      }
+    },
+    {
+      "file": "passages/node_-41_-23_14.glb",
+      "routes": {
+        "cave_bypass": "3a84aa68d4569f39d804e593f96de273561d221312fcda6b7c6aef33f8edb2de",
+        "root_tunnel": "0a7f77c625fe702318914cc3c05c313540627801ab267bbb81f2db78b3f73c1d"
+      }
+    },
+    {
+      "file": "passages/node_-41_-23_24.glb",
+      "routes": {
+        "root_tunnel": "0a7f77c625fe702318914cc3c05c313540627801ab267bbb81f2db78b3f73c1d"
+      }
+    },
+    {
+      "file": "passages/node_-38_-23_-2.glb",
+      "routes": {
+        "cave_bypass": "3a84aa68d4569f39d804e593f96de273561d221312fcda6b7c6aef33f8edb2de",
+        "root_tunnel": "0a7f77c625fe702318914cc3c05c313540627801ab267bbb81f2db78b3f73c1d"
+      }
+    },
+    {
+      "file": "passages/node_-31_-23_6.glb",
+      "routes": {
+        "root_tunnel": "0a7f77c625fe702318914cc3c05c313540627801ab267bbb81f2db78b3f73c1d"
+      }
+    },
+    {
+      "file": "passages/node_-23_-23_-16.glb",
+      "routes": {
+        "root_tunnel": "0a7f77c625fe702318914cc3c05c313540627801ab267bbb81f2db78b3f73c1d"
+      }
+    },
+    {
+      "file": "passages/node_-18_-10_-30.glb",
+      "routes": {
+        "ossuary_loop": "ad0cef25f33e70eb6d54b86925b87e78bfaa6f4cba9085e39be674245f5f4801"
+      }
+    },
+    {
+      "file": "passages/node_-14_-19_24.glb",
+      "routes": {
+        "nave": "7c51b81a0749b81ca08abdd730ba502d27a7bb17cd731ccc12c18e4331a21cf2"
+      }
+    },
+    {
+      "file": "passages/node_7_-18_21.glb",
+      "routes": {
+        "nave": "7c51b81a0749b81ca08abdd730ba502d27a7bb17cd731ccc12c18e4331a21cf2"
+      }
+    },
+    {
+      "file": "passages/node_22_-10_-30.glb",
+      "routes": {
+        "chapel_approach": "844dc747e5dad4a6f828d2fdf3b787713be8bbb885076d3e1451256fe4f5625c",
+        "return_gallery": "e6b840df7e0af7915c1bfd575585aaba886004f4ed2e8f7017119579130ab719"
+      }
+    },
+    {
+      "file": "passages/node_22_-10_10.glb",
+      "routes": {
+        "return_gallery": "e6b840df7e0af7915c1bfd575585aaba886004f4ed2e8f7017119579130ab719"
+      }
+    },
+    {
+      "file": "passages/node_46_-4_-15.glb",
+      "routes": {
+        "upper_cells": "56847e1d52770abab28d04528d36b3bb2319becf6dfde3d9dbaa9b847761a999"
+      }
+    },
+    {
+      "file": "passages/node_46_-4_6.glb",
+      "routes": {
+        "upper_cells": "56847e1d52770abab28d04528d36b3bb2319becf6dfde3d9dbaa9b847761a999"
+      }
+    }
+  ],
+  "nodes": [
+    {
+      "at": [
+        -46.0,
+        -23.0,
+        7.0
+      ],
+      "kind": "bay",
+      "radius": 3.65
+    },
+    {
+      "at": [
+        -43.0,
+        -23.0,
+        -6.0
+      ],
+      "kind": "bay",
+      "radius": 3.65
+    },
+    {
+      "at": [
+        -41.0,
+        -23.0,
+        14.0
+      ],
+      "kind": "bay",
+      "radius": 3.9
+    },
+    {
+      "at": [
+        -41.0,
+        -23.0,
+        24.0
+      ],
+      "kind": "bay",
+      "radius": 3.9
+    },
+    {
+      "at": [
+        -38.0,
+        -23.0,
+        -2.0
+      ],
+      "kind": "bay",
+      "radius": 3.9
+    },
+    {
+      "at": [
+        -31.0,
+        -23.0,
+        6.0
+      ],
+      "kind": "bay",
+      "radius": 3.9
+    },
+    {
+      "at": [
+        -23.0,
+        -23.0,
+        -16.0
+      ],
+      "kind": "portal",
+      "radius": 3.9
+    },
+    {
+      "at": [
+        -18.0,
+        -10.0,
+        -30.0
+      ],
+      "kind": "bay",
+      "radius": 3.4
+    },
+    {
+      "at": [
+        -14.0,
+        -19.0,
+        24.0
+      ],
+      "kind": "bay",
+      "radius": 3.6
+    },
+    {
+      "at": [
+        7.0,
+        -18.0,
+        21.0
+      ],
+      "kind": "portal",
+      "radius": 3.6
+    },
+    {
+      "at": [
+        22.0,
+        -10.0,
+        -30.0
+      ],
+      "kind": "bay",
+      "radius": 3.6
+    },
+    {
+      "at": [
+        22.0,
+        -10.0,
+        10.0
+      ],
+      "kind": "bay",
+      "radius": 3.4
+    },
+    {
+      "at": [
+        46.0,
+        -4.0,
+        -15.0
+      ],
+      "kind": "bay",
+      "radius": 3.4
+    },
+    {
+      "at": [
+        46.0,
+        -4.0,
+        6.0
+      ],
+      "kind": "bay",
+      "radius": 3.4
+    }
+  ],
   "passages": [
     {
-      "file": "passages/entry_0_0.glb",
-      "layout_hash": "20aa6015a7f9f4f7c12b59b90acfe080b07298d8b2b180c7054b532be72d00d4",
       "route": "entry",
       "segment": 0,
       "t0": 0.6043,
       "t1": 0.7971
+    },
+    {
+      "route": "upper_hall",
+      "segment": 1,
+      "t0": 0.9645,
+      "t1": 1.0
+    },
+    {
+      "route": "chapel_approach",
+      "segment": 0,
+      "t0": 0.545,
+      "t1": 1.0
+    },
+    {
+      "route": "chapel_approach",
+      "segment": 1,
+      "t0": 0.0,
+      "t1": 0.4437
+    },
+    {
+      "route": "nave",
+      "segment": 0,
+      "t0": 0.0,
+      "t1": 0.5038
+    },
+    {
+      "route": "nave",
+      "segment": 5,
+      "t0": 0.0,
+      "t1": 1.0
+    },
+    {
+      "route": "nave",
+      "segment": 6,
+      "t0": 0.0,
+      "t1": 0.6906
+    },
+    {
+      "route": "root_tunnel",
+      "segment": 0,
+      "t0": 0.4214,
+      "t1": 1.0
+    },
+    {
+      "route": "root_tunnel",
+      "segment": 1,
+      "t0": 0.0,
+      "t1": 1.0
+    },
+    {
+      "route": "root_tunnel",
+      "segment": 2,
+      "t0": 0.0,
+      "t1": 1.0
+    },
+    {
+      "route": "root_tunnel",
+      "segment": 3,
+      "t0": 0.0,
+      "t1": 1.0
+    },
+    {
+      "route": "root_tunnel",
+      "segment": 4,
+      "t0": 0.0,
+      "t1": 1.0
+    },
+    {
+      "route": "root_tunnel",
+      "segment": 5,
+      "t0": 0.0,
+      "t1": 1.0
+    },
+    {
+      "route": "return_gallery",
+      "segment": 0,
+      "t0": 0.4365,
+      "t1": 1.0
+    },
+    {
+      "route": "return_gallery",
+      "segment": 1,
+      "t0": 0.0,
+      "t1": 1.0
+    },
+    {
+      "route": "return_gallery",
+      "segment": 2,
+      "t0": 0.0,
+      "t1": 1.0
+    },
+    {
+      "route": "return_gallery",
+      "segment": 3,
+      "t0": 0.0,
+      "t1": 1.0
+    },
+    {
+      "route": "return_gallery",
+      "segment": 4,
+      "t0": 0.0,
+      "t1": 1.0
+    },
+    {
+      "route": "upper_cells",
+      "segment": 0,
+      "t0": 0.556,
+      "t1": 0.644
+    },
+    {
+      "route": "upper_cells",
+      "segment": 2,
+      "t0": 0.645,
+      "t1": 1.0
+    },
+    {
+      "route": "upper_cells",
+      "segment": 3,
+      "t0": 0.0,
+      "t1": 1.0
+    },
+    {
+      "route": "upper_cells",
+      "segment": 4,
+      "t0": 0.0,
+      "t1": 0.5071
+    },
+    {
+      "route": "ossuary_loop",
+      "segment": 0,
+      "t0": 0.3062,
+      "t1": 1.0
+    },
+    {
+      "route": "ossuary_loop",
+      "segment": 1,
+      "t0": 0.0,
+      "t1": 0.8146
+    },
+    {
+      "route": "ossuary_loop",
+      "segment": 3,
+      "t0": 0.5562,
+      "t1": 0.6938
+    },
+    {
+      "route": "ossuary_loop",
+      "segment": 5,
+      "t0": 0.4944,
+      "t1": 0.95
+    },
+    {
+      "route": "ossuary_loop",
+      "segment": 7,
+      "t0": 0.5225,
+      "t1": 0.9775
+    },
+    {
+      "route": "bell_loop",
+      "segment": 2,
+      "t0": 0.0,
+      "t1": 0.4775
+    },
+    {
+      "route": "bell_loop",
+      "segment": 4,
+      "t0": 0.3483,
+      "t1": 0.7183
+    },
+    {
+      "route": "cave_bypass",
+      "segment": 0,
+      "t0": 0.0,
+      "t1": 1.0
+    },
+    {
+      "route": "cave_bypass",
+      "segment": 1,
+      "t0": 0.0,
+      "t1": 1.0
+    },
+    {
+      "route": "cave_bypass",
+      "segment": 2,
+      "t0": 0.0,
+      "t1": 1.0
+    }
+  ],
+  "props": [
+    {
+      "at": [
+        -40.206,
+        0.0,
+        -29.587
+      ],
+      "facing": [
+        -0.2425,
+        0.9701
+      ],
+      "room": "entry",
+      "set": "refectory_v2"
+    },
+    {
+      "at": [
+        -46.21,
+        0.0,
+        -24.219
+      ],
+      "facing": [
+        1.0,
+        0.0
+      ],
+      "room": "entry",
+      "set": "refectory_v0"
+    },
+    {
+      "at": [
+        -17.568,
+        0.0,
+        -27.092
+      ],
+      "facing": [
+        -1.0,
+        0.0
+      ],
+      "room": "antechamber",
+      "set": "votive_v2"
+    },
+    {
+      "at": [
+        40.21,
+        -4.0,
+        -9.781
+      ],
+      "facing": [
+        -1.0,
+        0.0
+      ],
+      "room": "restraint",
+      "set": "refectory_v0"
+    },
+    {
+      "at": [
+        27.809,
+        -4.0,
+        -15.2
+      ],
+      "facing": [
+        1.0,
+        0.0
+      ],
+      "room": "restraint",
+      "set": "refectory_v1"
+    },
+    {
+      "at": [
+        31.791,
+        -4.0,
+        7.811
+      ],
+      "facing": [
+        1.0,
+        0.0
+      ],
+      "room": "cells",
+      "set": "mortuary_v2"
+    },
+    {
+      "at": [
+        13.331,
+        -10.0,
+        -25.468
+      ],
+      "facing": [
+        0.0,
+        -1.0
+      ],
+      "room": "chapel",
+      "set": "votive_v0"
+    },
+    {
+      "at": [
+        9.359,
+        -10.0,
+        -25.511
+      ],
+      "facing": [
+        0.0,
+        -1.0
+      ],
+      "room": "chapel",
+      "set": "votive_v1"
+    },
+    {
+      "at": [
+        -7.092,
+        -10.0,
+        -41.432
+      ],
+      "facing": [
+        0.0,
+        1.0
+      ],
+      "room": "chapel",
+      "set": "votive_v2"
+    },
+    {
+      "at": [
+        -3.331,
+        -10.0,
+        -41.532
+      ],
+      "facing": [
+        0.0,
+        1.0
+      ],
+      "room": "chapel",
+      "set": "votive_v0"
+    },
+    {
+      "at": [
+        -4.141,
+        -18.0,
+        47.489
+      ],
+      "facing": [
+        0.0,
+        -1.0
+      ],
+      "room": "nave",
+      "set": "votive_v1"
+    },
+    {
+      "at": [
+        -8.408,
+        -18.0,
+        47.432
+      ],
+      "facing": [
+        0.0,
+        -1.0
+      ],
+      "room": "nave",
+      "set": "votive_v2"
+    },
+    {
+      "at": [
+        -12.532,
+        -18.0,
+        44.331
+      ],
+      "facing": [
+        1.0,
+        0.0
+      ],
+      "room": "nave",
+      "set": "votive_v0"
+    },
+    {
+      "at": [
+        -12.489,
+        -18.0,
+        40.359
+      ],
+      "facing": [
+        1.0,
+        0.0
+      ],
+      "room": "nave",
+      "set": "votive_v1"
+    },
+    {
+      "at": [
+        -37.627,
+        -10.0,
+        -41.357
+      ],
+      "facing": [
+        0.0,
+        1.0
+      ],
+      "room": "ossuary",
+      "set": "ossuary_v1"
+    },
+    {
+      "at": [
+        -33.576,
+        -10.0,
+        -41.357
+      ],
+      "facing": [
+        0.0,
+        1.0
+      ],
+      "room": "ossuary",
+      "set": "ossuary_v2"
+    },
+    {
+      "at": [
+        -30.132,
+        -10.0,
+        -41.357
+      ],
+      "facing": [
+        0.0,
+        1.0
+      ],
+      "room": "ossuary",
+      "set": "ossuary_v0"
+    },
+    {
+      "at": [
+        -21.643,
+        -10.0,
+        -16.576
+      ],
+      "facing": [
+        -1.0,
+        0.0
+      ],
+      "room": "bones",
+      "set": "ossuary_v2"
+    },
+    {
+      "at": [
+        -40.357,
+        -10.0,
+        -14.868
+      ],
+      "facing": [
+        1.0,
+        0.0
+      ],
+      "room": "bones",
+      "set": "ossuary_v0"
+    },
+    {
+      "at": [
+        40.8,
+        -18.0,
+        47.191
+      ],
+      "facing": [
+        0.0,
+        -1.0
+      ],
+      "room": "bell",
+      "set": "refectory_v1"
+    },
+    {
+      "at": [
+        31.326,
+        -18.0,
+        30.906
+      ],
+      "facing": [
+        0.0,
+        1.0
+      ],
+      "room": "bell",
+      "set": "refectory_v2"
+    },
+    {
+      "at": [
+        35.719,
+        -18.0,
+        30.79
+      ],
+      "facing": [
+        0.0,
+        1.0
+      ],
+      "room": "bell",
+      "set": "refectory_v0"
+    },
+    {
+      "at": [
+        27.568,
+        -28.0,
+        -0.908
+      ],
+      "facing": [
+        1.0,
+        0.0
+      ],
+      "room": "choir",
+      "set": "votive_v2"
+    },
+    {
+      "at": [
+        27.468,
+        -28.0,
+        -5.669
+      ],
+      "facing": [
+        1.0,
+        0.0
+      ],
+      "room": "choir",
+      "set": "votive_v0"
+    },
+    {
+      "at": [
+        32.141,
+        -28.0,
+        -11.489
+      ],
+      "facing": [
+        0.0,
+        1.0
+      ],
+      "room": "choir",
+      "set": "votive_v1"
+    },
+    {
+      "at": [
+        28.458,
+        -28.0,
+        -10.241
+      ],
+      "facing": [
+        0.7071,
+        0.7071
+      ],
+      "room": "choir",
+      "set": "votive_v2"
     }
   ],
   "rooms": [
     "antechamber",
-    "entry"
-  ]
+    "bell",
+    "bones",
+    "cells",
+    "chapel",
+    "choir",
+    "entry",
+    "first_stair_hall",
+    "nave",
+    "ossuary",
+    "restraint",
+    "second_stair_hall",
+    "window"
+  ],
+  "tops": {
+    "antechamber": 8.965,
+    "bell": -2.835,
+    "bones": -4.635,
+    "cells": 2.965,
+    "chapel": 9.015,
+    "choir": -5.5,
+    "entry": 7.404,
+    "first_stair_hall": 2.49,
+    "nave": 5.3,
+    "ossuary": -0.5,
+    "restraint": 12.565,
+    "second_stair_hall": -13.685,
+    "window": -2.635
+  }
 }
