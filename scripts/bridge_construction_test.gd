@@ -120,6 +120,7 @@ func deck_agreement(dungeon: RedDescentDungeon, routes: Array[Dictionary], failu
 		if not bool(path["wood"]) or bool(path["enclosed"]):
 			continue
 		var points: PackedVector3Array = path["points"] as PackedVector3Array
+		var gone: Array[PackedVector2Array] = missing_boards(String(path["id"]))
 		for index: int in range(points.size() - 1):
 			var along: Vector3 = flat(points[index + 1] - points[index])
 			var lateral: Vector3 = Vector3(-along.z, 0, along.x)
@@ -130,17 +131,40 @@ func deck_agreement(dungeon: RedDescentDungeon, routes: Array[Dictionary], failu
 					# Three rays 10 cm apart: at least one lands on a board, not a gap.
 					for shift: float in [0.0, 0.1, 0.2]:
 						var at: Vector3 = points[index].lerp(points[index + 1], float(sample) / float(count)) + lateral * offset + along * shift
+						if missing_board(gone, at):
+							continue
 						var ray: PhysicsRayQueryParameters3D = PhysicsRayQueryParameters3D.create(at + Vector3.UP * 0.5, at - Vector3.UP * 0.5)
 						var hit: Dictionary = space.intersect_ray(ray)
 						var board: float = board_top(cells, at)
 						if not hit.is_empty() and board > -INF:
 							best = minf(best, absf(board - (hit["position"] as Vector3).y))
+					if best == INF:
+						continue
 					samples += 1
 					if best > 0.03:
 						failures.append("Baked deck of %s segment %d is %.3f m off the walking surface near %s" % [path["id"], index, best, points[index].lerp(points[index + 1], float(sample) / float(count))])
 					elif best < INF:
 						worst = maxf(worst, best)
 	return {"bridges": structure.bridges.size(), "samples": samples, "max_m": snappedf(worst, 0.001)}
+
+## Boards the physics-aged bake left out on purpose (rot or knocked off),
+## from the bake report: footprints in the Godot XZ plane.
+func missing_boards(route: String) -> Array[PackedVector2Array]:
+	var result: Array[PackedVector2Array] = []
+	var report: Variant = JSON.parse_string(FileAccess.get_file_as_string(DungeonStructure.BRIDGE_ROOT + route + ".json"))
+	if report is Dictionary:
+		for quad: Variant in (report as Dictionary).get("missing_boards_godot_xz", []):
+			var polygon: PackedVector2Array = PackedVector2Array()
+			for corner: Variant in quad as Array:
+				polygon.append(Vector2(float((corner as Array)[0]), float((corner as Array)[1])))
+			result.append(polygon)
+	return result
+
+func missing_board(gone: Array[PackedVector2Array], at: Vector3) -> bool:
+	for polygon: PackedVector2Array in gone:
+		if Geometry2D.is_point_in_polygon(Vector2(at.x, at.z), polygon):
+			return true
+	return false
 
 func board_top(cells: Dictionary[Vector2i, PackedVector3Array], at: Vector3) -> float:
 	var faces: PackedVector3Array = cells.get(Vector2i(floori(at.x), floori(at.z)), PackedVector3Array())

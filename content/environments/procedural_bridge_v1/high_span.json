@@ -1,23 +1,23 @@
 {
   "ao": {
     "Iron_0": {
-      "mean": 0.489,
+      "mean": 0.495,
       "min": 0.18
     },
     "Iron_1": {
-      "mean": 0.434,
+      "mean": 0.423,
       "min": 0.18
     },
     "Iron_2": {
-      "mean": 0.41,
+      "mean": 0.425,
       "min": 0.18
     },
     "Iron_3": {
-      "mean": 0.445,
+      "mean": 0.437,
       "min": 0.18
     },
     "Iron_4": {
-      "mean": 0.425,
+      "mean": 0.429,
       "min": 0.18
     },
     "Rope_0": {
@@ -25,11 +25,11 @@
       "min": 0.18
     },
     "Rope_1": {
-      "mean": 0.711,
+      "mean": 0.719,
       "min": 0.18
     },
     "Rope_2": {
-      "mean": 0.708,
+      "mean": 0.706,
       "min": 0.18
     },
     "Rope_3": {
@@ -37,44 +37,315 @@
       "min": 0.18
     },
     "Rope_4": {
-      "mean": 0.756,
+      "mean": 0.748,
       "min": 0.18
     },
     "Wood_0": {
-      "mean": 0.692,
+      "mean": 0.689,
       "min": 0.18
     },
     "Wood_1": {
-      "mean": 0.679,
+      "mean": 0.672,
       "min": 0.18
     },
     "Wood_2": {
-      "mean": 0.658,
+      "mean": 0.661,
       "min": 0.18
     },
     "Wood_3": {
-      "mean": 0.686,
+      "mean": 0.682,
       "min": 0.18
     },
     "Wood_4": {
-      "mean": 0.672,
+      "mean": 0.677,
       "min": 0.18
     }
   },
+  "attempts": [
+    {
+      "attempt": 0,
+      "ball": false,
+      "boards": 161,
+      "class": "untouched",
+      "fallen": 0,
+      "frames": 17,
+      "hanging_rails": 0,
+      "intensity": 0.0,
+      "lane_blocked": 0,
+      "lane_max_deviation_m": 0.0042,
+      "lane_samples": 342,
+      "leaning_posts": 0,
+      "loose": 0,
+      "loose_share": 0.0,
+      "max_board_move_m": 0.0002,
+      "max_post_lean_deg": 0.0,
+      "missing": 0,
+      "residual_speed_m_s": 0.0,
+      "score": 0.0,
+      "settled": true,
+      "tremor": null,
+      "weak_share": 0.05
+    },
+    {
+      "attempt": 1,
+      "ball": false,
+      "boards": 161,
+      "class": "untouched",
+      "fallen": 0,
+      "frames": 68,
+      "hanging_rails": 0,
+      "intensity": 0.4,
+      "lane_blocked": 0,
+      "lane_max_deviation_m": 0.0041,
+      "lane_samples": 342,
+      "leaning_posts": 0,
+      "loose": 1,
+      "loose_share": 0.006,
+      "max_board_move_m": 0.0169,
+      "max_post_lean_deg": 0.0,
+      "missing": 0,
+      "residual_speed_m_s": 0.0026,
+      "score": 0.0,
+      "settled": true,
+      "tremor": {
+        "amplitude_m": 0.008,
+        "frequencies_hz": [
+          7.77,
+          7.98,
+          5.6
+        ],
+        "intensity": 0.4,
+        "seconds": 1.5
+      },
+      "weak_share": 0.1
+    },
+    {
+      "attempt": 2,
+      "ball": true,
+      "boards": 159,
+      "class": "damaged",
+      "fallen": 1,
+      "frames": 900,
+      "hanging_rails": 3,
+      "intensity": 0.7,
+      "lane_blocked": 0,
+      "lane_max_deviation_m": 0.0066,
+      "lane_samples": 339,
+      "leaning_posts": 0,
+      "loose": 4,
+      "loose_share": 0.025,
+      "max_board_move_m": 0.0336,
+      "max_post_lean_deg": 0.0,
+      "missing": 2,
+      "residual_speed_m_s": 0.515,
+      "score": -10.5,
+      "settled": false,
+      "tremor": {
+        "amplitude_m": 0.014,
+        "frequencies_hz": [
+          7.52,
+          6.29,
+          7.63
+        ],
+        "intensity": 0.7,
+        "seconds": 1.5
+      },
+      "weak_share": 0.15
+    },
+    {
+      "attempt": 3,
+      "ball": false,
+      "boards": 161,
+      "class": "collapsed",
+      "fallen": 2,
+      "frames": 900,
+      "hanging_rails": 4,
+      "intensity": 1.0,
+      "lane_blocked": 0,
+      "lane_max_deviation_m": 0.0122,
+      "lane_samples": 342,
+      "leaning_posts": 0,
+      "loose": 7,
+      "loose_share": 0.043,
+      "max_board_move_m": 0.0457,
+      "max_post_lean_deg": 0.86,
+      "missing": 0,
+      "residual_speed_m_s": 0.485,
+      "score": -50.0,
+      "settled": false,
+      "tremor": {
+        "amplitude_m": 0.02,
+        "frequencies_hz": [
+          6.4,
+          5.27,
+          5.32
+        ],
+        "intensity": 1.0,
+        "seconds": 1.5
+      },
+      "weak_share": 0.2
+    },
+    {
+      "attempt": 4,
+      "ball": true,
+      "boards": 161,
+      "class": "aged",
+      "fallen": 0,
+      "frames": 900,
+      "hanging_rails": 1,
+      "intensity": 1.0,
+      "lane_blocked": 0,
+      "lane_max_deviation_m": 0.0035,
+      "lane_samples": 342,
+      "leaning_posts": 0,
+      "loose": 14,
+      "loose_share": 0.087,
+      "max_board_move_m": 0.0634,
+      "max_post_lean_deg": 0.86,
+      "missing": 0,
+      "residual_speed_m_s": 0.3464,
+      "score": 6.58,
+      "settled": false,
+      "tremor": {
+        "amplitude_m": 0.02,
+        "frequencies_hz": [
+          7.43,
+          6.0,
+          5.95
+        ],
+        "intensity": 1.0,
+        "seconds": 1.5
+      },
+      "weak_share": 0.25
+    },
+    {
+      "attempt": 5,
+      "ball": false,
+      "boards": 161,
+      "class": "unwalkable",
+      "fallen": 2,
+      "frames": 900,
+      "hanging_rails": 3,
+      "intensity": 1.3,
+      "lane_blocked": 0,
+      "lane_max_deviation_m": 0.0588,
+      "lane_samples": 342,
+      "leaning_posts": 0,
+      "loose": 8,
+      "loose_share": 0.05,
+      "max_board_move_m": 0.293,
+      "max_post_lean_deg": 0.0,
+      "missing": 0,
+      "residual_speed_m_s": 0.5569,
+      "score": -100.0,
+      "settled": false,
+      "tremor": {
+        "amplitude_m": 0.026,
+        "frequencies_hz": [
+          5.64,
+          5.4,
+          5.4
+        ],
+        "intensity": 1.3,
+        "seconds": 1.5
+      },
+      "weak_share": 0.25
+    },
+    {
+      "attempt": 6,
+      "ball": true,
+      "boards": 161,
+      "class": "damaged",
+      "fallen": 1,
+      "frames": 900,
+      "hanging_rails": 2,
+      "intensity": 1.7,
+      "lane_blocked": 0,
+      "lane_max_deviation_m": 0.0064,
+      "lane_samples": 342,
+      "leaning_posts": 0,
+      "loose": 11,
+      "loose_share": 0.068,
+      "max_board_move_m": 0.1301,
+      "max_post_lean_deg": 0.0,
+      "missing": 0,
+      "residual_speed_m_s": 88.8867,
+      "score": -11.36,
+      "settled": false,
+      "tremor": {
+        "amplitude_m": 0.034,
+        "frequencies_hz": [
+          5.01,
+          7.18,
+          6.19
+        ],
+        "intensity": 1.7,
+        "seconds": 1.5
+      },
+      "weak_share": 0.3
+    },
+    {
+      "attempt": 7,
+      "ball": false,
+      "boards": 160,
+      "class": "collapsed",
+      "fallen": 3,
+      "frames": 900,
+      "hanging_rails": 4,
+      "intensity": 2.2,
+      "lane_blocked": 0,
+      "lane_max_deviation_m": 0.016,
+      "lane_samples": 341,
+      "leaning_posts": 0,
+      "loose": 23,
+      "loose_share": 0.144,
+      "max_board_move_m": 0.158,
+      "max_post_lean_deg": 0.36,
+      "missing": 1,
+      "residual_speed_m_s": 0.4674,
+      "score": -50.0,
+      "settled": false,
+      "tremor": {
+        "amplitude_m": 0.044,
+        "frequencies_hz": [
+          7.28,
+          6.13,
+          5.24
+        ],
+        "intensity": 2.2,
+        "seconds": 1.5
+      },
+      "weak_share": 0.35
+    }
+  ],
   "blender": "5.2.2 LTS",
-  "boards": 161,
+  "chosen_attempt": 4,
   "files": {
-    "content/environments/procedural_bridge_v1/high_span.glb": "18cf5cc059904b3c3f5ec1da5a4923c02c1079c0885a27b33057dea8a0db2a84"
+    "/private/tmp/claude-501/-Users-theochernin-Projects-MultiPlayerProject/3dd698c1-6742-4151-b556-74615bac27ed/scratchpad/bridge_try/high_span.glb": "1b968c5ba96f675ba9ec59732dd38960bc867907134a91519f0600a31050f327"
+  },
+  "final": {
+    "boards": 161,
+    "fallen": 0,
+    "hanging_rails": 1,
+    "lane_blocked": 0,
+    "lane_max_deviation_m": 0.0035,
+    "lane_samples": 342,
+    "leaning_posts": 0,
+    "loose": 14,
+    "loose_share": 0.087,
+    "max_board_move_m": 0.0637,
+    "max_post_lean_deg": 0.86,
+    "missing": 0
   },
   "layout_hash": "cab14c2f9b8382ab855aa0c56ee6d315e0c5ed0c6463a8747e4cf3eee25fb27d",
   "layout_source": "content/environments/procedural_bridge_v1/layout.json",
-  "method": "deck follows the walking ribbon; boards on level s-lines; stringers mitered on node lines; posts outside the edge with handrail and catenary rope; Cycles AO in Color.R",
+  "method": "deck follows the walking ribbon; every board, post and rail a rigid body with nails, hinges and pins of random strength; seeded tremor and rolling-ball attempts; most believable walkable attempt kept; Cycles AO in Color.R",
+  "missing_boards_godot_xz": [],
   "objects": 15,
-  "posts": 51,
-  "samples": 32,
+  "picked_by": "score",
+  "samples": 16,
   "seat_depth": 0.68,
   "seed": 20261024,
-  "segments": 5,
   "stringer_bottom": 0.46,
-  "triangles": 48484
+  "triangles": 49892
 }
