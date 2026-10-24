@@ -25,19 +25,19 @@
       "min": 0.18
     },
     "Rope_1": {
-      "mean": 0.766,
+      "mean": 0.753,
       "min": 0.18
     },
     "Rope_2": {
-      "mean": 0.773,
+      "mean": 0.76,
       "min": 0.18
     },
     "Rope_3": {
-      "mean": 0.776,
+      "mean": 0.762,
       "min": 0.18
     },
     "Rope_4": {
-      "mean": 0.792,
+      "mean": 0.773,
       "min": 0.18
     },
     "Wood_0": {
@@ -64,7 +64,7 @@
   "blender": "5.2.2 LTS",
   "boards": 161,
   "files": {
-    "content/environments/procedural_bridge_v1/high_span.glb": "4433519c407679d3341fae0f35dde33b4399deb26e5e5d02db18006b6bfb8226"
+    "content/environments/procedural_bridge_v1/high_span.glb": "5e5832dcc6d56c30c027bf99c3b60eabc420fe16ef22bd31ffd74a0aceeb6bc4"
   },
   "layout_hash": "cab14c2f9b8382ab855aa0c56ee6d315e0c5ed0c6463a8747e4cf3eee25fb27d",
   "layout_source": "content/environments/procedural_bridge_v1/layout.json",
@@ -76,5 +76,5 @@
   "seed": 20261024,
   "segments": 5,
   "stringer_bottom": 0.46,
-  "triangles": 46132
+  "triangles": 48484
 }

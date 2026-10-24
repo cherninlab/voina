@@ -29,23 +29,23 @@
       "min": 0.18
     },
     "Rope_0": {
-      "mean": 0.784,
-      "min": 0.18
-    },
-    "Rope_1": {
-      "mean": 0.818,
-      "min": 0.18
-    },
-    "Rope_2": {
       "mean": 0.767,
       "min": 0.18
     },
+    "Rope_1": {
+      "mean": 0.794,
+      "min": 0.18
+    },
+    "Rope_2": {
+      "mean": 0.755,
+      "min": 0.18
+    },
     "Rope_3": {
-      "mean": 0.811,
+      "mean": 0.789,
       "min": 0.18
     },
     "Rope_4": {
-      "mean": 0.782,
+      "mean": 0.766,
       "min": 0.18
     },
     "Rope_5": {
@@ -53,7 +53,7 @@
       "min": 0.18
     },
     "Rope_6": {
-      "mean": 0.818,
+      "mean": 0.792,
       "min": 0.18
     },
     "Wood_0": {
@@ -88,7 +88,7 @@
   "blender": "5.2.2 LTS",
   "boards": 214,
   "files": {
-    "content/environments/procedural_bridge_v1/low_span.glb": "058a90dd07374edb034a25d82b66ac007547698efaed708f5c3ed32606e9bc71"
+    "content/environments/procedural_bridge_v1/low_span.glb": "464ec735a7a7ce86a004445a0c43503a0f5f8f550ef61ef284059892fed55e8f"
   },
   "layout_hash": "4765cad4d0a3f97f9ad53b57762e8a250ff013cc8fe713d4f79819c914493f8c",
   "layout_source": "content/environments/procedural_bridge_v1/layout.json",
@@ -100,5 +100,5 @@
   "seed": 20261024,
   "segments": 7,
   "stringer_bottom": 0.46,
-  "triangles": 64384
+  "triangles": 67408
 }

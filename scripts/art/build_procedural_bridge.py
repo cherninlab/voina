@@ -174,7 +174,7 @@ def build_route(route: dict, seed: int, report: dict) -> list:
             shapes.timber(wood, a, b, 0.13, 0.09, UP, rng, segment=0.5, start_cut=start_cut, end_cut=end_cut, chamfer=0.018)
             rope_points = curves.catenary(core.to_blender(stations[k][0] + UP * ROPE_HEIGHT),
                                           core.to_blender(stations[k + 1][0] + UP * ROPE_HEIGHT), 0.006, 12)
-            curves.tube(objects[stations[k][2]][3], [Vector(core.to_godot(p)) for p in rope_points], 0.022, sides=6,
+            curves.tube(objects[stations[k][2]][3], [Vector(core.to_godot(p)) for p in rope_points], 0.022, sides=8,
                         color=(1.0, rng.random(), 0.0, 1.0), twist=9.0)
     # Iron straps where each stringer bears on a transom (supported nodes only).
     supported = [Vector(s['deck']) for s in route['supports']]
@@ -198,7 +198,8 @@ def build_route(route: dict, seed: int, report: dict) -> list:
     for index, wood, iron, rope in objects:
         for builder in (wood, iron, rope):
             if builder.pieces:
-                obj = builder.to_object()
+                # Rope reads as one smooth twisted strand; timber keeps crisp arrises.
+                obj = builder.to_object(smooth_angle=180.0 if builder is rope else 35.0)
                 obj['layout_hash'] = route['layout_hash']
                 obj['route'] = rid
                 obj['segment'] = index
