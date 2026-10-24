@@ -1,0 +1,40 @@
+{
+  "id": "09-pot",
+  "input": "content/environments/procedural_props_aged_v1/conditioning/09-pot.png",
+  "output": "content/environments/procedural_props_aged_v1/raw_cl3d/09-pot.glb",
+  "seed_offset": 17108,
+  "height_m": 0.46,
+  "material": "terracotta",
+  "faces": 5000,
+  "target_dims_xyz_m": [
+    0.42,
+    0.46,
+    0.42
+  ],
+  "approved_input": "content/environments/red_descent/review/props_aged_v1/references_v1/09-pot.png",
+  "approved_input_sha256": "7ccfe1185c953529e597915b65e66b9dea9f3260784ed5d4a3ede89905290c00",
+  "preprocessing": "CL3D BackgroundRemover / local rembg bria-rmbg foreground mask",
+  "model": "CL3D/2mini",
+  "device": "mps",
+  "dtype": "float16",
+  "steps": 50,
+  "resolution": 384,
+  "seed": 20278132,
+  "inference_seconds": 79.94069908300298,
+  "vertices": 1250446,
+  "triangles": 2500904,
+  "watertight": false,
+  "input_sha256": "a769fc3d8534d33e52c288886a2e0c63a16b50bc03b005d7870228a4a11cbd6b",
+  "bounds": [
+    [
+      -0.9993792176246643,
+      -0.9724860191345215,
+      -0.9996845126152039
+    ],
+    [
+      0.996584951877594,
+      0.9262890815734863,
+      0.9944560527801514
+    ]
+  ]
+}

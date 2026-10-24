@@ -1,0 +1,158 @@
+[
+  {
+    "id": "mortuary_v0",
+    "family": "mortuary",
+    "variant": 0,
+    "seed": 171000,
+    "intensity": 0.0,
+    "rolling_ball": false,
+    "baseline": {
+      "settled": true,
+      "frame": 46,
+      "seconds": 1.533,
+      "residual_speed_m_s": 0.0,
+      "last_mover": null,
+      "threshold_m_s": 0.005,
+      "max_speed_per_frame": [
+        0.22354,
+        0.5608,
+        0.81658,
+        1.03347,
+        0.60948,
+        0.3154,
+        0.21427,
+        0.27085,
+        0.52524,
+        0.5103,
+        0.34854,
+        0.20098,
+        0.16022,
+        0.26833,
+        0.31013,
+        0.25651,
+        0.07423,
+        0.14757,
+        0.04531,
+        0.06408,
+        0.05146,
+        0.05852,
+        0.04261,
+        0.00529,
+        0.02714,
+        0.00344,
+        0.00402,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    "offline_collision": "convex movers; concave kinematic shelving",
+    "fractured_pot_cells": 0,
+    "settled": {
+      "settled": true,
+      "frame": 23,
+      "seconds": 0.767,
+      "residual_speed_m_s": 0.0,
+      "last_mover": null,
+      "threshold_m_s": 0.005,
+      "max_speed_per_frame": [
+        0.00969,
+        0.00749,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    "movement": {
+      "05-coffin-body": [
+        1.629214900278127e-05,
+        0.0
+      ],
+      "06-coffin-lid": [
+        7.536483246740549e-06,
+        0.0
+      ],
+      "07-skull": [
+        8.914363596022014e-06,
+        0.0
+      ],
+      "08-femur": [
+        2.4369919785290958e-06,
+        0.0
+      ]
+    },
+    "max_translation_m": 1.629214900278127e-05,
+    "max_rotation_deg": 0.0,
+    "calm_unchanged": true,
+    "contact_gaps_m": {
+      "05-coffin-body": 0.0009734384948387742,
+      "06-coffin-lid": 0.0009895653929561377,
+      "07-skull": 0.0009807721944525838,
+      "08-femur": 0.0009978380985558033
+    },
+    "max_contact_gap_m": 0.0009978380985558033,
+    "penetration": {
+      "max_m": 0.0,
+      "pair": null,
+      "pairs_touching": 0
+    },
+    "lane_clearance_m": 0.5249035358428955,
+    "reserved_lane_blender_y_m": [
+      -2.2,
+      -1.0
+    ],
+    "bounds_godot": {
+      "min": [
+        -1.2519652843475342,
+        0.0009734383202157915,
+        -1.1139014959335327
+      ],
+      "max": [
+        1.3667861223220825,
+        0.33493778109550476,
+        0.4750964641571045
+      ]
+    },
+    "tremor": null,
+    "valid": true,
+    "glb": "content/environments/procedural_props_aged_v1/sets/mortuary_v0.glb",
+    "sha256": "c1127ee4788c62a9ea0936dc85b7663b51e428109a7968958cbe2a108441eb25",
+    "collision_hulls": 2,
+    "review_images": [
+      "content/environments/red_descent/review/props_aged_v1/physics_v1/mortuary_v0-front.png",
+      "content/environments/red_descent/review/props_aged_v1/physics_v1/mortuary_v0-back.png"
+    ]
+  }
+]

@@ -1,0 +1,40 @@
+{
+  "id": "08-femur",
+  "input": "content/environments/procedural_props_aged_v1/conditioning/08-femur.png",
+  "output": "content/environments/procedural_props_aged_v1/raw_cl3d/08-femur.glb",
+  "seed_offset": 17107,
+  "height_m": 0.06,
+  "material": "bone",
+  "faces": 3000,
+  "target_dims_xyz_m": [
+    0.09,
+    0.06,
+    0.43
+  ],
+  "approved_input": "content/environments/red_descent/review/props_aged_v1/references_v1/08-femur.png",
+  "approved_input_sha256": "f3694eadc740c780e3fb08562c10b57e9f2c898de471529c49efc7a598bdc829",
+  "preprocessing": "CL3D BackgroundRemover / local rembg bria-rmbg foreground mask",
+  "model": "CL3D/2mini",
+  "device": "mps",
+  "dtype": "float16",
+  "steps": 50,
+  "resolution": 384,
+  "seed": 20278131,
+  "inference_seconds": 78.48590808399968,
+  "vertices": 92966,
+  "triangles": 185928,
+  "watertight": true,
+  "input_sha256": "00aad6bacf2b1c9b0109d8f0fe6915c4ea8a07b08e087f18cb2e880761ddd876",
+  "bounds": [
+    [
+      -1.0002259016036987,
+      -0.21252752840518951,
+      -0.30340445041656494
+    ],
+    [
+      0.9941915273666382,
+      0.17459385097026825,
+      0.2964080274105072
+    ]
+  ]
+}

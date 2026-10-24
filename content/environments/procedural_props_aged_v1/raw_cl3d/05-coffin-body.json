@@ -1,0 +1,40 @@
+{
+  "id": "05-coffin-body",
+  "input": "content/environments/procedural_props_aged_v1/conditioning/05-coffin-body.png",
+  "output": "content/environments/procedural_props_aged_v1/raw_cl3d/05-coffin-body.glb",
+  "seed_offset": 17104,
+  "height_m": 0.38,
+  "material": "oak",
+  "faces": 8000,
+  "target_dims_xyz_m": [
+    0.64,
+    0.38,
+    1.9
+  ],
+  "approved_input": "content/environments/red_descent/review/props_aged_v1/references_v1/05-coffin-body.png",
+  "approved_input_sha256": "9798a20e096ba1407a41841c19f04a1124dd4ef889b18a7fe7eef90db563ef70",
+  "preprocessing": "CL3D BackgroundRemover / local rembg bria-rmbg foreground mask",
+  "model": "CL3D/2mini",
+  "device": "mps",
+  "dtype": "float16",
+  "steps": 50,
+  "resolution": 384,
+  "seed": 20278128,
+  "inference_seconds": 79.7078231250016,
+  "vertices": 219916,
+  "triangles": 439828,
+  "watertight": true,
+  "input_sha256": "230b31b369ad5338d4a97081bdf4a251e88df047f211798eec470ed520f236bc",
+  "bounds": [
+    [
+      -1.0008972883224487,
+      -0.1818760186433792,
+      -0.3802981376647949
+    ],
+    [
+      0.9959467649459839,
+      0.170662060379982,
+      0.3767618238925934
+    ]
+  ]
+}

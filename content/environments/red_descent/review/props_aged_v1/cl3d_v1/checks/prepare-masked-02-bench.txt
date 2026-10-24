@@ -1,0 +1,29 @@
+22:47:39 | INFO: Data are loaded, start creating Blender stuff
+22:47:39 | INFO: Blender create Mesh node geometry_0
+22:47:40 | INFO: glTF import finished in 0.48s
+/Users/theochernin/Projects/MultiPlayerProject-agents/theo-codex-43/scripts/art/build_scattered_props.py:73: DeprecationWarning: 'Material.use_nodes' is expected to be removed in Blender 6.0
+  material.use_nodes = True
+Warning: No mesh data to join
+INFO Draco is available, use library at /Applications/Blender.app/Contents/Resources/5.2/scripts/addons_core/io_scene_gltf2/libbf_intern_draco_bridge.dylib
+INFO MeshOptimizer is available, use library at /Applications/Blender.app/Contents/Resources/5.2/scripts/addons_core/io_scene_gltf2/libbf_intern_meshopt_bridge.dylib
+22:47:46 | INFO: Starting glTF 2.0 export
+22:47:46 | INFO: Extracting primitive: geometry_0
+22:47:46 | INFO: Primitives created: 1
+22:47:46 | INFO: Finished glTF 2.0 export in 0.025272846221923828 s
+
+22:47:46 | INFO: Starting glTF 2.0 export
+22:47:46 | INFO: Extracting primitive: geometry_0
+22:47:46 | INFO: Primitives created: 1
+22:47:46 | INFO: Finished glTF 2.0 export in 0.0056498050689697266 s
+
+22:47:46 | INFO: Starting glTF 2.0 export
+22:47:46 | INFO: Extracting primitive: geometry_0
+22:47:46 | INFO: Primitives created: 1
+22:47:46 | INFO: Finished glTF 2.0 export in 0.004786968231201172 s
+00:14.221  render           | Saved: '/var/folders/l1/ffgp3l9n2gd1g8gjswvkfqyw0000gn/T/tmpjrx6qdsi/view.png'
+00:21.852  render           | Saved: '/var/folders/l1/ffgp3l9n2gd1g8gjswvkfqyw0000gn/T/tmp7klgsdx9/view.png'
+
+PROP_SOURCE_READY {"id": "02-bench", "raw": "content/environments/procedural_props_aged_v1/raw_cl3d/02-bench.glb", "raw_sha256": "b55fcdce890cb1b045bb55a53c67704428873b9742c6c32122417df13e86feab", "approved_image": "content/environments/red_descent/review/props_aged_v1/references_v1/02-bench.png", "approved_image_sha256": "42eed024d279b1b2c638652ecbb276e62a9cda1471d1745f185ee9693fcd23c7", "conditioning_image": "content/environments/procedural_props_aged_v1/conditioning/02-bench.png", "conditioning_image_sha256": "67cba9cd759b7ddaaeec64c8491cb968666df1e488eaf81ea4255133a7996d65", "scale_policy": "uniform; longest dimension matches approved target; origin at ground centre", "uniform_scale": 0.7022678896343941, "cleanup": {"source_components": 1, "discarded_vertices": 0, "boundary_edges_after_cleanup": 0, "nonmanifold_edges_after_cleanup": 0}, "lods": [{"path": "content/environments/procedural_props_aged_v1/sources/02-bench_lod0.glb", "triangles": 6000, "sha256": "2ca352d7fb053893d5f2ff19560a4d97ebfd1b3dde29a8d4f93bc802eb1ee97d", "dimensions_godot_m": [1.4003207683563232, 0.47029202329576947, 0.44333939254283905]}, {"path": "content/environments/procedural_props_aged_v1/sources/02-bench_lod1.glb", "triangles": 2000, "sha256": "f491ea9853ed7b2cd1117f5e2c514d8b5fc7f5669fdbe684df013f5a6e19c7a1", "dimensions_godot_m": [1.4003289341926575, 0.47038280608830974, 0.44339755177497864]}, {"path": "content/environments/procedural_props_aged_v1/sources/02-bench_lod2.glb", "triangles": 750, "sha256": "e099df99f47baac148503ac8cf24b2c1c82cd0ee1a387ca9173a7d022ef822f0", "dimensions_godot_m": [1.399279534816742, 0.4696133697289042, 0.4431706517934799]}], "review_images": ["content/environments/red_descent/review/props_aged_v1/cl3d_v1/02-bench-front.png", "content/environments/red_descent/review/props_aged_v1/cl3d_v1/02-bench-back.png"], "interior_probe": {}, "materials": "neutral review clay; no inferred textures or UVs", "status": "mesh_review_pending"}
+Blender 5.2.2 LTS (hash d13f752e3b9c built 2026-09-15 01:49:19)
+
+Blender quit

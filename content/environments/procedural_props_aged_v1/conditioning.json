@@ -1,0 +1,92 @@
+[
+  {
+    "id": "01-table",
+    "approved_image": "content/environments/red_descent/review/props_aged_v1/references_v1/01-table.png",
+    "approved_image_sha256": "4b9a481c3abc4ca153a176916b259d89c2d3ae86c526f246a7977fc6daec7df8",
+    "conditioning": "content/environments/procedural_props_aged_v1/conditioning/01-table.png",
+    "conditioning_sha256": "89e0c813b196c354fc64f7cf105db5797fad5818180ce21515dd1c5b35e9b6a9",
+    "foreground_share": 0.35785992940266925,
+    "role": "internal CL3D conditioning; approved art original remains unchanged"
+  },
+  {
+    "id": "02-bench",
+    "approved_image": "content/environments/red_descent/review/props_aged_v1/references_v1/02-bench.png",
+    "approved_image_sha256": "42eed024d279b1b2c638652ecbb276e62a9cda1471d1745f185ee9693fcd23c7",
+    "conditioning": "content/environments/procedural_props_aged_v1/conditioning/02-bench.png",
+    "conditioning_sha256": "67cba9cd759b7ddaaeec64c8491cb968666df1e488eaf81ea4255133a7996d65",
+    "foreground_share": 0.300021489461263,
+    "role": "internal CL3D conditioning; approved art original remains unchanged"
+  },
+  {
+    "id": "03-shelf",
+    "approved_image": "content/environments/red_descent/review/props_aged_v1/references_v1/03-shelf.png",
+    "approved_image_sha256": "f82092dfd9395b9031125662d301dbf3bdee416743b1edf9e0980670e34765e7",
+    "conditioning": "content/environments/procedural_props_aged_v1/conditioning/03-shelf.png",
+    "conditioning_sha256": "1b5f3933f7e1c793344eae62ace40796cd371123c869de53516b954d0285b813",
+    "foreground_share": 0.5011556886836591,
+    "role": "internal CL3D conditioning; approved art original remains unchanged"
+  },
+  {
+    "id": "04-barrel",
+    "approved_image": "content/environments/red_descent/review/props_aged_v1/references_v1/04-barrel.png",
+    "approved_image_sha256": "3da56f2b9610164ad367a56020e134afedda9f7958a675597f368ac9a8d9fa82",
+    "conditioning": "content/environments/procedural_props_aged_v1/conditioning/04-barrel.png",
+    "conditioning_sha256": "0019c6041f831187511cc0332b559b8a29fd98b111b58e0dfec7deaa31c6d264",
+    "foreground_share": 0.4721573109705242,
+    "role": "internal CL3D conditioning; approved art original remains unchanged"
+  },
+  {
+    "id": "05-coffin-body",
+    "approved_image": "content/environments/red_descent/review/props_aged_v1/references_v1/05-coffin-body.png",
+    "approved_image_sha256": "9798a20e096ba1407a41841c19f04a1124dd4ef889b18a7fe7eef90db563ef70",
+    "conditioning": "content/environments/procedural_props_aged_v1/conditioning/05-coffin-body.png",
+    "conditioning_sha256": "230b31b369ad5338d4a97081bdf4a251e88df047f211798eec470ed520f236bc",
+    "foreground_share": 0.4519793192545573,
+    "role": "internal CL3D conditioning; approved art original remains unchanged"
+  },
+  {
+    "id": "06-coffin-lid",
+    "approved_image": "content/environments/red_descent/review/props_aged_v1/references_v1/06-coffin-lid.png",
+    "approved_image_sha256": "85c9dbb9a142ca8aee461ba0a7daf33a3fd7d536b6f053ce77afa846ce47c6c2",
+    "conditioning": "content/environments/procedural_props_aged_v1/conditioning/06-coffin-lid.png",
+    "conditioning_sha256": "6ac050c7bcd69d0b91c1e2284bdddac1c9e4766a49c2e65e6a74cbe21a9fb6f2",
+    "foreground_share": 0.3373819986979167,
+    "role": "internal CL3D conditioning; approved art original remains unchanged"
+  },
+  {
+    "id": "07-skull",
+    "approved_image": "content/environments/red_descent/review/props_aged_v1/references_v1/07-skull.png",
+    "approved_image_sha256": "ba24d41b391907394bed39c8d35d6adec7718c175876dbb8d2c057179b629551",
+    "conditioning": "content/environments/procedural_props_aged_v1/conditioning/07-skull.png",
+    "conditioning_sha256": "20792453473217a08710f3e92ea7c5c63d21c42138772182b4a7e4d107df4177",
+    "foreground_share": 0.46086360076486504,
+    "role": "internal CL3D conditioning; approved art original remains unchanged"
+  },
+  {
+    "id": "08-femur",
+    "approved_image": "content/environments/red_descent/review/props_aged_v1/references_v1/08-femur.png",
+    "approved_image_sha256": "f3694eadc740c780e3fb08562c10b57e9f2c898de471529c49efc7a598bdc829",
+    "conditioning": "content/environments/procedural_props_aged_v1/conditioning/08-femur.png",
+    "conditioning_sha256": "00aad6bacf2b1c9b0109d8f0fe6915c4ea8a07b08e087f18cb2e880761ddd876",
+    "foreground_share": 0.16949144999186197,
+    "role": "internal CL3D conditioning; approved art original remains unchanged"
+  },
+  {
+    "id": "09-pot",
+    "approved_image": "content/environments/red_descent/review/props_aged_v1/references_v1/09-pot.png",
+    "approved_image_sha256": "7ccfe1185c953529e597915b65e66b9dea9f3260784ed5d4a3ede89905290c00",
+    "conditioning": "content/environments/procedural_props_aged_v1/conditioning/09-pot.png",
+    "conditioning_sha256": "a769fc3d8534d33e52c288886a2e0c63a16b50bc03b005d7870228a4a11cbd6b",
+    "foreground_share": 0.5590856964136781,
+    "role": "internal CL3D conditioning; approved art original remains unchanged"
+  },
+  {
+    "id": "10-candle-holder",
+    "approved_image": "content/environments/red_descent/review/props_aged_v1/references_v1/10-candle-holder.png",
+    "approved_image_sha256": "1e5428fba86c9931af6a6e86e50cde436d320d62c5b23dde7b2ef6e7a3697f2a",
+    "conditioning": "content/environments/procedural_props_aged_v1/conditioning/10-candle-holder.png",
+    "conditioning_sha256": "d720f26ae9b58c290ba484e739081f15c24df54a8389109642ee76dcc41acfbc",
+    "foreground_share": 0.4679964451089734,
+    "role": "internal CL3D conditioning; approved art original remains unchanged"
+  }
+]

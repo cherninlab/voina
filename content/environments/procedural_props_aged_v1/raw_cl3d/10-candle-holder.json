@@ -1,0 +1,40 @@
+{
+  "id": "10-candle-holder",
+  "input": "content/environments/procedural_props_aged_v1/conditioning/10-candle-holder.png",
+  "output": "content/environments/procedural_props_aged_v1/raw_cl3d/10-candle-holder.glb",
+  "seed_offset": 17109,
+  "height_m": 0.24,
+  "material": "wax_iron",
+  "faces": 6000,
+  "target_dims_xyz_m": [
+    0.3,
+    0.24,
+    0.24
+  ],
+  "approved_input": "content/environments/red_descent/review/props_aged_v1/references_v1/10-candle-holder.png",
+  "approved_input_sha256": "1e5428fba86c9931af6a6e86e50cde436d320d62c5b23dde7b2ef6e7a3697f2a",
+  "preprocessing": "CL3D BackgroundRemover / local rembg bria-rmbg foreground mask",
+  "model": "CL3D/2mini",
+  "device": "mps",
+  "dtype": "float16",
+  "steps": 50,
+  "resolution": 384,
+  "seed": 20278133,
+  "inference_seconds": 87.2526547919988,
+  "vertices": 411940,
+  "triangles": 823884,
+  "watertight": false,
+  "input_sha256": "d720f26ae9b58c290ba484e739081f15c24df54a8389109642ee76dcc41acfbc",
+  "bounds": [
+    [
+      -0.9977664351463318,
+      -0.5145094990730286,
+      -0.6730414032936096
+    ],
+    [
+      1.000667691230774,
+      0.5106163024902344,
+      0.6702104210853577
+    ]
+  ]
+}

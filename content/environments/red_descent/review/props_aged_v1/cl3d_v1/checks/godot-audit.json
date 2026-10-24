@@ -1,0 +1,774 @@
+{
+  "audit_only": false,
+  "engine": {
+    "build": "official",
+    "hash": "ed1daf0bf001b61586d9930840f2f1394092c079",
+    "hex": 263938,
+    "major": 4,
+    "minor": 7,
+    "patch": 2,
+    "status": "stable",
+    "string": "4.7.2-stable (official)",
+    "timestamp": 0
+  },
+  "sets": [
+    {
+      "bodies": 2,
+      "bounds_position": [
+        -1.25196528434753,
+        0.000973438320215791,
+        -1.11390149593353
+      ],
+      "bounds_size": [
+        2.61875152587891,
+        0.333964347839355,
+        1.58899796009064
+      ],
+      "capture": "physics_v1/godot/mortuary_v0.png",
+      "convex_shapes": 2,
+      "meshes": 4,
+      "ok": true,
+      "path": "res://content/environments/procedural_props_aged_v1/sets/mortuary_v0.glb"
+    },
+    {
+      "bodies": 2,
+      "bounds_position": [
+        -1.28455400466919,
+        0.000973438320215791,
+        -1.0472868680954
+      ],
+      "bounds_size": [
+        2.61916828155518,
+        0.333964347839355,
+        1.60453343391418
+      ],
+      "capture": "physics_v1/godot/mortuary_v1.png",
+      "convex_shapes": 2,
+      "meshes": 4,
+      "ok": true,
+      "path": "res://content/environments/procedural_props_aged_v1/sets/mortuary_v1.glb"
+    },
+    {
+      "bodies": 2,
+      "bounds_position": [
+        -1.43883395195007,
+        0.000973438320215791,
+        -1.24054801464081
+      ],
+      "bounds_size": [
+        2.63854217529297,
+        0.333964347839355,
+        1.59426867961884
+      ],
+      "capture": "physics_v1/godot/mortuary_v2.png",
+      "convex_shapes": 2,
+      "meshes": 4,
+      "ok": true,
+      "path": "res://content/environments/procedural_props_aged_v1/sets/mortuary_v2.glb"
+    },
+    {
+      "bodies": 2,
+      "bounds_position": [
+        -0.618126630783081,
+        0.000984023557975888,
+        -1.09347915649414
+      ],
+      "bounds_size": [
+        1.17337274551392,
+        1.25299966335297,
+        1.26199507713318
+      ],
+      "capture": "physics_v1/godot/ossuary_v0.png",
+      "convex_shapes": 2,
+      "meshes": 4,
+      "ok": true,
+      "path": "res://content/environments/procedural_props_aged_v1/sets/ossuary_v0.glb"
+    },
+    {
+      "bodies": 2,
+      "bounds_position": [
+        -0.623433649539948,
+        0.000984045560471714,
+        -1.09347915649414
+      ],
+      "bounds_size": [
+        1.17867982387543,
+        1.25299966335297,
+        1.25305807590485
+      ],
+      "capture": "physics_v1/godot/ossuary_v1.png",
+      "convex_shapes": 2,
+      "meshes": 4,
+      "ok": true,
+      "path": "res://content/environments/procedural_props_aged_v1/sets/ossuary_v1.glb"
+    },
+    {
+      "bodies": 2,
+      "bounds_position": [
+        -0.555490076541901,
+        0.000972913578152657,
+        -1.09347915649414
+      ],
+      "bounds_size": [
+        1.72956895828247,
+        1.25301086902618,
+        1.70650863647461
+      ],
+      "capture": "physics_v1/godot/ossuary_v2.png",
+      "convex_shapes": 2,
+      "meshes": 6,
+      "ok": true,
+      "path": "res://content/environments/procedural_props_aged_v1/sets/ossuary_v2.glb"
+    },
+    {
+      "bodies": 3,
+      "bounds_position": [
+        -1.35037624835968,
+        0.000949676788877696,
+        -1.23953771591187
+      ],
+      "bounds_size": [
+        2.81901025772095,
+        0.749735057353973,
+        1.61111664772034
+      ],
+      "capture": "physics_v1/godot/refectory_v0.png",
+      "convex_shapes": 3,
+      "meshes": 3,
+      "ok": true,
+      "path": "res://content/environments/procedural_props_aged_v1/sets/refectory_v0.glb"
+    },
+    {
+      "bodies": 3,
+      "bounds_position": [
+        -1.37290132045746,
+        0.000949686160311103,
+        -1.2593058347702
+      ],
+      "bounds_size": [
+        2.82290363311768,
+        0.749735057353973,
+        1.62553811073303
+      ],
+      "capture": "physics_v1/godot/refectory_v1.png",
+      "convex_shapes": 3,
+      "meshes": 3,
+      "ok": true,
+      "path": "res://content/environments/procedural_props_aged_v1/sets/refectory_v1.glb"
+    },
+    {
+      "bodies": 3,
+      "bounds_position": [
+        -1.07582592964172,
+        0.000949678651522845,
+        -1.3555783033371
+      ],
+      "bounds_size": [
+        2.65184783935547,
+        0.749735057353973,
+        1.72516369819641
+      ],
+      "capture": "physics_v1/godot/refectory_v2.png",
+      "convex_shapes": 3,
+      "meshes": 3,
+      "ok": true,
+      "path": "res://content/environments/procedural_props_aged_v1/sets/refectory_v2.glb"
+    },
+    {
+      "bodies": 2,
+      "bounds_position": [
+        -0.918956160545349,
+        0.000949677196331322,
+        -0.918233752250671
+      ],
+      "bounds_size": [
+        1.74433064460754,
+        0.749735057353973,
+        1.11922454833984
+      ],
+      "capture": "physics_v1/godot/votive_v0.png",
+      "convex_shapes": 2,
+      "meshes": 3,
+      "ok": true,
+      "path": "res://content/environments/procedural_props_aged_v1/sets/votive_v0.glb"
+    },
+    {
+      "bodies": 2,
+      "bounds_position": [
+        -0.856988549232483,
+        0.000949688779655844,
+        -0.960947036743164
+      ],
+      "bounds_size": [
+        1.74811267852783,
+        0.749735057353973,
+        1.1343240737915
+      ],
+      "capture": "physics_v1/godot/votive_v1.png",
+      "convex_shapes": 2,
+      "meshes": 3,
+      "ok": true,
+      "path": "res://content/environments/procedural_props_aged_v1/sets/votive_v1.glb"
+    },
+    {
+      "bodies": 1,
+      "bounds_position": [
+        -0.974606156349182,
+        0.000949677429161966,
+        -1.01783287525177
+      ],
+      "bounds_size": [
+        2.13285064697266,
+        0.749735057353973,
+        1.49920153617859
+      ],
+      "capture": "physics_v1/godot/votive_v2.png",
+      "convex_shapes": 1,
+      "meshes": 5,
+      "ok": true,
+      "path": "res://content/environments/procedural_props_aged_v1/sets/votive_v2.glb"
+    }
+  ],
+  "sources": [
+    {
+      "bodies": 0,
+      "bounds_position": [
+        -0.950129568576813,
+        -0.0000859665451571345,
+        -0.441040545701981
+      ],
+      "bounds_size": [
+        1.90011632442474,
+        0.749532282352448,
+        0.882048010826111
+      ],
+      "capture": "cl3d_v1/godot/01-table.png",
+      "convex_shapes": 0,
+      "meshes": 1,
+      "ok": true,
+      "path": "res://content/environments/procedural_props_aged_v1/sources/01-table_lod0.glb"
+    },
+    {
+      "bodies": 0,
+      "bounds_position": [
+        -0.949388563632965,
+        0.000144784469739534,
+        -0.440597623586655
+      ],
+      "bounds_size": [
+        1.89905571937561,
+        0.748375356197357,
+        0.881182789802551
+      ],
+      "capture": "",
+      "convex_shapes": 0,
+      "meshes": 1,
+      "ok": true,
+      "path": "res://content/environments/procedural_props_aged_v1/sources/01-table_lod1.glb"
+    },
+    {
+      "bodies": 0,
+      "bounds_position": [
+        -0.949335813522339,
+        0.00189221045002341,
+        -0.438558787107468
+      ],
+      "bounds_size": [
+        1.89751195907593,
+        0.746289372444153,
+        0.878719687461853
+      ],
+      "capture": "",
+      "convex_shapes": 0,
+      "meshes": 1,
+      "ok": true,
+      "path": "res://content/environments/procedural_props_aged_v1/sources/01-table_lod2.glb"
+    },
+    {
+      "bodies": 0,
+      "bounds_position": [
+        -0.700209617614746,
+        -0.000119707459816709,
+        -0.221617355942726
+      ],
+      "bounds_size": [
+        1.40032076835632,
+        0.470292031764984,
+        0.443339407444
+      ],
+      "capture": "cl3d_v1/godot/02-bench.png",
+      "convex_shapes": 0,
+      "meshes": 1,
+      "ok": true,
+      "path": "res://content/environments/procedural_props_aged_v1/sources/02-bench_lod0.glb"
+    },
+    {
+      "bodies": 0,
+      "bounds_position": [
+        -0.700384378433228,
+        -0.000569459225516766,
+        -0.221943289041519
+      ],
+      "bounds_size": [
+        1.40032887458801,
+        0.470382809638977,
+        0.443397551774979
+      ],
+      "capture": "",
+      "convex_shapes": 0,
+      "meshes": 1,
+      "ok": true,
+      "path": "res://content/environments/procedural_props_aged_v1/sources/02-bench_lod1.glb"
+    },
+    {
+      "bodies": 0,
+      "bounds_position": [
+        -0.698771953582764,
+        -0.000569459225516766,
+        -0.221880525350571
+      ],
+      "bounds_size": [
+        1.39927959442139,
+        0.469613373279572,
+        0.443170666694641
+      ],
+      "capture": "",
+      "convex_shapes": 0,
+      "meshes": 1,
+      "ok": true,
+      "path": "res://content/environments/procedural_props_aged_v1/sources/02-bench_lod2.glb"
+    },
+    {
+      "bodies": 0,
+      "bounds_position": [
+        -0.555490076541901,
+        -0.0000692868052283302,
+        -0.19347919523716
+      ],
+      "bounds_size": [
+        1.11073625087738,
+        1.25005304813385,
+        0.387039422988892
+      ],
+      "capture": "cl3d_v1/godot/03-shelf.png",
+      "convex_shapes": 0,
+      "meshes": 1,
+      "ok": true,
+      "path": "res://content/environments/procedural_props_aged_v1/sources/03-shelf_lod0.glb"
+    },
+    {
+      "bodies": 0,
+      "bounds_position": [
+        -0.555814743041992,
+        0.000460483221104369,
+        -0.194176629185677
+      ],
+      "bounds_size": [
+        1.11077284812927,
+        1.24921798706055,
+        0.388846933841705
+      ],
+      "capture": "",
+      "convex_shapes": 0,
+      "meshes": 1,
+      "ok": true,
+      "path": "res://content/environments/procedural_props_aged_v1/sources/03-shelf_lod1.glb"
+    },
+    {
+      "bodies": 0,
+      "bounds_position": [
+        -0.553683817386627,
+        0.000216367654502392,
+        -0.193050667643547
+      ],
+      "bounds_size": [
+        1.10732221603394,
+        1.2500079870224,
+        0.388018846511841
+      ],
+      "capture": "",
+      "convex_shapes": 0,
+      "meshes": 1,
+      "ok": true,
+      "path": "res://content/environments/procedural_props_aged_v1/sources/03-shelf_lod2.glb"
+    },
+    {
+      "bodies": 0,
+      "bounds_position": [
+        -0.31894388794899,
+        0.000410453765653074,
+        -0.317829787731171
+      ],
+      "bounds_size": [
+        0.637591958045959,
+        0.74974262714386,
+        0.636028110980988
+      ],
+      "capture": "cl3d_v1/godot/04-barrel.png",
+      "convex_shapes": 0,
+      "meshes": 1,
+      "ok": true,
+      "path": "res://content/environments/procedural_props_aged_v1/sources/04-barrel_lod0.glb"
+    },
+    {
+      "bodies": 0,
+      "bounds_position": [
+        -0.319509029388428,
+        0.000628668232820928,
+        -0.317969590425491
+      ],
+      "bounds_size": [
+        0.638293266296387,
+        0.748616397380829,
+        0.637878656387329
+      ],
+      "capture": "",
+      "convex_shapes": 0,
+      "meshes": 1,
+      "ok": true,
+      "path": "res://content/environments/procedural_props_aged_v1/sources/04-barrel_lod1.glb"
+    },
+    {
+      "bodies": 0,
+      "bounds_position": [
+        -0.316140353679657,
+        0.00197106320410967,
+        -0.318216323852539
+      ],
+      "bounds_size": [
+        0.638360142707825,
+        0.746649384498596,
+        0.636558055877686
+      ],
+      "capture": "",
+      "convex_shapes": 0,
+      "meshes": 1,
+      "ok": true,
+      "path": "res://content/environments/procedural_props_aged_v1/sources/04-barrel_lod2.glb"
+    },
+    {
+      "bodies": 0,
+      "bounds_position": [
+        -0.950560867786407,
+        -0.000115693190309685,
+        -0.359970569610596
+      ],
+      "bounds_size": [
+        1.90051519870758,
+        0.335577875375748,
+        0.720468997955322
+      ],
+      "capture": "cl3d_v1/godot/05-coffin-body.png",
+      "convex_shapes": 0,
+      "meshes": 1,
+      "ok": true,
+      "path": "res://content/environments/procedural_props_aged_v1/sources/05-coffin-body_lod0.glb"
+    },
+    {
+      "bodies": 0,
+      "bounds_position": [
+        -0.950475215911865,
+        0.000123812060337514,
+        -0.360586941242218
+      ],
+      "bounds_size": [
+        1.90064680576324,
+        0.33533838391304,
+        0.720890045166016
+      ],
+      "capture": "",
+      "convex_shapes": 0,
+      "meshes": 1,
+      "ok": true,
+      "path": "res://content/environments/procedural_props_aged_v1/sources/05-coffin-body_lod1.glb"
+    },
+    {
+      "bodies": 0,
+      "bounds_position": [
+        -0.951258480548859,
+        -0.000457048998214304,
+        -0.361491203308105
+      ],
+      "bounds_size": [
+        1.90252161026001,
+        0.336352407932281,
+        0.723223745822906
+      ],
+      "capture": "",
+      "convex_shapes": 0,
+      "meshes": 1,
+      "ok": true,
+      "path": "res://content/environments/procedural_props_aged_v1/sources/05-coffin-body_lod2.glb"
+    },
+    {
+      "bodies": 0,
+      "bounds_position": [
+        -0.94990348815918,
+        0.000150078310980462,
+        -0.324871361255646
+      ],
+      "bounds_size": [
+        1.89983510971069,
+        0.122672997415066,
+        0.649686753749847
+      ],
+      "capture": "cl3d_v1/godot/06-coffin-lid.png",
+      "convex_shapes": 0,
+      "meshes": 1,
+      "ok": true,
+      "path": "res://content/environments/procedural_props_aged_v1/sources/06-coffin-lid_lod0.glb"
+    },
+    {
+      "bodies": 0,
+      "bounds_position": [
+        -0.950236320495605,
+        0.000754793349187821,
+        -0.324743390083313
+      ],
+      "bounds_size": [
+        1.89911937713623,
+        0.121247082948685,
+        0.649405598640442
+      ],
+      "capture": "",
+      "convex_shapes": 0,
+      "meshes": 1,
+      "ok": true,
+      "path": "res://content/environments/procedural_props_aged_v1/sources/06-coffin-lid_lod1.glb"
+    },
+    {
+      "bodies": 0,
+      "bounds_position": [
+        -0.946525454521179,
+        -0.00168858305551112,
+        -0.321492046117783
+      ],
+      "bounds_size": [
+        1.89139485359192,
+        0.127445980906487,
+        0.644150137901306
+      ],
+      "capture": "",
+      "convex_shapes": 0,
+      "meshes": 1,
+      "ok": true,
+      "path": "res://content/environments/procedural_props_aged_v1/sources/06-coffin-lid_lod2.glb"
+    },
+    {
+      "bodies": 0,
+      "bounds_position": [
+        -0.0968709215521812,
+        -0.00011891048779944,
+        -0.114986784756184
+      ],
+      "bounds_size": [
+        0.193833649158478,
+        0.228436142206192,
+        0.230334460735321
+      ],
+      "capture": "cl3d_v1/godot/07-skull.png",
+      "convex_shapes": 0,
+      "meshes": 1,
+      "ok": true,
+      "path": "res://content/environments/procedural_props_aged_v1/sources/07-skull_lod0.glb"
+    },
+    {
+      "bodies": 0,
+      "bounds_position": [
+        -0.0970598608255386,
+        -0.0000106232337202528,
+        -0.114922925829887
+      ],
+      "bounds_size": [
+        0.193953812122345,
+        0.228823080658913,
+        0.230709731578827
+      ],
+      "capture": "",
+      "convex_shapes": 0,
+      "meshes": 1,
+      "ok": true,
+      "path": "res://content/environments/procedural_props_aged_v1/sources/07-skull_lod1.glb"
+    },
+    {
+      "bodies": 0,
+      "bounds_position": [
+        -0.0969057977199554,
+        0.000690686632879078,
+        -0.114927530288696
+      ],
+      "bounds_size": [
+        0.193578466773033,
+        0.228026777505875,
+        0.230211466550827
+      ],
+      "capture": "",
+      "convex_shapes": 0,
+      "meshes": 1,
+      "ok": true,
+      "path": "res://content/environments/procedural_props_aged_v1/sources/07-skull_lod2.glb"
+    },
+    {
+      "bodies": 0,
+      "bounds_position": [
+        -0.215165644884109,
+        0.0000372197973774746,
+        -0.0646312832832336
+      ],
+      "bounds_size": [
+        0.430242568254471,
+        0.0837205350399017,
+        0.129275172948837
+      ],
+      "capture": "cl3d_v1/godot/08-femur.png",
+      "convex_shapes": 0,
+      "meshes": 1,
+      "ok": true,
+      "path": "res://content/environments/procedural_props_aged_v1/sources/08-femur_lod0.glb"
+    },
+    {
+      "bodies": 0,
+      "bounds_position": [
+        -0.214803829789162,
+        -0.0000379239791072905,
+        -0.0641588270664215
+      ],
+      "bounds_size": [
+        0.430081367492676,
+        0.0838865339756012,
+        0.128843873739243
+      ],
+      "capture": "",
+      "convex_shapes": 0,
+      "meshes": 1,
+      "ok": true,
+      "path": "res://content/environments/procedural_props_aged_v1/sources/08-femur_lod1.glb"
+    },
+    {
+      "bodies": 0,
+      "bounds_position": [
+        -0.214385971426964,
+        -0.00068959390046075,
+        -0.0646355077624321
+      ],
+      "bounds_size": [
+        0.430161893367767,
+        0.0848837569355965,
+        0.129320561885834
+      ],
+      "capture": "",
+      "convex_shapes": 0,
+      "meshes": 1,
+      "ok": true,
+      "path": "res://content/environments/procedural_props_aged_v1/sources/08-femur_lod2.glb"
+    },
+    {
+      "bodies": 0,
+      "bounds_position": [
+        -0.230311661958694,
+        -0.000187411191291176,
+        -0.229777961969376
+      ],
+      "bounds_size": [
+        0.460453182458878,
+        0.437890022993088,
+        0.459638655185699
+      ],
+      "capture": "cl3d_v1/godot/09-pot.png",
+      "convex_shapes": 0,
+      "meshes": 1,
+      "ok": true,
+      "path": "res://content/environments/procedural_props_aged_v1/sources/09-pot_lod0.glb"
+    },
+    {
+      "bodies": 0,
+      "bounds_position": [
+        -0.230099603533745,
+        -0.000235610248637386,
+        -0.229091674089432
+      ],
+      "bounds_size": [
+        0.460593938827515,
+        0.437702506780624,
+        0.459038078784943
+      ],
+      "capture": "",
+      "convex_shapes": 0,
+      "meshes": 1,
+      "ok": true,
+      "path": "res://content/environments/procedural_props_aged_v1/sources/09-pot_lod1.glb"
+    },
+    {
+      "bodies": 0,
+      "bounds_position": [
+        -0.230282813310623,
+        0.000167051286553033,
+        -0.229422330856323
+      ],
+      "bounds_size": [
+        0.462987005710602,
+        0.436396420001984,
+        0.458666443824768
+      ],
+      "capture": "",
+      "convex_shapes": 0,
+      "meshes": 1,
+      "ok": true,
+      "path": "res://content/environments/procedural_props_aged_v1/sources/09-pot_lod2.glb"
+    },
+    {
+      "bodies": 0,
+      "bounds_position": [
+        -0.14998959004879,
+        -0.0000556430713913869,
+        -0.100836999714375
+      ],
+      "bounds_size": [
+        0.300130903720856,
+        0.154165580868721,
+        0.201684415340424
+      ],
+      "capture": "cl3d_v1/godot/10-candle-holder.png",
+      "convex_shapes": 0,
+      "meshes": 1,
+      "ok": true,
+      "path": "res://content/environments/procedural_props_aged_v1/sources/10-candle-holder_lod0.glb"
+    },
+    {
+      "bodies": 0,
+      "bounds_position": [
+        -0.150350615382195,
+        0.000217134511331096,
+        -0.100552693009377
+      ],
+      "bounds_size": [
+        0.300150632858276,
+        0.154063940048218,
+        0.201048135757446
+      ],
+      "capture": "",
+      "convex_shapes": 0,
+      "meshes": 1,
+      "ok": true,
+      "path": "res://content/environments/procedural_props_aged_v1/sources/10-candle-holder_lod1.glb"
+    },
+    {
+      "bodies": 0,
+      "bounds_position": [
+        -0.150585070252419,
+        0.000829904107376933,
+        -0.102324225008488
+      ],
+      "bounds_size": [
+        0.301005125045776,
+        0.152388021349907,
+        0.203049972653389
+      ],
+      "capture": "",
+      "convex_shapes": 0,
+      "meshes": 1,
+      "ok": true,
+      "path": "res://content/environments/procedural_props_aged_v1/sources/10-candle-holder_lod2.glb"
+    }
+  ]
+}

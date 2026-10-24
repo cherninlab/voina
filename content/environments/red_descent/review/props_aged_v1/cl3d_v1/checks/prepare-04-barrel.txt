@@ -1,0 +1,29 @@
+22:30:30 | INFO: Data are loaded, start creating Blender stuff
+22:30:30 | INFO: Blender create Mesh node geometry_0
+22:30:31 | INFO: glTF import finished in 1.18s
+/Users/theochernin/Projects/MultiPlayerProject-agents/theo-codex-43/scripts/art/build_scattered_props.py:64: DeprecationWarning: 'Material.use_nodes' is expected to be removed in Blender 6.0
+  material.use_nodes = True
+Warning: No mesh data to join
+INFO Draco is available, use library at /Applications/Blender.app/Contents/Resources/5.2/scripts/addons_core/io_scene_gltf2/libbf_intern_draco_bridge.dylib
+INFO MeshOptimizer is available, use library at /Applications/Blender.app/Contents/Resources/5.2/scripts/addons_core/io_scene_gltf2/libbf_intern_meshopt_bridge.dylib
+22:30:54 | INFO: Starting glTF 2.0 export
+22:30:54 | INFO: Extracting primitive: geometry_0
+22:30:54 | INFO: Primitives created: 1
+22:30:54 | INFO: Finished glTF 2.0 export in 0.012886762619018555 s
+
+22:30:54 | INFO: Starting glTF 2.0 export
+22:30:54 | INFO: Extracting primitive: geometry_0
+22:30:54 | INFO: Primitives created: 1
+22:30:54 | INFO: Finished glTF 2.0 export in 0.004457950592041016 s
+
+22:30:54 | INFO: Starting glTF 2.0 export
+22:30:54 | INFO: Extracting primitive: geometry_0
+22:30:54 | INFO: Primitives created: 1
+22:30:54 | INFO: Finished glTF 2.0 export in 0.003813028335571289 s
+00:29.753  render           | Saved: '/var/folders/l1/ffgp3l9n2gd1g8gjswvkfqyw0000gn/T/tmpc19s_834/view.png'
+00:35.213  render           | Saved: '/var/folders/l1/ffgp3l9n2gd1g8gjswvkfqyw0000gn/T/tmpy_285o_t/view.png'
+
+PROP_SOURCE_READY {"id": "04-barrel", "raw": "content/environments/procedural_props_aged_v1/raw_cl3d/04-barrel.glb", "raw_sha256": "6b603c98fbce038f3e31a54600f8908ddaa09fb3cff33a603c5c3a4152c760d4", "approved_image": "content/environments/red_descent/review/props_aged_v1/references_v1/04-barrel.png", "approved_image_sha256": "3da56f2b9610164ad367a56020e134afedda9f7958a675597f368ac9a8d9fa82", "scale_policy": "uniform; longest dimension matches approved target; origin at ground centre", "uniform_scale": 0.37546966113499275, "cleanup": {"source_components": 1, "discarded_vertices": 0, "boundary_edges_after_cleanup": 0, "nonmanifold_edges_after_cleanup": 0}, "lods": [{"path": "content/environments/procedural_props_aged_v1/sources/04-barrel_lod0.glb", "triangles": 5000, "sha256": "7a3dbbafdbc036d74036bf07127ae3a7ac8ac94995d4f9618807a15fa1309fbc", "dimensions_godot_m": [0.7354763746261597, 0.750068232009653, 0.7445502281188965]}, {"path": "content/environments/procedural_props_aged_v1/sources/04-barrel_lod1.glb", "triangles": 1666, "sha256": "0d17c063ef51e42a809a882721e721793b86d5c0cd665347cbdb5a05969a9749", "dimensions_godot_m": [0.7329376637935638, 0.7495452353032306, 0.7443718016147614]}, {"path": "content/environments/procedural_props_aged_v1/sources/04-barrel_lod2.glb", "triangles": 624, "sha256": "3c9ab18271420f14b0d77eaa1e1153d9270cde5c944f7ec46781e4dff3829794", "dimensions_godot_m": [0.7344078719615936, 0.7488903778139502, 0.7413094639778137]}], "review_images": ["content/environments/red_descent/review/props_aged_v1/cl3d_v1/04-barrel-front.png", "content/environments/red_descent/review/props_aged_v1/cl3d_v1/04-barrel-back.png"], "interior_probe": {}, "materials": "neutral review clay; no inferred textures or UVs", "status": "mesh_review_pending"}
+Blender 5.2.2 LTS (hash d13f752e3b9c built 2026-09-15 01:49:19)
+
+Blender quit

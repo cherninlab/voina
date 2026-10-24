@@ -1,0 +1,584 @@
+{
+  "04-barrel": {
+    "id": "04-barrel",
+    "raw": "content/environments/procedural_props_aged_v1/raw_cl3d/04-barrel.glb",
+    "raw_sha256": "b7480869401730c8a85d8197296ea6b95cd15cf3c3dbc6c937ecfbcafc8dcd29",
+    "approved_image": "content/environments/red_descent/review/props_aged_v1/references_v1/04-barrel.png",
+    "approved_image_sha256": "3da56f2b9610164ad367a56020e134afedda9f7958a675597f368ac9a8d9fa82",
+    "conditioning_image": "content/environments/procedural_props_aged_v1/conditioning/04-barrel.png",
+    "conditioning_image_sha256": "0019c6041f831187511cc0332b559b8a29fd98b111b58e0dfec7deaa31c6d264",
+    "scale_policy": "uniform; longest dimension matches approved target; origin at ground centre",
+    "uniform_scale": 0.37521149964047074,
+    "cleanup": {
+      "source_components": 3,
+      "discarded_vertices": 478,
+      "boundary_edges_after_cleanup": 0,
+      "nonmanifold_edges_after_cleanup": 0
+    },
+    "lods": [
+      {
+        "path": "content/environments/procedural_props_aged_v1/sources/04-barrel_lod0.glb",
+        "triangles": 5000,
+        "sha256": "503c944676cbd5133017af7e3250195a0b2699d4a7fa9e9fdd7139f8d5a637db",
+        "dimensions_godot_m": [
+          0.6375919878482819,
+          0.7497426109621301,
+          0.6360281109809875
+        ]
+      },
+      {
+        "path": "content/environments/procedural_props_aged_v1/sources/04-barrel_lod1.glb",
+        "triangles": 1666,
+        "sha256": "9f9487281655c5dd459f3b112719cf15969bb4793475f4c26c73f5a784eec312",
+        "dimensions_godot_m": [
+          0.6382932662963867,
+          0.748616379336454,
+          0.6378786861896515
+        ]
+      },
+      {
+        "path": "content/environments/procedural_props_aged_v1/sources/04-barrel_lod2.glb",
+        "triangles": 624,
+        "sha256": "6a8a4ea40dc5fd01d756ef57bf0cb75968acab133e5e79d938b7748fe8e07cf3",
+        "dimensions_godot_m": [
+          0.6383601725101471,
+          0.7466493872925639,
+          0.6365580260753632
+        ]
+      }
+    ],
+    "review_images": [
+      "content/environments/red_descent/review/props_aged_v1/cl3d_v1/04-barrel-front.png",
+      "content/environments/red_descent/review/props_aged_v1/cl3d_v1/04-barrel-back.png"
+    ],
+    "interior_probe": {},
+    "materials": "neutral review clay; no inferred textures or UVs",
+    "status": "technical_mesh_review_passed",
+    "review_scope": "Source silhouettes/front/back and actual Godot Mobile captures reviewed; final human in-dungeon visual acceptance pending."
+  },
+  "01-table": {
+    "id": "01-table",
+    "raw": "content/environments/procedural_props_aged_v1/raw_cl3d/01-table.glb",
+    "raw_sha256": "5f37c0785fdcb7ce34d8fff387cb6505cee6d48d9a24f0c419e77b9f2d18ef83",
+    "approved_image": "content/environments/red_descent/review/props_aged_v1/references_v1/01-table.png",
+    "approved_image_sha256": "4b9a481c3abc4ca153a176916b259d89c2d3ae86c526f246a7977fc6daec7df8",
+    "conditioning_image": "content/environments/procedural_props_aged_v1/conditioning/01-table.png",
+    "conditioning_image_sha256": "89e0c813b196c354fc64f7cf105db5797fad5818180ce21515dd1c5b35e9b6a9",
+    "scale_policy": "uniform; longest dimension matches approved target; origin at ground centre",
+    "uniform_scale": 0.9519064550875065,
+    "cleanup": {
+      "source_components": 1,
+      "discarded_vertices": 0,
+      "boundary_edges_after_cleanup": 0,
+      "nonmanifold_edges_after_cleanup": 0
+    },
+    "lods": [
+      {
+        "path": "content/environments/procedural_props_aged_v1/sources/01-table_lod0.glb",
+        "triangles": 8000,
+        "sha256": "d73cc5fcb04b8d6d95e4b6d3903a5487b89657b8d551c89fece0d43ac13bd771",
+        "dimensions_godot_m": [
+          1.9001163244247437,
+          0.7495322989998385,
+          0.8820479810237885
+        ]
+      },
+      {
+        "path": "content/environments/procedural_props_aged_v1/sources/01-table_lod1.glb",
+        "triangles": 2666,
+        "sha256": "db393b2b1e32b8f70522d08c56fdb0b9cbff502995d67cee532d94a82ce16a48",
+        "dimensions_godot_m": [
+          1.8990557193756104,
+          0.7483753514097771,
+          0.8811827600002289
+        ]
+      },
+      {
+        "path": "content/environments/procedural_props_aged_v1/sources/01-table_lod2.glb",
+        "triangles": 1000,
+        "sha256": "6ba0c1dcfdac78b7020a995751fde54dd2a9a78e0591d02a3e7e09a66771b56f",
+        "dimensions_godot_m": [
+          1.8975119590759277,
+          0.746289371047169,
+          0.878719687461853
+        ]
+      }
+    ],
+    "review_images": [
+      "content/environments/red_descent/review/props_aged_v1/cl3d_v1/01-table-front.png",
+      "content/environments/red_descent/review/props_aged_v1/cl3d_v1/01-table-back.png"
+    ],
+    "interior_probe": {},
+    "materials": "neutral review clay; no inferred textures or UVs",
+    "status": "technical_mesh_review_passed",
+    "review_scope": "Source silhouettes/front/back and actual Godot Mobile captures reviewed; final human in-dungeon visual acceptance pending."
+  },
+  "02-bench": {
+    "id": "02-bench",
+    "raw": "content/environments/procedural_props_aged_v1/raw_cl3d/02-bench.glb",
+    "raw_sha256": "b55fcdce890cb1b045bb55a53c67704428873b9742c6c32122417df13e86feab",
+    "approved_image": "content/environments/red_descent/review/props_aged_v1/references_v1/02-bench.png",
+    "approved_image_sha256": "42eed024d279b1b2c638652ecbb276e62a9cda1471d1745f185ee9693fcd23c7",
+    "conditioning_image": "content/environments/procedural_props_aged_v1/conditioning/02-bench.png",
+    "conditioning_image_sha256": "67cba9cd759b7ddaaeec64c8491cb968666df1e488eaf81ea4255133a7996d65",
+    "scale_policy": "uniform; longest dimension matches approved target; origin at ground centre",
+    "uniform_scale": 0.7022678896343941,
+    "cleanup": {
+      "source_components": 1,
+      "discarded_vertices": 0,
+      "boundary_edges_after_cleanup": 0,
+      "nonmanifold_edges_after_cleanup": 0
+    },
+    "lods": [
+      {
+        "path": "content/environments/procedural_props_aged_v1/sources/02-bench_lod0.glb",
+        "triangles": 6000,
+        "sha256": "2ca352d7fb053893d5f2ff19560a4d97ebfd1b3dde29a8d4f93bc802eb1ee97d",
+        "dimensions_godot_m": [
+          1.4003207683563232,
+          0.47029202329576947,
+          0.44333939254283905
+        ]
+      },
+      {
+        "path": "content/environments/procedural_props_aged_v1/sources/02-bench_lod1.glb",
+        "triangles": 2000,
+        "sha256": "f491ea9853ed7b2cd1117f5e2c514d8b5fc7f5669fdbe684df013f5a6e19c7a1",
+        "dimensions_godot_m": [
+          1.4003289341926575,
+          0.47038280608830974,
+          0.44339755177497864
+        ]
+      },
+      {
+        "path": "content/environments/procedural_props_aged_v1/sources/02-bench_lod2.glb",
+        "triangles": 750,
+        "sha256": "e099df99f47baac148503ac8cf24b2c1c82cd0ee1a387ca9173a7d022ef822f0",
+        "dimensions_godot_m": [
+          1.399279534816742,
+          0.4696133697289042,
+          0.4431706517934799
+        ]
+      }
+    ],
+    "review_images": [
+      "content/environments/red_descent/review/props_aged_v1/cl3d_v1/02-bench-front.png",
+      "content/environments/red_descent/review/props_aged_v1/cl3d_v1/02-bench-back.png"
+    ],
+    "interior_probe": {},
+    "materials": "neutral review clay; no inferred textures or UVs",
+    "status": "technical_mesh_review_passed",
+    "review_scope": "Source silhouettes/front/back and actual Godot Mobile captures reviewed; final human in-dungeon visual acceptance pending."
+  },
+  "03-shelf": {
+    "id": "03-shelf",
+    "raw": "content/environments/procedural_props_aged_v1/raw_cl3d/03-shelf.glb",
+    "raw_sha256": "3112ed6a2ff0c84b844013b1d49e394eb1dd559e917e8fe669dbd4e36af544dd",
+    "approved_image": "content/environments/red_descent/review/props_aged_v1/references_v1/03-shelf.png",
+    "approved_image_sha256": "f82092dfd9395b9031125662d301dbf3bdee416743b1edf9e0980670e34765e7",
+    "conditioning_image": "content/environments/procedural_props_aged_v1/conditioning/03-shelf.png",
+    "conditioning_image_sha256": "1b5f3933f7e1c793344eae62ace40796cd371123c869de53516b954d0285b813",
+    "scale_policy": "uniform; longest dimension matches approved target; origin at ground centre",
+    "uniform_scale": 0.6258756251736926,
+    "cleanup": {
+      "source_components": 1,
+      "discarded_vertices": 0,
+      "boundary_edges_after_cleanup": 0,
+      "nonmanifold_edges_after_cleanup": 0
+    },
+    "lods": [
+      {
+        "path": "content/environments/procedural_props_aged_v1/sources/03-shelf_lod0.glb",
+        "triangles": 8000,
+        "sha256": "a220db0c8c5ad070e5bac079f96e94e210a2412137b9baa0a5f496ab0b32c0ea",
+        "dimensions_godot_m": [
+          1.1107362508773804,
+          1.2500530743418494,
+          0.3870394229888916
+        ]
+      },
+      {
+        "path": "content/environments/procedural_props_aged_v1/sources/03-shelf_lod1.glb",
+        "triangles": 2666,
+        "sha256": "db6f893fc8ab71a23ec88ebc73e5f6cd181a0fbdc7a552d422a4d50fb4f02957",
+        "dimensions_godot_m": [
+          1.1107728481292725,
+          1.2492180093249772,
+          0.3888469338417053
+        ]
+      },
+      {
+        "path": "content/environments/procedural_props_aged_v1/sources/03-shelf_lod2.glb",
+        "triangles": 1000,
+        "sha256": "34e10b00ce37d9924c8c71cced4032da5ea1a0174bad7a7620d57d0cce9ceb63",
+        "dimensions_godot_m": [
+          1.1073222756385803,
+          1.2500079842284322,
+          0.3880188316106796
+        ]
+      }
+    ],
+    "review_images": [
+      "content/environments/red_descent/review/props_aged_v1/cl3d_v1/03-shelf-front.png",
+      "content/environments/red_descent/review/props_aged_v1/cl3d_v1/03-shelf-back.png"
+    ],
+    "interior_probe": {},
+    "materials": "neutral review clay; no inferred textures or UVs",
+    "status": "technical_mesh_review_passed",
+    "review_scope": "Source silhouettes/front/back and actual Godot Mobile captures reviewed; final human in-dungeon visual acceptance pending."
+  },
+  "05-coffin-body": {
+    "id": "05-coffin-body",
+    "raw": "content/environments/procedural_props_aged_v1/raw_cl3d/05-coffin-body.glb",
+    "raw_sha256": "2db86669c0196387da7f989f0593ad22c8f7a7af9fd54e7f93bf0dff82477ae1",
+    "approved_image": "content/environments/red_descent/review/props_aged_v1/references_v1/05-coffin-body.png",
+    "approved_image_sha256": "9798a20e096ba1407a41841c19f04a1124dd4ef889b18a7fe7eef90db563ef70",
+    "conditioning_image": "content/environments/procedural_props_aged_v1/conditioning/05-coffin-body.png",
+    "conditioning_image_sha256": "230b31b369ad5338d4a97081bdf4a251e88df047f211798eec470ed520f236bc",
+    "scale_policy": "uniform; longest dimension matches approved target; origin at ground centre",
+    "uniform_scale": 0.9515014439360358,
+    "cleanup": {
+      "source_components": 1,
+      "discarded_vertices": 0,
+      "boundary_edges_after_cleanup": 0,
+      "nonmanifold_edges_after_cleanup": 0
+    },
+    "lods": [
+      {
+        "path": "content/environments/procedural_props_aged_v1/sources/05-coffin-body_lod0.glb",
+        "triangles": 8000,
+        "sha256": "0a685925c33e972fb3d84ce6a45da50cd327a810dae584f8c338269fa12f2634",
+        "dimensions_godot_m": [
+          1.9005151987075806,
+          0.33557787595054833,
+          0.7204689681529999
+        ]
+      },
+      {
+        "path": "content/environments/procedural_props_aged_v1/sources/05-coffin-body_lod1.glb",
+        "triangles": 2666,
+        "sha256": "5ba69948cb93aa7ae9ecbdb59eb8b7cf46e049b16556abf8105b1bb6e4af141d",
+        "dimensions_godot_m": [
+          1.9006468057632446,
+          0.33533837069990113,
+          0.7208900451660156
+        ]
+      },
+      {
+        "path": "content/environments/procedural_props_aged_v1/sources/05-coffin-body_lod2.glb",
+        "triangles": 1000,
+        "sha256": "2e6f80557d8a41d541ca9831ed5060492bb1f1fff219bc3cc61387b02fc82c15",
+        "dimensions_godot_m": [
+          1.902521550655365,
+          0.3363524085143581,
+          0.7232237458229065
+        ]
+      }
+    ],
+    "review_images": [
+      "content/environments/red_descent/review/props_aged_v1/cl3d_v1/05-coffin-body-front.png",
+      "content/environments/red_descent/review/props_aged_v1/cl3d_v1/05-coffin-body-back.png"
+    ],
+    "interior_probe": {
+      "method": "downward centre ray on actual simplified mesh",
+      "hit": true,
+      "depth_m": 0.28957781195640564,
+      "height_m": 0.33557787595054833,
+      "open_interior_candidate": true
+    },
+    "materials": "neutral review clay; no inferred textures or UVs",
+    "status": "technical_mesh_review_passed",
+    "review_scope": "Source silhouettes/front/back and actual Godot Mobile captures reviewed; final human in-dungeon visual acceptance pending."
+  },
+  "06-coffin-lid": {
+    "id": "06-coffin-lid",
+    "raw": "content/environments/procedural_props_aged_v1/raw_cl3d/06-coffin-lid.glb",
+    "raw_sha256": "c6700e0eae6f0b561a9cab869f62284ef8eef289f4d84e39229dd09c73e6ea0e",
+    "approved_image": "content/environments/red_descent/review/props_aged_v1/references_v1/06-coffin-lid.png",
+    "approved_image_sha256": "85c9dbb9a142ca8aee461ba0a7daf33a3fd7d536b6f053ce77afa846ce47c6c2",
+    "conditioning_image": "content/environments/procedural_props_aged_v1/conditioning/06-coffin-lid.png",
+    "conditioning_image_sha256": "6ac050c7bcd69d0b91c1e2284bdddac1c9e4766a49c2e65e6a74cbe21a9fb6f2",
+    "scale_policy": "uniform; longest dimension matches approved target; origin at ground centre",
+    "uniform_scale": 0.9523551712067944,
+    "cleanup": {
+      "source_components": 1,
+      "discarded_vertices": 0,
+      "boundary_edges_after_cleanup": 0,
+      "nonmanifold_edges_after_cleanup": 0
+    },
+    "lods": [
+      {
+        "path": "content/environments/procedural_props_aged_v1/sources/06-coffin-lid_lod0.glb",
+        "triangles": 2500,
+        "sha256": "a0b968a87b144187eaf54609c2c865ad4f02c3d868ee238e949df9b43f9f5041",
+        "dimensions_godot_m": [
+          1.8998351693153381,
+          0.12267299614904914,
+          0.6496867537498474
+        ]
+      },
+      {
+        "path": "content/environments/procedural_props_aged_v1/sources/06-coffin-lid_lod1.glb",
+        "triangles": 832,
+        "sha256": "337dd7ebc077cfe0d29012af43025dbdcfda979306b4f6cb736bbd2d6348c0da",
+        "dimensions_godot_m": [
+          1.8991193175315857,
+          0.12124708556802943,
+          0.6494055688381195
+        ]
+      },
+      {
+        "path": "content/environments/procedural_props_aged_v1/sources/06-coffin-lid_lod2.glb",
+        "triangles": 312,
+        "sha256": "557348d4c1cc904381119048c84e23ec990fa734560a1a2610194ed3819b7ddb",
+        "dimensions_godot_m": [
+          1.8913949131965637,
+          0.127445979276672,
+          0.6441501080989838
+        ]
+      }
+    ],
+    "review_images": [
+      "content/environments/red_descent/review/props_aged_v1/cl3d_v1/06-coffin-lid-front.png",
+      "content/environments/red_descent/review/props_aged_v1/cl3d_v1/06-coffin-lid-back.png"
+    ],
+    "interior_probe": {},
+    "materials": "neutral review clay; no inferred textures or UVs",
+    "status": "technical_mesh_review_passed",
+    "review_scope": "Source silhouettes/front/back and actual Godot Mobile captures reviewed; final human in-dungeon visual acceptance pending."
+  },
+  "07-skull": {
+    "id": "07-skull",
+    "raw": "content/environments/procedural_props_aged_v1/raw_cl3d/07-skull.glb",
+    "raw_sha256": "05ed83efea3b68b1735ad7440ab7e86ab7530d902ec1fa9c4b8f9fe739716f9f",
+    "approved_image": "content/environments/red_descent/review/props_aged_v1/references_v1/07-skull.png",
+    "approved_image_sha256": "ba24d41b391907394bed39c8d35d6adec7718c175876dbb8d2c057179b629551",
+    "conditioning_image": "content/environments/procedural_props_aged_v1/conditioning/07-skull.png",
+    "conditioning_image_sha256": "20792453473217a08710f3e92ea7c5c63d21c42138772182b4a7e4d107df4177",
+    "scale_policy": "uniform; longest dimension matches approved target; origin at ground centre",
+    "uniform_scale": 0.11512995099317777,
+    "cleanup": {
+      "source_components": 1,
+      "discarded_vertices": 0,
+      "boundary_edges_after_cleanup": 0,
+      "nonmanifold_edges_after_cleanup": 0
+    },
+    "lods": [
+      {
+        "path": "content/environments/procedural_props_aged_v1/sources/07-skull_lod0.glb",
+        "triangles": 8000,
+        "sha256": "0efb17b115a0d5326e3aaf9eff444185000544fca93bedfaa2f1dbc3dff246f0",
+        "dimensions_godot_m": [
+          0.1938336417078972,
+          0.22843614142766455,
+          0.23033446073532104
+        ]
+      },
+      {
+        "path": "content/environments/procedural_props_aged_v1/sources/07-skull_lod1.glb",
+        "triangles": 2666,
+        "sha256": "148f8a5baab73ec4f900c181cca70a616c311d3836e425cc06ed30448dc0971b",
+        "dimensions_godot_m": [
+          0.19395380467176437,
+          0.2288230793647017,
+          0.2307097390294075
+        ]
+      },
+      {
+        "path": "content/environments/procedural_props_aged_v1/sources/07-skull_lod2.glb",
+        "triangles": 1000,
+        "sha256": "47d59ce3ec328ff03fe471ec133d66017c8032c9615d34dfb4c3c103f2d590ee",
+        "dimensions_godot_m": [
+          0.19357846677303314,
+          0.2280267745954916,
+          0.23021146655082703
+        ]
+      }
+    ],
+    "review_images": [
+      "content/environments/red_descent/review/props_aged_v1/cl3d_v1/07-skull-front.png",
+      "content/environments/red_descent/review/props_aged_v1/cl3d_v1/07-skull-back.png"
+    ],
+    "interior_probe": {},
+    "materials": "neutral review clay; no inferred textures or UVs",
+    "status": "technical_mesh_review_passed",
+    "review_scope": "Source silhouettes/front/back and actual Godot Mobile captures reviewed; final human in-dungeon visual acceptance pending."
+  },
+  "08-femur": {
+    "id": "08-femur",
+    "raw": "content/environments/procedural_props_aged_v1/raw_cl3d/08-femur.glb",
+    "raw_sha256": "15b15901550869d4e0493e86c28907e462ef45063d0ddb9d351761f9f06733ae",
+    "approved_image": "content/environments/red_descent/review/props_aged_v1/references_v1/08-femur.png",
+    "approved_image_sha256": "f3694eadc740c780e3fb08562c10b57e9f2c898de471529c49efc7a598bdc829",
+    "conditioning_image": "content/environments/procedural_props_aged_v1/conditioning/08-femur.png",
+    "conditioning_image_sha256": "00aad6bacf2b1c9b0109d8f0fe6915c4ea8a07b08e087f18cb2e880761ddd876",
+    "scale_policy": "uniform; longest dimension matches approved target; origin at ground centre",
+    "uniform_scale": 0.21560180619861372,
+    "cleanup": {
+      "source_components": 1,
+      "discarded_vertices": 0,
+      "boundary_edges_after_cleanup": 0,
+      "nonmanifold_edges_after_cleanup": 0
+    },
+    "lods": [
+      {
+        "path": "content/environments/procedural_props_aged_v1/sources/08-femur_lod0.glb",
+        "triangles": 3000,
+        "sha256": "1a6a9fc64ba13f6d6f6d61cc08ea03207fc3d3e679d50464f3b7ccc35eaece86",
+        "dimensions_godot_m": [
+          0.4302425682544708,
+          0.08372053834318649,
+          0.12927518039941788
+        ]
+      },
+      {
+        "path": "content/environments/procedural_props_aged_v1/sources/08-femur_lod1.glb",
+        "triangles": 1000,
+        "sha256": "2f1955bc09d3d3681dbf0c69909368d22e5db082b23f57cdefbc7d995fc2f404",
+        "dimensions_godot_m": [
+          0.4300813674926758,
+          0.08388653449947014,
+          0.12884387373924255
+        ]
+      },
+      {
+        "path": "content/environments/procedural_props_aged_v1/sources/08-femur_lod2.glb",
+        "triangles": 374,
+        "sha256": "93fdbdb4e20be86a31c462b60073ee0376efa011ffb77a5df19b8b82f032b382",
+        "dimensions_godot_m": [
+          0.43016187846660614,
+          0.08488375489832833,
+          0.12932055443525314
+        ]
+      }
+    ],
+    "review_images": [
+      "content/environments/red_descent/review/props_aged_v1/cl3d_v1/08-femur-front.png",
+      "content/environments/red_descent/review/props_aged_v1/cl3d_v1/08-femur-back.png"
+    ],
+    "interior_probe": {},
+    "materials": "neutral review clay; no inferred textures or UVs",
+    "status": "technical_mesh_review_passed",
+    "review_scope": "Source silhouettes/front/back and actual Godot Mobile captures reviewed; final human in-dungeon visual acceptance pending."
+  },
+  "09-pot": {
+    "id": "09-pot",
+    "raw": "content/environments/procedural_props_aged_v1/raw_cl3d/09-pot.glb",
+    "raw_sha256": "8063d408d3ed06edb19f61885ad53df55e3f14c97069d62eb47d291d3b857198",
+    "approved_image": "content/environments/red_descent/review/props_aged_v1/references_v1/09-pot.png",
+    "approved_image_sha256": "7ccfe1185c953529e597915b65e66b9dea9f3260784ed5d4a3ede89905290c00",
+    "conditioning_image": "content/environments/procedural_props_aged_v1/conditioning/09-pot.png",
+    "conditioning_image_sha256": "a769fc3d8534d33e52c288886a2e0c63a16b50bc03b005d7870228a4a11cbd6b",
+    "scale_policy": "uniform; longest dimension matches approved target; origin at ground centre",
+    "uniform_scale": 0.23046505895680086,
+    "cleanup": {
+      "source_components": 1,
+      "discarded_vertices": 0,
+      "boundary_edges_after_cleanup": 0,
+      "nonmanifold_edges_after_cleanup": 0
+    },
+    "lods": [
+      {
+        "path": "content/environments/procedural_props_aged_v1/sources/09-pot_lod0.glb",
+        "triangles": 5000,
+        "sha256": "4dfb4df916a09e08c7276a6f61d5e32962617576784ec9de0e9e4a50e4cd0c73",
+        "dimensions_godot_m": [
+          0.46045318245887756,
+          0.4378900371812051,
+          0.45963867008686066
+        ]
+      },
+      {
+        "path": "content/environments/procedural_props_aged_v1/sources/09-pot_lod1.glb",
+        "triangles": 1666,
+        "sha256": "bf1a15bfce4f125d52365a21da080e96f7765fdf2d11bedfe779190c89f093ca",
+        "dimensions_godot_m": [
+          0.46059395372867584,
+          0.43770249986846466,
+          0.45903806388378143
+        ]
+      },
+      {
+        "path": "content/environments/procedural_props_aged_v1/sources/09-pot_lod2.glb",
+        "triangles": 624,
+        "sha256": "2902d35cc67540521490bd8dbe45970dbbe9aea185bb9bdf0b93d0b8d5b06f0c",
+        "dimensions_godot_m": [
+          0.4629870057106018,
+          0.43639641073241364,
+          0.45866645872592926
+        ]
+      }
+    ],
+    "review_images": [
+      "content/environments/red_descent/review/props_aged_v1/cl3d_v1/09-pot-front.png",
+      "content/environments/red_descent/review/props_aged_v1/cl3d_v1/09-pot-back.png"
+    ],
+    "interior_probe": {
+      "method": "downward centre ray on actual simplified mesh",
+      "hit": true,
+      "depth_m": 0.4235013425350189,
+      "height_m": 0.4378900371812051,
+      "open_interior_candidate": true
+    },
+    "materials": "neutral review clay; no inferred textures or UVs",
+    "status": "technical_mesh_review_passed",
+    "review_scope": "Source silhouettes/front/back and actual Godot Mobile captures reviewed; final human in-dungeon visual acceptance pending."
+  },
+  "10-candle-holder": {
+    "id": "10-candle-holder",
+    "raw": "content/environments/procedural_props_aged_v1/raw_cl3d/10-candle-holder.glb",
+    "raw_sha256": "ae28bd474f121f68eeb797428a89d3898db0855a8506524be586441bec56becd",
+    "approved_image": "content/environments/red_descent/review/props_aged_v1/references_v1/10-candle-holder.png",
+    "approved_image_sha256": "1e5428fba86c9931af6a6e86e50cde436d320d62c5b23dde7b2ef6e7a3697f2a",
+    "conditioning_image": "content/environments/procedural_props_aged_v1/conditioning/10-candle-holder.png",
+    "conditioning_image_sha256": "d720f26ae9b58c290ba484e739081f15c24df54a8389109642ee76dcc41acfbc",
+    "scale_policy": "uniform; longest dimension matches approved target; origin at ground centre",
+    "uniform_scale": 0.15011753701962768,
+    "cleanup": {
+      "source_components": 1,
+      "discarded_vertices": 0,
+      "boundary_edges_after_cleanup": 0,
+      "nonmanifold_edges_after_cleanup": 0
+    },
+    "lods": [
+      {
+        "path": "content/environments/procedural_props_aged_v1/sources/10-candle-holder_lod0.glb",
+        "triangles": 6000,
+        "sha256": "063faa048614e39f8a3efb9eabf98f8dc96966fc084dce191e0ba6f9b3e3d379",
+        "dimensions_godot_m": [
+          0.3001308888196945,
+          0.15416558300421457,
+          0.20168442279100418
+        ]
+      },
+      {
+        "path": "content/environments/procedural_props_aged_v1/sources/10-candle-holder_lod1.glb",
+        "triangles": 2000,
+        "sha256": "7d39fc2d7f62b46f44f3a1400511b09cc420ac69373221fb323b038b0a9fb643",
+        "dimensions_godot_m": [
+          0.30015064775943756,
+          0.15406394525780343,
+          0.20104814320802689
+        ]
+      },
+      {
+        "path": "content/environments/procedural_props_aged_v1/sources/10-candle-holder_lod2.glb",
+        "triangles": 750,
+        "sha256": "a62ba1b5677bff45b3cce50967ad766d48d691e84b0689e2fbe40acda3b47e73",
+        "dimensions_godot_m": [
+          0.3010051101446152,
+          0.15238802251406014,
+          0.20304997265338898
+        ]
+      }
+    ],
+    "review_images": [
+      "content/environments/red_descent/review/props_aged_v1/cl3d_v1/10-candle-holder-front.png",
+      "content/environments/red_descent/review/props_aged_v1/cl3d_v1/10-candle-holder-back.png"
+    ],
+    "interior_probe": {},
+    "materials": "neutral review clay; no inferred textures or UVs",
+    "status": "technical_mesh_review_passed",
+    "review_scope": "Source silhouettes/front/back and actual Godot Mobile captures reviewed; final human in-dungeon visual acceptance pending."
+  }
+}

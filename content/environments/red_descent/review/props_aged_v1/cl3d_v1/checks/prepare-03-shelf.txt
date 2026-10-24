@@ -1,0 +1,29 @@
+22:30:01 | INFO: Data are loaded, start creating Blender stuff
+22:30:01 | INFO: Blender create Mesh node geometry_0
+22:30:01 | INFO: glTF import finished in 0.54s
+/Users/theochernin/Projects/MultiPlayerProject-agents/theo-codex-43/scripts/art/build_scattered_props.py:64: DeprecationWarning: 'Material.use_nodes' is expected to be removed in Blender 6.0
+  material.use_nodes = True
+Warning: No mesh data to join
+INFO Draco is available, use library at /Applications/Blender.app/Contents/Resources/5.2/scripts/addons_core/io_scene_gltf2/libbf_intern_draco_bridge.dylib
+INFO MeshOptimizer is available, use library at /Applications/Blender.app/Contents/Resources/5.2/scripts/addons_core/io_scene_gltf2/libbf_intern_meshopt_bridge.dylib
+22:30:14 | INFO: Starting glTF 2.0 export
+22:30:14 | INFO: Extracting primitive: geometry_0
+22:30:14 | INFO: Primitives created: 1
+22:30:14 | INFO: Finished glTF 2.0 export in 0.015561103820800781 s
+
+22:30:14 | INFO: Starting glTF 2.0 export
+22:30:14 | INFO: Extracting primitive: geometry_0
+22:30:14 | INFO: Primitives created: 1
+22:30:14 | INFO: Finished glTF 2.0 export in 0.005355119705200195 s
+
+22:30:14 | INFO: Starting glTF 2.0 export
+22:30:14 | INFO: Extracting primitive: geometry_0
+22:30:14 | INFO: Primitives created: 1
+22:30:14 | INFO: Finished glTF 2.0 export in 0.004223823547363281 s
+00:19.409  render           | Saved: '/var/folders/l1/ffgp3l9n2gd1g8gjswvkfqyw0000gn/T/tmpw_6t1sqz/view.png'
+00:25.496  render           | Saved: '/var/folders/l1/ffgp3l9n2gd1g8gjswvkfqyw0000gn/T/tmpiw5wjx3a/view.png'
+
+PROP_SOURCE_READY {"id": "03-shelf", "raw": "content/environments/procedural_props_aged_v1/raw_cl3d/03-shelf.glb", "raw_sha256": "c57a3dc96fab10c0530dde97ba520d04bf9ac95636bf5bccffdf54a8bee28fc7", "approved_image": "content/environments/red_descent/review/props_aged_v1/references_v1/03-shelf.png", "approved_image_sha256": "f82092dfd9395b9031125662d301dbf3bdee416743b1edf9e0980670e34765e7", "scale_policy": "uniform; longest dimension matches approved target; origin at ground centre", "uniform_scale": 0.6268303269677056, "cleanup": {"source_components": 3, "discarded_vertices": 444, "boundary_edges_after_cleanup": 0, "nonmanifold_edges_after_cleanup": 0}, "lods": [{"path": "content/environments/procedural_props_aged_v1/sources/03-shelf_lod0.glb", "triangles": 8000, "sha256": "25e1b9f394579242941a8b53b40a42c73aad8cf18d63a5f8321384ced5b3a229", "dimensions_godot_m": [1.2507601380348206, 1.0506044759677025, 0.7951027154922485]}, {"path": "content/environments/procedural_props_aged_v1/sources/03-shelf_lod1.glb", "triangles": 2666, "sha256": "561e1a2ebc79363327defbe358208e7b6e5ffe13a5ac3173940c3d3688d2cc7c", "dimensions_godot_m": [1.2508926391601562, 1.0494326833140804, 0.7960861027240753]}, {"path": "content/environments/procedural_props_aged_v1/sources/03-shelf_lod2.glb", "triangles": 1000, "sha256": "ba492aad50df014fe15edd59feff9cc6dfec85f6dc5c25b43ad68b2f18adc056", "dimensions_godot_m": [1.2516502737998962, 1.0490770792384865, 0.7967400252819061]}], "review_images": ["content/environments/red_descent/review/props_aged_v1/cl3d_v1/03-shelf-front.png", "content/environments/red_descent/review/props_aged_v1/cl3d_v1/03-shelf-back.png"], "interior_probe": {}, "materials": "neutral review clay; no inferred textures or UVs", "status": "mesh_review_pending"}
+Blender 5.2.2 LTS (hash d13f752e3b9c built 2026-09-15 01:49:19)
+
+Blender quit

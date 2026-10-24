@@ -1,0 +1,40 @@
+{
+  "id": "06-coffin-lid",
+  "input": "content/environments/procedural_props_aged_v1/conditioning/06-coffin-lid.png",
+  "output": "content/environments/procedural_props_aged_v1/raw_cl3d/06-coffin-lid.glb",
+  "seed_offset": 17105,
+  "height_m": 0.055,
+  "material": "oak",
+  "faces": 2500,
+  "target_dims_xyz_m": [
+    0.64,
+    0.055,
+    1.9
+  ],
+  "approved_input": "content/environments/red_descent/review/props_aged_v1/references_v1/06-coffin-lid.png",
+  "approved_input_sha256": "85c9dbb9a142ca8aee461ba0a7daf33a3fd7d536b6f053ce77afa846ce47c6c2",
+  "preprocessing": "CL3D BackgroundRemover / local rembg bria-rmbg foreground mask",
+  "model": "CL3D/2mini",
+  "device": "mps",
+  "dtype": "float16",
+  "steps": 50,
+  "resolution": 384,
+  "seed": 20278129,
+  "inference_seconds": 76.53752858299777,
+  "vertices": 105914,
+  "triangles": 211824,
+  "watertight": true,
+  "input_sha256": "6ac050c7bcd69d0b91c1e2284bdddac1c9e4766a49c2e65e6a74cbe21a9fb6f2",
+  "bounds": [
+    [
+      -1.0000065565109253,
+      -0.0671694278717041,
+      -0.34302207827568054
+    ],
+    [
+      0.995047390460968,
+      0.0617702417075634,
+      0.3391188383102417
+    ]
+  ]
+}

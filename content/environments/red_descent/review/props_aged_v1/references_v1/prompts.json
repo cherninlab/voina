@@ -1,9 +1,9 @@
 {
   "task": "T-171",
   "stage": "image_reference_approval",
-  "approval_status": "pending_user_review",
+  "approval_status": "approved_for_cl3d",
   "image_generation": "built-in image_gen",
-  "three_d_generation": "not_started",
+  "three_d_generation": "started",
   "shared_prompt": "Use case: stylized-concept.\nAsset type: an individual approval reference for a medieval dungeon game prop; possible later CL3D image-to-3D input.\nStyle: realistic sculpted game art for SECHA / Red Descent, a damp abandoned medieval crypt. Believable handmade construction, heavy useful forms, sober folk-horror mood expressed through age and materials. Weathered grey-brown oak, dull oxidised iron, dusty bone or earthy unglazed ceramic as appropriate. Readable large forms and real dimensional joints; natural irregularities, restrained wear. No ornate fantasy decoration.\nScene/backdrop: pure off-white studio background, seamless and empty. One isolated object only. No environment, pedestal, backdrop objects, rubble pile, ground debris or extra accessories.\nComposition: a single full object, centered, three-quarter view from slightly above, generous clean margin on every side, nothing cropped. Show the silhouette, depth and structural connections clearly. No collage, multiple views, turntable strip, text, labels, dimensions, rulers, people, hands, logos or watermark.\nLighting: large neutral soft studio lights, all important surfaces legible, soft small contact shadow only, no dramatic torch light, black shadows, fog, depth-of-field blur or cinematic grading.\nConstraints: only the requested object, all pieces visibly connected. No floating pieces or detached fragments. Avoid razor-thin geometry and tiny dangling details. This is a design proposal, not a screenshot of the game. No flame, blood, flesh or gore.\n",
   "assets": [
     {

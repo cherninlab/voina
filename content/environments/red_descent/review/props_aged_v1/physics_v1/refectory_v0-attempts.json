@@ -1,0 +1,153 @@
+[
+  {
+    "id": "refectory_v0",
+    "family": "refectory",
+    "variant": 0,
+    "seed": 171000,
+    "intensity": 0.0,
+    "rolling_ball": false,
+    "baseline": {
+      "settled": true,
+      "frame": 45,
+      "seconds": 1.5,
+      "residual_speed_m_s": 8.107984577718711e-05,
+      "last_mover": "01-table",
+      "threshold_m_s": 0.005,
+      "max_speed_per_frame": [
+        0.1405,
+        0.03532,
+        0.00994,
+        0.00141,
+        0.0,
+        9e-05,
+        4e-05,
+        0.0,
+        8e-05,
+        0.00069,
+        0.00069,
+        0.00099,
+        0.00098,
+        0.00013,
+        6e-05,
+        8e-05,
+        0.00079,
+        0.00079,
+        0.00074,
+        0.00073,
+        9e-05,
+        0.0009,
+        0.00089,
+        9e-05,
+        4e-05,
+        0.0,
+        8e-05,
+        0.00099,
+        0.00097,
+        0.00068,
+        0.00066,
+        9e-05,
+        0.00079,
+        0.00079,
+        0.00095,
+        0.00093,
+        0.00055,
+        0.00053,
+        8e-05,
+        0.00044,
+        0.00044,
+        0.00099,
+        0.00098,
+        8e-05
+      ]
+    },
+    "offline_collision": "convex movers; concave kinematic shelving",
+    "fractured_pot_cells": 0,
+    "settled": {
+      "settled": true,
+      "frame": 24,
+      "seconds": 0.8,
+      "residual_speed_m_s": 0.00019471844012033043,
+      "last_mover": "04-barrel",
+      "threshold_m_s": 0.005,
+      "max_speed_per_frame": [
+        0.01614,
+        0.00744,
+        0.00646,
+        8e-05,
+        5e-05,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.00018,
+        0.00013,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.00023,
+        0.00019
+      ]
+    },
+    "movement": {
+      "01-table": [
+        3.100203686319555e-05,
+        0.0
+      ],
+      "02-bench": [
+        2.1720562493197947e-05,
+        0.0
+      ],
+      "04-barrel": [
+        0.000166526769379406,
+        0.0
+      ]
+    },
+    "max_translation_m": 0.000166526769379406,
+    "max_rotation_deg": 0.0,
+    "calm_unchanged": true,
+    "contact_gaps_m": {
+      "01-table": 0.0009647689876146615,
+      "02-bench": 0.0009733581682667136,
+      "04-barrel": 0.0009496767888776958
+    },
+    "max_contact_gap_m": 0.0009733581682667136,
+    "penetration": {
+      "max_m": 0.0,
+      "pair": null,
+      "pairs_touching": 0
+    },
+    "lane_clearance_m": 0.6284211277961731,
+    "reserved_lane_blender_y_m": [
+      -2.2,
+      -1.0
+    ],
+    "bounds_godot": {
+      "min": [
+        -1.3503762483596802,
+        0.0009496767888776958,
+        -1.2395377159118652
+      ],
+      "max": [
+        1.4686338901519775,
+        0.7506847381591797,
+        0.3715788722038269
+      ]
+    },
+    "tremor": null,
+    "valid": true,
+    "glb": "content/environments/procedural_props_aged_v1/sets/refectory_v0.glb",
+    "sha256": "04a4a4320b7b128e4866d0d1268f56ddccca7e75534a1e37b471a19ace3bc29b",
+    "collision_hulls": 3,
+    "review_images": [
+      "content/environments/red_descent/review/props_aged_v1/physics_v1/refectory_v0-front.png",
+      "content/environments/red_descent/review/props_aged_v1/physics_v1/refectory_v0-back.png"
+    ]
+  }
+]

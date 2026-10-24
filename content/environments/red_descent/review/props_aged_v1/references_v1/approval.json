@@ -1,0 +1,58 @@
+{
+  "status": "approved_for_cl3d",
+  "authority": "user",
+  "user_message": "i think we can start with that",
+  "recorded_at_utc": "2026-10-24T20:22:21Z",
+  "assets": [
+    {
+      "id": "01-table",
+      "image": "01-table.png",
+      "sha256": "4b9a481c3abc4ca153a176916b259d89c2d3ae86c526f246a7977fc6daec7df8"
+    },
+    {
+      "id": "02-bench",
+      "image": "02-bench.png",
+      "sha256": "42eed024d279b1b2c638652ecbb276e62a9cda1471d1745f185ee9693fcd23c7"
+    },
+    {
+      "id": "03-shelf",
+      "image": "03-shelf.png",
+      "sha256": "f82092dfd9395b9031125662d301dbf3bdee416743b1edf9e0980670e34765e7"
+    },
+    {
+      "id": "04-barrel",
+      "image": "04-barrel.png",
+      "sha256": "3da56f2b9610164ad367a56020e134afedda9f7958a675597f368ac9a8d9fa82"
+    },
+    {
+      "id": "05-coffin-body",
+      "image": "05-coffin-body.png",
+      "sha256": "9798a20e096ba1407a41841c19f04a1124dd4ef889b18a7fe7eef90db563ef70"
+    },
+    {
+      "id": "06-coffin-lid",
+      "image": "06-coffin-lid.png",
+      "sha256": "85c9dbb9a142ca8aee461ba0a7daf33a3fd7d536b6f053ce77afa846ce47c6c2"
+    },
+    {
+      "id": "07-skull",
+      "image": "07-skull.png",
+      "sha256": "ba24d41b391907394bed39c8d35d6adec7718c175876dbb8d2c057179b629551"
+    },
+    {
+      "id": "08-femur",
+      "image": "08-femur.png",
+      "sha256": "f3694eadc740c780e3fb08562c10b57e9f2c898de471529c49efc7a598bdc829"
+    },
+    {
+      "id": "09-pot",
+      "image": "09-pot.png",
+      "sha256": "7ccfe1185c953529e597915b65e66b9dea9f3260784ed5d4a3ede89905290c00"
+    },
+    {
+      "id": "10-candle-holder",
+      "image": "10-candle-holder.png",
+      "sha256": "1e5428fba86c9931af6a6e86e50cde436d320d62c5b23dde7b2ef6e7a3697f2a"
+    }
+  ]
+}

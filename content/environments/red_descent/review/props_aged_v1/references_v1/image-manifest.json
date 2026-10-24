@@ -2,9 +2,9 @@
   "task": "T-171",
   "stage": "image_reference_approval",
   "generator": "built-in ImageGen",
-  "user_approval": "pending",
-  "cl3d_generation": "not_started",
-  "mesh_generation": "not_started",
+  "user_approval": "approved_for_cl3d",
+  "cl3d_generation": "started",
+  "mesh_generation": "started",
   "runtime_integration": "not_started",
   "images": [
     {
@@ -16,7 +16,7 @@
       "width_px": 1536,
       "height_px": 1024,
       "technical_review": "passed_as_reference_image",
-      "user_approval": "pending"
+      "user_approval": "approved_for_cl3d"
     },
     {
       "asset_id": "02-bench",
@@ -27,7 +27,7 @@
       "width_px": 1536,
       "height_px": 1024,
       "technical_review": "passed_as_reference_image",
-      "user_approval": "pending"
+      "user_approval": "approved_for_cl3d"
     },
     {
       "asset_id": "03-shelf",
@@ -38,7 +38,7 @@
       "width_px": 1312,
       "height_px": 1199,
       "technical_review": "passed_as_reference_image",
-      "user_approval": "pending"
+      "user_approval": "approved_for_cl3d"
     },
     {
       "asset_id": "04-barrel",
@@ -49,7 +49,7 @@
       "width_px": 1312,
       "height_px": 1199,
       "technical_review": "passed_as_reference_image",
-      "user_approval": "pending"
+      "user_approval": "approved_for_cl3d"
     },
     {
       "asset_id": "05-coffin-body",
@@ -60,7 +60,7 @@
       "width_px": 1536,
       "height_px": 1024,
       "technical_review": "passed_as_reference_image",
-      "user_approval": "pending"
+      "user_approval": "approved_for_cl3d"
     },
     {
       "asset_id": "06-coffin-lid",
@@ -71,7 +71,7 @@
       "width_px": 1536,
       "height_px": 1024,
       "technical_review": "passed_as_reference_image",
-      "user_approval": "pending"
+      "user_approval": "approved_for_cl3d"
     },
     {
       "asset_id": "07-skull",
@@ -82,7 +82,7 @@
       "width_px": 1312,
       "height_px": 1199,
       "technical_review": "passed_as_reference_image",
-      "user_approval": "pending"
+      "user_approval": "approved_for_cl3d"
     },
     {
       "asset_id": "08-femur",
@@ -93,7 +93,7 @@
       "width_px": 1536,
       "height_px": 1024,
       "technical_review": "passed_as_reference_image",
-      "user_approval": "pending"
+      "user_approval": "approved_for_cl3d"
     },
     {
       "asset_id": "09-pot",
@@ -104,7 +104,7 @@
       "width_px": 1312,
       "height_px": 1199,
       "technical_review": "passed_as_reference_image",
-      "user_approval": "pending"
+      "user_approval": "approved_for_cl3d"
     },
     {
       "asset_id": "10-candle-holder",
@@ -115,7 +115,7 @@
       "width_px": 1402,
       "height_px": 1122,
       "technical_review": "passed_as_reference_image",
-      "user_approval": "pending"
+      "user_approval": "approved_for_cl3d"
     }
   ]
 }

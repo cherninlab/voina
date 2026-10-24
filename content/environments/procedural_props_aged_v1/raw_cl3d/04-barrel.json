@@ -1,0 +1,40 @@
+{
+  "id": "04-barrel",
+  "input": "content/environments/procedural_props_aged_v1/conditioning/04-barrel.png",
+  "output": "content/environments/procedural_props_aged_v1/raw_cl3d/04-barrel.glb",
+  "seed_offset": 17103,
+  "height_m": 0.75,
+  "material": "oak_iron",
+  "faces": 5000,
+  "target_dims_xyz_m": [
+    0.55,
+    0.75,
+    0.55
+  ],
+  "approved_input": "content/environments/red_descent/review/props_aged_v1/references_v1/04-barrel.png",
+  "approved_input_sha256": "3da56f2b9610164ad367a56020e134afedda9f7958a675597f368ac9a8d9fa82",
+  "preprocessing": "CL3D BackgroundRemover / local rembg bria-rmbg foreground mask",
+  "model": "CL3D/2mini",
+  "device": "mps",
+  "dtype": "float16",
+  "steps": 50,
+  "resolution": 384,
+  "seed": 20278127,
+  "inference_seconds": 93.6521306249997,
+  "vertices": 675428,
+  "triangles": 1350848,
+  "watertight": false,
+  "input_sha256": "0019c6041f831187511cc0332b559b8a29fd98b111b58e0dfec7deaa31c6d264",
+  "bounds": [
+    [
+      -0.8507452607154846,
+      -1.0024913549423218,
+      -0.8489457368850708
+    ],
+    [
+      0.8462103009223938,
+      0.9963812828063965,
+      0.8442907929420471
+    ]
+  ]
+}

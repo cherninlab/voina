@@ -1,0 +1,336 @@
+{
+  "source_lods": [
+    {
+      "path": "content/environments/procedural_props_aged_v1/sources/04-barrel_lod0.glb",
+      "triangles": 5000,
+      "dimensions_m": [
+        0.6375919878482819,
+        0.7497426109621301,
+        0.6360281109809875
+      ],
+      "finite": true,
+      "sha256": "503c944676cbd5133017af7e3250195a0b2699d4a7fa9e9fdd7139f8d5a637db"
+    },
+    {
+      "path": "content/environments/procedural_props_aged_v1/sources/04-barrel_lod1.glb",
+      "triangles": 1666,
+      "dimensions_m": [
+        0.6382932662963867,
+        0.748616379336454,
+        0.6378786861896515
+      ],
+      "finite": true,
+      "sha256": "9f9487281655c5dd459f3b112719cf15969bb4793475f4c26c73f5a784eec312"
+    },
+    {
+      "path": "content/environments/procedural_props_aged_v1/sources/04-barrel_lod2.glb",
+      "triangles": 624,
+      "dimensions_m": [
+        0.6383601725101471,
+        0.7466493872925639,
+        0.6365580260753632
+      ],
+      "finite": true,
+      "sha256": "6a8a4ea40dc5fd01d756ef57bf0cb75968acab133e5e79d938b7748fe8e07cf3"
+    },
+    {
+      "path": "content/environments/procedural_props_aged_v1/sources/01-table_lod0.glb",
+      "triangles": 8000,
+      "dimensions_m": [
+        1.9001163244247437,
+        0.7495322989998385,
+        0.8820479810237885
+      ],
+      "finite": true,
+      "sha256": "d73cc5fcb04b8d6d95e4b6d3903a5487b89657b8d551c89fece0d43ac13bd771"
+    },
+    {
+      "path": "content/environments/procedural_props_aged_v1/sources/01-table_lod1.glb",
+      "triangles": 2666,
+      "dimensions_m": [
+        1.8990557193756104,
+        0.7483753514097771,
+        0.8811827600002289
+      ],
+      "finite": true,
+      "sha256": "db393b2b1e32b8f70522d08c56fdb0b9cbff502995d67cee532d94a82ce16a48"
+    },
+    {
+      "path": "content/environments/procedural_props_aged_v1/sources/01-table_lod2.glb",
+      "triangles": 1000,
+      "dimensions_m": [
+        1.8975119590759277,
+        0.746289371047169,
+        0.878719687461853
+      ],
+      "finite": true,
+      "sha256": "6ba0c1dcfdac78b7020a995751fde54dd2a9a78e0591d02a3e7e09a66771b56f"
+    },
+    {
+      "path": "content/environments/procedural_props_aged_v1/sources/02-bench_lod0.glb",
+      "triangles": 6000,
+      "dimensions_m": [
+        1.4003207683563232,
+        0.47029202329576947,
+        0.44333939254283905
+      ],
+      "finite": true,
+      "sha256": "2ca352d7fb053893d5f2ff19560a4d97ebfd1b3dde29a8d4f93bc802eb1ee97d"
+    },
+    {
+      "path": "content/environments/procedural_props_aged_v1/sources/02-bench_lod1.glb",
+      "triangles": 2000,
+      "dimensions_m": [
+        1.4003289341926575,
+        0.47038280608830974,
+        0.44339755177497864
+      ],
+      "finite": true,
+      "sha256": "f491ea9853ed7b2cd1117f5e2c514d8b5fc7f5669fdbe684df013f5a6e19c7a1"
+    },
+    {
+      "path": "content/environments/procedural_props_aged_v1/sources/02-bench_lod2.glb",
+      "triangles": 750,
+      "dimensions_m": [
+        1.399279534816742,
+        0.4696133697289042,
+        0.4431706517934799
+      ],
+      "finite": true,
+      "sha256": "e099df99f47baac148503ac8cf24b2c1c82cd0ee1a387ca9173a7d022ef822f0"
+    },
+    {
+      "path": "content/environments/procedural_props_aged_v1/sources/03-shelf_lod0.glb",
+      "triangles": 8000,
+      "dimensions_m": [
+        1.1107362508773804,
+        1.2500530743418494,
+        0.3870394229888916
+      ],
+      "finite": true,
+      "sha256": "a220db0c8c5ad070e5bac079f96e94e210a2412137b9baa0a5f496ab0b32c0ea"
+    },
+    {
+      "path": "content/environments/procedural_props_aged_v1/sources/03-shelf_lod1.glb",
+      "triangles": 2666,
+      "dimensions_m": [
+        1.1107728481292725,
+        1.2492180093249772,
+        0.3888469338417053
+      ],
+      "finite": true,
+      "sha256": "db6f893fc8ab71a23ec88ebc73e5f6cd181a0fbdc7a552d422a4d50fb4f02957"
+    },
+    {
+      "path": "content/environments/procedural_props_aged_v1/sources/03-shelf_lod2.glb",
+      "triangles": 1000,
+      "dimensions_m": [
+        1.1073222756385803,
+        1.2500079842284322,
+        0.3880188316106796
+      ],
+      "finite": true,
+      "sha256": "34e10b00ce37d9924c8c71cced4032da5ea1a0174bad7a7620d57d0cce9ceb63"
+    },
+    {
+      "path": "content/environments/procedural_props_aged_v1/sources/05-coffin-body_lod0.glb",
+      "triangles": 8000,
+      "dimensions_m": [
+        1.9005151987075806,
+        0.33557787595054833,
+        0.7204689681529999
+      ],
+      "finite": true,
+      "sha256": "0a685925c33e972fb3d84ce6a45da50cd327a810dae584f8c338269fa12f2634"
+    },
+    {
+      "path": "content/environments/procedural_props_aged_v1/sources/05-coffin-body_lod1.glb",
+      "triangles": 2666,
+      "dimensions_m": [
+        1.9006468057632446,
+        0.33533837069990113,
+        0.7208900451660156
+      ],
+      "finite": true,
+      "sha256": "5ba69948cb93aa7ae9ecbdb59eb8b7cf46e049b16556abf8105b1bb6e4af141d"
+    },
+    {
+      "path": "content/environments/procedural_props_aged_v1/sources/05-coffin-body_lod2.glb",
+      "triangles": 1000,
+      "dimensions_m": [
+        1.902521550655365,
+        0.3363524085143581,
+        0.7232237458229065
+      ],
+      "finite": true,
+      "sha256": "2e6f80557d8a41d541ca9831ed5060492bb1f1fff219bc3cc61387b02fc82c15"
+    },
+    {
+      "path": "content/environments/procedural_props_aged_v1/sources/06-coffin-lid_lod0.glb",
+      "triangles": 2500,
+      "dimensions_m": [
+        1.8998351693153381,
+        0.12267299614904914,
+        0.6496867537498474
+      ],
+      "finite": true,
+      "sha256": "a0b968a87b144187eaf54609c2c865ad4f02c3d868ee238e949df9b43f9f5041"
+    },
+    {
+      "path": "content/environments/procedural_props_aged_v1/sources/06-coffin-lid_lod1.glb",
+      "triangles": 832,
+      "dimensions_m": [
+        1.8991193175315857,
+        0.12124708556802943,
+        0.6494055688381195
+      ],
+      "finite": true,
+      "sha256": "337dd7ebc077cfe0d29012af43025dbdcfda979306b4f6cb736bbd2d6348c0da"
+    },
+    {
+      "path": "content/environments/procedural_props_aged_v1/sources/06-coffin-lid_lod2.glb",
+      "triangles": 312,
+      "dimensions_m": [
+        1.8913949131965637,
+        0.127445979276672,
+        0.6441501080989838
+      ],
+      "finite": true,
+      "sha256": "557348d4c1cc904381119048c84e23ec990fa734560a1a2610194ed3819b7ddb"
+    },
+    {
+      "path": "content/environments/procedural_props_aged_v1/sources/07-skull_lod0.glb",
+      "triangles": 8000,
+      "dimensions_m": [
+        0.1938336417078972,
+        0.22843614142766455,
+        0.23033446073532104
+      ],
+      "finite": true,
+      "sha256": "0efb17b115a0d5326e3aaf9eff444185000544fca93bedfaa2f1dbc3dff246f0"
+    },
+    {
+      "path": "content/environments/procedural_props_aged_v1/sources/07-skull_lod1.glb",
+      "triangles": 2666,
+      "dimensions_m": [
+        0.19395380467176437,
+        0.2288230793647017,
+        0.2307097390294075
+      ],
+      "finite": true,
+      "sha256": "148f8a5baab73ec4f900c181cca70a616c311d3836e425cc06ed30448dc0971b"
+    },
+    {
+      "path": "content/environments/procedural_props_aged_v1/sources/07-skull_lod2.glb",
+      "triangles": 1000,
+      "dimensions_m": [
+        0.19357846677303314,
+        0.2280267745954916,
+        0.23021146655082703
+      ],
+      "finite": true,
+      "sha256": "47d59ce3ec328ff03fe471ec133d66017c8032c9615d34dfb4c3c103f2d590ee"
+    },
+    {
+      "path": "content/environments/procedural_props_aged_v1/sources/08-femur_lod0.glb",
+      "triangles": 3000,
+      "dimensions_m": [
+        0.4302425682544708,
+        0.08372053834318649,
+        0.12927518039941788
+      ],
+      "finite": true,
+      "sha256": "1a6a9fc64ba13f6d6f6d61cc08ea03207fc3d3e679d50464f3b7ccc35eaece86"
+    },
+    {
+      "path": "content/environments/procedural_props_aged_v1/sources/08-femur_lod1.glb",
+      "triangles": 1000,
+      "dimensions_m": [
+        0.4300813674926758,
+        0.08388653449947014,
+        0.12884387373924255
+      ],
+      "finite": true,
+      "sha256": "2f1955bc09d3d3681dbf0c69909368d22e5db082b23f57cdefbc7d995fc2f404"
+    },
+    {
+      "path": "content/environments/procedural_props_aged_v1/sources/08-femur_lod2.glb",
+      "triangles": 374,
+      "dimensions_m": [
+        0.43016187846660614,
+        0.08488375489832833,
+        0.12932055443525314
+      ],
+      "finite": true,
+      "sha256": "93fdbdb4e20be86a31c462b60073ee0376efa011ffb77a5df19b8b82f032b382"
+    },
+    {
+      "path": "content/environments/procedural_props_aged_v1/sources/09-pot_lod0.glb",
+      "triangles": 5000,
+      "dimensions_m": [
+        0.46045318245887756,
+        0.4378900371812051,
+        0.45963867008686066
+      ],
+      "finite": true,
+      "sha256": "4dfb4df916a09e08c7276a6f61d5e32962617576784ec9de0e9e4a50e4cd0c73"
+    },
+    {
+      "path": "content/environments/procedural_props_aged_v1/sources/09-pot_lod1.glb",
+      "triangles": 1666,
+      "dimensions_m": [
+        0.46059395372867584,
+        0.43770249986846466,
+        0.45903806388378143
+      ],
+      "finite": true,
+      "sha256": "bf1a15bfce4f125d52365a21da080e96f7765fdf2d11bedfe779190c89f093ca"
+    },
+    {
+      "path": "content/environments/procedural_props_aged_v1/sources/09-pot_lod2.glb",
+      "triangles": 624,
+      "dimensions_m": [
+        0.4629870057106018,
+        0.43639641073241364,
+        0.45866645872592926
+      ],
+      "finite": true,
+      "sha256": "2902d35cc67540521490bd8dbe45970dbbe9aea185bb9bdf0b93d0b8d5b06f0c"
+    },
+    {
+      "path": "content/environments/procedural_props_aged_v1/sources/10-candle-holder_lod0.glb",
+      "triangles": 6000,
+      "dimensions_m": [
+        0.3001308888196945,
+        0.15416558300421457,
+        0.20168442279100418
+      ],
+      "finite": true,
+      "sha256": "063faa048614e39f8a3efb9eabf98f8dc96966fc084dce191e0ba6f9b3e3d379"
+    },
+    {
+      "path": "content/environments/procedural_props_aged_v1/sources/10-candle-holder_lod1.glb",
+      "triangles": 2000,
+      "dimensions_m": [
+        0.30015064775943756,
+        0.15406394525780343,
+        0.20104814320802689
+      ],
+      "finite": true,
+      "sha256": "7d39fc2d7f62b46f44f3a1400511b09cc420ac69373221fb323b038b0a9fb643"
+    },
+    {
+      "path": "content/environments/procedural_props_aged_v1/sources/10-candle-holder_lod2.glb",
+      "triangles": 750,
+      "dimensions_m": [
+        0.3010051101446152,
+        0.15238802251406014,
+        0.20304997265338898
+      ],
+      "finite": true,
+      "sha256": "a62ba1b5677bff45b3cce50967ad766d48d691e84b0689e2fbe40acda3b47e73"
+    }
+  ],
+  "source_lod_count": 30,
+  "approved_reference_hashes_unchanged": true
+}

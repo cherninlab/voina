@@ -1,0 +1,84 @@
+23:04:16 | INFO: Data are loaded, start creating Blender stuff
+23:04:16 | INFO: Blender create Mesh node geometry_0
+23:04:16 | INFO: glTF import finished in 0.01s
+23:04:16 | INFO: Data are loaded, start creating Blender stuff
+23:04:16 | INFO: Blender create Mesh node geometry_0
+23:04:16 | INFO: glTF import finished in 0.00s
+23:04:16 | INFO: Data are loaded, start creating Blender stuff
+23:04:16 | INFO: Blender create Mesh node geometry_0
+23:04:16 | INFO: glTF import finished in 0.01s
+/Users/theochernin/Projects/MultiPlayerProject-agents/theo-codex-43/scripts/art/build_scattered_props.py:73: DeprecationWarning: 'Material.use_nodes' is expected to be removed in Blender 6.0
+  material.use_nodes = True
+INFO Draco is available, use library at /Applications/Blender.app/Contents/Resources/5.2/scripts/addons_core/io_scene_gltf2/libbf_intern_draco_bridge.dylib
+INFO MeshOptimizer is available, use library at /Applications/Blender.app/Contents/Resources/5.2/scripts/addons_core/io_scene_gltf2/libbf_intern_meshopt_bridge.dylib
+23:04:16 | INFO: Starting glTF 2.0 export
+23:04:16 | INFO: Extracting primitive: 04-barrel
+23:04:16 | INFO: Primitives created: 1
+23:04:16 | INFO: Extracting primitive: 04-barrel.001
+23:04:16 | INFO: Primitives created: 1
+23:04:16 | INFO: Extracting primitive: 09-pot
+23:04:16 | INFO: Primitives created: 1
+23:04:16 | INFO: Extracting primitive: 09-pot.001
+23:04:16 | INFO: Primitives created: 1
+23:04:16 | INFO: Extracting primitive: 10-candle-holder
+23:04:16 | INFO: Primitives created: 1
+23:04:16 | INFO: Finished glTF 2.0 export in 0.015815019607543945 s
+00:03.650  render           | Saved: '/var/folders/l1/ffgp3l9n2gd1g8gjswvkfqyw0000gn/T/tmppzo4ntg3/view.png'
+00:06.693  render           | Saved: '/var/folders/l1/ffgp3l9n2gd1g8gjswvkfqyw0000gn/T/tmpwyfgukrn/view.png'
+
+PROP_SCATTER_ATTEMPT {"id": "votive_v0", "seed": 171000, "valid": true, "max_contact_gap_m": 0.000987728824838996, "lane_clearance_m": 0.7990091890096664, "max_translation_m": 0.0001803643894363794, "max_rotation_deg": 0.03956468118525214}
+23:04:23 | INFO: Data are loaded, start creating Blender stuff
+23:04:23 | INFO: Blender create Mesh node geometry_0
+23:04:23 | INFO: glTF import finished in 0.01s
+23:04:23 | INFO: Data are loaded, start creating Blender stuff
+23:04:23 | INFO: Blender create Mesh node geometry_0
+23:04:23 | INFO: glTF import finished in 0.00s
+23:04:23 | INFO: Data are loaded, start creating Blender stuff
+23:04:23 | INFO: Blender create Mesh node geometry_0
+23:04:23 | INFO: glTF import finished in 0.01s
+23:04:24 | INFO: Starting glTF 2.0 export
+23:04:24 | INFO: Extracting primitive: 04-barrel
+23:04:24 | INFO: Primitives created: 1
+23:04:24 | INFO: Extracting primitive: 04-barrel.001
+23:04:24 | INFO: Primitives created: 1
+23:04:24 | INFO: Extracting primitive: 09-pot
+23:04:24 | INFO: Primitives created: 1
+23:04:24 | INFO: Extracting primitive: 09-pot.001
+23:04:24 | INFO: Primitives created: 1
+23:04:24 | INFO: Extracting primitive: 10-candle-holder
+23:04:24 | INFO: Primitives created: 1
+23:04:24 | INFO: Finished glTF 2.0 export in 0.014284133911132812 s
+00:10.653  render           | Saved: '/var/folders/l1/ffgp3l9n2gd1g8gjswvkfqyw0000gn/T/tmp486hxmsn/view.png'
+00:13.726  render           | Saved: '/var/folders/l1/ffgp3l9n2gd1g8gjswvkfqyw0000gn/T/tmpqphmdf8j/view.png'
+
+PROP_SCATTER_ATTEMPT {"id": "votive_v1", "seed": 171100, "valid": true, "max_contact_gap_m": 0.0009877292905002832, "lane_clearance_m": 0.8266230076551437, "max_translation_m": 0.0861753209513885, "max_rotation_deg": 7.956067307513898}
+23:04:30 | INFO: Data are loaded, start creating Blender stuff
+23:04:30 | INFO: Blender create Mesh node geometry_0
+23:04:30 | INFO: glTF import finished in 0.01s
+23:04:30 | INFO: Data are loaded, start creating Blender stuff
+23:04:30 | INFO: Blender create Mesh node geometry_0
+23:04:30 | INFO: glTF import finished in 0.01s
+23:04:30 | INFO: Data are loaded, start creating Blender stuff
+23:04:30 | INFO: Blender create Mesh node geometry_0
+23:04:30 | INFO: glTF import finished in 0.01s
+23:04:31 | INFO: Starting glTF 2.0 export
+23:04:31 | INFO: Extracting primitive: 04-barrel
+23:04:31 | INFO: Primitives created: 1
+23:04:31 | INFO: Extracting primitive: 04-barrel.001
+23:04:31 | INFO: Primitives created: 1
+23:04:31 | INFO: Extracting primitive: 09-pot_cell0
+23:04:31 | INFO: Primitives created: 1
+23:04:31 | INFO: Extracting primitive: 09-pot_cell1
+23:04:31 | INFO: Primitives created: 1
+23:04:31 | INFO: Extracting primitive: 09-pot_cell2
+23:04:31 | INFO: Primitives created: 1
+23:04:31 | INFO: Extracting primitive: 10-candle-holder
+23:04:31 | INFO: Primitives created: 1
+23:04:31 | INFO: Finished glTF 2.0 export in 0.012147903442382812 s
+00:18.113  render           | Saved: '/var/folders/l1/ffgp3l9n2gd1g8gjswvkfqyw0000gn/T/tmpy6b3q8pr/view.png'
+00:21.158  render           | Saved: '/var/folders/l1/ffgp3l9n2gd1g8gjswvkfqyw0000gn/T/tmpdti3bi6c/view.png'
+
+PROP_SCATTER_ATTEMPT {"id": "votive_v2", "seed": 171200, "valid": true, "max_contact_gap_m": 0.0009877290576696396, "lane_clearance_m": 0.5186313986778259, "max_translation_m": 0.5178908914561614, "max_rotation_deg": 161.94412673046082}
+Blender 5.2.2 LTS (hash d13f752e3b9c built 2026-09-15 01:49:19)
+
+Blender quit

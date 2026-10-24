@@ -1,0 +1,40 @@
+{
+  "id": "01-table",
+  "input": "content/environments/procedural_props_aged_v1/conditioning/01-table.png",
+  "output": "content/environments/procedural_props_aged_v1/raw_cl3d/01-table.glb",
+  "seed_offset": 17100,
+  "height_m": 0.78,
+  "material": "oak",
+  "faces": 8000,
+  "target_dims_xyz_m": [
+    1.9,
+    0.78,
+    0.78
+  ],
+  "approved_input": "content/environments/red_descent/review/props_aged_v1/references_v1/01-table.png",
+  "approved_input_sha256": "4b9a481c3abc4ca153a176916b259d89c2d3ae86c526f246a7977fc6daec7df8",
+  "preprocessing": "CL3D BackgroundRemover / local rembg bria-rmbg foreground mask",
+  "model": "CL3D/2mini",
+  "device": "mps",
+  "dtype": "float16",
+  "steps": 50,
+  "resolution": 384,
+  "seed": 20278124,
+  "inference_seconds": 87.65643624999939,
+  "vertices": 260986,
+  "triangles": 521972,
+  "watertight": true,
+  "input_sha256": "89e0c813b196c354fc64f7cf105db5797fad5818180ce21515dd1c5b35e9b6a9",
+  "bounds": [
+    [
+      -1.0008795261383057,
+      -0.3990256190299988,
+      -0.46604683995246887
+    ],
+    [
+      0.9951149225234985,
+      0.3880235552787781,
+      0.4602980315685272
+    ]
+  ]
+}

@@ -1,0 +1,88 @@
+22:56:30 | INFO: Data are loaded, start creating Blender stuff
+22:56:30 | INFO: Blender create Mesh node geometry_0
+22:56:30 | INFO: glTF import finished in 0.01s
+22:56:30 | INFO: Data are loaded, start creating Blender stuff
+22:56:30 | INFO: Blender create Mesh node geometry_0
+22:56:30 | INFO: glTF import finished in 0.01s
+22:56:30 | INFO: Data are loaded, start creating Blender stuff
+22:56:30 | INFO: Blender create Mesh node geometry_0
+22:56:30 | INFO: glTF import finished in 0.01s
+/Users/theochernin/Projects/MultiPlayerProject-agents/theo-codex-43/scripts/art/build_scattered_props.py:73: DeprecationWarning: 'Material.use_nodes' is expected to be removed in Blender 6.0
+  material.use_nodes = True
+INFO Draco is available, use library at /Applications/Blender.app/Contents/Resources/5.2/scripts/addons_core/io_scene_gltf2/libbf_intern_draco_bridge.dylib
+INFO MeshOptimizer is available, use library at /Applications/Blender.app/Contents/Resources/5.2/scripts/addons_core/io_scene_gltf2/libbf_intern_meshopt_bridge.dylib
+22:56:30 | INFO: Starting glTF 2.0 export
+22:56:30 | INFO: Extracting primitive: 01-table
+22:56:30 | INFO: Primitives created: 1
+22:56:30 | INFO: Extracting primitive: 01-table.001
+22:56:30 | INFO: Primitives created: 1
+22:56:30 | INFO: Extracting primitive: 02-bench
+22:56:30 | INFO: Primitives created: 1
+22:56:30 | INFO: Extracting primitive: 02-bench.001
+22:56:30 | INFO: Primitives created: 1
+22:56:30 | INFO: Extracting primitive: 04-barrel
+22:56:30 | INFO: Primitives created: 1
+22:56:30 | INFO: Extracting primitive: 04-barrel.001
+22:56:30 | INFO: Primitives created: 1
+22:56:30 | INFO: Finished glTF 2.0 export in 0.04236316680908203 s
+00:06.859  render           | Saved: '/var/folders/l1/ffgp3l9n2gd1g8gjswvkfqyw0000gn/T/tmpq03288hy/view.png'
+00:12.239  render           | Saved: '/var/folders/l1/ffgp3l9n2gd1g8gjswvkfqyw0000gn/T/tmp3erhgizn/view.png'
+
+PROP_SCATTER_ATTEMPT {"id": "refectory_v0", "seed": 171000, "valid": true, "max_contact_gap_m": 0.0009733581682667136, "lane_clearance_m": 0.6284211277961731, "max_translation_m": 0.000166526769379406, "max_rotation_deg": 0.0}
+22:56:43 | INFO: Data are loaded, start creating Blender stuff
+22:56:43 | INFO: Blender create Mesh node geometry_0
+22:56:43 | INFO: glTF import finished in 0.01s
+22:56:43 | INFO: Data are loaded, start creating Blender stuff
+22:56:43 | INFO: Blender create Mesh node geometry_0
+22:56:43 | INFO: glTF import finished in 0.01s
+22:56:43 | INFO: Data are loaded, start creating Blender stuff
+22:56:43 | INFO: Blender create Mesh node geometry_0
+22:56:43 | INFO: glTF import finished in 0.01s
+22:56:43 | INFO: Starting glTF 2.0 export
+22:56:43 | INFO: Extracting primitive: 01-table
+22:56:43 | INFO: Primitives created: 1
+22:56:43 | INFO: Extracting primitive: 01-table.001
+22:56:43 | INFO: Primitives created: 1
+22:56:43 | INFO: Extracting primitive: 02-bench
+22:56:43 | INFO: Primitives created: 1
+22:56:43 | INFO: Extracting primitive: 02-bench.001
+22:56:43 | INFO: Primitives created: 1
+22:56:43 | INFO: Extracting primitive: 04-barrel
+22:56:43 | INFO: Primitives created: 1
+22:56:43 | INFO: Extracting primitive: 04-barrel.001
+22:56:43 | INFO: Primitives created: 1
+22:56:43 | INFO: Finished glTF 2.0 export in 0.02712225914001465 s
+00:19.038  render           | Saved: '/var/folders/l1/ffgp3l9n2gd1g8gjswvkfqyw0000gn/T/tmp15cit3as/view.png'
+00:24.670  render           | Saved: '/var/folders/l1/ffgp3l9n2gd1g8gjswvkfqyw0000gn/T/tmptiw587k5/view.png'
+
+PROP_SCATTER_ATTEMPT {"id": "refectory_v1", "seed": 171100, "valid": true, "max_contact_gap_m": 0.0009733595070429146, "lane_clearance_m": 0.6337677538394928, "max_translation_m": 0.030071099133453395, "max_rotation_deg": 8.221034251080788}
+22:56:55 | INFO: Data are loaded, start creating Blender stuff
+22:56:55 | INFO: Blender create Mesh node geometry_0
+22:56:55 | INFO: glTF import finished in 0.01s
+22:56:55 | INFO: Data are loaded, start creating Blender stuff
+22:56:55 | INFO: Blender create Mesh node geometry_0
+22:56:55 | INFO: glTF import finished in 0.01s
+22:56:55 | INFO: Data are loaded, start creating Blender stuff
+22:56:55 | INFO: Blender create Mesh node geometry_0
+22:56:55 | INFO: glTF import finished in 0.01s
+22:56:56 | INFO: Starting glTF 2.0 export
+22:56:56 | INFO: Extracting primitive: 01-table
+22:56:56 | INFO: Primitives created: 1
+22:56:56 | INFO: Extracting primitive: 01-table.001
+22:56:56 | INFO: Primitives created: 1
+22:56:56 | INFO: Extracting primitive: 02-bench
+22:56:56 | INFO: Primitives created: 1
+22:56:56 | INFO: Extracting primitive: 02-bench.001
+22:56:56 | INFO: Primitives created: 1
+22:56:56 | INFO: Extracting primitive: 04-barrel
+22:56:56 | INFO: Primitives created: 1
+22:56:56 | INFO: Extracting primitive: 04-barrel.001
+22:56:56 | INFO: Primitives created: 1
+22:56:56 | INFO: Finished glTF 2.0 export in 0.03475189208984375 s
+00:31.491  render           | Saved: '/var/folders/l1/ffgp3l9n2gd1g8gjswvkfqyw0000gn/T/tmp06xrsloe/view.png'
+00:35.609  render           | Saved: '/var/folders/l1/ffgp3l9n2gd1g8gjswvkfqyw0000gn/T/tmpf3z9hox0/view.png'
+
+PROP_SCATTER_ATTEMPT {"id": "refectory_v2", "seed": 171200, "valid": true, "max_contact_gap_m": 0.0009733566548675299, "lane_clearance_m": 0.6304146349430084, "max_translation_m": 0.29990398079651787, "max_rotation_deg": 17.518962230482682}
+Blender 5.2.2 LTS (hash d13f752e3b9c built 2026-09-15 01:49:19)
+
+Blender quit

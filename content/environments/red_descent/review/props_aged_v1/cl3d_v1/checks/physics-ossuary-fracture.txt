@@ -1,0 +1,41 @@
+23:03:14 | INFO: Data are loaded, start creating Blender stuff
+23:03:14 | INFO: Blender create Mesh node geometry_0
+23:03:14 | INFO: glTF import finished in 0.01s
+23:03:14 | INFO: Data are loaded, start creating Blender stuff
+23:03:14 | INFO: Blender create Mesh node geometry_0
+23:03:14 | INFO: glTF import finished in 0.00s
+23:03:14 | INFO: Data are loaded, start creating Blender stuff
+23:03:14 | INFO: Blender create Mesh node geometry_0
+23:03:14 | INFO: glTF import finished in 0.01s
+23:03:14 | INFO: Data are loaded, start creating Blender stuff
+23:03:14 | INFO: Blender create Mesh node geometry_0
+23:03:14 | INFO: glTF import finished in 0.00s
+/Users/theochernin/Projects/MultiPlayerProject-agents/theo-codex-43/scripts/art/build_scattered_props.py:73: DeprecationWarning: 'Material.use_nodes' is expected to be removed in Blender 6.0
+  material.use_nodes = True
+INFO Draco is available, use library at /Applications/Blender.app/Contents/Resources/5.2/scripts/addons_core/io_scene_gltf2/libbf_intern_draco_bridge.dylib
+INFO MeshOptimizer is available, use library at /Applications/Blender.app/Contents/Resources/5.2/scripts/addons_core/io_scene_gltf2/libbf_intern_meshopt_bridge.dylib
+23:03:21 | INFO: Starting glTF 2.0 export
+23:03:21 | INFO: Extracting primitive: 03-shelf
+23:03:21 | INFO: Primitives created: 1
+23:03:21 | INFO: Extracting primitive: 03-shelf.001
+23:03:21 | INFO: Primitives created: 1
+23:03:21 | INFO: Extracting primitive: 07-skull
+23:03:21 | INFO: Primitives created: 1
+23:03:21 | INFO: Extracting primitive: 08-femur
+23:03:21 | INFO: Primitives created: 1
+23:03:21 | INFO: Extracting primitive: 09-pot_cell0
+23:03:21 | INFO: Primitives created: 1
+23:03:21 | INFO: Extracting primitive: 09-pot_cell1
+23:03:21 | INFO: Primitives created: 1
+23:03:21 | INFO: Extracting primitive: 09-pot_cell1.001
+23:03:21 | INFO: Primitives created: 1
+23:03:21 | INFO: Extracting primitive: 09-pot_cell2
+23:03:21 | INFO: Primitives created: 1
+23:03:21 | INFO: Finished glTF 2.0 export in 0.01921701431274414 s
+00:09.412  render           | Saved: '/var/folders/l1/ffgp3l9n2gd1g8gjswvkfqyw0000gn/T/tmpqzu8q6ii/view.png'
+00:12.127  render           | Saved: '/var/folders/l1/ffgp3l9n2gd1g8gjswvkfqyw0000gn/T/tmpevk1c9au/view.png'
+
+PROP_SCATTER_ATTEMPT {"id": "ossuary_v2", "seed": 171200, "valid": true, "max_contact_gap_m": 0.0039307475090026855, "lane_clearance_m": 0.38697052001953125, "max_translation_m": 1.284495737614804, "max_rotation_deg": 167.189124616762}
+Blender 5.2.2 LTS (hash d13f752e3b9c built 2026-09-15 01:49:19)
+
+Blender quit

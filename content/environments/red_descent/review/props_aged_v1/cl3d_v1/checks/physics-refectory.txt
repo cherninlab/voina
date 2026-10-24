@@ -1,0 +1,9 @@
+22:35:50 | INFO: Data are loaded, start creating Blender stuff
+22:35:50 | INFO: Blender create Mesh node geometry_0
+22:35:50 | INFO: glTF import finished in 0.03s
+22:35:50 | INFO: Data are loaded, start creating Blender stuff
+22:35:50 | INFO: Blender create Mesh node geometry_0
+22:35:50 | INFO: glTF import finished in 0.01s
+22:35:50 | INFO: Data are loaded, start creating Blender stuff
+22:35:50 | INFO: Blender create Mesh node geometry_0
+22:35:50 | INFO: glTF import finished in 0.01s

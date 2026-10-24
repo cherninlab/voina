@@ -1,0 +1,172 @@
+[
+  {
+    "id": "01-table",
+    "input": "content/environments/procedural_props_aged_v1/conditioning/01-table.png",
+    "output": "content/environments/procedural_props_aged_v1/raw_cl3d/01-table.glb",
+    "seed_offset": 17100,
+    "height_m": 0.78,
+    "material": "oak",
+    "faces": 8000,
+    "target_dims_xyz_m": [
+      1.9,
+      0.78,
+      0.78
+    ],
+    "approved_input": "content/environments/red_descent/review/props_aged_v1/references_v1/01-table.png",
+    "approved_input_sha256": "4b9a481c3abc4ca153a176916b259d89c2d3ae86c526f246a7977fc6daec7df8",
+    "preprocessing": "CL3D BackgroundRemover / local rembg bria-rmbg foreground mask"
+  },
+  {
+    "id": "02-bench",
+    "input": "content/environments/procedural_props_aged_v1/conditioning/02-bench.png",
+    "output": "content/environments/procedural_props_aged_v1/raw_cl3d/02-bench.glb",
+    "seed_offset": 17101,
+    "height_m": 0.48,
+    "material": "oak",
+    "faces": 6000,
+    "target_dims_xyz_m": [
+      1.4,
+      0.48,
+      0.34
+    ],
+    "approved_input": "content/environments/red_descent/review/props_aged_v1/references_v1/02-bench.png",
+    "approved_input_sha256": "42eed024d279b1b2c638652ecbb276e62a9cda1471d1745f185ee9693fcd23c7",
+    "preprocessing": "CL3D BackgroundRemover / local rembg bria-rmbg foreground mask"
+  },
+  {
+    "id": "03-shelf",
+    "input": "content/environments/procedural_props_aged_v1/conditioning/03-shelf.png",
+    "output": "content/environments/procedural_props_aged_v1/raw_cl3d/03-shelf.glb",
+    "seed_offset": 17102,
+    "height_m": 1.25,
+    "material": "oak",
+    "faces": 8000,
+    "target_dims_xyz_m": [
+      0.95,
+      1.25,
+      0.38
+    ],
+    "approved_input": "content/environments/red_descent/review/props_aged_v1/references_v1/03-shelf.png",
+    "approved_input_sha256": "f82092dfd9395b9031125662d301dbf3bdee416743b1edf9e0980670e34765e7",
+    "preprocessing": "CL3D BackgroundRemover / local rembg bria-rmbg foreground mask"
+  },
+  {
+    "id": "04-barrel",
+    "input": "content/environments/procedural_props_aged_v1/conditioning/04-barrel.png",
+    "output": "content/environments/procedural_props_aged_v1/raw_cl3d/04-barrel.glb",
+    "seed_offset": 17103,
+    "height_m": 0.75,
+    "material": "oak_iron",
+    "faces": 5000,
+    "target_dims_xyz_m": [
+      0.55,
+      0.75,
+      0.55
+    ],
+    "approved_input": "content/environments/red_descent/review/props_aged_v1/references_v1/04-barrel.png",
+    "approved_input_sha256": "3da56f2b9610164ad367a56020e134afedda9f7958a675597f368ac9a8d9fa82",
+    "preprocessing": "CL3D BackgroundRemover / local rembg bria-rmbg foreground mask"
+  },
+  {
+    "id": "05-coffin-body",
+    "input": "content/environments/procedural_props_aged_v1/conditioning/05-coffin-body.png",
+    "output": "content/environments/procedural_props_aged_v1/raw_cl3d/05-coffin-body.glb",
+    "seed_offset": 17104,
+    "height_m": 0.38,
+    "material": "oak",
+    "faces": 8000,
+    "target_dims_xyz_m": [
+      0.64,
+      0.38,
+      1.9
+    ],
+    "approved_input": "content/environments/red_descent/review/props_aged_v1/references_v1/05-coffin-body.png",
+    "approved_input_sha256": "9798a20e096ba1407a41841c19f04a1124dd4ef889b18a7fe7eef90db563ef70",
+    "preprocessing": "CL3D BackgroundRemover / local rembg bria-rmbg foreground mask"
+  },
+  {
+    "id": "06-coffin-lid",
+    "input": "content/environments/procedural_props_aged_v1/conditioning/06-coffin-lid.png",
+    "output": "content/environments/procedural_props_aged_v1/raw_cl3d/06-coffin-lid.glb",
+    "seed_offset": 17105,
+    "height_m": 0.055,
+    "material": "oak",
+    "faces": 2500,
+    "target_dims_xyz_m": [
+      0.64,
+      0.055,
+      1.9
+    ],
+    "approved_input": "content/environments/red_descent/review/props_aged_v1/references_v1/06-coffin-lid.png",
+    "approved_input_sha256": "85c9dbb9a142ca8aee461ba0a7daf33a3fd7d536b6f053ce77afa846ce47c6c2",
+    "preprocessing": "CL3D BackgroundRemover / local rembg bria-rmbg foreground mask"
+  },
+  {
+    "id": "07-skull",
+    "input": "content/environments/procedural_props_aged_v1/conditioning/07-skull.png",
+    "output": "content/environments/procedural_props_aged_v1/raw_cl3d/07-skull.glb",
+    "seed_offset": 17106,
+    "height_m": 0.19,
+    "material": "bone",
+    "faces": 8000,
+    "target_dims_xyz_m": [
+      0.15,
+      0.19,
+      0.23
+    ],
+    "approved_input": "content/environments/red_descent/review/props_aged_v1/references_v1/07-skull.png",
+    "approved_input_sha256": "ba24d41b391907394bed39c8d35d6adec7718c175876dbb8d2c057179b629551",
+    "preprocessing": "CL3D BackgroundRemover / local rembg bria-rmbg foreground mask"
+  },
+  {
+    "id": "08-femur",
+    "input": "content/environments/procedural_props_aged_v1/conditioning/08-femur.png",
+    "output": "content/environments/procedural_props_aged_v1/raw_cl3d/08-femur.glb",
+    "seed_offset": 17107,
+    "height_m": 0.06,
+    "material": "bone",
+    "faces": 3000,
+    "target_dims_xyz_m": [
+      0.09,
+      0.06,
+      0.43
+    ],
+    "approved_input": "content/environments/red_descent/review/props_aged_v1/references_v1/08-femur.png",
+    "approved_input_sha256": "f3694eadc740c780e3fb08562c10b57e9f2c898de471529c49efc7a598bdc829",
+    "preprocessing": "CL3D BackgroundRemover / local rembg bria-rmbg foreground mask"
+  },
+  {
+    "id": "09-pot",
+    "input": "content/environments/procedural_props_aged_v1/conditioning/09-pot.png",
+    "output": "content/environments/procedural_props_aged_v1/raw_cl3d/09-pot.glb",
+    "seed_offset": 17108,
+    "height_m": 0.46,
+    "material": "terracotta",
+    "faces": 5000,
+    "target_dims_xyz_m": [
+      0.42,
+      0.46,
+      0.42
+    ],
+    "approved_input": "content/environments/red_descent/review/props_aged_v1/references_v1/09-pot.png",
+    "approved_input_sha256": "7ccfe1185c953529e597915b65e66b9dea9f3260784ed5d4a3ede89905290c00",
+    "preprocessing": "CL3D BackgroundRemover / local rembg bria-rmbg foreground mask"
+  },
+  {
+    "id": "10-candle-holder",
+    "input": "content/environments/procedural_props_aged_v1/conditioning/10-candle-holder.png",
+    "output": "content/environments/procedural_props_aged_v1/raw_cl3d/10-candle-holder.glb",
+    "seed_offset": 17109,
+    "height_m": 0.24,
+    "material": "wax_iron",
+    "faces": 6000,
+    "target_dims_xyz_m": [
+      0.3,
+      0.24,
+      0.24
+    ],
+    "approved_input": "content/environments/red_descent/review/props_aged_v1/references_v1/10-candle-holder.png",
+    "approved_input_sha256": "1e5428fba86c9931af6a6e86e50cde436d320d62c5b23dde7b2ef6e7a3697f2a",
+    "preprocessing": "CL3D BackgroundRemover / local rembg bria-rmbg foreground mask"
+  }
+]

@@ -1,0 +1,178 @@
+[
+  {
+    "id": "votive_v0",
+    "family": "votive",
+    "variant": 0,
+    "seed": 171000,
+    "intensity": 0.0,
+    "rolling_ball": false,
+    "baseline": {
+      "settled": true,
+      "frame": 60,
+      "seconds": 2.0,
+      "residual_speed_m_s": 2.528810910653642e-06,
+      "last_mover": "09-pot",
+      "threshold_m_s": 0.005,
+      "max_speed_per_frame": [
+        0.12131,
+        0.03786,
+        0.02747,
+        0.02486,
+        0.03286,
+        0.04167,
+        0.05154,
+        0.06273,
+        0.07553,
+        0.0903,
+        0.07289,
+        0.08151,
+        0.08574,
+        0.07983,
+        0.07429,
+        0.06742,
+        0.03651,
+        0.04199,
+        0.02845,
+        0.0202,
+        0.01981,
+        0.03134,
+        0.04669,
+        0.05116,
+        0.03521,
+        0.03691,
+        0.0319,
+        0.03507,
+        0.04462,
+        0.04413,
+        0.03565,
+        0.01954,
+        0.00395,
+        0.02008,
+        0.01892,
+        0.02127,
+        0.0082,
+        0.0039,
+        0.00912,
+        0.00377,
+        0.00338,
+        0.00113,
+        8e-05,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    "offline_collision": "convex movers; concave kinematic shelving",
+    "fractured_pot_cells": 0,
+    "settled": {
+      "settled": true,
+      "frame": 34,
+      "seconds": 1.133,
+      "residual_speed_m_s": 1.7970577993013066e-05,
+      "last_mover": "09-pot",
+      "threshold_m_s": 0.005,
+      "max_speed_per_frame": [
+        0.03468,
+        0.02665,
+        0.01265,
+        0.0184,
+        0.00699,
+        0.01271,
+        0.02028,
+        0.02045,
+        0.01108,
+        0.00462,
+        0.00393,
+        0.01133,
+        0.01,
+        0.00078,
+        0.00494,
+        0.00216,
+        0.00034,
+        2e-05,
+        2e-05,
+        2e-05,
+        2e-05,
+        2e-05,
+        2e-05,
+        2e-05,
+        2e-05,
+        2e-05,
+        2e-05,
+        2e-05,
+        2e-05,
+        2e-05,
+        2e-05,
+        2e-05,
+        2e-05
+      ]
+    },
+    "movement": {
+      "04-barrel": [
+        0.00016825987939059095,
+        0.0
+      ],
+      "09-pot": [
+        0.0001803643894363794,
+        0.03956468118525214
+      ],
+      "10-candle-holder": [
+        1.4232833213198661e-05,
+        0.0
+      ]
+    },
+    "max_translation_m": 0.0001803643894363794,
+    "max_rotation_deg": 0.03956468118525214,
+    "calm_unchanged": true,
+    "contact_gaps_m": {
+      "04-barrel": 0.0009496777202002704,
+      "09-pot": 0.000956835167016834,
+      "10-candle-holder": 0.000987728824838996
+    },
+    "max_contact_gap_m": 0.000987728824838996,
+    "penetration": {
+      "max_m": 0.0,
+      "pair": null,
+      "pairs_touching": 0
+    },
+    "lane_clearance_m": 0.7990091890096664,
+    "reserved_lane_blender_y_m": [
+      -2.2,
+      -1.0
+    ],
+    "bounds_godot": {
+      "min": [
+        -0.9189561605453491,
+        0.0009496771963313222,
+        -0.9182337522506714
+      ],
+      "max": [
+        0.8253744840621948,
+        0.7506847381591797,
+        0.20099081099033356
+      ]
+    },
+    "tremor": null,
+    "valid": true,
+    "glb": "content/environments/procedural_props_aged_v1/sets/votive_v0.glb",
+    "sha256": "77e2553ed8953283296e139dc5a370a5b12d268542ed3fefb4cdb433166657fd",
+    "collision_hulls": 2,
+    "review_images": [
+      "content/environments/red_descent/review/props_aged_v1/physics_v1/votive_v0-front.png",
+      "content/environments/red_descent/review/props_aged_v1/physics_v1/votive_v0-back.png"
+    ]
+  }
+]

@@ -1,0 +1,40 @@
+{
+  "id": "07-skull",
+  "input": "content/environments/procedural_props_aged_v1/conditioning/07-skull.png",
+  "output": "content/environments/procedural_props_aged_v1/raw_cl3d/07-skull.glb",
+  "seed_offset": 17106,
+  "height_m": 0.19,
+  "material": "bone",
+  "faces": 8000,
+  "target_dims_xyz_m": [
+    0.15,
+    0.19,
+    0.23
+  ],
+  "approved_input": "content/environments/red_descent/review/props_aged_v1/references_v1/07-skull.png",
+  "approved_input_sha256": "ba24d41b391907394bed39c8d35d6adec7718c175876dbb8d2c057179b629551",
+  "preprocessing": "CL3D BackgroundRemover / local rembg bria-rmbg foreground mask",
+  "model": "CL3D/2mini",
+  "device": "mps",
+  "dtype": "float16",
+  "steps": 50,
+  "resolution": 384,
+  "seed": 20278130,
+  "inference_seconds": 76.95685650000087,
+  "vertices": 779062,
+  "triangles": 1558148,
+  "watertight": false,
+  "input_sha256": "20792453473217a08710f3e92ea7c5c63d21c42138772182b4a7e4d107df4177",
+  "bounds": [
+    [
+      -0.8402751684188843,
+      -0.9866510629653931,
+      -1.0005854368209839
+    ],
+    [
+      0.8419191241264343,
+      0.9963676929473877,
+      0.997157096862793
+    ]
+  ]
+}

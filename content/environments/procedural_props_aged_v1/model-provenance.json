@@ -1,0 +1,20 @@
+{
+  "model": "CL3D/2mini",
+  "upstream_model_identity": "local CL3D build of Tencent Hunyuan3D-2mini",
+  "provenance_policy": "docs/procedural-generators.md, CL3D provenance; release review belongs to T-118",
+  "model_license_record": "Tencent Hunyuan 3D 2.0 Community License",
+  "device": "mps",
+  "dtype": "float16",
+  "torch_version": "2.14.1",
+  "steps": 50,
+  "octree_resolution": 384,
+  "foreground_conditioning": "CL3D BackgroundRemover using installed rembg default bria-rmbg model; local inference",
+  "hashes": {
+    "model.fp16.safetensors": "3cc66f3bea33e4062b7dbc875ffe1d70c4888914aec3e91b60f94e9bd01b522b",
+    "config.yaml": "d178a19913da1d52b74a8e02d5ab1a13157c6835b14d0fbc566176740da466d5",
+    "pipelines.py": "78baa029d23caab6c8b730ba8478e05c8a9d56ca969abb5fd4e8001072af1936",
+    "preprocessors.py": "5d3f16271d42afd2981002321327ecbb3239851871e7e23af4ce81101937bf97",
+    "rembg.py": "a5ff801d29b45447c88721396d0f2b7f716a8f198a038746f63c2b22562ef836",
+    "generate_kit.py": "49f0b5b7255578f2948b58f040c025bfac193f474b443becabb5d1526ae175df"
+  }
+}

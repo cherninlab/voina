@@ -1,8 +1,8 @@
 # T-171: movable dungeon props - image review
 
-Ten isolated ImageGen references for approval. These are generated design images, not Godot screenshots or finished 3D assets. All user approvals are pending. No CL3D inference, mesh generation, physics bake or runtime placement has been performed.
+Ten isolated ImageGen references for approval. These are generated design images, not Godot screenshots or finished 3D assets. The user approved all ten references for CL3D generation; see `approval.json`. CL3D work is proceeding in the sibling `cl3d_v1` review and `procedural_props_aged_v1` output folders. These images remain unmodified.
 
-The user explicitly requested image approval before CL3D work. Continue only for the images the user approves; image approval does not establish the quality of a resulting mesh.
+The user explicitly requested image approval before CL3D work. All ten images are now approved for that next step; image approval does not establish the quality of a resulting mesh.
 
 ## Review images
 
@@ -36,7 +36,7 @@ After image approval, the selected source objects can feed four physics-dressed 
 
 - Built-in ImageGen, one distinct call per asset, ten images in total. Every first output passed visual review; no image retries or post-generation image edits.
 - Exact supplied prompts are saved beside each image as `.prompt.txt`; `prompts.json` indexes prompts, titles, families and approximate target dimensions. The dimensions are design targets, not measurements extracted from the images.
-- `image-manifest.json` records SHA-256 hashes and pixel dimensions. Each `.receipt.json` records the native artifact identifier, original image hash and pending user approval. Model version and seed are not exposed by the built-in tool.
+- `image-manifest.json` records SHA-256 hashes and pixel dimensions. Each `.receipt.json` records the native artifact identifier, original image hash and user approval status. Model version and seed are not exposed by the built-in tool.
 - The references have not been altered, cropped or composited. Each standalone original remains suitable for its own review and possible later CL3D input.
 - Coffin body and lid share an intended outline, but exact dimensional fit must be established in 3D. Furniture gaps, pot interiors, skull cavities and candle separations must be inspected in the resulting meshes after approval.
 - Source frames read for style context were existing project art/runtime images; they were not edit targets and were not passed as conditioning images.

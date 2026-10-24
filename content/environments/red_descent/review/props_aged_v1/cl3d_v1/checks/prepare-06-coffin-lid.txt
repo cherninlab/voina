@@ -1,0 +1,29 @@
+22:33:45 | INFO: Data are loaded, start creating Blender stuff
+22:33:45 | INFO: Blender create Mesh node geometry_0
+22:33:45 | INFO: glTF import finished in 0.10s
+/Users/theochernin/Projects/MultiPlayerProject-agents/theo-codex-43/scripts/art/build_scattered_props.py:64: DeprecationWarning: 'Material.use_nodes' is expected to be removed in Blender 6.0
+  material.use_nodes = True
+Warning: No mesh data to join
+INFO Draco is available, use library at /Applications/Blender.app/Contents/Resources/5.2/scripts/addons_core/io_scene_gltf2/libbf_intern_draco_bridge.dylib
+INFO MeshOptimizer is available, use library at /Applications/Blender.app/Contents/Resources/5.2/scripts/addons_core/io_scene_gltf2/libbf_intern_meshopt_bridge.dylib
+22:33:48 | INFO: Starting glTF 2.0 export
+22:33:48 | INFO: Extracting primitive: geometry_0
+22:33:48 | INFO: Primitives created: 1
+22:33:48 | INFO: Finished glTF 2.0 export in 0.011348962783813477 s
+
+22:33:48 | INFO: Starting glTF 2.0 export
+22:33:48 | INFO: Extracting primitive: geometry_0
+22:33:48 | INFO: Primitives created: 1
+22:33:48 | INFO: Finished glTF 2.0 export in 0.0047550201416015625 s
+
+22:33:48 | INFO: Starting glTF 2.0 export
+22:33:48 | INFO: Extracting primitive: geometry_0
+22:33:48 | INFO: Primitives created: 1
+22:33:48 | INFO: Finished glTF 2.0 export in 0.0032198429107666016 s
+00:08.579  render           | Saved: '/var/folders/l1/ffgp3l9n2gd1g8gjswvkfqyw0000gn/T/tmpe9fpsg7s/view.png'
+00:14.681  render           | Saved: '/var/folders/l1/ffgp3l9n2gd1g8gjswvkfqyw0000gn/T/tmph9y96dud/view.png'
+
+PROP_SOURCE_READY {"id": "06-coffin-lid", "raw": "content/environments/procedural_props_aged_v1/raw_cl3d/06-coffin-lid.glb", "raw_sha256": "10c2b8b4250186ccefd0f944c1195b88827ffd23cdfb28a75124ae2a5478c692", "approved_image": "content/environments/red_descent/review/props_aged_v1/references_v1/06-coffin-lid.png", "approved_image_sha256": "85c9dbb9a142ca8aee461ba0a7daf33a3fd7d536b6f053ce77afa846ce47c6c2", "scale_policy": "uniform; longest dimension matches approved target; origin at ground centre", "uniform_scale": 0.9524503836578024, "cleanup": {"source_components": 1, "discarded_vertices": 0, "boundary_edges_after_cleanup": 0, "nonmanifold_edges_after_cleanup": 0}, "lods": [{"path": "content/environments/procedural_props_aged_v1/sources/06-coffin-lid_lod0.glb", "triangles": 2500, "sha256": "b74892bfda995063b536a3dec1b77c62542812d972f5c68a1821b3d43217381b", "dimensions_godot_m": [1.9001460671424866, 0.12412110484729055, 0.6211306750774384]}, {"path": "content/environments/procedural_props_aged_v1/sources/06-coffin-lid_lod1.glb", "triangles": 832, "sha256": "778dab0506025e194110a033bbc973540a9c6176ed524ddf9e9d575a3cce5674", "dimensions_godot_m": [1.8995050191879272, 0.12434845356619917, 0.6207255423069]}, {"path": "content/environments/procedural_props_aged_v1/sources/06-coffin-lid_lod2.glb", "triangles": 312, "sha256": "ebc5f4462f0a0512f406a9ac5cd92e0c004cc0a661f9392b89b8f720ed5b0df3", "dimensions_godot_m": [1.8947476744651794, 0.12405315897194669, 0.6158844232559204]}], "review_images": ["content/environments/red_descent/review/props_aged_v1/cl3d_v1/06-coffin-lid-front.png", "content/environments/red_descent/review/props_aged_v1/cl3d_v1/06-coffin-lid-back.png"], "interior_probe": {}, "materials": "neutral review clay; no inferred textures or UVs", "status": "mesh_review_pending"}
+Blender 5.2.2 LTS (hash d13f752e3b9c built 2026-09-15 01:49:19)
+
+Blender quit

@@ -1,0 +1,29 @@
+22:27:41 | INFO: Data are loaded, start creating Blender stuff
+22:27:41 | INFO: Blender create Mesh node geometry_0
+22:27:42 | INFO: glTF import finished in 0.70s
+/Users/theochernin/Projects/MultiPlayerProject-agents/theo-codex-43/scripts/art/build_scattered_props.py:64: DeprecationWarning: 'Material.use_nodes' is expected to be removed in Blender 6.0
+  material.use_nodes = True
+Warning: No mesh data to join
+INFO Draco is available, use library at /Applications/Blender.app/Contents/Resources/5.2/scripts/addons_core/io_scene_gltf2/libbf_intern_draco_bridge.dylib
+INFO MeshOptimizer is available, use library at /Applications/Blender.app/Contents/Resources/5.2/scripts/addons_core/io_scene_gltf2/libbf_intern_meshopt_bridge.dylib
+22:27:53 | INFO: Starting glTF 2.0 export
+22:27:53 | INFO: Extracting primitive: geometry_0
+22:27:53 | INFO: Primitives created: 1
+22:27:53 | INFO: Finished glTF 2.0 export in 0.01798701286315918 s
+
+22:27:53 | INFO: Starting glTF 2.0 export
+22:27:53 | INFO: Extracting primitive: geometry_0
+22:27:53 | INFO: Primitives created: 1
+22:27:53 | INFO: Finished glTF 2.0 export in 0.006443023681640625 s
+
+22:27:53 | INFO: Starting glTF 2.0 export
+22:27:53 | INFO: Extracting primitive: geometry_0
+22:27:53 | INFO: Primitives created: 1
+22:27:53 | INFO: Finished glTF 2.0 export in 0.005546092987060547 s
+00:21.234  render           | Saved: '/var/folders/l1/ffgp3l9n2gd1g8gjswvkfqyw0000gn/T/tmpgei_aklx/view.png'
+00:30.914  render           | Saved: '/var/folders/l1/ffgp3l9n2gd1g8gjswvkfqyw0000gn/T/tmpz5j80bj5/view.png'
+
+PROP_SOURCE_READY {"id": "01-table", "raw": "content/environments/procedural_props_aged_v1/raw_cl3d/01-table.glb", "raw_sha256": "7610fe93b15429ff24b00888c7d3f6eea8cfd1961b65dec48f4939bd86baffe7", "approved_image": "content/environments/red_descent/review/props_aged_v1/references_v1/01-table.png", "approved_image_sha256": "4b9a481c3abc4ca153a176916b259d89c2d3ae86c526f246a7977fc6daec7df8", "scale_policy": "uniform; longest dimension matches approved target; origin at ground centre", "uniform_scale": 0.9525823353047367, "cleanup": {"source_components": 2, "discarded_vertices": 472, "boundary_edges_after_cleanup": 0, "nonmanifold_edges_after_cleanup": 0}, "lods": [{"path": "content/environments/procedural_props_aged_v1/sources/01-table_lod0.glb", "triangles": 8000, "sha256": "7f19dd26f79f8b4cbcb9320ae650f6081f5e4ca555eca2096486a36b765d5d2d", "dimensions_godot_m": [1.9006400108337402, 0.7498088479042053, -0.9326390624046326]}, {"path": "content/environments/procedural_props_aged_v1/sources/01-table_lod1.glb", "triangles": 2666, "sha256": "6c620a288c367ad098fa174922ed5b4cf1d3ab90c73feb81f021b83102218478", "dimensions_godot_m": [1.9006774425506592, 0.7508752346038818, -0.9322994947433472]}, {"path": "content/environments/procedural_props_aged_v1/sources/01-table_lod2.glb", "triangles": 1000, "sha256": "2bde1e78e6a24b799af904fe79f1624bc18a0d821fb808f4389ead12fa64f63d", "dimensions_godot_m": [1.8991926908493042, 0.7491251826286316, -0.9320540428161621]}], "review_images": ["content/environments/red_descent/review/props_aged_v1/cl3d_v1/01-table-front.png", "content/environments/red_descent/review/props_aged_v1/cl3d_v1/01-table-back.png"], "materials": "neutral review clay; no inferred textures or UVs", "status": "mesh_review_pending"}
+Blender 5.2.2 LTS (hash d13f752e3b9c built 2026-09-15 01:49:19)
+
+Blender quit

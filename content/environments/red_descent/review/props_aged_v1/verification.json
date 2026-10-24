@@ -1,0 +1,48 @@
+{
+  "task": "T-171",
+  "verified_at_utc": "2026-10-24T21:17:14.106839+00:00",
+  "tested_base_revision": "4489bea",
+  "image_approval": "references_v1/approval.json",
+  "source_props": 10,
+  "source_lods": 30,
+  "lod0_total_triangles": 59500,
+  "set_families": [
+    "mortuary",
+    "ossuary",
+    "refectory",
+    "votive"
+  ],
+  "set_variants": 12,
+  "all_sets_valid": true,
+  "max_support_gap_m": 0.0039307475090026855,
+  "max_sampled_penetration_m": 0.0,
+  "min_local_reserved_lane_clearance_m": 0.38697052001953125,
+  "max_calm_translation_m": 0.00027918591052599563,
+  "all_calm_unchanged": true,
+  "godot_engine": {
+    "build": "official",
+    "hash": "ed1daf0bf001b61586d9930840f2f1394092c079",
+    "hex": 263938,
+    "major": 4,
+    "minor": 7,
+    "patch": 2,
+    "status": "stable",
+    "string": "4.7.2-stable (official)",
+    "timestamp": 0
+  },
+  "checks": {
+    "editor_import": "pass; editor-import-final.txt",
+    "native_mobile_capture": "pass; godot-capture.txt and godot-audit.json; 10 sources and 12 sets captured",
+    "mesh_audit": "pass; mesh-audit.json; 30 finite LODs and approved PNG hashes unchanged",
+    "smoke": "pass; smoke.txt; local two-process ENet integration/disconnect and deliberate version mismatch rejection",
+    "generator_and_contact_sheets": "pass; Blender 5.2.2 and contact-sheets.txt"
+  },
+  "visual_review": "All ten source silhouettes and twelve sets inspected in native Godot contact sheets; twenty Blender source angles and set angles available. Composition of screenshots only; no generated pixels in evidence.",
+  "limitations": [
+    "Neutral review-clay material; CL3D shape generation supplies no final UV texture set.",
+    "Offline convex-body settling with sampled actual-mesh support/penetration checks; not an exhaustive intersection proof.",
+    "Reserved local lane only; no room placement, in-dungeon traversal, camera/input or two-machine Tailscale acceptance.",
+    "Known ObjectDB cleanup warnings appear on shutdown; no script/parse errors in final import/capture/smoke.",
+    "Image approval authorizes this generation stage, not final human acceptance of derivatives."
+  ]
+}

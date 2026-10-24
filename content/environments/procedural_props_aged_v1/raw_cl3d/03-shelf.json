@@ -1,0 +1,40 @@
+{
+  "id": "03-shelf",
+  "input": "content/environments/procedural_props_aged_v1/conditioning/03-shelf.png",
+  "output": "content/environments/procedural_props_aged_v1/raw_cl3d/03-shelf.glb",
+  "seed_offset": 17102,
+  "height_m": 1.25,
+  "material": "oak",
+  "faces": 8000,
+  "target_dims_xyz_m": [
+    0.95,
+    1.25,
+    0.38
+  ],
+  "approved_input": "content/environments/red_descent/review/props_aged_v1/references_v1/03-shelf.png",
+  "approved_input_sha256": "f82092dfd9395b9031125662d301dbf3bdee416743b1edf9e0980670e34765e7",
+  "preprocessing": "CL3D BackgroundRemover / local rembg bria-rmbg foreground mask",
+  "model": "CL3D/2mini",
+  "device": "mps",
+  "dtype": "float16",
+  "steps": 50,
+  "resolution": 384,
+  "seed": 20278126,
+  "inference_seconds": 83.9066673749985,
+  "vertices": 559354,
+  "triangles": 1118708,
+  "watertight": false,
+  "input_sha256": "1b5f3933f7e1c793344eae62ace40796cd371123c869de53516b954d0285b813",
+  "bounds": [
+    [
+      -0.8971132040023804,
+      -1.002075433731079,
+      -0.3166969120502472
+    ],
+    [
+      0.8773196339607239,
+      0.995126485824585,
+      0.30222317576408386
+    ]
+  ]
+}

@@ -11,7 +11,7 @@
   "width_px": 1312,
   "height_px": 1199,
   "technical_review": "passed_as_reference_image",
-  "user_approval": "pending",
+  "user_approval": "approved_for_cl3d",
   "review_notes": {},
   "seed": null,
   "seed_note": "The built-in tool did not expose a generation seed."
