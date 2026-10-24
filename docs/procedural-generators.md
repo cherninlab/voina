@@ -72,6 +72,26 @@ Ideal construction looks fake, so generators age their output with physics inste
 
 Gameplay contracts stay in the game: collision is unchanged, missing-board footprints are listed in the bake report, and the bridge test skips them.
 
+## Materials: stones, mortar, soil, fracture
+
+- **`stones.make(kind, rng, size)`** builds a unique stone.
+  - Kinds: `ashlar`, `rubble`, `field`, `wedge` (a trapezoid pinning stone, thick end at -x).
+  - `stones.voussoir(...)` makes arch stones; `keystone=True` makes the key.
+  - Each stone is cut from jittered planes, then chipped and split. It is weathered (smoothed) first, then displaced at three scales (lumps, pitch, grain) plus pock marks, and decimated to about 1,200 triangles.
+  - Colour: G is the stone's tone; B marks fresh breaks.
+- **`mortar.lay(stones, rng)`** puts a bead in every joint narrower than `max_gap`.
+  - A bead fills only the joint core, sits 8 mm back from the faces, and is cut into roughly 25 cm pieces.
+  - `mortar.glue` bonds the two stones with joints as strong as the mortar; each bead rides on one stone.
+  - `mortar.failed` lists beads whose bond broke.
+  - Walls stand on their footing by weight. Never nail several stones to a passive body: the closed rigid loops snap the weakest bond at rest.
+- **`disturb.arm(frame)`** holds every breakable joint at full strength while the structure settles, then switches to the real strength. Calm attempts stay untouched.
+- **`soil.Ground`** is a 2 cm heightfield that objects press into.
+  - Depth = weight / (footprint area × k), with soil presets from packed road to mud.
+  - Hammer blows add depth. Displaced soil heaps into a rim.
+  - `rut` and `dig` cover cart tracks and pits.
+  - Use it to seat column bases, posts and boulders in the ground.
+- **`fracture.voronoi` + `fracture.glue`** split a solid into chunks with material grain (stone, brick, plaster, wood) for chipping, breaching and splintering.
+
 ## Why bake
 
 - **Shadows:** Godot's Mobile renderer has no SSAO, so contact shading between boards and bearers or stones and floors must live in the mesh.

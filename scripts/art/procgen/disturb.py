@@ -30,6 +30,7 @@ from . import core, rigid
 
 STRONG = 1.0e6
 _quiet = 1
+_breakable = []
 
 
 def centre(obj: bpy.types.Object) -> None:
@@ -78,10 +79,27 @@ def _constraint(kind: str, a, b, at: Vector, axis: Vector = None, threshold: flo
     # Bullet keeps the pair's collision setting after a break: pieces that
     # rest on each other (board on stringer) must keep colliding.
     rbc.disable_collisions = not collide
+    rbc.use_override_solver_iterations = True
+    rbc.solver_iterations = 120
     if threshold < STRONG:
         rbc.use_breaking = True
         rbc.breaking_threshold = threshold
+        _breakable.append((rbc, threshold))
     return empty
+
+
+def arm(frame: int = 8) -> None:
+    """Hold every breakable joint at full strength until `frame`, then switch
+    to its real threshold. The structure first settles under gravity (solver
+    start-up error and loop stress die out), so calm attempts stay untouched
+    and only disturbances break joints. Call after creating all joints."""
+    for rbc, threshold in _breakable:
+        rbc.breaking_threshold = STRONG
+        rbc.keyframe_insert('breaking_threshold', frame=1)
+        rbc.keyframe_insert('breaking_threshold', frame=frame - 1)
+        # Keys on consecutive frames: physics samples whole frames only.
+        rbc.breaking_threshold = threshold
+        rbc.keyframe_insert('breaking_threshold', frame=frame)
 
 
 def nail(a, b, at: Vector, threshold: float = STRONG, collide: bool = True):
@@ -166,6 +184,7 @@ def quiet_frame() -> int:
 def reset() -> None:
     global _quiet
     _quiet = 1
+    _breakable.clear()
 
 
 def rest_pose(objects) -> dict:
