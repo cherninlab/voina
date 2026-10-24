@@ -1,0 +1,109 @@
+{
+	"collision_sha256": "4f909a6e2ffe26bc4e130f387ce74f79a033348b941b96380bacd75072df3fc6",
+	"collision_vertices": 221748,
+	"failures": [],
+	"horizontal_floor_room_overlap_m2": 0.0,
+	"legacy_floor_triangles": 897,
+	"lod_mesh_counts": [
+		992,
+		992,
+		992
+	],
+	"lod_ranges_m": [
+		[
+			0,
+			14
+		],
+		[
+			14,
+			32
+		],
+		[
+			32,
+			90
+		]
+	],
+	"mesh_nodes": 2976,
+	"overlapping_triangles": 0,
+	"room_floors": [
+		{
+			"at": "(0.0, 0.0, 0.0)",
+			"children": 35,
+			"family": "laid",
+			"modules": 35,
+			"room": "entry"
+		},
+		{
+			"at": "(0.0, 0.0, 0.0)",
+			"children": 26,
+			"family": "coursed",
+			"modules": 26,
+			"room": "antechamber"
+		},
+		{
+			"at": "(0.0, 0.0, 0.0)",
+			"children": 52,
+			"family": "coursed",
+			"modules": 52,
+			"room": "restraint"
+		},
+		{
+			"at": "(0.0, 0.0, 0.0)",
+			"children": 24,
+			"family": "coursed",
+			"modules": 24,
+			"room": "cells"
+		},
+		{
+			"at": "(0.0, 0.0, 0.0)",
+			"children": 68,
+			"family": "coursed",
+			"modules": 68,
+			"room": "chapel"
+		},
+		{
+			"at": "(0.0, 0.0, 0.0)",
+			"children": 74,
+			"family": "coursed",
+			"modules": 74,
+			"room": "nave"
+		},
+		{
+			"at": "(0.0, 0.0, 0.0)",
+			"children": 52,
+			"family": "laid",
+			"modules": 52,
+			"room": "ossuary"
+		},
+		{
+			"at": "(0.0, 0.0, 0.0)",
+			"children": 30,
+			"family": "laid",
+			"modules": 30,
+			"room": "bones"
+		},
+		{
+			"at": "(0.0, 0.0, 0.0)",
+			"children": 19,
+			"family": "laid",
+			"modules": 19,
+			"room": "window"
+		},
+		{
+			"at": "(0.0, 0.0, 0.0)",
+			"children": 58,
+			"family": "coursed",
+			"modules": 58,
+			"room": "bell"
+		},
+		{
+			"at": "(0.0, 0.0, 0.0)",
+			"children": 58,
+			"family": "coursed",
+			"modules": 58,
+			"room": "choir"
+		}
+	],
+	"shadow_casting_meshes": 0,
+	"total_modules": 496
+}

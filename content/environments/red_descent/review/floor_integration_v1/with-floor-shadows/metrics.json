@@ -1,0 +1,50 @@
+[
+	{
+		"capture_frame_median_ms": 16.791,
+		"draw_calls": 1495.0,
+		"eye": "(-34.0, 1.65, -23.5)",
+		"primitives": 5363379.0,
+		"target": "(-28.5, 0.0, -23.2)",
+		"view": "entry-threshold"
+	},
+	{
+		"capture_frame_median_ms": 16.674,
+		"draw_calls": 1306.0,
+		"eye": "(-29.6, 1.65, -23.1)",
+		"primitives": 5745965.0,
+		"target": "(-23.0, 0.0, -23.1)",
+		"view": "antechamber-threshold"
+	},
+	{
+		"capture_frame_median_ms": 16.598,
+		"draw_calls": 238.0,
+		"eye": "(7.0, -16.35, 26.2)",
+		"primitives": 2310408.0,
+		"target": "(7.0, -18.0, 31.5)",
+		"view": "nave-threshold"
+	},
+	{
+		"capture_frame_median_ms": 16.499,
+		"draw_calls": 604.0,
+		"eye": "(34.0, -2.35, -1.7)",
+		"primitives": 2954878.0,
+		"target": "(34.0, -4.0, 3.0)",
+		"view": "cells-threshold"
+	},
+	{
+		"capture_frame_median_ms": 16.663,
+		"draw_calls": 194.0,
+		"eye": "(7.0, -16.35, 26.2)",
+		"primitives": 2345634.0,
+		"target": "(0.0, -18.0, 46.0)",
+		"view": "nave-far-floor"
+	},
+	{
+		"capture_frame_median_ms": 16.684,
+		"draw_calls": 1006.0,
+		"eye": "(21.5, -8.35, -31.0)",
+		"primitives": 2472382.0,
+		"target": "(-8.0, -10.0, -34.0)",
+		"view": "chapel-far-floor"
+	}
+]

@@ -1,0 +1,106 @@
+{
+  "utc": "2026-10-24T13:58:50.222456+00:00",
+  "base_commit": "59d25b320746eb328ed09949b72226ee3be455c3",
+  "checks": [
+    {
+      "check": "import",
+      "command": [
+        "/Users/theochernin/Library/Caches/voina/engine-4.7.2/Godot.app/Contents/MacOS/Godot",
+        "--headless",
+        "--editor",
+        "--path",
+        ".",
+        "--quit"
+      ],
+      "returncode": 0,
+      "passed": true,
+      "seconds": 2.07,
+      "errors": []
+    },
+    {
+      "check": "floor-audit",
+      "command": [
+        "/Users/theochernin/Library/Caches/voina/engine-4.7.2/Godot.app/Contents/MacOS/Godot",
+        "--headless",
+        "--path",
+        ".",
+        "--script",
+        "res://content/environments/red_descent/review/floor_integration_v1/audit_floors.gd"
+      ],
+      "returncode": 0,
+      "passed": true,
+      "seconds": 2.94,
+      "errors": []
+    },
+    {
+      "check": "bridge",
+      "command": [
+        "/Users/theochernin/Library/Caches/voina/engine-4.7.2/Godot.app/Contents/MacOS/Godot",
+        "--headless",
+        "--path",
+        ".",
+        "--script",
+        "res://scripts/bridge_construction_test.gd",
+        "--",
+        "--report=/Users/theochernin/Projects/MultiPlayerProject-agents/theo-codex-floor-integrate-1/content/environments/red_descent/review/floor_integration_v1/bridge.json"
+      ],
+      "returncode": 0,
+      "passed": true,
+      "seconds": 3.03,
+      "errors": []
+    },
+    {
+      "check": "structure",
+      "command": [
+        "/Users/theochernin/Library/Caches/voina/engine-4.7.2/Godot.app/Contents/MacOS/Godot",
+        "--headless",
+        "--path",
+        ".",
+        "--script",
+        "res://scripts/dungeon_structure_test.gd",
+        "--",
+        "--report=/Users/theochernin/Projects/MultiPlayerProject-agents/theo-codex-floor-integrate-1/content/environments/red_descent/review/floor_integration_v1/structure.json"
+      ],
+      "returncode": 0,
+      "passed": true,
+      "seconds": 2.94,
+      "errors": []
+    },
+    {
+      "check": "traversal",
+      "command": [
+        "python3",
+        "scripts/dungeon_traversal_test.py",
+        "/Users/theochernin/Library/Caches/voina/engine-4.7.2/Godot.app/Contents/MacOS/Godot"
+      ],
+      "returncode": 0,
+      "passed": true,
+      "seconds": 52.62,
+      "errors": []
+    },
+    {
+      "check": "dungeon-smoke",
+      "command": [
+        "python3",
+        "scripts/dungeon_smoke_test.py",
+        "/Users/theochernin/Library/Caches/voina/engine-4.7.2/Godot.app/Contents/MacOS/Godot"
+      ],
+      "returncode": 0,
+      "passed": true,
+      "seconds": 61.67,
+      "errors": []
+    },
+    {
+      "check": "smoke",
+      "command": [
+        "python3",
+        "scripts/smoke_test.py",
+        "/Users/theochernin/Library/Caches/voina/engine-4.7.2/Godot.app/Contents/MacOS/Godot"
+      ],
+      "returncode": 0,
+      "passed": true,
+      "seconds": 51.88,
+      "errors": []
+    }
+  ]
+}

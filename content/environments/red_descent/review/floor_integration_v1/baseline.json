@@ -1,0 +1,25 @@
+{
+	"collision_sha256": "4f909a6e2ffe26bc4e130f387ce74f79a033348b941b96380bacd75072df3fc6",
+	"collision_vertices": 221748,
+	"failures": [],
+	"horizontal_floor_room_overlap_m2": 3366.44913482666,
+	"legacy_floor_triangles": 912,
+	"lod_ranges_m": [
+		[
+			0,
+			14
+		],
+		[
+			14,
+			32
+		],
+		[
+			32,
+			90
+		]
+	],
+	"mesh_nodes": 0,
+	"overlapping_triangles": 135,
+	"room_floors": [],
+	"total_modules": 0
+}

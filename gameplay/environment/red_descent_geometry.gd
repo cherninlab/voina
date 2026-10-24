@@ -155,7 +155,19 @@ func build_room(room: Dictionary) -> void:
 	var y: float = float(room["floor"])
 	var height: float = float(room["height"])
 	var wall_material: String = "red_plaster" if String(room["id"]) == "nave" else "plaster"
-	polygon_surface(polygon, y, "floor")
+	polygon_surface(polygon, y, "collision")
+	var floor: Node3D = Node3D.new()
+	floor.name = "Floor_" + String(room["id"])
+	add_child(floor)
+	floor.add_to_group("flagstone_room_floors")
+	var family: String = "laid" if String(room["id"]) in ["entry", "ossuary", "bones", "window"] else "coursed"
+	floor.set_meta("room_id", String(room["id"]))
+	floor.set_meta("floor_y", y)
+	floor.set_meta("family", family)
+	floor.set_meta("module_count", FlagstoneFloor.cover(floor, polygon, y, family, 165))
+	# Joint occlusion is baked; centimetre-high stones need not cast into every torch shadow map.
+	for node: Node in floor.find_children("*", "MeshInstance3D", true, false):
+		(node as MeshInstance3D).cast_shadow = GeometryInstance3D.SHADOW_CASTING_SETTING_OFF
 	polygon_surface(polygon, y - 0.5, "stone", false)
 	polygon_surface(polygon, y + height, "collision" if String(room["id"]) == "nave" else "stone", false)
 	for index: int in range(polygon.size()):
@@ -318,8 +330,8 @@ func build_path(path: Dictionary, light_route: bool) -> void:
 				# One shared ribbon across each turn: no horizontal landing lips on ramps.
 				var edge_a: Vector3 = edges[index].lerp(edges[index + 1], float(step) / float(steps))
 				var edge_b: Vector3 = edges[index].lerp(edges[index + 1], float(step + 1) / float(steps))
-				face(a - edge_a, a + edge_a, b - edge_b, "collision" if sculpted_deck else material)
-				face(a + edge_a, b + edge_b, b - edge_b, "collision" if sculpted_deck else material)
+				ribbon_top(a - edge_a, a + edge_a, b - edge_b, "collision" if sculpted_deck else material)
+				ribbon_top(a + edge_a, b + edge_b, b - edge_b, "collision" if sculpted_deck else material)
 				if not sculpted_deck:
 					face(a - edge_a - Vector3.UP * 0.32, b - edge_b - Vector3.UP * 0.32, a + edge_a - Vector3.UP * 0.32, "stone")
 					face(a + edge_a - Vector3.UP * 0.32, b - edge_b - Vector3.UP * 0.32, b + edge_b - Vector3.UP * 0.32, "stone")
@@ -343,6 +355,33 @@ func build_path(path: Dictionary, light_route: bool) -> void:
 				if light_route and since_light >= 13.0:
 					torch_posts.append(at + side * (width * 0.5 - 0.35))
 					since_light = 0.0
+
+## Keep the original walking triangles; only trim flat route visuals at room thresholds.
+func ribbon_top(a: Vector3, b: Vector3, c: Vector3, material: String) -> void:
+	face(a, b, c, "collision")
+	if material == "collision":
+		return
+	if not is_equal_approx(a.y, b.y) or not is_equal_approx(a.y, c.y):
+		face(a, b, c, material, false)
+		return
+	var polygons: Array[PackedVector2Array] = [PackedVector2Array([Vector2(a.x, a.z), Vector2(b.x, b.z), Vector2(c.x, c.z)])]
+	for room: Dictionary in rooms:
+		if not is_equal_approx(a.y, float(room["floor"])):
+			continue
+		var remaining: Array[PackedVector2Array] = []
+		for polygon: PackedVector2Array in polygons:
+			remaining.append_array(Geometry2D.clip_polygons(polygon, room["points"] as PackedVector2Array))
+		polygons = remaining
+	for polygon: PackedVector2Array in polygons:
+		var indices: PackedInt32Array = Geometry2D.triangulate_polygon(polygon)
+		for index: int in range(0, indices.size(), 3):
+			var va: Vector3 = Vector3(polygon[indices[index]].x, a.y, polygon[indices[index]].y)
+			var vb: Vector3 = Vector3(polygon[indices[index + 1]].x, a.y, polygon[indices[index + 1]].y)
+			var vc: Vector3 = Vector3(polygon[indices[index + 2]].x, a.y, polygon[indices[index + 2]].y)
+			if (vb - va).cross(vc - va).y < 0.0:
+				face(va, vc, vb, material, false)
+			else:
+				face(va, vb, vc, material, false)
 
 ## Invisible rail on an open crossing, from `from` to `to` along the guard line.
 ## It stays wherever stepping outward would leave every floor for the void.
