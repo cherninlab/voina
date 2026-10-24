@@ -5,10 +5,13 @@
   "direction_revision": 2,
   "approval": "pending",
   "counts": {
-    "current_candidates": 18,
+    "current_candidates": 27,
     "human_allegorical": 11,
     "bosch_hybrids": 4,
     "caprine": 3,
+    "people_in_hell": 8,
+    "symbolic_temptation": 1,
+    "alternate_edit": 1,
     "superseded_ornamented_studies": 6
   },
   "assets": [
@@ -407,6 +410,216 @@
       "byte_identical_native_output": true,
       "approval": "pending",
       "cl3d_generated": false
+    },
+    {
+      "id": "19-the-condemned",
+      "title": "The Condemned",
+      "family": "hell",
+      "reference": "references/19-the-condemned.png",
+      "sha256": "88fffe03738652b165c01d67dd29cef29c4f13dc72fdd1291d63b9f743ab1e58",
+      "prompt": "prompts/19-the-condemned.txt",
+      "prompt_sha256": "2904155792b701995a2f5f3ffebe1a10f9810a329ec8cdef8e9cd0a933c9ebbb",
+      "dimensions_px": [
+        1024,
+        1536
+      ],
+      "mode": "RGBA",
+      "alpha_extrema": [
+        0,
+        254
+      ],
+      "transparent_fraction": 0.618833,
+      "byte_identical_native_output": true,
+      "approval": "pending",
+      "cl3d_generated": false
+    },
+    {
+      "id": "20-dragged-below",
+      "title": "Dragged Below",
+      "family": "hell",
+      "reference": "references/20-dragged-below.png",
+      "sha256": "e08a2e02be139591e1b7e4cde3431caff9eb3be1847802ccd474d6554bd67852",
+      "prompt": "prompts/20-dragged-below.txt",
+      "prompt_sha256": "990e3db028dc0c560f019e08747bdafd7edfc78acbb4c04fd524414b8d9b17b4",
+      "dimensions_px": [
+        1024,
+        1536
+      ],
+      "mode": "RGBA",
+      "alpha_extrema": [
+        0,
+        254
+      ],
+      "transparent_fraction": 0.420904,
+      "byte_identical_native_output": true,
+      "approval": "pending",
+      "cl3d_generated": false
+    },
+    {
+      "id": "21-the-entombed",
+      "title": "The Entombed",
+      "family": "hell",
+      "reference": "references/21-the-entombed.png",
+      "sha256": "a470afe2222ffea395e52a0b3b209841e99b9ca377556f1dd7d7793184d03108",
+      "prompt": "prompts/21-the-entombed.txt",
+      "prompt_sha256": "eb97e2bfc7cc642e07c3d1a6625302d6c2993b1d9439061eaf9133d58a8e4141",
+      "dimensions_px": [
+        1024,
+        1536
+      ],
+      "mode": "RGBA",
+      "alpha_extrema": [
+        0,
+        254
+      ],
+      "transparent_fraction": 0.541323,
+      "byte_identical_native_output": true,
+      "approval": "pending",
+      "cl3d_generated": false
+    },
+    {
+      "id": "22-the-entangled",
+      "title": "The Entangled",
+      "family": "hell",
+      "reference": "references/22-the-entangled.png",
+      "sha256": "ed26a69d7f4cdce714a61fe40c5bd8f45bcb162fdb73d0708f219ea0b7cfe0c6",
+      "prompt": "prompts/22-the-entangled.txt",
+      "prompt_sha256": "737c2d2922efed97ea5bec6d7b58387f756d269e281f3350577b51e63cbdd8dc",
+      "dimensions_px": [
+        1024,
+        1536
+      ],
+      "mode": "RGBA",
+      "alpha_extrema": [
+        0,
+        254
+      ],
+      "transparent_fraction": 0.468143,
+      "byte_identical_native_output": true,
+      "approval": "pending",
+      "cl3d_generated": false
+    },
+    {
+      "id": "23-ash-crawler",
+      "title": "Ash Crawler",
+      "family": "hell",
+      "reference": "references/23-ash-crawler.png",
+      "sha256": "5927442285655a53eb51b2e112749ece12b0c44a5665be4609d586d76442ce47",
+      "prompt": "prompts/23-ash-crawler.txt",
+      "prompt_sha256": "702b8cc9d9e3f9648adb2d2c8b928c16eead5be0a292bcdea9efd195ee52f5fb",
+      "dimensions_px": [
+        1536,
+        1024
+      ],
+      "mode": "RGBA",
+      "alpha_extrema": [
+        0,
+        254
+      ],
+      "transparent_fraction": 0.468706,
+      "byte_identical_native_output": true,
+      "approval": "pending",
+      "cl3d_generated": false
+    },
+    {
+      "id": "24-the-unheard",
+      "title": "The Unheard",
+      "family": "hell",
+      "reference": "references/24-the-unheard.png",
+      "sha256": "489a0378f0d3cd66a21aa10383df3ac3db85835e5b77c70874f6dc8fa4baab01",
+      "prompt": "prompts/24-the-unheard.txt",
+      "prompt_sha256": "2d5b9d18cc489ee6c135b322eef54cb9b6d272d31d3b52439cdcabae284a2c52",
+      "dimensions_px": [
+        1024,
+        1536
+      ],
+      "mode": "RGBA",
+      "alpha_extrema": [
+        0,
+        254
+      ],
+      "transparent_fraction": 0.438063,
+      "byte_identical_native_output": true,
+      "approval": "pending",
+      "cl3d_generated": false
+    },
+    {
+      "id": "25-burning-penitent",
+      "title": "Burning Penitent",
+      "family": "hell",
+      "reference": "references/25-burning-penitent.png",
+      "sha256": "5dd7a9a3e391e12c10fd7236f5a7522ad0ff6eaac9303a33d8ce0e954f5ee75e",
+      "prompt": "prompts/25-burning-penitent.txt",
+      "prompt_sha256": "ba1bd087a2727f9222554bff58dead3a18ecb0dcdaf5b5e8023b8ec4a79d538a",
+      "dimensions_px": [
+        1024,
+        1536
+      ],
+      "mode": "RGBA",
+      "alpha_extrema": [
+        0,
+        254
+      ],
+      "transparent_fraction": 0.437685,
+      "byte_identical_native_output": true,
+      "approval": "pending",
+      "cl3d_generated": false
+    },
+    {
+      "id": "26-pillar-of-damned",
+      "title": "Pillar of the Damned",
+      "family": "hell",
+      "reference": "references/26-pillar-of-damned.png",
+      "sha256": "0c8236382e81c4010613c2a2f797fe76a19f7ca333a09c3f73021eafd251e2ac",
+      "prompt": "prompts/26-pillar-of-damned.txt",
+      "prompt_sha256": "2e5da1ebfb8c29daa3ea06e8c2b0ba64222a30f4dc1f1c1e11d252021bee54c9",
+      "dimensions_px": [
+        1024,
+        1536
+      ],
+      "mode": "RGBA",
+      "alpha_extrema": [
+        0,
+        254
+      ],
+      "transparent_fraction": 0.420813,
+      "byte_identical_native_output": true,
+      "approval": "pending",
+      "cl3d_generated": false
+    },
+    {
+      "id": "27-temptation-and-remorse",
+      "title": "Temptation and Remorse",
+      "family": "allegory",
+      "reference": "references/27-temptation-and-remorse.png",
+      "sha256": "a6774c2d2776f28d2b12c42d173b3681c91b60408aa0d4bd9057a18f8e894363",
+      "prompt": "prompts/27-temptation-and-remorse.txt",
+      "prompt_sha256": "f877029d6d08d1ac66db2bb4afa3a46cb9d4e755f9730b44eebf044a02510412",
+      "dimensions_px": [
+        1024,
+        1536
+      ],
+      "mode": "RGBA",
+      "alpha_extrema": [
+        0,
+        254
+      ],
+      "transparent_fraction": 0.630634,
+      "byte_identical_native_output": true,
+      "approval": "pending",
+      "cl3d_generated": false
+    }
+  ],
+  "alternates": [
+    {
+      "id": "20-dragged-below-v2",
+      "reference": "references/20-dragged-below-v2.png",
+      "sha256": "0f1c0657a741894515308fbc5123270f8eb8781c9c713cb024f2c54143cbc8da",
+      "target": "references/20-dragged-below.png",
+      "target_sha256": "e08a2e02be139591e1b7e4cde3431caff9eb3be1847802ccd474d6554bd67852",
+      "prompt": "prompts/20-dragged-below-v2.txt",
+      "byte_identical_native_output": true,
+      "approval": "pending"
     }
   ]
 }

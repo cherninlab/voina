@@ -1,10 +1,8 @@
 # Occult cathedral sculpture concepts — T-187
 
-Eighteen separate native ImageGen references, numbered 01–18. Current direction: classical Greek/Renaissance anatomy and drapery, occult subjects, a restrained Bosch influence, three caprine sculptures. No Gothic ornamental patterns were requested in the revised direction.
+Twenty-seven numbered individual image concepts, plus one alternate edit. All use native built-in ImageGen. Current direction: Greek/Renaissance anatomy and plain drapery, occult subjects and restrained Bosch influence, with only three caprine figures. Human visual approval is pending. No CL3D generation or dungeon placement has been performed.
 
-These are concept images for approval. No CL3D generation or dungeon placement has been performed. Numbers in this review refer only to the current revision.
-
-![All eighteen current candidates](review/all-18.png)
+![All 27 numbered concepts](review/all-27.png)
 
 | No. | Sculpture | Family | Original | Exact prompt |
 |---|---|---|---|---|
@@ -26,8 +24,29 @@ These are concept images for approval. No CL3D generation or dungeon placement h
 | 16 | Headless Martyr | human | [PNG](references/16-headless-martyr.png) | [Prompt](prompts/16-headless-martyr.txt) |
 | 17 | Burdened Caryatid | human | [PNG](references/17-burdened-caryatid.png) | [Prompt](prompts/17-burdened-caryatid.txt) |
 | 18 | Twinned Penitents | human | [PNG](references/18-twinned-penitents.png) | [Prompt](prompts/18-twinned-penitents.txt) |
+| 19 | The Condemned | hell | [PNG](references/19-the-condemned.png) | [Prompt](prompts/19-the-condemned.txt) |
+| 20 | Dragged Below | hell | [PNG](references/20-dragged-below.png) | [Prompt](prompts/20-dragged-below.txt) |
+| 21 | The Entombed | hell | [PNG](references/21-the-entombed.png) | [Prompt](prompts/21-the-entombed.txt) |
+| 22 | The Entangled | hell | [PNG](references/22-the-entangled.png) | [Prompt](prompts/22-the-entangled.txt) |
+| 23 | Ash Crawler | hell | [PNG](references/23-ash-crawler.png) | [Prompt](prompts/23-ash-crawler.txt) |
+| 24 | The Unheard | hell | [PNG](references/24-the-unheard.png) | [Prompt](prompts/24-the-unheard.txt) |
+| 25 | Burning Penitent | hell | [PNG](references/25-burning-penitent.png) | [Prompt](prompts/25-burning-penitent.txt) |
+| 26 | Pillar of the Damned | hell | [PNG](references/26-pillar-of-damned.png) | [Prompt](prompts/26-pillar-of-damned.txt) |
+| 27 | Temptation and Remorse | allegory | [PNG](references/27-temptation-and-remorse.png) | [Prompt](prompts/27-temptation-and-remorse.txt) |
 
-## Larger reviews
+## People in hell: 19–26
+
+![Eight human damnation sculptures](review/19-26-people-in-hell.png)
+
+Larger reviews: [19–22](review/19-22.png), [23–26](review/23-26.png).
+
+## Temptation and Remorse: 27
+
+A separate non-explicit classical allegory uses the mirror, serpent and broken mask to convey temptation, vanity and remorse.
+
+![27 Temptation and Remorse](references/27-temptation-and-remorse.png)
+
+## Earlier 01–18 references
 
 ![01–06](review/01-06.png)
 
@@ -35,14 +54,14 @@ These are concept images for approval. No CL3D generation or dungeon placement h
 
 ![13–18](review/13-18.png)
 
-## Files and approval
+## Alternate and provenance
 
-`references/` contains the unmodified native RGBA PNGs. `manifest.json` records hashes, dimensions, alpha checks and pending approval for every candidate. `prompts/` and `prompts.json` contain exact sent prompts; `receipts/` preserves the native save locations. Review sheets only arrange reduced previews; they are not generation inputs.
+[20 alternate edit](references/20-dragged-below-v2.png) refines the adult figure and drapery; the original remains the numbered 20 reference. [Exact edit prompt](prompts/20-dragged-below-v2.txt), input hash and receipt are retained.
 
-The artist-specified heights in prompts are design intentions, not measured 3D dimensions. Alpha and subject silhouette will need conditioning and mesh review after approval. Fine fingers, wings, double faces, vessel openings and rear surfaces remain reconstruction risks to inspect in the later 3D stage. The images are not texture maps or engine captures.
+`references/` holds 27 current original PNGs and one alternate, all byte-identical to their native generated files. `manifest.json` records hashes, dimensions, alpha checks and pending approval. `prompts/`, `prompts.json` and `receipts/` preserve exact generation instructions and output locations. Review sheets arrange reduced previews only; they are not CL3D inputs.
 
-Six earlier goat studies with architectural ornament are retained under `superseded_tracery_v1/` as history. They are excluded from this numbered selection. The root `.gdignore` keeps this image-only library out of game imports and exports.
+Six earlier goat studies with architectural ornament remain under `superseded_tracery_v1/`, excluded from the current selection. The root `.gdignore` keeps this whole image-only library out of Godot imports and exports.
 
-Built-in image_gen was used throughout. All current originals are byte-identical to their native generated files. Approval of selected images will authorize the next CL3D phase; it does not establish final mesh or in-game acceptance.
+Prompt heights are design intentions, not measured 3D sizes. Fingers, faces, negative spaces, flame curls, multiple figures, wings and unseen rear faces need later reconstruction review. These are concept images, not texture maps, meshes or engine captures. Image approval precedes CL3D and does not establish final 3D or in-game acceptance.
 
-Godot 4.7.2 headless editor import passed without errors or warnings. The required repository smoke test passed, including local two-process ENet integration and expected build-mismatch rejection. Existing ObjectDB shutdown leak warnings remain in the smoke log. These regression checks do not validate statues in-game because this is an image-only pack. Logs and file audit: `review/verification.json`.
+All 27 current candidates and the alternate pass native-byte and PNG checks; current assets are distinct RGBA images with transparency. Godot 4.7.2 headless editor import and the required smoke test passed on the initial image-only pack, including local two-process ENet integration and expected build-mismatch rejection. Existing ObjectDB shutdown warnings remain in the smoke log. The added images stay under the same `.gdignore`; no engine files changed. Audit: [verification](review/verification.json), [import log](review/editor-import.txt), [smoke log](review/smoke-test.txt).

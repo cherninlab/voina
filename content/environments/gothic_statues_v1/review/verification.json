@@ -1,11 +1,11 @@
 {
   "stage": "image-only",
   "approval": "pending",
-  "current_images": 18,
+  "current_images": 27,
   "all_distinct": true,
   "all_native_bytes_preserved": true,
   "all_rgba_with_transparency": true,
-  "visual_review": "All eighteen native outputs inspected individually in the generation tool; all-18 overview inspected. Revised references use classical anatomy/drapery and unpatterned plinths. No additional cathedral backdrops, cropped body parts, or lettering found. Number 16 intentionally depicts a damaged headless statue.",
+  "visual_review": "All twenty-seven outputs and one alternate inspected in generation results. Numbered overview reviewed separately. Number 16 is intentionally damaged; 19-26 depict human damnation. Number 27 is a separate symbolic classical allegory.",
   "engine_import": {
     "exit_code": 0,
     "errors": 0,
@@ -22,5 +22,7 @@
   },
   "cl3d_generated": false,
   "dungeon_placement": false,
-  "tested_base_commit": "38757fe9a56681779511e6e612f5de44c62050bb"
+  "tested_base_commit": "38757fe9a56681779511e6e612f5de44c62050bb",
+  "alternate_images": 1,
+  "post_regression_extension": "Nine additional numbered images and one alternate only; all inside the same .gdignore. No engine or gameplay files changed."
 }
