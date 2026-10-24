@@ -56,7 +56,7 @@ Sockets are glTF nodes named `socket_<name>` in each GLB (Node3D after import) a
 | tapestry | `tapestry_0..2.glb` (1.8x1.3, 2.4x1.6 with the fourth nail lost, 1.4x1.9 badly torn) | As banner. On a wall, use a batten: cloth reaches 0.1-0.35 m behind the nail line. | `pin_0..n` |
 | drape | `drape_0..2.glb` | Beam axis, beam along local X. Baked for the dungeon sections width x height: drape_0 0.25x0.25 (cloth bearer), drape_1 0.42x0.55 (roof tie), drape_2 0.30x0.38 (wall bearer). Only use on that section. | `nail_0`, `nail_1` (beam top) |
 | web_corner | `web_corner_0..2.glb` | Apex at the origin. 0 and 1: anchored edges along +X and +Z under a ceiling where two walls meet. 2: edges along +X (beam underside) and -Y (post face), front +Z. | `apex`, `end_u`, `end_v` |
-| web_sheet | `web_sheet_0..2.glb` | Midway between two parallel anchor lines along X, line A at z = -gap/2, line B at +gap/2 and `rise` lower: gap 1.26 (the clear gap between deck stringers), 0.7, 1.5 with 0.3 rise. Lines go on the beams' inner bottom arrises. | `a_0`, `a_1`, `b_0`, `b_1` |
+| web_sheet | `web_sheet_0..2.glb` | Midway between two parallel anchor lines along X, line A at z = -gap/2, line B at +gap/2 and `rise` lower: gap 1.26 (the clear gap between the procedural deck stringers of non-baked wooden routes in `dungeon_structure.gd`; measure baked bridge decks before use), 0.7, 1.5 with 0.3 rise. Lines go on the beams' inner bottom arrises. | `a_0`, `a_1`, `b_0`, `b_1` |
 | rope | `rope_0..2.glb` | Socket a at the origin, b at (span, rise, 0): 1.8 m level, 3.0 m dropping 0.6 m, 1.4 m with a 0.55 m tail. | `a`, `b` |
 
 Cloth stays under 4,740 triangles (limit 6,000); webs 150-790; ropes 1,360-1,622.

@@ -86,7 +86,8 @@ WEB_CORNERS = [
     dict(size=(0.6, 0.75), cells=(16, 18), corner='frame', sag=0.08, holes=2, tears=1, variation=0.9),
 ]
 # Sheets between two parallel beams: line A at Godot z = -gap/2, line B at
-# +gap/2 and `rise` lower. 1.26 m is the clear gap between deck stringers.
+# +gap/2 and `rise` lower. 1.26 m is the clear gap between the procedural deck
+# stringers (0.30 m at +/-0.78 m) of non-baked wooden routes.
 WEB_SHEETS = [
     dict(length=0.9, gap=1.26, rise=0.0, sag=0.22, cells=(16, 22), holes=2, tears=1, variation=0.25),
     dict(length=0.6, gap=0.7, rise=0.0, sag=0.16, cells=(14, 18), holes=3, tears=1, variation=0.55),
