@@ -1,0 +1,43 @@
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+BUILD: 880a4c2+dirty [deb31cb19ed6]
+GENERATED_KIT_PLACED: {"arch":24,"broken_wall":18,"buttress":209,"column":49,"corbel":23,"curved_wall":22,"gothic_window":66,"rock_outcrop":18,"round_arch":49,"rubble":69,"slit_window":81,"stone_bridge":9,"timber_anchor":14,"timber_bridge":10,"wall_panel":99,"window_bay":7}
+RED_DESCENT_GEOMETRY_READY: 17 routes, 11 rooms, 58 lit landmarks, sloping crossings
+MAP: Cinder Crypt (crypt)
+Hosting on UDP 28580
+DUNGEON_ENCOUNTER_READY: five guards across two vertically separated halls, no replacements
+NET host · build 880a4c2+dirty [deb31cb19ed6]
+NET bolts in flight 0
+NET host · build 880a4c2+dirty [deb31cb19ed6]
+NET bolts in flight 0
+NET host · build 880a4c2+dirty [deb31cb19ed6]
+NET bolts in flight 0
+NET host · build 880a4c2+dirty [deb31cb19ed6]
+NET bolts in flight 0
+DUNGEON_ROUTE_OK: descent (53 nodes)
+NET host · build 880a4c2+dirty [deb31cb19ed6]
+NET bolts in flight 0
+DUNGEON_ROUTE_OK: return stair (20 nodes)
+DUNGEON_ROUTE_OK: egress first_stair (4 nodes)
+DUNGEON_ROUTE_OK: egress upper_hall (4 nodes)
+NET host · build 880a4c2+dirty [deb31cb19ed6]
+NET bolts in flight 0
+DUNGEON_ROUTE_OK: egress high_span (6 nodes)
+DUNGEON_ROUTE_OK: egress entry (4 nodes)
+NET host · build 880a4c2+dirty [deb31cb19ed6]
+NET bolts in flight 0
+DUNGEON_ROUTE_OK: upper_cells (7 nodes)
+DUNGEON_ROUTE_OK: ossuary_loop (10 nodes)
+NET host · build 880a4c2+dirty [deb31cb19ed6]
+NET bolts in flight 0
+DUNGEON_ROUTE_OK: bell_loop (9 nodes)
+DUNGEON_ROUTE_OK: cave_bypass (4 nodes)
+NET host · build 880a4c2+dirty [deb31cb19ed6]
+NET bolts in flight 0
+DUNGEON_ROUTE_OK: high_span lane -0.75 (6 nodes)
+DUNGEON_ROUTE_OK: high_span lane 0.75 (6 nodes)
+NET host · build 880a4c2+dirty [deb31cb19ed6]
+NET bolts in flight 0
+DUNGEON_ROUTE_OK: low_span lane -0.75 (8 nodes)
+DUNGEON_ROUTE_OK: low_span lane 0.75 (8 nodes)
+DUNGEON_TRAVERSAL_OK: 1276 m actual capsule walking; descent, slopes, return, egress, four optional loops, both bridge lanes, deep-floor recovery

@@ -1,0 +1,185 @@
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+BUILD: 880a4c2+dirty [479dbc036d7c]
+GENERATED_KIT_PLACED: {"arch":24,"broken_wall":18,"buttress":156,"column":35,"corbel":23,"curved_wall":22,"gothic_window":66,"rock_outcrop":18,"round_arch":49,"rubble":69,"slit_window":81,"stone_bridge":9,"timber_anchor":14,"timber_bridge":10,"wall_panel":99,"window_bay":7}
+RED_DESCENT_GEOMETRY_READY: 17 routes, 11 rooms, 58 lit landmarks, sloping crossings
+MAP: Cinder Crypt (crypt)
+Connecting to 127.0.0.1
+Connected
+DUNGEON_CLIENT_OK: late join, surviving enemies, objective, authority
+WARNING: 1 ObjectDB instance was leaked at exit (run with `--verbose` for details).
+   at: cleanup (core/object/object.cpp:2536)
+
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+BUILD: 880a4c2+dirty [479dbc036d7c]
+GENERATED_KIT_PLACED: {"arch":24,"broken_wall":18,"buttress":156,"column":35,"corbel":23,"curved_wall":22,"gothic_window":66,"rock_outcrop":18,"round_arch":49,"rubble":69,"slit_window":81,"stone_bridge":9,"timber_anchor":14,"timber_bridge":10,"wall_panel":99,"window_bay":7}
+RED_DESCENT_GEOMETRY_READY: 17 routes, 11 rooms, 58 lit landmarks, sloping crossings
+MAP: Cinder Crypt (crypt)
+Hosting on UDP 56102
+DUNGEON_ENCOUNTER_READY: five guards across two vertically separated halls, no replacements
+NET host · build 880a4c2+dirty [479dbc036d7c]
+NET bolts in flight 0
+NET host · build 880a4c2+dirty [479dbc036d7c]
+NET bolts in flight 0
+DUNGEON_HOST_READY: three survivors for late join
+NET host · build 880a4c2+dirty [479dbc036d7c]
+NET bolts in flight 0
+SPAWNED 1628841060
+DESPAWNED 1628841060
+NET host · build 880a4c2+dirty [479dbc036d7c]
+NET bolts in flight 0
+NET host · build 880a4c2+dirty [479dbc036d7c]
+NET bolts in flight 0
+test restart
+Hosting on UDP 56102
+DUNGEON_ENCOUNTER_READY: five guards across two vertically separated halls, no replacements
+DUNGEON_OK: four safe spawns, two hall elevations, pursuit/combat, finite encounter, leave/rehost
+
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+BUILD: 880a4c2+dirty [479dbc036d7c]
+GENERATED_KIT_PLACED: {"arch":24,"broken_wall":18,"buttress":156,"column":35,"corbel":23,"curved_wall":22,"gothic_window":66,"rock_outcrop":18,"round_arch":49,"rubble":69,"slit_window":81,"stone_bridge":9,"timber_anchor":14,"timber_bridge":10,"wall_panel":99,"window_bay":7}
+RED_DESCENT_GEOMETRY_READY: 17 routes, 11 rooms, 58 lit landmarks, sloping crossings
+MAP: Cinder Crypt (crypt)
+Connecting to 127.0.0.1
+MAP_ADOPTED: white_room
+WHITE_ROOM_READY: 20 x 28 m
+MAP: White Room (white_room)
+Connected
+MAP_SELECT_CLIENT_OK: adopted white_room
+WARNING: 1 ObjectDB instance was leaked at exit (run with `--verbose` for details).
+   at: cleanup (core/object/object.cpp:2536)
+
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+BUILD: 880a4c2+dirty [479dbc036d7c]
+VILLAGE_APRON_RETIRED: gate apron overlay replaced by the village skirt
+VILLAGE_GROUNDED: 356 tree/bush plants and 72 rocks seated on the visible ground
+VILLAGE_TRAIL_CLEAR: 2 cosmetic tree/bush meshes excluded from trail
+VILLAGE_WOODLAND_OK: 381 grounded saplings/mature trees in two instanced meshes
+VILLAGE_RIDGES_OK: 10 spaced crest formations
+VILLAGE_PALISADE_SEATED: 13 wall plinths follow the ground (deepest gap closed 0.78 m), 327 posts lowered onto it
+VILLAGE_FERNS_OK: 591 opaque clumps (127 wall, 464 woodland); passage excluded
+VILLAGE_TRAIL_GRASS: 12667 original opaque clumps outside walking strip
+CHURCH_GRAVES: 33 markers, 3 open graves, 3 disturbed mounds
+CHURCH_CLEARED: 5 village plant/rock meshes hidden, 0 instanced plants collapsed
+CHURCH_GROUNDS_OK: floor 6.0 m, 59 collision shapes, 6 lights, 30 flames, 397 dead grass clumps, 5 village plants hidden
+MAP: Village (village)
+CHURCH_ROAD_OK: 7 torch stakes, 5 lit, 8 mud chunks, 5 omni lights
+ASHEN_VILLAGE_OK: storm sky, material maps, 8 practical lights
+WHITE_ROOM_READY: 20 x 28 m
+MAP: White Room (white_room)
+Hosting on UDP 64498
+WAVE_ENCOUNTER_READY: raiders keep coming, up to 6 at once
+MAP_SELECT_HOST_READY: white room
+NET host · build 880a4c2+dirty [479dbc036d7c]
+NET bolts in flight 0
+SPAWNED 33933369
+DESPAWNED 33933369
+NET host · build 880a4c2+dirty [479dbc036d7c]
+NET bolts in flight 0
+Left game
+GENERATED_KIT_PLACED: {"arch":24,"broken_wall":18,"buttress":156,"column":35,"corbel":23,"curved_wall":22,"gothic_window":66,"rock_outcrop":18,"round_arch":49,"rubble":69,"slit_window":81,"stone_bridge":9,"timber_anchor":14,"timber_bridge":10,"wall_panel":99,"window_bay":7}
+RED_DESCENT_GEOMETRY_READY: 17 routes, 11 rooms, 58 lit landmarks, sloping crossings
+MAP: Cinder Crypt (crypt)
+Hosting on UDP 64498
+NET host · build 880a4c2+dirty [479dbc036d7c]
+NET bolts in flight 0
+DUNGEON_ENCOUNTER_READY: five guards across two vertically separated halls, no replacements
+Left game
+VILLAGE_APRON_RETIRED: gate apron overlay replaced by the village skirt
+VILLAGE_GROUNDED: 356 tree/bush plants and 72 rocks seated on the visible ground
+VILLAGE_TRAIL_CLEAR: 2 cosmetic tree/bush meshes excluded from trail
+VILLAGE_WOODLAND_OK: 381 grounded saplings/mature trees in two instanced meshes
+VILLAGE_RIDGES_OK: 10 spaced crest formations
+VILLAGE_PALISADE_SEATED: 13 wall plinths follow the ground (deepest gap closed 0.78 m), 327 posts lowered onto it
+VILLAGE_FERNS_OK: 591 opaque clumps (127 wall, 464 woodland); passage excluded
+VILLAGE_TRAIL_GRASS: 12667 original opaque clumps outside walking strip
+CHURCH_GRAVES: 33 markers, 3 open graves, 3 disturbed mounds
+CHURCH_CLEARED: 5 village plant/rock meshes hidden, 0 instanced plants collapsed
+CHURCH_GROUNDS_OK: floor 6.0 m, 59 collision shapes, 6 lights, 30 flames, 397 dead grass clumps, 5 village plants hidden
+MAP: Village (village)
+Hosting on UDP 64498
+CHURCH_ROAD_OK: 7 torch stakes, 5 lit, 8 mud chunks, 5 omni lights
+ASHEN_VILLAGE_OK: storm sky, material maps, 8 practical lights
+HAUNTED_FOREST_OK: { "bog pools": 2, "trunk colliders": 31, "arch trees": 9, "dead trees": 72, "graveyard ring trees": 26, "spruces": 44, "logs": 16, "stumps": 18, "rocks": 20, "reed clumps": 190, "dead grass tufts": 1429, "light shafts": 8, "mist cards": 80, "ember patches": 7, "road boulders hidden": 1, "village trees stripped bare": 11, "village crowns darkened": 36 }
+MAP_SELECT_OK: lobby picks white room, crypt and village; endless raiders; joiner adopts the host map
+
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+BUILD: 880a4c2+dirty [479dbc036d7c]
+GENERATED_KIT_PLACED: {"arch":24,"broken_wall":18,"buttress":156,"column":35,"corbel":23,"curved_wall":22,"gothic_window":66,"rock_outcrop":18,"round_arch":49,"rubble":69,"slit_window":81,"stone_bridge":9,"timber_anchor":14,"timber_bridge":10,"wall_panel":99,"window_bay":7}
+RED_DESCENT_GEOMETRY_READY: 17 routes, 11 rooms, 58 lit landmarks, sloping crossings
+MAP: Cinder Crypt (crypt)
+Connecting to 127.0.0.1
+MAP_ADOPTED: village
+VILLAGE_APRON_RETIRED: gate apron overlay replaced by the village skirt
+VILLAGE_GROUNDED: 356 tree/bush plants and 72 rocks seated on the visible ground
+VILLAGE_TRAIL_CLEAR: 2 cosmetic tree/bush meshes excluded from trail
+VILLAGE_WOODLAND_OK: 381 grounded saplings/mature trees in two instanced meshes
+VILLAGE_RIDGES_OK: 10 spaced crest formations
+VILLAGE_PALISADE_SEATED: 13 wall plinths follow the ground (deepest gap closed 0.78 m), 327 posts lowered onto it
+VILLAGE_FERNS_OK: 591 opaque clumps (127 wall, 464 woodland); passage excluded
+VILLAGE_TRAIL_GRASS: 12667 original opaque clumps outside walking strip
+CHURCH_GRAVES: 33 markers, 3 open graves, 3 disturbed mounds
+CHURCH_CLEARED: 5 village plant/rock meshes hidden, 0 instanced plants collapsed
+CHURCH_GROUNDS_OK: floor 6.0 m, 59 collision shapes, 6 lights, 30 flames, 397 dead grass clumps, 5 village plants hidden
+MAP: Village (village)
+Connected
+CHURCH_ROAD_OK: 7 torch stakes, 5 lit, 8 mud chunks, 5 omni lights
+ASHEN_VILLAGE_OK: storm sky, material maps, 8 practical lights
+HAUNTED_FOREST_OK: { "bog pools": 2, "trunk colliders": 31, "arch trees": 9, "dead trees": 72, "graveyard ring trees": 26, "spruces": 44, "logs": 16, "stumps": 18, "rocks": 20, "reed clumps": 190, "dead grass tufts": 1429, "light shafts": 8, "mist cards": 80, "ember patches": 7, "road boulders hidden": 1, "village trees stripped bare": 11, "village crowns darkened": 36 }
+NET client 1628268448 · build 880a4c2+dirty [479dbc036d7c]
+NET peer 1 rtt 14 ms jitter 15 ms loss 0.0%
+NET player 1 snaps 0/s drift 0.01 m corrections 0
+NET bolts in flight 0
+
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+BUILD: 880a4c2+dirty [479dbc036d7c]
+VILLAGE_APRON_RETIRED: gate apron overlay replaced by the village skirt
+VILLAGE_GROUNDED: 356 tree/bush plants and 72 rocks seated on the visible ground
+VILLAGE_TRAIL_CLEAR: 2 cosmetic tree/bush meshes excluded from trail
+VILLAGE_WOODLAND_OK: 381 grounded saplings/mature trees in two instanced meshes
+VILLAGE_RIDGES_OK: 10 spaced crest formations
+VILLAGE_PALISADE_SEATED: 13 wall plinths follow the ground (deepest gap closed 0.78 m), 327 posts lowered onto it
+VILLAGE_FERNS_OK: 591 opaque clumps (127 wall, 464 woodland); passage excluded
+VILLAGE_TRAIL_GRASS: 12667 original opaque clumps outside walking strip
+CHURCH_GRAVES: 33 markers, 3 open graves, 3 disturbed mounds
+CHURCH_CLEARED: 5 village plant/rock meshes hidden, 0 instanced plants collapsed
+CHURCH_GROUNDS_OK: floor 6.0 m, 59 collision shapes, 6 lights, 30 flames, 397 dead grass clumps, 5 village plants hidden
+MAP: Village (village)
+Connecting to 127.0.0.1
+CHURCH_ROAD_OK: 7 torch stakes, 5 lit, 8 mud chunks, 5 omni lights
+ASHEN_VILLAGE_OK: storm sky, material maps, 8 practical lights
+HAUNTED_FOREST_OK: { "bog pools": 2, "trunk colliders": 31, "arch trees": 9, "dead trees": 72, "graveyard ring trees": 26, "spruces": 44, "logs": 16, "stumps": 18, "rocks": 20, "reed clumps": 190, "dead grass tufts": 1429, "light shafts": 8, "mist cards": 80, "ember patches": 7, "road boulders hidden": 1, "village trees stripped bare": 11, "village crowns darkened": 36 }
+MAP_ADOPTED: long_grass
+LONG_GRASS_READY: 900 m road, 6 camps (2,2,3,3,4,5 cultists), 5 ambushes, 0 grass clumps, 840 trees, seed 1337
+MAP: Long Grass (long_grass)
+Connected
+LONG_GRASS_CLIENT_OK: adopted road, live camp replicated
+
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+BUILD: 880a4c2+dirty [479dbc036d7c]
+LONG_GRASS_READY: 900 m road, 6 camps (2,2,3,3,4,5 cultists), 5 ambushes, 0 grass clumps, 840 trees, seed 1337
+MAP: Long Grass (long_grass)
+Hosting on UDP 60315
+CAMP_ENCOUNTERS_READY: 6 camps and 5 ambushes along the road
+LONG_GRASS_GRASS: 66213 clumps in 256 ms
+CAMP_WOKE: camp 0, 2 cultists
+LONG_GRASS_HOST_READY: first camp awake
+SPAWNED 1281121782
+DESPAWNED 1281121782
+CAMP_CLEARED: site 0 (1 / 11)
+CAMP_WOKE: ambush 1, 2 cultists
+CAMP_WOKE: camp 2, 2 cultists
+NET host · build 880a4c2+dirty [479dbc036d7c]
+NET bolts in flight 0
+Left game
+Hosting on UDP 60315
+CAMP_ENCOUNTERS_READY: 6 camps and 5 ambushes along the road
+LONG_GRASS_OK: deterministic road, camps, fence, planted field, wake/clear/abandon, rehost
+
+PASS: dungeon geometry, gameplay, finite encounter, late join, lobby map picker and joiners adopting the host map
