@@ -1,0 +1,410 @@
+[
+  {
+    "id": "arch",
+    "material": "trim",
+    "height_m": 4.2,
+    "source_triangles": 641376,
+    "removed_island_vertices": 498,
+    "lods": [
+      {
+        "path": "arch_lod0.glb",
+        "triangles": 32001,
+        "sha256": "f4c2ffb0fb33986a230574ba8e76341f61b1713a8b2420c3e6412de86cf81989"
+      },
+      {
+        "path": "arch_lod1.glb",
+        "triangles": 10665,
+        "sha256": "0078edccfd40edeba367480392f49d947d0f477f2e2b104b10a146f8479afeb5"
+      },
+      {
+        "path": "arch_lod2.glb",
+        "triangles": 2499,
+        "sha256": "d3730d9c2fd82180029665277f044e4bbe345d7504b7c1c7db6e8bc2321be0d9"
+      }
+    ]
+  },
+  {
+    "id": "buttress",
+    "material": "stone",
+    "height_m": 5.4,
+    "source_triangles": 333402,
+    "removed_island_vertices": 156,
+    "lods": [
+      {
+        "path": "buttress_lod0.glb",
+        "triangles": 26000,
+        "sha256": "8fba543d4ee93c7ed61968b7bd50482b4dbc6343925fdac8517bf3350636a1ff"
+      },
+      {
+        "path": "buttress_lod1.glb",
+        "triangles": 8666,
+        "sha256": "04d1db4a1502d0f13c252cdab5bc10b937949593b64e8ca92ea2384a1d6b54a8"
+      },
+      {
+        "path": "buttress_lod2.glb",
+        "triangles": 2500,
+        "sha256": "1bf4a22d39b207f03f4bab379c76ff5a68a069a2fd3d213f60de24a4f846d709"
+      }
+    ]
+  },
+  {
+    "id": "wall_panel",
+    "material": "stone",
+    "height_m": 4.2,
+    "source_triangles": 681884,
+    "removed_island_vertices": 0,
+    "lods": [
+      {
+        "path": "wall_panel_lod0.glb",
+        "triangles": 35000,
+        "sha256": "2358c45494cd5c1b761dc925b25d5853b0df52408b106c634626ad6a96b6ac22"
+      },
+      {
+        "path": "wall_panel_lod1.glb",
+        "triangles": 11666,
+        "sha256": "da463524cc13b9bfaa1cb3173385dfe0e4509d035ead31505694be9a4ed9720d"
+      },
+      {
+        "path": "wall_panel_lod2.glb",
+        "triangles": 2500,
+        "sha256": "2758e30abeb265e207f54ab98af91d7639a0931d54e7465fa407a4fb72a59b45"
+      }
+    ]
+  },
+  {
+    "id": "curved_wall",
+    "material": "stone",
+    "height_m": 3.6,
+    "source_triangles": 905206,
+    "removed_island_vertices": 581,
+    "lods": [
+      {
+        "path": "curved_wall_lod0.glb",
+        "triangles": 30004,
+        "sha256": "af247262fd4196647799f5afdb0c989f62f54432f7172d58e6e0639f63bccc52"
+      },
+      {
+        "path": "curved_wall_lod1.glb",
+        "triangles": 10000,
+        "sha256": "3f24d6abc11cec69067302a68aaa95ffd25540667643f71786fe6574be947853"
+      },
+      {
+        "path": "curved_wall_lod2.glb",
+        "triangles": 2500,
+        "sha256": "839ef2729d6de9160655c500512db795244214602abf936b657f7b10c4ead9d7"
+      }
+    ]
+  },
+  {
+    "id": "stairs",
+    "material": "stone",
+    "height_m": 1.8,
+    "source_triangles": 1113230,
+    "removed_island_vertices": 38,
+    "lods": [
+      {
+        "path": "stairs_lod0.glb",
+        "triangles": 24000,
+        "sha256": "edf7f50c737de88157e56339477d7d28bbe0e5c17e7a13661cfcf7c2b2a4fd39"
+      },
+      {
+        "path": "stairs_lod1.glb",
+        "triangles": 8000,
+        "sha256": "5cc9ff0acbd217c4a854cfdff4138c7acb5f4b67e72f6dbcb35e01ec2df24101"
+      },
+      {
+        "path": "stairs_lod2.glb",
+        "triangles": 2500,
+        "sha256": "0bc3fe8b638a5e2008d78f1844d86667413ca5f1c56669f058f3b9590d5d49b7"
+      }
+    ]
+  },
+  {
+    "id": "timber_anchor",
+    "material": "wood",
+    "height_m": 3.2,
+    "source_triangles": 554296,
+    "removed_island_vertices": 1286,
+    "lods": [
+      {
+        "path": "timber_anchor_lod0.glb",
+        "triangles": 22000,
+        "sha256": "7f266ae10bab5c6bba11dbb9299001cceff1969bb72e26407e7733c6204e80cf"
+      },
+      {
+        "path": "timber_anchor_lod1.glb",
+        "triangles": 7332,
+        "sha256": "142c409ba3b5e11f328ff5c230f8e3dff0de19ae61a8f94a8ae46027d0efd64f"
+      },
+      {
+        "path": "timber_anchor_lod2.glb",
+        "triangles": 2500,
+        "sha256": "a7fa0347cb5ebb3529493682923e2a71b9450f6072bad0308c94cc834c4dc703"
+      }
+    ]
+  },
+  {
+    "id": "rock_outcrop",
+    "material": "rock",
+    "height_m": 3.4,
+    "source_triangles": 1553780,
+    "removed_island_vertices": 0,
+    "lods": [
+      {
+        "path": "rock_outcrop_lod0.glb",
+        "triangles": 30002,
+        "sha256": "dd56ab4f09f09ea7cef5a2920a8336d6e8bbff78688f379438b596ffd80da1e8"
+      },
+      {
+        "path": "rock_outcrop_lod1.glb",
+        "triangles": 10000,
+        "sha256": "764f65f4584a1b86cfcae851b2ef5a33a7e6bd70d1a5bd6c1b92b484ce7c921a"
+      },
+      {
+        "path": "rock_outcrop_lod2.glb",
+        "triangles": 2500,
+        "sha256": "58a439169b4106476d8ee3d4299393be55b86eb120388aa1b2ebf9f6761738c6"
+      }
+    ]
+  },
+  {
+    "id": "rubble",
+    "material": "stone",
+    "height_m": 0.85,
+    "source_triangles": 761550,
+    "removed_island_vertices": 772,
+    "lods": [
+      {
+        "path": "rubble_lod0.glb",
+        "triangles": 18000,
+        "sha256": "1986a92574f84d953d82c0ea99aaa76df74c3917d5cc5ce20ef187cdadb1083f"
+      },
+      {
+        "path": "rubble_lod1.glb",
+        "triangles": 6000,
+        "sha256": "15f0429fb00da6e65b677fa47d36d08048d05464288d05456267e0439288b524"
+      },
+      {
+        "path": "rubble_lod2.glb",
+        "triangles": 2500,
+        "sha256": "b0c8915d5f252a4840adaf9fb2b5fe951ae6ce2534df16a48ff9a5048aada149"
+      }
+    ]
+  },
+  {
+    "id": "corbel",
+    "material": "trim",
+    "height_m": 1.6,
+    "source_triangles": 1056850,
+    "removed_island_vertices": 0,
+    "lods": [
+      {
+        "path": "corbel_lod0.glb",
+        "triangles": 24000,
+        "sha256": "a52e765dc5250f3145141900ac220647761f11356fdd26913f486fec13d95b3a"
+      },
+      {
+        "path": "corbel_lod1.glb",
+        "triangles": 8000,
+        "sha256": "c15dd060d2ddec50efbec5e5aa07b8e6c9b7a0d47d095faef2131d197d1a5074"
+      },
+      {
+        "path": "corbel_lod2.glb",
+        "triangles": 2500,
+        "sha256": "5b40d3e1ababb74dcad1d1731a6a2cf721913f9ca50545d1a2da92ac7d84e579"
+      }
+    ]
+  },
+  {
+    "id": "round_arch",
+    "material": "stone",
+    "height_m": 4.5,
+    "source_triangles": 686246,
+    "removed_island_vertices": 0,
+    "lods": [
+      {
+        "path": "round_arch_lod0.glb",
+        "triangles": 30002,
+        "sha256": "a0162b112da5216fffc6a98f2ababa87f12c241987964ce6d6f720f8071abfea"
+      },
+      {
+        "path": "round_arch_lod1.glb",
+        "triangles": 10000,
+        "sha256": "64945c2e4bb47fb9759083813470e79abcecd6117ac41a0b3d510df994c4926a"
+      },
+      {
+        "path": "round_arch_lod2.glb",
+        "triangles": 2500,
+        "sha256": "37d7257f80769ddfc1d299e1b1145485ebece39de780e4c1086c9bda5e03cb91"
+      }
+    ]
+  },
+  {
+    "id": "slit_window",
+    "material": "trim",
+    "height_m": 2.7,
+    "source_triangles": 649140,
+    "removed_island_vertices": 0,
+    "lods": [
+      {
+        "path": "slit_window_lod0.glb",
+        "triangles": 22000,
+        "sha256": "15325afaf7c247b5849d8da7cbe73d86348600b082932e0f9df7e04bebf4bfaf"
+      },
+      {
+        "path": "slit_window_lod1.glb",
+        "triangles": 7332,
+        "sha256": "855874489b114ae95e876a13dda3ada162c2802fef7dfb851599a75a7b6f73b2"
+      },
+      {
+        "path": "slit_window_lod2.glb",
+        "triangles": 2500,
+        "sha256": "cf6c0cfc986c60b4ac90365dedce57dd7cdd03d52f17f7c5c990b28176e0b473"
+      }
+    ]
+  },
+  {
+    "id": "gothic_window",
+    "material": "trim",
+    "height_m": 3.3,
+    "source_triangles": 774308,
+    "removed_island_vertices": 0,
+    "lods": [
+      {
+        "path": "gothic_window_lod0.glb",
+        "triangles": 30002,
+        "sha256": "33a321126c507b80e2ec129db888675e78cacad52f68d7779ad9b9b854718d7e"
+      },
+      {
+        "path": "gothic_window_lod1.glb",
+        "triangles": 10000,
+        "sha256": "df2480ba61fdc43f69a0bf854bb0a4154f6601ce26721f320ff86f04b1d4b9b0"
+      },
+      {
+        "path": "gothic_window_lod2.glb",
+        "triangles": 2500,
+        "sha256": "4a1f46a4a76cafe311ea5867790df3e79dbccd3cf9cac79a971c58d0045d3f5d"
+      }
+    ]
+  },
+  {
+    "id": "timber_bridge",
+    "material": "wood",
+    "height_m": 0.8,
+    "source_triangles": 433456,
+    "removed_island_vertices": 278,
+    "lods": [
+      {
+        "path": "timber_bridge_lod0.glb",
+        "triangles": 28000,
+        "sha256": "d2c0c78067a09bb13730b05211ded438ce9821692a858036143187cc3dca9acb"
+      },
+      {
+        "path": "timber_bridge_lod1.glb",
+        "triangles": 9332,
+        "sha256": "83c2f8e7ae3c7f892571a30cdc45dec79d27074afbacb64acee4a9b1a23f9a18"
+      },
+      {
+        "path": "timber_bridge_lod2.glb",
+        "triangles": 2498,
+        "sha256": "4afb53909634902c8fbf6c77c89498a384bcba5bece84ad679b7ab2a6e5f3ddf"
+      }
+    ]
+  },
+  {
+    "id": "stone_bridge",
+    "material": "stone",
+    "height_m": 1.7,
+    "source_triangles": 549210,
+    "removed_island_vertices": 392,
+    "lods": [
+      {
+        "path": "stone_bridge_lod0.glb",
+        "triangles": 32002,
+        "sha256": "7c14de8a0ca30e1e255ca48100200e11bf6874bbaafeceef71d481ffc924354c"
+      },
+      {
+        "path": "stone_bridge_lod1.glb",
+        "triangles": 10666,
+        "sha256": "facdd5bd33904d0e14247af4671f662f25c98a83dd3cc957c3695348c087ea40"
+      },
+      {
+        "path": "stone_bridge_lod2.glb",
+        "triangles": 2500,
+        "sha256": "5a6d8469da0e3f0ea7478ac8a8a6176f716634863bbdd9fc9f2bfa05c19e68f1"
+      }
+    ]
+  },
+  {
+    "id": "broken_wall",
+    "material": "stone",
+    "height_m": 3.9,
+    "source_triangles": 727584,
+    "removed_island_vertices": 2248,
+    "lods": [
+      {
+        "path": "broken_wall_lod0.glb",
+        "triangles": 30002,
+        "sha256": "1e7384cbeb123efa72880d9baca01d229857e1828b942a79918a3b42218275b6"
+      },
+      {
+        "path": "broken_wall_lod1.glb",
+        "triangles": 10000,
+        "sha256": "4fd8767b95a8947dede31cfa091bf4a45f4a8abc852f6cea027e390ec519a5b1"
+      },
+      {
+        "path": "broken_wall_lod2.glb",
+        "triangles": 2500,
+        "sha256": "5c8c05649d4721ec65e5a43e44dc0d2bf5f9d877b9d50f1ac13e66cd5fa29f32"
+      }
+    ]
+  },
+  {
+    "id": "column",
+    "material": "trim",
+    "height_m": 4.8,
+    "source_triangles": 312006,
+    "removed_island_vertices": 0,
+    "lods": [
+      {
+        "path": "column_lod0.glb",
+        "triangles": 26002,
+        "sha256": "c799a3450bd1726f3dd96abfe3ed2d101344907660df497b6a58fa430ed91e26"
+      },
+      {
+        "path": "column_lod1.glb",
+        "triangles": 8666,
+        "sha256": "6cf05a4f3cc479a919c635722e7098ba3ebb205028484df42f7b503d7865d1f0"
+      },
+      {
+        "path": "column_lod2.glb",
+        "triangles": 2500,
+        "sha256": "e3bde5aa01ca75d6fd7be8c19b347705dff0ed58d3a986bbe10bff61fe0fff74"
+      }
+    ]
+  },
+  {
+    "id": "window_bay",
+    "material": "stone",
+    "height_m": 4.4,
+    "source_triangles": 937858,
+    "removed_island_vertices": 0,
+    "lods": [
+      {
+        "path": "window_bay_lod0.glb",
+        "triangles": 32002,
+        "sha256": "1edec0fe5669e4c0574a764131230e64f7a988064e2a758593ad1798d67fbed4"
+      },
+      {
+        "path": "window_bay_lod1.glb",
+        "triangles": 10666,
+        "sha256": "16384d4ab50a8144eb3816677121dc70d41364650225be7bfd46a299fc0e7185"
+      },
+      {
+        "path": "window_bay_lod2.glb",
+        "triangles": 2500,
+        "sha256": "0f7c2359418dbfda1ca7877833b707a5d063d32aa9876350752722ddf35ae7ce"
+      }
+    ]
+  }
+]

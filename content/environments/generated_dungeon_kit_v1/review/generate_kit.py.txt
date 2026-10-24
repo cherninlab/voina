@@ -1,0 +1,55 @@
+"""Re-use the local model once for the selected dungeon reference images."""
+import argparse
+import gc
+import hashlib
+import json
+import os
+from pathlib import Path
+import sys
+import time
+
+ROOT = Path(__file__).resolve().parents[2]
+os.environ.setdefault('HY3DGEN_MODELS', str(ROOT / 'models'))
+sys.path.insert(0, str(ROOT / 'CL3D'))
+import torch
+from hy3dgen.shapegen import CL3DDiTFlowMatchingPipeline
+
+parser = argparse.ArgumentParser()
+parser.add_argument('manifest', type=Path)
+args = parser.parse_args()
+jobs = json.loads(args.manifest.read_text())
+assert torch.backends.mps.is_available()
+assert all(Path(job['input']).is_file() for job in jobs)
+start = time.perf_counter()
+pipeline = CL3DDiTFlowMatchingPipeline.from_pretrained(
+    'CL3D/2mini', device='mps', dtype=torch.float16, subfolder='',
+)
+torch.mps.synchronize()
+print(f'MODEL_LOADED {time.perf_counter()-start:.2f}s', flush=True)
+for index, job in enumerate(jobs):
+    output = Path(job['output'])
+    if output.exists():
+        print(f'SKIP_EXISTING {output}', flush=True)
+        continue
+    output.parent.mkdir(parents=True, exist_ok=True)
+    start = time.perf_counter()
+    seed = 20261024 + int(job.get('seed_offset', index))
+    mesh = pipeline(
+        image=job['input'], num_inference_steps=50, octree_resolution=384,
+        generator=torch.Generator(device='cpu').manual_seed(seed),
+    )[0]
+    torch.mps.synchronize()
+    seconds = time.perf_counter()-start
+    mesh.export(str(output))
+    assert len(mesh.faces)>0 and output.stat().st_size>1000
+    report = dict(job, model='CL3D/2mini', device='mps', dtype='float16',
+        steps=50, resolution=384, seed=seed, inference_seconds=seconds,
+        vertices=len(mesh.vertices), triangles=len(mesh.faces),
+        watertight=bool(mesh.is_watertight),
+        input_sha256=hashlib.sha256(Path(job['input']).read_bytes()).hexdigest(),
+        bounds=mesh.bounds.tolist())
+    output.with_suffix('.json').write_text(json.dumps(report,indent=2)+'\n')
+    print('MESH_READY '+json.dumps(report), flush=True)
+    del mesh
+    gc.collect()
+    torch.mps.empty_cache()

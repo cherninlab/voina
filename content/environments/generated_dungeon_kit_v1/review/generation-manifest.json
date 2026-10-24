@@ -1,0 +1,186 @@
+[
+  {
+    "id": "arch",
+    "material": "trim",
+    "height_m": 4.2,
+    "faces": 32000,
+    "input": "/Users/theochernin/Projects/CherninLab3D/tests/dungeon_arch_01/input.png",
+    "output": "/Users/theochernin/Projects/CherninLab3D/tests/dungeon_arch_01/arch.glb",
+    "prompt": "Reused the reviewed dungeon_arch_01 native ImageGen reference and MPS mesh; full original prompt in dungeon_arch_01/README.md."
+  },
+  {
+    "id": "buttress",
+    "material": "stone",
+    "height_m": 5.4,
+    "faces": 26000,
+    "prompt": "Use case: stylized-concept. Asset type: single-subject image-to-3D reference for a realistic medieval folk-horror dungeon game. One isolated freestanding modular asset on a genuinely transparent background. Full object visible with 10 percent empty margin, including its base. Photorealistic sculpted game asset; neutral soft studio illumination, clear middle tones and readable depth, little baked shadow. Gentle three-quarter view at eye level, mild perspective. Large and medium geometric forms must be explicit, with chipped silhouettes and real raised/recessed shapes, not detail implied only by color. No text, logo, pedestal, scene, people, extra disconnected props, floor plane, black background, or dramatic cinematic lighting. Subject: a tall narrow battered Gothic limestone buttress pier, 5.4m tall, about 1.1m wide and 1.2m deep. Heavy squared base, a tapering stepped projecting shoulder at mid height, asymmetrical eroded broken cap, individually varied large stone blocks with staggered joints and deep chips. A few simple carved bands, thick stable silhouette. Grey warm limestone with pale mortar. The pier is an architectural support, not a round column; no arch or ceiling attached.",
+    "native_image": "/Users/theochernin/.codex/generated_images/01a1602d-c639-74f2-ada4-eb5ff4bc8037/exec-da4e56de-2450-43cc-b41f-b10c2e8efca5.png",
+    "input": "/Users/theochernin/Projects/CherninLab3D/tests/dungeon_kit_01/references/buttress.png",
+    "output": "/Users/theochernin/Projects/CherninLab3D/tests/dungeon_kit_01/raw/buttress.glb",
+    "seed_offset": 0
+  },
+  {
+    "id": "wall_panel",
+    "material": "stone",
+    "height_m": 4.2,
+    "faces": 35000,
+    "prompt": "Use case: stylized-concept. Asset type: single-subject image-to-3D reference for a realistic medieval folk-horror dungeon game. One isolated freestanding modular asset on a genuinely transparent background. Full object visible with 10 percent empty margin, including its base. Photorealistic sculpted game asset; neutral soft studio illumination, clear middle tones and readable depth, little baked shadow. Gentle three-quarter view at eye level, mild perspective. Large and medium geometric forms must be explicit, with chipped silhouettes and real raised/recessed shapes, not detail implied only by color. No text, logo, pedestal, scene, people, extra disconnected props, floor plane, black background, or dramatic cinematic lighting. Subject: one substantial ruined wall panel, 4.2m tall by 4.6m wide and 0.65m thick, made of varied sizes of hand-laid limestone rubble. A broad shallow arched blind recess is carved into its face; the recess is SOLID backed with masonry, not an open doorway. Unequal eroded edges and broken uneven top, strong protruding individual blocks at margins. A few broad patches of cracked pale lime plaster cover about a quarter of the stone. Large chips, projecting mortar joints, grounded medieval construction, no modern brick regularity. Leave the whole module visible, not a close crop.",
+    "native_image": "/Users/theochernin/.codex/generated_images/01a1602d-c639-74f2-ada4-eb5ff4bc8037/exec-8786448f-241d-4bec-9aa2-ac7cf0db8d16.png",
+    "input": "/Users/theochernin/Projects/CherninLab3D/tests/dungeon_kit_01/references/wall_panel.png",
+    "output": "/Users/theochernin/Projects/CherninLab3D/tests/dungeon_kit_01/raw/wall_panel.glb",
+    "seed_offset": 1
+  },
+  {
+    "id": "curved_wall",
+    "material": "stone",
+    "height_m": 3.6,
+    "faces": 30000,
+    "prompt": "Use case: stylized-concept. Asset type: single-subject image-to-3D reference for a realistic medieval folk-horror dungeon game. One isolated freestanding modular asset on a genuinely transparent background. Full object visible with 10 percent empty margin, including its base. Photorealistic sculpted game asset; neutral soft studio illumination, clear middle tones and readable depth, little baked shadow. Gentle three-quarter view at eye level, mild perspective. Large and medium geometric forms must be explicit, with chipped silhouettes and real raised/recessed shapes, not detail implied only by color. No text, logo, pedestal, scene, people, extra disconnected props, floor plane, black background, or dramatic cinematic lighting. Subject: one freestanding CURVED ruined masonry wall segment, 3.6m high, about 4.5m arc length, 0.65m thick, following a gentle 50-degree circular arc in plan. View clearly shows its concave inner face and visible top thickness. Two shallow asymmetrically placed arched blind recesses of different sizes, blocked with masonry. Jagged damaged top and unequal ends, varied grey-brown limestone stones, pale eroded mortar, thick corner-free silhouette. Both ends remain vertically grounded. A reusable module for an irregular cylindrical dungeon tower wall, no flat rectangular building or complete enclosure.",
+    "native_image": "/Users/theochernin/.codex/generated_images/01a1602d-c639-74f2-ada4-eb5ff4bc8037/exec-74244129-b50f-44d8-aac8-182cc5c70d51.png",
+    "input": "/Users/theochernin/Projects/CherninLab3D/tests/dungeon_kit_01/references/curved_wall.png",
+    "output": "/Users/theochernin/Projects/CherninLab3D/tests/dungeon_kit_01/raw/curved_wall.glb",
+    "seed_offset": 2
+  },
+  {
+    "id": "stairs",
+    "material": "stone",
+    "height_m": 1.8,
+    "faces": 24000,
+    "prompt": "Use case: stylized-concept. Asset type: single-subject image-to-3D reference for a realistic medieval folk-horror dungeon game. One isolated freestanding modular asset on a genuinely transparent background. Full object visible with 10 percent empty margin, including its base. Photorealistic sculpted game asset; neutral soft studio illumination, clear middle tones and readable depth, little baked shadow. Gentle three-quarter view at eye level, mild perspective. Large and medium geometric forms must be explicit, with chipped silhouettes and real raised/recessed shapes, not detail implied only by color. No text, logo, pedestal, scene, people, extra disconnected props, floor plane, black background, or dramatic cinematic lighting. Subject: one solid short freestanding flight of SIX broad worn medieval stone steps, 1.8m total rise, 2.8m wide, 3m total run. A continuous solid wedge of large uneven limestone blocks beneath the stairs, with both side faces visible as solid masonry, no hollow underside. Treads are flat and usable, 30cm rises and 50cm treads. Rounded foot-worn centers, chipped corners and varied slab thickness, stepped side silhouette. Slight taper of width and mild irregularity, but one straight continuous climb, no extra landings, rails, pillars or surrounding walls.",
+    "native_image": "/Users/theochernin/.codex/generated_images/01a1602d-c639-74f2-ada4-eb5ff4bc8037/exec-69483c01-39e5-42b9-bee0-124e4b573350.png",
+    "input": "/Users/theochernin/Projects/CherninLab3D/tests/dungeon_kit_01/references/stairs.png",
+    "output": "/Users/theochernin/Projects/CherninLab3D/tests/dungeon_kit_01/raw/stairs.glb",
+    "seed_offset": 3
+  },
+  {
+    "id": "timber_anchor",
+    "material": "wood",
+    "height_m": 3.2,
+    "faces": 22000,
+    "prompt": "Use case: stylized-concept. Asset type: single-subject image-to-3D reference for a realistic medieval folk-horror dungeon game. One isolated asset on a genuinely transparent background. Full object visible with 10 percent empty margin including its base. Photorealistic sculpted game asset; neutral soft studio illumination, clear middle tones and readable depth, little baked shadow. Gentle three-quarter view at eye level, mild perspective. Large and medium geometric forms must be explicit, with chipped silhouettes and real raised/recessed shapes, not detail implied only by color. No text, logo, pedestal, scene, people, floor plane, black background or dramatic cinematic lighting. Subject: one massive old timber bridge anchor and brace assembly. A thick vertical squared oak post 3.2m high on a broad wooden foot, with one short projecting cantilever beam at its top and a substantial diagonal timber strut making a triangular support on one side. The three beams are clearly joined with mortise and tenon joints and chunky wood pegs, irregular split ends, weathered uneven edges and large carved grain ridges. Dark damp oak. Structurally one connected assembly with visible real thickness. No bridge deck, ropes, chain, metal machinery or surrounding wall.",
+    "native_image": "/Users/theochernin/.codex/generated_images/01a1602d-c639-74f2-ada4-eb5ff4bc8037/exec-e8806c3f-85d7-4ea3-b514-62a502d85ac3.png",
+    "input": "/Users/theochernin/Projects/CherninLab3D/tests/dungeon_kit_01/references/timber_anchor.png",
+    "output": "/Users/theochernin/Projects/CherninLab3D/tests/dungeon_kit_01/raw/timber_anchor.glb",
+    "seed_offset": 4
+  },
+  {
+    "id": "rock_outcrop",
+    "material": "rock",
+    "height_m": 3.4,
+    "faces": 30000,
+    "prompt": "Use case: stylized-concept. Asset type: single-subject image-to-3D reference for a realistic medieval folk-horror dungeon game. One isolated asset on a genuinely transparent background. Full object visible with 10 percent empty margin including its base. Photorealistic sculpted game asset; neutral soft studio illumination, clear middle tones and readable depth, little baked shadow. Gentle three-quarter view at eye level, mild perspective. Large and medium geometric forms must be explicit, with chipped silhouettes and real raised/recessed shapes, not detail implied only by color. No text, logo, pedestal, scene, people, floor plane, black background or dramatic cinematic lighting. Subject: one large natural limestone outcrop, 3.4m high and 3.2m wide with about 2m depth, for the base of an underground dungeon wall. An asymmetric mass of layered jagged rock, broad overhang, steep broken planes, deep diagonal fissures and irregular projecting ledges. Photogrammetry quality large geological structure. Varied pale grey and dark charcoal mineral layers, sparse damp green at base. Absolutely no masonry block joints, architecture, cave doorway or complete cavern. A single grounded rock mass, not a pile of separate stones.",
+    "native_image": "/Users/theochernin/.codex/generated_images/01a1602d-c639-74f2-ada4-eb5ff4bc8037/exec-cb0bb4f0-7645-4737-ab29-30c71c7f4ec3.png",
+    "input": "/Users/theochernin/Projects/CherninLab3D/tests/dungeon_kit_01/references/rock_outcrop.png",
+    "output": "/Users/theochernin/Projects/CherninLab3D/tests/dungeon_kit_01/raw/rock_outcrop.glb",
+    "seed_offset": 5
+  },
+  {
+    "id": "rubble",
+    "material": "stone",
+    "height_m": 0.85,
+    "faces": 18000,
+    "prompt": "Use case: stylized-concept. Asset type: single-subject image-to-3D reference for a realistic medieval folk-horror dungeon game. One isolated asset on a genuinely transparent background. Full object visible with 10 percent empty margin including its base. Photorealistic sculpted game asset; neutral soft studio illumination, clear middle tones and readable depth, little baked shadow. Gentle three-quarter view at eye level, mild perspective. Large and medium geometric forms must be explicit, with chipped silhouettes and real raised/recessed shapes, not detail implied only by color. No text, logo, pedestal, scene, people, floor plane, black background or dramatic cinematic lighting. Subject: one low compact connected mound of fallen medieval limestone masonry, 0.85m high, 2.8m wide and 1.7m deep. Six or seven large broken voussoirs, chipped squared blocks and a partly buried carved cornice fragment closely touching and overlapping on a small compact rubble bed. Deep crevices, convincingly distinct angular silhouettes, variation of block sizes and orientations, no neat repeating arrangement. A coherent reusable debris cluster, with no distant detached pebbles or dust cloud. Grey-brown limestone and pale mortar fragments.",
+    "native_image": "/Users/theochernin/.codex/generated_images/01a1602d-c639-74f2-ada4-eb5ff4bc8037/exec-d3ee6fbd-0a33-4f19-ab6d-f66f1dd46ee3.png",
+    "input": "/Users/theochernin/Projects/CherninLab3D/tests/dungeon_kit_01/references/rubble.png",
+    "output": "/Users/theochernin/Projects/CherninLab3D/tests/dungeon_kit_01/raw/rubble.glb",
+    "seed_offset": 6
+  },
+  {
+    "id": "corbel",
+    "material": "trim",
+    "height_m": 1.6,
+    "faces": 24000,
+    "prompt": "Use case: stylized-concept. Asset type: single-subject image-to-3D reference for a realistic medieval folk-horror dungeon game. One isolated asset on a genuinely transparent background. Full object visible with 10 percent empty margin including its base. Photorealistic sculpted game asset; neutral soft studio illumination, clear middle tones and readable depth, little baked shadow. Gentle three-quarter view at eye level, mild perspective. Large and medium geometric forms must be explicit, with chipped silhouettes and real raised/recessed shapes, not detail implied only by color. No text, logo, pedestal, scene, people, floor plane, black background or dramatic cinematic lighting. Subject: one large medieval carved limestone grotesque corbel, 1.6m high, 1.0m wide, and 0.9m deep. A squat mournful deformed human-like stone face with heavy brows, hollow eye sockets, an open oval mouth, eroded cheek planes, and thick claw-like stone hands gripping a short rectangular supporting ledge above its head. It is an architectural carving, a solid sculpture attached to a short rugged backing block, not a living creature or freestanding character. Large deep sculpted facial forms and chunky carving which remain readable without texture. Weathered chipped grey limestone, uneven worn edges, no tiny decorative filigree or thin teeth. No gore.",
+    "native_image": "/Users/theochernin/.codex/generated_images/01a1602d-c639-74f2-ada4-eb5ff4bc8037/exec-30695cb7-b78c-4268-8078-edbd56d28113.png",
+    "input": "/Users/theochernin/Projects/CherninLab3D/tests/dungeon_kit_01/references/corbel.png",
+    "output": "/Users/theochernin/Projects/CherninLab3D/tests/dungeon_kit_01/raw/corbel.glb",
+    "seed_offset": 7
+  },
+  {
+    "id": "round_arch",
+    "material": "stone",
+    "height_m": 4.5,
+    "faces": 30000,
+    "prompt": "Use case: stylized-concept. Asset type: single-object image-to-3D reference for a realistic medieval folk-horror dungeon. One isolated grounded architectural module on a genuinely transparent background, with full silhouette visible and 10 percent margin. Photorealistic sculpted game asset with medium-size geometry visibly carved, chipped and uneven, neutral diffuse studio light, clear middle tones. Gentle three-quarter view, no strong perspective distortion. No surrounding scene, floor plane, pedestal, characters, text, labels or disconnected props. Subject: a thick squat Romanesque ROUND doorway arch built from massive irregular dark limestone voussoirs, with two short broad piers and a complete semicircular head. The arch opening is fully clear through to transparency. About 4.5m high and 4.2m wide, 0.9m wall depth. Very different construction from an elegant Gothic frame: crude fortress masonry, heavy asymmetrical battered blocks, no carved bands, one damaged outside corner and crumbling sidewall stubs. Flat usable bases. Large deep mortar gaps and broken angular stone planes.",
+    "native_image": "/Users/theochernin/.codex/generated_images/01a1602d-c639-74f2-ada4-eb5ff4bc8037/exec-7ce38155-740c-4402-aa34-4a292409767d.png",
+    "input": "/Users/theochernin/Projects/CherninLab3D/tests/dungeon_kit_01/references/round_arch.png",
+    "output": "/Users/theochernin/Projects/CherninLab3D/tests/dungeon_kit_01/raw/round_arch.glb",
+    "seed_offset": 20
+  },
+  {
+    "id": "slit_window",
+    "material": "trim",
+    "height_m": 2.7,
+    "faces": 22000,
+    "prompt": "Use case: stylized-concept. Asset type: single-object image-to-3D reference for a realistic medieval folk-horror dungeon. One isolated grounded architectural module on a genuinely transparent background, with full silhouette visible and 10 percent margin. Photorealistic sculpted game asset with medium-size geometry visibly carved, chipped and uneven, neutral diffuse studio light, clear middle tones. Gentle three-quarter view, no strong perspective distortion. No surrounding scene, floor plane, pedestal, characters, text, labels or disconnected props. Subject: one deep narrow medieval arrow-slit window surround, 2.7m high, 1.2m wide, 0.75m deep, freestanding as a thick slab of battered masonry. One tall narrow pointed opening, fully clear through to transparency, with splayed inner stone reveals so the depth is obvious. Broad irregular outside edge, massive weathered grey limestone blocks, broken lower sill and a deliberately asymmetrical top stone. An architectural window-frame module, no glass, bars, shutters or wall beyond the frame.",
+    "native_image": "/Users/theochernin/.codex/generated_images/01a1602d-c639-74f2-ada4-eb5ff4bc8037/exec-6bf46ef5-2363-41f3-ba35-ae9da391c932.png",
+    "input": "/Users/theochernin/Projects/CherninLab3D/tests/dungeon_kit_01/references/slit_window.png",
+    "output": "/Users/theochernin/Projects/CherninLab3D/tests/dungeon_kit_01/raw/slit_window.glb",
+    "seed_offset": 21
+  },
+  {
+    "id": "gothic_window",
+    "material": "trim",
+    "height_m": 3.3,
+    "faces": 30000,
+    "prompt": "Use case: stylized-concept. Asset type: single-object image-to-3D reference for a realistic medieval folk-horror dungeon. One isolated grounded architectural module on a genuinely transparent background, with full silhouette visible and 10 percent margin. Photorealistic sculpted game asset with medium-size geometry visibly carved, chipped and uneven, neutral diffuse studio light, clear middle tones. Gentle three-quarter view, no strong perspective distortion. No surrounding scene, floor plane, pedestal, characters, text, labels or disconnected props. Subject: one broad ruined Gothic window surround, 3.3m tall, 2.6m wide and 0.65m deep. Two wide pointed lancet openings beneath a single weathered enclosing arch, separated by ONE thick stone mullion. All apertures completely clear through to transparency. Simple chunky tracery with a small round opening at the top, deep carved stone jambs, one chipped sill corner and an uneven eroded outer edge. Sturdy structural stone shapes rather than delicate filigree. Pale grey limestone. No glass, metal bars, scenery or wall beyond the frame.",
+    "native_image": "/Users/theochernin/.codex/generated_images/01a1602d-c639-74f2-ada4-eb5ff4bc8037/exec-2cceb7d1-bd76-4eef-91fd-2c336c3c374f.png",
+    "input": "/Users/theochernin/Projects/CherninLab3D/tests/dungeon_kit_01/references/gothic_window.png",
+    "output": "/Users/theochernin/Projects/CherninLab3D/tests/dungeon_kit_01/raw/gothic_window.glb",
+    "seed_offset": 22
+  },
+  {
+    "id": "timber_bridge",
+    "material": "wood",
+    "height_m": 0.8,
+    "faces": 28000,
+    "prompt": "Use case: stylized-concept. Asset type: single-object image-to-3D reference for a realistic medieval folk-horror dungeon. One isolated grounded architectural module on a genuinely transparent background, with full silhouette visible and 10 percent margin. Photorealistic sculpted game asset with medium-size geometry visibly carved, chipped and uneven, neutral diffuse studio light, clear middle tones. Gentle three-quarter view, no strong perspective distortion. No surrounding scene, floor plane, pedestal, characters, text, labels or disconnected props. Subject: one SHORT medieval timber bridge DECK module, about 5m long by 3m wide and 0.8m overall structural thickness. A connected gangway of broad individually uneven oak cross-planks laid across two thick long supporting timber stringers visible underneath. The walking deck is continuous with small narrow gaps, worn rounded edges, some splintered plank tips, slightly sagging at midspan. One end is a little wider than the other so it feels repaired over centuries. DARK weathered oak with deep sculpted grain ridges. Show the top walking surface and one underside edge. No rails, posts, ropes, chains, pillars, bank, terrain or long support legs.",
+    "native_image": "/Users/theochernin/.codex/generated_images/01a1602d-c639-74f2-ada4-eb5ff4bc8037/exec-e40c6671-8eac-47b7-8ca7-a266dddee7b5.png",
+    "input": "/Users/theochernin/Projects/CherninLab3D/tests/dungeon_kit_01/references/timber_bridge.png",
+    "output": "/Users/theochernin/Projects/CherninLab3D/tests/dungeon_kit_01/raw/timber_bridge.glb",
+    "seed_offset": 23
+  },
+  {
+    "id": "stone_bridge",
+    "material": "stone",
+    "height_m": 1.7,
+    "faces": 32000,
+    "prompt": "Use case: stylized-concept. Asset type: single-object image-to-3D reference for a realistic medieval folk-horror dungeon. One isolated grounded architectural module on a genuinely transparent background, with full silhouette visible and 10 percent margin. Photorealistic sculpted game asset with medium-size geometry visibly carved, chipped and uneven, neutral diffuse studio light, clear middle tones. Gentle three-quarter view, no strong perspective distortion. No surrounding scene, floor plane, pedestal, characters, text, labels or disconnected props. Subject: one short freestanding medieval stone bridge-span module, 5.5m long by 2.8m wide, with a 1.7m thick load-bearing structure. One broad visible shallow segmental stone ARCH underneath spans between two small solid end abutments; the void under the arch is fully open through to transparency. The top is a broad continuous stone-paved walkway with a gentle humpback rise of 25cm, with irregular weathered side stones and a chipped unequal parapet curb only 15cm high. View from one side and above so both the underside opening and top walking deck are readable. Massive dark grey medieval rubble stone with larger carved arch stones. No full-height rails, long legs, terrain or water.",
+    "native_image": "/Users/theochernin/.codex/generated_images/01a1602d-c639-74f2-ada4-eb5ff4bc8037/exec-d653dad4-fd54-4f0b-a10b-648ab497d30a.png",
+    "input": "/Users/theochernin/Projects/CherninLab3D/tests/dungeon_kit_01/references/stone_bridge.png",
+    "output": "/Users/theochernin/Projects/CherninLab3D/tests/dungeon_kit_01/raw/stone_bridge.glb",
+    "seed_offset": 24
+  },
+  {
+    "id": "broken_wall",
+    "material": "stone",
+    "height_m": 3.9,
+    "faces": 30000,
+    "prompt": "Use case: stylized-concept. Asset type: single-object image-to-3D reference for a realistic medieval folk-horror dungeon. One isolated grounded architectural module on a genuinely transparent background, with full silhouette visible and 10 percent margin. Photorealistic sculpted game asset with medium-size geometry visibly carved, chipped and uneven, neutral diffuse studio light, clear middle tones. Gentle three-quarter view, no strong perspective distortion. No surrounding scene, floor plane, pedestal, characters, text, labels or disconnected props. Subject: one plain ruined medieval wall fragment, 3.9m high by 4.5m wide and 0.9m deep. NO windows, arches, niches, doors or carvings. The left half is high and massive, the right half slopes down to a broken low stump, creating a clearly ragged slanted silhouette. Coarse randomly sized grey fieldstones embedded in eroded mortar, some larger square corner blocks, broad missing plaster patches and deep vertical structural cracks. A few strongly projecting stones at the broken edge. A solid battered wall mass suitable to break up flat dungeon walls.",
+    "native_image": "/Users/theochernin/.codex/generated_images/01a1602d-c639-74f2-ada4-eb5ff4bc8037/exec-d377c87d-9b70-4b4d-a6f1-8e66b3c7cd5c.png",
+    "input": "/Users/theochernin/Projects/CherninLab3D/tests/dungeon_kit_01/references/broken_wall.png",
+    "output": "/Users/theochernin/Projects/CherninLab3D/tests/dungeon_kit_01/raw/broken_wall.glb",
+    "seed_offset": 25
+  },
+  {
+    "id": "column",
+    "material": "trim",
+    "height_m": 4.8,
+    "faces": 26000,
+    "prompt": "Use case: stylized-concept. Asset type: single-object image-to-3D reference for a realistic medieval folk-horror dungeon. One isolated grounded architectural module on a genuinely transparent background, with full silhouette visible and 10 percent margin. Photorealistic sculpted game asset with medium-size geometry visibly carved, chipped and uneven, neutral diffuse studio light, clear middle tones. Gentle three-quarter view, no strong perspective distortion. No surrounding scene, floor plane, pedestal, characters, text, labels or disconnected props. Subject: one thick ruined OCTAGONAL medieval stone column, 4.8m high and about 1.1m wide, a blocky octagonal shaft assembled from several visibly offset stone drums, standing on a broad rough square plinth and ending in a damaged chunky carved capital. Strong facets, worn edges, one broken piece missing from the capital, a deep horizontal construction joint near mid height. Very different silhouette from a square buttress. Slight asymmetric lean visually, but stable flat base. Grey limestone with simple crude chisel marks and erosion. No foliage, vines, ceiling, arches or other pillars.",
+    "native_image": "/Users/theochernin/.codex/generated_images/01a1602d-c639-74f2-ada4-eb5ff4bc8037/exec-fbea720d-e00a-45e3-9afb-8525929071a2.png",
+    "input": "/Users/theochernin/Projects/CherninLab3D/tests/dungeon_kit_01/references/column.png",
+    "output": "/Users/theochernin/Projects/CherninLab3D/tests/dungeon_kit_01/raw/column.glb",
+    "seed_offset": 26
+  },
+  {
+    "id": "window_bay",
+    "material": "stone",
+    "height_m": 4.4,
+    "faces": 32000,
+    "input": "/Users/theochernin/Projects/CherninLab3D/tests/dungeon_kit_01/references/window_bay.png",
+    "output": "/Users/theochernin/Projects/CherninLab3D/tests/dungeon_kit_01/raw/window_bay.glb",
+    "native_image": "/Users/theochernin/.codex/generated_images/01a1602d-c639-74f2-ada4-eb5ff4bc8037/exec-e34b6471-4fd5-4fd4-ae00-dcbe7a25484a.png",
+    "seed_offset": 40
+  }
+]

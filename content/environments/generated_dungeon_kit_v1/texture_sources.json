@@ -1,0 +1,11 @@
+[
+  {
+    "path": "textures/window_bay.png",
+    "sha256": "258dac9067abfcf56921409aee1f33d656f5a97b9367f68ceae7372310fc4ed5",
+    "native_source": "/Users/theochernin/.codex/generated_images/01a1602d-c639-74f2-ada4-eb5ff4bc8037/exec-b4600401-64c6-4485-baff-c347c5dfface.png",
+    "tool": "native image_gen edit",
+    "prompt": "review/window-texture-prompt.txt",
+    "reference": "review/references/window_bay.png",
+    "notes": "Opaque extended colour plate; source mesh supplies the real window opening. Separate native UV2 triplanar Concrete012 detail normal."
+  }
+]

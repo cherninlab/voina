@@ -1,0 +1,8 @@
+{
+  "tool": "native image_gen edit",
+  "prompt": "paintover-prompt.txt",
+  "actual_capture": "../../../red_descent/review/rerender_v2/kit-first/06-descent-overlook.png",
+  "style_reference_sha256": "3def73d0e82c80e2c2c84c344baa9fe8019bd825dba23652567b274170094630",
+  "output": "paintover-01.png",
+  "output_sha256": "fed1018c23a336c76d35d991e853167d2871c331a1a8dec5dd5ddaabd87f2bee"
+}
