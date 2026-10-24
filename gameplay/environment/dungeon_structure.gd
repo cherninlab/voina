@@ -3,12 +3,20 @@ extends RefCounted
 ## Construction is fitted to real route joints and masonry, never to world axes.
 
 const ROOT: String = "res://content/environments/dungeon_structure_v1/"
+const BRIDGE_ROOT: String = "res://content/environments/procedural_bridge_v1/"
 const FOUNDATION_Y: float = -60.0
+## Transom centre below the deck: procedural timber vs the baked bridge's
+## 6 cm boards on 40 cm stringers.
+const SEAT_DEPTH: float = 0.97
+const BAKED_SEAT_DEPTH: float = 0.68
+const BAKED_STRINGER_BOTTOM: float = 0.46
 var g: RedDescentGeometry
 var meshes: Dictionary[String, Mesh] = {}
 var bearings: Array[Dictionary] = []
 var members: Array[Dictionary] = []
 var cloth_pins: Array[Vector3] = []
+var bridges: Array[Node3D] = []
+var bridge_material: ShaderMaterial
 
 func _init(geometry: RedDescentGeometry) -> void:
 	g = geometry
@@ -69,20 +77,22 @@ func foundation_clear(at: Vector3, top: float) -> bool:
 				return false
 	return true
 
-func support(point: Vector3, side: Vector3, width: float, route: String) -> void:
+func support(point: Vector3, side: Vector3, width: float, route: String, baked: bool = false) -> void:
 	var wall: Vector3 = nearest_wall(point)
-	var seat: Vector3 = point - Vector3.UP * 0.97
+	var seat: Vector3 = point - Vector3.UP * (BAKED_SEAT_DEPTH if baked else SEAT_DEPTH)
 	var type: String = "wall bracket"
 	var base: Vector3
 	if wall.distance_to(point) < 8.5:
 		var drop: float = maxf(3.2, wall.distance_to(point) * 0.65 + 0.6)
 		base = wall - Vector3.UP * drop
-		# Full-depth wall plate and two braces embed into the same masonry face.
+		# Each brace finds its own masonry face, so neither leg of a pair
+		# lands in air where the outline turns a corner.
 		for lateral: float in [-0.42, 0.42]:
-			var anchor: Vector3 = base + side * lateral
-			timber(anchor - Vector3.UP * 0.25, wall + side * lateral - Vector3.UP * 0.9, 0.30, 0.30, "wall plate")
+			var face: Vector3 = nearest_wall(point + side * lateral)
+			var anchor: Vector3 = Vector3(face.x, base.y, face.z)
+			timber(anchor - Vector3.UP * 0.25, face - Vector3.UP * 0.9, 0.30, 0.30, "wall plate")
 			timber(anchor, seat + side * lateral, 0.26, 0.28, "wall brace")
-			timber(wall + side * lateral - Vector3.UP, seat + side * lateral, 0.30, 0.38, "wall bearer")
+			timber(face - Vector3.UP, seat + side * lateral, 0.30, 0.38, "wall bearer")
 	else:
 		type = "foundation pier"
 		base = point
@@ -94,7 +104,8 @@ func support(point: Vector3, side: Vector3, width: float, route: String) -> void
 				found = true
 				break
 		assert(found, "No clear foundation for " + route + " " + str(point))
-		var top: float = point.y - 2.05
+		# The bearing cap and pier cap stack 1.08 m from pier top to transom centre.
+		var top: float = seat.y - 1.08
 		var column: CylinderMesh = CylinderMesh.new()
 		column.top_radius = 0.68
 		column.bottom_radius = 0.98
@@ -122,25 +133,85 @@ func support(point: Vector3, side: Vector3, width: float, route: String) -> void
 		base.y = FOUNDATION_Y
 	# All spans meet this transverse bearer at the route's actual miter joint.
 	timber(seat - side * (width * 0.5 + 0.25), seat + side * (width * 0.5 + 0.25), 0.40, 0.44, "transom")
+	bearings.append({"route": route, "type": type, "deck": point, "base": base, "seat": seat})
+	if baked:
+		# The baked bridge carries its own straps where its stringers cross.
+		return
 	for sign_value: float in [-1.0, 1.0]:
 		var joint: Vector3 = point + side * sign_value * width * 0.39 - Vector3.UP * 0.75
 		var along: Vector3 = side.cross(Vector3.UP)
 		# Visible straps and through-pins bind the crossbeam to its stringers.
 		g.piece(Vector3(0.35, 0.045, 0.5), joint - Vector3.UP * 0.04, "iron", Basis(side, Vector3.UP, along))
 		g.beam(joint - along * 0.27, joint + along * 0.27, 0.06, "iron")
-	bearings.append({"route": route, "type": type, "deck": point, "base": base, "seat": seat})
+
+## Fingerprint of a route's walking ribbon. The Blender bake stores the value it
+## was built from; a mismatch means the route moved and the bake is stale.
+static func layout_hash(path: Dictionary, edges: PackedVector3Array) -> String:
+	var points: PackedVector3Array = path["points"] as PackedVector3Array
+	var text: String = "%s|%.3f" % [String(path["id"]), float(path["width"])]
+	for index: int in range(points.size()):
+		text += "|%.3f,%.3f,%.3f,%.3f,%.3f" % [points[index].x, points[index].y, points[index].z, edges[index].x, edges[index].z]
+	var hashing: HashingContext = HashingContext.new()
+	hashing.start(HashingContext.HASH_SHA256)
+	hashing.update(text.to_utf8_buffer())
+	return hashing.finish().hex_encode()
+
+## Places the Blender-baked deck, rails and straps for a wooden route when a
+## bake exists for its current layout. Returns false to keep procedural timber.
+func baked_bridge(path: Dictionary, edges: PackedVector3Array) -> bool:
+	var file: String = BRIDGE_ROOT + String(path["id"]) + ".glb"
+	# --no-baked-bridges renders the procedural fallback for same-camera A/B frames.
+	if not ResourceLoader.exists(file) or "--no-baked-bridges" in OS.get_cmdline_user_args():
+		return false
+	var bridge: Node3D = (load(file) as PackedScene).instantiate() as Node3D
+	var expected: String = layout_hash(path, edges)
+	var found: String = ""
+	for node: Node in bridge.find_children("*", "MeshInstance3D", true, false):
+		var extras: Dictionary = node.get_meta("extras", {}) as Dictionary
+		found = String(extras.get("layout_hash", found))
+	if found != expected:
+		push_warning("Stale bridge bake for %s (%s, layout %s); rerun scripts/art/build_procedural_bridge.py" % [path["id"], found, expected])
+		bridge.free()
+		return false
+	if bridge_material == null:
+		bridge_material = ShaderMaterial.new()
+		bridge_material.shader = load(BRIDGE_ROOT + "bridge_surface.gdshader") as Shader
+		var wood: ShaderMaterial = g.materials["wood"] as ShaderMaterial
+		for parameter: String in ["albedo_map", "normal_map", "roughness_map", "ao_map", "wet_map"]:
+			bridge_material.set_shader_parameter(parameter, wood.get_shader_parameter(parameter))
+	for node: Node in bridge.find_children("*", "MeshInstance3D", true, false):
+		var visual: MeshInstance3D = node as MeshInstance3D
+		visual.material_override = g.materials["iron"] if visual.name.begins_with("Iron") else bridge_material
+		if visual.name.begins_with("Rope"):
+			visual.set_instance_shader_parameter("rope", 1.0)
+	bridge.name = "Bridge_" + String(path["id"])
+	g.add_child(bridge)
+	bridges.append(bridge)
+	return true
 
 func route(path: Dictionary, edges: PackedVector3Array) -> void:
 	var points: PackedVector3Array = path["points"] as PackedVector3Array
 	var width: float = float(path["width"])
+	var baked: bool = bool(path["wood"]) and baked_bridge(path, edges)
 	for node: int in range(points.size()):
 		var side: Vector3 = edges[node].normalized()
 		if not g.in_room(points[node]):
-			support(points[node], side, width, String(path["id"]))
+			support(points[node], side, width, String(path["id"]), baked)
+		if baked:
+			continue
 		for sign_value: float in [-1.0, 1.0]:
 			# Guard posts land on the transom/stringer joint, never beside empty air.
 			var at: Vector3 = points[node] + edges[node] * sign_value
 			timber(at - Vector3.UP * 1.16, at + Vector3.UP * 1.14, 0.18, 0.18, "guard post")
+	if baked:
+		# Ragged cloth hangs from a bearer fixed to the baked stringers' undersides.
+		var center: Vector3 = points[1].lerp(points[2], 0.45) - Vector3.UP * (BAKED_STRINGER_BOTTOM + 0.125)
+		var side: Vector3 = edges[1].lerp(edges[2], 0.45).normalized()
+		timber(center - side * 1.35, center + side * 1.35, 0.25, 0.25, "cloth bearer")
+		instance("cloth_drape", Transform3D(Basis(side, Vector3.UP, side.cross(Vector3.UP)), center), "cloth")
+		cloth_pins.append(center - side * 1.2 - Vector3.UP * 0.035)
+		cloth_pins.append(center + side * 1.2 - Vector3.UP * 0.035)
+		return
 	for index: int in range(points.size() - 1):
 		var a: Vector3 = points[index]
 		var b: Vector3 = points[index + 1]

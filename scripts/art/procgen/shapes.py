@@ -64,10 +64,14 @@ def section(width: float, depth: float, chamfer: float, rng, wear: float) -> lis
 
 def prism(builder: Builder, a: Vector, b: Vector, width: float, depth: float, up: Vector, rng,
           chamfer: float = 0.015, wear: float = 0.03, bow: float = 0.0, crook: float = 0.0,
-          twist: float = 0.0, segment: float = 0.25, variation: float = None, roughen: float = 0.0) -> None:
+          twist: float = 0.0, segment: float = 0.25, variation: float = None, roughen: float = 0.0,
+          start_cut: tuple = None, end_cut: tuple = None) -> None:
     """One piece from a to b. bow/crook are mid-length offsets along depth/width
-    (metres), twist is end rotation (radians), roughen is per-ring jitter."""
+    (metres), twist is end rotation (radians), roughen is per-ring jitter.
+    start_cut/end_cut are (point, normal) planes the end faces are cut to, for
+    miter joints; each end point should lie on its plane."""
     basis = frame(a, b, up)
+    axis = basis.col[2]
     length = (b - a).length
     rings = max(1, math.ceil(length / segment))
     profile = section(width, depth, chamfer, rng, wear)
@@ -79,26 +83,35 @@ def prism(builder: Builder, a: Vector, b: Vector, width: float, depth: float, up
     color = (1.0, shade, 0.0, 1.0)
     offset = Vector((rng.uniform(0, 4), rng.uniform(0, 4)))
     ring_verts = []
+    ring_u = []
     for ring in range(rings + 1):
         t = ring / rings
         arch = math.sin(math.pi * t)
         angle = twist * (t - 0.5)
         jitter = roughen * (rng.random() - 0.5) if 0 < ring < rings else 0.0
         ca, sa = math.cos(angle), math.sin(angle)
-        verts = []
+        cut = start_cut if ring == 0 else end_cut if ring == rings else None
+        verts, us = [], []
         for x, y in profile:
             local = Vector((x * ca - y * sa + crook * arch + jitter, x * sa + y * ca + bow * arch + jitter, t * length))
-            verts.append(builder.bm.verts.new(a + basis @ local))
+            position = a + basis @ local
+            if cut is not None:
+                point, normal = cut
+                along = axis.dot(normal)
+                if abs(along) > 1e-6:
+                    position = position + axis * ((point - position).dot(normal) / along)
+            verts.append(builder.bm.verts.new(position))
+            us.append((position - a).dot(axis))
         ring_verts.append(verts)
+        ring_u.append(us)
     count = len(profile)
     for ring in range(rings):
-        u0, u1 = ring / rings * length, (ring + 1) / rings * length
         for k in range(count):
             v0, v1 = perimeter[k], perimeter[k + 1]
-            quad = [ring_verts[ring][k], ring_verts[ring][(k + 1) % count],
-                    ring_verts[ring + 1][(k + 1) % count], ring_verts[ring + 1][k]]
-            builder.face(quad, [offset + Vector((u0, v0)), offset + Vector((u0, v1)),
-                                offset + Vector((u1, v1)), offset + Vector((u1, v0))], color)
+            k1 = (k + 1) % count
+            quad = [ring_verts[ring][k], ring_verts[ring][k1], ring_verts[ring + 1][k1], ring_verts[ring + 1][k]]
+            builder.face(quad, [offset + Vector((ring_u[ring][k], v0)), offset + Vector((ring_u[ring][k1], v1)),
+                                offset + Vector((ring_u[ring + 1][k1], v1)), offset + Vector((ring_u[ring + 1][k], v0))], color)
     # End grain: planar UVs in metres.
     builder.face(list(reversed(ring_verts[0])), [offset + Vector(p) for p in reversed(profile)], color)
     builder.face(ring_verts[-1], [offset + Vector(p) for p in profile], color)

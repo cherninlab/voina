@@ -1,0 +1,1 @@
+DUNGEON_TRAVERSAL_OK: 1276 m actual capsule walking; descent, slopes, return, egress, four optional loops, both bridge lanes, deep-floor recovery

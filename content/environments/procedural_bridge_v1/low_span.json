@@ -1,0 +1,104 @@
+{
+  "ao": {
+    "Iron_0": {
+      "mean": 0.48,
+      "min": 0.18
+    },
+    "Iron_1": {
+      "mean": 0.435,
+      "min": 0.18
+    },
+    "Iron_2": {
+      "mean": 0.472,
+      "min": 0.18
+    },
+    "Iron_3": {
+      "mean": 0.442,
+      "min": 0.18
+    },
+    "Iron_4": {
+      "mean": 0.417,
+      "min": 0.18
+    },
+    "Iron_5": {
+      "mean": 0.411,
+      "min": 0.18
+    },
+    "Iron_6": {
+      "mean": 0.423,
+      "min": 0.18
+    },
+    "Rope_0": {
+      "mean": 0.784,
+      "min": 0.18
+    },
+    "Rope_1": {
+      "mean": 0.818,
+      "min": 0.18
+    },
+    "Rope_2": {
+      "mean": 0.767,
+      "min": 0.18
+    },
+    "Rope_3": {
+      "mean": 0.811,
+      "min": 0.18
+    },
+    "Rope_4": {
+      "mean": 0.782,
+      "min": 0.18
+    },
+    "Rope_5": {
+      "mean": 0.731,
+      "min": 0.18
+    },
+    "Rope_6": {
+      "mean": 0.818,
+      "min": 0.18
+    },
+    "Wood_0": {
+      "mean": 0.72,
+      "min": 0.18
+    },
+    "Wood_1": {
+      "mean": 0.698,
+      "min": 0.18
+    },
+    "Wood_2": {
+      "mean": 0.683,
+      "min": 0.18
+    },
+    "Wood_3": {
+      "mean": 0.703,
+      "min": 0.18
+    },
+    "Wood_4": {
+      "mean": 0.71,
+      "min": 0.18
+    },
+    "Wood_5": {
+      "mean": 0.666,
+      "min": 0.18
+    },
+    "Wood_6": {
+      "mean": 0.687,
+      "min": 0.18
+    }
+  },
+  "blender": "5.2.2 LTS",
+  "boards": 214,
+  "files": {
+    "content/environments/procedural_bridge_v1/low_span.glb": "058a90dd07374edb034a25d82b66ac007547698efaed708f5c3ed32606e9bc71"
+  },
+  "layout_hash": "4765cad4d0a3f97f9ad53b57762e8a250ff013cc8fe713d4f79819c914493f8c",
+  "layout_source": "content/environments/procedural_bridge_v1/layout.json",
+  "method": "deck follows the walking ribbon; boards on level s-lines; stringers mitered on node lines; posts outside the edge with handrail and catenary rope; Cycles AO in Color.R",
+  "objects": 21,
+  "posts": 65,
+  "samples": 32,
+  "seat_depth": 0.68,
+  "seed": 20261024,
+  "segments": 7,
+  "stringer_bottom": 0.46,
+  "triangles": 64384
+}

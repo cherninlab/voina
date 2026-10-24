@@ -1,0 +1,1 @@
+DUNGEON_STRUCTURE_OK: 23 fitted bearings, 200 framing/board members, 4 baked cloth pins; lower routes clear

@@ -1,0 +1,85 @@
+INFO Draco is available, use library at /Applications/Blender.app/Contents/Resources/5.2/scripts/addons_core/io_scene_gltf2/libbf_intern_draco_bridge.dylib
+INFO MeshOptimizer is available, use library at /Applications/Blender.app/Contents/Resources/5.2/scripts/addons_core/io_scene_gltf2/libbf_intern_meshopt_bridge.dylib
+14:15:11 | INFO: Starting glTF 2.0 export
+14:15:11 | INFO: Extracting primitive: Iron_0
+14:15:11 | INFO: Primitives created: 1
+14:15:11 | INFO: Extracting primitive: Iron_1
+14:15:11 | INFO: Primitives created: 1
+14:15:11 | INFO: Extracting primitive: Iron_2
+14:15:11 | INFO: Primitives created: 1
+14:15:11 | INFO: Extracting primitive: Iron_3
+14:15:11 | INFO: Primitives created: 1
+14:15:11 | INFO: Extracting primitive: Iron_4
+14:15:11 | INFO: Primitives created: 1
+14:15:11 | INFO: Extracting primitive: Rope_0
+14:15:11 | INFO: Primitives created: 1
+14:15:11 | INFO: Extracting primitive: Rope_1
+14:15:11 | INFO: Primitives created: 1
+14:15:11 | INFO: Extracting primitive: Rope_2
+14:15:11 | INFO: Primitives created: 1
+14:15:11 | INFO: Extracting primitive: Rope_3
+14:15:11 | INFO: Primitives created: 1
+14:15:11 | INFO: Extracting primitive: Rope_4
+14:15:11 | INFO: Primitives created: 1
+14:15:11 | INFO: Extracting primitive: Wood_0
+14:15:11 | INFO: Primitives created: 1
+14:15:11 | INFO: Extracting primitive: Wood_1
+14:15:11 | INFO: Primitives created: 1
+14:15:11 | INFO: Extracting primitive: Wood_2
+14:15:11 | INFO: Primitives created: 1
+14:15:11 | INFO: Extracting primitive: Wood_3
+14:15:11 | INFO: Primitives created: 1
+14:15:11 | INFO: Extracting primitive: Wood_4
+14:15:11 | INFO: Primitives created: 1
+14:15:11 | INFO: Finished glTF 2.0 export in 0.030652761459350586 s
+
+BRIDGE_BAKE_OK high_span {"triangles": 46132, "boards": 161, "objects": 15}
+14:15:11 | INFO: Starting glTF 2.0 export
+14:15:11 | INFO: Extracting primitive: Iron_0
+14:15:11 | INFO: Primitives created: 1
+14:15:11 | INFO: Extracting primitive: Iron_1
+14:15:11 | INFO: Primitives created: 1
+14:15:11 | INFO: Extracting primitive: Iron_2
+14:15:11 | INFO: Primitives created: 1
+14:15:11 | INFO: Extracting primitive: Iron_3
+14:15:11 | INFO: Primitives created: 1
+14:15:11 | INFO: Extracting primitive: Iron_4
+14:15:11 | INFO: Primitives created: 1
+14:15:11 | INFO: Extracting primitive: Iron_5
+14:15:11 | INFO: Primitives created: 1
+14:15:11 | INFO: Extracting primitive: Iron_6
+14:15:11 | INFO: Primitives created: 1
+14:15:11 | INFO: Extracting primitive: Rope_0
+14:15:11 | INFO: Primitives created: 1
+14:15:11 | INFO: Extracting primitive: Rope_1
+14:15:11 | INFO: Primitives created: 1
+14:15:11 | INFO: Extracting primitive: Rope_2
+14:15:11 | INFO: Primitives created: 1
+14:15:11 | INFO: Extracting primitive: Rope_3
+14:15:11 | INFO: Primitives created: 1
+14:15:11 | INFO: Extracting primitive: Rope_4
+14:15:11 | INFO: Primitives created: 1
+14:15:11 | INFO: Extracting primitive: Rope_5
+14:15:11 | INFO: Primitives created: 1
+14:15:11 | INFO: Extracting primitive: Rope_6
+14:15:11 | INFO: Primitives created: 1
+14:15:11 | INFO: Extracting primitive: Wood_0
+14:15:11 | INFO: Primitives created: 1
+14:15:11 | INFO: Extracting primitive: Wood_1
+14:15:11 | INFO: Primitives created: 1
+14:15:11 | INFO: Extracting primitive: Wood_2
+14:15:11 | INFO: Primitives created: 1
+14:15:11 | INFO: Extracting primitive: Wood_3
+14:15:11 | INFO: Primitives created: 1
+14:15:11 | INFO: Extracting primitive: Wood_4
+14:15:11 | INFO: Primitives created: 1
+14:15:11 | INFO: Extracting primitive: Wood_5
+14:15:11 | INFO: Primitives created: 1
+14:15:11 | INFO: Extracting primitive: Wood_6
+14:15:11 | INFO: Primitives created: 1
+14:15:11 | INFO: Finished glTF 2.0 export in 0.04971718788146973 s
+
+BRIDGE_BAKE_OK low_span {"triangles": 64384, "boards": 214, "objects": 21}
+Blender 5.2.2 LTS (hash d13f752e3b9c built 2026-09-15 01:49:19)
+
+Blender quit

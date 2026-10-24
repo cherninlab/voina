@@ -1,0 +1,50 @@
+[
+	{
+		"capture_frame_median_ms": 16.668,
+		"draw_calls": 695.0,
+		"primitives": 1204995.0,
+		"view": "01-high-crossing"
+	},
+	{
+		"capture_frame_median_ms": 16.667,
+		"draw_calls": 360.0,
+		"primitives": 701288.0,
+		"view": "02-central-wall"
+	},
+	{
+		"capture_frame_median_ms": 16.686,
+		"draw_calls": 442.0,
+		"primitives": 508808.0,
+		"view": "03-low-crossing"
+	},
+	{
+		"capture_frame_median_ms": 16.663,
+		"draw_calls": 98.0,
+		"primitives": 503000.0,
+		"view": "04-broken-nave"
+	},
+	{
+		"capture_frame_median_ms": 16.666,
+		"draw_calls": 267.0,
+		"primitives": 395265.0,
+		"view": "05-deep-choir"
+	},
+	{
+		"capture_frame_median_ms": 16.67,
+		"draw_calls": 643.0,
+		"primitives": 988189.0,
+		"view": "06-descent-overlook"
+	},
+	{
+		"capture_frame_median_ms": 16.661,
+		"draw_calls": 552.0,
+		"primitives": 1051910.0,
+		"view": "07-timber-detail"
+	},
+	{
+		"capture_frame_median_ms": 16.663,
+		"draw_calls": 65.0,
+		"primitives": 247280.0,
+		"view": "08-nave-materials"
+	}
+]

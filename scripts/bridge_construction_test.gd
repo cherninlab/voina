@@ -67,9 +67,10 @@ func run() -> void:
 						sweep(id, end, start, inward.rotated(Vector3.UP, deg_to_rad(angle)), 4.5, 2.5, "end")
 				offset += 0.5
 	var failures: Array[String] = []
+	var deck: Dictionary = deck_agreement(dungeon, routes, failures)
 	for gap: Dictionary in gaps:
 		failures.append("Capsule leaves %s (%s, node/segment %d) into the void from %s heading %s" % [gap["route"], gap["kind"], gap["segment"], gap["at"], gap["direction"]])
-	var report: Dictionary = {"probes": probes, "gaps": gaps, "failures": failures}
+	var report: Dictionary = {"probes": probes, "gaps": gaps, "deck": deck, "failures": failures}
 	for argument: String in OS.get_cmdline_user_args():
 		if argument.begins_with("--report="):
 			var file: FileAccess = FileAccess.open(argument.trim_prefix("--report="), FileAccess.WRITE)
@@ -77,13 +78,78 @@ func run() -> void:
 	for failure: String in failures:
 		printerr("BRIDGE_CONSTRUCTION_FAIL: " + failure)
 	if failures.is_empty():
-		print("BRIDGE_CONSTRUCTION_OK: %d capsule sweeps held on open crossings and their joins" % probes)
+		print("BRIDGE_CONSTRUCTION_OK: %d capsule sweeps held on open crossings and their joins; %d baked decks within %.3f m of the walking surface at %d lane samples" % [probes, deck["bridges"], deck["max_m"], deck["samples"]])
 	else:
 		printerr("BRIDGE_CONSTRUCTION_FAIL: %d of %d sweeps reached the void" % [gaps.size(), probes])
 	dungeon.queue_free()
 	for frame: int in range(4):
 		await process_frame
 	quit(0 if failures.is_empty() else 1)
+
+## Every open wooden route uses its current bake, and the visible boards sit
+## within 3 cm of the collision ribbon along the walking lanes.
+func deck_agreement(dungeon: RedDescentDungeon, routes: Array[Dictionary], failures: Array[String]) -> Dictionary:
+	var structure: DungeonStructure = dungeon.architecture.structure
+	var wooden: int = 0
+	for path: Dictionary in routes:
+		if bool(path["wood"]) and not bool(path["enclosed"]):
+			wooden += 1
+	if structure.bridges.size() != wooden:
+		failures.append("Only %d of %d wooden crossings use a current bake (stale layout_hash or missing GLB)" % [structure.bridges.size(), wooden])
+	# Board triangles bucketed per metre in plan for top-down rays.
+	var cells: Dictionary[Vector2i, PackedVector3Array] = {}
+	for bridge: Node3D in structure.bridges:
+		for node: Node in bridge.find_children("Wood_*", "MeshInstance3D", true, false):
+			var visual: MeshInstance3D = node as MeshInstance3D
+			var faces: PackedVector3Array = visual.mesh.get_faces()
+			for index: int in range(0, faces.size(), 3):
+				var a: Vector3 = visual.global_transform * faces[index]
+				var b: Vector3 = visual.global_transform * faces[index + 1]
+				var c: Vector3 = visual.global_transform * faces[index + 2]
+				var low: Vector2i = Vector2i(floori(minf(a.x, minf(b.x, c.x))), floori(minf(a.z, minf(b.z, c.z))))
+				var high: Vector2i = Vector2i(floori(maxf(a.x, maxf(b.x, c.x))), floori(maxf(a.z, maxf(b.z, c.z))))
+				for x: int in range(low.x, high.x + 1):
+					for z: int in range(low.y, high.y + 1):
+						var cell: Vector2i = Vector2i(x, z)
+						if not cells.has(cell):
+							cells[cell] = PackedVector3Array()
+						cells[cell].append_array(PackedVector3Array([a, b, c]))
+	var worst: float = 0.0
+	var samples: int = 0
+	for path: Dictionary in routes:
+		if not bool(path["wood"]) or bool(path["enclosed"]):
+			continue
+		var points: PackedVector3Array = path["points"] as PackedVector3Array
+		for index: int in range(points.size() - 1):
+			var along: Vector3 = flat(points[index + 1] - points[index])
+			var lateral: Vector3 = Vector3(-along.z, 0, along.x)
+			var count: int = ceili(points[index].distance_to(points[index + 1]) / 0.6)
+			for sample: int in range(1, count):
+				for offset: float in [-0.75, 0.0, 0.75]:
+					var best: float = INF
+					# Three rays 10 cm apart: at least one lands on a board, not a gap.
+					for shift: float in [0.0, 0.1, 0.2]:
+						var at: Vector3 = points[index].lerp(points[index + 1], float(sample) / float(count)) + lateral * offset + along * shift
+						var ray: PhysicsRayQueryParameters3D = PhysicsRayQueryParameters3D.create(at + Vector3.UP * 0.5, at - Vector3.UP * 0.5)
+						var hit: Dictionary = space.intersect_ray(ray)
+						var board: float = board_top(cells, at)
+						if not hit.is_empty() and board > -INF:
+							best = minf(best, absf(board - (hit["position"] as Vector3).y))
+					samples += 1
+					if best > 0.03:
+						failures.append("Baked deck of %s segment %d is %.3f m off the walking surface near %s" % [path["id"], index, best, points[index].lerp(points[index + 1], float(sample) / float(count))])
+					elif best < INF:
+						worst = maxf(worst, best)
+	return {"bridges": structure.bridges.size(), "samples": samples, "max_m": snappedf(worst, 0.001)}
+
+func board_top(cells: Dictionary[Vector2i, PackedVector3Array], at: Vector3) -> float:
+	var faces: PackedVector3Array = cells.get(Vector2i(floori(at.x), floori(at.z)), PackedVector3Array())
+	var top: float = -INF
+	for index: int in range(0, faces.size(), 3):
+		var hit: Variant = Geometry3D.ray_intersects_triangle(at + Vector3.UP * 0.5, Vector3.DOWN, faces[index], faces[index + 1], faces[index + 2])
+		if hit != null and (hit as Vector3).y > top and (hit as Vector3).y < at.y + 0.3:
+			top = (hit as Vector3).y
+	return top
 
 func flat(vector: Vector3) -> Vector3:
 	return Vector3(vector.x, 0, vector.z).normalized()

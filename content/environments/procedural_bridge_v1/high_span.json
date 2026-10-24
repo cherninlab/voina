@@ -1,0 +1,80 @@
+{
+  "ao": {
+    "Iron_0": {
+      "mean": 0.49,
+      "min": 0.18
+    },
+    "Iron_1": {
+      "mean": 0.434,
+      "min": 0.18
+    },
+    "Iron_2": {
+      "mean": 0.41,
+      "min": 0.18
+    },
+    "Iron_3": {
+      "mean": 0.445,
+      "min": 0.18
+    },
+    "Iron_4": {
+      "mean": 0.426,
+      "min": 0.18
+    },
+    "Rope_0": {
+      "mean": 0.729,
+      "min": 0.18
+    },
+    "Rope_1": {
+      "mean": 0.766,
+      "min": 0.18
+    },
+    "Rope_2": {
+      "mean": 0.773,
+      "min": 0.18
+    },
+    "Rope_3": {
+      "mean": 0.776,
+      "min": 0.18
+    },
+    "Rope_4": {
+      "mean": 0.792,
+      "min": 0.18
+    },
+    "Wood_0": {
+      "mean": 0.691,
+      "min": 0.18
+    },
+    "Wood_1": {
+      "mean": 0.679,
+      "min": 0.18
+    },
+    "Wood_2": {
+      "mean": 0.658,
+      "min": 0.18
+    },
+    "Wood_3": {
+      "mean": 0.685,
+      "min": 0.18
+    },
+    "Wood_4": {
+      "mean": 0.671,
+      "min": 0.18
+    }
+  },
+  "blender": "5.2.2 LTS",
+  "boards": 161,
+  "files": {
+    "content/environments/procedural_bridge_v1/high_span.glb": "4433519c407679d3341fae0f35dde33b4399deb26e5e5d02db18006b6bfb8226"
+  },
+  "layout_hash": "cab14c2f9b8382ab855aa0c56ee6d315e0c5ed0c6463a8747e4cf3eee25fb27d",
+  "layout_source": "content/environments/procedural_bridge_v1/layout.json",
+  "method": "deck follows the walking ribbon; boards on level s-lines; stringers mitered on node lines; posts outside the edge with handrail and catenary rope; Cycles AO in Color.R",
+  "objects": 15,
+  "posts": 51,
+  "samples": 32,
+  "seat_depth": 0.68,
+  "seed": 20261024,
+  "segments": 5,
+  "stringer_bottom": 0.46,
+  "triangles": 46132
+}
