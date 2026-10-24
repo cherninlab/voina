@@ -1,0 +1,31 @@
+{
+  "id": "bearing_cap",
+  "input": "/Users/theochernin/Projects/MultiPlayerProject-agents/theo-codex-12/content/environments/dungeon_structure_v1/bearing-reference.png",
+  "output": "/Users/theochernin/Projects/MultiPlayerProject-agents/theo-codex-12/content/environments/dungeon_structure_v1/raw/bearing_cap.glb",
+  "height_m": 0.85,
+  "faces": 18000,
+  "material": "stone",
+  "model": "CL3D/2mini",
+  "device": "mps",
+  "dtype": "float16",
+  "steps": 50,
+  "resolution": 384,
+  "seed": 20261024,
+  "inference_seconds": 42.18483895799727,
+  "vertices": 432855,
+  "triangles": 865716,
+  "watertight": false,
+  "input_sha256": "b7680be8c7399e1c627f750480c5019d35c3dc7ea0d201734ff7e0c0d0c8fca0",
+  "bounds": [
+    [
+      -0.999666690826416,
+      -0.6072332859039307,
+      -0.6564272046089172
+    ],
+    [
+      0.9944968819618225,
+      0.6174958348274231,
+      0.6621952652931213
+    ]
+  ]
+}

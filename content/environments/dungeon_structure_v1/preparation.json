@@ -1,0 +1,26 @@
+[
+  {
+    "id": "bearing_cap",
+    "material": "stone",
+    "height_m": 0.85,
+    "source_triangles": 865706,
+    "removed_island_vertices": 0,
+    "lods": [
+      {
+        "path": "bearing_cap_lod0.glb",
+        "triangles": 18002,
+        "sha256": "8430b124b083916e07b2baab3f7aaff5c454a0cfa6f47bfd4572438e490d5157"
+      },
+      {
+        "path": "bearing_cap_lod1.glb",
+        "triangles": 6000,
+        "sha256": "da4e487856ab006b2799ba55e75b0385f2159bbdaddd663240db8be645a6b684"
+      },
+      {
+        "path": "bearing_cap_lod2.glb",
+        "triangles": 2500,
+        "sha256": "8af6f320e5d9bbfee91fcbe0ce37fa1e036ff4aed3c9ad5448c16a7a310d64b0"
+      }
+    ]
+  }
+]

@@ -1,0 +1,29 @@
+SDF.R: Loader Marker V16.2.2 (__init__.py loaded from: /Users/theochernin/Library/Application Support/Blender/5.2/scripts/addons/rust_gpu_sdf_addon/__init__.py)
+SDF.R: --- Initializing GPU Engine (V16.2.2) ---
+SDF.R: No shader cache. This initial compilation may take a few minutes...
+SDF.R: Addon registered. Warming-up will start in 0.5s...
+12:55:24 | INFO: Data are loaded, start creating Blender stuff
+12:55:24 | INFO: Blender create Mesh node geometry_0
+12:55:24 | INFO: glTF import finished in 0.16s
+Warning: No mesh data to join
+INFO Draco is available, use library at /Applications/Blender.app/Contents/Resources/5.2/scripts/addons_core/io_scene_gltf2/libbf_intern_draco_bridge.dylib
+INFO MeshOptimizer is available, use library at /Applications/Blender.app/Contents/Resources/5.2/scripts/addons_core/io_scene_gltf2/libbf_intern_meshopt_bridge.dylib
+12:55:29 | INFO: Starting glTF 2.0 export
+12:55:29 | INFO: Extracting primitive: geometry_0
+12:55:29 | INFO: Primitives created: 1
+12:55:29 | INFO: Finished glTF 2.0 export in 0.01406097412109375 s
+
+12:55:29 | INFO: Starting glTF 2.0 export
+12:55:29 | INFO: Extracting primitive: geometry_0
+12:55:29 | INFO: Primitives created: 1
+12:55:29 | INFO: Finished glTF 2.0 export in 0.00435185432434082 s
+
+12:55:29 | INFO: Starting glTF 2.0 export
+12:55:29 | INFO: Extracting primitive: geometry_0
+12:55:29 | INFO: Primitives created: 1
+12:55:29 | INFO: Finished glTF 2.0 export in 0.002524852752685547 s
+
+KIT_ASSET_PREPARED {"id": "bearing_cap", "material": "stone", "height_m": 0.85, "source_triangles": 865706, "removed_island_vertices": 0, "lods": [{"path": "bearing_cap_lod0.glb", "triangles": 18002, "sha256": "8430b124b083916e07b2baab3f7aaff5c454a0cfa6f47bfd4572438e490d5157"}, {"path": "bearing_cap_lod1.glb", "triangles": 6000, "sha256": "da4e487856ab006b2799ba55e75b0385f2159bbdaddd663240db8be645a6b684"}, {"path": "bearing_cap_lod2.glb", "triangles": 2500, "sha256": "8af6f320e5d9bbfee91fcbe0ce37fa1e036ff4aed3c9ad5448c16a7a310d64b0"}]}
+Blender 5.2.2 LTS (hash d13f752e3b9c built 2026-09-15 01:49:19)
+
+Blender quit

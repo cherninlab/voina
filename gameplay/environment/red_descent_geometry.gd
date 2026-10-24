@@ -10,6 +10,8 @@ var batches: Dictionary[String, Array] = {}
 var batch_colors: Dictionary[String, Array] = {}
 var batch_materials: Dictionary[String, String] = {}
 var batch_models: Dictionary[String, String] = {}
+var batch_meshes: Dictionary[String, Mesh] = {}
+var structure: DungeonStructure
 var module_counts: Dictionary[String, int] = {}
 var surfaces: Dictionary[String, PackedVector3Array] = {}
 var surface_materials: Dictionary[String, String] = {}
@@ -19,6 +21,7 @@ var fort_source: Node3D
 
 func build() -> void:
 	name = "Architecture"
+	structure = DungeonStructure.new(self)
 	fort_source = load("res://content/environments/dungeon_geometry_v2/modular_fort_01/modular_fort_01_2k.gltf").instantiate() as Node3D
 	for room: Dictionary in rooms:
 		build_room(room)
@@ -146,7 +149,7 @@ func build_room(room: Dictionary) -> void:
 	var wall_material: String = "red_plaster" if String(room["id"]) == "nave" else "plaster"
 	polygon_surface(polygon, y, "floor")
 	polygon_surface(polygon, y - 0.5, "stone", false)
-	polygon_surface(polygon, y + height, "stone", false)
+	polygon_surface(polygon, y + height, "collision" if String(room["id"]) == "nave" else "stone", false)
 	for index: int in range(polygon.size()):
 		var a: Vector2 = polygon[index]
 		var b: Vector2 = polygon[(index + 1) % polygon.size()]
@@ -212,13 +215,8 @@ func build_room(room: Dictionary) -> void:
 		if not opening(at, y):
 			var rubble_basis: Basis = Basis(Vector3.UP, float(index) * 1.73)
 			module("rubble", Vector3(at.x, y - 0.15, at.y), rubble_basis, Vector3.ONE * (0.55 + float(index % 3) * 0.15))
-	if String(room["id"]) in ["chapel", "nave", "choir", "restraint"]:
-		for side: float in [-1.0, 1.0]:
-			var at: Vector3 = Vector3(centroid.x + side * 5.0, y, centroid.y + 5.0)
-			var column_height: float = height - 0.2
-			piece(Vector3(1.1, column_height, 1.1), at + Vector3.UP * column_height * 0.5, "collision")
-			stacked_pier(at, Basis.IDENTITY, Vector3(1.5, column_height, 1.5), 0 if side < 0.0 else 1)
-			piece(Vector3(1.8, 0.35, 1.8), at + Vector3.UP * 0.175, "stone", Basis.IDENTITY, true)
+	if String(room["id"]) == "nave":
+		structure.roof(room)
 
 func build_path(path: Dictionary, light_route: bool) -> void:
 	var points: PackedVector3Array = path["points"] as PackedVector3Array
@@ -249,6 +247,8 @@ func build_path(path: Dictionary, light_route: bool) -> void:
 		var tangent: Vector3 = (incoming + outgoing).normalized()
 		var side: Vector3 = Vector3(-tangent.z, 0, tangent.x)
 		edges.append(side * width * 0.5 / maxf(0.65, tangent.dot(incoming)))
+	if not enclosed:
+		structure.route(path, edges)
 	var since_light: float = 15.0
 	for index: int in range(points.size() - 1):
 		var from: Vector3 = points[index]
@@ -256,15 +256,7 @@ func build_path(path: Dictionary, light_route: bool) -> void:
 		var direction: Vector3 = (to - from).normalized()
 		var basis: Basis = Basis.looking_at(direction, Vector3.UP)
 		var side: Vector3 = basis.x
-		var sculpted_deck: bool = bool(path["wood"]) and not enclosed and index % 2 == (0 if String(path["id"]) == "high_span" else 1)
-		if sculpted_deck:
-			var mesh_size: Vector3 = GeneratedDungeonKit.mesh("timber_bridge").get_aabb().size
-			var deck_basis: Basis = basis * Basis(Vector3.UP, PI * 0.5) if mesh_size.x > mesh_size.z else basis
-			var deck_count: int = maxi(1, roundi(from.distance_to(to) / 4.5))
-			var deck_size: Vector3 = Vector3(from.distance_to(to) / float(deck_count) + 0.08, 0.32, width + 0.14) if mesh_size.x > mesh_size.z else Vector3(width + 0.14, 0.32, from.distance_to(to) / float(deck_count) + 0.08)
-			for deck: int in range(deck_count):
-				var at: Vector3 = from.lerp(to, (float(deck) + 0.5) / float(deck_count))
-				fitted_module("timber_bridge", at - basis.y * 0.30, deck_size, deck_basis)
+		var sculpted_deck: bool = bool(path["wood"]) and not enclosed
 		var steps: int = maxi(1, ceili(from.distance_to(to) / 1.4))
 		for step: int in range(steps):
 			var a: Vector3 = from.lerp(to, float(step) / float(steps))
@@ -278,11 +270,13 @@ func build_path(path: Dictionary, light_route: bool) -> void:
 				var edge_b: Vector3 = edges[index].lerp(edges[index + 1], float(step + 1) / float(steps))
 				face(a - edge_a, a + edge_a, b - edge_b, "collision" if sculpted_deck else material)
 				face(a + edge_a, b + edge_b, b - edge_b, "collision" if sculpted_deck else material)
-				face(a - edge_a - Vector3.UP * 0.32, b - edge_b - Vector3.UP * 0.32, a + edge_a - Vector3.UP * 0.32, "wood" if bool(path["wood"]) else "stone")
-				face(a + edge_a - Vector3.UP * 0.32, b - edge_b - Vector3.UP * 0.32, b + edge_b - Vector3.UP * 0.32, "wood" if bool(path["wood"]) else "stone")
+				if not sculpted_deck:
+					face(a - edge_a - Vector3.UP * 0.32, b - edge_b - Vector3.UP * 0.32, a + edge_a - Vector3.UP * 0.32, "stone")
+					face(a + edge_a - Vector3.UP * 0.32, b - edge_b - Vector3.UP * 0.32, b + edge_b - Vector3.UP * 0.32, "stone")
 				# Close the walking ribbon's open sides; slopes and corners need real fascia.
-				quad(a - edge_a, a - edge_a - Vector3.UP * 0.32, b - edge_b - Vector3.UP * 0.32, b - edge_b, -side, "wood" if bool(path["wood"]) else "stone")
-				quad(a + edge_a, b + edge_b, b + edge_b - Vector3.UP * 0.32, a + edge_a - Vector3.UP * 0.32, side, "wood" if bool(path["wood"]) else "stone")
+				if not sculpted_deck:
+					quad(a - edge_a, a - edge_a - Vector3.UP * 0.32, b - edge_b - Vector3.UP * 0.32, b - edge_b, -side, "stone")
+					quad(a + edge_a, b + edge_b, b + edge_b - Vector3.UP * 0.32, a + edge_a - Vector3.UP * 0.32, side, "stone")
 				if enclosed:
 					var roof: float = 3.7 if String(path["id"]) in ["root_tunnel", "cave_bypass"] else 4.2
 					for sign_value: float in [-1.0, 1.0]:
@@ -303,43 +297,15 @@ func build_path(path: Dictionary, light_route: bool) -> void:
 						if Geometry2D.is_point_in_polygon(Vector2(edge.x, edge.z), RedDescentLayout.spine()):
 							continue
 						piece(Vector3(0.12, 0.86, length + 0.1), edge + Vector3.UP * 0.55, "collision", basis, true)
-						for link: int in range(4):
-							var t0: float = float(link) * 0.25
-							var t1: float = float(link + 1) * 0.25
-							var p0: Vector3 = edge + direction * length * (t0 - 0.5) + Vector3.UP * (0.98 - 0.18 * sin(PI * (float(step % 2) + t0) * 0.5))
-							var p1: Vector3 = edge + direction * length * (t1 - 0.5) + Vector3.UP * (0.98 - 0.18 * sin(PI * (float(step % 2) + t1) * 0.5))
-							beam(p0, p1, 0.035, "iron")
-						if step % 2 == 0:
-							piece(Vector3(0.15, 1.12, 0.15), edge - direction * length * 0.5 + Vector3.UP * 0.56, "wood")
-						piece(Vector3(0.24, 0.4, length + 0.1), edge - Vector3.UP * 0.4, "wood", basis)
-					if bool(path["wood"]) and not sculpted_deck:
-						for plank: int in range(4):
-							var offset: float = (float(plank) - 1.5) * length * 0.25
-							var shade: float = 0.78 + float(posmod(index * 37 + step * 11 + plank * 13, 17)) * 0.023
-							var wear: float = float(posmod(index * 13 + step * 7 + plank * 31, 11)) / 10.0 - 0.5
-							piece(Vector3(width + 0.16 + wear * 0.08, 0.12, length * 0.25 - 0.035), at + direction * offset - basis.y * (0.05 + wear * 0.012), "wood", basis * Basis(Vector3.FORWARD, wear * 0.006), false, Color(shade, shade * 0.97, shade * 0.91))
 				since_light += length
 				if light_route and since_light >= 13.0:
 					torch_posts.append(at + side * (width * 0.5 - 0.35))
 					since_light = 0.0
-	# Supports stay below the shared walking ribbon.
-	for node: int in range(points.size()):
-		var point: Vector3 = points[node]
-		var direction: Vector3 = points[mini(node + 1, points.size() - 1)] - points[maxi(0, node - 1)]
-		var support_basis: Basis = Basis.looking_at(direction.normalized(), Vector3.UP)
-		if in_room(point):
-			continue
-		if not enclosed:
-			# Masonry corbels and timber braces are below the walking surface.
-			if bool(path["wood"]):
-				module("timber_anchor", point + support_basis.x * width * 0.5 - support_basis.y * 3.3, support_basis)
-			else:
-				fitted_module("stone_bridge", point - support_basis.y * 1.9, Vector3(4.0, 1.6, width * 0.95), support_basis * Basis(Vector3.UP, PI * 0.5))
-			module("corbel", point + support_basis.x * width * 0.35 - support_basis.y * 1.8, support_basis, Vector3.ONE * 0.65)
-			for sign_value: float in [-1.0, 1.0]:
-				beam(point + Vector3(sign_value * width * 0.4, -0.6, 0), point + Vector3(sign_value * width * 1.4, -4.0, 0), 0.3, "wood")
 
 func beam(from: Vector3, to: Vector3, width: float, material: String) -> void:
+	if material == "wood":
+		structure.timber(from, to, width, width)
+		return
 	var up: Vector3 = Vector3.FORWARD if absf((to - from).normalized().y) > 0.99 else Vector3.UP
 	if material == "iron" and is_equal_approx(width, 0.035):
 		var count: int = maxi(1, roundi(from.distance_to(to) / 0.13))
@@ -510,7 +476,7 @@ func flush() -> void:
 			var multi: MultiMesh = MultiMesh.new()
 			multi.transform_format = MultiMesh.TRANSFORM_3D
 			multi.use_colors = true
-			multi.mesh = GeneratedDungeonKit.mesh(batch_models[key], level) if generated else (chain if batch_materials[key] == "chain" else (worn_block if batch_materials[key] in ["trim", "wood"] else BoxMesh.new()))
+			multi.mesh = GeneratedDungeonKit.mesh(batch_models[key], level) if generated else (batch_meshes[key] if batch_meshes.has(key) else (chain if batch_materials[key] == "chain" else (worn_block if batch_materials[key] in ["trim", "wood"] else BoxMesh.new())))
 			multi.instance_count = batches[key].size()
 			for index: int in range(multi.instance_count):
 				multi.set_instance_transform(index, batches[key][index] as Transform3D)
@@ -557,6 +523,7 @@ func flush() -> void:
 	batch_colors.clear()
 	batch_materials.clear()
 	batch_models.clear()
+	batch_meshes.clear()
 	surfaces.clear()
 	surface_materials.clear()
 	collision_faces.clear()

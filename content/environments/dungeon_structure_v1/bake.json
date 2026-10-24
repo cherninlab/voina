@@ -1,0 +1,27 @@
+{
+  "method": "Blender cloth modifier, gravity, two pinned corners, evaluated frame baked to static mesh",
+  "frames": 110,
+  "fps": 30,
+  "max_pin_error_m": 0.0,
+  "lowest_z_m": -0.9827088713645935,
+  "max_edge_stretch": 1.0038437225286645,
+  "attachment_sockets_godot": [
+    [
+      -1.2,
+      -0.035,
+      0
+    ],
+    [
+      1.2,
+      -0.035,
+      0
+    ]
+  ],
+  "realtime_physics": false,
+  "files": {
+    "hewn_timber_0.glb": "d3a41e0197738ab090ebae36c58859bd72b5afb5c854acb84b0b13f2abb99b80",
+    "cloth_drape.glb": "07999a2d7726addf3bae076aecddc939507577671d07e79c8d0635dc4001b155",
+    "hewn_timber_1.glb": "ac4a03b2c184b8dbfb4ddc08c9739410b33b6406c393d24eadd5e31ebd9c9673",
+    "hewn_timber_2.glb": "cc53935828d24ebca7c949c59bb6cf484d6a1e042a108bc7e5ef5e84e86c308a"
+  }
+}

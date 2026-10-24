@@ -1,0 +1,30 @@
+SDF.R: Loader Marker V16.2.2 (__init__.py loaded from: /Users/theochernin/Library/Application Support/Blender/5.2/scripts/addons/rust_gpu_sdf_addon/__init__.py)
+SDF.R: --- Initializing GPU Engine (V16.2.2) ---
+SDF.R: No shader cache. This initial compilation may take a few minutes...
+SDF.R: Addon registered. Warming-up will start in 0.5s...
+INFO Draco is available, use library at /Applications/Blender.app/Contents/Resources/5.2/scripts/addons_core/io_scene_gltf2/libbf_intern_draco_bridge.dylib
+INFO MeshOptimizer is available, use library at /Applications/Blender.app/Contents/Resources/5.2/scripts/addons_core/io_scene_gltf2/libbf_intern_meshopt_bridge.dylib
+12:51:09 | INFO: Starting glTF 2.0 export
+12:51:09 | INFO: Extracting primitive: HewnTimber
+12:51:09 | INFO: Primitives created: 1
+12:51:09 | INFO: Finished glTF 2.0 export in 0.003098726272583008 s
+
+12:51:09 | INFO: Starting glTF 2.0 export
+12:51:09 | INFO: Extracting primitive: HewnTimber.001
+12:51:09 | INFO: Primitives created: 1
+12:51:09 | INFO: Finished glTF 2.0 export in 0.0010769367218017578 s
+
+12:51:09 | INFO: Starting glTF 2.0 export
+12:51:09 | INFO: Extracting primitive: HewnTimber.002
+12:51:09 | INFO: Primitives created: 1
+12:51:09 | INFO: Finished glTF 2.0 export in 0.0009169578552246094 s
+
+12:51:11 | INFO: Starting glTF 2.0 export
+12:51:11 | INFO: Extracting primitive: PinnedCloth.001
+12:51:11 | INFO: Primitives created: 1
+12:51:11 | INFO: Finished glTF 2.0 export in 0.0020890235900878906 s
+
+STRUCTURE_BAKE_OK {"method": "Blender cloth modifier, gravity, two pinned corners, evaluated frame baked to static mesh", "frames": 110, "fps": 30, "max_pin_error_m": 0.0, "lowest_z_m": -0.9827088713645935, "max_edge_stretch": 1.0038437225286645, "attachment_sockets_godot": [[-1.2, -0.035, 0], [1.2, -0.035, 0]], "realtime_physics": false, "files": {"hewn_timber_0.glb": "d3a41e0197738ab090ebae36c58859bd72b5afb5c854acb84b0b13f2abb99b80", "cloth_drape.glb": "07999a2d7726addf3bae076aecddc939507577671d07e79c8d0635dc4001b155", "hewn_timber_1.glb": "ac4a03b2c184b8dbfb4ddc08c9739410b33b6406c393d24eadd5e31ebd9c9673", "hewn_timber_2.glb": "cc53935828d24ebca7c949c59bb6cf484d6a1e042a108bc7e5ef5e84e86c308a"}}
+Blender 5.2.2 LTS (hash d13f752e3b9c built 2026-09-15 01:49:19)
+
+Blender quit

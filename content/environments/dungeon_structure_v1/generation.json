@@ -1,0 +1,10 @@
+[
+  {
+    "id": "bearing_cap",
+    "input": "/Users/theochernin/Projects/MultiPlayerProject-agents/theo-codex-12/content/environments/dungeon_structure_v1/bearing-reference.png",
+    "output": "/Users/theochernin/Projects/MultiPlayerProject-agents/theo-codex-12/content/environments/dungeon_structure_v1/raw/bearing_cap.glb",
+    "height_m": 0.85,
+    "faces": 18000,
+    "material": "stone"
+  }
+]

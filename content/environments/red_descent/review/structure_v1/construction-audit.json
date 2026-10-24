@@ -1,0 +1,145 @@
+{
+	"cloth_pins": 4,
+	"failures": [],
+	"member_count": 648,
+	"supports": [
+		{
+			"base": "(-24.09194, -3.2, -17.04597)",
+			"deck": "(-22.0, 0.0, -16.0)",
+			"route": "high_span",
+			"type": "wall bracket"
+		},
+		{
+			"base": "(-10.94254, -60.0, -19.00961)",
+			"deck": "(-12.0, -0.7, -14.0)",
+			"route": "high_span",
+			"type": "foundation pier"
+		},
+		{
+			"base": "(2.795332, -6.82407, -7.363735)",
+			"deck": "(-3.0, -1.4, -12.0)",
+			"route": "high_span",
+			"type": "wall bracket"
+		},
+		{
+			"base": "(5.245967, -5.864388, -10.50807)",
+			"deck": "(3.0, -2.0, -15.0)",
+			"route": "high_span",
+			"type": "wall bracket"
+		},
+		{
+			"base": "(10.69491, -8.644716, -8.542373)",
+			"deck": "(15.0, -3.0, -15.0)",
+			"route": "high_span",
+			"type": "wall bracket"
+		},
+		{
+			"base": "(27.74755, -7.2, -10.80305)",
+			"deck": "(24.0, -4.0, -10.0)",
+			"route": "high_span",
+			"type": "wall bracket"
+		},
+		{
+			"base": "(-7.467781, -15.04811, -29.77447)",
+			"deck": "(-6.5, -10.0, -23.0)",
+			"route": "central_ledge",
+			"type": "wall bracket"
+		},
+		{
+			"base": "(-7.0, -60.0, -19.0)",
+			"deck": "(-7.0, -11.0, -19.0)",
+			"route": "central_ledge",
+			"type": "foundation pier"
+		},
+		{
+			"base": "(-5.0, -60.0, -14.0)",
+			"deck": "(-5.0, -12.0, -14.0)",
+			"route": "central_ledge",
+			"type": "foundation pier"
+		},
+		{
+			"base": "(2.112405, -16.2, -6.510077)",
+			"deck": "(-1.0, -13.0, -9.0)",
+			"route": "central_ledge",
+			"type": "wall bracket"
+		},
+		{
+			"base": "(3.388909, -17.2, -4.388909)",
+			"deck": "(2.0, -14.0, -3.0)",
+			"route": "central_ledge",
+			"type": "wall bracket"
+		},
+		{
+			"base": "(3.55855, -18.2, 2.01171)",
+			"deck": "(1.0, -15.0, 1.5)",
+			"route": "central_ledge",
+			"type": "wall bracket"
+		},
+		{
+			"base": "(6.224149, -19.40993, 3.293085)",
+			"deck": "(4.0, -16.0, 7.0)",
+			"route": "central_ledge",
+			"type": "wall bracket"
+		},
+		{
+			"base": "(10.0, -60.0, 13.0)",
+			"deck": "(10.0, -17.0, 13.0)",
+			"route": "central_ledge",
+			"type": "foundation pier"
+		},
+		{
+			"base": "(8.773738, -22.79673, 27.20808)",
+			"deck": "(7.0, -18.0, 21.0)",
+			"route": "central_ledge",
+			"type": "wall bracket"
+		},
+		{
+			"base": "(-24.29193, -26.2, -16.64597)",
+			"deck": "(-23.0, -23.0, -16.0)",
+			"route": "low_span",
+			"type": "wall bracket"
+		},
+		{
+			"base": "(-14.0, -60.0, -16.0)",
+			"deck": "(-14.0, -24.0, -16.0)",
+			"route": "low_span",
+			"type": "foundation pier"
+		},
+		{
+			"base": "(-9.0, -60.0, -8.0)",
+			"deck": "(-9.0, -24.5, -8.0)",
+			"route": "low_span",
+			"type": "foundation pier"
+		},
+		{
+			"base": "(3.521776, -30.06846, 1.826075)",
+			"deck": "(-3.0, -25.0, 4.0)",
+			"route": "low_span",
+			"type": "wall bracket"
+		},
+		{
+			"base": "(7.841796, -30.19025, 4.263673)",
+			"deck": "(5.0, -26.0, 9.0)",
+			"route": "low_span",
+			"type": "wall bracket"
+		},
+		{
+			"base": "(7.668083, -31.20591, 4.534467)",
+			"deck": "(12.0, -27.0, 8.0)",
+			"route": "low_span",
+			"type": "wall bracket"
+		},
+		{
+			"base": "(11.56, -31.5075, -0.33)",
+			"deck": "(16.0, -27.3, 3.0)",
+			"route": "low_span",
+			"type": "wall bracket"
+		},
+		{
+			"base": "(25.53481, -31.2, 6.128355)",
+			"deck": "(25.0, -28.0, 6.0)",
+			"route": "low_span",
+			"type": "wall bracket"
+		}
+	]
+}

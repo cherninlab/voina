@@ -26,6 +26,10 @@ func _ready() -> void:
 	var dark: StandardMaterial3D = StandardMaterial3D.new()
 	dark.albedo_color = Color(0.025, 0.027, 0.027)
 	dark.roughness = 1.0
+	var cloth: StandardMaterial3D = StandardMaterial3D.new()
+	cloth.albedo_color = Color(0.12, 0.085, 0.052)
+	cloth.roughness = 1.0
+	cloth.cull_mode = BaseMaterial3D.CULL_DISABLED
 	architecture.materials = {
 		"stone": surface(PBR + "Bricks089/", 0.22, 0.7, 0.22),
 		"wall": surface(PBR + "Bricks089/", 0.22, 0.7, 0.5),
@@ -34,7 +38,7 @@ func _ready() -> void:
 		"trim": surface(PBR + "Bricks083/", 0.33, 0.6),
 		"floor": surface(PBR + "Rocks025/", 0.526, 0.8, 0.4),
 		"rock": surface(PBR + "marble_rock_03/", 0.555, 0.85, 0.3),
-		"wood": wood, "iron": iron, "dark": dark,
+		"wood": wood, "iron": iron, "dark": dark, "cloth": cloth,
 		"core_stone": GeneratedDungeonKit.material("wall_panel"),
 	}
 	(architecture.materials["trim"] as ShaderMaterial).set_shader_parameter("tint", Vector3(0.62, 0.57, 0.47))
@@ -185,12 +189,12 @@ func build_landmarks() -> void:
 		architecture.piece(Vector3(1.14, 0.12, 2.55), at + Vector3.UP * 0.72, "wood")
 		for offset: float in [-0.75, 0.75]:
 			architecture.piece(Vector3(1.15, 0.05, 0.08), at + Vector3(0, 0.8, offset), "iron")
-	for z: float in [82, 88, 94]:
-		var at: Vector3 = RedDescentLayout.at(Vector3(50, -8, z))
-		architecture.beam(at + Vector3(-13, 0, 0), at + Vector3(13, 0, 0), 0.35, "wood")
-		architecture.beam(at + Vector3(-13, -2, 0), at + Vector3(0, 1, 0), 0.24, "wood")
-		architecture.beam(at + Vector3(0, 1, 0), at + Vector3(13, -2, 0), 0.24, "wood")
 	var bell_at: Vector3 = RedDescentLayout.at(Vector3(82, -12, 88))
+	for side: float in [-1.0, 1.0]:
+		var foot: Vector3 = bell_at + Vector3(side * 5.0, -6, 0)
+		architecture.structure.timber(foot, foot + Vector3.UP * 8.0, 0.48, 0.48, "bell post")
+		architecture.structure.timber(foot + Vector3.UP * 6.0, bell_at + Vector3(side * 3.0, 2, 0), 0.28, 0.28, "bell knee")
+		architecture.piece(Vector3(0.9, 0.4, 0.9), foot + Vector3.UP * 0.2, "trim")
 	architecture.beam(bell_at + Vector3(-5, 2, 0), bell_at + Vector3(5, 2, 0), 0.4, "wood")
 	architecture.beam(bell_at + Vector3.UP * 2, bell_at, 0.07, "iron")
 	var bell: CylinderMesh = CylinderMesh.new()
@@ -204,27 +208,6 @@ func build_landmarks() -> void:
 	visual.position = bell_at - Vector3.UP * 1.1
 	add_child(visual)
 	architecture.beam(bell_at - Vector3.UP, bell_at - Vector3.UP * 3, 0.18, "iron")
-	# Ragged remnants hang below the crossings, with enough room above the next route.
-	var cloth: StandardMaterial3D = StandardMaterial3D.new()
-	cloth.albedo_color = Color(0.18, 0.115, 0.075)
-	cloth.roughness = 1.0
-	cloth.cull_mode = BaseMaterial3D.CULL_DISABLED
-	for index: int in [2, 5, 9]:
-		var path: Dictionary = RedDescentLayout.routes()[index]
-		var points: PackedVector3Array = path["points"] as PackedVector3Array
-		for node: int in range(1, points.size() - 1, 2):
-			var point: Vector3 = points[node] + Vector3(float(path["width"]) * 0.45, -0.2, 0)
-			var vertices: PackedVector3Array = PackedVector3Array([point, point + Vector3(0.2, -0.1, 0), point + Vector3(0.08, -1.6, 0.25)])
-			var arrays: Array = []
-			arrays.resize(Mesh.ARRAY_MAX)
-			arrays[Mesh.ARRAY_VERTEX] = vertices
-			arrays[Mesh.ARRAY_NORMAL] = PackedVector3Array([Vector3.FORWARD, Vector3.FORWARD, Vector3.FORWARD])
-			var mesh: ArrayMesh = ArrayMesh.new()
-			mesh.add_surface_from_arrays(Mesh.PRIMITIVE_TRIANGLES, arrays)
-			var remnant: MeshInstance3D = MeshInstance3D.new()
-			remnant.mesh = mesh
-			remnant.material_override = cloth
-			add_child(remnant)
 
 func player_spawn(slot: int) -> Vector3:
 	return RedDescentLayout.player_spawn(slot)
