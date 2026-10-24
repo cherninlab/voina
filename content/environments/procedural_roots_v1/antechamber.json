@@ -1,0 +1,90 @@
+{
+  "ao": {
+    "Roots_antechamber_0": {
+      "mean": 0.629,
+      "min": 0.2
+    },
+    "Roots_antechamber_2": {
+      "mean": 0.605,
+      "min": 0.2
+    },
+    "Roots_antechamber_5": {
+      "mean": 0.488,
+      "min": 0.2
+    },
+    "Roots_antechamber_6": {
+      "mean": 0.558,
+      "min": 0.2
+    },
+    "Roots_antechamber_7": {
+      "mean": 0.602,
+      "min": 0.2
+    }
+  },
+  "blender": "5.2.2 LTS",
+  "budget": 15000,
+  "clearance": {
+    "ankle_m": 0.03,
+    "headroom_m": 2.7,
+    "route_margin_m": 0.3
+  },
+  "diameter_cm": {
+    "max": 15.0,
+    "min": 0.5
+  },
+  "doorways": [
+    {
+      "crown": 4.28,
+      "wall": 0,
+      "width": 5.3
+    },
+    {
+      "crown": 4.47,
+      "wall": 2,
+      "width": 3.6
+    }
+  ],
+  "files": {
+    "content/environments/procedural_roots_v1/antechamber.glb": "9aa02de4ff363dda3edf3b143fd293493bb98ae776a44fb39099b010fa89c4b2"
+  },
+  "id": "antechamber",
+  "layout_hash": "20aa6015a7f9f4f7c12b59b90acfe080b07298d8b2b180c7054b532be72d00d4",
+  "meshes": [
+    "Roots_antechamber_0",
+    "Roots_antechamber_2",
+    "Roots_antechamber_5",
+    "Roots_antechamber_6",
+    "Roots_antechamber_7"
+  ],
+  "qa": {
+    "audit": {
+      "cut_deeper_than_1cm": 9,
+      "cut_into_stone": 17,
+      "emerging_from_joint": 0,
+      "in_walking_corridor": 0,
+      "vertices": 6339
+    },
+    "cling_gap_m": {
+      "max": 0.0565,
+      "p50": 0.0062,
+      "p95": 0.0165
+    },
+    "clipped_at_corridor": 2,
+    "pruned": 0,
+    "rings": 1158,
+    "rings_touching_stone": 5
+  },
+  "roots": 61,
+  "seed": 178,
+  "sources": {
+    "procedural_architecture_v1/passages/entry_0_0.glb": "dffc458ff950a8bd607d72ebfda98263a654e4ad5e59a8f3b19261888d9126fe",
+    "procedural_architecture_v1/rooms/antechamber.glb": "e62a2d03873ccf04f3ec8693fbcf64716f553ccc62e236e494abb5cb7668ef3a"
+  },
+  "systems": {
+    "branch": 4,
+    "loop": 6,
+    "trunk": 9,
+    "vein": 5
+  },
+  "triangles": 12861
+}

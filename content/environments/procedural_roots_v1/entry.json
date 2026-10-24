@@ -1,0 +1,90 @@
+{
+  "ao": {
+    "Roots_entry_1": {
+      "mean": 0.495,
+      "min": 0.2
+    },
+    "Roots_entry_2": {
+      "mean": 0.475,
+      "min": 0.2
+    },
+    "Roots_entry_3": {
+      "mean": 0.586,
+      "min": 0.2
+    },
+    "Roots_entry_5": {
+      "mean": 0.556,
+      "min": 0.2
+    },
+    "Roots_entry_6": {
+      "mean": 0.534,
+      "min": 0.2
+    },
+    "Roots_entry_7": {
+      "mean": 0.546,
+      "min": 0.2
+    }
+  },
+  "blender": "5.2.2 LTS",
+  "budget": 15000,
+  "clearance": {
+    "ankle_m": 0.03,
+    "headroom_m": 2.7,
+    "route_margin_m": 0.3
+  },
+  "diameter_cm": {
+    "max": 15.0,
+    "min": 0.5
+  },
+  "doorways": [
+    {
+      "crown": 4.28,
+      "wall": 3,
+      "width": 5.55
+    }
+  ],
+  "files": {
+    "content/environments/procedural_roots_v1/entry.glb": "1141705c356027fffb86e80c1b85dc0b97bd389f21adb4a536702a13ff3f3856"
+  },
+  "id": "entry",
+  "layout_hash": "20aa6015a7f9f4f7c12b59b90acfe080b07298d8b2b180c7054b532be72d00d4",
+  "meshes": [
+    "Roots_entry_1",
+    "Roots_entry_2",
+    "Roots_entry_3",
+    "Roots_entry_5",
+    "Roots_entry_6",
+    "Roots_entry_7"
+  ],
+  "qa": {
+    "audit": {
+      "cut_deeper_than_1cm": 10,
+      "cut_into_stone": 28,
+      "emerging_from_joint": 9,
+      "in_walking_corridor": 0,
+      "vertices": 7230
+    },
+    "cling_gap_m": {
+      "max": 0.0387,
+      "p50": 0.006,
+      "p95": 0.0152
+    },
+    "clipped_at_corridor": 0,
+    "pruned": 0,
+    "rings": 1335,
+    "rings_touching_stone": 19
+  },
+  "roots": 79,
+  "seed": 178,
+  "sources": {
+    "procedural_architecture_v1/passages/entry_0_0.glb": "dffc458ff950a8bd607d72ebfda98263a654e4ad5e59a8f3b19261888d9126fe",
+    "procedural_architecture_v1/rooms/entry.glb": "90e280715b5b217a7d5274facd6107811cd77c3f1580a9c52f364db3cfcf77cf"
+  },
+  "systems": {
+    "branch": 3,
+    "loop": 3,
+    "trunk": 10,
+    "vein": 7
+  },
+  "triangles": 14610
+}
