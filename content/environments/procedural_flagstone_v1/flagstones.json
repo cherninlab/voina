@@ -1,0 +1,1359 @@
+{
+  "ao_samples": 96,
+  "blender": "5.2.2 LTS",
+  "conventions": {
+    "Color.B": "edge wear: 1 on arrises and chips, 0.25 at the top edge, 0 on the worn top",
+    "Color.G": "per-stone variation 0..1 (cracked pieces share their stone; dirt: soil noise)",
+    "Color.R": "baked AO (Cycles, 0.25 m distance, neighbours present; opposite borders averaged)",
+    "UV": "metres; stones rotated and offset per stone, dirt and bedding in plain module metres",
+    "axes": "Godot: module spans +X and +Z from its corner; walking plane y = 0; all vertices within +/-0.021 m.",
+    "nodes": "<id>_stones_lod{0,1,2} (stones and fragments) and <id>_dirt_lod{0,1,2} (bedding plus dirt fills).",
+    "tiling": "variants of one family share every border stone, so any variant tiles with any other"
+  },
+  "families": {
+    "border": {
+      "cross_seam_mm": {
+        "border_a->border_a": {
+          "x": 0.0
+        },
+        "border_a->border_b": {
+          "x": 0.0
+        },
+        "border_b->border_a": {
+          "x": 0.0
+        },
+        "border_b->border_b": {
+          "x": 0.0
+        }
+      },
+      "modules": [
+        "border_a",
+        "border_b"
+      ],
+      "worst_seam_mm": 0.0
+    },
+    "coursed": {
+      "cross_seam_mm": {
+        "coursed_a->coursed_a": {
+          "x": 0.0019,
+          "y": 0.0
+        },
+        "coursed_a->coursed_b": {
+          "x": 0.0019,
+          "y": 0.0
+        },
+        "coursed_a->coursed_c": {
+          "x": 0.0019,
+          "y": 0.0
+        },
+        "coursed_b->coursed_a": {
+          "x": 0.0019,
+          "y": 0.0
+        },
+        "coursed_b->coursed_b": {
+          "x": 0.0019,
+          "y": 0.0
+        },
+        "coursed_b->coursed_c": {
+          "x": 0.0019,
+          "y": 0.0
+        },
+        "coursed_c->coursed_a": {
+          "x": 0.0019,
+          "y": 0.0
+        },
+        "coursed_c->coursed_b": {
+          "x": 0.0019,
+          "y": 0.0
+        },
+        "coursed_c->coursed_c": {
+          "x": 0.0019,
+          "y": 0.0
+        }
+      },
+      "modules": [
+        "coursed_a",
+        "coursed_b",
+        "coursed_c"
+      ],
+      "worst_seam_mm": 0.0019
+    },
+    "laid": {
+      "cross_seam_mm": {
+        "laid_a->laid_a": {
+          "x": 0.0002,
+          "y": 0.0068
+        },
+        "laid_a->laid_b": {
+          "x": 0.0002,
+          "y": 0.0068
+        },
+        "laid_a->laid_c": {
+          "x": 0.0002,
+          "y": 0.0068
+        },
+        "laid_b->laid_a": {
+          "x": 0.0002,
+          "y": 0.0068
+        },
+        "laid_b->laid_b": {
+          "x": 0.0002,
+          "y": 0.0068
+        },
+        "laid_b->laid_c": {
+          "x": 0.0002,
+          "y": 0.0068
+        },
+        "laid_c->laid_a": {
+          "x": 0.0002,
+          "y": 0.0068
+        },
+        "laid_c->laid_b": {
+          "x": 0.0002,
+          "y": 0.0068
+        },
+        "laid_c->laid_c": {
+          "x": 0.0002,
+          "y": 0.0068
+        }
+      },
+      "modules": [
+        "laid_a",
+        "laid_b",
+        "laid_c"
+      ],
+      "worst_seam_mm": 0.0068
+    }
+  },
+  "files": {
+    "content/environments/procedural_flagstone_v1/flagstone_border_a.glb": "5816cbaac697328751f5b79a68d5c72d87df5e0af4a2d792bc6a524f2f6c25e8",
+    "content/environments/procedural_flagstone_v1/flagstone_border_b.glb": "0a195688969bbef636afb0da66c176f446c20d23b4e3621131ea46444e2c0f73",
+    "content/environments/procedural_flagstone_v1/flagstone_coursed_a.glb": "da9d79ea8d63504c8f6d93e0a0f42b141059df628e60abd82747e64026bfe010",
+    "content/environments/procedural_flagstone_v1/flagstone_coursed_b.glb": "9dc1bae0ed1b99e4cf37af614bb2c6e79ef5060245e7ad9e2c7fe66a84ade68d",
+    "content/environments/procedural_flagstone_v1/flagstone_coursed_c.glb": "e1a1b56c92214fee08533fa5631f3c37100e014f3c2c6a7ea303353f3718b386",
+    "content/environments/procedural_flagstone_v1/flagstone_laid_a.glb": "27b13834af1ee658712121039ba745e28a2da63a92d9973873a9a4b21101fcfa",
+    "content/environments/procedural_flagstone_v1/flagstone_laid_b.glb": "e3f0d36f8d6401ec784ee1a2b65814870f68b556a6943ee8dc8c11d32f967514",
+    "content/environments/procedural_flagstone_v1/flagstone_laid_c.glb": "1ef2f626dc06ba96d9e6e6b18b9d375cd6cb5c24af4d21f0ea715326b76ffddb"
+  },
+  "generator": "scripts/art/build_flagstones.py",
+  "lod_ranges_m": [
+    [
+      0.0,
+      14.0
+    ],
+    [
+      14.0,
+      32.0
+    ],
+    [
+      32.0,
+      90.0
+    ]
+  ],
+  "module_size_m": 4.0,
+  "modules": {
+    "border_a": {
+      "border_stones": 1,
+      "broken_corners": 0,
+      "cracked_stones": 1,
+      "family": "border",
+      "glb": "content/environments/procedural_flagstone_v1/flagstone_border_a.glb",
+      "lods": [
+        {
+          "ao": {
+            "border_a_dirt_lod0": {
+              "mean": 0.433,
+              "min": 0.2
+            },
+            "border_a_stones_lod0": {
+              "mean": 0.878,
+              "min": 0.2
+            }
+          },
+          "counts": {
+            "border_fallbacks": 0,
+            "chips": 8,
+            "dirt": 0,
+            "fragments": 0,
+            "simplified": 0,
+            "skipped": 0,
+            "stones": 7
+          },
+          "level": 0,
+          "seconds": 0.0,
+          "self_seam_mm": {
+            "dirt": {
+              "x": 0.0
+            },
+            "stones": {
+              "x": 0.0
+            }
+          },
+          "stone_top_range_m": [
+            -0.0021,
+            0.0068
+          ],
+          "stones_triangles": 1985,
+          "triangles": 2049,
+          "z_range_m": [
+            -0.021,
+            0.0068
+          ]
+        },
+        {
+          "ao": {
+            "border_a_dirt_lod1": {
+              "mean": 0.656,
+              "min": 0.6
+            },
+            "border_a_stones_lod1": {
+              "mean": 0.83,
+              "min": 0.2
+            }
+          },
+          "counts": {
+            "border_fallbacks": 0,
+            "chips": 8,
+            "dirt": 0,
+            "fragments": 0,
+            "simplified": 0,
+            "skipped": 0,
+            "stones": 7
+          },
+          "level": 1,
+          "seconds": 0.0,
+          "self_seam_mm": {
+            "dirt": {
+              "x": 0.0
+            },
+            "stones": {
+              "x": 0.0
+            }
+          },
+          "stone_top_range_m": [
+            -0.0021,
+            0.0068
+          ],
+          "stones_triangles": 801,
+          "triangles": 813,
+          "z_range_m": [
+            -0.021,
+            0.0068
+          ]
+        },
+        {
+          "ao": {
+            "border_a_dirt_lod2": {
+              "mean": 0.656,
+              "min": 0.625
+            },
+            "border_a_stones_lod2": {
+              "mean": 0.992,
+              "min": 0.938
+            }
+          },
+          "counts": {
+            "border_fallbacks": 0,
+            "chips": 8,
+            "dirt": 0,
+            "fragments": 0,
+            "simplified": 0,
+            "skipped": 0,
+            "stones": 7
+          },
+          "level": 2,
+          "seconds": 0.0,
+          "self_seam_mm": {
+            "dirt": {
+              "x": 0.0
+            },
+            "stones": {
+              "x": 0.0
+            }
+          },
+          "stone_top_range_m": [
+            -0.0022,
+            0.0068
+          ],
+          "stones_triangles": 64,
+          "triangles": 66,
+          "z_range_m": [
+            -0.019,
+            0.0068
+          ]
+        }
+      ],
+      "periodic": {
+        "x": true,
+        "z": false
+      },
+      "pieces": {
+        "stone": 7
+      },
+      "size_m": [
+        4.0,
+        0.5
+      ]
+    },
+    "border_b": {
+      "border_stones": 1,
+      "broken_corners": 2,
+      "cracked_stones": 0,
+      "family": "border",
+      "glb": "content/environments/procedural_flagstone_v1/flagstone_border_b.glb",
+      "lods": [
+        {
+          "ao": {
+            "border_b_dirt_lod0": {
+              "mean": 0.521,
+              "min": 0.2
+            },
+            "border_b_stones_lod0": {
+              "mean": 0.883,
+              "min": 0.2
+            }
+          },
+          "counts": {
+            "border_fallbacks": 0,
+            "chips": 13,
+            "dirt": 2,
+            "fragments": 0,
+            "simplified": 0,
+            "skipped": 0,
+            "stones": 6
+          },
+          "level": 0,
+          "seconds": 0.0,
+          "self_seam_mm": {
+            "dirt": {
+              "x": 0.0
+            },
+            "stones": {
+              "x": 0.0
+            }
+          },
+          "stone_top_range_m": [
+            0.0004,
+            0.008
+          ],
+          "stones_triangles": 1975,
+          "triangles": 2062,
+          "z_range_m": [
+            -0.021,
+            0.008
+          ]
+        },
+        {
+          "ao": {
+            "border_b_dirt_lod1": {
+              "mean": 0.648,
+              "min": 0.3
+            },
+            "border_b_stones_lod1": {
+              "mean": 0.852,
+              "min": 0.2
+            }
+          },
+          "counts": {
+            "border_fallbacks": 0,
+            "chips": 13,
+            "dirt": 2,
+            "fragments": 0,
+            "simplified": 0,
+            "skipped": 0,
+            "stones": 6
+          },
+          "level": 1,
+          "seconds": 0.0,
+          "self_seam_mm": {
+            "dirt": {
+              "x": 0.0
+            },
+            "stones": {
+              "x": 0.0
+            }
+          },
+          "stone_top_range_m": [
+            0.0004,
+            0.008
+          ],
+          "stones_triangles": 698,
+          "triangles": 726,
+          "z_range_m": [
+            -0.021,
+            0.008
+          ]
+        },
+        {
+          "ao": {
+            "border_b_dirt_lod2": {
+              "mean": 0.623,
+              "min": 0.3
+            },
+            "border_b_stones_lod2": {
+              "mean": 1.0,
+              "min": 0.975
+            }
+          },
+          "counts": {
+            "border_fallbacks": 0,
+            "chips": 13,
+            "dirt": 2,
+            "fragments": 0,
+            "simplified": 0,
+            "skipped": 0,
+            "stones": 6
+          },
+          "level": 2,
+          "seconds": 0.0,
+          "self_seam_mm": {
+            "dirt": {
+              "x": 0.0
+            },
+            "stones": {
+              "x": 0.0
+            }
+          },
+          "stone_top_range_m": [
+            0.0004,
+            0.008
+          ],
+          "stones_triangles": 47,
+          "triangles": 63,
+          "z_range_m": [
+            -0.019,
+            0.008
+          ]
+        }
+      ],
+      "periodic": {
+        "x": true,
+        "z": false
+      },
+      "pieces": {
+        "dirt": 2,
+        "stone": 6
+      },
+      "size_m": [
+        4.0,
+        0.5
+      ]
+    },
+    "coursed_a": {
+      "border_stones": 10,
+      "broken_corners": 0,
+      "cracked_stones": 2,
+      "family": "coursed",
+      "glb": "content/environments/procedural_flagstone_v1/flagstone_coursed_a.glb",
+      "lods": [
+        {
+          "ao": {
+            "coursed_a_dirt_lod0": {
+              "mean": 0.2,
+              "min": 0.2
+            },
+            "coursed_a_stones_lod0": {
+              "mean": 0.812,
+              "min": 0.2
+            }
+          },
+          "counts": {
+            "border_fallbacks": 0,
+            "chips": 29,
+            "dirt": 0,
+            "fragments": 0,
+            "simplified": 0,
+            "skipped": 0,
+            "stones": 36
+          },
+          "level": 0,
+          "seconds": 0.2,
+          "self_seam_mm": {
+            "dirt": {
+              "x": 0.0,
+              "y": 0.0
+            },
+            "stones": {
+              "x": 0.0018,
+              "y": 0.0
+            }
+          },
+          "stone_top_range_m": [
+            -0.0048,
+            0.0107
+          ],
+          "stones_triangles": 12718,
+          "triangles": 13230,
+          "z_range_m": [
+            -0.021,
+            0.0107
+          ]
+        },
+        {
+          "ao": {
+            "coursed_a_dirt_lod1": {
+              "mean": 0.2,
+              "min": 0.2
+            },
+            "coursed_a_stones_lod1": {
+              "mean": 0.766,
+              "min": 0.2
+            }
+          },
+          "counts": {
+            "border_fallbacks": 0,
+            "chips": 29,
+            "dirt": 0,
+            "fragments": 0,
+            "simplified": 0,
+            "skipped": 0,
+            "stones": 36
+          },
+          "level": 1,
+          "seconds": 0.1,
+          "self_seam_mm": {
+            "dirt": {
+              "x": 0.0,
+              "y": 0.0
+            },
+            "stones": {
+              "x": 0.0018,
+              "y": 0.0
+            }
+          },
+          "stone_top_range_m": [
+            -0.0048,
+            0.0107
+          ],
+          "stones_triangles": 5402,
+          "triangles": 5474,
+          "z_range_m": [
+            -0.021,
+            0.0107
+          ]
+        },
+        {
+          "ao": {
+            "coursed_a_dirt_lod2": {
+              "mean": 0.2,
+              "min": 0.2
+            },
+            "coursed_a_stones_lod2": {
+              "mean": 0.98,
+              "min": 0.2
+            }
+          },
+          "counts": {
+            "border_fallbacks": 0,
+            "chips": 29,
+            "dirt": 0,
+            "fragments": 0,
+            "simplified": 0,
+            "skipped": 0,
+            "stones": 36
+          },
+          "level": 2,
+          "seconds": 0.0,
+          "self_seam_mm": {
+            "dirt": {
+              "x": 0.0,
+              "y": 0.0
+            },
+            "stones": {
+              "x": 0.0019,
+              "y": 0.0
+            }
+          },
+          "stone_top_range_m": [
+            -0.005,
+            0.0108
+          ],
+          "stones_triangles": 633,
+          "triangles": 635,
+          "z_range_m": [
+            -0.019,
+            0.0108
+          ]
+        }
+      ],
+      "periodic": {
+        "x": true,
+        "z": true
+      },
+      "pieces": {
+        "stone": 36
+      },
+      "size_m": [
+        4.0,
+        4.0
+      ]
+    },
+    "coursed_b": {
+      "border_stones": 10,
+      "broken_corners": 2,
+      "cracked_stones": 6,
+      "family": "coursed",
+      "glb": "content/environments/procedural_flagstone_v1/flagstone_coursed_b.glb",
+      "lods": [
+        {
+          "ao": {
+            "coursed_b_dirt_lod0": {
+              "mean": 0.459,
+              "min": 0.2
+            },
+            "coursed_b_stones_lod0": {
+              "mean": 0.78,
+              "min": 0.2
+            }
+          },
+          "counts": {
+            "border_fallbacks": 0,
+            "chips": 58,
+            "dirt": 4,
+            "fragments": 6,
+            "simplified": 1,
+            "skipped": 0,
+            "stones": 39
+          },
+          "level": 0,
+          "seconds": 0.3,
+          "self_seam_mm": {
+            "dirt": {
+              "x": 0.0,
+              "y": 0.0
+            },
+            "stones": {
+              "x": 0.0018,
+              "y": 0.0
+            }
+          },
+          "stone_top_range_m": [
+            -0.0062,
+            0.0125
+          ],
+          "stones_triangles": 15324,
+          "triangles": 16078,
+          "z_range_m": [
+            -0.021,
+            0.0125
+          ]
+        },
+        {
+          "ao": {
+            "coursed_b_dirt_lod1": {
+              "mean": 0.55,
+              "min": 0.2
+            },
+            "coursed_b_stones_lod1": {
+              "mean": 0.737,
+              "min": 0.2
+            }
+          },
+          "counts": {
+            "border_fallbacks": 0,
+            "chips": 58,
+            "dirt": 4,
+            "fragments": 6,
+            "simplified": 1,
+            "skipped": 0,
+            "stones": 39
+          },
+          "level": 1,
+          "seconds": 0.1,
+          "self_seam_mm": {
+            "dirt": {
+              "x": 0.0,
+              "y": 0.0
+            },
+            "stones": {
+              "x": 0.0018,
+              "y": 0.0
+            }
+          },
+          "stone_top_range_m": [
+            -0.0062,
+            0.0125
+          ],
+          "stones_triangles": 6749,
+          "triangles": 6903,
+          "z_range_m": [
+            -0.021,
+            0.0125
+          ]
+        },
+        {
+          "ao": {
+            "coursed_b_dirt_lod2": {
+              "mean": 0.566,
+              "min": 0.2
+            },
+            "coursed_b_stones_lod2": {
+              "mean": 0.967,
+              "min": 0.2
+            }
+          },
+          "counts": {
+            "border_fallbacks": 0,
+            "chips": 58,
+            "dirt": 4,
+            "fragments": 6,
+            "simplified": 0,
+            "skipped": 0,
+            "stones": 39
+          },
+          "level": 2,
+          "seconds": 0.0,
+          "self_seam_mm": {
+            "dirt": {
+              "x": 0.0,
+              "y": 0.0
+            },
+            "stones": {
+              "x": 0.0019,
+              "y": 0.0
+            }
+          },
+          "stone_top_range_m": [
+            -0.0063,
+            0.0127
+          ],
+          "stones_triangles": 812,
+          "triangles": 842,
+          "z_range_m": [
+            -0.019,
+            0.0127
+          ]
+        }
+      ],
+      "periodic": {
+        "x": true,
+        "z": true
+      },
+      "pieces": {
+        "dirt": 4,
+        "fragment": 6,
+        "stone": 39
+      },
+      "size_m": [
+        4.0,
+        4.0
+      ]
+    },
+    "coursed_c": {
+      "border_stones": 10,
+      "broken_corners": 2,
+      "cracked_stones": 5,
+      "family": "coursed",
+      "glb": "content/environments/procedural_flagstone_v1/flagstone_coursed_c.glb",
+      "lods": [
+        {
+          "ao": {
+            "coursed_c_dirt_lod0": {
+              "mean": 0.598,
+              "min": 0.2
+            },
+            "coursed_c_stones_lod0": {
+              "mean": 0.772,
+              "min": 0.2
+            }
+          },
+          "counts": {
+            "border_fallbacks": 0,
+            "chips": 76,
+            "dirt": 6,
+            "fragments": 11,
+            "simplified": 6,
+            "skipped": 0,
+            "stones": 49
+          },
+          "level": 0,
+          "seconds": 0.4,
+          "self_seam_mm": {
+            "dirt": {
+              "x": 0.0,
+              "y": 0.0
+            },
+            "stones": {
+              "x": 0.0018,
+              "y": 0.0
+            }
+          },
+          "stone_top_range_m": [
+            -0.0066,
+            0.0122
+          ],
+          "stones_triangles": 17813,
+          "triangles": 18843,
+          "z_range_m": [
+            -0.021,
+            0.0122
+          ]
+        },
+        {
+          "ao": {
+            "coursed_c_dirt_lod1": {
+              "mean": 0.636,
+              "min": 0.2
+            },
+            "coursed_c_stones_lod1": {
+              "mean": 0.739,
+              "min": 0.2
+            }
+          },
+          "counts": {
+            "border_fallbacks": 0,
+            "chips": 76,
+            "dirt": 6,
+            "fragments": 11,
+            "simplified": 2,
+            "skipped": 0,
+            "stones": 49
+          },
+          "level": 1,
+          "seconds": 0.2,
+          "self_seam_mm": {
+            "dirt": {
+              "x": 0.0,
+              "y": 0.0
+            },
+            "stones": {
+              "x": 0.0018,
+              "y": 0.0
+            }
+          },
+          "stone_top_range_m": [
+            -0.0066,
+            0.0122
+          ],
+          "stones_triangles": 7954,
+          "triangles": 8178,
+          "z_range_m": [
+            -0.021,
+            0.0122
+          ]
+        },
+        {
+          "ao": {
+            "coursed_c_dirt_lod2": {
+              "mean": 0.602,
+              "min": 0.2
+            },
+            "coursed_c_stones_lod2": {
+              "mean": 0.964,
+              "min": 0.2
+            }
+          },
+          "counts": {
+            "border_fallbacks": 0,
+            "chips": 76,
+            "dirt": 6,
+            "fragments": 11,
+            "simplified": 0,
+            "skipped": 0,
+            "stones": 49
+          },
+          "level": 2,
+          "seconds": 0.0,
+          "self_seam_mm": {
+            "dirt": {
+              "x": 0.0,
+              "y": 0.0
+            },
+            "stones": {
+              "x": 0.0019,
+              "y": 0.0
+            }
+          },
+          "stone_top_range_m": [
+            -0.0068,
+            0.0123
+          ],
+          "stones_triangles": 982,
+          "triangles": 1032,
+          "z_range_m": [
+            -0.019,
+            0.0123
+          ]
+        }
+      ],
+      "periodic": {
+        "x": true,
+        "z": true
+      },
+      "pieces": {
+        "dirt": 6,
+        "fragment": 11,
+        "stone": 49
+      },
+      "size_m": [
+        4.0,
+        4.0
+      ]
+    },
+    "laid_a": {
+      "border_stones": 14,
+      "broken_corners": 2,
+      "cracked_stones": 0,
+      "family": "laid",
+      "glb": "content/environments/procedural_flagstone_v1/flagstone_laid_a.glb",
+      "lods": [
+        {
+          "ao": {
+            "laid_a_dirt_lod0": {
+              "mean": 0.226,
+              "min": 0.2
+            },
+            "laid_a_stones_lod0": {
+              "mean": 0.809,
+              "min": 0.2
+            }
+          },
+          "counts": {
+            "border_fallbacks": 0,
+            "chips": 11,
+            "dirt": 2,
+            "fragments": 0,
+            "simplified": 0,
+            "skipped": 0,
+            "stones": 27
+          },
+          "level": 0,
+          "seconds": 0.2,
+          "self_seam_mm": {
+            "dirt": {
+              "x": 0.0,
+              "y": 0.0
+            },
+            "stones": {
+              "x": 0.0002,
+              "y": 0.0004
+            }
+          },
+          "stone_top_range_m": [
+            -0.0056,
+            0.0107
+          ],
+          "stones_triangles": 9273,
+          "triangles": 9810,
+          "z_range_m": [
+            -0.021,
+            0.0107
+          ]
+        },
+        {
+          "ao": {
+            "laid_a_dirt_lod1": {
+              "mean": 0.351,
+              "min": 0.2
+            },
+            "laid_a_stones_lod1": {
+              "mean": 0.765,
+              "min": 0.2
+            }
+          },
+          "counts": {
+            "border_fallbacks": 0,
+            "chips": 10,
+            "dirt": 2,
+            "fragments": 0,
+            "simplified": 0,
+            "skipped": 1,
+            "stones": 26
+          },
+          "level": 1,
+          "seconds": 0.1,
+          "self_seam_mm": {
+            "dirt": {
+              "x": 0.0,
+              "y": 0.0
+            },
+            "stones": {
+              "x": 0.0002,
+              "y": 0.0068
+            }
+          },
+          "stone_top_range_m": [
+            -0.0056,
+            0.0107
+          ],
+          "stones_triangles": 3418,
+          "triangles": 3510,
+          "z_range_m": [
+            -0.021,
+            0.0107
+          ]
+        },
+        {
+          "ao": {
+            "laid_a_dirt_lod2": {
+              "mean": 0.483,
+              "min": 0.2
+            },
+            "laid_a_stones_lod2": {
+              "mean": 0.98,
+              "min": 0.725
+            }
+          },
+          "counts": {
+            "border_fallbacks": 0,
+            "chips": 11,
+            "dirt": 2,
+            "fragments": 0,
+            "simplified": 0,
+            "skipped": 0,
+            "stones": 27
+          },
+          "level": 2,
+          "seconds": 0.0,
+          "self_seam_mm": {
+            "dirt": {
+              "x": 0.0,
+              "y": 0.0
+            },
+            "stones": {
+              "x": 0.0002,
+              "y": 0.0002
+            }
+          },
+          "stone_top_range_m": [
+            -0.0056,
+            0.0108
+          ],
+          "stones_triangles": 336,
+          "triangles": 356,
+          "z_range_m": [
+            -0.019,
+            0.0108
+          ]
+        }
+      ],
+      "periodic": {
+        "x": true,
+        "z": true
+      },
+      "pieces": {
+        "dirt": 2,
+        "stone": 27
+      },
+      "size_m": [
+        4.0,
+        4.0
+      ]
+    },
+    "laid_b": {
+      "border_stones": 14,
+      "broken_corners": 0,
+      "cracked_stones": 4,
+      "family": "laid",
+      "glb": "content/environments/procedural_flagstone_v1/flagstone_laid_b.glb",
+      "lods": [
+        {
+          "ao": {
+            "laid_b_dirt_lod0": {
+              "mean": 0.58,
+              "min": 0.2
+            },
+            "laid_b_stones_lod0": {
+              "mean": 0.786,
+              "min": 0.2
+            }
+          },
+          "counts": {
+            "border_fallbacks": 0,
+            "chips": 42,
+            "dirt": 3,
+            "fragments": 10,
+            "simplified": 6,
+            "skipped": 0,
+            "stones": 36
+          },
+          "level": 0,
+          "seconds": 0.3,
+          "self_seam_mm": {
+            "dirt": {
+              "x": 0.0,
+              "y": 0.0
+            },
+            "stones": {
+              "x": 0.0002,
+              "y": 0.0004
+            }
+          },
+          "stone_top_range_m": [
+            -0.005,
+            0.0107
+          ],
+          "stones_triangles": 13633,
+          "triangles": 14596,
+          "z_range_m": [
+            -0.021,
+            0.0107
+          ]
+        },
+        {
+          "ao": {
+            "laid_b_dirt_lod1": {
+              "mean": 0.657,
+              "min": 0.2
+            },
+            "laid_b_stones_lod1": {
+              "mean": 0.744,
+              "min": 0.2
+            }
+          },
+          "counts": {
+            "border_fallbacks": 0,
+            "chips": 42,
+            "dirt": 3,
+            "fragments": 10,
+            "simplified": 4,
+            "skipped": 0,
+            "stones": 36
+          },
+          "level": 1,
+          "seconds": 0.1,
+          "self_seam_mm": {
+            "dirt": {
+              "x": 0.0,
+              "y": 0.0
+            },
+            "stones": {
+              "x": 0.0002,
+              "y": 0.0068
+            }
+          },
+          "stone_top_range_m": [
+            -0.005,
+            0.0107
+          ],
+          "stones_triangles": 5936,
+          "triangles": 6155,
+          "z_range_m": [
+            -0.021,
+            0.0107
+          ]
+        },
+        {
+          "ao": {
+            "laid_b_dirt_lod2": {
+              "mean": 0.597,
+              "min": 0.2
+            },
+            "laid_b_stones_lod2": {
+              "mean": 0.985,
+              "min": 0.738
+            }
+          },
+          "counts": {
+            "border_fallbacks": 0,
+            "chips": 42,
+            "dirt": 3,
+            "fragments": 10,
+            "simplified": 0,
+            "skipped": 0,
+            "stones": 36
+          },
+          "level": 2,
+          "seconds": 0.0,
+          "self_seam_mm": {
+            "dirt": {
+              "x": 0.0,
+              "y": 0.0
+            },
+            "stones": {
+              "x": 0.0002,
+              "y": 0.0002
+            }
+          },
+          "stone_top_range_m": [
+            -0.0051,
+            0.0109
+          ],
+          "stones_triangles": 665,
+          "triangles": 690,
+          "z_range_m": [
+            -0.019,
+            0.0109
+          ]
+        }
+      ],
+      "periodic": {
+        "x": true,
+        "z": true
+      },
+      "pieces": {
+        "dirt": 3,
+        "fragment": 10,
+        "stone": 36
+      },
+      "size_m": [
+        4.0,
+        4.0
+      ]
+    },
+    "laid_c": {
+      "border_stones": 14,
+      "broken_corners": 9,
+      "cracked_stones": 9,
+      "family": "laid",
+      "glb": "content/environments/procedural_flagstone_v1/flagstone_laid_c.glb",
+      "lods": [
+        {
+          "ao": {
+            "laid_c_dirt_lod0": {
+              "mean": 0.633,
+              "min": 0.2
+            },
+            "laid_c_stones_lod0": {
+              "mean": 0.764,
+              "min": 0.2
+            }
+          },
+          "counts": {
+            "border_fallbacks": 0,
+            "chips": 71,
+            "dirt": 15,
+            "fragments": 18,
+            "simplified": 6,
+            "skipped": 0,
+            "stones": 50
+          },
+          "level": 0,
+          "seconds": 0.4,
+          "self_seam_mm": {
+            "dirt": {
+              "x": 0.0,
+              "y": 0.0
+            },
+            "stones": {
+              "x": 0.0002,
+              "y": 0.0004
+            }
+          },
+          "stone_top_range_m": [
+            -0.0071,
+            0.0122
+          ],
+          "stones_triangles": 17372,
+          "triangles": 18630,
+          "z_range_m": [
+            -0.021,
+            0.0122
+          ]
+        },
+        {
+          "ao": {
+            "laid_c_dirt_lod1": {
+              "mean": 0.661,
+              "min": 0.2
+            },
+            "laid_c_stones_lod1": {
+              "mean": 0.734,
+              "min": 0.2
+            }
+          },
+          "counts": {
+            "border_fallbacks": 0,
+            "chips": 71,
+            "dirt": 15,
+            "fragments": 18,
+            "simplified": 5,
+            "skipped": 0,
+            "stones": 50
+          },
+          "level": 1,
+          "seconds": 0.2,
+          "self_seam_mm": {
+            "dirt": {
+              "x": 0.0,
+              "y": 0.0
+            },
+            "stones": {
+              "x": 0.0002,
+              "y": 0.0068
+            }
+          },
+          "stone_top_range_m": [
+            -0.0071,
+            0.0122
+          ],
+          "stones_triangles": 7848,
+          "triangles": 8183,
+          "z_range_m": [
+            -0.021,
+            0.0122
+          ]
+        },
+        {
+          "ao": {
+            "laid_c_dirt_lod2": {
+              "mean": 0.61,
+              "min": 0.2
+            },
+            "laid_c_stones_lod2": {
+              "mean": 0.969,
+              "min": 0.2
+            }
+          },
+          "counts": {
+            "border_fallbacks": 0,
+            "chips": 71,
+            "dirt": 15,
+            "fragments": 18,
+            "simplified": 0,
+            "skipped": 0,
+            "stones": 50
+          },
+          "level": 2,
+          "seconds": 0.0,
+          "self_seam_mm": {
+            "dirt": {
+              "x": 0.0,
+              "y": 0.0
+            },
+            "stones": {
+              "x": 0.0002,
+              "y": 0.0002
+            }
+          },
+          "stone_top_range_m": [
+            -0.0072,
+            0.0123
+          ],
+          "stones_triangles": 897,
+          "triangles": 992,
+          "z_range_m": [
+            -0.019,
+            0.0123
+          ]
+        }
+      ],
+      "periodic": {
+        "x": true,
+        "z": true
+      },
+      "pieces": {
+        "dirt": 15,
+        "fragment": 18,
+        "stone": 50
+      },
+      "size_m": [
+        4.0,
+        4.0
+      ]
+    }
+  },
+  "renders": [
+    "content/environments/red_descent/review/flagstone_v1/blender_laid_overview.png",
+    "content/environments/red_descent/review/flagstone_v1/blender_laid_torch.png",
+    "content/environments/red_descent/review/flagstone_v1/blender_coursed_overview.png",
+    "content/environments/red_descent/review/flagstone_v1/blender_coursed_torch.png",
+    "content/environments/red_descent/review/flagstone_v1/blender_border_overview.png"
+  ],
+  "seed": 165,
+  "triangle_budget": [
+    20000,
+    10000,
+    2500
+  ]
+}

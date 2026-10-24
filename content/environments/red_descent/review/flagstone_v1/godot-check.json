@@ -1,0 +1,505 @@
+{
+	"modules": {
+		"laid_a": {
+			"family": "laid",
+			"levels": [
+				{
+					"level": 0,
+					"triangles": 9810,
+					"seam_mm": 0.2073,
+					"aabb_min": [
+						-0.00000000745058059692383,
+						-0.0209999997168779,
+						0.0
+					],
+					"aabb_max": [
+						4.0,
+						0.010739816352725,
+						4.0
+					],
+					"ao_min": 0.2,
+					"bedding_green": 0.498
+				},
+				{
+					"level": 1,
+					"triangles": 3510,
+					"seam_mm": 0.0005,
+					"aabb_min": [
+						-0.00000000372529029846191,
+						-0.0209999997168779,
+						0.0
+					],
+					"aabb_max": [
+						4.0,
+						0.010739816352725,
+						4.0
+					],
+					"ao_min": 0.2,
+					"bedding_green": 0.498
+				},
+				{
+					"level": 2,
+					"triangles": 356,
+					"seam_mm": 0.0,
+					"aabb_min": [
+						0.0,
+						-0.0189999993890524,
+						0.0
+					],
+					"aabb_max": [
+						4.0,
+						0.0107865817844868,
+						4.0
+					],
+					"ao_min": 0.2,
+					"bedding_green": 0.498
+				}
+			]
+		},
+		"laid_b": {
+			"family": "laid",
+			"levels": [
+				{
+					"level": 0,
+					"triangles": 14596,
+					"seam_mm": 0.2069,
+					"aabb_min": [
+						-0.00000000745058059692383,
+						-0.0209999997168779,
+						0.0
+					],
+					"aabb_max": [
+						4.0,
+						0.0107285398989916,
+						4.0
+					],
+					"ao_min": 0.2,
+					"bedding_green": 0.498
+				},
+				{
+					"level": 1,
+					"triangles": 6155,
+					"seam_mm": 0.061,
+					"aabb_min": [
+						-0.00000000372529029846191,
+						-0.0209999997168779,
+						0.0
+					],
+					"aabb_max": [
+						4.0,
+						0.0107323992997408,
+						4.0
+					],
+					"ao_min": 0.2,
+					"bedding_green": 0.498
+				},
+				{
+					"level": 2,
+					"triangles": 690,
+					"seam_mm": 0.0,
+					"aabb_min": [
+						-0.0000000298023223876953,
+						-0.0189999993890524,
+						0.0
+					],
+					"aabb_max": [
+						4.0,
+						0.0109427822753787,
+						4.0
+					],
+					"ao_min": 0.2,
+					"bedding_green": 0.498
+				}
+			]
+		},
+		"laid_c": {
+			"family": "laid",
+			"levels": [
+				{
+					"level": 0,
+					"triangles": 18630,
+					"seam_mm": 0.2071,
+					"aabb_min": [
+						-0.00000000745058059692383,
+						-0.0209999997168779,
+						0.0
+					],
+					"aabb_max": [
+						4.0,
+						0.0122293177992105,
+						4.0
+					],
+					"ao_min": 0.2,
+					"bedding_green": 0.498
+				},
+				{
+					"level": 1,
+					"triangles": 8183,
+					"seam_mm": 0.0005,
+					"aabb_min": [
+						-0.00000000372529029846191,
+						-0.0209999997168779,
+						0.0
+					],
+					"aabb_max": [
+						4.0,
+						0.0122331771999598,
+						4.0
+					],
+					"ao_min": 0.2,
+					"bedding_green": 0.498
+				},
+				{
+					"level": 2,
+					"triangles": 992,
+					"seam_mm": 0.0,
+					"aabb_min": [
+						0.0,
+						-0.0189999993890524,
+						0.0
+					],
+					"aabb_max": [
+						4.0,
+						0.0123202744871378,
+						4.0
+					],
+					"ao_min": 0.2,
+					"bedding_green": 0.498
+				}
+			]
+		},
+		"coursed_a": {
+			"family": "coursed",
+			"levels": [
+				{
+					"level": 0,
+					"triangles": 13230,
+					"seam_mm": 0.0005,
+					"aabb_min": [
+						-0.00000000186264514923096,
+						-0.0209999997168779,
+						0.0
+					],
+					"aabb_max": [
+						4.0,
+						0.0106755513697863,
+						4.0
+					],
+					"ao_min": 0.2,
+					"bedding_green": 0.498
+				},
+				{
+					"level": 1,
+					"triangles": 5474,
+					"seam_mm": 0.1221,
+					"aabb_min": [
+						0.0,
+						-0.0209999997168779,
+						0.0
+					],
+					"aabb_max": [
+						4.0,
+						0.0106757935136557,
+						4.0
+					],
+					"ao_min": 0.2,
+					"bedding_green": 0.498
+				},
+				{
+					"level": 2,
+					"triangles": 635,
+					"seam_mm": 0.5493,
+					"aabb_min": [
+						-0.00000000000727595761418343,
+						-0.0189999993890524,
+						0.0
+					],
+					"aabb_max": [
+						4.0,
+						0.0107765682041645,
+						4.0
+					],
+					"ao_min": 0.2,
+					"bedding_green": 0.498
+				}
+			]
+		},
+		"coursed_b": {
+			"family": "coursed",
+			"levels": [
+				{
+					"level": 0,
+					"triangles": 16078,
+					"seam_mm": 0.0005,
+					"aabb_min": [
+						-0.00000000186264514923096,
+						-0.0209999997168779,
+						0.0
+					],
+					"aabb_max": [
+						4.0,
+						0.0125296134501696,
+						4.0
+					],
+					"ao_min": 0.2,
+					"bedding_green": 0.498
+				},
+				{
+					"level": 1,
+					"triangles": 6903,
+					"seam_mm": 0.1221,
+					"aabb_min": [
+						0.0,
+						-0.0209999997168779,
+						0.0
+					],
+					"aabb_max": [
+						4.0,
+						0.0125258844345808,
+						4.0
+					],
+					"ao_min": 0.2,
+					"bedding_green": 0.498
+				},
+				{
+					"level": 2,
+					"triangles": 842,
+					"seam_mm": 0.5493,
+					"aabb_min": [
+						-0.00000000000727595761418343,
+						-0.0189999993890524,
+						0.0
+					],
+					"aabb_max": [
+						4.0,
+						0.0126519128680229,
+						4.0
+					],
+					"ao_min": 0.2,
+					"bedding_green": 0.498
+				}
+			]
+		},
+		"coursed_c": {
+			"family": "coursed",
+			"levels": [
+				{
+					"level": 0,
+					"triangles": 18843,
+					"seam_mm": 0.0005,
+					"aabb_min": [
+						-0.00000000186264514923096,
+						-0.0209999997168779,
+						0.0
+					],
+					"aabb_max": [
+						4.0,
+						0.0121673066169024,
+						4.0
+					],
+					"ao_min": 0.2,
+					"bedding_green": 0.498
+				},
+				{
+					"level": 1,
+					"triangles": 8178,
+					"seam_mm": 0.1221,
+					"aabb_min": [
+						0.0,
+						-0.0209999997168779,
+						0.0
+					],
+					"aabb_max": [
+						4.0,
+						0.0121640767902136,
+						4.0
+					],
+					"ao_min": 0.2,
+					"bedding_green": 0.498
+				},
+				{
+					"level": 2,
+					"triangles": 1032,
+					"seam_mm": 0.5493,
+					"aabb_min": [
+						-0.00000000000727595761418343,
+						-0.0189999993890524,
+						0.0
+					],
+					"aabb_max": [
+						4.0,
+						0.0123289134353399,
+						4.0
+					],
+					"ao_min": 0.2,
+					"bedding_green": 0.498
+				}
+			]
+		},
+		"border_a": {
+			"family": "border",
+			"levels": [
+				{
+					"level": 0,
+					"triangles": 2049,
+					"seam_mm": 0.0,
+					"aabb_min": [
+						0.0,
+						-0.0209999997168779,
+						0.0
+					],
+					"aabb_max": [
+						4.0,
+						0.00680587626993656,
+						0.5
+					],
+					"ao_min": 0.2,
+					"bedding_green": 0.498
+				},
+				{
+					"level": 1,
+					"triangles": 813,
+					"seam_mm": 0.0,
+					"aabb_min": [
+						0.0,
+						-0.0209999997168779,
+						0.0
+					],
+					"aabb_max": [
+						4.0,
+						0.0068055372685194,
+						0.5
+					],
+					"ao_min": 0.2,
+					"bedding_green": 0.498
+				},
+				{
+					"level": 2,
+					"triangles": 66,
+					"seam_mm": 0.0,
+					"aabb_min": [
+						0.0,
+						-0.0189999993890524,
+						0.0
+					],
+					"aabb_max": [
+						4.0,
+						0.0068218195810914,
+						0.5
+					],
+					"ao_min": 0.655,
+					"bedding_green": 0.498
+				}
+			]
+		},
+		"border_b": {
+			"family": "border",
+			"levels": [
+				{
+					"level": 0,
+					"triangles": 2062,
+					"seam_mm": 0.0001,
+					"aabb_min": [
+						0.0,
+						-0.0209999997168779,
+						0.0
+					],
+					"aabb_max": [
+						4.0,
+						0.00798038206994534,
+						0.5
+					],
+					"ao_min": 0.2,
+					"bedding_green": 0.498
+				},
+				{
+					"level": 1,
+					"triangles": 726,
+					"seam_mm": 0.0,
+					"aabb_min": [
+						0.0,
+						-0.0209999997168779,
+						0.0
+					],
+					"aabb_max": [
+						4.0,
+						0.00796212255954742,
+						0.5
+					],
+					"ao_min": 0.2,
+					"bedding_green": 0.498
+				},
+				{
+					"level": 2,
+					"triangles": 63,
+					"seam_mm": 0.0,
+					"aabb_min": [
+						0.0,
+						-0.0189999993890524,
+						0.0
+					],
+					"aabb_max": [
+						4.0,
+						0.00802048109471798,
+						0.5
+					],
+					"ao_min": 0.298,
+					"bedding_green": 0.498
+				}
+			]
+		}
+	},
+	"failures": [],
+	"shots": [
+		{
+			"shot": "laid_a_grid",
+			"file": "godot_laid_a_grid.png",
+			"saved": true
+		},
+		{
+			"shot": "laid_a_grid_marked",
+			"file": "godot_laid_a_grid_marked.png",
+			"saved": true
+		},
+		{
+			"shot": "laid_mixed_grid",
+			"file": "godot_laid_mixed_grid.png",
+			"saved": true
+		},
+		{
+			"shot": "laid_mixed_torch",
+			"file": "godot_laid_mixed_torch.png",
+			"saved": true
+		},
+		{
+			"shot": "laid_mixed_torch_marked",
+			"file": "godot_laid_mixed_torch_marked.png",
+			"saved": true
+		},
+		{
+			"shot": "coursed_a_grid",
+			"file": "godot_coursed_a_grid.png",
+			"saved": true
+		},
+		{
+			"shot": "coursed_mixed_grid",
+			"file": "godot_coursed_mixed_grid.png",
+			"saved": true
+		},
+		{
+			"shot": "coursed_mixed_grid_marked",
+			"file": "godot_coursed_mixed_grid_marked.png",
+			"saved": true
+		},
+		{
+			"shot": "coursed_mixed_torch",
+			"file": "godot_coursed_mixed_torch.png",
+			"saved": true
+		},
+		{
+			"shot": "border_mixed",
+			"file": "godot_border_mixed.png",
+			"saved": true
+		}
+	]
+}
