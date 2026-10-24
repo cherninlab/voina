@@ -73,11 +73,11 @@ func fitted_module(id: String, at: Vector3, size: Vector3, basis: Basis = Basis.
 	module(id, at, basis, size / bounds.size)
 
 func stacked_pier(at: Vector3, basis: Basis, size: Vector3, variant: int) -> void:
-	var count: int = ceili(size.y / 5.0)
-	var rise: float = size.y / float(count)
-	for level: int in range(count):
-		var id: String = "column" if level == count - 1 and variant % 2 == 0 else "buttress"
-		fitted_module(id, at + Vector3.UP * rise * float(level), Vector3(size.x, rise + 0.04, size.z), basis)
+	# A continuous bonded shaft carries the wall head; bases/capitals occur only once.
+	var shaft: Vector3 = Vector3(size.x * (1.0 + float(variant % 2) * 0.08), size.y, size.z)
+	piece(shaft, at + Vector3.UP * size.y * 0.5, "stone", basis)
+	for end: float in [0.0, 1.0]:
+		piece(Vector3(shaft.x + 0.28, 0.32, shaft.z + 0.12), at + Vector3.UP * (0.16 + end * (size.y - 0.32)), "trim", basis)
 
 func face(a: Vector3, b: Vector3, c: Vector3, material: String, solid: bool = true) -> void:
 	if material == "collision":
@@ -156,34 +156,64 @@ func build_room(room: Dictionary) -> void:
 		var delta: Vector2 = b - a
 		var count: int = ceili(delta.length() / 1.5)
 		var basis: Basis = Basis(Vector3.UP, -atan2(delta.y, delta.x))
+		var recesses: Array[Vector2] = []
+		var cuts: Array[float] = []
+		for step: int in range(count + 1):
+			cuts.append(delta.length() * float(step) / float(count))
+		if delta.length() > 5.0:
+			var positions: Array[float] = [0.5]
+			if delta.length() > 8.0:
+				positions.assign([0.35, 0.65])
+			for t: float in positions:
+				var center: Vector2 = a.lerp(b, t)
+				var width: float = 1.1 if index % 3 == 0 else 1.65
+				if not portal_levels(center, width * 0.5 + 0.3).is_empty():
+					continue
+				var interval: Vector2 = Vector2(delta.length() * t - width * 0.5, delta.length() * t + width * 0.5)
+				recesses.append(interval)
+				cuts.append(interval.x)
+				cuts.append(interval.y)
+		cuts.sort()
 		var door_start: int = -1
-		for step: int in range(count):
-			var mid: Vector2 = a.lerp(b, (float(step) + 0.5) / float(count))
+		for step: int in range(cuts.size() - 1):
+			var width: float = cuts[step + 1] - cuts[step]
+			if width < 0.001:
+				continue
+			var distance: float = (cuts[step] + cuts[step + 1]) * 0.5
+			var mid: Vector2 = a + delta.normalized() * distance
 			var door_height: float = 6.4 if String(room["id"]) == "nave" and mid.x > 3.0 and mid.y < 29.0 else 4.2
 			var door: bool = opening(mid, y)
 			var spans: Array[Vector2] = [Vector2(y, y + height)]
-			for level: float in portal_levels(mid, 0.1):
+			var voids: Array[Vector2] = []
+			# Keep portal decisions on the original wall grid, independent of recess cuts.
+			var grid_mid: Vector2 = a.lerp(b, (floorf(distance / delta.length() * float(count)) + 0.5) / float(count))
+			for level: float in portal_levels(grid_mid, 0.1):
+				voids.append(Vector2(level - 0.2, level + door_height))
+			for recess: Vector2 in recesses:
+				if distance > recess.x and distance < recess.y:
+					voids.append(Vector2(y + 0.7, y + 3.8))
+			for gap: Vector2 in voids:
 				var next: Array[Vector2] = []
 				for span: Vector2 in spans:
-					if level + door_height <= span.x or level - 0.2 >= span.y:
+					if gap.y <= span.x or gap.x >= span.y:
 						next.append(span)
 					else:
-						if level - 0.2 > span.x:
-							next.append(Vector2(span.x, level - 0.2))
-						if level + door_height < span.y:
-							next.append(Vector2(level + door_height, span.y))
+						if gap.x > span.x:
+							next.append(Vector2(span.x, gap.x))
+						if gap.y < span.y:
+							next.append(Vector2(gap.y, span.y))
 				spans = next
 			for span: Vector2 in spans:
-				piece(Vector3(delta.length() / float(count) + 0.04, span.y - span.x, 0.9), Vector3(mid.x, (span.x + span.y) * 0.5, mid.y), wall_material, basis, true)
+				piece(Vector3(width + 0.002, span.y - span.x, 0.9), Vector3(mid.x, (span.x + span.y) * 0.5, mid.y), wall_material, basis, true)
 			if door and door_start < 0:
 				door_start = step
-			if door_start >= 0 and (not door or step == count - 1):
+			if door_start >= 0 and (not door or step == cuts.size() - 2):
 				var end: int = step if not door else step + 1
-				var center: Vector2 = a.lerp(b, float(door_start + end) * 0.5 / float(count))
+				var center: Vector2 = a + delta.normalized() * (cuts[door_start] + cuts[end]) * 0.5
 				if String(room["id"]) == "nave" and center.x > 3.0 and center.y < 29.0:
 					fort_gate(Vector3(center.x, y, center.y), delta.normalized())
 				else:
-					arch(Vector3(center.x, y, center.y), delta.normalized(), float(end - door_start) * delta.length() / float(count) * 0.5)
+					arch(Vector3(center.x, y, center.y), delta.normalized(), (cuts[end] - cuts[door_start]) * 0.5)
 				door_start = -1
 		# Tall worn pilasters give the side halls scale without a flat wall of tiny bricks.
 		if delta.length() > 5.0:
@@ -191,17 +221,16 @@ func build_room(room: Dictionary) -> void:
 				var at: Vector2 = a.lerp(b, t)
 				if not opening(at, y):
 					stacked_pier(Vector3(at.x, y, at.y) + basis.z * 0.55, basis, Vector3(0.95, height, 1.25), index + int(t * 10.0))
-			# Sealed burial recesses and their worn arch borders break up the side halls.
-			var inward: Vector2 = Vector2(-delta.y, delta.x).normalized()
-			for t: float in [0.35, 0.65]:
-				var at: Vector2 = a.lerp(b, t)
-				if opening(at, y):
-					continue
-				var niche: Vector3 = Vector3(at.x + inward.x * 0.48, y, at.y + inward.y * 0.48)
-				var id: String = "slit_window" if (index + int(t * 10.0)) % 2 == 0 else "gothic_window"
-				var window_width: float = 1.15 if id == "slit_window" else 2.1
-				piece(Vector3(window_width * 0.7, 2.1, 0.06), niche + basis.z * 0.2 + Vector3.UP * 1.6, "dark", basis)
-				fitted_module(id, niche + basis.z * 0.4 + Vector3.UP * 0.3, Vector3(window_width, 2.9, 0.55), basis)
+		for recess: Vector2 in recesses:
+			var center: Vector2 = a + delta.normalized() * (recess.x + recess.y) * 0.5
+			var niche: Vector3 = Vector3(center.x, y, center.y)
+			var width: float = recess.y - recess.x
+			# The back lies behind the 0.9 m wall face; jambs and sill expose its depth.
+			piece(Vector3(width, 3.1, 0.08), niche - basis.z * 0.41 + Vector3.UP * 2.25, "dark", basis, true)
+			piece(Vector3(width + 0.4, 0.18, 0.98), niche + Vector3.UP * 0.7, "stone", basis)
+			for side: float in [-1.0, 1.0]:
+				piece(Vector3(0.2, 1.95, 0.98), niche + basis.x * side * (width * 0.5 + 0.1) + Vector3.UP * 1.675, "stone", basis)
+			arch_spandrel(niche, basis, width * 0.5, wall_material, 2.65, 3.8, 0.9)
 	var centroid: Vector2 = Vector2.ZERO
 	for point: Vector2 in polygon:
 		centroid += point
@@ -326,9 +355,11 @@ func fort_gate(at: Vector3, tangent: Vector2) -> void:
 		collision_faces.append(gate.transform * vertex)
 
 func arch(at: Vector3, tangent: Vector2, radius: float) -> void:
-	var id: String = "arch" if posmod(roundi(at.x * 0.5 + at.z), 3) == 0 else "round_arch"
-	# Keep the opening wider than the collision passage; decorative frames never block it.
-	fitted_module(id, at - Vector3.UP * 0.1, Vector3(clampf(radius * 2.0 + 1.3, 2.8, 7.0), 4.5, 1.05), Basis(Vector3.UP, -atan2(tangent.y, tangent.x)))
+	var basis: Basis = Basis(Vector3.UP, -atan2(tangent.y, tangent.x))
+	# Jambs share the wall thickness. The inner edges retain the passage's full width.
+	for side: float in [-1.0, 1.0]:
+		piece(Vector3(0.34, 2.9, 1.04), at + basis.x * side * (radius + 0.17) + Vector3.UP * 1.45, "stone", basis)
+	arch_spandrel(at, basis, radius, "stone", 2.9, 4.8)
 
 func portal_levels(point: Vector2, radius: float) -> Array[float]:
 	var result: Array[float] = []
@@ -357,10 +388,8 @@ func build_vault(polygon: PackedVector2Array, central: bool) -> void:
 		var delta: Vector2 = b - a
 		var tangent: Vector2 = delta.normalized()
 		var normal: Vector2 = Vector2(tangent.y, -tangent.x) * (-1.0 if central else 1.0)
-		var middle: Vector2 = (a + b) * 0.5
 		var basis: Basis = Basis(Vector3.UP, -atan2(tangent.y, tangent.x))
-		# Collision stays at the actual wall outline; recesses are cut into a separate facing.
-		
+		# Collision stays at the actual wall outline; blind reveals occupy the facing.
 		var count: int = maxi(1, roundi(delta.length() / 4.8))
 		for column: int in range(count):
 			var center: Vector2 = a.lerp(b, (float(column) + 0.5) / float(count))
@@ -384,10 +413,10 @@ func build_vault(polygon: PackedVector2Array, central: bool) -> void:
 				piece(Vector3(width + 0.05, span.y - span.x, 0.8), Vector3(center.x + normal.x * (1.3 if central else 0.45), (span.x + span.y) * 0.5, center.y + normal.y * (1.3 if central else 0.45)), "core_stone" if central else "dark", basis, true)
 			for door_y: float in doors:
 				arch(Vector3(center.x, door_y, center.y), tangent, width * 0.48)
-				arch_spandrel(Vector3(center.x, door_y, center.y), basis, width * 0.48, "plaster" if central else "wall")
 			for row: int in range(10):
 				var y: float = -46.0 + float(row) * 6.0
-				var at: Vector3 = Vector3(center.x, y, center.y)
+				var at: Vector3 = Vector3(center.x, y, center.y) + Vector3(normal.x, 0, normal.y) * (0.5 if central else 0.0)
+				var facing: Basis = basis * Basis(Vector3.UP, PI) if central else basis
 				var doorway: bool = false
 				for floor_y: float in doors:
 					if y < floor_y + 4.8 and y + 6.0 > floor_y - 0.25:
@@ -410,50 +439,45 @@ func build_vault(polygon: PackedVector2Array, central: bool) -> void:
 					for span: Vector2 in remains:
 						piece(Vector3(width + 0.04, span.y - span.x, 1.0), Vector3(at.x, (span.x + span.y) * 0.5, at.z), wall_material, basis)
 					continue
-				# Most of the shaft is structural masonry. Sparse, staggered recesses replace
-				# the identical ten-storey grid of windows on every bay.
+				# Continuous wall mass replaces complete GLB panels laid over the facade.
 				var seed_value: int = posmod(index * 17 + column * 11 + row * 7, 23)
 				if seed_value > (5 if central else 4):
-					if not central:
-						piece(Vector3(width + 0.04, 6.0, 1.0), at + Vector3.UP * 3.0, wall_material, basis)
-					if central or seed_value % 3 == 0:
-						var id: String = "wall_panel" if seed_value % 3 == 0 else ("curved_wall" if seed_value % 3 == 1 else "broken_wall")
-						var facing: Basis = basis * Basis(Vector3.UP, PI) if central else basis
-						fitted_module(id, at + Vector3(normal.x, 0, normal.y) * (0.65 if central else -0.5), Vector3(width + 0.25, 6.3 + float(seed_value % 3) * 0.2, 1.4), facing)
+					piece(Vector3(width + 0.004, 6.0, 1.0), at + Vector3.UP * 3.0, wall_material, basis)
 					continue
-				if central and seed_value in [0, 3]:
-					fitted_module("window_bay", at + Vector3(normal.x, 0, normal.y) * 0.55, Vector3(width + 0.18, 6.15, 1.3), basis * Basis(Vector3.UP, PI))
-					continue
-				if central:
-					at += Vector3(normal.x, 0, normal.y) * 0.5
 				var opening_width: float = minf(1.3 + float(seed_value) * 0.2, width * 0.48)
 				for side: float in [-1.0, 1.0]:
 					piece(Vector3((width - opening_width) * 0.5, 6, 1.0), at + Vector3(tangent.x, 0, tangent.y) * side * (width + opening_width) * 0.25 + Vector3.UP * 3, wall_material, basis)
 				piece(Vector3(opening_width, 1.0, 1.0), at + Vector3.UP * 0.5, wall_material, basis)
-				arch_spandrel(at, basis, opening_width * 0.5, wall_material)
-				var frame: String = "slit_window" if seed_value % 2 == 0 else "gothic_window"
-				var facing: Basis = basis * Basis(Vector3.UP, PI) if central else basis
-				fitted_module(frame, at - Vector3(normal.x, 0, normal.y) * (0.3 if central else 0.55) + Vector3.UP * 0.85, Vector3(opening_width + 0.6, 3.1, 0.7), facing)
+				arch_spandrel(at, facing, opening_width * 0.5, wall_material)
+				piece(Vector3(opening_width, 5.0, 0.04), at - facing.z * 0.48 + Vector3.UP * 3.5, "dark", facing)
+				piece(Vector3(opening_width + 0.42, 0.18, 1.06), at + Vector3.UP, "stone", facing)
+				for side: float in [-1.0, 1.0]:
+					piece(Vector3(0.22, 1.9, 1.04), at + facing.x * side * (opening_width * 0.5 + 0.11) + Vector3.UP * 1.95, "stone", facing)
 				if not central and row in [3, 6] and posmod(index * 3 + column, 4) == 0:
 					torch_posts.append(at - Vector3(normal.x, 0, normal.y) * 1.1 + Vector3.UP * 0.8)
 	polygon_surface(polygon, 14, "stone", central)
 	if central:
 		polygon_surface(polygon, -48, "dark", false)
 
-func arch_spandrel(at: Vector3, basis: Basis, radius: float, material: String) -> void:
-	# Solid masonry above the curved opening, with a real, one-metre-deep soffit.
-	for segment: int in range(8):
-		var angle_a: float = PI * float(segment) / 8.0
-		var angle_b: float = PI * float(segment + 1) / 8.0
-		var a: Vector3 = Vector3(cos(angle_a) * radius, 2.9 + sin(angle_a) * radius * 0.65, 0)
-		var b: Vector3 = Vector3(cos(angle_b) * radius, 2.9 + sin(angle_b) * radius * 0.65, 0)
+func arch_spandrel(at: Vector3, basis: Basis, radius: float, material: String, spring: float = 2.9, top: float = 6.0, depth: float = 1.0) -> void:
+	# The curved reveal and masonry above it form one wall, including the soffit.
+	var rise: float = minf(radius * 0.65, top - spring - 0.28)
+	for segment: int in range(12):
+		var angle_a: float = PI * float(segment) / 12.0
+		var angle_b: float = PI * float(segment + 1) / 12.0
+		var a: Vector3 = Vector3(cos(angle_a) * radius, spring + sin(angle_a) * rise, 0)
+		var b: Vector3 = Vector3(cos(angle_b) * radius, spring + sin(angle_b) * rise, 0)
 		for side: float in [-1.0, 1.0]:
-			var near_a: Vector3 = at + basis * (a + Vector3.BACK * 0.5 * side)
-			var near_b: Vector3 = at + basis * (b + Vector3.BACK * 0.5 * side)
-			var top_a: Vector3 = at + basis * Vector3(a.x, 6.0, 0.5 * side)
-			var top_b: Vector3 = at + basis * Vector3(b.x, 6.0, 0.5 * side)
+			var near_a: Vector3 = at + basis * (a + Vector3.BACK * depth * 0.5 * side)
+			var near_b: Vector3 = at + basis * (b + Vector3.BACK * depth * 0.5 * side)
+			var top_a: Vector3 = at + basis * Vector3(a.x, top, depth * 0.5 * side)
+			var top_b: Vector3 = at + basis * Vector3(b.x, top, depth * 0.5 * side)
 			quad(near_a, near_b, top_b, top_a, basis.z * side, material)
-		quad(at + basis * (a + Vector3.FORWARD * 0.5), at + basis * (b + Vector3.FORWARD * 0.5), at + basis * (b + Vector3.BACK * 0.5), at + basis * (a + Vector3.BACK * 0.5), -basis.y, "trim")
+		quad(at + basis * (a + Vector3.FORWARD * depth * 0.5), at + basis * (b + Vector3.FORWARD * depth * 0.5), at + basis * (b + Vector3.BACK * depth * 0.5), at + basis * (a + Vector3.BACK * depth * 0.5), -basis.y, "stone")
+		# A narrow radial stone band bonds into the face, with no rectangular surround.
+		var outer_a: Vector3 = Vector3(cos(angle_a) * (radius + 0.22), spring + sin(angle_a) * (rise + 0.22), depth * 0.5 + 0.015)
+		var outer_b: Vector3 = Vector3(cos(angle_b) * (radius + 0.22), spring + sin(angle_b) * (rise + 0.22), depth * 0.5 + 0.015)
+		quad(at + basis * (a + Vector3.BACK * (depth * 0.5 + 0.015)), at + basis * (b + Vector3.BACK * (depth * 0.5 + 0.015)), at + basis * outer_b, at + basis * outer_a, basis.z, "stone")
 
 func quad(a: Vector3, b: Vector3, c: Vector3, d: Vector3, normal: Vector3, material: String) -> void:
 	if (b - a).cross(c - a).dot(normal) > 0.0:
