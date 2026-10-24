@@ -1,0 +1,29 @@
+$ blender --factory-startup -b --python-exit-code 1 --python scripts/art/build_hanging.py -- content/environments/procedural_hanging_v1 --review content/environments/red_descent/review/hanging_v1
+HANGING_ASSET banner_0 tris=3516 pin=0.000000 stretch=1.0062954 settle=2.4e-06 sim=2.64s ao={'min': 0.18, 'mean': 0.918} motion=[0.010611, 0.000182, 3.5e-05, 2.9e-05, 1.9e-05, 9e-06, 9e-06, 4e-06, 3e-06, 2e-06] worst=[-0.348, -1.556, -0.012]
+HANGING_ASSET banner_1 tris=4408 pin=0.000000 stretch=1.0069353 settle=0.0003498 sim=3.99s ao={'min': 0.18, 'mean': 0.871} motion=[0.005508, 0.003055, 0.006471, 0.000536, 0.000331, 0.000132, 0.000111, 0.000615, 0.000426, 0.00035] worst=[0.009, -0.0, -0.0]
+HANGING_ASSET banner_2 tris=2264 pin=0.000000 stretch=1.0041988 settle=6e-07 sim=1.75s ao={'min': 0.18, 'mean': 0.907} motion=[0.004722, 0.000487, 2e-05, 2.7e-05, 1.2e-05, 6e-06, 4e-06, 3e-06, 3e-06, 1e-06] worst=[0.032, -1.229, 0.002]
+HANGING_ASSET tapestry_0 tris=4740 pin=0.000000 stretch=1.005682 settle=2.9e-06 sim=4.09s ao={'min': 0.18, 'mean': 0.906} motion=[0.007191, 0.000746, 0.000979, 0.00211, 0.000742, 4.2e-05, 1.9e-05, 1.7e-05, 7e-06, 3e-06] worst=[0.897, -1.118, -0.004]
+HANGING_ASSET tapestry_1 tris=4640 pin=0.000000 stretch=1.0132596 settle=0.0008534 sim=4.27s ao={'min': 0.18, 'mean': 0.802} motion=[0.025618, 0.008223, 0.009753, 0.003558, 0.002504, 0.002387, 0.000926, 0.000911, 0.000448, 0.000853] worst=[0.796, -0.057, -0.003]
+HANGING_ASSET tapestry_2 tris=4060 pin=0.000000 stretch=1.0133214 settle=0.0006257 sim=4.01s ao={'min': 0.18, 'mean': 0.892} motion=[0.008955, 0.000931, 0.000459, 0.001314, 0.000209, 0.000412, 0.000104, 0.000306, 0.000452, 0.000626] worst=[0.25, -0.1, -0.002]
+HANGING_ASSET drape_0 tris=3628 pin=0.000000 stretch=1.0113353 settle=0.0006428 sim=10.49s ao={'min': 0.18, 'mean': 0.692} motion=[0.0169, 0.003483, 0.00135, 0.003936, 0.000647, 0.001007, 0.001121, 0.00048, 0.000886, 0.000643] worst=[0.55, 0.133, 0.225]
+HANGING_ASSET drape_1 tris=4492 pin=0.000000 stretch=1.0161676 settle=0.0003946 sim=12.48s ao={'min': 0.18, 'mean': 0.679} motion=[0.023204, 0.01723, 0.008136, 0.007373, 0.004072, 0.005277, 0.000701, 0.000345, 0.000382, 0.000395] worst=[-0.233, 0.28, -0.057]
+HANGING_ASSET drape_2 tris=3528 pin=0.000000 stretch=1.0117904 settle=0.0001529 sim=10.98s ao={'min': 0.18, 'mean': 0.681} motion=[0.022886, 0.008537, 0.004234, 0.001599, 0.003652, 0.000303, 0.000186, 0.000228, 0.000195, 0.000153] worst=[-0.09, 0.196, 0.245]
+HANGING_ASSET web_corner_0 tris=150 pin=0.000000 stretch=1.0007958 settle=1e-07 sim=0.34s ao={'min': 0.958, 'mean': 0.996} motion=[9e-06, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0] worst=[0.031, -0.006, 0.15]
+HANGING_ASSET web_corner_1 tris=176 pin=0.000000 stretch=1.000405 settle=1e-07 sim=0.37s ao={'min': 0.979, 'mean': 0.997} motion=[0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0] worst=[0.311, -0.012, 0.044]
+HANGING_ASSET web_corner_2 tris=182 pin=0.000000 stretch=1.0000576 settle=6.11e-05 sim=0.36s ao={'min': 0.896, 'mean': 0.993} motion=[0.000722, 0.00041, 0.00026, 0.000265, 0.000186, 0.000109, 8.4e-05, 8.2e-05, 7.9e-05, 6.1e-05] worst=[0.122, -0.469, 0.034]
+HANGING_ASSET web_sheet_0 tris=570 pin=0.000000 stretch=1.0004082 settle=1e-07 sim=1.22s ao={'min': 0.875, 'mean': 0.99} motion=[0.002059, 0.001933, 0.00083, 0.000119, 1.5e-05, 2e-06, 0.0, 0.0, 0.0, 0.0] worst=[0.056, -0.185, -0.229]
+HANGING_ASSET web_sheet_1 tris=408 pin=0.000000 stretch=1.0002567 settle=1e-07 sim=0.9s ao={'min': 0.792, 'mean': 0.975} motion=[0.000752, 3.2e-05, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0] worst=[0.171, -0.139, -0.117]
+HANGING_ASSET web_sheet_2 tris=790 pin=0.000000 stretch=1.0004192 settle=5.8e-06 sim=1.62s ao={'min': 0.833, 'mean': 0.989} motion=[0.00361, 0.001908, 0.000445, 0.000132, 0.000159, 0.00059, 6.5e-05, 2.2e-05, 9e-06, 6e-06] worst=[-0.516, -0.451, 0.004]
+HANGING_ASSET rope_0 tris=1360 pin=0.000000 stretch=None settle=None sim=Nones ao={'min': 0.18, 'mean': 0.764} motion=None worst=None
+HANGING_ASSET rope_1 tris=1360 pin=0.000000 stretch=None settle=None sim=Nones ao={'min': 0.18, 'mean': 0.761} motion=None worst=None
+HANGING_ASSET rope_2 tris=1622 pin=0.000000 stretch=None settle=None sim=Nones ao={'min': 0.18, 'mean': 0.778} motion=None worst=None
+HANGING_BAKE_OK {'assets': 18, 'max_pin_error_m': 2e-07, 'max_edge_stretch': 1.0161676, 'max_settle_motion_m': 0.0008534, 'max_cloth_triangles': 4740}
+HANGING_TURNTABLE content/environments/red_descent/review/hanging_v1/turntable_banner.png
+HANGING_TURNTABLE content/environments/red_descent/review/hanging_v1/turntable_tapestry.png
+HANGING_TURNTABLE content/environments/red_descent/review/hanging_v1/turntable_drape.png
+HANGING_TURNTABLE content/environments/red_descent/review/hanging_v1/turntable_web_corner.png
+HANGING_TURNTABLE content/environments/red_descent/review/hanging_v1/turntable_web_sheet.png
+HANGING_TURNTABLE content/environments/red_descent/review/hanging_v1/turntable_rope.png
+Blender 5.2.2 LTS (hash d13f752e3b9c built 2026-09-15 01:49:19)
+Blender quit
+(a second run reproduced all 18 GLBs byte for byte)
