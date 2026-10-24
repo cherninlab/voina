@@ -1,0 +1,11 @@
+[gd_resource type="ShaderMaterial" format=3]
+
+[ext_resource type="Shader" uid="uid://dhpcoy24ahtgc" path="res://content/environments/procedural_hanging_v1/cobweb.gdshader" id="1"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1")
+shader_parameter/style = 1
+shader_parameter/dust = 0.14
+shader_parameter/strand_density = 0.6
+shader_parameter/thread_width_m = 0.0006

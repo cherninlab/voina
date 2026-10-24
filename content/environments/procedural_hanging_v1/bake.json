@@ -1,0 +1,1559 @@
+{
+  "assets": [
+    {
+      "ao": {
+        "mean": 0.918,
+        "min": 0.18
+      },
+      "bounds_godot": {
+        "max": [
+          0.3607,
+          0.0005,
+          0.1274
+        ],
+        "min": [
+          -0.3569,
+          -1.5892,
+          -0.0544
+        ]
+      },
+      "calm": null,
+      "cells": [
+        20,
+        48
+      ],
+      "cells_eroded": 4,
+      "collision": false,
+      "file": "content/environments/procedural_hanging_v1/banner_0.glb",
+      "fps": 30,
+      "frames": 300,
+      "gather": 0.82,
+      "gather_frames": 30,
+      "hem_shape": "swallowtail",
+      "holes": 1,
+      "islands_dropped": 0,
+      "lowest_z_m": -1.5891994,
+      "max_above_nails_m": 0.0,
+      "max_edge_stretch": 1.0062954,
+      "max_pin_error_m": 0.0,
+      "min_edge_ratio": 0.9916282,
+      "motion_per_second_m": [
+        0.010611,
+        0.000182,
+        3.5e-05,
+        2.9e-05,
+        1.9e-05,
+        9e-06,
+        9e-06,
+        4e-06,
+        3e-06,
+        2e-06
+      ],
+      "mount": "Origin is the midpoint of the nail line; nails lie on local X at y = 0, cloth hangs towards -Y with its front facing +Z. Put the origin on a beam underside (or a wall face) with local X along the beam.",
+      "pins": 2,
+      "seed": 164,
+      "settle_motion_m": 2.4e-06,
+      "settle_worst_rest": [
+        -0.348,
+        -1.556,
+        -0.012
+      ],
+      "sim_seconds": 2.64,
+      "size_m": [
+        0.7,
+        1.7
+      ],
+      "socket_surface_gap_m": 0.002,
+      "sockets_godot": {
+        "pin_0": [
+          -0.287,
+          0.0,
+          -0.0
+        ],
+        "pin_1": [
+          0.287,
+          0.0,
+          -0.0
+        ]
+      },
+      "tears": 1,
+      "thickness_m": 0.004,
+      "triangles": 3516,
+      "type": "banner",
+      "variant": 0,
+      "vertices": 1758
+    },
+    {
+      "ao": {
+        "mean": 0.871,
+        "min": 0.18
+      },
+      "bounds_godot": {
+        "max": [
+          0.4728,
+          0.0006,
+          0.1499
+        ],
+        "min": [
+          -0.377,
+          -2.3509,
+          -0.1018
+        ]
+      },
+      "calm": null,
+      "cells": [
+        22,
+        52
+      ],
+      "cells_eroded": 14,
+      "collision": false,
+      "file": "content/environments/procedural_hanging_v1/banner_1.glb",
+      "fps": 30,
+      "frames": 300,
+      "gather": 0.86,
+      "gather_frames": 30,
+      "hem_shape": "straight",
+      "holes": 2,
+      "islands_dropped": 0,
+      "lowest_z_m": -2.3507793,
+      "max_above_nails_m": 0.0,
+      "max_edge_stretch": 1.0069353,
+      "max_pin_error_m": 0.0,
+      "min_edge_ratio": 0.9911551,
+      "motion_per_second_m": [
+        0.005508,
+        0.003055,
+        0.006471,
+        0.000536,
+        0.000331,
+        0.000132,
+        0.000111,
+        0.000615,
+        0.000426,
+        0.00035
+      ],
+      "mount": "Origin is the midpoint of the nail line; nails lie on local X at y = 0, cloth hangs towards -Y with its front facing +Z. Put the origin on a beam underside (or a wall face) with local X along the beam.",
+      "pins": 3,
+      "seed": 164,
+      "settle_motion_m": 0.0003498,
+      "settle_worst_rest": [
+        0.009,
+        -0.0,
+        -0.0
+      ],
+      "sim_seconds": 3.99,
+      "size_m": [
+        1.0,
+        2.4
+      ],
+      "socket_surface_gap_m": 0.002,
+      "sockets_godot": {
+        "pin_0": [
+          -0.344,
+          0.0,
+          -0.0
+        ],
+        "pin_1": [
+          0.046909,
+          0.0,
+          -0.0
+        ],
+        "pin_2": [
+          0.359636,
+          0.0,
+          -0.0
+        ]
+      },
+      "tears": 2,
+      "thickness_m": 0.004,
+      "triangles": 4408,
+      "type": "banner",
+      "variant": 1,
+      "vertices": 2202
+    },
+    {
+      "ao": {
+        "mean": 0.907,
+        "min": 0.18
+      },
+      "bounds_godot": {
+        "max": [
+          0.2767,
+          0.0006,
+          0.0509
+        ],
+        "min": [
+          -0.261,
+          -1.2351,
+          -0.0585
+        ]
+      },
+      "calm": null,
+      "cells": [
+        16,
+        38
+      ],
+      "cells_eroded": 1,
+      "collision": false,
+      "file": "content/environments/procedural_hanging_v1/banner_2.glb",
+      "fps": 30,
+      "frames": 300,
+      "gather": 0.86,
+      "gather_frames": 30,
+      "hem_shape": "point",
+      "holes": 1,
+      "islands_dropped": 0,
+      "lowest_z_m": -1.23487,
+      "max_above_nails_m": 0.0,
+      "max_edge_stretch": 1.0041988,
+      "max_pin_error_m": 0.0,
+      "min_edge_ratio": 0.9931644,
+      "motion_per_second_m": [
+        0.004722,
+        0.000487,
+        2e-05,
+        2.7e-05,
+        1.2e-05,
+        6e-06,
+        4e-06,
+        3e-06,
+        3e-06,
+        1e-06
+      ],
+      "mount": "Origin is the midpoint of the nail line; nails lie on local X at y = 0, cloth hangs towards -Y with its front facing +Z. Put the origin on a beam underside (or a wall face) with local X along the beam.",
+      "pins": 2,
+      "seed": 164,
+      "settle_motion_m": 6e-07,
+      "settle_worst_rest": [
+        0.032,
+        -1.229,
+        0.002
+      ],
+      "sim_seconds": 1.75,
+      "size_m": [
+        0.55,
+        1.3
+      ],
+      "socket_surface_gap_m": 0.002,
+      "sockets_godot": {
+        "pin_0": [
+          -0.2365,
+          0.0,
+          -0.0
+        ],
+        "pin_1": [
+          0.2365,
+          0.0,
+          -0.0
+        ]
+      },
+      "tears": 0,
+      "thickness_m": 0.004,
+      "triangles": 2264,
+      "type": "banner",
+      "variant": 2,
+      "vertices": 1132
+    },
+    {
+      "ao": {
+        "mean": 0.906,
+        "min": 0.18
+      },
+      "bounds_godot": {
+        "max": [
+          0.8632,
+          0.0007,
+          0.1525
+        ],
+        "min": [
+          -0.8585,
+          -1.3019,
+          -0.0901
+        ]
+      },
+      "calm": null,
+      "cells": [
+        40,
+        29
+      ],
+      "cells_eroded": 2,
+      "collision": false,
+      "file": "content/environments/procedural_hanging_v1/tapestry_0.glb",
+      "fps": 30,
+      "frames": 300,
+      "gather": 0.9,
+      "gather_frames": 30,
+      "hem_shape": "straight",
+      "holes": 2,
+      "islands_dropped": 0,
+      "lowest_z_m": -1.3018119,
+      "max_above_nails_m": 0.0,
+      "max_edge_stretch": 1.005682,
+      "max_pin_error_m": 0.0,
+      "min_edge_ratio": 0.9902839,
+      "motion_per_second_m": [
+        0.007191,
+        0.000746,
+        0.000979,
+        0.00211,
+        0.000742,
+        4.2e-05,
+        1.9e-05,
+        1.7e-05,
+        7e-06,
+        3e-06
+      ],
+      "mount": "Origin is the midpoint of the nail line; nails lie on local X at y = 0, cloth hangs towards -Y with its front facing +Z. Put the origin on a beam underside (or a wall face) with local X along the beam.",
+      "pins": 3,
+      "seed": 164,
+      "settle_motion_m": 2.9e-06,
+      "settle_worst_rest": [
+        0.897,
+        -1.118,
+        -0.004
+      ],
+      "sim_seconds": 4.09,
+      "size_m": [
+        1.8,
+        1.3
+      ],
+      "socket_surface_gap_m": 0.002,
+      "sockets_godot": {
+        "pin_0": [
+          -0.81,
+          0.0,
+          -0.0
+        ],
+        "pin_1": [
+          0.0,
+          0.0,
+          -0.0
+        ],
+        "pin_2": [
+          0.81,
+          0.0,
+          -0.0
+        ]
+      },
+      "tears": 1,
+      "thickness_m": 0.004,
+      "triangles": 4740,
+      "type": "tapestry",
+      "variant": 0,
+      "vertices": 2368
+    },
+    {
+      "ao": {
+        "mean": 0.802,
+        "min": 0.18
+      },
+      "bounds_godot": {
+        "max": [
+          0.9946,
+          0.0015,
+          0.3097
+        ],
+        "min": [
+          -0.7672,
+          -1.6569,
+          -0.3457
+        ]
+      },
+      "calm": null,
+      "cells": [
+        42,
+        28
+      ],
+      "cells_eroded": 6,
+      "collision": false,
+      "file": "content/environments/procedural_hanging_v1/tapestry_1.glb",
+      "fps": 30,
+      "frames": 300,
+      "gather": 0.9,
+      "gather_frames": 30,
+      "hem_shape": "straight",
+      "holes": 3,
+      "islands_dropped": 0,
+      "lowest_z_m": -1.6569088,
+      "max_above_nails_m": 0.0,
+      "max_edge_stretch": 1.0132596,
+      "max_pin_error_m": 0.0,
+      "min_edge_ratio": 0.9477702,
+      "motion_per_second_m": [
+        0.025618,
+        0.008223,
+        0.009753,
+        0.003558,
+        0.002504,
+        0.002387,
+        0.000926,
+        0.000911,
+        0.000448,
+        0.000853
+      ],
+      "mount": "Origin is the midpoint of the nail line; nails lie on local X at y = 0, cloth hangs towards -Y with its front facing +Z. Put the origin on a beam underside (or a wall face) with local X along the beam.",
+      "pins": 3,
+      "seed": 164,
+      "settle_motion_m": 0.0008534,
+      "settle_worst_rest": [
+        0.796,
+        -0.057,
+        -0.003
+      ],
+      "sim_seconds": 4.27,
+      "size_m": [
+        2.4,
+        1.6
+      ],
+      "socket_surface_gap_m": 0.002,
+      "sockets_godot": {
+        "pin_0": [
+          -0.7236,
+          0.0,
+          -0.0
+        ],
+        "pin_1": [
+          -0.0036,
+          0.0,
+          -0.0
+        ],
+        "pin_2": [
+          0.7164,
+          0.0,
+          -0.0
+        ]
+      },
+      "tears": 2,
+      "thickness_m": 0.004,
+      "triangles": 4640,
+      "type": "tapestry",
+      "variant": 1,
+      "vertices": 2318
+    },
+    {
+      "ao": {
+        "mean": 0.892,
+        "min": 0.18
+      },
+      "bounds_godot": {
+        "max": [
+          0.6308,
+          0.0008,
+          0.112
+        ],
+        "min": [
+          -0.6507,
+          -1.8453,
+          -0.0953
+        ]
+      },
+      "calm": null,
+      "cells": [
+        28,
+        38
+      ],
+      "cells_eroded": 12,
+      "collision": false,
+      "file": "content/environments/procedural_hanging_v1/tapestry_2.glb",
+      "fps": 30,
+      "frames": 300,
+      "gather": 0.85,
+      "gather_frames": 30,
+      "hem_shape": "straight",
+      "holes": 4,
+      "islands_dropped": 0,
+      "lowest_z_m": -1.8452678,
+      "max_above_nails_m": 0.0,
+      "max_edge_stretch": 1.0133214,
+      "max_pin_error_m": 0.0,
+      "min_edge_ratio": 0.9851167,
+      "motion_per_second_m": [
+        0.008955,
+        0.000931,
+        0.000459,
+        0.001314,
+        0.000209,
+        0.000412,
+        0.000104,
+        0.000306,
+        0.000452,
+        0.000626
+      ],
+      "mount": "Origin is the midpoint of the nail line; nails lie on local X at y = 0, cloth hangs towards -Y with its front facing +Z. Put the origin on a beam underside (or a wall face) with local X along the beam.",
+      "pins": 4,
+      "seed": 164,
+      "settle_motion_m": 0.0006257,
+      "settle_worst_rest": [
+        0.25,
+        -0.1,
+        -0.002
+      ],
+      "sim_seconds": 4.01,
+      "size_m": [
+        1.4,
+        1.9
+      ],
+      "socket_surface_gap_m": 0.002,
+      "sockets_godot": {
+        "pin_0": [
+          -0.595,
+          0.0,
+          -0.0
+        ],
+        "pin_1": [
+          -0.2125,
+          0.0,
+          -0.0
+        ],
+        "pin_2": [
+          0.2125,
+          0.0,
+          -0.0
+        ],
+        "pin_3": [
+          0.595,
+          0.0,
+          -0.0
+        ]
+      },
+      "tears": 3,
+      "thickness_m": 0.004,
+      "triangles": 4060,
+      "type": "tapestry",
+      "variant": 2,
+      "vertices": 2024
+    },
+    {
+      "ao": {
+        "mean": 0.692,
+        "min": 0.18
+      },
+      "beam_clearance_m": 0.00405,
+      "beam_proxy_godot": {
+        "centre": [
+          0,
+          0,
+          0
+        ],
+        "size": [
+          2.1,
+          0.25,
+          0.25
+        ]
+      },
+      "bounds_godot": {
+        "max": [
+          0.5029,
+          0.2226,
+          0.2994
+        ],
+        "min": [
+          -0.5018,
+          -0.4581,
+          -0.5647
+        ]
+      },
+      "calm": [
+        210,
+        40.0
+      ],
+      "cells": [
+        22,
+        40
+      ],
+      "cells_eroded": 2,
+      "collision": false,
+      "file": "content/environments/procedural_hanging_v1/drape_0.glb",
+      "fps": 30,
+      "frames": 300,
+      "gather": 0.84,
+      "gather_frames": 30,
+      "holes": 1,
+      "islands_dropped": 0,
+      "lowest_z_m": -0.4580544,
+      "max_edge_stretch": 1.0113353,
+      "max_pin_error_m": 0.0,
+      "min_edge_ratio": 0.9385101,
+      "motion_per_second_m": [
+        0.0169,
+        0.003483,
+        0.00135,
+        0.003936,
+        0.000647,
+        0.001007,
+        0.001121,
+        0.00048,
+        0.000886,
+        0.000643
+      ],
+      "mount": "Origin is the beam axis; the beam runs along local X with a 0.25 m wide x 0.25 m tall section (Godot dungeon timber). Nails sit on the beam top.",
+      "pins": 2,
+      "seed": 164,
+      "settle_motion_m": 0.0006428,
+      "settle_worst_rest": [
+        0.55,
+        0.133,
+        0.225
+      ],
+      "sim_seconds": 10.49,
+      "size_m": [
+        1.1,
+        1.5
+      ],
+      "socket_surface_gap_m": 0.002,
+      "sockets_godot": {
+        "nail_0": [
+          -0.252,
+          0.131,
+          -0.0
+        ],
+        "nail_1": [
+          0.252,
+          0.131,
+          -0.0
+        ]
+      },
+      "tears": 1,
+      "thickness_m": 0.004,
+      "triangles": 3628,
+      "type": "drape",
+      "variant": 0,
+      "vertices": 1814
+    },
+    {
+      "ao": {
+        "mean": 0.679,
+        "min": 0.18
+      },
+      "beam_clearance_m": 0.004,
+      "beam_proxy_godot": {
+        "centre": [
+          0,
+          0,
+          0
+        ],
+        "size": [
+          2.4,
+          0.55,
+          0.42
+        ]
+      },
+      "bounds_godot": {
+        "max": [
+          0.6749,
+          0.3626,
+          0.5434
+        ],
+        "min": [
+          -0.6628,
+          -0.9782,
+          -0.4409
+        ]
+      },
+      "calm": [
+        210,
+        40.0
+      ],
+      "cells": [
+        24,
+        46
+      ],
+      "cells_eroded": 8,
+      "collision": false,
+      "file": "content/environments/procedural_hanging_v1/drape_1.glb",
+      "fps": 30,
+      "frames": 300,
+      "gather": 0.9,
+      "gather_frames": 30,
+      "holes": 2,
+      "islands_dropped": 0,
+      "lowest_z_m": -0.9782201,
+      "max_edge_stretch": 1.0161676,
+      "max_pin_error_m": 0.0,
+      "min_edge_ratio": 0.9495412,
+      "motion_per_second_m": [
+        0.023204,
+        0.01723,
+        0.008136,
+        0.007373,
+        0.004072,
+        0.005277,
+        0.000701,
+        0.000345,
+        0.000382,
+        0.000395
+      ],
+      "mount": "Origin is the beam axis; the beam runs along local X with a 0.42 m wide x 0.55 m tall section (Godot dungeon timber). Nails sit on the beam top.",
+      "pins": 2,
+      "seed": 164,
+      "settle_motion_m": 0.0003946,
+      "settle_worst_rest": [
+        -0.233,
+        0.28,
+        -0.057
+      ],
+      "sim_seconds": 12.48,
+      "size_m": [
+        1.4,
+        2.6
+      ],
+      "socket_surface_gap_m": 0.002,
+      "sockets_godot": {
+        "nail_0": [
+          -0.3675,
+          0.281,
+          -0.0
+        ],
+        "nail_1": [
+          0.3675,
+          0.281,
+          -0.0
+        ]
+      },
+      "tears": 2,
+      "thickness_m": 0.004,
+      "triangles": 4492,
+      "type": "drape",
+      "variant": 1,
+      "vertices": 2244
+    },
+    {
+      "ao": {
+        "mean": 0.681,
+        "min": 0.18
+      },
+      "beam_clearance_m": 0.00401,
+      "beam_proxy_godot": {
+        "centre": [
+          0,
+          0,
+          0
+        ],
+        "size": [
+          1.9,
+          0.38,
+          0.3
+        ]
+      },
+      "bounds_godot": {
+        "max": [
+          0.4219,
+          0.2677,
+          0.2454
+        ],
+        "min": [
+          -0.4806,
+          -0.635,
+          -0.2956
+        ]
+      },
+      "calm": [
+        210,
+        40.0
+      ],
+      "cells": [
+        20,
+        44
+      ],
+      "cells_eroded": 9,
+      "collision": false,
+      "file": "content/environments/procedural_hanging_v1/drape_2.glb",
+      "fps": 30,
+      "frames": 300,
+      "gather": 0.8,
+      "gather_frames": 30,
+      "holes": 1,
+      "islands_dropped": 0,
+      "lowest_z_m": -0.6348487,
+      "max_edge_stretch": 1.0117904,
+      "max_pin_error_m": 0.0,
+      "min_edge_ratio": 0.9676439,
+      "motion_per_second_m": [
+        0.022886,
+        0.008537,
+        0.004234,
+        0.001599,
+        0.003652,
+        0.000303,
+        0.000186,
+        0.000228,
+        0.000195,
+        0.000153
+      ],
+      "mount": "Origin is the beam axis; the beam runs along local X with a 0.30 m wide x 0.38 m tall section (Godot dungeon timber). Nails sit on the beam top.",
+      "pins": 2,
+      "seed": 164,
+      "settle_motion_m": 0.0001529,
+      "settle_worst_rest": [
+        -0.09,
+        0.196,
+        0.245
+      ],
+      "sim_seconds": 10.98,
+      "size_m": [
+        0.9,
+        1.8
+      ],
+      "socket_surface_gap_m": 0.002,
+      "sockets_godot": {
+        "nail_0": [
+          -0.216,
+          0.196,
+          -0.0
+        ],
+        "nail_1": [
+          0.216,
+          0.196,
+          -0.0
+        ]
+      },
+      "tears": 2,
+      "thickness_m": 0.004,
+      "triangles": 3528,
+      "type": "drape",
+      "variant": 2,
+      "vertices": 1764
+    },
+    {
+      "alpha_card": true,
+      "ao": {
+        "mean": 0.996,
+        "min": 0.958
+      },
+      "bounds_godot": {
+        "max": [
+          0.4375,
+          0.0,
+          0.39
+        ],
+        "min": [
+          0.0,
+          -0.0417,
+          -0.0
+        ]
+      },
+      "calm": null,
+      "cells": [
+        16,
+        15
+      ],
+      "cells_eroded": 0,
+      "collision": false,
+      "corner": "ceiling",
+      "file": "content/environments/procedural_hanging_v1/web_corner_0.glb",
+      "fps": 30,
+      "frames": 300,
+      "gather_frames": 2,
+      "holes": 1,
+      "islands_dropped": 0,
+      "lowest_z_m": -0.0417167,
+      "max_edge_stretch": 1.0007958,
+      "max_pin_error_m": 0.0,
+      "min_edge_ratio": 0.9912375,
+      "motion_per_second_m": [
+        9e-06,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "mount": "Origin is the corner apex. Anchored edges run along local +X and +Z: put it under a ceiling where two walls meet, rotated so both edges lie on the walls.",
+      "pinned_vertices": 28,
+      "pins": 28,
+      "seed": 164,
+      "settle_motion_m": 1e-07,
+      "settle_worst_rest": [
+        0.031,
+        -0.006,
+        0.15
+      ],
+      "sim_seconds": 0.34,
+      "size_m": [
+        0.5,
+        0.45
+      ],
+      "socket_surface_gap_m": 0.0,
+      "sockets_godot": {
+        "apex": [
+          0.0,
+          0.0,
+          -0.0
+        ],
+        "end_u": [
+          0.4375,
+          0.0,
+          -0.0
+        ],
+        "end_v": [
+          0.0,
+          0.0,
+          0.39
+        ]
+      },
+      "tears": 0,
+      "thickness_m": 0.0,
+      "triangles": 150,
+      "type": "web_corner",
+      "uv": "metres from the apex: U along end_u, V along end_v (cobweb.gdshader draws radial threads round UV 0,0)",
+      "variant": 0,
+      "vertices": 104
+    },
+    {
+      "alpha_card": true,
+      "ao": {
+        "mean": 0.997,
+        "min": 0.979
+      },
+      "bounds_godot": {
+        "max": [
+          0.6667,
+          0.0,
+          0.6125
+        ],
+        "min": [
+          0.0,
+          -0.068,
+          -0.0
+        ]
+      },
+      "calm": null,
+      "cells": [
+        18,
+        16
+      ],
+      "cells_eroded": 1,
+      "collision": false,
+      "corner": "ceiling",
+      "file": "content/environments/procedural_hanging_v1/web_corner_1.glb",
+      "fps": 30,
+      "frames": 300,
+      "gather_frames": 2,
+      "holes": 2,
+      "islands_dropped": 0,
+      "lowest_z_m": -0.0680202,
+      "max_edge_stretch": 1.000405,
+      "max_pin_error_m": 0.0,
+      "min_edge_ratio": 0.9930471,
+      "motion_per_second_m": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "mount": "Origin is the corner apex. Anchored edges run along local +X and +Z: put it under a ceiling where two walls meet, rotated so both edges lie on the walls.",
+      "pinned_vertices": 30,
+      "pins": 30,
+      "seed": 164,
+      "settle_motion_m": 1e-07,
+      "settle_worst_rest": [
+        0.311,
+        -0.012,
+        0.044
+      ],
+      "sim_seconds": 0.37,
+      "size_m": [
+        0.8,
+        0.7
+      ],
+      "socket_surface_gap_m": 0.0,
+      "sockets_godot": {
+        "apex": [
+          0.0,
+          0.0,
+          -0.0
+        ],
+        "end_u": [
+          0.666667,
+          0.0,
+          -0.0
+        ],
+        "end_v": [
+          0.0,
+          0.0,
+          0.6125
+        ]
+      },
+      "tears": 0,
+      "thickness_m": 0.0,
+      "triangles": 176,
+      "type": "web_corner",
+      "uv": "metres from the apex: U along end_u, V along end_v (cobweb.gdshader draws radial threads round UV 0,0)",
+      "variant": 1,
+      "vertices": 118
+    },
+    {
+      "alpha_card": true,
+      "ao": {
+        "mean": 0.993,
+        "min": 0.896
+      },
+      "bounds_godot": {
+        "max": [
+          0.525,
+          0.0,
+          0.0156
+        ],
+        "min": [
+          0.0,
+          -0.6667,
+          -0.0073
+        ]
+      },
+      "calm": null,
+      "cells": [
+        16,
+        18
+      ],
+      "cells_eroded": 1,
+      "collision": false,
+      "corner": "frame",
+      "file": "content/environments/procedural_hanging_v1/web_corner_2.glb",
+      "fps": 30,
+      "frames": 300,
+      "gather_frames": 2,
+      "holes": 2,
+      "islands_dropped": 0,
+      "lowest_z_m": -0.6666667,
+      "max_edge_stretch": 1.0000576,
+      "max_pin_error_m": 0.0,
+      "min_edge_ratio": 0.9984892,
+      "motion_per_second_m": [
+        0.000722,
+        0.00041,
+        0.00026,
+        0.000265,
+        0.000186,
+        0.000109,
+        8.4e-05,
+        8.2e-05,
+        7.9e-05,
+        6.1e-05
+      ],
+      "mount": "Origin is the corner apex. Anchored edges run along local +X (beam underside) and -Y (post face): put it where a beam meets a post, front facing +Z.",
+      "pinned_vertices": 31,
+      "pins": 31,
+      "seed": 164,
+      "settle_motion_m": 6.11e-05,
+      "settle_worst_rest": [
+        0.122,
+        -0.469,
+        0.034
+      ],
+      "sim_seconds": 0.36,
+      "size_m": [
+        0.6,
+        0.75
+      ],
+      "socket_surface_gap_m": 0.0,
+      "sockets_godot": {
+        "apex": [
+          0.0,
+          0.0,
+          -0.0
+        ],
+        "end_u": [
+          0.525,
+          0.0,
+          -0.0
+        ],
+        "end_v": [
+          0.0,
+          -0.666667,
+          -0.0
+        ]
+      },
+      "tears": 0,
+      "thickness_m": 0.0,
+      "triangles": 182,
+      "type": "web_corner",
+      "uv": "metres from the apex: U along end_u, V along end_v (cobweb.gdshader draws radial threads round UV 0,0)",
+      "variant": 2,
+      "vertices": 123
+    },
+    {
+      "alpha_card": true,
+      "ao": {
+        "mean": 0.99,
+        "min": 0.875
+      },
+      "bounds_godot": {
+        "max": [
+          0.45,
+          0.0,
+          0.63
+        ],
+        "min": [
+          -0.45,
+          -0.2896,
+          -0.63
+        ]
+      },
+      "calm": null,
+      "cells": [
+        16,
+        22
+      ],
+      "cells_eroded": 1,
+      "collision": false,
+      "file": "content/environments/procedural_hanging_v1/web_sheet_0.glb",
+      "fps": 30,
+      "frames": 300,
+      "gap_m": 1.26,
+      "gather_frames": 2,
+      "holes": 2,
+      "islands_dropped": 0,
+      "lowest_z_m": -0.2895652,
+      "max_edge_stretch": 1.0004082,
+      "max_pin_error_m": 0.0,
+      "min_edge_ratio": 0.9940738,
+      "motion_per_second_m": [
+        0.002059,
+        0.001933,
+        0.00083,
+        0.000119,
+        1.5e-05,
+        2e-06,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "mount": "Origin is midway between the anchor lines. Line A (a_0-a_1) runs along local X at z = -0.630, line B at z = 0.630, y = -0.000: put the lines on the inner faces or undersides of two parallel beams.",
+      "pins": 34,
+      "rise_m": 0.0,
+      "seed": 164,
+      "settle_motion_m": 1e-07,
+      "settle_worst_rest": [
+        0.056,
+        -0.185,
+        -0.229
+      ],
+      "sim_seconds": 1.22,
+      "size_m": [
+        0.9,
+        1.35
+      ],
+      "socket_surface_gap_m": 0.0,
+      "sockets_godot": {
+        "a_0": [
+          -0.45,
+          -0.0,
+          -0.63
+        ],
+        "a_1": [
+          0.45,
+          -0.0,
+          -0.63
+        ],
+        "b_0": [
+          -0.45,
+          -0.0,
+          0.63
+        ],
+        "b_1": [
+          0.45,
+          -0.0,
+          0.63
+        ]
+      },
+      "tears": 1,
+      "thickness_m": 0.0,
+      "triangles": 570,
+      "type": "web_sheet",
+      "uv": "metres: U along the beams, V across from line A (cobweb.gdshader sheet style)",
+      "variant": 0,
+      "vertices": 337
+    },
+    {
+      "alpha_card": true,
+      "ao": {
+        "mean": 0.975,
+        "min": 0.792
+      },
+      "bounds_godot": {
+        "max": [
+          0.3,
+          0.0,
+          0.35
+        ],
+        "min": [
+          -0.3,
+          -0.1917,
+          -0.35
+        ]
+      },
+      "calm": null,
+      "cells": [
+        14,
+        18
+      ],
+      "cells_eroded": 1,
+      "collision": false,
+      "file": "content/environments/procedural_hanging_v1/web_sheet_1.glb",
+      "fps": 30,
+      "frames": 300,
+      "gap_m": 0.7,
+      "gather_frames": 2,
+      "holes": 3,
+      "islands_dropped": 0,
+      "lowest_z_m": -0.1916661,
+      "max_edge_stretch": 1.0002567,
+      "max_pin_error_m": 0.0,
+      "min_edge_ratio": 0.995936,
+      "motion_per_second_m": [
+        0.000752,
+        3.2e-05,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "mount": "Origin is midway between the anchor lines. Line A (a_0-a_1) runs along local X at z = -0.350, line B at z = 0.350, y = -0.000: put the lines on the inner faces or undersides of two parallel beams.",
+      "pins": 30,
+      "rise_m": 0.0,
+      "seed": 164,
+      "settle_motion_m": 1e-07,
+      "settle_worst_rest": [
+        0.171,
+        -0.139,
+        -0.117
+      ],
+      "sim_seconds": 0.9,
+      "size_m": [
+        0.6,
+        0.783
+      ],
+      "socket_surface_gap_m": 0.0,
+      "sockets_godot": {
+        "a_0": [
+          -0.3,
+          -0.0,
+          -0.35
+        ],
+        "a_1": [
+          0.3,
+          -0.0,
+          -0.35
+        ],
+        "b_0": [
+          -0.3,
+          -0.0,
+          0.35
+        ],
+        "b_1": [
+          0.3,
+          -0.0,
+          0.35
+        ]
+      },
+      "tears": 1,
+      "thickness_m": 0.0,
+      "triangles": 408,
+      "type": "web_sheet",
+      "uv": "metres: U along the beams, V across from line A (cobweb.gdshader sheet style)",
+      "variant": 1,
+      "vertices": 253
+    },
+    {
+      "alpha_card": true,
+      "ao": {
+        "mean": 0.989,
+        "min": 0.833
+      },
+      "bounds_godot": {
+        "max": [
+          0.65,
+          0.0,
+          0.75
+        ],
+        "min": [
+          -0.65,
+          -0.6037,
+          -0.75
+        ]
+      },
+      "calm": null,
+      "cells": [
+        20,
+        24
+      ],
+      "cells_eroded": 1,
+      "collision": false,
+      "file": "content/environments/procedural_hanging_v1/web_sheet_2.glb",
+      "fps": 30,
+      "frames": 300,
+      "gap_m": 1.5,
+      "gather_frames": 2,
+      "holes": 3,
+      "islands_dropped": 0,
+      "lowest_z_m": -0.6037232,
+      "max_edge_stretch": 1.0004192,
+      "max_pin_error_m": 0.0,
+      "min_edge_ratio": 0.993006,
+      "motion_per_second_m": [
+        0.00361,
+        0.001908,
+        0.000445,
+        0.000132,
+        0.000159,
+        0.00059,
+        6.5e-05,
+        2.2e-05,
+        9e-06,
+        6e-06
+      ],
+      "mount": "Origin is midway between the anchor lines. Line A (a_0-a_1) runs along local X at z = -0.750, line B at z = 0.750, y = -0.300: put the lines on the inner faces or undersides of two parallel beams.",
+      "pins": 41,
+      "rise_m": 0.3,
+      "seed": 164,
+      "settle_motion_m": 5.8e-06,
+      "settle_worst_rest": [
+        -0.516,
+        -0.451,
+        0.004
+      ],
+      "sim_seconds": 1.62,
+      "size_m": [
+        1.3,
+        1.662
+      ],
+      "socket_surface_gap_m": 0.0,
+      "sockets_godot": {
+        "a_0": [
+          -0.585,
+          -0.0,
+          -0.75
+        ],
+        "a_1": [
+          0.65,
+          -0.0,
+          -0.75
+        ],
+        "b_0": [
+          -0.65,
+          -0.3,
+          0.75
+        ],
+        "b_1": [
+          0.65,
+          -0.3,
+          0.75
+        ]
+      },
+      "tears": 2,
+      "thickness_m": 0.0,
+      "triangles": 790,
+      "type": "web_sheet",
+      "uv": "metres: U along the beams, V across from line A (cobweb.gdshader sheet style)",
+      "variant": 2,
+      "vertices": 465
+    },
+    {
+      "ao": {
+        "mean": 0.764,
+        "min": 0.18
+      },
+      "bounds_godot": {
+        "max": [
+          1.808,
+          0.0143,
+          0.0213
+        ],
+        "min": [
+          -0.008,
+          -0.2217,
+          -0.0213
+        ]
+      },
+      "collision": false,
+      "file": "content/environments/procedural_hanging_v1/rope_0.glb",
+      "frames": 0,
+      "length_ratio": 0.9999798,
+      "max_edge_stretch": null,
+      "max_pin_error_m": 0.0,
+      "mount": "Origin is socket a; socket b is span along local X and rise in Y. Fix both ends to beam faces; the bound ends hide the tube openings.",
+      "radius_m": 0.013,
+      "rise_m": 0.0,
+      "sag_m": 0.2087252,
+      "seed": 164,
+      "simulated": false,
+      "slack": 0.035,
+      "sockets_godot": {
+        "a": [
+          0.0,
+          0.0,
+          -0.0
+        ],
+        "b": [
+          1.8,
+          0.0,
+          -0.0
+        ]
+      },
+      "span_m": 1.8,
+      "tail_m": 0.0,
+      "thickness_m": 0.0,
+      "triangles": 1360,
+      "type": "rope",
+      "variant": 0,
+      "vertices": 700
+    },
+    {
+      "ao": {
+        "mean": 0.761,
+        "min": 0.18
+      },
+      "bounds_godot": {
+        "max": [
+          3.0099,
+          0.0141,
+          0.0297
+        ],
+        "min": [
+          -0.0159,
+          -0.8003,
+          -0.0297
+        ]
+      },
+      "collision": false,
+      "file": "content/environments/procedural_hanging_v1/rope_1.glb",
+      "frames": 0,
+      "length_ratio": 0.999972,
+      "max_edge_stretch": null,
+      "max_pin_error_m": 2e-07,
+      "mount": "Origin is socket a; socket b is span along local X and rise in Y. Fix both ends to beam faces; the bound ends hide the tube openings.",
+      "radius_m": 0.018,
+      "rise_m": -0.6,
+      "sag_m": 0.4339024,
+      "seed": 164,
+      "simulated": false,
+      "slack": 0.05,
+      "sockets_godot": {
+        "a": [
+          0.0,
+          0.0,
+          -0.0
+        ],
+        "b": [
+          3.0,
+          -0.6,
+          -0.0
+        ]
+      },
+      "span_m": 3.0,
+      "tail_m": 0.0,
+      "thickness_m": 0.0,
+      "triangles": 1360,
+      "type": "rope",
+      "variant": 1,
+      "vertices": 700
+    },
+    {
+      "ao": {
+        "mean": 0.778,
+        "min": 0.18
+      },
+      "bounds_godot": {
+        "max": [
+          1.4487,
+          0.0085,
+          0.0181
+        ],
+        "min": [
+          -0.0099,
+          -0.533,
+          -0.0181
+        ]
+      },
+      "collision": false,
+      "file": "content/environments/procedural_hanging_v1/rope_2.glb",
+      "frames": 0,
+      "length_ratio": 0.9999495,
+      "max_edge_stretch": null,
+      "max_pin_error_m": 0.0,
+      "mount": "Origin is socket a; socket b is span along local X and rise in Y. Fix both ends to beam faces; the bound ends hide the tube openings.",
+      "radius_m": 0.011,
+      "rise_m": 0.0,
+      "sag_m": 0.2804211,
+      "seed": 164,
+      "simulated": false,
+      "slack": 0.1,
+      "sockets_godot": {
+        "a": [
+          0.0,
+          0.0,
+          -0.0
+        ],
+        "b": [
+          1.4,
+          0.0,
+          -0.0
+        ]
+      },
+      "span_m": 1.4,
+      "tail_m": 0.55,
+      "thickness_m": 0.0,
+      "triangles": 1622,
+      "type": "rope",
+      "variant": 2,
+      "vertices": 836
+    }
+  ],
+  "blender": "5.2.2 LTS",
+  "collision_exported": false,
+  "color_attribute": "COLOR_0: R = baked AO, G = variation, B = edge wear (free edges, cloth and webs)",
+  "files": {
+    "content/environments/procedural_hanging_v1/banner_0.glb": "5cc24c268b844371b8105e15379b4a691e9e9fa1e5761c56609df9db0b186501",
+    "content/environments/procedural_hanging_v1/banner_1.glb": "a78986e77cfc17cb015c94fb530b49eb3e16e2b1783ec4af74d2bc0c8621171a",
+    "content/environments/procedural_hanging_v1/banner_2.glb": "9a2118b36b249cbb76682a3d76a6db3f6f771363f34b69731bfafc779ecd84c8",
+    "content/environments/procedural_hanging_v1/drape_0.glb": "1b2fcf654ae90e033a7b1f3728fa731bd25bf1e0a88664a985c1a0b07cd9236e",
+    "content/environments/procedural_hanging_v1/drape_1.glb": "956d74d4090d8f5039985aa15ee11d21407da62ef3cb8a39a2315ff8e04b816b",
+    "content/environments/procedural_hanging_v1/drape_2.glb": "f4432e54f4804b92f7e3dcf6fb248e5105de05587c443ca0662f5df108dda4f7",
+    "content/environments/procedural_hanging_v1/rope_0.glb": "7ce9b718a7eb71e8096b2038b73d5db59c18a3c12a4b4c642847c1e6cfdd04fa",
+    "content/environments/procedural_hanging_v1/rope_1.glb": "b6f58f88d82274269c6283a7abf6609efcf2bf219fa49bdd7e5edad2b77fb152",
+    "content/environments/procedural_hanging_v1/rope_2.glb": "a107c698322bc8c97a24123eb65f6f5093330695b86f3b8ea095470d1e019364",
+    "content/environments/procedural_hanging_v1/tapestry_0.glb": "a92ead7155f344595113dd675da90244ca830aed363efd81d69bb5bba3a00aab",
+    "content/environments/procedural_hanging_v1/tapestry_1.glb": "b139df1069681dd27b1fa4c5ef902d465447fd4ad4e573444c0b7f42f2ca81cd",
+    "content/environments/procedural_hanging_v1/tapestry_2.glb": "9e4d91bbc8bb0f129d50995abeb61752d246894e4fad82243880d692a05b4309",
+    "content/environments/procedural_hanging_v1/web_corner_0.glb": "21f94254d46c3ae3b8c42345d444f0f96f6f69c51f911f5164fad9a972a398bb",
+    "content/environments/procedural_hanging_v1/web_corner_1.glb": "885463ae3b38415606aa3448101dca7031d1cdfe50989314f11db05e1d3ca380",
+    "content/environments/procedural_hanging_v1/web_corner_2.glb": "eb86d3cb01af5d4f356372a9155b98b78f8bf9b44bc9a0f5c7f5fa1580ade767",
+    "content/environments/procedural_hanging_v1/web_sheet_0.glb": "105fb9b9eb63a32f097ca1c9bc6c75f0ee689c6b03f8a0b5aaaedd05729b9d9c",
+    "content/environments/procedural_hanging_v1/web_sheet_1.glb": "d9a4d63b74b3824bf16905afcef8613705c52fbe985f1fe75cf5dd8580cf4adf",
+    "content/environments/procedural_hanging_v1/web_sheet_2.glb": "4e814d5324c429f0f521a170298f6c827743d537fbfd10abd7828183c2aa851f"
+  },
+  "generator": "scripts/art/build_hanging.py",
+  "limits": {
+    "cloth_triangles": 6000,
+    "max_edge_stretch": 1.05,
+    "max_pin_error_m": 0.002,
+    "settle_motion_m": 0.001
+  },
+  "method": "Blender cloth modifier with gravity; pinned vertices ease from the rest grid onto their sockets over gather_frames through a shape key, the evaluated last frame is baked to a static mesh. Banners, tapestries and drapes collide with an unexported chamfered beam proxy. Webs are pre-draped cards settled under gravity. Ropes are analytic catenary tubes. max_pin_error_m: settled pin vertex to socket. max_edge_stretch: settled / rest edge length. settle_motion_m: largest vertex move over the last frame.",
+  "realtime_physics": false,
+  "seed": 164,
+  "summary": {
+    "assets": 18,
+    "max_cloth_triangles": 4740,
+    "max_edge_stretch": 1.0161676,
+    "max_pin_error_m": 2e-07,
+    "max_settle_motion_m": 0.0008534
+  },
+  "toolkit": "scripts/art/procgen (cloth.py, curves.py, bake.py)",
+  "units": "metres; sockets and bounds in Godot coordinates relative to each GLB origin"
+}

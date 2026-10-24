@@ -1,0 +1,8 @@
+[gd_resource type="ShaderMaterial" format=3]
+
+[ext_resource type="Shader" uid="uid://djtvt0ntlgt0s" path="res://content/environments/procedural_hanging_v1/hanging_cloth.gdshader" id="1"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1")
+shader_parameter/dye = Color(0.24, 0.05, 0.035, 1)
