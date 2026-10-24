@@ -2,44 +2,44 @@
   "axes": "GLB is Godot Y-up metres; origin at the ground centre of the footprint",
   "blender": "5.2.2 LTS",
   "color": "Color.rgb = (1 - 0.8 x (1 - AO baked over 0.3 m)) x per-piece tone (stone 0.84-1.0, wood 0.8-1.0), grey; alpha 1",
-  "command": "blender --factory-startup -b --python-exit-code 1 --python scripts/art/build_rubble.py -- content/environments/procedural_rubble_v1 --review content/environments/red_descent/review/rubble_v1",
+  "command": "blender --factory-startup -b --python-exit-code 1 --python scripts/art/build_rubble.py -- content/environments/procedural_rubble_v1",
   "files": {
-    "content/environments/procedural_rubble_v1/lod/rubble_bridge_debris_s1_lod1.glb": "7c67f729c21f6ae567ad6b84d39818b9130e9ecd06e65af78d7166e49f9f5c92",
-    "content/environments/procedural_rubble_v1/lod/rubble_bridge_debris_s1_lod2.glb": "06519a6fa4c45b9f8917eac152a3783edf9d9f6a4600c22da591457a266c7f7c",
-    "content/environments/procedural_rubble_v1/lod/rubble_bridge_debris_s2_lod1.glb": "eff2abc194dea870912f2ec0ed961d6d2f17aaf46d25276e313d57665c0fed7b",
-    "content/environments/procedural_rubble_v1/lod/rubble_bridge_debris_s2_lod2.glb": "0abf7119606492f4dda88813c2ae64cbe88dfc1a1fdae758a8fce342192668da",
-    "content/environments/procedural_rubble_v1/lod/rubble_bridge_debris_s3_lod1.glb": "c8b1fbe4193061f4832eac1f36e1ef3c7adbec8a7076db22ff1f8aff6b88aabc",
-    "content/environments/procedural_rubble_v1/lod/rubble_bridge_debris_s3_lod2.glb": "1ce475ecb86baec4850177d22e25a4195ffdfdea1f5b0562fa60af77741d0d26",
-    "content/environments/procedural_rubble_v1/lod/rubble_corner_heap_s1_lod1.glb": "1a8b4c4748c65b7f19ae14869478af1ac10673bc601361d16f18faf3789d787a",
-    "content/environments/procedural_rubble_v1/lod/rubble_corner_heap_s1_lod2.glb": "6940a6205e95f6c6f44d0ef3b71e81baa9c527c6fbddde8af04bee29ffc3b185",
-    "content/environments/procedural_rubble_v1/lod/rubble_corner_heap_s2_lod1.glb": "803cee1aa7e6074b5d257b9766b648b7680f82b40a9d1089c23d04479c95e874",
-    "content/environments/procedural_rubble_v1/lod/rubble_corner_heap_s2_lod2.glb": "5280d1fad953228bdf444859de53f13c2749af662c215b637adf382eeb88ce52",
-    "content/environments/procedural_rubble_v1/lod/rubble_corner_heap_s3_lod1.glb": "3e264aa4c8fc301f173f28cd3b6bcf794118f4b21ef11d20c6b00b6f04f4fc29",
-    "content/environments/procedural_rubble_v1/lod/rubble_corner_heap_s3_lod2.glb": "2a048b4b3c0adfa0f6d6c80d553f662ef1e1491b8f16a2d25627f743f6316fa9",
-    "content/environments/procedural_rubble_v1/lod/rubble_floor_scatter_s1_lod1.glb": "48ddb92cc206e1070412919516e27f391d1a2a6bcd03924eb233f877e75bb556",
-    "content/environments/procedural_rubble_v1/lod/rubble_floor_scatter_s1_lod2.glb": "6e4dcf5486ad5cb8a059b58a142c51943d6b8d2bc1c08cac60bd30dfa821d36b",
-    "content/environments/procedural_rubble_v1/lod/rubble_floor_scatter_s2_lod1.glb": "f3f0bbbba0b6b6199bf2dcac77e9a151f3baeab48b64f94d51a9a94e2510152e",
-    "content/environments/procedural_rubble_v1/lod/rubble_floor_scatter_s2_lod2.glb": "ce23f861f5599a29edb873416113a5839c6a4e5721d884897e3f9bd0f47ea1dd",
-    "content/environments/procedural_rubble_v1/lod/rubble_floor_scatter_s3_lod1.glb": "2a45b3edf3dde809f225b3c38eb0319436ead9326d8655516f67a88b6c8563ec",
-    "content/environments/procedural_rubble_v1/lod/rubble_floor_scatter_s3_lod2.glb": "410721c167d99b3ff77ddfe697be6a4aebb7be044863cfde4785cc5406763387",
-    "content/environments/procedural_rubble_v1/lod/rubble_wall_spill_s1_lod1.glb": "3273dc34719ef2a2a95e4f1b30ddf3afdc5e01833582ac7e80ceb469c9618db6",
-    "content/environments/procedural_rubble_v1/lod/rubble_wall_spill_s1_lod2.glb": "3125a3bca09a6b768d850b5c25185a2cb8349a479aa42b7609cb38a05ce6f849",
-    "content/environments/procedural_rubble_v1/lod/rubble_wall_spill_s2_lod1.glb": "4d7593dc8379524139448bf345c3db5100ce5c376e5698b7ee8558bf034dc1a3",
-    "content/environments/procedural_rubble_v1/lod/rubble_wall_spill_s2_lod2.glb": "4c2a26a054888104ea419ee858b2860e173fccc2129841a8361a0c468a70da4c",
-    "content/environments/procedural_rubble_v1/lod/rubble_wall_spill_s3_lod1.glb": "e7fb039bc1b37965d901e78013a8d489dbcc5b064141e1a729ef92c31f024996",
-    "content/environments/procedural_rubble_v1/lod/rubble_wall_spill_s3_lod2.glb": "1f28080eabe67a78e12260bc5f5f436fac42aa57fbb4b636576262cdf63f304a",
-    "content/environments/procedural_rubble_v1/rubble_bridge_debris_s1.glb": "599ea552c0b842c6592817efa4cb9113011d7c05465e21ade8916197092c9690",
-    "content/environments/procedural_rubble_v1/rubble_bridge_debris_s2.glb": "7e7bd381cbce3e37541d1f54c40da7237a90827edb133c5bec7d36ecb3f6d0ea",
-    "content/environments/procedural_rubble_v1/rubble_bridge_debris_s3.glb": "be8c319af3088aba2f2e0892e7238e330114a73fe62b22ba92fb3baed7049d70",
-    "content/environments/procedural_rubble_v1/rubble_corner_heap_s1.glb": "d982455d96d4e91db3d8d533a86a96c297ea745fe70a48891d669c106dae1832",
-    "content/environments/procedural_rubble_v1/rubble_corner_heap_s2.glb": "6d23536f4e8daafddc0f2ecbfa3ec80f4b7209bd5d8a728250e1aa4bf4ccad92",
-    "content/environments/procedural_rubble_v1/rubble_corner_heap_s3.glb": "7e0cc53a45d2b66ce425d9fcef637504237b8c3a6d2cf106f6171933680f0f9a",
-    "content/environments/procedural_rubble_v1/rubble_floor_scatter_s1.glb": "268d96df0e0aff1ba3e95cc037781d1be73e13445505b87f31d596ed4b3bced6",
-    "content/environments/procedural_rubble_v1/rubble_floor_scatter_s2.glb": "398d49fbe8e3650a13009df59999f1943e35f8399a18fc0d118b5e3486e472d7",
-    "content/environments/procedural_rubble_v1/rubble_floor_scatter_s3.glb": "077437bec1a5d27141681db2ac925e247cde561f338a9eccf0d6f37358da7e6a",
-    "content/environments/procedural_rubble_v1/rubble_wall_spill_s1.glb": "caa8ffabf82bcfee45c1c1b536c73da1a77a7a50a6376fde78fb570fe7c9cd97",
-    "content/environments/procedural_rubble_v1/rubble_wall_spill_s2.glb": "8cd662f0b20cb4f55075fd5a68889585e1c00cfd1b7a91bc2a24d11194afc61b",
-    "content/environments/procedural_rubble_v1/rubble_wall_spill_s3.glb": "efa03971f8f4991fc38b8b236c0e7f76611d750da158db12d4bea6055638ee39"
+    "content/environments/procedural_rubble_v1/lod/rubble_bridge_debris_s1_lod1.glb": "bf866a9f8d76541ce89d16d19038d46f8a14e9235181fa20455c3f4382090e7a",
+    "content/environments/procedural_rubble_v1/lod/rubble_bridge_debris_s1_lod2.glb": "422597f01e66efee53650e3097dc5c29781665501713e31c27cd1296cb69199f",
+    "content/environments/procedural_rubble_v1/lod/rubble_bridge_debris_s2_lod1.glb": "a57e8a6050db75cec032500de4acb39c4aa2d8046b93016fc0933e8e5e1e76e5",
+    "content/environments/procedural_rubble_v1/lod/rubble_bridge_debris_s2_lod2.glb": "f701cc9bfc9864eab5b20fbc495fed0b562c499e93e5d3ed52ce1ba961ec0096",
+    "content/environments/procedural_rubble_v1/lod/rubble_bridge_debris_s3_lod1.glb": "4db3466e0cef243b1e4daa33c9382e6caa5405a8286292a4229ec51a88148c2f",
+    "content/environments/procedural_rubble_v1/lod/rubble_bridge_debris_s3_lod2.glb": "1e39ff6a2199c13945d79c998f62dec1638b06381f87468ff24881d0ebda61db",
+    "content/environments/procedural_rubble_v1/lod/rubble_corner_heap_s1_lod1.glb": "bafbde6c75aea9073e1b464bdfd3f7d70d9300b7ed43f3c806da9e1589a5abe7",
+    "content/environments/procedural_rubble_v1/lod/rubble_corner_heap_s1_lod2.glb": "e6d9bf6d609d1389b2ba2cfaadc23de5b36d13f628fe5f663c12d5df253bb93f",
+    "content/environments/procedural_rubble_v1/lod/rubble_corner_heap_s2_lod1.glb": "4c0c50c66f9f0a4372c6ac7c7e7edebd5844f1832ddedec0381c62937134a5b3",
+    "content/environments/procedural_rubble_v1/lod/rubble_corner_heap_s2_lod2.glb": "dc148ea6a3569fb0bcf61f9b0616c20b53e934ed28902fead3a76298fe51c2ce",
+    "content/environments/procedural_rubble_v1/lod/rubble_corner_heap_s3_lod1.glb": "15b663fa0193f868fd6467c46486cc4dc42832c1f22fb05a0367c402d4fdeaf0",
+    "content/environments/procedural_rubble_v1/lod/rubble_corner_heap_s3_lod2.glb": "5ecd9a4902c6f0a854c8bb1a397bdf99921fa46678721f01ab2255caa2ed3be3",
+    "content/environments/procedural_rubble_v1/lod/rubble_floor_scatter_s1_lod1.glb": "6b4d54fc8f1089a336d2d45c0959648455877e03f66f4633b9d002745a80d8a6",
+    "content/environments/procedural_rubble_v1/lod/rubble_floor_scatter_s1_lod2.glb": "670deda3db0fe6803205178ba979ff439a3d82c15d1e9cbe65cf602aafea24e9",
+    "content/environments/procedural_rubble_v1/lod/rubble_floor_scatter_s2_lod1.glb": "479fc04a47bdf843ffb8292c2388d693daf1aee78a56c5eb50ea0210799507e4",
+    "content/environments/procedural_rubble_v1/lod/rubble_floor_scatter_s2_lod2.glb": "c84c6194ccb74ba9aa00a8f37a7af2e8c00215272e8efc597cb17045e339ef05",
+    "content/environments/procedural_rubble_v1/lod/rubble_floor_scatter_s3_lod1.glb": "cec66046790e35905d05578cb70eaa61edd49e228681da653483870cea6a14d2",
+    "content/environments/procedural_rubble_v1/lod/rubble_floor_scatter_s3_lod2.glb": "5a9e2e020f774abfbfdc8074cd5ca4db49e493b8751d750ed5efee8c636bc443",
+    "content/environments/procedural_rubble_v1/lod/rubble_wall_spill_s1_lod1.glb": "73ea6a11109ad36925871fe8c92e30205bd5ddb9db6186d005060ad2a44e741a",
+    "content/environments/procedural_rubble_v1/lod/rubble_wall_spill_s1_lod2.glb": "3ce209fe91354e0ad002e2f4a49fd3cbe84dd223fe980c26cf7da62ba80d8cbd",
+    "content/environments/procedural_rubble_v1/lod/rubble_wall_spill_s2_lod1.glb": "5048c3a8715db411a2739132df2058cf232c7415e56c93ef6aa26a45b97b9cd5",
+    "content/environments/procedural_rubble_v1/lod/rubble_wall_spill_s2_lod2.glb": "db85d27d4fe29a3b24b06ac9fbe034aedd51005f068cb710aaa59d92740724ea",
+    "content/environments/procedural_rubble_v1/lod/rubble_wall_spill_s3_lod1.glb": "a88a7c341cbcc52bdc4a5fe5e8cfa7387505092f445da537b61f6a618a7e3492",
+    "content/environments/procedural_rubble_v1/lod/rubble_wall_spill_s3_lod2.glb": "d6e80c651eddf345aa76be3c91c1183049e5f10bc255bed4a4191da7427b8142",
+    "content/environments/procedural_rubble_v1/rubble_bridge_debris_s1.glb": "3c68b5cbd3a777d47356ec5feb938adf271982da8d7115198c26e80ea9474381",
+    "content/environments/procedural_rubble_v1/rubble_bridge_debris_s2.glb": "8cebc6a9d1ae40bebd67ab08cb235e98a1f4ff7641a8f4b4e82ae0bbddc79ee4",
+    "content/environments/procedural_rubble_v1/rubble_bridge_debris_s3.glb": "bc9ca2398990cdae2e7e78fbaf64ae72e4fceda06fb1784e7d6ce3608b3d39db",
+    "content/environments/procedural_rubble_v1/rubble_corner_heap_s1.glb": "d01521ebe6102c9fd8310d34ddc5f90c602cd543187f9aca353ea1cae0640dd4",
+    "content/environments/procedural_rubble_v1/rubble_corner_heap_s2.glb": "258ed4792c89f8dfe7ed9a03d5b5a573ca9d1fc0cac5da6bb216342d0828a797",
+    "content/environments/procedural_rubble_v1/rubble_corner_heap_s3.glb": "2872d25e4bb4498559dd2a47892c1fd0cb2ddf430c71c0bea42a8a10bc5e2d6a",
+    "content/environments/procedural_rubble_v1/rubble_floor_scatter_s1.glb": "86ec2a423e63c88ce29a4cfd8e3e793ccef129cc0911e81ac025fc370029fdd8",
+    "content/environments/procedural_rubble_v1/rubble_floor_scatter_s2.glb": "e3e0f9968d38f4dc24f9b4a6e0739764176438e8ddbf3e3fec15b52eb8b1c6cf",
+    "content/environments/procedural_rubble_v1/rubble_floor_scatter_s3.glb": "0231d244856b772eee78b50d8c7ec02978be9c0af17462b71f6793501fd7712a",
+    "content/environments/procedural_rubble_v1/rubble_wall_spill_s1.glb": "6f9dbcdca2cabe4f67402a54e55ca55826a8b4098f0089d0daa7b9b1a24662fc",
+    "content/environments/procedural_rubble_v1/rubble_wall_spill_s2.glb": "303049c3ec385585bd95a6decdc2b4b93b893eae7efe36214aaa7f803821b4cf",
+    "content/environments/procedural_rubble_v1/rubble_wall_spill_s3.glb": "bd723cc8e5ca14bea4a3be7cca9afe4449442dbee664ae54077f1cea0f4b1550"
   },
   "generator": "scripts/art/build_rubble.py",
   "limits": {
@@ -84,7 +84,7 @@
           -0.596
         ]
       },
-      "build_seconds": 8.8,
+      "build_seconds": 5.2,
       "collision": {
         "convex_hulls": 24,
         "hull_vertices": 1115,
@@ -170,7 +170,7 @@
           -0.672
         ]
       },
-      "build_seconds": 6.7,
+      "build_seconds": 3.4,
       "collision": {
         "convex_hulls": 24,
         "hull_vertices": 1156,
@@ -256,7 +256,7 @@
           -0.571
         ]
       },
-      "build_seconds": 6.2,
+      "build_seconds": 3.0,
       "collision": {
         "convex_hulls": 24,
         "hull_vertices": 1154,
@@ -326,7 +326,7 @@
     {
       "ao": {
         "Stone": {
-          "mean": 0.424,
+          "mean": 0.425,
           "min": 0.18
         }
       },
@@ -342,7 +342,7 @@
           -0.907
         ]
       },
-      "build_seconds": 10.2,
+      "build_seconds": 6.2,
       "collision": {
         "convex_hulls": 20,
         "hull_vertices": 969,
@@ -440,7 +440,7 @@
           -0.784
         ]
       },
-      "build_seconds": 7.5,
+      "build_seconds": 3.5,
       "collision": {
         "convex_hulls": 21,
         "hull_vertices": 1041,
@@ -538,7 +538,7 @@
           -0.926
         ]
       },
-      "build_seconds": 12.3,
+      "build_seconds": 8.3,
       "collision": {
         "convex_hulls": 25,
         "hull_vertices": 1101,
@@ -639,7 +639,7 @@
           -0.872
         ]
       },
-      "build_seconds": 4.0,
+      "build_seconds": 1.3,
       "collision": {
         "convex_hulls": 20,
         "hull_vertices": 924,
@@ -701,7 +701,7 @@
           "min": 0.18
         },
         "Wood": {
-          "mean": 0.396,
+          "mean": 0.397,
           "min": 0.18
         }
       },
@@ -717,7 +717,7 @@
           -0.833
         ]
       },
-      "build_seconds": 4.5,
+      "build_seconds": 1.4,
       "collision": {
         "convex_hulls": 22,
         "hull_vertices": 1034,
@@ -779,7 +779,7 @@
           "min": 0.18
         },
         "Wood": {
-          "mean": 0.392,
+          "mean": 0.393,
           "min": 0.18
         }
       },
@@ -795,7 +795,7 @@
           -0.888
         ]
       },
-      "build_seconds": 3.9,
+      "build_seconds": 0.9,
       "collision": {
         "convex_hulls": 19,
         "hull_vertices": 848,
@@ -869,7 +869,7 @@
           -1.265
         ]
       },
-      "build_seconds": 3.7,
+      "build_seconds": 0.6,
       "collision": {
         "convex_hulls": 10,
         "hull_vertices": 374,
@@ -942,7 +942,7 @@
           -1.195
         ]
       },
-      "build_seconds": 3.7,
+      "build_seconds": 0.7,
       "collision": {
         "convex_hulls": 15,
         "hull_vertices": 573,
@@ -999,7 +999,7 @@
     {
       "ao": {
         "Stone": {
-          "mean": 0.528,
+          "mean": 0.527,
           "min": 0.18
         }
       },
@@ -1015,7 +1015,7 @@
           -1.296
         ]
       },
-      "build_seconds": 3.6,
+      "build_seconds": 0.6,
       "collision": {
         "convex_hulls": 11,
         "hull_vertices": 425,
@@ -1070,5 +1070,5 @@
       "walls_godot": []
     }
   ],
-  "seconds": 77.2
+  "seconds": 35.1
 }

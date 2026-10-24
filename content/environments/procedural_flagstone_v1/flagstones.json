@@ -126,14 +126,14 @@
     }
   },
   "files": {
-    "content/environments/procedural_flagstone_v1/flagstone_border_a.glb": "5816cbaac697328751f5b79a68d5c72d87df5e0af4a2d792bc6a524f2f6c25e8",
-    "content/environments/procedural_flagstone_v1/flagstone_border_b.glb": "0a195688969bbef636afb0da66c176f446c20d23b4e3621131ea46444e2c0f73",
-    "content/environments/procedural_flagstone_v1/flagstone_coursed_a.glb": "da9d79ea8d63504c8f6d93e0a0f42b141059df628e60abd82747e64026bfe010",
-    "content/environments/procedural_flagstone_v1/flagstone_coursed_b.glb": "9dc1bae0ed1b99e4cf37af614bb2c6e79ef5060245e7ad9e2c7fe66a84ade68d",
-    "content/environments/procedural_flagstone_v1/flagstone_coursed_c.glb": "e1a1b56c92214fee08533fa5631f3c37100e014f3c2c6a7ea303353f3718b386",
-    "content/environments/procedural_flagstone_v1/flagstone_laid_a.glb": "27b13834af1ee658712121039ba745e28a2da63a92d9973873a9a4b21101fcfa",
-    "content/environments/procedural_flagstone_v1/flagstone_laid_b.glb": "e3f0d36f8d6401ec784ee1a2b65814870f68b556a6943ee8dc8c11d32f967514",
-    "content/environments/procedural_flagstone_v1/flagstone_laid_c.glb": "1ef2f626dc06ba96d9e6e6b18b9d375cd6cb5c24af4d21f0ea715326b76ffddb"
+    "content/environments/procedural_flagstone_v1/flagstone_border_a.glb": "9e82e37267fe1425739ddc94a0a6e42a0bb5e657423f23dd65f9f90db1c584ab",
+    "content/environments/procedural_flagstone_v1/flagstone_border_b.glb": "7f4d3e2213db47f643fc6370b96304d16691de2df697ae199149730ec4c92ad0",
+    "content/environments/procedural_flagstone_v1/flagstone_coursed_a.glb": "023748fe20adc1a02004a63c0a1cab2ddb9cd34c5587c7237444eca9fbada8a0",
+    "content/environments/procedural_flagstone_v1/flagstone_coursed_b.glb": "2929144edb3004d835ba8f035c11a57194ce2dae0a204410550a50e1dcd414e7",
+    "content/environments/procedural_flagstone_v1/flagstone_coursed_c.glb": "86dc70439493b1f82421f331c3c2ada9ac2160dea00d3701160a644e8b59bac8",
+    "content/environments/procedural_flagstone_v1/flagstone_laid_a.glb": "d3ea79da326dada29792e173e9bda41c7e9e243a16afaf49128da7d36d7fa782",
+    "content/environments/procedural_flagstone_v1/flagstone_laid_b.glb": "e932b04096a4980be398e302342ad4acdff16d995758659495a8e32af37923de",
+    "content/environments/procedural_flagstone_v1/flagstone_laid_c.glb": "140380d59b22db83ed1f516df773c17fec20bf9de5bec8bb5787a11e592cf2ed"
   },
   "generator": "scripts/art/build_flagstones.py",
   "lod_ranges_m": [
@@ -166,7 +166,7 @@
               "min": 0.2
             },
             "border_a_stones_lod0": {
-              "mean": 0.878,
+              "mean": 0.88,
               "min": 0.2
             }
           },
@@ -207,7 +207,7 @@
               "min": 0.6
             },
             "border_a_stones_lod1": {
-              "mean": 0.83,
+              "mean": 0.832,
               "min": 0.2
             }
           },
@@ -305,11 +305,11 @@
         {
           "ao": {
             "border_b_dirt_lod0": {
-              "mean": 0.521,
+              "mean": 0.522,
               "min": 0.2
             },
             "border_b_stones_lod0": {
-              "mean": 0.883,
+              "mean": 0.887,
               "min": 0.2
             }
           },
@@ -350,8 +350,8 @@
               "min": 0.3
             },
             "border_b_stones_lod1": {
-              "mean": 0.852,
-              "min": 0.2
+              "mean": 0.855,
+              "min": 0.263
             }
           },
           "counts": {
@@ -453,7 +453,7 @@
               "min": 0.2
             },
             "coursed_a_stones_lod0": {
-              "mean": 0.812,
+              "mean": 0.814,
               "min": 0.2
             }
           },
@@ -496,7 +496,7 @@
               "min": 0.2
             },
             "coursed_a_stones_lod1": {
-              "mean": 0.766,
+              "mean": 0.769,
               "min": 0.2
             }
           },
@@ -602,7 +602,7 @@
               "min": 0.2
             },
             "coursed_b_stones_lod0": {
-              "mean": 0.78,
+              "mean": 0.783,
               "min": 0.2
             }
           },
@@ -645,7 +645,7 @@
               "min": 0.2
             },
             "coursed_b_stones_lod1": {
-              "mean": 0.737,
+              "mean": 0.74,
               "min": 0.2
             }
           },
@@ -753,7 +753,7 @@
               "min": 0.2
             },
             "coursed_c_stones_lod0": {
-              "mean": 0.772,
+              "mean": 0.775,
               "min": 0.2
             }
           },
@@ -767,7 +767,7 @@
             "stones": 49
           },
           "level": 0,
-          "seconds": 0.4,
+          "seconds": 0.3,
           "self_seam_mm": {
             "dirt": {
               "x": 0.0,
@@ -796,7 +796,7 @@
               "min": 0.2
             },
             "coursed_c_stones_lod1": {
-              "mean": 0.739,
+              "mean": 0.741,
               "min": 0.2
             }
           },
@@ -810,7 +810,7 @@
             "stones": 49
           },
           "level": 1,
-          "seconds": 0.2,
+          "seconds": 0.1,
           "self_seam_mm": {
             "dirt": {
               "x": 0.0,
@@ -904,7 +904,7 @@
               "min": 0.2
             },
             "laid_a_stones_lod0": {
-              "mean": 0.809,
+              "mean": 0.812,
               "min": 0.2
             }
           },
@@ -947,7 +947,7 @@
               "min": 0.2
             },
             "laid_a_stones_lod1": {
-              "mean": 0.765,
+              "mean": 0.768,
               "min": 0.2
             }
           },
@@ -1054,7 +1054,7 @@
               "min": 0.2
             },
             "laid_b_stones_lod0": {
-              "mean": 0.786,
+              "mean": 0.789,
               "min": 0.2
             }
           },
@@ -1097,7 +1097,7 @@
               "min": 0.2
             },
             "laid_b_stones_lod1": {
-              "mean": 0.744,
+              "mean": 0.748,
               "min": 0.2
             }
           },
@@ -1205,7 +1205,7 @@
               "min": 0.2
             },
             "laid_c_stones_lod0": {
-              "mean": 0.764,
+              "mean": 0.766,
               "min": 0.2
             }
           },
@@ -1248,7 +1248,7 @@
               "min": 0.2
             },
             "laid_c_stones_lod1": {
-              "mean": 0.734,
+              "mean": 0.736,
               "min": 0.2
             }
           },
@@ -1343,13 +1343,7 @@
       ]
     }
   },
-  "renders": [
-    "content/environments/red_descent/review/flagstone_v1/blender_laid_overview.png",
-    "content/environments/red_descent/review/flagstone_v1/blender_laid_torch.png",
-    "content/environments/red_descent/review/flagstone_v1/blender_coursed_overview.png",
-    "content/environments/red_descent/review/flagstone_v1/blender_coursed_torch.png",
-    "content/environments/red_descent/review/flagstone_v1/blender_border_overview.png"
-  ],
+  "renders": [],
   "seed": 165,
   "triangle_budget": [
     20000,

@@ -58,7 +58,7 @@
         -1.556,
         -0.012
       ],
-      "sim_seconds": 2.64,
+      "sim_seconds": 2.65,
       "size_m": [
         0.7,
         1.7
@@ -312,7 +312,7 @@
         -1.118,
         -0.004
       ],
-      "sim_seconds": 4.09,
+      "sim_seconds": 4.04,
       "size_m": [
         1.8,
         1.3
@@ -400,7 +400,7 @@
         -0.057,
         -0.003
       ],
-      "sim_seconds": 4.27,
+      "sim_seconds": 4.29,
       "size_m": [
         2.4,
         1.6
@@ -488,7 +488,7 @@
         -0.1,
         -0.002
       ],
-      "sim_seconds": 4.01,
+      "sim_seconds": 4.02,
       "size_m": [
         1.4,
         1.9
@@ -692,7 +692,7 @@
         0.28,
         -0.057
       ],
-      "sim_seconds": 12.48,
+      "sim_seconds": 12.07,
       "size_m": [
         1.4,
         2.6
@@ -789,7 +789,7 @@
         0.196,
         0.245
       ],
-      "sim_seconds": 10.98,
+      "sim_seconds": 10.73,
       "size_m": [
         0.9,
         1.8
@@ -961,7 +961,7 @@
         -0.012,
         0.044
       ],
-      "sim_seconds": 0.37,
+      "sim_seconds": 0.38,
       "size_m": [
         0.8,
         0.7
@@ -1050,7 +1050,7 @@
         -0.469,
         0.034
       ],
-      "sim_seconds": 0.36,
+      "sim_seconds": 0.37,
       "size_m": [
         0.6,
         0.75
@@ -1139,7 +1139,7 @@
         -0.185,
         -0.229
       ],
-      "sim_seconds": 1.22,
+      "sim_seconds": 1.25,
       "size_m": [
         0.9,
         1.35
@@ -1233,7 +1233,7 @@
         -0.139,
         -0.117
       ],
-      "sim_seconds": 0.9,
+      "sim_seconds": 0.91,
       "size_m": [
         0.6,
         0.783
@@ -1327,7 +1327,7 @@
         -0.451,
         0.004
       ],
-      "sim_seconds": 1.62,
+      "sim_seconds": 1.6,
       "size_m": [
         1.3,
         1.662
@@ -1365,7 +1365,7 @@
     },
     {
       "ao": {
-        "mean": 0.764,
+        "mean": 0.779,
         "min": 0.18
       },
       "bounds_godot": {
@@ -1415,7 +1415,7 @@
     },
     {
       "ao": {
-        "mean": 0.761,
+        "mean": 0.773,
         "min": 0.18
       },
       "bounds_godot": {
@@ -1465,7 +1465,7 @@
     },
     {
       "ao": {
-        "mean": 0.778,
+        "mean": 0.785,
         "min": 0.18
       },
       "bounds_godot": {
@@ -1524,9 +1524,9 @@
     "content/environments/procedural_hanging_v1/drape_0.glb": "1b2fcf654ae90e033a7b1f3728fa731bd25bf1e0a88664a985c1a0b07cd9236e",
     "content/environments/procedural_hanging_v1/drape_1.glb": "956d74d4090d8f5039985aa15ee11d21407da62ef3cb8a39a2315ff8e04b816b",
     "content/environments/procedural_hanging_v1/drape_2.glb": "f4432e54f4804b92f7e3dcf6fb248e5105de05587c443ca0662f5df108dda4f7",
-    "content/environments/procedural_hanging_v1/rope_0.glb": "7ce9b718a7eb71e8096b2038b73d5db59c18a3c12a4b4c642847c1e6cfdd04fa",
-    "content/environments/procedural_hanging_v1/rope_1.glb": "b6f58f88d82274269c6283a7abf6609efcf2bf219fa49bdd7e5edad2b77fb152",
-    "content/environments/procedural_hanging_v1/rope_2.glb": "a107c698322bc8c97a24123eb65f6f5093330695b86f3b8ea095470d1e019364",
+    "content/environments/procedural_hanging_v1/rope_0.glb": "6db153e6b9f084e61c72f7887fa87ab053bd711efeedce6ee91f4f8971376606",
+    "content/environments/procedural_hanging_v1/rope_1.glb": "6ceeed08c0d06be1916df18d983ace9b744be8a68362ccb2ae7b6f4bf9e15845",
+    "content/environments/procedural_hanging_v1/rope_2.glb": "6ae03ce422f3c7d1089054e415f0b84feffbc2637ad673dfd6021f4b59c41d3c",
     "content/environments/procedural_hanging_v1/tapestry_0.glb": "a92ead7155f344595113dd675da90244ca830aed363efd81d69bb5bba3a00aab",
     "content/environments/procedural_hanging_v1/tapestry_1.glb": "b139df1069681dd27b1fa4c5ef902d465447fd4ad4e573444c0b7f42f2ca81cd",
     "content/environments/procedural_hanging_v1/tapestry_2.glb": "9e4d91bbc8bb0f129d50995abeb61752d246894e4fad82243880d692a05b4309",
