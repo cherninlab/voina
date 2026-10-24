@@ -7,15 +7,15 @@ uniform sampler2D normal_map : hint_normal, filter_linear_mipmap_anisotropic, re
 uniform sampler2D roughness_map : filter_linear_mipmap_anisotropic, repeat_enable;
 // 0.5 repeats per metre: 2048 px maps give 1024 px/m, and a 4 m module holds whole repeats.
 uniform float repeats_per_metre = 0.5;
-uniform vec3 tint : source_color = vec3(0.7, 0.66, 0.6);
+uniform vec3 tint : source_color = vec3(0.88, 0.85, 0.80);
 uniform vec3 warm : source_color = vec3(1.0, 0.93, 0.84);
 uniform vec3 cool : source_color = vec3(0.88, 0.91, 0.94);
-uniform float variation = 0.26;
+uniform float variation = 0.14;
 uniform float wear_light = 0.22;
-uniform float ao_albedo = 0.75;
+uniform float ao_albedo = 0.25;
 uniform float normal_strength = 0.4;
 uniform float roughness_min = 0.62;
-uniform float grime = 0.28;
+uniform float grime = 0.15;
 uniform bool dirt = false;
 #ifdef CLIP
 // Convex outline in world x/z: a fragment survives when dot(p.xz, plane.xy) <= plane.z for all planes.

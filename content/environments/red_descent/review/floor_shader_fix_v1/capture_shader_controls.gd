@@ -32,8 +32,10 @@ func capture() -> void:
 		printerr("SHADER_CAPTURE_FAIL: no room floor materials; scene did not build")
 		quit(1)
 		return
+	var original_shaders: Array[Shader] = []
 	var clipped: Array[bool] = []
 	for material: ShaderMaterial in materials:
+		original_shaders.append(material.shader)
 		clipped.append(material.shader.resource_path.ends_with("flagstone_clipped.gdshader"))
 	var dungeon: Node = world.get_node("CinderCrypt")
 	var original_shadows: Dictionary[Light3D, bool] = {}
@@ -67,6 +69,11 @@ func capture() -> void:
 			body = body.replace("color *= mix(1.0 - grime, 1.0, broad) * mix(0.93, 1.04, fine);", "color *= 1.0;")
 		elif mode == "flat-texture":
 			body = body.replace("vec3 base = texture(albedo_map, uv).rgb;", "vec3 base = vec3(0.5);")
+		elif mode == "material-calibration":
+			body = body.replace("vec3(0.7, 0.66, 0.6)", "vec3(0.88, 0.85, 0.80)")
+			body = body.replace("uniform float variation = 0.26;", "uniform float variation = 0.14;")
+			body = body.replace("uniform float ao_albedo = 0.75;", "uniform float ao_albedo = 0.25;")
+			body = body.replace("uniform float grime = 0.28;", "uniform float grime = 0.15;")
 		elif mode == "constant-albedo":
 			body = body.replace("ALBEDO = color * mix(1.0, COLOR.r, ao_albedo);", "ALBEDO = vec3(0.3);")
 		elif mode == "albedo-only":
@@ -88,7 +95,7 @@ func capture() -> void:
 		var clipped_shader: Shader = Shader.new()
 		clipped_shader.code = "shader_type spatial;\n#define CLIP\n" + body
 		for index: int in range(materials.size()):
-			materials[index].shader = clipped_shader if clipped[index] else regular_shader
+			materials[index].shader = original_shaders[index] if mode == "production" else (clipped_shader if clipped[index] else regular_shader)
 		var directory: String = REVIEW + mode
 		DirAccess.make_dir_recursive_absolute(directory)
 		for view: Array in views:
@@ -103,6 +110,13 @@ func capture() -> void:
 				for light: Light3D in original_shadows:
 					assert(not light.shadow_enabled, "SHADER_CAPTURE_FAIL: shadows re-enabled")
 				print("SHADER_SHADOWS_ASSERT_OK: ", original_shadows.size(), " lights remain off; dungeon processing frozen")
+			if mode == "material-calibration" or mode == "production":
+				assert(dungeon.is_processing(), "SHADER_CAPTURE_FAIL: dungeon updater frozen")
+				var shadow_lights: int = 0
+				for light: Light3D in original_shadows:
+					shadow_lights += 1 if light.shadow_enabled else 0
+				assert(shadow_lights > 0, "SHADER_CAPTURE_FAIL: live shadows absent")
+				print("SHADER_LIVE_LIGHTS_ASSERT_OK: ", shadow_lights, " shadow lights; dungeon processing enabled")
 			RenderingServer.force_draw()
 			var destination: String = directory.path_join(String(view[0]) + ".png")
 			var capture_image: Image = root.get_texture().get_image()

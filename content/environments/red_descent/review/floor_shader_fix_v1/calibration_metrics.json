@@ -1,0 +1,80 @@
+{
+  "note": "PNG output RGB luminance; not linear HDR or raw ALBEDO. Fixed floor rectangles include joints/shadows and some shared props. Same camera poses and default light/shadow updater; small flame flicker can vary scene lighting.",
+  "comparison_mode": "material-calibration",
+  "settings": {
+    "tint": [
+      0.88,
+      0.85,
+      0.8
+    ],
+    "variation": 0.14,
+    "ao_albedo": 0.25,
+    "grime": 0.15
+  },
+  "runtime_override_candidate": true,
+  "results": [
+    {
+      "view": "13-chapel-spill",
+      "roi_xyxy": [
+        0,
+        500,
+        1440,
+        900
+      ],
+      "baseline": {
+        "mean_display_luminance": 0.06643033380310458,
+        "p05_display_luminance": 0.032489411764705885,
+        "below_0_025_fraction": 0.013043402777777777,
+        "below_0_05_fraction": 0.16005208333333334
+      },
+      "material-calibration": {
+        "mean_display_luminance": 0.10214656588099127,
+        "p05_display_luminance": 0.07644941176470588,
+        "below_0_025_fraction": 0.0010434027777777779,
+        "below_0_05_fraction": 0.009192708333333334
+      }
+    },
+    {
+      "view": "10-restraint-frame",
+      "roi_xyxy": [
+        0,
+        650,
+        1440,
+        900
+      ],
+      "baseline": {
+        "mean_display_luminance": 0.09604027819389978,
+        "p05_display_luminance": 0.013112941176470588,
+        "below_0_025_fraction": 0.05460555555555555,
+        "below_0_05_fraction": 0.2055722222222222
+      },
+      "material-calibration": {
+        "mean_display_luminance": 0.11711790544880174,
+        "p05_display_luminance": 0.017369411764705883,
+        "below_0_025_fraction": 0.05145,
+        "below_0_05_fraction": 0.08823611111111111
+      }
+    },
+    {
+      "view": "04-broken-nave",
+      "roi_xyxy": [
+        0,
+        700,
+        1440,
+        900
+      ],
+      "baseline": {
+        "mean_display_luminance": 0.07080113048202615,
+        "p05_display_luminance": 0.03529411764705883,
+        "below_0_025_fraction": 0.006302083333333333,
+        "below_0_05_fraction": 0.15291319444444446
+      },
+      "material-calibration": {
+        "mean_display_luminance": 0.10636816622004357,
+        "p05_display_luminance": 0.07227607843137254,
+        "below_0_025_fraction": 0.002701388888888889,
+        "below_0_05_fraction": 0.009777777777777778
+      }
+    }
+  ]
+}
