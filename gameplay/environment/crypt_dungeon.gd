@@ -19,7 +19,7 @@ func _ready() -> void:
 	iron.set_shader_parameter("metallic_map", load(PBR + "Metal041B/metallic.png"))
 	iron.set_shader_parameter("metallic_amount", 1.0)
 	iron.set_shader_parameter("dry_roughness_min", 0.28)
-	var wood: ShaderMaterial = surface(PBR + "Wood035/", 0.65, 0.65, 0.68)
+	var wood: ShaderMaterial = surface(PBR + "Wood035/", 0.65, 0.65, 1.3, Vector3(0.85, 0.9, 0.95))
 	wood.set_shader_parameter("timber", true)
 	wood.set_shader_parameter("relief_m", 0.009)
 	wood.set_shader_parameter("dry_roughness_min", 0.75)
@@ -32,18 +32,16 @@ func _ready() -> void:
 	cloth.roughness = 1.0
 	cloth.cull_mode = BaseMaterial3D.CULL_DISABLED
 	architecture.materials = {
-		"stone": surface(PBR + "Bricks089/", 0.16, 0.7, 0.22),
-		"wall": surface(PBR + "Bricks089/", 0.16, 0.7, 0.5),
-		"plaster": surface(PBR + "Concrete012/", 0.4, 0.6, 0.25),
-		"red_plaster": surface(PBR + "Concrete012/", 0.4, 0.6),
-		"trim": surface(PBR + "Bricks083/", 0.33, 0.6),
-		"floor": surface(PBR + "Rocks025/", 0.526, 0.8, 0.4),
-		"rock": surface(PBR + "marble_rock_03/", 0.555, 0.85, 0.3),
+		"stone": surface(PBR + "Bricks089/", 0.16, 0.7, 0.8, Vector3(0.84, 0.9, 1.0)),
+		"wall": surface(PBR + "Bricks089/", 0.16, 0.7, 1.0, Vector3(0.84, 0.9, 1.0)),
+		"plaster": surface(PBR + "Concrete012/", 0.4, 0.6, 0.6, Vector3(0.86, 0.9, 0.95)),
+		"red_plaster": surface(PBR + "Concrete012/", 0.4, 0.6, 0.5, Vector3(0.55, 0.055, 0.025)),
+		"trim": surface(PBR + "Bricks083/", 0.33, 0.6, 0.5, Vector3(0.58, 0.56, 0.52)),
+		"floor": surface(PBR + "Rocks025/", 0.526, 0.8, 1.4, Vector3(0.85, 0.9, 0.98)),
+		"rock": surface(PBR + "marble_rock_03/", 0.555, 0.85, 1.4, Vector3(0.78, 0.9, 1.0)),
 		"wood": wood, "iron": iron, "dark": dark, "cloth": cloth,
 		"core_stone": GeneratedDungeonKit.material("wall_panel"),
 	}
-	(architecture.materials["trim"] as ShaderMaterial).set_shader_parameter("tint", Vector3(0.62, 0.57, 0.47))
-	(architecture.materials["red_plaster"] as ShaderMaterial).set_shader_parameter("tint", Vector3(0.55, 0.055, 0.025))
 	for family: String in ["plaster", "red_plaster"]:
 		var plaster: ShaderMaterial = architecture.materials[family] as ShaderMaterial
 		plaster.set_shader_parameter("plaster", 1.0)
@@ -92,7 +90,10 @@ func _ready() -> void:
 	objective.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	layer.add_child(objective)
 
-func surface(folder: String, density: float, relief: float, damp: float = 0.0) -> ShaderMaterial:
+## damp scales the shader's wet-patch mask, which it already scales by 0.65 above y -24, so 1.4
+## makes upper floors fully wet where the mask says; tint pulls each scan toward cold grey
+## stone (docs/red-descent-grade.md).
+func surface(folder: String, density: float, relief: float, damp: float = 0.0, tint: Vector3 = Vector3.ONE) -> ShaderMaterial:
 	var material: ShaderMaterial = ShaderMaterial.new()
 	material.shader = preload("res://content/environments/red_descent/dungeon_surface.gdshader")
 	var albedo: Texture2D = load(folder + "albedo.png") as Texture2D
@@ -109,32 +110,49 @@ func surface(folder: String, density: float, relief: float, damp: float = 0.0) -
 	material.set_shader_parameter("scale", density)
 	material.set_shader_parameter("normal_strength", relief)
 	material.set_shader_parameter("wetness", damp)
+	material.set_shader_parameter("tint", tint)
 	return material
 
 func atmosphere() -> void:
+	# Grade toward Theo's paintovers (docs/red-descent-grade.md): torches are the light, a dim
+	# neutral fill keeps unlit stone grey, and depth fades into green-grey haze.
 	var environment: Environment = Environment.new()
+	var haze: Color = Color(0.11, 0.145, 0.13)
 	environment.background_mode = Environment.BG_COLOR
-	environment.background_color = Color(0.009, 0.005, 0.005)
+	environment.background_color = haze
 	environment.ambient_light_source = Environment.AMBIENT_SOURCE_COLOR
-	environment.ambient_light_color = Color(0.36, 0.43, 0.46)
-	environment.ambient_light_energy = 0.36
+	environment.ambient_light_color = Color(0.52, 0.53, 0.5)
+	environment.ambient_light_energy = 0.16
 	environment.tonemap_mode = Environment.TONE_MAPPER_FILMIC
-	environment.tonemap_exposure = 1.15
+	environment.tonemap_exposure = 1.0
+	# Mobile has no volumetric fog: thin distance fog leaves near stone unveiled, and height
+	# fog that thickens below the lowest crossing (y -26) fills the abyss under the bridges.
 	environment.fog_enabled = true
-	environment.fog_light_color = Color(0.075, 0.009, 0.005)
-	environment.fog_light_energy = 0.8
-	environment.fog_density = 0.009
+	environment.fog_light_color = haze
+	environment.fog_light_energy = 1.0
+	environment.fog_density = 0.006
+	environment.fog_height = -26.0
+	environment.fog_height_density = 0.13
+	# Flames, flame-lit niches and the brightest wet glints bloom into soft warm halos.
+	environment.glow_enabled = true
+	environment.glow_intensity = 1.0
+	environment.glow_hdr_threshold = 0.7
+	environment.set_glow_level(5, 0.8) # level 6: a wider, softer halo
+	environment.glow_blend_mode = Environment.GLOW_BLEND_MODE_SCREEN
+	environment.adjustment_enabled = true
+	environment.adjustment_saturation = 0.92
 	var world_environment: WorldEnvironment = WorldEnvironment.new()
 	world_environment.environment = environment
 	add_child(world_environment)
-	# Faint reflected light in the depths lets crossings read against the dark walls.
-	for at: Vector3 in [Vector3(0, -34, -8), Vector3(14, -43, 9), Vector3(0, -20, 0), Vector3(14, -31, 4)]:
+	# Red light from the shaft depths: short, strong lights well below the crossings show
+	# through the height fog as a dull glow; one more fills the deep choir behind its doorway.
+	for at: Vector3 in [Vector3(-12, -38, -14), Vector3(16, -38, 14), Vector3(-10, -39, 16), Vector3(14, -39, -16), Vector3(36, -25, -2)]:
 		var glow: OmniLight3D = OmniLight3D.new()
 		glow.position = at
-		glow.light_color = Color(0.13, 0.3, 0.26) if at.y < -40.0 else Color(0.55, 0.13, 0.065)
-		glow.light_energy = 1.6
-		glow.omni_range = 26
-		glow.omni_attenuation = 1.3
+		glow.light_color = Color(0.85, 0.16, 0.06)
+		glow.light_energy = 8.0 if at.y < -30.0 else 3.0
+		glow.omni_range = 15.0 if at.y < -30.0 else 16.0
+		glow.omni_attenuation = 1.2 if at.y < -30.0 else 1.5
 		add_child(glow)
 	var water_mesh: PlaneMesh = PlaneMesh.new()
 	water_mesh.size = Vector2(92, 100)
@@ -148,8 +166,20 @@ func atmosphere() -> void:
 	add_child(water)
 
 func torch(at: Vector3) -> void:
+	const CUP_LAYER: int = 1 << 19 # render layer 20: torch cups, unlit by their own flames
 	architecture.piece(Vector3(0.16, 1.45, 0.16), at + Vector3.UP * 0.72, "wood")
-	architecture.piece(Vector3(0.36, 0.25, 0.36), at + Vector3.UP * 1.48, "iron")
+	# The cup casts no shadow, or its own flame prints a black square under every torch where
+	# the pool of light should be. It sits on a render layer the torch lights skip, so the
+	# flame half a metre above does not burn its top white either.
+	var box: BoxMesh = BoxMesh.new()
+	box.size = Vector3(0.36, 0.25, 0.36)
+	var cup: MeshInstance3D = MeshInstance3D.new()
+	cup.mesh = box
+	cup.material_override = architecture.materials["iron"]
+	cup.position = at + Vector3.UP * 1.48
+	cup.cast_shadow = GeometryInstance3D.SHADOW_CASTING_SETTING_OFF
+	cup.layers = CUP_LAYER
+	add_child(cup)
 	var material: ShaderMaterial = ShaderMaterial.new()
 	material.shader = preload("res://content/environments/church_road/torch_flame.gdshader")
 	var quad: QuadMesh = QuadMesh.new()
@@ -163,10 +193,15 @@ func torch(at: Vector3) -> void:
 	add_child(flame)
 	var light: OmniLight3D = OmniLight3D.new()
 	light.position = at + Vector3.UP * 2.1
-	light.light_color = Color(1.0, 0.63, 0.3)
-	light.light_energy = 3.6
-	light.omni_range = 10.5
-	light.omni_attenuation = 1.25
+	# Steeper than inverse-square falloff gives each torch its own amber pool with dark gaps
+	# between, so vaults and corners drop toward black; full specular lets wet patches glint.
+	# Red minus blue stays above 0.5 so ui/shading_lighting.gd still treats it as a fire.
+	light.light_color = Color(1.0, 0.62, 0.34)
+	light.light_energy = 8.0
+	light.omni_range = 12.0
+	light.omni_attenuation = 2.5
+	light.light_specular = 1.0
+	light.light_cull_mask = ~CUP_LAYER & 0xFFFFF
 	add_child(light)
 	fires.append(light)
 
