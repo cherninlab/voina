@@ -11,7 +11,7 @@ const LONG_GRASS: String = "long_grass"
 const IDS: Array[String] = [VILLAGE, CRYPT, WHITE_ROOM, LONG_GRASS]
 const TITLES: Array[String] = ["Village", "Cinder Crypt", "White Room", "Long Grass"]
 # A shading theme (ui/shading.gd) the map is shown in; empty keeps the player's own.
-const SHADING: Array[String] = ["", "", "Overexposed", ""]
+const SHADING: Array[String] = ["", "Natural", "Overexposed", ""]
 # Per map, per theme: shading values laid over that theme's defaults on this map only, so a theme
 # tuned for daylight still reads on a night map. Map id -> {theme name -> {param: value}}.
 const SHADING_ADJUST: Dictionary = {

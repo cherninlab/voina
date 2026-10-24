@@ -70,9 +70,10 @@ func run() -> void:
 	check(await wait_for(func() -> bool: return int(mobs().get("alive")) >= 2, 900), "Raiders keep coming after the room is cleared")
 	await host_map(GameMaps.CRYPT)
 	check(world.has_node("CinderCrypt") and not world.has_node("WhiteRoom") and mobs().name == "Mobs", "The crypt replaces the white room")
-	check(str(shading().call("theme_name")) == own_theme, "Leaving the white room restores the player's theme")
+	check(str(shading().call("theme_name")) == "Natural" and str(shading().call("preferred_theme_name")) == own_theme, "The crypt preserves its practical lighting and the player's saved theme")
 	check(mobs().raiders.get_child_count() == 5 and int(mobs().get("remaining")) == 5, "The crypt starts its five cultists")
 	await host_map(GameMaps.VILLAGE)
+	check(str(shading().call("theme_name")) == own_theme, "Leaving an indoor map restores the player's theme")
 	check(world.has_node("WoodlandVillage") and not world.has_node("CinderCrypt") and Wildlife.is_in_group("match_world"), "The village comes back, birds included")
 	# Birds start only when the world is the main scene (Wildlife.host_started); here it is not.
 	check(await wait_for(func() -> bool: return mobs().bodies.get_child_count() == MobSystem.COUNT, 600), "The village encounter starts")
