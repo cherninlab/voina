@@ -1,0 +1,141 @@
+{
+	"convex_bodies": 149,
+	"failures": [],
+	"hangings": 10,
+	"max_pin_to_nominal_framing_gap_m": 0.00599998235702515,
+	"max_pin_to_sculpted_surface_m": 0.00555459409952164,
+	"max_socket_transform_error_m": 0.000000476837158203125,
+	"max_web_to_sculpted_surface_m": 0.00138224882539362,
+	"min_pile_to_route_ribbon_m": 1.18205642700195,
+	"piles": 8,
+	"placements": [
+		{
+			"asset": "content/environments/procedural_rubble_v1/rubble_wall_spill_s2.glb",
+			"id": "rubble_wall_spill_s2",
+			"kind": "rubble",
+			"origin": "(3.0, -10.0, -41.8765)",
+			"ribbon_clearance_m": 6.67829303741455
+		},
+		{
+			"asset": "content/environments/procedural_rubble_v1/rubble_wall_spill_s1.glb",
+			"id": "rubble_wall_spill_s1",
+			"kind": "rubble",
+			"origin": "(0.0, -18.0, 47.9524)",
+			"ribbon_clearance_m": 5.15849256515503
+		},
+		{
+			"asset": "content/environments/procedural_rubble_v1/rubble_wall_spill_s3.glb",
+			"id": "rubble_wall_spill_s3",
+			"kind": "rubble",
+			"origin": "(-40.9771, -10.0, -34.0)",
+			"ribbon_clearance_m": 5.92199611663818
+		},
+		{
+			"asset": "content/environments/procedural_rubble_v1/rubble_floor_scatter_s2.glb",
+			"id": "rubble_floor_scatter_s2",
+			"kind": "rubble",
+			"origin": "(-43.0, 0.0, -29.0)",
+			"ribbon_clearance_m": 1.30500030517578
+		},
+		{
+			"asset": "content/environments/procedural_rubble_v1/rubble_floor_scatter_s3.glb",
+			"id": "rubble_floor_scatter_s3",
+			"kind": "rubble",
+			"origin": "(-24.0, 0.0, -28.0)",
+			"ribbon_clearance_m": 1.18205642700195
+		},
+		{
+			"asset": "content/environments/procedural_rubble_v1/rubble_floor_scatter_s1.glb",
+			"id": "rubble_floor_scatter_s1",
+			"kind": "rubble",
+			"origin": "(29.5, -4.0, -15.0)",
+			"ribbon_clearance_m": 1.72098903656006
+		},
+		{
+			"asset": "content/environments/procedural_rubble_v1/rubble_bridge_debris_s2.glb",
+			"id": "rubble_bridge_debris_s2",
+			"kind": "rubble",
+			"origin": "(40.0, -18.0, 33.0)",
+			"ribbon_clearance_m": 1.45271348953247
+		},
+		{
+			"asset": "content/environments/procedural_rubble_v1/rubble_bridge_debris_s3.glb",
+			"id": "rubble_bridge_debris_s3",
+			"kind": "rubble",
+			"origin": "(30.0, -28.0, -8.0)",
+			"ribbon_clearance_m": 6.1290771484375
+		},
+		{
+			"asset": "content/environments/procedural_hanging_v1/banner_1.glb",
+			"id": "nave_banner",
+			"kind": "hanging",
+			"material": "cloth_crimson",
+			"origin": "(-8.008, -0.575, 38.5)"
+		},
+		{
+			"asset": "content/environments/procedural_hanging_v1/drape_1.glb",
+			"id": "nave_drape",
+			"kind": "hanging",
+			"material": "cloth_ash",
+			"origin": "(-4.004, -0.3, 38.5)"
+		},
+		{
+			"asset": "content/environments/procedural_hanging_v1/tapestry_1.glb",
+			"id": "nave_tapestry",
+			"kind": "hanging",
+			"material": "cloth_crimson",
+			"origin": "(4.576001, -0.575, 38.5)"
+		},
+		{
+			"asset": "content/environments/procedural_hanging_v1/banner_0.glb",
+			"id": "nave_pennant",
+			"kind": "hanging",
+			"material": "cloth_ochre",
+			"origin": "(8.580001, -0.575, 38.5)"
+		},
+		{
+			"asset": "content/environments/procedural_hanging_v1/web_corner_2.glb",
+			"id": "nave_web",
+			"kind": "hanging",
+			"material": "cobweb_corner",
+			"origin": "(-0.13, -0.025, 38.5)"
+		},
+		{
+			"asset": "content/environments/procedural_hanging_v1/banner_1.glb",
+			"id": "bell_banner",
+			"kind": "hanging",
+			"material": "cloth_ochre",
+			"origin": "(29.8, -10.2, 38.0)"
+		},
+		{
+			"asset": "content/environments/procedural_hanging_v1/tapestry_2.glb",
+			"id": "bell_tapestry",
+			"kind": "hanging",
+			"material": "cloth_crimson",
+			"origin": "(34.15, -10.2, 38.0)"
+		},
+		{
+			"asset": "content/environments/procedural_hanging_v1/banner_2.glb",
+			"id": "restraint_banner",
+			"kind": "hanging",
+			"material": "cloth_ash",
+			"origin": "(39.45, -1.08, -13.0)"
+		},
+		{
+			"asset": "content/environments/procedural_hanging_v1/rope_2.glb",
+			"id": "restraint_rope",
+			"kind": "hanging",
+			"material": "rope_hemp",
+			"origin": "(39.3, -0.9, -12.8)"
+		},
+		{
+			"asset": "content/environments/procedural_hanging_v1/web_corner_2.glb",
+			"id": "restraint_web",
+			"kind": "hanging",
+			"material": "cobweb_corner",
+			"origin": "(39.07, -1.08, -12.86)"
+		}
+	],
+	"practical_masonry_anchors": 4,
+	"room_floors": 11
+}

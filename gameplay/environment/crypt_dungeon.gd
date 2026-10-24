@@ -6,6 +6,7 @@ const NAVE: String = "res://content/environments/red_nave_v1/"
 const BRIDGE: String = "res://content/environments/bridge_well_v1/"
 const PBR: String = "res://content/environments/dungeon_pbr_v2/"
 var architecture: RedDescentGeometry
+var dressing: RedDescentDressing
 var objective: Label = Label.new()
 var fires: Array[OmniLight3D] = []
 var light_timer: float = 0.0
@@ -58,6 +59,9 @@ func _ready() -> void:
 	for at: Vector3 in architecture.torch_posts:
 		torch(at)
 	build_landmarks()
+	dressing = RedDescentDressing.new()
+	add_child(dressing)
+	dressing.build(self)
 	architecture.flush()
 	# Static local reflections give wet timber and iron the surrounding architecture's light.
 	for position_size: Array in [
@@ -177,8 +181,10 @@ func build_landmarks() -> void:
 	# A simple physical restraint frame in the upper hall, set clear of the walking line.
 	var frame: Vector3 = RedDescentLayout.at(Vector3(90, -4, 37))
 	for side: float in [-1.0, 1.0]:
-		architecture.piece(Vector3(0.34, 3.7, 0.34), frame + Vector3(side * 1.1, 1.85, 0), "wood", Basis.IDENTITY, true)
-	architecture.piece(Vector3(2.8, 0.36, 0.4), frame + Vector3.UP * 3.1, "wood")
+		var foot: Vector3 = frame + Vector3(side * 1.1, 0, 0)
+		architecture.piece(Vector3(0.34, 3.7, 0.34), foot + Vector3.UP * 1.85, "collision", Basis.IDENTITY, true)
+		architecture.structure.timber(foot, foot + Vector3.UP * 3.7, 0.34, 0.34, "restraint post")
+	architecture.structure.timber(frame + Vector3(-1.4, 3.1, 0), frame + Vector3(1.4, 3.1, 0), 0.4, 0.36, "restraint beam")
 	var altar: Vector3 = RedDescentLayout.at(Vector3(88, -28, 41))
 	architecture.piece(Vector3(3.4, 1.1, 1.6), altar + Vector3.UP * 0.55, "stone", Basis.IDENTITY, true)
 	architecture.piece(Vector3(3.8, 0.25, 2), altar + Vector3.UP * 1.2, "trim", Basis.IDENTITY, true)
@@ -195,7 +201,7 @@ func build_landmarks() -> void:
 		architecture.structure.timber(foot, foot + Vector3.UP * 8.0, 0.48, 0.48, "bell post")
 		architecture.structure.timber(foot + Vector3.UP * 6.0, bell_at + Vector3(side * 3.0, 2, 0), 0.28, 0.28, "bell knee")
 		architecture.piece(Vector3(0.9, 0.4, 0.9), foot + Vector3.UP * 0.2, "trim")
-	architecture.beam(bell_at + Vector3(-5, 2, 0), bell_at + Vector3(5, 2, 0), 0.4, "wood")
+	architecture.structure.timber(bell_at + Vector3(-5, 2, 0), bell_at + Vector3(5, 2, 0), 0.4, 0.4, "bell beam")
 	architecture.beam(bell_at + Vector3.UP * 2, bell_at, 0.07, "iron")
 	var bell: CylinderMesh = CylinderMesh.new()
 	bell.top_radius = 0.38

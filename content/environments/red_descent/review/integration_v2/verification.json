@@ -1,0 +1,86 @@
+{
+  "verified_utc": "2026-10-24T14:33:10Z",
+  "checks": [
+    {
+      "name": "import",
+      "exit_code": 0,
+      "marker": null,
+      "passed": true,
+      "warnings": []
+    },
+    {
+      "name": "dressing",
+      "exit_code": 0,
+      "marker": "DUNGEON_DRESSING_OK:",
+      "passed": true,
+      "warnings": [
+        "WARNING: 1 ObjectDB instance was leaked at exit (run with `--verbose` for details)."
+      ]
+    },
+    {
+      "name": "structure",
+      "exit_code": 0,
+      "marker": "DUNGEON_STRUCTURE_OK:",
+      "passed": true,
+      "warnings": [
+        "WARNING: 1 ObjectDB instance was leaked at exit (run with `--verbose` for details)."
+      ]
+    },
+    {
+      "name": "bridge",
+      "exit_code": 0,
+      "marker": "BRIDGE_CONSTRUCTION_OK:",
+      "passed": true,
+      "warnings": [
+        "WARNING: 1 ObjectDB instance was leaked at exit (run with `--verbose` for details)."
+      ]
+    },
+    {
+      "name": "traversal",
+      "exit_code": 0,
+      "marker": "DUNGEON_TRAVERSAL_OK:",
+      "passed": true,
+      "warnings": []
+    },
+    {
+      "name": "smoke",
+      "exit_code": 0,
+      "marker": "PASS: local two-process ENet",
+      "passed": true,
+      "warnings": [
+        "WARNING: 1 ObjectDB instance was leaked at exit (run with `--verbose` for details).",
+        "WARNING: 1 ObjectDB instance was leaked at exit (run with `--verbose` for details).",
+        "WARNING: 1 ObjectDB instance was leaked at exit (run with `--verbose` for details).",
+        "WARNING: 1 ObjectDB instance was leaked at exit (run with `--verbose` for details).",
+        "WARNING: 1 ObjectDB instance was leaked at exit (run with `--verbose` for details).",
+        "WARNING: 1 ObjectDB instance was leaked at exit (run with `--verbose` for details).",
+        "WARNING: 1 ObjectDB instance was leaked at exit (run with `--verbose` for details).",
+        "WARNING: 2 ObjectDB instances were leaked at exit (run with `--verbose` for details).",
+        "WARNING: 2 ObjectDB instances were leaked at exit (run with `--verbose` for details).",
+        "WARNING: 2 ObjectDB instances were leaked at exit (run with `--verbose` for details).",
+        "WARNING: 1 ObjectDB instance was leaked at exit (run with `--verbose` for details).",
+        "WARNING: 1 ObjectDB instance was leaked at exit (run with `--verbose` for details).",
+        "WARNING: 1 ObjectDB instance was leaked at exit (run with `--verbose` for details).",
+        "WARNING: 1 ObjectDB instance was leaked at exit (run with `--verbose` for details).",
+        "WARNING: 1 ObjectDB instance was leaked at exit (run with `--verbose` for details).",
+        "WARNING: 1 ObjectDB instance was leaked at exit (run with `--verbose` for details).",
+        "WARNING: 1 ObjectDB instance was leaked at exit (run with `--verbose` for details).",
+        "WARNING: 1 ObjectDB instance was leaked at exit (run with `--verbose` for details).",
+        "WARNING: 1 ObjectDB instance was leaked at exit (run with `--verbose` for details)."
+      ]
+    },
+    {
+      "name": "dungeon-smoke",
+      "exit_code": 0,
+      "marker": "PASS: dungeon geometry",
+      "passed": true,
+      "warnings": [
+        "WARNING: 1 ObjectDB instance was leaked at exit (run with `--verbose` for details).",
+        "WARNING: 1 ObjectDB instance was leaked at exit (run with `--verbose` for details)."
+      ]
+    }
+  ],
+  "manual_camera_input_tested": false,
+  "two_machine_tailscale_tested": false,
+  "uncapped_performance_tested": false
+}

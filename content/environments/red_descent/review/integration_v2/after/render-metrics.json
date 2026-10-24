@@ -1,0 +1,86 @@
+[
+	{
+		"capture_frame_median_ms": 16.66,
+		"draw_calls": 1243.0,
+		"primitives": 1408491.0,
+		"view": "01-high-crossing"
+	},
+	{
+		"capture_frame_median_ms": 16.671,
+		"draw_calls": 679.0,
+		"primitives": 1103493.0,
+		"view": "02-central-wall"
+	},
+	{
+		"capture_frame_median_ms": 16.663,
+		"draw_calls": 875.0,
+		"primitives": 911528.0,
+		"view": "03-low-crossing"
+	},
+	{
+		"capture_frame_median_ms": 16.704,
+		"draw_calls": 190.0,
+		"primitives": 728451.0,
+		"view": "04-broken-nave"
+	},
+	{
+		"capture_frame_median_ms": 16.658,
+		"draw_calls": 490.0,
+		"primitives": 836600.0,
+		"view": "05-deep-choir"
+	},
+	{
+		"capture_frame_median_ms": 16.664,
+		"draw_calls": 926.0,
+		"primitives": 1091943.0,
+		"view": "06-descent-overlook"
+	},
+	{
+		"capture_frame_median_ms": 16.655,
+		"draw_calls": 1013.0,
+		"primitives": 1209763.0,
+		"view": "07-timber-detail"
+	},
+	{
+		"capture_frame_median_ms": 16.703,
+		"draw_calls": 102.0,
+		"primitives": 442914.0,
+		"view": "08-nave-materials"
+	},
+	{
+		"capture_frame_median_ms": 16.665,
+		"draw_calls": 125.0,
+		"primitives": 1274806.0,
+		"view": "09-entry-floor"
+	},
+	{
+		"capture_frame_median_ms": 16.666,
+		"draw_calls": 218.0,
+		"primitives": 480990.0,
+		"view": "10-restraint-frame"
+	},
+	{
+		"capture_frame_median_ms": 16.706,
+		"draw_calls": 43.0,
+		"primitives": 57396.0,
+		"view": "11-nave-framing"
+	},
+	{
+		"capture_frame_median_ms": 16.679,
+		"draw_calls": 54.0,
+		"primitives": 58607.0,
+		"view": "12-bell-hangings"
+	},
+	{
+		"capture_frame_median_ms": 16.677,
+		"draw_calls": 44.0,
+		"primitives": 235720.0,
+		"view": "13-chapel-spill"
+	},
+	{
+		"capture_frame_median_ms": 16.722,
+		"draw_calls": 414.0,
+		"primitives": 532253.0,
+		"view": "14-choir-debris"
+	}
+]

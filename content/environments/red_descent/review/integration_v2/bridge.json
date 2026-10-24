@@ -1,0 +1,10 @@
+{
+	"deck": {
+		"bridges": 2,
+		"max_m": 0.014,
+		"samples": 548
+	},
+	"failures": [],
+	"gaps": [],
+	"probes": 2592
+}

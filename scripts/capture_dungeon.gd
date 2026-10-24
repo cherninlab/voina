@@ -6,6 +6,7 @@ func _initialize() -> void:
 
 func capture() -> void:
 	var directory: String = "/tmp/red-descent"
+	var dressing_views: bool = "--dressing" in OS.get_cmdline_user_args()
 	for argument: String in OS.get_cmdline_user_args():
 		if argument.begins_with("--capture-dir="):
 			directory = argument.trim_prefix("--capture-dir=")
@@ -39,6 +40,15 @@ func capture() -> void:
 		["08-nave-materials", RedDescentLayout.at(Vector3(46, -16.35, 87)), RedDescentLayout.at(Vector3(39, -15.7, 90)), 65.0],
 	]
 	var metrics: Array[Dictionary] = []
+	if dressing_views:
+		views.append_array([
+			["09-entry-floor", Vector3(-41, 1.65, -24), Vector3(-43, 0.3, -29), 65.0],
+			["10-restraint-frame", Vector3(40, -2.35, -8), Vector3(40, -1.8, -13), 65.0],
+			["11-nave-framing", Vector3(0, -3.5, 31), Vector3(0, -1.4, 38.5), 78.0],
+			["12-bell-hangings", Vector3(32, -16.35, 34), Vector3(32, -11.3, 38), 78.0],
+			["13-chapel-spill", Vector3(3, -8.35, -37), Vector3(3, -9.6, -41.4), 65.0],
+			["14-choir-debris", Vector3(33, -26.35, -4), Vector3(30, -27.7, -8), 65.0],
+		])
 	for view: Array in views:
 		camera.fov = float(view[3]) if view.size() > 3 else 78.0
 		camera.position = view[1] as Vector3
@@ -53,7 +63,8 @@ func capture() -> void:
 			intervals.append(float(Time.get_ticks_usec() - started) / 1000.0)
 		intervals.sort()
 		metrics.append({"view": String(view[0]), "capture_frame_median_ms": intervals[10], "draw_calls": Performance.get_monitor(Performance.RENDER_TOTAL_DRAW_CALLS_IN_FRAME), "primitives": Performance.get_monitor(Performance.RENDER_TOTAL_PRIMITIVES_IN_FRAME)})
-		await RenderingServer.frame_post_draw
+		# Explicit draw also completes captures while macOS throttles an unfocused window.
+		RenderingServer.force_draw()
 		var file: String = directory.path_join(String(view[0]) + ".png")
 		var frame_image: Image = root.get_texture().get_image()
 		var low: float = 1.0

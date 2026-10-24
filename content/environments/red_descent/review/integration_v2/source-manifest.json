@@ -1,0 +1,18 @@
+{
+  "base_head": "a31388c921702c2ee778ed44641d1e0f2bf789a4",
+  "sources": {
+    "gameplay/environment/crypt_dungeon.gd": "3df5fb455c785061c371a75ce474ec77a986036fc96984776eebb1cf3a87dd91",
+    "gameplay/environment/dungeon_dressing.gd": "496109a580f936eacd0c7bcf4330b7fc6a58cf16ac271961176531a60ebbf923",
+    "gameplay/environment/red_descent_geometry.gd": "7e543f4aeb770c04a5c608942ffee1bed642648bf460a986f0023ad14dc5e489",
+    "scripts/dungeon_dressing_test.gd": "fda820b028fc9cdddfacf79903e96ce8e68854c985d8cb02e54789b28b2fcbde",
+    "scripts/capture_dungeon.gd": "ccba6133dbd71cfb58762dd9eac33f9b968e9f00f997bb5ca27fb14b7b8b75d9"
+  },
+  "assets": {
+    "content/environments/procedural_bridge_v1/high_span.glb": "1b968c5ba96f675ba9ec59732dd38960bc867907134a91519f0600a31050f327",
+    "content/environments/procedural_bridge_v1/low_span.glb": "c410fe3c79da74a7733f0017f5490fff0b19cd0d8386ba14a734924ca7ca21df",
+    "content/environments/procedural_bridge_v1/high_span.json": "3d886fcf1d147ab141471d77db6f9025f25be0fef14d4b6ea8cccaa1b6a7cbf0",
+    "content/environments/procedural_bridge_v1/low_span.json": "7a05afca3dfab30eda1568f77fd50fc2e66e050d401e8db0883d678fc02121f8",
+    "content/environments/procedural_rubble_v1/rubble.json": "7be0525357fedcf4d8e4d3710af658daec26c72a37cc63384834a4a9b330e9b9",
+    "content/environments/procedural_hanging_v1/bake.json": "6acf3b3924079d39f0b8e85538f44950b73d3771841ecb64cbe2b3d4d7c73cc2"
+  }
+}
