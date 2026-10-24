@@ -19,18 +19,26 @@ var collision_faces: PackedVector3Array = PackedVector3Array()
 var ribbon_edges: Dictionary[String, PackedVector3Array] = {}
 const STONE_ROOMS: String = "res://content/environments/procedural_architecture_v1/rooms/"
 const STONE_INDEX: String = "res://content/environments/procedural_architecture_v1/index.json"
+const STONE_FACE: String = "res://content/environments/procedural_stone_surface_v1/limestone/"
+const ROOTS: String = "res://content/environments/procedural_roots_v1/"
+const PROP_SETS: String = "res://content/environments/procedural_props_aged_v1/sets/"
+const RUBBLE: String = "res://content/environments/procedural_rubble_v1/rooms/"
 ## Passages built stone by stone (index.json "passages"), current for this layout.
 var stone_passages: Array[Dictionary] = []
+## Bays and portals built in stone: centre (x, y, z) and plan radius.
+var stone_nodes: Array[Vector4] = []
 var cube_faces: PackedVector3Array = BoxMesh.new().get_faces()
 var fort_source: Node3D
 
 func build() -> void:
 	name = "Architecture"
+	integrate_materials()
 	structure = DungeonStructure.new(self)
 	fort_source = load("res://content/environments/dungeon_geometry_v2/modular_fort_01/modular_fort_01_2k.gltf").instantiate() as Node3D
 	for room: Dictionary in rooms:
 		build_room(room)
 	load_stone_passages()
+	stone_props()
 	for index: int in range(paths.size()):
 		build_path(paths[index], index < RedDescentLayout.MAIN_PATHS)
 	build_vault(RedDescentLayout.outline(), false)
@@ -158,53 +166,272 @@ func junction(point: Vector3, own_path: String, own_segment: int) -> bool:
 ## Vaulted passages built with the rooms (scripts/art/build_architecture.py):
 ## each covers a stretch of an enclosed route between two room walls, and its
 ## doorway arches are the ends of its own vault.
+var stone_index_cache: Dictionary = {}
+
+## The stone build's index.json (rooms, roof tops, passage files, coverage, nodes).
+func stone_index() -> Dictionary:
+	if stone_index_cache.is_empty() and FileAccess.file_exists(STONE_INDEX):
+		var parsed: Variant = JSON.parse_string(FileAccess.get_file_as_string(STONE_INDEX))
+		if parsed is Dictionary:
+			stone_index_cache = parsed as Dictionary
+	return stone_index_cache
+
 func load_stone_passages() -> void:
-	if "--no-stone-rooms" in OS.get_cmdline_user_args() or not FileAccess.file_exists(STONE_INDEX):
+	if "--no-stone-rooms" in OS.get_cmdline_user_args():
 		return
-	var index: Variant = JSON.parse_string(FileAccess.get_file_as_string(STONE_INDEX))
-	if not index is Dictionary:
+	var index: Dictionary = stone_index()
+	if index.is_empty():
 		return
+	var hashes: Dictionary[String, String] = {}
+	for path: Dictionary in paths:
+		hashes[String(path["id"])] = DungeonStructure.layout_hash(path, route_edges(path))
+	var stale: Dictionary[String, bool] = {}
+	for entry: Variant in (index as Dictionary).get("files", []) as Array:
+		var file: Dictionary = entry as Dictionary
+		var current: bool = true
+		for route: Variant in (file["routes"] as Dictionary).keys():
+			if hashes.get(String(route), "") != String((file["routes"] as Dictionary)[route]):
+				current = false
+				stale[String(route)] = true
+		if not current:
+			push_warning("Stale stone passage %s; rerun scripts/art/build_architecture.py" % file["file"])
+			continue
+		var built: Node3D = (load("res://content/environments/procedural_architecture_v1/" + String(file["file"])) as PackedScene).instantiate() as Node3D
+		built.name = "StonePassage_" + String(file["file"]).get_file().get_basename()
+		stone_materials(built)
+		add_child(built)
 	for entry: Variant in (index as Dictionary).get("passages", []) as Array:
 		var passage: Dictionary = entry as Dictionary
-		for path: Dictionary in paths:
-			if String(path["id"]) != String(passage["route"]):
-				continue
-			if DungeonStructure.layout_hash(path, route_edges(path)) != String(passage.get("layout_hash", "")):
-				push_warning("Stale stone passage %s; rerun scripts/art/build_architecture.py" % passage["file"])
-				continue
-			var built: Node3D = (load("res://content/environments/procedural_architecture_v1/" + String(passage["file"])) as PackedScene).instantiate() as Node3D
-			built.name = "StonePassage_" + String(passage["file"]).get_file().get_basename()
-			stone_materials(built)
-			add_child(built)
+		if not stale.has(String(passage["route"])):
 			stone_passages.append(passage)
+			# Roots per stretch (scripts/art/build_roots.py passage_label).
+			stone_roots(ROOTS + "passages/%s_%d_%d.glb" % [passage["route"], int(passage["segment"]), floori(float(passage["t0"]) * 1000.0 + 0.5)])
+	for entry: Variant in (index as Dictionary).get("nodes", []) as Array:
+		var node: Dictionary = entry as Dictionary
+		var at: Array = node["at"] as Array
+		stone_nodes.append(Vector4(float(at[0]), float(at[1]), float(at[2]), float(node["radius"])))
 
 ## True where a stone build already encloses this point of an enclosed route:
-## inside a stone passage's stretch, or at a stone room's doorway.
+## inside a stone passage's stretch, a bay or portal, or a stone room (at
+## any level it spans) and its doorways.
 func stone_enclosed(path: Dictionary, segment: int, t: float, point: Vector3) -> bool:
 	for passage: Dictionary in stone_passages:
 		if String(passage["route"]) == String(path["id"]) and int(passage["segment"]) == segment and t > float(passage["t0"]) - 0.02 and t < float(passage["t1"]) + 0.02:
 			return true
+	return stone_node_near(point, 0.0) or stone_room_near(point, 1.6)
+
+## Inside a stone-built room above its floor: a gallery or stair the build carries.
+func stone_raised(point: Vector3) -> bool:
+	if "--no-stone-rooms" in OS.get_cmdline_user_args():
+		return false
 	for room: Dictionary in rooms:
-		if absf(point.y - float(room["floor"])) > 0.6 or not ResourceLoader.exists(STONE_ROOMS + String(room["id"]) + ".glb") or "--no-stone-rooms" in OS.get_cmdline_user_args():
+		if point.y < float(room["floor"]) + 0.25 or point.y > float(room["floor"]) + float(room["height"]):
+			continue
+		if Geometry2D.is_point_in_polygon(Vector2(point.x, point.z), room["points"] as PackedVector2Array) and ResourceLoader.exists(STONE_ROOMS + String(room["id"]) + ".glb"):
+			return true
+	return false
+
+## Under a stone passage's own paving: one of its stretches or bays.
+func stone_paved(path: Dictionary, segment: int, t: float, point: Vector3) -> bool:
+	for passage: Dictionary in stone_passages:
+		if String(passage["route"]) == String(path["id"]) and int(passage["segment"]) == segment and t > float(passage["t0"]) and t < float(passage["t1"]):
+			return true
+	return stone_node_near(point, -1.0)
+
+func stone_node_near(point: Vector3, margin: float) -> bool:
+	for node: Vector4 in stone_nodes:
+		if Vector2(point.x - node.x, point.z - node.z).length() < node.w + margin and absf(point.y - node.y) < 3.0:
+			return true
+	return false
+
+func stone_room_near(point: Vector3, margin: float) -> bool:
+	if "--no-stone-rooms" in OS.get_cmdline_user_args():
+		return false
+	for room: Dictionary in rooms:
+		if point.y < float(room["floor"]) - 0.6 or point.y > float(room["floor"]) + float(room["height"]) or not ResourceLoader.exists(STONE_ROOMS + String(room["id"]) + ".glb"):
 			continue
 		var outline: PackedVector2Array = room["points"] as PackedVector2Array
 		var plan: Vector2 = Vector2(point.x, point.z)
 		if Geometry2D.is_point_in_polygon(plan, outline):
 			return true
 		for index: int in range(outline.size()):
-			if Geometry2D.get_closest_point_to_segment(plan, outline[index], outline[(index + 1) % outline.size()]).distance_to(plan) < 1.6:
+			if Geometry2D.get_closest_point_to_segment(plan, outline[index], outline[(index + 1) % outline.size()]).distance_to(plan) < margin:
 				return true
 	return false
 
+## The team's best texture sets, where the dungeon still used stand-ins
+## (T-185): red_nave_v1 red lime plaster, oxidized iron and broken floor slabs;
+## bridge_well_v1 mineral plaster, bridge oak and damp shaft masonry. Each keeps
+## its material's shader settings (the T-181 grade: damp, tint, masks).
+func integrate_materials() -> void:
+	var nave: String = "res://content/environments/red_nave_v1/"
+	var well: String = "res://content/environments/bridge_well_v1/"
+	swap_maps("red_plaster", nave + "red_lime_plaster/", 0.4)
+	swap_maps("plaster", well + "mineral_plaster/", 0.4, "normal_dx.png")
+	swap_maps("iron", nave + "oxidized_iron/", 2.0)
+	swap_maps("wood", well + "bridge_oak/", 0.65)
+	swap_maps("floor", nave + "broken_stone_floor/", 0.333)
+	swap_maps("wall", well + "damp_masonry/", 0.4)
+	# The plaster sets carry their own colour; the old red tint was for grey concrete.
+	if materials.has("red_plaster"):
+		(materials["red_plaster"] as ShaderMaterial).set_shader_parameter("tint", Vector3(0.95, 0.92, 0.9))
+	# The well's mineral plaster is fresh cream; centuries of smoke and damp grey it down.
+	if materials.has("plaster"):
+		(materials["plaster"] as ShaderMaterial).set_shader_parameter("tint", Vector3(0.52, 0.5, 0.46))
+
+func swap_maps(key: String, folder: String, scale: float, normal_file: String = "normal_gl.png") -> void:
+	if not materials.has(key) or not ResourceLoader.exists(folder + "albedo.png") or not materials[key] is ShaderMaterial:
+		return
+	var swapped: ShaderMaterial = (materials[key] as ShaderMaterial).duplicate() as ShaderMaterial
+	swapped.set_shader_parameter("albedo_map", load(folder + "albedo.png"))
+	swapped.set_shader_parameter("aspect", 1.0)
+	swapped.set_shader_parameter("normal_map", load(folder + normal_file))
+	for map: String in ["roughness", "ao", "height", "metallic"]:
+		if ResourceLoader.exists(folder + map + ".png"):
+			swapped.set_shader_parameter(map + "_map", load(folder + map + ".png"))
+	swapped.set_shader_parameter("scale", scale)
+	materials[key] = swapped
+
+## The T-171 dressing sets, at the places the stone build chose for them
+## (index.json "props": backs to a wall, clear of doors, pilasters and walks).
+func stone_props() -> void:
+	if "--no-stone-rooms" in OS.get_cmdline_user_args():
+		return
+	for entry: Variant in stone_index().get("props", []) as Array:
+		var spot: Dictionary = entry as Dictionary
+		var file: String = PROP_SETS + String(spot["set"]) + ".glb"
+		if not ResourceLoader.exists(file) or not ResourceLoader.exists(STONE_ROOMS + String(spot["room"]) + ".glb"):
+			continue
+		var at: Array = spot["at"] as Array
+		var facing: Array = spot["facing"] as Array
+		var forward: Vector3 = Vector3(float(facing[0]), 0.0, float(facing[1])).normalized()
+		var dressing: Node3D = (load(file) as PackedScene).instantiate() as Node3D
+		dressing.name = "Props_%s_%s" % [spot["room"], spot["set"]]
+		# The set's front (+Z, where its route strip was reserved) faces into the room.
+		dressing.transform = Transform3D(Basis.looking_at(-forward, Vector3.UP), Vector3(float(at[0]), float(at[1]), float(at[2])))
+		for node: Node in dressing.find_children("*", "MeshInstance3D", true, false):
+			(node as MeshInstance3D).material_override = prop_material(node.name)
+		add_child(dressing)
+
+func prop_material(part: String) -> Material:
+	var kind: String = "wood"
+	if part.begins_with("07") or part.begins_with("08"):
+		kind = "bone"
+	elif part.begins_with("09"):
+		kind = "clay"
+	elif part.begins_with("10"):
+		kind = "iron"
+	if kind == "wood":
+		kind = "prop_wood"
+		if not materials.has(kind):
+			materials[kind] = materials["wood"]
+			swap_maps("prop_wood", "res://content/environments/red_nave_v1/aged_oak/", 0.4)
+		return materials[kind]
+	if kind == "iron":
+		return materials["iron"]
+	if not materials.has(kind):
+		var plain: StandardMaterial3D = StandardMaterial3D.new()
+		plain.albedo_color = Color(0.58, 0.53, 0.43) if kind == "bone" else Color(0.33, 0.19, 0.12)
+		plain.roughness = 0.72 if kind == "bone" else 0.88
+		materials[kind] = plain
+	return materials[kind]
+
+## Broken stone, grit and a grime bed settled at the wall bases (T-179,
+## scripts/art/build_room_rubble.py): the walls' own limestone, world-projected,
+## and the floor's dirt for the grime so its edge melts into the paving.
+func stone_rubble(room_id: String) -> void:
+	var file: String = RUBBLE + room_id + ".glb"
+	if not ResourceLoader.exists(file):
+		return
+	if not materials.has("rubble"):
+		var loose: ShaderMaterial = (materials["built_stone"] as ShaderMaterial).duplicate() as ShaderMaterial
+		loose.set_shader_parameter("mapped", false)
+		materials["rubble"] = loose
+	var fallen: Node3D = (load(file) as PackedScene).instantiate() as Node3D
+	fallen.name = "Rubble_" + room_id
+	for node: Node in fallen.find_children("*", "MeshInstance3D", true, false):
+		var visual: MeshInstance3D = node as MeshInstance3D
+		visual.material_override = FlagstoneFloor.material("dirt") if visual.name.contains("grime") else materials["rubble"]
+		visual.cast_shadow = GeometryInstance3D.SHADOW_CASTING_SETTING_OFF if visual.name.contains("grime") else GeometryInstance3D.SHADOW_CASTING_SETTING_ON
+	add_child(fallen)
+
+## Roots grown over a stone build in Blender (T-178, scripts/art/build_roots.py):
+## dark wet red, darkened by their baked contact occlusion; no collision.
+func stone_roots(file: String) -> void:
+	if not ResourceLoader.exists(file):
+		return
+	if not materials.has("roots"):
+		var roots: StandardMaterial3D = StandardMaterial3D.new()
+		roots.albedo_color = Color8(80, 11, 16)
+		roots.vertex_color_use_as_albedo = true
+		roots.roughness = 0.35
+		roots.specular = 0.45
+		materials["roots"] = roots
+	var grown: Node3D = (load(file) as PackedScene).instantiate() as Node3D
+	grown.name = "Roots_" + file.get_file().get_basename()
+	for node: Node in grown.find_children("*", "MeshInstance3D", true, false):
+		(node as MeshInstance3D).material_override = materials["roots"]
+	add_child(grown)
+
+## Face materials by stone kind: dressed ashlar, lacing slabs, quoins, rough
+## crypt walling, floor flags and arch stones each get their own T-183 face
+## (with its anti-tiling sampler); walling stone keeps the T-180 limestone.
+const KIND_FACES: Dictionary[String, String] = {
+	"ashlar": "01-chisel-limestone", "slab": "02-split-bedded-stone", "quoin": "03-drafted-quoin-stone",
+	"galleted": "08-salt-weathered-limestone", "flag": "07-worn-floor-limestone", "arch": "09-fine-tooled-sandstone",
+}
+func stone_face(kind: String) -> Material:
+	var key: String = "built_" + kind
+	if materials.has(key):
+		return materials[key]
+	var preset: String = "res://content/environments/stone_brick_materials_v1/materials/%s/surface.tres" % KIND_FACES.get(kind, "")
+	if not KIND_FACES.has(kind) or not ResourceLoader.exists(preset):
+		materials[key] = materials["built_stone"]
+		return materials[key]
+	var face: ShaderMaterial = (load(preset) as ShaderMaterial).duplicate() as ShaderMaterial
+	var rock: ShaderMaterial = materials["rock"] as ShaderMaterial
+	# The dungeon's own grade: damp, peel and algae masks and the stone tint.
+	for parameter: String in ["wetness", "tint", "algae", "peel_map", "algae_map", "wet_map", "dry_roughness_min", "wet_roughness"]:
+		var value: Variant = rock.get_shader_parameter(parameter)
+		if value != null:
+			face.set_shader_parameter(parameter, value)
+	face.set_shader_parameter("mapped", true)
+	materials[key] = face
+	return face
+
+## The render over plastered stone rooms: the room's plaster, holed where it peels.
+func stone_coat(family: String) -> Material:
+	if not materials.has(family + "_coat"):
+		var skin: ShaderMaterial = (materials[family] as ShaderMaterial).duplicate() as ShaderMaterial
+		skin.set_shader_parameter("plaster", 1.0)
+		skin.set_shader_parameter("coat", true)
+		materials[family + "_coat"] = skin
+	return materials[family + "_coat"]
+
 func stone_materials(built: Node3D) -> void:
 	if not materials.has("built_stone"):
-		# The same rock scan, read through each stone's own baked coordinates.
+		# Dressed limestone faces (T-180, no joints or veins of its own), read
+		# through each stone's baked coordinates; damp, peel and algae stay the rock's.
 		var mapped: ShaderMaterial = (materials["rock"] as ShaderMaterial).duplicate() as ShaderMaterial
+		var albedo: Texture2D = load(STONE_FACE + "albedo.png") as Texture2D
+		mapped.set_shader_parameter("albedo_map", albedo)
+		mapped.set_shader_parameter("aspect", float(albedo.get_width()) / float(albedo.get_height()))
+		for key: String in ["normal", "roughness", "ao", "height"]:
+			mapped.set_shader_parameter(key + "_map", load(STONE_FACE + ("normal_gl" if key == "normal" else key) + ".png"))
+		mapped.set_shader_parameter("scale", 0.555)
+		mapped.set_shader_parameter("normal_strength", 0.75)
 		mapped.set_shader_parameter("mapped", true)
 		materials["built_stone"] = mapped
 	for node: Node in built.find_children("*", "MeshInstance3D", true, false):
 		var visual: MeshInstance3D = node as MeshInstance3D
-		visual.material_override = materials["built_stone"] if visual.name.begins_with("Stone") else materials["plaster"]
+		if visual.name.begins_with("Stone"):
+			# "Stone-<kind>_...": each stone kind wears its own face (T-182 shapes, T-183 faces).
+			var kind: String = visual.name.get_slice("_", 0).trim_prefix("Stone-") if visual.name.begins_with("Stone-") else "stone"
+			visual.material_override = stone_face(kind)
+		elif visual.name.begins_with("Plaster"):
+			visual.material_override = stone_coat("red_plaster" if visual.name.begins_with("Plaster_nave") else "plaster")
+		else:
+			visual.material_override = materials["plaster"]
 
 ## A room built stone by stone in Blender (scripts/art/build_architecture.py):
 ## its walls, honest openings and collision replace the boxes, niches,
@@ -217,6 +444,8 @@ func stone_room(room: Dictionary) -> bool:
 	built.name = "StoneRoom_" + String(room["id"])
 	stone_materials(built)
 	add_child(built)
+	stone_roots(ROOTS + String(room["id"]) + ".glb")
+	stone_rubble(String(room["id"]))
 	return true
 
 func build_room(room: Dictionary) -> void:
@@ -238,8 +467,10 @@ func build_room(room: Dictionary) -> void:
 	for node: Node in floor.find_children("*", "MeshInstance3D", true, false):
 		(node as MeshInstance3D).cast_shadow = GeometryInstance3D.SHADOW_CASTING_SETTING_OFF
 	polygon_surface(polygon, y - 0.5, "stone", false)
-	polygon_surface(polygon, y + height, "collision" if String(room["id"]) == "nave" else "stone", false)
 	var stone_built: bool = stone_room(room)
+	# A stone room's roof sits over its vault.
+	var top: float = float((stone_index().get("tops", {}) as Dictionary).get(String(room["id"]), y + height)) if stone_built else y + height
+	polygon_surface(polygon, top, "collision" if String(room["id"]) == "nave" else "stone", false)
 	for index: int in range(polygon.size()):
 		if stone_built:
 			continue
@@ -398,17 +629,20 @@ func build_path(path: Dictionary, light_route: bool) -> void:
 			var at: Vector3 = (a + b) * 0.5
 			var length: float = a.distance_to(b)
 			var room_floor: bool = in_room(a) and in_room(b)
+			# Raised walks inside stone rooms stand on baked masonry with stone treads:
+			# keep only their walking collision.
+			var stone_walk: bool = stone_raised(at) or (enclosed and stone_paved(path, index, (float(step) + 0.5) / float(steps), at))
 			if not room_floor:
 				# One shared ribbon across each turn: no horizontal landing lips on ramps.
 				var edge_a: Vector3 = edges[index].lerp(edges[index + 1], float(step) / float(steps))
 				var edge_b: Vector3 = edges[index].lerp(edges[index + 1], float(step + 1) / float(steps))
-				ribbon_top(a - edge_a, a + edge_a, b - edge_b, "collision" if sculpted_deck else material)
-				ribbon_top(a + edge_a, b + edge_b, b - edge_b, "collision" if sculpted_deck else material)
-				if not sculpted_deck:
+				ribbon_top(a - edge_a, a + edge_a, b - edge_b, "collision" if sculpted_deck or stone_walk else material)
+				ribbon_top(a + edge_a, b + edge_b, b - edge_b, "collision" if sculpted_deck or stone_walk else material)
+				if not sculpted_deck and not stone_walk:
 					face(a - edge_a - Vector3.UP * 0.32, b - edge_b - Vector3.UP * 0.32, a + edge_a - Vector3.UP * 0.32, "stone")
 					face(a + edge_a - Vector3.UP * 0.32, b - edge_b - Vector3.UP * 0.32, b + edge_b - Vector3.UP * 0.32, "stone")
 				# Close the walking ribbon's open sides; slopes and corners need real fascia.
-				if not sculpted_deck:
+				if not sculpted_deck and not stone_walk:
 					quad(a - edge_a, a - edge_a - Vector3.UP * 0.32, b - edge_b - Vector3.UP * 0.32, b - edge_b, -side, "stone")
 					quad(a + edge_a, b + edge_b, b + edge_b - Vector3.UP * 0.32, a + edge_a - Vector3.UP * 0.32, side, "stone")
 				var segment_t: float = (float(step) + 0.5) / float(steps)
@@ -426,7 +660,8 @@ func build_path(path: Dictionary, light_route: bool) -> void:
 							fitted_module("rock_outcrop", rock_at - Vector3.UP * 0.2, Vector3(1.4, 3.9, 3.6), basis)
 				since_light += length
 				if light_route and since_light >= 13.0:
-					torch_posts.append(at + side * (width * 0.5 - 0.35))
+					# Clear of the parapet a stone walk carries along its edge.
+					torch_posts.append(at + side * (width * 0.5 - (0.65 if stone_walk else 0.35)))
 					since_light = 0.0
 
 ## Keep the original walking triangles; only trim flat route visuals at room thresholds.
@@ -669,11 +904,11 @@ func build_vault(polygon: PackedVector2Array, central: bool) -> void:
 					piece(Vector3(part_width, span.y - span.x, 0.8), Vector3(middle.x + normal.x * backing, (span.x + span.y) * 0.5, middle.y + normal.y * backing), "core_stone" if central else "dark", basis, true)
 					piece(Vector3(part_width, span.y - span.x, 1.0), Vector3(middle.x + normal.x * (0.5 if central else 0.0), (span.x + span.y) * 0.5, middle.y + normal.y * (0.5 if central else 0.0)), "plaster" if central else "wall", basis)
 			for door_y: float in doors:
-				arch(Vector3(center.x, door_y, center.y), tangent, width * 0.48)
+				if not stone_node_near(Vector3(center.x, door_y, center.y), width * 0.5):
+					arch(Vector3(center.x, door_y, center.y), tangent, width * 0.48)
 			for row: int in range(10):
 				var y: float = -46.0 + float(row) * 6.0
 				var at: Vector3 = Vector3(center.x, y, center.y) + Vector3(normal.x, 0, normal.y) * (0.5 if central else 0.0)
-				var facing: Basis = basis * Basis(Vector3.UP, PI) if central else basis
 				var doorway: bool = false
 				for gap: Vector2 in gaps:
 					if y < gap.y and y + 6.0 > gap.x:
@@ -684,21 +919,10 @@ func build_vault(polygon: PackedVector2Array, central: bool) -> void:
 					for span: Vector2 in cut_spans([Vector2(y, y + 6.0)], gaps):
 						piece(Vector3(width + 0.04, span.y - span.x, 1.0), Vector3(at.x, (span.x + span.y) * 0.5, at.z), wall_material, basis)
 					continue
-				# Continuous wall mass replaces complete GLB panels laid over the facade.
-				var seed_value: int = posmod(index * 17 + column * 11 + row * 7, 23)
-				if seed_value > (5 if central else 4):
-					piece(Vector3(width + 0.004, 6.0, 1.0), at + Vector3.UP * 3.0, wall_material, basis)
-					continue
-				var opening_width: float = minf(1.3 + float(seed_value) * 0.2, width * 0.48)
-				for side: float in [-1.0, 1.0]:
-					piece(Vector3((width - opening_width) * 0.5, 6, 1.0), at + Vector3(tangent.x, 0, tangent.y) * side * (width + opening_width) * 0.25 + Vector3.UP * 3, wall_material, basis)
-				piece(Vector3(opening_width, 1.0, 1.0), at + Vector3.UP * 0.5, wall_material, basis)
-				arch_spandrel(at, facing, opening_width * 0.5, wall_material)
-				piece(Vector3(opening_width, 5.0, 0.04), at - facing.z * 0.48 + Vector3.UP * 3.5, "dark", facing)
-				piece(Vector3(opening_width + 0.42, 0.18, 1.06), at + Vector3.UP, "stone", facing)
-				for side: float in [-1.0, 1.0]:
-					piece(Vector3(0.22, 1.9, 1.04), at + facing.x * side * (opening_width * 0.5 + 0.11) + Vector3.UP * 1.95, "stone", facing)
-				if not central and row in [3, 6] and posmod(index * 3 + column, 4) == 0:
+				# Continuous wall mass. No blind arcades: an opening with nothing behind
+				# it has no reason to exist.
+				piece(Vector3(width + 0.004, 6.0, 1.0), at + Vector3.UP * 3.0, wall_material, basis)
+				if not central and row in [3, 6] and posmod(index * 3 + column, 4) == 0 and posmod(index * 17 + column * 11 + row * 7, 23) <= 4:
 					torch_posts.append(at - Vector3(normal.x, 0, normal.y) * 1.1 + Vector3.UP * 0.8)
 	polygon_surface(polygon, 14, "stone", central)
 	if central:

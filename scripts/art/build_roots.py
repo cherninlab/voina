@@ -112,7 +112,9 @@ def load_room(options: dict, room: dict, index: dict) -> dict:
     lo = Vector((min(p.x for p in grown), min(p.y for p in grown)))
     hi = Vector((max(p.x for p in grown), max(p.y for p in grown)))
     passages, sources = [], [options['arch'] / 'rooms' / f'{room["id"]}.glb']
-    for entry in index.get('passages', []):
+    # index.json lists passage GLBs under "files" (one per route, one per bay or
+    # portal); older indexes listed them per stretch under "passages".
+    for entry in index.get('files') or index.get('passages', []):
         path = options['arch'] / entry['file']
         if not path.exists():
             continue
@@ -486,7 +488,7 @@ class Grower:
             if bow is not None:
                 # Draped over the proud arch stones: bowed off the wall in the middle.
                 count = len(points) - 1
-                points = [p + bow * math.sin(math.pi * k / count) ** 0.7 for k, p in enumerate(points)]
+                points = [p + bow * max(0.0, math.sin(math.pi * min(k / count, 1.0))) ** 0.7 for k, p in enumerate(points)]
             if min(p.z for p in points) >= lowest and not any(self.surface.blocked(p, q) for p, q in zip(points, points[1:])):
                 break
             slack *= 0.7
@@ -1017,6 +1019,10 @@ def bake_and_write(grower: Grower, rules: roots.Rules, label: str, out_dir: Path
     <out_dir>/<label>.glb and .json."""
     qa = grower.finish(budget)
     objects = grower.meshes(label)
+    if not objects:
+        # A short stretch can leave no room for a root: nothing to write.
+        print('ROOTS_EMPTY', label, flush=True)
+        return [], {}
     qa['audit'] = audit(grower, rules)
     ao = bake.ao_to_color(objects, samples=64, distance=0.5, floor=0.2)
     for obj in objects:
@@ -1078,12 +1084,19 @@ def blender_routes(layout: dict) -> list:
     return [{'width': r['width'], 'points': [core.to_blender(p) for p in r['points']]} for r in layout['routes']]
 
 
+def passage_label(entry: dict) -> str:
+    """One roots file per stretch of passage; the game loads it by this name."""
+    if 'file' in entry and not entry['file'].endswith(f'/{entry["route"]}.glb'):
+        return Path(entry['file']).stem
+    return f'{entry["route"]}_{entry["segment"]}_{int(entry["t0"] * 1000.0 + 0.5)}'
+
+
 def build_passage(options: dict, entry: dict, layout: dict) -> dict:
     """Roots in a vaulted passage between rooms: a few from joints at the
     vault crown creeping down the barrel to head height, loops slung across
     the vault, tendrils from the crown. Everything stays above headroom over
     the walkway, which fills the passage."""
-    label = Path(entry['file']).stem
+    label = passage_label(entry)
     core.empty_scene()
     roots.Root.count = 0
     path = options['arch'] / entry['file']
@@ -1195,7 +1208,9 @@ def main():
         build_room(options, by_id[room_id], layout, index)
         print('ROOTS_ROOM_DONE', room_id, f'{time.time() - started:.1f} s', flush=True)
     for entry in index.get('passages', []):
-        label = Path(entry['file']).stem
+        if 'file' not in entry:
+            entry = dict(entry, file=f'passages/{entry["route"]}.glb')
+        label = passage_label(entry)
         if options['passages'] is not None and label not in options['passages']:
             continue
         if not (options['arch'] / entry['file']).exists():

@@ -1,0 +1,86 @@
+{
+  "ao": {
+    "Mortar_first_stair_hall_0": {
+      "mean": 0.622,
+      "min": 0.18
+    },
+    "Mortar_first_stair_hall_1": {
+      "mean": 0.619,
+      "min": 0.18
+    },
+    "Mortar_first_stair_hall_2": {
+      "mean": 0.468,
+      "min": 0.18
+    },
+    "Mortar_first_stair_hall_3": {
+      "mean": 0.482,
+      "min": 0.18
+    },
+    "Mortar_first_stair_hall_4": {
+      "mean": 0.889,
+      "min": 0.18
+    },
+    "Mortar_first_stair_hall_5": {
+      "mean": 0.483,
+      "min": 0.18
+    },
+    "Stone-arch_first_stair_hall_2": {
+      "mean": 0.51,
+      "min": 0.18
+    },
+    "Stone-arch_first_stair_hall_3": {
+      "mean": 0.529,
+      "min": 0.18
+    },
+    "Stone-ashlar_first_stair_hall_0": {
+      "mean": 0.528,
+      "min": 0.18
+    },
+    "Stone-ashlar_first_stair_hall_1": {
+      "mean": 0.523,
+      "min": 0.18
+    },
+    "Stone-ashlar_first_stair_hall_2": {
+      "mean": 0.591,
+      "min": 0.18
+    },
+    "Stone-ashlar_first_stair_hall_3": {
+      "mean": 0.582,
+      "min": 0.18
+    },
+    "Stone-flag_first_stair_hall_5": {
+      "mean": 0.648,
+      "min": 0.18
+    },
+    "Stone-stone_first_stair_hall_0": {
+      "mean": 0.66,
+      "min": 0.18
+    },
+    "Stone-stone_first_stair_hall_1": {
+      "mean": 0.645,
+      "min": 0.18
+    },
+    "Stone-stone_first_stair_hall_2": {
+      "mean": 0.677,
+      "min": 0.18
+    },
+    "Stone-stone_first_stair_hall_3": {
+      "mean": 0.694,
+      "min": 0.18
+    },
+    "Stone-stone_first_stair_hall_4": {
+      "mean": 0.745,
+      "min": 0.18
+    },
+    "Stone-stone_first_stair_hall_5": {
+      "mean": 0.665,
+      "min": 0.18
+    }
+  },
+  "blender": "5.2.2 LTS",
+  "files": {
+    "content/environments/procedural_architecture_v1/rooms/first_stair_hall.glb": "683b86c846ca99c55e0db3f437336282128eabf3928d7095003911b14d197c4f"
+  },
+  "id": "first_stair_hall",
+  "triangles": 221489
+}

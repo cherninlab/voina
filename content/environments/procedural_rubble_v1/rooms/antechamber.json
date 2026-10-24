@@ -1,7 +1,7 @@
 {
   "ao": {
     "Rubble_antechamber_0": {
-      "mean": 0.336,
+      "mean": 0.328,
       "min": 0.18
     },
     "Rubble_antechamber_1": {
@@ -9,30 +9,30 @@
       "min": 0.18
     },
     "Rubble_antechamber_2": {
-      "mean": 0.379,
+      "mean": 0.386,
       "min": 0.18
     },
     "Rubble_antechamber_3": {
-      "mean": 0.382,
+      "mean": 0.374,
       "min": 0.18
     },
     "Rubble_antechamber_grime": {
-      "mean": 0.445,
+      "mean": 0.399,
       "min": 0.18
     }
   },
   "axes": "Godot world coordinates, metres, Y up: place at the origin like the room GLB",
   "blender": "5.2.2 LTS",
-  "build_seconds": 224.0,
+  "build_seconds": 74.3,
   "collision": {
-    "convex_hulls": 37,
-    "hull_vertices": 902,
+    "convex_hulls": 36,
+    "hull_vertices": 867,
     "min_piece_size_m": 0.25
   },
   "color": "Color.rgb = baked AO (0.35 m) x per-piece tone (0.7, 1.15) (x 1.07 on fresh breaks); grime bed tone (0.5, 1.0); grey, clipped to 1 by glTF",
-  "command": "blender --factory-startup -b --python-exit-code 1 --python scripts/art/build_room_rubble.py -- --rooms antechamber",
+  "command": "blender --factory-startup -b --python-exit-code 1 --python scripts/art/build_room_rubble.py -- --rooms entry,antechamber,restraint --no-review",
   "files": {
-    "content/environments/procedural_rubble_v1/rooms/antechamber.glb": "9f97c21ab13b0c3ed8441b77ca8f4b7b7cde62d1e6a35fa25d9888155cd5ea62"
+    "content/environments/procedural_rubble_v1/rooms/antechamber.glb": "35669931bcbf9c32826954c45cb86fb8df82cc48a82435a787a83f47c2df6c80"
   },
   "floor_y": 0.0,
   "generator": "scripts/art/build_room_rubble.py",
@@ -44,102 +44,102 @@
     "settled_heaps": [
       {
         "godot_xz": [
-          -17.14,
-          -18.5
+          -17.18,
+          -18.54
         ],
-        "stone_volume_m3": 0.0677,
-        "top_m": 0.348
+        "stone_volume_m3": 0.061,
+        "top_m": 0.345
       },
       {
         "godot_xz": [
-          -27.51,
-          -19.15
+          -27.35,
+          -19.05
         ],
-        "stone_volume_m3": 0.035,
-        "top_m": 0.376
+        "stone_volume_m3": 0.0372,
+        "top_m": 0.313
       },
       {
         "godot_xz": [
-          -27.54,
-          -27.25
+          -27.48,
+          -27.45
         ],
-        "stone_volume_m3": 0.0334,
-        "top_m": 0.299
+        "stone_volume_m3": 0.0331,
+        "top_m": 0.266
       },
       {
         "godot_xz": [
-          -16.46,
-          -20.15
+          -16.51,
+          -20.05
         ],
-        "stone_volume_m3": 0.0281,
-        "top_m": 0.284
+        "stone_volume_m3": 0.0308,
+        "top_m": 0.423
       },
       {
         "godot_xz": [
-          -16.46,
+          -16.51,
           -21.85
         ],
         "stone_volume_m3": 0.0104,
-        "top_m": 0.236
+        "top_m": 0.252
       },
       {
         "godot_xz": [
           -27.55,
-          -20.75
+          -20.65
         ],
-        "stone_volume_m3": 0.0055,
-        "top_m": 0.219
+        "stone_volume_m3": 0.0051,
+        "top_m": 0.163
       },
       {
         "godot_xz": [
-          -16.45,
-          -26.15
+          -16.52,
+          -25.85
         ],
-        "stone_volume_m3": 0.0047,
-        "top_m": 0.143
+        "stone_volume_m3": 0.0042,
+        "top_m": 0.138
       },
       {
         "godot_xz": [
           -18.45,
-          -30.55
+          -30.5
         ],
-        "stone_volume_m3": 0.0039,
+        "stone_volume_m3": 0.0034,
         "top_m": 0.166
       }
     ],
     "target_heaps": [
       {
         "godot_xz": [
-          -27.54,
+          -27.48,
           -27.65
         ],
         "wedge_height_m": 0.55
       },
       {
         "godot_xz": [
-          -17.29,
-          -18.36
+          -17.32,
+          -18.4
         ],
         "wedge_height_m": 0.55
       },
       {
         "godot_xz": [
-          -27.55,
+          -27.53,
           -20.15
         ],
         "wedge_height_m": 0.4
       },
       {
         "godot_xz": [
-          -16.45,
-          -19.65
+          -27.53,
+          -26.15
         ],
-        "wedge_height_m": 0.35
+        "wedge_height_m": 0.31
       },
       {
         "godot_xz": [
-          -27.54,
-          -26.15
+          -16.51,
+          -19.75
         ],
         "wedge_height_m": 0.31
       }
@@ -176,10 +176,32 @@
   },
   "pieces": {
     "discarded": {
-      "floating": 0,
-      "no_spot": 0
+      "floating": 5,
+      "no_spot": 1,
+      "route": 1
     },
-    "floating_removed": [],
+    "floating_removed": [
+      [
+        "Chunk027_06",
+        0.0105
+      ],
+      [
+        "Rock035",
+        0.0101
+      ],
+      [
+        "Grit236",
+        0.0107
+      ],
+      [
+        "Grit177",
+        0.01
+      ],
+      [
+        "Grit277",
+        0.0109
+      ]
+    ],
     "generated": {
       "big": 151,
       "gravel": 375,
@@ -187,28 +209,23 @@
       "small": 111
     },
     "kept": {
-      "big": 151,
-      "gravel": 375,
+      "big": 148,
+      "gravel": 372,
       "medium": 134,
-      "small": 111
+      "small": 110
     },
-    "kept_total": 771,
+    "kept_total": 764,
     "size_m": {
       "max": 0.35,
       "median": 0.041,
       "min": 0.013
     }
   },
-  "review": [
-    "content/environments/procedural_rubble_v1/rooms/review/antechamber_view1.png",
-    "content/environments/procedural_rubble_v1/rooms/review/antechamber_view2.png",
-    "content/environments/procedural_rubble_v1/rooms/review/antechamber_view3.png",
-    "content/environments/procedural_rubble_v1/rooms/review/antechamber_plan.png"
-  ],
+  "review": [],
   "routes": {
     "clear_height_m": 0.04,
     "level_m": 1.0,
-    "max_height_in_ribbons_m": 0.0121,
+    "max_height_in_ribbons_m": 0.0082,
     "pad_m": 0.3,
     "ribbons": [
       {
@@ -274,107 +291,114 @@
     ]
   },
   "seconds": {
-    "bake": 0.6,
-    "checks": 0.2,
-    "deposit": 0.7,
-    "physics_1": 47.8,
-    "physics_2": 145.4,
-    "pieces": 8.0,
-    "review": 20.8,
-    "setup": 0.4
+    "bake": 0.7,
+    "checks": 0.4,
+    "deposit": 0.6,
+    "physics_1": 44.4,
+    "physics_2": 19.6,
+    "pieces": 8.2,
+    "review": 0.0,
+    "setup": 0.3
   },
   "seed": 179,
   "settle": {
     "deepest_pair": null,
     "drop": {
-      "frames": 210,
+      "frames": 266,
       "never_still": 0,
       "runs": [
         {
-          "active": 771,
+          "active": 770,
           "frames": 90,
-          "peak_speed_m_s": 2.805,
+          "peak_speed_m_s": 2.713,
           "run": 0,
-          "stilled": 682
+          "stilled": 705
         },
         {
-          "active": 89,
+          "active": 65,
           "frames": 45,
-          "peak_speed_m_s": 1.299,
+          "peak_speed_m_s": 1.006,
           "run": 1,
-          "stilled": 65
+          "stilled": 53
         },
         {
-          "active": 24,
+          "active": 12,
           "frames": 45,
-          "peak_speed_m_s": 0.623,
+          "peak_speed_m_s": 0.065,
           "run": 2,
-          "stilled": 20
+          "stilled": 7
         },
         {
-          "active": 4,
-          "frames": 30,
-          "peak_speed_m_s": 0.027,
+          "active": 5,
+          "frames": 45,
+          "peak_speed_m_s": 0.134,
           "run": 3,
           "stilled": 4
+        },
+        {
+          "active": 1,
+          "frames": 41,
+          "peak_speed_m_s": 0.413,
+          "run": 4,
+          "stilled": 1
         }
       ]
     },
-    "max_contact_gap_m": 0.0089,
+    "max_contact_gap_m": 0.0093,
     "max_interpenetration_m": 0.0,
     "rule": "a piece is still when the net travel of its fastest bound-box corner over 15 frames (30 fps) is under 0.01 m/s; still pieces are held for later runs",
     "stability_check": {
-      "max_move_m": 0.031,
-      "max_turn_deg": 78.97,
-      "pieces_moved_over_1cm": 4,
-      "pieces_moved_over_3cm": 1,
-      "resettled": 3,
+      "max_move_m": 0.0215,
+      "max_turn_deg": 31.08,
+      "pieces_moved_over_1cm": 3,
+      "pieces_moved_over_3cm": 0,
+      "resettled": 0,
       "what": "every kept piece let go again from the exported pose for 1.5 s (measured, not kept)"
     }
   },
   "source": {
     "layout": "content/environments/procedural_bridge_v1/layout.json",
-    "layout_sha256": "bf46d24dee64496229250c28918d98ddc4d0fe10c071ab1a5d1f23637b9c5615",
+    "layout_sha256": "e37b06498dd3c54539e773f241f9c3d7351849d3d1b9ac2ae336d4e563e1c3a1",
     "room_glb": "content/environments/procedural_architecture_v1/rooms/antechamber.glb",
-    "room_glb_sha256": "e62a2d03873ccf04f3ec8693fbcf64716f553ccc62e236e494abb5cb7668ef3a"
+    "room_glb_sha256": "51983ad0e6a87cb85c0c39607df1d0650c4b7ae2f0a8ba2a3fa9d14a6b8bdf53"
   },
   "task": "T-179",
   "triangles": {
     "budget": 20000,
     "meshes": {
-      "Rubble_antechamber_0": 2428,
-      "Rubble_antechamber_1": 9392,
-      "Rubble_antechamber_2": 1162,
-      "Rubble_antechamber_3": 5298,
-      "Rubble_antechamber_grime": 634
+      "Rubble_antechamber_0": 2446,
+      "Rubble_antechamber_1": 9166,
+      "Rubble_antechamber_2": 1220,
+      "Rubble_antechamber_3": 5168,
+      "Rubble_antechamber_grime": 656
     },
-    "total": 18914
+    "total": 18656
   },
   "vertex_color": {
     "Rubble_antechamber_0": {
-      "clipped_share": 0.0132,
-      "mean": 0.33,
+      "clipped_share": 0.02,
+      "mean": 0.324,
       "min": 0.126
     },
     "Rubble_antechamber_1": {
-      "clipped_share": 0.0128,
-      "mean": 0.311,
+      "clipped_share": 0.0129,
+      "mean": 0.31,
       "min": 0.126
     },
     "Rubble_antechamber_2": {
-      "clipped_share": 0.0396,
-      "mean": 0.43,
-      "min": 0.143
+      "clipped_share": 0.0311,
+      "mean": 0.435,
+      "min": 0.137
     },
     "Rubble_antechamber_3": {
-      "clipped_share": 0.0226,
-      "mean": 0.374,
+      "clipped_share": 0.0217,
+      "mean": 0.367,
       "min": 0.126
     },
     "Rubble_antechamber_grime": {
       "clipped_share": 0.0,
-      "mean": 0.342,
-      "min": 0.103
+      "mean": 0.308,
+      "min": 0.102
     }
   }
 }

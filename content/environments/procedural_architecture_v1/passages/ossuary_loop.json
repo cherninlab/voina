@@ -1,0 +1,110 @@
+{
+  "ao": {
+    "Mortar_ossuary_loop_13": {
+      "mean": 0.782,
+      "min": 0.18
+    },
+    "Mortar_ossuary_loop_18": {
+      "mean": 0.815,
+      "min": 0.18
+    },
+    "Mortar_ossuary_loop_23": {
+      "mean": 0.783,
+      "min": 0.18
+    },
+    "Mortar_ossuary_loop_3": {
+      "mean": 0.525,
+      "min": 0.18
+    },
+    "Mortar_ossuary_loop_8": {
+      "mean": 0.542,
+      "min": 0.18
+    },
+    "Stone-arch_ossuary_loop_12": {
+      "mean": 0.494,
+      "min": 0.18
+    },
+    "Stone-arch_ossuary_loop_17": {
+      "mean": 0.447,
+      "min": 0.18
+    },
+    "Stone-arch_ossuary_loop_2": {
+      "mean": 0.44,
+      "min": 0.18
+    },
+    "Stone-arch_ossuary_loop_22": {
+      "mean": 0.441,
+      "min": 0.18
+    },
+    "Stone-arch_ossuary_loop_7": {
+      "mean": 0.438,
+      "min": 0.18
+    },
+    "Stone-flag_ossuary_loop_14": {
+      "mean": 0.868,
+      "min": 0.18
+    },
+    "Stone-flag_ossuary_loop_19": {
+      "mean": 0.811,
+      "min": 0.18
+    },
+    "Stone-flag_ossuary_loop_24": {
+      "mean": 0.801,
+      "min": 0.18
+    },
+    "Stone-flag_ossuary_loop_4": {
+      "mean": 0.801,
+      "min": 0.18
+    },
+    "Stone-flag_ossuary_loop_9": {
+      "mean": 0.799,
+      "min": 0.18
+    },
+    "Stone-stone_ossuary_loop_0": {
+      "mean": 0.641,
+      "min": 0.18
+    },
+    "Stone-stone_ossuary_loop_1": {
+      "mean": 0.704,
+      "min": 0.18
+    },
+    "Stone-stone_ossuary_loop_10": {
+      "mean": 0.724,
+      "min": 0.18
+    },
+    "Stone-stone_ossuary_loop_11": {
+      "mean": 0.725,
+      "min": 0.18
+    },
+    "Stone-stone_ossuary_loop_15": {
+      "mean": 0.716,
+      "min": 0.18
+    },
+    "Stone-stone_ossuary_loop_16": {
+      "mean": 0.706,
+      "min": 0.18
+    },
+    "Stone-stone_ossuary_loop_20": {
+      "mean": 0.709,
+      "min": 0.18
+    },
+    "Stone-stone_ossuary_loop_21": {
+      "mean": 0.704,
+      "min": 0.18
+    },
+    "Stone-stone_ossuary_loop_5": {
+      "mean": 0.693,
+      "min": 0.18
+    },
+    "Stone-stone_ossuary_loop_6": {
+      "mean": 0.702,
+      "min": 0.18
+    }
+  },
+  "blender": "5.2.2 LTS",
+  "files": {
+    "content/environments/procedural_architecture_v1/passages/ossuary_loop.glb": "99cd9381aab1f0cbbc3192792798c79180b551387b3f0c6f0678382dbff7e974"
+  },
+  "id": "ossuary_loop",
+  "triangles": 313640
+}

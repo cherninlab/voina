@@ -1,0 +1,63 @@
+{
+  "ao": {
+    "Roots_ossuary_loop_0_306_0": {
+      "mean": 0.525,
+      "min": 0.2
+    }
+  },
+  "blender": "5.2.2 LTS",
+  "budget": 8325,
+  "clearance": {
+    "ankle_m": 0.03,
+    "headroom_m": 2.7,
+    "route_margin_m": 0.3
+  },
+  "diameter_cm": {
+    "max": 13.5,
+    "min": 0.5
+  },
+  "files": {
+    "content/environments/procedural_roots_v1/passages/ossuary_loop_0_306.glb": "6194cfa7d7d114c3723937e3188ccf7568d1c5706f7a15441bb1bf3e9039c667"
+  },
+  "id": "ossuary_loop_0_306",
+  "layout_hash": "20aa6015a7f9f4f7c12b59b90acfe080b07298d8b2b180c7054b532be72d00d4",
+  "meshes": [
+    "Roots_ossuary_loop_0_306_0"
+  ],
+  "passage": {
+    "file": "passages/ossuary_loop.glb",
+    "route": "ossuary_loop",
+    "segment": 0,
+    "t0": 0.3062,
+    "t1": 1.0
+  },
+  "qa": {
+    "audit": {
+      "cut_deeper_than_1cm": 10,
+      "cut_into_stone": 39,
+      "emerging_from_joint": 0,
+      "in_walking_corridor": 0,
+      "vertices": 3838
+    },
+    "cling_gap_m": {
+      "max": 0.0331,
+      "p50": 0.005,
+      "p95": 0.0113
+    },
+    "clipped_at_corridor": 1,
+    "pruned": 0,
+    "rings": 797,
+    "rings_touching_stone": 27
+  },
+  "roots": 105,
+  "seed": 178,
+  "sources": {
+    "procedural_architecture_v1/passages/ossuary_loop.glb": "99cd9381aab1f0cbbc3192792798c79180b551387b3f0c6f0678382dbff7e974"
+  },
+  "systems": {
+    "branch": 5,
+    "loop": 5,
+    "trunk": 4
+  },
+  "triangles": 7531
+}

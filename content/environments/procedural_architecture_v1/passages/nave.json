@@ -1,0 +1,70 @@
+{
+  "ao": {
+    "Mortar_nave_13": {
+      "mean": 0.682,
+      "min": 0.18
+    },
+    "Mortar_nave_3": {
+      "mean": 0.539,
+      "min": 0.18
+    },
+    "Mortar_nave_8": {
+      "mean": 0.593,
+      "min": 0.18
+    },
+    "Stone-arch_nave_12": {
+      "mean": 0.318,
+      "min": 0.18
+    },
+    "Stone-arch_nave_2": {
+      "mean": 0.44,
+      "min": 0.18
+    },
+    "Stone-arch_nave_7": {
+      "mean": 0.26,
+      "min": 0.18
+    },
+    "Stone-flag_nave_14": {
+      "mean": 0.755,
+      "min": 0.18
+    },
+    "Stone-flag_nave_4": {
+      "mean": 0.812,
+      "min": 0.18
+    },
+    "Stone-flag_nave_9": {
+      "mean": 0.755,
+      "min": 0.18
+    },
+    "Stone-stone_nave_0": {
+      "mean": 0.712,
+      "min": 0.18
+    },
+    "Stone-stone_nave_1": {
+      "mean": 0.713,
+      "min": 0.18
+    },
+    "Stone-stone_nave_10": {
+      "mean": 0.713,
+      "min": 0.18
+    },
+    "Stone-stone_nave_11": {
+      "mean": 0.696,
+      "min": 0.18
+    },
+    "Stone-stone_nave_5": {
+      "mean": 0.667,
+      "min": 0.18
+    },
+    "Stone-stone_nave_6": {
+      "mean": 0.685,
+      "min": 0.18
+    }
+  },
+  "blender": "5.2.2 LTS",
+  "files": {
+    "content/environments/procedural_architecture_v1/passages/nave.glb": "2d71cb11229bc4cee24f584c0411a6de2c3b476e3a6e8bd650c5cdc46471b604"
+  },
+  "id": "nave",
+  "triangles": 176797
+}

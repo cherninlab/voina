@@ -1,0 +1,50 @@
+{
+  "ao": {
+    "Mortar_window_0": {
+      "mean": 0.459,
+      "min": 0.18
+    },
+    "Mortar_window_1": {
+      "mean": 0.583,
+      "min": 0.18
+    },
+    "Mortar_window_2": {
+      "mean": 0.609,
+      "min": 0.18
+    },
+    "Mortar_window_3": {
+      "mean": 0.607,
+      "min": 0.18
+    },
+    "Mortar_window_4": {
+      "mean": 0.546,
+      "min": 0.18
+    },
+    "Stone_window_0": {
+      "mean": 0.661,
+      "min": 0.18
+    },
+    "Stone_window_1": {
+      "mean": 0.679,
+      "min": 0.18
+    },
+    "Stone_window_2": {
+      "mean": 0.693,
+      "min": 0.18
+    },
+    "Stone_window_3": {
+      "mean": 0.642,
+      "min": 0.18
+    },
+    "Stone_window_4": {
+      "mean": 0.704,
+      "min": 0.18
+    }
+  },
+  "blender": "5.2.2 LTS",
+  "files": {
+    "content/environments/procedural_architecture_v1/rooms/window.glb": "83a01f35f5ab9f457d9c6d2699e675df1b995dfae1ace2b5739623701312e61e"
+  },
+  "id": "window",
+  "triangles": 166443
+}

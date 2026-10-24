@@ -1,0 +1,110 @@
+{
+  "ao": {
+    "Mortar_return_gallery_13": {
+      "mean": 0.409,
+      "min": 0.18
+    },
+    "Mortar_return_gallery_18": {
+      "mean": 0.406,
+      "min": 0.18
+    },
+    "Mortar_return_gallery_23": {
+      "mean": 0.398,
+      "min": 0.18
+    },
+    "Mortar_return_gallery_3": {
+      "mean": 0.521,
+      "min": 0.18
+    },
+    "Mortar_return_gallery_8": {
+      "mean": 0.399,
+      "min": 0.18
+    },
+    "Stone-arch_return_gallery_12": {
+      "mean": 0.415,
+      "min": 0.18
+    },
+    "Stone-arch_return_gallery_17": {
+      "mean": 0.415,
+      "min": 0.18
+    },
+    "Stone-arch_return_gallery_2": {
+      "mean": 0.41,
+      "min": 0.18
+    },
+    "Stone-arch_return_gallery_22": {
+      "mean": 0.376,
+      "min": 0.18
+    },
+    "Stone-arch_return_gallery_7": {
+      "mean": 0.407,
+      "min": 0.18
+    },
+    "Stone-flag_return_gallery_14": {
+      "mean": 0.79,
+      "min": 0.18
+    },
+    "Stone-flag_return_gallery_19": {
+      "mean": 0.792,
+      "min": 0.18
+    },
+    "Stone-flag_return_gallery_24": {
+      "mean": 0.774,
+      "min": 0.18
+    },
+    "Stone-flag_return_gallery_4": {
+      "mean": 0.802,
+      "min": 0.18
+    },
+    "Stone-flag_return_gallery_9": {
+      "mean": 0.792,
+      "min": 0.18
+    },
+    "Stone-stone_return_gallery_0": {
+      "mean": 0.748,
+      "min": 0.18
+    },
+    "Stone-stone_return_gallery_1": {
+      "mean": 0.534,
+      "min": 0.18
+    },
+    "Stone-stone_return_gallery_10": {
+      "mean": 0.708,
+      "min": 0.18
+    },
+    "Stone-stone_return_gallery_11": {
+      "mean": 0.706,
+      "min": 0.18
+    },
+    "Stone-stone_return_gallery_15": {
+      "mean": 0.701,
+      "min": 0.18
+    },
+    "Stone-stone_return_gallery_16": {
+      "mean": 0.695,
+      "min": 0.18
+    },
+    "Stone-stone_return_gallery_20": {
+      "mean": 0.705,
+      "min": 0.18
+    },
+    "Stone-stone_return_gallery_21": {
+      "mean": 0.55,
+      "min": 0.18
+    },
+    "Stone-stone_return_gallery_5": {
+      "mean": 0.646,
+      "min": 0.18
+    },
+    "Stone-stone_return_gallery_6": {
+      "mean": 0.711,
+      "min": 0.18
+    }
+  },
+  "blender": "5.2.2 LTS",
+  "files": {
+    "content/environments/procedural_architecture_v1/passages/return_gallery.glb": "cf295ddf258c535d3aa1903713d378b6eaf6252e389e3eb08181cb7653170d00"
+  },
+  "id": "return_gallery",
+  "triangles": 353374
+}

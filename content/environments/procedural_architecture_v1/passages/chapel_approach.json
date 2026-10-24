@@ -1,0 +1,50 @@
+{
+  "ao": {
+    "Mortar_chapel_approach_3": {
+      "mean": 0.345,
+      "min": 0.18
+    },
+    "Mortar_chapel_approach_8": {
+      "mean": 0.37,
+      "min": 0.18
+    },
+    "Stone-arch_chapel_approach_2": {
+      "mean": 0.408,
+      "min": 0.18
+    },
+    "Stone-arch_chapel_approach_7": {
+      "mean": 0.356,
+      "min": 0.18
+    },
+    "Stone-flag_chapel_approach_4": {
+      "mean": 0.795,
+      "min": 0.18
+    },
+    "Stone-flag_chapel_approach_9": {
+      "mean": 0.786,
+      "min": 0.18
+    },
+    "Stone-stone_chapel_approach_0": {
+      "mean": 0.631,
+      "min": 0.18
+    },
+    "Stone-stone_chapel_approach_1": {
+      "mean": 0.728,
+      "min": 0.18
+    },
+    "Stone-stone_chapel_approach_5": {
+      "mean": 0.735,
+      "min": 0.18
+    },
+    "Stone-stone_chapel_approach_6": {
+      "mean": 0.54,
+      "min": 0.18
+    }
+  },
+  "blender": "5.2.2 LTS",
+  "files": {
+    "content/environments/procedural_architecture_v1/passages/chapel_approach.glb": "3a2afdfd17fefb411e6738f8fe6c9af2575b43c5b9669580a16465e6c0bba0e9"
+  },
+  "id": "chapel_approach",
+  "triangles": 48971
+}

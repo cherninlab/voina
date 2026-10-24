@@ -156,13 +156,13 @@ def detail(bm, rng, look: dict, name: str, triangles: int = 1200, voxel: float =
     for modifier in list(obj.modifiers):
         obj.modifiers.remove(modifier)
     for child in [o for o in bpy.data.objects if o.name.startswith(name + '_')]:
-        bpy.data.objects.remove(child, do_unlink=True)
+        core.discard(child)
     for texture in layers:
         bpy.data.textures.remove(texture)
     old = obj.data
     obj.data = baked
     baked.name = name
-    bpy.data.meshes.remove(old)
+    old.name = f'{name}_dense'  # left unused: removing meshes one by one remaps the whole file
     color = baked.color_attributes.new('Color', 'FLOAT_COLOR', 'CORNER')
     uv = baked.uv_layers.new(name='UVMap')
     tone = rng.random()
@@ -226,7 +226,10 @@ def voussoir(rng, inner: float, depth: float, angle: float, thickness: float, st
     fresh = bm.faces.layers.int.new('fresh')
     for theta, sign in ((start, -1.0), (start + angle, 1.0)):
         tangent = Vector((-math.sin(theta), 0.0, math.cos(theta))) * sign
-        _cut(bm, Vector((0, 0, 0)), _tilt(tangent, rng, look['square']), fresh, None)
+        # Tilt about the joint's own middle: about the arch centre a degree
+        # would swing the joint by decimetres on a wide, flat arch.
+        hinge = Vector((math.cos(theta), 0.0, math.sin(theta))) * (inner + outer) * 0.5
+        _cut(bm, hinge, _tilt(tangent, rng, look['square']), fresh, None)
     for y in (-thickness * 0.5, thickness * 0.5):
         normal = _tilt(Vector((0, 1.0 if y > 0 else -1.0, 0)), rng, look['square'])
         _cut(bm, Vector((0, y, 0)), normal, fresh, None)

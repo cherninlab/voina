@@ -70,7 +70,7 @@ func run() -> void:
 			failures.append("Scaled rubble collision: " + str(body.get_path()))
 	if dressing.piles.size() != 8 or dressing.hangings.size() != 10:
 		failures.append("Missing generated dressing")
-	if get_nodes_in_group("flagstone_room_floors").size() != 11:
+	if get_nodes_in_group("flagstone_room_floors").size() != RedDescentLayout.rooms().size():
 		failures.append("Missing integrated room floors")
 	var bracket_anchors: int = 0
 	for mount: Dictionary in dressing.practical_mounts:
@@ -137,7 +137,9 @@ func run() -> void:
 				var wall_query: PhysicsRayQueryParameters3D = PhysicsRayQueryParameters3D.create(point + normal * 0.2, point - normal * 0.2)
 				wall_query.exclude = bodies
 				var wall_hit: Dictionary = dungeon.get_world_3d().direct_space_state.intersect_ray(wall_query)
-				if wall_hit.is_empty() or (wall_hit["position"] as Vector3).distance_to(point) > 0.03:
+				# Stone-built rooms (T-177) collide on their mortar core, a joint's depth
+				# (3.4 cm) behind the stone faces, and their plinth course stands 5 cm proud.
+				if wall_hit.is_empty() or (wall_hit["position"] as Vector3).distance_to(point) > 0.06:
 					failures.append("Wall pile misses actual inner face: " + String(placement["id"]))
 			# Conservative world AABB against every route ribbon at this floor.
 			var clearance: float = route_margin(world_bounds)
@@ -156,7 +158,7 @@ func run() -> void:
 	for failure: String in failures:
 		printerr("DUNGEON_DRESSING_FAIL: " + failure)
 	if failures.is_empty():
-		print("DUNGEON_DRESSING_OK: 8 grounded rubble piles, 10 socket-mounted hangings, 11 room floors; sculpted pin gaps %.4fm, web gaps %.4fm, route margin %.3fm" % [max_actual_gap, max_web_gap, min_route_clearance])
+		print("DUNGEON_DRESSING_OK: 8 grounded rubble piles, 10 socket-mounted hangings, %d room floors;" % RedDescentLayout.rooms().size() + " sculpted pin gaps %.4fm, web gaps %.4fm, route margin %.3fm" % [max_actual_gap, max_web_gap, min_route_clearance])
 	dungeon.queue_free()
 	for frame: int in range(4):
 		await process_frame

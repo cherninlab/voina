@@ -1,0 +1,50 @@
+{
+  "ao": {
+    "Mortar_bell_loop_3": {
+      "mean": 0.379,
+      "min": 0.18
+    },
+    "Mortar_bell_loop_8": {
+      "mean": 0.375,
+      "min": 0.18
+    },
+    "Stone-arch_bell_loop_2": {
+      "mean": 0.45,
+      "min": 0.18
+    },
+    "Stone-arch_bell_loop_7": {
+      "mean": 0.448,
+      "min": 0.18
+    },
+    "Stone-flag_bell_loop_4": {
+      "mean": 0.801,
+      "min": 0.18
+    },
+    "Stone-flag_bell_loop_9": {
+      "mean": 0.804,
+      "min": 0.18
+    },
+    "Stone-stone_bell_loop_0": {
+      "mean": 0.716,
+      "min": 0.18
+    },
+    "Stone-stone_bell_loop_1": {
+      "mean": 0.713,
+      "min": 0.18
+    },
+    "Stone-stone_bell_loop_5": {
+      "mean": 0.713,
+      "min": 0.18
+    },
+    "Stone-stone_bell_loop_6": {
+      "mean": 0.713,
+      "min": 0.18
+    }
+  },
+  "blender": "5.2.2 LTS",
+  "files": {
+    "content/environments/procedural_architecture_v1/passages/bell_loop.glb": "831e826c37f65657c503b85dc98371998881ca546c0f77eb0759fbc0eed17d21"
+  },
+  "id": "bell_loop",
+  "triangles": 255693
+}

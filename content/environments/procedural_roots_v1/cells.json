@@ -1,0 +1,91 @@
+{
+  "ao": {
+    "Roots_cells_0": {
+      "mean": 0.527,
+      "min": 0.2
+    },
+    "Roots_cells_2": {
+      "mean": 0.568,
+      "min": 0.2
+    },
+    "Roots_cells_3": {
+      "mean": 0.471,
+      "min": 0.2
+    },
+    "Roots_cells_4": {
+      "mean": 0.608,
+      "min": 0.2
+    },
+    "Roots_cells_6": {
+      "mean": 0.567,
+      "min": 0.2
+    }
+  },
+  "blender": "5.2.2 LTS",
+  "budget": 15000,
+  "clearance": {
+    "ankle_m": 0.03,
+    "headroom_m": 2.7,
+    "route_margin_m": 0.3
+  },
+  "diameter_cm": {
+    "max": 17.0,
+    "min": 0.5
+  },
+  "doorways": [
+    {
+      "crown": 4.26,
+      "wall": 4,
+      "width": 4.0
+    },
+    {
+      "crown": 4.27,
+      "wall": 6,
+      "width": 4.0
+    }
+  ],
+  "files": {
+    "content/environments/procedural_roots_v1/cells.glb": "6f985b1e1f209aa094c64f4da8d0ebb3457cf077cc5785dbf4e45e9a7fe2ae9d"
+  },
+  "id": "cells",
+  "layout_hash": "20aa6015a7f9f4f7c12b59b90acfe080b07298d8b2b180c7054b532be72d00d4",
+  "meshes": [
+    "Roots_cells_0",
+    "Roots_cells_2",
+    "Roots_cells_3",
+    "Roots_cells_4",
+    "Roots_cells_6"
+  ],
+  "qa": {
+    "audit": {
+      "cut_deeper_than_1cm": 14,
+      "cut_into_stone": 30,
+      "emerging_from_joint": 10,
+      "in_walking_corridor": 0,
+      "vertices": 6820
+    },
+    "cling_gap_m": {
+      "max": 0.0499,
+      "p50": 0.0061,
+      "p95": 0.0167
+    },
+    "clipped_at_corridor": 0,
+    "pruned": 0,
+    "rings": 1317,
+    "rings_touching_stone": 12
+  },
+  "roots": 88,
+  "seed": 178,
+  "sources": {
+    "procedural_architecture_v1/passages/node_46_-4_6.glb": "fd7fb867e802f0041a969628eb5534c038d3b72cbe977960c35ff579a9e516b3",
+    "procedural_architecture_v1/passages/upper_cells.glb": "efc6ef1fcfda3ff49a8da42ec9ce64fa4d95d4321459350158ffbe0326dc138e",
+    "procedural_architecture_v1/rooms/cells.glb": "c24095b6a1b79078f3ec118352aff6c6067cfe9db57616e30e16b9ca7fec96cb"
+  },
+  "systems": {
+    "branch": 8,
+    "loop": 6,
+    "trunk": 8,
+    "vein": 5
+  },
+  "triangles": 13779
+}

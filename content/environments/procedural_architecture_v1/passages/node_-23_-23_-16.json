@@ -1,0 +1,26 @@
+{
+  "ao": {
+    "Mortar_node_-23_-23_-16_0": {
+      "mean": 0.411,
+      "min": 0.18
+    },
+    "Stone-arch_node_-23_-23_-16_0": {
+      "mean": 0.492,
+      "min": 0.18
+    },
+    "Stone-ashlar_node_-23_-23_-16_0": {
+      "mean": 0.521,
+      "min": 0.18
+    },
+    "Stone-stone_node_-23_-23_-16_0": {
+      "mean": 0.738,
+      "min": 0.18
+    }
+  },
+  "blender": "5.2.2 LTS",
+  "files": {
+    "content/environments/procedural_architecture_v1/passages/node_-23_-23_-16.glb": "f3f246fcc6af053f6c14f3b5f804ce16ccb345ddc80afe2ec592f857026cff09"
+  },
+  "id": "node_-23_-23_-16",
+  "triangles": 25153
+}

@@ -1,23 +1,23 @@
 {
   "ao": {
     "Roots_antechamber_0": {
-      "mean": 0.629,
+      "mean": 0.574,
+      "min": 0.2
+    },
+    "Roots_antechamber_1": {
+      "mean": 0.556,
       "min": 0.2
     },
     "Roots_antechamber_2": {
-      "mean": 0.605,
+      "mean": 0.595,
       "min": 0.2
     },
     "Roots_antechamber_5": {
-      "mean": 0.488,
+      "mean": 0.544,
       "min": 0.2
     },
     "Roots_antechamber_6": {
-      "mean": 0.558,
-      "min": 0.2
-    },
-    "Roots_antechamber_7": {
-      "mean": 0.602,
+      "mean": 0.495,
       "min": 0.2
     }
   },
@@ -29,62 +29,62 @@
     "route_margin_m": 0.3
   },
   "diameter_cm": {
-    "max": 15.0,
+    "max": 15.3,
     "min": 0.5
   },
   "doorways": [
     {
-      "crown": 4.28,
+      "crown": 4.27,
       "wall": 0,
       "width": 5.3
     },
     {
-      "crown": 4.47,
+      "crown": 4.48,
       "wall": 2,
       "width": 3.6
     }
   ],
   "files": {
-    "content/environments/procedural_roots_v1/antechamber.glb": "9aa02de4ff363dda3edf3b143fd293493bb98ae776a44fb39099b010fa89c4b2"
+    "content/environments/procedural_roots_v1/antechamber.glb": "7db46dd69ad7fd1ace105812ddecb247e4d1c12cb8fe83de6965a322bcb02a4c"
   },
   "id": "antechamber",
   "layout_hash": "20aa6015a7f9f4f7c12b59b90acfe080b07298d8b2b180c7054b532be72d00d4",
   "meshes": [
     "Roots_antechamber_0",
+    "Roots_antechamber_1",
     "Roots_antechamber_2",
     "Roots_antechamber_5",
-    "Roots_antechamber_6",
-    "Roots_antechamber_7"
+    "Roots_antechamber_6"
   ],
   "qa": {
     "audit": {
-      "cut_deeper_than_1cm": 9,
-      "cut_into_stone": 17,
-      "emerging_from_joint": 0,
+      "cut_deeper_than_1cm": 3,
+      "cut_into_stone": 11,
+      "emerging_from_joint": 2,
       "in_walking_corridor": 0,
-      "vertices": 6339
+      "vertices": 6675
     },
     "cling_gap_m": {
-      "max": 0.0565,
-      "p50": 0.0062,
-      "p95": 0.0165
+      "max": 0.0441,
+      "p50": 0.0052,
+      "p95": 0.0142
     },
-    "clipped_at_corridor": 2,
+    "clipped_at_corridor": 0,
     "pruned": 0,
-    "rings": 1158,
-    "rings_touching_stone": 5
+    "rings": 1325,
+    "rings_touching_stone": 9
   },
-  "roots": 61,
+  "roots": 88,
   "seed": 178,
   "sources": {
-    "procedural_architecture_v1/passages/entry_0_0.glb": "dffc458ff950a8bd607d72ebfda98263a654e4ad5e59a8f3b19261888d9126fe",
-    "procedural_architecture_v1/rooms/antechamber.glb": "e62a2d03873ccf04f3ec8693fbcf64716f553ccc62e236e494abb5cb7668ef3a"
+    "procedural_architecture_v1/passages/entry.glb": "912c5aea1608ed100c3765a39271c06a33d805d70a10270a63784137c195452c",
+    "procedural_architecture_v1/rooms/antechamber.glb": "51983ad0e6a87cb85c0c39607df1d0650c4b7ae2f0a8ba2a3fa9d14a6b8bdf53"
   },
   "systems": {
-    "branch": 4,
+    "branch": 7,
     "loop": 6,
-    "trunk": 9,
-    "vein": 5
+    "trunk": 7,
+    "vein": 9
   },
-  "triangles": 12861
+  "triangles": 13439
 }

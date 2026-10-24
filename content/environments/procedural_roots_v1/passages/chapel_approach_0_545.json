@@ -1,0 +1,63 @@
+{
+  "ao": {
+    "Roots_chapel_approach_0_545_0": {
+      "mean": 0.621,
+      "min": 0.2
+    }
+  },
+  "blender": "5.2.2 LTS",
+  "budget": 6859,
+  "clearance": {
+    "ankle_m": 0.03,
+    "headroom_m": 2.7,
+    "route_margin_m": 0.3
+  },
+  "diameter_cm": {
+    "max": 10.5,
+    "min": 0.5
+  },
+  "files": {
+    "content/environments/procedural_roots_v1/passages/chapel_approach_0_545.glb": "58ee9945638a310b4f06f50cd13b86779bc37b39955008cfb62f5f042f0c2780"
+  },
+  "id": "chapel_approach_0_545",
+  "layout_hash": "20aa6015a7f9f4f7c12b59b90acfe080b07298d8b2b180c7054b532be72d00d4",
+  "meshes": [
+    "Roots_chapel_approach_0_545_0"
+  ],
+  "passage": {
+    "file": "passages/chapel_approach.glb",
+    "route": "chapel_approach",
+    "segment": 0,
+    "t0": 0.545,
+    "t1": 1.0
+  },
+  "qa": {
+    "audit": {
+      "cut_deeper_than_1cm": 1,
+      "cut_into_stone": 7,
+      "emerging_from_joint": 0,
+      "in_walking_corridor": 0,
+      "vertices": 2882
+    },
+    "cling_gap_m": {
+      "max": 0.0494,
+      "p50": 0.0047,
+      "p95": 0.0111
+    },
+    "clipped_at_corridor": 0,
+    "pruned": 0,
+    "rings": 646,
+    "rings_touching_stone": 4
+  },
+  "roots": 81,
+  "seed": 178,
+  "sources": {
+    "procedural_architecture_v1/passages/chapel_approach.glb": "3a2afdfd17fefb411e6738f8fe6c9af2575b43c5b9669580a16465e6c0bba0e9"
+  },
+  "systems": {
+    "branch": 5,
+    "loop": 3,
+    "trunk": 1
+  },
+  "triangles": 5614
+}

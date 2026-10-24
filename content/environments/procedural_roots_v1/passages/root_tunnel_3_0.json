@@ -1,0 +1,63 @@
+{
+  "ao": {
+    "Roots_root_tunnel_3_0_0": {
+      "mean": 0.635,
+      "min": 0.2
+    }
+  },
+  "blender": "5.2.2 LTS",
+  "budget": 15000,
+  "clearance": {
+    "ankle_m": 0.03,
+    "headroom_m": 2.7,
+    "route_margin_m": 0.3
+  },
+  "diameter_cm": {
+    "max": 11.2,
+    "min": 0.5
+  },
+  "files": {
+    "content/environments/procedural_roots_v1/passages/root_tunnel_3_0.glb": "34553c95cdc32a4ae7ca6bf91ef42c850c1f41e4ae72086ccd6e9315d2d9f303"
+  },
+  "id": "root_tunnel_3_0",
+  "layout_hash": "20aa6015a7f9f4f7c12b59b90acfe080b07298d8b2b180c7054b532be72d00d4",
+  "meshes": [
+    "Roots_root_tunnel_3_0_0"
+  ],
+  "passage": {
+    "file": "passages/root_tunnel.glb",
+    "route": "root_tunnel",
+    "segment": 3,
+    "t0": 0.0,
+    "t1": 1.0
+  },
+  "qa": {
+    "audit": {
+      "cut_deeper_than_1cm": 3,
+      "cut_into_stone": 14,
+      "emerging_from_joint": 2,
+      "in_walking_corridor": 0,
+      "vertices": 6135
+    },
+    "cling_gap_m": {
+      "max": 0.0467,
+      "p50": 0.005,
+      "p95": 0.0121
+    },
+    "clipped_at_corridor": 0,
+    "pruned": 0,
+    "rings": 1315,
+    "rings_touching_stone": 5
+  },
+  "roots": 139,
+  "seed": 178,
+  "sources": {
+    "procedural_architecture_v1/passages/root_tunnel.glb": "b48fe6141d5053221415c9a463643004c5c3e4b223a7f50b21343de00976188c"
+  },
+  "systems": {
+    "branch": 9,
+    "loop": 8,
+    "trunk": 2
+  },
+  "triangles": 12071
+}

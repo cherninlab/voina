@@ -1,0 +1,66 @@
+{
+  "ao": {
+    "Mortar_cave_bypass_13": {
+      "mean": 0.289,
+      "min": 0.18
+    },
+    "Mortar_cave_bypass_3": {
+      "mean": 0.319,
+      "min": 0.18
+    },
+    "Mortar_cave_bypass_8": {
+      "mean": 0.283,
+      "min": 0.18
+    },
+    "Stone-arch_cave_bypass_12": {
+      "mean": 0.361,
+      "min": 0.18
+    },
+    "Stone-arch_cave_bypass_2": {
+      "mean": 0.398,
+      "min": 0.18
+    },
+    "Stone-arch_cave_bypass_7": {
+      "mean": 0.419,
+      "min": 0.18
+    },
+    "Stone-flag_cave_bypass_14": {
+      "mean": 0.769,
+      "min": 0.18
+    },
+    "Stone-flag_cave_bypass_4": {
+      "mean": 0.769,
+      "min": 0.18
+    },
+    "Stone-flag_cave_bypass_9": {
+      "mean": 0.77,
+      "min": 0.18
+    },
+    "Stone-stone_cave_bypass_0": {
+      "mean": 0.726,
+      "min": 0.18
+    },
+    "Stone-stone_cave_bypass_1": {
+      "mean": 0.716,
+      "min": 0.18
+    },
+    "Stone-stone_cave_bypass_10": {
+      "mean": 0.718,
+      "min": 0.18
+    },
+    "Stone-stone_cave_bypass_5": {
+      "mean": 0.712,
+      "min": 0.18
+    },
+    "Stone-stone_cave_bypass_6": {
+      "mean": 0.662,
+      "min": 0.18
+    }
+  },
+  "blender": "5.2.2 LTS",
+  "files": {
+    "content/environments/procedural_architecture_v1/passages/cave_bypass.glb": "ca7b15357383098cc9a13e82c7aa212b0711e97f4ad661852474cfd44b1c7b95"
+  },
+  "id": "cave_bypass",
+  "triangles": 148837
+}

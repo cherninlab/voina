@@ -18,7 +18,8 @@ class RoomNavigation:
 	func covers(location: Vector3) -> bool:
 		return absf(location.y - floor_y) < 4.0 and super.covers(location)
 
-const POSTS: Array[Vector3] = [Vector3(80, -4, 36), Vector3(88, -4, 34), Vector3(82, -28, 46), Vector3(88, -28, 44), Vector3(90, -28, 50)]
+# The choir's return stair climbs its walls on masonry; its guards hold the open floor.
+const POSTS: Array[Vector3] = [Vector3(80, -4, 36), Vector3(88, -4, 34), Vector3(82, -28, 46), Vector3(84, -28, 52), Vector3(90, -28, 50)]
 var remaining: int = POSTS.size()
 
 func _ready() -> void:

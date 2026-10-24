@@ -26,6 +26,7 @@ from dataclasses import dataclass
 
 import bmesh
 import bpy
+import numpy
 from mathutils import Matrix, Vector
 
 from . import core, stones
@@ -72,11 +73,21 @@ class Opening:
 
 class Wall:
     def __init__(self, length: float, height: float, thickness: float = 0.9, openings=(), course=(0.2, 0.44),
-                 stone=(0.3, 0.95), joint=(0.006, 0.016), proud=(-0.006, 0.018), recess=0.034, ring=0.4):
+                 stone=(0.3, 0.95), joint=(0.006, 0.016), proud=(-0.006, 0.018), recess=0.034, ring=0.4,
+                 bow: float = 0.0, lean: float = 0.0, wave: float = 0.0, plinth: bool = False, cornice: bool = False,
+                 thresholds: bool = False):
+        """`bow` (m) bulges the face out towards its middle, `lean` (m per m)
+        tips it out towards the top, `wave` (m) lets the courses rise and fall
+        along the wall: no old wall is ruler-straight. `plinth` and `cornice`
+        set the first and last courses in dressed stone, standing proud; 
+        `thresholds` lays a stone sill across every doorway."""
         self.length, self.height, self.thickness = length, height, thickness
         self.openings = list(openings)
         self.course, self.stone, self.joint, self.proud = course, stone, joint, proud
         self.recess, self.ring = recess, ring
+        self.bow, self.lean, self.wave = bow, lean, wave
+        self.plinth, self.cornice, self.thresholds = plinth, cornice, thresholds
+        self.lacing = None  # a thin-slab library: rows under 16 cm are laid from it
 
     # -- setting out -------------------------------------------------------
     def courses(self, rng, keys=None) -> list:
@@ -120,12 +131,14 @@ class Wall:
 
     # -- building ----------------------------------------------------------
     def build(self, lib, rng, quoins=None, name: str = 'Wall', rows=None, interlock: float = 0.0, core: bool = True,
-              dress: bool = True) -> list:
+              dress: bool = True, upper=None) -> list:
         """`interlock` > 0 alternates the wall ends by course: on even courses
         this wall runs on past its start corner and stops short of its end,
         on odd courses the other way, so neighbouring walls bond at corners.
         `dress` False leaves the openings' jambs and arch rings out (the
-        second face of a wall whose through-stones another face supplies)."""
+        second face of a wall whose through-stones another face supplies).
+        `upper` = (library, from_height, stone length range): courses from
+        that height up use bigger, lighter stones (out of reach, seen from afar)."""
         parts = []
         rows = rows or self.courses(rng)
         for row, (y0, h) in enumerate(rows):
@@ -141,37 +154,80 @@ class Wall:
                     parts.append(self.stone_in(quoins or lib, rng, o.x0 - 0.12, o.x1 + 0.12, o.sill - 0.13, o.sill,
                                                self.thickness + 0.04, f'{name}_sill_{row}'))
             for a, b in spans:
-                parts += self.fill(lib, rng, a, b, y0, h, row, name)
+                if self.lacing and h < 0.16:
+                    # A lacing course: long thin slabs run through the wall.
+                    parts += self.fill(self.lacing, rng, a, b, y0, h, row, name, (0.6, 1.6))
+                elif (self.plinth and row == 0) or (self.cornice and row == len(rows) - 1):
+                    # Dressed band: longer stones, standing a few centimetres proud.
+                    parts += self.fill(quoins or lib, rng, a, b, y0, h, row, name, (0.6, 1.3), extra=0.05 if row == 0 else 0.07)
+                elif upper and y0 >= upper[1]:
+                    parts += self.fill(upper[0], rng, a, b, y0, h, row, name, upper[2])
+                else:
+                    parts += self.fill(lib, rng, a, b, y0, h, row, name)
         for number, o in enumerate(self.openings if dress else ()):
             parts += self.arch(rng, o, f'{name}_arch{number}')
+            if self.thresholds and o.sill == 0.0:
+                parts += self.threshold(quoins or lib, rng, o, f'{name}_sill{number}')
+        if self.bow or self.lean or self.wave:
+            self.settle(parts, rng)
         if core:
             parts.append(self.core(name))
         return parts
 
-    def fill(self, lib, rng, a: float, b: float, y0: float, h: float, row: int, name: str) -> list:
+    def threshold(self, lib, rng, o: Opening, name: str) -> list:
+        """Worn slabs across a doorway, through the wall, just proud of the floor."""
+        result, x = [], o.x0 - 0.12
+        end = o.x1 + 0.12
+        while end - x > 0.05:
+            length = rng.uniform(0.7, 1.3)
+            if end - (x + length) < 0.45:
+                length = end - x
+            stone = lib.place(rng, length - 0.01, self.thickness + 0.02, 0.16, name)
+            # Stone axes: x along the wall, y across it (into the wall), z up.
+            frame = Matrix(((1, 0, 0, x + length * 0.5), (0, 0, 1, 0.012), (0, -1, 0, -self.thickness * 0.5 + 0.01), (0, 0, 0, 1)))
+            stone.matrix_world = frame @ stone.matrix_world
+            result.append(stone)
+            x += length
+        return result
+
+    def settle(self, parts: list, rng) -> None:
+        """Bow, lean and course wave as one smooth field over the face, so
+        neighbouring stones move together and joints stay true."""
+        phase = rng.uniform(0.0, math.tau)
+        wavelength = rng.uniform(3.0, 6.0)
+        for obj in parts:
+            x, y, _ = obj.matrix_world.translation
+            u = min(max(x / max(self.length, 0.01), 0.0), 1.0)
+            v = min(max(y / max(self.height, 0.01), 0.0), 1.0)
+            out = self.bow * math.sin(math.pi * u) * math.sin(math.pi * min(v * 1.3, 1.0)) + self.lean * y
+            rise = self.wave * math.sin(math.tau * x / wavelength + phase) * min(v * 4.0, 1.0)
+            obj.matrix_world = Matrix.Translation((0.0, rise, max(out, 0.0))) @ obj.matrix_world
+
+    def fill(self, lib, rng, a: float, b: float, y0: float, h: float, row: int, name: str, sizes=None, extra: float = 0.0) -> list:
         """Course stones between a and b, the last ones sized to close the run;
         stones touching an arch ring are cut to its curve."""
+        sizes = sizes or self.stone
         lengths, x = [], a
         while b - x > 1e-6:
-            length = rng.uniform(*self.stone)
-            if b - (x + length) < self.stone[0] * 0.6:
+            length = rng.uniform(*sizes)
+            if b - (x + length) < sizes[0] * 0.6:
                 length = b - x
             lengths.append(length)
             x += length
         result, x = [], a
         for k, length in enumerate(lengths):
-            stone = self.stone_in(lib, rng, x, x + length, y0, y0 + h, rng.uniform(0.24, 0.36), f'{name}_{row}_{k}')
+            stone = self.stone_in(lib, rng, x, x + length, y0, y0 + h, rng.uniform(0.24, 0.36) + extra, f'{name}_{row}_{k}', extra)
             for o in self.openings:
                 self.cut_to_ring(stone, o)
             result.append(stone)
             x += length
         return result
 
-    def stone_in(self, lib, rng, x0: float, x1: float, y0: float, y1: float, depth: float, name: str) -> bpy.types.Object:
+    def stone_in(self, lib, rng, x0: float, x1: float, y0: float, y1: float, depth: float, name: str, extra: float = 0.0) -> bpy.types.Object:
         joint = rng.uniform(*self.joint)
         stone = lib.place(rng, x1 - x0 - joint, y1 - y0 - joint, depth, name)
         lean = Matrix.Rotation(math.radians(rng.uniform(-1.2, 1.2)), 4, 'Z') @ Matrix.Rotation(math.radians(rng.uniform(-1.0, 1.0)), 4, 'X')
-        stone.matrix_world = Matrix.Translation(((x0 + x1) * 0.5, (y0 + y1) * 0.5, rng.uniform(*self.proud))) @ lean @ stone.matrix_world
+        stone.matrix_world = Matrix.Translation(((x0 + x1) * 0.5, (y0 + y1) * 0.5, rng.uniform(*self.proud) + extra)) @ lean @ stone.matrix_world
         return stone
 
     def cut_to_ring(self, stone: bpy.types.Object, o: Opening) -> None:
@@ -261,19 +317,23 @@ class Wall:
             obj.modifiers.clear()
             obj.data = baked
             for tool in [o for o in bpy.data.objects if o.name.startswith(f'{name}_cut')]:
-                bpy.data.objects.remove(tool, do_unlink=True)
+                core.discard(tool)
         return obj
 
 
-def clip(obj: bpy.types.Object, point: Vector, normal: Vector) -> bool:
+def clip(obj: bpy.types.Object, point: Vector, normal: Vector, fill: bool = True) -> bool:
     """Cut away the part of a placed object on the `normal` side of the plane
     (world space) and cap it. False when nothing is left."""
-    world = [obj.matrix_world @ v.co for v in obj.data.vertices]
-    side = [(p - point).dot(normal) for p in world]
-    if max(side) <= 0.0:
-        return True
-    if min(side) >= 0.0:
+    mesh = obj.data
+    co = numpy.empty(len(mesh.vertices) * 3)
+    mesh.vertices.foreach_get('co', co)
+    matrix = numpy.array(obj.matrix_world)
+    world = co.reshape(-1, 3) @ matrix[:3, :3].T + matrix[:3, 3]
+    side = (world - numpy.array(point)) @ numpy.array(normal)
+    if not len(side) or side.min() >= 0.0:
         return False
+    if side.max() <= 0.0:
+        return True
     obj.data = obj.data.copy()
     bm = bmesh.new()
     bm.from_mesh(obj.data)
@@ -281,7 +341,7 @@ def clip(obj: bpy.types.Object, point: Vector, normal: Vector) -> bool:
     result = bmesh.ops.bisect_plane(bm, geom=bm.verts[:] + bm.edges[:] + bm.faces[:], plane_co=inverse @ point,
                                     plane_no=(inverse.to_3x3().transposed().inverted() @ normal).normalized(), clear_outer=True)
     edges = [e for e in result['geom_cut'] if isinstance(e, bmesh.types.BMEdge)]
-    if edges:
+    if edges and fill:
         bmesh.ops.edgeloop_fill(bm, edges=edges)
     bm.to_mesh(obj.data)
     bm.free()
@@ -301,7 +361,7 @@ def ring(rng, o: Opening, depth: float, thickness: float, name: str, stagger: bo
         count += 1 - count % 2
     result = []
     for k in range(count):
-        result.append(stones.voussoir(rng, inner=o.radius, depth=depth, angle=sweep / count * 0.955, thickness=thickness,
+        result.append(stones.voussoir(rng, inner=o.radius, depth=depth, angle=sweep / count * 0.972, thickness=thickness,
                                       start=o.a0 + k * sweep / count, keystone=(k == count // 2), name=f'{name}_{k}',
                                       triangles=triangles))
     return result

@@ -1,0 +1,62 @@
+{
+  "ao": {
+    "Roots_nave_5_0_0": {
+      "mean": 0.528,
+      "min": 0.2
+    }
+  },
+  "blender": "5.2.2 LTS",
+  "budget": 7648,
+  "clearance": {
+    "ankle_m": 0.03,
+    "headroom_m": 2.7,
+    "route_margin_m": 0.3
+  },
+  "diameter_cm": {
+    "max": 10.3,
+    "min": 0.5
+  },
+  "files": {
+    "content/environments/procedural_roots_v1/passages/nave_5_0.glb": "be32fbc7170241f8f0df31d5627c6f328e71709d200496753658d2848c2ce382"
+  },
+  "id": "nave_5_0",
+  "layout_hash": "20aa6015a7f9f4f7c12b59b90acfe080b07298d8b2b180c7054b532be72d00d4",
+  "meshes": [
+    "Roots_nave_5_0_0"
+  ],
+  "passage": {
+    "file": "passages/nave.glb",
+    "route": "nave",
+    "segment": 5,
+    "t0": 0.0,
+    "t1": 1.0
+  },
+  "qa": {
+    "audit": {
+      "cut_deeper_than_1cm": 3,
+      "cut_into_stone": 15,
+      "emerging_from_joint": 0,
+      "in_walking_corridor": 0,
+      "vertices": 1562
+    },
+    "cling_gap_m": {
+      "max": 0.0187,
+      "p50": 0.0052,
+      "p95": 0.0107
+    },
+    "clipped_at_corridor": 0,
+    "pruned": 0,
+    "rings": 355,
+    "rings_touching_stone": 7
+  },
+  "roots": 54,
+  "seed": 178,
+  "sources": {
+    "procedural_architecture_v1/passages/nave.glb": "2d71cb11229bc4cee24f584c0411a6de2c3b476e3a6e8bd650c5cdc46471b604"
+  },
+  "systems": {
+    "branch": 5,
+    "trunk": 3
+  },
+  "triangles": 3095
+}

@@ -1,0 +1,30 @@
+{
+  "ao": {
+    "Mortar_entry_3": {
+      "mean": 0.764,
+      "min": 0.18
+    },
+    "Stone_entry_0": {
+      "mean": 0.706,
+      "min": 0.18
+    },
+    "Stone_entry_1": {
+      "mean": 0.696,
+      "min": 0.18
+    },
+    "Stone_entry_2": {
+      "mean": 0.431,
+      "min": 0.18
+    },
+    "Stone_entry_4": {
+      "mean": 0.809,
+      "min": 0.18
+    }
+  },
+  "blender": "5.2.2 LTS",
+  "files": {
+    "content/environments/procedural_architecture_v1/passages/entry.glb": "912c5aea1608ed100c3765a39271c06a33d805d70a10270a63784137c195452c"
+  },
+  "id": "entry",
+  "triangles": 39842
+}

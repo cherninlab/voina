@@ -27,6 +27,8 @@ uniform float wet_roughness = 0.23;
 uniform bool timber = false;
 // Baked stone builds carry metre UVs per stone (UV) and continuous along each wall (UV2).
 uniform bool mapped = false;
+// A render coat over baked stone: where the peel mask exposes masonry, the coat is gone.
+uniform bool coat = false;
 varying vec2 surface_uv;
 varying vec2 wall_metres;
 varying vec3 surface_normal;
@@ -113,6 +115,12 @@ void fragment() {
 	if (plaster > 0.0) {
 		float peel = texture(peel_map, metres * 0.125).r;
 		exposed = smoothstep(0.53, 0.59, broad * 0.5 + medium * 0.35 + peel * 0.15) * plaster;
+	}
+	if (coat) {
+		if (exposed > 0.5) {
+			discard;
+		}
+		exposed = 0.0;
 	}
 	vec3 detail = mix(texture(normal_map, uv).xyz, texture(substrate_normal, foundation_uv).xyz, exposed) * 2.0 - 1.0;
 	detail.xy *= normal_strength * (timber ? 0.75 : 1.0);

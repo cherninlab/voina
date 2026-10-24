@@ -51,9 +51,12 @@ class Library:
             # box: the worn arrises then round over into tight joints instead of
             # leaving every stone floating in a wide bed of mortar.
             front = max(zs)
-            body = [v.co for v in mesh.vertices if front - 0.11 < v.co.z < front - 0.035] or list(v.co for v in mesh.vertices)
-            bx = [c.x for c in body]
-            by = [c.y for c in body]
+            body = [v.co for v in mesh.vertices if front - 0.11 < v.co.z < front - 0.035]
+            bx = [c.x for c in body] or xs
+            by = [c.y for c in body] or ys
+            if max(bx) - min(bx) < 0.5 * (max(xs) - min(xs)) or max(by) - min(by) < 0.5 * (max(ys) - min(ys)):
+                # Too few vertices in the band (a very light stone): fit by the bounding box.
+                bx, by = xs, ys
             mesh.transform(Matrix.Translation((-(max(bx) + min(bx)) * 0.5, -(max(by) + min(by)) * 0.5, -front)))
             dims = Vector((max(bx) - min(bx), max(by) - min(by), front - min(zs)))
             if hidden_back is not None:
@@ -86,6 +89,8 @@ class Library:
         flip_x = -1.0 if rng.random() < 0.5 else 1.0
         flip_y = -1.0 if rng.random() < 0.3 else 1.0
         obj.matrix_world = Matrix.Diagonal((flip_x * length / dims.x, flip_y * height / dims.y, depth / dims.z, 1.0))
-        obj['tone'] = rng.uniform(0.72, 1.18)
+        # Stones from different beds and different weathering: most mid, a few
+        # dark, a few pale (the paintovers' walls are anything but uniform).
+        obj['tone'] = rng.triangular(0.5, 1.2, 0.86)
         (collection or bpy.context.scene.collection).objects.link(obj)
         return obj

@@ -1,0 +1,154 @@
+{
+  "ao": {
+    "Mortar_choir_0": {
+      "mean": 0.567,
+      "min": 0.18
+    },
+    "Mortar_choir_1": {
+      "mean": 0.566,
+      "min": 0.18
+    },
+    "Mortar_choir_2": {
+      "mean": 0.574,
+      "min": 0.18
+    },
+    "Mortar_choir_3": {
+      "mean": 0.569,
+      "min": 0.18
+    },
+    "Mortar_choir_4": {
+      "mean": 0.567,
+      "min": 0.18
+    },
+    "Mortar_choir_5": {
+      "mean": 0.567,
+      "min": 0.18
+    },
+    "Mortar_choir_6": {
+      "mean": 0.576,
+      "min": 0.18
+    },
+    "Mortar_choir_7": {
+      "mean": 0.574,
+      "min": 0.18
+    },
+    "Mortar_choir_9": {
+      "mean": 0.475,
+      "min": 0.18
+    },
+    "Stone-arch_choir_6": {
+      "mean": 0.489,
+      "min": 0.18
+    },
+    "Stone-ashlar_choir_0": {
+      "mean": 0.623,
+      "min": 0.18
+    },
+    "Stone-ashlar_choir_1": {
+      "mean": 0.548,
+      "min": 0.18
+    },
+    "Stone-ashlar_choir_2": {
+      "mean": 0.576,
+      "min": 0.18
+    },
+    "Stone-ashlar_choir_3": {
+      "mean": 0.568,
+      "min": 0.18
+    },
+    "Stone-ashlar_choir_4": {
+      "mean": 0.575,
+      "min": 0.18
+    },
+    "Stone-ashlar_choir_5": {
+      "mean": 0.529,
+      "min": 0.18
+    },
+    "Stone-ashlar_choir_6": {
+      "mean": 0.638,
+      "min": 0.18
+    },
+    "Stone-ashlar_choir_7": {
+      "mean": 0.59,
+      "min": 0.18
+    },
+    "Stone-flag_choir_9": {
+      "mean": 0.625,
+      "min": 0.18
+    },
+    "Stone-slab_choir_0": {
+      "mean": 0.616,
+      "min": 0.18
+    },
+    "Stone-slab_choir_1": {
+      "mean": 0.496,
+      "min": 0.18
+    },
+    "Stone-slab_choir_2": {
+      "mean": 0.518,
+      "min": 0.18
+    },
+    "Stone-slab_choir_3": {
+      "mean": 0.498,
+      "min": 0.18
+    },
+    "Stone-slab_choir_4": {
+      "mean": 0.532,
+      "min": 0.18
+    },
+    "Stone-slab_choir_5": {
+      "mean": 0.496,
+      "min": 0.18
+    },
+    "Stone-slab_choir_6": {
+      "mean": 0.596,
+      "min": 0.18
+    },
+    "Stone-slab_choir_7": {
+      "mean": 0.602,
+      "min": 0.18
+    },
+    "Stone-stone_choir_0": {
+      "mean": 0.707,
+      "min": 0.18
+    },
+    "Stone-stone_choir_1": {
+      "mean": 0.609,
+      "min": 0.18
+    },
+    "Stone-stone_choir_2": {
+      "mean": 0.661,
+      "min": 0.18
+    },
+    "Stone-stone_choir_3": {
+      "mean": 0.599,
+      "min": 0.18
+    },
+    "Stone-stone_choir_4": {
+      "mean": 0.662,
+      "min": 0.18
+    },
+    "Stone-stone_choir_5": {
+      "mean": 0.58,
+      "min": 0.18
+    },
+    "Stone-stone_choir_6": {
+      "mean": 0.737,
+      "min": 0.18
+    },
+    "Stone-stone_choir_7": {
+      "mean": 0.701,
+      "min": 0.18
+    },
+    "Stone-stone_choir_9": {
+      "mean": 0.72,
+      "min": 0.18
+    }
+  },
+  "blender": "5.2.2 LTS",
+  "files": {
+    "content/environments/procedural_architecture_v1/rooms/choir.glb": "eed6498ef6c6e88aaea2abaaaa9094aeab70011b20a0f8812b90838eb2c14238"
+  },
+  "id": "choir",
+  "triangles": 648842
+}

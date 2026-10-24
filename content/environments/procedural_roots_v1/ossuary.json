@@ -1,0 +1,91 @@
+{
+  "ao": {
+    "Roots_ossuary_0": {
+      "mean": 0.521,
+      "min": 0.2
+    },
+    "Roots_ossuary_1": {
+      "mean": 0.498,
+      "min": 0.2
+    },
+    "Roots_ossuary_2": {
+      "mean": 0.571,
+      "min": 0.2
+    },
+    "Roots_ossuary_4": {
+      "mean": 0.574,
+      "min": 0.2
+    },
+    "Roots_ossuary_6": {
+      "mean": 0.539,
+      "min": 0.2
+    }
+  },
+  "blender": "5.2.2 LTS",
+  "budget": 15000,
+  "clearance": {
+    "ankle_m": 0.03,
+    "headroom_m": 2.7,
+    "route_margin_m": 0.3
+  },
+  "diameter_cm": {
+    "max": 15.2,
+    "min": 0.5
+  },
+  "doorways": [
+    {
+      "crown": 3.27,
+      "wall": 2,
+      "width": 4.4
+    },
+    {
+      "crown": 3.28,
+      "wall": 4,
+      "width": 4.4
+    }
+  ],
+  "files": {
+    "content/environments/procedural_roots_v1/ossuary.glb": "bb04b8587eb799e22e6d9b21d9216a68a1c1e5ac29728d3d0c5c1f2fdfac4998"
+  },
+  "id": "ossuary",
+  "layout_hash": "20aa6015a7f9f4f7c12b59b90acfe080b07298d8b2b180c7054b532be72d00d4",
+  "meshes": [
+    "Roots_ossuary_0",
+    "Roots_ossuary_1",
+    "Roots_ossuary_2",
+    "Roots_ossuary_4",
+    "Roots_ossuary_6"
+  ],
+  "qa": {
+    "audit": {
+      "cut_deeper_than_1cm": 4,
+      "cut_into_stone": 7,
+      "emerging_from_joint": 0,
+      "in_walking_corridor": 0,
+      "vertices": 6754
+    },
+    "cling_gap_m": {
+      "max": 0.0347,
+      "p50": 0.0061,
+      "p95": 0.017
+    },
+    "clipped_at_corridor": 0,
+    "pruned": 0,
+    "rings": 1290,
+    "rings_touching_stone": 1
+  },
+  "roots": 81,
+  "seed": 178,
+  "sources": {
+    "procedural_architecture_v1/passages/node_-18_-10_-30.glb": "03061babd27d66f8c62da6cbfcc88585a25ed16113e42e77d8888f0ef8cfa544",
+    "procedural_architecture_v1/passages/ossuary_loop.glb": "99cd9381aab1f0cbbc3192792798c79180b551387b3f0c6f0678382dbff7e974",
+    "procedural_architecture_v1/rooms/ossuary.glb": "8e86cadc36408c04c9e5abb96667064ce9dc03e369f8320d6e583a169986910e"
+  },
+  "systems": {
+    "branch": 3,
+    "loop": 6,
+    "trunk": 9,
+    "vein": 12
+  },
+  "triangles": 13635
+}

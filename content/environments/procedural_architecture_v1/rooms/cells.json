@@ -1,0 +1,82 @@
+{
+  "ao": {
+    "Mortar_cells_0": {
+      "mean": 0.577,
+      "min": 0.18
+    },
+    "Mortar_cells_1": {
+      "mean": 0.566,
+      "min": 0.18
+    },
+    "Mortar_cells_2": {
+      "mean": 0.548,
+      "min": 0.18
+    },
+    "Mortar_cells_3": {
+      "mean": 0.569,
+      "min": 0.18
+    },
+    "Mortar_cells_4": {
+      "mean": 0.566,
+      "min": 0.18
+    },
+    "Mortar_cells_5": {
+      "mean": 0.566,
+      "min": 0.18
+    },
+    "Mortar_cells_6": {
+      "mean": 0.566,
+      "min": 0.18
+    },
+    "Mortar_cells_7": {
+      "mean": 0.569,
+      "min": 0.18
+    },
+    "Mortar_cells_8": {
+      "mean": 0.862,
+      "min": 0.18
+    },
+    "Stone_cells_0": {
+      "mean": 0.632,
+      "min": 0.18
+    },
+    "Stone_cells_1": {
+      "mean": 0.604,
+      "min": 0.18
+    },
+    "Stone_cells_2": {
+      "mean": 0.63,
+      "min": 0.18
+    },
+    "Stone_cells_3": {
+      "mean": 0.626,
+      "min": 0.18
+    },
+    "Stone_cells_4": {
+      "mean": 0.657,
+      "min": 0.18
+    },
+    "Stone_cells_5": {
+      "mean": 0.595,
+      "min": 0.18
+    },
+    "Stone_cells_6": {
+      "mean": 0.652,
+      "min": 0.18
+    },
+    "Stone_cells_7": {
+      "mean": 0.495,
+      "min": 0.18
+    },
+    "Stone_cells_8": {
+      "mean": 0.715,
+      "min": 0.18
+    }
+  },
+  "blender": "5.2.2 LTS",
+  "files": {
+    "content/environments/procedural_architecture_v1/rooms/cells.glb": "c24095b6a1b79078f3ec118352aff6c6067cfe9db57616e30e16b9ca7fec96cb"
+  },
+  "id": "cells",
+  "triangles": 152818
+}

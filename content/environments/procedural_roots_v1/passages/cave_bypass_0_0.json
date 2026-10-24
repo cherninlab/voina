@@ -1,0 +1,62 @@
+{
+  "ao": {
+    "Roots_cave_bypass_0_0_0": {
+      "mean": 0.625,
+      "min": 0.2
+    }
+  },
+  "blender": "5.2.2 LTS",
+  "budget": 12903,
+  "clearance": {
+    "ankle_m": 0.03,
+    "headroom_m": 2.7,
+    "route_margin_m": 0.3
+  },
+  "diameter_cm": {
+    "max": 7.0,
+    "min": 0.5
+  },
+  "files": {
+    "content/environments/procedural_roots_v1/passages/cave_bypass_0_0.glb": "9710bc81607d5699022f1d8c5b10ef56d229220ef5a2f4ada4261b28e82d6e22"
+  },
+  "id": "cave_bypass_0_0",
+  "layout_hash": "20aa6015a7f9f4f7c12b59b90acfe080b07298d8b2b180c7054b532be72d00d4",
+  "meshes": [
+    "Roots_cave_bypass_0_0_0"
+  ],
+  "passage": {
+    "file": "passages/cave_bypass.glb",
+    "route": "cave_bypass",
+    "segment": 0,
+    "t0": 0.0,
+    "t1": 1.0
+  },
+  "qa": {
+    "audit": {
+      "cut_deeper_than_1cm": 0,
+      "cut_into_stone": 8,
+      "emerging_from_joint": 3,
+      "in_walking_corridor": 0,
+      "vertices": 5478
+    },
+    "cling_gap_m": {
+      "max": 0.0545,
+      "p50": 0.0048,
+      "p95": 0.0108
+    },
+    "clipped_at_corridor": 0,
+    "pruned": 0,
+    "rings": 1215,
+    "rings_touching_stone": 7
+  },
+  "roots": 148,
+  "seed": 178,
+  "sources": {
+    "procedural_architecture_v1/passages/cave_bypass.glb": "ca7b15357383098cc9a13e82c7aa212b0711e97f4ad661852474cfd44b1c7b95"
+  },
+  "systems": {
+    "branch": 10,
+    "loop": 8
+  },
+  "triangles": 10712
+}

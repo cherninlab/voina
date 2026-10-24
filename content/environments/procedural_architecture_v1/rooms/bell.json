@@ -1,0 +1,82 @@
+{
+  "ao": {
+    "Mortar_bell_0": {
+      "mean": 0.567,
+      "min": 0.18
+    },
+    "Mortar_bell_1": {
+      "mean": 0.566,
+      "min": 0.18
+    },
+    "Mortar_bell_2": {
+      "mean": 0.567,
+      "min": 0.18
+    },
+    "Mortar_bell_3": {
+      "mean": 0.569,
+      "min": 0.18
+    },
+    "Mortar_bell_4": {
+      "mean": 0.566,
+      "min": 0.18
+    },
+    "Mortar_bell_5": {
+      "mean": 0.566,
+      "min": 0.18
+    },
+    "Mortar_bell_6": {
+      "mean": 0.526,
+      "min": 0.18
+    },
+    "Mortar_bell_7": {
+      "mean": 0.569,
+      "min": 0.18
+    },
+    "Mortar_bell_8": {
+      "mean": 0.601,
+      "min": 0.18
+    },
+    "Stone_bell_0": {
+      "mean": 0.707,
+      "min": 0.18
+    },
+    "Stone_bell_1": {
+      "mean": 0.672,
+      "min": 0.18
+    },
+    "Stone_bell_2": {
+      "mean": 0.7,
+      "min": 0.18
+    },
+    "Stone_bell_3": {
+      "mean": 0.67,
+      "min": 0.18
+    },
+    "Stone_bell_4": {
+      "mean": 0.707,
+      "min": 0.18
+    },
+    "Stone_bell_5": {
+      "mean": 0.617,
+      "min": 0.18
+    },
+    "Stone_bell_6": {
+      "mean": 0.602,
+      "min": 0.18
+    },
+    "Stone_bell_7": {
+      "mean": 0.669,
+      "min": 0.18
+    },
+    "Stone_bell_8": {
+      "mean": 0.752,
+      "min": 0.18
+    }
+  },
+  "blender": "5.2.2 LTS",
+  "files": {
+    "content/environments/procedural_architecture_v1/rooms/bell.glb": "cb499ce53e287df2e556f8d4c6e3159962b94146c70311ed4dfa1d720561c43c"
+  },
+  "id": "bell",
+  "triangles": 194555
+}

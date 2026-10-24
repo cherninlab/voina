@@ -1,0 +1,97 @@
+{
+  "ao": {
+    "Roots_restraint_0": {
+      "mean": 0.632,
+      "min": 0.2
+    },
+    "Roots_restraint_2": {
+      "mean": 0.646,
+      "min": 0.2
+    },
+    "Roots_restraint_4": {
+      "mean": 0.641,
+      "min": 0.2
+    },
+    "Roots_restraint_6": {
+      "mean": 0.635,
+      "min": 0.2
+    }
+  },
+  "blender": "5.2.2 LTS",
+  "budget": 15000,
+  "clearance": {
+    "ankle_m": 0.03,
+    "headroom_m": 2.7,
+    "route_margin_m": 0.3
+  },
+  "diameter_cm": {
+    "max": 11.5,
+    "min": 0.5
+  },
+  "doorways": [
+    {
+      "crown": 4.49,
+      "wall": 0,
+      "width": 3.6
+    },
+    {
+      "crown": 4.27,
+      "wall": 2,
+      "width": 4.3
+    },
+    {
+      "crown": 4.28,
+      "wall": 4,
+      "width": 4.3
+    },
+    {
+      "crown": 4.82,
+      "wall": 6,
+      "width": 4.7
+    }
+  ],
+  "files": {
+    "content/environments/procedural_roots_v1/restraint.glb": "61efc125a9e8e97ffd02cc0616c1e2a933320c57b2afac265d681c9f0fdf2295"
+  },
+  "id": "restraint",
+  "layout_hash": "20aa6015a7f9f4f7c12b59b90acfe080b07298d8b2b180c7054b532be72d00d4",
+  "meshes": [
+    "Roots_restraint_0",
+    "Roots_restraint_2",
+    "Roots_restraint_4",
+    "Roots_restraint_6"
+  ],
+  "qa": {
+    "audit": {
+      "cut_deeper_than_1cm": 10,
+      "cut_into_stone": 25,
+      "emerging_from_joint": 7,
+      "in_walking_corridor": 0,
+      "vertices": 6649
+    },
+    "cling_gap_m": {
+      "max": 0.0474,
+      "p50": 0.005,
+      "p95": 0.0122
+    },
+    "clipped_at_corridor": 0,
+    "pruned": 0,
+    "rings": 1270,
+    "rings_touching_stone": 11
+  },
+  "roots": 98,
+  "seed": 178,
+  "sources": {
+    "procedural_architecture_v1/passages/node_46_-4_-15.glb": "47b34c2649bb89fd5d0f70a7c90030669bd5b65213a3b5f5d96b1e7e1bbad861",
+    "procedural_architecture_v1/passages/upper_cells.glb": "efc6ef1fcfda3ff49a8da42ec9ce64fa4d95d4321459350158ffbe0326dc138e",
+    "procedural_architecture_v1/passages/upper_hall.glb": "b01cbe2de0a2db75b8d9472c9fe36f34fa92c92e4d055c210d47819308647f41",
+    "procedural_architecture_v1/rooms/restraint.glb": "f87c7488e61e2a563741387819bc7c767b87d4d53bf61b120518e6418c17c27e"
+  },
+  "systems": {
+    "branch": 4,
+    "loop": 12,
+    "trunk": 4,
+    "vein": 6
+  },
+  "triangles": 13315
+}

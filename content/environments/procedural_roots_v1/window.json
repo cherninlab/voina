@@ -1,0 +1,85 @@
+{
+  "ao": {
+    "Roots_window_0": {
+      "mean": 0.495,
+      "min": 0.2
+    },
+    "Roots_window_1": {
+      "mean": 0.525,
+      "min": 0.2
+    },
+    "Roots_window_2": {
+      "mean": 0.545,
+      "min": 0.2
+    },
+    "Roots_window_3": {
+      "mean": 0.426,
+      "min": 0.2
+    }
+  },
+  "blender": "5.2.2 LTS",
+  "budget": 15000,
+  "clearance": {
+    "ankle_m": 0.03,
+    "headroom_m": 2.7,
+    "route_margin_m": 0.3
+  },
+  "diameter_cm": {
+    "max": 14.3,
+    "min": 0.5
+  },
+  "doorways": [
+    {
+      "crown": 3.21,
+      "wall": 2,
+      "width": 3.3
+    },
+    {
+      "crown": 3.27,
+      "wall": 2,
+      "width": 4.4
+    }
+  ],
+  "files": {
+    "content/environments/procedural_roots_v1/window.glb": "dfe6ed27ec59f53a76d644746c7b41990e868a5b74355d5637b21bdb3fa6e39d"
+  },
+  "id": "window",
+  "layout_hash": "20aa6015a7f9f4f7c12b59b90acfe080b07298d8b2b180c7054b532be72d00d4",
+  "meshes": [
+    "Roots_window_0",
+    "Roots_window_1",
+    "Roots_window_2",
+    "Roots_window_3"
+  ],
+  "qa": {
+    "audit": {
+      "cut_deeper_than_1cm": 10,
+      "cut_into_stone": 19,
+      "emerging_from_joint": 9,
+      "in_walking_corridor": 0,
+      "vertices": 7126
+    },
+    "cling_gap_m": {
+      "max": 0.0412,
+      "p50": 0.006,
+      "p95": 0.0171
+    },
+    "clipped_at_corridor": 0,
+    "pruned": 0,
+    "rings": 1374,
+    "rings_touching_stone": 10
+  },
+  "roots": 89,
+  "seed": 178,
+  "sources": {
+    "procedural_architecture_v1/passages/ossuary_loop.glb": "99cd9381aab1f0cbbc3192792798c79180b551387b3f0c6f0678382dbff7e974",
+    "procedural_architecture_v1/rooms/window.glb": "83a01f35f5ab9f457d9c6d2699e675df1b995dfae1ace2b5739623701312e61e"
+  },
+  "systems": {
+    "branch": 6,
+    "loop": 6,
+    "trunk": 8,
+    "vein": 8
+  },
+  "triangles": 14369
+}

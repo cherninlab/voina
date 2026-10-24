@@ -1,0 +1,74 @@
+{
+  "ao": {
+    "Mortar_bones_0": {
+      "mean": 0.449,
+      "min": 0.18
+    },
+    "Mortar_bones_1": {
+      "mean": 0.569,
+      "min": 0.18
+    },
+    "Mortar_bones_2": {
+      "mean": 0.598,
+      "min": 0.18
+    },
+    "Mortar_bones_3": {
+      "mean": 0.445,
+      "min": 0.18
+    },
+    "Mortar_bones_4": {
+      "mean": 0.566,
+      "min": 0.18
+    },
+    "Mortar_bones_5": {
+      "mean": 0.566,
+      "min": 0.18
+    },
+    "Mortar_bones_6": {
+      "mean": 0.567,
+      "min": 0.18
+    },
+    "Mortar_bones_7": {
+      "mean": 0.571,
+      "min": 0.18
+    },
+    "Stone_bones_0": {
+      "mean": 0.653,
+      "min": 0.18
+    },
+    "Stone_bones_1": {
+      "mean": 0.572,
+      "min": 0.18
+    },
+    "Stone_bones_2": {
+      "mean": 0.671,
+      "min": 0.18
+    },
+    "Stone_bones_3": {
+      "mean": 0.666,
+      "min": 0.18
+    },
+    "Stone_bones_4": {
+      "mean": 0.572,
+      "min": 0.18
+    },
+    "Stone_bones_5": {
+      "mean": 0.61,
+      "min": 0.18
+    },
+    "Stone_bones_6": {
+      "mean": 0.549,
+      "min": 0.18
+    },
+    "Stone_bones_7": {
+      "mean": 0.721,
+      "min": 0.18
+    }
+  },
+  "blender": "5.2.2 LTS",
+  "files": {
+    "content/environments/procedural_architecture_v1/rooms/bones.glb": "f80aaf766422d40e2146d68e3b511d24e57c2392b6760581246b29c3452e452a"
+  },
+  "id": "bones",
+  "triangles": 182126
+}

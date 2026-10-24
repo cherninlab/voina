@@ -1,0 +1,78 @@
+{
+  "ao": {
+    "Roots_first_stair_hall_1": {
+      "mean": 0.531,
+      "min": 0.2
+    },
+    "Roots_first_stair_hall_2": {
+      "mean": 0.545,
+      "min": 0.2
+    },
+    "Roots_first_stair_hall_3": {
+      "mean": 0.584,
+      "min": 0.2
+    }
+  },
+  "blender": "5.2.2 LTS",
+  "budget": 15000,
+  "clearance": {
+    "ankle_m": 0.03,
+    "headroom_m": 2.7,
+    "route_margin_m": 0.3
+  },
+  "diameter_cm": {
+    "max": 16.7,
+    "min": 0.5
+  },
+  "doorways": [
+    {
+      "crown": 4.81,
+      "wall": 3,
+      "width": 4.8
+    }
+  ],
+  "files": {
+    "content/environments/procedural_roots_v1/first_stair_hall.glb": "b270c4df1779a5a5f46cd6b5454d0ffa566d819a1a478954227d08365df0c10c"
+  },
+  "id": "first_stair_hall",
+  "layout_hash": "20aa6015a7f9f4f7c12b59b90acfe080b07298d8b2b180c7054b532be72d00d4",
+  "meshes": [
+    "Roots_first_stair_hall_1",
+    "Roots_first_stair_hall_2",
+    "Roots_first_stair_hall_3"
+  ],
+  "qa": {
+    "audit": {
+      "cut_deeper_than_1cm": 6,
+      "cut_into_stone": 15,
+      "emerging_from_joint": 5,
+      "in_walking_corridor": 0,
+      "vertices": 6331
+    },
+    "cling_gap_m": {
+      "max": 0.0396,
+      "p50": 0.0058,
+      "p95": 0.0151
+    },
+    "clipped_at_corridor": 1,
+    "pruned": 0,
+    "rings": 1203,
+    "rings_touching_stone": 11
+  },
+  "roots": 59,
+  "seed": 178,
+  "sources": {
+    "procedural_architecture_v1/passages/chapel_approach.glb": "3a2afdfd17fefb411e6738f8fe6c9af2575b43c5b9669580a16465e6c0bba0e9",
+    "procedural_architecture_v1/passages/node_22_-10_-30.glb": "84c6957f68e4f677eafc756c9c1d49fdb0092be83ffae1d330e98fdfff7ae5a8",
+    "procedural_architecture_v1/passages/return_gallery.glb": "cf295ddf258c535d3aa1903713d378b6eaf6252e389e3eb08181cb7653170d00",
+    "procedural_architecture_v1/passages/upper_hall.glb": "b01cbe2de0a2db75b8d9472c9fe36f34fa92c92e4d055c210d47819308647f41",
+    "procedural_architecture_v1/rooms/first_stair_hall.glb": "683b86c846ca99c55e0db3f437336282128eabf3928d7095003911b14d197c4f"
+  },
+  "systems": {
+    "branch": 7,
+    "loop": 3,
+    "trunk": 5,
+    "vein": 10
+  },
+  "triangles": 12769
+}

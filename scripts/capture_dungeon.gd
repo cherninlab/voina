@@ -1,7 +1,10 @@
 extends SceneTree
 ## Real Mobile/Metal frames; use godot_bg.sh with --dungeon --shading-ephemeral.
 ## --stone-rooms replaces the views with every room built stone by stone
-## (add --no-stone-rooms for the same frames of the old box walls).
+## (add --no-stone-rooms for the same frames of the old box walls);
+## --views=word,word keeps only views whose names contain one of the words;
+## --review is the fixed review set: shaft views plus each stone room's widest
+## wall, its vault, its walks, and the passages.
 
 func _initialize() -> void:
 	capture.call_deferred()
@@ -44,6 +47,19 @@ func capture() -> void:
 	var metrics: Array[Dictionary] = []
 	if "--stone-rooms" in OS.get_cmdline_user_args():
 		views = stone_room_views()
+	elif "--review" in OS.get_cmdline_user_args():
+		# The fixed review set everyone compares: the shaft views above, plus each
+		# stone room wide and up into its vault, each walk it carries, and the
+		# long passages.
+		for view: Array in stone_room_views():
+			var label: String = String(view[0])
+			if label.ends_with("-corner-up") or label.contains("-walk-") or label.ends_with("-forward") or (label.contains("-wall-") and not label.ends_with("-close") and stone_first_wall(label)):
+				views.append(view)
+	for argument: String in OS.get_cmdline_user_args():
+		if argument.begins_with("--views="):
+			# Only views whose names contain one of these comma-separated words.
+			var words: PackedStringArray = argument.trim_prefix("--views=").split(",")
+			views.assign(views.filter(func(view: Array) -> bool: return Array(words).any(func(word: String) -> bool: return word in String(view[0]))))
 	if dressing_views:
 		views.append_array([
 			["09-entry-floor", Vector3(-41, 1.65, -24), Vector3(-43, 0.3, -29), 65.0],
@@ -138,6 +154,16 @@ func stone_room_views() -> Array[Array]:
 				continue
 			var from_void: Vector2 = middle + outward * 8.0
 			result.append(["%s-outside-%d" % [id, index], Vector3(from_void.x, floor_y + 2.5, from_void.y), Vector3(middle.x, floor_y + 3.0, middle.y), 70.0])
+		# Walking up and down any raised walk the room carries (stairs, galleries).
+		for path: Dictionary in RedDescentLayout.routes():
+			var route_points: PackedVector3Array = path["points"] as PackedVector3Array
+			for index: int in range(route_points.size() - 1):
+				var a: Vector3 = route_points[index]
+				var b: Vector3 = route_points[index + 1]
+				if maxf(a.y, b.y) < floor_y + 0.6 or not Geometry2D.is_point_in_polygon(Vector2(a.x, a.z), polygon) or not Geometry2D.is_point_in_polygon(Vector2(b.x, b.z), polygon):
+					continue
+				var label: String = "%s-walk-%s-%d" % [id, path["id"], index]
+				result.append([label + "-up" if b.y >= a.y else label + "-down", a + Vector3.UP * 1.6, b + Vector3.UP * 1.2, 74.0])
 		var corner: Vector2 = polygon[walls[0]].lerp(centre, 0.22)
 		result.append(["%s-corner-up" % id, Vector3(corner.x, floor_y + 1.4, corner.y), Vector3(centre.x * 2.0 - corner.x, floor_y + float(room["height"]) * 0.7, centre.y * 2.0 - corner.y), 82.0])
 	# Inside each stone passage, both ways, and from just outside each end.
@@ -155,9 +181,18 @@ func stone_room_views() -> Array[Array]:
 				var finish: Vector3 = a.lerp(b, float(passage["t1"]))
 				var middle: Vector3 = (start + finish) * 0.5
 				var along: Vector3 = (finish - start).normalized()
-				var label: String = String(passage["file"]).get_file().get_basename()
+				if start.distance_to(finish) < 2.5:
+					continue
+				var label: String = "%s_%d" % [passage["route"], int(passage["segment"])]
 				result.append([label + "-forward", middle - along * 0.6 + Vector3.UP * 1.6, finish + along * 3.0 + Vector3.UP * 1.8, 72.0])
 				result.append([label + "-back", middle + along * 0.6 + Vector3.UP * 1.6, start - along * 3.0 + Vector3.UP * 1.8, 72.0])
-				result.append([label + "-approach", start - along * 4.5 + Vector3.UP * 1.6, middle + Vector3.UP * 1.9, 70.0])
-				result.append([label + "-leave", finish + along * 4.5 + Vector3.UP * 1.6, middle + Vector3.UP * 1.9, 70.0])
 	return result
+
+## Only the first (longest) wall view of each room goes into the review set.
+var reviewed_rooms: Dictionary = {}
+func stone_first_wall(label: String) -> bool:
+	var room: String = label.get_slice("-wall-", 0)
+	if reviewed_rooms.has(room):
+		return false
+	reviewed_rooms[room] = true
+	return true

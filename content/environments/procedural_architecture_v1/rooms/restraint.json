@@ -1,0 +1,114 @@
+{
+  "ao": {
+    "Mortar_restraint_0": {
+      "mean": 0.485,
+      "min": 0.18
+    },
+    "Mortar_restraint_1": {
+      "mean": 0.566,
+      "min": 0.18
+    },
+    "Mortar_restraint_2": {
+      "mean": 0.514,
+      "min": 0.18
+    },
+    "Mortar_restraint_3": {
+      "mean": 0.569,
+      "min": 0.18
+    },
+    "Mortar_restraint_4": {
+      "mean": 0.524,
+      "min": 0.18
+    },
+    "Mortar_restraint_5": {
+      "mean": 0.566,
+      "min": 0.18
+    },
+    "Mortar_restraint_6": {
+      "mean": 0.53,
+      "min": 0.18
+    },
+    "Mortar_restraint_7": {
+      "mean": 0.569,
+      "min": 0.18
+    },
+    "Mortar_restraint_8": {
+      "mean": 0.871,
+      "min": 0.18
+    },
+    "Plaster_restraint_0": {
+      "mean": 0.811,
+      "min": 0.18
+    },
+    "Plaster_restraint_1": {
+      "mean": 0.211,
+      "min": 0.18
+    },
+    "Plaster_restraint_2": {
+      "mean": 0.809,
+      "min": 0.18
+    },
+    "Plaster_restraint_3": {
+      "mean": 0.18,
+      "min": 0.18
+    },
+    "Plaster_restraint_4": {
+      "mean": 0.805,
+      "min": 0.18
+    },
+    "Plaster_restraint_5": {
+      "mean": 0.226,
+      "min": 0.18
+    },
+    "Plaster_restraint_6": {
+      "mean": 0.813,
+      "min": 0.18
+    },
+    "Plaster_restraint_7": {
+      "mean": 0.193,
+      "min": 0.18
+    },
+    "Stone_restraint_0": {
+      "mean": 0.366,
+      "min": 0.18
+    },
+    "Stone_restraint_1": {
+      "mean": 0.249,
+      "min": 0.18
+    },
+    "Stone_restraint_2": {
+      "mean": 0.33,
+      "min": 0.18
+    },
+    "Stone_restraint_3": {
+      "mean": 0.26,
+      "min": 0.18
+    },
+    "Stone_restraint_4": {
+      "mean": 0.36,
+      "min": 0.18
+    },
+    "Stone_restraint_5": {
+      "mean": 0.256,
+      "min": 0.18
+    },
+    "Stone_restraint_6": {
+      "mean": 0.473,
+      "min": 0.18
+    },
+    "Stone_restraint_7": {
+      "mean": 0.252,
+      "min": 0.18
+    },
+    "Stone_restraint_8": {
+      "mean": 0.743,
+      "min": 0.18
+    }
+  },
+  "blender": "5.2.2 LTS",
+  "files": {
+    "content/environments/procedural_architecture_v1/rooms/restraint.glb": "f87c7488e61e2a563741387819bc7c767b87d4d53bf61b120518e6418c17c27e"
+  },
+  "id": "restraint",
+  "triangles": 215978
+}

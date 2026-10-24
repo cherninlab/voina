@@ -1,74 +1,82 @@
 {
   "ao": {
     "Mortar_antechamber_0": {
-      "mean": 0.657,
+      "mean": 0.636,
       "min": 0.18
     },
     "Mortar_antechamber_1": {
-      "mean": 0.626,
+      "mean": 0.602,
       "min": 0.18
     },
     "Mortar_antechamber_2": {
-      "mean": 0.647,
+      "mean": 0.613,
       "min": 0.18
     },
     "Mortar_antechamber_3": {
-      "mean": 0.616,
+      "mean": 0.556,
       "min": 0.18
     },
     "Mortar_antechamber_4": {
-      "mean": 0.537,
+      "mean": 0.576,
       "min": 0.18
     },
     "Mortar_antechamber_5": {
-      "mean": 0.629,
+      "mean": 0.6,
       "min": 0.18
     },
     "Mortar_antechamber_6": {
-      "mean": 0.369,
+      "mean": 0.525,
       "min": 0.18
     },
     "Mortar_antechamber_7": {
-      "mean": 0.625,
+      "mean": 0.603,
+      "min": 0.18
+    },
+    "Mortar_antechamber_8": {
+      "mean": 0.865,
       "min": 0.18
     },
     "Stone_antechamber_0": {
-      "mean": 0.722,
+      "mean": 0.692,
       "min": 0.18
     },
     "Stone_antechamber_1": {
-      "mean": 0.67,
+      "mean": 0.643,
       "min": 0.18
     },
     "Stone_antechamber_2": {
-      "mean": 0.74,
+      "mean": 0.72,
       "min": 0.18
     },
     "Stone_antechamber_3": {
-      "mean": 0.709,
+      "mean": 0.69,
       "min": 0.18
     },
     "Stone_antechamber_4": {
-      "mean": 0.649,
+      "mean": 0.591,
       "min": 0.18
     },
     "Stone_antechamber_5": {
-      "mean": 0.671,
+      "mean": 0.631,
       "min": 0.18
     },
     "Stone_antechamber_6": {
-      "mean": 0.598,
+      "mean": 0.613,
       "min": 0.18
     },
     "Stone_antechamber_7": {
-      "mean": 0.678,
+      "mean": 0.635,
+      "min": 0.18
+    },
+    "Stone_antechamber_8": {
+      "mean": 0.716,
       "min": 0.18
     }
   },
   "blender": "5.2.2 LTS",
   "files": {
-    "content/environments/procedural_architecture_v1/rooms/antechamber.glb": "e62a2d03873ccf04f3ec8693fbcf64716f553ccc62e236e494abb5cb7668ef3a"
+    "content/environments/procedural_architecture_v1/rooms/antechamber.glb": "51983ad0e6a87cb85c0c39607df1d0650c4b7ae2f0a8ba2a3fa9d14a6b8bdf53"
   },
   "id": "antechamber",
-  "triangles": 161562
+  "triangles": 139952
 }

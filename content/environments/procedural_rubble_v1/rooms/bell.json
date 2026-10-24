@@ -1,0 +1,544 @@
+{
+  "ao": {
+    "Rubble_bell_0": {
+      "mean": 0.377,
+      "min": 0.18
+    },
+    "Rubble_bell_1": {
+      "mean": 0.33,
+      "min": 0.18
+    },
+    "Rubble_bell_2": {
+      "mean": 0.343,
+      "min": 0.18
+    },
+    "Rubble_bell_3": {
+      "mean": 0.387,
+      "min": 0.18
+    },
+    "Rubble_bell_grime": {
+      "mean": 0.248,
+      "min": 0.18
+    }
+  },
+  "axes": "Godot world coordinates, metres, Y up: place at the origin like the room GLB",
+  "blender": "5.2.2 LTS",
+  "build_seconds": 389.0,
+  "collision": {
+    "convex_hulls": 46,
+    "hull_vertices": 662,
+    "min_piece_size_m": 0.25
+  },
+  "color": "Color.rgb = baked AO (0.35 m) x per-piece tone (0.7, 1.15) (x 1.07 on fresh breaks); grime bed tone (0.5, 1.0); grey, clipped to 1 by glTF",
+  "command": "blender --factory-startup -b --python-exit-code 1 --python scripts/art/build_room_rubble.py -- --rooms bell,choir,first_stair_hall,second_stair_hall --no-review",
+  "files": {
+    "content/environments/procedural_rubble_v1/rooms/bell.glb": "d1f0e8e57012b92151b77f229d1c67dec3f8e17a89b41d02730d3110bfdd33b9"
+  },
+  "floor_y": -18.0,
+  "generator": "scripts/art/build_room_rubble.py",
+  "heaps": {
+    "collapse_spots": 1,
+    "corners": 8,
+    "jambs": 4,
+    "perimeter_m": 73.8,
+    "settled_heaps": [
+      {
+        "godot_xz": [
+          41.85,
+          48.49
+        ],
+        "stone_volume_m3": 0.0854,
+        "top_m": 0.464
+      },
+      {
+        "godot_xz": [
+          45.32,
+          32.05
+        ],
+        "stone_volume_m3": 0.0436,
+        "top_m": 0.349
+      },
+      {
+        "godot_xz": [
+          43.39,
+          47.89
+        ],
+        "stone_volume_m3": 0.0269,
+        "top_m": 0.396
+      },
+      {
+        "godot_xz": [
+          42.65,
+          29.51
+        ],
+        "stone_volume_m3": 0.0265,
+        "top_m": 0.296
+      },
+      {
+        "godot_xz": [
+          26.5,
+          32.85
+        ],
+        "stone_volume_m3": 0.0178,
+        "top_m": 0.195
+      },
+      {
+        "godot_xz": [
+          43.96,
+          30.68
+        ],
+        "stone_volume_m3": 0.0169,
+        "top_m": 0.214
+      },
+      {
+        "godot_xz": [
+          26.5,
+          47.35
+        ],
+        "stone_volume_m3": 0.0168,
+        "top_m": 0.204
+      },
+      {
+        "godot_xz": [
+          45.5,
+          33.65
+        ],
+        "stone_volume_m3": 0.0123,
+        "top_m": 0.212
+      }
+    ],
+    "target_heaps": [
+      {
+        "godot_xz": [
+          42.05,
+          48.49
+        ],
+        "wedge_height_m": 0.55
+      },
+      {
+        "godot_xz": [
+          45.49,
+          32.15
+        ],
+        "wedge_height_m": 0.5
+      },
+      {
+        "godot_xz": [
+          26.46,
+          46.45
+        ],
+        "wedge_height_m": 0.37
+      },
+      {
+        "godot_xz": [
+          26.47,
+          38.45
+        ],
+        "wedge_height_m": 0.33
+      },
+      {
+        "godot_xz": [
+          42.95,
+          29.66
+        ],
+        "wedge_height_m": 0.33
+      },
+      {
+        "godot_xz": [
+          26.65,
+          32.05
+        ],
+        "wedge_height_m": 0.31
+      },
+      {
+        "godot_xz": [
+          26.46,
+          41.55
+        ],
+        "wedge_height_m": 0.3
+      },
+      {
+        "godot_xz": [
+          26.47,
+          33.55
+        ],
+        "wedge_height_m": 0.28
+      },
+      {
+        "godot_xz": [
+          45.33,
+          45.95
+        ],
+        "wedge_height_m": 0.17
+      },
+      {
+        "godot_xz": [
+          27.75,
+          48.53
+        ],
+        "wedge_height_m": 0.16
+      }
+    ],
+    "usable_wall_m": 64.1
+  },
+  "id": "bell",
+  "physics": {
+    "damping": {
+      "grit": [
+        0.45,
+        0.97
+      ],
+      "stone": [
+        0.4,
+        0.95
+      ]
+    },
+    "density_kg_m3": 2300.0,
+    "engine": "Blender rigid body (Bullet)",
+    "floor": "BOX",
+    "fps": 30,
+    "friction": 0.95,
+    "grime_bed": "CONVEX_HULL patches of 2 x 2 cells",
+    "margins_m": {
+      "gravel": 0.0015,
+      "piece": 0.002,
+      "static": 0.002
+    },
+    "pieces": "CONVEX_HULL",
+    "solver_iterations": 60,
+    "substeps_per_frame": 40,
+    "walls": "MESH (Stone_* and Mortar_* below 1.6 m)"
+  },
+  "pieces": {
+    "discarded": {
+      "floating": 1,
+      "no_spot": 0,
+      "not_settled": 2,
+      "route": 1
+    },
+    "floating_removed": [
+      [
+        "Grit124",
+        0.0109
+      ]
+    ],
+    "generated": {
+      "big": 272,
+      "gravel": 412,
+      "medium": 357,
+      "small": 149
+    },
+    "kept": {
+      "big": 270,
+      "gravel": 411,
+      "medium": 356,
+      "small": 149
+    },
+    "kept_total": 1186,
+    "size_m": {
+      "max": 0.31,
+      "median": 0.088,
+      "min": 0.012
+    }
+  },
+  "review": [],
+  "routes": {
+    "clear_height_m": 0.04,
+    "level_m": 1.0,
+    "max_height_in_ribbons_m": 0.0,
+    "pad_m": 0.3,
+    "ribbons": [
+      {
+        "clear_radius_m": 2.3,
+        "from": [
+          4.0,
+          7.0
+        ],
+        "route": "central_ledge",
+        "to": [
+          10.0,
+          13.0
+        ]
+      },
+      {
+        "clear_radius_m": 2.3,
+        "from": [
+          10.0,
+          13.0
+        ],
+        "route": "central_ledge",
+        "to": [
+          7.0,
+          21.0
+        ]
+      },
+      {
+        "clear_radius_m": 2.5,
+        "from": [
+          7.0,
+          21.0
+        ],
+        "route": "nave",
+        "to": [
+          7.0,
+          34.0
+        ]
+      },
+      {
+        "clear_radius_m": 2.5,
+        "from": [
+          7.0,
+          34.0
+        ],
+        "route": "nave",
+        "to": [
+          -6.0,
+          34.0
+        ]
+      },
+      {
+        "clear_radius_m": 2.5,
+        "from": [
+          -6.0,
+          34.0
+        ],
+        "route": "nave",
+        "to": [
+          -6.0,
+          30.0
+        ]
+      },
+      {
+        "clear_radius_m": 2.5,
+        "from": [
+          -6.0,
+          30.0
+        ],
+        "route": "nave",
+        "to": [
+          -10.0,
+          30.0
+        ]
+      },
+      {
+        "clear_radius_m": 2.5,
+        "from": [
+          -10.0,
+          30.0
+        ],
+        "route": "nave",
+        "to": [
+          -10.0,
+          27.0
+        ]
+      },
+      {
+        "clear_radius_m": 2.5,
+        "from": [
+          -10.0,
+          27.0
+        ],
+        "route": "nave",
+        "to": [
+          -14.0,
+          24.0
+        ]
+      },
+      {
+        "clear_radius_m": 2.5,
+        "from": [
+          -14.0,
+          24.0
+        ],
+        "route": "nave",
+        "to": [
+          -30.0,
+          24.0
+        ]
+      },
+      {
+        "clear_radius_m": 2.3,
+        "from": [
+          0.0,
+          34.0
+        ],
+        "route": "bell_loop",
+        "to": [
+          0.0,
+          36.0
+        ]
+      },
+      {
+        "clear_radius_m": 2.3,
+        "from": [
+          0.0,
+          36.0
+        ],
+        "route": "bell_loop",
+        "to": [
+          16.0,
+          36.0
+        ]
+      },
+      {
+        "clear_radius_m": 2.3,
+        "from": [
+          16.0,
+          36.0
+        ],
+        "route": "bell_loop",
+        "to": [
+          36.0,
+          36.0
+        ]
+      },
+      {
+        "clear_radius_m": 2.3,
+        "from": [
+          36.0,
+          36.0
+        ],
+        "route": "bell_loop",
+        "to": [
+          36.0,
+          44.0
+        ]
+      },
+      {
+        "clear_radius_m": 2.3,
+        "from": [
+          36.0,
+          44.0
+        ],
+        "route": "bell_loop",
+        "to": [
+          6.0,
+          44.0
+        ]
+      },
+      {
+        "clear_radius_m": 2.3,
+        "from": [
+          6.0,
+          44.0
+        ],
+        "route": "bell_loop",
+        "to": [
+          6.0,
+          34.0
+        ]
+      }
+    ]
+  },
+  "seconds": {
+    "bake": 1.2,
+    "checks": 0.9,
+    "deposit": 1.2,
+    "physics_1": 94.1,
+    "physics_2": 258.7,
+    "pieces": 32.1,
+    "review": 0.0,
+    "setup": 0.6
+  },
+  "seed": 179,
+  "settle": {
+    "deepest_pair": null,
+    "drop": {
+      "frames": 255,
+      "never_still": 0,
+      "runs": [
+        {
+          "active": 1190,
+          "frames": 90,
+          "peak_speed_m_s": 2.953,
+          "run": 0,
+          "stilled": 986
+        },
+        {
+          "active": 204,
+          "frames": 45,
+          "peak_speed_m_s": 1.07,
+          "run": 1,
+          "stilled": 147
+        },
+        {
+          "active": 57,
+          "frames": 45,
+          "peak_speed_m_s": 0.628,
+          "run": 2,
+          "stilled": 48
+        },
+        {
+          "active": 9,
+          "frames": 45,
+          "peak_speed_m_s": 0.096,
+          "run": 3,
+          "stilled": 8
+        },
+        {
+          "active": 1,
+          "frames": 30,
+          "peak_speed_m_s": 0.006,
+          "run": 4,
+          "stilled": 1
+        }
+      ]
+    },
+    "max_contact_gap_m": 0.0092,
+    "max_interpenetration_m": 0.0,
+    "rule": "a piece is still when the net travel of its fastest bound-box corner over 15 frames (30 fps) is under 0.01 m/s; still pieces are held for later runs",
+    "stability_check": {
+      "max_move_m": 0.0301,
+      "max_turn_deg": 24.32,
+      "pieces_moved_over_1cm": 8,
+      "pieces_moved_over_3cm": 1,
+      "resettled": 3,
+      "what": "every kept piece let go again from the exported pose for 1.5 s (measured, not kept)"
+    }
+  },
+  "source": {
+    "layout": "content/environments/procedural_bridge_v1/layout.json",
+    "layout_sha256": "e37b06498dd3c54539e773f241f9c3d7351849d3d1b9ac2ae336d4e563e1c3a1",
+    "room_glb": "content/environments/procedural_architecture_v1/rooms/bell.glb",
+    "room_glb_sha256": "cb499ce53e287df2e556f8d4c6e3159962b94146c70311ed4dfa1d720561c43c"
+  },
+  "task": "T-179",
+  "triangles": {
+    "budget": 20000,
+    "meshes": {
+      "Rubble_bell_0": 3287,
+      "Rubble_bell_1": 7066,
+      "Rubble_bell_2": 5849,
+      "Rubble_bell_3": 2518,
+      "Rubble_bell_grime": 600
+    },
+    "total": 19320
+  },
+  "vertex_color": {
+    "Rubble_bell_0": {
+      "clipped_share": 0.027,
+      "mean": 0.379,
+      "min": 0.129
+    },
+    "Rubble_bell_1": {
+      "clipped_share": 0.0159,
+      "mean": 0.321,
+      "min": 0.126
+    },
+    "Rubble_bell_2": {
+      "clipped_share": 0.015,
+      "mean": 0.336,
+      "min": 0.126
+    },
+    "Rubble_bell_3": {
+      "clipped_share": 0.0342,
+      "mean": 0.385,
+      "min": 0.135
+    },
+    "Rubble_bell_grime": {
+      "clipped_share": 0.0,
+      "mean": 0.2,
+      "min": 0.106
+    }
+  }
+}

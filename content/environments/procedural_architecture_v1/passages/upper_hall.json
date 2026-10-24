@@ -1,0 +1,30 @@
+{
+  "ao": {
+    "Mortar_upper_hall_3": {
+      "mean": 0.47,
+      "min": 0.18
+    },
+    "Stone-arch_upper_hall_2": {
+      "mean": 0.436,
+      "min": 0.18
+    },
+    "Stone-flag_upper_hall_4": {
+      "mean": 0.826,
+      "min": 0.18
+    },
+    "Stone-stone_upper_hall_0": {
+      "mean": 0.714,
+      "min": 0.18
+    },
+    "Stone-stone_upper_hall_1": {
+      "mean": 0.733,
+      "min": 0.18
+    }
+  },
+  "blender": "5.2.2 LTS",
+  "files": {
+    "content/environments/procedural_architecture_v1/passages/upper_hall.glb": "b01cbe2de0a2db75b8d9472c9fe36f34fa92c92e4d055c210d47819308647f41"
+  },
+  "id": "upper_hall",
+  "triangles": 27073
+}

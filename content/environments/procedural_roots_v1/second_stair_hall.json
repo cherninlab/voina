@@ -1,0 +1,82 @@
+{
+  "ao": {
+    "Roots_second_stair_hall_0": {
+      "mean": 0.59,
+      "min": 0.2
+    },
+    "Roots_second_stair_hall_1": {
+      "mean": 0.519,
+      "min": 0.2
+    },
+    "Roots_second_stair_hall_2": {
+      "mean": 0.443,
+      "min": 0.2
+    },
+    "Roots_second_stair_hall_3": {
+      "mean": 0.554,
+      "min": 0.2
+    }
+  },
+  "blender": "5.2.2 LTS",
+  "budget": 15000,
+  "clearance": {
+    "ankle_m": 0.03,
+    "headroom_m": 2.7,
+    "route_margin_m": 0.3
+  },
+  "diameter_cm": {
+    "max": 14.1,
+    "min": 0.5
+  },
+  "doorways": [
+    {
+      "crown": 5.12,
+      "wall": 3,
+      "width": 5.4
+    }
+  ],
+  "files": {
+    "content/environments/procedural_roots_v1/second_stair_hall.glb": "23c13cc58c7b5921e2f1febc7df780f1a13be5adede573bb520726527c91b0f6"
+  },
+  "id": "second_stair_hall",
+  "layout_hash": "20aa6015a7f9f4f7c12b59b90acfe080b07298d8b2b180c7054b532be72d00d4",
+  "meshes": [
+    "Roots_second_stair_hall_0",
+    "Roots_second_stair_hall_1",
+    "Roots_second_stair_hall_2",
+    "Roots_second_stair_hall_3"
+  ],
+  "qa": {
+    "audit": {
+      "cut_deeper_than_1cm": 1,
+      "cut_into_stone": 4,
+      "emerging_from_joint": 1,
+      "in_walking_corridor": 0,
+      "vertices": 6828
+    },
+    "cling_gap_m": {
+      "max": 0.0359,
+      "p50": 0.0056,
+      "p95": 0.0153
+    },
+    "clipped_at_corridor": 0,
+    "pruned": 0,
+    "rings": 1336,
+    "rings_touching_stone": 5
+  },
+  "roots": 92,
+  "seed": 178,
+  "sources": {
+    "procedural_architecture_v1/passages/nave.glb": "2d71cb11229bc4cee24f584c0411a6de2c3b476e3a6e8bd650c5cdc46471b604",
+    "procedural_architecture_v1/passages/node_-41_-23_24.glb": "22d333f1afb0343c1777c38c0a174385cf986e439fa418d5c8bbea7104f15c6d",
+    "procedural_architecture_v1/passages/root_tunnel.glb": "b48fe6141d5053221415c9a463643004c5c3e4b223a7f50b21343de00976188c",
+    "procedural_architecture_v1/rooms/second_stair_hall.glb": "e878d3ea67c8d2f4f25372d81968ace2466cd686b5b9d23b2a23e9dcc7909d46"
+  },
+  "systems": {
+    "branch": 10,
+    "loop": 3,
+    "trunk": 7,
+    "vein": 9
+  },
+  "triangles": 13871
+}

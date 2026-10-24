@@ -1,0 +1,647 @@
+{
+  "ao": {
+    "Rubble_chapel_0": {
+      "mean": 0.361,
+      "min": 0.18
+    },
+    "Rubble_chapel_1": {
+      "mean": 0.386,
+      "min": 0.18
+    },
+    "Rubble_chapel_2": {
+      "mean": 0.358,
+      "min": 0.18
+    },
+    "Rubble_chapel_3": {
+      "mean": 0.394,
+      "min": 0.18
+    },
+    "Rubble_chapel_grime": {
+      "mean": 0.233,
+      "min": 0.18
+    }
+  },
+  "axes": "Godot world coordinates, metres, Y up: place at the origin like the room GLB",
+  "blender": "5.2.2 LTS",
+  "build_seconds": 312.9,
+  "collision": {
+    "convex_hulls": 54,
+    "hull_vertices": 787,
+    "min_piece_size_m": 0.25
+  },
+  "color": "Color.rgb = baked AO (0.35 m) x per-piece tone (0.7, 1.15) (x 1.07 on fresh breaks); grime bed tone (0.5, 1.0); grey, clipped to 1 by glTF",
+  "command": "blender --factory-startup -b --python-exit-code 1 --python scripts/art/build_room_rubble.py -- --rooms chapel,nave,ossuary --no-review",
+  "files": {
+    "content/environments/procedural_rubble_v1/rooms/chapel.glb": "e1ddd590ce3ffbaf61ed74e4537478a2736156616141c34f60b61afc483e9fda"
+  },
+  "floor_y": -10.0,
+  "generator": "scripts/art/build_room_rubble.py",
+  "heaps": {
+    "collapse_spots": 1,
+    "corners": 8,
+    "jambs": 8,
+    "perimeter_m": 91.6,
+    "settled_heaps": [
+      {
+        "godot_xz": [
+          14.85,
+          -42.45
+        ],
+        "stone_volume_m3": 0.0426,
+        "top_m": 0.359
+      },
+      {
+        "godot_xz": [
+          17.5,
+          -28.15
+        ],
+        "stone_volume_m3": 0.0239,
+        "top_m": 0.214
+      },
+      {
+        "godot_xz": [
+          12.85,
+          -42.49
+        ],
+        "stone_volume_m3": 0.0219,
+        "top_m": 0.254
+      },
+      {
+        "godot_xz": [
+          -9.45,
+          -24.51
+        ],
+        "stone_volume_m3": 0.02,
+        "top_m": 0.209
+      },
+      {
+        "godot_xz": [
+          -11.33,
+          -26.05
+        ],
+        "stone_volume_m3": 0.0164,
+        "top_m": 0.189
+      },
+      {
+        "godot_xz": [
+          17.48,
+          -36.75
+        ],
+        "stone_volume_m3": 0.0122,
+        "top_m": 0.195
+      },
+      {
+        "godot_xz": [
+          14.35,
+          -24.51
+        ],
+        "stone_volume_m3": 0.0115,
+        "top_m": 0.146
+      },
+      {
+        "godot_xz": [
+          -3.55,
+          -42.49
+        ],
+        "stone_volume_m3": 0.0108,
+        "top_m": 0.194
+      }
+    ],
+    "target_heaps": [
+      {
+        "godot_xz": [
+          14.56,
+          -42.49
+        ],
+        "wedge_height_m": 0.55
+      },
+      {
+        "godot_xz": [
+          -11.53,
+          -38.35
+        ],
+        "wedge_height_m": 0.34
+      },
+      {
+        "godot_xz": [
+          17.54,
+          -28.85
+        ],
+        "wedge_height_m": 0.32
+      },
+      {
+        "godot_xz": [
+          -8.85,
+          -24.46
+        ],
+        "wedge_height_m": 0.29
+      },
+      {
+        "godot_xz": [
+          -11.54,
+          -27.55
+        ],
+        "wedge_height_m": 0.28
+      },
+      {
+        "godot_xz": [
+          -11.33,
+          -26.05
+        ],
+        "wedge_height_m": 0.26
+      },
+      {
+        "godot_xz": [
+          -3.85,
+          -24.46
+        ],
+        "wedge_height_m": 0.23
+      },
+      {
+        "godot_xz": [
+          17.33,
+          -27.05
+        ],
+        "wedge_height_m": 0.2
+      },
+      {
+        "godot_xz": [
+          -11.33,
+          -39.95
+        ],
+        "wedge_height_m": 0.17
+      },
+      {
+        "godot_xz": [
+          17.49,
+          -34.65
+        ],
+        "wedge_height_m": 0.15
+      },
+      {
+        "godot_xz": [
+          17.49,
+          -39.7
+        ],
+        "wedge_height_m": 0.15
+      }
+    ],
+    "usable_wall_m": 70.1
+  },
+  "id": "chapel",
+  "physics": {
+    "damping": {
+      "grit": [
+        0.45,
+        0.97
+      ],
+      "stone": [
+        0.4,
+        0.95
+      ]
+    },
+    "density_kg_m3": 2300.0,
+    "engine": "Blender rigid body (Bullet)",
+    "floor": "BOX",
+    "fps": 30,
+    "friction": 0.95,
+    "grime_bed": "CONVEX_HULL patches of 2 x 2 cells",
+    "margins_m": {
+      "gravel": 0.0015,
+      "piece": 0.002,
+      "static": 0.002
+    },
+    "pieces": "CONVEX_HULL",
+    "solver_iterations": 60,
+    "substeps_per_frame": 40,
+    "walls": "MESH (Stone_* and Mortar_* below 1.6 m)"
+  },
+  "pieces": {
+    "discarded": {
+      "floating": 0,
+      "no_spot": 3,
+      "not_settled": 4,
+      "route": 1
+    },
+    "floating_removed": [],
+    "generated": {
+      "big": 254,
+      "gravel": 412,
+      "medium": 349,
+      "small": 145
+    },
+    "kept": {
+      "big": 247,
+      "gravel": 412,
+      "medium": 348,
+      "small": 145
+    },
+    "kept_total": 1152,
+    "size_m": {
+      "max": 0.333,
+      "median": 0.083,
+      "min": 0.013
+    }
+  },
+  "review": [],
+  "routes": {
+    "clear_height_m": 0.04,
+    "level_m": 1.0,
+    "max_height_in_ribbons_m": 0.0232,
+    "pad_m": 0.3,
+    "ribbons": [
+      {
+        "clear_radius_m": 2.2,
+        "from": [
+          29.5,
+          -39.5
+        ],
+        "route": "first_stair",
+        "to": [
+          29.5,
+          -31.5
+        ]
+      },
+      {
+        "clear_radius_m": 2.2,
+        "from": [
+          29.5,
+          -31.5
+        ],
+        "route": "first_stair",
+        "to": [
+          32.0,
+          -29.0
+        ]
+      },
+      {
+        "clear_radius_m": 2.5,
+        "from": [
+          32.0,
+          -29.0
+        ],
+        "route": "chapel_approach",
+        "to": [
+          22.0,
+          -30.0
+        ]
+      },
+      {
+        "clear_radius_m": 2.5,
+        "from": [
+          22.0,
+          -30.0
+        ],
+        "route": "chapel_approach",
+        "to": [
+          14.0,
+          -33.0
+        ]
+      },
+      {
+        "clear_radius_m": 2.5,
+        "from": [
+          14.0,
+          -33.0
+        ],
+        "route": "chapel_approach",
+        "to": [
+          0.0,
+          -32.0
+        ]
+      },
+      {
+        "clear_radius_m": 2.5,
+        "from": [
+          0.0,
+          -32.0
+        ],
+        "route": "chapel_approach",
+        "to": [
+          -6.0,
+          -28.0
+        ]
+      },
+      {
+        "clear_radius_m": 2.3,
+        "from": [
+          -6.0,
+          -28.0
+        ],
+        "route": "central_ledge",
+        "to": [
+          -6.5,
+          -23.0
+        ]
+      },
+      {
+        "clear_radius_m": 2.3,
+        "from": [
+          -6.5,
+          -23.0
+        ],
+        "route": "central_ledge",
+        "to": [
+          -7.0,
+          -19.0
+        ]
+      },
+      {
+        "clear_radius_m": 2.3,
+        "from": [
+          -7.0,
+          -19.0
+        ],
+        "route": "central_ledge",
+        "to": [
+          -5.0,
+          -14.0
+        ]
+      },
+      {
+        "clear_radius_m": 2.05,
+        "from": [
+          28.3,
+          21.0
+        ],
+        "route": "return_stair",
+        "to": [
+          28.3,
+          10.0
+        ]
+      },
+      {
+        "clear_radius_m": 2.3,
+        "from": [
+          28.3,
+          10.0
+        ],
+        "route": "return_gallery",
+        "to": [
+          22.0,
+          10.0
+        ]
+      },
+      {
+        "clear_radius_m": 2.3,
+        "from": [
+          22.0,
+          10.0
+        ],
+        "route": "return_gallery",
+        "to": [
+          21.0,
+          -1.0
+        ]
+      },
+      {
+        "clear_radius_m": 2.3,
+        "from": [
+          21.0,
+          -1.0
+        ],
+        "route": "return_gallery",
+        "to": [
+          20.0,
+          -14.0
+        ]
+      },
+      {
+        "clear_radius_m": 2.3,
+        "from": [
+          20.0,
+          -14.0
+        ],
+        "route": "return_gallery",
+        "to": [
+          22.0,
+          -24.0
+        ]
+      },
+      {
+        "clear_radius_m": 2.3,
+        "from": [
+          22.0,
+          -24.0
+        ],
+        "route": "return_gallery",
+        "to": [
+          22.0,
+          -30.0
+        ]
+      },
+      {
+        "clear_radius_m": 2.3,
+        "from": [
+          -10.0,
+          -30.0
+        ],
+        "route": "ossuary_loop",
+        "to": [
+          -18.0,
+          -30.0
+        ]
+      },
+      {
+        "clear_radius_m": 2.3,
+        "from": [
+          -18.0,
+          -30.0
+        ],
+        "route": "ossuary_loop",
+        "to": [
+          -18.0,
+          -6.0
+        ]
+      },
+      {
+        "clear_radius_m": 2.3,
+        "from": [
+          -18.0,
+          -6.0
+        ],
+        "route": "ossuary_loop",
+        "to": [
+          -24.0,
+          -6.0
+        ]
+      },
+      {
+        "clear_radius_m": 2.3,
+        "from": [
+          -24.0,
+          -6.0
+        ],
+        "route": "ossuary_loop",
+        "to": [
+          -24.0,
+          -14.0
+        ]
+      },
+      {
+        "clear_radius_m": 2.3,
+        "from": [
+          -24.0,
+          -14.0
+        ],
+        "route": "ossuary_loop",
+        "to": [
+          -34.0,
+          -16.0
+        ]
+      },
+      {
+        "clear_radius_m": 2.3,
+        "from": [
+          -34.0,
+          -16.0
+        ],
+        "route": "ossuary_loop",
+        "to": [
+          -34.0,
+          -25.0
+        ]
+      },
+      {
+        "clear_radius_m": 2.3,
+        "from": [
+          -34.0,
+          -25.0
+        ],
+        "route": "ossuary_loop",
+        "to": [
+          -32.0,
+          -36.0
+        ]
+      },
+      {
+        "clear_radius_m": 2.3,
+        "from": [
+          -32.0,
+          -36.0
+        ],
+        "route": "ossuary_loop",
+        "to": [
+          -12.0,
+          -36.0
+        ]
+      },
+      {
+        "clear_radius_m": 2.3,
+        "from": [
+          -12.0,
+          -36.0
+        ],
+        "route": "ossuary_loop",
+        "to": [
+          -10.0,
+          -30.0
+        ]
+      }
+    ]
+  },
+  "seconds": {
+    "bake": 1.6,
+    "checks": 0.5,
+    "deposit": 1.2,
+    "physics_1": 70.0,
+    "physics_2": 208.3,
+    "pieces": 29.7,
+    "review": 0.1,
+    "setup": 1.2
+  },
+  "seed": 179,
+  "settle": {
+    "deepest_pair": null,
+    "drop": {
+      "frames": 212,
+      "never_still": 0,
+      "runs": [
+        {
+          "active": 1157,
+          "frames": 90,
+          "peak_speed_m_s": 4.254,
+          "run": 0,
+          "stilled": 1029
+        },
+        {
+          "active": 128,
+          "frames": 45,
+          "peak_speed_m_s": 1.253,
+          "run": 1,
+          "stilled": 100
+        },
+        {
+          "active": 28,
+          "frames": 45,
+          "peak_speed_m_s": 0.591,
+          "run": 2,
+          "stilled": 23
+        },
+        {
+          "active": 5,
+          "frames": 32,
+          "peak_speed_m_s": 0.126,
+          "run": 3,
+          "stilled": 5
+        }
+      ]
+    },
+    "max_contact_gap_m": 0.0099,
+    "max_interpenetration_m": 0.0,
+    "rule": "a piece is still when the net travel of its fastest bound-box corner over 15 frames (30 fps) is under 0.01 m/s; still pieces are held for later runs",
+    "stability_check": {
+      "max_move_m": 0.0171,
+      "max_turn_deg": 27.22,
+      "pieces_moved_over_1cm": 7,
+      "pieces_moved_over_3cm": 0,
+      "resettled": 3,
+      "what": "every kept piece let go again from the exported pose for 1.5 s (measured, not kept)"
+    }
+  },
+  "source": {
+    "layout": "content/environments/procedural_bridge_v1/layout.json",
+    "layout_sha256": "e37b06498dd3c54539e773f241f9c3d7351849d3d1b9ac2ae336d4e563e1c3a1",
+    "room_glb": "content/environments/procedural_architecture_v1/rooms/chapel.glb",
+    "room_glb_sha256": "1a4b88df7c3590530f65bd5b66fcb9d2268ca81fad799afd899d6ed8c7ffd07a"
+  },
+  "task": "T-179",
+  "triangles": {
+    "budget": 20000,
+    "meshes": {
+      "Rubble_chapel_0": 4394,
+      "Rubble_chapel_1": 4114,
+      "Rubble_chapel_2": 7094,
+      "Rubble_chapel_3": 3254,
+      "Rubble_chapel_grime": 353
+    },
+    "total": 19209
+  },
+  "vertex_color": {
+    "Rubble_chapel_0": {
+      "clipped_share": 0.0174,
+      "mean": 0.355,
+      "min": 0.126
+    },
+    "Rubble_chapel_1": {
+      "clipped_share": 0.022,
+      "mean": 0.378,
+      "min": 0.126
+    },
+    "Rubble_chapel_2": {
+      "clipped_share": 0.0176,
+      "mean": 0.347,
+      "min": 0.126
+    },
+    "Rubble_chapel_3": {
+      "clipped_share": 0.0208,
+      "mean": 0.379,
+      "min": 0.126
+    },
+    "Rubble_chapel_grime": {
+      "clipped_share": 0.0,
+      "mean": 0.191,
+      "min": 0.105
+    }
+  }
+}

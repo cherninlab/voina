@@ -70,6 +70,24 @@ def write_report(path, data: dict, files=()) -> dict:
     return report
 
 
+TRASH = []
+
+
+def discard(obj: bpy.types.Object) -> None:
+    """Take an object out of the scene now and delete it later in one batch:
+    bpy.data.objects.remove remaps every ID in the file, so removing objects
+    one by one from a scene of tens of thousands of stones is quadratic."""
+    for collection in list(obj.users_collection):
+        collection.objects.unlink(obj)
+    TRASH.append(obj)
+
+
+def flush_trash() -> None:
+    if TRASH:
+        bpy.data.batch_remove(TRASH)
+        TRASH.clear()
+
+
 def link(obj: bpy.types.Object) -> bpy.types.Object:
     bpy.context.scene.collection.objects.link(obj)
     return obj

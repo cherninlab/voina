@@ -1,0 +1,122 @@
+{
+  "ao": {
+    "Mortar_chapel_0": {
+      "mean": 0.567,
+      "min": 0.18
+    },
+    "Mortar_chapel_1": {
+      "mean": 0.566,
+      "min": 0.18
+    },
+    "Mortar_chapel_10": {
+      "mean": 0.442,
+      "min": 0.18
+    },
+    "Mortar_chapel_2": {
+      "mean": 0.52,
+      "min": 0.18
+    },
+    "Mortar_chapel_3": {
+      "mean": 0.55,
+      "min": 0.18
+    },
+    "Mortar_chapel_4": {
+      "mean": 0.423,
+      "min": 0.18
+    },
+    "Mortar_chapel_5": {
+      "mean": 0.555,
+      "min": 0.18
+    },
+    "Mortar_chapel_6": {
+      "mean": 0.409,
+      "min": 0.18
+    },
+    "Mortar_chapel_7": {
+      "mean": 0.569,
+      "min": 0.18
+    },
+    "Mortar_chapel_8": {
+      "mean": 0.882,
+      "min": 0.18
+    },
+    "Plaster_chapel_0": {
+      "mean": 0.211,
+      "min": 0.18
+    },
+    "Plaster_chapel_1": {
+      "mean": 0.18,
+      "min": 0.18
+    },
+    "Plaster_chapel_2": {
+      "mean": 0.8,
+      "min": 0.18
+    },
+    "Plaster_chapel_3": {
+      "mean": 0.18,
+      "min": 0.18
+    },
+    "Plaster_chapel_4": {
+      "mean": 0.812,
+      "min": 0.18
+    },
+    "Plaster_chapel_5": {
+      "mean": 0.214,
+      "min": 0.18
+    },
+    "Plaster_chapel_6": {
+      "mean": 0.84,
+      "min": 0.18
+    },
+    "Plaster_chapel_7": {
+      "mean": 0.18,
+      "min": 0.18
+    },
+    "Stone_chapel_0": {
+      "mean": 0.243,
+      "min": 0.18
+    },
+    "Stone_chapel_1": {
+      "mean": 0.256,
+      "min": 0.18
+    },
+    "Stone_chapel_10": {
+      "mean": 0.591,
+      "min": 0.18
+    },
+    "Stone_chapel_2": {
+      "mean": 0.343,
+      "min": 0.18
+    },
+    "Stone_chapel_3": {
+      "mean": 0.494,
+      "min": 0.18
+    },
+    "Stone_chapel_4": {
+      "mean": 0.486,
+      "min": 0.18
+    },
+    "Stone_chapel_5": {
+      "mean": 0.507,
+      "min": 0.18
+    },
+    "Stone_chapel_6": {
+      "mean": 0.368,
+      "min": 0.18
+    },
+    "Stone_chapel_7": {
+      "mean": 0.246,
+      "min": 0.18
+    },
+    "Stone_chapel_8": {
+      "mean": 0.694,
+      "min": 0.18
+    }
+  },
+  "blender": "5.2.2 LTS",
+  "files": {
+    "content/environments/procedural_architecture_v1/rooms/chapel.glb": "1a4b88df7c3590530f65bd5b66fcb9d2268ca81fad799afd899d6ed8c7ffd07a"
+  },
+  "id": "chapel",
+  "triangles": 446575
+}

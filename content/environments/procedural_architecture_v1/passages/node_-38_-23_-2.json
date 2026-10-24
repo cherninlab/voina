@@ -1,0 +1,50 @@
+{
+  "ao": {
+    "Mortar_node_-38_-23_-2_2": {
+      "mean": 0.238,
+      "min": 0.18
+    },
+    "Mortar_node_-38_-23_-2_3": {
+      "mean": 0.373,
+      "min": 0.18
+    },
+    "Mortar_node_-38_-23_-2_6": {
+      "mean": 0.265,
+      "min": 0.18
+    },
+    "Stone-arch_node_-38_-23_-2_2": {
+      "mean": 0.28,
+      "min": 0.18
+    },
+    "Stone-arch_node_-38_-23_-2_4": {
+      "mean": 0.369,
+      "min": 0.18
+    },
+    "Stone-arch_node_-38_-23_-2_5": {
+      "mean": 0.377,
+      "min": 0.18
+    },
+    "Stone-ashlar_node_-38_-23_-2_2": {
+      "mean": 0.378,
+      "min": 0.18
+    },
+    "Stone-flag_node_-38_-23_-2_7": {
+      "mean": 0.789,
+      "min": 0.18
+    },
+    "Stone-stone_node_-38_-23_-2_2": {
+      "mean": 0.423,
+      "min": 0.18
+    },
+    "Stone-stone_node_-38_-23_-2_3": {
+      "mean": 0.603,
+      "min": 0.18
+    }
+  },
+  "blender": "5.2.2 LTS",
+  "files": {
+    "content/environments/procedural_architecture_v1/passages/node_-38_-23_-2.glb": "5543c3602e4c61a96f6f637830e819c1e74cb8e10929bee77a5312e82daf12ca"
+  },
+  "id": "node_-38_-23_-2",
+  "triangles": 73968
+}

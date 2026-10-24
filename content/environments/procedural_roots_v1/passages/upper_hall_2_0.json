@@ -1,0 +1,63 @@
+{
+  "ao": {
+    "Roots_upper_hall_2_0_0": {
+      "mean": 0.567,
+      "min": 0.2
+    }
+  },
+  "blender": "5.2.2 LTS",
+  "budget": 4000,
+  "clearance": {
+    "ankle_m": 0.03,
+    "headroom_m": 2.7,
+    "route_margin_m": 0.3
+  },
+  "diameter_cm": {
+    "max": 12.2,
+    "min": 0.5
+  },
+  "files": {
+    "content/environments/procedural_roots_v1/passages/upper_hall_2_0.glb": "94a77228ca4829893d2e94c38a8f52958ad228c9e19b3b3d0940e8ec31927cf0"
+  },
+  "id": "upper_hall_2_0",
+  "layout_hash": "20aa6015a7f9f4f7c12b59b90acfe080b07298d8b2b180c7054b532be72d00d4",
+  "meshes": [
+    "Roots_upper_hall_2_0_0"
+  ],
+  "passage": {
+    "file": "passages/upper_hall.glb",
+    "route": "upper_hall",
+    "segment": 2,
+    "t0": 0.0,
+    "t1": 0.27
+  },
+  "qa": {
+    "audit": {
+      "cut_deeper_than_1cm": 0,
+      "cut_into_stone": 3,
+      "emerging_from_joint": 3,
+      "in_walking_corridor": 0,
+      "vertices": 1613
+    },
+    "cling_gap_m": {
+      "max": 0.0403,
+      "p50": 0.0055,
+      "p95": 0.0128
+    },
+    "clipped_at_corridor": 0,
+    "pruned": 0,
+    "rings": 371,
+    "rings_touching_stone": 3
+  },
+  "roots": 56,
+  "seed": 178,
+  "sources": {
+    "procedural_architecture_v1/passages/upper_hall.glb": "8fc579225bce36539c2bb6f2964b166486d38005f6b0410c9657314cac1425b5"
+  },
+  "systems": {
+    "branch": 2,
+    "loop": 1,
+    "trunk": 1
+  },
+  "triangles": 3123
+}

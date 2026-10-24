@@ -210,22 +210,28 @@ func build_landmarks() -> void:
 	var entrance: OmniLight3D = OmniLight3D.new()
 	entrance.position = RedDescentLayout.at(Vector3(6, 3, 24))
 	entrance.light_color = Color(0.32, 0.47, 0.62)
-	entrance.light_energy = 4.0
-	entrance.omni_range = 16
+	# A breath of daylight at the threshold, not a lamp in the entry room's vault.
+	entrance.light_energy = 1.6
+	entrance.omni_range = 11
 	add_child(entrance)
 	# A simple physical restraint frame in the upper hall, set clear of the walking line.
-	var frame: Vector3 = RedDescentLayout.at(Vector3(90, -4, 37))
+	# Clear of the upper cells loop, which now comes back into the restraint through its east wall.
+	var frame: Vector3 = RedDescentLayout.at(Vector3(90, -4, 40))
 	for side: float in [-1.0, 1.0]:
 		var foot: Vector3 = frame + Vector3(side * 1.1, 0, 0)
 		architecture.piece(Vector3(0.34, 3.7, 0.34), foot + Vector3.UP * 1.85, "collision", Basis.IDENTITY, true)
 		architecture.structure.timber(foot, foot + Vector3.UP * 3.7, 0.34, 0.34, "restraint post")
 	architecture.structure.timber(frame + Vector3(-1.4, 3.1, 0), frame + Vector3(1.4, 3.1, 0), 0.4, 0.36, "restraint beam")
-	var altar: Vector3 = RedDescentLayout.at(Vector3(88, -28, 41))
+	# In the choir's open floor, clear of the return stair that climbs its walls.
+	var altar: Vector3 = RedDescentLayout.at(Vector3(84, -28, 64))
 	architecture.piece(Vector3(3.4, 1.1, 1.6), altar + Vector3.UP * 0.55, "stone", Basis.IDENTITY, true)
 	architecture.piece(Vector3(3.8, 0.25, 2), altar + Vector3.UP * 1.2, "trim", Basis.IDENTITY, true)
 	# Distinct side-hall silhouettes: rough coffins, nave rafters and an iron bell.
 	for design: Vector3 in [Vector3(17, -10, 13), Vector3(21, -10, 13), Vector3(12, -10, 31), Vector3(23, -10, 31), Vector3(46, -18, 94), Vector3(54, -18, 94)]:
 		var at: Vector3 = RedDescentLayout.at(design)
+		# Stone-built rooms carry the T-171 mortuary and ossuary sets with real coffins.
+		if architecture.stone_room_near(at + Vector3.UP * 0.3, 0.0):
+			continue
 		architecture.piece(Vector3(1.0, 0.65, 2.4), at + Vector3.UP * 0.35, "wood", Basis.IDENTITY, true)
 		architecture.piece(Vector3(1.14, 0.12, 2.55), at + Vector3.UP * 0.72, "wood")
 		for offset: float in [-0.75, 0.75]:

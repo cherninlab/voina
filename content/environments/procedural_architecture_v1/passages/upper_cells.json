@@ -1,0 +1,90 @@
+{
+  "ao": {
+    "Mortar_upper_cells_13": {
+      "mean": 0.26,
+      "min": 0.18
+    },
+    "Mortar_upper_cells_18": {
+      "mean": 0.341,
+      "min": 0.18
+    },
+    "Mortar_upper_cells_3": {
+      "mean": 0.509,
+      "min": 0.18
+    },
+    "Mortar_upper_cells_8": {
+      "mean": 0.343,
+      "min": 0.18
+    },
+    "Stone-arch_upper_cells_12": {
+      "mean": 0.438,
+      "min": 0.18
+    },
+    "Stone-arch_upper_cells_17": {
+      "mean": 0.4,
+      "min": 0.18
+    },
+    "Stone-arch_upper_cells_2": {
+      "mean": 0.459,
+      "min": 0.18
+    },
+    "Stone-arch_upper_cells_7": {
+      "mean": 0.398,
+      "min": 0.18
+    },
+    "Stone-flag_upper_cells_14": {
+      "mean": 0.794,
+      "min": 0.18
+    },
+    "Stone-flag_upper_cells_19": {
+      "mean": 0.81,
+      "min": 0.18
+    },
+    "Stone-flag_upper_cells_4": {
+      "mean": 0.869,
+      "min": 0.18
+    },
+    "Stone-flag_upper_cells_9": {
+      "mean": 0.812,
+      "min": 0.18
+    },
+    "Stone-stone_upper_cells_0": {
+      "mean": 0.742,
+      "min": 0.18
+    },
+    "Stone-stone_upper_cells_1": {
+      "mean": 0.755,
+      "min": 0.18
+    },
+    "Stone-stone_upper_cells_10": {
+      "mean": 0.677,
+      "min": 0.18
+    },
+    "Stone-stone_upper_cells_11": {
+      "mean": 0.707,
+      "min": 0.18
+    },
+    "Stone-stone_upper_cells_15": {
+      "mean": 0.584,
+      "min": 0.18
+    },
+    "Stone-stone_upper_cells_16": {
+      "mean": 0.727,
+      "min": 0.18
+    },
+    "Stone-stone_upper_cells_5": {
+      "mean": 0.513,
+      "min": 0.18
+    },
+    "Stone-stone_upper_cells_6": {
+      "mean": 0.714,
+      "min": 0.18
+    }
+  },
+  "blender": "5.2.2 LTS",
+  "files": {
+    "content/environments/procedural_architecture_v1/passages/upper_cells.glb": "efc6ef1fcfda3ff49a8da42ec9ce64fa4d95d4321459350158ffbe0326dc138e"
+  },
+  "id": "upper_cells",
+  "triangles": 212100
+}

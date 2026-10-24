@@ -50,18 +50,44 @@ func timber(a: Vector3, b: Vector3, width: float, depth: float, role: String = "
 func nearest_wall(point: Vector3) -> Vector3:
 	var best: Vector2 = Vector2(INF, INF)
 	var distance: float = INF
+	var embed: float = 0.55
+	var plan: Vector2 = Vector2(point.x, point.z)
 	for polygon: PackedVector2Array in [RedDescentLayout.outline(), RedDescentLayout.spine()]:
 		for index: int in range(polygon.size()):
-			var near: Vector2 = Geometry2D.get_closest_point_to_segment(Vector2(point.x, point.z), polygon[index], polygon[(index + 1) % polygon.size()])
-			if near.distance_to(Vector2(point.x, point.z)) < distance:
-				distance = near.distance_to(Vector2(point.x, point.z))
+			var near: Vector2 = Geometry2D.get_closest_point_to_segment(plan, polygon[index], polygon[(index + 1) % polygon.size()])
+			# The shaft wall stops where a room stands in it (RedDescentGeometry.room_cuts).
+			if near.distance_to(plan) < distance and not in_room_band(near, point.y):
+				distance = near.distance_to(plan)
 				best = near
+				embed = 0.55
+	# Room walls stand on their outline (centred), from the floor up: a bracket
+	# a few metres below the deck anchors in any room wall at that height.
+	for room: Dictionary in g.rooms:
+		# The bracket's foot, about 3.2 m under the deck, must meet the wall where it stands.
+		var foot: float = point.y - 3.2
+		if foot < float(room["floor"]) - 0.2 or foot > float(room["floor"]) + float(room["height"]):
+			continue
+		var outline: PackedVector2Array = room["points"] as PackedVector2Array
+		for index: int in range(outline.size()):
+			var near: Vector2 = Geometry2D.get_closest_point_to_segment(plan, outline[index], outline[(index + 1) % outline.size()])
+			if near.distance_to(plan) < distance:
+				distance = near.distance_to(plan)
+				best = near
+				embed = 0.0
 	# Embed at least half a metre beyond the visible outline, including when
 	# a route lands exactly on it. Core walls lie behind their facing.
-	var toward: Vector2 = best - Vector2(point.x, point.z)
+	var toward: Vector2 = best - plan
 	if toward.length() < 0.1:
 		toward = best.normalized()
-	return Vector3(best.x + toward.normalized().x * 0.55, point.y, best.y + toward.normalized().y * 0.55)
+	return Vector3(best.x + toward.normalized().x * embed, point.y, best.y + toward.normalized().y * embed)
+
+func in_room_band(at: Vector2, y: float) -> bool:
+	for room: Dictionary in g.rooms:
+		if y >= float(room["floor"]) - 0.6 and y <= float(room["floor"]) + float(room["height"]) + 0.6:
+			var grown: Array[PackedVector2Array] = Geometry2D.offset_polygon(room["points"] as PackedVector2Array, 0.45, Geometry2D.JOIN_MITER)
+			if not grown.is_empty() and Geometry2D.is_point_in_polygon(at, grown[0]):
+				return true
+	return false
 
 func foundation_clear(at: Vector3, top: float) -> bool:
 	# A support may not grow through a lower playable crossing or side passage.
@@ -179,6 +205,8 @@ func baked_bridge(path: Dictionary, edges: PackedVector3Array) -> bool:
 		var wood: ShaderMaterial = g.materials["wood"] as ShaderMaterial
 		for parameter: String in ["albedo_map", "normal_map", "roughness_map", "ao_map", "wet_map"]:
 			bridge_material.set_shader_parameter(parameter, wood.get_shader_parameter(parameter))
+		# Soaked decks that catch the torches, as in the paintovers (T-181 grade).
+		bridge_material.set_shader_parameter("wetness", 1.6)
 	for node: Node in bridge.find_children("*", "MeshInstance3D", true, false):
 		var visual: MeshInstance3D = node as MeshInstance3D
 		visual.material_override = g.materials["iron"] if visual.name.begins_with("Iron") else bridge_material

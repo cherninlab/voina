@@ -1,0 +1,122 @@
+{
+  "ao": {
+    "Mortar_nave_0": {
+      "mean": 0.424,
+      "min": 0.18
+    },
+    "Mortar_nave_1": {
+      "mean": 0.566,
+      "min": 0.18
+    },
+    "Mortar_nave_10": {
+      "mean": 0.469,
+      "min": 0.18
+    },
+    "Mortar_nave_2": {
+      "mean": 0.463,
+      "min": 0.18
+    },
+    "Mortar_nave_3": {
+      "mean": 0.569,
+      "min": 0.18
+    },
+    "Mortar_nave_4": {
+      "mean": 0.566,
+      "min": 0.18
+    },
+    "Mortar_nave_5": {
+      "mean": 0.566,
+      "min": 0.18
+    },
+    "Mortar_nave_6": {
+      "mean": 0.567,
+      "min": 0.18
+    },
+    "Mortar_nave_7": {
+      "mean": 0.569,
+      "min": 0.18
+    },
+    "Mortar_nave_8": {
+      "mean": 0.866,
+      "min": 0.18
+    },
+    "Plaster_nave_0": {
+      "mean": 0.845,
+      "min": 0.18
+    },
+    "Plaster_nave_1": {
+      "mean": 0.219,
+      "min": 0.18
+    },
+    "Plaster_nave_2": {
+      "mean": 0.848,
+      "min": 0.18
+    },
+    "Plaster_nave_3": {
+      "mean": 0.195,
+      "min": 0.18
+    },
+    "Plaster_nave_4": {
+      "mean": 0.301,
+      "min": 0.18
+    },
+    "Plaster_nave_5": {
+      "mean": 0.215,
+      "min": 0.18
+    },
+    "Plaster_nave_6": {
+      "mean": 0.19,
+      "min": 0.18
+    },
+    "Plaster_nave_7": {
+      "mean": 0.221,
+      "min": 0.18
+    },
+    "Stone_nave_0": {
+      "mean": 0.329,
+      "min": 0.18
+    },
+    "Stone_nave_1": {
+      "mean": 0.255,
+      "min": 0.18
+    },
+    "Stone_nave_10": {
+      "mean": 0.592,
+      "min": 0.18
+    },
+    "Stone_nave_2": {
+      "mean": 0.362,
+      "min": 0.18
+    },
+    "Stone_nave_3": {
+      "mean": 0.27,
+      "min": 0.18
+    },
+    "Stone_nave_4": {
+      "mean": 0.244,
+      "min": 0.18
+    },
+    "Stone_nave_5": {
+      "mean": 0.251,
+      "min": 0.18
+    },
+    "Stone_nave_6": {
+      "mean": 0.245,
+      "min": 0.18
+    },
+    "Stone_nave_7": {
+      "mean": 0.309,
+      "min": 0.18
+    },
+    "Stone_nave_8": {
+      "mean": 0.711,
+      "min": 0.18
+    }
+  },
+  "blender": "5.2.2 LTS",
+  "files": {
+    "content/environments/procedural_architecture_v1/rooms/nave.glb": "c27cffd1d8a0141ce9494e4f6bf86d9bddc84f62249633810950e23e0d06fc53"
+  },
+  "id": "nave",
+  "triangles": 388156
+}
