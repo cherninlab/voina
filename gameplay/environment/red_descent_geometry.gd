@@ -16,6 +16,7 @@ var module_counts: Dictionary[String, int] = {}
 var surfaces: Dictionary[String, PackedVector3Array] = {}
 var surface_materials: Dictionary[String, String] = {}
 var collision_faces: PackedVector3Array = PackedVector3Array()
+var ribbon_edges: Dictionary[String, PackedVector3Array] = {}
 var cube_faces: PackedVector3Array = BoxMesh.new().get_faces()
 var fort_source: Node3D
 
@@ -254,18 +255,20 @@ func build_room(room: Dictionary) -> void:
 	if String(room["id"]) == "nave":
 		structure.roof(room)
 
-func build_path(path: Dictionary, light_route: bool) -> void:
+## Mitered half-width per node. Joined routes share the miter at their common
+## node, so neighbouring ribbons meet on one line.
+func route_edges(path: Dictionary) -> PackedVector3Array:
+	var id: String = String(path["id"])
+	if ribbon_edges.has(id):
+		return ribbon_edges[id]
 	var points: PackedVector3Array = path["points"] as PackedVector3Array
 	var width: float = float(path["width"])
-	var material: String = "wood" if bool(path["wood"]) else "floor"
-	var enclosed: bool = bool(path["enclosed"])
-	var lining: String = "rock" if String(path["id"]) in ["root_tunnel", "cave_bypass"] else "stone"
 	var edges: PackedVector3Array = PackedVector3Array()
 	for node: int in range(points.size()):
 		var before: Vector3 = points[node] - points[maxi(0, node - 1)]
 		var after: Vector3 = points[mini(points.size() - 1, node + 1)] - points[node]
 		for neighbor: Dictionary in paths:
-			if String(neighbor["id"]) == String(path["id"]):
+			if String(neighbor["id"]) == id:
 				continue
 			var other: PackedVector3Array = neighbor["points"] as PackedVector3Array
 			if node == 0 and points[node].distance_to(other[-1]) < 0.02:
@@ -283,8 +286,19 @@ func build_path(path: Dictionary, light_route: bool) -> void:
 		var tangent: Vector3 = (incoming + outgoing).normalized()
 		var side: Vector3 = Vector3(-tangent.z, 0, tangent.x)
 		edges.append(side * width * 0.5 / maxf(0.65, tangent.dot(incoming)))
+	ribbon_edges[id] = edges
+	return edges
+
+func build_path(path: Dictionary, light_route: bool) -> void:
+	var points: PackedVector3Array = path["points"] as PackedVector3Array
+	var width: float = float(path["width"])
+	var material: String = "wood" if bool(path["wood"]) else "floor"
+	var enclosed: bool = bool(path["enclosed"])
+	var lining: String = "rock" if String(path["id"]) in ["root_tunnel", "cave_bypass"] else "stone"
+	var edges: PackedVector3Array = route_edges(path)
 	if not enclosed:
 		structure.route(path, edges)
+		open_guards(path, edges)
 	var since_light: float = 15.0
 	for index: int in range(points.size() - 1):
 		var from: Vector3 = points[index]
@@ -325,18 +339,119 @@ func build_path(path: Dictionary, light_route: bool) -> void:
 						var rock_at: Vector3 = at + side * wall_side * (width * 0.5 + 0.65)
 						if not junction(rock_at, String(path["id"]), index):
 							fitted_module("rock_outcrop", rock_at - Vector3.UP * 0.2, Vector3(1.4, 3.9, 3.6), basis)
-				else:
-					for sign_value: float in [-1.0, 1.0]:
-						var edge: Vector3 = at + side * sign_value * (width * 0.5 - 0.08)
-						if junction(edge, String(path["id"]), index):
-							continue
-						if Geometry2D.is_point_in_polygon(Vector2(edge.x, edge.z), RedDescentLayout.spine()):
-							continue
-						piece(Vector3(0.12, 0.86, length + 0.1), edge + Vector3.UP * 0.55, "collision", basis, true)
 				since_light += length
 				if light_route and since_light >= 13.0:
 					torch_posts.append(at + side * (width * 0.5 - 0.35))
 					since_light = 0.0
+
+## Invisible rail on an open crossing, from `from` to `to` along the guard line.
+## It stays wherever stepping outward would leave every floor for the void.
+func open_guard(from: Vector3, to: Vector3, outward: Vector3, own_path: String) -> void:
+	# Rails inside the solid spine stay too: its windows open onto the void.
+	var center: Vector3 = (from + to) * 0.5
+	if from.distance_to(to) < 0.02 or in_room(center) or walkable_beyond(center + outward * 0.5, own_path):
+		return
+	var up: Vector3 = Vector3.UP if absf((to - from).normalized().y) < 0.99 else Vector3.FORWARD
+	piece(Vector3(0.12, 0.86, from.distance_to(to) + 0.12), center + Vector3.UP * 0.55, "collision", Basis.looking_at(to - from, up), true)
+
+## Flat distance from `node` along the segment before (t) and after (u) it to
+## where the two guard lines on this side cross. Negative t means the inner
+## side of a bend; positive t means the outer side.
+func guard_crossing(points: PackedVector3Array, node: int, sign_value: float, inset: float) -> Vector2:
+	if node <= 0 or node >= points.size() - 1:
+		return Vector2.ZERO
+	var before: Vector2 = Vector2(points[node].x - points[node - 1].x, points[node].z - points[node - 1].z).normalized()
+	var after: Vector2 = Vector2(points[node + 1].x - points[node].x, points[node + 1].z - points[node].z).normalized()
+	var turn: float = before.cross(after)
+	if absf(turn) < 0.0001:
+		return Vector2.ZERO
+	var offset: Vector2 = (Vector2(-after.y, after.x) - Vector2(-before.y, before.x)) * sign_value * inset
+	return Vector2(clampf(offset.cross(after) / turn, -2.0, 2.0), clampf(offset.cross(before) / turn, -2.0, 2.0))
+
+## Invisible rails along both sides of an open crossing. Each side runs as one
+## line per segment, trimmed or extended to meet its neighbour exactly at a
+## bend; ends get a cap where a wider joining passage narrows to the deck.
+func open_guards(path: Dictionary, edges: PackedVector3Array) -> void:
+	var points: PackedVector3Array = path["points"] as PackedVector3Array
+	var width: float = float(path["width"])
+	var id: String = String(path["id"])
+	var inset: float = width * 0.5 - 0.08
+	for index: int in range(points.size() - 1):
+		var a: Vector3 = points[index]
+		var b: Vector3 = points[index + 1]
+		var along: Vector3 = (b - a).normalized()
+		var flat_length: float = Vector2(along.x, along.z).length()
+		var side: Vector3 = Basis.looking_at(along, Vector3.UP).x
+		for sign_value: float in [-1.0, 1.0]:
+			var start: float = guard_crossing(points, index, sign_value, inset).y
+			var end: float = guard_crossing(points, index + 1, sign_value, inset).x
+			var from: Vector3 = a + side * sign_value * inset + along * start / flat_length
+			var to: Vector3 = b + side * sign_value * inset + along * end / flat_length
+			var parts: int = maxi(1, ceili(from.distance_to(to) / 0.7))
+			for part: int in range(parts):
+				open_guard(from.lerp(to, float(part) / float(parts)), from.lerp(to, float(part + 1) / float(parts)), side * sign_value, id)
+	for node: int in [0, points.size() - 1]:
+		if in_room(points[node]):
+			continue
+		var joining: Dictionary = {}
+		for other: Dictionary in paths:
+			var route: PackedVector3Array = other["points"] as PackedVector3Array
+			if String(other["id"]) != id and (route[0].distance_to(points[node]) < 0.02 or route[-1].distance_to(points[node]) < 0.02):
+				joining = other
+		if joining.is_empty():
+			continue
+		var joining_width: float = float(joining["width"])
+		var joining_points: PackedVector3Array = joining["points"] as PackedVector3Array
+		var last: bool = joining_points[-1].distance_to(points[node]) < 0.02
+		var joining_node: int = joining_points.size() - 1 if last else 0
+		var into: Vector3 = (joining_points[-1] - joining_points[-2]) if last else (joining_points[0] - joining_points[1])
+		var reach: float = minf(3.0, into.length())
+		into = into.normalized()
+		var lateral: Vector3 = Vector3(-into.z, 0, into.x).normalized()
+		var joining_edge: Vector3 = route_edges(joining)[joining_node]
+		for sign_value: float in [-1.0, 1.0]:
+			# Joining passages drop their own side walls near this node, so the
+			# rail continues back along their floor edge from the shared miter.
+			var start: Vector3 = points[node] + joining_edge * sign_value * (joining_width * 0.5 - 0.08) / (joining_width * 0.5)
+			var outward: Vector3 = lateral * signf(lateral.dot(joining_edge * sign_value))
+			for part: int in range(4):
+				open_guard(start - into * reach * float(part) / 4.0, start - into * reach * float(part + 1) / 4.0, outward, String(joining["id"]))
+		if joining_width <= width:
+			continue
+		# Both passages share this miter line; cap the stretch only the wider one covers.
+		var miter: Vector3 = edges[node].normalized()
+		var scale: float = edges[node].length() / (width * 0.5)
+		var away: Vector3 = (points[1] - points[0]) if node == 0 else (points[node - 1] - points[node])
+		away = Vector3(away.x, 0, away.z).normalized()
+		for sign_value: float in [-1.0, 1.0]:
+			var from: Vector3 = points[node] + miter * sign_value * (edges[node].length() - 0.08)
+			var to: Vector3 = points[node] + miter * sign_value * (joining_width * 0.5 * scale + 0.3)
+			open_guard(from, to, away, id)
+
+## True when a point lies on another route's mitered walking ribbon or a room
+## floor at about the same height, so a guard there would block a real junction.
+func walkable_beyond(point: Vector3, own_path: String) -> bool:
+	if in_room(point, 1.0):
+		return true
+	var at: Vector2 = Vector2(point.x, point.z)
+	for path: Dictionary in paths:
+		if String(path["id"]) == own_path:
+			continue
+		var route: PackedVector3Array = path["points"] as PackedVector3Array
+		var edges: PackedVector3Array = route_edges(path)
+		for index: int in range(route.size() - 1):
+			var a: Vector3 = route[index]
+			var b: Vector3 = route[index + 1]
+			var strip: PackedVector2Array = PackedVector2Array()
+			for corner: Vector3 in [a - edges[index], a + edges[index], b + edges[index + 1], b - edges[index + 1]]:
+				strip.append(Vector2(corner.x, corner.z))
+			if not Geometry2D.is_point_in_polygon(at, strip):
+				continue
+			var ab: Vector2 = Vector2(b.x - a.x, b.z - a.z)
+			var t: float = clampf((at - Vector2(a.x, a.z)).dot(ab) / maxf(ab.length_squared(), 0.0001), 0.0, 1.0)
+			if absf(lerpf(a.y, b.y, t) - point.y) < 1.0:
+				return true
+	return false
 
 func beam(from: Vector3, to: Vector3, width: float, material: String) -> void:
 	if material == "wood":
