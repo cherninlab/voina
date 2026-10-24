@@ -1,0 +1,201 @@
+{
+  "note": "Luminance of output PNG RGB display values, not a linear HDR framebuffer or shader ALBEDO measurement; fixed same-camera chapel floor rectangle includes real joints and shadows.",
+  "results": [
+    {
+      "mode": "baseline",
+      "region_xyxy": [
+        0,
+        500,
+        1440,
+        900
+      ],
+      "mean_display_luminance": 0.06643033380310458,
+      "p05_display_luminance": 0.032489411764705885,
+      "below_0_025_fraction": 0.013043402777777777,
+      "same_pixels_as_baseline": true,
+      "png_sha256": "c940a6085ac8f6e873b3b44d684699debbd2024b4f71926c595a815af6d15ad1"
+    },
+    {
+      "mode": "no-ao",
+      "region_xyxy": [
+        0,
+        500,
+        1440,
+        900
+      ],
+      "mean_display_luminance": 0.06821323298202614,
+      "p05_display_luminance": 0.03529411764705883,
+      "below_0_025_fraction": 0.00823611111111111,
+      "same_pixels_as_baseline": false,
+      "png_sha256": "8614ead77a2f4eb3aea28d0ab255e6c2bd5dfaed6fa345298e81229616317ecb"
+    },
+    {
+      "mode": "no-noise",
+      "region_xyxy": [
+        0,
+        500,
+        1440,
+        900
+      ],
+      "mean_display_luminance": 0.07334732717320261,
+      "p05_display_luminance": 0.03531450980392157,
+      "below_0_025_fraction": 0.008953125,
+      "same_pixels_as_baseline": false,
+      "png_sha256": "2030a867438cf9a7e1e3ce5ca8e3c577d8d290d72397e96dcdf1f7aec88bbce9"
+    },
+    {
+      "mode": "flat-texture",
+      "region_xyxy": [
+        0,
+        500,
+        1440,
+        900
+      ],
+      "mean_display_luminance": 0.11621381915713506,
+      "p05_display_luminance": 0.0873913725490196,
+      "below_0_025_fraction": 0.0008611111111111111,
+      "same_pixels_as_baseline": false,
+      "png_sha256": "daceb5f3f1dba6f5eed7caf040f01dbe0814d0013eb38423e691b618148220ab"
+    },
+    {
+      "mode": "no-grade",
+      "region_xyxy": [
+        0,
+        500,
+        1440,
+        900
+      ],
+      "mean_display_luminance": 0.06643033380310458,
+      "p05_display_luminance": 0.032489411764705885,
+      "below_0_025_fraction": 0.013043402777777777,
+      "same_pixels_as_baseline": true,
+      "png_sha256": "c940a6085ac8f6e873b3b44d684699debbd2024b4f71926c595a815af6d15ad1"
+    },
+    {
+      "mode": "linear-tonemap",
+      "region_xyxy": [
+        0,
+        500,
+        1440,
+        900
+      ],
+      "mean_display_luminance": 0.056008326526416116,
+      "p05_display_luminance": 0.0285678431372549,
+      "below_0_025_fraction": 0.024036458333333333,
+      "same_pixels_as_baseline": false,
+      "png_sha256": "638eedfb9bfce3f65caa540213d5e1368c79bae457e06e97906369dfd43c4474"
+    },
+    {
+      "mode": "albedo-only",
+      "region_xyxy": [
+        0,
+        500,
+        1440,
+        900
+      ],
+      "mean_display_luminance": 0.3820788110525599,
+      "p05_display_luminance": 0.31072313725490197,
+      "below_0_025_fraction": 0.0,
+      "same_pixels_as_baseline": false,
+      "png_sha256": "8a8d67d4138367768852360da2980b365369e7f3e9bdad76e6747afe4bcc9b1a"
+    },
+    {
+      "mode": "texture-only",
+      "region_xyxy": [
+        0,
+        500,
+        1440,
+        900
+      ],
+      "mean_display_luminance": 0.6653305169471677,
+      "p05_display_luminance": 0.6124211764705881,
+      "below_0_025_fraction": 1.7361111111111112e-06,
+      "same_pixels_as_baseline": false,
+      "png_sha256": "8fce1bb04d6d1508b0876f7d8ce723e753e72fe98998b8fd4b537a50dbf9bda0"
+    },
+    {
+      "mode": "no-normal",
+      "region_xyxy": [
+        0,
+        500,
+        1440,
+        900
+      ],
+      "mean_display_luminance": 0.06640827385484749,
+      "p05_display_luminance": 0.032489411764705885,
+      "below_0_025_fraction": 0.01303125,
+      "same_pixels_as_baseline": false,
+      "png_sha256": "5b86bad012862f1d6ddc2339a68afb02a1a4453aeb4507c1c38162511f09798f"
+    },
+    {
+      "mode": "no-specular",
+      "region_xyxy": [
+        0,
+        500,
+        1440,
+        900
+      ],
+      "mean_display_luminance": 0.06360330059640523,
+      "p05_display_luminance": 0.032489411764705885,
+      "below_0_025_fraction": 0.013713541666666667,
+      "same_pixels_as_baseline": false,
+      "png_sha256": "4ed3c5ea12453e9e04f8c1bd3059d2f3e194c19564887edcf9b79a99e0988903"
+    },
+    {
+      "mode": "rough-one",
+      "region_xyxy": [
+        0,
+        500,
+        1440,
+        900
+      ],
+      "mean_display_luminance": 0.06591735440223312,
+      "p05_display_luminance": 0.032489411764705885,
+      "below_0_025_fraction": 0.013225694444444444,
+      "same_pixels_as_baseline": false,
+      "png_sha256": "29482a83a4da3549ed7cd70f2b4b142b2b5fe5d8d3231b390a333b4995679041"
+    },
+    {
+      "mode": "no-specular-rough-one",
+      "region_xyxy": [
+        0,
+        500,
+        1440,
+        900
+      ],
+      "mean_display_luminance": 0.06360330059640523,
+      "p05_display_luminance": 0.032489411764705885,
+      "below_0_025_fraction": 0.013713541666666667,
+      "same_pixels_as_baseline": false,
+      "png_sha256": "4ed3c5ea12453e9e04f8c1bd3059d2f3e194c19564887edcf9b79a99e0988903"
+    },
+    {
+      "mode": "no-shadows",
+      "region_xyxy": [
+        0,
+        500,
+        1440,
+        900
+      ],
+      "mean_display_luminance": 0.06644247082107843,
+      "p05_display_luminance": 0.032489411764705885,
+      "below_0_025_fraction": 0.013029513888888889,
+      "same_pixels_as_baseline": false,
+      "png_sha256": "a32d5d25478a52161fb4acb177d5a6d401c36b830b25acf9342b627a23584cc1"
+    },
+    {
+      "mode": "constant-albedo",
+      "region_xyxy": [
+        0,
+        500,
+        1440,
+        900
+      ],
+      "mean_display_luminance": 0.1764556825980392,
+      "p05_display_luminance": 0.1557976470588235,
+      "below_0_025_fraction": 0.0,
+      "same_pixels_as_baseline": false,
+      "png_sha256": "99323b44a41f5edc8f988273c3f64b5fe98c96a3afe11bb0c841236a34e0d823"
+    }
+  ]
+}

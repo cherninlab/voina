@@ -1,0 +1,12 @@
+{
+  "capture_git_head": "71ea44b002fee3402cc753599cb36dcfdafa3b8c",
+  "capture_build": "71ea44b [785fb8bfd369]",
+  "production_shader_unchanged": true,
+  "source_sha256": {
+    "content/environments/procedural_flagstone_v1/flagstone.gdshaderinc": "8a27380221fa6f59537c3f705e6939f5ac45222d285ae5da847e29ae9e909294",
+    "content/environments/procedural_flagstone_v1/flagstone_floor.gd": "8bc56387b8016994996adcb1dc1a348563070ee0316fab439896316511ba5dc4",
+    "gameplay/environment/crypt_dungeon.gd": "3df5fb455c785061c371a75ce474ec77a986036fc96984776eebb1cf3a87dd91",
+    "gameplay/environment/red_descent_geometry.gd": "7e543f4aeb770c04a5c608942ffee1bed642648bf460a986f0023ad14dc5e489",
+    "gameplay/environment/dungeon_dressing.gd": "496109a580f936eacd0c7bcf4330b7fc6a58cf16ac271961176531a60ebbf923"
+  }
+}

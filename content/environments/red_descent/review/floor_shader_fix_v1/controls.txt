@@ -1,0 +1,47 @@
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+Metal 4.0 - Forward Mobile - Using Device #0: Apple - Apple M5 Max (Apple9)
+
+BUILD: 71ea44b [785fb8bfd369]
+GENERATED_KIT_PLACED: {"rock_outcrop":18,"rubble":69}
+RED_DESCENT_GEOMETRY_READY: 17 routes, 11 rooms, 58 lit landmarks, sloping crossings
+MAP: Cinder Crypt (crypt)
+SHADER_CAPTURE: res://content/environments/red_descent/review/floor_shader_fix_v1/baseline/13-chapel-spill.png
+SHADER_CAPTURE: res://content/environments/red_descent/review/floor_shader_fix_v1/baseline/10-restraint-frame.png
+SHADER_CAPTURE: res://content/environments/red_descent/review/floor_shader_fix_v1/baseline/04-broken-nave.png
+SHADER_CAPTURE: res://content/environments/red_descent/review/floor_shader_fix_v1/no-ao/13-chapel-spill.png
+SHADER_CAPTURE: res://content/environments/red_descent/review/floor_shader_fix_v1/no-ao/10-restraint-frame.png
+SHADER_CAPTURE: res://content/environments/red_descent/review/floor_shader_fix_v1/no-ao/04-broken-nave.png
+SHADER_CAPTURE: res://content/environments/red_descent/review/floor_shader_fix_v1/no-noise/13-chapel-spill.png
+SHADER_CAPTURE: res://content/environments/red_descent/review/floor_shader_fix_v1/no-noise/10-restraint-frame.png
+SHADER_CAPTURE: res://content/environments/red_descent/review/floor_shader_fix_v1/no-noise/04-broken-nave.png
+SHADER_CAPTURE: res://content/environments/red_descent/review/floor_shader_fix_v1/flat-texture/13-chapel-spill.png
+SHADER_CAPTURE: res://content/environments/red_descent/review/floor_shader_fix_v1/flat-texture/10-restraint-frame.png
+SHADER_CAPTURE: res://content/environments/red_descent/review/floor_shader_fix_v1/flat-texture/04-broken-nave.png
+SHADER_CAPTURE: res://content/environments/red_descent/review/floor_shader_fix_v1/no-grade/13-chapel-spill.png
+SHADER_CAPTURE: res://content/environments/red_descent/review/floor_shader_fix_v1/no-grade/10-restraint-frame.png
+SHADER_CAPTURE: res://content/environments/red_descent/review/floor_shader_fix_v1/no-grade/04-broken-nave.png
+SHADER_CAPTURE: res://content/environments/red_descent/review/floor_shader_fix_v1/linear-tonemap/13-chapel-spill.png
+SHADER_CAPTURE: res://content/environments/red_descent/review/floor_shader_fix_v1/linear-tonemap/10-restraint-frame.png
+SHADER_CAPTURE: res://content/environments/red_descent/review/floor_shader_fix_v1/linear-tonemap/04-broken-nave.png
+SHADER_CAPTURE: res://content/environments/red_descent/review/floor_shader_fix_v1/albedo-only/13-chapel-spill.png
+SHADER_CAPTURE: res://content/environments/red_descent/review/floor_shader_fix_v1/albedo-only/10-restraint-frame.png
+SHADER_CAPTURE: res://content/environments/red_descent/review/floor_shader_fix_v1/albedo-only/04-broken-nave.png
+SHADER_CAPTURE: res://content/environments/red_descent/review/floor_shader_fix_v1/texture-only/13-chapel-spill.png
+SHADER_CAPTURE: res://content/environments/red_descent/review/floor_shader_fix_v1/texture-only/10-restraint-frame.png
+SHADER_CAPTURE: res://content/environments/red_descent/review/floor_shader_fix_v1/texture-only/04-broken-nave.png
+SHADER_CAPTURE: res://content/environments/red_descent/review/floor_shader_fix_v1/no-normal/13-chapel-spill.png
+SHADER_CAPTURE: res://content/environments/red_descent/review/floor_shader_fix_v1/no-normal/10-restraint-frame.png
+SHADER_CAPTURE: res://content/environments/red_descent/review/floor_shader_fix_v1/no-normal/04-broken-nave.png
+SHADER_CAPTURE: res://content/environments/red_descent/review/floor_shader_fix_v1/no-specular/13-chapel-spill.png
+SHADER_CAPTURE: res://content/environments/red_descent/review/floor_shader_fix_v1/no-specular/10-restraint-frame.png
+SHADER_CAPTURE: res://content/environments/red_descent/review/floor_shader_fix_v1/no-specular/04-broken-nave.png
+SHADER_CAPTURE: res://content/environments/red_descent/review/floor_shader_fix_v1/rough-one/13-chapel-spill.png
+SHADER_CAPTURE: res://content/environments/red_descent/review/floor_shader_fix_v1/rough-one/10-restraint-frame.png
+SHADER_CAPTURE: res://content/environments/red_descent/review/floor_shader_fix_v1/rough-one/04-broken-nave.png
+SHADER_CAPTURE: res://content/environments/red_descent/review/floor_shader_fix_v1/no-specular-rough-one/13-chapel-spill.png
+SHADER_CAPTURE: res://content/environments/red_descent/review/floor_shader_fix_v1/no-specular-rough-one/10-restraint-frame.png
+SHADER_CAPTURE: res://content/environments/red_descent/review/floor_shader_fix_v1/no-specular-rough-one/04-broken-nave.png
+WARNING: 7 RIDs of type "Texture" were leaked.
+   at: finalize (servers/rendering/rendering_device.cpp:8900)
+WARNING: 1 ObjectDB instance was leaked at exit (run with `--verbose` for details).
+   at: cleanup (core/object/object.cpp:2536)
