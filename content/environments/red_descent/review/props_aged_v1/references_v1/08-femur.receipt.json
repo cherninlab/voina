@@ -1,0 +1,18 @@
+{
+  "asset_id": "08-femur",
+  "generator": "built-in image_gen.imagegen",
+  "native_artifact": "01a16f71-4a2c-7873-b428-303961bf1352/exec-e97a6ee9-c956-48bf-9ca6-6ffa977f2f7d.png",
+  "image": "08-femur.png",
+  "prompt": "08-femur.prompt.txt",
+  "transparent_background": false,
+  "attempt": 1,
+  "image_sha256": "f3694eadc740c780e3fb08562c10b57e9f2c898de471529c49efc7a598bdc829",
+  "prompt_sha256": "bea4e2af1f269a13bfae91d639d9ca6007e376a346d7a21dc7cdd9c646382f4e",
+  "width_px": 1536,
+  "height_px": 1024,
+  "technical_review": "passed_as_reference_image",
+  "user_approval": "pending",
+  "review_notes": {},
+  "seed": null,
+  "seed_note": "The built-in tool did not expose a generation seed."
+}

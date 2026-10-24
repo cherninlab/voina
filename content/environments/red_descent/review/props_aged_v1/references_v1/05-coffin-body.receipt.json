@@ -1,0 +1,18 @@
+{
+  "asset_id": "05-coffin-body",
+  "generator": "built-in image_gen.imagegen",
+  "native_artifact": "01a16f71-35e6-7e71-aec5-340210fa2c80/exec-cf8e57db-896a-4f7b-bc7e-7d1dbc034f22.png",
+  "image": "05-coffin-body.png",
+  "prompt": "05-coffin-body.prompt.txt",
+  "transparent_background": false,
+  "attempt": 1,
+  "image_sha256": "9798a20e096ba1407a41841c19f04a1124dd4ef889b18a7fe7eef90db563ef70",
+  "prompt_sha256": "3ae4cba22f0f84b0b0f6dbffa4cbc0d00286e9f210b50f5bcd57b4b90e25fe9a",
+  "width_px": 1536,
+  "height_px": 1024,
+  "technical_review": "passed_as_reference_image",
+  "user_approval": "pending",
+  "review_notes": {},
+  "seed": null,
+  "seed_note": "The built-in tool did not expose a generation seed."
+}

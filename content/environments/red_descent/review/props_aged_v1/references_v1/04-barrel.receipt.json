@@ -1,0 +1,18 @@
+{
+  "asset_id": "04-barrel",
+  "generator": "built-in image_gen.imagegen",
+  "native_artifact": "01a16f71-15de-7bd0-92b3-aa955bcb41ec/exec-425c8455-4ff5-48ad-88d9-4686677553ef.png",
+  "image": "04-barrel.png",
+  "prompt": "04-barrel.prompt.txt",
+  "transparent_background": false,
+  "attempt": 1,
+  "image_sha256": "3da56f2b9610164ad367a56020e134afedda9f7958a675597f368ac9a8d9fa82",
+  "prompt_sha256": "5b6ee71b24b9d917288c69f192ab0d77cc3763a9f3a6eb4f9e5a033518b398cf",
+  "width_px": 1312,
+  "height_px": 1199,
+  "technical_review": "passed_as_reference_image",
+  "user_approval": "pending",
+  "review_notes": "One closed upright bulging stave barrel; four broad iron hoops, top and bottom framed, blunt rivets and contact readable. No accessories or text. A few narrow wood cracks remain connected.",
+  "seed": null,
+  "seed_note": "The built-in tool did not expose a generation seed."
+}

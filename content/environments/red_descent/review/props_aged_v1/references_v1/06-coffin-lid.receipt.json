@@ -1,0 +1,18 @@
+{
+  "asset_id": "06-coffin-lid",
+  "generator": "built-in image_gen.imagegen",
+  "native_artifact": "01a16f71-35e6-7e71-aec5-340210fa2c80/exec-1d3c64d2-c9ff-4e80-b8cf-4f4e1d7c4cc1.png",
+  "image": "06-coffin-lid.png",
+  "prompt": "06-coffin-lid.prompt.txt",
+  "transparent_background": false,
+  "attempt": 1,
+  "image_sha256": "85c9dbb9a142ca8aee461ba0a7daf33a3fd7d536b6f053ce77afa846ce47c6c2",
+  "prompt_sha256": "12beeb200e9a871c98452443905261a4b0cfb1c3b71987c901861af9619c02a0",
+  "width_px": 1536,
+  "height_px": 1024,
+  "technical_review": "passed_as_reference_image",
+  "user_approval": "pending",
+  "review_notes": {},
+  "seed": null,
+  "seed_note": "The built-in tool did not expose a generation seed."
+}

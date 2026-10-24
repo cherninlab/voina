@@ -1,0 +1,18 @@
+{
+  "asset_id": "01-table",
+  "generator": "built-in image_gen.imagegen",
+  "native_artifact": "01a16f71-15de-7bd0-92b3-aa955bcb41ec/exec-1ac1327f-3dc4-42d8-961a-386f034fcebb.png",
+  "image": "01-table.png",
+  "prompt": "01-table.prompt.txt",
+  "transparent_background": false,
+  "attempt": 1,
+  "image_sha256": "4b9a481c3abc4ca153a176916b259d89c2d3ae86c526f246a7977fc6daec7df8",
+  "prompt_sha256": "e43687140bce3fdce823cb57b344331b2a6bad2c3932dc963237fcb138aa0a9c",
+  "width_px": 1536,
+  "height_px": 1024,
+  "technical_review": "passed_as_reference_image",
+  "user_approval": "pending",
+  "review_notes": "One intact connected table; full object visible on off-white background, no extra objects or text. Outer margin is narrow but no geometry cropped.",
+  "seed": null,
+  "seed_note": "The built-in tool did not expose a generation seed."
+}

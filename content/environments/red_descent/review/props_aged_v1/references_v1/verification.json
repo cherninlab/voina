@@ -1,0 +1,35 @@
+{
+  "task": "T-171",
+  "stage": "image_reference_approval",
+  "tested_code_base": "f40a9823cbfd52060887c8716c6a3f3288d8e2ca",
+  "engine": "Godot Engine v4.7.2.stable.official.ed1daf0bf",
+  "image_checks": {
+    "png_count": 10,
+    "full_visual_review_count": 10,
+    "sha256_recorded": true,
+    "prompt_identity_verified": true,
+    "original_native_bytes_preserved": true,
+    "result": "pass"
+  },
+  "editor_import": {
+    "command": "\"$GODOT\" --headless --editor --path . --quit",
+    "exit_code": 0,
+    "script_or_import_errors": 0,
+    "result": "pass",
+    "log": "checks/editor-import.txt",
+    "warnings": "Existing vehicle OBJ ambient-material/texture PBR warnings."
+  },
+  "smoke": {
+    "command": "python3 scripts/smoke_test.py \"$GODOT\"",
+    "exit_code": 0,
+    "required_marker": "SMOKE_OK",
+    "result": "pass",
+    "log": "checks/smoke.txt",
+    "warnings": "ObjectDB shutdown warnings, 1-3 instances in standalone checks; not changed by this image-only work."
+  },
+  "user_image_approval": "pending",
+  "cl3d": "not_started",
+  "mesh_generation": "not_started",
+  "runtime_integration": "not_started",
+  "manual_input_camera_tailscale": "not_tested_for_this_image_review"
+}

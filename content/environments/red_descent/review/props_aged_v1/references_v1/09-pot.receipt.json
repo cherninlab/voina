@@ -1,0 +1,18 @@
+{
+  "asset_id": "09-pot",
+  "generator": "built-in image_gen.imagegen",
+  "native_artifact": "01a16f71-4a2c-7873-b428-303961bf1352/exec-e78205f2-fa59-4cac-b426-11e92df45f51.png",
+  "image": "09-pot.png",
+  "prompt": "09-pot.prompt.txt",
+  "transparent_background": false,
+  "attempt": 1,
+  "image_sha256": "7ccfe1185c953529e597915b65e66b9dea9f3260784ed5d4a3ede89905290c00",
+  "prompt_sha256": "cd3b97702f3830f6b941fe33b364ed145101d76bc901b7d7edd830a49e9031f5",
+  "width_px": 1312,
+  "height_px": 1199,
+  "technical_review": "passed_as_reference_image",
+  "user_approval": "pending",
+  "review_notes": {},
+  "seed": null,
+  "seed_note": "The built-in tool did not expose a generation seed."
+}

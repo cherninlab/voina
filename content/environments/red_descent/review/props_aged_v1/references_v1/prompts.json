@@ -1,0 +1,140 @@
+{
+  "task": "T-171",
+  "stage": "image_reference_approval",
+  "approval_status": "pending_user_review",
+  "image_generation": "built-in image_gen",
+  "three_d_generation": "not_started",
+  "shared_prompt": "Use case: stylized-concept.\nAsset type: an individual approval reference for a medieval dungeon game prop; possible later CL3D image-to-3D input.\nStyle: realistic sculpted game art for SECHA / Red Descent, a damp abandoned medieval crypt. Believable handmade construction, heavy useful forms, sober folk-horror mood expressed through age and materials. Weathered grey-brown oak, dull oxidised iron, dusty bone or earthy unglazed ceramic as appropriate. Readable large forms and real dimensional joints; natural irregularities, restrained wear. No ornate fantasy decoration.\nScene/backdrop: pure off-white studio background, seamless and empty. One isolated object only. No environment, pedestal, backdrop objects, rubble pile, ground debris or extra accessories.\nComposition: a single full object, centered, three-quarter view from slightly above, generous clean margin on every side, nothing cropped. Show the silhouette, depth and structural connections clearly. No collage, multiple views, turntable strip, text, labels, dimensions, rulers, people, hands, logos or watermark.\nLighting: large neutral soft studio lights, all important surfaces legible, soft small contact shadow only, no dramatic torch light, black shadows, fog, depth-of-field blur or cinematic grading.\nConstraints: only the requested object, all pieces visibly connected. No floating pieces or detached fragments. Avoid razor-thin geometry and tiny dangling details. This is a design proposal, not a screenshot of the game. No flame, blood, flesh or gore.\n",
+  "assets": [
+    {
+      "id": "01-table",
+      "title": "Refectory table",
+      "family": "furniture",
+      "approx_dims_xyz_m": [
+        1.9,
+        0.78,
+        0.78
+      ],
+      "image": "01-table.png",
+      "prompt_file": "01-table.prompt.txt",
+      "prompt": "Use case: stylized-concept.\nAsset type: an individual approval reference for a medieval dungeon game prop; possible later CL3D image-to-3D input.\nStyle: realistic sculpted game art for SECHA / Red Descent, a damp abandoned medieval crypt. Believable handmade construction, heavy useful forms, sober folk-horror mood expressed through age and materials. Weathered grey-brown oak, dull oxidised iron, dusty bone or earthy unglazed ceramic as appropriate. Readable large forms and real dimensional joints; natural irregularities, restrained wear. No ornate fantasy decoration.\nScene/backdrop: pure off-white studio background, seamless and empty. One isolated object only. No environment, pedestal, backdrop objects, rubble pile, ground debris or extra accessories.\nComposition: a single full object, centered, three-quarter view from slightly above, generous clean margin on every side, nothing cropped. Show the silhouette, depth and structural connections clearly. No collage, multiple views, turntable strip, text, labels, dimensions, rulers, people, hands, logos or watermark.\nLighting: large neutral soft studio lights, all important surfaces legible, soft small contact shadow only, no dramatic torch light, black shadows, fog, depth-of-field blur or cinematic grading.\nConstraints: only the requested object, all pieces visibly connected. No floating pieces or detached fragments. Avoid razor-thin geometry and tiny dangling details. This is a design proposal, not a screenshot of the game. No flame, blood, flesh or gore.\n\nSubject: one old oak refectory work table, about 1.9 m long, 0.78 m wide and 0.78 m high. Four broad uneven-edged top boards, two heavy splayed trestle supports, and one stout low longitudinal stretcher pegged firmly into the supports. Clearly visible end-grain and sensible mortise-and-tenon joinery. Shallow cups and rounded chipped corners, small old woodworm holes, some damp staining low on the feet. Intact and structurally usable, not collapsed. Empty tabletop; no objects on or around the table. Three-quarter view shows the long front edge and one end, with feet and stretcher readable.\n"
+    },
+    {
+      "id": "02-bench",
+      "title": "Trestle bench",
+      "family": "furniture",
+      "approx_dims_xyz_m": [
+        1.4,
+        0.48,
+        0.34
+      ],
+      "image": "02-bench.png",
+      "prompt_file": "02-bench.prompt.txt",
+      "prompt": "Use case: stylized-concept.\nAsset type: an individual approval reference for a medieval dungeon game prop; possible later CL3D image-to-3D input.\nStyle: realistic sculpted game art for SECHA / Red Descent, a damp abandoned medieval crypt. Believable handmade construction, heavy useful forms, sober folk-horror mood expressed through age and materials. Weathered grey-brown oak, dull oxidised iron, dusty bone or earthy unglazed ceramic as appropriate. Readable large forms and real dimensional joints; natural irregularities, restrained wear. No ornate fantasy decoration.\nScene/backdrop: pure off-white studio background, seamless and empty. One isolated object only. No environment, pedestal, backdrop objects, rubble pile, ground debris or extra accessories.\nComposition: a single full object, centered, three-quarter view from slightly above, generous clean margin on every side, nothing cropped. Show the silhouette, depth and structural connections clearly. No collage, multiple views, turntable strip, text, labels, dimensions, rulers, people, hands, logos or watermark.\nLighting: large neutral soft studio lights, all important surfaces legible, soft small contact shadow only, no dramatic torch light, black shadows, fog, depth-of-field blur or cinematic grading.\nConstraints: only the requested object, all pieces visibly connected. No floating pieces or detached fragments. Avoid razor-thin geometry and tiny dangling details. This is a design proposal, not a screenshot of the game. No flame, blood, flesh or gore.\n\nSubject: one rustic oak bench, about 1.4 m long, 0.34 m deep, 0.48 m high, made of one broad thick seat slab and two squat wedged trestle feet linked by a single low stretcher. No backrest. Heavy seat with rounded worn front edge, a few split ends and an old repair peg, clearly supported feet. Uneven handmade proportions that remain sturdy. Intact enough to be overturned later in a physics simulation. No extra furniture or props.\n"
+    },
+    {
+      "id": "03-shelf",
+      "title": "Empty timber shelf",
+      "family": "furniture",
+      "approx_dims_xyz_m": [
+        0.95,
+        1.25,
+        0.38
+      ],
+      "image": "03-shelf.png",
+      "prompt_file": "03-shelf.prompt.txt",
+      "prompt": "Use case: stylized-concept.\nAsset type: an individual approval reference for a medieval dungeon game prop; possible later CL3D image-to-3D input.\nStyle: realistic sculpted game art for SECHA / Red Descent, a damp abandoned medieval crypt. Believable handmade construction, heavy useful forms, sober folk-horror mood expressed through age and materials. Weathered grey-brown oak, dull oxidised iron, dusty bone or earthy unglazed ceramic as appropriate. Readable large forms and real dimensional joints; natural irregularities, restrained wear. No ornate fantasy decoration.\nScene/backdrop: pure off-white studio background, seamless and empty. One isolated object only. No environment, pedestal, backdrop objects, rubble pile, ground debris or extra accessories.\nComposition: a single full object, centered, three-quarter view from slightly above, generous clean margin on every side, nothing cropped. Show the silhouette, depth and structural connections clearly. No collage, multiple views, turntable strip, text, labels, dimensions, rulers, people, hands, logos or watermark.\nLighting: large neutral soft studio lights, all important surfaces legible, soft small contact shadow only, no dramatic torch light, black shadows, fog, depth-of-field blur or cinematic grading.\nConstraints: only the requested object, all pieces visibly connected. No floating pieces or detached fragments. Avoid razor-thin geometry and tiny dangling details. This is a design proposal, not a screenshot of the game. No flame, blood, flesh or gore.\n\nSubject: one empty freestanding medieval timber storage shelf, about 0.95 m wide, 1.25 m high, 0.38 m deep. Two thick horizontal storage shelves plus a bottom plinth, stout upright side boards, solid rough-plank back, stable short feet. Joinery and board thickness clearly visible; no paper-thin planks or complex lattice. One repaired corner with a small thick iron strap flush against the wood. Worn rounded front edges and dark feet. Entirely empty, no pots, bones, cloth or other contents. A single connected object.\n"
+    },
+    {
+      "id": "04-barrel",
+      "title": "Iron-hooped barrel",
+      "family": "storage",
+      "approx_dims_xyz_m": [
+        0.55,
+        0.75,
+        0.55
+      ],
+      "image": "04-barrel.png",
+      "prompt_file": "04-barrel.prompt.txt",
+      "prompt": "Use case: stylized-concept.\nAsset type: an individual approval reference for a medieval dungeon game prop; possible later CL3D image-to-3D input.\nStyle: realistic sculpted game art for SECHA / Red Descent, a damp abandoned medieval crypt. Believable handmade construction, heavy useful forms, sober folk-horror mood expressed through age and materials. Weathered grey-brown oak, dull oxidised iron, dusty bone or earthy unglazed ceramic as appropriate. Readable large forms and real dimensional joints; natural irregularities, restrained wear. No ornate fantasy decoration.\nScene/backdrop: pure off-white studio background, seamless and empty. One isolated object only. No environment, pedestal, backdrop objects, rubble pile, ground debris or extra accessories.\nComposition: a single full object, centered, three-quarter view from slightly above, generous clean margin on every side, nothing cropped. Show the silhouette, depth and structural connections clearly. No collage, multiple views, turntable strip, text, labels, dimensions, rulers, people, hands, logos or watermark.\nLighting: large neutral soft studio lights, all important surfaces legible, soft small contact shadow only, no dramatic torch light, black shadows, fog, depth-of-field blur or cinematic grading.\nConstraints: only the requested object, all pieces visibly connected. No floating pieces or detached fragments. Avoid razor-thin geometry and tiny dangling details. This is a design proposal, not a screenshot of the game. No flame, blood, flesh or gore.\n\nSubject: one small closed medieval coopered oak barrel, upright, about 0.75 m tall and 0.55 m maximum diameter. Clearly bulging stave construction, four broad simple dark forged-iron hoops with visible blunt rivets and convincing wood contact, closed wooden top. Dented and stained but still holding its shape. No tap, spigot, loose lid, rope, markings, text or separate accessory. Staves have readable thick edges and slight individual variation, not a smooth featureless cylinder.\n"
+    },
+    {
+      "id": "05-coffin-body",
+      "title": "Open wooden coffin",
+      "family": "coffin",
+      "approx_dims_xyz_m": [
+        0.64,
+        0.38,
+        1.9
+      ],
+      "image": "05-coffin-body.png",
+      "prompt_file": "05-coffin-body.prompt.txt",
+      "prompt": "Use case: stylized-concept.\nAsset type: an individual approval reference for a medieval dungeon game prop; possible later CL3D image-to-3D input.\nStyle: realistic sculpted game art for SECHA / Red Descent, a damp abandoned medieval crypt. Believable handmade construction, heavy useful forms, sober folk-horror mood expressed through age and materials. Weathered grey-brown oak, dull oxidised iron, dusty bone or earthy unglazed ceramic as appropriate. Readable large forms and real dimensional joints; natural irregularities, restrained wear. No ornate fantasy decoration.\nScene/backdrop: pure off-white studio background, seamless and empty. One isolated object only. No environment, pedestal, backdrop objects, rubble pile, ground debris or extra accessories.\nComposition: a single full object, centered, three-quarter view from slightly above, generous clean margin on every side, nothing cropped. Show the silhouette, depth and structural connections clearly. No collage, multiple views, turntable strip, text, labels, dimensions, rulers, people, hands, logos or watermark.\nLighting: large neutral soft studio lights, all important surfaces legible, soft small contact shadow only, no dramatic torch light, black shadows, fog, depth-of-field blur or cinematic grading.\nConstraints: only the requested object, all pieces visibly connected. No floating pieces or detached fragments. Avoid razor-thin geometry and tiny dangling details. This is a design proposal, not a screenshot of the game. No flame, blood, flesh or gore.\n\nSubject: one EMPTY OPEN wooden coffin body, lying horizontally, approximately 1.9 m long, 0.64 m widest at the shoulders and 0.38 m high. Traditional six-sided tapered outline: narrow head end, angled wider shoulders, straight long taper toward a narrow foot. Heavy weathered oak planks 3 cm thick, clear deep empty interior with floor boards and dark worn inner corners. Modest blunt square iron nails and small simple reinforcing corner straps fixed flush to the wood. No lid anywhere, no corpse, bones, padding, lining, handles, crosses, carving, engraving or other props. Show the full outside shape and the empty interior from above in three-quarter view. The rim is continuous and physically buildable.\n"
+    },
+    {
+      "id": "06-coffin-lid",
+      "title": "Separate coffin lid",
+      "family": "coffin",
+      "approx_dims_xyz_m": [
+        0.64,
+        0.055,
+        1.9
+      ],
+      "image": "06-coffin-lid.png",
+      "prompt_file": "06-coffin-lid.prompt.txt",
+      "prompt": "Use case: stylized-concept.\nAsset type: an individual approval reference for a medieval dungeon game prop; possible later CL3D image-to-3D input.\nStyle: realistic sculpted game art for SECHA / Red Descent, a damp abandoned medieval crypt. Believable handmade construction, heavy useful forms, sober folk-horror mood expressed through age and materials. Weathered grey-brown oak, dull oxidised iron, dusty bone or earthy unglazed ceramic as appropriate. Readable large forms and real dimensional joints; natural irregularities, restrained wear. No ornate fantasy decoration.\nScene/backdrop: pure off-white studio background, seamless and empty. One isolated object only. No environment, pedestal, backdrop objects, rubble pile, ground debris or extra accessories.\nComposition: a single full object, centered, three-quarter view from slightly above, generous clean margin on every side, nothing cropped. Show the silhouette, depth and structural connections clearly. No collage, multiple views, turntable strip, text, labels, dimensions, rulers, people, hands, logos or watermark.\nLighting: large neutral soft studio lights, all important surfaces legible, soft small contact shadow only, no dramatic torch light, black shadows, fog, depth-of-field blur or cinematic grading.\nConstraints: only the requested object, all pieces visibly connected. No floating pieces or detached fragments. Avoid razor-thin geometry and tiny dangling details. This is a design proposal, not a screenshot of the game. No flame, blood, flesh or gore.\n\nSubject: one SEPARATE solid wooden coffin LID ONLY, resting horizontally. Matching a traditional six-sided tapered coffin approximately 1.9 m long and 0.64 m widest at the shoulders: narrow head end, angled wider shoulders, straight long taper toward a narrow foot. A thick flat fitted cover, about 5.5 cm thick, made of three broad longitudinal weathered oak planks with slightly raised worn grain, visible blunt iron nail heads. Lower edge and thickness visible. Subtle reinforcing transverse cleats can be part of the underside but must be connected. No coffin box/body, no sidewalls, no hollow interior, no feet, cross, text, elaborate carvings, skeleton, handles or loose fragments. Entire object visible in three-quarter view from a little above. It should read unmistakably as a lid, not a complete closed coffin.\n"
+    },
+    {
+      "id": "07-skull",
+      "title": "Dry ossuary skull",
+      "family": "bones",
+      "approx_dims_xyz_m": [
+        0.15,
+        0.19,
+        0.23
+      ],
+      "image": "07-skull.png",
+      "prompt_file": "07-skull.prompt.txt",
+      "prompt": "Use case: stylized-concept.\nAsset type: an individual approval reference for a medieval dungeon game prop; possible later CL3D image-to-3D input.\nStyle: realistic sculpted game art for SECHA / Red Descent, a damp abandoned medieval crypt. Believable handmade construction, heavy useful forms, sober folk-horror mood expressed through age and materials. Weathered grey-brown oak, dull oxidised iron, dusty bone or earthy unglazed ceramic as appropriate. Readable large forms and real dimensional joints; natural irregularities, restrained wear. No ornate fantasy decoration.\nScene/backdrop: pure off-white studio background, seamless and empty. One isolated object only. No environment, pedestal, backdrop objects, rubble pile, ground debris or extra accessories.\nComposition: a single full object, centered, three-quarter view from slightly above, generous clean margin on every side, nothing cropped. Show the silhouette, depth and structural connections clearly. No collage, multiple views, turntable strip, text, labels, dimensions, rulers, people, hands, logos or watermark.\nLighting: large neutral soft studio lights, all important surfaces legible, soft small contact shadow only, no dramatic torch light, black shadows, fog, depth-of-field blur or cinematic grading.\nConstraints: only the requested object, all pieces visibly connected. No floating pieces or detached fragments. Avoid razor-thin geometry and tiny dangling details. This is a design proposal, not a screenshot of the game. No flame, blood, flesh or gore.\n\nSubject: one dry, aged anatomically plausible adult human skull with the lower jaw attached in a resting closed position, about 23 cm from front to back. Warm dusty ivory with muted grey staining in crevices, subtle surface pits, worn blunt teeth, readable eye sockets and nasal opening. Preserve a broad coherent silhouette and solid connected jaw. No extreme damage, horns, symbols, candles, extra bones, metal, flesh, blood or gore. Three-quarter view reveals the front and one side. It is a neutral archaeological ossuary object, not a monster head or comic Halloween ornament.\n"
+    },
+    {
+      "id": "08-femur",
+      "title": "Dry long bone",
+      "family": "bones",
+      "approx_dims_xyz_m": [
+        0.09,
+        0.06,
+        0.43
+      ],
+      "image": "08-femur.png",
+      "prompt_file": "08-femur.prompt.txt",
+      "prompt": "Use case: stylized-concept.\nAsset type: an individual approval reference for a medieval dungeon game prop; possible later CL3D image-to-3D input.\nStyle: realistic sculpted game art for SECHA / Red Descent, a damp abandoned medieval crypt. Believable handmade construction, heavy useful forms, sober folk-horror mood expressed through age and materials. Weathered grey-brown oak, dull oxidised iron, dusty bone or earthy unglazed ceramic as appropriate. Readable large forms and real dimensional joints; natural irregularities, restrained wear. No ornate fantasy decoration.\nScene/backdrop: pure off-white studio background, seamless and empty. One isolated object only. No environment, pedestal, backdrop objects, rubble pile, ground debris or extra accessories.\nComposition: a single full object, centered, three-quarter view from slightly above, generous clean margin on every side, nothing cropped. Show the silhouette, depth and structural connections clearly. No collage, multiple views, turntable strip, text, labels, dimensions, rulers, people, hands, logos or watermark.\nLighting: large neutral soft studio lights, all important surfaces legible, soft small contact shadow only, no dramatic torch light, black shadows, fog, depth-of-field blur or cinematic grading.\nConstraints: only the requested object, all pieces visibly connected. No floating pieces or detached fragments. Avoid razor-thin geometry and tiny dangling details. This is a design proposal, not a screenshot of the game. No flame, blood, flesh or gore.\n\nSubject: one dry anatomically plausible adult human FEMUR bone, lying horizontally, about 43 cm long. Clearly recognisable rounded femoral head and neck at one end and twin broad condyles at the other; thick naturally curved shaft. Dusty old ivory with restrained grey-brown staining and a few surface pits. Entire single connected bone visible, oblique three-quarter view at a shallow angle so both ends and thickness are clear. No other bones, skulls, stand, labels, flesh, blood, gore or decorative carving. Do not snap or fracture it; later physics dressing needs a clean source bone.\n"
+    },
+    {
+      "id": "09-pot",
+      "title": "Unglazed storage pot",
+      "family": "vessels",
+      "approx_dims_xyz_m": [
+        0.42,
+        0.46,
+        0.42
+      ],
+      "image": "09-pot.png",
+      "prompt_file": "09-pot.prompt.txt",
+      "prompt": "Use case: stylized-concept.\nAsset type: an individual approval reference for a medieval dungeon game prop; possible later CL3D image-to-3D input.\nStyle: realistic sculpted game art for SECHA / Red Descent, a damp abandoned medieval crypt. Believable handmade construction, heavy useful forms, sober folk-horror mood expressed through age and materials. Weathered grey-brown oak, dull oxidised iron, dusty bone or earthy unglazed ceramic as appropriate. Readable large forms and real dimensional joints; natural irregularities, restrained wear. No ornate fantasy decoration.\nScene/backdrop: pure off-white studio background, seamless and empty. One isolated object only. No environment, pedestal, backdrop objects, rubble pile, ground debris or extra accessories.\nComposition: a single full object, centered, three-quarter view from slightly above, generous clean margin on every side, nothing cropped. Show the silhouette, depth and structural connections clearly. No collage, multiple views, turntable strip, text, labels, dimensions, rulers, people, hands, logos or watermark.\nLighting: large neutral soft studio lights, all important surfaces legible, soft small contact shadow only, no dramatic torch light, black shadows, fog, depth-of-field blur or cinematic grading.\nConstraints: only the requested object, all pieces visibly connected. No floating pieces or detached fragments. Avoid razor-thin geometry and tiny dangling details. This is a design proposal, not a screenshot of the game. No flame, blood, flesh or gore.\n\nSubject: one stout handmade medieval ceramic storage pot, about 46 cm high, 42 cm at its widest. Rounded heavy belly, broad stable foot, short wide open neck and thick rolled rim, no handles. Mouth opening and thick inner wall visible from the three-quarter view. Uneven wheel-thrown silhouette, coarse warm ochre-brown unglazed clay, faded patches of soot and mineral bloom, one small healed hairline surface crack and a minor rim nick. Mostly intact for later physics disturbance and fracture. No lid, spout, contents, bones, plants, markings or detached sherds. Large readable shape, not an ornate fantasy vase.\n"
+    },
+    {
+      "id": "10-candle-holder",
+      "title": "Wax and iron candle tray",
+      "family": "lighting",
+      "approx_dims_xyz_m": [
+        0.3,
+        0.24,
+        0.24
+      ],
+      "image": "10-candle-holder.png",
+      "prompt_file": "10-candle-holder.prompt.txt",
+      "prompt": "Use case: stylized-concept.\nAsset type: an individual approval reference for a medieval dungeon game prop; possible later CL3D image-to-3D input.\nStyle: realistic sculpted game art for SECHA / Red Descent, a damp abandoned medieval crypt. Believable handmade construction, heavy useful forms, sober folk-horror mood expressed through age and materials. Weathered grey-brown oak, dull oxidised iron, dusty bone or earthy unglazed ceramic as appropriate. Readable large forms and real dimensional joints; natural irregularities, restrained wear. No ornate fantasy decoration.\nScene/backdrop: pure off-white studio background, seamless and empty. One isolated object only. No environment, pedestal, backdrop objects, rubble pile, ground debris or extra accessories.\nComposition: a single full object, centered, three-quarter view from slightly above, generous clean margin on every side, nothing cropped. Show the silhouette, depth and structural connections clearly. No collage, multiple views, turntable strip, text, labels, dimensions, rulers, people, hands, logos or watermark.\nLighting: large neutral soft studio lights, all important surfaces legible, soft small contact shadow only, no dramatic torch light, black shadows, fog, depth-of-field blur or cinematic grading.\nConstraints: only the requested object, all pieces visibly connected. No floating pieces or detached fragments. Avoid razor-thin geometry and tiny dangling details. This is a design proposal, not a screenshot of the game. No flame, blood, flesh or gore.\n\nSubject: one chunky old forged-iron candle tray carrying THREE short broad unlit candle stubs joined at their bases by one thick pooled mass of dripped wax. The entire holder and wax form one compact connected object about 30 cm wide, 24 cm deep and 24 cm high. Low oval heavy tray with a continuous raised lip and broad stable base; no legs, tall stem, handle or thin metal arms. Thick irregular cream beeswax stubs of different heights, worn wicks short and blunt, muted soot stains and believable broad wax drips adhering to the tray. Candle shafts are stout, not thin. No flame, smoke, glowing light, skull motif, ornaments, other props or table. All surfaces readable under neutral studio lighting.\n"
+    }
+  ]
+}

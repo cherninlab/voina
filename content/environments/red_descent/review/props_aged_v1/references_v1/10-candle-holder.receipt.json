@@ -1,0 +1,18 @@
+{
+  "asset_id": "10-candle-holder",
+  "generator": "built-in image_gen.imagegen",
+  "native_artifact": "01a16f71-35e6-7e71-aec5-340210fa2c80/exec-0ba44cef-f5b3-4aaa-b4c6-5b7cba356f5e.png",
+  "image": "10-candle-holder.png",
+  "prompt": "10-candle-holder.prompt.txt",
+  "transparent_background": false,
+  "attempt": 1,
+  "image_sha256": "1e5428fba86c9931af6a6e86e50cde436d320d62c5b23dde7b2ef6e7a3697f2a",
+  "prompt_sha256": "71d37a0171a71fbe31669a4b7b22df2e1cf823164a4bceb7668c76ff4a2e2a46",
+  "width_px": 1402,
+  "height_px": 1122,
+  "technical_review": "passed_as_reference_image",
+  "user_approval": "pending",
+  "review_notes": {},
+  "seed": null,
+  "seed_note": "The built-in tool did not expose a generation seed."
+}

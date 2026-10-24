@@ -1,0 +1,18 @@
+{
+  "asset_id": "07-skull",
+  "generator": "built-in image_gen.imagegen",
+  "native_artifact": "01a16f71-4a2c-7873-b428-303961bf1352/exec-fea01634-b887-45bf-aea4-d64f32f7da79.png",
+  "image": "07-skull.png",
+  "prompt": "07-skull.prompt.txt",
+  "transparent_background": false,
+  "attempt": 1,
+  "image_sha256": "ba24d41b391907394bed39c8d35d6adec7718c175876dbb8d2c057179b629551",
+  "prompt_sha256": "535452356cdbcfecfa8bfdf30f2db530e5ee8cfc5a2b7a7c17a7fb6d5a0bcb71",
+  "width_px": 1312,
+  "height_px": 1199,
+  "technical_review": "passed_as_reference_image",
+  "user_approval": "pending",
+  "review_notes": {},
+  "seed": null,
+  "seed_note": "The built-in tool did not expose a generation seed."
+}

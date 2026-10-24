@@ -1,0 +1,18 @@
+{
+  "asset_id": "03-shelf",
+  "generator": "built-in image_gen.imagegen",
+  "native_artifact": "01a16f71-15de-7bd0-92b3-aa955bcb41ec/exec-9772c741-a064-4366-a739-e5554895ab33.png",
+  "image": "03-shelf.png",
+  "prompt": "03-shelf.prompt.txt",
+  "transparent_background": false,
+  "attempt": 1,
+  "image_sha256": "f82092dfd9395b9031125662d301dbf3bdee416743b1edf9e0980670e34765e7",
+  "prompt_sha256": "617e05f5784d8598678e551975aeb5414b1c64bb8c71de436996746fdaac9888",
+  "width_px": 1312,
+  "height_px": 1199,
+  "technical_review": "passed_as_reference_image",
+  "user_approval": "pending",
+  "review_notes": "One connected empty shelf, two storage shelves plus bottom plinth, thick side boards and plank back; full geometry framed, clean off-white backdrop. Slightly elevated three-quarter view with all joins readable.",
+  "seed": null,
+  "seed_note": "The built-in tool did not expose a generation seed."
+}

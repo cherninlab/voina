@@ -1,0 +1,18 @@
+{
+  "asset_id": "02-bench",
+  "generator": "built-in image_gen.imagegen",
+  "native_artifact": "01a16f71-15de-7bd0-92b3-aa955bcb41ec/exec-08ef2122-ca9e-4059-9674-434e8dc48709.png",
+  "image": "02-bench.png",
+  "prompt": "02-bench.prompt.txt",
+  "transparent_background": false,
+  "attempt": 1,
+  "image_sha256": "42eed024d279b1b2c638652ecbb276e62a9cda1471d1745f185ee9693fcd23c7",
+  "prompt_sha256": "c9a22f3b4cd37fd1621026534512a30d18ab642f532c4b1de698a088fa46d9e3",
+  "width_px": 1536,
+  "height_px": 1024,
+  "technical_review": "passed_as_reference_image",
+  "user_approval": "pending",
+  "review_notes": "One connected backless bench, full framing, sturdy trestles and stretcher visible; clean off-white background. Seat has a deep longitudinal age split but remains connected.",
+  "seed": null,
+  "seed_note": "The built-in tool did not expose a generation seed."
+}

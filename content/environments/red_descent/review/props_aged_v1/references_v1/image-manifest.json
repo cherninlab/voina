@@ -1,0 +1,121 @@
+{
+  "task": "T-171",
+  "stage": "image_reference_approval",
+  "generator": "built-in ImageGen",
+  "user_approval": "pending",
+  "cl3d_generation": "not_started",
+  "mesh_generation": "not_started",
+  "runtime_integration": "not_started",
+  "images": [
+    {
+      "asset_id": "01-table",
+      "image": "01-table.png",
+      "prompt": "01-table.prompt.txt",
+      "image_sha256": "4b9a481c3abc4ca153a176916b259d89c2d3ae86c526f246a7977fc6daec7df8",
+      "prompt_sha256": "e43687140bce3fdce823cb57b344331b2a6bad2c3932dc963237fcb138aa0a9c",
+      "width_px": 1536,
+      "height_px": 1024,
+      "technical_review": "passed_as_reference_image",
+      "user_approval": "pending"
+    },
+    {
+      "asset_id": "02-bench",
+      "image": "02-bench.png",
+      "prompt": "02-bench.prompt.txt",
+      "image_sha256": "42eed024d279b1b2c638652ecbb276e62a9cda1471d1745f185ee9693fcd23c7",
+      "prompt_sha256": "c9a22f3b4cd37fd1621026534512a30d18ab642f532c4b1de698a088fa46d9e3",
+      "width_px": 1536,
+      "height_px": 1024,
+      "technical_review": "passed_as_reference_image",
+      "user_approval": "pending"
+    },
+    {
+      "asset_id": "03-shelf",
+      "image": "03-shelf.png",
+      "prompt": "03-shelf.prompt.txt",
+      "image_sha256": "f82092dfd9395b9031125662d301dbf3bdee416743b1edf9e0980670e34765e7",
+      "prompt_sha256": "617e05f5784d8598678e551975aeb5414b1c64bb8c71de436996746fdaac9888",
+      "width_px": 1312,
+      "height_px": 1199,
+      "technical_review": "passed_as_reference_image",
+      "user_approval": "pending"
+    },
+    {
+      "asset_id": "04-barrel",
+      "image": "04-barrel.png",
+      "prompt": "04-barrel.prompt.txt",
+      "image_sha256": "3da56f2b9610164ad367a56020e134afedda9f7958a675597f368ac9a8d9fa82",
+      "prompt_sha256": "5b6ee71b24b9d917288c69f192ab0d77cc3763a9f3a6eb4f9e5a033518b398cf",
+      "width_px": 1312,
+      "height_px": 1199,
+      "technical_review": "passed_as_reference_image",
+      "user_approval": "pending"
+    },
+    {
+      "asset_id": "05-coffin-body",
+      "image": "05-coffin-body.png",
+      "prompt": "05-coffin-body.prompt.txt",
+      "image_sha256": "9798a20e096ba1407a41841c19f04a1124dd4ef889b18a7fe7eef90db563ef70",
+      "prompt_sha256": "3ae4cba22f0f84b0b0f6dbffa4cbc0d00286e9f210b50f5bcd57b4b90e25fe9a",
+      "width_px": 1536,
+      "height_px": 1024,
+      "technical_review": "passed_as_reference_image",
+      "user_approval": "pending"
+    },
+    {
+      "asset_id": "06-coffin-lid",
+      "image": "06-coffin-lid.png",
+      "prompt": "06-coffin-lid.prompt.txt",
+      "image_sha256": "85c9dbb9a142ca8aee461ba0a7daf33a3fd7d536b6f053ce77afa846ce47c6c2",
+      "prompt_sha256": "12beeb200e9a871c98452443905261a4b0cfb1c3b71987c901861af9619c02a0",
+      "width_px": 1536,
+      "height_px": 1024,
+      "technical_review": "passed_as_reference_image",
+      "user_approval": "pending"
+    },
+    {
+      "asset_id": "07-skull",
+      "image": "07-skull.png",
+      "prompt": "07-skull.prompt.txt",
+      "image_sha256": "ba24d41b391907394bed39c8d35d6adec7718c175876dbb8d2c057179b629551",
+      "prompt_sha256": "535452356cdbcfecfa8bfdf30f2db530e5ee8cfc5a2b7a7c17a7fb6d5a0bcb71",
+      "width_px": 1312,
+      "height_px": 1199,
+      "technical_review": "passed_as_reference_image",
+      "user_approval": "pending"
+    },
+    {
+      "asset_id": "08-femur",
+      "image": "08-femur.png",
+      "prompt": "08-femur.prompt.txt",
+      "image_sha256": "f3694eadc740c780e3fb08562c10b57e9f2c898de471529c49efc7a598bdc829",
+      "prompt_sha256": "bea4e2af1f269a13bfae91d639d9ca6007e376a346d7a21dc7cdd9c646382f4e",
+      "width_px": 1536,
+      "height_px": 1024,
+      "technical_review": "passed_as_reference_image",
+      "user_approval": "pending"
+    },
+    {
+      "asset_id": "09-pot",
+      "image": "09-pot.png",
+      "prompt": "09-pot.prompt.txt",
+      "image_sha256": "7ccfe1185c953529e597915b65e66b9dea9f3260784ed5d4a3ede89905290c00",
+      "prompt_sha256": "cd3b97702f3830f6b941fe33b364ed145101d76bc901b7d7edd830a49e9031f5",
+      "width_px": 1312,
+      "height_px": 1199,
+      "technical_review": "passed_as_reference_image",
+      "user_approval": "pending"
+    },
+    {
+      "asset_id": "10-candle-holder",
+      "image": "10-candle-holder.png",
+      "prompt": "10-candle-holder.prompt.txt",
+      "image_sha256": "1e5428fba86c9931af6a6e86e50cde436d320d62c5b23dde7b2ef6e7a3697f2a",
+      "prompt_sha256": "71d37a0171a71fbe31669a4b7b22df2e1cf823164a4bceb7668c76ff4a2e2a46",
+      "width_px": 1402,
+      "height_px": 1122,
+      "technical_review": "passed_as_reference_image",
+      "user_approval": "pending"
+    }
+  ]
+}
