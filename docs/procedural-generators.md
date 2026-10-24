@@ -35,6 +35,43 @@ Repeated construction in SECHA's environments is made by Blender scripts, not pl
 
 The dungeon surface shader multiplies albedo by `COLOR.rgb`, so a generator that uses that material should write neutral G and B, or `(AO, AO, AO)`. UV-mapped generators can bring their own small shader in their content folder, as the bridge does.
 
+## Physics ageing: build ideal, then disturb, over many attempts
+
+Ideal construction looks fake, so generators age their output with physics instead of hand-placed noise (`scripts/art/procgen/disturb.py`, used with `rigid.py`). The bridge generator is the reference.
+
+1. **Build as designed.** Every member is its own rigid body: boards, posts, rails, stones.
+   - Each piece has its own frame (`disturb.orient`), so collision hugs it.
+   - Pieces start a hair apart: Bullet hull margins grow outward and push touching pieces apart at rest.
+2. **Join pieces the way they would really be held.**
+   - `nail`: a FIXED joint that can break.
+   - `pin`: a ball joint.
+   - `hinge`: an axis with lean limits.
+   - `disturb.strength(rng, weak_share, piece)` makes most joints strong. A share are rusted or rotten, scaled to the piece's own weight, so they hold at rest and give way only when disturbed.
+   - Nails between pieces that bear on each other keep collisions on. Bullet keeps a pair's collision setting after the joint breaks, so otherwise a loose board falls straight through its stringer.
+3. **Age before simulating.** Remove a board or two, rot one post foot, fail one rail end. Pick these from a seeded `plan` stream.
+4. **Disturb.**
+   - `shake(structure, rng, intensity)`: a decaying tremor on kinematic supports. Intensity 1 is about 2 cm at 5–8 Hz for 1.5 s.
+   - `roll(at, velocity)`: a heavy stone ball.
+   - Drop debris.
+   - A catch floor below turns anything knocked off into "fallen".
+5. **Settle and measure.** `rigid.settle(..., min_frames=disturb.quiet_frame())`. For each attempt, record:
+   - loose, fallen and missing pieces
+   - leaning posts and hanging rails
+   - deviation from the walking surface on the lanes
+   - anything left blocking the corridor
+6. **Run a series of attempts over intensities and seeds:**
+   - Calm attempts must come out untouched; check this first.
+   - Strong ones collapse.
+   - `classify` marks each attempt untouched, aged, damaged, collapsed or unwalkable and scores it.
+   - The best walkable "aged" attempt is rebuilt deterministically and exported. `--pick route=N` overrides the choice.
+   - `--review` writes a contact sheet with the chosen attempt framed.
+7. **Use offline precision.** Offline, accuracy is cheap:
+   - 40 substeps at 30 fps (1200 Hz), 60 solver iterations
+   - exact `MESH` collision for passive supports
+   - hull collision on every moving piece, with 0.2 mm margins
+
+Gameplay contracts stay in the game: collision is unchanged, missing-board footprints are listed in the bake report, and the bridge test skips them.
+
 ## Why bake
 
 - **Shadows:** Godot's Mobile renderer has no SSAO, so contact shading between boards and bearers or stones and floors must live in the mesh.
