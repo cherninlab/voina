@@ -2,8 +2,9 @@ class_name RedDescentDungeon
 extends Node3D
 ## First playable Red Descent. The village remains the default map.
 
-const TEXTURES: String = "res://content/environments/valhalla/textures/KB3D_VHL_"
-const GENERATED: String = "res://content/environments/red_descent/"
+const NAVE: String = "res://content/environments/red_nave_v1/"
+const BRIDGE: String = "res://content/environments/bridge_well_v1/"
+const PBR: String = "res://content/environments/dungeon_pbr_v2/"
 var architecture: RedDescentGeometry
 var objective: Label = Label.new()
 var fires: Array[OmniLight3D] = []
@@ -13,21 +14,40 @@ func _ready() -> void:
 	name = "CinderCrypt"
 	atmosphere()
 	architecture = RedDescentGeometry.new()
-	var wood: ShaderMaterial = masonry("StoneGeneric", Color(0.68, 0.64, 0.57))
-	wood.set_shader_parameter("albedo_map", load(GENERATED + "wood_albedo.png"))
-	wood.set_shader_parameter("normal_map", load(GENERATED + "wood_normal.png"))
-	wood.set_shader_parameter("scale", 0.5)
-	wood.set_shader_parameter("normal_strength", 0.45)
-	wood.set_shader_parameter("moss", 0.0)
-	wood.set_shader_parameter("ash", 0.0)
-	var iron: StandardMaterial3D = StandardMaterial3D.new()
-	iron.albedo_color = Color(0.075, 0.065, 0.055)
-	iron.metallic = 0.5
-	iron.roughness = 0.85
+	var iron: ShaderMaterial = surface(PBR + "Metal041B/", 1.5, 0.4)
+	iron.set_shader_parameter("metallic_map", load(PBR + "Metal041B/metallic.png"))
+	iron.set_shader_parameter("metallic_amount", 1.0)
+	iron.set_shader_parameter("dry_roughness_min", 0.28)
+	var wood: ShaderMaterial = surface(PBR + "Wood035/", 0.65, 0.65, 0.68)
+	wood.set_shader_parameter("timber", true)
+	wood.set_shader_parameter("relief_m", 0.009)
+	wood.set_shader_parameter("dry_roughness_min", 0.75)
+	wood.set_shader_parameter("wet_roughness", 0.32)
 	var dark: StandardMaterial3D = StandardMaterial3D.new()
-	dark.albedo_color = Color(0.035, 0.031, 0.029)
+	dark.albedo_color = Color(0.025, 0.027, 0.027)
 	dark.roughness = 1.0
-	architecture.materials = {"stone": masonry("StoneGeneric", Color(0.65, 0.66, 0.62)), "trim": masonry("StoneGeneric", Color(0.73, 0.69, 0.59)), "floor": masonry("StoneFloor", Color(0.58, 0.58, 0.54)), "wood": wood, "iron": iron, "dark": dark}
+	architecture.materials = {
+		"stone": surface(PBR + "Bricks089/", 0.22, 0.7, 0.22),
+		"wall": surface(PBR + "Bricks089/", 0.22, 0.7, 0.5),
+		"plaster": surface(PBR + "Concrete012/", 0.4, 0.6, 0.25),
+		"red_plaster": surface(PBR + "Concrete012/", 0.4, 0.6),
+		"trim": surface(PBR + "Bricks083/", 0.33, 0.6),
+		"floor": surface(PBR + "Rocks025/", 0.526, 0.8, 0.4),
+		"rock": surface(PBR + "marble_rock_03/", 0.555, 0.85, 0.3),
+		"wood": wood, "iron": iron, "dark": dark,
+		"core_stone": GeneratedDungeonKit.material("wall_panel"),
+	}
+	(architecture.materials["trim"] as ShaderMaterial).set_shader_parameter("tint", Vector3(0.62, 0.57, 0.47))
+	(architecture.materials["red_plaster"] as ShaderMaterial).set_shader_parameter("tint", Vector3(0.55, 0.055, 0.025))
+	for family: String in ["plaster", "red_plaster"]:
+		var plaster: ShaderMaterial = architecture.materials[family] as ShaderMaterial
+		plaster.set_shader_parameter("plaster", 1.0)
+		plaster.set_shader_parameter("substrate_albedo", load(PBR + "Bricks089/albedo.png"))
+		plaster.set_shader_parameter("substrate_normal", load(PBR + "Bricks089/normal_gl.png"))
+		plaster.set_shader_parameter("substrate_roughness", load(PBR + "Bricks089/roughness.png"))
+		plaster.set_shader_parameter("substrate_ao", load(PBR + "Bricks089/ao.png"))
+	for family: String in ["wall", "plaster", "floor"]:
+		(architecture.materials[family] as ShaderMaterial).set_shader_parameter("algae", 0.6)
 	add_child(architecture)
 	architecture.build()
 	# Practical lights remain sparse along the route; the side halls supply landmarks.
@@ -35,6 +55,20 @@ func _ready() -> void:
 		torch(at)
 	build_landmarks()
 	architecture.flush()
+	# Static local reflections give wet timber and iron the surrounding architecture's light.
+	for position_size: Array in [
+		[Vector3(0, -17, 0), Vector3(62, 60, 70)],
+		[Vector3(0, -10, 38), Vector3(36, 23, 35)],
+	]:
+		var probe: ReflectionProbe = ReflectionProbe.new()
+		probe.position = position_size[0]
+		probe.size = position_size[1]
+		probe.max_distance = 65.0
+		probe.interior = true
+		probe.box_projection = true
+		probe.ambient_mode = ReflectionProbe.AMBIENT_DISABLED
+		probe.intensity = 0.6
+		add_child(probe)
 	var layer: CanvasLayer = CanvasLayer.new()
 	layer.layer = 2
 	add_child(layer)
@@ -50,24 +84,23 @@ func _ready() -> void:
 	objective.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	layer.add_child(objective)
 
-func masonry(family: String, tint: Color) -> ShaderMaterial:
+func surface(folder: String, density: float, relief: float, damp: float = 0.0) -> ShaderMaterial:
 	var material: ShaderMaterial = ShaderMaterial.new()
-	material.shader = preload("res://content/environments/church/church_stone.gdshader")
-	material.set_shader_parameter("albedo_map", load(TEXTURES + family + "_basecolor.png"))
-	material.set_shader_parameter("normal_map", load(TEXTURES + family + "_normal.png"))
-	material.set_shader_parameter("roughness_map", load(TEXTURES + family + "_roughness.png"))
-	if family == "StoneGeneric" and ResourceLoader.exists(GENERATED + "stone_albedo.png"):
-		material.set_shader_parameter("albedo_map", load(GENERATED + "stone_albedo.png"))
-	if family == "StoneGeneric" and ResourceLoader.exists(GENERATED + "stone_normal.png"):
-		material.set_shader_parameter("normal_map", load(GENERATED + "stone_normal.png"))
-	if family == "StoneGeneric" and ResourceLoader.exists(GENERATED + "stone_roughness.png"):
-		material.set_shader_parameter("roughness_map", load(GENERATED + "stone_roughness.png"))
-	material.set_shader_parameter("tint", tint)
-	material.set_shader_parameter("scale", 0.25 if family == "StoneGeneric" else 0.55)
-	material.set_shader_parameter("normal_strength", 0.6)
-	material.set_shader_parameter("moss", 0.035)
-	material.set_shader_parameter("ash", 0.12)
-	material.set_shader_parameter("grime", 0.3)
+	material.shader = preload("res://content/environments/red_descent/dungeon_surface.gdshader")
+	var albedo: Texture2D = load(folder + "albedo.png") as Texture2D
+	material.set_shader_parameter("albedo_map", albedo)
+	material.set_shader_parameter("aspect", float(albedo.get_width()) / float(albedo.get_height()))
+	material.set_shader_parameter("normal_map", load(folder + "normal_gl.png"))
+	material.set_shader_parameter("roughness_map", load(folder + "roughness.png"))
+	if ResourceLoader.exists(folder + "ao.png"):
+		material.set_shader_parameter("ao_map", load(folder + "ao.png"))
+	material.set_shader_parameter("wet_map", load(BRIDGE + "masks/wet_patches.png"))
+	material.set_shader_parameter("height_map", load(folder + "height.png"))
+	material.set_shader_parameter("peel_map", load(NAVE + "masks/plaster_peel.png"))
+	material.set_shader_parameter("algae_map", load(BRIDGE + "masks/algae_coverage.png"))
+	material.set_shader_parameter("scale", density)
+	material.set_shader_parameter("normal_strength", relief)
+	material.set_shader_parameter("wetness", damp)
 	return material
 
 func atmosphere() -> void:
@@ -75,8 +108,8 @@ func atmosphere() -> void:
 	environment.background_mode = Environment.BG_COLOR
 	environment.background_color = Color(0.009, 0.005, 0.005)
 	environment.ambient_light_source = Environment.AMBIENT_SOURCE_COLOR
-	environment.ambient_light_color = Color(0.43, 0.45, 0.46)
-	environment.ambient_light_energy = 0.65
+	environment.ambient_light_color = Color(0.36, 0.43, 0.46)
+	environment.ambient_light_energy = 0.36
 	environment.tonemap_mode = Environment.TONE_MAPPER_FILMIC
 	environment.tonemap_exposure = 1.15
 	environment.fog_enabled = true
@@ -90,11 +123,21 @@ func atmosphere() -> void:
 	for at: Vector3 in [Vector3(0, -34, -8), Vector3(14, -43, 9), Vector3(0, -20, 0), Vector3(14, -31, 4)]:
 		var glow: OmniLight3D = OmniLight3D.new()
 		glow.position = at
-		glow.light_color = Color(0.9, 0.075, 0.018)
-		glow.light_energy = 5.5
-		glow.omni_range = 36
+		glow.light_color = Color(0.13, 0.3, 0.26) if at.y < -40.0 else Color(0.55, 0.13, 0.065)
+		glow.light_energy = 1.6
+		glow.omni_range = 26
 		glow.omni_attenuation = 1.3
 		add_child(glow)
+	var water_mesh: PlaneMesh = PlaneMesh.new()
+	water_mesh.size = Vector2(92, 100)
+	water_mesh.subdivide_width = 48
+	water_mesh.subdivide_depth = 48
+	var water: MeshInstance3D = MeshInstance3D.new()
+	water.name = "DeepWater"
+	water.mesh = water_mesh
+	water.material_override = load(BRIDGE + "water/material.tres") as Material
+	water.position.y = -47.5
+	add_child(water)
 
 func torch(at: Vector3) -> void:
 	architecture.piece(Vector3(0.16, 1.45, 0.16), at + Vector3.UP * 0.72, "wood")

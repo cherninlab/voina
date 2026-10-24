@@ -1,4 +1,10 @@
-# Red Descent materials and review evidence
+# Current integrated revision (2026-10-24)
+
+The runtime now uses the CC0 PBR library in `../dungeon_pbr_v2/`, the selected Poly Haven fort entrance in `../dungeon_geometry_v2/`, and the locally generated varied mesh kit in `../generated_dungeon_kit_v1/`. Their own source records document provenance and original map bytes. The generated bitmap studies described below are earlier iterations and are not the current stone/wood PBR source.
+
+The material pass combines albedo, normals, roughness, AO, shallow near-view height relief, exposed plaster substrate, dampness and algae. Geometry supplies wall profiles, recess depth, arch shapes, broken boundaries and varied support construction. The dungeon imposes Natural presentation while retaining the player's saved outdoor theme. `review/rerender_v2/kit-final/` contains the latest real Mobile/Metal captures; the ImageGen paintover in the generated kit's review folder remains a target image.
+
+# Earlier generated material study
 
 Original SECHA dungeon architecture and procedural dressing by the project. New texture bitmaps were generated with native OpenAI ImageGen on 2026-10-23; no stock or downloaded third-party textures were added by this pass.
 

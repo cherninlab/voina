@@ -94,5 +94,21 @@ func run() -> void:
 		await walk(route, String(paths[index]["id"]))
 		if failed:
 			return
-	print("DUNGEON_TRAVERSAL_OK: %.0f m actual capsule walking; descent, slopes, return, egress, four optional loops, deep-floor recovery" % distance_walked)
+	# The narrow sloping crossings must work away from the route's centre too.
+	for path_index: int in [1, 9]:
+		var path: Dictionary = paths[path_index]
+		var centerline: PackedVector3Array = path["points"] as PackedVector3Array
+		for lateral: float in [-0.75, 0.75]:
+			var lane: PackedVector3Array = PackedVector3Array()
+			for index: int in range(centerline.size()):
+				var tangent: Vector3 = centerline[mini(index + 1, centerline.size() - 1)] - centerline[maxi(index - 1, 0)]
+				tangent.y = 0.0
+				var side: Vector3 = Vector3(-tangent.z, 0, tangent.x).normalized()
+				lane.append(centerline[index] + side * lateral)
+			player.position = lane[0] + Vector3.UP * 0.95
+			player.velocity = Vector3.ZERO
+			await walk(lane, "%s lane %.2f" % [String(path["id"]), lateral])
+			if failed:
+				return
+	print("DUNGEON_TRAVERSAL_OK: %.0f m actual capsule walking; descent, slopes, return, egress, four optional loops, both bridge lanes, deep-floor recovery" % distance_walked)
 	get_tree().quit()

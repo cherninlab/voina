@@ -1,0 +1,11 @@
+# Real runtime review, 2026-10-24
+
+`kit-final/` is the current set of eight real Godot 4.7.2 Mobile/Metal frames at 1440×900. These are ordinary runtime geometry/material renders, captured through the no-focus wrapper. UI is hidden and the dungeon's Natural presentation is used without saving preferences. The scene retains its irregular outline, sloping routes, layered crossings and deep shaft.
+
+`kit-first/`, `kit-second/` and `kit-third/` are intermediate real captures. They exposed inward-facing wall fronts, full-row portal gaps, shallow repeated window dressing and background coverage problems. `after/` predates the generated kit. Invalid menu-covered captures were excluded from this evidence set. The native ImageGen paintover is in `../../../generated_dungeon_kit_v1/review/paintover-01.png`; it is a target, not a game frame. Its wall construction informed the new window-bay source, which was reconstructed locally, simplified, textured and integrated before the final capture.
+
+Validation logs are in `kit-validation/`: headless editor import; the main smoke suite; the dungeon geometry/finite encounter/late-join/map-adoption suite; all 51 generated GLB imports, bounds, normals, colour and LOD budgets; and a 1,276-metre actual player-capsule walk. The walk includes descent, return, egress, four optional loops, both ±0.75m bridge lanes and deep-floor recovery. It caught two new collisions, fixed by recessing central stone relief and keeping cave dressing away from joins. Final pier placement, surface batching and texture refinements did not change that tested collision mesh.
+
+`kit-final/render-metrics.json` records short stationary capture samples, not a general gameplay benchmark. Native capture exit still reports seven Texture RIDs and one ObjectDB instance; there are no script/shader errors or blank-frame failures in the final capture log. Manual mouse/camera input and two-Mac Tailscale play were not validated by these automated runs.
+
+The integrated scene remains an art prototype. Near-view geometry and the source-textured window bay improved, but broad background facades still show repetition, some modular boundaries need blending, and single-view colour projection does not solve unseen-face texture baking. The stair source is reviewed but not placed; tested ramps remain the playable stair routes.
