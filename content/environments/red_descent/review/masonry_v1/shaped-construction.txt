@@ -1,0 +1,8 @@
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+BUILD: 53eb682+dirty [dfaf1afa5506]
+GENERATED_KIT_PLACED: {"rock_outcrop":18,"rubble":69}
+RED_DESCENT_GEOMETRY_READY: 17 routes, 11 rooms, 58 lit landmarks, sloping crossings
+DUNGEON_STRUCTURE_OK: 23 fitted bearings, 648 framing/board members, 4 baked cloth pins; lower routes clear
+WARNING: 1 ObjectDB instance was leaked at exit (run with `--verbose` for details).
+   at: cleanup (core/object/object.cpp:2536)

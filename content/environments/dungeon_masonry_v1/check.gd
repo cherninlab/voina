@@ -22,8 +22,23 @@ func _initialize() -> void:
 			if is_equal_approx(transform.basis.y.length(), 20.0):
 				continuous_shaft = is_equal_approx(transform.origin.y, 10.0)
 	assert(continuous_shaft and blocks == 3, "Pilaster requires one continuous shaft and only one base/capital")
+	assert(pier.batch_meshes.size() == 1, "Shaft must use the shaped batched masonry mesh")
+	for key: String in pier.batch_meshes:
+		var mesh: Mesh = pier.batch_meshes[key]
+		assert(mesh.get_aabb().size.is_equal_approx(Vector3.ONE), "Shaped shaft lost its fitting bounds")
+		var lower_width: float = 0.0
+		var upper_width: float = 0.0
+		var rebate: bool = false
+		for vertex: Vector3 in mesh.get_faces():
+			if vertex.y < -0.43:
+				lower_width = maxf(lower_width, absf(vertex.x))
+			if vertex.y > 0.2:
+				upper_width = maxf(upper_width, absf(vertex.x))
+			if is_equal_approx(vertex.z, 0.4) and absf(vertex.x) < 0.2:
+				rebate = true
+		assert(upper_width < lower_width * 0.97 and rebate, "Shaft lost its taper or real front rebate")
 	pier.free()
-	print("MASONRY_OK: 0.82 m blind reveals, continuous wall footprint, 20 m unbroken pier shaft")
+	print("MASONRY_OK: 0.82 m blind reveals, continuous wall footprint, shaped 20 m unbroken pier shaft")
 	quit()
 
 func first_hit(faces: PackedVector3Array, from: Vector3, to: Vector3) -> float:

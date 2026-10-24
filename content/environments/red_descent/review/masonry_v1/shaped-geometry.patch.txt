@@ -1,0 +1,78 @@
+diff --git a/content/environments/dungeon_masonry_v1/check.gd b/content/environments/dungeon_masonry_v1/check.gd
+index 0831c1e..9cb0761 100644
+--- a/content/environments/dungeon_masonry_v1/check.gd
++++ b/content/environments/dungeon_masonry_v1/check.gd
+@@ -22,8 +22,23 @@ func _initialize() -> void:
+ 			if is_equal_approx(transform.basis.y.length(), 20.0):
+ 				continuous_shaft = is_equal_approx(transform.origin.y, 10.0)
+ 	assert(continuous_shaft and blocks == 3, "Pilaster requires one continuous shaft and only one base/capital")
++	assert(pier.batch_meshes.size() == 1, "Shaft must use the shaped batched masonry mesh")
++	for key: String in pier.batch_meshes:
++		var mesh: Mesh = pier.batch_meshes[key]
++		assert(mesh.get_aabb().size.is_equal_approx(Vector3.ONE), "Shaped shaft lost its fitting bounds")
++		var lower_width: float = 0.0
++		var upper_width: float = 0.0
++		var rebate: bool = false
++		for vertex: Vector3 in mesh.get_faces():
++			if vertex.y < -0.43:
++				lower_width = maxf(lower_width, absf(vertex.x))
++			if vertex.y > 0.2:
++				upper_width = maxf(upper_width, absf(vertex.x))
++			if is_equal_approx(vertex.z, 0.4) and absf(vertex.x) < 0.2:
++				rebate = true
++		assert(upper_width < lower_width * 0.97 and rebate, "Shaft lost its taper or real front rebate")
+ 	pier.free()
+-	print("MASONRY_OK: 0.82 m blind reveals, continuous wall footprint, 20 m unbroken pier shaft")
++	print("MASONRY_OK: 0.82 m blind reveals, continuous wall footprint, shaped 20 m unbroken pier shaft")
+ 	quit()
+ 
+ func first_hit(faces: PackedVector3Array, from: Vector3, to: Vector3) -> float:
+diff --git a/gameplay/environment/red_descent_geometry.gd b/gameplay/environment/red_descent_geometry.gd
+index a1cd7f9..933a4ba 100644
+--- a/gameplay/environment/red_descent_geometry.gd
++++ b/gameplay/environment/red_descent_geometry.gd
+@@ -74,8 +74,15 @@ func fitted_module(id: String, at: Vector3, size: Vector3, basis: Basis = Basis.
+ 
+ func stacked_pier(at: Vector3, basis: Basis, size: Vector3, variant: int) -> void:
+ 	# A continuous bonded shaft carries the wall head; bases/capitals occur only once.
+-	var shaft: Vector3 = Vector3(size.x * (1.0 + float(variant % 2) * 0.08), size.y, size.z)
+-	piece(shaft, at + Vector3.UP * size.y * 0.5, "stone", basis)
++	var shaft: Vector3 = Vector3(size.x * (1.3 + float(variant % 2) * 0.08), size.y, size.z)
++	var key: String = "masonry_pier:%d:%d:%d" % [floori(at.x / 18.0), floori(at.y / 12.0), floori(at.z / 18.0)]
++	if not batches.has(key):
++		batches[key] = []
++		batch_colors[key] = []
++		batch_materials[key] = "stone"
++		batch_meshes[key] = load("res://content/environments/dungeon_masonry_v1/pier.obj") as Mesh
++	batches[key].append(Transform3D(basis * Basis.from_scale(shaft), at + Vector3.UP * size.y * 0.5))
++	batch_colors[key].append(Color.WHITE)
+ 	for end: float in [0.0, 1.0]:
+ 		piece(Vector3(shaft.x + 0.28, 0.32, shaft.z + 0.12), at + Vector3.UP * (0.16 + end * (size.y - 0.32)), "trim", basis)
+ 
+@@ -474,10 +481,22 @@ func arch_spandrel(at: Vector3, basis: Basis, radius: float, material: String, s
+ 			var top_b: Vector3 = at + basis * Vector3(b.x, top, depth * 0.5 * side)
+ 			quad(near_a, near_b, top_b, top_a, basis.z * side, material)
+ 		quad(at + basis * (a + Vector3.FORWARD * depth * 0.5), at + basis * (b + Vector3.FORWARD * depth * 0.5), at + basis * (b + Vector3.BACK * depth * 0.5), at + basis * (a + Vector3.BACK * depth * 0.5), -basis.y, "stone")
+-		# A narrow radial stone band bonds into the face, with no rectangular surround.
+-		var outer_a: Vector3 = Vector3(cos(angle_a) * (radius + 0.22), spring + sin(angle_a) * (rise + 0.22), depth * 0.5 + 0.015)
+-		var outer_b: Vector3 = Vector3(cos(angle_b) * (radius + 0.22), spring + sin(angle_b) * (rise + 0.22), depth * 0.5 + 0.015)
+-		quad(at + basis * (a + Vector3.BACK * (depth * 0.5 + 0.015)), at + basis * (b + Vector3.BACK * (depth * 0.5 + 0.015)), at + basis * outer_b, at + basis * outer_a, basis.z, "stone")
++		# Bonded voussoirs have real projecting faces, chamfers and narrow mortar joints.
++		# Their triangles join the existing stone surface batches, not per-stone nodes.
++		var edge: PackedVector3Array = PackedVector3Array()
++		var inset: PackedVector3Array = PackedVector3Array()
++		var gap: float = 0.012 / maxf(radius, 0.5)
++		for corner: Vector2 in [Vector2(angle_a + gap, 0.0), Vector2(angle_b - gap, 0.0), Vector2(angle_b - gap, 0.28), Vector2(angle_a + gap, 0.28)]:
++			edge.append(Vector3(cos(corner.x) * (radius + corner.y), spring + sin(corner.x) * (rise + corner.y), depth * 0.5 + 0.025))
++			var angle: float = corner.x + (0.018 / maxf(radius, 0.5)) * (1.0 if corner.x < (angle_a + angle_b) * 0.5 else -1.0)
++			var offset: float = 0.025 if corner.y < 0.1 else 0.255
++			inset.append(Vector3(cos(angle) * (radius + offset), spring + sin(angle) * (rise + offset), depth * 0.5 + 0.09 + float(segment % 3) * 0.008))
++		quad(at + basis * inset[0], at + basis * inset[1], at + basis * inset[2], at + basis * inset[3], basis.z, "stone")
++		for corner: int in range(4):
++			var next: int = (corner + 1) % 4
++			var outward: Vector3 = ((edge[next] - edge[corner]).cross(Vector3.FORWARD)).normalized()
++			quad(at + basis * edge[corner], at + basis * edge[next], at + basis * inset[next], at + basis * inset[corner], basis * (outward + Vector3.BACK).normalized(), "stone")
++			quad(at + basis * (edge[corner] - Vector3.BACK * 0.05), at + basis * (edge[next] - Vector3.BACK * 0.05), at + basis * edge[next], at + basis * edge[corner], basis * outward, "stone")
+ 
+ func quad(a: Vector3, b: Vector3, c: Vector3, d: Vector3, normal: Vector3, material: String) -> void:
+ 	if (b - a).cross(c - a).dot(normal) > 0.0:

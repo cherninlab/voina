@@ -1,0 +1,20 @@
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+Metal 4.0 - Forward Mobile - Using Device #0: Apple - Apple M5 Max (Apple9)
+
+BUILD: 53eb682+dirty [dfaf1afa5506]
+GENERATED_KIT_PLACED: {"rock_outcrop":18,"rubble":69}
+RED_DESCENT_GEOMETRY_READY: 17 routes, 11 rooms, 58 lit landmarks, sloping crossings
+MAP: Cinder Crypt (crypt)
+CAPTURE_STONE: res://content/environments/dungeon_pbr_v2/Bricks089/albedo.png scale 0.22
+DUNGEON_CAPTURE: content/environments/red_descent/review/masonry_v1/shaped/01-high-crossing.png
+DUNGEON_CAPTURE: content/environments/red_descent/review/masonry_v1/shaped/02-central-wall.png
+DUNGEON_CAPTURE: content/environments/red_descent/review/masonry_v1/shaped/03-low-crossing.png
+DUNGEON_CAPTURE: content/environments/red_descent/review/masonry_v1/shaped/04-broken-nave.png
+DUNGEON_CAPTURE: content/environments/red_descent/review/masonry_v1/shaped/05-deep-choir.png
+DUNGEON_CAPTURE: content/environments/red_descent/review/masonry_v1/shaped/06-descent-overlook.png
+DUNGEON_CAPTURE: content/environments/red_descent/review/masonry_v1/shaped/07-timber-detail.png
+DUNGEON_CAPTURE: content/environments/red_descent/review/masonry_v1/shaped/08-nave-materials.png
+WARNING: 7 RIDs of type "Texture" were leaked.
+   at: finalize (servers/rendering/rendering_device.cpp:8900)
+WARNING: 1 ObjectDB instance was leaked at exit (run with `--verbose` for details).
+   at: cleanup (core/object/object.cpp:2536)
