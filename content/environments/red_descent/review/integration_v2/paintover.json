@@ -1,0 +1,11 @@
+{
+  "kind": "concept target, not runtime evidence",
+  "tool": "built-in image_gen",
+  "source_capture": "content/environments/red_descent/review/integration_v2/after/06-descent-overlook.png",
+  "source_sha256": "444ef722a35ff96f738c6e125de7dc3ec715435e134c1edd49c916e09c3f59fc",
+  "prompt_file": "content/environments/red_descent/review/integration_v2/paintover-prompt.txt",
+  "generated_original": "/Users/theochernin/.codex/generated_images/01a1602d-c639-74f2-ada4-eb5ff4bc8037/exec-d1a4125d-ed6d-4384-980d-e5e390c3ebf3.png",
+  "target": "content/environments/red_descent/review/integration_v2/paintover-06-target.png",
+  "target_sha256": "0a55c807d3cb36d867e2887ac2c9a0be2da9a1a8d828f383992e7671a26b95a5",
+  "review": "Camera, bridge route and lower crossings preserved; replaces surface quality and torch basket as aspirational art. No derived meshes or texture maps are claimed."
+}

@@ -82,5 +82,15 @@
   ],
   "manual_camera_input_tested": false,
   "two_machine_tailscale_tested": false,
-  "uncapped_performance_tested": false
+  "uncapped_performance_tested": false,
+  "final_material_commit": "4edfdd733a3b2ffc760f06a8f3619796596e557b",
+  "final_focused_checks": {
+    "import": 0,
+    "dressing": 0,
+    "bridge": 0,
+    "capture": 0,
+    "capture_count": 14
+  },
+  "full_checks_geometry_unchanged": true,
+  "full_checks_note": "Full traversal, structure and both smoke gates were run after restart on identical runtime geometry/dressing; final shader-only calibration additionally passed its owner import/smoke and parent import/dressing/bridge/14-camera capture."
 }

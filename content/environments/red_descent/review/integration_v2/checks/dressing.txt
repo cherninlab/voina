@@ -1,6 +1,6 @@
 Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
 
-BUILD: a31388c+dirty [785fb8bfd369]
+BUILD: 04f0751 [785fb8bfd369]
 GENERATED_KIT_PLACED: {"rock_outcrop":18,"rubble":69}
 RED_DESCENT_GEOMETRY_READY: 17 routes, 11 rooms, 58 lit landmarks, sloping crossings
 DUNGEON_DRESSING_OK: 8 grounded rubble piles, 10 socket-mounted hangings, 11 room floors; sculpted pin gaps 0.0056m, web gaps 0.0014m, route margin 1.182m

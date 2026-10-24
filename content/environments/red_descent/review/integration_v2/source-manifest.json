@@ -5,7 +5,8 @@
     "gameplay/environment/dungeon_dressing.gd": "496109a580f936eacd0c7bcf4330b7fc6a58cf16ac271961176531a60ebbf923",
     "gameplay/environment/red_descent_geometry.gd": "7e543f4aeb770c04a5c608942ffee1bed642648bf460a986f0023ad14dc5e489",
     "scripts/dungeon_dressing_test.gd": "fda820b028fc9cdddfacf79903e96ce8e68854c985d8cb02e54789b28b2fcbde",
-    "scripts/capture_dungeon.gd": "ccba6133dbd71cfb58762dd9eac33f9b968e9f00f997bb5ca27fb14b7b8b75d9"
+    "scripts/capture_dungeon.gd": "ccba6133dbd71cfb58762dd9eac33f9b968e9f00f997bb5ca27fb14b7b8b75d9",
+    "content/environments/procedural_flagstone_v1/flagstone.gdshaderinc": "48e2d8ea12c7fba774497579b49e95616a9ceb79e7f7837cc3eae611f52aa389"
   },
   "assets": {
     "content/environments/procedural_bridge_v1/high_span.glb": "1b968c5ba96f675ba9ec59732dd38960bc867907134a91519f0600a31050f327",
@@ -14,5 +15,23 @@
     "content/environments/procedural_bridge_v1/low_span.json": "7a05afca3dfab30eda1568f77fd50fc2e66e050d401e8db0883d678fc02121f8",
     "content/environments/procedural_rubble_v1/rubble.json": "7be0525357fedcf4d8e4d3710af658daec26c72a37cc63384834a4a9b330e9b9",
     "content/environments/procedural_hanging_v1/bake.json": "6acf3b3924079d39f0b8e85538f44950b73d3771841ecb64cbe2b3d4d7c73cc2"
+  },
+  "final_verification_head": "822bb266f842eb0e23e267bc5ac544a939e761a7",
+  "final_capture_build": "BUILD: 04f0751 [785fb8bfd369]",
+  "final_captures": {
+    "01-high-crossing.png": "39d87439f89ee77a25b662ddb859c5730c5f82f8784143c3ff86bb64e3887dcb",
+    "02-central-wall.png": "111bf4bac868aa06ea314e87c6651472929206a5e919b351e1ab9ef08a1e1847",
+    "03-low-crossing.png": "af89785ec03600dc0f580b2aa7680b1cd1f509d11e828a7b4a4ded511e69222c",
+    "04-broken-nave.png": "e2549f4fd893bb323679309c678e1953c772b4b15ed102b70b36d2e3e6a4fdd2",
+    "05-deep-choir.png": "2063e187648224ae9c0d80158e83f2e1e68dca17a4928eecd6f0c827bb51afd7",
+    "06-descent-overlook.png": "444ef722a35ff96f738c6e125de7dc3ec715435e134c1edd49c916e09c3f59fc",
+    "07-timber-detail.png": "61ea1920709700dfad4ffaf04ff46cea4bb0ec2fbed08c5b16e1735d0bb53059",
+    "08-nave-materials.png": "47932b6c51076b8f0db1a9ad6f24f1fabee69a4f5a2d4afe8c7dcb56ccaf8d18",
+    "09-entry-floor.png": "16c6a181a3fd1cb657335b84a5ae1aaf533f66fd9c350c29be1637f4a3f659c1",
+    "10-restraint-frame.png": "576c4768fa04bc1ee2d8c9a21f31749f4cc291ebd700a405868cf307b70469cd",
+    "11-nave-framing.png": "946c4866136b339bc6e837896d78971713bd0946a4d417672ba498e2d0181781",
+    "12-bell-hangings.png": "71fb92c6eabb19a3a80f0e78bbc08a9aff38489db884d9a67e22924bfc74c228",
+    "13-chapel-spill.png": "28222a81acfa9463f5b0d4002fa2c263ffa697e40fbe74ef402fd2b595a81731",
+    "14-choir-debris.png": "50a9b1215b5c36549c4ab3aa29cf5ab7f0d67a71fc6e2f0c0293e4478f58810d"
   }
 }

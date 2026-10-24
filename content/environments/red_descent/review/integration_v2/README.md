@@ -31,12 +31,16 @@ The existing one-ObjectDB-instance shutdown warning remains in standalone tests.
 
 ## Visual evidence and current limit
 
-`first/` contains the initial 14 assembled frames. `after/` contains the same cameras after moving the permanent nave lamps off the cloth plane; that set is still being refreshed as the floor shader investigation finishes. Views 09–14 expose entry flooring, restraint sockets, nave framing, bell hangings, chapel wall spill and choir debris. Views 01–08 preserve the earlier comparison cameras.
+`first/` contains the initial 14 assembled frames. `after/` contains the final refreshed same cameras, including the corrected web contact, permanent nave lamps off the cloth plane and the T-175 floor material calibration. Views 09–14 expose entry flooring, restraint sockets, nave framing, bell hangings, chapel wall spill and choir debris. Views 01–08 preserve the earlier comparison cameras.
 
-The first review found black/noisy rectangular stone patches, also present in the floor-only T-173 captures. Private controls retain the patches with normal mapping disabled and all light shadows disabled; constant floor colour removes them. T-175 is isolating material/texture/post-grade interaction before changing production shading. The separate solid square under a torch is a real fixture shadow. This visual issue is not being hidden by extra capture lights or reported as solved.
+The first review found black/noisy rectangular stone patches, also present in the floor-only T-173 captures. T-175 retained 14 controlled comparisons, including a verified shadows-off run with the dungeon light updater stopped. Constant ALBEDO removes the blotches; no specific renderer fault was proved. A separately reviewed material calibration (`4edfdd7`) reduces compounded darkening: tint `(0.88,0.85,0.80)`, variation `0.14`, diffuse AO weight `0.25`, grime `0.15`. Actual textures, normal maps, AO output, roughness, geometry and lighting remain. In three fixed floor ROIs, pixels below display luminance 0.05 fell from about 15–21% to 1–9%. This is a material response improvement, not a claim that an engine fault was fixed or every speckle removed. The separate solid square under a torch is a real fixture shadow.
 
 The visible ageing of the wide bridges, repeated large wall/ceiling treatments and overall reference-level material quality remain further art work. Counts and successful traversal do not establish visual acceptance.
 
 ## Coordination
 
 T-162, T-163, T-164, T-165, T-169 and T-174 have received board notes for scope, attachment contracts and findings. Floor integration shipped separately as `802ccc7`; bridge first ageing as `1e8718c`. Parent edits are limited to the crypt caller, dressing helper/test and capture harness. No bridge/physics-generator files are changed here.
+
+## Separate target paintover
+
+`paintover-06-target.png` was made with the built-in ImageGen tool from the final `after/06-descent-overlook.png`; it is **not a runtime screenshot**. The exact prompt is saved in `paintover-prompt.txt`, source/output SHA-256 in `paintover.json`. The target preserves the camera, bridge path, openings and visible lower crossings, while improving oak grain/edge damage, attached fasteners, scanned stone/plaster breakup and a forged open torch basket. These are future asset/material targets; they are not represented as already implemented meshes or maps.
