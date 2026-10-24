@@ -37,12 +37,18 @@ LOOKS = {
                'lumps': 0.018, 'pitch': 0.014, 'grain': 0.003, 'pock': 0.003, 'wear': 4},
     'rubble': {'square': 12.0, 'offset': 0.05, 'chips': (5, 12, 0.02, 0.08), 'splits': (3, 6),
                'lumps': 0.03, 'pitch': 0.018, 'grain': 0.004, 'pock': 0.004, 'wear': 5},
+    # Walling stone: an irregular broken outline but a front face (local y) kept
+    # within a couple of degrees of the wall, as a waller sets it.
+    # Squared and fitted by the mason: near-rectangular beds and joints so
+    # courses close tight, rock-faced and worn round at the arrises.
+    'squared_rubble': {'square': 4.0, 'face': 1.5, 'offset': 0.015, 'chips': (3, 8, 0.01, 0.035), 'splits': (0, 2),
+                       'lumps': 0.028, 'pitch': 0.018, 'grain': 0.004, 'pock': 0.004, 'wear': 9},
     'field': {'square': 16.0, 'offset': 0.06, 'chips': (3, 8, 0.03, 0.09), 'splits': (1, 3),
               'lumps': 0.05, 'pitch': 0.01, 'grain': 0.003, 'pock': 0.003, 'wear': 22},
     'wedge': {'square': 5.0, 'offset': 0.004, 'chips': (2, 5, 0.006, 0.02), 'splits': (0, 1),
               'lumps': 0.02, 'pitch': 0.012, 'grain': 0.003, 'pock': 0.0015, 'wear': 3},
-    'voussoir': {'square': 1.2, 'offset': 0.005, 'chips': (3, 8, 0.01, 0.035), 'splits': (0, 0),
-                 'lumps': 0.014, 'pitch': 0.012, 'grain': 0.003, 'pock': 0.003, 'wear': 4},
+    'voussoir': {'square': 1.2, 'offset': 0.005, 'chips': (4, 9, 0.012, 0.04), 'splits': (0, 0),
+                 'lumps': 0.022, 'pitch': 0.018, 'grain': 0.004, 'pock': 0.004, 'wear': 7},
 }
 
 
@@ -77,7 +83,7 @@ def core_block(rng, size, look: dict, taper: float = 0.0, planes=()) -> bmesh.ty
             if taper and axis == 2:
                 # Wedge: top and bottom faces close towards +x (the thin, driven end).
                 normal = Vector((sign * 0.0 + taper, 0.0, sign)).normalized() if sign > 0 else Vector((taper, 0.0, -1.0)).normalized()
-            normal = _tilt(normal, rng, look['square'])
+            normal = _tilt(normal, rng, look.get('face', look['square']) if axis == 1 else look['square'])
             point = Vector([half[k] * (sign if k == axis else 0.0) for k in range(3)])
             if taper and axis == 2:
                 # The nominal height is the thick (struck) end at -x.
@@ -185,6 +191,9 @@ def make(kind: str, rng, size, name: str = 'Stone', triangles: int = 1200) -> bp
     for _ in range(rng.randint(low, high)):
         # Splitting planes through the block leave fresh, flat-ish facets.
         normal = Vector((rng.uniform(-1, 1), rng.uniform(-1, 1), rng.uniform(-1, 1))).normalized()
+        if 'face' in look:
+            # Walling stone: break the outline, not the face.
+            normal = Vector((normal.x, normal.y * 0.12, normal.z)).normalized()
         reach = abs(normal.x) * size.x + abs(normal.y) * size.y + abs(normal.z) * size.z
         planes.append((normal * reach * rng.uniform(0.32, 0.46), normal))
     if kind == 'wedge':

@@ -1,0 +1,16 @@
+{
+  "passages": [
+    {
+      "file": "passages/entry_0_0.glb",
+      "layout_hash": "20aa6015a7f9f4f7c12b59b90acfe080b07298d8b2b180c7054b532be72d00d4",
+      "route": "entry",
+      "segment": 0,
+      "t0": 0.6043,
+      "t1": 0.7971
+    }
+  ],
+  "rooms": [
+    "antechamber",
+    "entry"
+  ]
+}

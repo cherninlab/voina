@@ -25,7 +25,10 @@ uniform float algae = 0.0;
 uniform float dry_roughness_min = 0.65;
 uniform float wet_roughness = 0.23;
 uniform bool timber = false;
+// Baked stone builds carry metre UVs per stone (UV) and continuous along each wall (UV2).
+uniform bool mapped = false;
 varying vec2 surface_uv;
+varying vec2 wall_metres;
 varying vec3 surface_normal;
 varying vec3 surface_tangent;
 varying vec3 world_position;
@@ -74,6 +77,12 @@ void vertex() {
 		surface_tangent = tangent;
 	}
 	surface_uv = vec2(dot(position, tangent), -dot(position, bitangent)) * scale * vec2(1.0, aspect) + offset;
+	wall_metres = surface_uv / (scale * vec2(1.0, aspect));
+	if (mapped) {
+		surface_tangent = normalize((MODEL_MATRIX * vec4(TANGENT, 0.0)).xyz);
+		surface_uv = UV * scale * vec2(1.0, aspect);
+		wall_metres = UV2;
+	}
 }
 
 void fragment() {
@@ -99,7 +108,7 @@ void fragment() {
 	float medium = noise3(world_position * 0.72 + vec3(9.2, 2.7, 5.1));
 	float stains = noise3(world_position * vec3(0.42, 0.055, 0.42) + vec3(3.7));
 	float exposed = 0.0;
-	vec2 metres = surface_uv / (scale * vec2(1.0, aspect));
+	vec2 metres = wall_metres;
 	vec2 foundation_uv = metres * vec2(0.16, 0.32);
 	if (plaster > 0.0) {
 		float peel = texture(peel_map, metres * 0.125).r;

@@ -1,0 +1,74 @@
+{
+  "ao": {
+    "Mortar_entry_0": {
+      "mean": 0.671,
+      "min": 0.18
+    },
+    "Mortar_entry_1": {
+      "mean": 0.588,
+      "min": 0.18
+    },
+    "Mortar_entry_2": {
+      "mean": 0.642,
+      "min": 0.18
+    },
+    "Mortar_entry_3": {
+      "mean": 0.449,
+      "min": 0.18
+    },
+    "Mortar_entry_4": {
+      "mean": 0.672,
+      "min": 0.18
+    },
+    "Mortar_entry_5": {
+      "mean": 0.597,
+      "min": 0.18
+    },
+    "Mortar_entry_6": {
+      "mean": 0.616,
+      "min": 0.18
+    },
+    "Mortar_entry_7": {
+      "mean": 0.626,
+      "min": 0.18
+    },
+    "Stone_entry_0": {
+      "mean": 0.714,
+      "min": 0.18
+    },
+    "Stone_entry_1": {
+      "mean": 0.721,
+      "min": 0.18
+    },
+    "Stone_entry_2": {
+      "mean": 0.677,
+      "min": 0.18
+    },
+    "Stone_entry_3": {
+      "mean": 0.534,
+      "min": 0.18
+    },
+    "Stone_entry_4": {
+      "mean": 0.719,
+      "min": 0.18
+    },
+    "Stone_entry_5": {
+      "mean": 0.72,
+      "min": 0.18
+    },
+    "Stone_entry_6": {
+      "mean": 0.707,
+      "min": 0.18
+    },
+    "Stone_entry_7": {
+      "mean": 0.721,
+      "min": 0.18
+    }
+  },
+  "blender": "5.2.2 LTS",
+  "files": {
+    "content/environments/procedural_architecture_v1/rooms/entry.glb": "90e280715b5b217a7d5274facd6107811cd77c3f1580a9c52f364db3cfcf77cf"
+  },
+  "id": "entry",
+  "triangles": 90522
+}

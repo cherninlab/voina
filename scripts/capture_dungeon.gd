@@ -1,5 +1,7 @@
 extends SceneTree
 ## Real Mobile/Metal frames; use godot_bg.sh with --dungeon --shading-ephemeral.
+## --stone-rooms replaces the views with every room built stone by stone
+## (add --no-stone-rooms for the same frames of the old box walls).
 
 func _initialize() -> void:
 	capture.call_deferred()
@@ -40,6 +42,8 @@ func capture() -> void:
 		["08-nave-materials", RedDescentLayout.at(Vector3(46, -16.35, 87)), RedDescentLayout.at(Vector3(39, -15.7, 90)), 65.0],
 	]
 	var metrics: Array[Dictionary] = []
+	if "--stone-rooms" in OS.get_cmdline_user_args():
+		views = stone_room_views()
 	if dressing_views:
 		views.append_array([
 			["09-entry-floor", Vector3(-41, 1.65, -24), Vector3(-43, 0.3, -29), 65.0],
@@ -56,6 +60,11 @@ func capture() -> void:
 		camera.make_current()
 		for frame: int in range(36):
 			await process_frame
+		# What sits in the middle of the frame, to trace stray geometry to its builder.
+		var ray: PhysicsRayQueryParameters3D = PhysicsRayQueryParameters3D.create(camera.global_position, camera.global_position - camera.global_basis.z * 60.0)
+		var hit: Dictionary = world.get_world_3d().direct_space_state.intersect_ray(ray)
+		if not hit.is_empty():
+			print("CAPTURE_CENTRE_HIT: %s %s at %s" % [view[0], (hit["collider"] as Node).get_path(), hit["position"]])
 		var intervals: Array[float] = []
 		for frame: int in range(20):
 			var started: int = Time.get_ticks_usec()
@@ -95,3 +104,60 @@ func capture() -> void:
 	for frame: int in range(10):
 		await process_frame
 	quit()
+
+## For each room with a stone build: from the middle at eye height towards each
+## of its four longest walls, a corner view up the full height, and a close look
+## at every wall a route passes through.
+func stone_room_views() -> Array[Array]:
+	var result: Array[Array] = []
+	for room: Dictionary in RedDescentLayout.rooms():
+		var id: String = String(room["id"])
+		if not ResourceLoader.exists(RedDescentGeometry.STONE_ROOMS + id + ".glb"):
+			continue
+		var polygon: PackedVector2Array = room["points"] as PackedVector2Array
+		var floor_y: float = float(room["floor"])
+		var centre: Vector2 = Vector2.ZERO
+		for point: Vector2 in polygon:
+			centre += point / float(polygon.size())
+		var walls: Array[int] = []
+		walls.assign(range(polygon.size()))
+		walls.sort_custom(func(a: int, b: int) -> bool: return polygon[a].distance_to(polygon[(a + 1) % polygon.size()]) > polygon[b].distance_to(polygon[(b + 1) % polygon.size()]))
+		var eye: Vector3 = Vector3(centre.x, floor_y + 1.6, centre.y)
+		for index: int in walls.slice(0, 4):
+			var middle: Vector2 = (polygon[index] + polygon[(index + 1) % polygon.size()]) * 0.5
+			result.append(["%s-wall-%d" % [id, index], eye, Vector3(middle.x, floor_y + 2.2, middle.y), 70.0])
+			var inward: Vector2 = (centre - middle).normalized()
+			var close: Vector2 = middle + inward * 3.2
+			result.append(["%s-wall-%d-close" % [id, index], Vector3(close.x, floor_y + 1.6, close.y), Vector3(middle.x, floor_y + 1.9, middle.y), 62.0])
+		# Walls that face the open shaft, seen from out in the void.
+		for index: int in range(polygon.size()):
+			var middle: Vector2 = (polygon[index] + polygon[(index + 1) % polygon.size()]) * 0.5
+			var outward: Vector2 = (middle - centre).normalized()
+			var probe: Vector2 = middle + outward * 2.0
+			if not Geometry2D.is_point_in_polygon(probe, RedDescentLayout.outline()):
+				continue
+			var from_void: Vector2 = middle + outward * 8.0
+			result.append(["%s-outside-%d" % [id, index], Vector3(from_void.x, floor_y + 2.5, from_void.y), Vector3(middle.x, floor_y + 3.0, middle.y), 70.0])
+		var corner: Vector2 = polygon[walls[0]].lerp(centre, 0.22)
+		result.append(["%s-corner-up" % id, Vector3(corner.x, floor_y + 1.4, corner.y), Vector3(centre.x * 2.0 - corner.x, floor_y + float(room["height"]) * 0.7, centre.y * 2.0 - corner.y), 82.0])
+	# Inside each stone passage, both ways, and from just outside each end.
+	var index: Variant = JSON.parse_string(FileAccess.get_file_as_string(RedDescentGeometry.STONE_INDEX)) if FileAccess.file_exists(RedDescentGeometry.STONE_INDEX) else null
+	if index is Dictionary:
+		for entry: Variant in (index as Dictionary).get("passages", []) as Array:
+			var passage: Dictionary = entry as Dictionary
+			for path: Dictionary in RedDescentLayout.routes():
+				if String(path["id"]) != String(passage["route"]):
+					continue
+				var points: PackedVector3Array = path["points"] as PackedVector3Array
+				var a: Vector3 = points[int(passage["segment"])]
+				var b: Vector3 = points[int(passage["segment"]) + 1]
+				var start: Vector3 = a.lerp(b, float(passage["t0"]))
+				var finish: Vector3 = a.lerp(b, float(passage["t1"]))
+				var middle: Vector3 = (start + finish) * 0.5
+				var along: Vector3 = (finish - start).normalized()
+				var label: String = String(passage["file"]).get_file().get_basename()
+				result.append([label + "-forward", middle - along * 0.6 + Vector3.UP * 1.6, finish + along * 3.0 + Vector3.UP * 1.8, 72.0])
+				result.append([label + "-back", middle + along * 0.6 + Vector3.UP * 1.6, start - along * 3.0 + Vector3.UP * 1.8, 72.0])
+				result.append([label + "-approach", start - along * 4.5 + Vector3.UP * 1.6, middle + Vector3.UP * 1.9, 70.0])
+				result.append([label + "-leave", finish + along * 4.5 + Vector3.UP * 1.6, middle + Vector3.UP * 1.9, 70.0])
+	return result

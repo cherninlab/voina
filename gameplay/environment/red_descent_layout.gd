@@ -65,7 +65,7 @@ static func finish_point() -> Vector3:
 
 static func rooms() -> Array[Dictionary]:
 	return [
-		{"id": "entry", "floor": 0.0, "height": 5.0, "points": PackedVector2Array([Vector2(-48.0, -29.0), Vector2(-42.0, -32.0), Vector2(-34.0, -30.0), Vector2(-32.0, -25.0), Vector2(-34.0, -18.0), Vector2(-40.0, -15.0), Vector2(-46.0, -18.0), Vector2(-48.0, -22.0)])},
+		{"id": "entry", "floor": 0.0, "height": 5.0, "points": PackedVector2Array([Vector2(-48.0, -29.0), Vector2(-42.0, -32.0), Vector2(-34.0, -30.0), Vector2(-31.0, -27.0), Vector2(-34.0, -18.0), Vector2(-40.0, -15.0), Vector2(-46.0, -18.0), Vector2(-48.0, -22.0)])},
 		{"id": "antechamber", "floor": 0.0, "height": 7.0, "points": PackedVector2Array([Vector2(-26.0, -31.0), Vector2(-18.0, -31.0), Vector2(-16.0, -29.0), Vector2(-16.0, -19.0), Vector2(-18.0, -17.0), Vector2(-26.0, -17.0), Vector2(-28.0, -19.0), Vector2(-28.0, -29.0)])},
 		{"id": "restraint", "floor": -4.0, "height": 14.0, "points": PackedVector2Array([Vector2(29.0, -23.0), Vector2(39.0, -23.0), Vector2(42.0, -20.0), Vector2(42.0, -5.0), Vector2(39.0, -2.0), Vector2(29.0, -2.0), Vector2(26.0, -5.0), Vector2(26.0, -20.0)])},
 		{"id": "cells", "floor": -4.0, "height": 5.0, "points": PackedVector2Array([Vector2(32.0, 0.0), Vector2(40.0, 0.0), Vector2(42.0, 2.0), Vector2(42.0, 10.0), Vector2(40.0, 12.0), Vector2(32.0, 12.0), Vector2(30.0, 10.0), Vector2(30.0, 2.0)])},

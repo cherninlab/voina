@@ -1,0 +1,74 @@
+{
+  "ao": {
+    "Mortar_antechamber_0": {
+      "mean": 0.657,
+      "min": 0.18
+    },
+    "Mortar_antechamber_1": {
+      "mean": 0.626,
+      "min": 0.18
+    },
+    "Mortar_antechamber_2": {
+      "mean": 0.647,
+      "min": 0.18
+    },
+    "Mortar_antechamber_3": {
+      "mean": 0.616,
+      "min": 0.18
+    },
+    "Mortar_antechamber_4": {
+      "mean": 0.537,
+      "min": 0.18
+    },
+    "Mortar_antechamber_5": {
+      "mean": 0.629,
+      "min": 0.18
+    },
+    "Mortar_antechamber_6": {
+      "mean": 0.369,
+      "min": 0.18
+    },
+    "Mortar_antechamber_7": {
+      "mean": 0.625,
+      "min": 0.18
+    },
+    "Stone_antechamber_0": {
+      "mean": 0.722,
+      "min": 0.18
+    },
+    "Stone_antechamber_1": {
+      "mean": 0.67,
+      "min": 0.18
+    },
+    "Stone_antechamber_2": {
+      "mean": 0.74,
+      "min": 0.18
+    },
+    "Stone_antechamber_3": {
+      "mean": 0.709,
+      "min": 0.18
+    },
+    "Stone_antechamber_4": {
+      "mean": 0.649,
+      "min": 0.18
+    },
+    "Stone_antechamber_5": {
+      "mean": 0.671,
+      "min": 0.18
+    },
+    "Stone_antechamber_6": {
+      "mean": 0.598,
+      "min": 0.18
+    },
+    "Stone_antechamber_7": {
+      "mean": 0.678,
+      "min": 0.18
+    }
+  },
+  "blender": "5.2.2 LTS",
+  "files": {
+    "content/environments/procedural_architecture_v1/rooms/antechamber.glb": "e62a2d03873ccf04f3ec8693fbcf64716f553ccc62e236e494abb5cb7668ef3a"
+  },
+  "id": "antechamber",
+  "triangles": 161562
+}

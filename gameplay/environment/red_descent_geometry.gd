@@ -17,6 +17,10 @@ var surfaces: Dictionary[String, PackedVector3Array] = {}
 var surface_materials: Dictionary[String, String] = {}
 var collision_faces: PackedVector3Array = PackedVector3Array()
 var ribbon_edges: Dictionary[String, PackedVector3Array] = {}
+const STONE_ROOMS: String = "res://content/environments/procedural_architecture_v1/rooms/"
+const STONE_INDEX: String = "res://content/environments/procedural_architecture_v1/index.json"
+## Passages built stone by stone (index.json "passages"), current for this layout.
+var stone_passages: Array[Dictionary] = []
 var cube_faces: PackedVector3Array = BoxMesh.new().get_faces()
 var fort_source: Node3D
 
@@ -26,6 +30,7 @@ func build() -> void:
 	fort_source = load("res://content/environments/dungeon_geometry_v2/modular_fort_01/modular_fort_01_2k.gltf").instantiate() as Node3D
 	for room: Dictionary in rooms:
 		build_room(room)
+	load_stone_passages()
 	for index: int in range(paths.size()):
 		build_path(paths[index], index < RedDescentLayout.MAIN_PATHS)
 	build_vault(RedDescentLayout.outline(), false)
@@ -150,6 +155,70 @@ func junction(point: Vector3, own_path: String, own_segment: int) -> bool:
 				return true
 	return false
 
+## Vaulted passages built with the rooms (scripts/art/build_architecture.py):
+## each covers a stretch of an enclosed route between two room walls, and its
+## doorway arches are the ends of its own vault.
+func load_stone_passages() -> void:
+	if "--no-stone-rooms" in OS.get_cmdline_user_args() or not FileAccess.file_exists(STONE_INDEX):
+		return
+	var index: Variant = JSON.parse_string(FileAccess.get_file_as_string(STONE_INDEX))
+	if not index is Dictionary:
+		return
+	for entry: Variant in (index as Dictionary).get("passages", []) as Array:
+		var passage: Dictionary = entry as Dictionary
+		for path: Dictionary in paths:
+			if String(path["id"]) != String(passage["route"]):
+				continue
+			if DungeonStructure.layout_hash(path, route_edges(path)) != String(passage.get("layout_hash", "")):
+				push_warning("Stale stone passage %s; rerun scripts/art/build_architecture.py" % passage["file"])
+				continue
+			var built: Node3D = (load("res://content/environments/procedural_architecture_v1/" + String(passage["file"])) as PackedScene).instantiate() as Node3D
+			built.name = "StonePassage_" + String(passage["file"]).get_file().get_basename()
+			stone_materials(built)
+			add_child(built)
+			stone_passages.append(passage)
+
+## True where a stone build already encloses this point of an enclosed route:
+## inside a stone passage's stretch, or at a stone room's doorway.
+func stone_enclosed(path: Dictionary, segment: int, t: float, point: Vector3) -> bool:
+	for passage: Dictionary in stone_passages:
+		if String(passage["route"]) == String(path["id"]) and int(passage["segment"]) == segment and t > float(passage["t0"]) - 0.02 and t < float(passage["t1"]) + 0.02:
+			return true
+	for room: Dictionary in rooms:
+		if absf(point.y - float(room["floor"])) > 0.6 or not ResourceLoader.exists(STONE_ROOMS + String(room["id"]) + ".glb") or "--no-stone-rooms" in OS.get_cmdline_user_args():
+			continue
+		var outline: PackedVector2Array = room["points"] as PackedVector2Array
+		var plan: Vector2 = Vector2(point.x, point.z)
+		if Geometry2D.is_point_in_polygon(plan, outline):
+			return true
+		for index: int in range(outline.size()):
+			if Geometry2D.get_closest_point_to_segment(plan, outline[index], outline[(index + 1) % outline.size()]).distance_to(plan) < 1.6:
+				return true
+	return false
+
+func stone_materials(built: Node3D) -> void:
+	if not materials.has("built_stone"):
+		# The same rock scan, read through each stone's own baked coordinates.
+		var mapped: ShaderMaterial = (materials["rock"] as ShaderMaterial).duplicate() as ShaderMaterial
+		mapped.set_shader_parameter("mapped", true)
+		materials["built_stone"] = mapped
+	for node: Node in built.find_children("*", "MeshInstance3D", true, false):
+		var visual: MeshInstance3D = node as MeshInstance3D
+		visual.material_override = materials["built_stone"] if visual.name.begins_with("Stone") else materials["plaster"]
+
+## A room built stone by stone in Blender (scripts/art/build_architecture.py):
+## its walls, honest openings and collision replace the boxes, niches,
+## pilasters and arches build_room would otherwise make for it.
+func stone_room(room: Dictionary) -> bool:
+	var file: String = STONE_ROOMS + String(room["id"]) + ".glb"
+	if not ResourceLoader.exists(file) or "--no-stone-rooms" in OS.get_cmdline_user_args():
+		return false
+	var built: Node3D = (load(file) as PackedScene).instantiate() as Node3D
+	built.name = "StoneRoom_" + String(room["id"])
+	stone_materials(built)
+	add_child(built)
+	return true
+
 func build_room(room: Dictionary) -> void:
 	var polygon: PackedVector2Array = room["points"] as PackedVector2Array
 	var y: float = float(room["floor"])
@@ -170,7 +239,10 @@ func build_room(room: Dictionary) -> void:
 		(node as MeshInstance3D).cast_shadow = GeometryInstance3D.SHADOW_CASTING_SETTING_OFF
 	polygon_surface(polygon, y - 0.5, "stone", false)
 	polygon_surface(polygon, y + height, "collision" if String(room["id"]) == "nave" else "stone", false)
+	var stone_built: bool = stone_room(room)
 	for index: int in range(polygon.size()):
+		if stone_built:
+			continue
 		var a: Vector2 = polygon[index]
 		var b: Vector2 = polygon[(index + 1) % polygon.size()]
 		var delta: Vector2 = b - a
@@ -339,7 +411,8 @@ func build_path(path: Dictionary, light_route: bool) -> void:
 				if not sculpted_deck:
 					quad(a - edge_a, a - edge_a - Vector3.UP * 0.32, b - edge_b - Vector3.UP * 0.32, b - edge_b, -side, "stone")
 					quad(a + edge_a, b + edge_b, b + edge_b - Vector3.UP * 0.32, a + edge_a - Vector3.UP * 0.32, side, "stone")
-				if enclosed:
+				var segment_t: float = (float(step) + 0.5) / float(steps)
+				if enclosed and not stone_enclosed(path, index, segment_t, at):
 					var roof: float = 3.7 if String(path["id"]) in ["root_tunnel", "cave_bypass"] else 4.2
 					for sign_value: float in [-1.0, 1.0]:
 						var edge: Vector3 = at + side * sign_value * (width * 0.5 + 0.3)
@@ -552,26 +625,49 @@ func build_vault(polygon: PackedVector2Array, central: bool) -> void:
 		var basis: Basis = Basis(Vector3.UP, -atan2(tangent.y, tangent.x))
 		# Collision stays at the actual wall outline; blind reveals occupy the facing.
 		var count: int = maxi(1, roundi(delta.length() / 4.8))
+		var rooms_in_wall: Array[Dictionary] = room_cuts(a, b)
 		for column: int in range(count):
 			var center: Vector2 = a.lerp(b, (float(column) + 0.5) / float(count))
 			var width: float = delta.length() / float(count)
+			# Rooms standing in the outline: their own walls bound the shaft
+			# there, so this wall stops at them over the room's height.
+			var bands: Array[Vector2] = []
+			var beside: Array[Array] = []
+			var c0: float = float(column) / float(count)
+			var c1: float = float(column + 1) / float(count)
+			for cut: Dictionary in rooms_in_wall:
+				if float(cut["t1"]) <= c0 or float(cut["t0"]) >= c1:
+					continue
+				bands.append(cut["band"] as Vector2)
+				for part: Vector2 in [Vector2(c0, maxf(c0, float(cut["t0"]))), Vector2(minf(c1, float(cut["t1"])), c1)]:
+					if (part.y - part.x) * delta.length() > 0.05:
+						beside.append([part, cut["band"]])
 			var doors: Array[float] = []
 			if not central:
-				doors = portal_levels(center, width * 0.5)
-			var spans: Array[Vector2] = [Vector2(-48, 14)]
+				for level: float in portal_levels(center, width * 0.5):
+					if not bands.any(func(band: Vector2) -> bool: return level > band.x and level < band.y):
+						doors.append(level)
+			var gaps: Array[Vector2] = bands.duplicate()
 			for floor_y: float in doors:
-				var next: Array[Vector2] = []
-				for span: Vector2 in spans:
-					if floor_y + 4.8 <= span.x or floor_y - 0.25 >= span.y:
-						next.append(span)
-					else:
-						if floor_y - 0.25 > span.x:
-							next.append(Vector2(span.x, floor_y - 0.25))
-						if floor_y + 4.8 < span.y:
-							next.append(Vector2(floor_y + 4.8, span.y))
-				spans = next
+				gaps.append(Vector2(floor_y - 0.25, floor_y + 4.8))
+			var spans: Array[Vector2] = cut_spans([Vector2(-48, 14)], gaps)
+			var backing: float = 1.3 if central else 0.45
 			for span: Vector2 in spans:
-				piece(Vector3(width + 0.05, span.y - span.x, 0.8), Vector3(center.x + normal.x * (1.3 if central else 0.45), (span.x + span.y) * 0.5, center.y + normal.y * (1.3 if central else 0.45)), "core_stone" if central else "dark", basis, true)
+				piece(Vector3(width + 0.05, span.y - span.x, 0.8), Vector3(center.x + normal.x * backing, (span.x + span.y) * 0.5, center.y + normal.y * backing), "core_stone" if central else "dark", basis, true)
+			for part: Array in beside:
+				var range_t: Vector2 = part[0] as Vector2
+				var band: Vector2 = part[1] as Vector2
+				var middle: Vector2 = a.lerp(b, (range_t.x + range_t.y) * 0.5)
+				var part_width: float = (range_t.y - range_t.x) * delta.length()
+				# A route may still pass through the wall beside the room.
+				var part_gaps: Array[Vector2] = []
+				for level: float in ([] as Array[float]) if central else portal_levels(middle, part_width * 0.5):
+					if level > band.x and level < band.y:
+						part_gaps.append(Vector2(level - 0.25, level + 4.8))
+						arch(Vector3(middle.x, level, middle.y), tangent, part_width * 0.48)
+				for span: Vector2 in cut_spans([band], part_gaps):
+					piece(Vector3(part_width, span.y - span.x, 0.8), Vector3(middle.x + normal.x * backing, (span.x + span.y) * 0.5, middle.y + normal.y * backing), "core_stone" if central else "dark", basis, true)
+					piece(Vector3(part_width, span.y - span.x, 1.0), Vector3(middle.x + normal.x * (0.5 if central else 0.0), (span.x + span.y) * 0.5, middle.y + normal.y * (0.5 if central else 0.0)), "plaster" if central else "wall", basis)
 			for door_y: float in doors:
 				arch(Vector3(center.x, door_y, center.y), tangent, width * 0.48)
 			for row: int in range(10):
@@ -579,25 +675,13 @@ func build_vault(polygon: PackedVector2Array, central: bool) -> void:
 				var at: Vector3 = Vector3(center.x, y, center.y) + Vector3(normal.x, 0, normal.y) * (0.5 if central else 0.0)
 				var facing: Basis = basis * Basis(Vector3.UP, PI) if central else basis
 				var doorway: bool = false
-				for floor_y: float in doors:
-					if y < floor_y + 4.8 and y + 6.0 > floor_y - 0.25:
+				for gap: Vector2 in gaps:
+					if y < gap.y and y + 6.0 > gap.x:
 						doorway = true
 				var wall_material: String = "plaster" if central else "wall"
 				if doorway:
-					# A portal removes only its own height, never the entire six-metre row.
-					var remains: Array[Vector2] = [Vector2(y, y + 6.0)]
-					for floor_y: float in doors:
-						var next: Array[Vector2] = []
-						for span: Vector2 in remains:
-							if floor_y + 4.8 <= span.x or floor_y - 0.25 >= span.y:
-								next.append(span)
-							else:
-								if floor_y - 0.25 > span.x:
-									next.append(Vector2(span.x, floor_y - 0.25))
-								if floor_y + 4.8 < span.y:
-									next.append(Vector2(floor_y + 4.8, span.y))
-						remains = next
-					for span: Vector2 in remains:
+					# A portal or a room removes only its own height, never the entire six-metre row.
+					for span: Vector2 in cut_spans([Vector2(y, y + 6.0)], gaps):
 						piece(Vector3(width + 0.04, span.y - span.x, 1.0), Vector3(at.x, (span.x + span.y) * 0.5, at.z), wall_material, basis)
 					continue
 				# Continuous wall mass replaces complete GLB panels laid over the facade.
@@ -619,6 +703,38 @@ func build_vault(polygon: PackedVector2Array, central: bool) -> void:
 	polygon_surface(polygon, 14, "stone", central)
 	if central:
 		polygon_surface(polygon, -48, "dark", false)
+
+## Spans minus gaps (both as Vector2(from, to)).
+static func cut_spans(spans: Array[Vector2], gaps: Array[Vector2]) -> Array[Vector2]:
+	var result: Array[Vector2] = spans.duplicate()
+	for gap: Vector2 in gaps:
+		var next: Array[Vector2] = []
+		for span: Vector2 in result:
+			if gap.y <= span.x or gap.x >= span.y:
+				next.append(span)
+			else:
+				if gap.x > span.x:
+					next.append(Vector2(span.x, gap.x))
+				if gap.y < span.y:
+					next.append(Vector2(gap.y, span.y))
+		result = next
+	return result
+
+## Rooms an outline wall a->b runs into: {t0, t1} along it and the room's
+## height band. Rooms are cut into the rock at the shaft's edge; where one
+## stands in the outline, its own walls are the shaft wall.
+func room_cuts(a: Vector2, b: Vector2) -> Array[Dictionary]:
+	var result: Array[Dictionary] = []
+	var length: float = a.distance_to(b)
+	for room: Dictionary in rooms:
+		var grown: Array[PackedVector2Array] = Geometry2D.offset_polygon(room["points"] as PackedVector2Array, 0.45, Geometry2D.JOIN_MITER)
+		if grown.is_empty():
+			continue
+		for inside: PackedVector2Array in Geometry2D.intersect_polyline_with_polygon(PackedVector2Array([a, b]), grown[0]):
+			var t0: float = inside[0].distance_to(a) / length
+			var t1: float = inside[inside.size() - 1].distance_to(a) / length
+			result.append({"t0": minf(t0, t1), "t1": maxf(t0, t1), "band": Vector2(float(room["floor"]) - 0.6, float(room["floor"]) + float(room["height"]) + 0.6)})
+	return result
 
 func arch_spandrel(at: Vector3, basis: Basis, radius: float, material: String, spring: float = 2.9, top: float = 6.0, depth: float = 1.0) -> void:
 	# The curved reveal and masonry above it form one wall, including the soffit.
