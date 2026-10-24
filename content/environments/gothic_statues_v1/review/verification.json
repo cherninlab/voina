@@ -1,0 +1,26 @@
+{
+  "stage": "image-only",
+  "approval": "pending",
+  "current_images": 18,
+  "all_distinct": true,
+  "all_native_bytes_preserved": true,
+  "all_rgba_with_transparency": true,
+  "visual_review": "All eighteen native outputs inspected individually in the generation tool; all-18 overview inspected. Revised references use classical anatomy/drapery and unpatterned plinths. No additional cathedral backdrops, cropped body parts, or lettering found. Number 16 intentionally depicts a damaged headless statue.",
+  "engine_import": {
+    "exit_code": 0,
+    "errors": 0,
+    "warnings": 0,
+    "version": "4.7.2.stable.official.ed1daf0bf",
+    "log": "review/editor-import.log"
+  },
+  "smoke_test": {
+    "passed": true,
+    "log": "review/smoke-test.log",
+    "script_errors": false,
+    "known_shutdown_warnings": true,
+    "exit_code": 0
+  },
+  "cl3d_generated": false,
+  "dungeon_placement": false,
+  "tested_base_commit": "38757fe9a56681779511e6e612f5de44c62050bb"
+}

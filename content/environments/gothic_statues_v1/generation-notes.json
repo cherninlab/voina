@@ -1,0 +1,10 @@
+{
+  "04-blind-seer": {
+    "attempt_1": "No image returned: output safety filter rejected. Benign museum-statue prompt revised to explicitly cover shoulders and torso.",
+    "attempt_2": "image returned and saved"
+  },
+  "16-headless-martyr": {
+    "attempt_1": "No image returned: output safety filter rejected. Revised benign damaged museum-statue concept to a fully draped mantle.",
+    "attempt_2": "image returned and saved"
+  }
+}

@@ -1,0 +1,412 @@
+{
+  "task": "T-187",
+  "tool": "built-in image_gen",
+  "stage": "image approval only",
+  "direction_revision": 2,
+  "approval": "pending",
+  "counts": {
+    "current_candidates": 18,
+    "human_allegorical": 11,
+    "bosch_hybrids": 4,
+    "caprine": 3,
+    "superseded_ornamented_studies": 6
+  },
+  "assets": [
+    {
+      "id": "01-veiled-oracle",
+      "title": "Veiled Oracle",
+      "family": "human",
+      "reference": "references/01-veiled-oracle.png",
+      "sha256": "0b97ab9bd1fafeea52afd66770f6e4a5f20cb84cf63bcf979697d427960aa375",
+      "prompt": "prompts/01-veiled-oracle.txt",
+      "prompt_sha256": "3cb91a0adf011e606ca050baec9111941cc54f88d9747a38c641a8da621ff74f",
+      "dimensions_px": [
+        1024,
+        1536
+      ],
+      "mode": "RGBA",
+      "alpha_extrema": [
+        0,
+        254
+      ],
+      "transparent_fraction": 0.666814,
+      "byte_identical_native_output": true,
+      "approval": "pending",
+      "cl3d_generated": false
+    },
+    {
+      "id": "02-bound-titan",
+      "title": "Bound Titan",
+      "family": "human",
+      "reference": "references/02-bound-titan.png",
+      "sha256": "5ad82717049b3e89e2afa881004992cffc321afc6aa06c5ab1096e4e37930375",
+      "prompt": "prompts/02-bound-titan.txt",
+      "prompt_sha256": "8a8879e82e163e67a365ed6acceaf8aa7b104b3d71f410706e4666c58fcf8d3d",
+      "dimensions_px": [
+        1024,
+        1536
+      ],
+      "mode": "RGBA",
+      "alpha_extrema": [
+        0,
+        254
+      ],
+      "transparent_fraction": 0.648193,
+      "byte_identical_native_output": true,
+      "approval": "pending",
+      "cl3d_generated": false
+    },
+    {
+      "id": "03-kneeling-mourner",
+      "title": "Kneeling Mourner",
+      "family": "human",
+      "reference": "references/03-kneeling-mourner.png",
+      "sha256": "0243bb0dea8c7bf32fb6e49f3580fa91eb02de9d12fd16c7daa214aa0895c7b2",
+      "prompt": "prompts/03-kneeling-mourner.txt",
+      "prompt_sha256": "1c34dc66da06971dcde8c63b975c0cf5646282a875509d834767a6c406d585c4",
+      "dimensions_px": [
+        1024,
+        1536
+      ],
+      "mode": "RGBA",
+      "alpha_extrema": [
+        0,
+        254
+      ],
+      "transparent_fraction": 0.364906,
+      "byte_identical_native_output": true,
+      "approval": "pending",
+      "cl3d_generated": false
+    },
+    {
+      "id": "04-blind-seer",
+      "title": "Blind Seer",
+      "family": "human",
+      "reference": "references/04-blind-seer.png",
+      "sha256": "e635bb91e1adfd33504ce95dfcb84642e2f79662337e499860e000c563825792",
+      "prompt": "prompts/04-blind-seer.txt",
+      "prompt_sha256": "8b69471614be347d46c30bc71a528f5836dac09c5e35a5bfb9a468b1644520b3",
+      "dimensions_px": [
+        1024,
+        1536
+      ],
+      "mode": "RGBA",
+      "alpha_extrema": [
+        0,
+        254
+      ],
+      "transparent_fraction": 0.638795,
+      "byte_identical_native_output": true,
+      "approval": "pending",
+      "cl3d_generated": false
+    },
+    {
+      "id": "05-sorrowing-angel",
+      "title": "Sorrowing Angel",
+      "family": "human",
+      "reference": "references/05-sorrowing-angel.png",
+      "sha256": "ae477a90eaabc4cb51c4747d528508b6a5f117cce8ba73f46841acf4b5e0e945",
+      "prompt": "prompts/05-sorrowing-angel.txt",
+      "prompt_sha256": "c493e44494cc6235ff0cf283d0fbd8f5cb9123f6f37c0d6f9454e0629fef5005",
+      "dimensions_px": [
+        1024,
+        1536
+      ],
+      "mode": "RGBA",
+      "alpha_extrema": [
+        0,
+        254
+      ],
+      "transparent_fraction": 0.587959,
+      "byte_identical_native_output": true,
+      "approval": "pending",
+      "cl3d_generated": false
+    },
+    {
+      "id": "06-vessel-bearer",
+      "title": "Vessel Bearer",
+      "family": "human",
+      "reference": "references/06-vessel-bearer.png",
+      "sha256": "3e445356978d0ff92390aabcf1b5f1eb0adfa2caea10bf596178354e351dfac3",
+      "prompt": "prompts/06-vessel-bearer.txt",
+      "prompt_sha256": "188c18a40c7289c0efa350aba940c94ab42c7add78d876cb9c799f77a0512871",
+      "dimensions_px": [
+        1024,
+        1536
+      ],
+      "mode": "RGBA",
+      "alpha_extrema": [
+        0,
+        254
+      ],
+      "transparent_fraction": 0.475397,
+      "byte_identical_native_output": true,
+      "approval": "pending",
+      "cl3d_generated": false
+    },
+    {
+      "id": "07-chained-philosopher",
+      "title": "Chained Philosopher",
+      "family": "human",
+      "reference": "references/07-chained-philosopher.png",
+      "sha256": "95f784ceee3ba7545226d35b0346b90a43341cfe713329ad3757fc975d288707",
+      "prompt": "prompts/07-chained-philosopher.txt",
+      "prompt_sha256": "9ee03218935b650ecdbc1102a40344df2cf0ad914edbc77f4a983f90cdff4cd1",
+      "dimensions_px": [
+        1024,
+        1536
+      ],
+      "mode": "RGBA",
+      "alpha_extrema": [
+        0,
+        254
+      ],
+      "transparent_fraction": 0.323351,
+      "byte_identical_native_output": true,
+      "approval": "pending",
+      "cl3d_generated": false
+    },
+    {
+      "id": "08-silent-sibyl",
+      "title": "Silent Sibyl",
+      "family": "human",
+      "reference": "references/08-silent-sibyl.png",
+      "sha256": "4a85aa9566cf02320a272e71d400f033fd8650721551e43900f1fd9f0cb4cd82",
+      "prompt": "prompts/08-silent-sibyl.txt",
+      "prompt_sha256": "891c4ae4669c45231411e79e94f3cc47143ef7aede5b1e9cea2bbd33d052a70c",
+      "dimensions_px": [
+        1024,
+        1536
+      ],
+      "mode": "RGBA",
+      "alpha_extrema": [
+        0,
+        254
+      ],
+      "transparent_fraction": 0.680131,
+      "byte_identical_native_output": true,
+      "approval": "pending",
+      "cl3d_generated": false
+    },
+    {
+      "id": "09-vessel-headed-pilgrim",
+      "title": "Vessel-Headed Pilgrim",
+      "family": "bosch",
+      "reference": "references/09-vessel-headed-pilgrim.png",
+      "sha256": "16c7267cf3f8bee1a5980a3d6de84489aa2d20afb3f820cfc52b4d11cf27eb12",
+      "prompt": "prompts/09-vessel-headed-pilgrim.txt",
+      "prompt_sha256": "acd21ba7b7894d3b8cf6efbee418c52dbb182f3c347ee01e770ee2145e1d0af5",
+      "dimensions_px": [
+        1024,
+        1536
+      ],
+      "mode": "RGBA",
+      "alpha_extrema": [
+        0,
+        254
+      ],
+      "transparent_fraction": 0.613143,
+      "byte_identical_native_output": true,
+      "approval": "pending",
+      "cl3d_generated": false
+    },
+    {
+      "id": "10-bird-masked-confessor",
+      "title": "Bird-Masked Confessor",
+      "family": "bosch",
+      "reference": "references/10-bird-masked-confessor.png",
+      "sha256": "5f99ff9bfc83712b766cfd074ab2e08ef6761240076234c99719a9ae3dfeeb22",
+      "prompt": "prompts/10-bird-masked-confessor.txt",
+      "prompt_sha256": "433e0583777c4807f90d5900f13e3d98591a667c8360b85f2245e2064bbc8322",
+      "dimensions_px": [
+        1024,
+        1536
+      ],
+      "mode": "RGBA",
+      "alpha_extrema": [
+        0,
+        254
+      ],
+      "transparent_fraction": 0.648253,
+      "byte_identical_native_output": true,
+      "approval": "pending",
+      "cl3d_generated": false
+    },
+    {
+      "id": "11-owl-judge",
+      "title": "Owl Judge",
+      "family": "bosch",
+      "reference": "references/11-owl-judge.png",
+      "sha256": "1ef9e54fd1a3ced0c4863156ac81e2defaaa3c379555f47608e6953a79b7acc9",
+      "prompt": "prompts/11-owl-judge.txt",
+      "prompt_sha256": "d13ef71cc3223662a77fbc05e8af894f45d0f785169b78ff639fb21a280fd733",
+      "dimensions_px": [
+        1254,
+        1254
+      ],
+      "mode": "RGBA",
+      "alpha_extrema": [
+        0,
+        255
+      ],
+      "transparent_fraction": 0.494282,
+      "byte_identical_native_output": true,
+      "approval": "pending",
+      "cl3d_generated": false
+    },
+    {
+      "id": "12-double-faced-listener",
+      "title": "Double-Faced Listener",
+      "family": "bosch",
+      "reference": "references/12-double-faced-listener.png",
+      "sha256": "4bdb503fce05afe406794aafda8ec66ea552e56652fabac0b743db5b0a51ecd1",
+      "prompt": "prompts/12-double-faced-listener.txt",
+      "prompt_sha256": "f483563bedaeec645899b6e52f591425cd11e4e214ffcd92f7e2b5da83c6f605",
+      "dimensions_px": [
+        1024,
+        1536
+      ],
+      "mode": "RGBA",
+      "alpha_extrema": [
+        0,
+        254
+      ],
+      "transparent_fraction": 0.613489,
+      "byte_identical_native_output": true,
+      "approval": "pending",
+      "cl3d_generated": false
+    },
+    {
+      "id": "13-goat-philosopher",
+      "title": "Goat Philosopher",
+      "family": "goat",
+      "reference": "references/13-goat-philosopher.png",
+      "sha256": "9652dd18007e656df708041a77cb1bbc518f23ed98055fac769eb98ca6521e1d",
+      "prompt": "prompts/13-goat-philosopher.txt",
+      "prompt_sha256": "cc0beea6f2eed0e0f0ce555b0e8ed8d66a124b20087b94967c558fe23f2fe578",
+      "dimensions_px": [
+        1024,
+        1536
+      ],
+      "mode": "RGBA",
+      "alpha_extrema": [
+        0,
+        254
+      ],
+      "transparent_fraction": 0.448741,
+      "byte_identical_native_output": true,
+      "approval": "pending",
+      "cl3d_generated": false
+    },
+    {
+      "id": "14-ram-offerer",
+      "title": "Ram Offerer",
+      "family": "goat",
+      "reference": "references/14-ram-offerer.png",
+      "sha256": "af917c7d430472af6170de3fe1d777a8317082f854f8b18a77ec2b817d8695a8",
+      "prompt": "prompts/14-ram-offerer.txt",
+      "prompt_sha256": "efe4d99be11f0ffe6a9820b0a30cbdc3aa7d1bdd1eea04ef88c77dbafbd553ab",
+      "dimensions_px": [
+        1145,
+        1374
+      ],
+      "mode": "RGBA",
+      "alpha_extrema": [
+        0,
+        255
+      ],
+      "transparent_fraction": 0.52162,
+      "byte_identical_native_output": true,
+      "approval": "pending",
+      "cl3d_generated": false
+    },
+    {
+      "id": "15-sleeping-caprine",
+      "title": "Sleeping Caprine",
+      "family": "goat",
+      "reference": "references/15-sleeping-caprine.png",
+      "sha256": "afb442e7fcb482ab97e4df8323aaf1a4d1a626f777815cca320e441dc6b8cc6e",
+      "prompt": "prompts/15-sleeping-caprine.txt",
+      "prompt_sha256": "b300cb088410fc920e150211eae1e937c1ace3fb6cea071d186235a56acae6d1",
+      "dimensions_px": [
+        1536,
+        1024
+      ],
+      "mode": "RGBA",
+      "alpha_extrema": [
+        0,
+        254
+      ],
+      "transparent_fraction": 0.37876,
+      "byte_identical_native_output": true,
+      "approval": "pending",
+      "cl3d_generated": false
+    },
+    {
+      "id": "16-headless-martyr",
+      "title": "Headless Martyr",
+      "family": "human",
+      "reference": "references/16-headless-martyr.png",
+      "sha256": "929bbbdd959625a83bb5e5b84d1130483cba294775df5fab4c503338f251627a",
+      "prompt": "prompts/16-headless-martyr.txt",
+      "prompt_sha256": "b12a9c1700afeee55b05180b3d17533d3e3b8663f9204abe73393020ea86a91f",
+      "dimensions_px": [
+        1024,
+        1536
+      ],
+      "mode": "RGBA",
+      "alpha_extrema": [
+        0,
+        254
+      ],
+      "transparent_fraction": 0.563501,
+      "byte_identical_native_output": true,
+      "approval": "pending",
+      "cl3d_generated": false
+    },
+    {
+      "id": "17-burdened-caryatid",
+      "title": "Burdened Caryatid",
+      "family": "human",
+      "reference": "references/17-burdened-caryatid.png",
+      "sha256": "9f4b568b651685bc11184b16cd7bcae098cc46af36af3f40e448ee00c49437e5",
+      "prompt": "prompts/17-burdened-caryatid.txt",
+      "prompt_sha256": "ee5af3a9122511ce2ad75892a41d63270b471f92df65d69b2425510cffc6a18a",
+      "dimensions_px": [
+        1024,
+        1536
+      ],
+      "mode": "RGBA",
+      "alpha_extrema": [
+        0,
+        254
+      ],
+      "transparent_fraction": 0.610948,
+      "byte_identical_native_output": true,
+      "approval": "pending",
+      "cl3d_generated": false
+    },
+    {
+      "id": "18-twinned-penitents",
+      "title": "Twinned Penitents",
+      "family": "human",
+      "reference": "references/18-twinned-penitents.png",
+      "sha256": "3731e070c120a75092ec5b1f1b84b04071f14a63c46814df54bd988ea3b72efe",
+      "prompt": "prompts/18-twinned-penitents.txt",
+      "prompt_sha256": "1b9dedbdf73b53e90cc03099308ff10ada69f32ecc92841d01e7b269a1cbd46a",
+      "dimensions_px": [
+        1024,
+        1536
+      ],
+      "mode": "RGBA",
+      "alpha_extrema": [
+        0,
+        254
+      ],
+      "transparent_fraction": 0.574451,
+      "byte_identical_native_output": true,
+      "approval": "pending",
+      "cl3d_generated": false
+    }
+  ]
+}

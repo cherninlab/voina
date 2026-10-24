@@ -1,0 +1,10 @@
+{
+  "id": "15-sleeping-caprine",
+  "title": "Sleeping Caprine",
+  "tool": "built-in image_gen",
+  "direction_revision": 2,
+  "transparent_background_requested": true,
+  "native_path": "/Users/theochernin/.codex/generated_images/01a16f6c-7c14-7a41-a209-467058cf0e62/exec-e7d5bf00-c478-4164-9fb6-33a6af2ae04f.png",
+  "workspace_path": "references/15-sleeping-caprine.png",
+  "output_hint": "Generated images are saved to /Users/theochernin/.codex/generated_images/01a16f6c-7c14-7a41-a209-467058cf0e62 as /Users/theochernin/.codex/generated_images/01a16f6c-7c14-7a41-a209-467058cf0e62/exec-e7d5bf00-c478-4164-9fb6-33a6af2ae04f.png by default.\nIf you need to use a generated image at another path, copy it and leave the original in place unless the user explicitly asks you to delete it.\nThe generated image is already displayed to the user. There is no need to render it in the final response as a Markdown image or file link."
+}
