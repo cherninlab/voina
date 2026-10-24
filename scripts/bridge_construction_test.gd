@@ -157,7 +157,9 @@ func missing_boards(route: String) -> Array[PackedVector2Array]:
 			var polygon: PackedVector2Array = PackedVector2Array()
 			for corner: Variant in quad as Array:
 				polygon.append(Vector2(float((corner as Array)[0]), float((corner as Array)[1])))
-			result.append(polygon)
+			# A few centimetres of tolerance around the recorded gap.
+			var grown: Array[PackedVector2Array] = Geometry2D.offset_polygon(polygon, 0.03)
+			result.append(grown[0] if not grown.is_empty() else polygon)
 	return result
 
 func missing_board(gone: Array[PackedVector2Array], at: Vector3) -> bool:

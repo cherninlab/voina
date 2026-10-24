@@ -1,59 +1,59 @@
 {
   "ao": {
     "Iron_0": {
-      "mean": 0.476,
+      "mean": 0.481,
       "min": 0.18
     },
     "Iron_1": {
-      "mean": 0.442,
+      "mean": 0.418,
       "min": 0.18
     },
     "Iron_2": {
-      "mean": 0.468,
+      "mean": 0.465,
       "min": 0.18
     },
     "Iron_3": {
-      "mean": 0.448,
+      "mean": 0.442,
       "min": 0.18
     },
     "Iron_4": {
-      "mean": 0.412,
+      "mean": 0.404,
       "min": 0.18
     },
     "Iron_5": {
-      "mean": 0.412,
+      "mean": 0.431,
       "min": 0.18
     },
     "Iron_6": {
-      "mean": 0.426,
+      "mean": 0.416,
       "min": 0.18
     },
     "Rope_0": {
-      "mean": 0.734,
+      "mean": 0.731,
       "min": 0.18
     },
     "Rope_1": {
-      "mean": 0.796,
+      "mean": 0.798,
       "min": 0.18
     },
     "Rope_2": {
-      "mean": 0.721,
+      "mean": 0.717,
       "min": 0.18
     },
     "Rope_3": {
-      "mean": 0.788,
+      "mean": 0.785,
       "min": 0.18
     },
     "Rope_4": {
-      "mean": 0.733,
+      "mean": 0.74,
       "min": 0.18
     },
     "Rope_5": {
-      "mean": 0.635,
+      "mean": 0.64,
       "min": 0.18
     },
     "Rope_6": {
-      "mean": 0.81,
+      "mean": 0.815,
       "min": 0.18
     },
     "Wood_0": {
@@ -61,27 +61,27 @@
       "min": 0.18
     },
     "Wood_1": {
-      "mean": 0.698,
+      "mean": 0.694,
       "min": 0.18
     },
     "Wood_2": {
-      "mean": 0.69,
+      "mean": 0.691,
       "min": 0.18
     },
     "Wood_3": {
-      "mean": 0.703,
+      "mean": 0.706,
       "min": 0.18
     },
     "Wood_4": {
-      "mean": 0.707,
+      "mean": 0.7,
       "min": 0.18
     },
     "Wood_5": {
-      "mean": 0.665,
+      "mean": 0.655,
       "min": 0.18
     },
     "Wood_6": {
-      "mean": 0.684,
+      "mean": 0.69,
       "min": 0.18
     }
   },
@@ -92,21 +92,21 @@
       "boards": 214,
       "class": "untouched",
       "fallen": 0,
-      "frames": 900,
+      "frames": 16,
       "hanging_rails": 0,
       "intensity": 0.0,
       "lane_blocked": 0,
-      "lane_max_deviation_m": 0.006,
-      "lane_samples": 450,
+      "lane_max_deviation_m": 0.0148,
+      "lane_samples": 309,
       "leaning_posts": 0,
-      "loose": 1,
-      "loose_share": 0.005,
-      "max_board_move_m": 0.004,
+      "loose": 0,
+      "loose_share": 0.0,
+      "max_board_move_m": 0.0,
       "max_post_lean_deg": 0.0,
       "missing": 0,
-      "residual_speed_m_s": 0.0047,
+      "residual_speed_m_s": 0.0,
       "score": 0.0,
-      "settled": false,
+      "settled": true,
       "tremor": null,
       "weak_share": 0.05
     },
@@ -116,21 +116,21 @@
       "boards": 214,
       "class": "untouched",
       "fallen": 0,
-      "frames": 900,
+      "frames": 592,
       "hanging_rails": 0,
       "intensity": 0.4,
       "lane_blocked": 0,
-      "lane_max_deviation_m": 0.0171,
-      "lane_samples": 450,
+      "lane_max_deviation_m": 0.0129,
+      "lane_samples": 309,
       "leaning_posts": 0,
-      "loose": 2,
-      "loose_share": 0.009,
-      "max_board_move_m": 0.0309,
+      "loose": 3,
+      "loose_share": 0.014,
+      "max_board_move_m": 0.0969,
       "max_post_lean_deg": 0.0,
       "missing": 0,
-      "residual_speed_m_s": 0.0147,
+      "residual_speed_m_s": 0.0037,
       "score": 0.0,
-      "settled": false,
+      "settled": true,
       "tremor": {
         "amplitude_m": 0.008,
         "frequencies_hz": [
@@ -146,30 +146,30 @@
     {
       "attempt": 2,
       "ball": true,
-      "boards": 213,
-      "class": "aged",
+      "boards": 212,
+      "class": "collapsed",
       "fallen": 0,
       "frames": 900,
       "hanging_rails": 0,
       "intensity": 0.7,
       "lane_blocked": 0,
-      "lane_max_deviation_m": 0.0056,
-      "lane_samples": 450,
-      "leaning_posts": 0,
-      "loose": 4,
-      "loose_share": 0.019,
-      "max_board_move_m": 0.0672,
+      "lane_max_deviation_m": 0.0139,
+      "lane_samples": 304,
+      "leaning_posts": 5,
+      "loose": 5,
+      "loose_share": 0.024,
+      "max_board_move_m": 2.2098,
       "max_post_lean_deg": 0.0,
-      "missing": 1,
-      "residual_speed_m_s": 0.0605,
-      "score": 4.34,
+      "missing": 2,
+      "residual_speed_m_s": 5.8078,
+      "score": -50.0,
       "settled": false,
       "tremor": {
         "amplitude_m": 0.014,
         "frequencies_hz": [
-          7.29,
-          6.06,
-          7.92
+          7.12,
+          7.72,
+          5.09
         ],
         "intensity": 0.7,
         "seconds": 1.5
@@ -179,30 +179,30 @@
     {
       "attempt": 3,
       "ball": false,
-      "boards": 214,
+      "boards": 213,
       "class": "unwalkable",
       "fallen": 1,
-      "frames": 900,
+      "frames": 431,
       "hanging_rails": 1,
       "intensity": 1.0,
       "lane_blocked": 0,
-      "lane_max_deviation_m": 0.2787,
-      "lane_samples": 450,
-      "leaning_posts": 0,
-      "loose": 11,
-      "loose_share": 0.051,
-      "max_board_move_m": 0.5919,
+      "lane_max_deviation_m": 0.0566,
+      "lane_samples": 309,
+      "leaning_posts": 4,
+      "loose": 10,
+      "loose_share": 0.047,
+      "max_board_move_m": 0.5869,
       "max_post_lean_deg": 0.0,
-      "missing": 0,
-      "residual_speed_m_s": 2.5474,
+      "missing": 1,
+      "residual_speed_m_s": 0.0011,
       "score": -100.0,
-      "settled": false,
+      "settled": true,
       "tremor": {
         "amplitude_m": 0.02,
         "frequencies_hz": [
+          6.03,
           6.89,
-          5.34,
-          6.03
+          5.34
         ],
         "intensity": 1.0,
         "seconds": 1.5
@@ -212,30 +212,30 @@
     {
       "attempt": 4,
       "ball": true,
-      "boards": 214,
-      "class": "unwalkable",
+      "boards": 210,
+      "class": "damaged",
       "fallen": 2,
-      "frames": 900,
-      "hanging_rails": 2,
+      "frames": 435,
+      "hanging_rails": 3,
       "intensity": 1.0,
       "lane_blocked": 0,
-      "lane_max_deviation_m": 0.0636,
-      "lane_samples": 447,
-      "leaning_posts": 0,
-      "loose": 13,
-      "loose_share": 0.061,
-      "max_board_move_m": 0.2255,
+      "lane_max_deviation_m": 0.0134,
+      "lane_samples": 304,
+      "leaning_posts": 2,
+      "loose": 15,
+      "loose_share": 0.071,
+      "max_board_move_m": 4.0611,
       "max_post_lean_deg": 0.0,
-      "missing": 1,
-      "residual_speed_m_s": 0.5267,
-      "score": -100.0,
-      "settled": false,
+      "missing": 4,
+      "residual_speed_m_s": 0.0034,
+      "score": -11.42,
+      "settled": true,
       "tremor": {
         "amplitude_m": 0.02,
         "frequencies_hz": [
-          6.25,
-          5.54,
-          7.19
+          6.01,
+          6.94,
+          5.51
         ],
         "intensity": 1.0,
         "seconds": 1.5
@@ -245,30 +245,30 @@
     {
       "attempt": 5,
       "ball": false,
-      "boards": 212,
-      "class": "collapsed",
-      "fallen": 3,
+      "boards": 210,
+      "class": "unwalkable",
+      "fallen": 5,
       "frames": 900,
-      "hanging_rails": 6,
+      "hanging_rails": 8,
       "intensity": 1.3,
       "lane_blocked": 0,
-      "lane_max_deviation_m": 0.0058,
-      "lane_samples": 450,
-      "leaning_posts": 1,
-      "loose": 9,
-      "loose_share": 0.042,
-      "max_board_move_m": 0.0421,
-      "max_post_lean_deg": 3.41,
-      "missing": 2,
-      "residual_speed_m_s": 88.8574,
-      "score": -50.0,
+      "lane_max_deviation_m": 0.0138,
+      "lane_samples": 308,
+      "leaning_posts": 8,
+      "loose": 8,
+      "loose_share": 0.038,
+      "max_board_move_m": 0.1159,
+      "max_post_lean_deg": 4.6,
+      "missing": 4,
+      "residual_speed_m_s": 0.008,
+      "score": -100.0,
       "settled": false,
       "tremor": {
         "amplitude_m": 0.026,
         "frequencies_hz": [
-          7.11,
-          6.72,
-          5.38
+          5.25,
+          5.04,
+          7.18
         ],
         "intensity": 1.3,
         "seconds": 1.5
@@ -278,30 +278,30 @@
     {
       "attempt": 6,
       "ball": true,
-      "boards": 213,
-      "class": "damaged",
+      "boards": 212,
+      "class": "collapsed",
       "fallen": 2,
       "frames": 900,
       "hanging_rails": 3,
       "intensity": 1.7,
       "lane_blocked": 0,
-      "lane_max_deviation_m": 0.0128,
-      "lane_samples": 450,
-      "leaning_posts": 0,
+      "lane_max_deviation_m": 0.0224,
+      "lane_samples": 307,
+      "leaning_posts": 8,
       "loose": 19,
-      "loose_share": 0.089,
-      "max_board_move_m": 0.1999,
-      "max_post_lean_deg": 0.32,
-      "missing": 1,
-      "residual_speed_m_s": 0.3817,
-      "score": -11.78,
+      "loose_share": 0.09,
+      "max_board_move_m": 2.7125,
+      "max_post_lean_deg": 0.86,
+      "missing": 2,
+      "residual_speed_m_s": 0.1979,
+      "score": -50.0,
       "settled": false,
       "tremor": {
         "amplitude_m": 0.034,
         "frequencies_hz": [
-          7.82,
-          5.21,
-          6.52
+          7.12,
+          6.34,
+          7.82
         ],
         "intensity": 1.7,
         "seconds": 1.5
@@ -311,30 +311,30 @@
     {
       "attempt": 7,
       "ball": false,
-      "boards": 214,
+      "boards": 210,
       "class": "unwalkable",
-      "fallen": 3,
+      "fallen": 4,
       "frames": 900,
-      "hanging_rails": 5,
+      "hanging_rails": 6,
       "intensity": 2.2,
       "lane_blocked": 0,
-      "lane_max_deviation_m": 0.0342,
-      "lane_samples": 450,
-      "leaning_posts": 0,
-      "loose": 32,
-      "loose_share": 0.15,
-      "max_board_move_m": 0.2881,
-      "max_post_lean_deg": 0.23,
-      "missing": 0,
-      "residual_speed_m_s": 0.5607,
+      "lane_max_deviation_m": 0.0583,
+      "lane_samples": 305,
+      "leaning_posts": 6,
+      "loose": 30,
+      "loose_share": 0.143,
+      "max_board_move_m": 0.3928,
+      "max_post_lean_deg": 0.0,
+      "missing": 5,
+      "residual_speed_m_s": 0.2044,
       "score": -100.0,
       "settled": false,
       "tremor": {
         "amplitude_m": 0.044,
         "frequencies_hz": [
-          5.68,
-          6.71,
-          5.96
+          5.35,
+          7.98,
+          7.33
         ],
         "intensity": 2.2,
         "seconds": 1.5
@@ -343,23 +343,24 @@
     }
   ],
   "blender": "5.2.2 LTS",
-  "chosen_attempt": 2,
+  "chosen_attempt": 4,
   "files": {
-    "/private/tmp/claude-501/-Users-theochernin-Projects-MultiPlayerProject/3dd698c1-6742-4151-b556-74615bac27ed/scratchpad/bridge_try/low_span.glb": "c410fe3c79da74a7733f0017f5490fff0b19cd0d8386ba14a734924ca7ca21df"
+    "/private/tmp/claude-501/-Users-theochernin-Projects-MultiPlayerProject/3dd698c1-6742-4151-b556-74615bac27ed/scratchpad/bridge_try3/low_span.glb": "01e73e9a316b2c5e1026607377d1229fa1cf73fe201865e742c0488ae7702c34"
   },
   "final": {
-    "boards": 213,
-    "fallen": 0,
-    "hanging_rails": 0,
+    "boards": 210,
+    "curled_board_ends": 33,
+    "fallen": 2,
+    "hanging_rails": 3,
     "lane_blocked": 0,
-    "lane_max_deviation_m": 0.0077,
-    "lane_samples": 450,
-    "leaning_posts": 0,
-    "loose": 5,
-    "loose_share": 0.023,
-    "max_board_move_m": 0.051,
+    "lane_max_deviation_m": 0.0134,
+    "lane_samples": 304,
+    "leaning_posts": 2,
+    "loose": 15,
+    "loose_share": 0.071,
+    "max_board_move_m": 4.0611,
     "max_post_lean_deg": 0.0,
-    "missing": 1
+    "missing": 4
   },
   "layout_hash": "4765cad4d0a3f97f9ad53b57762e8a250ff013cc8fe713d4f79819c914493f8c",
   "layout_source": "content/environments/procedural_bridge_v1/layout.json",
@@ -367,28 +368,82 @@
   "missing_boards_godot_xz": [
     [
       [
-        23.987459182739258,
-        3.779935836791992
+        -15.44390869140625,
+        -17.852827072143555
       ],
       [
-        24.22981071472168,
-        3.792144775390625
+        -15.227365493774414,
+        -17.779199600219727
       ],
       [
-        24.03961944580078,
-        7.567557334899902
+        -16.46155548095703,
+        -14.149311065673828
       ],
       [
-        23.79726791381836,
-        7.5553483963012695
+        -16.6781005859375,
+        -14.222936630249023
+      ]
+    ],
+    [
+      [
+        -4.0785136222839355,
+        -2.16084623336792
+      ],
+      [
+        -3.9073829650878906,
+        -1.9342321157455444
+      ],
+      [
+        -6.858226299285889,
+        0.29413774609565735
+      ],
+      [
+        -7.029357433319092,
+        0.06752356141805649
+      ]
+    ],
+    [
+      [
+        -2.274357318878174,
+        1.4596223831176758
+      ],
+      [
+        -2.0907793045043945,
+        1.6705756187438965
+      ],
+      [
+        -4.922657012939453,
+        4.134965419769287
+      ],
+      [
+        -5.106235504150391,
+        3.9240124225616455
+      ]
+    ],
+    [
+      [
+        17.25065040588379,
+        1.566747784614563
+      ],
+      [
+        17.476594924926758,
+        1.5162373781204224
+      ],
+      [
+        18.401880264282227,
+        5.655253887176514
+      ],
+      [
+        18.175935745239258,
+        5.705764293670654
       ]
     ]
   ],
   "objects": 21,
   "picked_by": "score",
-  "samples": 16,
+  "samples": 32,
   "seat_depth": 0.68,
   "seed": 20261024,
   "stringer_bottom": 0.46,
-  "triangles": 68004
+  "triangles": 67384
 }

@@ -166,7 +166,7 @@ class Bridge:
         board_count = sum(max(2, round(flat(s.b - s.a).length / BOARD_PITCH)) for s in self.segments)
         gone = set()
         if self.weak >= 0.15:
-            for _ in range(plan.choice([0, 1, 1, 2])):
+            for _ in range(plan.choice([1, 2, 2, 3, 4])):
                 pick = plan.randrange(3, board_count - 3)
                 if not {pick - 1, pick, pick + 1} & gone:
                     gone.add(pick)
@@ -204,7 +204,8 @@ class Bridge:
                 width = spacing - BOARD_GAP - rng.uniform(0, 0.01)
                 a = left - axis * (BOARD_OVERHANG + rng.uniform(-0.005, 0.005)) - normal * (BOARD_THICKNESS * 0.5 - lift)
                 z = right + axis * (BOARD_OVERHANG + rng.uniform(-0.005, 0.005)) - normal * (BOARD_THICKNESS * 0.5 - lift)
-                across = normal.cross(axis).normalized() * width * 0.5
+                # A missing board leaves its whole spacing open, not just its width.
+                across = normal.cross(axis).normalized() * spacing * 0.5
                 footprint = [[c.x, c.z] for c in (a - across, a + across, z + across, z - across)]
                 if index in gone:
                     self.missing.append(footprint)
@@ -231,9 +232,9 @@ class Bridge:
         self.build_straps()
 
     def build_rails(self, plan) -> None:
-        rotten_post = plan.randrange(2, 40) if self.weak >= 0.2 and plan.random() < 0.6 else -1
-        rotten_rail = (plan.randrange(2, 40), plan.choice([0, 1])) if self.weak >= 0.25 and plan.random() < 0.5 else (-1, 0)
-        serial = 0
+        # Rot at a post foot lets it lean out; a rail end whose peg rotted hangs.
+        rot_post = 0.09 if self.weak >= 0.15 else 0.0
+        rot_rail = 0.07 if self.weak >= 0.2 else 0.0
         for sign in (-1.0, 1.0):
             stations = []
             for index, seg in enumerate(self.segments):
@@ -255,21 +256,27 @@ class Bridge:
                         outward = normal
                     stations.append((seg.point(s, sign) + outward * clear, outward, tangent, index))
             side_posts = []
+            tops = []
             for k, (base, outward, tangent, index) in enumerate(stations):
                 rng = core.rng(self.seed, self.rid, 'post', sign, k)
-                bottom, top = base - UP * (self.bottom + 0.04), base + UP * (RAIL_TOP + 0.04)
+                rotten = 2 <= k < len(stations) - 2 and plan.random() < rot_post
+                bottom = base - UP * (self.bottom + 0.04)
+                pivot = base - UP * (self.bottom - 0.02)
+                # A rotten post already leans out 3-7 degrees about its foot.
+                lean = Matrix.Rotation(math.radians(plan.uniform(3.0, 7.0)), 3, tangent) if rotten else Matrix.Identity(3)
+                if rotten and (lean @ UP).dot(outward) < 0:
+                    lean = lean.transposed()
+                top = pivot + lean @ (base + UP * (RAIL_TOP + 0.04) - pivot)
                 post = piece(f'Post_{int(sign)}_{k}', lambda bl, bottom=bottom, top=top, outward=outward: shapes.timber(
                     bl, bottom, top, POST, POST, outward, rng, segment=0.5, chamfer=0.02), bottom, top, outward)
                 post['segment'] = index
-                rotten = serial == rotten_post
-                serial += 1
                 self.posts.append((post, base, tangent, index, sign, rotten))
-                side_posts.append((post, base, index))
+                side_posts.append((post, base, index, lean, pivot))
+                tops.append(pivot + lean @ (base + UP * (RAIL_TOP - 0.045) - pivot))
                 for height in (-0.14, -0.34):
                     bolt = base + UP * height + outward * (POST * 0.5 + 0.004)
                     self.straps.append((index, lambda bl, bolt=bolt, outward=outward, rng=rng: shapes.bar(
                         bl, bolt - outward * 0.006, bolt + outward * 0.012, 0.035, 0.035, UP, rng), post.name))
-            tops = [base + UP * (RAIL_TOP - 0.045) for _, base, _ in side_posts]
             for k in range(len(tops) - 1):
                 rng = core.rng(self.seed, self.rid, 'rail', sign, k)
                 a, z = tops[k], tops[k + 1]
@@ -279,9 +286,10 @@ class Bridge:
                 rail = piece(f'Rail_{int(sign)}_{k}', lambda bl, a=a, z=z, s=start_cut, e=end_cut: shapes.timber(
                     bl, a, z, 0.13, 0.09, UP, rng, segment=0.5, start_cut=s, end_cut=e, chamfer=0.018), a, z, UP)
                 rail['segment'] = side_posts[k][2]
-                failed = rotten_rail[1] if k == rotten_rail[0] else -1
+                failed = plan.choice([0, 1]) if plan.random() < rot_rail else -1
                 self.rails.append((rail, [(side_posts[k][0], a), (side_posts[k + 1][0], z)], failed))
-            self.attachments.append([(post, base + UP * ROPE_HEIGHT, index) for post, base, index in side_posts])
+            self.attachments.append([(post, pivot + lean @ (base + UP * ROPE_HEIGHT - pivot), index)
+                                     for post, base, index, lean, pivot in side_posts])
 
     def build_straps(self) -> None:
         supported = [Vector(s['deck']) for s in self.route['supports']]
@@ -316,18 +324,19 @@ class Bridge:
                       Vector((0, low, -200)), Vector((0, low, 200)), UP)
         rigid.body(catch, passive=True, shape='BOX')
         for board, nails, _ in self.boards:
-            rigid.body(board, mass=rigid.mass(board, OAK), friction=0.9, shape='CONVEX_HULL', margin=0.0002)
+            rigid.body(board, mass=rigid.mass(board, OAK), friction=0.9, shape='CONVEX_HULL', margin=0.0002, damping=(0.15, 0.45))
             for rim, at in nails:
                 disturb.nail(board, rim, b(at), disturb.strength(rng, self.weak, board))
         for post, base, tangent, index, sign, rotten in self.posts:
-            rigid.body(post, mass=rigid.mass(post, OAK), friction=0.8, shape='CONVEX_HULL', margin=0.0002)
+            rigid.body(post, mass=rigid.mass(post, OAK), friction=0.8, shape='CONVEX_HULL', margin=0.0002, damping=(0.3, 0.7))
             rim = self.rims[index][sign][0]
             lean = rng.uniform(0.07, 0.16) if rotten else 0.015
             disturb.hinge(post, rim, b(base - UP * (self.bottom - 0.02)), b(tangent), (-lean, lean))
             if not rotten:
                 disturb.nail(post, rim, b(base - UP * 0.2), disturb.strength(rng, self.weak * 0.5, post), collide=False)
         for number, (rail, ends, failed) in enumerate(self.rails):
-            rigid.body(rail, mass=rigid.mass(rail, OAK), friction=0.6, shape='CONVEX_HULL', margin=0.0002)
+            # Joint friction and air: a hanging rail stops swinging in seconds.
+            rigid.body(rail, mass=rigid.mass(rail, OAK), friction=0.6, shape='CONVEX_HULL', margin=0.0002, damping=(0.5, 0.9))
             collide_alone(rail, number)
             for end, (post, at) in enumerate(ends):
                 if end == failed:
@@ -361,7 +370,10 @@ class Bridge:
                 self.missing.append(footprint)
         boards = [p[0] for p in self.boards if p[0].name not in fallen_names]
         loose = [o for o in boards if moved[o.name][0] > 0.005 or moved[o.name][1] > 1.0]
-        leaning = [p[0] for p in self.posts if moved[p[0].name][1] > 2.0 and p[0].name not in fallen_names]
+        # Lean is measured from vertical, so a post that rotted out before the
+        # tremor counts as well as one the tremor pushed.
+        leaning = [p[0] for p in self.posts if p[0].name not in fallen_names
+                   and math.degrees(p[0].matrix_world.col[2].to_3d().normalized().angle(Vector((0, 0, 1)))) > 2.5]
         hanging = [r[0] for r in self.rails if moved[r[0].name][0] > 0.1]
         deviation, samples = self.lane_deviation(boards)
         blocked = self.lane_blocked([p[0] for p in self.posts] + [r[0] for r in self.rails], moved)
@@ -376,29 +388,49 @@ class Bridge:
         q = Vector((point.x, point.z))
         return any(intersect_point_quad_2d(q, *(Vector(c) for c in quad)) for quad in self.missing)
 
+    def ribbon(self) -> BVHTree:
+        """The walking collision exactly as RedDescentGeometry.build_path makes
+        it: 1.4 m steps with lerped miter edges, two triangles per step."""
+        verts, polys = [], []
+        for seg in self.segments:
+            steps = max(1, math.ceil((seg.b - seg.a).length / 1.4))
+            for step in range(steps):
+                t0, t1 = step / steps, (step + 1) / steps
+                a, z = seg.a.lerp(seg.b, t0), seg.a.lerp(seg.b, t1)
+                ea, ez = seg.ea.lerp(seg.eb, t0), seg.ea.lerp(seg.eb, t1)
+                base = len(verts)
+                verts += [b(a - ea), b(a + ea), b(z - ez), b(z + ez)]
+                polys += [(base, base + 1, base + 2), (base + 1, base + 3, base + 2)]
+        return BVHTree.FromPolygons(verts, polys)
+
     def lane_deviation(self, boards) -> tuple:
+        """Sampled exactly like scripts/bridge_construction_test.gd: per segment,
+        lanes at -0.75, 0 and 0.75 m across the segment, three rays 10 cm apart
+        (the closest board wins), compared with the collision ribbon."""
         verts, polys = [], []
         for obj in boards:
             base = len(verts)
             verts += [obj.matrix_world @ v.co for v in obj.data.vertices]
             polys += [[base + i for i in p.vertices] for p in obj.data.polygons]
         tree = BVHTree.FromPolygons(verts, polys)
+        ribbon = self.ribbon()
+        down = Vector((0, 0, -1))
         worst, samples = 0.0, 0
-        for seg in self.segments:
-            steps = max(2, int(flat(seg.b - seg.a).length / 0.4))
-            for i in range(1, steps):
-                s = i / steps
-                half = seg.ea.lerp(seg.eb, s).length
+        for a, z in zip(self.points, self.points[1:]):
+            along = flat(z - a).normalized()
+            lateral = Vector((-along.z, 0.0, along.x))
+            count = math.ceil((z - a).length / 0.6)
+            for sample in range(1, count):
                 for offset in (-LANE, 0.0, LANE):
                     best = None
-                    # Three rays 10 cm apart: at least one lands on a board, not a gap.
                     for shift in (0.0, 0.1, 0.2):
-                        at = seg.point(min(1.0, s + shift / flat(seg.b - seg.a).length), offset / half)
+                        at = a.lerp(z, sample / count) + lateral * offset + along * shift
                         if self.inside_missing(at):
                             continue
-                        hit = tree.ray_cast(b(at) + Vector((0, 0, 0.5)), Vector((0, 0, -1)), 1.0)
-                        if hit[0] is not None:
-                            gap = abs(hit[0].z - b(at).z)
+                        board = tree.ray_cast(b(at) + Vector((0, 0, 0.5)), down, 0.8)
+                        floor = ribbon.ray_cast(b(at) + Vector((0, 0, 0.5)), down, 1.0)
+                        if board[0] is not None and floor[0] is not None:
+                            gap = abs(board[0].z - floor[0].z)
                             best = gap if best is None else min(best, gap)
                     if best is not None:
                         samples += 1
@@ -441,6 +473,7 @@ class Bridge:
                 # Ropes stretch unevenly: most hang taut, a few sag noticeably.
                 slack = rng.choice([0.003, 0.005, 0.008, 0.012, 0.025])
                 curves.tube(builder, curves.catenary(a, z, slack, 12), 0.022, sides=8, color=(1.0, rng.random(), 0.0, 1.0), twist=9.0)
+        self.curl_loose_ends()
         for obj in (self.catch, self.ball_obj):
             if obj is not None:
                 bpy.data.objects.remove(obj, do_unlink=True)
@@ -485,6 +518,30 @@ class Bridge:
             obj['route'] = self.rid
         return result
 
+    def curl_loose_ends(self) -> int:
+        """Where physics pulled a board's nail, the drying board's end springs
+        up 1.5-4 cm over its outer 35 cm (outside the walking lanes). The
+        physics decides which ends; the bend is shaped here."""
+        curled = 0
+        for board, nails, _ in self.boards:
+            if board.matrix_world.translation.z < self.rest[board.name].translation.z - 1.0:
+                continue
+            rng = core.rng(self.seed, self.rid, 'curl', board.name)
+            half = max(abs(v.co.z) for v in board.data.vertices)
+            for end, (rim, at) in zip((-1.0, 1.0), nails):
+                rest_point = b(at)
+                now = board.matrix_world @ (self.rest[board.name].inverted() @ rest_point)
+                if (now - rest_point).length < 0.003:
+                    continue
+                lift, reach = rng.uniform(0.015, 0.04), 0.35
+                for v in board.data.vertices:
+                    beyond = v.co.z * end - (half - reach)
+                    if beyond > 0:
+                        v.co.y += lift * (beyond / reach) ** 2
+                curled += 1
+        self.curled = curled
+        return curled
+
     def transom_proxies(self) -> list:
         objects = []
         for node, point in enumerate(self.points):
@@ -517,25 +574,37 @@ def classify(m: dict) -> tuple:
         return 'untouched', 0.0
     if m['loose_share'] > 0.35 or m['hanging_rails'] > 3 or m['leaning_posts'] > 4:
         return 'collapsed', -50.0
-    if m['loose_share'] <= 0.16 and m['leaning_posts'] <= 2 and m['hanging_rails'] <= 1:
-        score = 10.0 - abs(m['loose_share'] - 0.08) * 60 - abs(m['leaning_posts'] - 1) - abs(m['hanging_rails'] - 0.5) * 2 - abs(m['missing'] - 1)
+    if m['loose_share'] <= 0.2 and m['leaning_posts'] <= 3 and m['hanging_rails'] <= 2:
+        # Visibly aged: about one board in ten loose, a couple missing, a post
+        # or two leaning, a rail hanging.
+        score = (10.0 - abs(m['loose_share'] - 0.1) * 50 - abs(m['leaning_posts'] - 1.5) - abs(m['hanging_rails'] - 1.5) * 1.5
+                 - abs(m['missing'] - 2) * 0.8)
         return 'aged', round(score, 3)
     return 'damaged', round(-10.0 - m['loose_share'] * 20, 3)
 
 
 def preview_materials(objects) -> None:
+    """Neutral review shading: a base tone per kind, brightness from the
+    per-piece variation channel (Color.G), so loose pieces stand out by shape."""
     for obj in objects:
-        material = bpy.data.materials.get('Preview' + obj.name[:4]) or bpy.data.materials.new('Preview' + obj.name[:4])
+        kind = obj.name[:4]
+        material = bpy.data.materials.get('Preview' + kind) or bpy.data.materials.new('Preview' + kind)
         nodes, links = material.node_tree.nodes, material.node_tree.links
         shader = next(n for n in nodes if n.type == 'BSDF_PRINCIPLED')
-        tone = {'Wood': (0.33, 0.22, 0.13), 'Iron': (0.08, 0.08, 0.085), 'Rope': (0.36, 0.29, 0.2)}.get(obj.name[:4], (0.3, 0.3, 0.3))
+        tone = {'Wood': (0.32, 0.22, 0.14, 1), 'Iron': (0.07, 0.07, 0.075, 1), 'Rope': (0.34, 0.28, 0.2, 1)}.get(kind, (0.3, 0.3, 0.3, 1))
         if not any(n.type == 'ATTRIBUTE' for n in nodes):
             source = nodes.new('ShaderNodeAttribute')
             source.attribute_name = 'Color'
+            split = nodes.new('ShaderNodeSeparateColor')
+            links.new(source.outputs['Color'], split.inputs['Color'])
+            scale = nodes.new('ShaderNodeMapRange')
+            scale.inputs['To Min'].default_value = 0.75
+            scale.inputs['To Max'].default_value = 1.2
+            links.new(split.outputs['Green'], scale.inputs['Value'])
             mix = nodes.new('ShaderNodeVectorMath')
-            mix.operation = 'MULTIPLY'
-            mix.inputs[1].default_value = tone
-            links.new(source.outputs['Color'], mix.inputs[0])
+            mix.operation = 'SCALE'
+            mix.inputs[0].default_value = tone[:3]
+            links.new(scale.outputs['Result'], mix.inputs['Scale'])
             links.new(mix.outputs['Vector'], shader.inputs['Base Color'])
         obj.data.materials.clear()
         obj.data.materials.append(material)
@@ -567,9 +636,15 @@ def run_attempt(route: dict, layout: dict, options: dict, number: int, setting: 
                                                                              'hanging_rails', 'lane_max_deviation_m', 'frames')}), flush=True)
     images = []
     if options['review']:
+        moved = disturb.displacements(bridge.movers, bridge.rest)
+        standing = [o for o in bridge.movers if o.matrix_world.translation.z > bridge.rest[o.name].translation.z - 1.0]
+        worst = max(standing, key=lambda o: moved[o.name][0] + moved[o.name][1] / 50.0)
+        focus = worst.matrix_world.translation.copy()
         objects = bridge.finish()
         preview_materials(objects)
-        images = [disturb.render(eye, target, samples=12) for eye, target in views(bridge.points)]
+        wide = views(bridge.points)[0]
+        close = (focus + Vector((1.1, -1.3, 1.2)), focus)
+        images = [disturb.render(eye, target, samples=12) for eye, target in (wide, close)]
     return attempt, images
 
 
@@ -599,7 +674,7 @@ def assemble(route: dict, layout: dict, layout_path: Path, out: Path, options: d
             'layout_source': core.relative(layout_path), 'seed': options['seed'], 'samples': options['samples'],
             'seat_depth': layout['baked_seat_depth'], 'stringer_bottom': layout['baked_stringer_bottom'],
             'layout_hash': route['layout_hash'], 'chosen_attempt': chosen, 'picked_by': 'flag' if rid in options['pick'] else 'score',
-            'final': final, 'missing_boards_godot_xz': bridge.missing, 'attempts': attempts, 'ao': ao,
+            'final': {**final, 'curled_board_ends': getattr(bridge, 'curled', 0)}, 'missing_boards_godot_xz': bridge.missing, 'attempts': attempts, 'ao': ao,
             'triangles': sum(sum(len(p.vertices) - 2 for p in o.data.polygons) for o in objects), 'objects': len(objects)}
     core.write_report(out / (rid + '.json'), data, [path])
     print('BRIDGE_BAKE_OK', rid, json.dumps({'chosen': chosen, 'class': attempts[chosen]['class'], 'triangles': data['triangles']}), flush=True)

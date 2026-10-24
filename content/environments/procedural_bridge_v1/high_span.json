@@ -1,31 +1,31 @@
 {
   "ao": {
     "Iron_0": {
-      "mean": 0.495,
+      "mean": 0.475,
       "min": 0.18
     },
     "Iron_1": {
-      "mean": 0.423,
+      "mean": 0.422,
       "min": 0.18
     },
     "Iron_2": {
-      "mean": 0.425,
+      "mean": 0.419,
       "min": 0.18
     },
     "Iron_3": {
-      "mean": 0.437,
-      "min": 0.18
-    },
-    "Iron_4": {
       "mean": 0.429,
       "min": 0.18
     },
+    "Iron_4": {
+      "mean": 0.425,
+      "min": 0.18
+    },
     "Rope_0": {
-      "mean": 0.635,
+      "mean": 0.634,
       "min": 0.18
     },
     "Rope_1": {
-      "mean": 0.719,
+      "mean": 0.717,
       "min": 0.18
     },
     "Rope_2": {
@@ -33,31 +33,31 @@
       "min": 0.18
     },
     "Rope_3": {
-      "mean": 0.722,
+      "mean": 0.721,
       "min": 0.18
     },
     "Rope_4": {
-      "mean": 0.748,
+      "mean": 0.749,
       "min": 0.18
     },
     "Wood_0": {
-      "mean": 0.689,
+      "mean": 0.697,
       "min": 0.18
     },
     "Wood_1": {
-      "mean": 0.672,
-      "min": 0.18
-    },
-    "Wood_2": {
-      "mean": 0.661,
-      "min": 0.18
-    },
-    "Wood_3": {
       "mean": 0.682,
       "min": 0.18
     },
+    "Wood_2": {
+      "mean": 0.658,
+      "min": 0.18
+    },
+    "Wood_3": {
+      "mean": 0.695,
+      "min": 0.18
+    },
     "Wood_4": {
-      "mean": 0.677,
+      "mean": 0.678,
       "min": 0.18
     }
   },
@@ -68,16 +68,16 @@
       "boards": 161,
       "class": "untouched",
       "fallen": 0,
-      "frames": 17,
+      "frames": 16,
       "hanging_rails": 0,
       "intensity": 0.0,
       "lane_blocked": 0,
-      "lane_max_deviation_m": 0.0042,
-      "lane_samples": 342,
+      "lane_max_deviation_m": 0.0069,
+      "lane_samples": 240,
       "leaning_posts": 0,
       "loose": 0,
       "loose_share": 0.0,
-      "max_board_move_m": 0.0002,
+      "max_board_move_m": 0.0001,
       "max_post_lean_deg": 0.0,
       "missing": 0,
       "residual_speed_m_s": 0.0,
@@ -96,15 +96,15 @@
       "hanging_rails": 0,
       "intensity": 0.4,
       "lane_blocked": 0,
-      "lane_max_deviation_m": 0.0041,
-      "lane_samples": 342,
+      "lane_max_deviation_m": 0.007,
+      "lane_samples": 240,
       "leaning_posts": 0,
       "loose": 1,
       "loose_share": 0.006,
-      "max_board_move_m": 0.0169,
+      "max_board_move_m": 0.0167,
       "max_post_lean_deg": 0.0,
       "missing": 0,
-      "residual_speed_m_s": 0.0026,
+      "residual_speed_m_s": 0.0001,
       "score": 0.0,
       "settled": true,
       "tremor": {
@@ -122,30 +122,30 @@
     {
       "attempt": 2,
       "ball": true,
-      "boards": 159,
-      "class": "damaged",
-      "fallen": 1,
-      "frames": 900,
-      "hanging_rails": 3,
+      "boards": 157,
+      "class": "aged",
+      "fallen": 0,
+      "frames": 415,
+      "hanging_rails": 1,
       "intensity": 0.7,
       "lane_blocked": 0,
-      "lane_max_deviation_m": 0.0066,
-      "lane_samples": 339,
-      "leaning_posts": 0,
+      "lane_max_deviation_m": 0.0068,
+      "lane_samples": 237,
+      "leaning_posts": 2,
       "loose": 4,
       "loose_share": 0.025,
-      "max_board_move_m": 0.0336,
+      "max_board_move_m": 0.018,
       "max_post_lean_deg": 0.0,
-      "missing": 2,
-      "residual_speed_m_s": 0.515,
-      "score": -10.5,
-      "settled": false,
+      "missing": 4,
+      "residual_speed_m_s": 0.0035,
+      "score": 3.4,
+      "settled": true,
       "tremor": {
         "amplitude_m": 0.014,
         "frequencies_hz": [
-          7.52,
-          6.29,
-          7.63
+          7.63,
+          6.97,
+          7.36
         ],
         "intensity": 0.7,
         "seconds": 1.5
@@ -155,30 +155,30 @@
     {
       "attempt": 3,
       "ball": false,
-      "boards": 161,
+      "boards": 160,
       "class": "collapsed",
       "fallen": 2,
       "frames": 900,
-      "hanging_rails": 4,
+      "hanging_rails": 5,
       "intensity": 1.0,
       "lane_blocked": 0,
-      "lane_max_deviation_m": 0.0122,
-      "lane_samples": 342,
-      "leaning_posts": 0,
+      "lane_max_deviation_m": 0.0071,
+      "lane_samples": 240,
+      "leaning_posts": 4,
       "loose": 7,
-      "loose_share": 0.043,
-      "max_board_move_m": 0.0457,
-      "max_post_lean_deg": 0.86,
-      "missing": 0,
-      "residual_speed_m_s": 0.485,
+      "loose_share": 0.044,
+      "max_board_move_m": 0.0574,
+      "max_post_lean_deg": 4.12,
+      "missing": 1,
+      "residual_speed_m_s": 14.1568,
       "score": -50.0,
       "settled": false,
       "tremor": {
         "amplitude_m": 0.02,
         "frequencies_hz": [
-          6.4,
-          5.27,
-          5.32
+          5.43,
+          7.95,
+          7.62
         ],
         "intensity": 1.0,
         "seconds": 1.5
@@ -188,30 +188,30 @@
     {
       "attempt": 4,
       "ball": true,
-      "boards": 161,
-      "class": "aged",
+      "boards": 160,
+      "class": "collapsed",
       "fallen": 0,
-      "frames": 900,
-      "hanging_rails": 1,
+      "frames": 437,
+      "hanging_rails": 6,
       "intensity": 1.0,
       "lane_blocked": 0,
-      "lane_max_deviation_m": 0.0035,
-      "lane_samples": 342,
-      "leaning_posts": 0,
+      "lane_max_deviation_m": 0.0068,
+      "lane_samples": 239,
+      "leaning_posts": 6,
       "loose": 14,
       "loose_share": 0.087,
-      "max_board_move_m": 0.0634,
-      "max_post_lean_deg": 0.86,
-      "missing": 0,
-      "residual_speed_m_s": 0.3464,
-      "score": 6.58,
-      "settled": false,
+      "max_board_move_m": 0.1217,
+      "max_post_lean_deg": 5.57,
+      "missing": 1,
+      "residual_speed_m_s": 0.0039,
+      "score": -50.0,
+      "settled": true,
       "tremor": {
         "amplitude_m": 0.02,
         "frequencies_hz": [
-          7.43,
-          6.0,
-          5.95
+          6.53,
+          6.57,
+          7.43
         ],
         "intensity": 1.0,
         "seconds": 1.5
@@ -221,30 +221,30 @@
     {
       "attempt": 5,
       "ball": false,
-      "boards": 161,
-      "class": "unwalkable",
+      "boards": 160,
+      "class": "collapsed",
       "fallen": 2,
-      "frames": 900,
-      "hanging_rails": 3,
+      "frames": 437,
+      "hanging_rails": 4,
       "intensity": 1.3,
       "lane_blocked": 0,
-      "lane_max_deviation_m": 0.0588,
-      "lane_samples": 342,
-      "leaning_posts": 0,
+      "lane_max_deviation_m": 0.0154,
+      "lane_samples": 239,
+      "leaning_posts": 1,
       "loose": 8,
       "loose_share": 0.05,
-      "max_board_move_m": 0.293,
-      "max_post_lean_deg": 0.0,
-      "missing": 0,
-      "residual_speed_m_s": 0.5569,
-      "score": -100.0,
-      "settled": false,
+      "max_board_move_m": 0.0641,
+      "max_post_lean_deg": 0.86,
+      "missing": 1,
+      "residual_speed_m_s": 0.0037,
+      "score": -50.0,
+      "settled": true,
       "tremor": {
         "amplitude_m": 0.026,
         "frequencies_hz": [
-          5.64,
-          5.4,
-          5.4
+          5.71,
+          6.65,
+          6.24
         ],
         "intensity": 1.3,
         "seconds": 1.5
@@ -254,30 +254,30 @@
     {
       "attempt": 6,
       "ball": true,
-      "boards": 161,
+      "boards": 160,
       "class": "damaged",
-      "fallen": 1,
+      "fallen": 3,
       "frames": 900,
-      "hanging_rails": 2,
+      "hanging_rails": 3,
       "intensity": 1.7,
       "lane_blocked": 0,
-      "lane_max_deviation_m": 0.0064,
-      "lane_samples": 342,
-      "leaning_posts": 0,
+      "lane_max_deviation_m": 0.0075,
+      "lane_samples": 239,
+      "leaning_posts": 4,
       "loose": 11,
-      "loose_share": 0.068,
-      "max_board_move_m": 0.1301,
-      "max_post_lean_deg": 0.0,
-      "missing": 0,
-      "residual_speed_m_s": 88.8867,
-      "score": -11.36,
+      "loose_share": 0.069,
+      "max_board_move_m": 0.1158,
+      "max_post_lean_deg": 0.86,
+      "missing": 1,
+      "residual_speed_m_s": 14.1577,
+      "score": -11.38,
       "settled": false,
       "tremor": {
         "amplitude_m": 0.034,
         "frequencies_hz": [
-          5.01,
-          7.18,
-          6.19
+          5.91,
+          7.55,
+          5.48
         ],
         "intensity": 1.7,
         "seconds": 1.5
@@ -287,30 +287,30 @@
     {
       "attempt": 7,
       "ball": false,
-      "boards": 160,
+      "boards": 159,
       "class": "collapsed",
-      "fallen": 3,
-      "frames": 900,
-      "hanging_rails": 4,
+      "fallen": 2,
+      "frames": 434,
+      "hanging_rails": 2,
       "intensity": 2.2,
       "lane_blocked": 0,
-      "lane_max_deviation_m": 0.016,
-      "lane_samples": 341,
-      "leaning_posts": 0,
+      "lane_max_deviation_m": 0.0102,
+      "lane_samples": 238,
+      "leaning_posts": 6,
       "loose": 23,
-      "loose_share": 0.144,
-      "max_board_move_m": 0.158,
-      "max_post_lean_deg": 0.36,
-      "missing": 1,
-      "residual_speed_m_s": 0.4674,
+      "loose_share": 0.145,
+      "max_board_move_m": 0.2381,
+      "max_post_lean_deg": 0.14,
+      "missing": 2,
+      "residual_speed_m_s": 0.0042,
       "score": -50.0,
-      "settled": false,
+      "settled": true,
       "tremor": {
         "amplitude_m": 0.044,
         "frequencies_hz": [
-          7.28,
-          6.13,
-          5.24
+          6.23,
+          6.37,
+          5.71
         ],
         "intensity": 2.2,
         "seconds": 1.5
@@ -319,33 +319,107 @@
     }
   ],
   "blender": "5.2.2 LTS",
-  "chosen_attempt": 4,
+  "chosen_attempt": 2,
   "files": {
-    "/private/tmp/claude-501/-Users-theochernin-Projects-MultiPlayerProject/3dd698c1-6742-4151-b556-74615bac27ed/scratchpad/bridge_try/high_span.glb": "1b968c5ba96f675ba9ec59732dd38960bc867907134a91519f0600a31050f327"
+    "/private/tmp/claude-501/-Users-theochernin-Projects-MultiPlayerProject/3dd698c1-6742-4151-b556-74615bac27ed/scratchpad/bridge_try3/high_span.glb": "941f8e9a313c63ccc0757ea135f0c16465b12b2386d5eb59e1cbc795df6701c0"
   },
   "final": {
-    "boards": 161,
+    "boards": 157,
+    "curled_board_ends": 8,
     "fallen": 0,
     "hanging_rails": 1,
     "lane_blocked": 0,
-    "lane_max_deviation_m": 0.0035,
-    "lane_samples": 342,
-    "leaning_posts": 0,
-    "loose": 14,
-    "loose_share": 0.087,
-    "max_board_move_m": 0.0637,
-    "max_post_lean_deg": 0.86,
-    "missing": 0
+    "lane_max_deviation_m": 0.0068,
+    "lane_samples": 237,
+    "leaning_posts": 2,
+    "loose": 4,
+    "loose_share": 0.025,
+    "max_board_move_m": 0.018,
+    "max_post_lean_deg": 0.0,
+    "missing": 4
   },
   "layout_hash": "cab14c2f9b8382ab855aa0c56ee6d315e0c5ed0c6463a8747e4cf3eee25fb27d",
   "layout_source": "content/environments/procedural_bridge_v1/layout.json",
   "method": "deck follows the walking ribbon; every board, post and rail a rigid body with nails, hinges and pins of random strength; seeded tremor and rolling-ball attempts; most believable walkable attempt kept; Cycles AO in Color.R",
-  "missing_boards_godot_xz": [],
+  "missing_boards_godot_xz": [
+    [
+      [
+        -15.492843627929688,
+        -16.38762664794922
+      ],
+      [
+        -15.280948638916016,
+        -16.260852813720703
+      ],
+      [
+        -17.043882369995117,
+        -13.314221382141113
+      ],
+      [
+        -17.25577735900879,
+        -13.440995216369629
+      ]
+    ],
+    [
+      [
+        -13.710387229919434,
+        -16.014617919921875
+      ],
+      [
+        -13.471673011779785,
+        -15.918074607849121
+      ],
+      [
+        -14.70440673828125,
+        -12.869978904724121
+      ],
+      [
+        -14.943120956420898,
+        -12.966521263122559
+      ]
+    ],
+    [
+      [
+        -5.665731430053711,
+        -14.211170196533203
+      ],
+      [
+        -5.395208358764648,
+        -14.220985412597656
+      ],
+      [
+        -5.27409553527832,
+        -10.883054733276367
+      ],
+      [
+        -5.544618606567383,
+        -10.873239517211914
+      ]
+    ],
+    [
+      [
+        14.805628776550293,
+        -16.655607223510742
+      ],
+      [
+        15.070635795593262,
+        -16.591859817504883
+      ],
+      [
+        14.29015064239502,
+        -13.347352981567383
+      ],
+      [
+        14.02514362335205,
+        -13.411102294921875
+      ]
+    ]
+  ],
   "objects": 15,
   "picked_by": "score",
-  "samples": 16,
+  "samples": 32,
   "seat_depth": 0.68,
   "seed": 20261024,
   "stringer_bottom": 0.46,
-  "triangles": 49892
+  "triangles": 49348
 }
