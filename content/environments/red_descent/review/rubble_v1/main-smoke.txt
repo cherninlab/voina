@@ -1,0 +1,5 @@
+$ python3 scripts/smoke_test.py "$GODOT"   (exit 0)
+BUILD_REFUSED: peer 964026701 runs 6ed8bfe [0123456789ab]; host runs 6ed8bfe [23c50e2dd2eb]
+Refused a player on build 6ed8bfe; you run 6ed8bfe [23c50e2dd2eb]
+BUILD_REFUSED: peer 964026701 left before proving a matching build
+PASS: local two-process ENet integration and disconnect cleanup

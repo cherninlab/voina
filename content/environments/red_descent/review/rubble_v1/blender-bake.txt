@@ -1,0 +1,16 @@
+$ blender --factory-startup -b --python-exit-code 1 --python scripts/art/build_rubble.py -- content/environments/procedural_rubble_v1 --review content/environments/red_descent/review/rubble_v1
+(glTF exporter INFO lines and Cycles progress omitted; no WARNING or ERROR lines)
+RUBBLE_PILE rubble_wall_spill_s1 pieces 38 frames 779 residual 0.00713 gap 0.0049 penetration 0.0 tris [7116, 3558, 1421] footprint [2.502, 1.191] 8.8s
+RUBBLE_PILE rubble_wall_spill_s2 pieces 38 frames 542 residual 0.0085 gap 0.0059 penetration 0.0 tris [7538, 3768, 1506] footprint [2.502, 1.343] 6.7s
+RUBBLE_PILE rubble_wall_spill_s3 pieces 38 frames 432 residual 0.00747 gap 0.005 penetration 0.0 tris [7422, 3710, 1484] footprint [2.618, 1.142] 6.2s
+RUBBLE_PILE rubble_corner_heap_s1 pieces 33 frames 951 residual 0.00635 gap 0.0055 penetration 0.0 tris [6912, 3456, 1382] footprint [1.563, 1.814] 10.2s
+RUBBLE_PILE rubble_corner_heap_s2 pieces 33 frames 527 residual 0.00779 gap 0.0043 penetration 0.0 tris [7372, 3686, 1474] footprint [1.659, 1.569] 7.5s
+RUBBLE_PILE rubble_corner_heap_s3 pieces 34 frames 1278 residual 0.0044 gap 0.0047 penetration 0.0 tris [6534, 3266, 1306] footprint [1.554, 1.853] 12.3s
+RUBBLE_PILE rubble_bridge_debris_s1 pieces 32 frames 208 residual 0.00782 gap 0.0053 penetration 0.0 tris [4938, 2468, 986] footprint [3.091, 1.744] 4.0s
+RUBBLE_PILE rubble_bridge_debris_s2 pieces 31 frames 229 residual 0.00533 gap 0.0068 penetration 0.0 tris [5726, 2862, 1144] footprint [2.624, 1.666] 4.5s
+RUBBLE_PILE rubble_bridge_debris_s3 pieces 31 frames 153 residual 0.00923 gap 0.0056 penetration 0.0 tris [4448, 2222, 888] footprint [2.596, 1.776] 3.9s
+RUBBLE_PILE rubble_floor_scatter_s1 pieces 36 frames 104 residual 0.00698 gap 0.002 penetration 0.0 tris [3984, 1992, 796] footprint [2.444, 2.531] 3.7s
+RUBBLE_PILE rubble_floor_scatter_s2 pieces 35 frames 157 residual 0.00789 gap 0.002 penetration 0.0 tris [4532, 2266, 906] footprint [2.254, 2.39] 3.7s
+RUBBLE_PILE rubble_floor_scatter_s3 pieces 35 frames 139 residual 0.00661 gap 0.002 penetration 0.0 tris [4108, 2054, 820] footprint [2.536, 2.593] 3.6s
+RUBBLE_OK 12 piles 77.2s
+Blender 5.2.2 LTS (hash d13f752e3b9c built 2026-09-15 01:49:19)

@@ -1,0 +1,1074 @@
+{
+  "axes": "GLB is Godot Y-up metres; origin at the ground centre of the footprint",
+  "blender": "5.2.2 LTS",
+  "color": "Color.rgb = (1 - 0.8 x (1 - AO baked over 0.3 m)) x per-piece tone (stone 0.84-1.0, wood 0.8-1.0), grey; alpha 1",
+  "command": "blender --factory-startup -b --python-exit-code 1 --python scripts/art/build_rubble.py -- content/environments/procedural_rubble_v1 --review content/environments/red_descent/review/rubble_v1",
+  "files": {
+    "content/environments/procedural_rubble_v1/lod/rubble_bridge_debris_s1_lod1.glb": "7c67f729c21f6ae567ad6b84d39818b9130e9ecd06e65af78d7166e49f9f5c92",
+    "content/environments/procedural_rubble_v1/lod/rubble_bridge_debris_s1_lod2.glb": "06519a6fa4c45b9f8917eac152a3783edf9d9f6a4600c22da591457a266c7f7c",
+    "content/environments/procedural_rubble_v1/lod/rubble_bridge_debris_s2_lod1.glb": "eff2abc194dea870912f2ec0ed961d6d2f17aaf46d25276e313d57665c0fed7b",
+    "content/environments/procedural_rubble_v1/lod/rubble_bridge_debris_s2_lod2.glb": "0abf7119606492f4dda88813c2ae64cbe88dfc1a1fdae758a8fce342192668da",
+    "content/environments/procedural_rubble_v1/lod/rubble_bridge_debris_s3_lod1.glb": "c8b1fbe4193061f4832eac1f36e1ef3c7adbec8a7076db22ff1f8aff6b88aabc",
+    "content/environments/procedural_rubble_v1/lod/rubble_bridge_debris_s3_lod2.glb": "1ce475ecb86baec4850177d22e25a4195ffdfdea1f5b0562fa60af77741d0d26",
+    "content/environments/procedural_rubble_v1/lod/rubble_corner_heap_s1_lod1.glb": "1a8b4c4748c65b7f19ae14869478af1ac10673bc601361d16f18faf3789d787a",
+    "content/environments/procedural_rubble_v1/lod/rubble_corner_heap_s1_lod2.glb": "6940a6205e95f6c6f44d0ef3b71e81baa9c527c6fbddde8af04bee29ffc3b185",
+    "content/environments/procedural_rubble_v1/lod/rubble_corner_heap_s2_lod1.glb": "803cee1aa7e6074b5d257b9766b648b7680f82b40a9d1089c23d04479c95e874",
+    "content/environments/procedural_rubble_v1/lod/rubble_corner_heap_s2_lod2.glb": "5280d1fad953228bdf444859de53f13c2749af662c215b637adf382eeb88ce52",
+    "content/environments/procedural_rubble_v1/lod/rubble_corner_heap_s3_lod1.glb": "3e264aa4c8fc301f173f28cd3b6bcf794118f4b21ef11d20c6b00b6f04f4fc29",
+    "content/environments/procedural_rubble_v1/lod/rubble_corner_heap_s3_lod2.glb": "2a048b4b3c0adfa0f6d6c80d553f662ef1e1491b8f16a2d25627f743f6316fa9",
+    "content/environments/procedural_rubble_v1/lod/rubble_floor_scatter_s1_lod1.glb": "48ddb92cc206e1070412919516e27f391d1a2a6bcd03924eb233f877e75bb556",
+    "content/environments/procedural_rubble_v1/lod/rubble_floor_scatter_s1_lod2.glb": "6e4dcf5486ad5cb8a059b58a142c51943d6b8d2bc1c08cac60bd30dfa821d36b",
+    "content/environments/procedural_rubble_v1/lod/rubble_floor_scatter_s2_lod1.glb": "f3f0bbbba0b6b6199bf2dcac77e9a151f3baeab48b64f94d51a9a94e2510152e",
+    "content/environments/procedural_rubble_v1/lod/rubble_floor_scatter_s2_lod2.glb": "ce23f861f5599a29edb873416113a5839c6a4e5721d884897e3f9bd0f47ea1dd",
+    "content/environments/procedural_rubble_v1/lod/rubble_floor_scatter_s3_lod1.glb": "2a45b3edf3dde809f225b3c38eb0319436ead9326d8655516f67a88b6c8563ec",
+    "content/environments/procedural_rubble_v1/lod/rubble_floor_scatter_s3_lod2.glb": "410721c167d99b3ff77ddfe697be6a4aebb7be044863cfde4785cc5406763387",
+    "content/environments/procedural_rubble_v1/lod/rubble_wall_spill_s1_lod1.glb": "3273dc34719ef2a2a95e4f1b30ddf3afdc5e01833582ac7e80ceb469c9618db6",
+    "content/environments/procedural_rubble_v1/lod/rubble_wall_spill_s1_lod2.glb": "3125a3bca09a6b768d850b5c25185a2cb8349a479aa42b7609cb38a05ce6f849",
+    "content/environments/procedural_rubble_v1/lod/rubble_wall_spill_s2_lod1.glb": "4d7593dc8379524139448bf345c3db5100ce5c376e5698b7ee8558bf034dc1a3",
+    "content/environments/procedural_rubble_v1/lod/rubble_wall_spill_s2_lod2.glb": "4c2a26a054888104ea419ee858b2860e173fccc2129841a8361a0c468a70da4c",
+    "content/environments/procedural_rubble_v1/lod/rubble_wall_spill_s3_lod1.glb": "e7fb039bc1b37965d901e78013a8d489dbcc5b064141e1a729ef92c31f024996",
+    "content/environments/procedural_rubble_v1/lod/rubble_wall_spill_s3_lod2.glb": "1f28080eabe67a78e12260bc5f5f436fac42aa57fbb4b636576262cdf63f304a",
+    "content/environments/procedural_rubble_v1/rubble_bridge_debris_s1.glb": "599ea552c0b842c6592817efa4cb9113011d7c05465e21ade8916197092c9690",
+    "content/environments/procedural_rubble_v1/rubble_bridge_debris_s2.glb": "7e7bd381cbce3e37541d1f54c40da7237a90827edb133c5bec7d36ecb3f6d0ea",
+    "content/environments/procedural_rubble_v1/rubble_bridge_debris_s3.glb": "be8c319af3088aba2f2e0892e7238e330114a73fe62b22ba92fb3baed7049d70",
+    "content/environments/procedural_rubble_v1/rubble_corner_heap_s1.glb": "d982455d96d4e91db3d8d533a86a96c297ea745fe70a48891d669c106dae1832",
+    "content/environments/procedural_rubble_v1/rubble_corner_heap_s2.glb": "6d23536f4e8daafddc0f2ecbfa3ec80f4b7209bd5d8a728250e1aa4bf4ccad92",
+    "content/environments/procedural_rubble_v1/rubble_corner_heap_s3.glb": "7e0cc53a45d2b66ce425d9fcef637504237b8c3a6d2cf106f6171933680f0f9a",
+    "content/environments/procedural_rubble_v1/rubble_floor_scatter_s1.glb": "268d96df0e0aff1ba3e95cc037781d1be73e13445505b87f31d596ed4b3bced6",
+    "content/environments/procedural_rubble_v1/rubble_floor_scatter_s2.glb": "398d49fbe8e3650a13009df59999f1943e35f8399a18fc0d118b5e3486e472d7",
+    "content/environments/procedural_rubble_v1/rubble_floor_scatter_s3.glb": "077437bec1a5d27141681db2ac925e247cde561f338a9eccf0d6f37358da7e6a",
+    "content/environments/procedural_rubble_v1/rubble_wall_spill_s1.glb": "caa8ffabf82bcfee45c1c1b536c73da1a77a7a50a6376fde78fb570fe7c9cd97",
+    "content/environments/procedural_rubble_v1/rubble_wall_spill_s2.glb": "8cd662f0b20cb4f55075fd5a68889585e1c00cfd1b7a91bc2a24d11194afc61b",
+    "content/environments/procedural_rubble_v1/rubble_wall_spill_s3.glb": "efa03971f8f4991fc38b8b236c0e7f76611d750da158db12d4bea6055638ee39"
+  },
+  "generator": "scripts/art/build_rubble.py",
+  "limits": {
+    "lod0_tris": 8000,
+    "max_contact_gap_m": 0.01,
+    "max_interpenetration_m": 0.01
+  },
+  "physics": {
+    "collision_shape": "CONVEX_HULL",
+    "density_kg_m3": {
+      "stone": 2300.0,
+      "wood": 650.0
+    },
+    "engine": "Blender rigid body (Bullet)",
+    "fps": 30,
+    "friction": {
+      "stone": 0.9,
+      "wood": 0.75
+    },
+    "margin_m": 0.002,
+    "settle_rule": "max bound-box corner speed < 0.01 m/s for 15 consecutive frames",
+    "solver_iterations": 40,
+    "substeps_per_frame": 20
+  },
+  "piles": [
+    {
+      "ao": {
+        "Stone": {
+          "mean": 0.398,
+          "min": 0.18
+        }
+      },
+      "bounds_godot": {
+        "max": [
+          1.251,
+          0.477,
+          0.596
+        ],
+        "min": [
+          -1.251,
+          0.0,
+          -0.596
+        ]
+      },
+      "build_seconds": 8.8,
+      "collision": {
+        "convex_hulls": 24,
+        "hull_vertices": 1115,
+        "min_piece_size_m": 0.2
+      },
+      "deepest_pair": null,
+      "footprint_m": [
+        2.502,
+        1.191
+      ],
+      "frames": 779,
+      "glb": "content/environments/procedural_rubble_v1/rubble_wall_spill_s1.glb",
+      "height_m": 0.477,
+      "id": "rubble_wall_spill_s1",
+      "lods": [
+        {
+          "level": 0,
+          "path": "content/environments/procedural_rubble_v1/rubble_wall_spill_s1.glb",
+          "tris": 7116
+        },
+        {
+          "level": 1,
+          "path": "content/environments/procedural_rubble_v1/lod/rubble_wall_spill_s1_lod1.glb",
+          "tris": 3558
+        },
+        {
+          "level": 2,
+          "path": "content/environments/procedural_rubble_v1/lod/rubble_wall_spill_s1_lod2.glb",
+          "tris": 1421
+        }
+      ],
+      "max_contact_gap_m": 0.0049,
+      "max_interpenetration_m": 0.0,
+      "peak_speed_m_s": 3.525,
+      "piece_count": 38,
+      "pieces": {
+        "ashlar": 22,
+        "brick": 6,
+        "clump": 4,
+        "rock": 6
+      },
+      "recipe": "wall_spill",
+      "removed": {
+        "escaped": [],
+        "floating": []
+      },
+      "residual_speed_m_s": 0.00713,
+      "seed": 1,
+      "settle_seconds": 25.967,
+      "tessellation_scale": 1.15,
+      "touching_pairs": 0,
+      "walls_godot": [
+        {
+          "normal": [
+            0.0,
+            0.0,
+            1.0
+          ],
+          "point": [
+            0.0,
+            0.0,
+            -0.5976
+          ]
+        }
+      ]
+    },
+    {
+      "ao": {
+        "Stone": {
+          "mean": 0.439,
+          "min": 0.18
+        }
+      },
+      "bounds_godot": {
+        "max": [
+          1.251,
+          0.65,
+          0.672
+        ],
+        "min": [
+          -1.251,
+          0.0,
+          -0.672
+        ]
+      },
+      "build_seconds": 6.7,
+      "collision": {
+        "convex_hulls": 24,
+        "hull_vertices": 1156,
+        "min_piece_size_m": 0.2
+      },
+      "deepest_pair": null,
+      "footprint_m": [
+        2.502,
+        1.343
+      ],
+      "frames": 542,
+      "glb": "content/environments/procedural_rubble_v1/rubble_wall_spill_s2.glb",
+      "height_m": 0.65,
+      "id": "rubble_wall_spill_s2",
+      "lods": [
+        {
+          "level": 0,
+          "path": "content/environments/procedural_rubble_v1/rubble_wall_spill_s2.glb",
+          "tris": 7538
+        },
+        {
+          "level": 1,
+          "path": "content/environments/procedural_rubble_v1/lod/rubble_wall_spill_s2_lod1.glb",
+          "tris": 3768
+        },
+        {
+          "level": 2,
+          "path": "content/environments/procedural_rubble_v1/lod/rubble_wall_spill_s2_lod2.glb",
+          "tris": 1506
+        }
+      ],
+      "max_contact_gap_m": 0.0059,
+      "max_interpenetration_m": 0.0,
+      "peak_speed_m_s": 3.408,
+      "piece_count": 38,
+      "pieces": {
+        "ashlar": 21,
+        "brick": 9,
+        "clump": 2,
+        "rock": 6
+      },
+      "recipe": "wall_spill",
+      "removed": {
+        "escaped": [],
+        "floating": []
+      },
+      "residual_speed_m_s": 0.0085,
+      "seed": 2,
+      "settle_seconds": 18.067,
+      "tessellation_scale": 1.15,
+      "touching_pairs": 0,
+      "walls_godot": [
+        {
+          "normal": [
+            0.0,
+            0.0,
+            1.0
+          ],
+          "point": [
+            0.0,
+            0.0,
+            -0.6735
+          ]
+        }
+      ]
+    },
+    {
+      "ao": {
+        "Stone": {
+          "mean": 0.408,
+          "min": 0.18
+        }
+      },
+      "bounds_godot": {
+        "max": [
+          1.309,
+          0.55,
+          0.571
+        ],
+        "min": [
+          -1.309,
+          0.0,
+          -0.571
+        ]
+      },
+      "build_seconds": 6.2,
+      "collision": {
+        "convex_hulls": 24,
+        "hull_vertices": 1154,
+        "min_piece_size_m": 0.2
+      },
+      "deepest_pair": null,
+      "footprint_m": [
+        2.618,
+        1.142
+      ],
+      "frames": 432,
+      "glb": "content/environments/procedural_rubble_v1/rubble_wall_spill_s3.glb",
+      "height_m": 0.55,
+      "id": "rubble_wall_spill_s3",
+      "lods": [
+        {
+          "level": 0,
+          "path": "content/environments/procedural_rubble_v1/rubble_wall_spill_s3.glb",
+          "tris": 7422
+        },
+        {
+          "level": 1,
+          "path": "content/environments/procedural_rubble_v1/lod/rubble_wall_spill_s3_lod1.glb",
+          "tris": 3710
+        },
+        {
+          "level": 2,
+          "path": "content/environments/procedural_rubble_v1/lod/rubble_wall_spill_s3_lod2.glb",
+          "tris": 1484
+        }
+      ],
+      "max_contact_gap_m": 0.005,
+      "max_interpenetration_m": 0.0,
+      "peak_speed_m_s": 3.57,
+      "piece_count": 38,
+      "pieces": {
+        "ashlar": 24,
+        "brick": 4,
+        "clump": 2,
+        "rock": 8
+      },
+      "recipe": "wall_spill",
+      "removed": {
+        "escaped": [],
+        "floating": []
+      },
+      "residual_speed_m_s": 0.00747,
+      "seed": 3,
+      "settle_seconds": 14.4,
+      "tessellation_scale": 1.15,
+      "touching_pairs": 0,
+      "walls_godot": [
+        {
+          "normal": [
+            0.0,
+            0.0,
+            1.0
+          ],
+          "point": [
+            0.0,
+            0.0,
+            -0.5729
+          ]
+        }
+      ]
+    },
+    {
+      "ao": {
+        "Stone": {
+          "mean": 0.424,
+          "min": 0.18
+        }
+      },
+      "bounds_godot": {
+        "max": [
+          0.782,
+          0.374,
+          0.907
+        ],
+        "min": [
+          -0.782,
+          0.0,
+          -0.907
+        ]
+      },
+      "build_seconds": 10.2,
+      "collision": {
+        "convex_hulls": 20,
+        "hull_vertices": 969,
+        "min_piece_size_m": 0.2
+      },
+      "deepest_pair": null,
+      "footprint_m": [
+        1.563,
+        1.814
+      ],
+      "frames": 951,
+      "glb": "content/environments/procedural_rubble_v1/rubble_corner_heap_s1.glb",
+      "height_m": 0.374,
+      "id": "rubble_corner_heap_s1",
+      "lods": [
+        {
+          "level": 0,
+          "path": "content/environments/procedural_rubble_v1/rubble_corner_heap_s1.glb",
+          "tris": 6912
+        },
+        {
+          "level": 1,
+          "path": "content/environments/procedural_rubble_v1/lod/rubble_corner_heap_s1_lod1.glb",
+          "tris": 3456
+        },
+        {
+          "level": 2,
+          "path": "content/environments/procedural_rubble_v1/lod/rubble_corner_heap_s1_lod2.glb",
+          "tris": 1382
+        }
+      ],
+      "max_contact_gap_m": 0.0055,
+      "max_interpenetration_m": 0.0,
+      "peak_speed_m_s": 3.28,
+      "piece_count": 33,
+      "pieces": {
+        "ashlar": 17,
+        "brick": 3,
+        "clump": 1,
+        "rock": 12
+      },
+      "recipe": "corner_heap",
+      "removed": {
+        "escaped": [],
+        "floating": []
+      },
+      "residual_speed_m_s": 0.00635,
+      "seed": 1,
+      "settle_seconds": 31.7,
+      "tessellation_scale": 1.0,
+      "touching_pairs": 0,
+      "walls_godot": [
+        {
+          "normal": [
+            0.0,
+            0.0,
+            1.0
+          ],
+          "point": [
+            0.0,
+            0.0,
+            -0.9089
+          ]
+        },
+        {
+          "normal": [
+            1.0,
+            0.0,
+            0.0
+          ],
+          "point": [
+            -0.7835,
+            0.0,
+            0.0
+          ]
+        }
+      ]
+    },
+    {
+      "ao": {
+        "Stone": {
+          "mean": 0.411,
+          "min": 0.18
+        }
+      },
+      "bounds_godot": {
+        "max": [
+          0.829,
+          0.41,
+          0.784
+        ],
+        "min": [
+          -0.829,
+          0.0,
+          -0.784
+        ]
+      },
+      "build_seconds": 7.5,
+      "collision": {
+        "convex_hulls": 21,
+        "hull_vertices": 1041,
+        "min_piece_size_m": 0.2
+      },
+      "deepest_pair": null,
+      "footprint_m": [
+        1.659,
+        1.569
+      ],
+      "frames": 527,
+      "glb": "content/environments/procedural_rubble_v1/rubble_corner_heap_s2.glb",
+      "height_m": 0.41,
+      "id": "rubble_corner_heap_s2",
+      "lods": [
+        {
+          "level": 0,
+          "path": "content/environments/procedural_rubble_v1/rubble_corner_heap_s2.glb",
+          "tris": 7372
+        },
+        {
+          "level": 1,
+          "path": "content/environments/procedural_rubble_v1/lod/rubble_corner_heap_s2_lod1.glb",
+          "tris": 3686
+        },
+        {
+          "level": 2,
+          "path": "content/environments/procedural_rubble_v1/lod/rubble_corner_heap_s2_lod2.glb",
+          "tris": 1474
+        }
+      ],
+      "max_contact_gap_m": 0.0043,
+      "max_interpenetration_m": 0.0,
+      "peak_speed_m_s": 3.474,
+      "piece_count": 33,
+      "pieces": {
+        "ashlar": 17,
+        "brick": 4,
+        "clump": 1,
+        "rock": 11
+      },
+      "recipe": "corner_heap",
+      "removed": {
+        "escaped": [],
+        "floating": []
+      },
+      "residual_speed_m_s": 0.00779,
+      "seed": 2,
+      "settle_seconds": 17.567,
+      "tessellation_scale": 1.0,
+      "touching_pairs": 0,
+      "walls_godot": [
+        {
+          "normal": [
+            0.0,
+            0.0,
+            1.0
+          ],
+          "point": [
+            0.0,
+            0.0,
+            -0.7864
+          ]
+        },
+        {
+          "normal": [
+            1.0,
+            0.0,
+            0.0
+          ],
+          "point": [
+            -0.8313,
+            0.0,
+            0.0
+          ]
+        }
+      ]
+    },
+    {
+      "ao": {
+        "Stone": {
+          "mean": 0.388,
+          "min": 0.18
+        }
+      },
+      "bounds_godot": {
+        "max": [
+          0.777,
+          0.51,
+          0.926
+        ],
+        "min": [
+          -0.777,
+          0.0,
+          -0.926
+        ]
+      },
+      "build_seconds": 12.3,
+      "collision": {
+        "convex_hulls": 25,
+        "hull_vertices": 1101,
+        "min_piece_size_m": 0.2
+      },
+      "deepest_pair": null,
+      "footprint_m": [
+        1.554,
+        1.853
+      ],
+      "frames": 1278,
+      "glb": "content/environments/procedural_rubble_v1/rubble_corner_heap_s3.glb",
+      "height_m": 0.51,
+      "id": "rubble_corner_heap_s3",
+      "lods": [
+        {
+          "level": 0,
+          "path": "content/environments/procedural_rubble_v1/rubble_corner_heap_s3.glb",
+          "tris": 6534
+        },
+        {
+          "level": 1,
+          "path": "content/environments/procedural_rubble_v1/lod/rubble_corner_heap_s3_lod1.glb",
+          "tris": 3266
+        },
+        {
+          "level": 2,
+          "path": "content/environments/procedural_rubble_v1/lod/rubble_corner_heap_s3_lod2.glb",
+          "tris": 1306
+        }
+      ],
+      "max_contact_gap_m": 0.0047,
+      "max_interpenetration_m": 0.0,
+      "peak_speed_m_s": 3.777,
+      "piece_count": 34,
+      "pieces": {
+        "ashlar": 14,
+        "clump": 3,
+        "rock": 17
+      },
+      "recipe": "corner_heap",
+      "removed": {
+        "escaped": [],
+        "floating": []
+      },
+      "residual_speed_m_s": 0.0044,
+      "seed": 3,
+      "settle_seconds": 42.6,
+      "tessellation_scale": 1.0,
+      "touching_pairs": 0,
+      "walls_godot": [
+        {
+          "normal": [
+            0.0,
+            0.0,
+            1.0
+          ],
+          "point": [
+            0.0,
+            0.0,
+            -0.9283
+          ]
+        },
+        {
+          "normal": [
+            1.0,
+            0.0,
+            0.0
+          ],
+          "point": [
+            -0.7789,
+            0.0,
+            0.0
+          ]
+        }
+      ]
+    },
+    {
+      "ao": {
+        "Stone": {
+          "mean": 0.488,
+          "min": 0.18
+        },
+        "Wood": {
+          "mean": 0.423,
+          "min": 0.18
+        }
+      },
+      "bounds_godot": {
+        "max": [
+          1.545,
+          0.355,
+          0.872
+        ],
+        "min": [
+          -1.545,
+          0.0,
+          -0.872
+        ]
+      },
+      "build_seconds": 4.0,
+      "collision": {
+        "convex_hulls": 20,
+        "hull_vertices": 924,
+        "min_piece_size_m": 0.2
+      },
+      "deepest_pair": null,
+      "footprint_m": [
+        3.091,
+        1.744
+      ],
+      "frames": 208,
+      "glb": "content/environments/procedural_rubble_v1/rubble_bridge_debris_s1.glb",
+      "height_m": 0.355,
+      "id": "rubble_bridge_debris_s1",
+      "lods": [
+        {
+          "level": 0,
+          "path": "content/environments/procedural_rubble_v1/rubble_bridge_debris_s1.glb",
+          "tris": 4938
+        },
+        {
+          "level": 1,
+          "path": "content/environments/procedural_rubble_v1/lod/rubble_bridge_debris_s1_lod1.glb",
+          "tris": 2468
+        },
+        {
+          "level": 2,
+          "path": "content/environments/procedural_rubble_v1/lod/rubble_bridge_debris_s1_lod2.glb",
+          "tris": 986
+        }
+      ],
+      "max_contact_gap_m": 0.0053,
+      "max_interpenetration_m": 0.0,
+      "peak_speed_m_s": 3.847,
+      "piece_count": 32,
+      "pieces": {
+        "ashlar": 13,
+        "beam": 1,
+        "brick": 1,
+        "plank": 8,
+        "rock": 9
+      },
+      "recipe": "bridge_debris",
+      "removed": {
+        "escaped": [],
+        "floating": []
+      },
+      "residual_speed_m_s": 0.00782,
+      "seed": 1,
+      "settle_seconds": 6.933,
+      "tessellation_scale": 1.0,
+      "touching_pairs": 0,
+      "walls_godot": []
+    },
+    {
+      "ao": {
+        "Stone": {
+          "mean": 0.496,
+          "min": 0.18
+        },
+        "Wood": {
+          "mean": 0.396,
+          "min": 0.18
+        }
+      },
+      "bounds_godot": {
+        "max": [
+          1.312,
+          0.342,
+          0.833
+        ],
+        "min": [
+          -1.312,
+          0.0,
+          -0.833
+        ]
+      },
+      "build_seconds": 4.5,
+      "collision": {
+        "convex_hulls": 22,
+        "hull_vertices": 1034,
+        "min_piece_size_m": 0.2
+      },
+      "deepest_pair": null,
+      "footprint_m": [
+        2.624,
+        1.666
+      ],
+      "frames": 229,
+      "glb": "content/environments/procedural_rubble_v1/rubble_bridge_debris_s2.glb",
+      "height_m": 0.342,
+      "id": "rubble_bridge_debris_s2",
+      "lods": [
+        {
+          "level": 0,
+          "path": "content/environments/procedural_rubble_v1/rubble_bridge_debris_s2.glb",
+          "tris": 5726
+        },
+        {
+          "level": 1,
+          "path": "content/environments/procedural_rubble_v1/lod/rubble_bridge_debris_s2_lod1.glb",
+          "tris": 2862
+        },
+        {
+          "level": 2,
+          "path": "content/environments/procedural_rubble_v1/lod/rubble_bridge_debris_s2_lod2.glb",
+          "tris": 1144
+        }
+      ],
+      "max_contact_gap_m": 0.0068,
+      "max_interpenetration_m": 0.0,
+      "peak_speed_m_s": 2.91,
+      "piece_count": 31,
+      "pieces": {
+        "ashlar": 12,
+        "beam": 1,
+        "brick": 2,
+        "plank": 9,
+        "rock": 7
+      },
+      "recipe": "bridge_debris",
+      "removed": {
+        "escaped": [],
+        "floating": []
+      },
+      "residual_speed_m_s": 0.00533,
+      "seed": 2,
+      "settle_seconds": 7.633,
+      "tessellation_scale": 1.0,
+      "touching_pairs": 0,
+      "walls_godot": []
+    },
+    {
+      "ao": {
+        "Stone": {
+          "mean": 0.499,
+          "min": 0.18
+        },
+        "Wood": {
+          "mean": 0.392,
+          "min": 0.18
+        }
+      },
+      "bounds_godot": {
+        "max": [
+          1.298,
+          0.264,
+          0.888
+        ],
+        "min": [
+          -1.298,
+          0.0,
+          -0.888
+        ]
+      },
+      "build_seconds": 3.9,
+      "collision": {
+        "convex_hulls": 19,
+        "hull_vertices": 848,
+        "min_piece_size_m": 0.2
+      },
+      "deepest_pair": null,
+      "footprint_m": [
+        2.596,
+        1.776
+      ],
+      "frames": 153,
+      "glb": "content/environments/procedural_rubble_v1/rubble_bridge_debris_s3.glb",
+      "height_m": 0.264,
+      "id": "rubble_bridge_debris_s3",
+      "lods": [
+        {
+          "level": 0,
+          "path": "content/environments/procedural_rubble_v1/rubble_bridge_debris_s3.glb",
+          "tris": 4448
+        },
+        {
+          "level": 1,
+          "path": "content/environments/procedural_rubble_v1/lod/rubble_bridge_debris_s3_lod1.glb",
+          "tris": 2222
+        },
+        {
+          "level": 2,
+          "path": "content/environments/procedural_rubble_v1/lod/rubble_bridge_debris_s3_lod2.glb",
+          "tris": 888
+        }
+      ],
+      "max_contact_gap_m": 0.0056,
+      "max_interpenetration_m": 0.0,
+      "peak_speed_m_s": 3.548,
+      "piece_count": 31,
+      "pieces": {
+        "ashlar": 7,
+        "beam": 1,
+        "brick": 3,
+        "plank": 8,
+        "rock": 12
+      },
+      "recipe": "bridge_debris",
+      "removed": {
+        "escaped": [],
+        "floating": []
+      },
+      "residual_speed_m_s": 0.00923,
+      "seed": 3,
+      "settle_seconds": 5.1,
+      "tessellation_scale": 1.0,
+      "touching_pairs": 0,
+      "walls_godot": []
+    },
+    {
+      "ao": {
+        "Stone": {
+          "mean": 0.534,
+          "min": 0.18
+        }
+      },
+      "bounds_godot": {
+        "max": [
+          1.222,
+          0.22,
+          1.265
+        ],
+        "min": [
+          -1.222,
+          0.0,
+          -1.265
+        ]
+      },
+      "build_seconds": 3.7,
+      "collision": {
+        "convex_hulls": 10,
+        "hull_vertices": 374,
+        "min_piece_size_m": 0.2
+      },
+      "deepest_pair": null,
+      "footprint_m": [
+        2.444,
+        2.531
+      ],
+      "frames": 104,
+      "glb": "content/environments/procedural_rubble_v1/rubble_floor_scatter_s1.glb",
+      "height_m": 0.22,
+      "id": "rubble_floor_scatter_s1",
+      "lods": [
+        {
+          "level": 0,
+          "path": "content/environments/procedural_rubble_v1/rubble_floor_scatter_s1.glb",
+          "tris": 3984
+        },
+        {
+          "level": 1,
+          "path": "content/environments/procedural_rubble_v1/lod/rubble_floor_scatter_s1_lod1.glb",
+          "tris": 1992
+        },
+        {
+          "level": 2,
+          "path": "content/environments/procedural_rubble_v1/lod/rubble_floor_scatter_s1_lod2.glb",
+          "tris": 796
+        }
+      ],
+      "max_contact_gap_m": 0.002,
+      "max_interpenetration_m": 0.0,
+      "peak_speed_m_s": 2.798,
+      "piece_count": 36,
+      "pieces": {
+        "ashlar": 9,
+        "brick": 8,
+        "clump": 2,
+        "rock": 17
+      },
+      "recipe": "floor_scatter",
+      "removed": {
+        "escaped": [],
+        "floating": []
+      },
+      "residual_speed_m_s": 0.00698,
+      "seed": 1,
+      "settle_seconds": 3.467,
+      "tessellation_scale": 1.0,
+      "touching_pairs": 0,
+      "walls_godot": []
+    },
+    {
+      "ao": {
+        "Stone": {
+          "mean": 0.52,
+          "min": 0.18
+        }
+      },
+      "bounds_godot": {
+        "max": [
+          1.127,
+          0.219,
+          1.195
+        ],
+        "min": [
+          -1.127,
+          0.0,
+          -1.195
+        ]
+      },
+      "build_seconds": 3.7,
+      "collision": {
+        "convex_hulls": 15,
+        "hull_vertices": 573,
+        "min_piece_size_m": 0.2
+      },
+      "deepest_pair": null,
+      "footprint_m": [
+        2.254,
+        2.39
+      ],
+      "frames": 157,
+      "glb": "content/environments/procedural_rubble_v1/rubble_floor_scatter_s2.glb",
+      "height_m": 0.219,
+      "id": "rubble_floor_scatter_s2",
+      "lods": [
+        {
+          "level": 0,
+          "path": "content/environments/procedural_rubble_v1/rubble_floor_scatter_s2.glb",
+          "tris": 4532
+        },
+        {
+          "level": 1,
+          "path": "content/environments/procedural_rubble_v1/lod/rubble_floor_scatter_s2_lod1.glb",
+          "tris": 2266
+        },
+        {
+          "level": 2,
+          "path": "content/environments/procedural_rubble_v1/lod/rubble_floor_scatter_s2_lod2.glb",
+          "tris": 906
+        }
+      ],
+      "max_contact_gap_m": 0.002,
+      "max_interpenetration_m": 0.0,
+      "peak_speed_m_s": 1.866,
+      "piece_count": 35,
+      "pieces": {
+        "ashlar": 17,
+        "brick": 4,
+        "clump": 2,
+        "rock": 12
+      },
+      "recipe": "floor_scatter",
+      "removed": {
+        "escaped": [],
+        "floating": []
+      },
+      "residual_speed_m_s": 0.00789,
+      "seed": 2,
+      "settle_seconds": 5.233,
+      "tessellation_scale": 1.0,
+      "touching_pairs": 0,
+      "walls_godot": []
+    },
+    {
+      "ao": {
+        "Stone": {
+          "mean": 0.528,
+          "min": 0.18
+        }
+      },
+      "bounds_godot": {
+        "max": [
+          1.268,
+          0.221,
+          1.296
+        ],
+        "min": [
+          -1.268,
+          0.0,
+          -1.296
+        ]
+      },
+      "build_seconds": 3.6,
+      "collision": {
+        "convex_hulls": 11,
+        "hull_vertices": 425,
+        "min_piece_size_m": 0.2
+      },
+      "deepest_pair": null,
+      "footprint_m": [
+        2.536,
+        2.593
+      ],
+      "frames": 139,
+      "glb": "content/environments/procedural_rubble_v1/rubble_floor_scatter_s3.glb",
+      "height_m": 0.221,
+      "id": "rubble_floor_scatter_s3",
+      "lods": [
+        {
+          "level": 0,
+          "path": "content/environments/procedural_rubble_v1/rubble_floor_scatter_s3.glb",
+          "tris": 4108
+        },
+        {
+          "level": 1,
+          "path": "content/environments/procedural_rubble_v1/lod/rubble_floor_scatter_s3_lod1.glb",
+          "tris": 2054
+        },
+        {
+          "level": 2,
+          "path": "content/environments/procedural_rubble_v1/lod/rubble_floor_scatter_s3_lod2.glb",
+          "tris": 820
+        }
+      ],
+      "max_contact_gap_m": 0.002,
+      "max_interpenetration_m": 0.0,
+      "peak_speed_m_s": 3.206,
+      "piece_count": 35,
+      "pieces": {
+        "ashlar": 13,
+        "brick": 8,
+        "clump": 2,
+        "rock": 12
+      },
+      "recipe": "floor_scatter",
+      "removed": {
+        "escaped": [],
+        "floating": []
+      },
+      "residual_speed_m_s": 0.00661,
+      "seed": 3,
+      "settle_seconds": 4.633,
+      "tessellation_scale": 1.0,
+      "touching_pairs": 0,
+      "walls_godot": []
+    }
+  ],
+  "seconds": 77.2
+}

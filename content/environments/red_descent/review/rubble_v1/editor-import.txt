@@ -1,0 +1,87 @@
+$ Godot --headless --editor --path . --quit   (exit 0; progress lines omitted; no ERROR or WARNING lines)
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+[ DONE ] first_scan_filesystem
+
+[ DONE ] _update_scan_actions
+
+[ DONE ] preload_reimporting_scene
+
+[ DONE ] import
+
+[ DONE ] import
+
+[ DONE ] import
+
+[ DONE ] import
+
+[ DONE ] import
+
+[ DONE ] import
+
+[ DONE ] import
+
+[ DONE ] import
+
+[ DONE ] import
+
+[ DONE ] import
+
+[ DONE ] import
+
+[ DONE ] import
+
+[ DONE ] import
+
+[ DONE ] import
+
+[ DONE ] import
+
+[ DONE ] import
+
+[ DONE ] import
+
+[ DONE ] import
+
+[ DONE ] import
+
+[ DONE ] import
+
+[ DONE ] import
+
+[ DONE ] import
+
+[ DONE ] import
+
+[ DONE ] import
+
+[ DONE ] import
+
+[ DONE ] import
+
+[ DONE ] import
+
+[ DONE ] import
+
+[ DONE ] import
+
+[ DONE ] import
+
+[ DONE ] import
+
+[ DONE ] import
+
+[ DONE ] import
+
+[ DONE ] import
+
+[ DONE ] import
+
+[ DONE ] import
+
+[ DONE ] reimport
+
+[ DONE ] reimport
+
+[ DONE ] loading_editor_layout
+

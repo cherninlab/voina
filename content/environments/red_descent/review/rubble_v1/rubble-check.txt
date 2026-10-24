@@ -1,0 +1,20 @@
+$ Godot --headless --path . -s res://content/environments/procedural_rubble_v1/preview/rubble_check.gd
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+BUILD: 6ed8bfe [23c50e2dd2eb]
+RUBBLE_PILE_CHECK rubble_wall_spill_s1 tris=7116 hulls=24 height=0.477 capsule_feet=0.475 on_floor=true rest_speed=0.0000 stood=true
+RUBBLE_PILE_CHECK rubble_wall_spill_s2 tris=7538 hulls=24 height=0.650 capsule_feet=0.648 on_floor=true rest_speed=0.0000 stood=true
+RUBBLE_PILE_CHECK rubble_wall_spill_s3 tris=7422 hulls=24 height=0.550 capsule_feet=0.549 on_floor=true rest_speed=0.0000 stood=true
+RUBBLE_PILE_CHECK rubble_corner_heap_s1 tris=6912 hulls=20 height=0.374 capsule_feet=0.357 on_floor=true rest_speed=0.0000 stood=true
+RUBBLE_PILE_CHECK rubble_corner_heap_s2 tris=7372 hulls=21 height=0.410 capsule_feet=0.405 on_floor=true rest_speed=0.0000 stood=true
+RUBBLE_PILE_CHECK rubble_corner_heap_s3 tris=6534 hulls=25 height=0.510 capsule_feet=0.510 on_floor=true rest_speed=0.0000 stood=true
+RUBBLE_PILE_CHECK rubble_bridge_debris_s1 tris=4938 hulls=20 height=0.355 capsule_feet=0.347 on_floor=true rest_speed=0.0000 stood=true
+RUBBLE_PILE_CHECK rubble_bridge_debris_s2 tris=5726 hulls=22 height=0.342 capsule_feet=0.341 on_floor=true rest_speed=0.0000 stood=true
+RUBBLE_PILE_CHECK rubble_bridge_debris_s3 tris=4448 hulls=19 height=0.264 capsule_feet=0.258 on_floor=true rest_speed=0.0000 stood=true
+RUBBLE_PILE_CHECK rubble_floor_scatter_s1 tris=3984 hulls=10 height=0.220 capsule_feet=0.220 on_floor=true rest_speed=0.0000 stood=true
+RUBBLE_PILE_CHECK rubble_floor_scatter_s2 tris=4532 hulls=15 height=0.219 capsule_feet=0.219 on_floor=true rest_speed=0.0000 stood=true
+RUBBLE_PILE_CHECK rubble_floor_scatter_s3 tris=4108 hulls=11 height=0.221 capsule_feet=0.219 on_floor=true rest_speed=0.0000 stood=true
+RUBBLE_CHECK_OK: 12 piles import with grey AO colour, ground origin, convex collision and a standing capsule
+WARNING: 1 ObjectDB instance was leaked at exit (run with `--verbose` for details).
+   at: cleanup (core/object/object.cpp:2536)
+exit 0
