@@ -1,0 +1,24 @@
+{
+  "asset_id": "02-split-bedded-stone",
+  "task": "T-183",
+  "stage": "phase_1_imagegen",
+  "generator": "built-in image_gen.imagegen",
+  "original_output_path": "/Users/theochernin/.codex/generated_images/01a16fc4-91ab-7841-a0d5-5e654d737a81/exec-f6bcccfa-31ec-466c-9f6c-bb9a1dfe7eb5.png",
+  "saved_path": "/Users/theochernin/Projects/MultiPlayerProject-agents/theo-codex-43/content/environments/stone_brick_materials_v1/studies/02-split-bedded-stone.png",
+  "prompt_path": "prompts/02-split-bedded-stone.txt",
+  "prompt_text": "Use case: stylized-concept\nAsset type: photorealistic dungeon material albedo direction, Phase 1 approval image.\nPrimary request: one square, edge-to-edge macro texture of the uninterrupted FACE of the material below, designed as a repeating stone/brick face texture for a dark ruined Gothic dungeon.\nReference direction: the user supplied wet rough crypt masonry, chipped medieval arches above a red abyss, and a cold green-lit Gothic nave with worn flagstones. Translate their weathered tactile realism into this single surface. Keep all atmospheric lighting, red/green tint, reflections and water out of the albedo; wet gloss will be supplied by a shader later.\nComposition: orthographic straight-on macro surface, no perspective, no object silhouette, no borders, no text, no labels, no sphere or material ball, no comparison collage. Full square canvas is the face of one continuous material. Design edge continuity for seamless repetition in both axes; no dominant landmark.\nLighting: flat neutral diffuse capture, even exposure across the entire tile, no directional shading, cast shadows, vignette, specular highlights or ambient-occlusion halos. Surface relief is readable through intrinsic grain and color variation rather than painted light.\nConstraints: physically credible restrained colors, millimetre pits and centimetre tool marks, multi-scale detail, low contrast broad variation. NO mortar joints, brick/block outlines, stone seams, tiled wall pattern, dramatic crack networks, vegetation, roots, skulls, symbols or props. The stone/brick geometry supplies unit outlines. Output one high-detail square image, ideally 2048 x 2048.\nMaterial: Grey-brown fine-grained limestone/siltstone face for thin coursed slabs and rubble. Fine mostly horizontal broken bedding striations, wavy splitting planes, irregular shallow conchoidal flake scars, sparse larger open pores. Restrained warm-grey palette with small muted umber mineral flecks. Stone face only, no slab outlines or horizontal mortar bands. Tile physical width 1.8 m.\n",
+  "sha256": "6f9173d537d7f1f169028cb231e269d9bd63c9f5141ffe15e4551b0571a5bfd8",
+  "original_sha256": "6f9173d537d7f1f169028cb231e269d9bd63c9f5141ffe15e4551b0571a5bfd8",
+  "dimensions": {
+    "width": 1254,
+    "height": 1254
+  },
+  "user_approval": "pending",
+  "transparent_background": false,
+  "generated_utc": "2026-10-24T21:17:03.952439+00:00",
+  "attempt": 1,
+  "visual_review": {
+    "complete": true,
+    "observations": "Single continuous stone-face study, no masonry joints or object silhouette; restrained neutral intrinsic colors and readable surface grain. Seamlessness and absence of baked microshading require later material QA; no PBR-map claim."
+  }
+}

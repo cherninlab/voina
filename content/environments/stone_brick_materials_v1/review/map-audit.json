@@ -1,0 +1,191 @@
+{
+  "verified_utc": "2026-10-24T21:33:50.252299+00:00",
+  "tested_base_commit": "94638c372d8f58a06fb31d07213f5d8e680a9e16",
+  "map_sets": 9,
+  "map_count": 45,
+  "materials": {
+    "01-chisel-limestone": {
+      "hashes_bits_dimensions_finite": "pass",
+      "normal_matches_delivered_height_max_component_error": 0.0039215686274509665,
+      "max_wrap_step_ratio": 0.7249885945408037,
+      "normal_enabled_mean_pixel_delta": 3.558129166666667,
+      "wet_enabled_mean_pixel_delta": 3.0925927083333336,
+      "capture_review": "Repeated versus stochastic-versus-wet native controls captured; stochastic result technically reviewed; human visual approval pending."
+    },
+    "02-split-bedded-stone": {
+      "hashes_bits_dimensions_finite": "pass",
+      "normal_matches_delivered_height_max_component_error": 0.0039215686274509665,
+      "max_wrap_step_ratio": 0.97304081031265,
+      "normal_enabled_mean_pixel_delta": 3.8024744791666665,
+      "wet_enabled_mean_pixel_delta": 2.7490671875,
+      "capture_review": "Repeated versus stochastic-versus-wet native controls captured; stochastic result technically reviewed; human visual approval pending."
+    },
+    "03-drafted-quoin-stone": {
+      "hashes_bits_dimensions_finite": "pass",
+      "normal_matches_delivered_height_max_component_error": 0.0039215686274509665,
+      "max_wrap_step_ratio": 0.8437328715539135,
+      "normal_enabled_mean_pixel_delta": 2.9504244791666667,
+      "wet_enabled_mean_pixel_delta": 1.9457583333333333,
+      "capture_review": "Repeated versus stochastic-versus-wet native controls captured; stochastic result technically reviewed; human visual approval pending."
+    },
+    "04-old-terracotta-brick": {
+      "hashes_bits_dimensions_finite": "pass",
+      "normal_matches_delivered_height_max_component_error": 0.0039215686274509665,
+      "max_wrap_step_ratio": 0.7734478991050799,
+      "normal_enabled_mean_pixel_delta": 2.871296875,
+      "wet_enabled_mean_pixel_delta": 1.4962119791666666,
+      "capture_review": "Repeated versus stochastic-versus-wet native controls captured; stochastic result technically reviewed; human visual approval pending."
+    },
+    "05-smoke-darkened-brick": {
+      "hashes_bits_dimensions_finite": "pass",
+      "normal_matches_delivered_height_max_component_error": 0.0039215686274509665,
+      "max_wrap_step_ratio": 0.7196650800480423,
+      "normal_enabled_mean_pixel_delta": 2.1330973958333335,
+      "wet_enabled_mean_pixel_delta": 0.8686802083333334,
+      "capture_review": "Repeated versus stochastic-versus-wet native controls captured; stochastic result technically reviewed; human visual approval pending."
+    },
+    "06-limewashed-brick": {
+      "hashes_bits_dimensions_finite": "pass",
+      "normal_matches_delivered_height_max_component_error": 0.0039215686274509665,
+      "max_wrap_step_ratio": 0.7348106597166172,
+      "normal_enabled_mean_pixel_delta": 2.9777822916666667,
+      "wet_enabled_mean_pixel_delta": 2.012931770833333,
+      "capture_review": "Repeated versus stochastic-versus-wet native controls captured; stochastic result technically reviewed; human visual approval pending."
+    },
+    "07-worn-floor-limestone": {
+      "hashes_bits_dimensions_finite": "pass",
+      "normal_matches_delivered_height_max_component_error": 0.0039215686274509665,
+      "max_wrap_step_ratio": 0.6875209445002964,
+      "normal_enabled_mean_pixel_delta": 1.90969375,
+      "wet_enabled_mean_pixel_delta": 2.9254354166666667,
+      "capture_review": "Repeated versus stochastic-versus-wet native controls captured; stochastic result technically reviewed; human visual approval pending."
+    },
+    "08-salt-weathered-limestone": {
+      "hashes_bits_dimensions_finite": "pass",
+      "normal_matches_delivered_height_max_component_error": 0.0039215686274509665,
+      "max_wrap_step_ratio": 0.7633186202489041,
+      "normal_enabled_mean_pixel_delta": 3.967858854166667,
+      "wet_enabled_mean_pixel_delta": 2.9789432291666667,
+      "capture_review": "Repeated versus stochastic-versus-wet native controls captured; stochastic result technically reviewed; human visual approval pending."
+    },
+    "09-fine-tooled-sandstone": {
+      "hashes_bits_dimensions_finite": "pass",
+      "normal_matches_delivered_height_max_component_error": 0.0039215686274509665,
+      "max_wrap_step_ratio": 0.8406743181199561,
+      "normal_enabled_mean_pixel_delta": 3.1395786458333332,
+      "wet_enabled_mean_pixel_delta": 3.4465276041666666,
+      "capture_review": "Repeated versus stochastic-versus-wet native controls captured; stochastic result technically reviewed; human visual approval pending."
+    }
+  },
+  "original_inputs_preserved": true,
+  "normal_convention": "OpenGL tangent +Y, height white high",
+  "limitations": [
+    "Artist-estimated height inputs retain some shading and fine-grain registration uncertainty; no scan or measured geometry claim.",
+    "Opposite-edge discontinuities reduced by periodic smooth-field correction; wrap steps are smoother than typical interior texture. Repetition remains visible on large uninterrupted areas.",
+    "Material samples only; no dungeon placement, new stone models or CL3D generation.",
+    "Original images native 1254 square; no 2K scan-detail claim."
+  ],
+  "editor_import": "pass; editor-import-final.txt; no SCRIPT ERROR/Parse Error/ERROR",
+  "engine_capture": "pass; godot-audit.json; actual production shader, nine materials/45maps/27captures",
+  "smoke": "pass; smoke.txt; two-process ENet/disconnect and intentional build-mismatch rejection",
+  "known_warnings": "One ObjectDB instance cleanup warning at standalone capture shutdown; existing shutdown warnings in smoke. Not claimed fixed.",
+  "repetition_fix": "Coherent triangular stochastic sampling of all five maps; ready-made surface.tres per set. Rejected regular tiling retained only for comparison.",
+  "repetition_audit": {
+    "method": "Image luminance normalized correlation at one 278px source-tile shift in the same 3x3 native Godot panel, both axes. Lower means less visible repetition.",
+    "materials": {
+      "01-chisel-limestone": {
+        "repeat_correlation_xy": [
+          0.8556322477242809,
+          0.8874904404486033
+        ],
+        "varied_correlation_xy": [
+          0.0038347103562331583,
+          0.0025626652658362363
+        ]
+      },
+      "02-split-bedded-stone": {
+        "repeat_correlation_xy": [
+          0.8125462100265975,
+          0.8776130021115806
+        ],
+        "varied_correlation_xy": [
+          0.005689644312188469,
+          0.013896727395093993
+        ]
+      },
+      "03-drafted-quoin-stone": {
+        "repeat_correlation_xy": [
+          0.8504287370806115,
+          0.8770216160116902
+        ],
+        "varied_correlation_xy": [
+          0.012514116240725667,
+          0.014574448112331434
+        ]
+      },
+      "04-old-terracotta-brick": {
+        "repeat_correlation_xy": [
+          0.7989945023221507,
+          0.8462461726986711
+        ],
+        "varied_correlation_xy": [
+          0.01257489430576962,
+          0.018555268502544898
+        ]
+      },
+      "05-smoke-darkened-brick": {
+        "repeat_correlation_xy": [
+          0.8468515823993082,
+          0.8691668847115476
+        ],
+        "varied_correlation_xy": [
+          0.01070263450214182,
+          0.011995809150580359
+        ]
+      },
+      "06-limewashed-brick": {
+        "repeat_correlation_xy": [
+          0.925928506378596,
+          0.9402416984297002
+        ],
+        "varied_correlation_xy": [
+          -0.040592465823205165,
+          0.05739751172034415
+        ]
+      },
+      "07-worn-floor-limestone": {
+        "repeat_correlation_xy": [
+          0.8464274952707381,
+          0.8622962992919425
+        ],
+        "varied_correlation_xy": [
+          0.00022866416003054936,
+          0.008980955172042435
+        ]
+      },
+      "08-salt-weathered-limestone": {
+        "repeat_correlation_xy": [
+          0.8645230172537063,
+          0.8856626872248565
+        ],
+        "varied_correlation_xy": [
+          0.005249260905485146,
+          -0.003094196361906648
+        ]
+      },
+      "09-fine-tooled-sandstone": {
+        "repeat_correlation_xy": [
+          0.7612860666795771,
+          0.8391165124778864
+        ],
+        "varied_correlation_xy": [
+          -1.4564807354086671e-05,
+          0.016655317164543118
+        ]
+      }
+    }
+  },
+  "preset_import_and_capture": "pass; editor-import-presets.txt and godot-presets.txt: actual nine surface.tres loaded and texture resource paths/dimensions checked; 27 native controls",
+  "smoke_after_stochastic_change": "pass; smoke-stochastic.txt; intentional version mismatch and local ENet/disconnect succeeded",
+  "corrected_shader_visual_review": "Nine stochastic dry and wet controls visually reviewed in native contact sheets; obvious regular stamping removed. User acceptance pending."
+}

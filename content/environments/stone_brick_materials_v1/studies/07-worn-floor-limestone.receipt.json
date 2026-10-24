@@ -1,0 +1,24 @@
+{
+  "asset_id": "07-worn-floor-limestone",
+  "stage": "imagegen_phase_1",
+  "tool": "built-in image_gen.imagegen",
+  "original_output_path": "/Users/theochernin/.codex/generated_images/01a16fc4-cae1-7611-a4c2-4651c253ef17/exec-c0be6604-2f4a-4cfb-a129-04194eb6347f.png",
+  "saved_path": "/Users/theochernin/Projects/MultiPlayerProject-agents/theo-codex-43/content/environments/stone_brick_materials_v1/studies/07-worn-floor-limestone.png",
+  "prompt_path": "/Users/theochernin/Projects/MultiPlayerProject-agents/theo-codex-43/content/environments/stone_brick_materials_v1/prompts/07-worn-floor-limestone.txt",
+  "prompt": "Use case: stylized-concept\nAsset type: photorealistic dungeon material albedo direction, Phase 1 approval image.\nPrimary request: one square, edge-to-edge macro texture of the uninterrupted FACE of the material below, designed as a repeating stone/brick face texture for a dark ruined Gothic dungeon.\nReference direction: the user supplied wet rough crypt masonry, chipped medieval arches above a red abyss, and a cold green-lit Gothic nave with worn flagstones. Translate their weathered tactile realism into this single surface. Keep all atmospheric lighting, red/green tint, reflections and water out of the albedo; wet gloss will be supplied by a shader later.\nComposition: orthographic straight-on macro surface, no perspective, no object silhouette, no borders, no text, no labels, no sphere or material ball, no comparison collage. Full square canvas is the face of one continuous material. Design edge continuity for seamless repetition in both axes; no dominant landmark.\nLighting: flat neutral diffuse capture, even exposure across the entire tile, no directional shading, cast shadows, vignette, specular highlights or ambient-occlusion halos. Surface relief is readable through intrinsic grain and color variation rather than painted light.\nConstraints: physically credible restrained colors, millimetre pits and centimetre tool marks, multi-scale detail, low contrast broad variation. NO mortar joints, brick/block outlines, stone seams, tiled wall pattern, dramatic crack networks, vegetation, roots, skulls, symbols or props. The stone/brick geometry supplies unit outlines. Output one high-detail square image, ideally 2048 x 2048.\nMaterial: Grey-green neutral limestone flagstone face, centuries of foot wear, shallow smooth dished regions with quiet fine abrasion crossing irregular tiny pits and old fossil flecks. Broad muted grey tonal movement, occasional small chalky scuffs. Dense compact material, almost smooth high points beside weathered depressions. No painted reflections, puddles, wet highlights, floor seams, slab outlines or scratches forming a network. Tile physical width 1.8 m.\n",
+  "sha256": "50d94b5744027b2233b8d5a8f517c30c1b2bca71cae1ee0a21375bbc21afbd70",
+  "dimensions": [
+    1254,
+    1254
+  ],
+  "transparent_background": false,
+  "referenced_image_paths": null,
+  "num_last_images_to_include": null,
+  "attempt": 1,
+  "generated_at_utc": "2026-10-24T21:17:57.077333+00:00",
+  "user_approval": "pending",
+  "visual_review": {
+    "status": "reviewed",
+    "notes": "Full-frame continuous stone face; no joints, props, labels or silhouette. Distinct wear/mineral/tooling direction. Phase 1 appearance study only; seamless repetition and albedo de-lighting are not yet verified; not a measured PBR map."
+  }
+}

@@ -1,0 +1,142 @@
+{
+  "task": "T-183",
+  "tool": "built-in image_gen",
+  "approval_gate": "Human visual review of the corrected materials is pending. The latest explicit request authorizes additional T-167 CL3D generation; no runtime dungeon integration is performed here.",
+  "items": [
+    {
+      "id": "01-chisel-limestone",
+      "title": "Chisel-worn grey limestone",
+      "prompt": "prompts/01-chisel-limestone.txt",
+      "image": "studies/01-chisel-limestone.png",
+      "status": "generated_with_paired_maps",
+      "approval": "pending",
+      "kind": "ImageGen albedo candidate; not yet seam-verified or PBR-derived",
+      "sha256": "e73ced5820a9909307615cef993d01917a7531c48bc9085301222f524e862150",
+      "size": [
+        1254,
+        1254
+      ],
+      "map_folder": "materials/01-chisel-limestone/"
+    },
+    {
+      "id": "02-split-bedded-stone",
+      "title": "Split bedded stone",
+      "prompt": "prompts/02-split-bedded-stone.txt",
+      "image": "studies/02-split-bedded-stone.png",
+      "status": "generated_with_paired_maps",
+      "approval": "pending",
+      "kind": "ImageGen albedo candidate; not yet seam-verified or PBR-derived",
+      "sha256": "6f9173d537d7f1f169028cb231e269d9bd63c9f5141ffe15e4551b0571a5bfd8",
+      "size": [
+        1254,
+        1254
+      ],
+      "map_folder": "materials/02-split-bedded-stone/"
+    },
+    {
+      "id": "03-drafted-quoin-stone",
+      "title": "Coarse dressed plinth stone",
+      "prompt": "prompts/03-drafted-quoin-stone.txt",
+      "image": "studies/03-drafted-quoin-stone.png",
+      "status": "generated_with_paired_maps",
+      "approval": "pending",
+      "kind": "ImageGen albedo candidate; not yet seam-verified or PBR-derived",
+      "sha256": "a5f424a94e9c7acc6cdc14f3378ac36f7dbd72088a1ed5593bf99be10b0b0c19",
+      "size": [
+        1254,
+        1254
+      ],
+      "map_folder": "materials/03-drafted-quoin-stone/"
+    },
+    {
+      "id": "04-old-terracotta-brick",
+      "title": "Old terracotta brick face",
+      "prompt": "prompts/04-old-terracotta-brick.txt",
+      "image": "studies/04-old-terracotta-brick.png",
+      "status": "generated_with_paired_maps",
+      "approval": "pending",
+      "kind": "ImageGen albedo candidate; not yet seam-verified or PBR-derived",
+      "sha256": "87b29b4dec5ea02039aa9479b825d8e98541cfed593d730265fa28391f44e128",
+      "size": [
+        1254,
+        1254
+      ],
+      "map_folder": "materials/04-old-terracotta-brick/"
+    },
+    {
+      "id": "05-smoke-darkened-brick",
+      "title": "Smoke-darkened brick face",
+      "prompt": "prompts/05-smoke-darkened-brick.txt",
+      "image": "studies/05-smoke-darkened-brick.png",
+      "status": "generated_with_paired_maps",
+      "approval": "pending",
+      "kind": "ImageGen albedo candidate; not yet seam-verified or PBR-derived",
+      "sha256": "5c63b4614a97d05f66c53b6fd4a78ab385e8156a7f702474ccb3c16e5b996dc2",
+      "size": [
+        1254,
+        1254
+      ],
+      "map_folder": "materials/05-smoke-darkened-brick/"
+    },
+    {
+      "id": "06-limewashed-brick",
+      "title": "Eroded limewashed brick face",
+      "prompt": "prompts/06-limewashed-brick.txt",
+      "image": "studies/06-limewashed-brick.png",
+      "status": "generated_with_paired_maps",
+      "approval": "pending",
+      "kind": "ImageGen albedo candidate; not yet seam-verified or PBR-derived",
+      "sha256": "8608edd48a630288fae7eadc7abe415a41804172e8c50052dd54940cf631fb0d",
+      "size": [
+        1254,
+        1254
+      ],
+      "map_folder": "materials/06-limewashed-brick/"
+    },
+    {
+      "id": "07-worn-floor-limestone",
+      "title": "Foot-worn floor limestone",
+      "prompt": "prompts/07-worn-floor-limestone.txt",
+      "image": "studies/07-worn-floor-limestone.png",
+      "status": "generated_with_paired_maps",
+      "approval": "pending",
+      "kind": "ImageGen albedo candidate; not yet seam-verified or PBR-derived",
+      "sha256": "50d94b5744027b2233b8d5a8f517c30c1b2bca71cae1ee0a21375bbc21afbd70",
+      "size": [
+        1254,
+        1254
+      ],
+      "map_folder": "materials/07-worn-floor-limestone/"
+    },
+    {
+      "id": "08-salt-weathered-limestone",
+      "title": "Salt-weathered crypt limestone",
+      "prompt": "prompts/08-salt-weathered-limestone.txt",
+      "image": "studies/08-salt-weathered-limestone.png",
+      "status": "generated_with_paired_maps",
+      "approval": "pending",
+      "kind": "ImageGen albedo candidate; not yet seam-verified or PBR-derived",
+      "sha256": "d4ae0e1690aa8e96cdc56912a80542d78b4768a322411ddb594ec6de8f5d5387",
+      "size": [
+        1254,
+        1254
+      ],
+      "map_folder": "materials/08-salt-weathered-limestone/"
+    },
+    {
+      "id": "09-fine-tooled-sandstone",
+      "title": "Fine tooled vault sandstone",
+      "prompt": "prompts/09-fine-tooled-sandstone.txt",
+      "image": "studies/09-fine-tooled-sandstone.png",
+      "status": "generated_with_paired_maps",
+      "approval": "pending",
+      "kind": "ImageGen albedo candidate; not yet seam-verified or PBR-derived",
+      "sha256": "11d1c2a2891c993249a2720f81218a4bded027e5412fadd1142014209cd838e0",
+      "size": [
+        1254,
+        1254
+      ],
+      "map_folder": "materials/09-fine-tooled-sandstone/"
+    }
+  ]
+}

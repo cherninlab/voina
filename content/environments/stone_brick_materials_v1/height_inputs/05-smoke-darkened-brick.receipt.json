@@ -1,0 +1,23 @@
+{
+  "id": "05-smoke-darkened-brick",
+  "tool": "image_gen.imagegen",
+  "mode": "built_in_edit",
+  "original_output_path": "/Users/theochernin/.codex/generated_images/01a16fc4-ab5d-7db3-b99b-bd809dd354e8/exec-47bc3e54-3357-4185-baf6-10721e06d92b.png",
+  "saved_path": "/Users/theochernin/Projects/MultiPlayerProject-agents/theo-codex-43/content/environments/stone_brick_materials_v1/height_inputs/05-smoke-darkened-brick.png",
+  "prompt_path": "prompts/05-smoke-darkened-brick-height.txt",
+  "prompt": "Use case: precise-object-edit\nAsset type: registered grayscale artist-authored height interpretation for a tangent normal-map bake of a dungeon material.\nInput image 1 is the edit target: the approved-direction candidate texture named 05-smoke-darkened-brick. Preserve the EXACT framing, scale, coordinate alignment and location/shape of every visible pit, chip, chisel facet, scratch and grain in that image. Do not invent or move surface details, do not crop or rotate.\nPrimary request: convert this material appearance into a single grayscale HEIGHT MAP, white = locally higher surface and black = deeper recess. Remove ALL directional illumination, specular highlights, material colors, pigment variation, stains, mineral color flecks and shadows. Estimate physical relief only from shape cues: pores/pits/chips are low, the surrounding face is mid-grey, raised grain/tool ridges are gently high. Large dark soot patches and pale limewash/salt color patches must NOT become hills or valleys; only actual thin crust edges may have very shallow relief. Worn smooth floor regions must stay nearly flat.\nOutput: exactly one full-bleed grayscale height texture matching the input square, ideally same pixel dimensions. Narrow to medium restrained relief contrast, no pure-black voids and no white glare. Continuous scale, even neutral values, no lighting, no ambient occlusion, no cast shadows, no purple normal encoding. No annotations, borders, labels or collage. This is an artistic relief estimate for later mathematically consistent normals, not a measurement. Preserve the source material's fine structure and image registration above all else. Keep opposite-edge structure suitable for repetition; do not add a frame.\n",
+  "referenced_image_paths": [
+    "/Users/theochernin/Projects/MultiPlayerProject-agents/theo-codex-43/content/environments/stone_brick_materials_v1/studies/05-smoke-darkened-brick.png"
+  ],
+  "albedo_sha256": "5c63b4614a97d05f66c53b6fd4a78ab385e8156a7f702474ccb3c16e5b996dc2",
+  "sha256": "89b0e2ea5bc7478712449a453c7ed6d10a65a37207748910760475737d185d8c",
+  "dimensions": [
+    1254,
+    1254
+  ],
+  "transparent_background": false,
+  "user_approval": "pending",
+  "stage": "artist-estimated height input for later deterministic normal bake",
+  "caveat": "AI artist-estimated relief, not a measured physical height map. Broad framing and landmarks preserved on visual inspection, fine detail registration not guaranteed. Large soot coloration substantially removed. Some residual directional bas-relief shading remains; do not claim physical accuracy.",
+  "created_utc": "2026-10-24T21:25:29.954102+00:00"
+}

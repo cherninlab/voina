@@ -1,0 +1,22 @@
+[gd_resource type="ShaderMaterial" load_steps=8 format=3]
+
+[ext_resource type="Shader" path="res://content/environments/stone_brick_materials_v1/stone_brick_stochastic.gdshader" id="1"]
+[ext_resource type="Texture2D" path="res://content/environments/stone_brick_materials_v1/materials/01-chisel-limestone/albedo.png" id="2"]
+[ext_resource type="Texture2D" path="res://content/environments/stone_brick_materials_v1/materials/01-chisel-limestone/normal_gl.png" id="3"]
+[ext_resource type="Texture2D" path="res://content/environments/stone_brick_materials_v1/materials/01-chisel-limestone/roughness.png" id="4"]
+[ext_resource type="Texture2D" path="res://content/environments/stone_brick_materials_v1/materials/01-chisel-limestone/height.png" id="5"]
+[ext_resource type="Texture2D" path="res://content/environments/stone_brick_materials_v1/materials/01-chisel-limestone/ao.png" id="6"]
+[ext_resource type="Texture2D" path="res://content/environments/bridge_well_v1/masks/wet_patches.png" id="7"]
+
+[resource]
+shader = ExtResource("1")
+shader_parameter/albedo_map = ExtResource("2")
+shader_parameter/normal_map = ExtResource("3")
+shader_parameter/roughness_map = ExtResource("4")
+shader_parameter/height_map = ExtResource("5")
+shader_parameter/ao_map = ExtResource("6")
+shader_parameter/wet_map = ExtResource("7")
+shader_parameter/scale = 0.5555555555555556
+shader_parameter/normal_strength = 0.65
+shader_parameter/relief_m = 0.005
+shader_parameter/anti_tile = true

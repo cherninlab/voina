@@ -1,0 +1,179 @@
+shader_type spatial;
+// Project in metres on the existing UV-less architecture. Timber follows each instance.
+uniform sampler2D albedo_map : source_color, filter_linear_mipmap_anisotropic, repeat_enable;
+uniform sampler2D normal_map : hint_normal, filter_linear_mipmap_anisotropic, repeat_enable;
+uniform sampler2D roughness_map : filter_linear_mipmap_anisotropic, repeat_enable;
+uniform sampler2D ao_map : filter_linear_mipmap_anisotropic, repeat_enable;
+uniform sampler2D wet_map : filter_linear_mipmap, repeat_enable;
+uniform sampler2D metallic_map : filter_linear_mipmap_anisotropic, repeat_enable;
+uniform sampler2D height_map : filter_linear_mipmap_anisotropic, repeat_enable;
+uniform sampler2D substrate_albedo : source_color, filter_linear_mipmap_anisotropic, repeat_enable;
+uniform sampler2D substrate_normal : hint_normal, filter_linear_mipmap_anisotropic, repeat_enable;
+uniform sampler2D substrate_roughness : filter_linear_mipmap_anisotropic, repeat_enable;
+uniform sampler2D substrate_ao : filter_linear_mipmap_anisotropic, repeat_enable;
+uniform sampler2D peel_map : filter_linear_mipmap, repeat_enable;
+uniform sampler2D algae_map : filter_linear_mipmap, repeat_enable;
+uniform vec3 tint : source_color = vec3(1.0);
+uniform float scale = 0.4;
+uniform float aspect = 1.0;
+uniform float normal_strength = 0.4;
+uniform float wetness = 0.0;
+uniform float metallic_amount = 0.0;
+uniform float relief_m = 0.018;
+uniform float plaster = 0.0;
+uniform float algae = 0.0;
+uniform float dry_roughness_min = 0.65;
+uniform float wet_roughness = 0.23;
+uniform bool timber = false;
+// Baked stone builds carry metre UVs per stone (UV) and continuous along each wall (UV2).
+uniform bool mapped = false;
+varying vec2 surface_uv;
+varying vec2 wall_metres;
+varying vec3 surface_normal;
+varying vec3 surface_tangent;
+varying vec3 world_position;
+varying float timber_variation;
+
+// T-183: coherent random phase sampling on a triangular lattice.
+// All five maps share weights/offsets; offsets only, so bedding and normal axes stay fixed.
+uniform bool anti_tile = true;
+vec2 material_hash(vec2 p) {
+    highp vec2 h = vec2(dot(p, vec2(127.1, 311.7)), dot(p, vec2(269.5, 183.3)));
+    return fract(sin(h) * 43758.5453123);
+}
+vec4 material_sample(sampler2D map, vec2 uv) {
+    vec2 dx = dFdx(uv);
+    vec2 dy = dFdy(uv);
+    if (!anti_tile) { return textureGrad(map, uv, dx, dy); }
+    highp vec2 lattice = vec2(uv.x - uv.y * 0.577350269, uv.y * 1.154700538) * 1.35;
+    highp vec2 cell = floor(lattice);
+    vec2 f = fract(lattice);
+    vec3 weights;
+    vec2 a;
+    vec2 b;
+    vec2 c;
+    if (f.x + f.y <= 1.0) {
+        weights = vec3(1.0 - f.x - f.y, f.x, f.y);
+        a = cell; b = cell + vec2(1.0, 0.0); c = cell + vec2(0.0, 1.0);
+    } else {
+        weights = vec3(f.x + f.y - 1.0, 1.0 - f.x, 1.0 - f.y);
+        a = cell + vec2(1.0); b = cell + vec2(0.0, 1.0); c = cell + vec2(1.0, 0.0);
+    }
+    // Smooth derivatives at triangle borders and keep most detail unmuddied.
+    weights = pow(max(weights, vec3(0.0)), vec3(5.0));
+    weights /= dot(weights, vec3(1.0));
+    return textureGrad(map, uv + material_hash(a), dx, dy) * weights.x
+         + textureGrad(map, uv + material_hash(b), dx, dy) * weights.y
+         + textureGrad(map, uv + material_hash(c), dx, dy) * weights.z;
+}
+
+float noise3(vec3 p) {
+	highp vec3 cell = floor(p);
+	highp vec3 f = fract(p);
+	f = f * f * (3.0 - 2.0 * f);
+	highp vec4 h = vec4(dot(cell, vec3(1.0, 57.0, 113.0))) + vec4(0.0, 1.0, 57.0, 58.0);
+	highp vec4 a = fract(sin(h) * 43758.5453);
+	highp vec4 b = fract(sin(h + 113.0) * 43758.5453);
+	return mix(mix(mix(a.x, a.y, f.x), mix(a.z, a.w, f.x), f.y),
+		mix(mix(b.x, b.y, f.x), mix(b.z, b.w, f.x), f.y), f.z);
+}
+
+void vertex() {
+	world_position = (MODEL_MATRIX * vec4(VERTEX, 1.0)).xyz;
+	surface_normal = normalize(MODEL_NORMAL_MATRIX * NORMAL);
+	vec3 n = timber ? NORMAL : surface_normal;
+	vec3 tangent;
+	vec3 dimensions = vec3(length(MODEL_MATRIX[0].xyz), length(MODEL_MATRIX[1].xyz), length(MODEL_MATRIX[2].xyz));
+	if (timber) {
+		// Match the horizontal source grain to each board, upright post or support's long axis.
+		tangent = dimensions.x >= max(dimensions.y, dimensions.z) ? vec3(1.0, 0.0, 0.0) : (dimensions.y >= dimensions.z ? vec3(0.0, 1.0, 0.0) : vec3(0.0, 0.0, 1.0));
+		if (abs(dot(tangent, n)) > 0.9) { tangent = abs(n.y) < 0.7 ? vec3(0.0, 1.0, 0.0) : vec3(1.0, 0.0, 0.0); }
+		tangent = normalize(tangent - n * dot(tangent, n));
+	} else if (abs(n.y) > 0.7) {
+		tangent = vec3(1.0, 0.0, 0.0);
+		tangent = normalize(tangent - n * dot(tangent, n));
+	} else {
+		tangent = normalize(cross(vec3(0.0, 1.0, 0.0), n));
+	}
+	vec3 bitangent = normalize(cross(n, tangent));
+	vec3 position = world_position;
+	vec2 offset = vec2(0.0);
+	timber_variation = 0.5;
+	if (timber) {
+		position = VERTEX * dimensions;
+		// Separate boards sample different parts of the same real oak scan.
+		vec2 seed = vec2(dot(MODEL_MATRIX[3].xyz, vec3(0.73, 1.17, 0.41)), dot(MODEL_MATRIX[3].xyz, vec3(1.31, 0.53, 0.89)));
+		offset = fract(sin(seed) * vec2(43758.5453, 22578.1459));
+		timber_variation = offset.x;
+		surface_tangent = normalize(mat3(MODEL_MATRIX) * tangent);
+	} else {
+		surface_tangent = tangent;
+	}
+	surface_uv = vec2(dot(position, tangent), -dot(position, bitangent)) * scale * vec2(1.0, aspect) + offset;
+	wall_metres = surface_uv / (scale * vec2(1.0, aspect));
+	if (mapped) {
+		surface_tangent = normalize((MODEL_MATRIX * vec4(TANGENT, 0.0)).xyz);
+		surface_uv = UV * scale * vec2(1.0, aspect);
+		wall_metres = UV2;
+	}
+}
+
+void fragment() {
+	vec3 n = normalize(surface_normal);
+	vec3 tangent = normalize(surface_tangent - n * dot(surface_tangent, n));
+	vec3 bitangent = normalize(cross(n, tangent));
+	vec3 to_eye = normalize(CAMERA_POSITION_WORLD - world_position);
+	vec2 uv = surface_uv;
+	float distance_fade = 1.0 - smoothstep(6.0, 18.0, distance(CAMERA_POSITION_WORLD, world_position));
+	float relief = min(relief_m, timber ? 0.004 : 0.012) * scale * distance_fade * smoothstep(0.2, 0.5, dot(to_eye, n));
+	// Keep height relief shallow and fade it before grazing views expose stepped sampling.
+	if (relief > 0.0001) {
+		vec2 step_uv = vec2(dot(to_eye, tangent), -dot(to_eye, bitangent)) * vec2(1.0, aspect) * relief / max(dot(to_eye, n), 0.3) / 10.0;
+		float layer_depth = 0.0;
+		for (int i = 0; i < 10; i++) {
+			if (layer_depth >= 1.0 - material_sample(height_map, uv).r) { break; }
+			uv -= step_uv;
+			layer_depth += 0.1;
+		}
+	}
+	// Metre-based weathering stays independent of the repeating fine PBR maps.
+	float broad = noise3(world_position * 0.105 + vec3(17.0));
+	float medium = noise3(world_position * 0.72 + vec3(9.2, 2.7, 5.1));
+	float stains = noise3(world_position * vec3(0.42, 0.055, 0.42) + vec3(3.7));
+	float exposed = 0.0;
+	vec2 metres = wall_metres;
+	vec2 foundation_uv = metres * vec2(0.16, 0.32);
+	if (plaster > 0.0) {
+		float peel = texture(peel_map, metres * 0.125).r;
+		exposed = smoothstep(0.53, 0.59, broad * 0.5 + medium * 0.35 + peel * 0.15) * plaster;
+	}
+	vec3 detail = mix(material_sample(normal_map, uv).xyz, texture(substrate_normal, foundation_uv).xyz, exposed) * 2.0 - 1.0;
+	detail.xy *= normal_strength * (timber ? 0.75 : 1.0);
+	detail.z = sqrt(max(1.0 - dot(detail.xy, detail.xy), 0.01));
+	// Projected V runs along -bitangent; OpenGL normal Y must follow that same axis.
+	vec3 bent = normalize(tangent * detail.x - bitangent * detail.y + n * max(detail.z, 0.15));
+	NORMAL = normalize((VIEW_MATRIX * vec4(bent, 0.0)).xyz);
+	// Paint belongs to the plaster coat; exposed masonry keeps its mineral colour.
+	vec3 color = mix(material_sample(albedo_map, uv).rgb * tint, texture(substrate_albedo, foundation_uv).rgb * vec3(0.8, 0.79, 0.75), exposed);
+	float luminance = dot(color, vec3(0.2126, 0.7152, 0.0722));
+	if (timber) {
+		// Aged oak keeps its scanned grain without an orange varnish over every board.
+		color = mix(vec3(luminance), color, 0.62) * vec3(0.75, 0.79, 0.8) * mix(0.82, 1.14, timber_variation);
+	} else {
+		color = mix(vec3(luminance), color, 0.85);
+	}
+	color *= COLOR.rgb * mix(vec3(0.8, 0.84, 0.82), vec3(1.04, 1.02, 0.96), broad) * mix(0.9, 1.07, medium);
+	float coverage = texture(wet_map, metres * vec2(0.14, 0.1)).r;
+	float lower = 1.0 - smoothstep(-40.0, -24.0, world_position.y);
+	float growth = smoothstep(0.48, 0.72, texture(algae_map, metres * 0.16).r * 0.55 + stains * 0.45) * lower * algae;
+	color = mix(color, color * vec3(0.38, 0.48, 0.32), growth);
+	float wet = smoothstep(0.54, 0.74, coverage * 0.55 + stains * 0.3 + broad * 0.15) * wetness * mix(0.65, 1.0, lower);
+	ALBEDO = mix(color, color * vec3(0.64, 0.68, 0.66), wet);
+	float dry = mix(material_sample(roughness_map, uv).r, texture(substrate_roughness, foundation_uv).r, exposed);
+	// Remap into the dry range instead of clipping away the scan's roughness variation.
+	ROUGHNESS = mix(mix(dry_roughness_min, 0.98, dry), mix(wet_roughness, min(wet_roughness + 0.14, 0.98), dry), wet);
+	AO = mix(1.0, mix(material_sample(ao_map, uv).r, texture(substrate_ao, foundation_uv).r, exposed), 0.7);
+	AO_LIGHT_AFFECT = 0.15;
+	METALLIC = texture(metallic_map, uv).r * metallic_amount;
+	SPECULAR = mix(0.35, 0.42, wet);
+}

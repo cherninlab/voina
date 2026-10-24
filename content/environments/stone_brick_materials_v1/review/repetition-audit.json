@@ -1,0 +1,95 @@
+{
+  "method": "Image luminance normalized correlation at one 278px source-tile shift in the same 3x3 native Godot panel, both axes. Lower means less visible repetition.",
+  "materials": {
+    "01-chisel-limestone": {
+      "repeat_correlation_xy": [
+        0.8556322477242809,
+        0.8874904404486033
+      ],
+      "varied_correlation_xy": [
+        0.0038347103562331583,
+        0.0025626652658362363
+      ]
+    },
+    "02-split-bedded-stone": {
+      "repeat_correlation_xy": [
+        0.8125462100265975,
+        0.8776130021115806
+      ],
+      "varied_correlation_xy": [
+        0.005689644312188469,
+        0.013896727395093993
+      ]
+    },
+    "03-drafted-quoin-stone": {
+      "repeat_correlation_xy": [
+        0.8504287370806115,
+        0.8770216160116902
+      ],
+      "varied_correlation_xy": [
+        0.012514116240725667,
+        0.014574448112331434
+      ]
+    },
+    "04-old-terracotta-brick": {
+      "repeat_correlation_xy": [
+        0.7989945023221507,
+        0.8462461726986711
+      ],
+      "varied_correlation_xy": [
+        0.01257489430576962,
+        0.018555268502544898
+      ]
+    },
+    "05-smoke-darkened-brick": {
+      "repeat_correlation_xy": [
+        0.8468515823993082,
+        0.8691668847115476
+      ],
+      "varied_correlation_xy": [
+        0.01070263450214182,
+        0.011995809150580359
+      ]
+    },
+    "06-limewashed-brick": {
+      "repeat_correlation_xy": [
+        0.925928506378596,
+        0.9402416984297002
+      ],
+      "varied_correlation_xy": [
+        -0.040592465823205165,
+        0.05739751172034415
+      ]
+    },
+    "07-worn-floor-limestone": {
+      "repeat_correlation_xy": [
+        0.8464274952707381,
+        0.8622962992919425
+      ],
+      "varied_correlation_xy": [
+        0.00022866416003054936,
+        0.008980955172042435
+      ]
+    },
+    "08-salt-weathered-limestone": {
+      "repeat_correlation_xy": [
+        0.8645230172537063,
+        0.8856626872248565
+      ],
+      "varied_correlation_xy": [
+        0.005249260905485146,
+        -0.003094196361906648
+      ]
+    },
+    "09-fine-tooled-sandstone": {
+      "repeat_correlation_xy": [
+        0.7612860666795771,
+        0.8391165124778864
+      ],
+      "varied_correlation_xy": [
+        -1.4564807354086671e-05,
+        0.016655317164543118
+      ]
+    }
+  }
+}

@@ -1,0 +1,6 @@
+{
+  "base_file": "content/environments/red_descent/dungeon_surface.gdshader",
+  "base_sha256": "a2033034d442a87c27a6b3f3341756ed04719d22772c46add4a98f2aa6c529b6",
+  "change": "Independent material candidate; same production parameters with coherent triangular stochastic phase sampling of the five primary maps. Base shader untouched.",
+  "technical_reference": "https://docs.godotengine.org/en/stable/tutorials/shaders/shader_reference/shader_functions.html#texturegrad"
+}

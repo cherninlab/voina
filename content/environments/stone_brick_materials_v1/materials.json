@@ -1,0 +1,522 @@
+{
+  "task": "T-183",
+  "method": "ImageGen albedo and separately interpreted height; periodic correction, shared T-180 normal and horizon AO encoding",
+  "normal_convention": "OpenGL tangent, +Y toward image top",
+  "height_is_measured": false,
+  "self_check": "periodic sinusoid/ramp and analytic normal polarity passed",
+  "materials": {
+    "01-chisel-limestone": {
+      "size": [
+        1254,
+        1254
+      ],
+      "tile_m": 1.8,
+      "density": 0.5555555555555556,
+      "height_range_mm": 5.0,
+      "recommended_normal_strength": 0.65,
+      "recommended_relief_m": 0.005,
+      "roughness_parameter_mean": 0.6965,
+      "ao_mean": 0.9843,
+      "normal_unit_max_error_8bit": 0.006031259943679035,
+      "original_albedo_sha256": "e73ced5820a9909307615cef993d01917a7531c48bc9085301222f524e862150",
+      "original_height_sha256": "672465545f8071bf23fef7c8e3f58f483bc7da9318761f2d78a30fa3966a1729",
+      "albedo_periodic_correction_mean_abs": 0.007753873243927956,
+      "maps": {
+        "albedo": {
+          "file": "materials/01-chisel-limestone/albedo.png",
+          "sha256": "dbecd92deb048bcf6fb68bc0f3a8eac914cc0b44037c2943de95f0a83d1eeb31",
+          "seam_z": 11.991,
+          "bits": 8,
+          "wrap_step_max_ratio_to_interior_mean": 0.45154567039872456
+        },
+        "normal_gl": {
+          "file": "materials/01-chisel-limestone/normal_gl.png",
+          "sha256": "0cc5e244a21e53321fec5e825b4a82f65950bfd00136e9272c70cfbb52559748",
+          "seam_z": 8.332,
+          "bits": 8,
+          "wrap_step_max_ratio_to_interior_mean": 0.6701859338919713
+        },
+        "roughness": {
+          "file": "materials/01-chisel-limestone/roughness.png",
+          "sha256": "4cb113639db5a056684b8de7333ab5de271da872c5334c5b8ae5df34d5955c73",
+          "seam_z": 6.575,
+          "bits": 8,
+          "wrap_step_max_ratio_to_interior_mean": 0.7249885945408037
+        },
+        "height": {
+          "file": "materials/01-chisel-limestone/height.png",
+          "sha256": "67a461bc4df2953ef6247ae1f9b5eeb07ccbe7f90b52ddc636cc885b881ae491",
+          "seam_z": 7.658,
+          "bits": 16,
+          "wrap_step_max_ratio_to_interior_mean": 0.587006706755475
+        },
+        "ao": {
+          "file": "materials/01-chisel-limestone/ao.png",
+          "sha256": "61d87f8ca683303d5b9b64ee642e22b70892098a3ac231e07b8fa79d6226d2e3",
+          "seam_z": 5.756,
+          "bits": 8,
+          "wrap_step_max_ratio_to_interior_mean": 0.5775636310230364
+        }
+      },
+      "approval": "pending",
+      "height_caveat": "Artist estimated; major features registered, fine grain can differ. No measured geometry claim.",
+      "material_resource": "materials/01-chisel-limestone/surface.tres"
+    },
+    "02-split-bedded-stone": {
+      "size": [
+        1254,
+        1254
+      ],
+      "tile_m": 1.8,
+      "density": 0.5555555555555556,
+      "height_range_mm": 6.0,
+      "recommended_normal_strength": 0.65,
+      "recommended_relief_m": 0.006,
+      "roughness_parameter_mean": 0.756,
+      "ao_mean": 0.9783,
+      "normal_unit_max_error_8bit": 0.006392486168711242,
+      "original_albedo_sha256": "6f9173d537d7f1f169028cb231e269d9bd63c9f5141ffe15e4551b0571a5bfd8",
+      "original_height_sha256": "fdbaf4e6502d97fa7ac6a0db5b1a994b4a1d0a4b4d86e807024647f7c0ef57da",
+      "albedo_periodic_correction_mean_abs": 0.008633280172944069,
+      "maps": {
+        "albedo": {
+          "file": "materials/02-split-bedded-stone/albedo.png",
+          "sha256": "eaa0ffffb9b811c3e64a8828821eb86d8843483c38a0f0be0c8a0856721a7856",
+          "seam_z": 11.203,
+          "bits": 8,
+          "wrap_step_max_ratio_to_interior_mean": 0.5417702693504927
+        },
+        "normal_gl": {
+          "file": "materials/02-split-bedded-stone/normal_gl.png",
+          "sha256": "8d80dfda45b408d3d2190c04740da60d4be02232215bb8862983fd9c0e42c071",
+          "seam_z": 9.86,
+          "bits": 8,
+          "wrap_step_max_ratio_to_interior_mean": 0.9210775927219975
+        },
+        "roughness": {
+          "file": "materials/02-split-bedded-stone/roughness.png",
+          "sha256": "ae5d6c6a223b697b0e391688048f63d957e65c66e24e7022ae9c8e1ce181a0d4",
+          "seam_z": 6.542,
+          "bits": 8,
+          "wrap_step_max_ratio_to_interior_mean": 0.9296043878259784
+        },
+        "height": {
+          "file": "materials/02-split-bedded-stone/height.png",
+          "sha256": "99a2fbaf2a02ca2115f40deb021a44d4be2b0c85be37fe7c1c55419c352949b0",
+          "seam_z": 5.904,
+          "bits": 16,
+          "wrap_step_max_ratio_to_interior_mean": 0.8963799249991175
+        },
+        "ao": {
+          "file": "materials/02-split-bedded-stone/ao.png",
+          "sha256": "5a6bdd7c8d592260d88eeca828172b722309d877a33771cbb47b9a7b0251d4a0",
+          "seam_z": 4.049,
+          "bits": 8,
+          "wrap_step_max_ratio_to_interior_mean": 0.97304081031265
+        }
+      },
+      "approval": "pending",
+      "height_caveat": "Artist estimated; major features registered, fine grain can differ. No measured geometry claim.",
+      "material_resource": "materials/02-split-bedded-stone/surface.tres"
+    },
+    "03-drafted-quoin-stone": {
+      "size": [
+        1254,
+        1254
+      ],
+      "tile_m": 1.8,
+      "density": 0.5555555555555556,
+      "height_range_mm": 5.0,
+      "recommended_normal_strength": 0.65,
+      "recommended_relief_m": 0.005,
+      "roughness_parameter_mean": 0.7394,
+      "ao_mean": 0.9827,
+      "normal_unit_max_error_8bit": 0.006278843038372006,
+      "original_albedo_sha256": "a5f424a94e9c7acc6cdc14f3378ac36f7dbd72088a1ed5593bf99be10b0b0c19",
+      "original_height_sha256": "6773851458c0613d0b883f60ab098a2432753853537bcd8b292e2d6de541dd3a",
+      "albedo_periodic_correction_mean_abs": 0.006008992437273264,
+      "maps": {
+        "albedo": {
+          "file": "materials/03-drafted-quoin-stone/albedo.png",
+          "sha256": "caa81a299b54c697bcedee0c54409d2d5d4f9397ecdc4dd78639909eae2e80b6",
+          "seam_z": 11.578,
+          "bits": 8,
+          "wrap_step_max_ratio_to_interior_mean": 0.45865843323398964
+        },
+        "normal_gl": {
+          "file": "materials/03-drafted-quoin-stone/normal_gl.png",
+          "sha256": "548478f856e2d8815fd558f318dc3fb5a2a45afeac51d8d88cdde2518234397d",
+          "seam_z": 9.647,
+          "bits": 8,
+          "wrap_step_max_ratio_to_interior_mean": 0.767604543916161
+        },
+        "roughness": {
+          "file": "materials/03-drafted-quoin-stone/roughness.png",
+          "sha256": "42db8c891adbc8b57466b10b9db01b7ba41ab2fa70490df54b0ce5affc72aca8",
+          "seam_z": 7.767,
+          "bits": 8,
+          "wrap_step_max_ratio_to_interior_mean": 0.8437328715539135
+        },
+        "height": {
+          "file": "materials/03-drafted-quoin-stone/height.png",
+          "sha256": "a3335f4f2e0028073bef37ce2b4e82f89e854037a677ae6219ca1402318b0a89",
+          "seam_z": 8.363,
+          "bits": 16,
+          "wrap_step_max_ratio_to_interior_mean": 0.6792047559108271
+        },
+        "ao": {
+          "file": "materials/03-drafted-quoin-stone/ao.png",
+          "sha256": "c5729326af10539f6f31be379e6b3c99efc7b154f69cae3d8d52af1b5eb1db50",
+          "seam_z": 6.039,
+          "bits": 8,
+          "wrap_step_max_ratio_to_interior_mean": 0.6458044421372688
+        }
+      },
+      "approval": "pending",
+      "height_caveat": "Artist estimated; major features registered, fine grain can differ. No measured geometry claim.",
+      "material_resource": "materials/03-drafted-quoin-stone/surface.tres"
+    },
+    "04-old-terracotta-brick": {
+      "size": [
+        1254,
+        1254
+      ],
+      "tile_m": 0.9,
+      "density": 1.1111111111111112,
+      "height_range_mm": 2.5,
+      "recommended_normal_strength": 0.65,
+      "recommended_relief_m": 0.0025,
+      "roughness_parameter_mean": 0.7703,
+      "ao_mean": 0.9829,
+      "normal_unit_max_error_8bit": 0.005964526705017681,
+      "original_albedo_sha256": "87b29b4dec5ea02039aa9479b825d8e98541cfed593d730265fa28391f44e128",
+      "original_height_sha256": "9da30dfd17291fa65ca55233904a8120f4153590c7d3ba3eb7f4f5bb84fe00b5",
+      "albedo_periodic_correction_mean_abs": 0.010981623083353043,
+      "maps": {
+        "albedo": {
+          "file": "materials/04-old-terracotta-brick/albedo.png",
+          "sha256": "9a42a6ceeb64673748cbea46522be5e0307af369d423aee05e950d214a85e3f4",
+          "seam_z": 11.86,
+          "bits": 8,
+          "wrap_step_max_ratio_to_interior_mean": 0.41465970228286664
+        },
+        "normal_gl": {
+          "file": "materials/04-old-terracotta-brick/normal_gl.png",
+          "sha256": "380a26b3f16c11c952784a2e05bd495d3b6fb332a69f85fa50b6467cf5bf453e",
+          "seam_z": 7.818,
+          "bits": 8,
+          "wrap_step_max_ratio_to_interior_mean": 0.7555469289651492
+        },
+        "roughness": {
+          "file": "materials/04-old-terracotta-brick/roughness.png",
+          "sha256": "37d6d5d8b594ac6369c0be9d105902d06e366c1289b4bd736e1b100d5de5fe5c",
+          "seam_z": 7.057,
+          "bits": 8,
+          "wrap_step_max_ratio_to_interior_mean": 0.7734478991050799
+        },
+        "height": {
+          "file": "materials/04-old-terracotta-brick/height.png",
+          "sha256": "2f9496a7494bf5c8cb1c016e8e514750db211f3d5226a8c333642cc2e173ae64",
+          "seam_z": 6.639,
+          "bits": 16,
+          "wrap_step_max_ratio_to_interior_mean": 0.6622549049277023
+        },
+        "ao": {
+          "file": "materials/04-old-terracotta-brick/ao.png",
+          "sha256": "6d513417d4842b09ef342d4459088d4b1f1fbd3ffbb43ed58a783b05bca21aae",
+          "seam_z": 5.584,
+          "bits": 8,
+          "wrap_step_max_ratio_to_interior_mean": 0.6562653353395169
+        }
+      },
+      "approval": "pending",
+      "height_caveat": "Artist estimated; major features registered, fine grain can differ. No measured geometry claim.",
+      "material_resource": "materials/04-old-terracotta-brick/surface.tres"
+    },
+    "05-smoke-darkened-brick": {
+      "size": [
+        1254,
+        1254
+      ],
+      "tile_m": 0.9,
+      "density": 1.1111111111111112,
+      "height_range_mm": 2.0,
+      "recommended_normal_strength": 0.65,
+      "recommended_relief_m": 0.002,
+      "roughness_parameter_mean": 0.8424,
+      "ao_mean": 0.9867,
+      "normal_unit_max_error_8bit": 0.005969373805238987,
+      "original_albedo_sha256": "5c63b4614a97d05f66c53b6fd4a78ab385e8156a7f702474ccb3c16e5b996dc2",
+      "original_height_sha256": "89b0e2ea5bc7478712449a453c7ed6d10a65a37207748910760475737d185d8c",
+      "albedo_periodic_correction_mean_abs": 0.007310809101909399,
+      "maps": {
+        "albedo": {
+          "file": "materials/05-smoke-darkened-brick/albedo.png",
+          "sha256": "5b153d07ee1590acd4ee88c3691e4a2158a3885b5daafa95dafd4eee3182283f",
+          "seam_z": 11.432,
+          "bits": 8,
+          "wrap_step_max_ratio_to_interior_mean": 0.43671561170463585
+        },
+        "normal_gl": {
+          "file": "materials/05-smoke-darkened-brick/normal_gl.png",
+          "sha256": "ee645d63c1b8960c87f272f776553452187627700c5932b45bee4a5900cf78af",
+          "seam_z": 8.837,
+          "bits": 8,
+          "wrap_step_max_ratio_to_interior_mean": 0.7109606437231792
+        },
+        "roughness": {
+          "file": "materials/05-smoke-darkened-brick/roughness.png",
+          "sha256": "48f78ddccc9804c61ab8ec24aa43888877778a0f3017d42cce2670c631c0a325",
+          "seam_z": 7.423,
+          "bits": 8,
+          "wrap_step_max_ratio_to_interior_mean": 0.7196650800480423
+        },
+        "height": {
+          "file": "materials/05-smoke-darkened-brick/height.png",
+          "sha256": "772d992b3cba80ec7344dbfd2b3b8b7938389e6c1264ce3e0b5c34ef0d3412da",
+          "seam_z": 7.705,
+          "bits": 16,
+          "wrap_step_max_ratio_to_interior_mean": 0.6088382855573011
+        },
+        "ao": {
+          "file": "materials/05-smoke-darkened-brick/ao.png",
+          "sha256": "77bfbe4d51a3efb3021e8c40b0f525684682b742aff6260d19e865e6b1fc9517",
+          "seam_z": 5.988,
+          "bits": 8,
+          "wrap_step_max_ratio_to_interior_mean": 0.6348603750696677
+        }
+      },
+      "approval": "pending",
+      "height_caveat": "Artist estimated; major features registered, fine grain can differ. No measured geometry claim.",
+      "material_resource": "materials/05-smoke-darkened-brick/surface.tres"
+    },
+    "06-limewashed-brick": {
+      "size": [
+        1254,
+        1254
+      ],
+      "tile_m": 0.9,
+      "density": 1.1111111111111112,
+      "height_range_mm": 1.5,
+      "recommended_normal_strength": 0.65,
+      "recommended_relief_m": 0.0015,
+      "roughness_parameter_mean": 0.8414,
+      "ao_mean": 0.9917,
+      "normal_unit_max_error_8bit": 0.005907491519452579,
+      "original_albedo_sha256": "8608edd48a630288fae7eadc7abe415a41804172e8c50052dd54940cf631fb0d",
+      "original_height_sha256": "3f60180df9b5f3e5a43a1a2badde1de2325060ed0be2f27d613cc183933eaa83",
+      "albedo_periodic_correction_mean_abs": 0.01203734241425991,
+      "maps": {
+        "albedo": {
+          "file": "materials/06-limewashed-brick/albedo.png",
+          "sha256": "a507fd80543d66ebab9407ecb121158352d7dfff9e7a281f7c37a3ff2d225b32",
+          "seam_z": 11.541,
+          "bits": 8,
+          "wrap_step_max_ratio_to_interior_mean": 0.47704431603287095
+        },
+        "normal_gl": {
+          "file": "materials/06-limewashed-brick/normal_gl.png",
+          "sha256": "10cd71ec0cda58312cace580b70d5288f4f89c514c3099ba27df0a4422218508",
+          "seam_z": 7.459,
+          "bits": 8,
+          "wrap_step_max_ratio_to_interior_mean": 0.7348106597166172
+        },
+        "roughness": {
+          "file": "materials/06-limewashed-brick/roughness.png",
+          "sha256": "a11d785adeb12c0af89cfe8ca77ee403bf97f34b40cc5d2cf679cfc4c08abe10",
+          "seam_z": 6.502,
+          "bits": 8,
+          "wrap_step_max_ratio_to_interior_mean": 0.7194066666990176
+        },
+        "height": {
+          "file": "materials/06-limewashed-brick/height.png",
+          "sha256": "5cb87e4632499885e5786adc800415671a30b3ba5831d45e207a79e8423e60e4",
+          "seam_z": 7.418,
+          "bits": 16,
+          "wrap_step_max_ratio_to_interior_mean": 0.6349336495263866
+        },
+        "ao": {
+          "file": "materials/06-limewashed-brick/ao.png",
+          "sha256": "d5b75c7b392c89d90debe309b43190101743b68035e2828e7c28500a9aa092d2",
+          "seam_z": 5.328,
+          "bits": 8,
+          "wrap_step_max_ratio_to_interior_mean": 0.6821802963604519
+        }
+      },
+      "approval": "pending",
+      "height_caveat": "Artist estimated; major features registered, fine grain can differ. No measured geometry claim.",
+      "material_resource": "materials/06-limewashed-brick/surface.tres"
+    },
+    "07-worn-floor-limestone": {
+      "size": [
+        1254,
+        1254
+      ],
+      "tile_m": 1.8,
+      "density": 0.5555555555555556,
+      "height_range_mm": 1.8,
+      "recommended_normal_strength": 0.65,
+      "recommended_relief_m": 0.0018,
+      "roughness_parameter_mean": 0.4297,
+      "ao_mean": 0.9982,
+      "normal_unit_max_error_8bit": 0.005719896677427894,
+      "original_albedo_sha256": "50d94b5744027b2233b8d5a8f517c30c1b2bca71cae1ee0a21375bbc21afbd70",
+      "original_height_sha256": "a7774ae498607188c74f651f57e30626c2a4271f3b5d4ada2ed3bd1f7cb225a0",
+      "albedo_periodic_correction_mean_abs": 0.008874094113707542,
+      "maps": {
+        "albedo": {
+          "file": "materials/07-worn-floor-limestone/albedo.png",
+          "sha256": "ddeeb4f50e592a83451111b0c8b6452616fcf137eb8e69641bd53fc6bc2a4998",
+          "seam_z": 13.486,
+          "bits": 8,
+          "wrap_step_max_ratio_to_interior_mean": 0.4244836807613381
+        },
+        "normal_gl": {
+          "file": "materials/07-worn-floor-limestone/normal_gl.png",
+          "sha256": "148f116587a698d6ca360f0b85aca26ac4b74efcbfd9d4659553a73fb09827ef",
+          "seam_z": 7.02,
+          "bits": 8,
+          "wrap_step_max_ratio_to_interior_mean": 0.6818050185394301
+        },
+        "roughness": {
+          "file": "materials/07-worn-floor-limestone/roughness.png",
+          "sha256": "af4bfad29f88d70982706266bc8e44271aeae00827f172cb08b0bb4aa810bb9d",
+          "seam_z": 6.534,
+          "bits": 8,
+          "wrap_step_max_ratio_to_interior_mean": 0.6875209445002964
+        },
+        "height": {
+          "file": "materials/07-worn-floor-limestone/height.png",
+          "sha256": "d972e7981ac2f7f85f4a0e643bbb3b332585bd350eee7c8058076046f8ec1560",
+          "seam_z": 6.447,
+          "bits": 16,
+          "wrap_step_max_ratio_to_interior_mean": 0.6012021308939723
+        },
+        "ao": {
+          "file": "materials/07-worn-floor-limestone/ao.png",
+          "sha256": "411953c8f336012d6ca84a012cca13c2f2583b8c45d322d2e921de5e8ec2e6ce",
+          "seam_z": 4.587,
+          "bits": 8,
+          "wrap_step_max_ratio_to_interior_mean": 0.5608062483992221
+        }
+      },
+      "approval": "pending",
+      "height_caveat": "Artist estimated; major features registered, fine grain can differ. No measured geometry claim.",
+      "material_resource": "materials/07-worn-floor-limestone/surface.tres"
+    },
+    "08-salt-weathered-limestone": {
+      "size": [
+        1254,
+        1254
+      ],
+      "tile_m": 1.8,
+      "density": 0.5555555555555556,
+      "height_range_mm": 5.0,
+      "recommended_normal_strength": 0.65,
+      "recommended_relief_m": 0.005,
+      "roughness_parameter_mean": 0.8262,
+      "ao_mean": 0.9804,
+      "normal_unit_max_error_8bit": 0.006278843038372006,
+      "original_albedo_sha256": "d4ae0e1690aa8e96cdc56912a80542d78b4768a322411ddb594ec6de8f5d5387",
+      "original_height_sha256": "2038a04ce7a5615f9b4dcd21534a281e6d7eb114b4fe06ca34327c4f312e22a3",
+      "albedo_periodic_correction_mean_abs": 0.011407100595533848,
+      "maps": {
+        "albedo": {
+          "file": "materials/08-salt-weathered-limestone/albedo.png",
+          "sha256": "5017ca139ad4a4b204a505444177f3dcff7d178d8aab3600d9eb300654c66d12",
+          "seam_z": 11.556,
+          "bits": 8,
+          "wrap_step_max_ratio_to_interior_mean": 0.47610025433186226
+        },
+        "normal_gl": {
+          "file": "materials/08-salt-weathered-limestone/normal_gl.png",
+          "sha256": "525f142c8f33017da7453044f328207cafe945484dfc7e568b7d313cd0c5a6dd",
+          "seam_z": 8.051,
+          "bits": 8,
+          "wrap_step_max_ratio_to_interior_mean": 0.7633186202489041
+        },
+        "roughness": {
+          "file": "materials/08-salt-weathered-limestone/roughness.png",
+          "sha256": "935783a8ef14b8bbb0b638f3f043a16ad6ef68ceae05b66a4b756989b355dc96",
+          "seam_z": 7.272,
+          "bits": 8,
+          "wrap_step_max_ratio_to_interior_mean": 0.7182753910845824
+        },
+        "height": {
+          "file": "materials/08-salt-weathered-limestone/height.png",
+          "sha256": "723a58c4f8b2babb7d0289288c85fdf2049410e81d38cbedf33db77e4704be1c",
+          "seam_z": 7.855,
+          "bits": 16,
+          "wrap_step_max_ratio_to_interior_mean": 0.6332491280558312
+        },
+        "ao": {
+          "file": "materials/08-salt-weathered-limestone/ao.png",
+          "sha256": "d696f3e56e3bfae07087464a28d76ed69f7ce7e7d4402009a23d354baf58139b",
+          "seam_z": 6.188,
+          "bits": 8,
+          "wrap_step_max_ratio_to_interior_mean": 0.6136585114241557
+        }
+      },
+      "approval": "pending",
+      "height_caveat": "Artist estimated; major features registered, fine grain can differ. No measured geometry claim.",
+      "material_resource": "materials/08-salt-weathered-limestone/surface.tres"
+    },
+    "09-fine-tooled-sandstone": {
+      "size": [
+        1254,
+        1254
+      ],
+      "tile_m": 1.8,
+      "density": 0.5555555555555556,
+      "height_range_mm": 3.0,
+      "recommended_normal_strength": 0.65,
+      "recommended_relief_m": 0.003,
+      "roughness_parameter_mean": 0.7829,
+      "ao_mean": 0.9907,
+      "normal_unit_max_error_8bit": 0.005907491519452579,
+      "original_albedo_sha256": "11d1c2a2891c993249a2720f81218a4bded027e5412fadd1142014209cd838e0",
+      "original_height_sha256": "849337175b60c38ca2874696b407fb8a5c6f70e611707d60065823ee451583f8",
+      "albedo_periodic_correction_mean_abs": 0.008914535865187645,
+      "maps": {
+        "albedo": {
+          "file": "materials/09-fine-tooled-sandstone/albedo.png",
+          "sha256": "09bd953651a4cbc1f53024126abcd8fa5af37f536783cd1cabe12eee4e59593e",
+          "seam_z": 11.439,
+          "bits": 8,
+          "wrap_step_max_ratio_to_interior_mean": 0.4917815545934413
+        },
+        "normal_gl": {
+          "file": "materials/09-fine-tooled-sandstone/normal_gl.png",
+          "sha256": "9a2ee040d1c02f30e55156819e7b3b2b9d7c3f417ae509e28fa02b16fc664464",
+          "seam_z": 8.917,
+          "bits": 8,
+          "wrap_step_max_ratio_to_interior_mean": 0.8022885404115133
+        },
+        "roughness": {
+          "file": "materials/09-fine-tooled-sandstone/roughness.png",
+          "sha256": "48700898430d9c4d3a4e358a1adcb7d60bc2407b216b186dcab5ad6c43bcdaa5",
+          "seam_z": 6.542,
+          "bits": 8,
+          "wrap_step_max_ratio_to_interior_mean": 0.8406743181199561
+        },
+        "height": {
+          "file": "materials/09-fine-tooled-sandstone/height.png",
+          "sha256": "79a73cd3f114d9bf87fa76c6a2a1a26606f7daab6dd763547daf5dee8f8dec2b",
+          "seam_z": 7.949,
+          "bits": 16,
+          "wrap_step_max_ratio_to_interior_mean": 0.6789274573651954
+        },
+        "ao": {
+          "file": "materials/09-fine-tooled-sandstone/ao.png",
+          "sha256": "18411591ceb140e107a9dc927a2a2ad0aa9912cc3df2b49b486c75c480adf889",
+          "seam_z": 6.276,
+          "bits": 8,
+          "wrap_step_max_ratio_to_interior_mean": 0.6451342437780871
+        }
+      },
+      "approval": "pending",
+      "height_caveat": "Artist estimated; major features registered, fine grain can differ. No measured geometry claim.",
+      "material_resource": "materials/09-fine-tooled-sandstone/surface.tres"
+    }
+  }
+}

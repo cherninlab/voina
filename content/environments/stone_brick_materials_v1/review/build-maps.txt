@@ -1,0 +1,13 @@
+MAP_SET_OK 01-chisel-limestone {'albedo': 11.991, 'normal_gl': 8.332, 'roughness': 6.575, 'height': 7.658, 'ao': 5.756}
+MAP_SET_OK 02-split-bedded-stone {'albedo': 11.203, 'normal_gl': 9.86, 'roughness': 6.542, 'height': 5.904, 'ao': 4.049}
+MAP_SET_OK 03-drafted-quoin-stone {'albedo': 11.578, 'normal_gl': 9.647, 'roughness': 7.767, 'height': 8.363, 'ao': 6.039}
+MAP_SET_OK 04-old-terracotta-brick {'albedo': 11.86, 'normal_gl': 7.818, 'roughness': 7.057, 'height': 6.639, 'ao': 5.584}
+MAP_SET_OK 05-smoke-darkened-brick {'albedo': 11.432, 'normal_gl': 8.837, 'roughness': 7.423, 'height': 7.705, 'ao': 5.988}
+MAP_SET_OK 06-limewashed-brick {'albedo': 11.541, 'normal_gl': 7.459, 'roughness': 6.502, 'height': 7.418, 'ao': 5.328}
+MAP_SET_OK 07-worn-floor-limestone {'albedo': 13.486, 'normal_gl': 7.02, 'roughness': 6.534, 'height': 6.447, 'ao': 4.587}
+MAP_SET_OK 08-salt-weathered-limestone {'albedo': 11.556, 'normal_gl': 8.051, 'roughness': 7.272, 'height': 7.855, 'ao': 6.188}
+MAP_SET_OK 09-fine-tooled-sandstone {'albedo': 11.439, 'normal_gl': 8.917, 'roughness': 6.542, 'height': 7.949, 'ao': 6.276}
+MATERIAL_MAPS_OK: 9 sets, 45 maps; original AI inputs preserved
+Blender 5.2.2 LTS (hash d13f752e3b9c built 2026-09-15 01:49:19)
+
+Blender quit

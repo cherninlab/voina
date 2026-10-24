@@ -1,0 +1,30 @@
+{
+  "asset_id": "02-split-bedded-stone",
+  "task": "T-183",
+  "stage": "artist_estimated_height_source",
+  "generator": "built-in image_gen.imagegen",
+  "mode": "edit",
+  "referenced_image_paths": [
+    "/Users/theochernin/Projects/MultiPlayerProject-agents/theo-codex-43/content/environments/stone_brick_materials_v1/studies/02-split-bedded-stone.png"
+  ],
+  "source_albedo_sha256": "6f9173d537d7f1f169028cb231e269d9bd63c9f5141ffe15e4551b0571a5bfd8",
+  "original_output_path": "/Users/theochernin/.codex/generated_images/01a16fc4-91ab-7841-a0d5-5e654d737a81/exec-380db7f7-28a7-4490-849a-1bd9fe400a5a.png",
+  "saved_path": "/Users/theochernin/Projects/MultiPlayerProject-agents/theo-codex-43/content/environments/stone_brick_materials_v1/height_inputs/02-split-bedded-stone.png",
+  "prompt_path": "prompts/02-split-bedded-stone-height.txt",
+  "prompt_text": "Use case: precise-object-edit\nAsset type: registered grayscale artist-authored height interpretation for a tangent normal-map bake of a dungeon material.\nInput image 1 is the edit target: the approved-direction candidate texture named 02-split-bedded-stone. Preserve the EXACT framing, scale, coordinate alignment and location/shape of every visible pit, chip, chisel facet, scratch and grain in that image. Do not invent or move surface details, do not crop or rotate.\nPrimary request: convert this material appearance into a single grayscale HEIGHT MAP, white = locally higher surface and black = deeper recess. Remove ALL directional illumination, specular highlights, material colors, pigment variation, stains, mineral color flecks and shadows. Estimate physical relief only from shape cues: pores/pits/chips are low, the surrounding face is mid-grey, raised grain/tool ridges are gently high. Large dark soot patches and pale limewash/salt color patches must NOT become hills or valleys; only actual thin crust edges may have very shallow relief. Worn smooth floor regions must stay nearly flat.\nOutput: exactly one full-bleed grayscale height texture matching the input square, ideally same pixel dimensions. Narrow to medium restrained relief contrast, no pure-black voids and no white glare. Continuous scale, even neutral values, no lighting, no ambient occlusion, no cast shadows, no purple normal encoding. No annotations, borders, labels or collage. This is an artistic relief estimate for later mathematically consistent normals, not a measurement. Preserve the source material's fine structure and image registration above all else. Keep opposite-edge structure suitable for repetition; do not add a frame.\n",
+  "sha256": "fdbaf4e6502d97fa7ac6a0db5b1a994b4a1d0a4b4d86e807024647f7c0ef57da",
+  "original_sha256": "fdbaf4e6502d97fa7ac6a0db5b1a994b4a1d0a4b4d86e807024647f7c0ef57da",
+  "dimensions": {
+    "width": 1254,
+    "height": 1254
+  },
+  "user_approval": "pending",
+  "transparent_background": false,
+  "generated_utc": "2026-10-24T21:25:30.350615+00:00",
+  "attempt": 1,
+  "caveat": "AI artist-estimated relief, not measured height. Macro pit/facet placement visually follows source; fine grain can be resynthesized and residual directional shading may remain. Exact pixel registration and seamless edges not proven. Parent must assess baked normal preview before use.",
+  "visual_review": {
+    "complete": true,
+    "observations": "Grayscale continuous texture matching framing. Macro pits, flake boundaries and main facets follow source; no cropping, border, labels or added objects observed. Not a physically measured height field."
+  }
+}

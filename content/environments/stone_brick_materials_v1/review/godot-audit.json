@@ -1,0 +1,106 @@
+{
+  "engine": {
+    "build": "official",
+    "hash": "ed1daf0bf001b61586d9930840f2f1394092c079",
+    "hex": 263938,
+    "major": 4,
+    "minor": 7,
+    "patch": 2,
+    "status": "stable",
+    "string": "4.7.2-stable (official)",
+    "timestamp": 0
+  },
+  "materials": [
+    {
+      "captures": [
+        "review/stochastic/01-chisel-limestone-repeat.png",
+        "review/stochastic/01-chisel-limestone-varied.png",
+        "review/stochastic/01-chisel-limestone-wet.png"
+      ],
+      "id": "01-chisel-limestone",
+      "maps_imported": 5,
+      "ok": true
+    },
+    {
+      "captures": [
+        "review/stochastic/02-split-bedded-stone-repeat.png",
+        "review/stochastic/02-split-bedded-stone-varied.png",
+        "review/stochastic/02-split-bedded-stone-wet.png"
+      ],
+      "id": "02-split-bedded-stone",
+      "maps_imported": 5,
+      "ok": true
+    },
+    {
+      "captures": [
+        "review/stochastic/03-drafted-quoin-stone-repeat.png",
+        "review/stochastic/03-drafted-quoin-stone-varied.png",
+        "review/stochastic/03-drafted-quoin-stone-wet.png"
+      ],
+      "id": "03-drafted-quoin-stone",
+      "maps_imported": 5,
+      "ok": true
+    },
+    {
+      "captures": [
+        "review/stochastic/04-old-terracotta-brick-repeat.png",
+        "review/stochastic/04-old-terracotta-brick-varied.png",
+        "review/stochastic/04-old-terracotta-brick-wet.png"
+      ],
+      "id": "04-old-terracotta-brick",
+      "maps_imported": 5,
+      "ok": true
+    },
+    {
+      "captures": [
+        "review/stochastic/05-smoke-darkened-brick-repeat.png",
+        "review/stochastic/05-smoke-darkened-brick-varied.png",
+        "review/stochastic/05-smoke-darkened-brick-wet.png"
+      ],
+      "id": "05-smoke-darkened-brick",
+      "maps_imported": 5,
+      "ok": true
+    },
+    {
+      "captures": [
+        "review/stochastic/06-limewashed-brick-repeat.png",
+        "review/stochastic/06-limewashed-brick-varied.png",
+        "review/stochastic/06-limewashed-brick-wet.png"
+      ],
+      "id": "06-limewashed-brick",
+      "maps_imported": 5,
+      "ok": true
+    },
+    {
+      "captures": [
+        "review/stochastic/07-worn-floor-limestone-repeat.png",
+        "review/stochastic/07-worn-floor-limestone-varied.png",
+        "review/stochastic/07-worn-floor-limestone-wet.png"
+      ],
+      "id": "07-worn-floor-limestone",
+      "maps_imported": 5,
+      "ok": true
+    },
+    {
+      "captures": [
+        "review/stochastic/08-salt-weathered-limestone-repeat.png",
+        "review/stochastic/08-salt-weathered-limestone-varied.png",
+        "review/stochastic/08-salt-weathered-limestone-wet.png"
+      ],
+      "id": "08-salt-weathered-limestone",
+      "maps_imported": 5,
+      "ok": true
+    },
+    {
+      "captures": [
+        "review/stochastic/09-fine-tooled-sandstone-repeat.png",
+        "review/stochastic/09-fine-tooled-sandstone-varied.png",
+        "review/stochastic/09-fine-tooled-sandstone-wet.png"
+      ],
+      "id": "09-fine-tooled-sandstone",
+      "maps_imported": 5,
+      "ok": true
+    }
+  ],
+  "shader": "res://content/environments/stone_brick_materials_v1/stone_brick_stochastic.gdshader"
+}
