@@ -37,8 +37,10 @@ class Builder:
         self.bm.free()
         mesh.color_attributes.active_color = mesh.color_attributes['Color']
         obj = core.link(bpy.data.objects.new(self.name, mesh))
-        # Chamfers stay crisp; long faces shade smoothly.
-        obj.data.shade_smooth_by_angle(angle=math.radians(smooth_angle)) if hasattr(obj.data, 'shade_smooth_by_angle') else None
+        # Chamfers stay crisp; long faces shade smoothly. Blender 5.2: smooth
+        # every face, then mark edges sharper than the angle.
+        mesh.shade_smooth()
+        mesh.set_sharp_from_angle(angle=math.radians(smooth_angle))
         return obj
 
 

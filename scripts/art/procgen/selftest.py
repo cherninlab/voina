@@ -30,6 +30,10 @@ assert 0.05 < curves.sag(rope_points) < 0.5, curves.sag(rope_points)
 curves.tube(wood, rope_points, 0.018, twist=6.0)
 links = curves.chain(iron, curves.catenary(Vector((0, 0.5, 2.0)), Vector((2, 0.5, 2.0)), 0.03), 0.11, 0.013)
 objects = [wood.to_object(), iron.to_object()]
+sharp = objects[0].data.attributes.get('sharp_edge')
+smooth = objects[0].data.attributes.get('sharp_face')
+assert smooth is None or not all(v.value for v in smooth.data), 'faces must shade smooth'
+assert sharp is not None and any(v.value for v in sharp.data), 'chamfer edges must stay sharp'
 stats = bake.ao_to_color(objects, samples=16)
 assert all(0.18 <= s['min'] <= s['mean'] <= 1.0 for s in stats.values()), stats
 assert stats['Wood']['min'] < 0.9, 'contacts should darken'

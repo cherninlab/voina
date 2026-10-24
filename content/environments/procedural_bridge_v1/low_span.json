@@ -1,7 +1,7 @@
 {
   "ao": {
     "Iron_0": {
-      "mean": 0.48,
+      "mean": 0.479,
       "min": 0.18
     },
     "Iron_1": {
@@ -13,11 +13,11 @@
       "min": 0.18
     },
     "Iron_3": {
-      "mean": 0.442,
+      "mean": 0.441,
       "min": 0.18
     },
     "Iron_4": {
-      "mean": 0.417,
+      "mean": 0.416,
       "min": 0.18
     },
     "Iron_5": {
@@ -25,35 +25,35 @@
       "min": 0.18
     },
     "Iron_6": {
-      "mean": 0.423,
+      "mean": 0.422,
       "min": 0.18
     },
     "Rope_0": {
-      "mean": 0.767,
+      "mean": 0.733,
       "min": 0.18
     },
     "Rope_1": {
-      "mean": 0.794,
+      "mean": 0.796,
       "min": 0.18
     },
     "Rope_2": {
-      "mean": 0.755,
+      "mean": 0.712,
       "min": 0.18
     },
     "Rope_3": {
-      "mean": 0.789,
+      "mean": 0.788,
       "min": 0.18
     },
     "Rope_4": {
-      "mean": 0.766,
+      "mean": 0.735,
       "min": 0.18
     },
     "Rope_5": {
-      "mean": 0.731,
+      "mean": 0.634,
       "min": 0.18
     },
     "Rope_6": {
-      "mean": 0.792,
+      "mean": 0.799,
       "min": 0.18
     },
     "Wood_0": {
@@ -69,7 +69,7 @@
       "min": 0.18
     },
     "Wood_3": {
-      "mean": 0.703,
+      "mean": 0.704,
       "min": 0.18
     },
     "Wood_4": {
@@ -77,18 +77,18 @@
       "min": 0.18
     },
     "Wood_5": {
-      "mean": 0.666,
+      "mean": 0.667,
       "min": 0.18
     },
     "Wood_6": {
-      "mean": 0.687,
+      "mean": 0.688,
       "min": 0.18
     }
   },
   "blender": "5.2.2 LTS",
   "boards": 214,
   "files": {
-    "content/environments/procedural_bridge_v1/low_span.glb": "464ec735a7a7ce86a004445a0c43503a0f5f8f550ef61ef284059892fed55e8f"
+    "content/environments/procedural_bridge_v1/low_span.glb": "627f5aca62b49846c8e92d1bcbff78e11ffd6340f8c5d812d84584e49184eb73"
   },
   "layout_hash": "4765cad4d0a3f97f9ad53b57762e8a250ff013cc8fe713d4f79819c914493f8c",
   "layout_source": "content/environments/procedural_bridge_v1/layout.json",
