@@ -1,0 +1,95 @@
+{
+  "blender": "5.2.2 LTS",
+  "device": "METAL",
+  "files": {
+    "content/environments/procedural_stone_kinds_v1/review/closeups.png": "d8fa9250630aabbce93bef9e989f6a33364fc0c1107e18859dde7cd2e5e2b015",
+    "content/environments/procedural_stone_kinds_v1/review/contact_sheet.png": "55857955ea25a04a0c1eac98d7e7020ab7d4b54a2eb229009279ed1d22700d97",
+    "content/environments/procedural_stone_kinds_v1/review/lineup.png": "3b15c74779d6aa696d8b838c56fd7739749afa2df1a337f787de74adee5a9c3a"
+  },
+  "mixed": [
+    "big_quoin 0.46 m",
+    "squared_rubble 0.66 m",
+    "dressed_ashlar 0.3 m",
+    "thin_slab 0.38 m"
+  ],
+  "panels": {
+    "big_quoin": {
+      "library_stones": 18,
+      "placed": 12,
+      "spalls": 0,
+      "triangles": {
+        "max": 320,
+        "mean": 319.9,
+        "min": 318
+      }
+    },
+    "dressed_ashlar": {
+      "library_stones": 36,
+      "placed": 21,
+      "spalls": 0,
+      "triangles": {
+        "max": 280,
+        "mean": 280.0,
+        "min": 280
+      }
+    },
+    "floor_flag": {
+      "library_stones": 22,
+      "placed": 15,
+      "spalls": 0,
+      "triangles": {
+        "max": 360,
+        "mean": 359.9,
+        "min": 358
+      }
+    },
+    "galleted_rubble": {
+      "library_stones": 60,
+      "placed": 131,
+      "spall_triangles": {
+        "max": 70,
+        "min": 70
+      },
+      "spalls": 84,
+      "triangles": {
+        "max": 220,
+        "mean": 219.8,
+        "min": 218
+      }
+    },
+    "small_squared": {
+      "library_stones": 200,
+      "placed": 194,
+      "spalls": 0,
+      "triangles": {
+        "max": 150,
+        "mean": 149.9,
+        "min": 148
+      }
+    },
+    "squared_rubble": {
+      "library_stones": 44,
+      "placed": 28,
+      "spalls": 0,
+      "triangles": {
+        "max": 200,
+        "mean": 199.8,
+        "min": 198
+      }
+    },
+    "thin_slab": {
+      "library_stones": 90,
+      "placed": 93,
+      "spalls": 0,
+      "triangles": {
+        "max": 200,
+        "mean": 199.9,
+        "min": 198
+      }
+    }
+  },
+  "quick": false,
+  "samples": 96,
+  "seed": 182,
+  "task": "T-182"
+}
