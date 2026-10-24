@@ -1,0 +1,20 @@
+{
+  "source_fingerprint": "8fc6d62ccd76",
+  "capture_head": "fc4c82f+dirty",
+  "masonry_commits": [
+    "9c42bd9",
+    "92f1ad7"
+  ],
+  "material_commit": "feedb45",
+  "bridge_status": "rejected, owned by parallel T-159 builder",
+  "files": {
+    "runtime/03-low-crossing.png": "f3183326ca309352cd2b0ac15e8781d7912489f28d84274dd4e8380b638fd10b",
+    "runtime/02-central-wall.png": "166187b8fe6d76b78f9bc6dcb078210bd698d13fef32dedcea4b58c33a65ceab",
+    "runtime/06-descent-overlook.png": "837c21adfcc3d3b38b42568db5757bf9e36794abdd3ff7d94ca0e48b5f1d8924",
+    "runtime/05-deep-choir.png": "71066bdff50c0d28cab17bc6da80d43a42a65bb378fcd34c8675ade1248d800a",
+    "runtime/01-high-crossing.png": "92c5e4063ea82032b1bc7264f484468365d06e6c693cdce86b3c0a346b02d1cd",
+    "runtime/07-timber-detail.png": "7ee36c6a187ed2ecc0cb8d1d773e73e96441bbacebf14a988279cfc650099934",
+    "runtime/08-nave-materials.png": "c3e9cbc884506965778c2839ee3397eeaed442f9cce6836050ddaa6bd679cfc2",
+    "runtime/04-broken-nave.png": "c1bbf6793acd86e53826fde4c5e61e0c8e21b5f147e2683e3deb4ae5d86464c0"
+  }
+}

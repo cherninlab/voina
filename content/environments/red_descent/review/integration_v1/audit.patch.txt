@@ -1,0 +1,55 @@
+diff --git a/scripts/dungeon_structure_test.gd b/scripts/dungeon_structure_test.gd
+index 30a918e..11aa469 100644
+--- a/scripts/dungeon_structure_test.gd
++++ b/scripts/dungeon_structure_test.gd
+@@ -12,6 +12,8 @@ func run() -> void:
+ 	var structure: DungeonStructure = dungeon.architecture.structure
+ 	var failures: Array[String] = []
+ 	var supports: Array[Dictionary] = []
++	var checked_anchors: int = 0
++	var checked_roof_seats: int = 0
+ 	var expected: int = 0
+ 	for path: Dictionary in RedDescentLayout.routes():
+ 		if not bool(path["enclosed"]):
+@@ -47,6 +49,32 @@ func run() -> void:
+ 		supports.append({"route": bearing["route"], "type": bearing["type"], "base": str(base), "deck": str(deck)})
+ 	# Roof rafters must terminate on the same node as the tie or king post.
+ 	for member: Dictionary in structure.members:
++		if String(member["role"]) == "wall brace":
++			var anchor: Vector3 = member["from"] as Vector3
++			var direction: Vector3 = anchor - (member["to"] as Vector3)
++			direction.y = 0.0
++			direction = direction.normalized()
++			var query: PhysicsRayQueryParameters3D = PhysicsRayQueryParameters3D.create(anchor - direction * 1.5, anchor + direction * 1.5)
++			var hit: Dictionary = dungeon.get_world_3d().direct_space_state.intersect_ray(query)
++			var reverse: PhysicsRayQueryParameters3D = PhysicsRayQueryParameters3D.create(query.to, query.from)
++			var back_hit: Dictionary = dungeon.get_world_3d().direct_space_state.intersect_ray(reverse)
++			var near: float = INF if hit.is_empty() else (hit["position"] as Vector3).distance_to(anchor)
++			if not back_hit.is_empty():
++				near = minf(near, (back_hit["position"] as Vector3).distance_to(anchor))
++			# Test both faces: the first ray may enter a thick wall well before
++			# a deliberately embedded anchor, especially at a polygon corner.
++			if near > 0.85:
++				failures.append("Individual brace anchor misses masonry: " + str(anchor))
++			checked_anchors += 1
++		if String(member["role"]) == "roof tie":
++			var direction: Vector3 = ((member["to"] as Vector3) - (member["from"] as Vector3)).normalized()
++			for end: String in ["from", "to"]:
++				var seat: Vector3 = member[end] as Vector3
++				var query: PhysicsRayQueryParameters3D = PhysicsRayQueryParameters3D.create(seat - direction * 1.5, seat + direction * 1.5)
++				var hit: Dictionary = dungeon.get_world_3d().direct_space_state.intersect_ray(query)
++				if hit.is_empty() or (hit["position"] as Vector3).distance_to(seat) > 0.85:
++					failures.append("Roof tie end misses actual wall: " + str(seat))
++				checked_roof_seats += 1
+ 		if String(member["role"]) in ["wall brace", "wall bearer", "knee brace", "pier cap"]:
+ 			var from: Vector3 = member["from"] as Vector3
+ 			var to: Vector3 = member["to"] as Vector3
+@@ -73,7 +101,7 @@ func run() -> void:
+ 						touches = true
+ 			if not touches:
+ 				failures.append("Rafter end is not joined: " + str(member[end]))
+-	var report: Dictionary = {"supports": supports, "member_count": structure.members.size(), "cloth_pins": structure.cloth_pins.size(), "failures": failures}
++	var report: Dictionary = {"supports": supports, "member_count": structure.members.size(), "cloth_pins": structure.cloth_pins.size(), "individual_wall_anchors": checked_anchors, "actual_roof_seats": checked_roof_seats, "failures": failures}
+ 	for argument: String in OS.get_cmdline_user_args():
+ 		if argument.begins_with("--report="):
+ 			var file: FileAccess = FileAccess.open(argument.trim_prefix("--report="), FileAccess.WRITE)

@@ -31,8 +31,8 @@ func _ready() -> void:
 	cloth.roughness = 1.0
 	cloth.cull_mode = BaseMaterial3D.CULL_DISABLED
 	architecture.materials = {
-		"stone": surface(PBR + "Bricks089/", 0.22, 0.7, 0.22),
-		"wall": surface(PBR + "Bricks089/", 0.22, 0.7, 0.5),
+		"stone": surface(PBR + "Bricks089/", 0.16, 0.7, 0.22),
+		"wall": surface(PBR + "Bricks089/", 0.16, 0.7, 0.5),
 		"plaster": surface(PBR + "Concrete012/", 0.4, 0.6, 0.25),
 		"red_plaster": surface(PBR + "Concrete012/", 0.4, 0.6),
 		"trim": surface(PBR + "Bricks083/", 0.33, 0.6),
