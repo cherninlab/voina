@@ -5,7 +5,8 @@ extends SceneTree
 
 const PREVIEW: String = "res://content/environments/procedural_flagstone_v1/preview/flagstone_preview.tscn"
 const BUDGET: Array[int] = [20000, 10000, 2500]
-## name, family, variant ("" mixes variants), camera eye, camera target, torch, corner markers
+## name, family, variant ("" mixes variants), camera eye, camera target, torch, corner markers,
+## and for room shots the Red Descent room id (eye, target and torch relative to its centre).
 const SHOTS: Array[Array] = [
 	["laid_a_grid", "laid", "laid_a", Vector3(6.0, 8.6, -2.6), Vector3(6.0, 0.0, 6.4), Vector3(6.4, 0.45, 5.2), false],
 	["laid_a_grid_marked", "laid", "laid_a", Vector3(6.0, 8.6, -2.6), Vector3(6.0, 0.0, 6.4), Vector3(6.4, 0.45, 5.2), true],
@@ -17,6 +18,10 @@ const SHOTS: Array[Array] = [
 	["coursed_mixed_grid_marked", "coursed", "", Vector3(6.0, 8.6, -2.6), Vector3(6.0, 0.0, 6.4), Vector3(6.4, 0.45, 5.2), true],
 	["coursed_mixed_torch", "coursed", "", Vector3(1.7, 1.7, 1.4), Vector3(4.6, 0.0, 4.5), Vector3(6.2, 0.5, 3.4), false],
 	["border_mixed", "border", "", Vector3(6.0, 2.4, -2.2), Vector3(6.0, 0.0, 1.0), Vector3(6.3, 0.5, 2.2), false],
+	["room_antechamber_coursed", "coursed", "", Vector3(0.0, 11.0, 9.5), Vector3(0.0, 0.0, 0.5), Vector3(-2.5, 0.6, -3.5), false, "antechamber"],
+	["room_antechamber_coursed_corner", "coursed", "", Vector3(-2.4, 1.5, -3.0), Vector3(-5.0, 0.0, -5.9), Vector3(-3.0, 0.7, -5.2), false, "antechamber"],
+	["room_entry_laid", "laid", "", Vector3(0.0, 11.0, 9.5), Vector3(0.0, 0.0, 0.5), Vector3(2.5, 0.6, -2.5), false, "entry"],
+	["room_entry_laid_corner", "laid", "", Vector3(5.6, 1.5, -0.6), Vector3(8.7, 0.0, -1.5), Vector3(7.6, 0.7, 0.8), false, "entry"],
 ]
 
 func _initialize() -> void:
@@ -135,13 +140,16 @@ func capture(shot: Array, directory: String) -> Dictionary:
 	preview.set("grid", Vector2i(3, 6) if String(shot[1]) == "border" else Vector2i(3, 3))
 	preview.set("torch_position", shot[5] as Vector3)
 	preview.set("markers", bool(shot[6]))
-	preview.set("fill", String(shot[0]).contains("grid") or String(shot[1]) == "border")
+	preview.set("fill", String(shot[0]).contains("grid") or String(shot[1]) == "border" or shot.size() > 7)
+	if shot.size() > 7:
+		preview.set("room", String(shot[7]))
 	root.add_child(preview)
 	current_scene = preview
+	var center: Vector3 = preview.get("center") as Vector3 if shot.size() > 7 else Vector3.ZERO
 	var camera: Camera3D = preview.get_node("Camera3D") as Camera3D
 	camera.fov = 55.0 if String(shot[0]).ends_with("grid") or String(shot[0]).ends_with("grid_marked") else 62.0
-	camera.position = shot[3] as Vector3
-	camera.look_at(shot[4] as Vector3)
+	camera.position = center + (shot[3] as Vector3)
+	camera.look_at(center + (shot[4] as Vector3))
 	camera.make_current()
 	for frame: int in range(24):
 		await process_frame

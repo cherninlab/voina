@@ -500,6 +500,26 @@
 			"shot": "border_mixed",
 			"file": "godot_border_mixed.png",
 			"saved": true
+		},
+		{
+			"shot": "room_antechamber_coursed",
+			"file": "godot_room_antechamber_coursed.png",
+			"saved": true
+		},
+		{
+			"shot": "room_antechamber_coursed_corner",
+			"file": "godot_room_antechamber_coursed_corner.png",
+			"saved": true
+		},
+		{
+			"shot": "room_entry_laid",
+			"file": "godot_room_entry_laid.png",
+			"saved": true
+		},
+		{
+			"shot": "room_entry_laid_corner",
+			"file": "godot_room_entry_laid_corner.png",
+			"saved": true
 		}
 	]
 }

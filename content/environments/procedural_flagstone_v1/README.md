@@ -34,6 +34,13 @@ Godot's automatic mesh LODs are off in the `.import` files so border vertices ne
   Concrete012 for stones and Rocks025 for dirt from `dungeon_pbr_v2` (CC0, see its README),
   0.5 repeats/m = 1024 px/m, whole repeats per module.
 - `FlagstoneFloor.module(id)` builds one module with LODs; `FlagstoneFloor.tile()` lays a grid.
+- `FlagstoneFloor.cover(parent, outline, y, family, seed)` floors a convex room outline
+  (`RedDescentLayout.rooms()` points, world x/z): a mitred kerb course of border strips along
+  every edge and field modules on the world-aligned 4 m grid inside it. Only modules that cross
+  the outline use `flagstone_clipped.gdshader`, which discards fragments outside the outline;
+  `flagstone.gdshader` itself has no discard. The room's old flat floor should become
+  collision-only (e.g. `polygon_surface(polygon, y, "collision")`) so it cannot show through.
 
-`preview/flagstone_preview.tscn` shows a 3 x 3 grid under a low torch;
+`preview/flagstone_preview.tscn` shows a 3 x 3 grid (or, with `room`, a real room outline)
+under a low torch;
 `preview/capture_flagstones.gd` re-checks the imported meshes and writes the review captures.
