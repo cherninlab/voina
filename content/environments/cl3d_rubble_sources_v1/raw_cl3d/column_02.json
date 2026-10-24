@@ -1,0 +1,35 @@
+{
+  "id": "column_02",
+  "kind": "column_drum",
+  "input": "content/environments/cl3d_rubble_sources_v1/conditioning/column_02.png",
+  "approved_input": "content/environments/cl3d_rubble_sources_v1/references/column_02.png",
+  "output": "content/environments/cl3d_rubble_sources_v1/raw_cl3d/column_02.glb",
+  "target_span_m": 0.46,
+  "seed_offset": 16713,
+  "faces": 1500,
+  "prompt": "content/environments/cl3d_rubble_sources_v1/prompts/column_02.txt",
+  "approved_input_sha256": "00ee37cdb6c19520efa6d7939c45c5d6f46d2e194eee4621e6090f01df21d5c2",
+  "model": "CL3D/2mini",
+  "device": "mps",
+  "dtype": "float16",
+  "steps": 50,
+  "resolution": 384,
+  "seed": 20277737,
+  "inference_seconds": 68.91971458400076,
+  "vertices": 632489,
+  "triangles": 1264980,
+  "watertight": false,
+  "input_sha256": "2d58c1a0109d31660697e77ca8ef924e5d0b0faf7c953db9fe197183fbfe20ce",
+  "bounds": [
+    [
+      -0.8759381175041199,
+      -0.9971553087234497,
+      -0.9700759649276733
+    ],
+    [
+      0.8696024417877197,
+      0.9957246780395508,
+      0.9580677151679993
+    ]
+  ]
+}

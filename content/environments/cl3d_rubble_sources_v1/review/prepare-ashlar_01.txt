@@ -1,0 +1,28 @@
+23:52:04 | INFO: Data are loaded, start creating Blender stuff
+23:52:04 | INFO: Blender create Mesh node geometry_0
+23:52:04 | INFO: glTF import finished in 0.41s
+Warning: No mesh data to join
+INFO Draco is available, use library at /Applications/Blender.app/Contents/Resources/5.2/scripts/addons_core/io_scene_gltf2/libbf_intern_draco_bridge.dylib
+INFO MeshOptimizer is available, use library at /Applications/Blender.app/Contents/Resources/5.2/scripts/addons_core/io_scene_gltf2/libbf_intern_meshopt_bridge.dylib
+23:52:16 | INFO: Starting glTF 2.0 export
+23:52:16 | INFO: Extracting primitive: geometry_0
+23:52:16 | INFO: Primitives created: 1
+23:52:16 | INFO: Finished glTF 2.0 export in 0.0061419010162353516 s
+00:14.539  render           | Saved: '/var/folders/l1/ffgp3l9n2gd1g8gjswvkfqyw0000gn/T/tmp56sxc9mb/view.png'
+00:16.642  render           | Saved: '/var/folders/l1/ffgp3l9n2gd1g8gjswvkfqyw0000gn/T/tmpbiknaso3/view.png'
+
+23:52:20 | INFO: Starting glTF 2.0 export
+23:52:20 | INFO: Extracting primitive: geometry_0
+23:52:20 | INFO: Primitives created: 1
+23:52:20 | INFO: Finished glTF 2.0 export in 0.0026578903198242188 s
+
+23:52:20 | INFO: Starting glTF 2.0 export
+23:52:20 | INFO: Extracting primitive: geometry_0
+23:52:20 | INFO: Primitives created: 1
+23:52:20 | INFO: Finished glTF 2.0 export in 0.001993894577026367 s
+
+RUBBLE_SOURCE_READY ashlar_01
+RUBBLE_PREPARATION_OK 1
+Blender 5.2.2 LTS (hash d13f752e3b9c built 2026-09-15 01:49:19)
+
+Blender quit

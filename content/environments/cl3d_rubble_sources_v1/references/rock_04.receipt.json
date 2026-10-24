@@ -1,0 +1,24 @@
+{
+  "asset_id": "rock_04",
+  "stage": "imagegen_cl3d_conditioning_reference",
+  "tool": "built-in image_gen.imagegen",
+  "mode": "generate",
+  "original_output_path": "/Users/theochernin/.codex/generated_images/01a16fc4-cae1-7611-a4c2-4651c253ef17/exec-d8800ae8-26c5-4735-bd12-3f10b50a87c6.png",
+  "saved_path": "/Users/theochernin/Projects/MultiPlayerProject-agents/theo-codex-43/content/environments/cl3d_rubble_sources_v1/references/rock_04.png",
+  "prompt_path": "/Users/theochernin/Projects/MultiPlayerProject-agents/theo-codex-43/content/environments/cl3d_rubble_sources_v1/prompts/rock_04.txt",
+  "prompt": "Use case: product-mockup\nAsset type: isolated image-to-3D conditioning reference for a dark medieval Gothic dungeon rubble kit.\nPrimary request: one single coherent solid object only, as described below. Realistic weight-bearing masonry from wet rough crypt arches and ruined stone chapels, centuries of uneven wear, plausible fracture planes, matte neutral material. Shape variety and clear silhouette matter more than tiny surface detail.\nComposition: full object centered with ample empty margin, three-quarter view from slightly above, all extremities visible; plain uniform light-grey background, soft even studio illumination, NO floor plane and NO cast/contact shadow attached to object. No vignette, no scene, no other objects, no scattered dust or fragments, no text/labels/watermark, no roots/chains/skulls. No holes through the solid, no thin floating parts; make a closed solid shape that can become a watertight convex-collision source. Neutral grey stone or desaturated old clay as specified; dampness will be a material treatment later, no painted gloss.\nSubject: A tall irregular blunt grey limestone spall with three strong facets and one jagged crown, a narrow top and broad base.\n",
+  "sha256": "c0fab7eac64d0ae6029464435abc7bb991fdb6b7a4084276c0270a1fbf3d21a9",
+  "dimensions": [
+    1024,
+    1536
+  ],
+  "transparent_background": false,
+  "referenced_image_paths": null,
+  "num_last_images_to_include": null,
+  "attempt": 1,
+  "generated_at_utc": "2026-10-24T21:44:55.044628+00:00",
+  "visual_review": {
+    "status": "reviewed",
+    "notes": "One coherent isolated rock, full visible silhouette, no separate floor plane, shadow, loose fragment or text; distinct silhouette within six-rock set. Foreground mask and mesh watertightness are later CL3D pipeline checks."
+  }
+}

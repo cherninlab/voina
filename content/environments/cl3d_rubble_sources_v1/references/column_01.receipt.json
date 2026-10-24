@@ -1,0 +1,18 @@
+{
+  "id": "column_01",
+  "tool": "image_gen.imagegen",
+  "mode": "built_in_generate",
+  "original_output_path": "/Users/theochernin/.codex/generated_images/01a16fc4-ab5d-7db3-b99b-bd809dd354e8/exec-c2adcd84-636b-47d9-8760-0bfad80c010a.png",
+  "saved_path": "/Users/theochernin/Projects/MultiPlayerProject-agents/theo-codex-43/content/environments/cl3d_rubble_sources_v1/references/column_01.png",
+  "prompt_path": "prompts/column_01.txt",
+  "prompt": "Use case: product-mockup\nAsset type: isolated image-to-3D conditioning reference for a dark medieval Gothic dungeon rubble kit.\nPrimary request: one single coherent solid object only, as described below. Realistic weight-bearing masonry from wet rough crypt arches and ruined stone chapels, centuries of uneven wear, plausible fracture planes, matte neutral material. Shape variety and clear silhouette matter more than tiny surface detail.\nComposition: full object centered with ample empty margin, three-quarter view from slightly above, all extremities visible; plain uniform light-grey background, soft even studio illumination, NO floor plane and NO cast/contact shadow attached to object. No vignette, no scene, no other objects, no scattered dust or fragments, no text/labels/watermark, no roots/chains/skulls. No holes through the solid, no thin floating parts; make a closed solid shape that can become a watertight convex-collision source. Neutral grey stone or desaturated old clay as specified; dampness will be a material treatment later, no painted gloss.\nSubject: A broken HALF cylindrical medieval limestone column drum, low solid thick semicylinder with plain curved worn outer face and an oblique fractured radial edge; no full column.\n",
+  "sha256": "37f1498b1e5d77d83450135bf1a31bbe4dbe9dd4f4cc54cda2ef0be9ce4f1316",
+  "dimensions": [
+    1536,
+    1024
+  ],
+  "transparent_background": false,
+  "created_utc": "2026-10-24T21:41:55.071063+00:00",
+  "stage": "isolated CL3D source image, geometry not yet generated",
+  "visual_review": "One coherent half-drum-like mass, curved worn outside and fractured end; clean silhouette and plain background, no separate floor or fragments."
+}

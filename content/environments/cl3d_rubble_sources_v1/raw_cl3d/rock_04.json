@@ -1,0 +1,35 @@
+{
+  "id": "rock_04",
+  "kind": "rock",
+  "input": "content/environments/cl3d_rubble_sources_v1/conditioning/rock_04.png",
+  "approved_input": "content/environments/cl3d_rubble_sources_v1/references/rock_04.png",
+  "output": "content/environments/cl3d_rubble_sources_v1/raw_cl3d/rock_04.glb",
+  "target_span_m": 0.42,
+  "seed_offset": 16709,
+  "faces": 1500,
+  "prompt": "content/environments/cl3d_rubble_sources_v1/prompts/rock_04.txt",
+  "approved_input_sha256": "c0fab7eac64d0ae6029464435abc7bb991fdb6b7a4084276c0270a1fbf3d21a9",
+  "model": "CL3D/2mini",
+  "device": "mps",
+  "dtype": "float16",
+  "steps": 50,
+  "resolution": 384,
+  "seed": 20277733,
+  "inference_seconds": 66.16248070800066,
+  "vertices": 400064,
+  "triangles": 800132,
+  "watertight": false,
+  "input_sha256": "d01fc8c0a30abd82ebe0773aa83427cca73036852d7964d66ac1209eea4c1f15",
+  "bounds": [
+    [
+      -0.6831791996955872,
+      -1.0004181861877441,
+      -0.7015663981437683
+    ],
+    [
+      0.6799710988998413,
+      0.9935214519500732,
+      0.720984697341919
+    ]
+  ]
+}

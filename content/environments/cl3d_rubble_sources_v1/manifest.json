@@ -1,0 +1,1617 @@
+{
+  "task": "T-167",
+  "assets": [
+    {
+      "id": "ashlar_01",
+      "kind": "ashlar",
+      "dims_m": [
+        0.3983064591884613,
+        0.36567366123199463,
+        0.4795193076133728
+      ],
+      "origin_rule": "exact bounding-box centre, Y up, metres, uniform scale baked",
+      "seed": 20277724,
+      "inference_seconds": 54.754665666998335,
+      "prompt": "prompts/ashlar_01-v2.txt",
+      "reference": "references/ashlar_01.png",
+      "input_sha256": "e019b74721f75d09f62e82a9dbefbc06be7c045300945b9f4e27354b45c2e974",
+      "conditioning_sha256": "d53e7f8862f9524ed1f019406989a26142839f7641edb16b6e29507e113f1456",
+      "raw": "raw_cl3d/ashlar_01.glb",
+      "raw_sha256": "aac0712a240198bd797486d5b79593f81d3d3e80caca775dc6a0263906b0f9a9",
+      "cleanup": {
+        "source_components": 1,
+        "discarded_vertices": 0,
+        "boundary_edges_after_cleanup": 0,
+        "nonmanifold_edges_after_cleanup": 0,
+        "extra_component_vertices_removed": 0
+      },
+      "voxel_repair_used": false,
+      "lods": [
+        {
+          "path": "sources/ashlar_01_lod0.glb",
+          "triangles": 1500,
+          "dims_m": [
+            0.3983064591884613,
+            0.36567366123199463,
+            0.4795193076133728
+          ],
+          "topology": {
+            "boundary_edges": 0,
+            "nonmanifold_edges": 0,
+            "triangles": 1500
+          },
+          "sha256": "df5b3ecfcaf04ff6dbf9da3107097daf78c4ad5db587866e74d55fe11347da22"
+        },
+        {
+          "path": "sources/ashlar_01_lod1.glb",
+          "triangles": 600,
+          "dims_m": [
+            0.39562538266181946,
+            0.36652785539627075,
+            0.47929590940475464
+          ],
+          "topology": {
+            "boundary_edges": 0,
+            "nonmanifold_edges": 0,
+            "triangles": 600
+          },
+          "sha256": "0b7bbee5f9c0cf45bc4f46e01d22183cdf8f023de968f674dd714d58a813bc21"
+        },
+        {
+          "path": "sources/ashlar_01_lod2.glb",
+          "triangles": 200,
+          "dims_m": [
+            0.39075589179992676,
+            0.3601422607898712,
+            0.47752729058265686
+          ],
+          "topology": {
+            "boundary_edges": 0,
+            "nonmanifold_edges": 0,
+            "triangles": 200
+          },
+          "sha256": "ff726ab0b593da2f5d3ad3677ac1c9315e65510149ea405afa651260d3ae3f81"
+        }
+      ],
+      "review_images": [
+        "review/ashlar_01-front.png",
+        "review/ashlar_01-back.png"
+      ],
+      "material_hint": "res://content/environments/stone_brick_materials_v1/materials/01-chisel-limestone/surface.tres",
+      "material_finish": "Neutral review clay embedded; paired map candidate available via material_hint. Brick/mortar segmentation not baked.",
+      "generator": "CL3D/2mini, local Tencent Hunyuan3D-2mini build",
+      "status": "technical_mesh_import_review_passed",
+      "human_visual_approval": "pending",
+      "material_parameters": {
+        "mapped": true,
+        "relief_m": 0.0,
+        "scale": 2.0,
+        "normal_strength": 0.65
+      },
+      "mapping_note": "Metre UVs with verified import-generated tangents. Small-fragment trial uses finer texel density, normal/roughness/AO, with optional parallax disabled."
+    },
+    {
+      "id": "ashlar_02",
+      "kind": "ashlar",
+      "dims_m": [
+        0.600051999092102,
+        0.18064890801906586,
+        0.11331580579280853
+      ],
+      "origin_rule": "exact bounding-box centre, Y up, metres, uniform scale baked",
+      "seed": 20277725,
+      "inference_seconds": 56.38123033300144,
+      "prompt": "prompts/ashlar_02.txt",
+      "reference": "references/ashlar_02.png",
+      "input_sha256": "995574e74c43ea76e913b3dcda6322f053d3fdd4218ab2280ebe21591b16b35b",
+      "conditioning_sha256": "c9ace285665ac111416f51437cb321b8fae404598c2f3bd8a38d30e250aaf0f5",
+      "raw": "raw_cl3d/ashlar_02.glb",
+      "raw_sha256": "4fd2d9d57314b9fd2e8a3a4665c2308698541f4485fa7a8179782307a14fd6cd",
+      "cleanup": {
+        "source_components": 1,
+        "discarded_vertices": 0,
+        "boundary_edges_after_cleanup": 0,
+        "nonmanifold_edges_after_cleanup": 0,
+        "extra_component_vertices_removed": 0
+      },
+      "voxel_repair_used": false,
+      "lods": [
+        {
+          "path": "sources/ashlar_02_lod0.glb",
+          "triangles": 1500,
+          "dims_m": [
+            0.600051999092102,
+            0.18064890801906586,
+            0.11331580579280853
+          ],
+          "topology": {
+            "boundary_edges": 0,
+            "nonmanifold_edges": 0,
+            "triangles": 1500
+          },
+          "sha256": "8f8893be25933fa96a28ff401ed27aaf569732a95cd42134ff0e294d684e1963"
+        },
+        {
+          "path": "sources/ashlar_02_lod1.glb",
+          "triangles": 600,
+          "dims_m": [
+            0.6003721952438354,
+            0.1806967854499817,
+            0.11340562999248505
+          ],
+          "topology": {
+            "boundary_edges": 0,
+            "nonmanifold_edges": 0,
+            "triangles": 600
+          },
+          "sha256": "1be04d5bf06e4c334fdc662c3ca9f010dc90cc77cfc2ed9067ece3cd73f8fa10"
+        },
+        {
+          "path": "sources/ashlar_02_lod2.glb",
+          "triangles": 200,
+          "dims_m": [
+            0.5945132970809937,
+            0.17797639966011047,
+            0.11025206744670868
+          ],
+          "topology": {
+            "boundary_edges": 0,
+            "nonmanifold_edges": 0,
+            "triangles": 200
+          },
+          "sha256": "69645058c5bd6f5d0cc6ddbf67fd15c51a0a86948082f1becb79c92e86250f54"
+        }
+      ],
+      "review_images": [
+        "review/ashlar_02-front.png",
+        "review/ashlar_02-back.png"
+      ],
+      "material_hint": "res://content/environments/stone_brick_materials_v1/materials/01-chisel-limestone/surface.tres",
+      "material_finish": "Neutral review clay embedded; paired map candidate available via material_hint. Brick/mortar segmentation not baked.",
+      "generator": "CL3D/2mini, local Tencent Hunyuan3D-2mini build",
+      "status": "technical_mesh_import_review_passed",
+      "human_visual_approval": "pending",
+      "material_parameters": {
+        "mapped": true,
+        "relief_m": 0.0,
+        "scale": 2.0,
+        "normal_strength": 0.65
+      },
+      "mapping_note": "Metre UVs with verified import-generated tangents. Small-fragment trial uses finer texel density, normal/roughness/AO, with optional parallax disabled."
+    },
+    {
+      "id": "ashlar_03",
+      "kind": "ashlar",
+      "dims_m": [
+        0.5510907769203186,
+        0.1222773939371109,
+        0.48715269565582275
+      ],
+      "origin_rule": "exact bounding-box centre, Y up, metres, uniform scale baked",
+      "seed": 20277726,
+      "inference_seconds": 65.43292466600178,
+      "prompt": "prompts/ashlar_03.txt",
+      "reference": "references/ashlar_03.png",
+      "input_sha256": "249bc0c59a401a1c0d579899f86067dbc8b1a4e1af7d514968b9800756d60d8d",
+      "conditioning_sha256": "68b9948a37530138078397e8c7c8fdde57e448c77a278325407ab2db94358454",
+      "raw": "raw_cl3d/ashlar_03.glb",
+      "raw_sha256": "5bb74cc882320c0af61744e1a91e3771f1ba532e72164411776dba3addd68cf2",
+      "cleanup": {
+        "source_components": 1,
+        "discarded_vertices": 0,
+        "boundary_edges_after_cleanup": 0,
+        "nonmanifold_edges_after_cleanup": 0,
+        "extra_component_vertices_removed": 0
+      },
+      "voxel_repair_used": false,
+      "lods": [
+        {
+          "path": "sources/ashlar_03_lod0.glb",
+          "triangles": 1500,
+          "dims_m": [
+            0.5510907769203186,
+            0.1222773939371109,
+            0.48715269565582275
+          ],
+          "topology": {
+            "boundary_edges": 0,
+            "nonmanifold_edges": 0,
+            "triangles": 1500
+          },
+          "sha256": "b0da68b3f4509be31e81e3c062ce4f4832bd07de4ec87346b903b4d1f8a8b7ea"
+        },
+        {
+          "path": "sources/ashlar_03_lod1.glb",
+          "triangles": 600,
+          "dims_m": [
+            0.548981785774231,
+            0.12164117395877838,
+            0.4874029755592346
+          ],
+          "topology": {
+            "boundary_edges": 0,
+            "nonmanifold_edges": 0,
+            "triangles": 600
+          },
+          "sha256": "bfc4f1d8c746cddf1b3be338475885627e89789d213d6ff32e6d2c16854292ad"
+        },
+        {
+          "path": "sources/ashlar_03_lod2.glb",
+          "triangles": 200,
+          "dims_m": [
+            0.54840087890625,
+            0.11881230771541595,
+            0.48207640647888184
+          ],
+          "topology": {
+            "boundary_edges": 0,
+            "nonmanifold_edges": 0,
+            "triangles": 200
+          },
+          "sha256": "cf36b1975c20dcbca1b85ed248a049313f0c042fb31480991233aea5492a69ad"
+        }
+      ],
+      "review_images": [
+        "review/ashlar_03-front.png",
+        "review/ashlar_03-back.png"
+      ],
+      "material_hint": "res://content/environments/stone_brick_materials_v1/materials/01-chisel-limestone/surface.tres",
+      "material_finish": "Neutral review clay embedded; paired map candidate available via material_hint. Brick/mortar segmentation not baked.",
+      "generator": "CL3D/2mini, local Tencent Hunyuan3D-2mini build",
+      "status": "technical_mesh_import_review_passed",
+      "human_visual_approval": "pending",
+      "material_parameters": {
+        "mapped": true,
+        "relief_m": 0.0,
+        "scale": 2.0,
+        "normal_strength": 0.65
+      },
+      "mapping_note": "Metre UVs with verified import-generated tangents. Small-fragment trial uses finer texel density, normal/roughness/AO, with optional parallax disabled."
+    },
+    {
+      "id": "ashlar_04",
+      "kind": "ashlar",
+      "dims_m": [
+        0.2968878149986267,
+        0.6199760437011719,
+        0.22336125373840332
+      ],
+      "origin_rule": "exact bounding-box centre, Y up, metres, uniform scale baked",
+      "seed": 20277727,
+      "inference_seconds": 63.61085216600259,
+      "prompt": "prompts/ashlar_04-v2.txt",
+      "reference": "references/ashlar_04.png",
+      "input_sha256": "5ca8740830fd7cc5d35d632b99937a49332c455092a52854e9b07921fcd84bbb",
+      "conditioning_sha256": "97710e47c2503717203e3b8b5a6861a77b1782a063674ecde0623a89e0a2018b",
+      "raw": "raw_cl3d/ashlar_04.glb",
+      "raw_sha256": "3aebe2befe15b224f569dc403c9da8f54ea3f17d14ccdba435db2790c0fb3583",
+      "cleanup": {
+        "source_components": 1,
+        "discarded_vertices": 0,
+        "boundary_edges_after_cleanup": 0,
+        "nonmanifold_edges_after_cleanup": 0,
+        "extra_component_vertices_removed": 0
+      },
+      "voxel_repair_used": false,
+      "lods": [
+        {
+          "path": "sources/ashlar_04_lod0.glb",
+          "triangles": 1500,
+          "dims_m": [
+            0.2968878149986267,
+            0.6199760437011719,
+            0.22336125373840332
+          ],
+          "topology": {
+            "boundary_edges": 0,
+            "nonmanifold_edges": 0,
+            "triangles": 1500
+          },
+          "sha256": "7da33bc3cd3d1cb1782f5c602961f335ea3d52aaee5b18ab69e35900ef2ceb42"
+        },
+        {
+          "path": "sources/ashlar_04_lod1.glb",
+          "triangles": 600,
+          "dims_m": [
+            0.29815125465393066,
+            0.6169908046722412,
+            0.22047892212867737
+          ],
+          "topology": {
+            "boundary_edges": 0,
+            "nonmanifold_edges": 0,
+            "triangles": 600
+          },
+          "sha256": "8b72e230eb0a4791eb82e8df3c520dd7df5aee7ef4313846333afb8d75f69cc8"
+        },
+        {
+          "path": "sources/ashlar_04_lod2.glb",
+          "triangles": 200,
+          "dims_m": [
+            0.2959059774875641,
+            0.6180501580238342,
+            0.21173852682113647
+          ],
+          "topology": {
+            "boundary_edges": 0,
+            "nonmanifold_edges": 0,
+            "triangles": 200
+          },
+          "sha256": "9ebeaf19c417ee00a113f8124c0ee1165fcc61430d79a1058bc62289f72fd6dd"
+        }
+      ],
+      "review_images": [
+        "review/ashlar_04-front.png",
+        "review/ashlar_04-back.png"
+      ],
+      "material_hint": "res://content/environments/stone_brick_materials_v1/materials/01-chisel-limestone/surface.tres",
+      "material_finish": "Neutral review clay embedded; paired map candidate available via material_hint. Brick/mortar segmentation not baked.",
+      "generator": "CL3D/2mini, local Tencent Hunyuan3D-2mini build",
+      "status": "technical_mesh_import_review_passed",
+      "human_visual_approval": "pending",
+      "material_parameters": {
+        "mapped": true,
+        "relief_m": 0.0,
+        "scale": 2.0,
+        "normal_strength": 0.65
+      },
+      "mapping_note": "Metre UVs with verified import-generated tangents. Small-fragment trial uses finer texel density, normal/roughness/AO, with optional parallax disabled."
+    },
+    {
+      "id": "ashlar_05",
+      "kind": "ashlar",
+      "dims_m": [
+        0.20368346571922302,
+        0.17497864365577698,
+        0.2806873321533203
+      ],
+      "origin_rule": "exact bounding-box centre, Y up, metres, uniform scale baked",
+      "seed": 20277728,
+      "inference_seconds": 74.89248824999959,
+      "prompt": "prompts/ashlar_05.txt",
+      "reference": "references/ashlar_05.png",
+      "input_sha256": "cbfba8f979d3a3b490823f81fd230e2891a8c4e8221b76872f2d8e8b14b8a00f",
+      "conditioning_sha256": "c8641d345c5a7696d2b1cea0a0eb6b91a18defce4cf2db58dc8de6ab77ea2693",
+      "raw": "raw_cl3d/ashlar_05.glb",
+      "raw_sha256": "81f483b6d3ee955dc4647d0cfbb5bb1443968961020bfef87712c85b99745f9e",
+      "cleanup": {
+        "source_components": 1,
+        "discarded_vertices": 0,
+        "boundary_edges_after_cleanup": 0,
+        "nonmanifold_edges_after_cleanup": 0,
+        "extra_component_vertices_removed": 0
+      },
+      "voxel_repair_used": false,
+      "lods": [
+        {
+          "path": "sources/ashlar_05_lod0.glb",
+          "triangles": 1500,
+          "dims_m": [
+            0.20368346571922302,
+            0.17497864365577698,
+            0.2806873321533203
+          ],
+          "topology": {
+            "boundary_edges": 0,
+            "nonmanifold_edges": 0,
+            "triangles": 1500
+          },
+          "sha256": "2a1301b37eb4a0bfab55f6a70d8265aa4aa8d67cc6bfe1fe69cdbbb07814d4ed"
+        },
+        {
+          "path": "sources/ashlar_05_lod1.glb",
+          "triangles": 600,
+          "dims_m": [
+            0.20369306206703186,
+            0.17318803071975708,
+            0.2808351516723633
+          ],
+          "topology": {
+            "boundary_edges": 0,
+            "nonmanifold_edges": 0,
+            "triangles": 600
+          },
+          "sha256": "4fe5f53afa2ded7b884d61568faf93628299fd2ffc30d8e4e8b9fa8c1b33aafe"
+        },
+        {
+          "path": "sources/ashlar_05_lod2.glb",
+          "triangles": 200,
+          "dims_m": [
+            0.2003350406885147,
+            0.1724776029586792,
+            0.2779170274734497
+          ],
+          "topology": {
+            "boundary_edges": 0,
+            "nonmanifold_edges": 0,
+            "triangles": 200
+          },
+          "sha256": "1913b51f462c786ceb9562bcde782530803433f1c8a1c19aaec23b70bbe944e6"
+        }
+      ],
+      "review_images": [
+        "review/ashlar_05-front.png",
+        "review/ashlar_05-back.png"
+      ],
+      "material_hint": "res://content/environments/stone_brick_materials_v1/materials/01-chisel-limestone/surface.tres",
+      "material_finish": "Neutral review clay embedded; paired map candidate available via material_hint. Brick/mortar segmentation not baked.",
+      "generator": "CL3D/2mini, local Tencent Hunyuan3D-2mini build",
+      "status": "technical_mesh_import_review_passed",
+      "human_visual_approval": "pending",
+      "material_parameters": {
+        "mapped": true,
+        "relief_m": 0.0,
+        "scale": 2.0,
+        "normal_strength": 0.65
+      },
+      "mapping_note": "Metre UVs with verified import-generated tangents. Small-fragment trial uses finer texel density, normal/roughness/AO, with optional parallax disabled."
+    },
+    {
+      "id": "ashlar_06",
+      "kind": "ashlar",
+      "dims_m": [
+        0.752891480922699,
+        0.5213336944580078,
+        0.40527063608169556
+      ],
+      "origin_rule": "exact bounding-box centre, Y up, metres, uniform scale baked",
+      "seed": 20277729,
+      "inference_seconds": 72.41502975000185,
+      "prompt": "prompts/ashlar_06-v2.txt",
+      "reference": "references/ashlar_06.png",
+      "input_sha256": "41205dd37aeaaccf89b154b194746ccd550eafb60f71cf18a7bef9f795134e88",
+      "conditioning_sha256": "e7d332f70fd8f980559b78439450f1846e9f8414da105bae091b235037f4eddf",
+      "raw": "raw_cl3d/ashlar_06.glb",
+      "raw_sha256": "715592ff780f3714c19cc52620b6cf6cb36ddcb7bf1ccadce706b501d56b2682",
+      "cleanup": {
+        "source_components": 2,
+        "discarded_vertices": 1126,
+        "boundary_edges_after_cleanup": 0,
+        "nonmanifold_edges_after_cleanup": 0,
+        "extra_component_vertices_removed": 0
+      },
+      "voxel_repair_used": false,
+      "lods": [
+        {
+          "path": "sources/ashlar_06_lod0.glb",
+          "triangles": 1500,
+          "dims_m": [
+            0.752891480922699,
+            0.5213336944580078,
+            0.40527063608169556
+          ],
+          "topology": {
+            "boundary_edges": 0,
+            "nonmanifold_edges": 0,
+            "triangles": 1500
+          },
+          "sha256": "f4552bb17b71d5aba79c27dc831264e8c39aa3812b4b60145cbf86ea1d5a89ca"
+        },
+        {
+          "path": "sources/ashlar_06_lod1.glb",
+          "triangles": 600,
+          "dims_m": [
+            0.7499993443489075,
+            0.5198355913162231,
+            0.3993271589279175
+          ],
+          "topology": {
+            "boundary_edges": 0,
+            "nonmanifold_edges": 0,
+            "triangles": 600
+          },
+          "sha256": "f2377da0ee316838bc3214db7da001a21a6b455c7b5784362d3c360311e23d70"
+        },
+        {
+          "path": "sources/ashlar_06_lod2.glb",
+          "triangles": 200,
+          "dims_m": [
+            0.7426382899284363,
+            0.5167341232299805,
+            0.38339805603027344
+          ],
+          "topology": {
+            "boundary_edges": 0,
+            "nonmanifold_edges": 0,
+            "triangles": 200
+          },
+          "sha256": "61a1896d2c5ab41445b44a48d7a6ee6e380e444d12ee5bbe9cdc7cc05f923e60"
+        }
+      ],
+      "review_images": [
+        "review/ashlar_06-front.png",
+        "review/ashlar_06-back.png"
+      ],
+      "material_hint": "res://content/environments/stone_brick_materials_v1/materials/01-chisel-limestone/surface.tres",
+      "material_finish": "Neutral review clay embedded; paired map candidate available via material_hint. Brick/mortar segmentation not baked.",
+      "generator": "CL3D/2mini, local Tencent Hunyuan3D-2mini build",
+      "status": "technical_mesh_import_review_passed",
+      "human_visual_approval": "pending",
+      "material_parameters": {
+        "mapped": true,
+        "relief_m": 0.0,
+        "scale": 2.0,
+        "normal_strength": 0.65
+      },
+      "mapping_note": "Metre UVs with verified import-generated tangents. Small-fragment trial uses finer texel density, normal/roughness/AO, with optional parallax disabled."
+    },
+    {
+      "id": "rock_01",
+      "kind": "rock",
+      "dims_m": [
+        0.3802383542060852,
+        0.22365400195121765,
+        0.3818613290786743
+      ],
+      "origin_rule": "exact bounding-box centre, Y up, metres, uniform scale baked",
+      "seed": 20277730,
+      "inference_seconds": 67.30099062500085,
+      "prompt": "prompts/rock_01.txt",
+      "reference": "references/rock_01.png",
+      "input_sha256": "b18669d43d4560e5ac2cfc1f4ebea9ca74d12aa42a26484089e210dcdbec6f07",
+      "conditioning_sha256": "8199fd3c9ae704f726f42f1bda6d7887ecb34a7599fe9b8e0082b4d191bd8df7",
+      "raw": "raw_cl3d/rock_01.glb",
+      "raw_sha256": "d64b58d23c28bc8b00c0a844bf3a6f48d108652fde23c9c622b178dba7edffdf",
+      "cleanup": {
+        "source_components": 1,
+        "discarded_vertices": 0,
+        "boundary_edges_after_cleanup": 0,
+        "nonmanifold_edges_after_cleanup": 0,
+        "extra_component_vertices_removed": 0
+      },
+      "voxel_repair_used": false,
+      "lods": [
+        {
+          "path": "sources/rock_01_lod0.glb",
+          "triangles": 1500,
+          "dims_m": [
+            0.3802383542060852,
+            0.22365400195121765,
+            0.3818613290786743
+          ],
+          "topology": {
+            "boundary_edges": 0,
+            "nonmanifold_edges": 0,
+            "triangles": 1500
+          },
+          "sha256": "003f222491a3daa4328efa4945072274f2ef846f1fc2bc653bcef60c851db365"
+        },
+        {
+          "path": "sources/rock_01_lod1.glb",
+          "triangles": 600,
+          "dims_m": [
+            0.3797958493232727,
+            0.22220775485038757,
+            0.3814343810081482
+          ],
+          "topology": {
+            "boundary_edges": 0,
+            "nonmanifold_edges": 0,
+            "triangles": 600
+          },
+          "sha256": "2f9a30a25d014b8b98ed4274580ed872e5f00533318b3b23af0f5c42ac99c16e"
+        },
+        {
+          "path": "sources/rock_01_lod2.glb",
+          "triangles": 200,
+          "dims_m": [
+            0.3802037835121155,
+            0.22127756476402283,
+            0.37799012660980225
+          ],
+          "topology": {
+            "boundary_edges": 0,
+            "nonmanifold_edges": 0,
+            "triangles": 200
+          },
+          "sha256": "24d061e1aba87611c0ad490f2833b3e9b55515cec6dcd220bc92c93a465a7fb7"
+        }
+      ],
+      "review_images": [
+        "review/rock_01-front.png",
+        "review/rock_01-back.png"
+      ],
+      "material_hint": "res://content/environments/stone_brick_materials_v1/materials/02-split-bedded-stone/surface.tres",
+      "material_finish": "Neutral review clay embedded; paired map candidate available via material_hint. Brick/mortar segmentation not baked.",
+      "generator": "CL3D/2mini, local Tencent Hunyuan3D-2mini build",
+      "status": "technical_mesh_import_review_passed",
+      "human_visual_approval": "pending",
+      "material_parameters": {
+        "mapped": true,
+        "relief_m": 0.0,
+        "scale": 2.0,
+        "normal_strength": 0.65
+      },
+      "mapping_note": "Metre UVs with verified import-generated tangents. Small-fragment trial uses finer texel density, normal/roughness/AO, with optional parallax disabled."
+    },
+    {
+      "id": "rock_02",
+      "kind": "rock",
+      "dims_m": [
+        0.31920933723449707,
+        0.2286771535873413,
+        0.3203260600566864
+      ],
+      "origin_rule": "exact bounding-box centre, Y up, metres, uniform scale baked",
+      "seed": 20277731,
+      "inference_seconds": 55.11688083300032,
+      "prompt": "prompts/rock_02.txt",
+      "reference": "references/rock_02.png",
+      "input_sha256": "67bbfc21d7922f9afe685ca3df83757f82f837648411a17dbb8071df86abece7",
+      "conditioning_sha256": "bf6755ffb8f083694865018d1449a05251316bc129b334b51f98e59821adad2c",
+      "raw": "raw_cl3d/rock_02.glb",
+      "raw_sha256": "d41f4b4efb1bc771558adf009aabfa566725dbab2f42d70f49634de057939432",
+      "cleanup": {
+        "source_components": 3,
+        "discarded_vertices": 244,
+        "boundary_edges_after_cleanup": 0,
+        "nonmanifold_edges_after_cleanup": 0,
+        "extra_component_vertices_removed": 0
+      },
+      "voxel_repair_used": false,
+      "lods": [
+        {
+          "path": "sources/rock_02_lod0.glb",
+          "triangles": 1500,
+          "dims_m": [
+            0.31920933723449707,
+            0.2286771535873413,
+            0.3203260600566864
+          ],
+          "topology": {
+            "boundary_edges": 0,
+            "nonmanifold_edges": 0,
+            "triangles": 1500
+          },
+          "sha256": "f7e31be34cb1708b7496fb44532c50bbbd2af41a9ee9dc7005605d8a6b046c23"
+        },
+        {
+          "path": "sources/rock_02_lod1.glb",
+          "triangles": 600,
+          "dims_m": [
+            0.31932735443115234,
+            0.22852227091789246,
+            0.3193565905094147
+          ],
+          "topology": {
+            "boundary_edges": 0,
+            "nonmanifold_edges": 0,
+            "triangles": 600
+          },
+          "sha256": "f34f572a883fb9b84ef5de5743178b20071beb4b973d0adf6a469e625078175e"
+        },
+        {
+          "path": "sources/rock_02_lod2.glb",
+          "triangles": 200,
+          "dims_m": [
+            0.3183276653289795,
+            0.22627156972885132,
+            0.32163006067276
+          ],
+          "topology": {
+            "boundary_edges": 0,
+            "nonmanifold_edges": 0,
+            "triangles": 200
+          },
+          "sha256": "bfdd27ed16b1246792963c928975bd5faa0642600645823659fd82f0273830cc"
+        }
+      ],
+      "review_images": [
+        "review/rock_02-front.png",
+        "review/rock_02-back.png"
+      ],
+      "material_hint": "res://content/environments/stone_brick_materials_v1/materials/02-split-bedded-stone/surface.tres",
+      "material_finish": "Neutral review clay embedded; paired map candidate available via material_hint. Brick/mortar segmentation not baked.",
+      "generator": "CL3D/2mini, local Tencent Hunyuan3D-2mini build",
+      "status": "technical_mesh_import_review_passed",
+      "human_visual_approval": "pending",
+      "material_parameters": {
+        "mapped": true,
+        "relief_m": 0.0,
+        "scale": 2.0,
+        "normal_strength": 0.65
+      },
+      "mapping_note": "Metre UVs with verified import-generated tangents. Small-fragment trial uses finer texel density, normal/roughness/AO, with optional parallax disabled."
+    },
+    {
+      "id": "rock_03",
+      "kind": "rock",
+      "dims_m": [
+        0.5206904411315918,
+        0.1507563441991806,
+        0.2708311975002289
+      ],
+      "origin_rule": "exact bounding-box centre, Y up, metres, uniform scale baked",
+      "seed": 20277732,
+      "inference_seconds": 66.20954612499918,
+      "prompt": "prompts/rock_03.txt",
+      "reference": "references/rock_03.png",
+      "input_sha256": "bca8102b3fd502bf803a15d1ace55f3e6d78c84912ad1ee8be092d47ca629a83",
+      "conditioning_sha256": "a5ed0ed9d930850631f871637995790c73722e8e64c3bd28da446c794a177b80",
+      "raw": "raw_cl3d/rock_03.glb",
+      "raw_sha256": "65f58e5ca80d3c08a705d3d1900bd58eb68dcbd25814e857a7f4192f4777ddbf",
+      "cleanup": {
+        "source_components": 1,
+        "discarded_vertices": 0,
+        "boundary_edges_after_cleanup": 0,
+        "nonmanifold_edges_after_cleanup": 0,
+        "extra_component_vertices_removed": 0
+      },
+      "voxel_repair_used": false,
+      "lods": [
+        {
+          "path": "sources/rock_03_lod0.glb",
+          "triangles": 1500,
+          "dims_m": [
+            0.5206904411315918,
+            0.1507563441991806,
+            0.2708311975002289
+          ],
+          "topology": {
+            "boundary_edges": 0,
+            "nonmanifold_edges": 0,
+            "triangles": 1500
+          },
+          "sha256": "d9fee6053b7a3264b6d3a5661875ec58fe78d4a63133ea650ece2317e274b59e"
+        },
+        {
+          "path": "sources/rock_03_lod1.glb",
+          "triangles": 600,
+          "dims_m": [
+            0.5198835134506226,
+            0.15061581134796143,
+            0.268142431974411
+          ],
+          "topology": {
+            "boundary_edges": 0,
+            "nonmanifold_edges": 0,
+            "triangles": 600
+          },
+          "sha256": "eebf658734793edc94e36de75c7f2cb7cd510ca38326d5c56677e6f954eb56b8"
+        },
+        {
+          "path": "sources/rock_03_lod2.glb",
+          "triangles": 200,
+          "dims_m": [
+            0.5175478458404541,
+            0.1480872929096222,
+            0.26512351632118225
+          ],
+          "topology": {
+            "boundary_edges": 0,
+            "nonmanifold_edges": 0,
+            "triangles": 200
+          },
+          "sha256": "dd6575251bdfc8666b5da6508a8c9e3e8c7b714ed359b736734ec6281ff0bdbf"
+        }
+      ],
+      "review_images": [
+        "review/rock_03-front.png",
+        "review/rock_03-back.png"
+      ],
+      "material_hint": "res://content/environments/stone_brick_materials_v1/materials/02-split-bedded-stone/surface.tres",
+      "material_finish": "Neutral review clay embedded; paired map candidate available via material_hint. Brick/mortar segmentation not baked.",
+      "generator": "CL3D/2mini, local Tencent Hunyuan3D-2mini build",
+      "status": "technical_mesh_import_review_passed",
+      "human_visual_approval": "pending",
+      "material_parameters": {
+        "mapped": true,
+        "relief_m": 0.0,
+        "scale": 2.0,
+        "normal_strength": 0.65
+      },
+      "mapping_note": "Metre UVs with verified import-generated tangents. Small-fragment trial uses finer texel density, normal/roughness/AO, with optional parallax disabled."
+    },
+    {
+      "id": "rock_04",
+      "kind": "rock",
+      "dims_m": [
+        0.2876240611076355,
+        0.4198983311653137,
+        0.30095523595809937
+      ],
+      "origin_rule": "exact bounding-box centre, Y up, metres, uniform scale baked",
+      "seed": 20277733,
+      "inference_seconds": 66.16248070800066,
+      "prompt": "prompts/rock_04.txt",
+      "reference": "references/rock_04.png",
+      "input_sha256": "c0fab7eac64d0ae6029464435abc7bb991fdb6b7a4084276c0270a1fbf3d21a9",
+      "conditioning_sha256": "d01fc8c0a30abd82ebe0773aa83427cca73036852d7964d66ac1209eea4c1f15",
+      "raw": "raw_cl3d/rock_04.glb",
+      "raw_sha256": "d19b067850688c11fa416ca090978fb9c8427fa5fb68b6b6eedfe11b3ec71ea7",
+      "cleanup": {
+        "source_components": 1,
+        "discarded_vertices": 0,
+        "boundary_edges_after_cleanup": 0,
+        "nonmanifold_edges_after_cleanup": 0,
+        "extra_component_vertices_removed": 0
+      },
+      "voxel_repair_used": false,
+      "lods": [
+        {
+          "path": "sources/rock_04_lod0.glb",
+          "triangles": 1500,
+          "dims_m": [
+            0.2876240611076355,
+            0.4198983311653137,
+            0.30095523595809937
+          ],
+          "topology": {
+            "boundary_edges": 0,
+            "nonmanifold_edges": 0,
+            "triangles": 1500
+          },
+          "sha256": "9405839dc3b819ab5661ab6d8e950f527b76b5831afd3d2b7af561df1b8b496b"
+        },
+        {
+          "path": "sources/rock_04_lod1.glb",
+          "triangles": 600,
+          "dims_m": [
+            0.28862637281417847,
+            0.4198896884918213,
+            0.2983580529689789
+          ],
+          "topology": {
+            "boundary_edges": 0,
+            "nonmanifold_edges": 0,
+            "triangles": 600
+          },
+          "sha256": "3ad942844e484e3233cfd089a0f8a9cd7611e66a97c142d7488bf1a626007333"
+        },
+        {
+          "path": "sources/rock_04_lod2.glb",
+          "triangles": 200,
+          "dims_m": [
+            0.28819432854652405,
+            0.41841477155685425,
+            0.29814401268959045
+          ],
+          "topology": {
+            "boundary_edges": 0,
+            "nonmanifold_edges": 0,
+            "triangles": 200
+          },
+          "sha256": "9b56901d4e3044caf3b6ac6749dc2a1ca59bb504f2825faa4c17857f5598da92"
+        }
+      ],
+      "review_images": [
+        "review/rock_04-front.png",
+        "review/rock_04-back.png"
+      ],
+      "material_hint": "res://content/environments/stone_brick_materials_v1/materials/02-split-bedded-stone/surface.tres",
+      "material_finish": "Neutral review clay embedded; paired map candidate available via material_hint. Brick/mortar segmentation not baked.",
+      "generator": "CL3D/2mini, local Tencent Hunyuan3D-2mini build",
+      "status": "technical_mesh_import_review_passed",
+      "human_visual_approval": "pending",
+      "material_parameters": {
+        "mapped": true,
+        "relief_m": 0.0,
+        "scale": 2.0,
+        "normal_strength": 0.65
+      },
+      "mapping_note": "Metre UVs with verified import-generated tangents. Small-fragment trial uses finer texel density, normal/roughness/AO, with optional parallax disabled."
+    },
+    {
+      "id": "rock_05",
+      "kind": "rock",
+      "dims_m": [
+        0.6800975799560547,
+        0.454163134098053,
+        0.6551793813705444
+      ],
+      "origin_rule": "exact bounding-box centre, Y up, metres, uniform scale baked",
+      "seed": 20277734,
+      "inference_seconds": 71.36268774999917,
+      "prompt": "prompts/rock_05.txt",
+      "reference": "references/rock_05.png",
+      "input_sha256": "0dcf1cd221b84d081f86dbb8753249e76304fe89a7231f2ca1ee1374d8016495",
+      "conditioning_sha256": "d52ece3b95fddd84afe1237d10a666b42abb4b7f9e022340bc9191125ff9b514",
+      "raw": "raw_cl3d/rock_05.glb",
+      "raw_sha256": "84ea7444be0772d40e34b78065a51ad21a7787c870af89144e44f15b08808c19",
+      "cleanup": {
+        "source_components": 1,
+        "discarded_vertices": 0,
+        "boundary_edges_after_cleanup": 0,
+        "nonmanifold_edges_after_cleanup": 0,
+        "extra_component_vertices_removed": 0
+      },
+      "voxel_repair_used": false,
+      "lods": [
+        {
+          "path": "sources/rock_05_lod0.glb",
+          "triangles": 1500,
+          "dims_m": [
+            0.6800975799560547,
+            0.454163134098053,
+            0.6551793813705444
+          ],
+          "topology": {
+            "boundary_edges": 0,
+            "nonmanifold_edges": 0,
+            "triangles": 1500
+          },
+          "sha256": "dfa58e776f8de5c131bb1bbce3d88d1d1388296aca0162e4292208784ddcf59d"
+        },
+        {
+          "path": "sources/rock_05_lod1.glb",
+          "triangles": 600,
+          "dims_m": [
+            0.6751065254211426,
+            0.4540967345237732,
+            0.6533401012420654
+          ],
+          "topology": {
+            "boundary_edges": 0,
+            "nonmanifold_edges": 0,
+            "triangles": 600
+          },
+          "sha256": "0064fbf032ba6b3c2ec7343b75886547af511da139a563ba82563ff7ff6b4ea2"
+        },
+        {
+          "path": "sources/rock_05_lod2.glb",
+          "triangles": 200,
+          "dims_m": [
+            0.6792907118797302,
+            0.4562903642654419,
+            0.6507290601730347
+          ],
+          "topology": {
+            "boundary_edges": 0,
+            "nonmanifold_edges": 0,
+            "triangles": 200
+          },
+          "sha256": "ca358f8388c5dea0171517d5c7b690609a461b0c54af8b23568bea29c356b92c"
+        }
+      ],
+      "review_images": [
+        "review/rock_05-front.png",
+        "review/rock_05-back.png"
+      ],
+      "material_hint": "res://content/environments/stone_brick_materials_v1/materials/02-split-bedded-stone/surface.tres",
+      "material_finish": "Neutral review clay embedded; paired map candidate available via material_hint. Brick/mortar segmentation not baked.",
+      "generator": "CL3D/2mini, local Tencent Hunyuan3D-2mini build",
+      "status": "technical_mesh_import_review_passed",
+      "human_visual_approval": "pending",
+      "material_parameters": {
+        "mapped": true,
+        "relief_m": 0.0,
+        "scale": 2.0,
+        "normal_strength": 0.65
+      },
+      "mapping_note": "Metre UVs with verified import-generated tangents. Small-fragment trial uses finer texel density, normal/roughness/AO, with optional parallax disabled."
+    },
+    {
+      "id": "rock_06",
+      "kind": "rock",
+      "dims_m": [
+        0.2201233208179474,
+        0.07767708599567413,
+        0.1847774237394333
+      ],
+      "origin_rule": "exact bounding-box centre, Y up, metres, uniform scale baked",
+      "seed": 20277735,
+      "inference_seconds": 65.57089529100267,
+      "prompt": "prompts/rock_06.txt",
+      "reference": "references/rock_06.png",
+      "input_sha256": "903e967b2d17dde5f4579c7e10f6291f37eb3f61564b89046d0c10b2d33479b5",
+      "conditioning_sha256": "901f862b5610d75cc2e5d742de6ef5933868d8a7d6d43fbffb8369b6f141370e",
+      "raw": "raw_cl3d/rock_06.glb",
+      "raw_sha256": "1d3ed1819e70c05e89312c470b10657cba1763cf4449fb7a70e374f4b6866edf",
+      "cleanup": {
+        "source_components": 1,
+        "discarded_vertices": 0,
+        "boundary_edges_after_cleanup": 0,
+        "nonmanifold_edges_after_cleanup": 0,
+        "extra_component_vertices_removed": 0
+      },
+      "voxel_repair_used": false,
+      "lods": [
+        {
+          "path": "sources/rock_06_lod0.glb",
+          "triangles": 1500,
+          "dims_m": [
+            0.2201233208179474,
+            0.07767708599567413,
+            0.1847774237394333
+          ],
+          "topology": {
+            "boundary_edges": 0,
+            "nonmanifold_edges": 0,
+            "triangles": 1500
+          },
+          "sha256": "ab75367d6d27b803cc52179c8c9cf67548007bc9097761f9dacec72284f5fd53"
+        },
+        {
+          "path": "sources/rock_06_lod1.glb",
+          "triangles": 600,
+          "dims_m": [
+            0.22051990032196045,
+            0.07697470486164093,
+            0.18474724888801575
+          ],
+          "topology": {
+            "boundary_edges": 0,
+            "nonmanifold_edges": 0,
+            "triangles": 600
+          },
+          "sha256": "c4db9964b6721ed3099f6ada100e6f6208c12429c114dd2222261ee6659e13e8"
+        },
+        {
+          "path": "sources/rock_06_lod2.glb",
+          "triangles": 200,
+          "dims_m": [
+            0.22009766101837158,
+            0.07468821108341217,
+            0.18306946754455566
+          ],
+          "topology": {
+            "boundary_edges": 0,
+            "nonmanifold_edges": 0,
+            "triangles": 200
+          },
+          "sha256": "427020f2f98b794aab52a7d45c3d4c70922d29acf9a9e9864dabea2612fbe877"
+        }
+      ],
+      "review_images": [
+        "review/rock_06-front.png",
+        "review/rock_06-back.png"
+      ],
+      "material_hint": "res://content/environments/stone_brick_materials_v1/materials/02-split-bedded-stone/surface.tres",
+      "material_finish": "Neutral review clay embedded; paired map candidate available via material_hint. Brick/mortar segmentation not baked.",
+      "generator": "CL3D/2mini, local Tencent Hunyuan3D-2mini build",
+      "status": "technical_mesh_import_review_passed",
+      "human_visual_approval": "pending",
+      "material_parameters": {
+        "mapped": true,
+        "relief_m": 0.0,
+        "scale": 2.0,
+        "normal_strength": 0.65
+      },
+      "mapping_note": "Metre UVs with verified import-generated tangents. Small-fragment trial uses finer texel density, normal/roughness/AO, with optional parallax disabled."
+    },
+    {
+      "id": "column_01",
+      "kind": "column_drum",
+      "dims_m": [
+        0.5496112108230591,
+        0.2279389500617981,
+        0.48539039492607117
+      ],
+      "origin_rule": "exact bounding-box centre, Y up, metres, uniform scale baked",
+      "seed": 20277736,
+      "inference_seconds": 69.07076099999904,
+      "prompt": "prompts/column_01.txt",
+      "reference": "references/column_01.png",
+      "input_sha256": "37f1498b1e5d77d83450135bf1a31bbe4dbe9dd4f4cc54cda2ef0be9ce4f1316",
+      "conditioning_sha256": "af71d6b9426a0122babc524566380ecb1e37293d761ac97f05b41b6ad0673707",
+      "raw": "raw_cl3d/column_01.glb",
+      "raw_sha256": "af503fbe1125fa32006f5770f69edd04e07f7658456d9edac57caab91a321012",
+      "cleanup": {
+        "source_components": 1,
+        "discarded_vertices": 0,
+        "boundary_edges_after_cleanup": 0,
+        "nonmanifold_edges_after_cleanup": 0,
+        "extra_component_vertices_removed": 0
+      },
+      "voxel_repair_used": false,
+      "lods": [
+        {
+          "path": "sources/column_01_lod0.glb",
+          "triangles": 1500,
+          "dims_m": [
+            0.5496112108230591,
+            0.2279389500617981,
+            0.48539039492607117
+          ],
+          "topology": {
+            "boundary_edges": 0,
+            "nonmanifold_edges": 0,
+            "triangles": 1500
+          },
+          "sha256": "224415fef532e5069d05669195b8af899e731b450bac8070a432db87fa375040"
+        },
+        {
+          "path": "sources/column_01_lod1.glb",
+          "triangles": 600,
+          "dims_m": [
+            0.547520637512207,
+            0.22682437300682068,
+            0.4854426980018616
+          ],
+          "topology": {
+            "boundary_edges": 0,
+            "nonmanifold_edges": 0,
+            "triangles": 600
+          },
+          "sha256": "57ecc11031b1324db862ad52d5ecb96eb9c244a1f81d5bdc15cf78390ea2e4d8"
+        },
+        {
+          "path": "sources/column_01_lod2.glb",
+          "triangles": 200,
+          "dims_m": [
+            0.5462385416030884,
+            0.2262570559978485,
+            0.4847729802131653
+          ],
+          "topology": {
+            "boundary_edges": 0,
+            "nonmanifold_edges": 0,
+            "triangles": 200
+          },
+          "sha256": "eea57cc600d59b5c50dfee6f00df6cdf6081fa4cd46e7b971144c29249871537"
+        }
+      ],
+      "review_images": [
+        "review/column_01-front.png",
+        "review/column_01-back.png"
+      ],
+      "material_hint": "res://content/environments/stone_brick_materials_v1/materials/01-chisel-limestone/surface.tres",
+      "material_finish": "Neutral review clay embedded; paired map candidate available via material_hint. Brick/mortar segmentation not baked.",
+      "generator": "CL3D/2mini, local Tencent Hunyuan3D-2mini build",
+      "status": "technical_mesh_import_review_passed",
+      "human_visual_approval": "pending",
+      "material_parameters": {
+        "mapped": true,
+        "relief_m": 0.0,
+        "scale": 2.0,
+        "normal_strength": 0.65
+      },
+      "mapping_note": "Metre UVs with verified import-generated tangents. Small-fragment trial uses finer texel density, normal/roughness/AO, with optional parallax disabled."
+    },
+    {
+      "id": "column_02",
+      "kind": "column_drum",
+      "dims_m": [
+        0.40295207500457764,
+        0.46093112230300903,
+        0.4458041787147522
+      ],
+      "origin_rule": "exact bounding-box centre, Y up, metres, uniform scale baked",
+      "seed": 20277737,
+      "inference_seconds": 68.91971458400076,
+      "prompt": "prompts/column_02.txt",
+      "reference": "references/column_02.png",
+      "input_sha256": "00ee37cdb6c19520efa6d7939c45c5d6f46d2e194eee4621e6090f01df21d5c2",
+      "conditioning_sha256": "2d58c1a0109d31660697e77ca8ef924e5d0b0faf7c953db9fe197183fbfe20ce",
+      "raw": "raw_cl3d/column_02.glb",
+      "raw_sha256": "de87023dd96614b567e2fdb53032e1c43d4120b094e01849f132f092d9da38d3",
+      "cleanup": {
+        "source_components": 1,
+        "discarded_vertices": 0,
+        "boundary_edges_after_cleanup": 0,
+        "nonmanifold_edges_after_cleanup": 0,
+        "extra_component_vertices_removed": 0
+      },
+      "voxel_repair_used": false,
+      "lods": [
+        {
+          "path": "sources/column_02_lod0.glb",
+          "triangles": 1500,
+          "dims_m": [
+            0.40295207500457764,
+            0.46093112230300903,
+            0.4458041787147522
+          ],
+          "topology": {
+            "boundary_edges": 0,
+            "nonmanifold_edges": 0,
+            "triangles": 1500
+          },
+          "sha256": "8b9e2a09d5086a2044c94c0d354f2cc0bb86f2e1d11ccc37000bb5bb8ef96f4f"
+        },
+        {
+          "path": "sources/column_02_lod1.glb",
+          "triangles": 600,
+          "dims_m": [
+            0.4039931297302246,
+            0.4607558250427246,
+            0.44414833188056946
+          ],
+          "topology": {
+            "boundary_edges": 0,
+            "nonmanifold_edges": 0,
+            "triangles": 600
+          },
+          "sha256": "5dead4a84ae5d8cef579aef6579b1e7892477c8d9605ac041a02b07ec70c0ae2"
+        },
+        {
+          "path": "sources/column_02_lod2.glb",
+          "triangles": 200,
+          "dims_m": [
+            0.40312135219573975,
+            0.4618145525455475,
+            0.4335075914859772
+          ],
+          "topology": {
+            "boundary_edges": 0,
+            "nonmanifold_edges": 0,
+            "triangles": 200
+          },
+          "sha256": "bc3408c8949c0735cda40f9626d7284d481285a3633991e2b115183e63ffeaec"
+        }
+      ],
+      "review_images": [
+        "review/column_02-front.png",
+        "review/column_02-back.png"
+      ],
+      "material_hint": "res://content/environments/stone_brick_materials_v1/materials/01-chisel-limestone/surface.tres",
+      "material_finish": "Neutral review clay embedded; paired map candidate available via material_hint. Brick/mortar segmentation not baked.",
+      "generator": "CL3D/2mini, local Tencent Hunyuan3D-2mini build",
+      "status": "technical_mesh_import_review_passed",
+      "human_visual_approval": "pending",
+      "material_parameters": {
+        "mapped": true,
+        "relief_m": 0.0,
+        "scale": 2.0,
+        "normal_strength": 0.65
+      },
+      "mapping_note": "Metre UVs with verified import-generated tangents. Small-fragment trial uses finer texel density, normal/roughness/AO, with optional parallax disabled."
+    },
+    {
+      "id": "column_03",
+      "kind": "column_drum",
+      "dims_m": [
+        0.7191091775894165,
+        0.34598517417907715,
+        0.718768298625946
+      ],
+      "origin_rule": "exact bounding-box centre, Y up, metres, uniform scale baked",
+      "seed": 20277738,
+      "inference_seconds": 69.1779877500012,
+      "prompt": "prompts/column_03.txt",
+      "reference": "references/column_03.png",
+      "input_sha256": "84eb77aa4554bbb33beb5b5f640823c1dd49c6f2f78162d15ec10374db8d8957",
+      "conditioning_sha256": "8abc2afa8a5a58b7b671a52db475e01bdcd0a931a225c9dbad45308d5fdfdc30",
+      "raw": "raw_cl3d/column_03.glb",
+      "raw_sha256": "8a192d77dea669458d776cabf4ce07388e9bc614337f3e7a62b3f217f0475d30",
+      "cleanup": {
+        "source_components": 1,
+        "discarded_vertices": 0,
+        "boundary_edges_after_cleanup": 0,
+        "nonmanifold_edges_after_cleanup": 0,
+        "extra_component_vertices_removed": 0
+      },
+      "voxel_repair_used": false,
+      "lods": [
+        {
+          "path": "sources/column_03_lod0.glb",
+          "triangles": 1500,
+          "dims_m": [
+            0.7191091775894165,
+            0.34598517417907715,
+            0.718768298625946
+          ],
+          "topology": {
+            "boundary_edges": 0,
+            "nonmanifold_edges": 0,
+            "triangles": 1500
+          },
+          "sha256": "8a680fc63b456efb024ec24c4fb79dfb9d1a813e4515f06e8bce3456aa9a61cf"
+        },
+        {
+          "path": "sources/column_03_lod1.glb",
+          "triangles": 600,
+          "dims_m": [
+            0.7209583520889282,
+            0.34468528628349304,
+            0.7170979976654053
+          ],
+          "topology": {
+            "boundary_edges": 0,
+            "nonmanifold_edges": 0,
+            "triangles": 600
+          },
+          "sha256": "9f9b6e92514679472986bee86646e367d44c25008cc3ea4c49d460f8d3dcb059"
+        },
+        {
+          "path": "sources/column_03_lod2.glb",
+          "triangles": 200,
+          "dims_m": [
+            0.7193886041641235,
+            0.3401634693145752,
+            0.7175440788269043
+          ],
+          "topology": {
+            "boundary_edges": 0,
+            "nonmanifold_edges": 0,
+            "triangles": 200
+          },
+          "sha256": "286c20ad80ea10aebc93b7b6b659d36ee7d58a7c5668d5c885156d9eebb5b4f2"
+        }
+      ],
+      "review_images": [
+        "review/column_03-front.png",
+        "review/column_03-back.png"
+      ],
+      "material_hint": "res://content/environments/stone_brick_materials_v1/materials/01-chisel-limestone/surface.tres",
+      "material_finish": "Neutral review clay embedded; paired map candidate available via material_hint. Brick/mortar segmentation not baked.",
+      "generator": "CL3D/2mini, local Tencent Hunyuan3D-2mini build",
+      "status": "technical_mesh_import_review_passed",
+      "human_visual_approval": "pending",
+      "material_parameters": {
+        "mapped": true,
+        "relief_m": 0.0,
+        "scale": 2.0,
+        "normal_strength": 0.65
+      },
+      "mapping_note": "Metre UVs with verified import-generated tangents. Small-fragment trial uses finer texel density, normal/roughness/AO, with optional parallax disabled."
+    },
+    {
+      "id": "brick_01",
+      "kind": "brick_clump",
+      "dims_m": [
+        0.44019949436187744,
+        0.19059842824935913,
+        0.24917064607143402
+      ],
+      "origin_rule": "exact bounding-box centre, Y up, metres, uniform scale baked",
+      "seed": 20277739,
+      "inference_seconds": 69.56586154199977,
+      "prompt": "prompts/brick_01.txt",
+      "reference": "references/brick_01.png",
+      "input_sha256": "c3799704899d0c0f666ea2f4e33cad3bd16a83223857c9a250820a21cec20be4",
+      "conditioning_sha256": "e85ccb3eb13f76078d9b964a98552a9d4e2d3ef42dfacc71aa88871b64f8b69f",
+      "raw": "raw_cl3d/brick_01.glb",
+      "raw_sha256": "3b801391f92d8897bb3b5981fbf5e1c23a67cd11087a40a22c5342de78612ff6",
+      "cleanup": {
+        "source_components": 1,
+        "discarded_vertices": 0,
+        "boundary_edges_after_cleanup": 0,
+        "nonmanifold_edges_after_cleanup": 0,
+        "extra_component_vertices_removed": 0
+      },
+      "voxel_repair_used": false,
+      "lods": [
+        {
+          "path": "sources/brick_01_lod0.glb",
+          "triangles": 1500,
+          "dims_m": [
+            0.44019949436187744,
+            0.19059842824935913,
+            0.24917064607143402
+          ],
+          "topology": {
+            "boundary_edges": 0,
+            "nonmanifold_edges": 0,
+            "triangles": 1500
+          },
+          "sha256": "be690c2ff4abbafae408f25444df7e65aae930905323b43c848f36d242f6ccee"
+        },
+        {
+          "path": "sources/brick_01_lod1.glb",
+          "triangles": 600,
+          "dims_m": [
+            0.4397883117198944,
+            0.18970231711864471,
+            0.2490309178829193
+          ],
+          "topology": {
+            "boundary_edges": 0,
+            "nonmanifold_edges": 0,
+            "triangles": 600
+          },
+          "sha256": "06297c30402f55c006b3fca7d1b0a605e2882f806b32b921d8ac43c0af62a453"
+        },
+        {
+          "path": "sources/brick_01_lod2.glb",
+          "triangles": 200,
+          "dims_m": [
+            0.43997618556022644,
+            0.18666866421699524,
+            0.24738135933876038
+          ],
+          "topology": {
+            "boundary_edges": 0,
+            "nonmanifold_edges": 0,
+            "triangles": 200
+          },
+          "sha256": "ce9ea8368c8ec0eeba91a48ccfb0ac3c2e33a24fc465b0fd9fc8df4f96c68bf2"
+        }
+      ],
+      "review_images": [
+        "review/brick_01-front.png",
+        "review/brick_01-back.png"
+      ],
+      "material_hint": "res://content/environments/stone_brick_materials_v1/materials/04-old-terracotta-brick/surface.tres",
+      "material_finish": "Neutral review clay embedded; paired map candidate available via material_hint. Brick/mortar segmentation not baked.",
+      "generator": "CL3D/2mini, local Tencent Hunyuan3D-2mini build",
+      "status": "technical_mesh_import_review_passed",
+      "human_visual_approval": "pending",
+      "material_parameters": {
+        "mapped": true,
+        "relief_m": 0.0,
+        "scale": 4.0,
+        "normal_strength": 0.65
+      },
+      "mapping_note": "Metre UVs with verified import-generated tangents. Small-fragment trial uses finer texel density, normal/roughness/AO, with optional parallax disabled."
+    },
+    {
+      "id": "brick_02",
+      "kind": "brick_clump",
+      "dims_m": [
+        0.6198774576187134,
+        0.27296534180641174,
+        0.14375287294387817
+      ],
+      "origin_rule": "exact bounding-box centre, Y up, metres, uniform scale baked",
+      "seed": 20277740,
+      "inference_seconds": 69.68295829199997,
+      "prompt": "prompts/brick_02.txt",
+      "reference": "references/brick_02.png",
+      "input_sha256": "600c782e0af053640f43c890da6758c31f62bc215b8f289d12049e29c961973e",
+      "conditioning_sha256": "07cfcd472dce3c2df74291f4ac35294b6ec0cfeb3b01c2db9fc70ef04ab1e628",
+      "raw": "raw_cl3d/brick_02.glb",
+      "raw_sha256": "dd846b71331ce01480e2f3f157cdb11611a5a5aebbf2a305be6ae51a5c6bfc53",
+      "cleanup": {
+        "source_components": 1,
+        "discarded_vertices": 0,
+        "boundary_edges_after_cleanup": 0,
+        "nonmanifold_edges_after_cleanup": 0,
+        "extra_component_vertices_removed": 0
+      },
+      "voxel_repair_used": false,
+      "lods": [
+        {
+          "path": "sources/brick_02_lod0.glb",
+          "triangles": 1500,
+          "dims_m": [
+            0.6198774576187134,
+            0.27296534180641174,
+            0.14375287294387817
+          ],
+          "topology": {
+            "boundary_edges": 0,
+            "nonmanifold_edges": 0,
+            "triangles": 1500
+          },
+          "sha256": "79763b730949efb54cfa1432737632c31595f90dea44a186a3ff90b1a7aff2df"
+        },
+        {
+          "path": "sources/brick_02_lod1.glb",
+          "triangles": 600,
+          "dims_m": [
+            0.6196267604827881,
+            0.2715293765068054,
+            0.14032039046287537
+          ],
+          "topology": {
+            "boundary_edges": 0,
+            "nonmanifold_edges": 0,
+            "triangles": 600
+          },
+          "sha256": "f05e92f76e62fd50337eaf2ff6d768e9c5215fb4ac1304a03c41ca65d3d4994a"
+        },
+        {
+          "path": "sources/brick_02_lod2.glb",
+          "triangles": 200,
+          "dims_m": [
+            0.6226696968078613,
+            0.27089357376098633,
+            0.137571781873703
+          ],
+          "topology": {
+            "boundary_edges": 0,
+            "nonmanifold_edges": 0,
+            "triangles": 200
+          },
+          "sha256": "0656aeab94e9068411f812d5735560adf0d0a1eccf8075d5e83ff2523384dbd6"
+        }
+      ],
+      "review_images": [
+        "review/brick_02-front.png",
+        "review/brick_02-back.png"
+      ],
+      "material_hint": "res://content/environments/stone_brick_materials_v1/materials/04-old-terracotta-brick/surface.tres",
+      "material_finish": "Neutral review clay embedded; paired map candidate available via material_hint. Brick/mortar segmentation not baked.",
+      "generator": "CL3D/2mini, local Tencent Hunyuan3D-2mini build",
+      "status": "technical_mesh_import_review_passed",
+      "human_visual_approval": "pending",
+      "material_parameters": {
+        "mapped": true,
+        "relief_m": 0.0,
+        "scale": 4.0,
+        "normal_strength": 0.65
+      },
+      "mapping_note": "Metre UVs with verified import-generated tangents. Small-fragment trial uses finer texel density, normal/roughness/AO, with optional parallax disabled."
+    },
+    {
+      "id": "brick_03",
+      "kind": "brick_clump",
+      "dims_m": [
+        0.3400835692882538,
+        0.20727378129959106,
+        0.2358625829219818
+      ],
+      "origin_rule": "exact bounding-box centre, Y up, metres, uniform scale baked",
+      "seed": 20277741,
+      "inference_seconds": 69.53368549999868,
+      "prompt": "prompts/brick_03.txt",
+      "reference": "references/brick_03.png",
+      "input_sha256": "1ad5299a6efd1711f0fa17115c125d46903ab5ce40dc17fb354e9d538b624e71",
+      "conditioning_sha256": "bbc74a252aebe70c495f777bd7fbc3c461e4d6e5a999b3d6cb665a3eab5cf93e",
+      "raw": "raw_cl3d/brick_03.glb",
+      "raw_sha256": "e94352f4c768ad73dcbf4977a301bbaa27a217eebb7d0d26673862f0d4fb7399",
+      "cleanup": {
+        "source_components": 2,
+        "discarded_vertices": 10,
+        "boundary_edges_after_cleanup": 0,
+        "nonmanifold_edges_after_cleanup": 0,
+        "extra_component_vertices_removed": 0
+      },
+      "voxel_repair_used": false,
+      "lods": [
+        {
+          "path": "sources/brick_03_lod0.glb",
+          "triangles": 1500,
+          "dims_m": [
+            0.3400835692882538,
+            0.20727378129959106,
+            0.2358625829219818
+          ],
+          "topology": {
+            "boundary_edges": 0,
+            "nonmanifold_edges": 0,
+            "triangles": 1500
+          },
+          "sha256": "c2617fad01bcf93fe90bdf132b1e97f04fbd0555185d5831b9f1daa1211cd20f"
+        },
+        {
+          "path": "sources/brick_03_lod1.glb",
+          "triangles": 600,
+          "dims_m": [
+            0.33922067284584045,
+            0.20718953013420105,
+            0.2350662648677826
+          ],
+          "topology": {
+            "boundary_edges": 0,
+            "nonmanifold_edges": 0,
+            "triangles": 600
+          },
+          "sha256": "58ad5ca3f896f825e24b940b0ab9d996ad58defd5a18477a63317cdc185fb678"
+        },
+        {
+          "path": "sources/brick_03_lod2.glb",
+          "triangles": 200,
+          "dims_m": [
+            0.33693110942840576,
+            0.20473265647888184,
+            0.23370590806007385
+          ],
+          "topology": {
+            "boundary_edges": 0,
+            "nonmanifold_edges": 0,
+            "triangles": 200
+          },
+          "sha256": "3c6262b63d923c1310dea11de6772c29227788b9672a3ae7d45d22305a5258b5"
+        }
+      ],
+      "review_images": [
+        "review/brick_03-front.png",
+        "review/brick_03-back.png"
+      ],
+      "material_hint": "res://content/environments/stone_brick_materials_v1/materials/04-old-terracotta-brick/surface.tres",
+      "material_finish": "Neutral review clay embedded; paired map candidate available via material_hint. Brick/mortar segmentation not baked.",
+      "generator": "CL3D/2mini, local Tencent Hunyuan3D-2mini build",
+      "status": "technical_mesh_import_review_passed",
+      "human_visual_approval": "pending",
+      "material_parameters": {
+        "mapped": true,
+        "relief_m": 0.0,
+        "scale": 4.0,
+        "normal_strength": 0.65
+      },
+      "mapping_note": "Metre UVs with verified import-generated tangents. Small-fragment trial uses finer texel density, normal/roughness/AO, with optional parallax disabled."
+    }
+  ],
+  "schema_version": 1,
+  "model_provenance": "model-provenance.json",
+  "material_library": "../stone_brick_materials_v1/materials.json",
+  "consumer_integration": "not performed; current rubble generator has no CL3D loader",
+  "origin": "bounding-box centre, Y up, metres",
+  "lod_budgets": [
+    1500,
+    600,
+    200
+  ]
+}

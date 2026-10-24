@@ -1,0 +1,1530 @@
+{
+  "engine": {
+    "build": "official",
+    "hash": "ed1daf0bf001b61586d9930840f2f1394092c079",
+    "hex": 263938,
+    "major": 4,
+    "minor": 7,
+    "patch": 2,
+    "status": "stable",
+    "string": "4.7.2-stable (official)",
+    "timestamp": 0
+  },
+  "normal_disabled_control": false,
+  "sources": [
+    {
+      "bodies": 0,
+      "bounds_position": [
+        -0.199153229594231,
+        -0.182836830615997,
+        -0.239759653806686
+      ],
+      "bounds_size": [
+        0.398306459188461,
+        0.365673661231995,
+        0.479519307613373
+      ],
+      "capture": "review/godot/ashlar_01.png",
+      "convex_shapes": 0,
+      "mapped_uv_tangents_ok": true,
+      "material": "",
+      "meshes": 1,
+      "ok": true,
+      "path": "res://content/environments/cl3d_rubble_sources_v1/sources/ashlar_01_lod0.glb",
+      "triangles": 1500
+    },
+    {
+      "bodies": 0,
+      "bounds_position": [
+        -0.19781269133091,
+        -0.183263927698135,
+        -0.239647954702377
+      ],
+      "bounds_size": [
+        0.395625382661819,
+        0.366527855396271,
+        0.479295909404755
+      ],
+      "capture": "",
+      "convex_shapes": 0,
+      "mapped_uv_tangents_ok": true,
+      "material": "",
+      "meshes": 1,
+      "ok": true,
+      "path": "res://content/environments/cl3d_rubble_sources_v1/sources/ashlar_01_lod1.glb",
+      "triangles": 600
+    },
+    {
+      "bodies": 0,
+      "bounds_position": [
+        -0.195377945899963,
+        -0.180071130394936,
+        -0.238763645291328
+      ],
+      "bounds_size": [
+        0.390755891799927,
+        0.360142260789871,
+        0.477527290582657
+      ],
+      "capture": "",
+      "convex_shapes": 0,
+      "mapped_uv_tangents_ok": true,
+      "material": "",
+      "meshes": 1,
+      "ok": true,
+      "path": "res://content/environments/cl3d_rubble_sources_v1/sources/ashlar_01_lod2.glb",
+      "triangles": 200
+    },
+    {
+      "bodies": 0,
+      "bounds_position": [
+        -0.300025999546051,
+        -0.0903244540095329,
+        -0.0566579028964043
+      ],
+      "bounds_size": [
+        0.600051999092102,
+        0.180648908019066,
+        0.113315805792809
+      ],
+      "capture": "review/godot/ashlar_02.png",
+      "convex_shapes": 0,
+      "mapped_uv_tangents_ok": true,
+      "material": "",
+      "meshes": 1,
+      "ok": true,
+      "path": "res://content/environments/cl3d_rubble_sources_v1/sources/ashlar_02_lod0.glb",
+      "triangles": 1500
+    },
+    {
+      "bodies": 0,
+      "bounds_position": [
+        -0.300186097621918,
+        -0.0903483927249908,
+        -0.0567028149962425
+      ],
+      "bounds_size": [
+        0.600372195243835,
+        0.180696785449982,
+        0.113405629992485
+      ],
+      "capture": "",
+      "convex_shapes": 0,
+      "mapped_uv_tangents_ok": true,
+      "material": "",
+      "meshes": 1,
+      "ok": true,
+      "path": "res://content/environments/cl3d_rubble_sources_v1/sources/ashlar_02_lod1.glb",
+      "triangles": 600
+    },
+    {
+      "bodies": 0,
+      "bounds_position": [
+        -0.297256648540497,
+        -0.0889881998300552,
+        -0.0551260337233543
+      ],
+      "bounds_size": [
+        0.594513297080994,
+        0.17797639966011,
+        0.110252067446709
+      ],
+      "capture": "",
+      "convex_shapes": 0,
+      "mapped_uv_tangents_ok": true,
+      "material": "",
+      "meshes": 1,
+      "ok": true,
+      "path": "res://content/environments/cl3d_rubble_sources_v1/sources/ashlar_02_lod2.glb",
+      "triangles": 200
+    },
+    {
+      "bodies": 0,
+      "bounds_position": [
+        -0.275545388460159,
+        -0.0611386969685555,
+        -0.243576347827911
+      ],
+      "bounds_size": [
+        0.551090776920319,
+        0.122277393937111,
+        0.487152695655823
+      ],
+      "capture": "review/godot/ashlar_03.png",
+      "convex_shapes": 0,
+      "mapped_uv_tangents_ok": true,
+      "material": "",
+      "meshes": 1,
+      "ok": true,
+      "path": "res://content/environments/cl3d_rubble_sources_v1/sources/ashlar_03_lod0.glb",
+      "triangles": 1500
+    },
+    {
+      "bodies": 0,
+      "bounds_position": [
+        -0.274490892887115,
+        -0.0608205869793892,
+        -0.243701487779617
+      ],
+      "bounds_size": [
+        0.548981785774231,
+        0.121641173958778,
+        0.487402975559235
+      ],
+      "capture": "",
+      "convex_shapes": 0,
+      "mapped_uv_tangents_ok": true,
+      "material": "",
+      "meshes": 1,
+      "ok": true,
+      "path": "res://content/environments/cl3d_rubble_sources_v1/sources/ashlar_03_lod1.glb",
+      "triangles": 600
+    },
+    {
+      "bodies": 0,
+      "bounds_position": [
+        -0.274200439453125,
+        -0.059406153857708,
+        -0.241038203239441
+      ],
+      "bounds_size": [
+        0.54840087890625,
+        0.118812307715416,
+        0.482076406478882
+      ],
+      "capture": "",
+      "convex_shapes": 0,
+      "mapped_uv_tangents_ok": true,
+      "material": "",
+      "meshes": 1,
+      "ok": true,
+      "path": "res://content/environments/cl3d_rubble_sources_v1/sources/ashlar_03_lod2.glb",
+      "triangles": 200
+    },
+    {
+      "bodies": 0,
+      "bounds_position": [
+        -0.148443907499313,
+        -0.309988021850586,
+        -0.111680626869202
+      ],
+      "bounds_size": [
+        0.296887814998627,
+        0.619976043701172,
+        0.223361253738403
+      ],
+      "capture": "review/godot/ashlar_04.png",
+      "convex_shapes": 0,
+      "mapped_uv_tangents_ok": true,
+      "material": "",
+      "meshes": 1,
+      "ok": true,
+      "path": "res://content/environments/cl3d_rubble_sources_v1/sources/ashlar_04_lod0.glb",
+      "triangles": 1500
+    },
+    {
+      "bodies": 0,
+      "bounds_position": [
+        -0.149075627326965,
+        -0.308495402336121,
+        -0.110239461064339
+      ],
+      "bounds_size": [
+        0.298151254653931,
+        0.616990804672241,
+        0.220478922128677
+      ],
+      "capture": "",
+      "convex_shapes": 0,
+      "mapped_uv_tangents_ok": true,
+      "material": "",
+      "meshes": 1,
+      "ok": true,
+      "path": "res://content/environments/cl3d_rubble_sources_v1/sources/ashlar_04_lod1.glb",
+      "triangles": 600
+    },
+    {
+      "bodies": 0,
+      "bounds_position": [
+        -0.147952988743782,
+        -0.309025079011917,
+        -0.105869263410568
+      ],
+      "bounds_size": [
+        0.295905977487564,
+        0.618050158023834,
+        0.211738526821136
+      ],
+      "capture": "",
+      "convex_shapes": 0,
+      "mapped_uv_tangents_ok": true,
+      "material": "",
+      "meshes": 1,
+      "ok": true,
+      "path": "res://content/environments/cl3d_rubble_sources_v1/sources/ashlar_04_lod2.glb",
+      "triangles": 200
+    },
+    {
+      "bodies": 0,
+      "bounds_position": [
+        -0.101841732859612,
+        -0.0874893218278885,
+        -0.14034366607666
+      ],
+      "bounds_size": [
+        0.203683465719223,
+        0.174978643655777,
+        0.28068733215332
+      ],
+      "capture": "review/godot/ashlar_05.png",
+      "convex_shapes": 0,
+      "mapped_uv_tangents_ok": true,
+      "material": "",
+      "meshes": 1,
+      "ok": true,
+      "path": "res://content/environments/cl3d_rubble_sources_v1/sources/ashlar_05_lod0.glb",
+      "triangles": 1500
+    },
+    {
+      "bodies": 0,
+      "bounds_position": [
+        -0.101846531033516,
+        -0.0865940153598785,
+        -0.140417575836182
+      ],
+      "bounds_size": [
+        0.203693062067032,
+        0.173188030719757,
+        0.280835151672363
+      ],
+      "capture": "",
+      "convex_shapes": 0,
+      "mapped_uv_tangents_ok": true,
+      "material": "",
+      "meshes": 1,
+      "ok": true,
+      "path": "res://content/environments/cl3d_rubble_sources_v1/sources/ashlar_05_lod1.glb",
+      "triangles": 600
+    },
+    {
+      "bodies": 0,
+      "bounds_position": [
+        -0.100167520344257,
+        -0.0862388014793396,
+        -0.138958513736725
+      ],
+      "bounds_size": [
+        0.200335040688515,
+        0.172477602958679,
+        0.27791702747345
+      ],
+      "capture": "",
+      "convex_shapes": 0,
+      "mapped_uv_tangents_ok": true,
+      "material": "",
+      "meshes": 1,
+      "ok": true,
+      "path": "res://content/environments/cl3d_rubble_sources_v1/sources/ashlar_05_lod2.glb",
+      "triangles": 200
+    },
+    {
+      "bodies": 0,
+      "bounds_position": [
+        -0.376445740461349,
+        -0.260666847229004,
+        -0.202635318040848
+      ],
+      "bounds_size": [
+        0.752891480922699,
+        0.521333694458008,
+        0.405270636081696
+      ],
+      "capture": "review/godot/ashlar_06.png",
+      "convex_shapes": 0,
+      "mapped_uv_tangents_ok": true,
+      "material": "",
+      "meshes": 1,
+      "ok": true,
+      "path": "res://content/environments/cl3d_rubble_sources_v1/sources/ashlar_06_lod0.glb",
+      "triangles": 1500
+    },
+    {
+      "bodies": 0,
+      "bounds_position": [
+        -0.374999672174454,
+        -0.259917795658112,
+        -0.199663579463959
+      ],
+      "bounds_size": [
+        0.749999344348907,
+        0.519835591316223,
+        0.399327158927917
+      ],
+      "capture": "",
+      "convex_shapes": 0,
+      "mapped_uv_tangents_ok": true,
+      "material": "",
+      "meshes": 1,
+      "ok": true,
+      "path": "res://content/environments/cl3d_rubble_sources_v1/sources/ashlar_06_lod1.glb",
+      "triangles": 600
+    },
+    {
+      "bodies": 0,
+      "bounds_position": [
+        -0.371319144964218,
+        -0.25836706161499,
+        -0.191699028015137
+      ],
+      "bounds_size": [
+        0.742638289928436,
+        0.51673412322998,
+        0.383398056030273
+      ],
+      "capture": "",
+      "convex_shapes": 0,
+      "mapped_uv_tangents_ok": true,
+      "material": "",
+      "meshes": 1,
+      "ok": true,
+      "path": "res://content/environments/cl3d_rubble_sources_v1/sources/ashlar_06_lod2.glb",
+      "triangles": 200
+    },
+    {
+      "bodies": 0,
+      "bounds_position": [
+        -0.190119177103043,
+        -0.111827000975609,
+        -0.190930664539337
+      ],
+      "bounds_size": [
+        0.380238354206085,
+        0.223654001951218,
+        0.381861329078674
+      ],
+      "capture": "review/godot/rock_01.png",
+      "convex_shapes": 0,
+      "mapped_uv_tangents_ok": true,
+      "material": "",
+      "meshes": 1,
+      "ok": true,
+      "path": "res://content/environments/cl3d_rubble_sources_v1/sources/rock_01_lod0.glb",
+      "triangles": 1500
+    },
+    {
+      "bodies": 0,
+      "bounds_position": [
+        -0.189897924661636,
+        -0.111103877425194,
+        -0.190717190504074
+      ],
+      "bounds_size": [
+        0.379795849323273,
+        0.222207754850388,
+        0.381434381008148
+      ],
+      "capture": "",
+      "convex_shapes": 0,
+      "mapped_uv_tangents_ok": true,
+      "material": "",
+      "meshes": 1,
+      "ok": true,
+      "path": "res://content/environments/cl3d_rubble_sources_v1/sources/rock_01_lod1.glb",
+      "triangles": 600
+    },
+    {
+      "bodies": 0,
+      "bounds_position": [
+        -0.190101891756058,
+        -0.110638782382011,
+        -0.188995063304901
+      ],
+      "bounds_size": [
+        0.380203783512115,
+        0.221277564764023,
+        0.377990126609802
+      ],
+      "capture": "",
+      "convex_shapes": 0,
+      "mapped_uv_tangents_ok": true,
+      "material": "",
+      "meshes": 1,
+      "ok": true,
+      "path": "res://content/environments/cl3d_rubble_sources_v1/sources/rock_01_lod2.glb",
+      "triangles": 200
+    },
+    {
+      "bodies": 0,
+      "bounds_position": [
+        -0.159604668617249,
+        -0.114338576793671,
+        -0.160163030028343
+      ],
+      "bounds_size": [
+        0.319209337234497,
+        0.228677153587341,
+        0.320326060056686
+      ],
+      "capture": "review/godot/rock_02.png",
+      "convex_shapes": 0,
+      "mapped_uv_tangents_ok": true,
+      "material": "",
+      "meshes": 1,
+      "ok": true,
+      "path": "res://content/environments/cl3d_rubble_sources_v1/sources/rock_02_lod0.glb",
+      "triangles": 1500
+    },
+    {
+      "bodies": 0,
+      "bounds_position": [
+        -0.159663677215576,
+        -0.114261135458946,
+        -0.159678295254707
+      ],
+      "bounds_size": [
+        0.319327354431152,
+        0.228522270917892,
+        0.319356590509415
+      ],
+      "capture": "",
+      "convex_shapes": 0,
+      "mapped_uv_tangents_ok": true,
+      "material": "",
+      "meshes": 1,
+      "ok": true,
+      "path": "res://content/environments/cl3d_rubble_sources_v1/sources/rock_02_lod1.glb",
+      "triangles": 600
+    },
+    {
+      "bodies": 0,
+      "bounds_position": [
+        -0.15916383266449,
+        -0.113135784864426,
+        -0.16081503033638
+      ],
+      "bounds_size": [
+        0.318327665328979,
+        0.226271569728851,
+        0.32163006067276
+      ],
+      "capture": "",
+      "convex_shapes": 0,
+      "mapped_uv_tangents_ok": true,
+      "material": "",
+      "meshes": 1,
+      "ok": true,
+      "path": "res://content/environments/cl3d_rubble_sources_v1/sources/rock_02_lod2.glb",
+      "triangles": 200
+    },
+    {
+      "bodies": 0,
+      "bounds_position": [
+        -0.260345220565796,
+        -0.0753781720995903,
+        -0.135415598750114
+      ],
+      "bounds_size": [
+        0.520690441131592,
+        0.150756344199181,
+        0.270831197500229
+      ],
+      "capture": "review/godot/rock_03.png",
+      "convex_shapes": 0,
+      "mapped_uv_tangents_ok": true,
+      "material": "",
+      "meshes": 1,
+      "ok": true,
+      "path": "res://content/environments/cl3d_rubble_sources_v1/sources/rock_03_lod0.glb",
+      "triangles": 1500
+    },
+    {
+      "bodies": 0,
+      "bounds_position": [
+        -0.259941756725311,
+        -0.0753079056739807,
+        -0.134071215987206
+      ],
+      "bounds_size": [
+        0.519883513450623,
+        0.150615811347961,
+        0.268142431974411
+      ],
+      "capture": "",
+      "convex_shapes": 0,
+      "mapped_uv_tangents_ok": true,
+      "material": "",
+      "meshes": 1,
+      "ok": true,
+      "path": "res://content/environments/cl3d_rubble_sources_v1/sources/rock_03_lod1.glb",
+      "triangles": 600
+    },
+    {
+      "bodies": 0,
+      "bounds_position": [
+        -0.258773922920227,
+        -0.0740436464548111,
+        -0.132561758160591
+      ],
+      "bounds_size": [
+        0.517547845840454,
+        0.148087292909622,
+        0.265123516321182
+      ],
+      "capture": "",
+      "convex_shapes": 0,
+      "mapped_uv_tangents_ok": true,
+      "material": "",
+      "meshes": 1,
+      "ok": true,
+      "path": "res://content/environments/cl3d_rubble_sources_v1/sources/rock_03_lod2.glb",
+      "triangles": 200
+    },
+    {
+      "bodies": 0,
+      "bounds_position": [
+        -0.143812030553818,
+        -0.209949165582657,
+        -0.15047761797905
+      ],
+      "bounds_size": [
+        0.287624061107635,
+        0.419898331165314,
+        0.300955235958099
+      ],
+      "capture": "review/godot/rock_04.png",
+      "convex_shapes": 0,
+      "mapped_uv_tangents_ok": true,
+      "material": "",
+      "meshes": 1,
+      "ok": true,
+      "path": "res://content/environments/cl3d_rubble_sources_v1/sources/rock_04_lod0.glb",
+      "triangles": 1500
+    },
+    {
+      "bodies": 0,
+      "bounds_position": [
+        -0.144313186407089,
+        -0.209944844245911,
+        -0.149179026484489
+      ],
+      "bounds_size": [
+        0.288626372814178,
+        0.419889688491821,
+        0.298358052968979
+      ],
+      "capture": "",
+      "convex_shapes": 0,
+      "mapped_uv_tangents_ok": true,
+      "material": "",
+      "meshes": 1,
+      "ok": true,
+      "path": "res://content/environments/cl3d_rubble_sources_v1/sources/rock_04_lod1.glb",
+      "triangles": 600
+    },
+    {
+      "bodies": 0,
+      "bounds_position": [
+        -0.144097164273262,
+        -0.209207385778427,
+        -0.149072006344795
+      ],
+      "bounds_size": [
+        0.288194328546524,
+        0.418414771556854,
+        0.29814401268959
+      ],
+      "capture": "",
+      "convex_shapes": 0,
+      "mapped_uv_tangents_ok": true,
+      "material": "",
+      "meshes": 1,
+      "ok": true,
+      "path": "res://content/environments/cl3d_rubble_sources_v1/sources/rock_04_lod2.glb",
+      "triangles": 200
+    },
+    {
+      "bodies": 0,
+      "bounds_position": [
+        -0.340048789978027,
+        -0.227081567049026,
+        -0.327589690685272
+      ],
+      "bounds_size": [
+        0.680097579956055,
+        0.454163134098053,
+        0.655179381370544
+      ],
+      "capture": "review/godot/rock_05.png",
+      "convex_shapes": 0,
+      "mapped_uv_tangents_ok": true,
+      "material": "",
+      "meshes": 1,
+      "ok": true,
+      "path": "res://content/environments/cl3d_rubble_sources_v1/sources/rock_05_lod0.glb",
+      "triangles": 1500
+    },
+    {
+      "bodies": 0,
+      "bounds_position": [
+        -0.337553262710571,
+        -0.227048367261887,
+        -0.326670050621033
+      ],
+      "bounds_size": [
+        0.675106525421143,
+        0.454096734523773,
+        0.653340101242065
+      ],
+      "capture": "",
+      "convex_shapes": 0,
+      "mapped_uv_tangents_ok": true,
+      "material": "",
+      "meshes": 1,
+      "ok": true,
+      "path": "res://content/environments/cl3d_rubble_sources_v1/sources/rock_05_lod1.glb",
+      "triangles": 600
+    },
+    {
+      "bodies": 0,
+      "bounds_position": [
+        -0.339645355939865,
+        -0.228145182132721,
+        -0.325364530086517
+      ],
+      "bounds_size": [
+        0.67929071187973,
+        0.456290364265442,
+        0.650729060173035
+      ],
+      "capture": "",
+      "convex_shapes": 0,
+      "mapped_uv_tangents_ok": true,
+      "material": "",
+      "meshes": 1,
+      "ok": true,
+      "path": "res://content/environments/cl3d_rubble_sources_v1/sources/rock_05_lod2.glb",
+      "triangles": 200
+    },
+    {
+      "bodies": 0,
+      "bounds_position": [
+        -0.110061660408974,
+        -0.0388385429978371,
+        -0.0923887118697166
+      ],
+      "bounds_size": [
+        0.220123320817947,
+        0.0776770859956741,
+        0.184777423739433
+      ],
+      "capture": "review/godot/rock_06.png",
+      "convex_shapes": 0,
+      "mapped_uv_tangents_ok": true,
+      "material": "",
+      "meshes": 1,
+      "ok": true,
+      "path": "res://content/environments/cl3d_rubble_sources_v1/sources/rock_06_lod0.glb",
+      "triangles": 1500
+    },
+    {
+      "bodies": 0,
+      "bounds_position": [
+        -0.11025995016098,
+        -0.0384873524308205,
+        -0.0923736244440079
+      ],
+      "bounds_size": [
+        0.22051990032196,
+        0.0769747048616409,
+        0.184747248888016
+      ],
+      "capture": "",
+      "convex_shapes": 0,
+      "mapped_uv_tangents_ok": true,
+      "material": "",
+      "meshes": 1,
+      "ok": true,
+      "path": "res://content/environments/cl3d_rubble_sources_v1/sources/rock_06_lod1.glb",
+      "triangles": 600
+    },
+    {
+      "bodies": 0,
+      "bounds_position": [
+        -0.110048830509186,
+        -0.0373441055417061,
+        -0.0915347337722778
+      ],
+      "bounds_size": [
+        0.220097661018372,
+        0.0746882110834122,
+        0.183069467544556
+      ],
+      "capture": "",
+      "convex_shapes": 0,
+      "mapped_uv_tangents_ok": true,
+      "material": "",
+      "meshes": 1,
+      "ok": true,
+      "path": "res://content/environments/cl3d_rubble_sources_v1/sources/rock_06_lod2.glb",
+      "triangles": 200
+    },
+    {
+      "bodies": 0,
+      "bounds_position": [
+        -0.27480560541153,
+        -0.113969475030899,
+        -0.242695197463036
+      ],
+      "bounds_size": [
+        0.549611210823059,
+        0.227938950061798,
+        0.485390394926071
+      ],
+      "capture": "review/godot/column_01.png",
+      "convex_shapes": 0,
+      "mapped_uv_tangents_ok": true,
+      "material": "",
+      "meshes": 1,
+      "ok": true,
+      "path": "res://content/environments/cl3d_rubble_sources_v1/sources/column_01_lod0.glb",
+      "triangles": 1500
+    },
+    {
+      "bodies": 0,
+      "bounds_position": [
+        -0.273760318756104,
+        -0.11341218650341,
+        -0.242721349000931
+      ],
+      "bounds_size": [
+        0.547520637512207,
+        0.226824373006821,
+        0.485442698001862
+      ],
+      "capture": "",
+      "convex_shapes": 0,
+      "mapped_uv_tangents_ok": true,
+      "material": "",
+      "meshes": 1,
+      "ok": true,
+      "path": "res://content/environments/cl3d_rubble_sources_v1/sources/column_01_lod1.glb",
+      "triangles": 600
+    },
+    {
+      "bodies": 0,
+      "bounds_position": [
+        -0.273119270801544,
+        -0.113128527998924,
+        -0.242386490106583
+      ],
+      "bounds_size": [
+        0.546238541603088,
+        0.226257055997849,
+        0.484772980213165
+      ],
+      "capture": "",
+      "convex_shapes": 0,
+      "mapped_uv_tangents_ok": true,
+      "material": "",
+      "meshes": 1,
+      "ok": true,
+      "path": "res://content/environments/cl3d_rubble_sources_v1/sources/column_01_lod2.glb",
+      "triangles": 200
+    },
+    {
+      "bodies": 0,
+      "bounds_position": [
+        -0.201476037502289,
+        -0.230465561151505,
+        -0.222902089357376
+      ],
+      "bounds_size": [
+        0.402952075004578,
+        0.460931122303009,
+        0.445804178714752
+      ],
+      "capture": "review/godot/column_02.png",
+      "convex_shapes": 0,
+      "mapped_uv_tangents_ok": true,
+      "material": "",
+      "meshes": 1,
+      "ok": true,
+      "path": "res://content/environments/cl3d_rubble_sources_v1/sources/column_02_lod0.glb",
+      "triangles": 1500
+    },
+    {
+      "bodies": 0,
+      "bounds_position": [
+        -0.201996564865112,
+        -0.230377912521362,
+        -0.222074165940285
+      ],
+      "bounds_size": [
+        0.403993129730225,
+        0.460755825042725,
+        0.444148331880569
+      ],
+      "capture": "",
+      "convex_shapes": 0,
+      "mapped_uv_tangents_ok": true,
+      "material": "",
+      "meshes": 1,
+      "ok": true,
+      "path": "res://content/environments/cl3d_rubble_sources_v1/sources/column_02_lod1.glb",
+      "triangles": 600
+    },
+    {
+      "bodies": 0,
+      "bounds_position": [
+        -0.20156067609787,
+        -0.230907276272774,
+        -0.216753795742989
+      ],
+      "bounds_size": [
+        0.40312135219574,
+        0.461814552545547,
+        0.433507591485977
+      ],
+      "capture": "",
+      "convex_shapes": 0,
+      "mapped_uv_tangents_ok": true,
+      "material": "",
+      "meshes": 1,
+      "ok": true,
+      "path": "res://content/environments/cl3d_rubble_sources_v1/sources/column_02_lod2.glb",
+      "triangles": 200
+    },
+    {
+      "bodies": 0,
+      "bounds_position": [
+        -0.359554588794708,
+        -0.172992587089539,
+        -0.359384149312973
+      ],
+      "bounds_size": [
+        0.719109177589417,
+        0.345985174179077,
+        0.718768298625946
+      ],
+      "capture": "review/godot/column_03.png",
+      "convex_shapes": 0,
+      "mapped_uv_tangents_ok": true,
+      "material": "",
+      "meshes": 1,
+      "ok": true,
+      "path": "res://content/environments/cl3d_rubble_sources_v1/sources/column_03_lod0.glb",
+      "triangles": 1500
+    },
+    {
+      "bodies": 0,
+      "bounds_position": [
+        -0.360479176044464,
+        -0.172342643141747,
+        -0.358548998832703
+      ],
+      "bounds_size": [
+        0.720958352088928,
+        0.344685286283493,
+        0.717097997665405
+      ],
+      "capture": "",
+      "convex_shapes": 0,
+      "mapped_uv_tangents_ok": true,
+      "material": "",
+      "meshes": 1,
+      "ok": true,
+      "path": "res://content/environments/cl3d_rubble_sources_v1/sources/column_03_lod1.glb",
+      "triangles": 600
+    },
+    {
+      "bodies": 0,
+      "bounds_position": [
+        -0.359694302082062,
+        -0.170081734657288,
+        -0.358772039413452
+      ],
+      "bounds_size": [
+        0.719388604164124,
+        0.340163469314575,
+        0.717544078826904
+      ],
+      "capture": "",
+      "convex_shapes": 0,
+      "mapped_uv_tangents_ok": true,
+      "material": "",
+      "meshes": 1,
+      "ok": true,
+      "path": "res://content/environments/cl3d_rubble_sources_v1/sources/column_03_lod2.glb",
+      "triangles": 200
+    },
+    {
+      "bodies": 0,
+      "bounds_position": [
+        -0.220099747180939,
+        -0.0952992141246796,
+        -0.124585323035717
+      ],
+      "bounds_size": [
+        0.440199494361877,
+        0.190598428249359,
+        0.249170646071434
+      ],
+      "capture": "review/godot/brick_01.png",
+      "convex_shapes": 0,
+      "mapped_uv_tangents_ok": true,
+      "material": "",
+      "meshes": 1,
+      "ok": true,
+      "path": "res://content/environments/cl3d_rubble_sources_v1/sources/brick_01_lod0.glb",
+      "triangles": 1500
+    },
+    {
+      "bodies": 0,
+      "bounds_position": [
+        -0.219894155859947,
+        -0.0948511585593224,
+        -0.12451545894146
+      ],
+      "bounds_size": [
+        0.439788311719894,
+        0.189702317118645,
+        0.249030917882919
+      ],
+      "capture": "",
+      "convex_shapes": 0,
+      "mapped_uv_tangents_ok": true,
+      "material": "",
+      "meshes": 1,
+      "ok": true,
+      "path": "res://content/environments/cl3d_rubble_sources_v1/sources/brick_01_lod1.glb",
+      "triangles": 600
+    },
+    {
+      "bodies": 0,
+      "bounds_position": [
+        -0.219988092780113,
+        -0.0933343321084976,
+        -0.12369067966938
+      ],
+      "bounds_size": [
+        0.439976185560226,
+        0.186668664216995,
+        0.24738135933876
+      ],
+      "capture": "",
+      "convex_shapes": 0,
+      "mapped_uv_tangents_ok": true,
+      "material": "",
+      "meshes": 1,
+      "ok": true,
+      "path": "res://content/environments/cl3d_rubble_sources_v1/sources/brick_01_lod2.glb",
+      "triangles": 200
+    },
+    {
+      "bodies": 0,
+      "bounds_position": [
+        -0.309938728809357,
+        -0.136482670903206,
+        -0.0718764364719391
+      ],
+      "bounds_size": [
+        0.619877457618713,
+        0.272965341806412,
+        0.143752872943878
+      ],
+      "capture": "review/godot/brick_02.png",
+      "convex_shapes": 0,
+      "mapped_uv_tangents_ok": true,
+      "material": "",
+      "meshes": 1,
+      "ok": true,
+      "path": "res://content/environments/cl3d_rubble_sources_v1/sources/brick_02_lod0.glb",
+      "triangles": 1500
+    },
+    {
+      "bodies": 0,
+      "bounds_position": [
+        -0.309813380241394,
+        -0.135764688253403,
+        -0.0701601952314377
+      ],
+      "bounds_size": [
+        0.619626760482788,
+        0.271529376506805,
+        0.140320390462875
+      ],
+      "capture": "",
+      "convex_shapes": 0,
+      "mapped_uv_tangents_ok": true,
+      "material": "",
+      "meshes": 1,
+      "ok": true,
+      "path": "res://content/environments/cl3d_rubble_sources_v1/sources/brick_02_lod1.glb",
+      "triangles": 600
+    },
+    {
+      "bodies": 0,
+      "bounds_position": [
+        -0.311334848403931,
+        -0.135446786880493,
+        -0.0687858909368515
+      ],
+      "bounds_size": [
+        0.622669696807861,
+        0.270893573760986,
+        0.137571781873703
+      ],
+      "capture": "",
+      "convex_shapes": 0,
+      "mapped_uv_tangents_ok": true,
+      "material": "",
+      "meshes": 1,
+      "ok": true,
+      "path": "res://content/environments/cl3d_rubble_sources_v1/sources/brick_02_lod2.glb",
+      "triangles": 200
+    },
+    {
+      "bodies": 0,
+      "bounds_position": [
+        -0.170041784644127,
+        -0.103636890649796,
+        -0.117931291460991
+      ],
+      "bounds_size": [
+        0.340083569288254,
+        0.207273781299591,
+        0.235862582921982
+      ],
+      "capture": "review/godot/brick_03.png",
+      "convex_shapes": 0,
+      "mapped_uv_tangents_ok": true,
+      "material": "",
+      "meshes": 1,
+      "ok": true,
+      "path": "res://content/environments/cl3d_rubble_sources_v1/sources/brick_03_lod0.glb",
+      "triangles": 1500
+    },
+    {
+      "bodies": 0,
+      "bounds_position": [
+        -0.16961033642292,
+        -0.103594765067101,
+        -0.117533132433891
+      ],
+      "bounds_size": [
+        0.33922067284584,
+        0.207189530134201,
+        0.235066264867783
+      ],
+      "capture": "",
+      "convex_shapes": 0,
+      "mapped_uv_tangents_ok": true,
+      "material": "",
+      "meshes": 1,
+      "ok": true,
+      "path": "res://content/environments/cl3d_rubble_sources_v1/sources/brick_03_lod1.glb",
+      "triangles": 600
+    },
+    {
+      "bodies": 0,
+      "bounds_position": [
+        -0.168465554714203,
+        -0.102366328239441,
+        -0.116852954030037
+      ],
+      "bounds_size": [
+        0.336931109428406,
+        0.204732656478882,
+        0.233705908060074
+      ],
+      "capture": "",
+      "convex_shapes": 0,
+      "mapped_uv_tangents_ok": true,
+      "material": "",
+      "meshes": 1,
+      "ok": true,
+      "path": "res://content/environments/cl3d_rubble_sources_v1/sources/brick_03_lod2.glb",
+      "triangles": 200
+    }
+  ],
+  "textured_previews": [
+    {
+      "bodies": 0,
+      "bounds_position": [
+        -0.199153229594231,
+        -0.182836830615997,
+        -0.239759653806686
+      ],
+      "bounds_size": [
+        0.398306459188461,
+        0.365673661231995,
+        0.479519307613373
+      ],
+      "capture": "review/godot_textured/ashlar_01.png",
+      "convex_shapes": 0,
+      "mapped_uv_tangents_ok": true,
+      "material": "res://content/environments/stone_brick_materials_v1/materials/01-chisel-limestone/surface.tres",
+      "meshes": 1,
+      "ok": true,
+      "path": "res://content/environments/cl3d_rubble_sources_v1/sources/ashlar_01_lod0.glb",
+      "triangles": 1500
+    },
+    {
+      "bodies": 0,
+      "bounds_position": [
+        -0.300025999546051,
+        -0.0903244540095329,
+        -0.0566579028964043
+      ],
+      "bounds_size": [
+        0.600051999092102,
+        0.180648908019066,
+        0.113315805792809
+      ],
+      "capture": "review/godot_textured/ashlar_02.png",
+      "convex_shapes": 0,
+      "mapped_uv_tangents_ok": true,
+      "material": "res://content/environments/stone_brick_materials_v1/materials/01-chisel-limestone/surface.tres",
+      "meshes": 1,
+      "ok": true,
+      "path": "res://content/environments/cl3d_rubble_sources_v1/sources/ashlar_02_lod0.glb",
+      "triangles": 1500
+    },
+    {
+      "bodies": 0,
+      "bounds_position": [
+        -0.275545388460159,
+        -0.0611386969685555,
+        -0.243576347827911
+      ],
+      "bounds_size": [
+        0.551090776920319,
+        0.122277393937111,
+        0.487152695655823
+      ],
+      "capture": "review/godot_textured/ashlar_03.png",
+      "convex_shapes": 0,
+      "mapped_uv_tangents_ok": true,
+      "material": "res://content/environments/stone_brick_materials_v1/materials/01-chisel-limestone/surface.tres",
+      "meshes": 1,
+      "ok": true,
+      "path": "res://content/environments/cl3d_rubble_sources_v1/sources/ashlar_03_lod0.glb",
+      "triangles": 1500
+    },
+    {
+      "bodies": 0,
+      "bounds_position": [
+        -0.148443907499313,
+        -0.309988021850586,
+        -0.111680626869202
+      ],
+      "bounds_size": [
+        0.296887814998627,
+        0.619976043701172,
+        0.223361253738403
+      ],
+      "capture": "review/godot_textured/ashlar_04.png",
+      "convex_shapes": 0,
+      "mapped_uv_tangents_ok": true,
+      "material": "res://content/environments/stone_brick_materials_v1/materials/01-chisel-limestone/surface.tres",
+      "meshes": 1,
+      "ok": true,
+      "path": "res://content/environments/cl3d_rubble_sources_v1/sources/ashlar_04_lod0.glb",
+      "triangles": 1500
+    },
+    {
+      "bodies": 0,
+      "bounds_position": [
+        -0.101841732859612,
+        -0.0874893218278885,
+        -0.14034366607666
+      ],
+      "bounds_size": [
+        0.203683465719223,
+        0.174978643655777,
+        0.28068733215332
+      ],
+      "capture": "review/godot_textured/ashlar_05.png",
+      "convex_shapes": 0,
+      "mapped_uv_tangents_ok": true,
+      "material": "res://content/environments/stone_brick_materials_v1/materials/01-chisel-limestone/surface.tres",
+      "meshes": 1,
+      "ok": true,
+      "path": "res://content/environments/cl3d_rubble_sources_v1/sources/ashlar_05_lod0.glb",
+      "triangles": 1500
+    },
+    {
+      "bodies": 0,
+      "bounds_position": [
+        -0.376445740461349,
+        -0.260666847229004,
+        -0.202635318040848
+      ],
+      "bounds_size": [
+        0.752891480922699,
+        0.521333694458008,
+        0.405270636081696
+      ],
+      "capture": "review/godot_textured/ashlar_06.png",
+      "convex_shapes": 0,
+      "mapped_uv_tangents_ok": true,
+      "material": "res://content/environments/stone_brick_materials_v1/materials/01-chisel-limestone/surface.tres",
+      "meshes": 1,
+      "ok": true,
+      "path": "res://content/environments/cl3d_rubble_sources_v1/sources/ashlar_06_lod0.glb",
+      "triangles": 1500
+    },
+    {
+      "bodies": 0,
+      "bounds_position": [
+        -0.190119177103043,
+        -0.111827000975609,
+        -0.190930664539337
+      ],
+      "bounds_size": [
+        0.380238354206085,
+        0.223654001951218,
+        0.381861329078674
+      ],
+      "capture": "review/godot_textured/rock_01.png",
+      "convex_shapes": 0,
+      "mapped_uv_tangents_ok": true,
+      "material": "res://content/environments/stone_brick_materials_v1/materials/02-split-bedded-stone/surface.tres",
+      "meshes": 1,
+      "ok": true,
+      "path": "res://content/environments/cl3d_rubble_sources_v1/sources/rock_01_lod0.glb",
+      "triangles": 1500
+    },
+    {
+      "bodies": 0,
+      "bounds_position": [
+        -0.159604668617249,
+        -0.114338576793671,
+        -0.160163030028343
+      ],
+      "bounds_size": [
+        0.319209337234497,
+        0.228677153587341,
+        0.320326060056686
+      ],
+      "capture": "review/godot_textured/rock_02.png",
+      "convex_shapes": 0,
+      "mapped_uv_tangents_ok": true,
+      "material": "res://content/environments/stone_brick_materials_v1/materials/02-split-bedded-stone/surface.tres",
+      "meshes": 1,
+      "ok": true,
+      "path": "res://content/environments/cl3d_rubble_sources_v1/sources/rock_02_lod0.glb",
+      "triangles": 1500
+    },
+    {
+      "bodies": 0,
+      "bounds_position": [
+        -0.260345220565796,
+        -0.0753781720995903,
+        -0.135415598750114
+      ],
+      "bounds_size": [
+        0.520690441131592,
+        0.150756344199181,
+        0.270831197500229
+      ],
+      "capture": "review/godot_textured/rock_03.png",
+      "convex_shapes": 0,
+      "mapped_uv_tangents_ok": true,
+      "material": "res://content/environments/stone_brick_materials_v1/materials/02-split-bedded-stone/surface.tres",
+      "meshes": 1,
+      "ok": true,
+      "path": "res://content/environments/cl3d_rubble_sources_v1/sources/rock_03_lod0.glb",
+      "triangles": 1500
+    },
+    {
+      "bodies": 0,
+      "bounds_position": [
+        -0.143812030553818,
+        -0.209949165582657,
+        -0.15047761797905
+      ],
+      "bounds_size": [
+        0.287624061107635,
+        0.419898331165314,
+        0.300955235958099
+      ],
+      "capture": "review/godot_textured/rock_04.png",
+      "convex_shapes": 0,
+      "mapped_uv_tangents_ok": true,
+      "material": "res://content/environments/stone_brick_materials_v1/materials/02-split-bedded-stone/surface.tres",
+      "meshes": 1,
+      "ok": true,
+      "path": "res://content/environments/cl3d_rubble_sources_v1/sources/rock_04_lod0.glb",
+      "triangles": 1500
+    },
+    {
+      "bodies": 0,
+      "bounds_position": [
+        -0.340048789978027,
+        -0.227081567049026,
+        -0.327589690685272
+      ],
+      "bounds_size": [
+        0.680097579956055,
+        0.454163134098053,
+        0.655179381370544
+      ],
+      "capture": "review/godot_textured/rock_05.png",
+      "convex_shapes": 0,
+      "mapped_uv_tangents_ok": true,
+      "material": "res://content/environments/stone_brick_materials_v1/materials/02-split-bedded-stone/surface.tres",
+      "meshes": 1,
+      "ok": true,
+      "path": "res://content/environments/cl3d_rubble_sources_v1/sources/rock_05_lod0.glb",
+      "triangles": 1500
+    },
+    {
+      "bodies": 0,
+      "bounds_position": [
+        -0.110061660408974,
+        -0.0388385429978371,
+        -0.0923887118697166
+      ],
+      "bounds_size": [
+        0.220123320817947,
+        0.0776770859956741,
+        0.184777423739433
+      ],
+      "capture": "review/godot_textured/rock_06.png",
+      "convex_shapes": 0,
+      "mapped_uv_tangents_ok": true,
+      "material": "res://content/environments/stone_brick_materials_v1/materials/02-split-bedded-stone/surface.tres",
+      "meshes": 1,
+      "ok": true,
+      "path": "res://content/environments/cl3d_rubble_sources_v1/sources/rock_06_lod0.glb",
+      "triangles": 1500
+    },
+    {
+      "bodies": 0,
+      "bounds_position": [
+        -0.27480560541153,
+        -0.113969475030899,
+        -0.242695197463036
+      ],
+      "bounds_size": [
+        0.549611210823059,
+        0.227938950061798,
+        0.485390394926071
+      ],
+      "capture": "review/godot_textured/column_01.png",
+      "convex_shapes": 0,
+      "mapped_uv_tangents_ok": true,
+      "material": "res://content/environments/stone_brick_materials_v1/materials/01-chisel-limestone/surface.tres",
+      "meshes": 1,
+      "ok": true,
+      "path": "res://content/environments/cl3d_rubble_sources_v1/sources/column_01_lod0.glb",
+      "triangles": 1500
+    },
+    {
+      "bodies": 0,
+      "bounds_position": [
+        -0.201476037502289,
+        -0.230465561151505,
+        -0.222902089357376
+      ],
+      "bounds_size": [
+        0.402952075004578,
+        0.460931122303009,
+        0.445804178714752
+      ],
+      "capture": "review/godot_textured/column_02.png",
+      "convex_shapes": 0,
+      "mapped_uv_tangents_ok": true,
+      "material": "res://content/environments/stone_brick_materials_v1/materials/01-chisel-limestone/surface.tres",
+      "meshes": 1,
+      "ok": true,
+      "path": "res://content/environments/cl3d_rubble_sources_v1/sources/column_02_lod0.glb",
+      "triangles": 1500
+    },
+    {
+      "bodies": 0,
+      "bounds_position": [
+        -0.359554588794708,
+        -0.172992587089539,
+        -0.359384149312973
+      ],
+      "bounds_size": [
+        0.719109177589417,
+        0.345985174179077,
+        0.718768298625946
+      ],
+      "capture": "review/godot_textured/column_03.png",
+      "convex_shapes": 0,
+      "mapped_uv_tangents_ok": true,
+      "material": "res://content/environments/stone_brick_materials_v1/materials/01-chisel-limestone/surface.tres",
+      "meshes": 1,
+      "ok": true,
+      "path": "res://content/environments/cl3d_rubble_sources_v1/sources/column_03_lod0.glb",
+      "triangles": 1500
+    },
+    {
+      "bodies": 0,
+      "bounds_position": [
+        -0.220099747180939,
+        -0.0952992141246796,
+        -0.124585323035717
+      ],
+      "bounds_size": [
+        0.440199494361877,
+        0.190598428249359,
+        0.249170646071434
+      ],
+      "capture": "review/godot_textured/brick_01.png",
+      "convex_shapes": 0,
+      "mapped_uv_tangents_ok": true,
+      "material": "res://content/environments/stone_brick_materials_v1/materials/04-old-terracotta-brick/surface.tres",
+      "meshes": 1,
+      "ok": true,
+      "path": "res://content/environments/cl3d_rubble_sources_v1/sources/brick_01_lod0.glb",
+      "triangles": 1500
+    },
+    {
+      "bodies": 0,
+      "bounds_position": [
+        -0.309938728809357,
+        -0.136482670903206,
+        -0.0718764364719391
+      ],
+      "bounds_size": [
+        0.619877457618713,
+        0.272965341806412,
+        0.143752872943878
+      ],
+      "capture": "review/godot_textured/brick_02.png",
+      "convex_shapes": 0,
+      "mapped_uv_tangents_ok": true,
+      "material": "res://content/environments/stone_brick_materials_v1/materials/04-old-terracotta-brick/surface.tres",
+      "meshes": 1,
+      "ok": true,
+      "path": "res://content/environments/cl3d_rubble_sources_v1/sources/brick_02_lod0.glb",
+      "triangles": 1500
+    },
+    {
+      "bodies": 0,
+      "bounds_position": [
+        -0.170041784644127,
+        -0.103636890649796,
+        -0.117931291460991
+      ],
+      "bounds_size": [
+        0.340083569288254,
+        0.207273781299591,
+        0.235862582921982
+      ],
+      "capture": "review/godot_textured/brick_03.png",
+      "convex_shapes": 0,
+      "mapped_uv_tangents_ok": true,
+      "material": "res://content/environments/stone_brick_materials_v1/materials/04-old-terracotta-brick/surface.tres",
+      "meshes": 1,
+      "ok": true,
+      "path": "res://content/environments/cl3d_rubble_sources_v1/sources/brick_03_lod0.glb",
+      "triangles": 1500
+    }
+  ]
+}

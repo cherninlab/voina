@@ -1,0 +1,24 @@
+{
+  "asset_id": "ashlar_02",
+  "task": "T-167",
+  "generator": "built-in image_gen.imagegen",
+  "mode": "generation",
+  "original_output_path": "/Users/theochernin/.codex/generated_images/01a16fc4-91ab-7841-a0d5-5e654d737a81/exec-2257a775-095f-47e3-9a3b-dbc973fa8c44.png",
+  "saved_path": "/Users/theochernin/Projects/MultiPlayerProject-agents/theo-codex-43/content/environments/cl3d_rubble_sources_v1/references/ashlar_02.png",
+  "prompt_path": "prompts/ashlar_02.txt",
+  "prompt_text": "Use case: product-mockup\nAsset type: isolated image-to-3D conditioning reference for a dark medieval Gothic dungeon rubble kit.\nPrimary request: one single coherent solid object only, as described below. Realistic weight-bearing masonry from wet rough crypt arches and ruined stone chapels, centuries of uneven wear, plausible fracture planes, matte neutral material. Shape variety and clear silhouette matter more than tiny surface detail.\nComposition: full object centered with ample empty margin, three-quarter view from slightly above, all extremities visible; plain uniform light-grey background, soft even studio illumination, NO floor plane and NO cast/contact shadow attached to object. No vignette, no scene, no other objects, no scattered dust or fragments, no text/labels/watermark, no roots/chains/skulls. No holes through the solid, no thin floating parts; make a closed solid shape that can become a watertight convex-collision source. Neutral grey stone or desaturated old clay as specified; dampness will be a material treatment later, no painted gloss.\nSubject: A wedge-ended elongated ashlar fragment, one dressed greige limestone face and irregular diagonal split through the bed, visibly different long low silhouette.\n",
+  "sha256": "995574e74c43ea76e913b3dcda6322f053d3fdd4218ab2280ebe21591b16b35b",
+  "dimensions": {
+    "width": 1536,
+    "height": 1024
+  },
+  "transparent_background": false,
+  "attempt": 1,
+  "generated_utc": "2026-10-24T21:44:40.873065+00:00",
+  "visual_review": {
+    "status": "candidate",
+    "single_coherent_object": true,
+    "no_separate_floor_fragment": true,
+    "observations": "One elongated wedge-ended ashlar fragment; clear isolated silhouette."
+  }
+}

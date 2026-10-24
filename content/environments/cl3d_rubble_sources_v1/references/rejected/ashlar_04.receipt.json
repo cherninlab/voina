@@ -1,0 +1,24 @@
+{
+  "asset_id": "ashlar_04",
+  "task": "T-167",
+  "generator": "built-in image_gen.imagegen",
+  "mode": "generation",
+  "original_output_path": "/Users/theochernin/.codex/generated_images/01a16fc4-91ab-7841-a0d5-5e654d737a81/exec-26d84448-b910-4ff3-868b-bd8980e3203a.png",
+  "saved_path": "/Users/theochernin/Projects/MultiPlayerProject-agents/theo-codex-43/content/environments/cl3d_rubble_sources_v1/references/rejected/ashlar_04.png",
+  "prompt_path": "prompts/ashlar_04.txt",
+  "prompt_text": "Use case: product-mockup\nAsset type: isolated image-to-3D conditioning reference for a dark medieval Gothic dungeon rubble kit.\nPrimary request: one single coherent solid object only, as described below. Realistic weight-bearing masonry from wet rough crypt arches and ruined stone chapels, centuries of uneven wear, plausible fracture planes, matte neutral material. Shape variety and clear silhouette matter more than tiny surface detail.\nComposition: full object centered with ample empty margin, three-quarter view from slightly above, all extremities visible; plain uniform light-grey background, soft even studio illumination, NO floor plane and NO cast/contact shadow attached to object. No vignette, no scene, no other objects, no scattered dust or fragments, no text/labels/watermark, no roots/chains/skulls. No holes through the solid, no thin floating parts; make a closed solid shape that can become a watertight convex-collision source. Neutral grey stone or desaturated old clay as specified; dampness will be a material treatment later, no painted gloss.\nSubject: A tall narrow cracked pier block fragment with unequal stepped missing corners, worn dressed grey limestone face with shallow chisel scars, blocky not cubic.\n",
+  "sha256": "ba14f4d145ea7b3622c8d7a2f77bde4d99c4443d614b98f3ce634485f49032eb",
+  "dimensions": {
+    "width": 1145,
+    "height": 1374
+  },
+  "transparent_background": false,
+  "attempt": 1,
+  "generated_utc": "2026-10-24T21:44:40.876957+00:00",
+  "visual_review": {
+    "status": "rejected",
+    "single_coherent_object": true,
+    "no_separate_floor_fragment": true,
+    "observations": "Coherent tall pier silhouette but stacked masonry units; rejected as monolithic individual ashlar."
+  }
+}

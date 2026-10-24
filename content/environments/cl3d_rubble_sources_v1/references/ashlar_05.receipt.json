@@ -1,0 +1,24 @@
+{
+  "asset_id": "ashlar_05",
+  "task": "T-167",
+  "generator": "built-in image_gen.imagegen",
+  "mode": "generation",
+  "original_output_path": "/Users/theochernin/.codex/generated_images/01a16fc4-91ab-7841-a0d5-5e654d737a81/exec-bd78a445-a68d-44fc-b4fe-c2c962a9dbb4.png",
+  "saved_path": "/Users/theochernin/Projects/MultiPlayerProject-agents/theo-codex-43/content/environments/cl3d_rubble_sources_v1/references/ashlar_05.png",
+  "prompt_path": "prompts/ashlar_05.txt",
+  "prompt_text": "Use case: product-mockup\nAsset type: isolated image-to-3D conditioning reference for a dark medieval Gothic dungeon rubble kit.\nPrimary request: one single coherent solid object only, as described below. Realistic weight-bearing masonry from wet rough crypt arches and ruined stone chapels, centuries of uneven wear, plausible fracture planes, matte neutral material. Shape variety and clear silhouette matter more than tiny surface detail.\nComposition: full object centered with ample empty margin, three-quarter view from slightly above, all extremities visible; plain uniform light-grey background, soft even studio illumination, NO floor plane and NO cast/contact shadow attached to object. No vignette, no scene, no other objects, no scattered dust or fragments, no text/labels/watermark, no roots/chains/skulls. No holes through the solid, no thin floating parts; make a closed solid shape that can become a watertight convex-collision source. Neutral grey stone or desaturated old clay as specified; dampness will be a material treatment later, no painted gloss.\nSubject: A small near-triangular battered ashlar offcut, two flat tooling planes and one jagged break, warm grey limestone. Strong lopsided compact silhouette.\n",
+  "sha256": "cbfba8f979d3a3b490823f81fd230e2891a8c4e8221b76872f2d8e8b14b8a00f",
+  "dimensions": {
+    "width": 1536,
+    "height": 1024
+  },
+  "transparent_background": false,
+  "attempt": 1,
+  "generated_utc": "2026-10-24T21:44:40.878925+00:00",
+  "visual_review": {
+    "status": "candidate",
+    "single_coherent_object": true,
+    "no_separate_floor_fragment": true,
+    "observations": "One compact near-triangular ashlar offcut; clear isolated silhouette."
+  }
+}

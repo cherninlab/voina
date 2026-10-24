@@ -1,0 +1,18 @@
+{
+  "id": "brick_02",
+  "tool": "image_gen.imagegen",
+  "mode": "built_in_generate",
+  "original_output_path": "/Users/theochernin/.codex/generated_images/01a16fc4-ab5d-7db3-b99b-bd809dd354e8/exec-edcf3c2b-3697-45a8-9fff-2e33e286100b.png",
+  "saved_path": "/Users/theochernin/Projects/MultiPlayerProject-agents/theo-codex-43/content/environments/cl3d_rubble_sources_v1/references/brick_02.png",
+  "prompt_path": "prompts/brick_02.txt",
+  "prompt": "Use case: product-mockup\nAsset type: isolated image-to-3D conditioning reference for a dark medieval Gothic dungeon rubble kit.\nPrimary request: one single coherent solid object only, as described below. Realistic weight-bearing masonry from wet rough crypt arches and ruined stone chapels, centuries of uneven wear, plausible fracture planes, matte neutral material. Shape variety and clear silhouette matter more than tiny surface detail.\nComposition: full object centered with ample empty margin, three-quarter view from slightly above, all extremities visible; plain uniform light-grey background, soft even studio illumination, NO floor plane and NO cast/contact shadow attached to object. No vignette, no scene, no other objects, no scattered dust or fragments, no text/labels/watermark, no roots/chains/skulls. No holes through the solid, no thin floating parts; make a closed solid shape that can become a watertight convex-collision source. Neutral grey stone or desaturated old clay as specified; dampness will be a material treatment later, no painted gloss.\nSubject: A short diagonal arch fragment made of FOUR small dark fired-clay wedge bricks joined tightly by substantial old grey mortar, chunky curved mass with ragged broken ends.\n",
+  "sha256": "600c782e0af053640f43c890da6758c31f62bc215b8f289d12049e29c961973e",
+  "dimensions": [
+    1536,
+    1024
+  ],
+  "transparent_background": false,
+  "created_utc": "2026-10-24T21:44:28.834697+00:00",
+  "stage": "isolated CL3D source image, geometry not yet generated",
+  "visual_review": "Four wedge brick units joined by substantial visible mortar in a curved arch fragment; clean silhouette, no separate floor or loose pieces."
+}

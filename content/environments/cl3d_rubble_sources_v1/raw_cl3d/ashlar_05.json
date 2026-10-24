@@ -1,0 +1,35 @@
+{
+  "id": "ashlar_05",
+  "kind": "ashlar",
+  "input": "content/environments/cl3d_rubble_sources_v1/conditioning/ashlar_05.png",
+  "approved_input": "content/environments/cl3d_rubble_sources_v1/references/ashlar_05.png",
+  "output": "content/environments/cl3d_rubble_sources_v1/raw_cl3d/ashlar_05.glb",
+  "target_span_m": 0.28,
+  "seed_offset": 16704,
+  "faces": 1500,
+  "prompt": "content/environments/cl3d_rubble_sources_v1/prompts/ashlar_05.txt",
+  "approved_input_sha256": "cbfba8f979d3a3b490823f81fd230e2891a8c4e8221b76872f2d8e8b14b8a00f",
+  "model": "CL3D/2mini",
+  "device": "mps",
+  "dtype": "float16",
+  "steps": 50,
+  "resolution": 384,
+  "seed": 20277728,
+  "inference_seconds": 74.89248824999959,
+  "vertices": 463183,
+  "triangles": 926364,
+  "watertight": false,
+  "input_sha256": "c8641d345c5a7696d2b1cea0a0eb6b91a18defce4cf2db58dc8de6ab77ea2693",
+  "bounds": [
+    [
+      -0.7251718044281006,
+      -0.6215559840202332,
+      -0.9996612668037415
+    ],
+    [
+      0.7258907556533813,
+      0.6242079734802246,
+      0.9942190647125244
+    ]
+  ]
+}

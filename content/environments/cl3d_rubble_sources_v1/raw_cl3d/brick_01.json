@@ -1,0 +1,35 @@
+{
+  "id": "brick_01",
+  "kind": "brick_clump",
+  "input": "content/environments/cl3d_rubble_sources_v1/conditioning/brick_01.png",
+  "approved_input": "content/environments/cl3d_rubble_sources_v1/references/brick_01.png",
+  "output": "content/environments/cl3d_rubble_sources_v1/raw_cl3d/brick_01.glb",
+  "target_span_m": 0.44,
+  "seed_offset": 16715,
+  "faces": 1500,
+  "prompt": "content/environments/cl3d_rubble_sources_v1/prompts/brick_01.txt",
+  "approved_input_sha256": "c3799704899d0c0f666ea2f4e33cad3bd16a83223857c9a250820a21cec20be4",
+  "model": "CL3D/2mini",
+  "device": "mps",
+  "dtype": "float16",
+  "steps": 50,
+  "resolution": 384,
+  "seed": 20277739,
+  "inference_seconds": 69.56586154199977,
+  "vertices": 297894,
+  "triangles": 595788,
+  "watertight": false,
+  "input_sha256": "e85ccb3eb13f76078d9b964a98552a9d4e2d3ef42dfacc71aa88871b64f8b69f",
+  "bounds": [
+    [
+      -0.998112678527832,
+      -0.4350212514400482,
+      -0.5691766142845154
+    ],
+    [
+      0.9941865801811218,
+      0.4231916069984436,
+      0.5605558753013611
+    ]
+  ]
+}

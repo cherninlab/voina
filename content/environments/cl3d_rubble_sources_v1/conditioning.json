@@ -1,0 +1,110 @@
+[
+  {
+    "id": "ashlar_01",
+    "reference_sha256": "e019b74721f75d09f62e82a9dbefbc06be7c045300945b9f4e27354b45c2e974",
+    "conditioning_sha256": "d53e7f8862f9524ed1f019406989a26142839f7641edb16b6e29507e113f1456",
+    "extractor": "CL3D BackgroundRemover / installed rembg bria-rmbg"
+  },
+  {
+    "id": "ashlar_02",
+    "reference_sha256": "995574e74c43ea76e913b3dcda6322f053d3fdd4218ab2280ebe21591b16b35b",
+    "conditioning_sha256": "c9ace285665ac111416f51437cb321b8fae404598c2f3bd8a38d30e250aaf0f5",
+    "extractor": "CL3D BackgroundRemover / installed rembg bria-rmbg"
+  },
+  {
+    "id": "ashlar_03",
+    "reference_sha256": "249bc0c59a401a1c0d579899f86067dbc8b1a4e1af7d514968b9800756d60d8d",
+    "conditioning_sha256": "68b9948a37530138078397e8c7c8fdde57e448c77a278325407ab2db94358454",
+    "extractor": "CL3D BackgroundRemover / installed rembg bria-rmbg"
+  },
+  {
+    "id": "ashlar_04",
+    "reference_sha256": "5ca8740830fd7cc5d35d632b99937a49332c455092a52854e9b07921fcd84bbb",
+    "conditioning_sha256": "97710e47c2503717203e3b8b5a6861a77b1782a063674ecde0623a89e0a2018b",
+    "extractor": "CL3D BackgroundRemover / installed rembg bria-rmbg"
+  },
+  {
+    "id": "ashlar_05",
+    "reference_sha256": "cbfba8f979d3a3b490823f81fd230e2891a8c4e8221b76872f2d8e8b14b8a00f",
+    "conditioning_sha256": "c8641d345c5a7696d2b1cea0a0eb6b91a18defce4cf2db58dc8de6ab77ea2693",
+    "extractor": "CL3D BackgroundRemover / installed rembg bria-rmbg"
+  },
+  {
+    "id": "ashlar_06",
+    "reference_sha256": "41205dd37aeaaccf89b154b194746ccd550eafb60f71cf18a7bef9f795134e88",
+    "conditioning_sha256": "e7d332f70fd8f980559b78439450f1846e9f8414da105bae091b235037f4eddf",
+    "extractor": "CL3D BackgroundRemover / installed rembg bria-rmbg"
+  },
+  {
+    "id": "rock_01",
+    "reference_sha256": "b18669d43d4560e5ac2cfc1f4ebea9ca74d12aa42a26484089e210dcdbec6f07",
+    "conditioning_sha256": "8199fd3c9ae704f726f42f1bda6d7887ecb34a7599fe9b8e0082b4d191bd8df7",
+    "extractor": "CL3D BackgroundRemover / installed rembg bria-rmbg"
+  },
+  {
+    "id": "rock_02",
+    "reference_sha256": "67bbfc21d7922f9afe685ca3df83757f82f837648411a17dbb8071df86abece7",
+    "conditioning_sha256": "bf6755ffb8f083694865018d1449a05251316bc129b334b51f98e59821adad2c",
+    "extractor": "CL3D BackgroundRemover / installed rembg bria-rmbg"
+  },
+  {
+    "id": "rock_03",
+    "reference_sha256": "bca8102b3fd502bf803a15d1ace55f3e6d78c84912ad1ee8be092d47ca629a83",
+    "conditioning_sha256": "a5ed0ed9d930850631f871637995790c73722e8e64c3bd28da446c794a177b80",
+    "extractor": "CL3D BackgroundRemover / installed rembg bria-rmbg"
+  },
+  {
+    "id": "rock_04",
+    "reference_sha256": "c0fab7eac64d0ae6029464435abc7bb991fdb6b7a4084276c0270a1fbf3d21a9",
+    "conditioning_sha256": "d01fc8c0a30abd82ebe0773aa83427cca73036852d7964d66ac1209eea4c1f15",
+    "extractor": "CL3D BackgroundRemover / installed rembg bria-rmbg"
+  },
+  {
+    "id": "rock_05",
+    "reference_sha256": "0dcf1cd221b84d081f86dbb8753249e76304fe89a7231f2ca1ee1374d8016495",
+    "conditioning_sha256": "d52ece3b95fddd84afe1237d10a666b42abb4b7f9e022340bc9191125ff9b514",
+    "extractor": "CL3D BackgroundRemover / installed rembg bria-rmbg"
+  },
+  {
+    "id": "rock_06",
+    "reference_sha256": "903e967b2d17dde5f4579c7e10f6291f37eb3f61564b89046d0c10b2d33479b5",
+    "conditioning_sha256": "901f862b5610d75cc2e5d742de6ef5933868d8a7d6d43fbffb8369b6f141370e",
+    "extractor": "CL3D BackgroundRemover / installed rembg bria-rmbg"
+  },
+  {
+    "id": "column_01",
+    "reference_sha256": "37f1498b1e5d77d83450135bf1a31bbe4dbe9dd4f4cc54cda2ef0be9ce4f1316",
+    "conditioning_sha256": "af71d6b9426a0122babc524566380ecb1e37293d761ac97f05b41b6ad0673707",
+    "extractor": "CL3D BackgroundRemover / installed rembg bria-rmbg"
+  },
+  {
+    "id": "column_02",
+    "reference_sha256": "00ee37cdb6c19520efa6d7939c45c5d6f46d2e194eee4621e6090f01df21d5c2",
+    "conditioning_sha256": "2d58c1a0109d31660697e77ca8ef924e5d0b0faf7c953db9fe197183fbfe20ce",
+    "extractor": "CL3D BackgroundRemover / installed rembg bria-rmbg"
+  },
+  {
+    "id": "column_03",
+    "reference_sha256": "84eb77aa4554bbb33beb5b5f640823c1dd49c6f2f78162d15ec10374db8d8957",
+    "conditioning_sha256": "8abc2afa8a5a58b7b671a52db475e01bdcd0a931a225c9dbad45308d5fdfdc30",
+    "extractor": "CL3D BackgroundRemover / installed rembg bria-rmbg"
+  },
+  {
+    "id": "brick_01",
+    "reference_sha256": "c3799704899d0c0f666ea2f4e33cad3bd16a83223857c9a250820a21cec20be4",
+    "conditioning_sha256": "e85ccb3eb13f76078d9b964a98552a9d4e2d3ef42dfacc71aa88871b64f8b69f",
+    "extractor": "CL3D BackgroundRemover / installed rembg bria-rmbg"
+  },
+  {
+    "id": "brick_02",
+    "reference_sha256": "600c782e0af053640f43c890da6758c31f62bc215b8f289d12049e29c961973e",
+    "conditioning_sha256": "07cfcd472dce3c2df74291f4ac35294b6ec0cfeb3b01c2db9fc70ef04ab1e628",
+    "extractor": "CL3D BackgroundRemover / installed rembg bria-rmbg"
+  },
+  {
+    "id": "brick_03",
+    "reference_sha256": "1ad5299a6efd1711f0fa17115c125d46903ab5ce40dc17fb354e9d538b624e71",
+    "conditioning_sha256": "bbc74a252aebe70c495f777bd7fbc3c461e4d6e5a999b3d6cb665a3eab5cf93e",
+    "extractor": "CL3D BackgroundRemover / installed rembg bria-rmbg"
+  }
+]

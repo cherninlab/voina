@@ -1,0 +1,18 @@
+{
+  "id": "column_02",
+  "tool": "image_gen.imagegen",
+  "mode": "built_in_generate",
+  "original_output_path": "/Users/theochernin/.codex/generated_images/01a16fc4-ab5d-7db3-b99b-bd809dd354e8/exec-e2e53ecb-da0d-41e4-bd15-3d43a6f32065.png",
+  "saved_path": "/Users/theochernin/Projects/MultiPlayerProject-agents/theo-codex-43/content/environments/cl3d_rubble_sources_v1/references/column_02.png",
+  "prompt_path": "prompts/column_02.txt",
+  "prompt": "Use case: product-mockup\nAsset type: isolated image-to-3D conditioning reference for a dark medieval Gothic dungeon rubble kit.\nPrimary request: one single coherent solid object only, as described below. Realistic weight-bearing masonry from wet rough crypt arches and ruined stone chapels, centuries of uneven wear, plausible fracture planes, matte neutral material. Shape variety and clear silhouette matter more than tiny surface detail.\nComposition: full object centered with ample empty margin, three-quarter view from slightly above, all extremities visible; plain uniform light-grey background, soft even studio illumination, NO floor plane and NO cast/contact shadow attached to object. No vignette, no scene, no other objects, no scattered dust or fragments, no text/labels/watermark, no roots/chains/skulls. No holes through the solid, no thin floating parts; make a closed solid shape that can become a watertight convex-collision source. Neutral grey stone or desaturated old clay as specified; dampness will be a material treatment later, no painted gloss.\nSubject: An unequal QUARTER cylinder column drum fragment, tall enough to show one broad curved exterior and two jagged radial fracture planes, solid chunky mass.\n",
+  "sha256": "00ee37cdb6c19520efa6d7939c45c5d6f46d2e194eee4621e6090f01df21d5c2",
+  "dimensions": [
+    1312,
+    1199
+  ],
+  "transparent_background": false,
+  "created_utc": "2026-10-24T21:42:26.693475+00:00",
+  "stage": "isolated CL3D source image, geometry not yet generated",
+  "visual_review": "One tall coherent curved drum fragment with jagged sides; clean silhouette and plain background. Rear thickness is not observable from this single view and must be checked after CL3D reconstruction."
+}

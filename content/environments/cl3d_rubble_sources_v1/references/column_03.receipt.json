@@ -1,0 +1,18 @@
+{
+  "id": "column_03",
+  "tool": "image_gen.imagegen",
+  "mode": "built_in_generate",
+  "original_output_path": "/Users/theochernin/.codex/generated_images/01a16fc4-ab5d-7db3-b99b-bd809dd354e8/exec-609ea355-f1aa-4366-8014-a841569afc42.png",
+  "saved_path": "/Users/theochernin/Projects/MultiPlayerProject-agents/theo-codex-43/content/environments/cl3d_rubble_sources_v1/references/column_03.png",
+  "prompt_path": "prompts/column_03.txt",
+  "prompt": "Use case: product-mockup\nAsset type: isolated image-to-3D conditioning reference for a dark medieval Gothic dungeon rubble kit.\nPrimary request: one single coherent solid object only, as described below. Realistic weight-bearing masonry from wet rough crypt arches and ruined stone chapels, centuries of uneven wear, plausible fracture planes, matte neutral material. Shape variety and clear silhouette matter more than tiny surface detail.\nComposition: full object centered with ample empty margin, three-quarter view from slightly above, all extremities visible; plain uniform light-grey background, soft even studio illumination, NO floor plane and NO cast/contact shadow attached to object. No vignette, no scene, no other objects, no scattered dust or fragments, no text/labels/watermark, no roots/chains/skulls. No holes through the solid, no thin floating parts; make a closed solid shape that can become a watertight convex-collision source. Neutral grey stone or desaturated old clay as specified; dampness will be a material treatment later, no painted gloss.\nSubject: A broken thick round plinth/column drum with one large bite missing from its rim, squat cylinder with simple concentric worn moulding and crumbled edge, one connected solid.\n",
+  "sha256": "84eb77aa4554bbb33beb5b5f640823c1dd49c6f2f78162d15ec10374db8d8957",
+  "dimensions": [
+    1312,
+    1199
+  ],
+  "transparent_background": false,
+  "created_utc": "2026-10-24T21:43:05.149734+00:00",
+  "stage": "isolated CL3D source image, geometry not yet generated",
+  "visual_review": "One connected squat moulded plinth with missing rim sector; clean silhouette and plain background, no separate floor or fragments."
+}

@@ -1,0 +1,215 @@
+{
+  "stage": "incremental; generation ongoing",
+  "lods": [
+    {
+      "path": "sources/ashlar_01_lod0.glb",
+      "triangles": 1500,
+      "watertight": true,
+      "volume_m3": 0.055140600871027866,
+      "position_weld_for_uv_seams": true
+    },
+    {
+      "path": "sources/ashlar_01_lod1.glb",
+      "triangles": 600,
+      "watertight": true,
+      "volume_m3": 0.05486288830115954,
+      "position_weld_for_uv_seams": true
+    },
+    {
+      "path": "sources/ashlar_01_lod2.glb",
+      "triangles": 200,
+      "watertight": true,
+      "volume_m3": 0.05393869630332763,
+      "position_weld_for_uv_seams": true
+    },
+    {
+      "path": "sources/ashlar_02_lod0.glb",
+      "triangles": 1500,
+      "watertight": true,
+      "volume_m3": 0.008247604528313994,
+      "position_weld_for_uv_seams": true
+    },
+    {
+      "path": "sources/ashlar_02_lod1.glb",
+      "triangles": 600,
+      "watertight": true,
+      "volume_m3": 0.008195978224221618,
+      "position_weld_for_uv_seams": true
+    },
+    {
+      "path": "sources/ashlar_02_lod2.glb",
+      "triangles": 200,
+      "watertight": true,
+      "volume_m3": 0.00802492870260398,
+      "position_weld_for_uv_seams": true
+    },
+    {
+      "path": "sources/ashlar_03_lod0.glb",
+      "triangles": 1500,
+      "watertight": true,
+      "volume_m3": 0.024405432901796486,
+      "position_weld_for_uv_seams": true
+    },
+    {
+      "path": "sources/ashlar_03_lod1.glb",
+      "triangles": 600,
+      "watertight": true,
+      "volume_m3": 0.024279111562445898,
+      "position_weld_for_uv_seams": true
+    },
+    {
+      "path": "sources/ashlar_03_lod2.glb",
+      "triangles": 200,
+      "watertight": true,
+      "volume_m3": 0.02388080160439197,
+      "position_weld_for_uv_seams": true
+    },
+    {
+      "path": "sources/ashlar_04_lod0.glb",
+      "triangles": 1500,
+      "watertight": true,
+      "volume_m3": 0.017654354574988318,
+      "position_weld_for_uv_seams": true
+    },
+    {
+      "path": "sources/ashlar_04_lod1.glb",
+      "triangles": 600,
+      "watertight": true,
+      "volume_m3": 0.017577235351763917,
+      "position_weld_for_uv_seams": true
+    },
+    {
+      "path": "sources/ashlar_04_lod2.glb",
+      "triangles": 200,
+      "watertight": true,
+      "volume_m3": 0.01716443283425376,
+      "position_weld_for_uv_seams": true
+    },
+    {
+      "path": "sources/ashlar_05_lod0.glb",
+      "triangles": 1500,
+      "watertight": true,
+      "volume_m3": 0.005808181444511641,
+      "position_weld_for_uv_seams": true
+    },
+    {
+      "path": "sources/ashlar_05_lod1.glb",
+      "triangles": 600,
+      "watertight": true,
+      "volume_m3": 0.005766656810290351,
+      "position_weld_for_uv_seams": true
+    },
+    {
+      "path": "sources/ashlar_05_lod2.glb",
+      "triangles": 200,
+      "watertight": true,
+      "volume_m3": 0.0056813085245517704,
+      "position_weld_for_uv_seams": true
+    },
+    {
+      "path": "sources/ashlar_06_lod0.glb",
+      "triangles": 1500,
+      "watertight": true,
+      "volume_m3": 0.07965258209020819,
+      "position_weld_for_uv_seams": true
+    },
+    {
+      "path": "sources/ashlar_06_lod1.glb",
+      "triangles": 600,
+      "watertight": true,
+      "volume_m3": 0.07954018765647664,
+      "position_weld_for_uv_seams": true
+    },
+    {
+      "path": "sources/ashlar_06_lod2.glb",
+      "triangles": 200,
+      "watertight": true,
+      "volume_m3": 0.07862550885866708,
+      "position_weld_for_uv_seams": true
+    },
+    {
+      "path": "sources/rock_01_lod0.glb",
+      "triangles": 1500,
+      "watertight": true,
+      "volume_m3": 0.010312328621908137,
+      "position_weld_for_uv_seams": true
+    },
+    {
+      "path": "sources/rock_01_lod1.glb",
+      "triangles": 600,
+      "watertight": true,
+      "volume_m3": 0.01029125698012784,
+      "position_weld_for_uv_seams": true
+    },
+    {
+      "path": "sources/rock_01_lod2.glb",
+      "triangles": 200,
+      "watertight": true,
+      "volume_m3": 0.010175147894462286,
+      "position_weld_for_uv_seams": true
+    },
+    {
+      "path": "sources/rock_02_lod0.glb",
+      "triangles": 1500,
+      "watertight": true,
+      "volume_m3": 0.010722081065731458,
+      "position_weld_for_uv_seams": true
+    },
+    {
+      "path": "sources/rock_02_lod1.glb",
+      "triangles": 600,
+      "watertight": true,
+      "volume_m3": 0.010676909586366731,
+      "position_weld_for_uv_seams": true
+    },
+    {
+      "path": "sources/rock_02_lod2.glb",
+      "triangles": 200,
+      "watertight": true,
+      "volume_m3": 0.010537529401072256,
+      "position_weld_for_uv_seams": true
+    },
+    {
+      "path": "sources/rock_03_lod0.glb",
+      "triangles": 1500,
+      "watertight": true,
+      "volume_m3": 0.010622443786114688,
+      "position_weld_for_uv_seams": true
+    },
+    {
+      "path": "sources/rock_03_lod1.glb",
+      "triangles": 600,
+      "watertight": true,
+      "volume_m3": 0.010573067639312676,
+      "position_weld_for_uv_seams": true
+    },
+    {
+      "path": "sources/rock_03_lod2.glb",
+      "triangles": 200,
+      "watertight": true,
+      "volume_m3": 0.010440516941229527,
+      "position_weld_for_uv_seams": true
+    },
+    {
+      "path": "sources/rock_04_lod0.glb",
+      "triangles": 1500,
+      "watertight": true,
+      "volume_m3": 0.012883880142166182,
+      "position_weld_for_uv_seams": true
+    },
+    {
+      "path": "sources/rock_04_lod1.glb",
+      "triangles": 600,
+      "watertight": true,
+      "volume_m3": 0.012847789681784752,
+      "position_weld_for_uv_seams": true
+    },
+    {
+      "path": "sources/rock_04_lod2.glb",
+      "triangles": 200,
+      "watertight": true,
+      "volume_m3": 0.012748128594325595,
+      "position_weld_for_uv_seams": true
+    }
+  ]
+}

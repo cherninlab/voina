@@ -1,0 +1,25 @@
+{
+  "asset_id": "ashlar_06",
+  "task": "T-167",
+  "generator": "built-in image_gen.imagegen",
+  "mode": "generation",
+  "original_output_path": "/Users/theochernin/.codex/generated_images/01a16fc4-91ab-7841-a0d5-5e654d737a81/exec-d87992fb-6680-4e01-be36-ea140b93e545.png",
+  "saved_path": "/Users/theochernin/Projects/MultiPlayerProject-agents/theo-codex-43/content/environments/cl3d_rubble_sources_v1/references/ashlar_06.png",
+  "prompt_path": "prompts/ashlar_06-v2.txt",
+  "prompt_text": "Use case: product-mockup\nAsset type: isolated image-to-3D conditioning reference for a dark medieval Gothic dungeon rubble kit.\nPrimary request: one single coherent solid object only, as described below. Realistic weight-bearing masonry from wet rough crypt arches and ruined stone chapels, centuries of uneven wear, plausible fracture planes, matte neutral material. Shape variety and clear silhouette matter more than tiny surface detail.\nComposition: full object centered with ample empty margin, three-quarter view from slightly above, all extremities visible; plain uniform light-grey background, soft even studio illumination, NO floor plane and NO cast/contact shadow attached to object. No vignette, no scene, no other objects, no scattered dust or fragments, no text/labels/watermark, no roots/chains/skulls. No holes through the solid, no thin floating parts; make a closed solid shape that can become a watertight convex-collision source. Neutral grey stone or desaturated old clay as specified; dampness will be a material treatment later, no painted gloss.\nSubject: A massive half-quoin fragment, irregular L-like convex corner mass with one broad flat bed and heavily chipped arrises. Coarse cold-grey stone, solid no cavities.\nONE MONOLITHIC NATURAL STONE BLOCK, no individual masonry units, no joints or mortar, no stacked courses. The surface has only chipped stone and tool marks. No stone cluster. Keep a strongly asymmetric large stone chunk rather than an architectural L-wall fragment.\n",
+  "sha256": "41205dd37aeaaccf89b154b194746ccd550eafb60f71cf18a7bef9f795134e88",
+  "dimensions": {
+    "width": 1312,
+    "height": 1199
+  },
+  "transparent_background": false,
+  "attempt": 2,
+  "generated_utc": "2026-10-24T21:47:03.988802+00:00",
+  "visual_review": {
+    "status": "candidate",
+    "single_coherent_object": true,
+    "no_separate_floor_fragment": true,
+    "observations": "One asymmetric monolithic L-like stone chunk, no masonry courses. Reentrant corner is intentionally retained; later convex collision hull may simplify it."
+  },
+  "previous_attempt": "references/rejected/ashlar_06.png"
+}

@@ -1,0 +1,440 @@
+{
+  "task": "T-167",
+  "asset_count": 18,
+  "lod_count": 54,
+  "lods": [
+    {
+      "path": "sources/ashlar_01_lod0.glb",
+      "triangles": 1500,
+      "watertight": true,
+      "winding_consistent": true,
+      "volume_m3": 0.055140600871027866,
+      "origin_error_m": 0.0
+    },
+    {
+      "path": "sources/ashlar_01_lod1.glb",
+      "triangles": 600,
+      "watertight": true,
+      "winding_consistent": true,
+      "volume_m3": 0.05486288830115954,
+      "origin_error_m": 0.0
+    },
+    {
+      "path": "sources/ashlar_01_lod2.glb",
+      "triangles": 200,
+      "watertight": true,
+      "winding_consistent": true,
+      "volume_m3": 0.05393869630332763,
+      "origin_error_m": 0.0
+    },
+    {
+      "path": "sources/ashlar_02_lod0.glb",
+      "triangles": 1500,
+      "watertight": true,
+      "winding_consistent": true,
+      "volume_m3": 0.008247604528313994,
+      "origin_error_m": 0.0
+    },
+    {
+      "path": "sources/ashlar_02_lod1.glb",
+      "triangles": 600,
+      "watertight": true,
+      "winding_consistent": true,
+      "volume_m3": 0.008195978224221618,
+      "origin_error_m": 0.0
+    },
+    {
+      "path": "sources/ashlar_02_lod2.glb",
+      "triangles": 200,
+      "watertight": true,
+      "winding_consistent": true,
+      "volume_m3": 0.00802492870260398,
+      "origin_error_m": 0.0
+    },
+    {
+      "path": "sources/ashlar_03_lod0.glb",
+      "triangles": 1500,
+      "watertight": true,
+      "winding_consistent": true,
+      "volume_m3": 0.024405432901796486,
+      "origin_error_m": 0.0
+    },
+    {
+      "path": "sources/ashlar_03_lod1.glb",
+      "triangles": 600,
+      "watertight": true,
+      "winding_consistent": true,
+      "volume_m3": 0.024279111562445898,
+      "origin_error_m": 0.0
+    },
+    {
+      "path": "sources/ashlar_03_lod2.glb",
+      "triangles": 200,
+      "watertight": true,
+      "winding_consistent": true,
+      "volume_m3": 0.02388080160439197,
+      "origin_error_m": 0.0
+    },
+    {
+      "path": "sources/ashlar_04_lod0.glb",
+      "triangles": 1500,
+      "watertight": true,
+      "winding_consistent": true,
+      "volume_m3": 0.017654354574988318,
+      "origin_error_m": 0.0
+    },
+    {
+      "path": "sources/ashlar_04_lod1.glb",
+      "triangles": 600,
+      "watertight": true,
+      "winding_consistent": true,
+      "volume_m3": 0.017577235351763917,
+      "origin_error_m": 0.0
+    },
+    {
+      "path": "sources/ashlar_04_lod2.glb",
+      "triangles": 200,
+      "watertight": true,
+      "winding_consistent": true,
+      "volume_m3": 0.01716443283425376,
+      "origin_error_m": 0.0
+    },
+    {
+      "path": "sources/ashlar_05_lod0.glb",
+      "triangles": 1500,
+      "watertight": true,
+      "winding_consistent": true,
+      "volume_m3": 0.005808181444511641,
+      "origin_error_m": 0.0
+    },
+    {
+      "path": "sources/ashlar_05_lod1.glb",
+      "triangles": 600,
+      "watertight": true,
+      "winding_consistent": true,
+      "volume_m3": 0.005766656810290351,
+      "origin_error_m": 0.0
+    },
+    {
+      "path": "sources/ashlar_05_lod2.glb",
+      "triangles": 200,
+      "watertight": true,
+      "winding_consistent": true,
+      "volume_m3": 0.0056813085245517704,
+      "origin_error_m": 0.0
+    },
+    {
+      "path": "sources/ashlar_06_lod0.glb",
+      "triangles": 1500,
+      "watertight": true,
+      "winding_consistent": true,
+      "volume_m3": 0.07965258209020819,
+      "origin_error_m": 0.0
+    },
+    {
+      "path": "sources/ashlar_06_lod1.glb",
+      "triangles": 600,
+      "watertight": true,
+      "winding_consistent": true,
+      "volume_m3": 0.07954018765647664,
+      "origin_error_m": 0.0
+    },
+    {
+      "path": "sources/ashlar_06_lod2.glb",
+      "triangles": 200,
+      "watertight": true,
+      "winding_consistent": true,
+      "volume_m3": 0.07862550885866708,
+      "origin_error_m": 0.0
+    },
+    {
+      "path": "sources/rock_01_lod0.glb",
+      "triangles": 1500,
+      "watertight": true,
+      "winding_consistent": true,
+      "volume_m3": 0.010312328621908137,
+      "origin_error_m": 0.0
+    },
+    {
+      "path": "sources/rock_01_lod1.glb",
+      "triangles": 600,
+      "watertight": true,
+      "winding_consistent": true,
+      "volume_m3": 0.01029125698012784,
+      "origin_error_m": 0.0
+    },
+    {
+      "path": "sources/rock_01_lod2.glb",
+      "triangles": 200,
+      "watertight": true,
+      "winding_consistent": true,
+      "volume_m3": 0.010175147894462286,
+      "origin_error_m": 0.0
+    },
+    {
+      "path": "sources/rock_02_lod0.glb",
+      "triangles": 1500,
+      "watertight": true,
+      "winding_consistent": true,
+      "volume_m3": 0.010722081065731458,
+      "origin_error_m": 0.0
+    },
+    {
+      "path": "sources/rock_02_lod1.glb",
+      "triangles": 600,
+      "watertight": true,
+      "winding_consistent": true,
+      "volume_m3": 0.010676909586366731,
+      "origin_error_m": 0.0
+    },
+    {
+      "path": "sources/rock_02_lod2.glb",
+      "triangles": 200,
+      "watertight": true,
+      "winding_consistent": true,
+      "volume_m3": 0.010537529401072256,
+      "origin_error_m": 0.0
+    },
+    {
+      "path": "sources/rock_03_lod0.glb",
+      "triangles": 1500,
+      "watertight": true,
+      "winding_consistent": true,
+      "volume_m3": 0.010622443786114688,
+      "origin_error_m": 0.0
+    },
+    {
+      "path": "sources/rock_03_lod1.glb",
+      "triangles": 600,
+      "watertight": true,
+      "winding_consistent": true,
+      "volume_m3": 0.010573067639312676,
+      "origin_error_m": 0.0
+    },
+    {
+      "path": "sources/rock_03_lod2.glb",
+      "triangles": 200,
+      "watertight": true,
+      "winding_consistent": true,
+      "volume_m3": 0.010440516941229527,
+      "origin_error_m": 0.0
+    },
+    {
+      "path": "sources/rock_04_lod0.glb",
+      "triangles": 1500,
+      "watertight": true,
+      "winding_consistent": true,
+      "volume_m3": 0.012883880142166182,
+      "origin_error_m": 0.0
+    },
+    {
+      "path": "sources/rock_04_lod1.glb",
+      "triangles": 600,
+      "watertight": true,
+      "winding_consistent": true,
+      "volume_m3": 0.012847789681784752,
+      "origin_error_m": 0.0
+    },
+    {
+      "path": "sources/rock_04_lod2.glb",
+      "triangles": 200,
+      "watertight": true,
+      "winding_consistent": true,
+      "volume_m3": 0.012748128594325595,
+      "origin_error_m": 0.0
+    },
+    {
+      "path": "sources/rock_05_lod0.glb",
+      "triangles": 1500,
+      "watertight": true,
+      "winding_consistent": true,
+      "volume_m3": 0.08689504711549877,
+      "origin_error_m": 0.0
+    },
+    {
+      "path": "sources/rock_05_lod1.glb",
+      "triangles": 600,
+      "watertight": true,
+      "winding_consistent": true,
+      "volume_m3": 0.08671432498618971,
+      "origin_error_m": 0.0
+    },
+    {
+      "path": "sources/rock_05_lod2.glb",
+      "triangles": 200,
+      "watertight": true,
+      "winding_consistent": true,
+      "volume_m3": 0.08621397532748772,
+      "origin_error_m": 0.0
+    },
+    {
+      "path": "sources/rock_06_lod0.glb",
+      "triangles": 1500,
+      "watertight": true,
+      "winding_consistent": true,
+      "volume_m3": 0.0018246230693303271,
+      "origin_error_m": 0.0
+    },
+    {
+      "path": "sources/rock_06_lod1.glb",
+      "triangles": 600,
+      "watertight": true,
+      "winding_consistent": true,
+      "volume_m3": 0.0018116234360705324,
+      "origin_error_m": 0.0
+    },
+    {
+      "path": "sources/rock_06_lod2.glb",
+      "triangles": 200,
+      "watertight": true,
+      "winding_consistent": true,
+      "volume_m3": 0.0017845095374981344,
+      "origin_error_m": 0.0
+    },
+    {
+      "path": "sources/column_01_lod0.glb",
+      "triangles": 1500,
+      "watertight": true,
+      "winding_consistent": true,
+      "volume_m3": 0.04136943765174941,
+      "origin_error_m": 0.0
+    },
+    {
+      "path": "sources/column_01_lod1.glb",
+      "triangles": 600,
+      "watertight": true,
+      "winding_consistent": true,
+      "volume_m3": 0.04121049196914659,
+      "origin_error_m": 0.0
+    },
+    {
+      "path": "sources/column_01_lod2.glb",
+      "triangles": 200,
+      "watertight": true,
+      "winding_consistent": true,
+      "volume_m3": 0.040760508559778315,
+      "origin_error_m": 0.0
+    },
+    {
+      "path": "sources/column_02_lod0.glb",
+      "triangles": 1500,
+      "watertight": true,
+      "winding_consistent": true,
+      "volume_m3": 0.023265450098597002,
+      "origin_error_m": 0.0
+    },
+    {
+      "path": "sources/column_02_lod1.glb",
+      "triangles": 600,
+      "watertight": true,
+      "winding_consistent": true,
+      "volume_m3": 0.02307743035789407,
+      "origin_error_m": 0.0
+    },
+    {
+      "path": "sources/column_02_lod2.glb",
+      "triangles": 200,
+      "watertight": true,
+      "winding_consistent": true,
+      "volume_m3": 0.022989619439884996,
+      "origin_error_m": 0.0
+    },
+    {
+      "path": "sources/column_03_lod0.glb",
+      "triangles": 1500,
+      "watertight": true,
+      "winding_consistent": true,
+      "volume_m3": 0.0983812161529382,
+      "origin_error_m": 0.0
+    },
+    {
+      "path": "sources/column_03_lod1.glb",
+      "triangles": 600,
+      "watertight": true,
+      "winding_consistent": true,
+      "volume_m3": 0.09789808366737501,
+      "origin_error_m": 0.0
+    },
+    {
+      "path": "sources/column_03_lod2.glb",
+      "triangles": 200,
+      "watertight": true,
+      "winding_consistent": true,
+      "volume_m3": 0.09742730654571359,
+      "origin_error_m": 0.0
+    },
+    {
+      "path": "sources/brick_01_lod0.glb",
+      "triangles": 1500,
+      "watertight": true,
+      "winding_consistent": true,
+      "volume_m3": 0.010498233165802355,
+      "origin_error_m": 0.0
+    },
+    {
+      "path": "sources/brick_01_lod1.glb",
+      "triangles": 600,
+      "watertight": true,
+      "winding_consistent": true,
+      "volume_m3": 0.01047307727429863,
+      "origin_error_m": 0.0
+    },
+    {
+      "path": "sources/brick_01_lod2.glb",
+      "triangles": 200,
+      "watertight": true,
+      "winding_consistent": true,
+      "volume_m3": 0.010291428219156686,
+      "origin_error_m": 0.0
+    },
+    {
+      "path": "sources/brick_02_lod0.glb",
+      "triangles": 1500,
+      "watertight": true,
+      "winding_consistent": true,
+      "volume_m3": 0.01122091163763241,
+      "origin_error_m": 0.0
+    },
+    {
+      "path": "sources/brick_02_lod1.glb",
+      "triangles": 600,
+      "watertight": true,
+      "winding_consistent": true,
+      "volume_m3": 0.011116544467619801,
+      "origin_error_m": 0.0
+    },
+    {
+      "path": "sources/brick_02_lod2.glb",
+      "triangles": 200,
+      "watertight": true,
+      "winding_consistent": true,
+      "volume_m3": 0.010776135273111583,
+      "origin_error_m": 0.0
+    },
+    {
+      "path": "sources/brick_03_lod0.glb",
+      "triangles": 1500,
+      "watertight": true,
+      "winding_consistent": true,
+      "volume_m3": 0.008844505318393257,
+      "origin_error_m": 0.0
+    },
+    {
+      "path": "sources/brick_03_lod1.glb",
+      "triangles": 600,
+      "watertight": true,
+      "winding_consistent": true,
+      "volume_m3": 0.008823689360378117,
+      "origin_error_m": 0.0
+    },
+    {
+      "path": "sources/brick_03_lod2.glb",
+      "triangles": 200,
+      "watertight": true,
+      "winding_consistent": true,
+      "volume_m3": 0.008633774230442202,
+      "origin_error_m": 0.0
+    }
+  ],
+  "closure_method": "Geometric position weld at duplicated glTF UV/sharp-normal seams; delivered files are not modified."
+}

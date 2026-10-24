@@ -1,0 +1,27 @@
+{
+  "task": "T-167",
+  "verified_utc": "2026-10-24T22:12:46.403445+00:00",
+  "tested_base": "1d1e7d64956217fe1fc07ab7b3334d7ce690801b",
+  "assets": 18,
+  "lods": 54,
+  "lod0_triangles_total": 27000,
+  "independent_mesh_audit": "pass; mesh-audit.json; exact input/raw/output hashes, positive volume, closure, winding, dimensions and origin",
+  "editor_import": "pass; editor-import.txt; no SCRIPT ERROR/Parse Error/ERROR",
+  "native_capture": "pass; 54 LODs and18 source/material pairs, UV/tangent presence and actual triangle counts checked; normals enabled",
+  "smoke": "pass; smoke.txt; ENet/disconnect and deliberate mismatched-build refusal",
+  "visual_review": "Blender front/back, native clay and final metre-UV paired-material contact sheets visually inspected. Distinct shapes retained, original world-projection distortion/large texels corrected for the optional material trial. Final human in-dungeon approval pending.",
+  "known_warnings": "Existing ObjectDB cleanup warnings at standalone shutdown; not represented as fixed.",
+  "limitations": [
+    "Raw model output alone is not final art acceptance.",
+    "Material previews apply one hint material over the whole chunk; brick/mortar boundaries are not segmented.",
+    "Neutral clay embedded in GLB; full materials are separate presets supplied by T-183.",
+    "No runtime collision bodies, dungeon placement, traversal or scene-scale performance claimed."
+  ],
+  "runtime_finish_parameters": {
+    "mapped": true,
+    "stone_density": 2.0,
+    "brick_density": 4.0,
+    "normal_strength": 0.65,
+    "relief_m": 0.0
+  }
+}
