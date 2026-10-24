@@ -1,0 +1,101 @@
+{
+  "blender": "5.2.2 LTS",
+  "density": 0.555,
+  "files": {
+    "content/environments/procedural_stone_surface_v1/granite/albedo.png": "b14fac629890a1be211accdd95d691066737719a3b264070e64237d34de824ec",
+    "content/environments/procedural_stone_surface_v1/granite/ao.png": "5ce44acef71f9ad52a13129b6a328d105933e60dfe86396eaf54df486425a9e6",
+    "content/environments/procedural_stone_surface_v1/granite/height.png": "36a1d17f8195fbb54ef47bc2536fbf52a050d0c38730cf806a6d6564517499cf",
+    "content/environments/procedural_stone_surface_v1/granite/normal_gl.png": "d0d69fe13cd2e638601dbe4f3b01dfe4e474329a5f8521ff4df14ea86a60ba9a",
+    "content/environments/procedural_stone_surface_v1/granite/roughness.png": "849bb9106907103ada64b1c05449d50ef462120cf3253c0e659f91ce95eb2750",
+    "content/environments/procedural_stone_surface_v1/limestone/albedo.png": "8e79c27f3ec5680c226ccf5729570626853099089103b30e14f2add002c6ee5c",
+    "content/environments/procedural_stone_surface_v1/limestone/ao.png": "9f4f5c188160973ea5548647c150795b1dfa4f8bad6363269c9bfccaafb09baa",
+    "content/environments/procedural_stone_surface_v1/limestone/height.png": "5560ee62fb450cb1325a3ee945f009f8df452187b36fc44eea637a5cb7e79cb4",
+    "content/environments/procedural_stone_surface_v1/limestone/normal_gl.png": "88bbdd08ccebdc96cd4951d759198d721c34463337655fe9d206a7d80cff0b53",
+    "content/environments/procedural_stone_surface_v1/limestone/roughness.png": "d8eb9526c6e07992c4b9774958cf7df0a9d8ab8d35cee6471a8e41f9d351a4bc",
+    "content/environments/procedural_stone_surface_v1/sandstone/albedo.png": "75438981ebc8217b1ce49946288090f3b04f3974c9167e4eb3a9cd8ae5dc5fa8",
+    "content/environments/procedural_stone_surface_v1/sandstone/ao.png": "39176c9404a221ee513ed53373e13ef45bdd12435e87124b7c8aac42fa876146",
+    "content/environments/procedural_stone_surface_v1/sandstone/height.png": "ca27298eef565acc5b893bbd7c3023f1c1659bc0ae5c63d1b55968132305c609",
+    "content/environments/procedural_stone_surface_v1/sandstone/normal_gl.png": "e1d8871a9f42bb83120a3a15d2a1020d21811a534f31a98a06adc1b505cc5328",
+    "content/environments/procedural_stone_surface_v1/sandstone/roughness.png": "0391d307e331ad2a8ae155a41c009dbebd79e212386caac1d42529ca988f0ad6"
+  },
+  "mm_per_px": 0.879,
+  "review_normal_strength": 0.75,
+  "seed": 180,
+  "size": 2048,
+  "task": "T-180",
+  "tile_m": 1.8,
+  "variants": {
+    "granite": {
+      "albedo_linear_mean": [
+        0.142,
+        0.141,
+        0.137
+      ],
+      "albedo_luminance_p1_p50_p99": [
+        0.07,
+        0.131,
+        0.245
+      ],
+      "ao_mean": 0.965,
+      "height_range_mm": 7.29,
+      "pits": 7080,
+      "roughness_mean": 0.514,
+      "saturation_mean": 0.034,
+      "seam_z": {
+        "albedo": 0.31,
+        "ao": 1.44,
+        "height": 1.27,
+        "normal_gl": 1.33,
+        "roughness": 0.98
+      }
+    },
+    "limestone": {
+      "albedo_linear_mean": [
+        0.261,
+        0.252,
+        0.227
+      ],
+      "albedo_luminance_p1_p50_p99": [
+        0.146,
+        0.251,
+        0.337
+      ],
+      "ao_mean": 0.959,
+      "height_range_mm": 10.05,
+      "pits": 5476,
+      "roughness_mean": 0.717,
+      "saturation_mean": 0.131,
+      "seam_z": {
+        "albedo": 0.98,
+        "ao": 1.69,
+        "height": 2.04,
+        "normal_gl": 1.91,
+        "roughness": 1.22
+      }
+    },
+    "sandstone": {
+      "albedo_linear_mean": [
+        0.246,
+        0.204,
+        0.166
+      ],
+      "albedo_luminance_p1_p50_p99": [
+        0.122,
+        0.211,
+        0.277
+      ],
+      "ao_mean": 0.947,
+      "height_range_mm": 8.66,
+      "pits": 3777,
+      "roughness_mean": 0.821,
+      "saturation_mean": 0.322,
+      "seam_z": {
+        "albedo": 1.43,
+        "ao": 0.21,
+        "height": 0.07,
+        "normal_gl": 0.86,
+        "roughness": 1.65
+      }
+    }
+  }
+}
