@@ -20,4 +20,4 @@ The full CL3D multi-view checkpoint was not installed: its published license has
 
 ## Checks
 
-Latest Godot4.7.2 headless editor import and full smoke suite passed. See [checks.json](checks.json) and [game-smoke.log](game-smoke.log). This does not establish statue geometry quality.
+Latest Godot4.7.2 headless editor import and full smoke suite passed. See [checks.json](checks.json) (the full smoke log is retained locally as ignored `game-smoke.log`). This does not establish statue geometry quality.

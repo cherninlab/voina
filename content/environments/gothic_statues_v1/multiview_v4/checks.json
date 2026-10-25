@@ -1,6 +1,6 @@
 {
   "godot_import": "Godot4.7.2 headless editor completed exit0 without reported errors",
-  "game_smoke": "Latest full suite passed exit0, including projectile, net, match and version-mismatch paths. Full log in game-smoke.log. Earlier T190 projectile smoke failure remains recorded separately; no gameplay code changed.",
+  "game_smoke": "Latest full suite passed exit0, including projectile, net, match and version-mismatch paths. Full log retained locally in ignored game-smoke.log; summary is the published check receipt. Earlier T190 projectile smoke failure remains recorded separately; no gameplay code changed.",
   "geometry_acceptance": "No statue reconstruction acceptance; all generated reference packs failed strict camera/pose consistency",
   "local_ui": "Four-view backend and original single-view path each generated real GLBs. API, browser mask isolation, saved-view restore and vertex-normal checks passed. See CherninLab3D/web_ui/review/verification-multiview.json",
   "advisory_review": "Ennodia read-only review timed out without a completed review; not counted as pass"
