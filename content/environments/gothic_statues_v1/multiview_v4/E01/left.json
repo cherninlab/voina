@@ -1,0 +1,65 @@
+{
+  "view": "left",
+  "status": "generated_candidate_consistency_gate_failed",
+  "generated_at_utc": "2026-10-25T14:37:26.886085+00:00",
+  "tool": "built-in image_gen",
+  "tool_arguments": {
+    "prompt": "Use case: precise-object-edit\nAsset type: one inferred novel view for a fixed sculpture turntable reference pack.\nReferences: approved.png is the authoritative sculpture identity and geometry anchor. front.png shows the identical approved pose; ignore its accidental background halo. These are the SAME one rigid marble statue, not two subjects. Preserve the sculpture, rotate only the CAMERA. Do not mirror, repose, symmetrize or anatomically redesign it.\nObject invariants locked in world space: mature adult woman, identical anxious face, head turned toward her raised left hand; left shoulder and arm reach forward/up with the same open finger spread. Her right arm extends down and forward to the same supporting palm with spread fingers. Same torso twist, same tucked knee beneath her body, same trailing sideways leg and fully visible foot, identical joints and limb lengths. Head, eyes, hands, fingers, hair curls and tunic folds remain fixed in world space. Same short opaque sleeveless Roman tunic, two shoulder brooches, securely covering torso and pelvis in the existing pose. Keep refined Roman/Renaissance carving, pale warm aged marble, very subtle pores and veins, and existing fine cloth folds. All parts the same continuous marble.\nCamera convention: world vertical is +Y; the reference camera is azimuth 0 at (0,h,R) looking toward the sculpture center. Positive orbit around +Y has camera position (R*sin(theta),h,R*cos(theta)). Keep the same h, radius R, focal length, modest perspective and low catalog elevation; only azimuth changes. The statue does not rotate or move.\nOutput rules: one original fixed full-body sculpture only, entire form inside frame with at least 8 percent clear margin. Plain neutral soft catalog light. Clean genuine transparent alpha background, no solid background, halo, colored edge fringe, glow, fog, ground, cast shadow, prop, base, pedestal, plinth, scene, lettering or watermark. A nonsexual classical sculpture image only; no mesh or 3D output. Infer hidden surfaces consistently with the references; do not invent a new pose.\nRequested view: LEFT, azimuth +90 degrees relative to the reference front, camera at (+R,h,0). This shows the side approached by moving the camera toward the original image's right side, anatomically the statue's raised-arm side. Exactly a quarter orbit: show a true new side view, not the original front view again. Her raised left arm can foreshorten toward this camera, and the torso/front-to-back depth is now visible. Keep every point on the statue rigid; reveal previously hidden marble surfaces, do not move the arm to improve visibility.",
+    "referenced_image_paths": [
+      "/Users/theochernin/Projects/MultiPlayerProject-agents/theo-codex-43/content/environments/gothic_statues_v1/multiview_v4/E01/approved.png",
+      "/Users/theochernin/Projects/MultiPlayerProject-agents/theo-codex-43/content/environments/gothic_statues_v1/multiview_v4/E01/front.png"
+    ],
+    "transparent_background": true
+  },
+  "receipt": {
+    "native_source_path": "/Users/theochernin/.codex/generated_images/01a17367-08f5-7c01-b2da-13154bab4420/exec-b86e7706-85c6-48e6-a8ab-f928c29e8c08.png",
+    "saved_path": "/Users/theochernin/Projects/MultiPlayerProject-agents/theo-codex-43/content/environments/gothic_statues_v1/multiview_v4/E01/left.png",
+    "output_hint": "Generated images are saved to /Users/theochernin/.codex/generated_images/01a17367-08f5-7c01-b2da-13154bab4420 as /Users/theochernin/.codex/generated_images/01a17367-08f5-7c01-b2da-13154bab4420/exec-b86e7706-85c6-48e6-a8ab-f928c29e8c08.png by default.\nIf you need to use a generated image at another path, copy it and leave the original in place unless the user explicitly asks you to delete it.\nThe generated image is already displayed to the user. There is no need to render it in the final response as a Markdown image or file link.",
+    "returned_image_url": "data:image/png;base64 pixel payload preserved in native PNG, omitted from JSON"
+  },
+  "requested_azimuth_degrees": 90,
+  "azimuth_convention": {
+    "world_up": "+Y",
+    "reference_camera": "C(0)=(0,h,R), looking toward the sculpture center",
+    "positive_azimuth": "C(theta)=(R*sin(theta),h,R*cos(theta)); camera orbits, sculpture remains fixed",
+    "requested_views": {
+      "front": 0,
+      "left": 90,
+      "back": 180,
+      "right": 270
+    },
+    "warning": "Requested azimuths are prompt instructions, not verified calibrated camera measurements."
+  },
+  "verification": {
+    "dimensions": [
+      1536,
+      1024
+    ],
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      254
+    ],
+    "fully_transparent_pixels": 1065716,
+    "fully_opaque_pixels": 0,
+    "partially_transparent_pixels": 507148,
+    "alpha_nonzero_bbox": [
+      34,
+      24,
+      1516,
+      1024
+    ],
+    "sha256": "b440af990dc500999264bdea51e9265e3b48b38563643e90e80056cb64d543b1",
+    "byte_identical_to_native": true,
+    "view_image_inspected": true,
+    "visual_assessment": "Native ImageGen preview inspected; view_image also called on every saved output. view_image rendered these files unusually dark in the tool preview despite populated RGB and alpha, so the generation preview informed visual comparison."
+  },
+  "consistency_findings": [
+    "Requested quarter orbit failed: output remains a nearby front/three-quarter view with the raised hand at upper right and face visible.",
+    "Hip/knee spacing, supporting-hand location, hair mass and tunic folds drift relative to approved front.",
+    "Raised arm remains long in projection rather than clearly showing the requested quarter-orbit foreshortening.",
+    "Broad translucent brown-gray halo persists; 8 percent margin not achieved."
+  ],
+  "geometry_evidence": "Novel views are inferred candidates, not measured evidence of true hidden geometry. Pack is not reconstruction-ready.",
+  "mesh_generated": false
+}

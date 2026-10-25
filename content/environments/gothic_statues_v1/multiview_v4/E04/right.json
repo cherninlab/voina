@@ -1,0 +1,91 @@
+{
+  "asset": "E04",
+  "view": "right",
+  "status": "generated_candidate",
+  "validation_status": "not_accepted_as_rigid_multiview_reference",
+  "tool": "built-in image_gen.imagegen",
+  "call_index": 4,
+  "max_calls": 4,
+  "parameters": {
+    "transparent_background": true,
+    "referenced_image_paths": [
+      "/Users/theochernin/Projects/MultiPlayerProject-agents/theo-codex-43/content/environments/gothic_statues_v1/multiview_v4/E04/front.png",
+      "/Users/theochernin/Projects/MultiPlayerProject-agents/theo-codex-43/content/environments/gothic_statues_v1/multiview_v4/E04/approved.png"
+    ]
+  },
+  "prompt": "Use case: precise-object-edit\nAsset type: E04 rigid marble statue turntable pack, right view at azimuth +270 degrees.\nGeometry references: Image 1 front.png is front camera azimuth 0; Image 2 approved.png is the selected exact sculpture identity and pose. They show the SAME frozen rigid sculpture. This request changes only the camera.\nCamera convention: Front C0=(0,h,+d), aimed at statue center. Positive azimuth travels toward original image-left, C90=(-d,h,0), C180=(0,h,-d). THIS right view is C270=(+d,h,0), a three-quarter-circle orbit from front or minus90 degrees, on the original image-right side of the statue. Keep exactly the same height h, distance d, source low elevation, focal perspective and target center. Show the resulting true side view, with honest foreshortening and occlusion.\nRigid invariants: Do not mirror or repose the sculpture. Every arm, elbow, wrist, individual finger, knee, foot, head, facial direction, hair lock and opaque tunic fold stays in the same world-space position. Body stays low/prone, chest lifted on the same planted hand, opposite arm extended diagonally up/forward in its original world direction. Legs trail with the exact source bends. The camera travels around the statue while statue remains absolutely still. Do not move the hands to reveal them, change the finger count, alter the hair or invent extra limbs. Infer obscured surfaces conservatively from the references.\nIdentity/material: Same mature adult woman, same anguished face, same carved wavy hair, same pale warm weathered Roman/Renaissance marble with subtle veins. Keep existing opaque tunic securely covering torso and pelvis and retain its same fixed folds. Nonsexual classical sculpture reference.\nFraming/background: Full complete sculpture with at least 8 percent transparent margin on every side. True transparent alpha and clean neutral marble antialiased edges. Same neutral soft catalog lighting. No base, pedestal, platform, environment, fog, glow, cast shadow, colored fringe, halo, text or watermark. One image only.",
+  "azimuth_convention": {
+    "coordinate_system": "Relative camera convention only; front camera C0=(0,h,+d), aimed at fixed statue center. Positive azimuth travels toward original image-left.",
+    "front": {
+      "requested_azimuth_degrees": 0,
+      "camera": "(0,h,+d)"
+    },
+    "left": {
+      "requested_azimuth_degrees": 90,
+      "camera": "(-d,h,0)"
+    },
+    "back": {
+      "requested_azimuth_degrees": 180,
+      "camera": "(0,h,-d)"
+    },
+    "right": {
+      "requested_azimuth_degrees": 270,
+      "camera": "(+d,h,0)"
+    },
+    "elevation_perspective": "Requested identical source low elevation, height, camera distance and modest perspective; actual calibration cannot be established from these generated images."
+  },
+  "source_result_path": "/Users/theochernin/.codex/generated_images/01a17367-7a4d-78c3-b7fa-75344b51d0a8/exec-bdb0f277-ba49-4e87-962a-201528f9c9cd.png",
+  "result_path": "/Users/theochernin/Projects/MultiPlayerProject-agents/theo-codex-43/content/environments/gothic_statues_v1/multiview_v4/E04/right.png",
+  "returned_metadata": {
+    "output_hint": "Generated images are saved to /Users/theochernin/.codex/generated_images/01a17367-7a4d-78c3-b7fa-75344b51d0a8 as /Users/theochernin/.codex/generated_images/01a17367-7a4d-78c3-b7fa-75344b51d0a8/exec-bdb0f277-ba49-4e87-962a-201528f9c9cd.png by default.\nIf you need to use a generated image at another path, copy it and leave the original in place unless the user explicitly asks you to delete it.\nThe generated image is already displayed to the user. There is no need to render it in the final response as a Markdown image or file link.",
+    "image_mime_type": "image/png",
+    "image_url_type": "data URL; native image bytes copied to result_path without image edits"
+  },
+  "verification": {
+    "image_size": [
+      1536,
+      1024
+    ],
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      254
+    ],
+    "fully_transparent_pixels": 1180662,
+    "partially_transparent_pixels": 392202,
+    "fully_opaque_pixels": 0,
+    "alpha128_bbox": [
+      33,
+      172,
+      1503,
+      872
+    ],
+    "sha256": "8fb4bb950433e5514109b1409a05c434ad3d532677fed72df67522e52060cc66",
+    "alpha128_margins_ltrb": [
+      0.021484375,
+      0.16796875,
+      0.021484375,
+      0.1484375
+    ],
+    "requested_8_percent_margin_met_at_alpha128": false
+  },
+  "visual_review": {
+    "inspected_with": "view_image",
+    "pose_consistency": "Failed opposite-view consistency check: image resembles the same flank shown by left.png, rather than an established opposite side.",
+    "strengths": [
+      "General prone reaching pose, marble identity and secure opaque tunic remain recognizable."
+    ],
+    "problems": [
+      "Left and right candidates show very similar profile/flank and face-to-reaching-arm relationship; requested 180-degree difference between them is unsupported.",
+      "Hair and tunic folds differ between candidates and anchor.",
+      "Hidden hand/arm/body geometry is inferred and may conflict.",
+      "8 percent side margins and halo removal were not achieved."
+    ]
+  },
+  "limitations": [
+    "These novel views are inferred images from a single selected anchor, not a real scan.",
+    "True hidden geometry and exact rigid consistency are not guaranteed.",
+    "No mesh generation and no image postprocessing performed."
+  ],
+  "retry_attempted": false
+}

@@ -1,0 +1,117 @@
+{
+  "asset_id": "E06_front",
+  "task": "T-191",
+  "mode": "built-in image_gen image edit",
+  "generated_at_utc": "2026-10-25 14:38:21 UTC",
+  "prompt": "Use case: precise-object-edit\nAsset type: front view reference image of one fixed marble statue for a four-view candidate turntable pack.\nEdit target: the provided approved.png image is the exact approved statue and camera. Make a faithful clean reference edit. Preserve the statue's exact asymmetric seated pose, anatomy, proportions, face/expression, head turn, supporting palm at the lower left, folded legs together to the lower right, other arm outstretched toward upper right, hair curls and all drapery as fixed world-space geometry. Preserve the existing opaque tunic securely covering the torso and pelvis. Same pale warm marble with subtle pores/veins. No flesh or colored cloth.\nChange only: remove the colored edge fringe and halo from the image; clean the cutout boundary; reframe uniformly smaller so the COMPLETE unchanged statue has at least eight percent blank margin on ALL sides. Preserve the exact source viewing direction, camera low elevation, and modest perspective. FRONT is the source camera and azimuth 0 degrees. This is one clean front image, not a grid.\nLighting: neutral even catalog lighting, no dramatic glow. Genuinely transparent alpha background, opaque marble figure, clean antialiased edges.\nConstraints: no mirroring, no repose, no anatomy changes, no expression changes, no base, pedestal, ground, prop, environment, fog, glow, cast shadow, text, watermark, or extra objects. The complete feet, fingertips, supporting palm and hair must be in frame. Preserve every pose landmark.",
+  "parameters": {
+    "transparent_background": true,
+    "referenced_image_paths": [
+      "/Users/theochernin/Projects/MultiPlayerProject-agents/theo-codex-43/content/environments/gothic_statues_v1/multiview_v4/E06/approved.png"
+    ]
+  },
+  "source_receipts": [
+    {
+      "path": "/Users/theochernin/Projects/MultiPlayerProject-agents/theo-codex-43/content/environments/gothic_statues_v1/multiview_v4/E06/approved.png",
+      "format": "PNG",
+      "dimensions": [
+        1312,
+        1199
+      ],
+      "mode": "RGBA",
+      "bytes": 1719040,
+      "sha256": "6d77c24b485d8765d560c83b186020aaa756ec7c0c3f97ec6d6e30970f206769",
+      "alpha_extrema": [
+        0,
+        255
+      ],
+      "transparent_pixels": 781407,
+      "opaque_pixels": 217,
+      "partial_alpha_pixels": 791464,
+      "alpha_nonzero_bbox": [
+        0,
+        0,
+        1304,
+        1199
+      ],
+      "alpha_at_least_128_bbox": [
+        24,
+        22,
+        1287,
+        1177
+      ]
+    }
+  ],
+  "returned_metadata": {
+    "output_hint": "Generated images are saved to /Users/theochernin/.codex/generated_images/01a17367-e6a8-7360-82ce-6fc5b3cee7a6 as /Users/theochernin/.codex/generated_images/01a17367-e6a8-7360-82ce-6fc5b3cee7a6/exec-c629665d-e345-4ba8-8ef5-8843e0b3fb6a.png by default.\nIf you need to use a generated image at another path, copy it and leave the original in place unless the user explicitly asks you to delete it.\nThe generated image is already displayed to the user. There is no need to render it in the final response as a Markdown image or file link.",
+    "image_url": {
+      "scheme": "data",
+      "mime_type": "image/png",
+      "base64_omitted": true
+    }
+  },
+  "native_source_path": "/Users/theochernin/.codex/generated_images/01a17367-e6a8-7360-82ce-6fc5b3cee7a6/exec-c629665d-e345-4ba8-8ef5-8843e0b3fb6a.png",
+  "saved_png_path": "/Users/theochernin/Projects/MultiPlayerProject-agents/theo-codex-43/content/environments/gothic_statues_v1/multiview_v4/E06/front.png",
+  "requested_camera": {
+    "azimuth_degrees": 0,
+    "convention": "Y up; front=(0,h,+d); front image-right=+X; +90 left=(-d,h,0); +180 back=(0,h,-d); +270 right=(+d,h,0). Angles are requested, not measured.",
+    "elevation": "Match low elevation of approved source",
+    "perspective": "Match modest perspective of approved source"
+  },
+  "receipt": {
+    "path": "/Users/theochernin/Projects/MultiPlayerProject-agents/theo-codex-43/content/environments/gothic_statues_v1/multiview_v4/E06/front.png",
+    "format": "PNG",
+    "dimensions": [
+      1312,
+      1199
+    ],
+    "mode": "RGBA",
+    "bytes": 1444513,
+    "sha256": "7f884eb4497b8cb365647a71841e698e3e8fe1d3701a63f95c8dfa146a7b6fc6",
+    "alpha_extrema": [
+      0,
+      255
+    ],
+    "transparent_pixels": 850915,
+    "opaque_pixels": 1082,
+    "partial_alpha_pixels": 721091,
+    "alpha_nonzero_bbox": [
+      0,
+      4,
+      1292,
+      1199
+    ],
+    "alpha_at_least_128_bbox": [
+      30,
+      44,
+      1284,
+      1175
+    ]
+  },
+  "measurement_note": "Read-only Pillow inspection of native PNG; no pixel editing or compositing.",
+  "measured_alpha_128_margin_percent": {
+    "left": 2.2865853658536586,
+    "top": 3.669724770642202,
+    "right": 2.1341463414634148,
+    "bottom": 2.0016680567139282
+  },
+  "visual_inspection": {
+    "method": "view_image on saved native PNG after generation",
+    "landmark_check": {
+      "supporting_palm": "Present at lower left; broad placement and straight load-bearing arm remain close to approved.",
+      "folded_legs": "Together and folded to lower right, overlapping feet retained.",
+      "reaching_arm": "Open hand to upper right; near-straight extended arm retained.",
+      "head_face": "Raised and turned with open mouth and tense brows, close to approved.",
+      "hair_drapery": "Broad pattern retained; small carving/fold details are regenerated."
+    },
+    "defects": [
+      "Colored red/yellow/white fringe and detached speckles persist around the cutout despite cleanup request.",
+      "Requested eight percent framing margin fails on all sides.",
+      "Fine details are regenerated rather than pixel-identical to approved."
+    ],
+    "same_rigid_geometry": "Close front reference, but not an exact measured geometric record.",
+    "camera_rotation_verified": false
+  },
+  "limitations": "Candidate inferred imagery only. Novel views are not measured hidden geometry, a recovered 3D model, or guaranteed reconstruction-ready data. Four native generation calls total; no retries, mesh generation, pixel cleanup, or background compositing.",
+  "acceptance": "Not accepted as a rigid geometrically consistent four-view reconstruction pack."
+}

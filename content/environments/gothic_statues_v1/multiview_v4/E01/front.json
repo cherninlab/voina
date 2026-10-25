@@ -1,0 +1,64 @@
+{
+  "view": "front",
+  "status": "generated_candidate_consistency_gate_failed",
+  "generated_at_utc": "2026-10-25T14:37:26.863398+00:00",
+  "tool": "built-in image_gen",
+  "tool_arguments": {
+    "prompt": "Use case: precise-object-edit\nAsset type: clean reconstruction-reference front image of the exact selected sculpture.\nEdit target: the provided approved.png is the sole selected rigid statue. Faithfully preserve its exact existing sculpture and exact camera view. Change only cutout quality and framing: remove all red/yellow edge contamination, remove all translucent halo and fringe, and fit the full original form inside the canvas with at least 8 percent transparent margin all around. Do not restyle, improve, reinterpret or repose the woman.\nGeometry and identity invariants: the SAME mature adult woman's pale warm marble face, anxious expression, upward head direction, hair strands and locks, short opaque sleeveless tunic, every fold, shoulder brooches, anatomy and the exact current positions of all limbs. Her left arm reaches diagonally upward toward viewer-right with open fingers; her right arm descends toward the viewer to a spread supporting hand. One knee is tucked underneath the torso, the other leg splays/trails sideways toward viewer-left with its foot fully visible. Preserve every finger, toe, joint, angle and visible overlap precisely. No mirroring. Preserve camera elevation, perspective and pose. The sculpture is a single fixed rigid object.\nStyle/lighting: same detailed Roman/Renaissance marble carving and fine marble texture. Plain neutral soft catalog lighting. Keep the existing opaque tunic securely covering torso and pelvis exactly as source.\nOutput: one full-body sculpture only, genuinely transparent alpha background. No visible background, ground, cast shadow, pedestal, plinth, base, prop, scenery, glow, fog, lettering or watermark. Complete fingertips and toes in frame. This is a nonsexual classical sculpture reference image; no 3D model or mesh.",
+    "referenced_image_paths": [
+      "/Users/theochernin/Projects/MultiPlayerProject-agents/theo-codex-43/content/environments/gothic_statues_v1/multiview_v4/E01/approved.png"
+    ],
+    "transparent_background": true
+  },
+  "receipt": {
+    "native_source_path": "/Users/theochernin/.codex/generated_images/01a17367-08f5-7c01-b2da-13154bab4420/exec-73da167a-6b90-4cc9-a9fc-ef5b48979aea.png",
+    "saved_path": "/Users/theochernin/Projects/MultiPlayerProject-agents/theo-codex-43/content/environments/gothic_statues_v1/multiview_v4/E01/front.png",
+    "output_hint": "Generated images are saved to /Users/theochernin/.codex/generated_images/01a17367-08f5-7c01-b2da-13154bab4420 as /Users/theochernin/.codex/generated_images/01a17367-08f5-7c01-b2da-13154bab4420/exec-73da167a-6b90-4cc9-a9fc-ef5b48979aea.png by default.\nIf you need to use a generated image at another path, copy it and leave the original in place unless the user explicitly asks you to delete it.\nThe generated image is already displayed to the user. There is no need to render it in the final response as a Markdown image or file link.",
+    "returned_image_url": "data:image/png;base64 pixel payload preserved in native PNG, omitted from JSON"
+  },
+  "requested_azimuth_degrees": 0,
+  "azimuth_convention": {
+    "world_up": "+Y",
+    "reference_camera": "C(0)=(0,h,R), looking toward the sculpture center",
+    "positive_azimuth": "C(theta)=(R*sin(theta),h,R*cos(theta)); camera orbits, sculpture remains fixed",
+    "requested_views": {
+      "front": 0,
+      "left": 90,
+      "back": 180,
+      "right": 270
+    },
+    "warning": "Requested azimuths are prompt instructions, not verified calibrated camera measurements."
+  },
+  "verification": {
+    "dimensions": [
+      1536,
+      1024
+    ],
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      254
+    ],
+    "fully_transparent_pixels": 1083227,
+    "fully_opaque_pixels": 0,
+    "partially_transparent_pixels": 489637,
+    "alpha_nonzero_bbox": [
+      37,
+      17,
+      1510,
+      1006
+    ],
+    "sha256": "1ab177dc586d0300928ee2f8b088a2ff420d05d6a71e9f84bcc961994a11db30",
+    "byte_identical_to_native": true,
+    "view_image_inspected": true,
+    "visual_assessment": "Native ImageGen preview inspected; view_image also called on every saved output. view_image rendered these files unusually dark in the tool preview despite populated RGB and alpha, so the generation preview informed visual comparison."
+  },
+  "consistency_findings": [
+    "Requested source pose and principal landmarks are largely preserved.",
+    "Requested cleanup failed: broad translucent brown-gray halo reappeared.",
+    "Requested minimum 8 percent margin was not added; raised fingertips and supporting hand remain close to frame.",
+    "Do not use as a clean reconstruction cutout."
+  ],
+  "geometry_evidence": "Novel views are inferred candidates, not measured evidence of true hidden geometry. Pack is not reconstruction-ready.",
+  "mesh_generated": false
+}

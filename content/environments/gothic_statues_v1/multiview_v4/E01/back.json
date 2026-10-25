@@ -1,0 +1,65 @@
+{
+  "view": "back",
+  "status": "generated_candidate_consistency_gate_failed",
+  "generated_at_utc": "2026-10-25T14:37:26.907630+00:00",
+  "tool": "built-in image_gen",
+  "tool_arguments": {
+    "prompt": "Use case: precise-object-edit\nAsset type: one inferred novel view for a fixed sculpture turntable reference pack.\nReferences: approved.png is the authoritative sculpture identity and geometry anchor. front.png shows the identical approved pose; ignore its accidental background halo. These are the SAME one rigid marble statue, not two subjects. Preserve the sculpture, rotate only the CAMERA. Do not mirror, repose, symmetrize or anatomically redesign it.\nObject invariants locked in world space: mature adult woman, identical anxious face, head turned toward her raised left hand; left shoulder and arm reach forward/up with the same open finger spread. Her right arm extends down and forward to the same supporting palm with spread fingers. Same torso twist, same tucked knee beneath her body, same trailing sideways leg and fully visible foot, identical joints and limb lengths. Head, eyes, hands, fingers, hair curls and tunic folds remain fixed in world space. Same short opaque sleeveless Roman tunic, two shoulder brooches, securely covering torso and pelvis in the existing pose. Keep refined Roman/Renaissance carving, pale warm aged marble, very subtle pores and veins, and existing fine cloth folds. All parts the same continuous marble.\nCamera convention: world vertical is +Y; the reference camera is azimuth 0 at (0,h,R) looking toward the sculpture center. Positive orbit around +Y has camera position (R*sin(theta),h,R*cos(theta)). Keep the same h, radius R, focal length, modest perspective and low catalog elevation; only azimuth changes. The statue does not rotate or move.\nOutput rules: one original fixed full-body sculpture only, entire form inside frame with at least 8 percent clear margin. Plain neutral soft catalog light. Clean genuine transparent alpha background, no solid background, halo, colored edge fringe, glow, fog, ground, cast shadow, prop, base, pedestal, plinth, scene, lettering or watermark. A nonsexual classical sculpture image only; no mesh or 3D output. Infer hidden surfaces consistently with the references; do not invent a new pose.\nRequested view: BACK, azimuth +180 degrees relative to front, camera at (0,h,-R). The camera is now exactly on the opposite side of the rigid statue. Show the back of the carved hair, shoulder blades and BACK of the existing tunic. The face is turned away and should largely be hidden. The raised left arm that appeared at viewer-right in the source should now project toward viewer-left from this rear camera, with back-of-hand surfaces appropriate to the fixed pose. The trailing leg that projected toward viewer-left in front should project toward viewer-right here. These screen reversals must result solely from viewing the same geometry from behind, not mirroring the sculpture. Same supporting palm, knees, torso, head and fingers remain in world space. Reveal hidden back surfaces consistently. Do not return a front-facing woman or rotate her head to look at this camera.",
+    "referenced_image_paths": [
+      "/Users/theochernin/Projects/MultiPlayerProject-agents/theo-codex-43/content/environments/gothic_statues_v1/multiview_v4/E01/approved.png",
+      "/Users/theochernin/Projects/MultiPlayerProject-agents/theo-codex-43/content/environments/gothic_statues_v1/multiview_v4/E01/front.png"
+    ],
+    "transparent_background": true
+  },
+  "receipt": {
+    "native_source_path": "/Users/theochernin/.codex/generated_images/01a17367-08f5-7c01-b2da-13154bab4420/exec-45db56d4-fc04-4f0d-b514-018f5526c49c.png",
+    "saved_path": "/Users/theochernin/Projects/MultiPlayerProject-agents/theo-codex-43/content/environments/gothic_statues_v1/multiview_v4/E01/back.png",
+    "output_hint": "Generated images are saved to /Users/theochernin/.codex/generated_images/01a17367-08f5-7c01-b2da-13154bab4420 as /Users/theochernin/.codex/generated_images/01a17367-08f5-7c01-b2da-13154bab4420/exec-45db56d4-fc04-4f0d-b514-018f5526c49c.png by default.\nIf you need to use a generated image at another path, copy it and leave the original in place unless the user explicitly asks you to delete it.\nThe generated image is already displayed to the user. There is no need to render it in the final response as a Markdown image or file link.",
+    "returned_image_url": "data:image/png;base64 pixel payload preserved in native PNG, omitted from JSON"
+  },
+  "requested_azimuth_degrees": 180,
+  "azimuth_convention": {
+    "world_up": "+Y",
+    "reference_camera": "C(0)=(0,h,R), looking toward the sculpture center",
+    "positive_azimuth": "C(theta)=(R*sin(theta),h,R*cos(theta)); camera orbits, sculpture remains fixed",
+    "requested_views": {
+      "front": 0,
+      "left": 90,
+      "back": 180,
+      "right": 270
+    },
+    "warning": "Requested azimuths are prompt instructions, not verified calibrated camera measurements."
+  },
+  "verification": {
+    "dimensions": [
+      1536,
+      1024
+    ],
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      254
+    ],
+    "fully_transparent_pixels": 1128640,
+    "fully_opaque_pixels": 0,
+    "partially_transparent_pixels": 444224,
+    "alpha_nonzero_bbox": [
+      0,
+      26,
+      1520,
+      1024
+    ],
+    "sha256": "25e2b19260edda6e4ca8cfbc0624c068b640c68c337c049f12c652edf55433c0",
+    "byte_identical_to_native": true,
+    "view_image_inspected": true,
+    "visual_assessment": "Native ImageGen preview inspected; view_image also called on every saved output. view_image rendered these files unusually dark in the tool preview despite populated RGB and alpha, so the generation preview informed visual comparison."
+  },
+  "consistency_findings": [
+    "Rear-facing camera intent is present; face is turned away, raised arm projects left and trailing leg right.",
+    "Hidden back hair, tunic folds, shoulder attachment details and limb-depth relationships are inferred rather than measured.",
+    "Leg/knee and supporting-arm relationships cannot be established as a rigid rotation from the anchor; geometry consistency is unproven.",
+    "Broad translucent brown-gray halo persists; 8 percent margin not achieved."
+  ],
+  "geometry_evidence": "Novel views are inferred candidates, not measured evidence of true hidden geometry. Pack is not reconstruction-ready.",
+  "mesh_generated": false
+}

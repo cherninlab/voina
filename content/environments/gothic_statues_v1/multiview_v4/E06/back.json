@@ -1,0 +1,150 @@
+{
+  "asset_id": "E06_back",
+  "task": "T-191",
+  "mode": "built-in image_gen image edit",
+  "generated_at_utc": "2026-10-25 14:38:21 UTC",
+  "prompt": "Use case: precise-object-edit\nAsset type: BACK view, one image in a candidate four-view turntable pack of the SAME rigid marble statue.\nReferences: image 1 front.png is the fixed FRONT camera azimuth 0; image 2 approved.png is the original exact same approved statue and geometry. Use both to preserve identity. Treat the statue as one immutable physical sculpture on an invisible turntable: rotate ONLY the CAMERA by +180 degrees around its vertical axis from FRONT. Camera convention: statue up is +Y; front camera=(0,h,+d), front image right corresponds to +X; BACK +180 camera=(0,h,-d). Show the actual back of the head/hair, shoulders, torso and tunic. The source's outstretched arm toward +X must project toward screen LEFT in this rear view; the supporting arm/palm formerly at front-image left should project to rear-view RIGHT. This is a camera orbit, NOT mirroring.\nFixed geometry: preserve the asymmetrical seated collapse with original planted supporting palm, straight load-bearing arm and exact wrist/palm, both knees together and folded to original front-image right, overlapped feet, original other arm outstretched straight with open hand, exact raised/turned-back head and anguish expression, hair curls, and opaque tunic/drapery. No limb may move to improve visibility; natural occlusion is correct. Existing tunic securely covers torso/pelvis. Same proportions, age, pale warm marble pores/veins and carving. Infer only hidden rear surfaces conservatively while keeping every known pose landmark fixed. The face may be partly or fully occluded as demanded by the fixed head turn; do not rotate the head to show the face.\nCamera and lighting: same low elevation and modest perspective as source; camera target and distance chosen to show the entire statue with at least 8 percent empty margin on all sides, neutral even catalog lighting. One back view only. Genuinely transparent alpha background, opaque marble and clean antialiased cutout edges; remove red/yellow fringe and halo.\nConstraints: no mirroring, no reposing, no expression change, no new ornament, no base/plinth/pedestal, no ground, prop, environment, fog, glow, cast shadow, text, watermark, or extra objects.",
+  "parameters": {
+    "transparent_background": true,
+    "referenced_image_paths": [
+      "/Users/theochernin/Projects/MultiPlayerProject-agents/theo-codex-43/content/environments/gothic_statues_v1/multiview_v4/E06/front.png",
+      "/Users/theochernin/Projects/MultiPlayerProject-agents/theo-codex-43/content/environments/gothic_statues_v1/multiview_v4/E06/approved.png"
+    ]
+  },
+  "source_receipts": [
+    {
+      "path": "/Users/theochernin/Projects/MultiPlayerProject-agents/theo-codex-43/content/environments/gothic_statues_v1/multiview_v4/E06/front.png",
+      "format": "PNG",
+      "dimensions": [
+        1312,
+        1199
+      ],
+      "mode": "RGBA",
+      "bytes": 1444513,
+      "sha256": "7f884eb4497b8cb365647a71841e698e3e8fe1d3701a63f95c8dfa146a7b6fc6",
+      "alpha_extrema": [
+        0,
+        255
+      ],
+      "transparent_pixels": 850915,
+      "opaque_pixels": 1082,
+      "partial_alpha_pixels": 721091,
+      "alpha_nonzero_bbox": [
+        0,
+        4,
+        1292,
+        1199
+      ],
+      "alpha_at_least_128_bbox": [
+        30,
+        44,
+        1284,
+        1175
+      ]
+    },
+    {
+      "path": "/Users/theochernin/Projects/MultiPlayerProject-agents/theo-codex-43/content/environments/gothic_statues_v1/multiview_v4/E06/approved.png",
+      "format": "PNG",
+      "dimensions": [
+        1312,
+        1199
+      ],
+      "mode": "RGBA",
+      "bytes": 1719040,
+      "sha256": "6d77c24b485d8765d560c83b186020aaa756ec7c0c3f97ec6d6e30970f206769",
+      "alpha_extrema": [
+        0,
+        255
+      ],
+      "transparent_pixels": 781407,
+      "opaque_pixels": 217,
+      "partial_alpha_pixels": 791464,
+      "alpha_nonzero_bbox": [
+        0,
+        0,
+        1304,
+        1199
+      ],
+      "alpha_at_least_128_bbox": [
+        24,
+        22,
+        1287,
+        1177
+      ]
+    }
+  ],
+  "returned_metadata": {
+    "output_hint": "Generated images are saved to /Users/theochernin/.codex/generated_images/01a17367-e6a8-7360-82ce-6fc5b3cee7a6 as /Users/theochernin/.codex/generated_images/01a17367-e6a8-7360-82ce-6fc5b3cee7a6/exec-2fbc08dc-a71e-46dd-83c3-341f9334050d.png by default.\nIf you need to use a generated image at another path, copy it and leave the original in place unless the user explicitly asks you to delete it.\nThe generated image is already displayed to the user. There is no need to render it in the final response as a Markdown image or file link.",
+    "image_url": {
+      "scheme": "data",
+      "mime_type": "image/png",
+      "base64_omitted": true
+    }
+  },
+  "native_source_path": "/Users/theochernin/.codex/generated_images/01a17367-e6a8-7360-82ce-6fc5b3cee7a6/exec-2fbc08dc-a71e-46dd-83c3-341f9334050d.png",
+  "saved_png_path": "/Users/theochernin/Projects/MultiPlayerProject-agents/theo-codex-43/content/environments/gothic_statues_v1/multiview_v4/E06/back.png",
+  "requested_camera": {
+    "azimuth_degrees": 180,
+    "convention": "Y up; front=(0,h,+d); front image-right=+X; +90 left=(-d,h,0); +180 back=(0,h,-d); +270 right=(+d,h,0). Angles are requested, not measured.",
+    "elevation": "Match low elevation of approved source",
+    "perspective": "Match modest perspective of approved source"
+  },
+  "receipt": {
+    "path": "/Users/theochernin/Projects/MultiPlayerProject-agents/theo-codex-43/content/environments/gothic_statues_v1/multiview_v4/E06/back.png",
+    "format": "PNG",
+    "dimensions": [
+      1312,
+      1199
+    ],
+    "mode": "RGBA",
+    "bytes": 1436761,
+    "sha256": "db6863b99daa4fce73681ed901fa2deb8d3ec6a39f31e5a18d2bc0d1badd35b1",
+    "alpha_extrema": [
+      0,
+      255
+    ],
+    "transparent_pixels": 848792,
+    "opaque_pixels": 648,
+    "partial_alpha_pixels": 723648,
+    "alpha_nonzero_bbox": [
+      0,
+      0,
+      1299,
+      1199
+    ],
+    "alpha_at_least_128_bbox": [
+      26,
+      45,
+      1296,
+      1175
+    ]
+  },
+  "measurement_note": "Read-only Pillow inspection of native PNG; no pixel editing or compositing.",
+  "measured_alpha_128_margin_percent": {
+    "left": 1.9817073170731707,
+    "top": 3.7531276063386154,
+    "right": 1.2195121951219512,
+    "bottom": 2.0016680567139282
+  },
+  "visual_inspection": {
+    "method": "view_image on saved native PNG after generation",
+    "landmark_check": {
+      "supporting_palm": "Present at rear-view right with load-bearing arm, as expected from rear projection; wrist/palm shape is inferred.",
+      "folded_legs": "Legs folded toward rear-view left, mostly obscured by inferred drapery; exact knee/foot arrangement cannot be verified.",
+      "reaching_arm": "Projects toward rear-view left and remains near-straight, broadly consistent.",
+      "head_face": "Back of head visible, face mostly occluded; exact head rotation cannot be measured.",
+      "hair_drapery": "Rear curls and open-back tunic folds are newly inferred."
+    },
+    "defects": [
+      "Hidden rear anatomy, hair and tunic surfaces are newly inferred and unmeasured.",
+      "Detailed rear drapery and foot contacts cannot be reconciled with front geometry from imagery alone.",
+      "Exact plus-180 orbit is unverified although rear orientation and left/right limb ordering broadly match.",
+      "Colored fringe/speckles persist.",
+      "Requested eight percent framing margin fails on all sides."
+    ],
+    "same_rigid_geometry": "Broad silhouette plausibly related; strict hidden geometry consistency unproven.",
+    "camera_rotation_verified": false
+  },
+  "limitations": "Candidate inferred imagery only. Novel views are not measured hidden geometry, a recovered 3D model, or guaranteed reconstruction-ready data. Four native generation calls total; no retries, mesh generation, pixel cleanup, or background compositing.",
+  "acceptance": "Not accepted as a rigid geometrically consistent four-view reconstruction pack."
+}

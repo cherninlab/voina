@@ -1,0 +1,64 @@
+{
+  "statues": [
+    {
+      "id": "E01",
+      "views_generated": [
+        "left",
+        "back",
+        "right",
+        "front"
+      ],
+      "accepted_for_reconstruction": false,
+      "reason": "Camera orbit and fixed-pose consistency failed; generated views change limbs/drapery and some left/right pairs show the same side. Native alpha also needs cleanup.",
+      "missing": [],
+      "receipts": [
+        "front.json",
+        "left.json",
+        "back.json",
+        "right.json"
+      ]
+    },
+    {
+      "id": "E04",
+      "views_generated": [
+        "left",
+        "right",
+        "front"
+      ],
+      "accepted_for_reconstruction": false,
+      "reason": "Camera orbit and fixed-pose consistency failed; generated views change limbs/drapery and some left/right pairs show the same side. Native alpha also needs cleanup.",
+      "missing": [
+        "back"
+      ],
+      "receipts": [
+        "front.json",
+        "left.json",
+        "back.json",
+        "right.json"
+      ]
+    },
+    {
+      "id": "E06",
+      "views_generated": [
+        "left",
+        "back",
+        "right",
+        "front"
+      ],
+      "accepted_for_reconstruction": false,
+      "reason": "Camera orbit and fixed-pose consistency failed; generated views change limbs/drapery and some left/right pairs show the same side. Native alpha also needs cleanup.",
+      "missing": [],
+      "receipts": [
+        "front.json",
+        "left.json",
+        "back.json",
+        "right.json"
+      ]
+    }
+  ],
+  "mesh_generation": "No statue meshes generated from rejected view sets",
+  "backend_test": "Separate camera-conditioned InstantMesh NeRF MPS path tested on consistent analytic sphere views; not statue quality acceptance",
+  "backend_location": "/Users/theochernin/Projects/CherninLab3D/web_ui/multiview_shape.py",
+  "upstream_full_mv_license": "https://huggingface.co/tencent/Hunyuan3D-2mv/blob/main/LICENSE",
+  "upstream_full_mv_status": "Not installed; permission versus alternative asked of user; independent experimental route uses Apache-declared weights and Apache encoder/transformer files only"
+}

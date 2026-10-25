@@ -1,0 +1,91 @@
+{
+  "asset": "E04",
+  "view": "left",
+  "status": "generated_candidate",
+  "validation_status": "not_accepted_as_rigid_multiview_reference",
+  "tool": "built-in image_gen.imagegen",
+  "call_index": 2,
+  "max_calls": 4,
+  "parameters": {
+    "transparent_background": true,
+    "referenced_image_paths": [
+      "/Users/theochernin/Projects/MultiPlayerProject-agents/theo-codex-43/content/environments/gothic_statues_v1/multiview_v4/E04/front.png",
+      "/Users/theochernin/Projects/MultiPlayerProject-agents/theo-codex-43/content/environments/gothic_statues_v1/multiview_v4/E04/approved.png"
+    ]
+  },
+  "prompt": "Use case: precise-object-edit\nAsset type: E04 rigid marble statue turntable pack, left view at azimuth +90 degrees.\nGeometry references: Image 1 front.png is the front camera at azimuth 0; Image 2 approved.png is the selected exact sculpture identity and pose. Both show the SAME rigid sculpture. Use both references. This is a camera-only turntable image, not a new pose.\nCamera convention: Set the original front camera at C0=(0,h,+d), aimed at the statue center. Positive azimuth travels toward the original image-left side. For THIS image move the camera exactly one quarter circle to C90=(-d,h,0), aimed at the same center. Keep the same height h, distance d, low elevation, modest perspective and neutral catalog lighting. Show the true +90-degree side view, with all natural foreshortening and occlusion. Do not simply mirror the front image.\nRigid invariants: Every arm, leg, bent knee, head, hand, individual finger, hair lock and cloth fold stays fixed in the same world-space location as the approved source. The body remains low/prone, chest lifted on one planted hand and opposite arm reaching diagonally upward/forward; legs trail behind with exactly the source's bends. Head and eyes stay turned toward the reaching hand. Do not reposition limbs to show them better. Reveal hidden geometry only as a conservative continuation of the exact source, with no extra limbs, hands, new hair arrangements or altered clothing.\nStyle and material: Same mature adult woman, same anguished face, carved wavy hair, pale warm weathered Roman/Renaissance marble and subtle veins. Same opaque tunic securely covers torso and pelvis in its unchanged folds. Nonsexual classical sculpture reference.\nFraming/background: Full complete sculpture with at least 8 percent transparent margin on every side. True transparent alpha, clean neutral marble antialiased edges. No colored fringe, halo, base, pedestal, platform, scenery, fog, glow, cast shadow, text or watermark. One image only.",
+  "azimuth_convention": {
+    "coordinate_system": "Relative camera convention only; front camera C0=(0,h,+d), aimed at fixed statue center. Positive azimuth travels toward original image-left.",
+    "front": {
+      "requested_azimuth_degrees": 0,
+      "camera": "(0,h,+d)"
+    },
+    "left": {
+      "requested_azimuth_degrees": 90,
+      "camera": "(-d,h,0)"
+    },
+    "back": {
+      "requested_azimuth_degrees": 180,
+      "camera": "(0,h,-d)"
+    },
+    "right": {
+      "requested_azimuth_degrees": 270,
+      "camera": "(+d,h,0)"
+    },
+    "elevation_perspective": "Requested identical source low elevation, height, camera distance and modest perspective; actual calibration cannot be established from these generated images."
+  },
+  "source_result_path": "/Users/theochernin/.codex/generated_images/01a17367-7a4d-78c3-b7fa-75344b51d0a8/exec-17a703f1-31d1-4ac7-9ab6-f8dbee8e3359.png",
+  "result_path": "/Users/theochernin/Projects/MultiPlayerProject-agents/theo-codex-43/content/environments/gothic_statues_v1/multiview_v4/E04/left.png",
+  "returned_metadata": {
+    "output_hint": "Generated images are saved to /Users/theochernin/.codex/generated_images/01a17367-7a4d-78c3-b7fa-75344b51d0a8 as /Users/theochernin/.codex/generated_images/01a17367-7a4d-78c3-b7fa-75344b51d0a8/exec-17a703f1-31d1-4ac7-9ab6-f8dbee8e3359.png by default.\nIf you need to use a generated image at another path, copy it and leave the original in place unless the user explicitly asks you to delete it.\nThe generated image is already displayed to the user. There is no need to render it in the final response as a Markdown image or file link.",
+    "image_mime_type": "image/png",
+    "image_url_type": "data URL; native image bytes copied to result_path without image edits"
+  },
+  "verification": {
+    "image_size": [
+      1536,
+      1024
+    ],
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      254
+    ],
+    "fully_transparent_pixels": 1203649,
+    "partially_transparent_pixels": 369215,
+    "fully_opaque_pixels": 0,
+    "alpha128_bbox": [
+      34,
+      183,
+      1514,
+      848
+    ],
+    "sha256": "ed26960eb7bd5dcbb14ab45640d79009c52785c566ed81b97a804e67b2c16b1a",
+    "alpha128_margins_ltrb": [
+      0.022135416666666668,
+      0.1787109375,
+      0.014322916666666666,
+      0.171875
+    ],
+    "requested_8_percent_margin_met_at_alpha128": false
+  },
+  "visual_review": {
+    "inspected_with": "view_image",
+    "pose_consistency": "Rigid consistency is unproven. The output resembles a modest side shift rather than a demonstrable exact 90-degree orbit.",
+    "strengths": [
+      "General prone reaching pose, marble identity and secure opaque tunic remain recognizable."
+    ],
+    "problems": [
+      "Hair bun/curls and tunic fold arrangement drift from front/source.",
+      "Requested 90-degree azimuth cannot be verified and appears undershot.",
+      "Planted-hand, torso and leg relationships are inferred; hidden geometry is ambiguous.",
+      "8 percent side margins and halo removal were not achieved."
+    ]
+  },
+  "limitations": [
+    "These novel views are inferred images from a single selected anchor, not a real scan.",
+    "True hidden geometry and exact rigid consistency are not guaranteed.",
+    "No mesh generation and no image postprocessing performed."
+  ],
+  "retry_attempted": false
+}

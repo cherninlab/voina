@@ -1,0 +1,150 @@
+{
+  "asset_id": "E06_right",
+  "task": "T-191",
+  "mode": "built-in image_gen image edit",
+  "generated_at_utc": "2026-10-25 14:38:21 UTC",
+  "prompt": "Use case: precise-object-edit\nAsset type: RIGHT view, one image in a candidate four-view turntable pack of the SAME rigid marble statue.\nReferences: image 1 front.png is the fixed FRONT camera azimuth 0; image 2 approved.png is the original exact same approved statue and geometry. Use both to preserve identity. Treat the statue as one immutable physical sculpture on an invisible turntable: rotate ONLY the CAMERA by +270 degrees (equivalent -90) around its vertical axis from FRONT. Camera convention: statue up is +Y; front camera=(0,h,+d), front image right corresponds to +X; RIGHT +270 camera=(+d,h,0). This is the outstretched-arm side of the statue. We look from the side toward which the source's outstretched arm reaches. That arm must point toward the camera and appear strongly foreshortened, its original open palm closer to the camera than shoulder, while the supporting palm on the opposite side is naturally occluded if necessary. Show a true perpendicular side camera view, not the front, not the other side, and never mirror.\nFixed geometry: preserve the asymmetrical seated collapse with original planted supporting palm, straight load-bearing arm and exact wrist/palm, both knees together and folded to original front-image right, overlapped feet, original other arm outstretched straight with open hand, exact raised/turned-back head and anguish expression, hair curls, and opaque tunic/drapery. No limb may move to improve visibility; natural occlusion is correct. Existing tunic securely covers torso/pelvis. Same proportions, age, pale warm marble pores/veins and carving. Infer hidden surfaces conservatively while keeping every known pose landmark fixed. Do not rotate the head toward the camera merely to show the face.\nCamera and lighting: same low elevation and modest perspective as source; camera target and distance chosen to show the entire statue with at least 8 percent empty margin on all sides, neutral even catalog lighting. One right view only. Genuinely transparent alpha background, opaque marble and clean antialiased cutout edges; remove red/yellow fringe and halo.\nConstraints: no mirroring, no reposing, no expression change, no new ornament, no base/plinth/pedestal, no ground, prop, environment, fog, glow, cast shadow, text, watermark, or extra objects.",
+  "parameters": {
+    "transparent_background": true,
+    "referenced_image_paths": [
+      "/Users/theochernin/Projects/MultiPlayerProject-agents/theo-codex-43/content/environments/gothic_statues_v1/multiview_v4/E06/front.png",
+      "/Users/theochernin/Projects/MultiPlayerProject-agents/theo-codex-43/content/environments/gothic_statues_v1/multiview_v4/E06/approved.png"
+    ]
+  },
+  "source_receipts": [
+    {
+      "path": "/Users/theochernin/Projects/MultiPlayerProject-agents/theo-codex-43/content/environments/gothic_statues_v1/multiview_v4/E06/front.png",
+      "format": "PNG",
+      "dimensions": [
+        1312,
+        1199
+      ],
+      "mode": "RGBA",
+      "bytes": 1444513,
+      "sha256": "7f884eb4497b8cb365647a71841e698e3e8fe1d3701a63f95c8dfa146a7b6fc6",
+      "alpha_extrema": [
+        0,
+        255
+      ],
+      "transparent_pixels": 850915,
+      "opaque_pixels": 1082,
+      "partial_alpha_pixels": 721091,
+      "alpha_nonzero_bbox": [
+        0,
+        4,
+        1292,
+        1199
+      ],
+      "alpha_at_least_128_bbox": [
+        30,
+        44,
+        1284,
+        1175
+      ]
+    },
+    {
+      "path": "/Users/theochernin/Projects/MultiPlayerProject-agents/theo-codex-43/content/environments/gothic_statues_v1/multiview_v4/E06/approved.png",
+      "format": "PNG",
+      "dimensions": [
+        1312,
+        1199
+      ],
+      "mode": "RGBA",
+      "bytes": 1719040,
+      "sha256": "6d77c24b485d8765d560c83b186020aaa756ec7c0c3f97ec6d6e30970f206769",
+      "alpha_extrema": [
+        0,
+        255
+      ],
+      "transparent_pixels": 781407,
+      "opaque_pixels": 217,
+      "partial_alpha_pixels": 791464,
+      "alpha_nonzero_bbox": [
+        0,
+        0,
+        1304,
+        1199
+      ],
+      "alpha_at_least_128_bbox": [
+        24,
+        22,
+        1287,
+        1177
+      ]
+    }
+  ],
+  "returned_metadata": {
+    "output_hint": "Generated images are saved to /Users/theochernin/.codex/generated_images/01a17367-e6a8-7360-82ce-6fc5b3cee7a6 as /Users/theochernin/.codex/generated_images/01a17367-e6a8-7360-82ce-6fc5b3cee7a6/exec-03ba4ea2-8d5a-4a48-a5e0-852b9cbaa80e.png by default.\nIf you need to use a generated image at another path, copy it and leave the original in place unless the user explicitly asks you to delete it.\nThe generated image is already displayed to the user. There is no need to render it in the final response as a Markdown image or file link.",
+    "image_url": {
+      "scheme": "data",
+      "mime_type": "image/png",
+      "base64_omitted": true
+    }
+  },
+  "native_source_path": "/Users/theochernin/.codex/generated_images/01a17367-e6a8-7360-82ce-6fc5b3cee7a6/exec-03ba4ea2-8d5a-4a48-a5e0-852b9cbaa80e.png",
+  "saved_png_path": "/Users/theochernin/Projects/MultiPlayerProject-agents/theo-codex-43/content/environments/gothic_statues_v1/multiview_v4/E06/right.png",
+  "requested_camera": {
+    "azimuth_degrees": 270,
+    "convention": "Y up; front=(0,h,+d); front image-right=+X; +90 left=(-d,h,0); +180 back=(0,h,-d); +270 right=(+d,h,0). Angles are requested, not measured.",
+    "elevation": "Match low elevation of approved source",
+    "perspective": "Match modest perspective of approved source"
+  },
+  "receipt": {
+    "path": "/Users/theochernin/Projects/MultiPlayerProject-agents/theo-codex-43/content/environments/gothic_statues_v1/multiview_v4/E06/right.png",
+    "format": "PNG",
+    "dimensions": [
+      1312,
+      1199
+    ],
+    "mode": "RGBA",
+    "bytes": 1181808,
+    "sha256": "e8c24762bcab5f9bb3921023395db0fe3bc56855f292d51e174ef15bb68ed215",
+    "alpha_extrema": [
+      0,
+      255
+    ],
+    "transparent_pixels": 976781,
+    "opaque_pixels": 114,
+    "partial_alpha_pixels": 596193,
+    "alpha_nonzero_bbox": [
+      0,
+      0,
+      1288,
+      1199
+    ],
+    "alpha_at_least_128_bbox": [
+      241,
+      13,
+      1170,
+      1199
+    ]
+  },
+  "measurement_note": "Read-only Pillow inspection of native PNG; no pixel editing or compositing.",
+  "measured_alpha_128_margin_percent": {
+    "left": 18.36890243902439,
+    "top": 1.0842368640533777,
+    "right": 10.823170731707316,
+    "bottom": 0
+  },
+  "visual_inspection": {
+    "method": "view_image on saved native PNG after generation",
+    "landmark_check": {
+      "supporting_palm": "Mostly occluded; a small hand projects at lower left. Contact and wrist geometry cannot be checked.",
+      "folded_legs": "Both folded legs remain, but front-most foot and knee overlap have been reinterpreted.",
+      "reaching_arm": "Open palm points toward camera with strong foreshortening, broadly matching intended arm-side view; arm length/shoulder geometry unmeasured.",
+      "head_face": "Face appears much more frontal; apparent head/neck orientation differs from the rigid source expectation.",
+      "hair_drapery": "Curl and cloth fold details change; bottom drapery touches/crosses image boundary."
+    },
+    "defects": [
+      "Head/neck and face presentation appear reoriented rather than reliably preserving the exact source head turn.",
+      "Knee/foot overlap, hand proportions and drapery are not consistent enough to assert one rigid sculpture.",
+      "Exact plus-270 orbit is unverified; camera elevation also appears different.",
+      "Drapery is clipped/touches bottom frame; requested eight percent margin fails at top/bottom.",
+      "Colored edge contamination persists."
+    ],
+    "same_rigid_geometry": "Fails strict rigid-pose consistency.",
+    "camera_rotation_verified": false
+  },
+  "limitations": "Candidate inferred imagery only. Novel views are not measured hidden geometry, a recovered 3D model, or guaranteed reconstruction-ready data. Four native generation calls total; no retries, mesh generation, pixel cleanup, or background compositing.",
+  "acceptance": "Not accepted as a rigid geometrically consistent four-view reconstruction pack."
+}

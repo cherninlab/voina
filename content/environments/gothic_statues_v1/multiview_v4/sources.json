@@ -1,0 +1,47 @@
+[
+  {
+    "id": "E01",
+    "source": "/var/folders/l1/ffgp3l9n2gd1g8gjswvkfqyw0000gn/T/codex-clipboard-fd880439-97db-4e97-a833-ad725e5bf83c.png",
+    "saved": "content/environments/gothic_statues_v1/multiview_v4/E01/approved.png",
+    "sha256": "07b8275c2df6de491ca114453179e26a7865da8dc5bd4308e7880a6fec79dc61",
+    "size": [
+      1536,
+      1024
+    ],
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      254
+    ]
+  },
+  {
+    "id": "E06",
+    "source": "/var/folders/l1/ffgp3l9n2gd1g8gjswvkfqyw0000gn/T/codex-clipboard-c3342bf4-8543-4cc4-989c-2c01bb95e244.png",
+    "saved": "content/environments/gothic_statues_v1/multiview_v4/E06/approved.png",
+    "sha256": "6d77c24b485d8765d560c83b186020aaa756ec7c0c3f97ec6d6e30970f206769",
+    "size": [
+      1312,
+      1199
+    ],
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      255
+    ]
+  },
+  {
+    "id": "E04",
+    "source": "/var/folders/l1/ffgp3l9n2gd1g8gjswvkfqyw0000gn/T/codex-clipboard-040b4a31-3dc4-499e-ac87-ba1b8e974159.png",
+    "saved": "content/environments/gothic_statues_v1/multiview_v4/E04/approved.png",
+    "sha256": "17c1c7ab356214a07e7149866d3eacdb19738a3e808d6d68bcc2c5d40530452f",
+    "size": [
+      1536,
+      1024
+    ],
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      254
+    ]
+  }
+]
