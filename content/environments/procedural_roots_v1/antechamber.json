@@ -1,23 +1,19 @@
 {
   "ao": {
     "Roots_antechamber_0": {
-      "mean": 0.574,
+      "mean": 0.562,
       "min": 0.2
     },
     "Roots_antechamber_1": {
-      "mean": 0.556,
+      "mean": 0.547,
       "min": 0.2
     },
     "Roots_antechamber_2": {
-      "mean": 0.595,
+      "mean": 0.585,
       "min": 0.2
     },
-    "Roots_antechamber_5": {
-      "mean": 0.544,
-      "min": 0.2
-    },
-    "Roots_antechamber_6": {
-      "mean": 0.495,
+    "Roots_antechamber_4": {
+      "mean": 0.486,
       "min": 0.2
     }
   },
@@ -29,12 +25,12 @@
     "route_margin_m": 0.3
   },
   "diameter_cm": {
-    "max": 15.3,
+    "max": 16.1,
     "min": 0.5
   },
   "doorways": [
     {
-      "crown": 4.27,
+      "crown": 4.28,
       "wall": 0,
       "width": 5.3
     },
@@ -45,7 +41,7 @@
     }
   ],
   "files": {
-    "content/environments/procedural_roots_v1/antechamber.glb": "7db46dd69ad7fd1ace105812ddecb247e4d1c12cb8fe83de6965a322bcb02a4c"
+    "content/environments/procedural_roots_v1/antechamber.glb": "5e9116f7405555cbddfc170270352395e924f4acc03b9e999ebd45d2c05b8356"
   },
   "id": "antechamber",
   "layout_hash": "20aa6015a7f9f4f7c12b59b90acfe080b07298d8b2b180c7054b532be72d00d4",
@@ -53,38 +49,37 @@
     "Roots_antechamber_0",
     "Roots_antechamber_1",
     "Roots_antechamber_2",
-    "Roots_antechamber_5",
-    "Roots_antechamber_6"
+    "Roots_antechamber_4"
   ],
   "qa": {
     "audit": {
-      "cut_deeper_than_1cm": 3,
-      "cut_into_stone": 11,
+      "cut_deeper_than_1cm": 5,
+      "cut_into_stone": 20,
       "emerging_from_joint": 2,
       "in_walking_corridor": 0,
-      "vertices": 6675
+      "vertices": 6829
     },
     "cling_gap_m": {
-      "max": 0.0441,
-      "p50": 0.0052,
-      "p95": 0.0142
+      "max": 0.0476,
+      "p50": 0.0056,
+      "p95": 0.0143
     },
     "clipped_at_corridor": 0,
     "pruned": 0,
-    "rings": 1325,
-    "rings_touching_stone": 9
+    "rings": 1337,
+    "rings_touching_stone": 10
   },
-  "roots": 88,
+  "roots": 89,
   "seed": 178,
   "sources": {
     "procedural_architecture_v1/passages/entry.glb": "912c5aea1608ed100c3765a39271c06a33d805d70a10270a63784137c195452c",
-    "procedural_architecture_v1/rooms/antechamber.glb": "51983ad0e6a87cb85c0c39607df1d0650c4b7ae2f0a8ba2a3fa9d14a6b8bdf53"
+    "procedural_architecture_v1/rooms/antechamber.glb": "7f8965a15c32b28539b5354ccc8c8f249d9b48739778b791bbd7ad32ea8ed21a"
   },
   "systems": {
     "branch": 7,
     "loop": 6,
-    "trunk": 7,
-    "vein": 9
+    "trunk": 6,
+    "vein": 7
   },
-  "triangles": 13439
+  "triangles": 13745
 }

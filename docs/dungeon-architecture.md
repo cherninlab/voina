@@ -43,7 +43,7 @@ The toolkit lives in `scripts/art/procgen/`:
   - openings get alternating long and short jamb stones and an arch ring of voussoirs with a keystone (semicircular or segmental), all through the wall;
   - course stones are cut to the ring;
   - a mortar core sits a few centimetres behind the face, with true holes at the openings. The holes are set back too, so reveals show stone.
-- **`vault`** builds cloister vaults course by course. Each stone's face is turned to the curve, the stones are clipped to their wall's region (nearer to it than to any other wall), and a mortar shell sits behind them.
+- **`vault`** builds cloister vaults course by course. Each stone's face is turned to the curve, the stones are clipped to their wall's region (nearer to it than to any other wall), and a mortar shell sits behind them. The shell is an open sheet, so it is turned to face the room explicitly; facing away, it is culled and the void shows through every joint.
 - **`passage`** builds the network's pieces:
   - Runs have side walls with horizontal courses, cut to the floor and springing lines on ramps.
   - A run's barrel vault reuses a few sculpted ring variants per profile, mirrored, scaled to each ring's width and sheared to the slope.
@@ -61,11 +61,12 @@ The bake:
 4. Give each stone its own texture coordinates in its wall's frame (`map_stone`). UV gives each stone its own piece of the rock texture; UV2 runs continuously along the wall for the weathering masks. This matches `dungeon_surface.gdshader`'s projection convention, read through its `mapped` mode. Projecting from bumpy vertex normals smears the texture into swirls.
 5. Collision is a copy of the mortar cores (`Collision_*-colonly`). Their holes are the real openings.
 
-`index.json` has four parts:
-- `rooms`: the stone-built rooms;
+`index.json` has these parts:
+- `rooms`: the stone-built rooms, and `tops`: each one's roof height over its vault;
 - `files`: one GLB per route's runs and one per bay or portal, each with the `layout_hash` of every route it serves;
 - `passages`: the stretches covered;
-- `nodes`: bay and portal centres with their radius.
+- `nodes`: bay and portal centres with their radius;
+- `props` and `lights`: the dressing sets' places and the wall sconces (below).
 
 The game loads a file only if all of its routes are unchanged since the bake. It skips old tunnel pieces covered by a stretch, a node or a stone room at any level it spans, and old shaft-wall arches at stone portals.
 
@@ -100,7 +101,9 @@ Everything the team made is picked up by `red_descent_geometry.gd`. Nothing is c
 **Per room**, loaded when the files exist:
 - roots: `procedural_roots_v1/<id>.glb`, and per passage stretch `passages/<route>_<segment>_<t0×1000>.glb` (T-178);
 - rubble, grit and grime: `procedural_rubble_v1/rooms/<id>.glb` (T-179); the grime uses the flagstone floor's dirt;
-- props: the T-171 dressing sets at the places in `index.json` `props`, chosen by `build_architecture.py --props` or `--index-only`, with their backs to a wall and clear of doors, pilasters, stairs and walks.
+- props: the T-171 dressing sets at the places in `index.json` `props`, chosen by `build_architecture.py --props` or `--index-only`, with their backs to a wall and clear of doors, pilasters, stairs and walks;
+- light: iron wall sconces at `index.json` `lights` (`light_spots`, also written by `--index-only`) replace the old free-standing torch posts. There is about one per 14 m of wall, two to six per room, spread as far apart as they go. Each sits 2.6 m up, clear of corners, doorways and their arch rings, pilasters, props and any walk within head height;
+- the vaulted nave keeps three timber tie beams across it. They take the vault's thrust and carry the banners. The pitched truss, rafters and roof boards that stood under the vault are gone.
 
 **Rebuild in parallel**, then regrow the dressing:
 
@@ -131,5 +134,6 @@ For every passage it captures both directions inside, plus the approach from eac
 ## Open work
 
 - **Shaft walls in stone:** the outline wall is still the old boxes. Its area (about 10,000 m²) needs instanced stones (one library, GPU instances with per-stone tone and texture offset) rather than merged unique meshes.
-- **Stone kinds (T-182):** ashlar, thin slabs, small units, quoins, galleted rubble and floor flags, assigned by role: piers, arches, vault webs, paving.
-- **Dressing:** roots (T-178), rubble at wall bases (T-179), stone surface textures (T-180).
+- **Corner responds:** only the chapel and nave get pilasters, because transverse ribs need a long ridge and the other rooms are nearly square. A cloister vault's groins come down at the room's corners, so the next supports are engaged piers on each corner's bisector up to the springing, clear of doors and walks. Props and sconces must then keep clear of them.
+- **Reproducible rooms:** `main()` shares one random stream across every room built in a process, so a room's stones depend on which rooms came before it in that batch. Seed each room on its own (`core.rng(177, 'architecture', room id)`). After any room rebuild, regrow that room's roots and rubble, which are fitted to its stones.
+- **Geometry weight:** the choir is about 650k triangles and the root tunnel passage about 470k. Use bigger stones in halls and passages, and LODs or instancing.

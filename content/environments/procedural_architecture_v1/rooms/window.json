@@ -1,50 +1,86 @@
 {
   "ao": {
     "Mortar_window_0": {
-      "mean": 0.459,
+      "mean": 0.503,
       "min": 0.18
     },
     "Mortar_window_1": {
-      "mean": 0.583,
+      "mean": 0.595,
       "min": 0.18
     },
     "Mortar_window_2": {
-      "mean": 0.609,
+      "mean": 0.595,
       "min": 0.18
     },
     "Mortar_window_3": {
-      "mean": 0.607,
+      "mean": 0.612,
       "min": 0.18
     },
     "Mortar_window_4": {
-      "mean": 0.546,
+      "mean": 0.208,
       "min": 0.18
     },
-    "Stone_window_0": {
+    "Stone-arch_window_0": {
+      "mean": 0.527,
+      "min": 0.18
+    },
+    "Stone-ashlar_window_0": {
+      "mean": 0.638,
+      "min": 0.18
+    },
+    "Stone-ashlar_window_1": {
+      "mean": 0.561,
+      "min": 0.18
+    },
+    "Stone-ashlar_window_2": {
+      "mean": 0.596,
+      "min": 0.18
+    },
+    "Stone-ashlar_window_3": {
+      "mean": 0.559,
+      "min": 0.18
+    },
+    "Stone-galleted_window_0": {
+      "mean": 0.745,
+      "min": 0.18
+    },
+    "Stone-galleted_window_1": {
       "mean": 0.661,
       "min": 0.18
     },
-    "Stone_window_1": {
-      "mean": 0.679,
+    "Stone-galleted_window_2": {
+      "mean": 0.68,
       "min": 0.18
     },
-    "Stone_window_2": {
-      "mean": 0.693,
+    "Stone-galleted_window_3": {
+      "mean": 0.656,
       "min": 0.18
     },
-    "Stone_window_3": {
-      "mean": 0.642,
-      "min": 0.18
-    },
-    "Stone_window_4": {
+    "Stone-stone_window_0": {
       "mean": 0.704,
+      "min": 0.18
+    },
+    "Stone-stone_window_1": {
+      "mean": 0.752,
+      "min": 0.18
+    },
+    "Stone-stone_window_2": {
+      "mean": 0.752,
+      "min": 0.18
+    },
+    "Stone-stone_window_3": {
+      "mean": 0.703,
+      "min": 0.18
+    },
+    "Stone-stone_window_4": {
+      "mean": 0.701,
       "min": 0.18
     }
   },
   "blender": "5.2.2 LTS",
   "files": {
-    "content/environments/procedural_architecture_v1/rooms/window.glb": "83a01f35f5ab9f457d9c6d2699e675df1b995dfae1ace2b5739623701312e61e"
+    "content/environments/procedural_architecture_v1/rooms/window.glb": "3078d99d02d98613024e6f02dc0bdbe43ba827acc0724dc83196dad38cc12c5a"
   },
   "id": "window",
-  "triangles": 166443
+  "triangles": 164431
 }

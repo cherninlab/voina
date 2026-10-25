@@ -1,7 +1,7 @@
 {
   "ao": {
     "Mortar_restraint_0": {
-      "mean": 0.485,
+      "mean": 0.504,
       "min": 0.18
     },
     "Mortar_restraint_1": {
@@ -9,7 +9,7 @@
       "min": 0.18
     },
     "Mortar_restraint_2": {
-      "mean": 0.514,
+      "mean": 0.506,
       "min": 0.18
     },
     "Mortar_restraint_3": {
@@ -17,7 +17,7 @@
       "min": 0.18
     },
     "Mortar_restraint_4": {
-      "mean": 0.524,
+      "mean": 0.465,
       "min": 0.18
     },
     "Mortar_restraint_5": {
@@ -25,7 +25,7 @@
       "min": 0.18
     },
     "Mortar_restraint_6": {
-      "mean": 0.53,
+      "mean": 0.485,
       "min": 0.18
     },
     "Mortar_restraint_7": {
@@ -33,11 +33,11 @@
       "min": 0.18
     },
     "Mortar_restraint_8": {
-      "mean": 0.871,
+      "mean": 0.235,
       "min": 0.18
     },
     "Plaster_restraint_0": {
-      "mean": 0.811,
+      "mean": 0.813,
       "min": 0.18
     },
     "Plaster_restraint_1": {
@@ -53,62 +53,142 @@
       "min": 0.18
     },
     "Plaster_restraint_4": {
-      "mean": 0.805,
+      "mean": 0.804,
       "min": 0.18
     },
     "Plaster_restraint_5": {
-      "mean": 0.226,
-      "min": 0.18
-    },
-    "Plaster_restraint_6": {
-      "mean": 0.813,
-      "min": 0.18
-    },
-    "Plaster_restraint_7": {
       "mean": 0.193,
       "min": 0.18
     },
-    "Stone_restraint_0": {
-      "mean": 0.366,
+    "Plaster_restraint_6": {
+      "mean": 0.817,
       "min": 0.18
     },
-    "Stone_restraint_1": {
-      "mean": 0.249,
+    "Plaster_restraint_7": {
+      "mean": 0.204,
       "min": 0.18
     },
-    "Stone_restraint_2": {
-      "mean": 0.33,
+    "Stone-arch_restraint_0": {
+      "mean": 0.441,
       "min": 0.18
     },
-    "Stone_restraint_3": {
-      "mean": 0.26,
+    "Stone-arch_restraint_2": {
+      "mean": 0.461,
       "min": 0.18
     },
-    "Stone_restraint_4": {
-      "mean": 0.36,
+    "Stone-arch_restraint_4": {
+      "mean": 0.472,
       "min": 0.18
     },
-    "Stone_restraint_5": {
+    "Stone-arch_restraint_6": {
+      "mean": 0.45,
+      "min": 0.18
+    },
+    "Stone-ashlar_restraint_0": {
+      "mean": 0.431,
+      "min": 0.18
+    },
+    "Stone-ashlar_restraint_1": {
+      "mean": 0.406,
+      "min": 0.18
+    },
+    "Stone-ashlar_restraint_2": {
+      "mean": 0.414,
+      "min": 0.18
+    },
+    "Stone-ashlar_restraint_3": {
+      "mean": 0.367,
+      "min": 0.18
+    },
+    "Stone-ashlar_restraint_4": {
+      "mean": 0.431,
+      "min": 0.18
+    },
+    "Stone-ashlar_restraint_5": {
+      "mean": 0.365,
+      "min": 0.18
+    },
+    "Stone-ashlar_restraint_6": {
+      "mean": 0.41,
+      "min": 0.18
+    },
+    "Stone-ashlar_restraint_7": {
+      "mean": 0.352,
+      "min": 0.18
+    },
+    "Stone-slab_restraint_0": {
+      "mean": 0.248,
+      "min": 0.18
+    },
+    "Stone-slab_restraint_1": {
+      "mean": 0.251,
+      "min": 0.18
+    },
+    "Stone-slab_restraint_2": {
+      "mean": 0.255,
+      "min": 0.18
+    },
+    "Stone-slab_restraint_3": {
+      "mean": 0.259,
+      "min": 0.18
+    },
+    "Stone-slab_restraint_4": {
+      "mean": 0.238,
+      "min": 0.18
+    },
+    "Stone-slab_restraint_5": {
+      "mean": 0.269,
+      "min": 0.18
+    },
+    "Stone-slab_restraint_6": {
       "mean": 0.256,
       "min": 0.18
     },
-    "Stone_restraint_6": {
-      "mean": 0.473,
+    "Stone-slab_restraint_7": {
+      "mean": 0.253,
       "min": 0.18
     },
-    "Stone_restraint_7": {
-      "mean": 0.252,
+    "Stone-stone_restraint_0": {
+      "mean": 0.225,
       "min": 0.18
     },
-    "Stone_restraint_8": {
-      "mean": 0.743,
+    "Stone-stone_restraint_1": {
+      "mean": 0.224,
+      "min": 0.18
+    },
+    "Stone-stone_restraint_2": {
+      "mean": 0.218,
+      "min": 0.18
+    },
+    "Stone-stone_restraint_3": {
+      "mean": 0.231,
+      "min": 0.18
+    },
+    "Stone-stone_restraint_4": {
+      "mean": 0.222,
+      "min": 0.18
+    },
+    "Stone-stone_restraint_5": {
+      "mean": 0.231,
+      "min": 0.18
+    },
+    "Stone-stone_restraint_6": {
+      "mean": 0.513,
+      "min": 0.18
+    },
+    "Stone-stone_restraint_7": {
+      "mean": 0.23,
+      "min": 0.18
+    },
+    "Stone-stone_restraint_8": {
+      "mean": 0.748,
       "min": 0.18
     }
   },
   "blender": "5.2.2 LTS",
   "files": {
-    "content/environments/procedural_architecture_v1/rooms/restraint.glb": "f87c7488e61e2a563741387819bc7c767b87d4d53bf61b120518e6418c17c27e"
+    "content/environments/procedural_architecture_v1/rooms/restraint.glb": "27daf6cab0b3c38511ed8d07e1bca38fd89b8aa4b46b292d85962a6f7ba44e5f"
   },
   "id": "restraint",
-  "triangles": 215978
+  "triangles": 222700
 }

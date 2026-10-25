@@ -9,7 +9,7 @@
       "min": 0.18
     },
     "Mortar_ossuary_2": {
-      "mean": 0.517,
+      "mean": 0.546,
       "min": 0.18
     },
     "Mortar_ossuary_3": {
@@ -17,7 +17,7 @@
       "min": 0.18
     },
     "Mortar_ossuary_4": {
-      "mean": 0.516,
+      "mean": 0.524,
       "min": 0.18
     },
     "Mortar_ossuary_5": {
@@ -33,50 +33,122 @@
       "min": 0.18
     },
     "Mortar_ossuary_8": {
-      "mean": 0.6,
+      "mean": 0.228,
       "min": 0.18
     },
-    "Stone_ossuary_0": {
+    "Stone-arch_ossuary_2": {
+      "mean": 0.516,
+      "min": 0.18
+    },
+    "Stone-arch_ossuary_4": {
+      "mean": 0.523,
+      "min": 0.18
+    },
+    "Stone-ashlar_ossuary_0": {
+      "mean": 0.597,
+      "min": 0.18
+    },
+    "Stone-ashlar_ossuary_1": {
+      "mean": 0.56,
+      "min": 0.18
+    },
+    "Stone-ashlar_ossuary_2": {
+      "mean": 0.632,
+      "min": 0.18
+    },
+    "Stone-ashlar_ossuary_3": {
+      "mean": 0.557,
+      "min": 0.18
+    },
+    "Stone-ashlar_ossuary_4": {
+      "mean": 0.635,
+      "min": 0.18
+    },
+    "Stone-ashlar_ossuary_5": {
+      "mean": 0.564,
+      "min": 0.18
+    },
+    "Stone-ashlar_ossuary_6": {
+      "mean": 0.594,
+      "min": 0.18
+    },
+    "Stone-ashlar_ossuary_7": {
+      "mean": 0.576,
+      "min": 0.18
+    },
+    "Stone-galleted_ossuary_0": {
+      "mean": 0.693,
+      "min": 0.18
+    },
+    "Stone-galleted_ossuary_1": {
+      "mean": 0.65,
+      "min": 0.18
+    },
+    "Stone-galleted_ossuary_2": {
+      "mean": 0.707,
+      "min": 0.18
+    },
+    "Stone-galleted_ossuary_3": {
+      "mean": 0.653,
+      "min": 0.18
+    },
+    "Stone-galleted_ossuary_4": {
+      "mean": 0.711,
+      "min": 0.18
+    },
+    "Stone-galleted_ossuary_5": {
+      "mean": 0.629,
+      "min": 0.18
+    },
+    "Stone-galleted_ossuary_6": {
       "mean": 0.678,
       "min": 0.18
     },
-    "Stone_ossuary_1": {
-      "mean": 0.622,
+    "Stone-galleted_ossuary_7": {
+      "mean": 0.653,
       "min": 0.18
     },
-    "Stone_ossuary_2": {
-      "mean": 0.662,
+    "Stone-stone_ossuary_0": {
+      "mean": 0.74,
       "min": 0.18
     },
-    "Stone_ossuary_3": {
-      "mean": 0.641,
+    "Stone-stone_ossuary_1": {
+      "mean": 0.691,
       "min": 0.18
     },
-    "Stone_ossuary_4": {
-      "mean": 0.66,
+    "Stone-stone_ossuary_2": {
+      "mean": 0.739,
       "min": 0.18
     },
-    "Stone_ossuary_5": {
-      "mean": 0.633,
+    "Stone-stone_ossuary_3": {
+      "mean": 0.723,
       "min": 0.18
     },
-    "Stone_ossuary_6": {
-      "mean": 0.669,
+    "Stone-stone_ossuary_4": {
+      "mean": 0.747,
       "min": 0.18
     },
-    "Stone_ossuary_7": {
-      "mean": 0.633,
+    "Stone-stone_ossuary_5": {
+      "mean": 0.699,
       "min": 0.18
     },
-    "Stone_ossuary_8": {
-      "mean": 0.752,
+    "Stone-stone_ossuary_6": {
+      "mean": 0.741,
+      "min": 0.18
+    },
+    "Stone-stone_ossuary_7": {
+      "mean": 0.708,
+      "min": 0.18
+    },
+    "Stone-stone_ossuary_8": {
+      "mean": 0.75,
       "min": 0.18
     }
   },
   "blender": "5.2.2 LTS",
   "files": {
-    "content/environments/procedural_architecture_v1/rooms/ossuary.glb": "8e86cadc36408c04c9e5abb96667064ce9dc03e369f8320d6e583a169986910e"
+    "content/environments/procedural_architecture_v1/rooms/ossuary.glb": "a8ef9dc0408706c72a601993be58b45d90c0c1fef39dc79c8ecc3763c2e7f1b2"
   },
   "id": "ossuary",
-  "triangles": 219974
+  "triangles": 221228
 }

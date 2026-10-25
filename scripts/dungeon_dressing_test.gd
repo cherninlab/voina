@@ -68,7 +68,8 @@ func run() -> void:
 		bodies.append((body as StaticBody3D).get_rid())
 		if not (body as StaticBody3D).global_basis.get_scale().is_equal_approx(Vector3.ONE):
 			failures.append("Scaled rubble collision: " + str(body.get_path()))
-	if dressing.piles.size() != 8 or dressing.hangings.size() != 10:
+	# The vaulted stone nave keeps tie beams but no king post, so its corner web goes.
+	if dressing.piles.size() != 8 or dressing.hangings.size() != 9:
 		failures.append("Missing generated dressing")
 	if get_nodes_in_group("flagstone_room_floors").size() != RedDescentLayout.rooms().size():
 		failures.append("Missing integrated room floors")
@@ -158,7 +159,7 @@ func run() -> void:
 	for failure: String in failures:
 		printerr("DUNGEON_DRESSING_FAIL: " + failure)
 	if failures.is_empty():
-		print("DUNGEON_DRESSING_OK: 8 grounded rubble piles, 10 socket-mounted hangings, %d room floors;" % RedDescentLayout.rooms().size() + " sculpted pin gaps %.4fm, web gaps %.4fm, route margin %.3fm" % [max_actual_gap, max_web_gap, min_route_clearance])
+		print("DUNGEON_DRESSING_OK: 8 grounded rubble piles, %d socket-mounted hangings, %d room floors;" % [dressing.hangings.size(), RedDescentLayout.rooms().size()] + " sculpted pin gaps %.4fm, web gaps %.4fm, route margin %.3fm" % [max_actual_gap, max_web_gap, min_route_clearance])
 	dungeon.queue_free()
 	for frame: int in range(4):
 		await process_frame

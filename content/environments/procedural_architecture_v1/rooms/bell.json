@@ -33,50 +33,118 @@
       "min": 0.18
     },
     "Mortar_bell_8": {
-      "mean": 0.601,
+      "mean": 0.249,
       "min": 0.18
     },
-    "Stone_bell_0": {
-      "mean": 0.707,
+    "Stone-arch_bell_6": {
+      "mean": 0.512,
       "min": 0.18
     },
-    "Stone_bell_1": {
-      "mean": 0.672,
+    "Stone-ashlar_bell_0": {
+      "mean": 0.597,
       "min": 0.18
     },
-    "Stone_bell_2": {
-      "mean": 0.7,
+    "Stone-ashlar_bell_1": {
+      "mean": 0.567,
       "min": 0.18
     },
-    "Stone_bell_3": {
-      "mean": 0.67,
+    "Stone-ashlar_bell_2": {
+      "mean": 0.597,
       "min": 0.18
     },
-    "Stone_bell_4": {
-      "mean": 0.707,
+    "Stone-ashlar_bell_3": {
+      "mean": 0.558,
       "min": 0.18
     },
-    "Stone_bell_5": {
-      "mean": 0.617,
+    "Stone-ashlar_bell_4": {
+      "mean": 0.588,
       "min": 0.18
     },
-    "Stone_bell_6": {
-      "mean": 0.602,
+    "Stone-ashlar_bell_5": {
+      "mean": 0.505,
       "min": 0.18
     },
-    "Stone_bell_7": {
-      "mean": 0.669,
+    "Stone-ashlar_bell_6": {
+      "mean": 0.63,
       "min": 0.18
     },
-    "Stone_bell_8": {
+    "Stone-ashlar_bell_7": {
+      "mean": 0.549,
+      "min": 0.18
+    },
+    "Stone-slab_bell_0": {
+      "mean": 0.652,
+      "min": 0.18
+    },
+    "Stone-slab_bell_1": {
+      "mean": 0.609,
+      "min": 0.18
+    },
+    "Stone-slab_bell_2": {
+      "mean": 0.646,
+      "min": 0.18
+    },
+    "Stone-slab_bell_3": {
+      "mean": 0.611,
+      "min": 0.18
+    },
+    "Stone-slab_bell_4": {
+      "mean": 0.649,
+      "min": 0.18
+    },
+    "Stone-slab_bell_5": {
+      "mean": 0.629,
+      "min": 0.18
+    },
+    "Stone-slab_bell_6": {
+      "mean": 0.597,
+      "min": 0.18
+    },
+    "Stone-slab_bell_7": {
+      "mean": 0.622,
+      "min": 0.18
+    },
+    "Stone-stone_bell_0": {
+      "mean": 0.732,
+      "min": 0.18
+    },
+    "Stone-stone_bell_1": {
+      "mean": 0.693,
+      "min": 0.18
+    },
+    "Stone-stone_bell_2": {
+      "mean": 0.736,
+      "min": 0.18
+    },
+    "Stone-stone_bell_3": {
+      "mean": 0.688,
+      "min": 0.18
+    },
+    "Stone-stone_bell_4": {
+      "mean": 0.735,
+      "min": 0.18
+    },
+    "Stone-stone_bell_5": {
+      "mean": 0.643,
+      "min": 0.18
+    },
+    "Stone-stone_bell_6": {
+      "mean": 0.715,
+      "min": 0.18
+    },
+    "Stone-stone_bell_7": {
+      "mean": 0.694,
+      "min": 0.18
+    },
+    "Stone-stone_bell_8": {
       "mean": 0.752,
       "min": 0.18
     }
   },
   "blender": "5.2.2 LTS",
   "files": {
-    "content/environments/procedural_architecture_v1/rooms/bell.glb": "cb499ce53e287df2e556f8d4c6e3159962b94146c70311ed4dfa1d720561c43c"
+    "content/environments/procedural_architecture_v1/rooms/bell.glb": "242dd9afd54ca18215bfacabfa940a5fcc3316d0c38d079932bccb6014191ef7"
   },
   "id": "bell",
-  "triangles": 194555
+  "triangles": 197095
 }

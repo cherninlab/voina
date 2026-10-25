@@ -1,19 +1,19 @@
 {
   "ao": {
     "Roots_window_0": {
-      "mean": 0.495,
+      "mean": 0.554,
       "min": 0.2
     },
     "Roots_window_1": {
-      "mean": 0.525,
+      "mean": 0.455,
       "min": 0.2
     },
     "Roots_window_2": {
-      "mean": 0.545,
+      "mean": 0.525,
       "min": 0.2
     },
     "Roots_window_3": {
-      "mean": 0.426,
+      "mean": 0.531,
       "min": 0.2
     }
   },
@@ -25,23 +25,23 @@
     "route_margin_m": 0.3
   },
   "diameter_cm": {
-    "max": 14.3,
+    "max": 18.5,
     "min": 0.5
   },
   "doorways": [
     {
-      "crown": 3.21,
-      "wall": 2,
-      "width": 3.3
-    },
-    {
-      "crown": 3.27,
+      "crown": 3.28,
       "wall": 2,
       "width": 4.4
+    },
+    {
+      "crown": 3.25,
+      "wall": 2,
+      "width": 4.0
     }
   ],
   "files": {
-    "content/environments/procedural_roots_v1/window.glb": "dfe6ed27ec59f53a76d644746c7b41990e868a5b74355d5637b21bdb3fa6e39d"
+    "content/environments/procedural_roots_v1/window.glb": "d5cb5270a3b9970ed57a3e7eee83ad00b452807fa3aead71aeef0ded0f5b8d5c"
   },
   "id": "window",
   "layout_hash": "20aa6015a7f9f4f7c12b59b90acfe080b07298d8b2b180c7054b532be72d00d4",
@@ -53,33 +53,33 @@
   ],
   "qa": {
     "audit": {
-      "cut_deeper_than_1cm": 10,
-      "cut_into_stone": 19,
-      "emerging_from_joint": 9,
+      "cut_deeper_than_1cm": 17,
+      "cut_into_stone": 27,
+      "emerging_from_joint": 17,
       "in_walking_corridor": 0,
-      "vertices": 7126
+      "vertices": 6522
     },
     "cling_gap_m": {
-      "max": 0.0412,
-      "p50": 0.006,
-      "p95": 0.0171
+      "max": 0.0491,
+      "p50": 0.0062,
+      "p95": 0.0175
     },
-    "clipped_at_corridor": 0,
+    "clipped_at_corridor": 2,
     "pruned": 0,
-    "rings": 1374,
-    "rings_touching_stone": 10
+    "rings": 1245,
+    "rings_touching_stone": 15
   },
-  "roots": 89,
+  "roots": 96,
   "seed": 178,
   "sources": {
     "procedural_architecture_v1/passages/ossuary_loop.glb": "99cd9381aab1f0cbbc3192792798c79180b551387b3f0c6f0678382dbff7e974",
-    "procedural_architecture_v1/rooms/window.glb": "83a01f35f5ab9f457d9c6d2699e675df1b995dfae1ace2b5739623701312e61e"
+    "procedural_architecture_v1/rooms/window.glb": "3078d99d02d98613024e6f02dc0bdbe43ba827acc0724dc83196dad38cc12c5a"
   },
   "systems": {
-    "branch": 6,
+    "branch": 4,
     "loop": 6,
-    "trunk": 8,
-    "vein": 8
+    "trunk": 11,
+    "vein": 5
   },
-  "triangles": 14369
+  "triangles": 13165
 }

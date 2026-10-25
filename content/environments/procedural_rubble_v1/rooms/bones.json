@@ -1,38 +1,38 @@
 {
   "ao": {
     "Rubble_bones_0": {
-      "mean": 0.308,
+      "mean": 0.307,
       "min": 0.18
     },
     "Rubble_bones_1": {
-      "mean": 0.418,
+      "mean": 0.621,
       "min": 0.18
     },
     "Rubble_bones_2": {
-      "mean": 0.37,
+      "mean": 0.403,
       "min": 0.18
     },
     "Rubble_bones_3": {
-      "mean": 0.352,
+      "mean": 0.317,
       "min": 0.18
     },
     "Rubble_bones_grime": {
-      "mean": 0.358,
+      "mean": 0.442,
       "min": 0.18
     }
   },
   "axes": "Godot world coordinates, metres, Y up: place at the origin like the room GLB",
   "blender": "5.2.2 LTS",
-  "build_seconds": 210.2,
+  "build_seconds": 187.5,
   "collision": {
-    "convex_hulls": 52,
-    "hull_vertices": 945,
+    "convex_hulls": 43,
+    "hull_vertices": 1032,
     "min_piece_size_m": 0.25
   },
   "color": "Color.rgb = baked AO (0.35 m) x per-piece tone (0.7, 1.15) (x 1.07 on fresh breaks); grime bed tone (0.5, 1.0); grey, clipped to 1 by glTF",
-  "command": "blender --factory-startup -b --python-exit-code 1 --python scripts/art/build_room_rubble.py -- --rooms cells,bones,window --no-review",
+  "command": "blender --factory-startup -b --python-exit-code 1 --python scripts/art/build_room_rubble.py -- --rooms bones,bell,first_stair_hall --no-review",
   "files": {
-    "content/environments/procedural_rubble_v1/rooms/bones.glb": "5bce98e3214cd5959cee84db40fba9b6f6723fb4c1c4dea333179c7fe7b26ffe"
+    "content/environments/procedural_rubble_v1/rooms/bones.glb": "4a6d10e8f012ad9b65251f93f15d9f3a090d39051015a68c4b8bdbe234dcdf88"
   },
   "floor_y": -10.0,
   "generator": "scripts/art/build_room_rubble.py",
@@ -44,142 +44,121 @@
     "settled_heaps": [
       {
         "godot_xz": [
-          -41.34,
-          -13.55
+          -40.35,
+          -19.56
         ],
-        "stone_volume_m3": 0.0709,
-        "top_m": 0.53
+        "stone_volume_m3": 0.051,
+        "top_m": 0.415
       },
       {
         "godot_xz": [
-          -40.08,
-          -12.5
+          -41.58,
+          -13.84
         ],
-        "stone_volume_m3": 0.0313,
-        "top_m": 0.341
+        "stone_volume_m3": 0.0445,
+        "top_m": 0.372
       },
       {
         "godot_xz": [
-          -40.45,
-          -19.36
+          -40.3,
+          -12.42
         ],
-        "stone_volume_m3": 0.0283,
-        "top_m": 0.269
+        "stone_volume_m3": 0.035,
+        "top_m": 0.319
       },
       {
         "godot_xz": [
-          -25.65,
-          -19.51
+          -41.53,
+          -18.38
         ],
-        "stone_volume_m3": 0.0265,
-        "top_m": 0.272
+        "stone_volume_m3": 0.0205,
+        "top_m": 0.25
       },
       {
         "godot_xz": [
-          -30.75,
-          -19.5
+          -38.75,
+          -19.58
         ],
-        "stone_volume_m3": 0.0262,
-        "top_m": 0.246
+        "stone_volume_m3": 0.0099,
+        "top_m": 0.224
       },
       {
         "godot_xz": [
-          -41.5,
-          -15.15
+          -37.05,
+          -12.42
         ],
-        "stone_volume_m3": 0.0176,
-        "top_m": 0.278
+        "stone_volume_m3": 0.0093,
+        "top_m": 0.157
       },
       {
         "godot_xz": [
-          -41.5,
-          -18.08
+          -36.25,
+          -19.58
         ],
-        "stone_volume_m3": 0.017,
-        "top_m": 0.246
+        "stone_volume_m3": 0.005,
+        "top_m": 0.117
       },
       {
         "godot_xz": [
-          -20.51,
-          -14.85
+          -34.95,
+          -12.42
         ],
-        "stone_volume_m3": 0.0094,
-        "top_m": 0.201
+        "stone_volume_m3": 0.0014,
+        "top_m": 0.106
       }
     ],
     "target_heaps": [
       {
         "godot_xz": [
-          -41.32,
+          -41.46,
           -18.45
         ],
         "wedge_height_m": 0.55
       },
       {
         "godot_xz": [
-          -41.49,
+          -41.58,
           -14.15
         ],
         "wedge_height_m": 0.55
       },
       {
         "godot_xz": [
-          -40.39,
-          -12.61
+          -40.46,
+          -12.54
         ],
         "wedge_height_m": 0.55
       },
       {
         "godot_xz": [
-          -40.05,
-          -19.5
+          -39.95,
+          -19.58
         ],
         "wedge_height_m": 0.55
-      },
-      {
-        "godot_xz": [
-          -25.75,
-          -19.51
-        ],
-        "wedge_height_m": 0.44
       },
       {
         "godot_xz": [
           -36.45,
-          -19.53
+          -19.58
         ],
         "wedge_height_m": 0.37
       },
       {
         "godot_xz": [
           -21.55,
-          -12.46
+          -12.42
         ],
         "wedge_height_m": 0.33
       },
       {
         "godot_xz": [
-          -20.66,
-          -18.45
-        ],
-        "wedge_height_m": 0.31
-      },
-      {
-        "godot_xz": [
-          -21.93,
-          -19.49
-        ],
-        "wedge_height_m": 0.28
-      },
-      {
-        "godot_xz": [
           -31.55,
-          -19.51
+          -19.58
         ],
         "wedge_height_m": 0.25
       }
     ],
-    "usable_wall_m": 43.0
+    "usable_wall_m": 32.6
   },
   "id": "bones",
   "physics": {
@@ -211,46 +190,217 @@
   },
   "pieces": {
     "discarded": {
-      "floating": 2,
-      "no_spot": 1,
-      "not_settled": 2
+      "floating": 3,
+      "no_spot": 4
     },
     "floating_removed": [
       [
-        "Grit187",
-        0.0103
+        "Chunk026_12",
+        0.0104
       ],
       [
-        "Grit258",
-        0.0106
+        "Grit285",
+        0.0101
+      ],
+      [
+        "Grit324",
+        0.0103
       ]
     ],
     "generated": {
-      "big": 214,
-      "gravel": 420,
-      "medium": 172,
-      "small": 132
+      "big": 172,
+      "gravel": 344,
+      "medium": 111,
+      "small": 101
     },
     "kept": {
-      "big": 213,
-      "gravel": 417,
-      "medium": 171,
-      "small": 132
+      "big": 169,
+      "gravel": 341,
+      "medium": 110,
+      "small": 101
     },
-    "kept_total": 933,
+    "kept_total": 721,
     "size_m": {
       "max": 0.35,
-      "median": 0.045,
+      "median": 0.043,
       "min": 0.008
     }
   },
   "review": [],
   "routes": {
     "clear_height_m": 0.04,
-    "level_m": 1.0,
-    "max_height_in_ribbons_m": 0.0,
+    "level_m": 24.0,
+    "max_height_in_ribbons_m": 0.0062,
     "pad_m": 0.3,
     "ribbons": [
+      {
+        "clear_radius_m": 2.8,
+        "from": [
+          -42.0,
+          -24.0
+        ],
+        "route": "entry",
+        "to": [
+          -25.0,
+          -23.0
+        ]
+      },
+      {
+        "clear_radius_m": 2.8,
+        "from": [
+          -25.0,
+          -23.0
+        ],
+        "route": "entry",
+        "to": [
+          -22.0,
+          -23.0
+        ]
+      },
+      {
+        "clear_radius_m": 2.8,
+        "from": [
+          -22.0,
+          -23.0
+        ],
+        "route": "entry",
+        "to": [
+          -22.0,
+          -16.0
+        ]
+      },
+      {
+        "clear_radius_m": 1.9,
+        "from": [
+          -22.0,
+          -16.0
+        ],
+        "route": "high_span",
+        "to": [
+          -12.0,
+          -14.0
+        ]
+      },
+      {
+        "clear_radius_m": 1.9,
+        "from": [
+          -12.0,
+          -14.0
+        ],
+        "route": "high_span",
+        "to": [
+          -3.0,
+          -12.0
+        ]
+      },
+      {
+        "clear_radius_m": 1.9,
+        "from": [
+          -3.0,
+          -12.0
+        ],
+        "route": "high_span",
+        "to": [
+          3.0,
+          -15.0
+        ]
+      },
+      {
+        "clear_radius_m": 1.9,
+        "from": [
+          3.0,
+          -15.0
+        ],
+        "route": "high_span",
+        "to": [
+          15.0,
+          -15.0
+        ]
+      },
+      {
+        "clear_radius_m": 1.9,
+        "from": [
+          15.0,
+          -15.0
+        ],
+        "route": "high_span",
+        "to": [
+          24.0,
+          -10.0
+        ]
+      },
+      {
+        "clear_radius_m": 2.5,
+        "from": [
+          24.0,
+          -10.0
+        ],
+        "route": "upper_hall",
+        "to": [
+          34.0,
+          -8.5
+        ]
+      },
+      {
+        "clear_radius_m": 2.5,
+        "from": [
+          34.0,
+          -8.5
+        ],
+        "route": "upper_hall",
+        "to": [
+          36.0,
+          -24.0
+        ]
+      },
+      {
+        "clear_radius_m": 2.5,
+        "from": [
+          36.0,
+          -24.0
+        ],
+        "route": "upper_hall",
+        "to": [
+          36.0,
+          -29.0
+        ]
+      },
+      {
+        "clear_radius_m": 2.2,
+        "from": [
+          36.0,
+          -29.0
+        ],
+        "route": "first_stair",
+        "to": [
+          39.5,
+          -29.0
+        ]
+      },
+      {
+        "clear_radius_m": 2.2,
+        "from": [
+          39.5,
+          -29.0
+        ],
+        "route": "first_stair",
+        "to": [
+          39.5,
+          -39.5
+        ]
+      },
+      {
+        "clear_radius_m": 2.2,
+        "from": [
+          39.5,
+          -39.5
+        ],
+        "route": "first_stair",
+        "to": [
+          29.5,
+          -39.5
+        ]
+      },
       {
         "clear_radius_m": 2.2,
         "from": [
@@ -360,6 +510,486 @@
         ]
       },
       {
+        "clear_radius_m": 2.3,
+        "from": [
+          -5.0,
+          -14.0
+        ],
+        "route": "central_ledge",
+        "to": [
+          -1.0,
+          -9.0
+        ]
+      },
+      {
+        "clear_radius_m": 2.3,
+        "from": [
+          -1.0,
+          -9.0
+        ],
+        "route": "central_ledge",
+        "to": [
+          2.0,
+          -3.0
+        ]
+      },
+      {
+        "clear_radius_m": 2.3,
+        "from": [
+          2.0,
+          -3.0
+        ],
+        "route": "central_ledge",
+        "to": [
+          1.0,
+          1.5
+        ]
+      },
+      {
+        "clear_radius_m": 2.3,
+        "from": [
+          1.0,
+          1.5
+        ],
+        "route": "central_ledge",
+        "to": [
+          4.0,
+          7.0
+        ]
+      },
+      {
+        "clear_radius_m": 2.3,
+        "from": [
+          4.0,
+          7.0
+        ],
+        "route": "central_ledge",
+        "to": [
+          10.0,
+          13.0
+        ]
+      },
+      {
+        "clear_radius_m": 2.3,
+        "from": [
+          10.0,
+          13.0
+        ],
+        "route": "central_ledge",
+        "to": [
+          7.0,
+          21.0
+        ]
+      },
+      {
+        "clear_radius_m": 2.5,
+        "from": [
+          7.0,
+          21.0
+        ],
+        "route": "nave",
+        "to": [
+          7.0,
+          34.0
+        ]
+      },
+      {
+        "clear_radius_m": 2.5,
+        "from": [
+          7.0,
+          34.0
+        ],
+        "route": "nave",
+        "to": [
+          -6.0,
+          34.0
+        ]
+      },
+      {
+        "clear_radius_m": 2.5,
+        "from": [
+          -6.0,
+          34.0
+        ],
+        "route": "nave",
+        "to": [
+          -6.0,
+          30.0
+        ]
+      },
+      {
+        "clear_radius_m": 2.5,
+        "from": [
+          -6.0,
+          30.0
+        ],
+        "route": "nave",
+        "to": [
+          -10.0,
+          30.0
+        ]
+      },
+      {
+        "clear_radius_m": 2.5,
+        "from": [
+          -10.0,
+          30.0
+        ],
+        "route": "nave",
+        "to": [
+          -10.0,
+          27.0
+        ]
+      },
+      {
+        "clear_radius_m": 2.5,
+        "from": [
+          -10.0,
+          27.0
+        ],
+        "route": "nave",
+        "to": [
+          -14.0,
+          24.0
+        ]
+      },
+      {
+        "clear_radius_m": 2.5,
+        "from": [
+          -14.0,
+          24.0
+        ],
+        "route": "nave",
+        "to": [
+          -30.0,
+          24.0
+        ]
+      },
+      {
+        "clear_radius_m": 2.2,
+        "from": [
+          -30.0,
+          24.0
+        ],
+        "route": "second_stair",
+        "to": [
+          -28.0,
+          25.5
+        ]
+      },
+      {
+        "clear_radius_m": 2.2,
+        "from": [
+          -28.0,
+          25.5
+        ],
+        "route": "second_stair",
+        "to": [
+          -28.0,
+          36.0
+        ]
+      },
+      {
+        "clear_radius_m": 2.2,
+        "from": [
+          -28.0,
+          36.0
+        ],
+        "route": "second_stair",
+        "to": [
+          -34.0,
+          36.0
+        ]
+      },
+      {
+        "clear_radius_m": 2.2,
+        "from": [
+          -34.0,
+          36.0
+        ],
+        "route": "second_stair",
+        "to": [
+          -34.0,
+          26.0
+        ]
+      },
+      {
+        "clear_radius_m": 2.2,
+        "from": [
+          -34.0,
+          26.0
+        ],
+        "route": "second_stair",
+        "to": [
+          -34.0,
+          24.0
+        ]
+      },
+      {
+        "clear_radius_m": 2.8,
+        "from": [
+          -34.0,
+          24.0
+        ],
+        "route": "root_tunnel",
+        "to": [
+          -41.0,
+          24.0
+        ]
+      },
+      {
+        "clear_radius_m": 2.8,
+        "from": [
+          -41.0,
+          24.0
+        ],
+        "route": "root_tunnel",
+        "to": [
+          -41.0,
+          14.0
+        ]
+      },
+      {
+        "clear_radius_m": 2.8,
+        "from": [
+          -41.0,
+          14.0
+        ],
+        "route": "root_tunnel",
+        "to": [
+          -31.0,
+          6.0
+        ]
+      },
+      {
+        "clear_radius_m": 2.8,
+        "from": [
+          -31.0,
+          6.0
+        ],
+        "route": "root_tunnel",
+        "to": [
+          -38.0,
+          -2.0
+        ]
+      },
+      {
+        "clear_radius_m": 2.8,
+        "from": [
+          -38.0,
+          -2.0
+        ],
+        "route": "root_tunnel",
+        "to": [
+          -30.0,
+          -8.5
+        ]
+      },
+      {
+        "clear_radius_m": 2.8,
+        "from": [
+          -30.0,
+          -8.5
+        ],
+        "route": "root_tunnel",
+        "to": [
+          -23.0,
+          -16.0
+        ]
+      },
+      {
+        "clear_radius_m": 2.1,
+        "from": [
+          -23.0,
+          -16.0
+        ],
+        "route": "low_span",
+        "to": [
+          -14.0,
+          -16.0
+        ]
+      },
+      {
+        "clear_radius_m": 2.1,
+        "from": [
+          -14.0,
+          -16.0
+        ],
+        "route": "low_span",
+        "to": [
+          -9.0,
+          -8.0
+        ]
+      },
+      {
+        "clear_radius_m": 2.1,
+        "from": [
+          -9.0,
+          -8.0
+        ],
+        "route": "low_span",
+        "to": [
+          -3.0,
+          4.0
+        ]
+      },
+      {
+        "clear_radius_m": 2.1,
+        "from": [
+          -3.0,
+          4.0
+        ],
+        "route": "low_span",
+        "to": [
+          5.0,
+          9.0
+        ]
+      },
+      {
+        "clear_radius_m": 2.1,
+        "from": [
+          5.0,
+          9.0
+        ],
+        "route": "low_span",
+        "to": [
+          12.0,
+          8.0
+        ]
+      },
+      {
+        "clear_radius_m": 2.1,
+        "from": [
+          12.0,
+          8.0
+        ],
+        "route": "low_span",
+        "to": [
+          16.0,
+          3.0
+        ]
+      },
+      {
+        "clear_radius_m": 2.1,
+        "from": [
+          16.0,
+          3.0
+        ],
+        "route": "low_span",
+        "to": [
+          25.0,
+          6.0
+        ]
+      },
+      {
+        "clear_radius_m": 2.6,
+        "from": [
+          25.0,
+          6.0
+        ],
+        "route": "choir",
+        "to": [
+          33.0,
+          5.0
+        ]
+      },
+      {
+        "clear_radius_m": 2.6,
+        "from": [
+          33.0,
+          5.0
+        ],
+        "route": "choir",
+        "to": [
+          38.0,
+          -2.0
+        ]
+      },
+      {
+        "clear_radius_m": 2.05,
+        "from": [
+          38.0,
+          -2.0
+        ],
+        "route": "return_stair",
+        "to": [
+          38.0,
+          -10.7
+        ]
+      },
+      {
+        "clear_radius_m": 2.05,
+        "from": [
+          38.0,
+          -10.7
+        ],
+        "route": "return_stair",
+        "to": [
+          41.5,
+          -10.7
+        ]
+      },
+      {
+        "clear_radius_m": 2.05,
+        "from": [
+          41.5,
+          -10.7
+        ],
+        "route": "return_stair",
+        "to": [
+          43.7,
+          -8.5
+        ]
+      },
+      {
+        "clear_radius_m": 2.05,
+        "from": [
+          43.7,
+          -8.5
+        ],
+        "route": "return_stair",
+        "to": [
+          43.7,
+          21.0
+        ]
+      },
+      {
+        "clear_radius_m": 2.05,
+        "from": [
+          43.7,
+          21.0
+        ],
+        "route": "return_stair",
+        "to": [
+          41.5,
+          23.2
+        ]
+      },
+      {
+        "clear_radius_m": 2.05,
+        "from": [
+          41.5,
+          23.2
+        ],
+        "route": "return_stair",
+        "to": [
+          30.5,
+          23.2
+        ]
+      },
+      {
+        "clear_radius_m": 2.05,
+        "from": [
+          30.5,
+          23.2
+        ],
+        "route": "return_stair",
+        "to": [
+          28.3,
+          21.0
+        ]
+      },
+      {
         "clear_radius_m": 2.05,
         "from": [
           28.3,
@@ -434,6 +1064,66 @@
       {
         "clear_radius_m": 2.3,
         "from": [
+          34.0,
+          -8.5
+        ],
+        "route": "upper_cells",
+        "to": [
+          34.0,
+          4.0
+        ]
+      },
+      {
+        "clear_radius_m": 2.3,
+        "from": [
+          34.0,
+          4.0
+        ],
+        "route": "upper_cells",
+        "to": [
+          36.0,
+          6.0
+        ]
+      },
+      {
+        "clear_radius_m": 2.3,
+        "from": [
+          36.0,
+          6.0
+        ],
+        "route": "upper_cells",
+        "to": [
+          46.0,
+          6.0
+        ]
+      },
+      {
+        "clear_radius_m": 2.3,
+        "from": [
+          46.0,
+          6.0
+        ],
+        "route": "upper_cells",
+        "to": [
+          46.0,
+          -15.0
+        ]
+      },
+      {
+        "clear_radius_m": 2.3,
+        "from": [
+          46.0,
+          -15.0
+        ],
+        "route": "upper_cells",
+        "to": [
+          39.0,
+          -15.0
+        ]
+      },
+      {
+        "clear_radius_m": 2.3,
+        "from": [
           -10.0,
           -30.0
         ],
@@ -537,80 +1227,181 @@
         "to": [
           -10.0,
           -30.0
+        ]
+      },
+      {
+        "clear_radius_m": 2.3,
+        "from": [
+          0.0,
+          34.0
+        ],
+        "route": "bell_loop",
+        "to": [
+          0.0,
+          36.0
+        ]
+      },
+      {
+        "clear_radius_m": 2.3,
+        "from": [
+          0.0,
+          36.0
+        ],
+        "route": "bell_loop",
+        "to": [
+          16.0,
+          36.0
+        ]
+      },
+      {
+        "clear_radius_m": 2.3,
+        "from": [
+          16.0,
+          36.0
+        ],
+        "route": "bell_loop",
+        "to": [
+          36.0,
+          36.0
+        ]
+      },
+      {
+        "clear_radius_m": 2.3,
+        "from": [
+          36.0,
+          36.0
+        ],
+        "route": "bell_loop",
+        "to": [
+          36.0,
+          44.0
+        ]
+      },
+      {
+        "clear_radius_m": 2.3,
+        "from": [
+          36.0,
+          44.0
+        ],
+        "route": "bell_loop",
+        "to": [
+          6.0,
+          44.0
+        ]
+      },
+      {
+        "clear_radius_m": 2.3,
+        "from": [
+          6.0,
+          44.0
+        ],
+        "route": "bell_loop",
+        "to": [
+          6.0,
+          34.0
+        ]
+      },
+      {
+        "clear_radius_m": 2.55,
+        "from": [
+          -41.0,
+          14.0
+        ],
+        "route": "cave_bypass",
+        "to": [
+          -46.0,
+          7.0
+        ]
+      },
+      {
+        "clear_radius_m": 2.55,
+        "from": [
+          -46.0,
+          7.0
+        ],
+        "route": "cave_bypass",
+        "to": [
+          -43.0,
+          -6.0
+        ]
+      },
+      {
+        "clear_radius_m": 2.55,
+        "from": [
+          -43.0,
+          -6.0
+        ],
+        "route": "cave_bypass",
+        "to": [
+          -38.0,
+          -2.0
         ]
       }
     ]
   },
   "seconds": {
-    "bake": 0.8,
-    "checks": 0.6,
+    "bake": 0.5,
+    "checks": 0.3,
     "deposit": 0.8,
-    "physics_1": 61.3,
-    "physics_2": 134.3,
-    "pieces": 11.9,
-    "review": 0.0,
+    "physics_1": 47.3,
+    "physics_2": 129.2,
+    "pieces": 8.8,
+    "review": 0.1,
     "setup": 0.4
   },
   "seed": 179,
   "settle": {
     "deepest_pair": null,
     "drop": {
-      "frames": 300,
+      "frames": 255,
       "never_still": 0,
       "runs": [
         {
-          "active": 937,
+          "active": 724,
           "frames": 90,
-          "peak_speed_m_s": 3.636,
+          "peak_speed_m_s": 2.982,
           "run": 0,
-          "stilled": 773
+          "stilled": 601
         },
         {
-          "active": 164,
+          "active": 123,
           "frames": 45,
-          "peak_speed_m_s": 1.107,
+          "peak_speed_m_s": 0.536,
           "run": 1,
-          "stilled": 125
+          "stilled": 105
         },
         {
-          "active": 39,
+          "active": 18,
           "frames": 45,
-          "peak_speed_m_s": 0.341,
+          "peak_speed_m_s": 0.334,
           "run": 2,
-          "stilled": 28
-        },
-        {
-          "active": 11,
-          "frames": 45,
-          "peak_speed_m_s": 0.041,
-          "run": 3,
-          "stilled": 7
+          "stilled": 14
         },
         {
           "active": 4,
           "frames": 45,
-          "peak_speed_m_s": 0.473,
-          "run": 4,
-          "stilled": 2
+          "peak_speed_m_s": 0.048,
+          "run": 3,
+          "stilled": 3
         },
         {
-          "active": 2,
+          "active": 1,
           "frames": 30,
-          "peak_speed_m_s": 0.003,
-          "run": 5,
-          "stilled": 2
+          "peak_speed_m_s": 0.001,
+          "run": 4,
+          "stilled": 1
         }
       ]
     },
-    "max_contact_gap_m": 0.0096,
+    "max_contact_gap_m": 0.0097,
     "max_interpenetration_m": 0.0,
     "rule": "a piece is still when the net travel of its fastest bound-box corner over 15 frames (30 fps) is under 0.01 m/s; still pieces are held for later runs",
     "stability_check": {
-      "max_move_m": 0.0143,
-      "max_turn_deg": 32.44,
-      "pieces_moved_over_1cm": 4,
+      "max_move_m": 0.0128,
+      "max_turn_deg": 61.98,
+      "pieces_moved_over_1cm": 5,
       "pieces_moved_over_3cm": 0,
-      "resettled": 2,
+      "resettled": 3,
       "what": "every kept piece let go again from the exported pose for 1.5 s (measured, not kept)"
     }
   },
@@ -618,44 +1409,44 @@
     "layout": "content/environments/procedural_bridge_v1/layout.json",
     "layout_sha256": "e37b06498dd3c54539e773f241f9c3d7351849d3d1b9ac2ae336d4e563e1c3a1",
     "room_glb": "content/environments/procedural_architecture_v1/rooms/bones.glb",
-    "room_glb_sha256": "f80aaf766422d40e2146d68e3b511d24e57c2392b6760581246b29c3452e452a"
+    "room_glb_sha256": "4f85d3ed787754d7bed1cf4ce4706d7e6c5105f897fa50da9f94c5564d2d6e7d"
   },
   "task": "T-179",
   "triangles": {
     "budget": 20000,
     "meshes": {
-      "Rubble_bones_0": 8646,
-      "Rubble_bones_1": 780,
-      "Rubble_bones_2": 3292,
-      "Rubble_bones_3": 5324,
-      "Rubble_bones_grime": 783
+      "Rubble_bones_0": 9494,
+      "Rubble_bones_1": 14,
+      "Rubble_bones_2": 48,
+      "Rubble_bones_3": 8466,
+      "Rubble_bones_grime": 630
     },
-    "total": 18825
+    "total": 18652
   },
   "vertex_color": {
     "Rubble_bones_0": {
-      "clipped_share": 0.0158,
-      "mean": 0.3,
-      "min": 0.126
+      "clipped_share": 0.012,
+      "mean": 0.299,
+      "min": 0.129
     },
     "Rubble_bones_1": {
-      "clipped_share": 0.0201,
-      "mean": 0.394,
-      "min": 0.131
+      "clipped_share": 0.3571,
+      "mean": 0.695,
+      "min": 0.216
     },
     "Rubble_bones_2": {
-      "clipped_share": 0.02,
-      "mean": 0.36,
-      "min": 0.135
+      "clipped_share": 0.0347,
+      "mean": 0.4,
+      "min": 0.144
     },
     "Rubble_bones_3": {
-      "clipped_share": 0.0233,
-      "mean": 0.348,
-      "min": 0.13
+      "clipped_share": 0.0104,
+      "mean": 0.309,
+      "min": 0.127
     },
     "Rubble_bones_grime": {
       "clipped_share": 0.0,
-      "mean": 0.278,
+      "mean": 0.33,
       "min": 0.098
     }
   }

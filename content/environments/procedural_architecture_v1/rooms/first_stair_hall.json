@@ -17,7 +17,7 @@
       "min": 0.18
     },
     "Mortar_first_stair_hall_4": {
-      "mean": 0.889,
+      "mean": 0.251,
       "min": 0.18
     },
     "Mortar_first_stair_hall_5": {
@@ -79,7 +79,7 @@
   },
   "blender": "5.2.2 LTS",
   "files": {
-    "content/environments/procedural_architecture_v1/rooms/first_stair_hall.glb": "683b86c846ca99c55e0db3f437336282128eabf3928d7095003911b14d197c4f"
+    "content/environments/procedural_architecture_v1/rooms/first_stair_hall.glb": "b8d96bf199b7eea3ea6551eede27a25bef554bee550d0347607fccff8991d7fe"
   },
   "id": "first_stair_hall",
   "triangles": 221489

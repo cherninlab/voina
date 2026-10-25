@@ -1,38 +1,38 @@
 {
   "ao": {
     "Rubble_ossuary_0": {
-      "mean": 0.344,
+      "mean": 0.38,
       "min": 0.18
     },
     "Rubble_ossuary_1": {
-      "mean": 0.334,
+      "mean": 0.397,
       "min": 0.18
     },
     "Rubble_ossuary_2": {
-      "mean": 0.41,
+      "mean": 0.347,
       "min": 0.18
     },
     "Rubble_ossuary_3": {
-      "mean": 0.33,
+      "mean": 0.349,
       "min": 0.18
     },
     "Rubble_ossuary_grime": {
-      "mean": 0.288,
+      "mean": 0.486,
       "min": 0.18
     }
   },
   "axes": "Godot world coordinates, metres, Y up: place at the origin like the room GLB",
   "blender": "5.2.2 LTS",
-  "build_seconds": 290.4,
+  "build_seconds": 211.3,
   "collision": {
-    "convex_hulls": 50,
-    "hull_vertices": 760,
+    "convex_hulls": 42,
+    "hull_vertices": 757,
     "min_piece_size_m": 0.25
   },
   "color": "Color.rgb = baked AO (0.35 m) x per-piece tone (0.7, 1.15) (x 1.07 on fresh breaks); grime bed tone (0.5, 1.0); grey, clipped to 1 by glTF",
-  "command": "blender --factory-startup -b --python-exit-code 1 --python scripts/art/build_room_rubble.py -- --rooms chapel,nave,ossuary --no-review",
+  "command": "blender --factory-startup -b --python-exit-code 1 --python scripts/art/build_room_rubble.py -- --rooms ossuary,cells,restraint --no-review",
   "files": {
-    "content/environments/procedural_rubble_v1/rooms/ossuary.glb": "240cd8d4b5ef586d524ebe9195d42981e81c6ca55647f0e1337577ca8d7bd1b0"
+    "content/environments/procedural_rubble_v1/rooms/ossuary.glb": "e33069395a7eb2c97a4991e2671b52c843283b8867cdd2981ac065d061324581"
   },
   "floor_y": -10.0,
   "generator": "scripts/art/build_room_rubble.py",
@@ -44,149 +44,135 @@
     "settled_heaps": [
       {
         "godot_xz": [
-          -41.18,
-          -40.11
+          -41.46,
+          -39.95
         ],
-        "stone_volume_m3": 0.0553,
-        "top_m": 0.386
+        "stone_volume_m3": 0.0565,
+        "top_m": 0.37
       },
       {
         "godot_xz": [
-          -25.75,
-          -25.5
+          -33.15,
+          -42.58
         ],
-        "stone_volume_m3": 0.0551,
-        "top_m": 0.425
+        "stone_volume_m3": 0.0428,
+        "top_m": 0.295
       },
       {
         "godot_xz": [
-          -38.95,
-          -42.32
+          -22.42,
+          -38.95
         ],
-        "stone_volume_m3": 0.0345,
-        "top_m": 0.324
+        "stone_volume_m3": 0.0314,
+        "top_m": 0.294
       },
       {
         "godot_xz": [
-          -38.58,
-          -25.5
+          -23.04,
+          -40.46
         ],
-        "stone_volume_m3": 0.0291,
-        "top_m": 0.284
+        "stone_volume_m3": 0.0257,
+        "top_m": 0.254
       },
       {
         "godot_xz": [
-          -22.68,
-          -28.05
+          -22.42,
+          -28.2
         ],
-        "stone_volume_m3": 0.0199,
-        "top_m": 0.255
+        "stone_volume_m3": 0.0227,
+        "top_m": 0.288
       },
       {
         "godot_xz": [
-          -41.34,
-          -28.05
+          -41.58,
+          -38.35
         ],
-        "stone_volume_m3": 0.0189,
-        "top_m": 0.2
+        "stone_volume_m3": 0.0166,
+        "top_m": 0.194
       },
       {
         "godot_xz": [
-          -24.32,
-          -26.39
+          -40.24,
+          -41.17
         ],
-        "stone_volume_m3": 0.0143,
-        "top_m": 0.242
+        "stone_volume_m3": 0.0124,
+        "top_m": 0.164
       },
       {
         "godot_xz": [
-          -41.49,
-          -38.45
+          -41.31,
+          -27.9
         ],
-        "stone_volume_m3": 0.0112,
-        "top_m": 0.23
+        "stone_volume_m3": 0.0123,
+        "top_m": 0.211
       }
     ],
     "target_heaps": [
       {
         "godot_xz": [
-          -41.34,
+          -41.46,
           -39.95
         ],
         "wedge_height_m": 0.55
       },
       {
         "godot_xz": [
-          -38.89,
-          -25.61
+          -32.85,
+          -42.58
         ],
         "wedge_height_m": 0.55
       },
       {
         "godot_xz": [
-          -25.65,
-          -25.5
+          -41.58,
+          -34.35
         ],
-        "wedge_height_m": 0.55
+        "wedge_height_m": 0.47
       },
       {
         "godot_xz": [
-          -38.57,
-          -42.49
-        ],
-        "wedge_height_m": 0.55
-      },
-      {
-        "godot_xz": [
-          -41.34,
+          -22.54,
           -28.05
         ],
-        "wedge_height_m": 0.35
+        "wedge_height_m": 0.41
       },
       {
         "godot_xz": [
-          -22.46,
+          -22.42,
           -38.45
+        ],
+        "wedge_height_m": 0.36
+      },
+      {
+        "godot_xz": [
+          -22.54,
+          -39.95
+        ],
+        "wedge_height_m": 0.36
+      },
+      {
+        "godot_xz": [
+          -22.42,
+          -33.55
         ],
         "wedge_height_m": 0.31
       },
       {
         "godot_xz": [
-          -22.47,
-          -28.25
+          -24.83,
+          -25.76
         ],
-        "wedge_height_m": 0.3
-      },
-      {
-        "godot_xz": [
-          -22.47,
-          -33.55
-        ],
-        "wedge_height_m": 0.28
-      },
-      {
-        "godot_xz": [
-          -36.35,
-          -25.47
-        ],
-        "wedge_height_m": 0.24
-      },
-      {
-        "godot_xz": [
-          -22.67,
-          -39.95
-        ],
-        "wedge_height_m": 0.17
+        "wedge_height_m": 0.21
       },
       {
         "godot_xz": [
           -25.05,
-          -42.33
+          -42.46
         ],
-        "wedge_height_m": 0.15
+        "wedge_height_m": 0.16
       }
     ],
-    "usable_wall_m": 59.1
+    "usable_wall_m": 47.5
   },
   "id": "ossuary",
   "physics": {
@@ -218,50 +204,206 @@
   },
   "pieces": {
     "discarded": {
-      "floating": 3,
-      "no_spot": 1,
-      "not_settled": 7
+      "floating": 0,
+      "no_spot": 3,
+      "not_settled": 2,
+      "route": 1
     },
-    "floating_removed": [
-      [
-        "Rock132",
-        0.0107
-      ],
-      [
-        "Grit262",
-        0.011
-      ],
-      [
-        "Grit409",
-        0.0102
-      ]
-    ],
+    "floating_removed": [],
     "generated": {
-      "big": 263,
+      "big": 223,
       "gravel": 420,
-      "medium": 260,
+      "medium": 176,
       "small": 149
     },
     "kept": {
-      "big": 256,
-      "gravel": 418,
-      "medium": 259,
-      "small": 148
+      "big": 218,
+      "gravel": 420,
+      "medium": 175,
+      "small": 149
     },
-    "kept_total": 1081,
+    "kept_total": 962,
     "size_m": {
-      "max": 0.341,
-      "median": 0.056,
+      "max": 0.336,
+      "median": 0.045,
       "min": 0.012
     }
   },
   "review": [],
   "routes": {
     "clear_height_m": 0.04,
-    "level_m": 1.0,
-    "max_height_in_ribbons_m": 0.0,
+    "level_m": 24.0,
+    "max_height_in_ribbons_m": 0.0053,
     "pad_m": 0.3,
     "ribbons": [
+      {
+        "clear_radius_m": 2.8,
+        "from": [
+          -42.0,
+          -24.0
+        ],
+        "route": "entry",
+        "to": [
+          -25.0,
+          -23.0
+        ]
+      },
+      {
+        "clear_radius_m": 2.8,
+        "from": [
+          -25.0,
+          -23.0
+        ],
+        "route": "entry",
+        "to": [
+          -22.0,
+          -23.0
+        ]
+      },
+      {
+        "clear_radius_m": 2.8,
+        "from": [
+          -22.0,
+          -23.0
+        ],
+        "route": "entry",
+        "to": [
+          -22.0,
+          -16.0
+        ]
+      },
+      {
+        "clear_radius_m": 1.9,
+        "from": [
+          -22.0,
+          -16.0
+        ],
+        "route": "high_span",
+        "to": [
+          -12.0,
+          -14.0
+        ]
+      },
+      {
+        "clear_radius_m": 1.9,
+        "from": [
+          -12.0,
+          -14.0
+        ],
+        "route": "high_span",
+        "to": [
+          -3.0,
+          -12.0
+        ]
+      },
+      {
+        "clear_radius_m": 1.9,
+        "from": [
+          -3.0,
+          -12.0
+        ],
+        "route": "high_span",
+        "to": [
+          3.0,
+          -15.0
+        ]
+      },
+      {
+        "clear_radius_m": 1.9,
+        "from": [
+          3.0,
+          -15.0
+        ],
+        "route": "high_span",
+        "to": [
+          15.0,
+          -15.0
+        ]
+      },
+      {
+        "clear_radius_m": 1.9,
+        "from": [
+          15.0,
+          -15.0
+        ],
+        "route": "high_span",
+        "to": [
+          24.0,
+          -10.0
+        ]
+      },
+      {
+        "clear_radius_m": 2.5,
+        "from": [
+          24.0,
+          -10.0
+        ],
+        "route": "upper_hall",
+        "to": [
+          34.0,
+          -8.5
+        ]
+      },
+      {
+        "clear_radius_m": 2.5,
+        "from": [
+          34.0,
+          -8.5
+        ],
+        "route": "upper_hall",
+        "to": [
+          36.0,
+          -24.0
+        ]
+      },
+      {
+        "clear_radius_m": 2.5,
+        "from": [
+          36.0,
+          -24.0
+        ],
+        "route": "upper_hall",
+        "to": [
+          36.0,
+          -29.0
+        ]
+      },
+      {
+        "clear_radius_m": 2.2,
+        "from": [
+          36.0,
+          -29.0
+        ],
+        "route": "first_stair",
+        "to": [
+          39.5,
+          -29.0
+        ]
+      },
+      {
+        "clear_radius_m": 2.2,
+        "from": [
+          39.5,
+          -29.0
+        ],
+        "route": "first_stair",
+        "to": [
+          39.5,
+          -39.5
+        ]
+      },
+      {
+        "clear_radius_m": 2.2,
+        "from": [
+          39.5,
+          -39.5
+        ],
+        "route": "first_stair",
+        "to": [
+          29.5,
+          -39.5
+        ]
+      },
       {
         "clear_radius_m": 2.2,
         "from": [
@@ -371,6 +513,486 @@
         ]
       },
       {
+        "clear_radius_m": 2.3,
+        "from": [
+          -5.0,
+          -14.0
+        ],
+        "route": "central_ledge",
+        "to": [
+          -1.0,
+          -9.0
+        ]
+      },
+      {
+        "clear_radius_m": 2.3,
+        "from": [
+          -1.0,
+          -9.0
+        ],
+        "route": "central_ledge",
+        "to": [
+          2.0,
+          -3.0
+        ]
+      },
+      {
+        "clear_radius_m": 2.3,
+        "from": [
+          2.0,
+          -3.0
+        ],
+        "route": "central_ledge",
+        "to": [
+          1.0,
+          1.5
+        ]
+      },
+      {
+        "clear_radius_m": 2.3,
+        "from": [
+          1.0,
+          1.5
+        ],
+        "route": "central_ledge",
+        "to": [
+          4.0,
+          7.0
+        ]
+      },
+      {
+        "clear_radius_m": 2.3,
+        "from": [
+          4.0,
+          7.0
+        ],
+        "route": "central_ledge",
+        "to": [
+          10.0,
+          13.0
+        ]
+      },
+      {
+        "clear_radius_m": 2.3,
+        "from": [
+          10.0,
+          13.0
+        ],
+        "route": "central_ledge",
+        "to": [
+          7.0,
+          21.0
+        ]
+      },
+      {
+        "clear_radius_m": 2.5,
+        "from": [
+          7.0,
+          21.0
+        ],
+        "route": "nave",
+        "to": [
+          7.0,
+          34.0
+        ]
+      },
+      {
+        "clear_radius_m": 2.5,
+        "from": [
+          7.0,
+          34.0
+        ],
+        "route": "nave",
+        "to": [
+          -6.0,
+          34.0
+        ]
+      },
+      {
+        "clear_radius_m": 2.5,
+        "from": [
+          -6.0,
+          34.0
+        ],
+        "route": "nave",
+        "to": [
+          -6.0,
+          30.0
+        ]
+      },
+      {
+        "clear_radius_m": 2.5,
+        "from": [
+          -6.0,
+          30.0
+        ],
+        "route": "nave",
+        "to": [
+          -10.0,
+          30.0
+        ]
+      },
+      {
+        "clear_radius_m": 2.5,
+        "from": [
+          -10.0,
+          30.0
+        ],
+        "route": "nave",
+        "to": [
+          -10.0,
+          27.0
+        ]
+      },
+      {
+        "clear_radius_m": 2.5,
+        "from": [
+          -10.0,
+          27.0
+        ],
+        "route": "nave",
+        "to": [
+          -14.0,
+          24.0
+        ]
+      },
+      {
+        "clear_radius_m": 2.5,
+        "from": [
+          -14.0,
+          24.0
+        ],
+        "route": "nave",
+        "to": [
+          -30.0,
+          24.0
+        ]
+      },
+      {
+        "clear_radius_m": 2.2,
+        "from": [
+          -30.0,
+          24.0
+        ],
+        "route": "second_stair",
+        "to": [
+          -28.0,
+          25.5
+        ]
+      },
+      {
+        "clear_radius_m": 2.2,
+        "from": [
+          -28.0,
+          25.5
+        ],
+        "route": "second_stair",
+        "to": [
+          -28.0,
+          36.0
+        ]
+      },
+      {
+        "clear_radius_m": 2.2,
+        "from": [
+          -28.0,
+          36.0
+        ],
+        "route": "second_stair",
+        "to": [
+          -34.0,
+          36.0
+        ]
+      },
+      {
+        "clear_radius_m": 2.2,
+        "from": [
+          -34.0,
+          36.0
+        ],
+        "route": "second_stair",
+        "to": [
+          -34.0,
+          26.0
+        ]
+      },
+      {
+        "clear_radius_m": 2.2,
+        "from": [
+          -34.0,
+          26.0
+        ],
+        "route": "second_stair",
+        "to": [
+          -34.0,
+          24.0
+        ]
+      },
+      {
+        "clear_radius_m": 2.8,
+        "from": [
+          -34.0,
+          24.0
+        ],
+        "route": "root_tunnel",
+        "to": [
+          -41.0,
+          24.0
+        ]
+      },
+      {
+        "clear_radius_m": 2.8,
+        "from": [
+          -41.0,
+          24.0
+        ],
+        "route": "root_tunnel",
+        "to": [
+          -41.0,
+          14.0
+        ]
+      },
+      {
+        "clear_radius_m": 2.8,
+        "from": [
+          -41.0,
+          14.0
+        ],
+        "route": "root_tunnel",
+        "to": [
+          -31.0,
+          6.0
+        ]
+      },
+      {
+        "clear_radius_m": 2.8,
+        "from": [
+          -31.0,
+          6.0
+        ],
+        "route": "root_tunnel",
+        "to": [
+          -38.0,
+          -2.0
+        ]
+      },
+      {
+        "clear_radius_m": 2.8,
+        "from": [
+          -38.0,
+          -2.0
+        ],
+        "route": "root_tunnel",
+        "to": [
+          -30.0,
+          -8.5
+        ]
+      },
+      {
+        "clear_radius_m": 2.8,
+        "from": [
+          -30.0,
+          -8.5
+        ],
+        "route": "root_tunnel",
+        "to": [
+          -23.0,
+          -16.0
+        ]
+      },
+      {
+        "clear_radius_m": 2.1,
+        "from": [
+          -23.0,
+          -16.0
+        ],
+        "route": "low_span",
+        "to": [
+          -14.0,
+          -16.0
+        ]
+      },
+      {
+        "clear_radius_m": 2.1,
+        "from": [
+          -14.0,
+          -16.0
+        ],
+        "route": "low_span",
+        "to": [
+          -9.0,
+          -8.0
+        ]
+      },
+      {
+        "clear_radius_m": 2.1,
+        "from": [
+          -9.0,
+          -8.0
+        ],
+        "route": "low_span",
+        "to": [
+          -3.0,
+          4.0
+        ]
+      },
+      {
+        "clear_radius_m": 2.1,
+        "from": [
+          -3.0,
+          4.0
+        ],
+        "route": "low_span",
+        "to": [
+          5.0,
+          9.0
+        ]
+      },
+      {
+        "clear_radius_m": 2.1,
+        "from": [
+          5.0,
+          9.0
+        ],
+        "route": "low_span",
+        "to": [
+          12.0,
+          8.0
+        ]
+      },
+      {
+        "clear_radius_m": 2.1,
+        "from": [
+          12.0,
+          8.0
+        ],
+        "route": "low_span",
+        "to": [
+          16.0,
+          3.0
+        ]
+      },
+      {
+        "clear_radius_m": 2.1,
+        "from": [
+          16.0,
+          3.0
+        ],
+        "route": "low_span",
+        "to": [
+          25.0,
+          6.0
+        ]
+      },
+      {
+        "clear_radius_m": 2.6,
+        "from": [
+          25.0,
+          6.0
+        ],
+        "route": "choir",
+        "to": [
+          33.0,
+          5.0
+        ]
+      },
+      {
+        "clear_radius_m": 2.6,
+        "from": [
+          33.0,
+          5.0
+        ],
+        "route": "choir",
+        "to": [
+          38.0,
+          -2.0
+        ]
+      },
+      {
+        "clear_radius_m": 2.05,
+        "from": [
+          38.0,
+          -2.0
+        ],
+        "route": "return_stair",
+        "to": [
+          38.0,
+          -10.7
+        ]
+      },
+      {
+        "clear_radius_m": 2.05,
+        "from": [
+          38.0,
+          -10.7
+        ],
+        "route": "return_stair",
+        "to": [
+          41.5,
+          -10.7
+        ]
+      },
+      {
+        "clear_radius_m": 2.05,
+        "from": [
+          41.5,
+          -10.7
+        ],
+        "route": "return_stair",
+        "to": [
+          43.7,
+          -8.5
+        ]
+      },
+      {
+        "clear_radius_m": 2.05,
+        "from": [
+          43.7,
+          -8.5
+        ],
+        "route": "return_stair",
+        "to": [
+          43.7,
+          21.0
+        ]
+      },
+      {
+        "clear_radius_m": 2.05,
+        "from": [
+          43.7,
+          21.0
+        ],
+        "route": "return_stair",
+        "to": [
+          41.5,
+          23.2
+        ]
+      },
+      {
+        "clear_radius_m": 2.05,
+        "from": [
+          41.5,
+          23.2
+        ],
+        "route": "return_stair",
+        "to": [
+          30.5,
+          23.2
+        ]
+      },
+      {
+        "clear_radius_m": 2.05,
+        "from": [
+          30.5,
+          23.2
+        ],
+        "route": "return_stair",
+        "to": [
+          28.3,
+          21.0
+        ]
+      },
+      {
         "clear_radius_m": 2.05,
         "from": [
           28.3,
@@ -445,6 +1067,66 @@
       {
         "clear_radius_m": 2.3,
         "from": [
+          34.0,
+          -8.5
+        ],
+        "route": "upper_cells",
+        "to": [
+          34.0,
+          4.0
+        ]
+      },
+      {
+        "clear_radius_m": 2.3,
+        "from": [
+          34.0,
+          4.0
+        ],
+        "route": "upper_cells",
+        "to": [
+          36.0,
+          6.0
+        ]
+      },
+      {
+        "clear_radius_m": 2.3,
+        "from": [
+          36.0,
+          6.0
+        ],
+        "route": "upper_cells",
+        "to": [
+          46.0,
+          6.0
+        ]
+      },
+      {
+        "clear_radius_m": 2.3,
+        "from": [
+          46.0,
+          6.0
+        ],
+        "route": "upper_cells",
+        "to": [
+          46.0,
+          -15.0
+        ]
+      },
+      {
+        "clear_radius_m": 2.3,
+        "from": [
+          46.0,
+          -15.0
+        ],
+        "route": "upper_cells",
+        "to": [
+          39.0,
+          -15.0
+        ]
+      },
+      {
+        "clear_radius_m": 2.3,
+        "from": [
           -10.0,
           -30.0
         ],
@@ -548,65 +1230,201 @@
         "to": [
           -10.0,
           -30.0
+        ]
+      },
+      {
+        "clear_radius_m": 2.3,
+        "from": [
+          0.0,
+          34.0
+        ],
+        "route": "bell_loop",
+        "to": [
+          0.0,
+          36.0
+        ]
+      },
+      {
+        "clear_radius_m": 2.3,
+        "from": [
+          0.0,
+          36.0
+        ],
+        "route": "bell_loop",
+        "to": [
+          16.0,
+          36.0
+        ]
+      },
+      {
+        "clear_radius_m": 2.3,
+        "from": [
+          16.0,
+          36.0
+        ],
+        "route": "bell_loop",
+        "to": [
+          36.0,
+          36.0
+        ]
+      },
+      {
+        "clear_radius_m": 2.3,
+        "from": [
+          36.0,
+          36.0
+        ],
+        "route": "bell_loop",
+        "to": [
+          36.0,
+          44.0
+        ]
+      },
+      {
+        "clear_radius_m": 2.3,
+        "from": [
+          36.0,
+          44.0
+        ],
+        "route": "bell_loop",
+        "to": [
+          6.0,
+          44.0
+        ]
+      },
+      {
+        "clear_radius_m": 2.3,
+        "from": [
+          6.0,
+          44.0
+        ],
+        "route": "bell_loop",
+        "to": [
+          6.0,
+          34.0
+        ]
+      },
+      {
+        "clear_radius_m": 2.55,
+        "from": [
+          -41.0,
+          14.0
+        ],
+        "route": "cave_bypass",
+        "to": [
+          -46.0,
+          7.0
+        ]
+      },
+      {
+        "clear_radius_m": 2.55,
+        "from": [
+          -46.0,
+          7.0
+        ],
+        "route": "cave_bypass",
+        "to": [
+          -43.0,
+          -6.0
+        ]
+      },
+      {
+        "clear_radius_m": 2.55,
+        "from": [
+          -43.0,
+          -6.0
+        ],
+        "route": "cave_bypass",
+        "to": [
+          -38.0,
+          -2.0
         ]
       }
     ]
   },
   "seconds": {
-    "bake": 0.9,
-    "checks": 0.7,
-    "deposit": 1.1,
-    "physics_1": 67.0,
-    "physics_2": 199.8,
-    "pieces": 20.2,
+    "bake": 0.8,
+    "checks": 0.2,
+    "deposit": 1.0,
+    "physics_1": 51.7,
+    "physics_2": 141.5,
+    "pieces": 15.6,
     "review": 0.0,
-    "setup": 0.6
+    "setup": 0.4
   },
   "seed": 179,
   "settle": {
     "deepest_pair": null,
     "drop": {
-      "frames": 214,
+      "frames": 390,
       "never_still": 0,
       "runs": [
         {
-          "active": 1091,
+          "active": 965,
           "frames": 90,
-          "peak_speed_m_s": 2.917,
+          "peak_speed_m_s": 4.269,
           "run": 0,
-          "stilled": 932
+          "stilled": 857
         },
         {
-          "active": 159,
+          "active": 108,
           "frames": 45,
-          "peak_speed_m_s": 0.596,
+          "peak_speed_m_s": 0.271,
           "run": 1,
-          "stilled": 138
+          "stilled": 82
         },
         {
-          "active": 21,
+          "active": 26,
           "frames": 45,
-          "peak_speed_m_s": 0.277,
+          "peak_speed_m_s": 0.749,
           "run": 2,
-          "stilled": 15
+          "stilled": 17
         },
         {
-          "active": 6,
-          "frames": 34,
-          "peak_speed_m_s": 0.038,
+          "active": 9,
+          "frames": 45,
+          "peak_speed_m_s": 0.024,
           "run": 3,
-          "stilled": 6
+          "stilled": 8
+        },
+        {
+          "active": 1,
+          "frames": 45,
+          "peak_speed_m_s": 0.024,
+          "run": 4,
+          "stilled": 0
+        },
+        {
+          "active": 1,
+          "frames": 45,
+          "peak_speed_m_s": 1.181,
+          "run": 5,
+          "stilled": 0
+        },
+        {
+          "active": 1,
+          "frames": 45,
+          "peak_speed_m_s": 0.107,
+          "run": 6,
+          "stilled": 0
+        },
+        {
+          "active": 1,
+          "frames": 30,
+          "peak_speed_m_s": 0.001,
+          "run": 7,
+          "stilled": 1
         }
       ]
     },
-    "max_contact_gap_m": 0.0091,
+    "max_contact_gap_m": 0.01,
     "max_interpenetration_m": 0.0,
     "rule": "a piece is still when the net travel of its fastest bound-box corner over 15 frames (30 fps) is under 0.01 m/s; still pieces are held for later runs",
     "stability_check": {
-      "max_move_m": 0.0299,
-      "max_turn_deg": 48.8,
-      "pieces_moved_over_1cm": 5,
-      "pieces_moved_over_3cm": 0,
+      "max_move_m": 0.0394,
+      "max_turn_deg": 81.11,
+      "pieces_moved_over_1cm": 7,
+      "pieces_moved_over_3cm": 1,
       "resettled": 3,
       "what": "every kept piece let go again from the exported pose for 1.5 s (measured, not kept)"
     }
@@ -615,45 +1433,45 @@
     "layout": "content/environments/procedural_bridge_v1/layout.json",
     "layout_sha256": "e37b06498dd3c54539e773f241f9c3d7351849d3d1b9ac2ae336d4e563e1c3a1",
     "room_glb": "content/environments/procedural_architecture_v1/rooms/ossuary.glb",
-    "room_glb_sha256": "8e86cadc36408c04c9e5abb96667064ce9dc03e369f8320d6e583a169986910e"
+    "room_glb_sha256": "a8ef9dc0408706c72a601993be58b45d90c0c1fef39dc79c8ecc3763c2e7f1b2"
   },
   "task": "T-179",
   "triangles": {
     "budget": 20000,
     "meshes": {
-      "Rubble_ossuary_0": 4593,
-      "Rubble_ossuary_1": 4724,
-      "Rubble_ossuary_2": 1204,
-      "Rubble_ossuary_3": 7685,
-      "Rubble_ossuary_grime": 819
+      "Rubble_ossuary_0": 1078,
+      "Rubble_ossuary_1": 2208,
+      "Rubble_ossuary_2": 3084,
+      "Rubble_ossuary_3": 11772,
+      "Rubble_ossuary_grime": 746
     },
-    "total": 19025
+    "total": 18888
   },
   "vertex_color": {
     "Rubble_ossuary_0": {
-      "clipped_share": 0.0207,
-      "mean": 0.341,
-      "min": 0.126
+      "clipped_share": 0.0232,
+      "mean": 0.387,
+      "min": 0.127
     },
     "Rubble_ossuary_1": {
-      "clipped_share": 0.0173,
-      "mean": 0.333,
-      "min": 0.126
+      "clipped_share": 0.0319,
+      "mean": 0.392,
+      "min": 0.132
     },
     "Rubble_ossuary_2": {
-      "clipped_share": 0.0091,
-      "mean": 0.381,
+      "clipped_share": 0.02,
+      "mean": 0.352,
       "min": 0.126
     },
     "Rubble_ossuary_3": {
-      "clipped_share": 0.0221,
-      "mean": 0.336,
-      "min": 0.127
+      "clipped_share": 0.0197,
+      "mean": 0.346,
+      "min": 0.126
     },
     "Rubble_ossuary_grime": {
       "clipped_share": 0.0,
-      "mean": 0.229,
-      "min": 0.1
+      "mean": 0.375,
+      "min": 0.099
     }
   }
 }

@@ -446,8 +446,10 @@ def write_index(layout: dict, out: Path) -> None:
     index['passages'], index['files'], index['nodes'] = coverage, files, built_nodes
     sets = json.loads((core.ROOT / 'content/environments/procedural_props_aged_v1/sets.json').read_text())
     index['props'] = [spot for room in built for spot in prop_spots(room, layout, sets)]
+    index['lights'] = [spot for room in built for spot in light_spots(room, layout, index['props'])]
     (out / 'index.json').write_text(json.dumps(index, indent=2, sort_keys=True) + '\n')
-    print('ARCHITECTURE_INDEX', len(index['rooms']), 'rooms', len(files), 'passage files', len(index['props']), 'props', flush=True)
+    print('ARCHITECTURE_INDEX', len(index['rooms']), 'rooms', len(files), 'passage files', len(index['props']), 'props',
+          len(index['lights']), 'sconces', flush=True)
 
 
 def build_network(layout: dict, wanted: set, rng, lib, quoins) -> tuple:
@@ -894,6 +896,55 @@ def prop_spots(room: dict, layout: dict, sets: dict) -> list:
             godot = (centre.x, floor, -centre.y)
             placed.append({'room': room['id'], 'set': name, 'at': [round(c, 3) for c in godot], 'facing': [round(inward.x, 4), round(-inward.y, 4)]})
     return placed
+
+
+SCONCE_HEIGHT = 2.6    # wall sconces above the floor
+
+
+def light_spots(room: dict, layout: dict, props: list) -> list:
+    """Wall sconces for a room: about one per 14 m of wall, two to six, spread
+    as far apart as they can be (each next one is the place farthest from
+    those already lit). Each is on a wall face clear of corners, doorways and
+    their arch rings, pilasters, props, and any walk passing within head
+    height of it. `at` is the nominal face at sconce height (Godot)."""
+    floor = room['floor']
+    y = floor + SCONCE_HEIGHT
+    faces = room_faces(room_walls(room, layout))
+    inner = outset(ccw([flat(v) for v in room['points']]), -THICKNESS * 0.5)
+    reach = vault.inradius(inner)
+    rise = vault_rise(room, layout)
+    spots = bay_spots(faces, reach, rise, lambda face, x: True)
+    pilasters = {(i, x) for i, j, k, x, xj, span in spots} | {(j, xj) for i, j, k, x, xj, span in spots}
+    goods = [flat((p['at'][0], p['at'][2])) for p in props if p['room'] == room['id']]
+    candidates = []
+    for i, (start, along, inward, openings, length) in enumerate(faces):
+        for step in range(int(length / 0.5) + 1):
+            x = step * 0.5
+            if x < 1.2 or x > length - 1.2:
+                continue
+            if any(o.x0 - RING - 0.8 < x < o.x1 + RING + 0.8 for o in openings):
+                continue
+            if any(k == i and abs(px - x) < 1.0 for k, px in pilasters):
+                continue
+            at = start + along * x
+            if any((at - g).length < 1.4 for g in goods):
+                continue
+            levels = [ribbon_level(layout, start + along * (x + dx) + inward * dz) for dx in (-0.6, 0.0, 0.6) for dz in (0.3, 0.9)]
+            if not any(level is not None and y - 2.3 < level < y + 0.6 for level in levels):
+                candidates.append((at, inward))
+    if not candidates:
+        return []
+    wanted = min(max(round(sum(face[4] for face in faces) / 14.0), 2), 6)
+    longest = max(faces, key=lambda face: face[4])
+    middle = longest[0] + longest[1] * longest[4] * 0.5
+    chosen = [min(candidates, key=lambda c: (c[0] - middle).length)]
+    while len(chosen) < wanted:
+        best = max(candidates, key=lambda c: min((c[0] - o[0]).length for o in chosen))
+        if min((best[0] - o[0]).length for o in chosen) < 4.0:
+            break
+        chosen.append(best)
+    return [{'room': room['id'], 'at': [round(at.x, 3), round(y, 3), round(-at.y, 3)],
+             'facing': [round(inward.x, 4), round(-inward.y, 4)]} for at, inward in chosen]
 
 
 def laced(rows: list) -> list:

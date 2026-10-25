@@ -1,19 +1,19 @@
 {
   "ao": {
     "Mortar_bones_0": {
-      "mean": 0.449,
+      "mean": 0.486,
       "min": 0.18
     },
     "Mortar_bones_1": {
-      "mean": 0.569,
+      "mean": 0.566,
       "min": 0.18
     },
     "Mortar_bones_2": {
-      "mean": 0.598,
+      "mean": 0.6,
       "min": 0.18
     },
     "Mortar_bones_3": {
-      "mean": 0.445,
+      "mean": 0.487,
       "min": 0.18
     },
     "Mortar_bones_4": {
@@ -29,46 +29,86 @@
       "min": 0.18
     },
     "Mortar_bones_7": {
+      "mean": 0.216,
+      "min": 0.18
+    },
+    "Stone-arch_bones_0": {
+      "mean": 0.495,
+      "min": 0.18
+    },
+    "Stone-arch_bones_3": {
+      "mean": 0.491,
+      "min": 0.18
+    },
+    "Stone-ashlar_bones_0": {
+      "mean": 0.616,
+      "min": 0.18
+    },
+    "Stone-ashlar_bones_1": {
+      "mean": 0.519,
+      "min": 0.18
+    },
+    "Stone-ashlar_bones_2": {
+      "mean": 0.556,
+      "min": 0.18
+    },
+    "Stone-ashlar_bones_3": {
+      "mean": 0.616,
+      "min": 0.18
+    },
+    "Stone-ashlar_bones_4": {
+      "mean": 0.532,
+      "min": 0.18
+    },
+    "Stone-ashlar_bones_5": {
+      "mean": 0.57,
+      "min": 0.18
+    },
+    "Stone-ashlar_bones_6": {
+      "mean": 0.508,
+      "min": 0.18
+    },
+    "Stone-galleted_bones_0": {
+      "mean": 0.694,
+      "min": 0.18
+    },
+    "Stone-galleted_bones_1": {
+      "mean": 0.55,
+      "min": 0.18
+    },
+    "Stone-galleted_bones_2": {
+      "mean": 0.634,
+      "min": 0.18
+    },
+    "Stone-galleted_bones_3": {
+      "mean": 0.676,
+      "min": 0.18
+    },
+    "Stone-galleted_bones_4": {
+      "mean": 0.546,
+      "min": 0.18
+    },
+    "Stone-galleted_bones_5": {
+      "mean": 0.632,
+      "min": 0.18
+    },
+    "Stone-galleted_bones_6": {
       "mean": 0.571,
       "min": 0.18
     },
-    "Stone_bones_0": {
-      "mean": 0.653,
+    "Stone-stone_bones_2": {
+      "mean": 0.753,
       "min": 0.18
     },
-    "Stone_bones_1": {
-      "mean": 0.572,
-      "min": 0.18
-    },
-    "Stone_bones_2": {
-      "mean": 0.671,
-      "min": 0.18
-    },
-    "Stone_bones_3": {
-      "mean": 0.666,
-      "min": 0.18
-    },
-    "Stone_bones_4": {
-      "mean": 0.572,
-      "min": 0.18
-    },
-    "Stone_bones_5": {
-      "mean": 0.61,
-      "min": 0.18
-    },
-    "Stone_bones_6": {
-      "mean": 0.549,
-      "min": 0.18
-    },
-    "Stone_bones_7": {
-      "mean": 0.721,
+    "Stone-stone_bones_7": {
+      "mean": 0.715,
       "min": 0.18
     }
   },
   "blender": "5.2.2 LTS",
   "files": {
-    "content/environments/procedural_architecture_v1/rooms/bones.glb": "f80aaf766422d40e2146d68e3b511d24e57c2392b6760581246b29c3452e452a"
+    "content/environments/procedural_architecture_v1/rooms/bones.glb": "4f85d3ed787754d7bed1cf4ce4706d7e6c5105f897fa50da9f94c5564d2d6e7d"
   },
   "id": "bones",
-  "triangles": 182126
+  "triangles": 182167
 }

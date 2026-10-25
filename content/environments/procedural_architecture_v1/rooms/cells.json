@@ -1,7 +1,7 @@
 {
   "ao": {
     "Mortar_cells_0": {
-      "mean": 0.577,
+      "mean": 0.482,
       "min": 0.18
     },
     "Mortar_cells_1": {
@@ -9,7 +9,7 @@
       "min": 0.18
     },
     "Mortar_cells_2": {
-      "mean": 0.548,
+      "mean": 0.586,
       "min": 0.18
     },
     "Mortar_cells_3": {
@@ -33,50 +33,90 @@
       "min": 0.18
     },
     "Mortar_cells_8": {
-      "mean": 0.862,
+      "mean": 0.208,
       "min": 0.18
     },
-    "Stone_cells_0": {
-      "mean": 0.632,
+    "Stone-arch_cells_0": {
+      "mean": 0.504,
       "min": 0.18
     },
-    "Stone_cells_1": {
-      "mean": 0.604,
+    "Stone-arch_cells_2": {
+      "mean": 0.492,
       "min": 0.18
     },
-    "Stone_cells_2": {
-      "mean": 0.63,
+    "Stone-ashlar_cells_0": {
+      "mean": 0.625,
       "min": 0.18
     },
-    "Stone_cells_3": {
-      "mean": 0.626,
+    "Stone-ashlar_cells_1": {
+      "mean": 0.55,
       "min": 0.18
     },
-    "Stone_cells_4": {
-      "mean": 0.657,
+    "Stone-ashlar_cells_2": {
+      "mean": 0.645,
       "min": 0.18
     },
-    "Stone_cells_5": {
-      "mean": 0.595,
+    "Stone-ashlar_cells_3": {
+      "mean": 0.549,
       "min": 0.18
     },
-    "Stone_cells_6": {
-      "mean": 0.652,
+    "Stone-ashlar_cells_4": {
+      "mean": 0.601,
       "min": 0.18
     },
-    "Stone_cells_7": {
-      "mean": 0.495,
+    "Stone-ashlar_cells_5": {
+      "mean": 0.551,
       "min": 0.18
     },
-    "Stone_cells_8": {
-      "mean": 0.715,
+    "Stone-ashlar_cells_6": {
+      "mean": 0.605,
+      "min": 0.18
+    },
+    "Stone-ashlar_cells_7": {
+      "mean": 0.452,
+      "min": 0.18
+    },
+    "Stone-galleted_cells_0": {
+      "mean": 0.665,
+      "min": 0.18
+    },
+    "Stone-galleted_cells_1": {
+      "mean": 0.623,
+      "min": 0.18
+    },
+    "Stone-galleted_cells_2": {
+      "mean": 0.672,
+      "min": 0.18
+    },
+    "Stone-galleted_cells_3": {
+      "mean": 0.607,
+      "min": 0.18
+    },
+    "Stone-galleted_cells_4": {
+      "mean": 0.659,
+      "min": 0.18
+    },
+    "Stone-galleted_cells_5": {
+      "mean": 0.586,
+      "min": 0.18
+    },
+    "Stone-galleted_cells_6": {
+      "mean": 0.662,
+      "min": 0.18
+    },
+    "Stone-galleted_cells_7": {
+      "mean": 0.52,
+      "min": 0.18
+    },
+    "Stone-stone_cells_8": {
+      "mean": 0.717,
       "min": 0.18
     }
   },
   "blender": "5.2.2 LTS",
   "files": {
-    "content/environments/procedural_architecture_v1/rooms/cells.glb": "c24095b6a1b79078f3ec118352aff6c6067cfe9db57616e30e16b9ca7fec96cb"
+    "content/environments/procedural_architecture_v1/rooms/cells.glb": "f8473f6f5fcdd2d6a7aaa067f0e413f7877ac6b3db2d121fd36116b3f9594c4f"
   },
   "id": "cells",
-  "triangles": 152818
+  "triangles": 154164
 }

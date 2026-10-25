@@ -138,9 +138,15 @@ def _shell(inner, i, n, at, length, spring_z, reach, centre_h, planes, name) -> 
         u, z = at(length * k / steps)
         back = -(inward * (reach - u) + UP * (centre_h - z)).normalized() * 0.04
         rows.append([bm.verts.new(Vector((p.x, p.y, spring_z)) + inward * u + UP * z + back) for p in (start, end)])
-    for k in range(steps + 1):
-        bm.faces.new((rows[k][0], rows[k][1], rows[k + 1][1], rows[k + 1][0]))
-    bmesh.ops.recalc_face_normals(bm, faces=bm.faces[:])
+    faces = [bm.faces.new((rows[k][0], rows[k][1], rows[k + 1][1], rows[k + 1][0])) for k in range(steps + 1)]
+    # An open sheet has no inside to recalculate normals against: face it into
+    # the room (toward the arc's centre) or it is culled and the void shows
+    # through every joint.
+    u, z = at(length * 0.5)
+    into_room = inward * (reach - u) + UP * (centre_h - z)
+    faces[steps // 2].normal_update()
+    if faces[steps // 2].normal.dot(into_room) < 0:
+        bmesh.ops.reverse_faces(bm, faces=faces)
     mesh = bpy.data.meshes.new(name)
     bm.to_mesh(mesh)
     bm.free()

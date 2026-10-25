@@ -4,6 +4,8 @@ extends Node3D
 
 var materials: Dictionary[String, Material] = {}
 var torch_posts: Array[Vector3] = []
+## Wall sconces in stone rooms: {"at": wall face at sconce height, "facing": into the room}.
+var sconces: Array[Dictionary] = []
 var rooms: Array[Dictionary] = RedDescentLayout.rooms()
 var paths: Array[Dictionary] = RedDescentLayout.routes()
 var batches: Dictionary[String, Array] = {}
@@ -313,6 +315,20 @@ func stone_props() -> void:
 			(node as MeshInstance3D).material_override = prop_material(node.name)
 		add_child(dressing)
 
+## Adds a stone room's wall sconces: the nominal wall face at sconce height
+## and the direction into the room. False when the index places none.
+func stone_sconces(room: String) -> bool:
+	var found: bool = false
+	for entry: Variant in stone_index().get("lights", []) as Array:
+		var spot: Dictionary = entry as Dictionary
+		if String(spot["room"]) != room:
+			continue
+		var at: Array = spot["at"] as Array
+		var facing: Array = spot["facing"] as Array
+		sconces.append({"at": Vector3(float(at[0]), float(at[1]), float(at[2])), "facing": Vector3(float(facing[0]), 0.0, float(facing[1])).normalized()})
+		found = true
+	return found
+
 func prop_material(part: String) -> Material:
 	var kind: String = "wood"
 	if part.begins_with("07") or part.begins_with("08"):
@@ -558,9 +574,16 @@ func build_room(room: Dictionary) -> void:
 	for point: Vector2 in polygon:
 		centroid += point
 	centroid /= float(polygon.size())
-	for index: int in [0, polygon.size() / 2]:
-		var at: Vector2 = centroid.lerp(polygon[index], 0.78)
-		torch_posts.append(Vector3(at.x, y, at.y))
+	# A stone room is lit by wall sconces (index.json lights) instead of posts.
+	if not (stone_built and stone_sconces(String(room["id"]))):
+		for index: int in [0, polygon.size() / 2]:
+			var at: Vector2 = centroid.lerp(polygon[index], 0.78)
+			torch_posts.append(Vector3(at.x, y, at.y))
+	# A stone room has its own rubble (T-179) and a vault instead of a timber roof.
+	if stone_built:
+		if String(room["id"]) == "nave":
+			structure.roof(room, true)
+		return
 	# Fallen chips remain beside the wall and clear of all route centers.
 	for index: int in range(polygon.size()):
 		var at: Vector2 = polygon[index].lerp(centroid, 0.12)

@@ -1,11 +1,11 @@
 {
   "ao": {
     "Roots_nave_4": {
-      "mean": 0.623,
+      "mean": 0.621,
       "min": 0.2
     },
     "Roots_nave_6": {
-      "mean": 0.654,
+      "mean": 0.63,
       "min": 0.2
     }
   },
@@ -17,7 +17,7 @@
     "route_margin_m": 0.3
   },
   "diameter_cm": {
-    "max": 12.3,
+    "max": 12.0,
     "min": 0.5
   },
   "doorways": [
@@ -32,7 +32,7 @@
       "width": 4.3
     },
     {
-      "crown": 4.87,
+      "crown": 4.88,
       "wall": 6,
       "width": 4.4
     },
@@ -43,7 +43,7 @@
     }
   ],
   "files": {
-    "content/environments/procedural_roots_v1/nave.glb": "87be814f9c2c803034c75446e5beed09d359ec3204e137c94bbea612c01e3674"
+    "content/environments/procedural_roots_v1/nave.glb": "f7791ae1d2e8525da278e961ced388a3b12c073a959b96bd3b6e53db5a842df8"
   },
   "id": "nave",
   "layout_hash": "20aa6015a7f9f4f7c12b59b90acfe080b07298d8b2b180c7054b532be72d00d4",
@@ -53,34 +53,35 @@
   ],
   "qa": {
     "audit": {
-      "cut_deeper_than_1cm": 27,
-      "cut_into_stone": 57,
-      "emerging_from_joint": 3,
+      "cut_deeper_than_1cm": 5,
+      "cut_into_stone": 19,
+      "emerging_from_joint": 6,
       "in_walking_corridor": 0,
-      "vertices": 7027
+      "vertices": 6697
     },
     "cling_gap_m": {
-      "max": 0.0527,
-      "p50": 0.005,
-      "p95": 0.0105
+      "max": 0.0479,
+      "p50": 0.0052,
+      "p95": 0.0119
     },
-    "clipped_at_corridor": 1,
+    "clipped_at_corridor": 3,
     "pruned": 0,
-    "rings": 1297,
-    "rings_touching_stone": 20
+    "rings": 1266,
+    "rings_touching_stone": 9
   },
-  "roots": 81,
+  "roots": 91,
   "seed": 178,
   "sources": {
     "procedural_architecture_v1/passages/bell_loop.glb": "831e826c37f65657c503b85dc98371998881ca546c0f77eb0759fbc0eed17d21",
     "procedural_architecture_v1/passages/nave.glb": "2d71cb11229bc4cee24f584c0411a6de2c3b476e3a6e8bd650c5cdc46471b604",
     "procedural_architecture_v1/passages/node_-14_-19_24.glb": "9a57e185f593735201e149c8284ea92503871b103a1444f9851de6360d4a6767",
-    "procedural_architecture_v1/rooms/nave.glb": "c27cffd1d8a0141ce9494e4f6bf86d9bddc84f62249633810950e23e0d06fc53"
+    "procedural_architecture_v1/rooms/nave.glb": "ebca9ced64c40f8059ec7592d464602f557b19a45e5bfa5e503ffa6998d54077"
   },
   "systems": {
-    "branch": 5,
+    "branch": 4,
     "loop": 12,
-    "trunk": 4
+    "trunk": 4,
+    "vein": 4
   },
-  "triangles": 14104
+  "triangles": 13428
 }

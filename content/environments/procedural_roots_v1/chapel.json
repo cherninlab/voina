@@ -1,15 +1,15 @@
 {
   "ao": {
     "Roots_chapel_0": {
-      "mean": 0.584,
+      "mean": 0.576,
       "min": 0.2
     },
     "Roots_chapel_2": {
-      "mean": 0.651,
+      "mean": 0.629,
       "min": 0.2
     },
     "Roots_chapel_4": {
-      "mean": 0.704,
+      "mean": 0.668,
       "min": 0.2
     }
   },
@@ -21,7 +21,7 @@
     "route_margin_m": 0.3
   },
   "diameter_cm": {
-    "max": 14.7,
+    "max": 13.4,
     "min": 0.5
   },
   "doorways": [
@@ -31,23 +31,23 @@
       "width": 4.3
     },
     {
-      "crown": 3.28,
+      "crown": 3.27,
       "wall": 0,
       "width": 4.3
     },
     {
-      "crown": 4.88,
+      "crown": 4.87,
       "wall": 2,
       "width": 4.4
     },
     {
-      "crown": 4.82,
+      "crown": 4.83,
       "wall": 4,
       "width": 5.0
     }
   ],
   "files": {
-    "content/environments/procedural_roots_v1/chapel.glb": "64739c24201fee7f7dc88578052cc0a57453a382394ea8001ef042157b5bd598"
+    "content/environments/procedural_roots_v1/chapel.glb": "5be54b79e9a933b5d6f00636688f219b0ef3301d3d34b1f6f5f12f3e54f9c9fa"
   },
   "id": "chapel",
   "layout_hash": "20aa6015a7f9f4f7c12b59b90acfe080b07298d8b2b180c7054b532be72d00d4",
@@ -59,35 +59,35 @@
   "qa": {
     "audit": {
       "cut_deeper_than_1cm": 12,
-      "cut_into_stone": 28,
-      "emerging_from_joint": 1,
+      "cut_into_stone": 31,
+      "emerging_from_joint": 2,
       "in_walking_corridor": 0,
-      "vertices": 6778
+      "vertices": 6906
     },
     "cling_gap_m": {
-      "max": 0.0533,
-      "p50": 0.0053,
-      "p95": 0.0145
+      "max": 0.0474,
+      "p50": 0.0051,
+      "p95": 0.0117
     },
-    "clipped_at_corridor": 1,
+    "clipped_at_corridor": 0,
     "pruned": 0,
-    "rings": 1242,
+    "rings": 1345,
     "rings_touching_stone": 9
   },
-  "roots": 74,
+  "roots": 121,
   "seed": 178,
   "sources": {
     "procedural_architecture_v1/passages/chapel_approach.glb": "3a2afdfd17fefb411e6738f8fe6c9af2575b43c5b9669580a16465e6c0bba0e9",
     "procedural_architecture_v1/passages/node_22_-10_-30.glb": "84c6957f68e4f677eafc756c9c1d49fdb0092be83ffae1d330e98fdfff7ae5a8",
     "procedural_architecture_v1/passages/ossuary_loop.glb": "99cd9381aab1f0cbbc3192792798c79180b551387b3f0c6f0678382dbff7e974",
     "procedural_architecture_v1/passages/return_gallery.glb": "cf295ddf258c535d3aa1903713d378b6eaf6252e389e3eb08181cb7653170d00",
-    "procedural_architecture_v1/rooms/chapel.glb": "1a4b88df7c3590530f65bd5b66fcb9d2268ca81fad799afd899d6ed8c7ffd07a"
+    "procedural_architecture_v1/rooms/chapel.glb": "a9b5fbe0b7a30b831252ed23cfe1b73c13631643d14faf94e5c68b222083e4c3"
   },
   "systems": {
     "branch": 4,
     "loop": 12,
-    "trunk": 5,
-    "vein": 1
+    "trunk": 4,
+    "vein": 3
   },
-  "triangles": 13607
+  "triangles": 13759
 }

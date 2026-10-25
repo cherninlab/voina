@@ -274,7 +274,9 @@ func route(path: Dictionary, edges: PackedVector3Array) -> void:
 			cloth_pins.append(center - side * 1.2 - Vector3.UP * 0.035)
 			cloth_pins.append(center + side * 1.2 - Vector3.UP * 0.035)
 
-func roof(room: Dictionary) -> void:
+## Under a stone vault only the tie beams stay: set into the walls, they take
+## the vault's thrust and carry the banners. Otherwise each tie is a truss.
+func roof(room: Dictionary, vaulted: bool = false) -> void:
 	# Wall-to-wall trusses: tie, two rafters and king post share exact nodes.
 	var polygon: PackedVector2Array = room["points"] as PackedVector2Array
 	var y: float = float(room["floor"]) + float(room["height"]) - 2.3
@@ -286,7 +288,7 @@ func roof(room: Dictionary) -> void:
 	var back: float = bounds.end.y
 	# Timber roof planes bear directly on the rafters, replacing the flat
 	# brick-textured ceiling that had no masonry vault or plausible support.
-	for edge_x: float in [bounds.position.x, bounds.end.x]:
+	for edge_x: float in ([] if vaulted else [bounds.position.x, bounds.end.x]):
 		var ridge_a: Vector3 = Vector3(center_x, y + 2.14, front)
 		var ridge_b: Vector3 = Vector3(center_x, y + 2.14, back)
 		var eave_a: Vector3 = Vector3(edge_x, y + 0.24, front)
@@ -307,6 +309,8 @@ func roof(room: Dictionary) -> void:
 		var right: Vector3 = Vector3(hits[-1] + 0.3, y, z)
 		var crown: Vector3 = (left + right) * 0.5 + Vector3.UP * 1.9
 		timber(left, right, 0.42, 0.55, "roof tie")
+		if vaulted:
+			continue
 		timber(left, crown, 0.32, 0.40, "rafter")
 		timber(right, crown, 0.32, 0.40, "rafter")
 		timber((left + right) * 0.5, crown, 0.26, 0.26, "king post")

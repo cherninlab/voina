@@ -56,6 +56,8 @@ func _ready() -> void:
 	# Practical lights remain sparse along the route; the side halls supply landmarks.
 	for at: Vector3 in architecture.torch_posts:
 		torch(at)
+	for spot: Dictionary in architecture.sconces:
+		sconce(spot["at"] as Vector3, spot["facing"] as Vector3)
 	build_landmarks()
 	dressing = RedDescentDressing.new()
 	add_child(dressing)
@@ -165,8 +167,9 @@ func atmosphere() -> void:
 	water.position.y = -47.5
 	add_child(water)
 
+const CUP_LAYER: int = 1 << 19 # render layer 20: torch cups, unlit by their own flames
+
 func torch(at: Vector3) -> void:
-	const CUP_LAYER: int = 1 << 19 # render layer 20: torch cups, unlit by their own flames
 	architecture.piece(Vector3(0.16, 1.45, 0.16), at + Vector3.UP * 0.72, "wood")
 	# The cup casts no shadow, or its own flame prints a black square under every torch where
 	# the pool of light should be. It sits on a render layer the torch lights skip, so the
@@ -180,6 +183,33 @@ func torch(at: Vector3) -> void:
 	cup.cast_shadow = GeometryInstance3D.SHADOW_CASTING_SETTING_OFF
 	cup.layers = CUP_LAYER
 	add_child(cup)
+	fire(at + Vector3.UP * 1.95, at + Vector3.UP * 2.1)
+
+## A wall sconce in a stone room: an iron plate set into the masonry, an arm
+## with a brace under it, and a cup at its end. at is the wall face at sconce
+## height; facing points into the room.
+func sconce(at: Vector3, facing: Vector3) -> void:
+	var along: Vector3 = Vector3.UP.cross(facing).normalized()
+	# The plate sits a little into the face: the walls bow up to 4 cm proud of it.
+	architecture.piece(Vector3(0.16, 0.38, 0.06), at + facing * 0.01 - Vector3.UP * 0.1, "iron", Basis(along, Vector3.UP, facing))
+	var end: Vector3 = at + facing * 0.52
+	architecture.beam(at + facing * 0.03, end, 0.05, "iron")
+	architecture.beam(at + facing * 0.03 - Vector3.UP * 0.26, at + facing * 0.34, 0.03, "iron")
+	var bowl: CylinderMesh = CylinderMesh.new()
+	bowl.top_radius = 0.13
+	bowl.bottom_radius = 0.05
+	bowl.height = 0.14
+	var cup: MeshInstance3D = MeshInstance3D.new()
+	cup.mesh = bowl
+	cup.material_override = architecture.materials["iron"]
+	cup.position = end + Vector3.UP * 0.07
+	cup.cast_shadow = GeometryInstance3D.SHADOW_CASTING_SETTING_OFF
+	cup.layers = CUP_LAYER
+	add_child(cup)
+	fire(end + Vector3.UP * 0.45, end + Vector3.UP * 0.6)
+
+## A flame quad and its light, for torches and sconces.
+func fire(flame_at: Vector3, light_at: Vector3) -> void:
 	var material: ShaderMaterial = ShaderMaterial.new()
 	material.shader = preload("res://content/environments/church_road/torch_flame.gdshader")
 	var quad: QuadMesh = QuadMesh.new()
@@ -187,12 +217,12 @@ func torch(at: Vector3) -> void:
 	var flame: MeshInstance3D = MeshInstance3D.new()
 	flame.mesh = quad
 	flame.material_override = material
-	flame.position = at + Vector3.UP * 1.95
+	flame.position = flame_at
 	flame.cast_shadow = GeometryInstance3D.SHADOW_CASTING_SETTING_OFF
 	flame.set_instance_shader_parameter("seed", float(fires.size()) * 0.137)
 	add_child(flame)
 	var light: OmniLight3D = OmniLight3D.new()
-	light.position = at + Vector3.UP * 2.1
+	light.position = light_at
 	# Steeper than inverse-square falloff gives each torch its own amber pool with dark gaps
 	# between, so vaults and corners drop toward black; full specular lets wet patches glint.
 	# Red minus blue stays above 0.5 so ui/shading_lighting.gd still treats it as a fire.

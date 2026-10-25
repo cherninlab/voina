@@ -1,15 +1,15 @@
 {
   "ao": {
     "Roots_bell_0": {
-      "mean": 0.612,
+      "mean": 0.628,
       "min": 0.2
     },
     "Roots_bell_4": {
-      "mean": 0.524,
+      "mean": 0.594,
       "min": 0.2
     },
     "Roots_bell_6": {
-      "mean": 0.573,
+      "mean": 0.563,
       "min": 0.2
     }
   },
@@ -21,23 +21,23 @@
     "route_margin_m": 0.3
   },
   "diameter_cm": {
-    "max": 16.2,
+    "max": 16.5,
     "min": 0.5
   },
   "doorways": [
     {
-      "crown": 4.62,
+      "crown": 4.63,
       "wall": 0,
       "width": 4.4
     },
     {
-      "crown": 4.62,
+      "crown": 4.63,
       "wall": 0,
       "width": 4.4
     }
   ],
   "files": {
-    "content/environments/procedural_roots_v1/bell.glb": "f781510a0587230d39837e0993277c20582b574a62e0a4a01107ac899dddb225"
+    "content/environments/procedural_roots_v1/bell.glb": "7c208e3d29e78cdedcaa061d7aa312ccdd0fed144b0a4e914e6a07d00a2114f5"
   },
   "id": "bell",
   "layout_hash": "20aa6015a7f9f4f7c12b59b90acfe080b07298d8b2b180c7054b532be72d00d4",
@@ -48,33 +48,32 @@
   ],
   "qa": {
     "audit": {
-      "cut_deeper_than_1cm": 8,
-      "cut_into_stone": 12,
-      "emerging_from_joint": 6,
+      "cut_deeper_than_1cm": 3,
+      "cut_into_stone": 11,
+      "emerging_from_joint": 1,
       "in_walking_corridor": 0,
-      "vertices": 6453
+      "vertices": 7219
     },
     "cling_gap_m": {
-      "max": 0.0463,
-      "p50": 0.0064,
-      "p95": 0.0151
+      "max": 0.0407,
+      "p50": 0.0066,
+      "p95": 0.0161
     },
-    "clipped_at_corridor": 1,
+    "clipped_at_corridor": 0,
     "pruned": 0,
-    "rings": 1243,
-    "rings_touching_stone": 11
+    "rings": 1270,
+    "rings_touching_stone": 5
   },
-  "roots": 65,
+  "roots": 41,
   "seed": 178,
   "sources": {
     "procedural_architecture_v1/passages/bell_loop.glb": "831e826c37f65657c503b85dc98371998881ca546c0f77eb0759fbc0eed17d21",
-    "procedural_architecture_v1/rooms/bell.glb": "cb499ce53e287df2e556f8d4c6e3159962b94146c70311ed4dfa1d720561c43c"
+    "procedural_architecture_v1/rooms/bell.glb": "242dd9afd54ca18215bfacabfa940a5fcc3316d0c38d079932bccb6014191ef7"
   },
   "systems": {
-    "branch": 2,
+    "branch": 4,
     "loop": 6,
-    "trunk": 6,
-    "vein": 3
+    "trunk": 6
   },
-  "triangles": 12977
+  "triangles": 14532
 }

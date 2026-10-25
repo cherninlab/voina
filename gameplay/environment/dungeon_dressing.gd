@@ -43,11 +43,13 @@ func build(dungeon: RedDescentDungeon) -> void:
 	]:
 		place_rubble("rubble_" + String(spot[0]), spot[1] as Vector3, float(spot[2]), stone, wood)
 	var ties: Array[Dictionary] = []
+	var king_posts: int = 0
 	var bell: Dictionary = {}
 	var restraint: Dictionary = {}
 	for member: Dictionary in level.architecture.structure.members:
 		match String(member["role"]):
 			"roof tie": ties.append(member)
+			"king post": king_posts += 1
 			"bell beam": bell = member
 			"restraint beam": restraint = member
 	assert(ties.size() == 3 and not bell.is_empty() and not restraint.is_empty(), "Dressing requires actual landmark framing")
@@ -61,8 +63,10 @@ func build(dungeon: RedDescentDungeon) -> void:
 	mount("nave_drape", "drape_1", a.lerp(b, 0.36), basis, "cloth_ash", "top")
 	mount("nave_tapestry", "tapestry_1", a.lerp(b, 0.66) - Vector3.UP * half_depth, basis, "cloth_crimson", "underside")
 	mount("nave_pennant", "banner_0", a.lerp(b, 0.80) - Vector3.UP * half_depth, basis, "cloth_ochre", "underside")
-	# A right-angle web fits the tie top and the king post's near face.
-	mount("nave_web", "web_corner_2", (a + b) * 0.5 - along * 0.13 + Vector3.UP * half_depth, basis * Basis(Vector3.BACK, PI), "cobweb_corner", "web")
+	# A right-angle web fits the tie top and the king post's near face; a
+	# vaulted nave keeps only its tie beams.
+	if king_posts > 0:
+		mount("nave_web", "web_corner_2", (a + b) * 0.5 - along * 0.13 + Vector3.UP * half_depth, basis * Basis(Vector3.BACK, PI), "cobweb_corner", "web")
 	var bell_a: Vector3 = bell["from"] as Vector3
 	var bell_b: Vector3 = bell["to"] as Vector3
 	mount("bell_banner", "banner_1", bell_a.lerp(bell_b, 0.28) - Vector3.UP * 0.2, Basis.IDENTITY, "cloth_ochre", "underside")

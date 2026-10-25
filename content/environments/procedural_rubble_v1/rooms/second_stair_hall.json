@@ -23,14 +23,14 @@
   },
   "axes": "Godot world coordinates, metres, Y up: place at the origin like the room GLB",
   "blender": "5.2.2 LTS",
-  "build_seconds": 23.0,
+  "build_seconds": 27.0,
   "collision": {
     "convex_hulls": 6,
     "hull_vertices": 232,
     "min_piece_size_m": 0.25
   },
   "color": "Color.rgb = baked AO (0.35 m) x per-piece tone (0.7, 1.15) (x 1.07 on fresh breaks); grime bed tone (0.5, 1.0); grey, clipped to 1 by glTF",
-  "command": "blender --factory-startup -b --python-exit-code 1 --python scripts/art/build_room_rubble.py -- --rooms first_stair_hall,second_stair_hall --no-review",
+  "command": "blender --factory-startup -b --python-exit-code 1 --python scripts/art/build_room_rubble.py -- --rooms nave,window,second_stair_hall --no-review",
   "files": {
     "content/environments/procedural_rubble_v1/rooms/second_stair_hall.glb": "3048af7fffd78f5d0c194e0074a56737134ceeaba2083b8f8ca82ebcc4107130"
   },
@@ -1318,10 +1318,10 @@
     "bake": 0.2,
     "checks": -0.0,
     "deposit": 0.2,
-    "physics_1": 8.8,
-    "physics_2": 11.4,
-    "pieces": 2.0,
-    "review": -0.0,
+    "physics_1": 9.8,
+    "physics_2": 13.8,
+    "pieces": 2.6,
+    "review": 0.0,
     "setup": 0.3
   },
   "seed": 179,
@@ -1373,7 +1373,7 @@
     "layout": "content/environments/procedural_bridge_v1/layout.json",
     "layout_sha256": "e37b06498dd3c54539e773f241f9c3d7351849d3d1b9ac2ae336d4e563e1c3a1",
     "room_glb": "content/environments/procedural_architecture_v1/rooms/second_stair_hall.glb",
-    "room_glb_sha256": "e878d3ea67c8d2f4f25372d81968ace2466cd686b5b9d23b2a23e9dcc7909d46"
+    "room_glb_sha256": "97d4d25399d654cc8c5080995bbd97d66c55035b6882d7458cfde13fab7e7208"
   },
   "task": "T-179",
   "triangles": {

@@ -1,7 +1,7 @@
 {
   "ao": {
     "Roots_entry_0": {
-      "mean": 0.507,
+      "mean": 0.467,
       "min": 0.2
     },
     "Roots_entry_2": {
@@ -9,7 +9,7 @@
       "min": 0.2
     },
     "Roots_entry_3": {
-      "mean": 0.586,
+      "mean": 0.585,
       "min": 0.2
     },
     "Roots_entry_5": {
@@ -17,11 +17,11 @@
       "min": 0.2
     },
     "Roots_entry_6": {
-      "mean": 0.47,
+      "mean": 0.518,
       "min": 0.2
     },
     "Roots_entry_7": {
-      "mean": 0.455,
+      "mean": 0.46,
       "min": 0.2
     }
   },
@@ -44,7 +44,7 @@
     }
   ],
   "files": {
-    "content/environments/procedural_roots_v1/entry.glb": "18a17d0b0f0bb08d03fdcc69a09d20221a35df4255759763edb0e0ec4cff433f"
+    "content/environments/procedural_roots_v1/entry.glb": "705db96aead68f18f33f3a14b58dceda7eafcbdb10abdae84cc761cd036506f3"
   },
   "id": "entry",
   "layout_hash": "20aa6015a7f9f4f7c12b59b90acfe080b07298d8b2b180c7054b532be72d00d4",
@@ -59,32 +59,32 @@
   "qa": {
     "audit": {
       "cut_deeper_than_1cm": 4,
-      "cut_into_stone": 19,
-      "emerging_from_joint": 7,
+      "cut_into_stone": 18,
+      "emerging_from_joint": 15,
       "in_walking_corridor": 0,
-      "vertices": 6908
+      "vertices": 6867
     },
     "cling_gap_m": {
       "max": 0.0402,
-      "p50": 0.0063,
-      "p95": 0.0156
+      "p50": 0.0062,
+      "p95": 0.0144
     },
     "clipped_at_corridor": 0,
     "pruned": 0,
-    "rings": 1334,
-    "rings_touching_stone": 7
+    "rings": 1330,
+    "rings_touching_stone": 9
   },
-  "roots": 108,
+  "roots": 111,
   "seed": 178,
   "sources": {
     "procedural_architecture_v1/passages/entry.glb": "912c5aea1608ed100c3765a39271c06a33d805d70a10270a63784137c195452c",
-    "procedural_architecture_v1/rooms/entry.glb": "50bdb112eff099cb2fa33b351acfe115c1558d942e7b5c22e0dbad350dcd0789"
+    "procedural_architecture_v1/rooms/entry.glb": "4c2e5bd25fd9ac07555d1ed0b48b7e80e1bde129893180a58a41a666a114828e"
   },
   "systems": {
     "branch": 4,
     "loop": 3,
-    "trunk": 11,
-    "vein": 9
+    "trunk": 13,
+    "vein": 6
   },
-  "triangles": 13951
+  "triangles": 13885
 }

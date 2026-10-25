@@ -33,49 +33,85 @@
       "min": 0.18
     },
     "Mortar_entry_8": {
-      "mean": 0.888,
+      "mean": 0.242,
       "min": 0.18
     },
-    "Stone_entry_0": {
-      "mean": 0.675,
+    "Stone-arch_entry_3": {
+      "mean": 0.494,
       "min": 0.18
     },
-    "Stone_entry_1": {
-      "mean": 0.69,
+    "Stone-ashlar_entry_0": {
+      "mean": 0.593,
       "min": 0.18
     },
-    "Stone_entry_2": {
-      "mean": 0.647,
+    "Stone-ashlar_entry_1": {
+      "mean": 0.598,
       "min": 0.18
     },
-    "Stone_entry_3": {
-      "mean": 0.571,
+    "Stone-ashlar_entry_2": {
+      "mean": 0.568,
       "min": 0.18
     },
-    "Stone_entry_4": {
+    "Stone-ashlar_entry_3": {
+      "mean": 0.629,
+      "min": 0.18
+    },
+    "Stone-ashlar_entry_4": {
+      "mean": 0.586,
+      "min": 0.18
+    },
+    "Stone-ashlar_entry_5": {
+      "mean": 0.593,
+      "min": 0.18
+    },
+    "Stone-ashlar_entry_6": {
+      "mean": 0.583,
+      "min": 0.18
+    },
+    "Stone-ashlar_entry_7": {
+      "mean": 0.581,
+      "min": 0.18
+    },
+    "Stone-stone_entry_0": {
+      "mean": 0.701,
+      "min": 0.18
+    },
+    "Stone-stone_entry_1": {
+      "mean": 0.719,
+      "min": 0.18
+    },
+    "Stone-stone_entry_2": {
       "mean": 0.676,
       "min": 0.18
     },
-    "Stone_entry_5": {
-      "mean": 0.678,
-      "min": 0.18
-    },
-    "Stone_entry_6": {
+    "Stone-stone_entry_3": {
       "mean": 0.664,
       "min": 0.18
     },
-    "Stone_entry_7": {
-      "mean": 0.678,
+    "Stone-stone_entry_4": {
+      "mean": 0.705,
       "min": 0.18
     },
-    "Stone_entry_8": {
+    "Stone-stone_entry_5": {
+      "mean": 0.707,
+      "min": 0.18
+    },
+    "Stone-stone_entry_6": {
+      "mean": 0.69,
+      "min": 0.18
+    },
+    "Stone-stone_entry_7": {
+      "mean": 0.707,
+      "min": 0.18
+    },
+    "Stone-stone_entry_8": {
       "mean": 0.745,
       "min": 0.18
     }
   },
   "blender": "5.2.2 LTS",
   "files": {
-    "content/environments/procedural_architecture_v1/rooms/entry.glb": "50bdb112eff099cb2fa33b351acfe115c1558d942e7b5c22e0dbad350dcd0789"
+    "content/environments/procedural_architecture_v1/rooms/entry.glb": "4c2e5bd25fd9ac07555d1ed0b48b7e80e1bde129893180a58a41a666a114828e"
   },
   "id": "entry",
   "triangles": 113227

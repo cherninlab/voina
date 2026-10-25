@@ -1,23 +1,15 @@
 {
   "ao": {
-    "Roots_bones_1": {
-      "mean": 0.448,
+    "Roots_bones_0": {
+      "mean": 0.474,
       "min": 0.2
     },
     "Roots_bones_2": {
-      "mean": 0.527,
-      "min": 0.2
-    },
-    "Roots_bones_3": {
-      "mean": 0.544,
+      "mean": 0.521,
       "min": 0.2
     },
     "Roots_bones_5": {
-      "mean": 0.571,
-      "min": 0.2
-    },
-    "Roots_bones_6": {
-      "mean": 0.476,
+      "mean": 0.532,
       "min": 0.2
     }
   },
@@ -29,7 +21,7 @@
     "route_margin_m": 0.3
   },
   "diameter_cm": {
-    "max": 14.3,
+    "max": 16.5,
     "min": 0.5
   },
   "doorways": [
@@ -45,46 +37,44 @@
     }
   ],
   "files": {
-    "content/environments/procedural_roots_v1/bones.glb": "d6514caf199513328fcf3793d72da22ffacd4edd77e2341f3470fa3580197e81"
+    "content/environments/procedural_roots_v1/bones.glb": "b6ac81de610d4050dbfbeb96269f242366c74b463233cc34771fe67a46db11b2"
   },
   "id": "bones",
   "layout_hash": "20aa6015a7f9f4f7c12b59b90acfe080b07298d8b2b180c7054b532be72d00d4",
   "meshes": [
-    "Roots_bones_1",
+    "Roots_bones_0",
     "Roots_bones_2",
-    "Roots_bones_3",
-    "Roots_bones_5",
-    "Roots_bones_6"
+    "Roots_bones_5"
   ],
   "qa": {
     "audit": {
-      "cut_deeper_than_1cm": 2,
-      "cut_into_stone": 7,
-      "emerging_from_joint": 1,
+      "cut_deeper_than_1cm": 12,
+      "cut_into_stone": 40,
+      "emerging_from_joint": 6,
       "in_walking_corridor": 0,
-      "vertices": 6872
+      "vertices": 7255
     },
     "cling_gap_m": {
-      "max": 0.0363,
-      "p50": 0.0062,
-      "p95": 0.0169
+      "max": 0.0476,
+      "p50": 0.0054,
+      "p95": 0.014
     },
     "clipped_at_corridor": 1,
     "pruned": 0,
-    "rings": 1291,
-    "rings_touching_stone": 4
+    "rings": 1446,
+    "rings_touching_stone": 16
   },
-  "roots": 97,
+  "roots": 108,
   "seed": 178,
   "sources": {
     "procedural_architecture_v1/passages/ossuary_loop.glb": "99cd9381aab1f0cbbc3192792798c79180b551387b3f0c6f0678382dbff7e974",
-    "procedural_architecture_v1/rooms/bones.glb": "f80aaf766422d40e2146d68e3b511d24e57c2392b6760581246b29c3452e452a"
+    "procedural_architecture_v1/rooms/bones.glb": "4f85d3ed787754d7bed1cf4ce4706d7e6c5105f897fa50da9f94c5564d2d6e7d"
   },
   "systems": {
-    "branch": 3,
+    "branch": 7,
     "loop": 6,
-    "trunk": 12,
-    "vein": 9
+    "trunk": 7,
+    "vein": 12
   },
-  "triangles": 13849
+  "triangles": 14541
 }

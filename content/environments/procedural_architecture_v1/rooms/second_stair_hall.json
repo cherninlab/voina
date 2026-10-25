@@ -1,86 +1,86 @@
 {
   "ao": {
     "Mortar_second_stair_hall_0": {
-      "mean": 0.614,
-      "min": 0.18
-    },
-    "Mortar_second_stair_hall_1": {
-      "mean": 0.581,
-      "min": 0.18
-    },
-    "Mortar_second_stair_hall_2": {
       "mean": 0.617,
       "min": 0.18
     },
+    "Mortar_second_stair_hall_1": {
+      "mean": 0.501,
+      "min": 0.18
+    },
+    "Mortar_second_stair_hall_2": {
+      "mean": 0.616,
+      "min": 0.18
+    },
     "Mortar_second_stair_hall_3": {
-      "mean": 0.497,
+      "mean": 0.46,
       "min": 0.18
     },
     "Mortar_second_stair_hall_4": {
-      "mean": 0.529,
+      "mean": 0.214,
       "min": 0.18
     },
     "Mortar_second_stair_hall_5": {
-      "mean": 0.525,
+      "mean": 0.53,
       "min": 0.18
     },
     "Stone-arch_second_stair_hall_1": {
-      "mean": 0.461,
+      "mean": 0.483,
       "min": 0.18
     },
     "Stone-arch_second_stair_hall_3": {
-      "mean": 0.509,
+      "mean": 0.517,
       "min": 0.18
     },
     "Stone-ashlar_second_stair_hall_0": {
-      "mean": 0.591,
+      "mean": 0.574,
       "min": 0.18
     },
     "Stone-ashlar_second_stair_hall_1": {
-      "mean": 0.565,
+      "mean": 0.564,
       "min": 0.18
     },
     "Stone-ashlar_second_stair_hall_2": {
-      "mean": 0.521,
+      "mean": 0.535,
       "min": 0.18
     },
     "Stone-ashlar_second_stair_hall_3": {
-      "mean": 0.556,
+      "mean": 0.553,
       "min": 0.18
     },
     "Stone-flag_second_stair_hall_5": {
-      "mean": 0.655,
+      "mean": 0.653,
       "min": 0.18
     },
     "Stone-stone_second_stair_hall_0": {
-      "mean": 0.699,
+      "mean": 0.697,
       "min": 0.18
     },
     "Stone-stone_second_stair_hall_1": {
-      "mean": 0.633,
+      "mean": 0.642,
       "min": 0.18
     },
     "Stone-stone_second_stair_hall_2": {
-      "mean": 0.647,
+      "mean": 0.644,
       "min": 0.18
     },
     "Stone-stone_second_stair_hall_3": {
-      "mean": 0.681,
+      "mean": 0.689,
       "min": 0.18
     },
     "Stone-stone_second_stair_hall_4": {
-      "mean": 0.718,
+      "mean": 0.719,
       "min": 0.18
     },
     "Stone-stone_second_stair_hall_5": {
-      "mean": 0.678,
+      "mean": 0.677,
       "min": 0.18
     }
   },
   "blender": "5.2.2 LTS",
   "files": {
-    "content/environments/procedural_architecture_v1/rooms/second_stair_hall.glb": "e878d3ea67c8d2f4f25372d81968ace2466cd686b5b9d23b2a23e9dcc7909d46"
+    "content/environments/procedural_architecture_v1/rooms/second_stair_hall.glb": "97d4d25399d654cc8c5080995bbd97d66c55035b6882d7458cfde13fab7e7208"
   },
   "id": "second_stair_hall",
-  "triangles": 190200
+  "triangles": 192290
 }

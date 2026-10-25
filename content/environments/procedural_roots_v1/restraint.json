@@ -1,19 +1,19 @@
 {
   "ao": {
     "Roots_restraint_0": {
-      "mean": 0.632,
+      "mean": 0.613,
       "min": 0.2
     },
     "Roots_restraint_2": {
-      "mean": 0.646,
+      "mean": 0.585,
       "min": 0.2
     },
     "Roots_restraint_4": {
-      "mean": 0.641,
+      "mean": 0.621,
       "min": 0.2
     },
     "Roots_restraint_6": {
-      "mean": 0.635,
+      "mean": 0.581,
       "min": 0.2
     }
   },
@@ -25,7 +25,7 @@
     "route_margin_m": 0.3
   },
   "diameter_cm": {
-    "max": 11.5,
+    "max": 11.3,
     "min": 0.5
   },
   "doorways": [
@@ -40,7 +40,7 @@
       "width": 4.3
     },
     {
-      "crown": 4.28,
+      "crown": 4.27,
       "wall": 4,
       "width": 4.3
     },
@@ -51,7 +51,7 @@
     }
   ],
   "files": {
-    "content/environments/procedural_roots_v1/restraint.glb": "61efc125a9e8e97ffd02cc0616c1e2a933320c57b2afac265d681c9f0fdf2295"
+    "content/environments/procedural_roots_v1/restraint.glb": "d086bb2dda6d79e4aa1f1937d29f46cd88a2585f2715baafb628e17eecf89d53"
   },
   "id": "restraint",
   "layout_hash": "20aa6015a7f9f4f7c12b59b90acfe080b07298d8b2b180c7054b532be72d00d4",
@@ -63,35 +63,35 @@
   ],
   "qa": {
     "audit": {
-      "cut_deeper_than_1cm": 10,
-      "cut_into_stone": 25,
-      "emerging_from_joint": 7,
+      "cut_deeper_than_1cm": 22,
+      "cut_into_stone": 39,
+      "emerging_from_joint": 13,
       "in_walking_corridor": 0,
-      "vertices": 6649
+      "vertices": 6424
     },
     "cling_gap_m": {
-      "max": 0.0474,
-      "p50": 0.005,
-      "p95": 0.0122
+      "max": 0.0502,
+      "p50": 0.0053,
+      "p95": 0.0138
     },
-    "clipped_at_corridor": 0,
+    "clipped_at_corridor": 1,
     "pruned": 0,
-    "rings": 1270,
-    "rings_touching_stone": 11
+    "rings": 1252,
+    "rings_touching_stone": 18
   },
-  "roots": 98,
+  "roots": 101,
   "seed": 178,
   "sources": {
     "procedural_architecture_v1/passages/node_46_-4_-15.glb": "47b34c2649bb89fd5d0f70a7c90030669bd5b65213a3b5f5d96b1e7e1bbad861",
     "procedural_architecture_v1/passages/upper_cells.glb": "efc6ef1fcfda3ff49a8da42ec9ce64fa4d95d4321459350158ffbe0326dc138e",
     "procedural_architecture_v1/passages/upper_hall.glb": "b01cbe2de0a2db75b8d9472c9fe36f34fa92c92e4d055c210d47819308647f41",
-    "procedural_architecture_v1/rooms/restraint.glb": "f87c7488e61e2a563741387819bc7c767b87d4d53bf61b120518e6418c17c27e"
+    "procedural_architecture_v1/rooms/restraint.glb": "27daf6cab0b3c38511ed8d07e1bca38fd89b8aa4b46b292d85962a6f7ba44e5f"
   },
   "systems": {
     "branch": 4,
     "loop": 12,
     "trunk": 4,
-    "vein": 6
+    "vein": 7
   },
-  "triangles": 13315
+  "triangles": 12869
 }
