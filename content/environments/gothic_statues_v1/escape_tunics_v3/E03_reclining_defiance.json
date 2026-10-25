@@ -1,0 +1,23 @@
+{
+  "asset": "E03_reclining_defiance.png",
+  "status": "blocked",
+  "tool": "built-in image_gen.imagegen",
+  "parameters": {
+    "transparent_background": true
+  },
+  "prompt": "Use case: stylized-concept\nAsset type: standalone raster game statue concept E03 reclining defiance\nPrimary request: One original complete Roman/Renaissance marble sculpture of a mature adult woman escaping hell, depicted nonsexually with anguish, dread and desperate effort to escape. She is lying on one side as if fallen while escaping, her torso raised on one planted elbow, her legs extended in a natural asymmetric position with the upper knee gently bent. Her free arm is lifted protectively and her face is turned upward toward an imagined approaching threat. Create a dramatic sculptural diagonal from the supporting elbow to the lifted hand.\nStyle/medium: Fine classical carved marble sculpture; natural elegant adult anatomy, detailed face and hands, carefully carved hair and cloth folds, pale warm weathered marble with fine subtle veins.\nClothing: A short lightweight OPAQUE tunica securely covers her torso and pelvis; the tunic remains firmly in place with believable carved folds. No nudity, no transparent fabric.\nComposition/framing: Catalog front three-quarter view with modest perspective. Show the entire complete sculpture, all limbs, hands and feet with 8 percent clear margin around it. Plausible anatomy and clear hand and finger silhouettes.\nScene/backdrop: Isolated on a genuinely transparent alpha background. No plinth, platform, support base, ground, environment, scenery, text or watermark.\nLighting/mood: Neutral soft studio lighting. Expression of anguish and protective defiance, entirely nonsexual.\nAvoid: Eroticized suffering, sexual arousal, restraints, injuries, sexual activity, goat motifs, Gothic ornament, duplicated limbs, malformed fingers, cropped extremities.\nCreate one new image only.",
+  "returned_error": {
+    "message": "Your request was rejected by the safety system. If you believe this is an error, contact us at help.openai.com and include the request ID 4043149a-4c28-448b-8a1e-71977d63d79d. safety_violations=[sexual].",
+    "type": "image_generation_user_error",
+    "param": null,
+    "code": "moderation_blocked",
+    "moderation_details": {
+      "moderation_stage": "output",
+      "categories": [
+        "sexual"
+      ]
+    }
+  },
+  "request_id": "4043149a-4c28-448b-8a1e-71977d63d79d",
+  "notes": "No artifact returned. No retry or prompt reformulation attempted."
+}

@@ -1,0 +1,71 @@
+{
+  "asset": "E04_fallen_reaching.png",
+  "status": "generated",
+  "tool": "built-in image_gen.imagegen",
+  "parameters": {
+    "transparent_background": true
+  },
+  "prompt": "Use case: stylized-concept\nAsset type: standalone raster game statue concept E04 fallen reaching\nPrimary request: One original complete Roman/Renaissance marble sculpture of a mature adult woman escaping hell. A nonsexual dramatic classical composition of anguish, dread, and desperate effort to escape. She is a mostly prone fallen figure attempting to rise, with her chest raised using one hand and the opposite arm reaching far diagonally forward toward imagined rescue. Both legs trail behind, one knee slightly bent. Her face is in profile with a strained expression and furrowed brows, graceful but desperate.\nStyle/medium: Fine classical carved marble sculpture with natural elegant adult anatomy, a detailed face and hands, carefully carved hair and cloth folds. Pale warm weathered marble with fine subtle veins.\nClothing: A short lightweight OPAQUE tunica securely covers the entire torso and pelvis, with believable carved folds and no transparent fabric or nudity. Tunic stays firmly in place.\nComposition/framing: Camera near the head/front quarter, modest perspective, whole complete figure shown with 8 percent clear margin including every hand and foot. Focus composition on the face and reaching hand. No emphasis on hips or rear. Anatomically plausible with clear hand and finger silhouettes.\nScene/backdrop: Isolated on true transparent alpha. No plinth, platform, base, ground, environment, text, or watermark.\nLighting/mood: Neutral soft studio lighting. Anguish, dread, and determined effort, entirely nonsexual.\nAvoid: Eroticized suffering, restraints, injuries, sexual activity, goat motifs, Gothic ornament, duplicated limbs, malformed fingers, cropped extremities.\nCreate one new image only.",
+  "returned_metadata": {
+    "output_hint": "Generated images are saved to /Users/theochernin/.codex/generated_images/01a17367-7a4d-78c3-b7fa-75344b51d0a8 as /Users/theochernin/.codex/generated_images/01a17367-7a4d-78c3-b7fa-75344b51d0a8/exec-98a40ddd-9033-4f88-864c-933d7e0bf1f1.png by default.\nIf you need to use a generated image at another path, copy it and leave the original in place unless the user explicitly asks you to delete it.\nThe generated image is already displayed to the user. There is no need to render it in the final response as a Markdown image or file link.",
+    "image_mime_type": "image/png",
+    "image_url_type": "data URL; image bytes preserved in native PNG"
+  },
+  "source_path": "/Users/theochernin/.codex/generated_images/01a17367-7a4d-78c3-b7fa-75344b51d0a8/exec-98a40ddd-9033-4f88-864c-933d7e0bf1f1.png",
+  "verification": {
+    "size": [
+      1536,
+      1024
+    ],
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      254
+    ],
+    "fully_transparent_pixels": 1115541,
+    "fully_opaque_pixels": 0,
+    "partially_transparent_pixels": 457323,
+    "file_sha256": "537586edd04120bc95b2623426497c1ec9402f29cb2df0be02ba13f02017cabe",
+    "native_bytes_unchanged": true,
+    "alpha_bounding_boxes": {
+      "1": [
+        0,
+        9,
+        1536,
+        1024
+      ],
+      "16": [
+        11,
+        137,
+        1531,
+        917
+      ],
+      "128": [
+        12,
+        138,
+        1530,
+        916
+      ],
+      "240": [
+        13,
+        139,
+        1529,
+        915
+      ]
+    }
+  },
+  "visual_review": {
+    "inspected_with": "view_image",
+    "strengths": [
+      "Complete mature adult female marble figure with opaque tunic covering torso and pelvis.",
+      "Expressive anxious face, intricate carved hair and folds, credible reaching and supporting pose.",
+      "No base, environment, lettering, goat motifs, injuries or restraints."
+    ],
+    "defects": [
+      "Requested 8 percent margin is not met at left foot and reaching fingertips; extremities approach image edges.",
+      "Face is closer to three-quarter view than strict profile.",
+      "Faint soft halo or feathered fringe appears around silhouette in black-background preview."
+    ],
+    "no_postprocessing": true
+  }
+}

@@ -1,0 +1,48 @@
+{
+  "id": "E01",
+  "saved_at_utc": "2026-10-25T14:14:05.364885+00:00",
+  "generation_mode": "built-in image_gen",
+  "status": "generated",
+  "tool_arguments": {
+    "prompt": "Use case: stylized-concept\nAsset type: original game-environment statue concept, raster image only.\nPrimary request: One original full-body Roman/Renaissance marble sculpture of a mature adult woman desperately crawling and reaching toward escape from an unseen infernal place. This is nonsexual dramatic classical sculpture expressing human courage and anguish.\nSubject and pose: Low forward crawling/lunging composition. One bent knee and the opposite palm support her weight; the other leg trails naturally. Her free arm reaches forward and upward toward freedom, with a fully readable reaching hand and separated natural fingers. Her face turns toward that reaching hand, brow strained, jaw tense, torso twisting with effort. Balanced plausible anatomy and a distinct expressive silhouette. Both feet visible and anatomically coherent. Fine detailed adult face, hands, carved hair and cloth folds.\nGarment: a short lightweight opaque sleeveless Roman tunica, hem above the knees, covering torso and pelvis completely in this moving pose. Fine cloth folds carved into marble, dignified nonsexual drapery.\nMaterial: the entire woman, every limb, hair, and tunica are one continuous pale warm aged marble sculpture, very subtle stone pores and veins, refined Roman/Renaissance carving.\nComposition/framing: isolated full body, rough front three-quarter sculptural catalog view with modest perspective. Camera at sculpture eye level but high enough to see her face and reaching hand clearly. Entire form in frame with at least 8 percent clear margin on every side.\nScene/backdrop: genuinely transparent alpha background. No ground or environment.\nLighting: neutral soft studio lighting with gentle form-defining shadows on the sculpture.\nConstraints: exactly one woman sculpture. No plinth, platform, pedestal, base, ledge, text, lettering, watermark, goat motifs, or gothic ornament. No scene, flames, creatures, extra limbs, merged fingers, injury, restraint, sexual activity, nudity, eroticized suffering, glamour posing, or suggestive camera angle. Do not include any solid background. This is an original sculpture concept, no 3D model or mesh output.",
+    "transparent_background": true
+  },
+  "returned_metadata": {
+    "output_hint": "Generated images are saved to /Users/theochernin/.codex/generated_images/01a17367-08f5-7c01-b2da-13154bab4420 as /Users/theochernin/.codex/generated_images/01a17367-08f5-7c01-b2da-13154bab4420/exec-c49de232-a437-474b-9878-750e4a9a9ebe.png by default.\nIf you need to use a generated image at another path, copy it and leave the original in place unless the user explicitly asks you to delete it.\nThe generated image is already displayed to the user. There is no need to render it in the final response as a Markdown image or file link.",
+    "image_url_format": "data:image/png;base64",
+    "image_url_pixel_data": "Preserved byte-for-byte in the native source and copied PNG; not duplicated in JSON."
+  },
+  "native_source_path": "/Users/theochernin/.codex/generated_images/01a17367-08f5-7c01-b2da-13154bab4420/exec-c49de232-a437-474b-9878-750e4a9a9ebe.png",
+  "saved_path": "/Users/theochernin/Projects/MultiPlayerProject-agents/theo-codex-43/content/environments/gothic_statues_v1/escape_tunics_v3/E01_crawling_reach.png",
+  "verification": {
+    "dimensions": [
+      1536,
+      1024
+    ],
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      254
+    ],
+    "fully_transparent_pixels": 1088258,
+    "fully_opaque_pixels": 0,
+    "partially_transparent_pixels": 484606,
+    "alpha_nonzero_bbox": [
+      31,
+      16,
+      1516,
+      1024
+    ],
+    "sha256": "983556de21dc9e21ad02335d02dfc1a274d60b74ff969007d252144e879d1738",
+    "byte_identical_to_native": true
+  },
+  "visual_inspection": {
+    "view_image_inspected": true,
+    "defects": [
+      "Conspicuous translucent brown-gray halo around the form; alpha channel is present but background isolation is unsuitable as a clean cutout.",
+      "Requested 8 percent margin is not met near the reaching hand and supporting hand.",
+      "Face and reaching hand are readable; trailing-leg configuration has a sideways splay, reducing a strictly forward crawl read."
+    ]
+  },
+  "additional_generation_attempts": 0
+}

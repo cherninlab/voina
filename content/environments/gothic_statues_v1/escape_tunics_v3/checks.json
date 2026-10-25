@@ -1,0 +1,19 @@
+{
+  "image_files": "5 PNGs verified readable RGBA; hashes and alpha extrema in manifest.json",
+  "visual_review": "All 5 inspected; anatomy, framing, drapery and native alpha defects recorded in per-image receipts",
+  "godot_import": {
+    "exit_code": 0,
+    "result": "Godot 4.7.2 headless editor finished without reported errors"
+  },
+  "smoke_suite": {
+    "exit_code": 1,
+    "result": "Failed at PROJECTILE_SMOKE_FAIL: Exactly one host-confirmed bolt must hit (is cover parked between the spawns?)",
+    "limit": "No gameplay or test files changed in this art-only task. No full smoke pass claimed."
+  },
+  "generated_sidecars_outside_scope": [
+    "content/environments/procedural_stone_kinds_v1/review/closeups.png.import",
+    "content/environments/procedural_stone_kinds_v1/review/contact_sheet.png.import",
+    "content/environments/procedural_stone_kinds_v1/review/lineup.png.import"
+  ],
+  "sidecar_handling": "Left uncommitted; not included in image asset handoff."
+}

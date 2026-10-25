@@ -1,0 +1,91 @@
+{
+  "task": "T-190",
+  "generation_route": "built-in ImageGen",
+  "generated_images": [
+    {
+      "id": "E01",
+      "file": "E01_crawling_reach.png",
+      "receipt": "E01_crawling_reach.json",
+      "width": 1536,
+      "height": 1024,
+      "mode": "RGBA",
+      "alpha_extrema": [
+        0,
+        254
+      ],
+      "sha256": "983556de21dc9e21ad02335d02dfc1a274d60b74ff969007d252144e879d1738",
+      "review_state": "awaiting user selection",
+      "cutout_state": "native alpha needs cleanup before CL3D"
+    },
+    {
+      "id": "E02",
+      "file": "E02_dragging_escape.png",
+      "receipt": "E02_dragging_escape.json",
+      "width": 1619,
+      "height": 971,
+      "mode": "RGBA",
+      "alpha_extrema": [
+        0,
+        255
+      ],
+      "sha256": "3e08a79c9d725d583da24387bd7b1320d4b02b1e1b8e8c0ab44af0d848bbd671",
+      "review_state": "awaiting user selection",
+      "cutout_state": "native alpha needs cleanup before CL3D"
+    },
+    {
+      "id": "E04",
+      "file": "E04_fallen_reaching.png",
+      "receipt": "E04_fallen_reaching.json",
+      "width": 1536,
+      "height": 1024,
+      "mode": "RGBA",
+      "alpha_extrema": [
+        0,
+        254
+      ],
+      "sha256": "537586edd04120bc95b2623426497c1ec9402f29cb2df0be02ba13f02017cabe",
+      "review_state": "awaiting user selection",
+      "cutout_state": "native alpha needs cleanup before CL3D"
+    },
+    {
+      "id": "E05",
+      "file": "E05_kneeling_ascent.png",
+      "receipt": "E05_kneeling_ascent.json",
+      "width": 1024,
+      "height": 1536,
+      "mode": "RGBA",
+      "alpha_extrema": [
+        0,
+        254
+      ],
+      "sha256": "f778ba1c1154d9185a9925547863cede530b0c2f1b21afea281abb310f173061",
+      "review_state": "awaiting user selection",
+      "cutout_state": "native alpha needs cleanup before CL3D"
+    },
+    {
+      "id": "E06",
+      "file": "E06_turning_away.png",
+      "receipt": "E06_turning_away.json",
+      "width": 1312,
+      "height": 1199,
+      "mode": "RGBA",
+      "alpha_extrema": [
+        0,
+        255
+      ],
+      "sha256": "c5f41608cac2e63c6e6a94f5540d217dae7d07bb04df79ae86cbc1365b70647f",
+      "review_state": "awaiting user selection",
+      "cutout_state": "native alpha needs cleanup before CL3D"
+    }
+  ],
+  "blocked": [
+    {
+      "id": "E03",
+      "receipt": "E03_reclining_defiance.json",
+      "reason": "ImageGen output moderation; no returned image and no retry"
+    }
+  ],
+  "source_role": "Original generation; prior classical sculpture direction used as verbal style guidance; no uploaded image input to these calls.",
+  "stage": "Image concepts only; not approved for CL3D or game integration",
+  "alterations": "Native generated PNG bytes preserved unchanged."
+}

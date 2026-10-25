@@ -1,0 +1,48 @@
+{
+  "id": "E02",
+  "saved_at_utc": "2026-10-25T14:14:05.381903+00:00",
+  "generation_mode": "built-in image_gen",
+  "status": "generated",
+  "tool_arguments": {
+    "prompt": "Use case: stylized-concept\nAsset type: original game-environment statue concept, raster image only.\nPrimary request: One original full-body Roman/Renaissance marble sculpture of a mature adult woman dragging herself sideways toward escape from an unseen infernal place. This is nonsexual dramatic classical sculpture expressing human courage, anguish and effort.\nSubject and pose: A low sideways escape over an imagined ledge, without depicting any ledge or scene. Both forearms press down and push her body forward. One knee is drawn underneath her body while the other leg extends naturally backward. Her head is lifted and looks toward freedom. Sculptural hair sweeps behind her shoulder. Her body forms a long low horizontal silhouette with compact bent forearms in front, distinctly different from an upright reaching pose. Natural elegant anatomy, very readable hands, feet, elbows and knees, force visibly transferred through the forearms. Detailed mature adult face with tense brow and parted lips, finely carved hands and hair.\nGarment: short lightweight opaque sleeveless Roman tunica, hem above the knees, covering torso and pelvis completely during this movement. Refined fine cloth folds carved into marble, dignified nonsexual drapery.\nMaterial: every part of the woman, hair and tunica forms the same continuous pale warm aged marble sculpture with very subtle pores and delicate veins; exquisite Roman/Renaissance carving.\nComposition/framing: full body isolated, roughly front three-quarter sculptural catalog view with modest perspective, camera high enough to see face and both hands clearly. Horizontal composition. Entire form and every finger and toe inside the frame with at least 8 percent clear margin on every side.\nScene/backdrop: genuinely transparent alpha background. No ground or environment.\nLighting: neutral soft studio lighting with gentle form-defining shadows on the sculpture.\nConstraints: exactly one woman sculpture. No plinth, platform, pedestal, base, physical ledge, text, lettering, watermark, goat motifs or gothic ornament. No flames or creatures, extra limbs, merged fingers, injury, restraint, sexual activity, nudity, eroticized suffering, glamour posing or suggestive camera angle. No solid background or cast shadow on a background. This is an original sculpture concept, no 3D model or mesh output.",
+    "transparent_background": true
+  },
+  "returned_metadata": {
+    "output_hint": "Generated images are saved to /Users/theochernin/.codex/generated_images/01a17367-08f5-7c01-b2da-13154bab4420 as /Users/theochernin/.codex/generated_images/01a17367-08f5-7c01-b2da-13154bab4420/exec-a6272a76-ae24-4ac7-a24e-263f7e2eced6.png by default.\nIf you need to use a generated image at another path, copy it and leave the original in place unless the user explicitly asks you to delete it.\nThe generated image is already displayed to the user. There is no need to render it in the final response as a Markdown image or file link.",
+    "image_url_format": "data:image/png;base64",
+    "image_url_pixel_data": "Preserved byte-for-byte in the native source and copied PNG; not duplicated in JSON."
+  },
+  "native_source_path": "/Users/theochernin/.codex/generated_images/01a17367-08f5-7c01-b2da-13154bab4420/exec-a6272a76-ae24-4ac7-a24e-263f7e2eced6.png",
+  "saved_path": "/Users/theochernin/Projects/MultiPlayerProject-agents/theo-codex-43/content/environments/gothic_statues_v1/escape_tunics_v3/E02_dragging_escape.png",
+  "verification": {
+    "dimensions": [
+      1619,
+      971
+    ],
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      255
+    ],
+    "fully_transparent_pixels": 1020410,
+    "fully_opaque_pixels": 922,
+    "partially_transparent_pixels": 550717,
+    "alpha_nonzero_bbox": [
+      33,
+      39,
+      1605,
+      971
+    ],
+    "sha256": "3e08a79c9d725d583da24387bd7b1320d4b02b1e1b8e8c0ab44af0d848bbd671",
+    "byte_identical_to_native": true
+  },
+  "visual_inspection": {
+    "view_image_inspected": true,
+    "defects": [
+      "Faint yellow-red edge speckles visible in native output.",
+      "Requested 8 percent margin is not met, especially beside the front hand at the right edge.",
+      "Weight is shown primarily through palms rather than both forearms pressing down as requested."
+    ]
+  },
+  "additional_generation_attempts": 0
+}

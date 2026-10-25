@@ -1,0 +1,48 @@
+{
+  "asset_id": "E05_kneeling_ascent",
+  "mode": "built-in image_gen",
+  "prompt": "Use case: stylized-concept\nAsset type: isolated original marble sculpture concept image for a game\nPrimary request: E05 kneeling ascent. One original full-body Roman/Renaissance marble sculpture of a mature adult woman escaping hell, expressed entirely through her pose and face; NONSEXUAL dramatic classical sculpture. She is tense and asymmetrically kneeling, pushing up from one knee while the other foot is firmly planted. Both arms reach upward and forward at different heights toward unseen help. Her head is raised with a strained brow. A sweeping diagonal composition communicates ascent, hope, anguish, and determined escape. Only the figure, no physical ledge and no rescuer.\nSubject details: natural elegant plausible sculptural anatomy; intricately carved hair, face, hands, and cloth folds. Clearly readable visible hands and feet. Short fine lightweight OPAQUE tunica, securely covering the torso and pelvis, with expressive ancient sculptural drapery. All surfaces are marble, including the tunic: no flesh colors or cloth colors.\nMaterials and lighting: pale warm marble with subtle pores and veins and faint weathering; soft neutral studio lighting.\nComposition: front three-quarter catalog view with modest perspective, complete sculpture inside frame with 8 percent clear margin on every side. True transparent alpha background, isolated figure.\nConstraints: no base, plinth, platform, ground, background, scene, text, watermark, goat motifs, or gothic ornament. No eroticized suffering, sexual arousal, restraints, injuries, sexual activity, or erotic pose. No transparent clothing. Produce one statue concept only.",
+  "parameters": {
+    "transparent_background": true
+  },
+  "returned_metadata": {
+    "output_hint": "Generated images are saved to /Users/theochernin/.codex/generated_images/01a17367-e6a8-7360-82ce-6fc5b3cee7a6 as /Users/theochernin/.codex/generated_images/01a17367-e6a8-7360-82ce-6fc5b3cee7a6/exec-c2b530ab-347d-4371-a225-5e1718769a70.png by default.\nIf you need to use a generated image at another path, copy it and leave the original in place unless the user explicitly asks you to delete it.\nThe generated image is already displayed to the user. There is no need to render it in the final response as a Markdown image or file link.",
+    "image_url": {
+      "scheme": "data",
+      "mime_type": "image/png",
+      "base64_omitted": true
+    }
+  },
+  "native_source_path": "/Users/theochernin/.codex/generated_images/01a17367-e6a8-7360-82ce-6fc5b3cee7a6/exec-c2b530ab-347d-4371-a225-5e1718769a70.png",
+  "saved_png_path": "/Users/theochernin/Projects/MultiPlayerProject-agents/theo-codex-43/content/environments/gothic_statues_v1/escape_tunics_v3/E05_kneeling_ascent.png",
+  "verification": {
+    "dimensions": [
+      1024,
+      1536
+    ],
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      254
+    ],
+    "transparent_pixels": 969392,
+    "opaque_pixels": 0,
+    "partial_alpha_pixels": 603472,
+    "alpha_nonzero_bbox": [
+      0,
+      21,
+      994,
+      1536
+    ]
+  },
+  "visual_review": {
+    "inspection": "Inspected with view_image. Pose, raised face, two reaching arms, readable hands and both feet are present; no obvious major anatomical defect. Tunic securely covers torso and pelvis. Pale warm marble and carved hair/folds are present.",
+    "defects": [
+      "Visible soft beige-gray halo/backdrop around much of the silhouette despite requested true isolated alpha.",
+      "Tight framing: raised hand and feet have less than requested 8 percent margin.",
+      "Drapery is longer/heavier and more bunched than a short fine lightweight tunic.",
+      "Native alpha maximum is 254: figure is not fully opaque."
+    ],
+    "acceptance": "Concept image only; alpha and framing are not production-ready."
+  }
+}
