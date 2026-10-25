@@ -1,0 +1,231 @@
+{
+  "task": "T-189",
+  "stage": "image concepts",
+  "date": "2026-10-25",
+  "items": [
+    {
+      "id": "S01-bowed-kneeling",
+      "title": "Bowed Kneeling",
+      "path": "references/S01-bowed-kneeling.png",
+      "prompt": "prompts/S01-bowed-kneeling.txt",
+      "receipt": "receipts/S01-bowed-kneeling.json",
+      "sha256": "a9d53874d93b3ced20848dd91a85bfe65d1ed3750ac2eda0d0e49a65d84dd4dd",
+      "native_bytes_preserved": true,
+      "dimensions": [
+        1121,
+        1403
+      ],
+      "mode": "RGBA",
+      "alpha_extrema": [
+        0,
+        255
+      ],
+      "transparent_fraction": 0.5873,
+      "opaque_body_bounds": [
+        11,
+        97,
+        1105,
+        1326
+      ],
+      "approval": "source design selected by user",
+      "source_id": null,
+      "cl3d_generated": false
+    },
+    {
+      "id": "S02-hooded-reaper",
+      "title": "Hooded Reaper",
+      "path": "references/S02-hooded-reaper.png",
+      "prompt": "prompts/S02-hooded-reaper.txt",
+      "receipt": "receipts/S02-hooded-reaper.json",
+      "sha256": "aebf02d9431b5bcc6ed861cd9ceb85d6a4296f72e4637b77aa1f119b02f36e6e",
+      "native_bytes_preserved": true,
+      "dimensions": [
+        1024,
+        1536
+      ],
+      "mode": "RGBA",
+      "alpha_extrema": [
+        0,
+        254
+      ],
+      "transparent_fraction": 0.549,
+      "opaque_body_bounds": [
+        139,
+        18,
+        993,
+        1471
+      ],
+      "approval": "source design selected by user",
+      "source_id": null,
+      "cl3d_generated": false
+    },
+    {
+      "id": "S03-serpent-torso",
+      "title": "Ruined Serpent Torso",
+      "path": "references/S03-serpent-torso.png",
+      "prompt": "prompts/S03-serpent-torso.txt",
+      "receipt": "receipts/S03-serpent-torso.json",
+      "sha256": "7226d9edcbbdcc7b315f6d5a2bbf9cab5e694170c7fc79ba9dcaa6b49f11cfc1",
+      "native_bytes_preserved": true,
+      "dimensions": [
+        1024,
+        1536
+      ],
+      "mode": "RGBA",
+      "alpha_extrema": [
+        0,
+        254
+      ],
+      "transparent_fraction": 0.6651,
+      "opaque_body_bounds": [
+        281,
+        62,
+        799,
+        1512
+      ],
+      "approval": "pending image selection",
+      "source_id": null,
+      "cl3d_generated": false
+    },
+    {
+      "id": "S04-wall-leaning",
+      "title": "Wall-Leaning Figure",
+      "path": "references/S04-wall-leaning.png",
+      "prompt": "prompts/S04-wall-leaning.txt",
+      "receipt": "receipts/S04-wall-leaning.json",
+      "sha256": "0c525f11d4c6ca194f0f56217bba1ed1f9ab84fcaad9aa79cf8ec7f1ebb11dba",
+      "native_bytes_preserved": true,
+      "dimensions": [
+        1024,
+        1536
+      ],
+      "mode": "RGBA",
+      "alpha_extrema": [
+        0,
+        254
+      ],
+      "transparent_fraction": 0.7039,
+      "opaque_body_bounds": [
+        315,
+        28,
+        899,
+        1496
+      ],
+      "approval": "source design selected by user",
+      "source_id": null,
+      "cl3d_generated": false
+    },
+    {
+      "id": "S05-ledge-bather",
+      "title": "Ledge Bather",
+      "path": "references/S05-ledge-bather.png",
+      "prompt": "prompts/S05-ledge-bather.txt",
+      "receipt": "receipts/S05-ledge-bather.json",
+      "sha256": "20b8d5506af7d218aa2a62af7b8bcbfd03dd556273f202157bca1c362192a56c",
+      "native_bytes_preserved": true,
+      "dimensions": [
+        1024,
+        1536
+      ],
+      "mode": "RGBA",
+      "alpha_extrema": [
+        0,
+        254
+      ],
+      "transparent_fraction": 0.6781,
+      "opaque_body_bounds": [
+        293,
+        13,
+        789,
+        1515
+      ],
+      "approval": "pending image selection",
+      "source_id": null,
+      "cl3d_generated": false
+    },
+    {
+      "id": "S06-horned-oracle",
+      "title": "Horned Oracle",
+      "path": "references/S06-horned-oracle.png",
+      "prompt": "prompts/S06-horned-oracle.txt",
+      "receipt": "receipts/S06-horned-oracle.json",
+      "sha256": "dc2e226e69c1d08e3dfe4c4934a3e553b16e84df7b99a9798a69b5eb08084c0b",
+      "native_bytes_preserved": true,
+      "dimensions": [
+        1024,
+        1536
+      ],
+      "mode": "RGBA",
+      "alpha_extrema": [
+        0,
+        254
+      ],
+      "transparent_fraction": 0.5284,
+      "opaque_body_bounds": [
+        42,
+        7,
+        1004,
+        1531
+      ],
+      "approval": "source design selected by user",
+      "source_id": null,
+      "cl3d_generated": false
+    },
+    {
+      "id": "S07-seated-observer",
+      "title": "Seated Observer",
+      "path": "references/S07-seated-observer.png",
+      "prompt": "prompts/S07-seated-observer.txt",
+      "receipt": "receipts/S07-seated-observer.json",
+      "sha256": "0ad0f35098f57a493ed4addeeff4cb5647ec7e0ebe6f34b8fbec5c6c5bcc29cc",
+      "native_bytes_preserved": true,
+      "dimensions": [
+        1024,
+        1536
+      ],
+      "mode": "RGBA",
+      "alpha_extrema": [
+        0,
+        254
+      ],
+      "transparent_fraction": 0.5882,
+      "opaque_body_bounds": [
+        207,
+        16,
+        908,
+        1510
+      ],
+      "approval": "pending image selection",
+      "source_id": null,
+      "cl3d_generated": false
+    },
+    {
+      "id": "S08-leaning-scholar",
+      "title": "Leaning Scholar",
+      "path": "references/S08-leaning-scholar.png",
+      "prompt": "prompts/S08-leaning-scholar.txt",
+      "receipt": "receipts/S08-leaning-scholar.json",
+      "sha256": "b665d0ef1e6ab03ff82b8b1b60324162d3bd009b93f67181d1b523741b353d3c",
+      "native_bytes_preserved": true,
+      "dimensions": [
+        1024,
+        1536
+      ],
+      "mode": "RGBA",
+      "alpha_extrema": [
+        0,
+        254
+      ],
+      "transparent_fraction": 0.6518,
+      "opaque_body_bounds": [
+        254,
+        23,
+        848,
+        1494
+      ],
+      "approval": "pending image selection",
+      "source_id": null,
+      "cl3d_generated": false
+    }
+  ]
+}

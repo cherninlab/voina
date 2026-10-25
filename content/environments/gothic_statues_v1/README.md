@@ -1,6 +1,6 @@
 # Occult cathedral sculpture concepts — T-187
 
-Twenty-seven numbered individual image concepts, plus one alternate edit. All use native built-in ImageGen. Current direction: Greek/Renaissance anatomy and plain drapery, occult subjects and restrained Bosch influence, with only three caprine figures. Human visual approval is pending. No CL3D generation or dungeon placement has been performed.
+Twenty-seven numbered individual image concepts, plus one alternate edit. All use native built-in ImageGen. Current direction: Greek/Renaissance anatomy and plain drapery, occult subjects and restrained Bosch influence, with only three caprine figures. Design 27 and four later composition studies have been selected by the user; new variants remain pending image selection. No CL3D generation or dungeon placement has been performed for this statue library.
 
 ![All 27 numbered concepts](review/all-27.png)
 
@@ -67,3 +67,5 @@ Prompt heights are design intentions, not measured 3D sizes. Fingers, faces, neg
 All 27 current candidates and the alternate pass native-byte and PNG checks; current assets are distinct RGBA images with transparency. Godot 4.7.2 headless editor import and the required smoke test passed on the initial image-only pack, including local two-process ENet integration and expected build-mismatch rejection. Existing ObjectDB shutdown warnings remain in the smoke log. The added images stay under the same `.gdignore`; no engine files changed. Audit: [verification](review/verification.json), [import log](review/editor-import.txt), [smoke log](review/smoke-test.txt).
 
 Approved design 27 now has [eight additional pose references, P01–P08](poses_v1/README.md). Source design approval is recorded; new pose selection is pending.
+
+The expanded [composition and variant catalogue](compositions_v2/README.md) contains eight distinct scenes, twelve variants of four user-selected sculptures, and an additional seated study, all without generated pedestals. New image selection remains before CL3D.

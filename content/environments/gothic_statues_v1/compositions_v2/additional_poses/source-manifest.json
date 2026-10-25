@@ -1,0 +1,37 @@
+{
+  "provided_by": "user",
+  "date": "2026-10-25",
+  "sources": [
+    {
+      "number": 1,
+      "user_attachment": "codex-clipboard-a7d12a49-7406-4ec9-80d7-232434d24b7a.png",
+      "sha256": "ec7127bb1b9d4ddaf27b9412be11d4d45425a8d1b6355300437286b6e5698939",
+      "role": "general seated or kneeling composition inspiration only",
+      "passed_to_image_tool": false
+    },
+    {
+      "number": 2,
+      "user_attachment": "codex-clipboard-4a823f5d-19a6-4949-8bd4-0fb4dccb13ca.png",
+      "sha256": "8c7c0cae6efb2a9568c19f681c114cbfa333a3c54ec1875a3e731b16bb56a7f9",
+      "role": "general seated or kneeling composition inspiration only",
+      "passed_to_image_tool": false
+    },
+    {
+      "number": 3,
+      "user_attachment": "codex-clipboard-ee53c0d8-c7b9-4abc-99a8-d622a239ee66.png",
+      "sha256": "195508dbcee5ab9b2c76ab67c2408bb87c2bbf45cd3c900303d82251ab7dd362",
+      "role": "general seated or kneeling composition inspiration only",
+      "passed_to_image_tool": false
+    },
+    {
+      "number": 4,
+      "user_attachment": "codex-clipboard-d6f6691d-c43b-4387-ac20-de25ece270fc.png",
+      "sha256": "c4df695782fd8d051d2ca0a84e030ef3073e356700a9e21f922829edc610c171",
+      "role": "general seated or kneeling composition inspiration only",
+      "passed_to_image_tool": false
+    }
+  ],
+  "actual_reference": "../references/S04-wall-leaning.png",
+  "actual_reference_sha256": "0c525f11d4c6ca194f0f56217bba1ed1f9ab84fcaad9aa79cf8ec7f1ebb11dba",
+  "reference_role": "approved marble material and carving quality only; original adult figures"
+}

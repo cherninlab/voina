@@ -1,0 +1,35 @@
+{
+  "task": "T-189",
+  "stage": "image concepts",
+  "date": "2026-10-25",
+  "items": [
+    {
+      "id": "A03-seated-sibyl",
+      "title": "Seated Sibyl",
+      "path": "references/A03-seated-sibyl.png",
+      "prompt": "prompts/A03-seated-sibyl.txt",
+      "receipt": "receipts/A03-seated-sibyl.json",
+      "sha256": "92e8a70e983a8d563d6cdb971417fee60177cbea330965fad1d3baa38bb1154e",
+      "native_bytes_preserved": true,
+      "dimensions": [
+        1024,
+        1536
+      ],
+      "mode": "RGBA",
+      "alpha_extrema": [
+        0,
+        254
+      ],
+      "transparent_fraction": 0.5976,
+      "opaque_body_bounds": [
+        144,
+        14,
+        928,
+        1515
+      ],
+      "approval": "pending image selection",
+      "source_id": null,
+      "cl3d_generated": false
+    }
+  ]
+}

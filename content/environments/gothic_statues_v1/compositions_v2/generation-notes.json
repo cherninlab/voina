@@ -1,0 +1,18 @@
+{
+  "S03-serpent-torso": {
+    "attempt_1": "No image returned: output filter rejected. Revised to a fully mantle-covered antique torso while retaining the broken silhouette and serpent composition.",
+    "attempt_2": "generated and saved"
+  },
+  "S05-ledge-bather": {
+    "attempt_1": "Reference-based attempt rejected by the image tool. No image returned.",
+    "attempt_2": "Independent fully draped classical pose study; only approved marble-style reference passed. Generated and saved."
+  },
+  "S07-seated-observer": {
+    "attempt_1": "Reference-based attempt rejected by the image tool. No image returned.",
+    "attempt_2": "Independent fully draped classical pose study; only approved marble-style reference passed. Generated and saved."
+  },
+  "S08-leaning-scholar": {
+    "attempt_1": "Reference-based attempt rejected by the image tool. No image returned.",
+    "attempt_2": "Independent fully draped classical pose study; only approved marble-style reference passed. Generated and saved."
+  }
+}

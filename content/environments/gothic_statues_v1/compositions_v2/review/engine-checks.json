@@ -1,0 +1,21 @@
+[
+  {
+    "check": "editor-import",
+    "return_code": 0,
+    "error_lines": [],
+    "log": "editor-import.txt",
+    "shutdown_warnings": 0
+  },
+  {
+    "check": "smoke-test",
+    "return_code": 0,
+    "error_lines": [],
+    "log": "smoke-test.txt",
+    "shutdown_warnings": 0,
+    "success_markers": {
+      "SMOKE_OK": true,
+      "VERSION_MISMATCH_OK": true,
+      "PASS: local two-process ENet integration and disconnect cleanup": true
+    }
+  }
+]

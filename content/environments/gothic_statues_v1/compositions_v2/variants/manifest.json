@@ -1,0 +1,343 @@
+{
+  "task": "T-189",
+  "stage": "image concepts",
+  "date": "2026-10-25",
+  "items": [
+    {
+      "id": "W01-overhead-lean",
+      "title": "Mantled Wall Lean",
+      "path": "references/W01-overhead-lean.png",
+      "prompt": "prompts/W01-overhead-lean.txt",
+      "receipt": "receipts/W01-overhead-lean.json",
+      "sha256": "cc393ea6674b35a56e08bddf4dc322684e926beec2fa433c3423c6678fedcedd",
+      "native_bytes_preserved": true,
+      "dimensions": [
+        1024,
+        1536
+      ],
+      "mode": "RGBA",
+      "alpha_extrema": [
+        0,
+        254
+      ],
+      "transparent_fraction": 0.6916,
+      "opaque_body_bounds": [
+        303,
+        21,
+        821,
+        1499
+      ],
+      "approval": "pending image selection",
+      "source_id": "S04-wall-leaning",
+      "cl3d_generated": false
+    },
+    {
+      "id": "W02-crossed-ankle",
+      "title": "Crossed-Ankle Lean",
+      "path": "references/W02-crossed-ankle.png",
+      "prompt": "prompts/W02-crossed-ankle.txt",
+      "receipt": "receipts/W02-crossed-ankle.json",
+      "sha256": "b7ccef468dee64c2048984339615de40b7202c527a5d2219f017f0e50e2cb4c1",
+      "native_bytes_preserved": true,
+      "dimensions": [
+        1024,
+        1536
+      ],
+      "mode": "RGBA",
+      "alpha_extrema": [
+        0,
+        254
+      ],
+      "transparent_fraction": 0.7239,
+      "opaque_body_bounds": [
+        322,
+        14,
+        762,
+        1466
+      ],
+      "approval": "pending image selection",
+      "source_id": "S04-wall-leaning",
+      "cl3d_generated": false
+    },
+    {
+      "id": "W03-raised-knee",
+      "title": "Raised-Knee Turn",
+      "path": "references/W03-raised-knee.png",
+      "prompt": "prompts/W03-raised-knee.txt",
+      "receipt": "receipts/W03-raised-knee.json",
+      "sha256": "e1ae347dd9d3cf9e0308ae0f9da9309309f436310a2590bd7923aba3d99cd5aa",
+      "native_bytes_preserved": true,
+      "dimensions": [
+        1024,
+        1536
+      ],
+      "mode": "RGBA",
+      "alpha_extrema": [
+        0,
+        254
+      ],
+      "transparent_fraction": 0.6682,
+      "opaque_body_bounds": [
+        273,
+        24,
+        839,
+        1516
+      ],
+      "approval": "pending image selection",
+      "source_id": "S04-wall-leaning",
+      "cl3d_generated": false
+    },
+    {
+      "id": "H01-folded-arms",
+      "title": "Horned Oracle, Folded Arms",
+      "path": "references/H01-folded-arms.png",
+      "prompt": "prompts/H01-folded-arms.txt",
+      "receipt": "receipts/H01-folded-arms.json",
+      "sha256": "4dad661dc191513707abf44aed4b6986a5e03e8d240dd0b0a41b719f667ee7e4",
+      "native_bytes_preserved": true,
+      "dimensions": [
+        1024,
+        1536
+      ],
+      "mode": "RGBA",
+      "alpha_extrema": [
+        0,
+        254
+      ],
+      "transparent_fraction": 0.579,
+      "opaque_body_bounds": [
+        213,
+        17,
+        904,
+        1520
+      ],
+      "approval": "pending image selection",
+      "source_id": "S06-horned-oracle",
+      "cl3d_generated": false
+    },
+    {
+      "id": "H02-kneeling-oracle",
+      "title": "Horned Oracle, Kneeling",
+      "path": "references/H02-kneeling-oracle.png",
+      "prompt": "prompts/H02-kneeling-oracle.txt",
+      "receipt": "receipts/H02-kneeling-oracle.json",
+      "sha256": "4213546bd52ef69dac3f8092a95499967a3fbd9a1aaba49b9fee8e1f6be27584",
+      "native_bytes_preserved": true,
+      "dimensions": [
+        1024,
+        1536
+      ],
+      "mode": "RGBA",
+      "alpha_extrema": [
+        0,
+        254
+      ],
+      "transparent_fraction": 0.5008,
+      "opaque_body_bounds": [
+        14,
+        97,
+        1009,
+        1425
+      ],
+      "approval": "pending image selection",
+      "source_id": "S06-horned-oracle",
+      "cl3d_generated": false
+    },
+    {
+      "id": "H03-raised-palms",
+      "title": "Horned Oracle, Raised Palms",
+      "path": "references/H03-raised-palms.png",
+      "prompt": "prompts/H03-raised-palms.txt",
+      "receipt": "receipts/H03-raised-palms.json",
+      "sha256": "5185ba43984c4efb35f97bf6436ce8671004e5c0e52963cd66c6c69f2a78c438",
+      "native_bytes_preserved": true,
+      "dimensions": [
+        1024,
+        1536
+      ],
+      "mode": "RGBA",
+      "alpha_extrema": [
+        0,
+        254
+      ],
+      "transparent_fraction": 0.5642,
+      "opaque_body_bounds": [
+        115,
+        17,
+        960,
+        1508
+      ],
+      "approval": "pending image selection",
+      "source_id": "S06-horned-oracle",
+      "cl3d_generated": false
+    },
+    {
+      "id": "M01-bowed-profile",
+      "title": "Mourner, Bowed Profile",
+      "path": "references/M01-bowed-profile.png",
+      "prompt": "prompts/M01-bowed-profile.txt",
+      "receipt": "receipts/M01-bowed-profile.json",
+      "sha256": "58111637eaf0e7901efbbbd3444280c82f8fb9cd084e0a71075e9cd2702ba09c",
+      "native_bytes_preserved": true,
+      "dimensions": [
+        1121,
+        1403
+      ],
+      "mode": "RGBA",
+      "alpha_extrema": [
+        0,
+        255
+      ],
+      "transparent_fraction": 0.5989,
+      "opaque_body_bounds": [
+        24,
+        38,
+        1100,
+        1375
+      ],
+      "approval": "pending image selection",
+      "source_id": "S01-bowed-kneeling",
+      "cl3d_generated": false
+    },
+    {
+      "id": "M02-reaching-mourner",
+      "title": "Mourner, Reaching",
+      "path": "references/M02-reaching-mourner.png",
+      "prompt": "prompts/M02-reaching-mourner.txt",
+      "receipt": "receipts/M02-reaching-mourner.json",
+      "sha256": "322f7a639e9578cb6a95896a634cba50c6b80fa6621aee4b955c1b5962d395b4",
+      "native_bytes_preserved": true,
+      "dimensions": [
+        1121,
+        1403
+      ],
+      "mode": "RGBA",
+      "alpha_extrema": [
+        0,
+        255
+      ],
+      "transparent_fraction": 0.5603,
+      "opaque_body_bounds": [
+        16,
+        39,
+        1101,
+        1364
+      ],
+      "approval": "pending image selection",
+      "source_id": "S01-bowed-kneeling",
+      "cl3d_generated": false
+    },
+    {
+      "id": "M03-veiled-crouch",
+      "title": "Mourner, Veiled Crouch",
+      "path": "references/M03-veiled-crouch.png",
+      "prompt": "prompts/M03-veiled-crouch.txt",
+      "receipt": "receipts/M03-veiled-crouch.json",
+      "sha256": "3269bfa64b05f367c5c5886bf3f34685d806b6d2830e636dda400159b1ca59e5",
+      "native_bytes_preserved": true,
+      "dimensions": [
+        1121,
+        1403
+      ],
+      "mode": "RGBA",
+      "alpha_extrema": [
+        0,
+        255
+      ],
+      "transparent_fraction": 0.476,
+      "opaque_body_bounds": [
+        36,
+        93,
+        1094,
+        1334
+      ],
+      "approval": "pending image selection",
+      "source_id": "S01-bowed-kneeling",
+      "cl3d_generated": false
+    },
+    {
+      "id": "R01-diagonal-scythe",
+      "title": "Reaper, Diagonal Scythe",
+      "path": "references/R01-diagonal-scythe.png",
+      "prompt": "prompts/R01-diagonal-scythe.txt",
+      "receipt": "receipts/R01-diagonal-scythe.json",
+      "sha256": "9ef83b5f39562313f1a138f0d2a773a55e6791a3797229e5cf7aa959bf5af444",
+      "native_bytes_preserved": true,
+      "dimensions": [
+        1024,
+        1536
+      ],
+      "mode": "RGBA",
+      "alpha_extrema": [
+        0,
+        254
+      ],
+      "transparent_fraction": 0.5528,
+      "opaque_body_bounds": [
+        72,
+        23,
+        974,
+        1490
+      ],
+      "approval": "pending image selection",
+      "source_id": "S02-hooded-reaper",
+      "cl3d_generated": false
+    },
+    {
+      "id": "R02-kneeling-reaper",
+      "title": "Reaper, Kneeling",
+      "path": "references/R02-kneeling-reaper.png",
+      "prompt": "prompts/R02-kneeling-reaper.txt",
+      "receipt": "receipts/R02-kneeling-reaper.json",
+      "sha256": "077fab07435d971183fcb37ea21043bc202621381c96daf5a3137288e3812920",
+      "native_bytes_preserved": true,
+      "dimensions": [
+        1024,
+        1536
+      ],
+      "mode": "RGBA",
+      "alpha_extrema": [
+        0,
+        254
+      ],
+      "transparent_fraction": 0.5241,
+      "opaque_body_bounds": [
+        24,
+        28,
+        1002,
+        1465
+      ],
+      "approval": "pending image selection",
+      "source_id": "S02-hooded-reaper",
+      "cl3d_generated": false
+    },
+    {
+      "id": "R03-seated-reaper",
+      "title": "Reaper, Seated",
+      "path": "references/R03-seated-reaper.png",
+      "prompt": "prompts/R03-seated-reaper.txt",
+      "receipt": "receipts/R03-seated-reaper.json",
+      "sha256": "840c1f42fb257d7be18bc64f4d345360dd6a1ac6062ff52f5d53b18024f0405e",
+      "native_bytes_preserved": true,
+      "dimensions": [
+        1024,
+        1536
+      ],
+      "mode": "RGBA",
+      "alpha_extrema": [
+        0,
+        254
+      ],
+      "transparent_fraction": 0.567,
+      "opaque_body_bounds": [
+        185,
+        21,
+        908,
+        1509
+      ],
+      "approval": "pending image selection",
+      "source_id": "S02-hooded-reaper",
+      "cl3d_generated": false
+    }
+  ]
+}

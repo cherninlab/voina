@@ -1,0 +1,42 @@
+{
+  "date": "2026-10-25",
+  "selected_designs": [
+    {
+      "design_id": "S04-wall-leaning",
+      "user_attachment": "source/approved-selection-01.png",
+      "user_attachment_sha256": "f2ab84ffc918848740784888eb7b49fd7b3d22c2bc746eb974810db941192828",
+      "native_generation_reference": "references/S04-wall-leaning.png",
+      "native_reference_sha256": "0c525f11d4c6ca194f0f56217bba1ed1f9ab84fcaad9aa79cf8ec7f1ebb11dba",
+      "approval": "this ones are good but we need more versions of it",
+      "variants_approval": "pending"
+    },
+    {
+      "design_id": "S06-horned-oracle",
+      "user_attachment": "source/approved-selection-02.png",
+      "user_attachment_sha256": "b08109a981054b2bcc94f12f4489d08eb0dcd0155a3bcbcd45786639514e03a3",
+      "native_generation_reference": "references/S06-horned-oracle.png",
+      "native_reference_sha256": "dc2e226e69c1d08e3dfe4c4934a3e553b16e84df7b99a9798a69b5eb08084c0b",
+      "approval": "this ones are good but we need more versions of it",
+      "variants_approval": "pending"
+    },
+    {
+      "design_id": "S01-bowed-kneeling",
+      "user_attachment": "source/approved-selection-03.png",
+      "user_attachment_sha256": "236e7ad57312c4d2a7db25b5427fd3b322f6fdb0a572aa9e188c39d97224004d",
+      "native_generation_reference": "references/S01-bowed-kneeling.png",
+      "native_reference_sha256": "a9d53874d93b3ced20848dd91a85bfe65d1ed3750ac2eda0d0e49a65d84dd4dd",
+      "approval": "this ones are good but we need more versions of it",
+      "variants_approval": "pending"
+    },
+    {
+      "design_id": "S02-hooded-reaper",
+      "user_attachment": "source/approved-selection-04.png",
+      "user_attachment_sha256": "3ab286b660b6d0a508cf77c4c9df25a1533c11a8fd7c1ab476b6d0c464d8c404",
+      "native_generation_reference": "references/S02-hooded-reaper.png",
+      "native_reference_sha256": "aebf02d9431b5bcc6ed861cd9ceb85d6a4296f72e4637b77aa1f119b02f36e6e",
+      "approval": "this ones are good but we need more versions of it",
+      "variants_approval": "pending"
+    }
+  ],
+  "stage": "additional image versions only"
+}

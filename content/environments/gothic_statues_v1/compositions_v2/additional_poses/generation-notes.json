@@ -1,0 +1,28 @@
+{
+  "successful": [
+    "A03-seated-sibyl"
+  ],
+  "failed": [
+    {
+      "id": "A01-low-mourner",
+      "status": "output moderation blocked; no image returned",
+      "category": "sexual",
+      "request_id": "4aef295f-373c-48c1-91d1-9d05fca6bc96"
+    },
+    {
+      "id": "A02-side-kneeling",
+      "status": "output moderation blocked; no image returned",
+      "category": "sexual",
+      "request_id": "c5b27960-68ab-4dba-82de-d6a02cc7d8bf"
+    },
+    {
+      "id": "A04-kneeling-supplicant",
+      "status": "output moderation blocked; no image returned",
+      "category": "sexual",
+      "request_id": "11c0eb68-eccf-42bb-a97d-d54403a6d955"
+    }
+  ],
+  "attempted": 4,
+  "generated": 1,
+  "user_photographs_passed_to_image_tool": false
+}

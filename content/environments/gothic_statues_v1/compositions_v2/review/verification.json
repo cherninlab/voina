@@ -1,0 +1,36 @@
+{
+  "task": "T-189",
+  "unique_native_pngs": 21,
+  "initial_compositions": 8,
+  "selected_parent_designs": 4,
+  "new_variants": 12,
+  "additional_studies_attempted": 4,
+  "additional_studies_generated": 1,
+  "additional_studies_blocked": 3,
+  "all_successful_native_bytes_preserved": true,
+  "all_successful_pngs_have_transparency": true,
+  "review_sheets": "mechanical thumbnail assembly only; not generation or CL3D inputs",
+  "engine_checks": [
+    {
+      "check": "editor-import",
+      "return_code": 0,
+      "error_lines": [],
+      "log": "editor-import.txt",
+      "shutdown_warnings": 0
+    },
+    {
+      "check": "smoke-test",
+      "return_code": 0,
+      "error_lines": [],
+      "log": "smoke-test.txt",
+      "shutdown_warnings": 0,
+      "success_markers": {
+        "SMOKE_OK": true,
+        "VERSION_MISMATCH_OK": true,
+        "PASS: local two-process ENet integration and disconnect cleanup": true
+      }
+    }
+  ],
+  "visual_review": "Complete figures and no generated plinths checked in generation outputs and comparison sheets. Some margins are tight. Hair, fingers, horns and scythes still require reconstruction review.",
+  "acceptance": "Selected parent images approved; all new images remain pending selection. No mesh or in-engine acceptance claimed."
+}

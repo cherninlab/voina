@@ -1,0 +1,14 @@
+{
+  "W01-overhead-lean": {
+    "attempt_1": "Output screening rejected; no image returned. Request ID 006c7a75-c509-4895-8646-6936178d6b41.",
+    "attempt_2": "Changed to a mantled shoulder-level gesture and long robe; generated and saved. Legacy ID retained; current title Mantled Wall Lean."
+  },
+  "W02-crossed-ankle": {
+    "attempt_1": "Output screening rejected; no image returned. Request ID a784fecb-8ac5-49c0-9e74-7ec971a48296.",
+    "attempt_2": "Changed to a long robe; generated and saved."
+  },
+  "W03-raised-knee": {
+    "attempt_1": "Initial prompt retained as a draft; not submitted.",
+    "attempt_2": "Long-robe composition generated and saved."
+  }
+}
