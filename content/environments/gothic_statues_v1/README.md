@@ -65,3 +65,5 @@ Six earlier goat studies with architectural ornament remain under `superseded_tr
 Prompt heights are design intentions, not measured 3D sizes. Fingers, faces, negative spaces, flame curls, multiple figures, wings and unseen rear faces need later reconstruction review. These are concept images, not texture maps, meshes or engine captures. Image approval precedes CL3D and does not establish final 3D or in-game acceptance.
 
 All 27 current candidates and the alternate pass native-byte and PNG checks; current assets are distinct RGBA images with transparency. Godot 4.7.2 headless editor import and the required smoke test passed on the initial image-only pack, including local two-process ENet integration and expected build-mismatch rejection. Existing ObjectDB shutdown warnings remain in the smoke log. The added images stay under the same `.gdignore`; no engine files changed. Audit: [verification](review/verification.json), [import log](review/editor-import.txt), [smoke log](review/smoke-test.txt).
+
+Approved design 27 now has [eight additional pose references, P01–P08](poses_v1/README.md). Source design approval is recorded; new pose selection is pending.

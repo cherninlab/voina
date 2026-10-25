@@ -1,0 +1,225 @@
+{
+  "task": "T-188",
+  "tool": "built-in image_gen",
+  "count": 8,
+  "approved_source_design": true,
+  "pose_variant_approval": "pending",
+  "assets": [
+    {
+      "id": "P01-advancing",
+      "title": "Advancing",
+      "reference": "references/P01-advancing.png",
+      "sha256": "dcb2e8cd61da8a6e5aacefee4b278df49905d980a0bd7d28d9cfbd8953e392d2",
+      "dimensions_px": [
+        1024,
+        1536
+      ],
+      "mode": "RGBA",
+      "alpha_extrema": [
+        0,
+        254
+      ],
+      "visible_bbox_alpha_gt_64": [
+        157,
+        6,
+        860,
+        1515
+      ],
+      "prompt": "prompts/P01-advancing.txt",
+      "prompt_sha256": "d96ec6586bef7dfddc0f68cdd1d888987f23f5594237a9f7ddf6b9cccb0e4ebc",
+      "input": "source/approved-reference.png",
+      "input_sha256": "6d764b69f8af3a8f65a438d7882ade457bfa92592639d3536deaca5a3aac8033",
+      "native_bytes_preserved": true,
+      "approval": "pending"
+    },
+    {
+      "id": "P02-seated",
+      "title": "Seated",
+      "reference": "references/P02-seated.png",
+      "sha256": "85d93a8be5433db001384935c336e8891b6b52fddbb084434a9954cfe35d4adf",
+      "dimensions_px": [
+        1024,
+        1536
+      ],
+      "mode": "RGBA",
+      "alpha_extrema": [
+        0,
+        254
+      ],
+      "visible_bbox_alpha_gt_64": [
+        97,
+        10,
+        943,
+        1502
+      ],
+      "prompt": "prompts/P02-seated.txt",
+      "prompt_sha256": "361cfe3f3f0cef6eacffe8ff0130b6897d54c430126261fc76ea06bd07d71fc2",
+      "input": "source/approved-reference.png",
+      "input_sha256": "6d764b69f8af3a8f65a438d7882ade457bfa92592639d3536deaca5a3aac8033",
+      "native_bytes_preserved": true,
+      "approval": "pending"
+    },
+    {
+      "id": "P03-kneeling",
+      "title": "Kneeling",
+      "reference": "references/P03-kneeling.png",
+      "sha256": "e92ee3c44e4d4e8792ad8321bbb6079771b82dd6b91ea5a9a8e0032d7a1f0c56",
+      "dimensions_px": [
+        1024,
+        1536
+      ],
+      "mode": "RGBA",
+      "alpha_extrema": [
+        0,
+        254
+      ],
+      "visible_bbox_alpha_gt_64": [
+        68,
+        18,
+        996,
+        1514
+      ],
+      "prompt": "prompts/P03-kneeling.txt",
+      "prompt_sha256": "5b08ed801b2b45f4db7f3b1c027d6d8c70054a1e3337c91480606b3ec389e8ee",
+      "input": "source/approved-reference.png",
+      "input_sha256": "6d764b69f8af3a8f65a438d7882ade457bfa92592639d3536deaca5a3aac8033",
+      "native_bytes_preserved": true,
+      "approval": "pending"
+    },
+    {
+      "id": "P04-turning",
+      "title": "Turning",
+      "reference": "references/P04-turning.png",
+      "sha256": "7f384ba1bb88f6dc1d0cf80dcc5f268907d8f8c552083234ce9291b376abd34d",
+      "dimensions_px": [
+        1024,
+        1536
+      ],
+      "mode": "RGBA",
+      "alpha_extrema": [
+        0,
+        254
+      ],
+      "visible_bbox_alpha_gt_64": [
+        171,
+        6,
+        868,
+        1514
+      ],
+      "prompt": "prompts/P04-turning.txt",
+      "prompt_sha256": "8d94617a628109b39735978fdf092f093b560b0e4c2e3991705a219b3097924f",
+      "input": "source/approved-reference.png",
+      "input_sha256": "6d764b69f8af3a8f65a438d7882ade457bfa92592639d3536deaca5a3aac8033",
+      "native_bytes_preserved": true,
+      "approval": "pending"
+    },
+    {
+      "id": "P05-step-rest",
+      "title": "Foot on Step",
+      "reference": "references/P05-step-rest.png",
+      "sha256": "583987e3f131d23dbfed493e60760646f510946020a77e384c7ec1a46aa938bc",
+      "dimensions_px": [
+        1024,
+        1536
+      ],
+      "mode": "RGBA",
+      "alpha_extrema": [
+        0,
+        254
+      ],
+      "visible_bbox_alpha_gt_64": [
+        133,
+        6,
+        926,
+        1504
+      ],
+      "prompt": "prompts/P05-step-rest.txt",
+      "prompt_sha256": "8e60cca1b9ffb1799a8dba5f0a86122bd666f83d3ae31dfcbb7441c0d4e2256c",
+      "input": "source/approved-reference.png",
+      "input_sha256": "6d764b69f8af3a8f65a438d7882ade457bfa92592639d3536deaca5a3aac8033",
+      "native_bytes_preserved": true,
+      "approval": "pending"
+    },
+    {
+      "id": "P06-leaning",
+      "title": "Leaning",
+      "reference": "references/P06-leaning.png",
+      "sha256": "dde6004d27da551cc9c62ce0443e47816d91130cb778736247d1ad185b2efe05",
+      "dimensions_px": [
+        1024,
+        1536
+      ],
+      "mode": "RGBA",
+      "alpha_extrema": [
+        0,
+        254
+      ],
+      "visible_bbox_alpha_gt_64": [
+        164,
+        10,
+        895,
+        1523
+      ],
+      "prompt": "prompts/P06-leaning.txt",
+      "prompt_sha256": "18baf813a0339fbb8bf9c7895027eef7391d4b4a6c0743bd655b41a79b072eb9",
+      "input": "source/approved-reference.png",
+      "input_sha256": "6d764b69f8af3a8f65a438d7882ade457bfa92592639d3536deaca5a3aac8033",
+      "native_bytes_preserved": true,
+      "approval": "pending"
+    },
+    {
+      "id": "P07-ground-seated",
+      "title": "Ground Seated",
+      "reference": "references/P07-ground-seated.png",
+      "sha256": "ab7a601d0a24510f30dd8985b63240bc83e0e53fd4728db4991ae007f554c0b6",
+      "dimensions_px": [
+        1024,
+        1536
+      ],
+      "mode": "RGBA",
+      "alpha_extrema": [
+        0,
+        254
+      ],
+      "visible_bbox_alpha_gt_64": [
+        22,
+        46,
+        1006,
+        1496
+      ],
+      "prompt": "prompts/P07-ground-seated.txt",
+      "prompt_sha256": "945e9f6abcc2d44eedafe81fc0db62b9b4598e2fc699739bcfdf11071a3da13a",
+      "input": "source/approved-reference.png",
+      "input_sha256": "6d764b69f8af3a8f65a438d7882ade457bfa92592639d3536deaca5a3aac8033",
+      "native_bytes_preserved": true,
+      "approval": "pending"
+    },
+    {
+      "id": "P08-raised-mirror",
+      "title": "Raised Mirror",
+      "reference": "references/P08-raised-mirror.png",
+      "sha256": "e981a34b920b2db41862fe0fd23a4237ccc5ae4e5260847d385a476445869a97",
+      "dimensions_px": [
+        1024,
+        1536
+      ],
+      "mode": "RGBA",
+      "alpha_extrema": [
+        0,
+        254
+      ],
+      "visible_bbox_alpha_gt_64": [
+        176,
+        5,
+        848,
+        1511
+      ],
+      "prompt": "prompts/P08-raised-mirror.txt",
+      "prompt_sha256": "82398351d0123394f33bf8b868a312c31405297810d978ccf8e42deb891a6b9a",
+      "input": "source/approved-reference.png",
+      "input_sha256": "6d764b69f8af3a8f65a438d7882ade457bfa92592639d3536deaca5a3aac8033",
+      "native_bytes_preserved": true,
+      "approval": "pending"
+    }
+  ]
+}

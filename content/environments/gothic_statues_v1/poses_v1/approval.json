@@ -1,0 +1,9 @@
+{
+  "task": "T-188",
+  "date": "2026-10-25",
+  "source_design_approval": "this one is good but we need more positions",
+  "source": "source/approved-reference.png",
+  "source_sha256": "6d764b69f8af3a8f65a438d7882ade457bfa92592639d3536deaca5a3aac8033",
+  "new_pose_variants": "pending",
+  "stage": "image generation only"
+}

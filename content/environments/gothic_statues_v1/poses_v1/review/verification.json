@@ -1,0 +1,26 @@
+{
+  "task": "T-188",
+  "image_count": 8,
+  "approved_source_unchanged": true,
+  "native_originals_byte_identical": true,
+  "distinct_images": true,
+  "all_rgba_with_alpha": true,
+  "visual_review": "All eight individually inspected and all-8 numbered comparison inspected; full bases, mirror and symbol group present; each body pose differs.",
+  "engine_import": {
+    "exit_code": 0,
+    "version": "4.7.2.stable.official.ed1daf0bf",
+    "errors": 0,
+    "warnings": 0,
+    "log": "review/editor-import.txt"
+  },
+  "smoke_test": {
+    "passed": true,
+    "exit_code": 0,
+    "script_errors": 0,
+    "existing_shutdown_warning": true,
+    "log": "review/smoke-test.txt"
+  },
+  "tested_base_commit": "befd5693ca202b8c7d93dfff51ca100a373c1d65",
+  "pose_approval": "pending",
+  "cl3d_generated": false
+}
