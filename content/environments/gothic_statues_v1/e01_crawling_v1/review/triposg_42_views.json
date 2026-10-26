@@ -1,0 +1,54 @@
+{
+  "source_mesh": "/Users/theochernin/Projects/MultiPlayerProject-agents/theo-codex-43/content/environments/gothic_statues_v1/e01_crawling_v1/mesh/triposg_42_raw.glb",
+  "actual_geometry_renders": true,
+  "world_bounds": [
+    [
+      -0.5198405385017395,
+      -0.9496802091598511,
+      -0.5229417085647583
+    ],
+    [
+      0.5175187587738037,
+      0.9536659121513367,
+      0.5089750289916992
+    ]
+  ],
+  "blender_version": "5.2.2 LTS",
+  "views": [
+    {
+      "file": "triposg_42_hero.png",
+      "azimuth": 315,
+      "elevation": 18
+    },
+    {
+      "file": "triposg_42_front.png",
+      "azimuth": 0,
+      "elevation": 5
+    },
+    {
+      "file": "triposg_42_front45.png",
+      "azimuth": 45,
+      "elevation": 15
+    },
+    {
+      "file": "triposg_42_left.png",
+      "azimuth": 90,
+      "elevation": 5
+    },
+    {
+      "file": "triposg_42_back135.png",
+      "azimuth": 135,
+      "elevation": 15
+    },
+    {
+      "file": "triposg_42_back.png",
+      "azimuth": 180,
+      "elevation": 5
+    },
+    {
+      "file": "triposg_42_right.png",
+      "azimuth": 270,
+      "elevation": 5
+    }
+  ]
+}

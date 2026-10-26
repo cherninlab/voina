@@ -1,0 +1,18 @@
+<!doctype html>
+<html lang="en">
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>E01 · Crawling reach · 3D review</title>
+<script type="module" src="/static/vendor/model-viewer.min.js"></script>
+<style>
+*{box-sizing:border-box}body{margin:0;min-height:100dvh;display:flex;flex-direction:column;background:#1b1d20;color:#e7e2d8;font:15px system-ui,sans-serif}header{padding:18px 24px;display:flex;gap:18px;align-items:center;flex-wrap:wrap}h1{font-size:19px;margin:0}p{margin:0;color:#bab7b0}a,button{color:inherit;background:#31352f;border:1px solid #535b4b;padding:9px 14px;border-radius:6px;text-decoration:none;font:inherit;cursor:pointer}model-viewer{width:100%;height:60vh;min-height:320px;flex:1;background:#24272b}footer{padding:14px 24px;line-height:1.5;color:#bab7b0}#status{color:#d6dcac}
+</style>
+<header><h1>E01 · Crawling reach</h1><p>First 3D pass · 80k triangles · 2K PBR maps</p><a href="../asset/e01_crawling_lod0.glb" download>Download GLB</a><a href="../asset/e01_crawling_lod1.glb" download>30k LOD</a><button id="rotate">Auto rotate</button><span id="status">Loading sculpture…</span></header>
+<model-viewer id="statue" src="../asset/e01_crawling_lod0.glb" camera-controls touch-action="pan-y" camera-orbit="-45deg 68deg 160%" environment-image="neutral" exposure="1" shadow-intensity="0.6" interaction-prompt="none" alt="The actual E01 crawling and reaching marble statue mesh"></model-viewer>
+<footer>Drag to orbit · Scroll to zoom. Albedo, roughness, baked tangent normal and AO are embedded. Face, hair and fingers remain softer than the approved source; unseen surfaces are inferred. This is a model review, with no dungeon placement yet.</footer>
+<script>
+const statue=document.querySelector('#statue');
+statue.addEventListener('load',()=>document.querySelector('#status').textContent='Ready to inspect');
+statue.addEventListener('error',()=>document.querySelector('#status').textContent='Model failed to load');
+document.querySelector('#rotate').onclick=event=>{statue.autoRotate=!statue.autoRotate;event.target.textContent=statue.autoRotate?'Stop rotation':'Auto rotate'};
+</script>
+</html>

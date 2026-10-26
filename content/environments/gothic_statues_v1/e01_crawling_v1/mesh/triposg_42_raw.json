@@ -1,0 +1,33 @@
+{
+  "source_sha256": "07b8275c2df6de491ca114453179e26a7865da8dc5bd4308e7880a6fec79dc61",
+  "model": "VAST-AI/TripoSG",
+  "model_revision": "2c1c516d22d58db486a058d98d31bb6177344e06",
+  "code_revision": "fc5c40990181e2a756c4e0b1c2f4d6b5202faf8c",
+  "license": "MIT",
+  "device": "mps",
+  "dtype": "float16",
+  "steps": 75,
+  "num_tokens": 2048,
+  "guidance": 7.0,
+  "seed": 42,
+  "extraction": "hierarchical marching cubes, depths 7 to 9",
+  "preprocess": "unchanged alpha crop, 10 percent padding, white composite",
+  "vertices": 361619,
+  "triangles": 723290,
+  "watertight": true,
+  "winding_consistent": true,
+  "bounds": [
+    [
+      -0.5198405385017395,
+      -0.5229417085647583,
+      -0.9536659121513367
+    ],
+    [
+      0.5175187587738037,
+      0.5089750289916992,
+      0.9496802091598511
+    ]
+  ],
+  "elapsed_seconds": 45.175440375001926,
+  "mesh_sha256": "574887579dd4d64b99df007658dff17090fc42f2285353d470a0e59ae1604a0b"
+}

@@ -1,0 +1,60 @@
+{
+  "source": {
+    "file": "source/approved.png",
+    "sha256": "07b8275c2df6de491ca114453179e26a7865da8dc5bd4308e7880a6fec79dc61",
+    "origin": "Native ImageGen E01 concept, selected and supplied by the user; preserved unchanged"
+  },
+  "selected": {
+    "source_sha256": "07b8275c2df6de491ca114453179e26a7865da8dc5bd4308e7880a6fec79dc61",
+    "model": "VAST-AI/TripoSG",
+    "model_revision": "2c1c516d22d58db486a058d98d31bb6177344e06",
+    "code_revision": "fc5c40990181e2a756c4e0b1c2f4d6b5202faf8c",
+    "license": "MIT",
+    "device": "mps",
+    "dtype": "float16",
+    "steps": 75,
+    "num_tokens": 2048,
+    "guidance": 7.0,
+    "seed": 42,
+    "extraction": "hierarchical marching cubes, depths 7 to 9",
+    "preprocess": "unchanged alpha crop, 10 percent padding, white composite",
+    "vertices": 361619,
+    "triangles": 723290,
+    "watertight": true,
+    "winding_consistent": true,
+    "bounds": [
+      [
+        -0.5198405385017395,
+        -0.5229417085647583,
+        -0.9536659121513367
+      ],
+      [
+        0.5175187587738037,
+        0.5089750289916992,
+        0.9496802091598511
+      ]
+    ],
+    "elapsed_seconds": 45.175440375001926,
+    "mesh_sha256": "574887579dd4d64b99df007658dff17090fc42f2285353d470a0e59ae1604a0b"
+  },
+  "weight_sha256": {
+    "transformer/diffusion_pytorch_model.safetensors": "9192b5923f7b605b394192809aa2ceb73bf0f4009674d8e3b999b45bb97d4bf2",
+    "image_encoder_dinov2/model.safetensors": "399fba97a95f22c36834418bc69373364a99af3a1153da1c0fb31db567c92e23",
+    "vae/diffusion_pytorch_model.safetensors": "a2e667c24927a5a35e5f19fcb4c75890e9399aa966b6db8131d7df733a750c8b"
+  },
+  "license_file": "source/TripoSG-LICENSE.txt",
+  "model_url": "https://huggingface.co/VAST-AI/TripoSG",
+  "code_url": "https://github.com/VAST-AI-Research/TripoSG",
+  "mps_patch": "source/triposg-mps.patch",
+  "runtime": {
+    "python": "3.11.15",
+    "torch": "2.14.1",
+    "transformers": "4.48.0",
+    "diffusers": "0.32.2"
+  },
+  "material_origin": "Project-authored procedural warm marble, baked to maps; high-to-low normal and AO bakes",
+  "multi_view": false,
+  "hidden_surfaces": "inferred from one view",
+  "art_acceptance": "pending user review; face/hair/hands remain soft",
+  "cl3d_experiment": "Not included in game deliverable; preserved locally at /Users/theochernin/Projects/CherninLab3D/experiments/e01_cl3d_20261026"
+}

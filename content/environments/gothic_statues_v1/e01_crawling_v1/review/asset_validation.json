@@ -1,0 +1,104 @@
+{
+  "result": "pass",
+  "checks": [
+    {
+      "file": "e01_crawling_lod0.glb",
+      "triangles": 80000,
+      "vertices_with_uv_seams": 59993,
+      "closed_geometry": true,
+      "components": 1,
+      "bounds": [
+        [
+          -0.5997589826583862,
+          1.3637515621667262e-05,
+          -1.0999189615249634
+        ],
+        [
+          0.5995597243309021,
+          1.1927604675292969,
+          1.1000030040740967
+        ]
+      ],
+      "normal_uv_tangent_attributes": true,
+      "pbr_maps_embedded": true,
+      "maps": [
+        {
+          "size": [
+            2048,
+            2048
+          ],
+          "channels": "RGB",
+          "std": 60.26888424990064
+        },
+        {
+          "size": [
+            2048,
+            2048
+          ],
+          "channels": "RGB",
+          "std": 116.75816395390046
+        },
+        {
+          "size": [
+            2048,
+            2048
+          ],
+          "channels": "RGB",
+          "std": 82.69613644379436
+        }
+      ],
+      "bytes": 10140304,
+      "sha256": "4b042a0d7b82a0f54c982e70d464fc19f41618cfd95cc6399759b79a6b1f0497"
+    },
+    {
+      "file": "e01_crawling_lod1.glb",
+      "triangles": 30000,
+      "vertices_with_uv_seams": 27410,
+      "closed_geometry": true,
+      "components": 1,
+      "bounds": [
+        [
+          -0.5993779897689819,
+          0.0004970284644514322,
+          -1.1005107164382935
+        ],
+        [
+          0.599991500377655,
+          1.192708134651184,
+          1.1001628637313843
+        ]
+      ],
+      "normal_uv_tangent_attributes": true,
+      "pbr_maps_embedded": true,
+      "maps": [
+        {
+          "size": [
+            2048,
+            2048
+          ],
+          "channels": "RGB",
+          "std": 60.26888424990064
+        },
+        {
+          "size": [
+            2048,
+            2048
+          ],
+          "channels": "RGB",
+          "std": 116.75816395390046
+        },
+        {
+          "size": [
+            2048,
+            2048
+          ],
+          "channels": "RGB",
+          "std": 82.69613644379436
+        }
+      ],
+      "bytes": 8276312,
+      "sha256": "d9231b66acbba2b5654c602bf44241a572bca608ce46236745ed7e6d56175e7e"
+    }
+  ],
+  "limits": "Technical validation does not establish image fidelity or close-up art approval."
+}

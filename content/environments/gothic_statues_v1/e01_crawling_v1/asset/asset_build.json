@@ -1,0 +1,27 @@
+{
+  "source_mesh": "/Users/theochernin/Projects/MultiPlayerProject-agents/theo-codex-43/content/environments/gothic_statues_v1/e01_crawling_v1/mesh/clean_high.glb",
+  "source_triangles": 722974,
+  "lod0_triangles": 80000,
+  "lod1_triangles": 30000,
+  "texture_size": 2048,
+  "maps": [
+    "e01_albedo",
+    "e01_roughness",
+    "e01_normal",
+    "e01_ao"
+  ],
+  "max_dimension_meters": 2.2,
+  "origin": "centered horizontally at lowest point",
+  "normal_convention": "OpenGL tangent space +Y",
+  "material": "procedural warm marble baked to UVs; no projected image detail",
+  "operations": [
+    "keep reviewed main shell",
+    "uniform scale",
+    "quadric decimation",
+    "smart UV unwrap",
+    "high-to-low normal bake",
+    "AO bake"
+  ],
+  "blender_version": "5.2.2 LTS",
+  "elapsed_seconds": 9.024644042001455
+}

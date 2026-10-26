@@ -1,0 +1,9 @@
+{
+  "source": "triposg_42_raw.glb",
+  "operation": "retain the reviewed main shell; remove tiny disconnected scraps",
+  "retained_triangles": 722974,
+  "retained_watertight": true,
+  "removed_triangles": 316,
+  "removed_components": 14,
+  "anatomy_or_pose_changes": false
+}

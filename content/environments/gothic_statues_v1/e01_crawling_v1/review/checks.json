@@ -1,0 +1,37 @@
+{
+  "game_headless_editor_import": {
+    "exit_code": 0,
+    "errors": 0,
+    "log": "game_editor_import.txt"
+  },
+  "game_full_smoke": {
+    "exit_code": 0,
+    "errors": 0,
+    "warnings": "Existing ObjectDB instances leaked at exit",
+    "log": "game_smoke.txt"
+  },
+  "statue_godot_import": {
+    "exit_code": 0,
+    "errors": 0,
+    "log": "statue_import.txt"
+  },
+  "statue_godot_material_probe": {
+    "exit_code": 0,
+    "marker": "STATUE_GODOT_OK",
+    "log": "statue_probe.txt"
+  },
+  "statue_mobile_metal_capture": {
+    "exit_code": 0,
+    "marker": "STATUE_CAPTURE_OK",
+    "log": "statue_capture.txt",
+    "image": "godot_mobile.png"
+  },
+  "asset_geometry_and_embedded_maps": "asset_validation.json",
+  "actual_render_views": "final_views.json",
+  "browser_review": {
+    "url": "http://127.0.0.1:7865/static/e01-review/review/index.html",
+    "loaded": true,
+    "auto_rotate_toggle_verified": true
+  },
+  "limits": "Technical checks passed. Close-up art approval and dungeon placement remain pending."
+}
