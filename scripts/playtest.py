@@ -85,7 +85,8 @@ def sync(commit: Optional[str], godot: str) -> Path:
 
 
 def launch(path: Path, godot: str, game_args: List[str], detach: bool) -> None:
-    command = ["/usr/bin/env", f"GODOT={godot}", str(path / "scripts/godot_bg.sh"), "--path", str(path), "--", *game_args]
+    # People play with sound; godot_bg.sh is silent by default for agents' runs.
+    command = ["/usr/bin/env", f"GODOT={godot}", "GODOT_BG_AUDIO=1", str(path / "scripts/godot_bg.sh"), "--path", str(path), "--", *game_args]
     if detach:
         process = subprocess.Popen(command, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL, start_new_session=True)
         print(f"launched pid {process.pid}: {' '.join(command)}")
@@ -170,7 +171,7 @@ def cmd_join(args: argparse.Namespace) -> None:
         return
     for attempt in range(3):
         path = sync(commit, godot)
-        process = subprocess.Popen(["/usr/bin/env", f"GODOT={godot}", str(path / "scripts/godot_bg.sh"), "--path", str(path), "--", *game_args], stdout=subprocess.PIPE, stderr=subprocess.STDOUT, text=True)
+        process = subprocess.Popen(["/usr/bin/env", f"GODOT={godot}", "GODOT_BG_AUDIO=1", str(path / "scripts/godot_bg.sh"), "--path", str(path), "--", *game_args], stdout=subprocess.PIPE, stderr=subprocess.STDOUT, text=True)
         follow = None
         for line in process.stdout:
             print(line, end="", flush=True)
