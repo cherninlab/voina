@@ -1,0 +1,48 @@
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+BUILD: cb486f1+dirty [6ca72acc7009]
+MOB_OK: sloped yard grid, territory, stare, creep, coil, leap, one hit per leap, block, parry, provoke, melee dedupe, beam, bolt, death, return home, spawn and respawn
+WARNING: 1 ObjectDB instance was leaked at exit (run with `--verbose` for details).
+   at: cleanup (core/object/object.cpp:2536)
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+BUILD: cb486f1+dirty [6ca72acc7009]
+MOB_BODY_OK: male and female bodies; foot planting on a slope, hip drop, puppet flex and settle, ragdoll death, jointed bisect halves; possessed variants and clothes, backward knees, crawl, coil, leap, stare, unscaled distorted ragdolls
+WARNING: 1 ObjectDB instance was leaked at exit (run with `--verbose` for details).
+   at: cleanup (core/object/object.cpp:2536)
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+BUILD: cb486f1+dirty [6ca72acc7009]
+RAIDER_OK: forest posts, facing the road, village ignored, pursuit, 12-damage jab, one hit per attack, return to post, replacement, clear, village switch alone
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+BUILD: cb486f1+dirty [6ca72acc7009]
+ROBE_JOG: tented robe 0.004 m outside the legs at the closest, hem at most 0.191 m up
+ROBE_DRAPE: dead cultist hem 0.030 to 0.030 m, drift 0.0061 m per frame
+ROBE_DRAPE: cut cultist's lower half hem 0.030 to 0.030 m, drift 0.0030 m per frame
+ROBE_OK: standing robe tented round the legs by its shader down to the feet, nothing simulated; drapes on the ground within two seconds after a death and a bisect, legs kept inside on corpses and halves
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+BUILD: cb486f1+dirty [6ca72acc7009]
+STAIN_OK: capped at 96, expired and scene-freed marks dropped without errors
+WARNING: 2 ObjectDB instances were leaked at exit (run with `--verbose` for details).
+   at: cleanup (core/object/object.cpp:2536)
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+BUILD: cb486f1+dirty [6ca72acc7009]
+Connecting to 127.0.0.1
+Connected
+MOB_NETWORK_OK: late join, health, position, state, host damage, client authority refusal, despawn
+WARNING: 1 ObjectDB instance was leaked at exit (run with `--verbose` for details).
+   at: cleanup (core/object/object.cpp:2536)
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+BUILD: cb486f1+dirty [6ca72acc7009]
+Hosting on UDP 57295
+MOB_NETWORK_READY
+NET host · build cb486f1+dirty [6ca72acc7009]
+NET bolts in flight 0
+MOB_NETWORK_HOST_OK: authoritative pounce, late join, death/despawn
+WARNING: 1 ObjectDB instance was leaked at exit (run with `--verbose` for details).
+   at: cleanup (core/object/object.cpp:2536)
+PASS: villager behaviour, yard navigation, raiders, bodies, cultist robes, stains and two-process late join

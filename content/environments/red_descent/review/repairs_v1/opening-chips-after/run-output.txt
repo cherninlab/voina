@@ -1,0 +1,40 @@
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+Metal 4.0 - Forward Mobile - Using Device #0: Apple - Apple M5 Max (Apple9)
+
+BUILD: 0c6dbbb [6ca72acc7009]
+WARNING: Godot 3.x SpatialMaterial remapped parameter not found: specular
+     at: _set (scene/resources/material.cpp:4096)
+     GDScript backtrace (most recent call first):
+         [0] stone_roots (res://gameplay/environment/red_descent_geometry.gd:390)
+         [1] stone_room (res://gameplay/environment/red_descent_geometry.gd:469)
+         [2] build_room (res://gameplay/environment/red_descent_geometry.gd:492)
+         [3] build (res://gameplay/environment/red_descent_geometry.gd:47)
+         [4] _ready (res://gameplay/environment/crypt_dungeon.gd:55)
+         [5] add_map_node (res://gameplay/match_world.gd:186)
+         [6] build_arena (res://gameplay/match_world.gd:164)
+         [7] load_map (res://gameplay/match_world.gd:146)
+         [8] _ready (res://gameplay/match_world.gd:42)
+         [9] run (res://scripts/dungeon_issue_probe.gd:173)
+GENERATED_KIT_PLACED: {}
+RED_DESCENT_GEOMETRY_READY: 17 routes, 13 rooms, 34 lit landmarks, sloping crossings
+MAP: Cinder Crypt (crypt)
+Hosting on UDP 57741
+DUNGEON_ENCOUNTER_READY: five guards across two vertically separated halls, no replacements
+NET host · build 0c6dbbb [6ca72acc7009]
+NET bolts in flight 0
+NAVIGATION_PROBE: [{"correct_floor":true,"fresh_points":11,"goal":[35.0,-3.04999232292175,-14.0],"hall_mob":0,"home":[30.0,-2.99999237060547,-14.0],"shared_grid_restored":true},{"correct_floor":true,"fresh_points":13,"goal":[37.0,-26.5868968963623,-4.0],"hall_mob":2,"home":[32.0,-26.9999809265137,-4.0],"shared_grid_restored":true}]
+EXPLORER_MESHES: 5375
+ISSUE_PROBE: cells-door-0-0 {"status":"no motion trace"}
+ISSUE_PROBE: cells-door-2-0 {"status":"no motion trace"}
+ISSUE_PROBE: ossuary-door-2-0 {"status":"no motion trace"}
+ISSUE_PROBE: ossuary-door-4-0 {"status":"no motion trace"}
+ISSUE_PROBE: bones-door-0-0 {"status":"no motion trace"}
+ISSUE_PROBE: bones-door-3-0 {"status":"no motion trace"}
+NET host · build 0c6dbbb [6ca72acc7009]
+NET bolts in flight 0
+ISSUE_PROBE: window-door-0-0 {"status":"no motion trace"}
+ISSUE_PROBE: window-door-0-1 {"status":"no motion trace"}
+issue probe finished
+ISSUE_PROBE_OK
+WARNING: 7 RIDs of type "Texture" were leaked.
+   at: finalize (servers/rendering/rendering_device.cpp:8900)

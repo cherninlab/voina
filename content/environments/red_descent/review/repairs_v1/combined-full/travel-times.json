@@ -1,0 +1,377 @@
+{
+  "method": "Dijkstra between visited area representatives; simulated time assembled from actual successful capsule steps, not a single timed trip",
+  "rows": [
+    {
+      "from": "room:antechamber",
+      "to": "route:entry",
+      "seconds": null,
+      "status": "unchecked: observed edges do not connect these representatives"
+    },
+    {
+      "from": "route:entry",
+      "to": "room:antechamber",
+      "seconds": null,
+      "status": "unchecked: observed edges do not connect these representatives"
+    },
+    {
+      "from": "room:bell",
+      "to": "route:bell_loop",
+      "seconds": null,
+      "status": "unchecked: observed edges do not connect these representatives"
+    },
+    {
+      "from": "route:bell_loop",
+      "to": "room:bell",
+      "seconds": null,
+      "status": "unchecked: observed edges do not connect these representatives"
+    },
+    {
+      "from": "room:bones",
+      "to": "route:ossuary_loop",
+      "seconds": 7.616666666666655,
+      "status": "sum of fastest physically observed directed edge times"
+    },
+    {
+      "from": "route:ossuary_loop",
+      "to": "room:bones",
+      "seconds": null,
+      "status": "unchecked: observed edges do not connect these representatives"
+    },
+    {
+      "from": "room:cells",
+      "to": "route:upper_cells",
+      "seconds": null,
+      "status": "unchecked: observed edges do not connect these representatives"
+    },
+    {
+      "from": "route:upper_cells",
+      "to": "room:cells",
+      "seconds": null,
+      "status": "unchecked: observed edges do not connect these representatives"
+    },
+    {
+      "from": "room:chapel",
+      "to": "route:central_ledge",
+      "seconds": null,
+      "status": "unchecked: observed edges do not connect these representatives"
+    },
+    {
+      "from": "route:central_ledge",
+      "to": "room:chapel",
+      "seconds": null,
+      "status": "unchecked: observed edges do not connect these representatives"
+    },
+    {
+      "from": "room:chapel",
+      "to": "route:chapel_approach",
+      "seconds": null,
+      "status": "unchecked: observed edges do not connect these representatives"
+    },
+    {
+      "from": "route:chapel_approach",
+      "to": "room:chapel",
+      "seconds": null,
+      "status": "unchecked: observed edges do not connect these representatives"
+    },
+    {
+      "from": "room:chapel",
+      "to": "route:ossuary_loop",
+      "seconds": null,
+      "status": "unchecked: observed edges do not connect these representatives"
+    },
+    {
+      "from": "route:ossuary_loop",
+      "to": "room:chapel",
+      "seconds": null,
+      "status": "unchecked: observed edges do not connect these representatives"
+    },
+    {
+      "from": "room:choir",
+      "to": "route:low_span",
+      "seconds": null,
+      "status": "unchecked: observed edges do not connect these representatives"
+    },
+    {
+      "from": "route:low_span",
+      "to": "room:choir",
+      "seconds": null,
+      "status": "unchecked: observed edges do not connect these representatives"
+    },
+    {
+      "from": "room:choir",
+      "to": "route:return_stair",
+      "seconds": null,
+      "status": "unchecked: observed edges do not connect these representatives"
+    },
+    {
+      "from": "route:return_stair",
+      "to": "room:choir",
+      "seconds": null,
+      "status": "unchecked: observed edges do not connect these representatives"
+    },
+    {
+      "from": "room:entry",
+      "to": "route:entry",
+      "seconds": null,
+      "status": "unchecked: observed edges do not connect these representatives"
+    },
+    {
+      "from": "route:entry",
+      "to": "room:entry",
+      "seconds": null,
+      "status": "unchecked: observed edges do not connect these representatives"
+    },
+    {
+      "from": "room:first_stair_hall",
+      "to": "route:chapel_approach",
+      "seconds": null,
+      "status": "unchecked: observed edges do not connect these representatives"
+    },
+    {
+      "from": "route:chapel_approach",
+      "to": "room:first_stair_hall",
+      "seconds": 3.9000000000000004,
+      "status": "sum of fastest physically observed directed edge times"
+    },
+    {
+      "from": "room:first_stair_hall",
+      "to": "route:first_stair",
+      "seconds": null,
+      "status": "unchecked: observed edges do not connect these representatives"
+    },
+    {
+      "from": "route:first_stair",
+      "to": "room:first_stair_hall",
+      "seconds": 4.4833333333333325,
+      "status": "sum of fastest physically observed directed edge times"
+    },
+    {
+      "from": "room:nave",
+      "to": "route:bell_loop",
+      "seconds": null,
+      "status": "unchecked: observed edges do not connect these representatives"
+    },
+    {
+      "from": "route:bell_loop",
+      "to": "room:nave",
+      "seconds": null,
+      "status": "unchecked: observed edges do not connect these representatives"
+    },
+    {
+      "from": "room:nave",
+      "to": "route:nave",
+      "seconds": null,
+      "status": "unchecked: observed edges do not connect these representatives"
+    },
+    {
+      "from": "route:nave",
+      "to": "room:nave",
+      "seconds": null,
+      "status": "unchecked: observed edges do not connect these representatives"
+    },
+    {
+      "from": "room:ossuary",
+      "to": "route:ossuary_loop",
+      "seconds": null,
+      "status": "unchecked: observed edges do not connect these representatives"
+    },
+    {
+      "from": "route:ossuary_loop",
+      "to": "room:ossuary",
+      "seconds": null,
+      "status": "unchecked: observed edges do not connect these representatives"
+    },
+    {
+      "from": "room:restraint",
+      "to": "route:high_span",
+      "seconds": null,
+      "status": "unchecked: observed edges do not connect these representatives"
+    },
+    {
+      "from": "route:high_span",
+      "to": "room:restraint",
+      "seconds": 4.7,
+      "status": "sum of fastest physically observed directed edge times"
+    },
+    {
+      "from": "room:restraint",
+      "to": "route:upper_cells",
+      "seconds": null,
+      "status": "unchecked: observed edges do not connect these representatives"
+    },
+    {
+      "from": "route:upper_cells",
+      "to": "room:restraint",
+      "seconds": 8.533333333333317,
+      "status": "sum of fastest physically observed directed edge times"
+    },
+    {
+      "from": "room:restraint",
+      "to": "route:upper_hall",
+      "seconds": 2.6333333333333346,
+      "status": "sum of fastest physically observed directed edge times"
+    },
+    {
+      "from": "route:upper_hall",
+      "to": "room:restraint",
+      "seconds": 3.5500000000000003,
+      "status": "sum of fastest physically observed directed edge times"
+    },
+    {
+      "from": "room:second_stair_hall",
+      "to": "route:root_tunnel",
+      "seconds": null,
+      "status": "unchecked: observed edges do not connect these representatives"
+    },
+    {
+      "from": "route:root_tunnel",
+      "to": "room:second_stair_hall",
+      "seconds": null,
+      "status": "unchecked: observed edges do not connect these representatives"
+    },
+    {
+      "from": "room:second_stair_hall",
+      "to": "route:second_stair",
+      "seconds": null,
+      "status": "unchecked: observed edges do not connect these representatives"
+    },
+    {
+      "from": "route:second_stair",
+      "to": "room:second_stair_hall",
+      "seconds": null,
+      "status": "unchecked: observed edges do not connect these representatives"
+    },
+    {
+      "from": "room:window",
+      "to": "route:ossuary_loop",
+      "seconds": 3.5666666666666687,
+      "status": "sum of fastest physically observed directed edge times"
+    },
+    {
+      "from": "route:ossuary_loop",
+      "to": "room:window",
+      "seconds": null,
+      "status": "unchecked: observed edges do not connect these representatives"
+    },
+    {
+      "from": "route:cave_bypass",
+      "to": "route:root_tunnel",
+      "seconds": null,
+      "status": "unchecked: observed edges do not connect these representatives"
+    },
+    {
+      "from": "route:root_tunnel",
+      "to": "route:cave_bypass",
+      "seconds": null,
+      "status": "unchecked: observed edges do not connect these representatives"
+    },
+    {
+      "from": "route:central_ledge",
+      "to": "route:nave",
+      "seconds": null,
+      "status": "unchecked: observed edges do not connect these representatives"
+    },
+    {
+      "from": "route:nave",
+      "to": "route:central_ledge",
+      "seconds": null,
+      "status": "unchecked: observed edges do not connect these representatives"
+    },
+    {
+      "from": "route:chapel_approach",
+      "to": "route:return_gallery",
+      "seconds": null,
+      "status": "unchecked: observed edges do not connect these representatives"
+    },
+    {
+      "from": "route:return_gallery",
+      "to": "route:chapel_approach",
+      "seconds": null,
+      "status": "unchecked: observed edges do not connect these representatives"
+    },
+    {
+      "from": "route:choir",
+      "to": "route:low_span",
+      "seconds": null,
+      "status": "unchecked: observed edges do not connect these representatives"
+    },
+    {
+      "from": "route:low_span",
+      "to": "route:choir",
+      "seconds": null,
+      "status": "unchecked: observed edges do not connect these representatives"
+    },
+    {
+      "from": "route:entry",
+      "to": "route:high_span",
+      "seconds": 5.233333333333333,
+      "status": "sum of fastest physically observed directed edge times"
+    },
+    {
+      "from": "route:high_span",
+      "to": "route:entry",
+      "seconds": null,
+      "status": "unchecked: observed edges do not connect these representatives"
+    },
+    {
+      "from": "route:first_stair",
+      "to": "route:upper_hall",
+      "seconds": null,
+      "status": "unchecked: observed edges do not connect these representatives"
+    },
+    {
+      "from": "route:upper_hall",
+      "to": "route:first_stair",
+      "seconds": null,
+      "status": "unchecked: observed edges do not connect these representatives"
+    },
+    {
+      "from": "route:high_span",
+      "to": "route:upper_hall",
+      "seconds": 7.333333333333324,
+      "status": "sum of fastest physically observed directed edge times"
+    },
+    {
+      "from": "route:upper_hall",
+      "to": "route:high_span",
+      "seconds": null,
+      "status": "unchecked: observed edges do not connect these representatives"
+    },
+    {
+      "from": "route:low_span",
+      "to": "route:root_tunnel",
+      "seconds": null,
+      "status": "unchecked: observed edges do not connect these representatives"
+    },
+    {
+      "from": "route:root_tunnel",
+      "to": "route:low_span",
+      "seconds": null,
+      "status": "unchecked: observed edges do not connect these representatives"
+    },
+    {
+      "from": "route:nave",
+      "to": "route:second_stair",
+      "seconds": null,
+      "status": "unchecked: observed edges do not connect these representatives"
+    },
+    {
+      "from": "route:second_stair",
+      "to": "route:nave",
+      "seconds": null,
+      "status": "unchecked: observed edges do not connect these representatives"
+    },
+    {
+      "from": "route:return_gallery",
+      "to": "route:return_stair",
+      "seconds": null,
+      "status": "unchecked: observed edges do not connect these representatives"
+    },
+    {
+      "from": "route:return_stair",
+      "to": "route:return_gallery",
+      "seconds": null,
+      "status": "unchecked: observed edges do not connect these representatives"
+    }
+  ]
+}

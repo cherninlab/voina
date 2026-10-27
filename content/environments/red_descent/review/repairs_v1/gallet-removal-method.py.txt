@@ -1,0 +1,107 @@
+"""Remove only disconnected <9 cm gallets wholly inside authored openings.
+Raw GLB edit: keep every original attribute and collision byte intact.
+"""
+import collections, copy, hashlib, json, math, struct, sys
+from pathlib import Path
+ROOT=Path.cwd()
+OPENINGS=json.loads(Path('/tmp/secha-gallet-openings.json').read_text())
+REPORT=ROOT/'content/environments/red_descent/review/repairs_v1/gallet-removal.json'
+APPLY='--apply' in sys.argv
+
+def read_glb(data):
+    magic,version,length=struct.unpack_from('<III',data)
+    assert magic==0x46546c67 and version==2 and length==len(data)
+    count,kind=struct.unpack_from('<II',data,12);assert kind==0x4e4f534a
+    doc=json.loads(data[20:20+count]);offset=20+count
+    count,kind=struct.unpack_from('<II',data,offset);assert kind==0x004e4942
+    return doc,data[offset+8:offset+8+count]
+
+def array(doc,binary,index):
+    a=doc['accessors'][index];v=doc['bufferViews'][a['bufferView']]
+    assert 'sparse' not in a and v.get('buffer',0)==0
+    code={5123:'H',5125:'I',5126:'f'}[a['componentType']]
+    size={'SCALAR':1,'VEC3':3}[a['type']]
+    fmt='<'+code*size;stride=v.get('byteStride',struct.calcsize(fmt))
+    start=v.get('byteOffset',0)+a.get('byteOffset',0)
+    return [struct.unpack_from(fmt,binary,start+i*stride) for i in range(a['count'])]
+
+def inside(p,wall):
+    dx,dz=wall['b'][0]-wall['a'][0],wall['b'][1]-wall['a'][1]
+    length=math.hypot(dx,dz)
+    x=((p[0]-wall['a'][0])*dx+(p[2]-wall['a'][1])*dz)/length
+    y=p[1]-wall['floor']
+    return any(o['x0']+0.02<x<o['x1']-0.02 and o['sill']+0.02<y<o['cy']+math.sqrt(max(0,o['radius']**2-(x-(o['x0']+o['x1'])/2)**2))-0.02 for o in wall['openings'])
+
+reports=[]
+for room,walls in OPENINGS.items():
+    path=ROOT/f'content/environments/procedural_architecture_v1/rooms/{room}.glb'
+    source=path.read_bytes();doc,old_bin=read_glb(source);before=copy.deepcopy(doc)
+    binary=bytearray(old_bin);removed_total=0;changes=[];valid_chips=0
+    for node in doc['nodes']:
+        if not node['name'].startswith('Stone-galleted_'):continue
+        assert not any(k in node for k in ('translation','rotation','scale','matrix'))
+        wall_id=int(node['name'].rsplit('_',1)[1]);wall=walls[wall_id]
+        for primitive in doc['meshes'][node['mesh']]['primitives']:
+            vertices=array(doc,old_bin,primitive['attributes']['POSITION'])
+            indices=[v[0] for v in array(doc,old_bin,primitive['indices'])]
+            # glTF splits UV seams/normals; weld exact positions for connectivity.
+            point_ids={};ids=[]
+            for p in vertices:ids.append(point_ids.setdefault(p,len(point_ids)))
+            parent=list(range(len(point_ids)))
+            def find(i):
+                while parent[i]!=i:
+                    parent[i]=parent[parent[i]];i=parent[i]
+                return i
+            for k in range(0,len(indices),3):
+                a,b,c=(find(ids[i]) for i in indices[k:k+3]);parent[b]=a;parent[c]=a
+            groups=collections.defaultdict(set)
+            for i in set(indices):groups[find(ids[i])].add(i)
+            floating=set();centres=[]
+            for component,group in groups.items():
+                points=[vertices[i] for i in group]
+                extents=[max(p[k] for p in points)-min(p[k] for p in points) for k in range(3)]
+                if max(extents)>0.09:continue
+                if all(inside(p,wall) for p in points):
+                    floating.add(component);centres.append([round(sum(p[k] for p in points)/len(points),5) for k in range(3)])
+                else:valid_chips+=1
+            retained=[i for k in range(0,len(indices),3) if find(ids[indices[k]]) not in floating for i in indices[k:k+3]]
+            removed=(len(indices)-len(retained))//3
+            if not removed:continue
+            removed_total+=removed
+            assert retained and len(retained)%3==0
+            a=copy.deepcopy(doc['accessors'][primitive['indices']]);code={5123:'H',5125:'I'}[a['componentType']]
+            binary.extend(b'\0'*((-len(binary))%4));offset=len(binary)
+            packed=struct.pack('<'+code*len(retained),*retained);binary.extend(packed)
+            doc['bufferViews'].append({'buffer':0,'byteOffset':offset,'byteLength':len(packed),'target':34963})
+            a.update(bufferView=len(doc['bufferViews'])-1,count=len(retained),min=[min(retained)],max=[max(retained)])
+            a.pop('byteOffset',None)
+            doc['accessors'].append(a);primitive['indices']=len(doc['accessors'])-1
+            changes.append({'node':node['name'],'removed_chips':len(floating),'removed_triangles':removed,'centres':centres})
+    # The only changed references are indices on selected gallet batches.
+    assert binary[:len(old_bin)]==old_bin
+    assert doc['nodes']==before['nodes']
+    assert doc['accessors'][:len(before['accessors'])]==before['accessors']
+    assert doc['bufferViews'][:len(before['bufferViews'])]==before['bufferViews']
+    changed_names={c['node'] for c in changes}
+    for node in doc['nodes']:
+        new=doc['meshes'][node['mesh']];old=before['meshes'][node['mesh']]
+        if node['name'] not in changed_names:assert new==old
+        else:
+            for a,b in zip(new['primitives'],old['primitives']):assert a['attributes']==b['attributes']
+    doc['buffers'][0]['byteLength']=len(binary)
+    encoded=json.dumps(doc,separators=(',',':')).encode();encoded+=b' '*((-len(encoded))%4)
+    binary.extend(b'\0'*((-len(binary))%4))
+    result=struct.pack('<III',0x46546c67,2,12+8+len(encoded)+8+len(binary))+struct.pack('<II',len(encoded),0x4e4f534a)+encoded+struct.pack('<II',len(binary),0x004e4942)+binary
+    record={'room':room,'before_sha256':hashlib.sha256(source).hexdigest(),'after_sha256':hashlib.sha256(result).hexdigest(),'removed_triangles':removed_total,'removed_chips':sum(c['removed_chips'] for c in changes),'retained_joint_chips':valid_chips,'unchanged_collision_and_other_meshes':True,'unchanged_original_attributes':True,'changes':changes}
+    reports.append(record)
+    print(room,{k:v for k,v in record.items() if k!='changes'})
+    if APPLY and changes:
+        backup=Path('/tmp/secha-gallet-originals');backup.mkdir(exist_ok=True)
+        assert not (backup/path.name).exists()
+        (backup/path.name).write_bytes(source);path.write_bytes(result)
+        meta_path=path.with_suffix('.json');meta=json.loads(meta_path.read_text());meta['triangles']-=removed_total
+        meta['opening_gallet_repair']={'removed_chips':record['removed_chips'],'removed_triangles':removed_total,'method':'Disconnected chips under 9 cm wholly inside authored opening; original attributes and collision unchanged.'}
+        for output in meta.get('files',{}):
+            if output.endswith(path.name):meta['files'][output]=record['after_sha256']
+        meta_path.write_text(json.dumps(meta,indent=2,sort_keys=True)+'\n')
+if APPLY:REPORT.write_text(json.dumps({'method':__doc__,'rooms':reports},indent=2)+'\n')

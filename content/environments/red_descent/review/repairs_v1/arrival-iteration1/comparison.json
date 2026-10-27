@@ -1,0 +1,227 @@
+{
+  "paired_configuration": false,
+  "same_harness": true,
+  "interpretation": "unpaired differences; do not claim improvement",
+  "scenarios": {
+    "clear-floor": {
+      "arrived": {
+        "before": true,
+        "after": true
+      },
+      "false_arrival": {
+        "before": false,
+        "after": false
+      },
+      "max_stuck_seconds": {
+        "before": 0.0,
+        "after": 0.0166666666666667
+      },
+      "distance_m": {
+        "before": 11.78955078125,
+        "after": 11.7445526123047
+      },
+      "seconds": {
+        "before": 4.36666666666667,
+        "after": 4.36666666666667
+      }
+    },
+    "crowd-blocking": {
+      "arrived": {
+        "before": false,
+        "after": false
+      },
+      "false_arrival": {
+        "before": false,
+        "after": false
+      },
+      "max_stuck_seconds": {
+        "before": 2.0,
+        "after": 2.0
+      },
+      "distance_m": {
+        "before": 4.89862060546875,
+        "after": 4.94361877441406
+      },
+      "seconds": {
+        "before": 3.81666666666667,
+        "after": 3.83333333333333
+      }
+    },
+    "actor-obstruction-removed": {
+      "arrived": {
+        "before": true,
+        "after": true
+      },
+      "false_arrival": {
+        "before": false,
+        "after": false
+      },
+      "max_stuck_seconds": {
+        "before": 0.0,
+        "after": 0.0166666666666667
+      },
+      "distance_m": {
+        "before": 4.90480041503906,
+        "after": 4.85980224609375
+      },
+      "seconds": {
+        "before": 1.81666666666667,
+        "after": 1.81666666666667
+      }
+    },
+    "stacked-floor": {
+      "arrived": {
+        "before": false,
+        "after": false
+      },
+      "false_arrival": {
+        "before": true,
+        "after": false
+      },
+      "max_stuck_seconds": {
+        "before": 0.0,
+        "after": 1.45
+      },
+      "distance_m": {
+        "before": 0.0449981689453125,
+        "after": 0.134994506835938
+      },
+      "seconds": {
+        "before": 0.0166666666666667,
+        "after": 1.5
+      }
+    },
+    "changed-obstacle": {
+      "arrived": {
+        "before": false,
+        "after": false
+      },
+      "false_arrival": {
+        "before": false,
+        "after": false
+      },
+      "max_stuck_seconds": {
+        "before": 2.0,
+        "after": 2.0
+      },
+      "distance_m": {
+        "before": 4.93991088867188,
+        "after": 4.89491271972656
+      },
+      "seconds": {
+        "before": 3.83333333333333,
+        "after": 3.81666666666667
+      }
+    },
+    "static-detour": {
+      "arrived": {
+        "before": true,
+        "after": true
+      },
+      "false_arrival": {
+        "before": false,
+        "after": false
+      },
+      "max_stuck_seconds": {
+        "before": 0.0,
+        "after": 0.0166666666666667
+      },
+      "distance_m": {
+        "before": 16.1107840016484,
+        "after": 16.065795455128
+      },
+      "seconds": {
+        "before": 5.96666666666667,
+        "after": 5.96666666666667
+      }
+    },
+    "unreachable-goal": {
+      "arrived": {
+        "before": false,
+        "after": false
+      },
+      "false_arrival": {
+        "before": true,
+        "after": false
+      },
+      "max_stuck_seconds": {
+        "before": 0.0,
+        "after": 2.0
+      },
+      "distance_m": {
+        "before": 4.63503084331751,
+        "after": 4.41009363159537
+      },
+      "seconds": {
+        "before": 1.71666666666667,
+        "after": 3.63333333333333
+      }
+    },
+    "cover-memory-reacquire-return": {
+      "arrived": {
+        "before": null,
+        "after": null
+      },
+      "false_arrival": {
+        "before": null,
+        "after": null
+      },
+      "max_stuck_seconds": {
+        "before": null,
+        "after": null
+      },
+      "distance_m": {
+        "before": null,
+        "after": null
+      },
+      "seconds": {
+        "before": null,
+        "after": null
+      }
+    },
+    "dungeon-hall-0": {
+      "arrived": {
+        "before": true,
+        "after": true
+      },
+      "false_arrival": {
+        "before": false,
+        "after": false
+      },
+      "max_stuck_seconds": {
+        "before": 0.0,
+        "after": 0.0166666666666667
+      },
+      "distance_m": {
+        "before": 5.44496133923531,
+        "after": 5.39996334165335
+      },
+      "seconds": {
+        "before": 2.01666666666667,
+        "after": 2.01666666666667
+      }
+    },
+    "dungeon-hall-2": {
+      "arrived": {
+        "before": true,
+        "after": true
+      },
+      "false_arrival": {
+        "before": false,
+        "after": false
+      },
+      "max_stuck_seconds": {
+        "before": 0.0,
+        "after": 0.0166666666666667
+      },
+      "distance_m": {
+        "before": 5.44484303146601,
+        "after": 5.39984491840005
+      },
+      "seconds": {
+        "before": 2.01666666666667,
+        "after": 2.01666666666667
+      }
+    }
+  }
+}

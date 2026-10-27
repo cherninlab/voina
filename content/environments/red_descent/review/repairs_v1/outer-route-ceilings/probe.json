@@ -1,0 +1,92 @@
+[
+	{
+		"area": "route:root_tunnel",
+		"direction": [
+			0.0,
+			1.0,
+			0.0
+		],
+		"eye": [
+			-39.2349014282227,
+			-21.3999996185303,
+			9.89859962463379
+		],
+		"hits": [],
+		"id": "E0275",
+		"motion": {
+			"status": "no motion trace"
+		}
+	},
+	{
+		"area": "route:root_tunnel",
+		"direction": [
+			0.0,
+			1.0,
+			0.0
+		],
+		"eye": [
+			-38.4656982421875,
+			-21.3999996185303,
+			9.28330039978027
+		],
+		"hits": [],
+		"id": "E0277",
+		"motion": {
+			"status": "no motion trace"
+		}
+	},
+	{
+		"area": "route:return_gallery",
+		"direction": [
+			0.0,
+			1.0,
+			0.0
+		],
+		"eye": [
+			20.7406997680664,
+			-8.39999961853027,
+			-4.37039995193481
+		],
+		"hits": [],
+		"id": "E0330",
+		"motion": {
+			"status": "no motion trace"
+		}
+	},
+	{
+		"area": "route:cave_bypass",
+		"direction": [
+			0.0,
+			1.0,
+			0.0
+		],
+		"eye": [
+			-45.0379981994629,
+			-21.3999996185303,
+			11.59850025177
+		],
+		"hits": [],
+		"id": "E0334",
+		"motion": {
+			"status": "no motion trace"
+		}
+	},
+	{
+		"area": "route:cave_bypass",
+		"direction": [
+			0.0,
+			1.0,
+			0.0
+		],
+		"eye": [
+			-46.8415985107422,
+			-21.3999996185303,
+			2.24169993400574
+		],
+		"hits": [],
+		"id": "E0336",
+		"motion": {
+			"status": "no motion trace"
+		}
+	}
+]

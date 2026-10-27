@@ -1,0 +1,34 @@
+[
+	{
+		"correct_floor": true,
+		"fresh_points": 11,
+		"goal": [
+			35.0,
+			-3.04999232292175,
+			-14.0
+		],
+		"hall_mob": 0,
+		"home": [
+			30.0,
+			-2.99999237060547,
+			-14.0
+		],
+		"shared_grid_restored": true
+	},
+	{
+		"correct_floor": true,
+		"fresh_points": 13,
+		"goal": [
+			37.0,
+			-26.5868968963623,
+			-4.0
+		],
+		"hall_mob": 2,
+		"home": [
+			32.0,
+			-26.9999809265137,
+			-4.0
+		],
+		"shared_grid_restored": true
+	}
+]

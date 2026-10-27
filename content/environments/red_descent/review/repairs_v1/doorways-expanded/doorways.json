@@ -1,0 +1,5098 @@
+[
+	{
+		"area": "room:cells",
+		"evidence": {
+			"camera": [
+				33.4500007629395,
+				-1.75,
+				-1.10000002384186
+			],
+			"direction": [
+				0.0,
+				0.0,
+				1.0
+			],
+			"height_above_route": 2.25,
+			"mesh": "/root/MatchWorld/CinderCrypt/Architecture/StoneRoom_cells/Stone-galleted_cells_0",
+			"normal": [
+				0.834864318370819,
+				-0.526324450969696,
+				-0.161196067929268
+			]
+		},
+		"id": "DOOR001",
+		"position": [
+			33.4500007629395,
+			-1.75,
+			0.4020756483078
+		]
+	},
+	{
+		"area": "room:cells",
+		"evidence": {
+			"camera": [
+				40.9000015258789,
+				-0.550000011920929,
+				5.44999980926514
+			],
+			"direction": [
+				1.0,
+				0.0,
+				0.0
+			],
+			"height_above_route": 3.45,
+			"mesh": "/root/MatchWorld/CinderCrypt/Architecture/StoneRoom_cells/Stone-galleted_cells_2",
+			"normal": [
+				-0.930058836936951,
+				-0.0391402468085289,
+				-0.365319848060608
+			]
+		},
+		"id": "DOOR002",
+		"position": [
+			41.5635414123535,
+			-0.550000011920929,
+			5.44999980926514
+		]
+	},
+	{
+		"area": "room:chapel",
+		"evidence": {
+			"camera": [
+				-13.1000003814697,
+				-6.55000019073486,
+				-35.4500007629395
+			],
+			"direction": [
+				1.0,
+				0.0,
+				0.0
+			],
+			"height_above_route": 3.45,
+			"mesh": "/root/MatchWorld/CinderCrypt/Architecture/StonePassage_ossuary_loop/Stone-arch_ossuary_loop_22",
+			"normal": [
+				0.999603509902954,
+				0.0280607026070356,
+				0.00232660747133195
+			]
+		},
+		"id": "DOOR003",
+		"position": [
+			-13.06809425354,
+			-6.55000019073486,
+			-35.4500007629395
+		]
+	},
+	{
+		"area": "room:chapel",
+		"evidence": {
+			"camera": [
+				-13.1000003814697,
+				-6.55000019073486,
+				-36.0
+			],
+			"direction": [
+				1.0,
+				0.0,
+				0.0
+			],
+			"height_above_route": 3.45,
+			"mesh": "/root/MatchWorld/CinderCrypt/Architecture/StonePassage_ossuary_loop/Stone-arch_ossuary_loop_22",
+			"normal": [
+				-0.999848425388336,
+				0.00473965797573328,
+				-0.0167529731988907
+			]
+		},
+		"id": "DOOR004",
+		"position": [
+			-13.0469808578491,
+			-6.55000019073486,
+			-36.0
+		]
+	},
+	{
+		"area": "room:chapel",
+		"evidence": {
+			"camera": [
+				-13.1000003814697,
+				-6.55000019073486,
+				-36.5499992370605
+			],
+			"direction": [
+				1.0,
+				0.0,
+				0.0
+			],
+			"height_above_route": 3.45,
+			"mesh": "/root/MatchWorld/CinderCrypt/Architecture/StonePassage_ossuary_loop/Stone-arch_ossuary_loop_22",
+			"normal": [
+				0.994093477725983,
+				-0.0617903545498848,
+				0.0892196670174599
+			]
+		},
+		"id": "DOOR005",
+		"position": [
+			-13.0287246704102,
+			-6.55000019073486,
+			-36.5499992370605
+		]
+	},
+	{
+		"area": "room:ossuary",
+		"evidence": {
+			"camera": [
+				-33.4500007629395,
+				-6.55000019073486,
+				-23.8999996185303
+			],
+			"direction": [
+				0.0,
+				0.0,
+				-1.0
+			],
+			"height_above_route": 3.45,
+			"mesh": "/root/MatchWorld/CinderCrypt/Architecture/StonePassage_ossuary_loop/Stone-arch_ossuary_loop_17",
+			"normal": [
+				-0.0253621619194746,
+				-0.00300153577700257,
+				0.999673843383789
+			]
+		},
+		"id": "DOOR006",
+		"position": [
+			-33.4500007629395,
+			-6.55000019073486,
+			-23.9059791564941
+		]
+	},
+	{
+		"area": "room:ossuary",
+		"evidence": {
+			"camera": [
+				-34.0,
+				-6.55000019073486,
+				-23.8999996185303
+			],
+			"direction": [
+				0.0,
+				0.0,
+				-1.0
+			],
+			"height_above_route": 3.45,
+			"mesh": "/root/MatchWorld/CinderCrypt/Architecture/StonePassage_ossuary_loop/Stone-arch_ossuary_loop_17",
+			"normal": [
+				-0.00772221060469747,
+				0.00501143746078014,
+				0.999957621097565
+			]
+		},
+		"id": "DOOR007",
+		"position": [
+			-34.0,
+			-6.55000019073486,
+			-23.9030227661133
+		]
+	},
+	{
+		"area": "room:ossuary",
+		"evidence": {
+			"camera": [
+				-34.5499992370605,
+				-6.55000019073486,
+				-23.8999996185303
+			],
+			"direction": [
+				0.0,
+				0.0,
+				-1.0
+			],
+			"height_above_route": 3.45,
+			"mesh": "/root/MatchWorld/CinderCrypt/Architecture/StonePassage_ossuary_loop/Stone-arch_ossuary_loop_17",
+			"normal": [
+				-0.0125466203317046,
+				-0.0254309177398682,
+				-0.9995978474617
+			]
+		},
+		"id": "DOOR008",
+		"position": [
+			-34.5499992370605,
+			-6.55000019073486,
+			-24.3316478729248
+		]
+	},
+	{
+		"area": "room:ossuary",
+		"evidence": {
+			"camera": [
+				-34.1967735290527,
+				-6.55000019073486,
+				-23.9177436828613
+			],
+			"direction": [
+				0.178885132074356,
+				0.0,
+				-0.983869969844818
+			],
+			"height_above_route": 3.45,
+			"mesh": "/root/MatchWorld/CinderCrypt/Architecture/StonePassage_ossuary_loop/Stone-arch_ossuary_loop_17",
+			"normal": [
+				0.998168885707855,
+				0.0563712082803249,
+				0.0219358913600445
+			]
+		},
+		"id": "DOOR009",
+		"position": [
+			-34.1351699829102,
+			-6.55000019073486,
+			-24.2565727233887
+		]
+	},
+	{
+		"area": "room:ossuary",
+		"evidence": {
+			"camera": [
+				-23.1000003814697,
+				-6.55000019073486,
+				-35.4500007629395
+			],
+			"direction": [
+				1.0,
+				0.0,
+				0.0
+			],
+			"height_above_route": 3.45,
+			"mesh": "/root/MatchWorld/CinderCrypt/Architecture/StoneRoom_ossuary/Stone-arch_ossuary_2",
+			"normal": [
+				-0.959737837314606,
+				0.109954953193665,
+				0.25848251581192
+			]
+		},
+		"id": "DOOR010",
+		"position": [
+			-22.5232543945312,
+			-6.55000019073486,
+			-35.4500007629395
+		]
+	},
+	{
+		"area": "room:ossuary",
+		"evidence": {
+			"camera": [
+				-23.1000003814697,
+				-6.55000019073486,
+				-36.0
+			],
+			"direction": [
+				1.0,
+				0.0,
+				0.0
+			],
+			"height_above_route": 3.45,
+			"mesh": "/root/MatchWorld/CinderCrypt/Architecture/StoneRoom_ossuary/Stone-arch_ossuary_2",
+			"normal": [
+				-0.992232739925385,
+				0.0166047569364309,
+				0.123282253742218
+			]
+		},
+		"id": "DOOR011",
+		"position": [
+			-22.4963302612305,
+			-6.55000019073486,
+			-36.0
+		]
+	},
+	{
+		"area": "room:ossuary",
+		"evidence": {
+			"camera": [
+				-23.1000003814697,
+				-6.55000019073486,
+				-36.5499992370605
+			],
+			"direction": [
+				1.0,
+				0.0,
+				0.0
+			],
+			"height_above_route": 3.45,
+			"mesh": "/root/MatchWorld/CinderCrypt/Architecture/StoneRoom_ossuary/Stone-arch_ossuary_2",
+			"normal": [
+				-0.996825158596039,
+				0.0522654131054878,
+				-0.0600664876401424
+			]
+		},
+		"id": "DOOR012",
+		"position": [
+			-22.4926681518555,
+			-6.55000019073486,
+			-36.5499992370605
+		]
+	},
+	{
+		"area": "room:bones",
+		"evidence": {
+			"camera": [
+				-23.4500007629395,
+				-6.55000019073486,
+				-10.8999996185303
+			],
+			"direction": [
+				0.0,
+				0.0,
+				-1.0
+			],
+			"height_above_route": 3.45,
+			"mesh": "/root/MatchWorld/CinderCrypt/Architecture/StonePassage_ossuary_loop/Stone-arch_ossuary_loop_12",
+			"normal": [
+				0.0015710408333689,
+				-0.0129933506250381,
+				0.999914348125458
+			]
+		},
+		"id": "DOOR013",
+		"position": [
+			-23.4500007629395,
+			-6.55000019073486,
+			-11.0081195831299
+		]
+	},
+	{
+		"area": "room:bones",
+		"evidence": {
+			"camera": [
+				-24.0,
+				-6.55000019073486,
+				-10.8999996185303
+			],
+			"direction": [
+				0.0,
+				0.0,
+				-1.0
+			],
+			"height_above_route": 3.45,
+			"mesh": "/root/MatchWorld/CinderCrypt/Architecture/StonePassage_ossuary_loop/Stone-arch_ossuary_loop_12",
+			"normal": [
+				-0.0469750687479973,
+				0.0127775920554996,
+				-0.998814344406128
+			]
+		},
+		"id": "DOOR014",
+		"position": [
+			-24.0,
+			-6.55000019073486,
+			-11.0607414245605
+		]
+	},
+	{
+		"area": "room:bones",
+		"evidence": {
+			"camera": [
+				-24.5499992370605,
+				-6.55000019073486,
+				-10.8999996185303
+			],
+			"direction": [
+				0.0,
+				0.0,
+				-1.0
+			],
+			"height_above_route": 3.45,
+			"mesh": "/root/MatchWorld/CinderCrypt/Architecture/StonePassage_ossuary_loop/Stone-arch_ossuary_loop_12",
+			"normal": [
+				-0.0103283785283566,
+				-0.0217567402869463,
+				-0.999709963798523
+			]
+		},
+		"id": "DOOR015",
+		"position": [
+			-24.5499992370605,
+			-6.55000019073486,
+			-11.0382070541382
+		]
+	},
+	{
+		"area": "room:bones",
+		"evidence": {
+			"camera": [
+				-33.4500007629395,
+				-6.55000019073486,
+				-18.8999996185303
+			],
+			"direction": [
+				0.0,
+				0.0,
+				-1.0
+			],
+			"height_above_route": 3.45,
+			"mesh": "/root/MatchWorld/CinderCrypt/Architecture/StoneRoom_bones/Stone-arch_bones_0",
+			"normal": [
+				-0.196207240223885,
+				0.162010863423347,
+				0.967085957527161
+			]
+		},
+		"id": "DOOR016",
+		"position": [
+			-33.4500007629395,
+			-6.55000019073486,
+			-19.5430870056152
+		]
+	},
+	{
+		"area": "room:bones",
+		"evidence": {
+			"camera": [
+				-34.0,
+				-6.55000019073486,
+				-18.8999996185303
+			],
+			"direction": [
+				0.0,
+				0.0,
+				-1.0
+			],
+			"height_above_route": 3.45,
+			"mesh": "/root/MatchWorld/CinderCrypt/Architecture/StoneRoom_bones/Stone-arch_bones_0",
+			"normal": [
+				-0.107391759753227,
+				0.0401297248899937,
+				0.993406593799591
+			]
+		},
+		"id": "DOOR017",
+		"position": [
+			-34.0,
+			-6.55000019073486,
+			-19.5666580200195
+		]
+	},
+	{
+		"area": "room:window",
+		"evidence": {
+			"camera": [
+				-18.5499992370605,
+				-6.55000019073486,
+				-11.1000003814697
+			],
+			"direction": [
+				0.0,
+				0.0,
+				1.0
+			],
+			"height_above_route": 3.45,
+			"mesh": "/root/MatchWorld/CinderCrypt/Architecture/StonePassage_ossuary_loop/Stone-arch_ossuary_loop_7",
+			"normal": [
+				-0.0256060343235731,
+				-0.0395138151943684,
+				-0.998890936374664
+			]
+		},
+		"id": "DOOR018",
+		"position": [
+			-18.5499992370605,
+			-6.55000019073486,
+			-11.0680503845215
+		]
+	},
+	{
+		"area": "room:window",
+		"evidence": {
+			"camera": [
+				-18.0,
+				-6.55000019073486,
+				-11.1000003814697
+			],
+			"direction": [
+				0.0,
+				0.0,
+				1.0
+			],
+			"height_above_route": 3.45,
+			"mesh": "/root/MatchWorld/CinderCrypt/Architecture/StonePassage_ossuary_loop/Stone-arch_ossuary_loop_7",
+			"normal": [
+				-0.0226401034742594,
+				0.0080496184527874,
+				0.999711275100708
+			]
+		},
+		"id": "DOOR019",
+		"position": [
+			-18.0,
+			-6.55000019073486,
+			-11.0680704116821
+		]
+	},
+	{
+		"area": "room:window",
+		"evidence": {
+			"camera": [
+				-17.4500007629395,
+				-6.55000019073486,
+				-11.1000003814697
+			],
+			"direction": [
+				0.0,
+				0.0,
+				1.0
+			],
+			"height_above_route": 3.45,
+			"mesh": "/root/MatchWorld/CinderCrypt/Architecture/StonePassage_ossuary_loop/Stone-arch_ossuary_loop_7",
+			"normal": [
+				0.00558563368394971,
+				0.0424838587641716,
+				0.999081552028656
+			]
+		},
+		"id": "DOOR020",
+		"position": [
+			-17.4500007629395,
+			-6.55000019073486,
+			-11.0805931091309
+		]
+	},
+	{
+		"area": "room:window",
+		"evidence": {
+			"camera": [
+				-23.4500007629395,
+				-6.55000019073486,
+				-8.89999961853027
+			],
+			"direction": [
+				0.0,
+				0.0,
+				-1.0
+			],
+			"height_above_route": 3.45,
+			"mesh": "/root/MatchWorld/CinderCrypt/Architecture/StoneRoom_window/Stone-arch_window_0",
+			"normal": [
+				0.1420808583498,
+				-0.148565784096718,
+				0.978642582893372
+			]
+		},
+		"id": "DOOR021",
+		"position": [
+			-23.4500007629395,
+			-6.55000019073486,
+			-9.54235553741455
+		]
+	},
+	{
+		"area": "room:window",
+		"evidence": {
+			"camera": [
+				-24.0,
+				-6.55000019073486,
+				-8.89999961853027
+			],
+			"direction": [
+				0.0,
+				0.0,
+				-1.0
+			],
+			"height_above_route": 3.45,
+			"mesh": "/root/MatchWorld/CinderCrypt/Architecture/StoneRoom_window/Stone-arch_window_0",
+			"normal": [
+				-0.0199007466435432,
+				-0.224426001310349,
+				0.974287927150726
+			]
+		},
+		"id": "DOOR022",
+		"position": [
+			-24.0,
+			-6.55000019073486,
+			-9.4968318939209
+		]
+	},
+	{
+		"area": "room:window",
+		"evidence": {
+			"camera": [
+				-24.5499992370605,
+				-6.55000019073486,
+				-8.89999961853027
+			],
+			"direction": [
+				0.0,
+				0.0,
+				-1.0
+			],
+			"height_above_route": 3.45,
+			"mesh": "/root/MatchWorld/CinderCrypt/Architecture/StoneRoom_window/Stone-arch_window_0",
+			"normal": [
+				-0.0137035120278597,
+				0.0411708131432533,
+				0.999058187007904
+			]
+		},
+		"id": "DOOR023",
+		"position": [
+			-24.5499992370605,
+			-6.55000019073486,
+			-9.51121616363525
+		]
+	},
+	{
+		"area": "node:bay",
+		"evidence": {
+			"camera": [
+				-43.2856178283691,
+				-21.9500007629395,
+				9.85387992858887
+			],
+			"direction": [
+				-0.581238448619843,
+				0.0,
+				-0.813733339309692
+			],
+			"height_above_route": 1.05,
+			"mesh": "/root/MatchWorld/CinderCrypt/Architecture/StonePassage_node_-46_-23_7/Stone-stone_node_-46_-23_7_2",
+			"normal": [
+				0.777851402759552,
+				-0.193827822804451,
+				0.597810983657837
+			]
+		},
+		"id": "DOOR024",
+		"position": [
+			-46.9802131652832,
+			-21.9500007629395,
+			4.68144989013672
+		]
+	},
+	{
+		"area": "node:bay",
+		"evidence": {
+			"camera": [
+				-43.2856178283691,
+				-21.3500003814697,
+				9.85387992858887
+			],
+			"direction": [
+				-0.581238448619843,
+				0.0,
+				-0.813733339309692
+			],
+			"height_above_route": 1.65,
+			"mesh": "/root/MatchWorld/CinderCrypt/Architecture/StonePassage_node_-46_-23_7/Stone-stone_node_-46_-23_7_2",
+			"normal": [
+				0.525556743144989,
+				-0.0180335715413094,
+				0.850567400455475
+			]
+		},
+		"id": "DOOR025",
+		"position": [
+			-46.9744644165039,
+			-21.3500003814697,
+			4.68949604034424
+		]
+	},
+	{
+		"area": "node:bay",
+		"evidence": {
+			"camera": [
+				-43.2856178283691,
+				-20.1499996185303,
+				9.85387992858887
+			],
+			"direction": [
+				-0.581238448619843,
+				0.0,
+				-0.813733339309692
+			],
+			"height_above_route": 2.85,
+			"mesh": "/root/MatchWorld/CinderCrypt/Architecture/StonePassage_node_-46_-23_7/Stone-stone_node_-46_-23_7_2",
+			"normal": [
+				0.576516687870026,
+				-0.059321440756321,
+				0.814929187297821
+			]
+		},
+		"id": "DOOR026",
+		"position": [
+			-46.9760894775391,
+			-20.1499996185303,
+			4.68722343444824
+		]
+	},
+	{
+		"area": "node:bay",
+		"evidence": {
+			"camera": [
+				-43.2856178283691,
+				-19.5499992370605,
+				9.85387992858887
+			],
+			"direction": [
+				-0.581238448619843,
+				0.0,
+				-0.813733339309692
+			],
+			"height_above_route": 3.45,
+			"mesh": "/root/MatchWorld/CinderCrypt/Architecture/StonePassage_node_-46_-23_7/Stone-stone_node_-46_-23_7_2",
+			"normal": [
+				0.643935441970825,
+				0.142205357551575,
+				0.751747906208038
+			]
+		},
+		"id": "DOOR027",
+		"position": [
+			-46.9761238098145,
+			-19.5499992370605,
+			4.68717622756958
+		]
+	},
+	{
+		"area": "node:bay",
+		"evidence": {
+			"camera": [
+				-43.7331695556641,
+				-22.5499992370605,
+				10.1735610961914
+			],
+			"direction": [
+				-0.581238448619843,
+				0.0,
+				-0.813733339309692
+			],
+			"height_above_route": 0.45,
+			"mesh": "/root/MatchWorld/CinderCrypt/Architecture/StonePassage_node_-46_-23_7/Stone-stone_node_-46_-23_7_2",
+			"normal": [
+				0.471850365400314,
+				-0.0293479189276695,
+				0.881190061569214
+			]
+		},
+		"id": "DOOR028",
+		"position": [
+			-47.4266128540039,
+			-22.5499992370605,
+			5.00274324417114
+		]
+	},
+	{
+		"area": "node:bay",
+		"evidence": {
+			"camera": [
+				-43.7331695556641,
+				-21.9500007629395,
+				10.1735610961914
+			],
+			"direction": [
+				-0.581238448619843,
+				0.0,
+				-0.813733339309692
+			],
+			"height_above_route": 1.05,
+			"mesh": "/root/MatchWorld/CinderCrypt/Architecture/StonePassage_node_-46_-23_7/Stone-stone_node_-46_-23_7_2",
+			"normal": [
+				0.594123601913452,
+				0.0625262334942818,
+				0.801939904689789
+			]
+		},
+		"id": "DOOR029",
+		"position": [
+			-47.4272575378418,
+			-21.9500007629395,
+			5.0018424987793
+		]
+	},
+	{
+		"area": "node:bay",
+		"evidence": {
+			"camera": [
+				-43.7331695556641,
+				-20.75,
+				10.1735610961914
+			],
+			"direction": [
+				-0.581238448619843,
+				0.0,
+				-0.813733339309692
+			],
+			"height_above_route": 2.25,
+			"mesh": "/root/MatchWorld/CinderCrypt/Architecture/StonePassage_node_-46_-23_7/Stone-stone_node_-46_-23_7_2",
+			"normal": [
+				0.573255717754364,
+				0.0251467898488045,
+				0.818990528583527
+			]
+		},
+		"id": "DOOR030",
+		"position": [
+			-47.4273986816406,
+			-20.75,
+			5.00164365768433
+		]
+	},
+	{
+		"area": "node:bay",
+		"evidence": {
+			"camera": [
+				-43.7331695556641,
+				-20.1499996185303,
+				10.1735610961914
+			],
+			"direction": [
+				-0.581238448619843,
+				0.0,
+				-0.813733339309692
+			],
+			"height_above_route": 2.85,
+			"mesh": "/root/MatchWorld/CinderCrypt/Architecture/StonePassage_node_-46_-23_7/Stone-stone_node_-46_-23_7_2",
+			"normal": [
+				0.45515564084053,
+				0.0044666682370007,
+				0.89040070772171
+			]
+		},
+		"id": "DOOR031",
+		"position": [
+			-47.4285087585449,
+			-20.1499996185303,
+			5.00008726119995
+		]
+	},
+	{
+		"area": "node:bay",
+		"evidence": {
+			"camera": [
+				-43.7331695556641,
+				-19.5499992370605,
+				10.1735610961914
+			],
+			"direction": [
+				-0.581238448619843,
+				0.0,
+				-0.813733339309692
+			],
+			"height_above_route": 3.45,
+			"mesh": "/root/MatchWorld/CinderCrypt/Architecture/StonePassage_node_-46_-23_7/Stone-stone_node_-46_-23_7_2",
+			"normal": [
+				0.536161184310913,
+				0.0100752227008343,
+				0.844055533409119
+			]
+		},
+		"id": "DOOR032",
+		"position": [
+			-47.4258079528809,
+			-19.5499992370605,
+			5.00386810302734
+		]
+	},
+	{
+		"area": "node:bay",
+		"evidence": {
+			"camera": [
+				-46.3410377502441,
+				-19.5499992370605,
+				10.9237985610962
+			],
+			"direction": [
+				0.224859774112701,
+				0.0,
+				-0.974391162395477
+			],
+			"height_above_route": 3.45,
+			"mesh": "/root/MatchWorld/CinderCrypt/Architecture/StonePassage_cave_bypass/Stone-arch_cave_bypass_2",
+			"normal": [
+				0.36318027973175,
+				0.904906570911407,
+				-0.221910119056702
+			]
+		},
+		"id": "DOOR033",
+		"position": [
+			-46.2613296508789,
+			-19.5499992370605,
+			10.5784025192261
+		]
+	},
+	{
+		"area": "node:bay",
+		"evidence": {
+			"camera": [
+				-46.876953125,
+				-20.1499996185303,
+				10.8001251220703
+			],
+			"direction": [
+				0.224859789013863,
+				0.0,
+				-0.974391162395477
+			],
+			"height_above_route": 2.85,
+			"mesh": "/root/MatchWorld/CinderCrypt/Architecture/StonePassage_cave_bypass/Stone-arch_cave_bypass_2",
+			"normal": [
+				-0.801287114620209,
+				0.136411532759666,
+				0.582521200180054
+			]
+		},
+		"id": "DOOR034",
+		"position": [
+			-46.8433303833008,
+			-20.1499996185303,
+			10.6544322967529
+		]
+	},
+	{
+		"area": "node:bay",
+		"evidence": {
+			"camera": [
+				-47.4128684997559,
+				-20.1499996185303,
+				10.6764526367188
+			],
+			"direction": [
+				0.224859774112701,
+				0.0,
+				-0.974391162395477
+			],
+			"height_above_route": 2.85,
+			"mesh": "/root/MatchWorld/CinderCrypt/Architecture/StonePassage_node_-46_-23_7/Stone-stone_node_-46_-23_7_3",
+			"normal": [
+				0.637698233127594,
+				0.005369174759835,
+				0.770267605781555
+			]
+		},
+		"id": "DOOR035",
+		"position": [
+			-47.1785583496094,
+			-20.1499996185303,
+			9.66111278533936
+		]
+	},
+	{
+		"area": "node:bay",
+		"evidence": {
+			"camera": [
+				-43.3410377502441,
+				-22.5499992370605,
+				-2.07620143890381
+			],
+			"direction": [
+				0.224859774112701,
+				0.0,
+				-0.974391162395477
+			],
+			"height_above_route": 0.45,
+			"mesh": "/root/MatchWorld/CinderCrypt/Architecture/StonePassage_node_-43_-23_-6/Stone-stone_node_-43_-23_-6_2",
+			"normal": [
+				-0.242842942476273,
+				0.0440939702093601,
+				0.969062983989716
+			]
+		},
+		"id": "DOOR036",
+		"position": [
+			-41.9144439697266,
+			-22.5499992370605,
+			-8.25809288024902
+		]
+	},
+	{
+		"area": "node:bay",
+		"evidence": {
+			"camera": [
+				-43.3410377502441,
+				-21.9500007629395,
+				-2.07620143890381
+			],
+			"direction": [
+				0.224859774112701,
+				0.0,
+				-0.974391162395477
+			],
+			"height_above_route": 1.05,
+			"mesh": "/root/MatchWorld/CinderCrypt/Architecture/StonePassage_node_-43_-23_-6/Stone-stone_node_-43_-23_-6_2",
+			"normal": [
+				-0.597921669483185,
+				-0.198110282421112,
+				0.776686549186707
+			]
+		},
+		"id": "DOOR037",
+		"position": [
+			-41.9081268310547,
+			-21.9500007629395,
+			-8.285475730896
+		]
+	},
+	{
+		"area": "node:bay",
+		"evidence": {
+			"camera": [
+				-43.3410377502441,
+				-20.1499996185303,
+				-2.07620143890381
+			],
+			"direction": [
+				0.224859774112701,
+				0.0,
+				-0.974391162395477
+			],
+			"height_above_route": 2.85,
+			"mesh": "/root/MatchWorld/CinderCrypt/Architecture/StonePassage_node_-43_-23_-6/Stone-stone_node_-43_-23_-6_2",
+			"normal": [
+				-0.239897340536118,
+				-0.0504580438137054,
+				0.969486117362976
+			]
+		},
+		"id": "DOOR038",
+		"position": [
+			-41.9145240783691,
+			-20.1499996185303,
+			-8.25774765014648
+		]
+	},
+	{
+		"area": "node:bay",
+		"evidence": {
+			"camera": [
+				-43.3410377502441,
+				-19.5499992370605,
+				-2.07620143890381
+			],
+			"direction": [
+				0.224859774112701,
+				0.0,
+				-0.974391162395477
+			],
+			"height_above_route": 3.45,
+			"mesh": "/root/MatchWorld/CinderCrypt/Architecture/StonePassage_node_-43_-23_-6/Stone-stone_node_-43_-23_-6_2",
+			"normal": [
+				-0.215522676706314,
+				-0.202887088060379,
+				0.955189406871796
+			]
+		},
+		"id": "DOOR039",
+		"position": [
+			-41.9142913818359,
+			-19.5499992370605,
+			-8.25875663757324
+		]
+	},
+	{
+		"area": "node:bay",
+		"evidence": {
+			"camera": [
+				-43.876953125,
+				-22.5499992370605,
+				-2.19987440109253
+			],
+			"direction": [
+				0.224859789013863,
+				0.0,
+				-0.974391162395477
+			],
+			"height_above_route": 0.45,
+			"mesh": "/root/MatchWorld/CinderCrypt/Architecture/StonePassage_node_-43_-23_-6/Stone-stone_node_-43_-23_-6_2",
+			"normal": [
+				-0.245355099439621,
+				0.113649494946003,
+				0.962748527526855
+			]
+		},
+		"id": "DOOR040",
+		"position": [
+			-42.4511642456055,
+			-22.5499992370605,
+			-8.37829208374023
+		]
+	},
+	{
+		"area": "node:bay",
+		"evidence": {
+			"camera": [
+				-43.876953125,
+				-20.75,
+				-2.19987440109253
+			],
+			"direction": [
+				0.224859789013863,
+				0.0,
+				-0.974391162395477
+			],
+			"height_above_route": 2.25,
+			"mesh": "/root/MatchWorld/CinderCrypt/Architecture/StonePassage_node_-43_-23_-6/Stone-stone_node_-43_-23_-6_2",
+			"normal": [
+				-0.36097177863121,
+				-0.100416980683804,
+				0.927154719829559
+			]
+		},
+		"id": "DOOR041",
+		"position": [
+			-42.4469032287598,
+			-20.75,
+			-8.39675712585449
+		]
+	},
+	{
+		"area": "node:bay",
+		"evidence": {
+			"camera": [
+				-43.876953125,
+				-20.1499996185303,
+				-2.19987440109253
+			],
+			"direction": [
+				0.224859789013863,
+				0.0,
+				-0.974391162395477
+			],
+			"height_above_route": 2.85,
+			"mesh": "/root/MatchWorld/CinderCrypt/Architecture/StonePassage_node_-43_-23_-6/Stone-stone_node_-43_-23_-6_2",
+			"normal": [
+				-0.247938930988312,
+				0.0283986385911703,
+				0.968359351158142
+			]
+		},
+		"id": "DOOR042",
+		"position": [
+			-42.4478454589844,
+			-20.1499996185303,
+			-8.39267444610596
+		]
+	},
+	{
+		"area": "node:bay",
+		"evidence": {
+			"camera": [
+				-43.876953125,
+				-19.5499992370605,
+				-2.19987440109253
+			],
+			"direction": [
+				0.224859789013863,
+				0.0,
+				-0.974391162395477
+			],
+			"height_above_route": 3.45,
+			"mesh": "/root/MatchWorld/CinderCrypt/Architecture/StonePassage_node_-43_-23_-6/Stone-stone_node_-43_-23_-6_2",
+			"normal": [
+				-0.181929692625999,
+				-0.0366798527538776,
+				0.982627153396606
+			]
+		},
+		"id": "DOOR043",
+		"position": [
+			-42.4508666992188,
+			-19.5499992370605,
+			-8.37957382202148
+		]
+	},
+	{
+		"area": "node:bay",
+		"evidence": {
+			"camera": [
+				-44.4128684997559,
+				-22.5499992370605,
+				-2.32354736328125
+			],
+			"direction": [
+				0.224859774112701,
+				0.0,
+				-0.974391162395477
+			],
+			"height_above_route": 0.45,
+			"mesh": "/root/MatchWorld/CinderCrypt/Architecture/StonePassage_node_-43_-23_-6/Stone-stone_node_-43_-23_-6_2",
+			"normal": [
+				-0.223609268665314,
+				-0.025487994775176,
+				0.974345564842224
+			]
+		},
+		"id": "DOOR044",
+		"position": [
+			-42.985466003418,
+			-22.5499992370605,
+			-8.50895118713379
+		]
+	},
+	{
+		"area": "node:bay",
+		"evidence": {
+			"camera": [
+				-44.4128684997559,
+				-20.75,
+				-2.32354736328125
+			],
+			"direction": [
+				0.224859774112701,
+				0.0,
+				-0.974391162395477
+			],
+			"height_above_route": 2.25,
+			"mesh": "/root/MatchWorld/CinderCrypt/Architecture/StonePassage_node_-43_-23_-6/Stone-stone_node_-43_-23_-6_2",
+			"normal": [
+				-0.229652583599091,
+				-0.052766140550375,
+				0.971841275691986
+			]
+		},
+		"id": "DOOR045",
+		"position": [
+			-42.9878463745117,
+			-20.75,
+			-8.49863243103027
+		]
+	},
+	{
+		"area": "node:bay",
+		"evidence": {
+			"camera": [
+				-44.4128684997559,
+				-20.1499996185303,
+				-2.32354736328125
+			],
+			"direction": [
+				0.224859774112701,
+				0.0,
+				-0.974391162395477
+			],
+			"height_above_route": 2.85,
+			"mesh": "/root/MatchWorld/CinderCrypt/Architecture/StonePassage_node_-43_-23_-6/Stone-stone_node_-43_-23_-6_2",
+			"normal": [
+				-0.204962700605392,
+				0.00912282057106495,
+				0.978727281093597
+			]
+		},
+		"id": "DOOR046",
+		"position": [
+			-42.9833221435547,
+			-20.1499996185303,
+			-8.51823616027832
+		]
+	},
+	{
+		"area": "node:bay",
+		"evidence": {
+			"camera": [
+				-44.4128684997559,
+				-19.5499992370605,
+				-2.32354736328125
+			],
+			"direction": [
+				0.224859774112701,
+				0.0,
+				-0.974391162395477
+			],
+			"height_above_route": 3.45,
+			"mesh": "/root/MatchWorld/CinderCrypt/Architecture/StonePassage_node_-43_-23_-6/Stone-stone_node_-43_-23_-6_2",
+			"normal": [
+				-0.143425211310387,
+				0.0131713161244988,
+				0.989573538303375
+			]
+		},
+		"id": "DOOR047",
+		"position": [
+			-42.9828033447266,
+			-19.5499992370605,
+			-8.52048301696777
+		]
+	},
+	{
+		"area": "node:bay",
+		"evidence": {
+			"camera": [
+				-40.4500007629395,
+				-22.5499992370605,
+				18.1499996185303
+			],
+			"direction": [
+				0.0,
+				0.0,
+				-1.0
+			],
+			"height_above_route": 0.45,
+			"mesh": "/root/MatchWorld/CinderCrypt/Architecture/StonePassage_cave_bypass/Stone-stone_cave_bypass_1",
+			"normal": [
+				-0.795320332050323,
+				-0.0490677915513515,
+				0.604200303554535
+			]
+		},
+		"id": "DOOR048",
+		"position": [
+			-40.4500007629395,
+			-22.5499992370605,
+			10.5597219467163
+		]
+	},
+	{
+		"area": "node:bay",
+		"evidence": {
+			"camera": [
+				-40.4500007629395,
+				-21.9500007629395,
+				18.1499996185303
+			],
+			"direction": [
+				0.0,
+				0.0,
+				-1.0
+			],
+			"height_above_route": 1.05,
+			"mesh": "/root/MatchWorld/CinderCrypt/Architecture/StonePassage_cave_bypass/Stone-stone_cave_bypass_1",
+			"normal": [
+				-0.778024435043335,
+				0.122690193355083,
+				0.616137266159058
+			]
+		},
+		"id": "DOOR049",
+		"position": [
+			-40.4500007629395,
+			-21.9500007629395,
+			10.5391979217529
+		]
+	},
+	{
+		"area": "node:bay",
+		"evidence": {
+			"camera": [
+				-40.4500007629395,
+				-21.3500003814697,
+				18.1499996185303
+			],
+			"direction": [
+				0.0,
+				0.0,
+				-1.0
+			],
+			"height_above_route": 1.65,
+			"mesh": "/root/MatchWorld/CinderCrypt/Architecture/StonePassage_cave_bypass/Stone-stone_cave_bypass_1",
+			"normal": [
+				-0.811768174171448,
+				-0.0886693745851517,
+				0.577208936214447
+			]
+		},
+		"id": "DOOR050",
+		"position": [
+			-40.4500007629395,
+			-21.3500003814697,
+			10.5272073745728
+		]
+	},
+	{
+		"area": "node:bay",
+		"evidence": {
+			"camera": [
+				-40.4500007629395,
+				-20.75,
+				18.1499996185303
+			],
+			"direction": [
+				0.0,
+				0.0,
+				-1.0
+			],
+			"height_above_route": 2.25,
+			"mesh": "/root/MatchWorld/CinderCrypt/Architecture/StonePassage_cave_bypass/Stone-stone_cave_bypass_1",
+			"normal": [
+				-0.838156819343567,
+				0.0169901773333549,
+				0.545164704322815
+			]
+		},
+		"id": "DOOR051",
+		"position": [
+			-40.4500007629395,
+			-20.75,
+			10.5562181472778
+		]
+	},
+	{
+		"area": "node:bay",
+		"evidence": {
+			"camera": [
+				-40.4500007629395,
+				-20.1499996185303,
+				18.1499996185303
+			],
+			"direction": [
+				0.0,
+				0.0,
+				-1.0
+			],
+			"height_above_route": 2.85,
+			"mesh": "/root/MatchWorld/CinderCrypt/Architecture/StonePassage_cave_bypass/Stone-arch_cave_bypass_2",
+			"normal": [
+				-0.784645199775696,
+				-0.163488537073135,
+				0.597999572753906
+			]
+		},
+		"id": "DOOR052",
+		"position": [
+			-40.4500007629395,
+			-20.1499996185303,
+			10.6172304153442
+		]
+	},
+	{
+		"area": "node:bay",
+		"evidence": {
+			"camera": [
+				-40.4500007629395,
+				-19.5499992370605,
+				18.1499996185303
+			],
+			"direction": [
+				0.0,
+				0.0,
+				-1.0
+			],
+			"height_above_route": 3.45,
+			"mesh": "/root/MatchWorld/CinderCrypt/Architecture/StonePassage_cave_bypass/Stone-arch_cave_bypass_2",
+			"normal": [
+				0.481732398271561,
+				-0.0281959064304829,
+				0.875864684581757
+			]
+		},
+		"id": "DOOR053",
+		"position": [
+			-40.4500007629395,
+			-19.5499992370605,
+			10.9251365661621
+		]
+	},
+	{
+		"area": "node:bay",
+		"evidence": {
+			"camera": [
+				-41.0,
+				-19.5499992370605,
+				18.1499996185303
+			],
+			"direction": [
+				0.0,
+				0.0,
+				-1.0
+			],
+			"height_above_route": 3.45,
+			"mesh": "/root/MatchWorld/CinderCrypt/Architecture/StonePassage_cave_bypass/Stone-arch_cave_bypass_2",
+			"normal": [
+				-0.679207682609558,
+				-0.495826721191406,
+				0.54114031791687
+			]
+		},
+		"id": "DOOR054",
+		"position": [
+			-41.0,
+			-19.5499992370605,
+			10.1694679260254
+		]
+	},
+	{
+		"area": "node:bay",
+		"evidence": {
+			"camera": [
+				-43.8970222473145,
+				-20.1499996185303,
+				17.0219612121582
+			],
+			"direction": [
+				0.780868768692017,
+				0.0,
+				-0.624695122241974
+			],
+			"height_above_route": 2.85,
+			"mesh": "/root/MatchWorld/CinderCrypt/Architecture/StonePassage_root_tunnel/Stone-arch_root_tunnel_7",
+			"normal": [
+				0.284446477890015,
+				0.0650442019104958,
+				-0.956482887268066
+			]
+		},
+		"id": "DOOR055",
+		"position": [
+			-43.7352485656738,
+			-20.1499996185303,
+			16.8925437927246
+		]
+	},
+	{
+		"area": "node:bay",
+		"evidence": {
+			"camera": [
+				-43.8970222473145,
+				-19.5499992370605,
+				17.0219612121582
+			],
+			"direction": [
+				0.780868768692017,
+				0.0,
+				-0.624695122241974
+			],
+			"height_above_route": 3.45,
+			"mesh": "/root/MatchWorld/CinderCrypt/Architecture/StonePassage_root_tunnel/Stone-arch_root_tunnel_7",
+			"normal": [
+				0.0166923440992832,
+				0.00869751535356045,
+				0.999822854995728
+			]
+		},
+		"id": "DOOR056",
+		"position": [
+			-43.7995567321777,
+			-19.5499992370605,
+			16.9439888000488
+		]
+	},
+	{
+		"area": "node:bay",
+		"evidence": {
+			"camera": [
+				-38.140308380127,
+				-20.1499996185303,
+				17.0573120117188
+			],
+			"direction": [
+				-0.581238448619843,
+				0.0,
+				-0.813733279705048
+			],
+			"height_above_route": 2.85,
+			"mesh": "/root/MatchWorld/CinderCrypt/Architecture/StonePassage_root_tunnel/Stone-arch_root_tunnel_7",
+			"normal": [
+				0.0116581749171019,
+				0.0284437648952007,
+				-0.999527394771576
+			]
+		},
+		"id": "DOOR057",
+		"position": [
+			-38.2333564758301,
+			-20.1499996185303,
+			16.9270439147949
+		]
+	},
+	{
+		"area": "node:bay",
+		"evidence": {
+			"camera": [
+				-38.140308380127,
+				-19.5499992370605,
+				17.0573120117188
+			],
+			"direction": [
+				-0.581238448619843,
+				0.0,
+				-0.813733279705048
+			],
+			"height_above_route": 3.45,
+			"mesh": "/root/MatchWorld/CinderCrypt/Architecture/StonePassage_root_tunnel/Stone-arch_root_tunnel_7",
+			"normal": [
+				0.0814161822199821,
+				-0.0890844836831093,
+				-0.992691040039062
+			]
+		},
+		"id": "DOOR058",
+		"position": [
+			-38.2260398864746,
+			-19.5499992370605,
+			16.9372863769531
+		]
+	},
+	{
+		"area": "node:bay",
+		"evidence": {
+			"camera": [
+				-38.5878601074219,
+				-19.5499992370605,
+				17.3769931793213
+			],
+			"direction": [
+				-0.581238448619843,
+				0.0,
+				-0.813733279705048
+			],
+			"height_above_route": 3.45,
+			"mesh": "/root/MatchWorld/CinderCrypt/Architecture/StonePassage_node_-41_-23_14/Stone-arch_node_-41_-23_14_2",
+			"normal": [
+				0.885733306407928,
+				-0.402408272027969,
+				0.231396198272705
+			]
+		},
+		"id": "DOOR059",
+		"position": [
+			-43.2227249145508,
+			-19.5499992370605,
+			10.8881855010986
+		]
+	},
+	{
+		"area": "node:bay",
+		"evidence": {
+			"camera": [
+				-39.0354118347168,
+				-22.5499992370605,
+				17.6966743469238
+			],
+			"direction": [
+				-0.581238448619843,
+				0.0,
+				-0.813733279705048
+			],
+			"height_above_route": 0.45,
+			"mesh": "/root/MatchWorld/CinderCrypt/Architecture/StonePassage_node_-41_-23_14/Stone-ashlar_node_-41_-23_14_2",
+			"normal": [
+				0.0291297547519207,
+				0.0158071890473366,
+				0.99945068359375
+			]
+		},
+		"id": "DOOR060",
+		"position": [
+			-43.6150817871094,
+			-22.5499992370605,
+			11.2851428985596
+		]
+	},
+	{
+		"area": "node:bay",
+		"evidence": {
+			"camera": [
+				-39.0354118347168,
+				-21.9500007629395,
+				17.6966743469238
+			],
+			"direction": [
+				-0.581238448619843,
+				0.0,
+				-0.813733279705048
+			],
+			"height_above_route": 1.05,
+			"mesh": "/root/MatchWorld/CinderCrypt/Architecture/StonePassage_node_-41_-23_14/Stone-ashlar_node_-41_-23_14_2",
+			"normal": [
+				-0.0339420102536678,
+				-0.0609090328216553,
+				0.997566103935242
+			]
+		},
+		"id": "DOOR061",
+		"position": [
+			-43.5969429016113,
+			-21.9500007629395,
+			11.3105344772339
+		]
+	},
+	{
+		"area": "node:bay",
+		"evidence": {
+			"camera": [
+				-39.0354118347168,
+				-21.3500003814697,
+				17.6966743469238
+			],
+			"direction": [
+				-0.581238448619843,
+				0.0,
+				-0.813733279705048
+			],
+			"height_above_route": 1.65,
+			"mesh": "/root/MatchWorld/CinderCrypt/Architecture/StonePassage_node_-41_-23_14/Stone-ashlar_node_-41_-23_14_2",
+			"normal": [
+				0.0000738251983420923,
+				-0.0519289188086987,
+				0.998650789260864
+			]
+		},
+		"id": "DOOR062",
+		"position": [
+			-43.6142578125,
+			-21.3500003814697,
+			11.2862930297852
+		]
+	},
+	{
+		"area": "node:bay",
+		"evidence": {
+			"camera": [
+				-39.0354118347168,
+				-20.75,
+				17.6966743469238
+			],
+			"direction": [
+				-0.581238448619843,
+				0.0,
+				-0.813733279705048
+			],
+			"height_above_route": 2.25,
+			"mesh": "/root/MatchWorld/CinderCrypt/Architecture/StonePassage_node_-41_-23_14/Stone-ashlar_node_-41_-23_14_2",
+			"normal": [
+				0.045916773378849,
+				-0.0145052149891853,
+				0.998839974403381
+			]
+		},
+		"id": "DOOR063",
+		"position": [
+			-43.6113319396973,
+			-20.75,
+			11.2903881072998
+		]
+	},
+	{
+		"area": "node:bay",
+		"evidence": {
+			"camera": [
+				-39.0354118347168,
+				-20.1499996185303,
+				17.6966743469238
+			],
+			"direction": [
+				-0.581238448619843,
+				0.0,
+				-0.813733279705048
+			],
+			"height_above_route": 2.85,
+			"mesh": "/root/MatchWorld/CinderCrypt/Architecture/StonePassage_node_-41_-23_14/Stone-arch_node_-41_-23_14_2",
+			"normal": [
+				0.162906154990196,
+				-0.0764470547437668,
+				0.983675479888916
+			]
+		},
+		"id": "DOOR064",
+		"position": [
+			-43.6031455993652,
+			-20.1499996185303,
+			11.3018531799316
+		]
+	},
+	{
+		"area": "node:bay",
+		"evidence": {
+			"camera": [
+				-39.0354118347168,
+				-19.5499992370605,
+				17.6966743469238
+			],
+			"direction": [
+				-0.581238448619843,
+				0.0,
+				-0.813733279705048
+			],
+			"height_above_route": 3.45,
+			"mesh": "/root/MatchWorld/CinderCrypt/Architecture/StonePassage_node_-41_-23_14/Stone-arch_node_-41_-23_14_4",
+			"normal": [
+				0.942776203155518,
+				-0.329133778810501,
+				-0.0533288829028606
+			]
+		},
+		"id": "DOOR065",
+		"position": [
+			-43.4938316345215,
+			-19.5499992370605,
+			11.4548902511597
+		]
+	},
+	{
+		"area": "node:bay",
+		"evidence": {
+			"camera": [
+				-36.8499984741211,
+				-22.5499992370605,
+				23.4500007629395
+			],
+			"direction": [
+				-1.0,
+				0.0,
+				0.0
+			],
+			"height_above_route": 0.45,
+			"mesh": "/root/MatchWorld/CinderCrypt/Architecture/StonePassage_node_-41_-23_24/Stone-stone_node_-41_-23_24_2",
+			"normal": [
+				0.999548196792603,
+				0.0283662062138319,
+				-0.00993708334863186
+			]
+		},
+		"id": "DOOR066",
+		"position": [
+			-43.6940002441406,
+			-22.5499992370605,
+			23.4500007629395
+		]
+	},
+	{
+		"area": "node:bay",
+		"evidence": {
+			"camera": [
+				-36.8499984741211,
+				-20.1499996185303,
+				23.4500007629395
+			],
+			"direction": [
+				-1.0,
+				0.0,
+				0.0
+			],
+			"height_above_route": 2.85,
+			"mesh": "/root/MatchWorld/CinderCrypt/Architecture/StonePassage_node_-41_-23_24/Stone-stone_node_-41_-23_24_2",
+			"normal": [
+				0.99886566400528,
+				-0.0456328205764294,
+				0.013606172055006
+			]
+		},
+		"id": "DOOR067",
+		"position": [
+			-43.7112770080566,
+			-20.1499996185303,
+			23.4500007629395
+		]
+	},
+	{
+		"area": "node:bay",
+		"evidence": {
+			"camera": [
+				-36.8499984741211,
+				-19.5499992370605,
+				23.4500007629395
+			],
+			"direction": [
+				-1.0,
+				0.0,
+				0.0
+			],
+			"height_above_route": 3.45,
+			"mesh": "/root/MatchWorld/CinderCrypt/Architecture/StonePassage_node_-41_-23_24/Stone-stone_node_-41_-23_24_2",
+			"normal": [
+				0.999663650989532,
+				-0.0259044859558344,
+				-0.00126787601038814
+			]
+		},
+		"id": "DOOR068",
+		"position": [
+			-43.6977882385254,
+			-19.5499992370605,
+			23.4500007629395
+		]
+	},
+	{
+		"area": "node:bay",
+		"evidence": {
+			"camera": [
+				-36.8499984741211,
+				-22.5499992370605,
+				24.0
+			],
+			"direction": [
+				-1.0,
+				0.0,
+				0.0
+			],
+			"height_above_route": 0.45,
+			"mesh": "/root/MatchWorld/CinderCrypt/Architecture/StonePassage_node_-41_-23_24/Stone-stone_node_-41_-23_24_2",
+			"normal": [
+				0.999660074710846,
+				-0.00561475567519665,
+				0.0254611615091562
+			]
+		},
+		"id": "DOOR069",
+		"position": [
+			-43.7064399719238,
+			-22.5499992370605,
+			24.0
+		]
+	},
+	{
+		"area": "node:bay",
+		"evidence": {
+			"camera": [
+				-36.8499984741211,
+				-20.75,
+				24.0
+			],
+			"direction": [
+				-1.0,
+				0.0,
+				0.0
+			],
+			"height_above_route": 2.25,
+			"mesh": "/root/MatchWorld/CinderCrypt/Architecture/StonePassage_node_-41_-23_24/Stone-stone_node_-41_-23_24_2",
+			"normal": [
+				0.997938394546509,
+				-0.00454865442588925,
+				-0.0640181452035904
+			]
+		},
+		"id": "DOOR070",
+		"position": [
+			-43.716136932373,
+			-20.75,
+			24.0
+		]
+	},
+	{
+		"area": "node:bay",
+		"evidence": {
+			"camera": [
+				-36.8499984741211,
+				-20.1499996185303,
+				24.0
+			],
+			"direction": [
+				-1.0,
+				0.0,
+				0.0
+			],
+			"height_above_route": 2.85,
+			"mesh": "/root/MatchWorld/CinderCrypt/Architecture/StonePassage_node_-41_-23_24/Stone-stone_node_-41_-23_24_2",
+			"normal": [
+				0.999881684780121,
+				-0.00485553126782179,
+				0.0145960189402103
+			]
+		},
+		"id": "DOOR071",
+		"position": [
+			-43.7139663696289,
+			-20.1499996185303,
+			24.0
+		]
+	},
+	{
+		"area": "node:bay",
+		"evidence": {
+			"camera": [
+				-36.8499984741211,
+				-19.5499992370605,
+				24.0
+			],
+			"direction": [
+				-1.0,
+				0.0,
+				0.0
+			],
+			"height_above_route": 3.45,
+			"mesh": "/root/MatchWorld/CinderCrypt/Architecture/StonePassage_node_-41_-23_24/Stone-stone_node_-41_-23_24_2",
+			"normal": [
+				0.999810636043549,
+				0.0155297089368105,
+				-0.0117259249091148
+			]
+		},
+		"id": "DOOR072",
+		"position": [
+			-43.7040748596191,
+			-19.5499992370605,
+			24.0
+		]
+	},
+	{
+		"area": "node:bay",
+		"evidence": {
+			"camera": [
+				-36.8499984741211,
+				-22.5499992370605,
+				24.5499992370605
+			],
+			"direction": [
+				-1.0,
+				0.0,
+				0.0
+			],
+			"height_above_route": 0.45,
+			"mesh": "/root/MatchWorld/CinderCrypt/Architecture/StonePassage_node_-41_-23_24/Stone-stone_node_-41_-23_24_2",
+			"normal": [
+				0.998624086380005,
+				0.0354390628635883,
+				-0.038653701543808
+			]
+		},
+		"id": "DOOR073",
+		"position": [
+			-43.695915222168,
+			-22.5499992370605,
+			24.5499992370605
+		]
+	},
+	{
+		"area": "node:bay",
+		"evidence": {
+			"camera": [
+				-36.8499984741211,
+				-21.9500007629395,
+				24.5499992370605
+			],
+			"direction": [
+				-1.0,
+				0.0,
+				0.0
+			],
+			"height_above_route": 1.05,
+			"mesh": "/root/MatchWorld/CinderCrypt/Architecture/StonePassage_node_-41_-23_24/Stone-stone_node_-41_-23_24_2",
+			"normal": [
+				0.145034208893776,
+				0.988543212413788,
+				0.0418020114302635
+			]
+		},
+		"id": "DOOR074",
+		"position": [
+			-43.7079315185547,
+			-21.9500007629395,
+			24.5499992370605
+		]
+	},
+	{
+		"area": "node:bay",
+		"evidence": {
+			"camera": [
+				-36.8499984741211,
+				-21.3500003814697,
+				24.5499992370605
+			],
+			"direction": [
+				-1.0,
+				0.0,
+				0.0
+			],
+			"height_above_route": 1.65,
+			"mesh": "/root/MatchWorld/CinderCrypt/Architecture/StonePassage_node_-41_-23_24/Stone-stone_node_-41_-23_24_2",
+			"normal": [
+				0.359328210353851,
+				-0.931778848171234,
+				-0.0516858510673046
+			]
+		},
+		"id": "DOOR075",
+		"position": [
+			-43.7059478759766,
+			-21.3500003814697,
+			24.5499992370605
+		]
+	},
+	{
+		"area": "node:bay",
+		"evidence": {
+			"camera": [
+				-36.8499984741211,
+				-20.75,
+				24.5499992370605
+			],
+			"direction": [
+				-1.0,
+				0.0,
+				0.0
+			],
+			"height_above_route": 2.25,
+			"mesh": "/root/MatchWorld/CinderCrypt/Architecture/StonePassage_node_-41_-23_24/Stone-stone_node_-41_-23_24_2",
+			"normal": [
+				0.999865889549255,
+				0.00336000462993979,
+				-0.0160291325300932
+			]
+		},
+		"id": "DOOR076",
+		"position": [
+			-43.7038650512695,
+			-20.75,
+			24.5499992370605
+		]
+	},
+	{
+		"area": "node:bay",
+		"evidence": {
+			"camera": [
+				-36.8499984741211,
+				-20.1499996185303,
+				24.5499992370605
+			],
+			"direction": [
+				-1.0,
+				0.0,
+				0.0
+			],
+			"height_above_route": 2.85,
+			"mesh": "/root/MatchWorld/CinderCrypt/Architecture/StonePassage_node_-41_-23_24/Stone-stone_node_-41_-23_24_2",
+			"normal": [
+				0.996805191040039,
+				-0.0220162644982338,
+				-0.0767768993973732
+			]
+		},
+		"id": "DOOR077",
+		"position": [
+			-43.6960945129395,
+			-20.1499996185303,
+			24.5499992370605
+		]
+	},
+	{
+		"area": "node:bay",
+		"evidence": {
+			"camera": [
+				-36.8499984741211,
+				-19.5499992370605,
+				24.5499992370605
+			],
+			"direction": [
+				-1.0,
+				0.0,
+				0.0
+			],
+			"height_above_route": 3.45,
+			"mesh": "/root/MatchWorld/CinderCrypt/Architecture/StonePassage_node_-41_-23_24/Stone-stone_node_-41_-23_24_2",
+			"normal": [
+				0.998871684074402,
+				0.00612943107262254,
+				0.0470936484634876
+			]
+		},
+		"id": "DOOR078",
+		"position": [
+			-43.6857833862305,
+			-19.5499992370605,
+			24.5499992370605
+		]
+	},
+	{
+		"area": "node:bay",
+		"evidence": {
+			"camera": [
+				-41.567699432373,
+				-20.1499996185303,
+				0.190096855163574
+			],
+			"direction": [
+				0.776114106178284,
+				0.0,
+				-0.630592465400696
+			],
+			"height_above_route": 2.85,
+			"mesh": "/root/MatchWorld/CinderCrypt/Architecture/StonePassage_cave_bypass/Stone-arch_cave_bypass_7",
+			"normal": [
+				0.958856105804443,
+				0.139113381505013,
+				0.247471868991852
+			]
+		},
+		"id": "DOOR079",
+		"position": [
+			-41.5399436950684,
+			-20.1499996185303,
+			0.167546585202217
+		]
+	},
+	{
+		"area": "node:bay",
+		"evidence": {
+			"camera": [
+				-33.8970222473145,
+				-22.5499992370605,
+				9.02196216583252
+			],
+			"direction": [
+				0.780868709087372,
+				0.0,
+				-0.624695181846619
+			],
+			"height_above_route": 0.45,
+			"mesh": "/root/MatchWorld/CinderCrypt/Architecture/StonePassage_node_-31_-23_6/Stone-stone_node_-31_-23_6_2",
+			"normal": [
+				-0.77282327413559,
+				0.0109577979892492,
+				0.63452672958374
+			]
+		},
+		"id": "DOOR080",
+		"position": [
+			-28.5448265075684,
+			-22.5499992370605,
+			4.74020481109619
+		]
+	},
+	{
+		"area": "node:bay",
+		"evidence": {
+			"camera": [
+				-33.8970222473145,
+				-21.9500007629395,
+				9.02196216583252
+			],
+			"direction": [
+				0.780868709087372,
+				0.0,
+				-0.624695181846619
+			],
+			"height_above_route": 1.05,
+			"mesh": "/root/MatchWorld/CinderCrypt/Architecture/StonePassage_node_-31_-23_6/Stone-stone_node_-31_-23_6_2",
+			"normal": [
+				-0.106298968195915,
+				-0.992805659770966,
+				0.0551143474876881
+			]
+		},
+		"id": "DOOR081",
+		"position": [
+			-28.5483207702637,
+			-21.9500007629395,
+			4.74300003051758
+		]
+	},
+	{
+		"area": "node:bay",
+		"evidence": {
+			"camera": [
+				-33.8970222473145,
+				-20.75,
+				9.02196216583252
+			],
+			"direction": [
+				0.780868709087372,
+				0.0,
+				-0.624695181846619
+			],
+			"height_above_route": 2.25,
+			"mesh": "/root/MatchWorld/CinderCrypt/Architecture/StonePassage_node_-31_-23_6/Stone-stone_node_-31_-23_6_2",
+			"normal": [
+				-0.804488956928253,
+				0.0182552076876163,
+				0.593687057495117
+			]
+		},
+		"id": "DOOR082",
+		"position": [
+			-28.5411396026611,
+			-20.75,
+			4.73725509643555
+		]
+	},
+	{
+		"area": "node:bay",
+		"evidence": {
+			"camera": [
+				-33.8970222473145,
+				-20.1499996185303,
+				9.02196216583252
+			],
+			"direction": [
+				0.780868709087372,
+				0.0,
+				-0.624695181846619
+			],
+			"height_above_route": 2.85,
+			"mesh": "/root/MatchWorld/CinderCrypt/Architecture/StonePassage_node_-31_-23_6/Stone-stone_node_-31_-23_6_2",
+			"normal": [
+				-0.642952620983124,
+				0.248115018010139,
+				0.724603950977325
+			]
+		},
+		"id": "DOOR083",
+		"position": [
+			-28.5405597686768,
+			-20.1499996185303,
+			4.73679065704346
+		]
+	},
+	{
+		"area": "node:bay",
+		"evidence": {
+			"camera": [
+				-34.2406044006348,
+				-22.5499992370605,
+				8.59248447418213
+			],
+			"direction": [
+				0.780868709087372,
+				0.0,
+				-0.624695181846619
+			],
+			"height_above_route": 0.45,
+			"mesh": "/root/MatchWorld/CinderCrypt/Architecture/StonePassage_node_-31_-23_6/Stone-stone_node_-31_-23_6_2",
+			"normal": [
+				-0.822269916534424,
+				-0.0677327811717987,
+				0.56505274772644
+			]
+		},
+		"id": "DOOR084",
+		"position": [
+			-28.8936805725098,
+			-22.5499992370605,
+			4.31494426727295
+		]
+	},
+	{
+		"area": "node:bay",
+		"evidence": {
+			"camera": [
+				-34.2406044006348,
+				-21.3500003814697,
+				8.59248447418213
+			],
+			"direction": [
+				0.780868709087372,
+				0.0,
+				-0.624695181846619
+			],
+			"height_above_route": 1.65,
+			"mesh": "/root/MatchWorld/CinderCrypt/Architecture/StonePassage_node_-31_-23_6/Stone-stone_node_-31_-23_6_2",
+			"normal": [
+				-0.784959673881531,
+				0.0431091822683811,
+				0.618045330047607
+			]
+		},
+		"id": "DOOR085",
+		"position": [
+			-28.8824577331543,
+			-21.3500003814697,
+			4.30596494674683
+		]
+	},
+	{
+		"area": "node:bay",
+		"evidence": {
+			"camera": [
+				-34.2406044006348,
+				-20.75,
+				8.59248447418213
+			],
+			"direction": [
+				0.780868709087372,
+				0.0,
+				-0.624695181846619
+			],
+			"height_above_route": 2.25,
+			"mesh": "/root/MatchWorld/CinderCrypt/Architecture/StonePassage_node_-31_-23_6/Stone-stone_node_-31_-23_6_2",
+			"normal": [
+				-0.787629008293152,
+				-0.0120641058310866,
+				0.61603170633316
+			]
+		},
+		"id": "DOOR086",
+		"position": [
+			-28.8999938964844,
+			-20.75,
+			4.31999492645264
+		]
+	},
+	{
+		"area": "node:bay",
+		"evidence": {
+			"camera": [
+				-34.2406044006348,
+				-20.1499996185303,
+				8.59248447418213
+			],
+			"direction": [
+				0.780868709087372,
+				0.0,
+				-0.624695181846619
+			],
+			"height_above_route": 2.85,
+			"mesh": "/root/MatchWorld/CinderCrypt/Architecture/StonePassage_node_-31_-23_6/Stone-stone_node_-31_-23_6_2",
+			"normal": [
+				-0.708464741706848,
+				-0.168734952807426,
+				0.685278296470642
+			]
+		},
+		"id": "DOOR087",
+		"position": [
+			-28.8731536865234,
+			-20.1499996185303,
+			4.29852151870728
+		]
+	},
+	{
+		"area": "node:bay",
+		"evidence": {
+			"camera": [
+				-34.2406044006348,
+				-19.5499992370605,
+				8.59248447418213
+			],
+			"direction": [
+				0.780868709087372,
+				0.0,
+				-0.624695181846619
+			],
+			"height_above_route": 3.45,
+			"mesh": "/root/MatchWorld/CinderCrypt/Architecture/StonePassage_node_-31_-23_6/Stone-stone_node_-31_-23_6_2",
+			"normal": [
+				-0.17334546148777,
+				0.984284996986389,
+				0.033681645989418
+			]
+		},
+		"id": "DOOR088",
+		"position": [
+			-28.8669586181641,
+			-19.5499992370605,
+			4.29356718063354
+		]
+	},
+	{
+		"area": "node:bay",
+		"evidence": {
+			"camera": [
+				-34.5841865539551,
+				-20.75,
+				8.16300678253174
+			],
+			"direction": [
+				0.780868709087372,
+				0.0,
+				-0.624695181846619
+			],
+			"height_above_route": 2.25,
+			"mesh": "/root/MatchWorld/CinderCrypt/Architecture/StonePassage_node_-31_-23_6/Stone-stone_node_-31_-23_6_2",
+			"normal": [
+				-0.793868362903595,
+				0.0297305509448051,
+				0.607362508773804
+			]
+		},
+		"id": "DOOR089",
+		"position": [
+			-29.2326622009277,
+			-20.75,
+			3.88178586959839
+		]
+	},
+	{
+		"area": "node:bay",
+		"evidence": {
+			"camera": [
+				-34.5841865539551,
+				-20.1499996185303,
+				8.16300678253174
+			],
+			"direction": [
+				0.780868709087372,
+				0.0,
+				-0.624695181846619
+			],
+			"height_above_route": 2.85,
+			"mesh": "/root/MatchWorld/CinderCrypt/Architecture/StonePassage_node_-31_-23_6/Stone-stone_node_-31_-23_6_2",
+			"normal": [
+				-0.80829268693924,
+				-0.197490736842155,
+				0.554671347141266
+			]
+		},
+		"id": "DOOR090",
+		"position": [
+			-29.2259788513184,
+			-20.1499996185303,
+			3.87643957138062
+		]
+	},
+	{
+		"area": "node:bay",
+		"evidence": {
+			"camera": [
+				-34.5841865539551,
+				-19.5499992370605,
+				8.16300678253174
+			],
+			"direction": [
+				0.780868709087372,
+				0.0,
+				-0.624695181846619
+			],
+			"height_above_route": 3.45,
+			"mesh": "/root/MatchWorld/CinderCrypt/Architecture/StonePassage_node_-31_-23_6/Stone-stone_node_-31_-23_6_2",
+			"normal": [
+				-0.831510126590729,
+				0.13647723197937,
+				0.538483858108521
+			]
+		},
+		"id": "DOOR091",
+		"position": [
+			-29.2248020172119,
+			-19.5499992370605,
+			3.87549829483032
+		]
+	},
+	{
+		"area": "node:portal",
+		"evidence": {
+			"camera": [
+				-27.1499996185303,
+				-19.5499992370605,
+				-16.0
+			],
+			"direction": [
+				1.0,
+				0.0,
+				0.0
+			],
+			"height_above_route": 3.45,
+			"mesh": "/root/MatchWorld/CinderCrypt/Architecture/StonePassage_root_tunnel/Stone-arch_root_tunnel_27",
+			"normal": [
+				-0.704865396022797,
+				0.324208229780197,
+				-0.630915105342865
+			]
+		},
+		"id": "DOOR092",
+		"position": [
+			-26.9844436645508,
+			-19.5499992370605,
+			-16.0
+		]
+	},
+	{
+		"area": "node:portal",
+		"evidence": {
+			"camera": [
+				-27.1499996185303,
+				-20.1499996185303,
+				-16.5499992370605
+			],
+			"direction": [
+				1.0,
+				0.0,
+				0.0
+			],
+			"height_above_route": 2.85,
+			"mesh": "/root/MatchWorld/CinderCrypt/Architecture/StonePassage_root_tunnel/Stone-arch_root_tunnel_27",
+			"normal": [
+				-0.653731346130371,
+				0.0533824637532234,
+				-0.754841566085815
+			]
+		},
+		"id": "DOOR093",
+		"position": [
+			-26.6776657104492,
+			-20.1499996185303,
+			-16.5499992370605
+		]
+	},
+	{
+		"area": "node:portal",
+		"evidence": {
+			"camera": [
+				-27.1499996185303,
+				-19.5499992370605,
+				-16.5499992370605
+			],
+			"direction": [
+				1.0,
+				0.0,
+				0.0
+			],
+			"height_above_route": 3.45,
+			"mesh": "/root/MatchWorld/CinderCrypt/Architecture/StonePassage_root_tunnel/Stone-arch_root_tunnel_27",
+			"normal": [
+				-0.742430210113525,
+				0.333814412355423,
+				-0.580831587314606
+			]
+		},
+		"id": "DOOR094",
+		"position": [
+			-26.4734268188477,
+			-19.5499992370605,
+			-16.5499992370605
+		]
+	},
+	{
+		"area": "node:bay",
+		"evidence": {
+			"camera": [
+				-14.3500003814697,
+				-9.55000019073486,
+				-30.5499992370605
+			],
+			"direction": [
+				-1.0,
+				0.0,
+				0.0
+			],
+			"height_above_route": 0.45,
+			"mesh": "/root/MatchWorld/CinderCrypt/Architecture/StonePassage_node_-18_-10_-30/Stone-stone_node_-18_-10_-30_2",
+			"normal": [
+				0.999513864517212,
+				-0.0258914809674025,
+				0.0173676963895559
+			]
+		},
+		"id": "DOOR095",
+		"position": [
+			-20.1959648132324,
+			-9.55000019073486,
+			-30.5499992370605
+		]
+	},
+	{
+		"area": "node:bay",
+		"evidence": {
+			"camera": [
+				-14.3500003814697,
+				-8.35000038146973,
+				-30.5499992370605
+			],
+			"direction": [
+				-1.0,
+				0.0,
+				0.0
+			],
+			"height_above_route": 1.65,
+			"mesh": "/root/MatchWorld/CinderCrypt/Architecture/StonePassage_node_-18_-10_-30/Stone-stone_node_-18_-10_-30_2",
+			"normal": [
+				0.996385633945465,
+				0.047873716801405,
+				-0.0701697543263435
+			]
+		},
+		"id": "DOOR096",
+		"position": [
+			-20.2007312774658,
+			-8.35000038146973,
+			-30.5499992370605
+		]
+	},
+	{
+		"area": "node:bay",
+		"evidence": {
+			"camera": [
+				-14.3500003814697,
+				-7.75,
+				-30.5499992370605
+			],
+			"direction": [
+				-1.0,
+				0.0,
+				0.0
+			],
+			"height_above_route": 2.25,
+			"mesh": "/root/MatchWorld/CinderCrypt/Architecture/StonePassage_node_-18_-10_-30/Stone-stone_node_-18_-10_-30_2",
+			"normal": [
+				0.995017766952515,
+				0.0902499184012413,
+				-0.0423631370067596
+			]
+		},
+		"id": "DOOR097",
+		"position": [
+			-20.1983852386475,
+			-7.75,
+			-30.5499992370605
+		]
+	},
+	{
+		"area": "node:bay",
+		"evidence": {
+			"camera": [
+				-14.3500003814697,
+				-6.55000019073486,
+				-30.5499992370605
+			],
+			"direction": [
+				-1.0,
+				0.0,
+				0.0
+			],
+			"height_above_route": 3.45,
+			"mesh": "/root/MatchWorld/CinderCrypt/Architecture/StonePassage_ossuary_loop/Stone-arch_ossuary_loop_2",
+			"normal": [
+				-0.999880075454712,
+				0.00644234893843532,
+				-0.0140842692926526
+			]
+		},
+		"id": "DOOR098",
+		"position": [
+			-14.6609649658203,
+			-6.55000019073486,
+			-30.5499992370605
+		]
+	},
+	{
+		"area": "node:bay",
+		"evidence": {
+			"camera": [
+				-14.3500003814697,
+				-9.55000019073486,
+				-30.0
+			],
+			"direction": [
+				-1.0,
+				0.0,
+				0.0
+			],
+			"height_above_route": 0.45,
+			"mesh": "/root/MatchWorld/CinderCrypt/Architecture/StonePassage_node_-18_-10_-30/Stone-stone_node_-18_-10_-30_2",
+			"normal": [
+				0.999003350734711,
+				0.0243760347366333,
+				-0.0373908840119839
+			]
+		},
+		"id": "DOOR099",
+		"position": [
+			-20.1945552825928,
+			-9.55000019073486,
+			-30.0
+		]
+	},
+	{
+		"area": "node:bay",
+		"evidence": {
+			"camera": [
+				-14.3500003814697,
+				-8.94999980926514,
+				-30.0
+			],
+			"direction": [
+				-1.0,
+				0.0,
+				0.0
+			],
+			"height_above_route": 1.05,
+			"mesh": "/root/MatchWorld/CinderCrypt/Architecture/StonePassage_node_-18_-10_-30/Stone-stone_node_-18_-10_-30_2",
+			"normal": [
+				0.999235451221466,
+				0.0319370962679386,
+				0.0225521866232157
+			]
+		},
+		"id": "DOOR100",
+		"position": [
+			-20.1968593597412,
+			-8.94999980926514,
+			-30.0
+		]
+	},
+	{
+		"area": "node:bay",
+		"evidence": {
+			"camera": [
+				-14.3500003814697,
+				-8.35000038146973,
+				-30.0
+			],
+			"direction": [
+				-1.0,
+				0.0,
+				0.0
+			],
+			"height_above_route": 1.65,
+			"mesh": "/root/MatchWorld/CinderCrypt/Architecture/StonePassage_node_-18_-10_-30/Stone-stone_node_-18_-10_-30_2",
+			"normal": [
+				0.996708273887634,
+				-0.0547393038868904,
+				0.0598021373152733
+			]
+		},
+		"id": "DOOR101",
+		"position": [
+			-20.2021675109863,
+			-8.35000038146973,
+			-30.0
+		]
+	},
+	{
+		"area": "node:bay",
+		"evidence": {
+			"camera": [
+				-14.3500003814697,
+				-7.75,
+				-30.0
+			],
+			"direction": [
+				-1.0,
+				0.0,
+				0.0
+			],
+			"height_above_route": 2.25,
+			"mesh": "/root/MatchWorld/CinderCrypt/Architecture/StonePassage_node_-18_-10_-30/Stone-stone_node_-18_-10_-30_2",
+			"normal": [
+				0.996466934680939,
+				-0.0762333571910858,
+				-0.0352451838552952
+			]
+		},
+		"id": "DOOR102",
+		"position": [
+			-20.1883773803711,
+			-7.75,
+			-30.0
+		]
+	},
+	{
+		"area": "node:bay",
+		"evidence": {
+			"camera": [
+				-14.3500003814697,
+				-6.55000019073486,
+				-30.0
+			],
+			"direction": [
+				-1.0,
+				0.0,
+				0.0
+			],
+			"height_above_route": 3.45,
+			"mesh": "/root/MatchWorld/CinderCrypt/Architecture/StonePassage_ossuary_loop/Stone-arch_ossuary_loop_2",
+			"normal": [
+				-0.999937295913696,
+				-0.00370373367331922,
+				0.0105703109875321
+			]
+		},
+		"id": "DOOR103",
+		"position": [
+			-14.6436824798584,
+			-6.55000019073486,
+			-30.0
+		]
+	},
+	{
+		"area": "node:bay",
+		"evidence": {
+			"camera": [
+				-14.3500003814697,
+				-9.55000019073486,
+				-29.4500007629395
+			],
+			"direction": [
+				-1.0,
+				0.0,
+				0.0
+			],
+			"height_above_route": 0.45,
+			"mesh": "/root/MatchWorld/CinderCrypt/Architecture/StonePassage_node_-18_-10_-30/Stone-stone_node_-18_-10_-30_2",
+			"normal": [
+				0.999936819076538,
+				0.000870027055498213,
+				0.0112100495025516
+			]
+		},
+		"id": "DOOR104",
+		"position": [
+			-20.1856842041016,
+			-9.55000019073486,
+			-29.4500007629395
+		]
+	},
+	{
+		"area": "node:bay",
+		"evidence": {
+			"camera": [
+				-14.3500003814697,
+				-8.35000038146973,
+				-29.4500007629395
+			],
+			"direction": [
+				-1.0,
+				0.0,
+				0.0
+			],
+			"height_above_route": 1.65,
+			"mesh": "/root/MatchWorld/CinderCrypt/Architecture/StonePassage_node_-18_-10_-30/Stone-stone_node_-18_-10_-30_2",
+			"normal": [
+				0.998032689094543,
+				0.0626403391361237,
+				-0.00264035910367966
+			]
+		},
+		"id": "DOOR105",
+		"position": [
+			-20.2035522460938,
+			-8.35000038146973,
+			-29.4500007629395
+		]
+	},
+	{
+		"area": "node:bay",
+		"evidence": {
+			"camera": [
+				-14.3500003814697,
+				-7.75,
+				-29.4500007629395
+			],
+			"direction": [
+				-1.0,
+				0.0,
+				0.0
+			],
+			"height_above_route": 2.25,
+			"mesh": "/root/MatchWorld/CinderCrypt/Architecture/StonePassage_node_-18_-10_-30/Stone-stone_node_-18_-10_-30_2",
+			"normal": [
+				0.99974524974823,
+				-0.000355275609763339,
+				-0.0225699245929718
+			]
+		},
+		"id": "DOOR106",
+		"position": [
+			-20.1952934265137,
+			-7.75,
+			-29.4500007629395
+		]
+	},
+	{
+		"area": "node:bay",
+		"evidence": {
+			"camera": [
+				-14.3500003814697,
+				-7.15000009536743,
+				-29.4500007629395
+			],
+			"direction": [
+				-1.0,
+				0.0,
+				0.0
+			],
+			"height_above_route": 2.85,
+			"mesh": "/root/MatchWorld/CinderCrypt/Architecture/StonePassage_node_-18_-10_-30/Stone-stone_node_-18_-10_-30_2",
+			"normal": [
+				0.444889187812805,
+				0.128928378224373,
+				0.886256814002991
+			]
+		},
+		"id": "DOOR107",
+		"position": [
+			-20.2207794189453,
+			-7.15000009536743,
+			-29.4500007629395
+		]
+	},
+	{
+		"area": "node:bay",
+		"evidence": {
+			"camera": [
+				-14.3500003814697,
+				-6.55000019073486,
+				-29.4500007629395
+			],
+			"direction": [
+				-1.0,
+				0.0,
+				0.0
+			],
+			"height_above_route": 3.45,
+			"mesh": "/root/MatchWorld/CinderCrypt/Architecture/StonePassage_ossuary_loop/Stone-arch_ossuary_loop_2",
+			"normal": [
+				0.999732434749603,
+				0.0222251005470753,
+				-0.00641919765621424
+			]
+		},
+		"id": "DOOR108",
+		"position": [
+			-14.632453918457,
+			-6.55000019073486,
+			-29.4500007629395
+		]
+	},
+	{
+		"area": "node:bay",
+		"evidence": {
+			"camera": [
+				-10.5900001525879,
+				-17.9500007629395,
+				25.8699989318848
+			],
+			"direction": [
+				-0.800000071525574,
+				0.0,
+				-0.599999904632568
+			],
+			"height_above_route": 1.05,
+			"mesh": "/root/MatchWorld/CinderCrypt/Architecture/StonePassage_nave/Stone-stone_nave_11",
+			"normal": [
+				-0.0614080093801022,
+				-0.0384630523622036,
+				0.99737137556076
+			]
+		},
+		"id": "DOOR109",
+		"position": [
+			-16.2803153991699,
+			-17.9500007629395,
+			21.6022644042969
+		]
+	},
+	{
+		"area": "node:bay",
+		"evidence": {
+			"camera": [
+				-10.5900001525879,
+				-17.3500003814697,
+				25.8699989318848
+			],
+			"direction": [
+				-0.800000071525574,
+				0.0,
+				-0.599999904632568
+			],
+			"height_above_route": 1.65,
+			"mesh": "/root/MatchWorld/CinderCrypt/Architecture/StonePassage_nave/Stone-stone_nave_11",
+			"normal": [
+				-0.0212535988539457,
+				0.0300049968063831,
+				0.999323785305023
+			]
+		},
+		"id": "DOOR110",
+		"position": [
+			-16.2683086395264,
+			-17.3500003814697,
+			21.6112670898438
+		]
+	},
+	{
+		"area": "node:bay",
+		"evidence": {
+			"camera": [
+				-10.5900001525879,
+				-16.75,
+				25.8699989318848
+			],
+			"direction": [
+				-0.800000071525574,
+				0.0,
+				-0.599999904632568
+			],
+			"height_above_route": 2.25,
+			"mesh": "/root/MatchWorld/CinderCrypt/Architecture/StonePassage_nave/Stone-stone_nave_11",
+			"normal": [
+				0.101271353662014,
+				-0.0577233172953129,
+				0.993182837963104
+			]
+		},
+		"id": "DOOR111",
+		"position": [
+			-16.2856101989746,
+			-16.75,
+			21.5982913970947
+		]
+	},
+	{
+		"area": "node:bay",
+		"evidence": {
+			"camera": [
+				-10.5900001525879,
+				-16.1499996185303,
+				25.8699989318848
+			],
+			"direction": [
+				-0.800000071525574,
+				0.0,
+				-0.599999904632568
+			],
+			"height_above_route": 2.85,
+			"mesh": "/root/MatchWorld/CinderCrypt/Architecture/StonePassage_nave/Stone-arch_nave_12",
+			"normal": [
+				-0.046439491212368,
+				0.771158993244171,
+				-0.634946584701538
+			]
+		},
+		"id": "DOOR112",
+		"position": [
+			-15.7085771560669,
+			-16.1499996185303,
+			22.0310668945312
+		]
+	},
+	{
+		"area": "node:bay",
+		"evidence": {
+			"camera": [
+				-10.9200000762939,
+				-18.5499992370605,
+				26.3099994659424
+			],
+			"direction": [
+				-0.800000071525574,
+				0.0,
+				-0.599999904632568
+			],
+			"height_above_route": 0.45,
+			"mesh": "/root/MatchWorld/CinderCrypt/Architecture/StonePassage_nave/Stone-flag_nave_9",
+			"normal": [
+				0.80220639705658,
+				0.00170167430769652,
+				0.597044408321381
+			]
+		},
+		"id": "DOOR113",
+		"position": [
+			-11.996618270874,
+			-18.5499992370605,
+			25.5025367736816
+		]
+	},
+	{
+		"area": "node:bay",
+		"evidence": {
+			"camera": [
+				-10.9200000762939,
+				-16.1499996185303,
+				26.3099994659424
+			],
+			"direction": [
+				-0.800000071525574,
+				0.0,
+				-0.599999904632568
+			],
+			"height_above_route": 2.85,
+			"mesh": "/root/MatchWorld/CinderCrypt/Architecture/StonePassage_nave/Stone-arch_nave_12",
+			"normal": [
+				0.184925615787506,
+				-0.742992401123047,
+				0.64324551820755
+			]
+		},
+		"id": "DOOR114",
+		"position": [
+			-16.5487499237061,
+			-16.1499996185303,
+			22.0884380340576
+		]
+	},
+	{
+		"area": "node:bay",
+		"evidence": {
+			"camera": [
+				-10.9200000762939,
+				-15.5500001907349,
+				26.3099994659424
+			],
+			"direction": [
+				-0.800000071525574,
+				0.0,
+				-0.599999904632568
+			],
+			"height_above_route": 3.45,
+			"mesh": "/root/MatchWorld/CinderCrypt/Architecture/StonePassage_nave/Stone-arch_nave_12",
+			"normal": [
+				-0.800071835517883,
+				0.0000438913994003087,
+				-0.599904298782349
+			]
+		},
+		"id": "DOOR115",
+		"position": [
+			-15.92005443573,
+			-15.5500001907349,
+			22.5599594116211
+		]
+	},
+	{
+		"area": "node:bay",
+		"evidence": {
+			"camera": [
+				-11.25,
+				-18.5499992370605,
+				26.75
+			],
+			"direction": [
+				-0.800000071525574,
+				0.0,
+				-0.599999904632568
+			],
+			"height_above_route": 0.45,
+			"mesh": "/root/MatchWorld/CinderCrypt/Architecture/StonePassage_nave/Stone-flag_nave_9",
+			"normal": [
+				0.798423290252686,
+				0.193832069635391,
+				-0.570043385028839
+			]
+		},
+		"id": "DOOR116",
+		"position": [
+			-12.3413305282593,
+			-18.5499992370605,
+			25.9315013885498
+		]
+	},
+	{
+		"area": "node:bay",
+		"evidence": {
+			"camera": [
+				-11.25,
+				-15.5500001907349,
+				26.75
+			],
+			"direction": [
+				-0.800000071525574,
+				0.0,
+				-0.599999904632568
+			],
+			"height_above_route": 3.45,
+			"mesh": "/root/MatchWorld/CinderCrypt/Architecture/StonePassage_nave/Stone-arch_nave_12",
+			"normal": [
+				0.80026239156723,
+				-0.0000632679148111492,
+				0.599649965763092
+			]
+		},
+		"id": "DOOR117",
+		"position": [
+			-16.2500648498535,
+			-15.5500001907349,
+			22.9999523162842
+		]
+	},
+	{
+		"area": "node:bay",
+		"evidence": {
+			"camera": [
+				-10.1499996185303,
+				-17.3500003814697,
+				24.5499992370605
+			],
+			"direction": [
+				-1.0,
+				0.0,
+				0.0
+			],
+			"height_above_route": 1.65,
+			"mesh": "/root/MatchWorld/CinderCrypt/Architecture/StonePassage_node_-14_-19_24/Stone-stone_node_-14_-19_24_3",
+			"normal": [
+				0.595348000526428,
+				-0.0599541813135147,
+				-0.801227986812592
+			]
+		},
+		"id": "DOOR118",
+		"position": [
+			-17.2899723052979,
+			-17.3500003814697,
+			24.5499992370605
+		]
+	},
+	{
+		"area": "node:bay",
+		"evidence": {
+			"camera": [
+				-10.1499996185303,
+				-16.75,
+				24.5499992370605
+			],
+			"direction": [
+				-1.0,
+				0.0,
+				0.0
+			],
+			"height_above_route": 2.25,
+			"mesh": "/root/MatchWorld/CinderCrypt/Architecture/StonePassage_node_-14_-19_24/Stone-stone_node_-14_-19_24_3",
+			"normal": [
+				0.543400168418884,
+				-0.160832405090332,
+				-0.823923110961914
+			]
+		},
+		"id": "DOOR119",
+		"position": [
+			-17.2849788665771,
+			-16.75,
+			24.5499992370605
+		]
+	},
+	{
+		"area": "node:bay",
+		"evidence": {
+			"camera": [
+				-10.1499996185303,
+				-16.1499996185303,
+				24.5499992370605
+			],
+			"direction": [
+				-1.0,
+				0.0,
+				0.0
+			],
+			"height_above_route": 2.85,
+			"mesh": "/root/MatchWorld/CinderCrypt/Architecture/StonePassage_node_-14_-19_24/Stone-arch_node_-14_-19_24_5",
+			"normal": [
+				0.605992019176483,
+				-0.538294732570648,
+				0.585672616958618
+			]
+		},
+		"id": "DOOR120",
+		"position": [
+			-17.0080795288086,
+			-16.1499996185303,
+			24.5499992370605
+		]
+	},
+	{
+		"area": "node:bay",
+		"evidence": {
+			"camera": [
+				-10.1499996185303,
+				-15.5500001907349,
+				24.5499992370605
+			],
+			"direction": [
+				-1.0,
+				0.0,
+				0.0
+			],
+			"height_above_route": 3.45,
+			"mesh": "/root/MatchWorld/CinderCrypt/Architecture/StonePassage_node_-14_-19_24/Stone-arch_node_-14_-19_24_5",
+			"normal": [
+				0.393996596336365,
+				-0.874971449375153,
+				0.281410038471222
+			]
+		},
+		"id": "DOOR121",
+		"position": [
+			-16.0141181945801,
+			-15.5500001907349,
+			24.5499992370605
+		]
+	},
+	{
+		"area": "node:portal",
+		"evidence": {
+			"camera": [
+				7.83684396743774,
+				-14.5500001907349,
+				17.2020149230957
+			],
+			"direction": [
+				-0.35112339258194,
+				0.0,
+				0.936329185962677
+			],
+			"height_above_route": 3.45,
+			"mesh": "/root/MatchWorld/CinderCrypt/Architecture/StonePassage_nave/Stone-arch_nave_2",
+			"normal": [
+				0.373861163854599,
+				-0.926966845989227,
+				-0.0309881865978241
+			]
+		},
+		"id": "DOOR122",
+		"position": [
+			5.70736169815063,
+			-14.5500001907349,
+			22.8806343078613
+		]
+	},
+	{
+		"area": "node:portal",
+		"evidence": {
+			"camera": [
+				8.35182571411133,
+				-14.5500001907349,
+				17.3951320648193
+			],
+			"direction": [
+				-0.351123452186584,
+				0.0,
+				0.936329185962677
+			],
+			"height_above_route": 3.45,
+			"mesh": "/root/MatchWorld/CinderCrypt/Architecture/StonePassage_nave/Stone-arch_nave_2",
+			"normal": [
+				0.373763769865036,
+				-0.926697075366974,
+				-0.0391561053693295
+			]
+		},
+		"id": "DOOR123",
+		"position": [
+			5.7070426940918,
+			-14.5500001907349,
+			24.4478855133057
+		]
+	},
+	{
+		"area": "node:bay",
+		"evidence": {
+			"camera": [
+				22.5499992370605,
+				-8.35000038146973,
+				-26.1499996185303
+			],
+			"direction": [
+				0.0,
+				0.0,
+				-1.0
+			],
+			"height_above_route": 1.65,
+			"mesh": "/root/MatchWorld/CinderCrypt/Architecture/StonePassage_node_22_-10_-30/Stone-stone_node_22_-10_-30_1",
+			"normal": [
+				-0.170053794980049,
+				0.0591078363358974,
+				0.983660519123077
+			]
+		},
+		"id": "DOOR124",
+		"position": [
+			22.5499992370605,
+			-8.35000038146973,
+			-32.3601875305176
+		]
+	},
+	{
+		"area": "node:bay",
+		"evidence": {
+			"camera": [
+				22.5499992370605,
+				-7.75,
+				-26.1499996185303
+			],
+			"direction": [
+				0.0,
+				0.0,
+				-1.0
+			],
+			"height_above_route": 2.25,
+			"mesh": "/root/MatchWorld/CinderCrypt/Architecture/StonePassage_node_22_-10_-30/Stone-stone_node_22_-10_-30_1",
+			"normal": [
+				0.0104659041389823,
+				0.0447476916015148,
+				0.998943507671356
+			]
+		},
+		"id": "DOOR125",
+		"position": [
+			22.5499992370605,
+			-7.75,
+			-32.3539390563965
+		]
+	},
+	{
+		"area": "node:bay",
+		"evidence": {
+			"camera": [
+				22.5499992370605,
+				-7.15000009536743,
+				-26.1499996185303
+			],
+			"direction": [
+				0.0,
+				0.0,
+				-1.0
+			],
+			"height_above_route": 2.85,
+			"mesh": "/root/MatchWorld/CinderCrypt/Architecture/StonePassage_node_22_-10_-30/Stone-stone_node_22_-10_-30_1",
+			"normal": [
+				-0.0738332644104958,
+				0.0296889562159777,
+				0.996828615665436
+			]
+		},
+		"id": "DOOR126",
+		"position": [
+			22.5499992370605,
+			-7.15000009536743,
+			-32.3574752807617
+		]
+	},
+	{
+		"area": "node:bay",
+		"evidence": {
+			"camera": [
+				22.5499992370605,
+				-6.55000019073486,
+				-26.1499996185303
+			],
+			"direction": [
+				0.0,
+				0.0,
+				-1.0
+			],
+			"height_above_route": 3.45,
+			"mesh": "/root/MatchWorld/CinderCrypt/Architecture/StonePassage_node_22_-10_-30/Stone-stone_node_22_-10_-30_1",
+			"normal": [
+				-0.117484770715237,
+				0.0243623629212379,
+				0.992775797843933
+			]
+		},
+		"id": "DOOR127",
+		"position": [
+			22.5499992370605,
+			-6.55000019073486,
+			-32.3634910583496
+		]
+	},
+	{
+		"area": "node:bay",
+		"evidence": {
+			"camera": [
+				22.0,
+				-9.55000019073486,
+				-26.1499996185303
+			],
+			"direction": [
+				0.0,
+				0.0,
+				-1.0
+			],
+			"height_above_route": 0.45,
+			"mesh": "/root/MatchWorld/CinderCrypt/Architecture/StonePassage_node_22_-10_-30/Stone-stone_node_22_-10_-30_1",
+			"normal": [
+				-0.0993585959076881,
+				-0.0621561147272587,
+				0.993108510971069
+			]
+		},
+		"id": "DOOR128",
+		"position": [
+			22.0,
+			-9.55000019073486,
+			-32.4088897705078
+		]
+	},
+	{
+		"area": "node:bay",
+		"evidence": {
+			"camera": [
+				22.0,
+				-8.94999980926514,
+				-26.1499996185303
+			],
+			"direction": [
+				0.0,
+				0.0,
+				-1.0
+			],
+			"height_above_route": 1.05,
+			"mesh": "/root/MatchWorld/CinderCrypt/Architecture/StonePassage_node_22_-10_-30/Stone-stone_node_22_-10_-30_1",
+			"normal": [
+				-0.121541023254395,
+				-0.018468614667654,
+				0.992414593696594
+			]
+		},
+		"id": "DOOR129",
+		"position": [
+			22.0,
+			-8.94999980926514,
+			-32.4173049926758
+		]
+	},
+	{
+		"area": "node:bay",
+		"evidence": {
+			"camera": [
+				22.0,
+				-8.35000038146973,
+				-26.1499996185303
+			],
+			"direction": [
+				0.0,
+				0.0,
+				-1.0
+			],
+			"height_above_route": 1.65,
+			"mesh": "/root/MatchWorld/CinderCrypt/Architecture/StonePassage_node_22_-10_-30/Stone-stone_node_22_-10_-30_1",
+			"normal": [
+				-0.0804142206907272,
+				0.0141985677182674,
+				0.99666041135788
+			]
+		},
+		"id": "DOOR130",
+		"position": [
+			22.0,
+			-8.35000038146973,
+			-32.4172744750977
+		]
+	},
+	{
+		"area": "node:bay",
+		"evidence": {
+			"camera": [
+				22.0,
+				-7.75,
+				-26.1499996185303
+			],
+			"direction": [
+				0.0,
+				0.0,
+				-1.0
+			],
+			"height_above_route": 2.25,
+			"mesh": "/root/MatchWorld/CinderCrypt/Architecture/StonePassage_node_22_-10_-30/Stone-stone_node_22_-10_-30_1",
+			"normal": [
+				-0.115065060555935,
+				-0.0363714061677456,
+				0.992691874504089
+			]
+		},
+		"id": "DOOR131",
+		"position": [
+			22.0,
+			-7.75,
+			-32.4043731689453
+		]
+	},
+	{
+		"area": "node:bay",
+		"evidence": {
+			"camera": [
+				22.0,
+				-6.55000019073486,
+				-26.1499996185303
+			],
+			"direction": [
+				0.0,
+				0.0,
+				-1.0
+			],
+			"height_above_route": 3.45,
+			"mesh": "/root/MatchWorld/CinderCrypt/Architecture/StonePassage_node_22_-10_-30/Stone-stone_node_22_-10_-30_1",
+			"normal": [
+				-0.128143444657326,
+				0.0520959235727787,
+				0.990386426448822
+			]
+		},
+		"id": "DOOR132",
+		"position": [
+			22.0,
+			-6.55000019073486,
+			-32.4064331054688
+		]
+	},
+	{
+		"area": "node:bay",
+		"evidence": {
+			"camera": [
+				21.4500007629395,
+				-9.55000019073486,
+				-26.1499996185303
+			],
+			"direction": [
+				0.0,
+				0.0,
+				-1.0
+			],
+			"height_above_route": 0.45,
+			"mesh": "/root/MatchWorld/CinderCrypt/Architecture/StonePassage_node_22_-10_-30/Stone-stone_node_22_-10_-30_1",
+			"normal": [
+				-0.104122065007687,
+				0.0140710128471255,
+				0.994464993476868
+			]
+		},
+		"id": "DOOR133",
+		"position": [
+			21.4500007629395,
+			-9.55000019073486,
+			-32.4545211791992
+		]
+	},
+	{
+		"area": "node:bay",
+		"evidence": {
+			"camera": [
+				21.4500007629395,
+				-8.94999980926514,
+				-26.1499996185303
+			],
+			"direction": [
+				0.0,
+				0.0,
+				-1.0
+			],
+			"height_above_route": 1.05,
+			"mesh": "/root/MatchWorld/CinderCrypt/Architecture/StonePassage_node_22_-10_-30/Stone-stone_node_22_-10_-30_1",
+			"normal": [
+				-0.021645637229085,
+				-0.172757729887962,
+				0.98472648859024
+			]
+		},
+		"id": "DOOR134",
+		"position": [
+			21.4500007629395,
+			-8.94999980926514,
+			-32.4633369445801
+		]
+	},
+	{
+		"area": "node:bay",
+		"evidence": {
+			"camera": [
+				21.4500007629395,
+				-7.75,
+				-26.1499996185303
+			],
+			"direction": [
+				0.0,
+				0.0,
+				-1.0
+			],
+			"height_above_route": 2.25,
+			"mesh": "/root/MatchWorld/CinderCrypt/Architecture/StonePassage_node_22_-10_-30/Stone-stone_node_22_-10_-30_1",
+			"normal": [
+				-0.0926202163100243,
+				0.145522594451904,
+				0.985009968280792
+			]
+		},
+		"id": "DOOR135",
+		"position": [
+			21.4500007629395,
+			-7.75,
+			-32.4727821350098
+		]
+	},
+	{
+		"area": "node:bay",
+		"evidence": {
+			"camera": [
+				21.4500007629395,
+				-7.15000009536743,
+				-26.1499996185303
+			],
+			"direction": [
+				0.0,
+				0.0,
+				-1.0
+			],
+			"height_above_route": 2.85,
+			"mesh": "/root/MatchWorld/CinderCrypt/Architecture/StonePassage_node_22_-10_-30/Stone-stone_node_22_-10_-30_1",
+			"normal": [
+				-0.106275781989098,
+				0.0147953657433391,
+				0.994226634502411
+			]
+		},
+		"id": "DOOR136",
+		"position": [
+			21.4500007629395,
+			-7.15000009536743,
+			-32.4660720825195
+		]
+	},
+	{
+		"area": "node:bay",
+		"evidence": {
+			"camera": [
+				21.4500007629395,
+				-6.55000019073486,
+				-26.1499996185303
+			],
+			"direction": [
+				0.0,
+				0.0,
+				-1.0
+			],
+			"height_above_route": 3.45,
+			"mesh": "/root/MatchWorld/CinderCrypt/Architecture/StonePassage_node_22_-10_-30/Stone-stone_node_22_-10_-30_1",
+			"normal": [
+				-0.0921061560511589,
+				-0.0342780239880085,
+				0.995159029960632
+			]
+		},
+		"id": "DOOR137",
+		"position": [
+			21.4500007629395,
+			-6.55000019073486,
+			-32.4542465209961
+		]
+	},
+	{
+		"area": "node:bay",
+		"evidence": {
+			"camera": [
+				25.6499996185303,
+				-9.55000019073486,
+				9.44999980926514
+			],
+			"direction": [
+				-1.0,
+				0.0,
+				0.0
+			],
+			"height_above_route": 0.45,
+			"mesh": "/root/MatchWorld/CinderCrypt/Architecture/StonePassage_node_22_-10_10/Stone-stone_node_22_-10_10_2",
+			"normal": [
+				0.998481035232544,
+				-0.0172957945615053,
+				0.0523118749260902
+			]
+		},
+		"id": "DOOR138",
+		"position": [
+			19.7966365814209,
+			-9.55000019073486,
+			9.44999980926514
+		]
+	},
+	{
+		"area": "node:bay",
+		"evidence": {
+			"camera": [
+				25.6499996185303,
+				-8.94999980926514,
+				9.44999980926514
+			],
+			"direction": [
+				-1.0,
+				0.0,
+				0.0
+			],
+			"height_above_route": 1.05,
+			"mesh": "/root/MatchWorld/CinderCrypt/Architecture/StonePassage_node_22_-10_10/Stone-stone_node_22_-10_10_2",
+			"normal": [
+				0.998706996440887,
+				0.00268155080266297,
+				-0.0507659241557121
+			]
+		},
+		"id": "DOOR139",
+		"position": [
+			19.8091678619385,
+			-8.94999980926514,
+			9.44999980926514
+		]
+	},
+	{
+		"area": "node:bay",
+		"evidence": {
+			"camera": [
+				25.6499996185303,
+				-8.35000038146973,
+				9.44999980926514
+			],
+			"direction": [
+				-1.0,
+				0.0,
+				0.0
+			],
+			"height_above_route": 1.65,
+			"mesh": "/root/MatchWorld/CinderCrypt/Architecture/StonePassage_node_22_-10_10/Stone-stone_node_22_-10_10_2",
+			"normal": [
+				0.997542023658752,
+				0.0314622595906258,
+				0.0626112148165703
+			]
+		},
+		"id": "DOOR140",
+		"position": [
+			19.8085556030273,
+			-8.35000038146973,
+			9.44999980926514
+		]
+	},
+	{
+		"area": "node:bay",
+		"evidence": {
+			"camera": [
+				25.6499996185303,
+				-7.75,
+				9.44999980926514
+			],
+			"direction": [
+				-1.0,
+				0.0,
+				0.0
+			],
+			"height_above_route": 2.25,
+			"mesh": "/root/MatchWorld/CinderCrypt/Architecture/StonePassage_node_22_-10_10/Stone-stone_node_22_-10_10_2",
+			"normal": [
+				0.998894095420837,
+				-0.0369373373687267,
+				-0.0290909111499786
+			]
+		},
+		"id": "DOOR141",
+		"position": [
+			19.7910537719727,
+			-7.75,
+			9.44999980926514
+		]
+	},
+	{
+		"area": "node:bay",
+		"evidence": {
+			"camera": [
+				25.6499996185303,
+				-7.15000009536743,
+				9.44999980926514
+			],
+			"direction": [
+				-1.0,
+				0.0,
+				0.0
+			],
+			"height_above_route": 2.85,
+			"mesh": "/root/MatchWorld/CinderCrypt/Architecture/StonePassage_node_22_-10_10/Stone-stone_node_22_-10_10_2",
+			"normal": [
+				0.999439716339111,
+				0.0142576294019818,
+				-0.0302830748260021
+			]
+		},
+		"id": "DOOR142",
+		"position": [
+			19.7870273590088,
+			-7.15000009536743,
+			9.44999980926514
+		]
+	},
+	{
+		"area": "node:bay",
+		"evidence": {
+			"camera": [
+				25.6499996185303,
+				-9.55000019073486,
+				10.0
+			],
+			"direction": [
+				-1.0,
+				0.0,
+				0.0
+			],
+			"height_above_route": 0.45,
+			"mesh": "/root/MatchWorld/CinderCrypt/Architecture/StonePassage_node_22_-10_10/Stone-stone_node_22_-10_10_2",
+			"normal": [
+				0.991616249084473,
+				0.119515858590603,
+				-0.0491242185235023
+			]
+		},
+		"id": "DOOR143",
+		"position": [
+			19.7969017028809,
+			-9.55000019073486,
+			10.0
+		]
+	},
+	{
+		"area": "node:bay",
+		"evidence": {
+			"camera": [
+				25.6499996185303,
+				-8.94999980926514,
+				10.0
+			],
+			"direction": [
+				-1.0,
+				0.0,
+				0.0
+			],
+			"height_above_route": 1.05,
+			"mesh": "/root/MatchWorld/CinderCrypt/Architecture/StonePassage_node_22_-10_10/Stone-stone_node_22_-10_10_2",
+			"normal": [
+				0.845492601394653,
+				-0.505442500114441,
+				0.172250106930733
+			]
+		},
+		"id": "DOOR144",
+		"position": [
+			19.8046722412109,
+			-8.94999980926514,
+			10.0
+		]
+	},
+	{
+		"area": "node:bay",
+		"evidence": {
+			"camera": [
+				25.6499996185303,
+				-8.35000038146973,
+				10.0
+			],
+			"direction": [
+				-1.0,
+				0.0,
+				0.0
+			],
+			"height_above_route": 1.65,
+			"mesh": "/root/MatchWorld/CinderCrypt/Architecture/StonePassage_node_22_-10_10/Stone-stone_node_22_-10_10_2",
+			"normal": [
+				0.980602025985718,
+				0.128888756036758,
+				0.147673413157463
+			]
+		},
+		"id": "DOOR145",
+		"position": [
+			19.8044929504395,
+			-8.35000038146973,
+			10.0
+		]
+	},
+	{
+		"area": "node:bay",
+		"evidence": {
+			"camera": [
+				25.6499996185303,
+				-7.75,
+				10.0
+			],
+			"direction": [
+				-1.0,
+				0.0,
+				0.0
+			],
+			"height_above_route": 2.25,
+			"mesh": "/root/MatchWorld/CinderCrypt/Architecture/StonePassage_node_22_-10_10/Stone-stone_node_22_-10_10_2",
+			"normal": [
+				0.949105679988861,
+				-0.189177110791206,
+				0.251814395189285
+			]
+		},
+		"id": "DOOR146",
+		"position": [
+			19.7741470336914,
+			-7.75,
+			10.0
+		]
+	},
+	{
+		"area": "node:bay",
+		"evidence": {
+			"camera": [
+				25.6499996185303,
+				-7.15000009536743,
+				10.0
+			],
+			"direction": [
+				-1.0,
+				0.0,
+				0.0
+			],
+			"height_above_route": 2.85,
+			"mesh": "/root/MatchWorld/CinderCrypt/Architecture/StonePassage_node_22_-10_10/Stone-stone_node_22_-10_10_2",
+			"normal": [
+				0.999607086181641,
+				-0.0258281249552965,
+				0.0108958100900054
+			]
+		},
+		"id": "DOOR147",
+		"position": [
+			19.787712097168,
+			-7.15000009536743,
+			10.0
+		]
+	},
+	{
+		"area": "node:bay",
+		"evidence": {
+			"camera": [
+				25.6499996185303,
+				-9.55000019073486,
+				10.5500001907349
+			],
+			"direction": [
+				-1.0,
+				0.0,
+				0.0
+			],
+			"height_above_route": 0.45,
+			"mesh": "/root/MatchWorld/CinderCrypt/Architecture/StonePassage_node_22_-10_10/Stone-stone_node_22_-10_10_2",
+			"normal": [
+				0.999893069267273,
+				0.00673585664480925,
+				-0.0129831470549107
+			]
+		},
+		"id": "DOOR148",
+		"position": [
+			19.7936096191406,
+			-9.55000019073486,
+			10.5500001907349
+		]
+	},
+	{
+		"area": "node:bay",
+		"evidence": {
+			"camera": [
+				25.6499996185303,
+				-8.94999980926514,
+				10.5500001907349
+			],
+			"direction": [
+				-1.0,
+				0.0,
+				0.0
+			],
+			"height_above_route": 1.05,
+			"mesh": "/root/MatchWorld/CinderCrypt/Architecture/StonePassage_node_22_-10_10/Stone-stone_node_22_-10_10_2",
+			"normal": [
+				0.944444239139557,
+				-0.310884892940521,
+				-0.106657013297081
+			]
+		},
+		"id": "DOOR149",
+		"position": [
+			19.7913074493408,
+			-8.94999980926514,
+			10.5500001907349
+		]
+	},
+	{
+		"area": "node:bay",
+		"evidence": {
+			"camera": [
+				25.6499996185303,
+				-8.35000038146973,
+				10.5500001907349
+			],
+			"direction": [
+				-1.0,
+				0.0,
+				0.0
+			],
+			"height_above_route": 1.65,
+			"mesh": "/root/MatchWorld/CinderCrypt/Architecture/StonePassage_node_22_-10_10/Stone-stone_node_22_-10_10_2",
+			"normal": [
+				0.994755744934082,
+				-0.0413701385259628,
+				0.0935391932725906
+			]
+		},
+		"id": "DOOR150",
+		"position": [
+			19.7900257110596,
+			-8.35000038146973,
+			10.5500001907349
+		]
+	},
+	{
+		"area": "node:bay",
+		"evidence": {
+			"camera": [
+				25.6499996185303,
+				-7.75,
+				10.5500001907349
+			],
+			"direction": [
+				-1.0,
+				0.0,
+				0.0
+			],
+			"height_above_route": 2.25,
+			"mesh": "/root/MatchWorld/CinderCrypt/Architecture/StonePassage_node_22_-10_10/Stone-stone_node_22_-10_10_2",
+			"normal": [
+				0.998781740665436,
+				-0.0492139086127281,
+				-0.00360697531141341
+			]
+		},
+		"id": "DOOR151",
+		"position": [
+			19.7984790802002,
+			-7.75,
+			10.5500001907349
+		]
+	},
+	{
+		"area": "node:bay",
+		"evidence": {
+			"camera": [
+				25.6499996185303,
+				-7.15000009536743,
+				10.5500001907349
+			],
+			"direction": [
+				-1.0,
+				0.0,
+				0.0
+			],
+			"height_above_route": 2.85,
+			"mesh": "/root/MatchWorld/CinderCrypt/Architecture/StonePassage_node_22_-10_10/Stone-stone_node_22_-10_10_2",
+			"normal": [
+				0.998940348625183,
+				-0.0439980961382389,
+				-0.0135020958259702
+			]
+		},
+		"id": "DOOR152",
+		"position": [
+			19.8034896850586,
+			-7.15000009536743,
+			10.5500001907349
+		]
+	},
+	{
+		"area": "node:bay",
+		"evidence": {
+			"camera": [
+				46.5499992370605,
+				-3.54999995231628,
+				-11.3500003814697
+			],
+			"direction": [
+				0.0,
+				0.0,
+				-1.0
+			],
+			"height_above_route": 0.45,
+			"mesh": "/root/MatchWorld/CinderCrypt/Architecture/StonePassage_node_46_-4_-15/Stone-stone_node_46_-4_-15_2",
+			"normal": [
+				-0.0542597882449627,
+				0.00840033870190382,
+				0.998491525650024
+			]
+		},
+		"id": "DOOR153",
+		"position": [
+			46.5499992370605,
+			-3.54999995231628,
+			-17.2050628662109
+		]
+	},
+	{
+		"area": "node:bay",
+		"evidence": {
+			"camera": [
+				46.5499992370605,
+				-2.95000004768372,
+				-11.3500003814697
+			],
+			"direction": [
+				0.0,
+				0.0,
+				-1.0
+			],
+			"height_above_route": 1.05,
+			"mesh": "/root/MatchWorld/CinderCrypt/Architecture/StonePassage_node_46_-4_-15/Stone-stone_node_46_-4_-15_2",
+			"normal": [
+				-0.0528068505227566,
+				0.0468254797160625,
+				0.997506320476532
+			]
+		},
+		"id": "DOOR154",
+		"position": [
+			46.5499992370605,
+			-2.95000004768372,
+			-17.1924514770508
+		]
+	},
+	{
+		"area": "node:bay",
+		"evidence": {
+			"camera": [
+				46.5499992370605,
+				-2.34999990463257,
+				-11.3500003814697
+			],
+			"direction": [
+				0.0,
+				0.0,
+				-1.0
+			],
+			"height_above_route": 1.65,
+			"mesh": "/root/MatchWorld/CinderCrypt/Architecture/StonePassage_node_46_-4_-15/Stone-stone_node_46_-4_-15_2",
+			"normal": [
+				0.0307923704385757,
+				-0.020933710038662,
+				0.999306559562683
+			]
+		},
+		"id": "DOOR155",
+		"position": [
+			46.5499992370605,
+			-2.34999990463257,
+			-17.198917388916
+		]
+	},
+	{
+		"area": "node:bay",
+		"evidence": {
+			"camera": [
+				46.5499992370605,
+				-1.75,
+				-11.3500003814697
+			],
+			"direction": [
+				0.0,
+				0.0,
+				-1.0
+			],
+			"height_above_route": 2.25,
+			"mesh": "/root/MatchWorld/CinderCrypt/Architecture/StonePassage_node_46_-4_-15/Stone-stone_node_46_-4_-15_2",
+			"normal": [
+				0.0727675929665565,
+				0.0229374747723341,
+				0.997085154056549
+			]
+		},
+		"id": "DOOR156",
+		"position": [
+			46.5499992370605,
+			-1.75,
+			-17.189266204834
+		]
+	},
+	{
+		"area": "node:bay",
+		"evidence": {
+			"camera": [
+				46.5499992370605,
+				-1.15000009536743,
+				-11.3500003814697
+			],
+			"direction": [
+				0.0,
+				0.0,
+				-1.0
+			],
+			"height_above_route": 2.85,
+			"mesh": "/root/MatchWorld/CinderCrypt/Architecture/StonePassage_node_46_-4_-15/Stone-stone_node_46_-4_-15_2",
+			"normal": [
+				-0.120467141270638,
+				-0.00365221640095115,
+				0.992710649967194
+			]
+		},
+		"id": "DOOR157",
+		"position": [
+			46.5499992370605,
+			-1.15000009536743,
+			-17.1912803649902
+		]
+	},
+	{
+		"area": "node:bay",
+		"evidence": {
+			"camera": [
+				46.0,
+				-3.54999995231628,
+				-11.3500003814697
+			],
+			"direction": [
+				0.0,
+				0.0,
+				-1.0
+			],
+			"height_above_route": 0.45,
+			"mesh": "/root/MatchWorld/CinderCrypt/Architecture/StonePassage_node_46_-4_-15/Stone-stone_node_46_-4_-15_2",
+			"normal": [
+				-0.0409001745283604,
+				-0.0814746171236038,
+				0.995835900306702
+			]
+		},
+		"id": "DOOR158",
+		"position": [
+			46.0,
+			-3.54999995231628,
+			-17.2082061767578
+		]
+	},
+	{
+		"area": "node:bay",
+		"evidence": {
+			"camera": [
+				46.0,
+				-2.95000004768372,
+				-11.3500003814697
+			],
+			"direction": [
+				0.0,
+				0.0,
+				-1.0
+			],
+			"height_above_route": 1.05,
+			"mesh": "/root/MatchWorld/CinderCrypt/Architecture/StonePassage_node_46_-4_-15/Stone-stone_node_46_-4_-15_2",
+			"normal": [
+				-0.110403634607792,
+				0.00115057290531695,
+				0.993886172771454
+			]
+		},
+		"id": "DOOR159",
+		"position": [
+			46.0,
+			-2.95000004768372,
+			-17.2020263671875
+		]
+	},
+	{
+		"area": "node:bay",
+		"evidence": {
+			"camera": [
+				46.0,
+				-2.34999990463257,
+				-11.3500003814697
+			],
+			"direction": [
+				0.0,
+				0.0,
+				-1.0
+			],
+			"height_above_route": 1.65,
+			"mesh": "/root/MatchWorld/CinderCrypt/Architecture/StonePassage_node_46_-4_-15/Stone-stone_node_46_-4_-15_2",
+			"normal": [
+				-0.0703200995922089,
+				-0.00890799425542355,
+				0.997484743595123
+			]
+		},
+		"id": "DOOR160",
+		"position": [
+			46.0,
+			-2.34999990463257,
+			-17.2022285461426
+		]
+	},
+	{
+		"area": "node:bay",
+		"evidence": {
+			"camera": [
+				46.0,
+				-1.75,
+				-11.3500003814697
+			],
+			"direction": [
+				0.0,
+				0.0,
+				-1.0
+			],
+			"height_above_route": 2.25,
+			"mesh": "/root/MatchWorld/CinderCrypt/Architecture/StonePassage_node_46_-4_-15/Stone-stone_node_46_-4_-15_2",
+			"normal": [
+				0.0620625391602516,
+				0.00994825176894665,
+				0.998022735118866
+			]
+		},
+		"id": "DOOR161",
+		"position": [
+			46.0,
+			-1.75,
+			-17.2021999359131
+		]
+	},
+	{
+		"area": "node:bay",
+		"evidence": {
+			"camera": [
+				46.0,
+				-1.15000009536743,
+				-11.3500003814697
+			],
+			"direction": [
+				0.0,
+				0.0,
+				-1.0
+			],
+			"height_above_route": 2.85,
+			"mesh": "/root/MatchWorld/CinderCrypt/Architecture/StonePassage_node_46_-4_-15/Stone-stone_node_46_-4_-15_2",
+			"normal": [
+				-0.0299462769180536,
+				0.0598573498427868,
+				0.99775767326355
+			]
+		},
+		"id": "DOOR162",
+		"position": [
+			46.0,
+			-1.15000009536743,
+			-17.2045459747314
+		]
+	},
+	{
+		"area": "node:bay",
+		"evidence": {
+			"camera": [
+				45.4500007629395,
+				-2.95000004768372,
+				-11.3500003814697
+			],
+			"direction": [
+				0.0,
+				0.0,
+				-1.0
+			],
+			"height_above_route": 1.05,
+			"mesh": "/root/MatchWorld/CinderCrypt/Architecture/StonePassage_node_46_-4_-15/Stone-stone_node_46_-4_-15_2",
+			"normal": [
+				-0.0285286754369736,
+				0.00565899256616831,
+				0.999576985836029
+			]
+		},
+		"id": "DOOR163",
+		"position": [
+			45.4500007629395,
+			-2.95000004768372,
+			-17.2035808563232
+		]
+	},
+	{
+		"area": "node:bay",
+		"evidence": {
+			"camera": [
+				45.4500007629395,
+				-1.75,
+				-11.3500003814697
+			],
+			"direction": [
+				0.0,
+				0.0,
+				-1.0
+			],
+			"height_above_route": 2.25,
+			"mesh": "/root/MatchWorld/CinderCrypt/Architecture/StonePassage_node_46_-4_-15/Stone-stone_node_46_-4_-15_2",
+			"normal": [
+				0.056798804551363,
+				0.00449973298236728,
+				0.998375535011292
+			]
+		},
+		"id": "DOOR164",
+		"position": [
+			45.4500007629395,
+			-1.75,
+			-17.2131595611572
+		]
+	},
+	{
+		"area": "node:bay",
+		"evidence": {
+			"camera": [
+				45.4500007629395,
+				-1.15000009536743,
+				-11.3500003814697
+			],
+			"direction": [
+				0.0,
+				0.0,
+				-1.0
+			],
+			"height_above_route": 2.85,
+			"mesh": "/root/MatchWorld/CinderCrypt/Architecture/StonePassage_node_46_-4_-15/Stone-stone_node_46_-4_-15_2",
+			"normal": [
+				0.0127973854541779,
+				-0.00314699299633503,
+				0.999913156032562
+			]
+		},
+		"id": "DOOR165",
+		"position": [
+			45.4500007629395,
+			-1.15000009536743,
+			-17.2126960754395
+		]
+	},
+	{
+		"area": "node:bay",
+		"evidence": {
+			"camera": [
+				45.4500007629395,
+				-0.549999952316284,
+				-11.3500003814697
+			],
+			"direction": [
+				0.0,
+				0.0,
+				-1.0
+			],
+			"height_above_route": 3.45,
+			"mesh": "/root/MatchWorld/CinderCrypt/Architecture/StonePassage_node_46_-4_-15/Stone-stone_node_46_-4_-15_2",
+			"normal": [
+				-0.0470822416245937,
+				-0.406939774751663,
+				0.91224080324173
+			]
+		},
+		"id": "DOOR166",
+		"position": [
+			45.4500007629395,
+			-0.549999952316284,
+			-17.2176208496094
+		]
+	},
+	{
+		"area": "node:bay",
+		"evidence": {
+			"camera": [
+				42.3499984741211,
+				-3.54999995231628,
+				6.55000019073486
+			],
+			"direction": [
+				1.0,
+				0.0,
+				0.0
+			],
+			"height_above_route": 0.45,
+			"mesh": "/root/MatchWorld/CinderCrypt/Architecture/StonePassage_node_46_-4_6/Stone-stone_node_46_-4_6_2",
+			"normal": [
+				-0.993298411369324,
+				0.0496359877288342,
+				0.104376778006554
+			]
+		},
+		"id": "DOOR167",
+		"position": [
+			48.2174224853516,
+			-3.54999995231628,
+			6.55000019073486
+		]
+	},
+	{
+		"area": "node:bay",
+		"evidence": {
+			"camera": [
+				42.3499984741211,
+				-2.95000004768372,
+				6.55000019073486
+			],
+			"direction": [
+				1.0,
+				0.0,
+				0.0
+			],
+			"height_above_route": 1.05,
+			"mesh": "/root/MatchWorld/CinderCrypt/Architecture/StonePassage_node_46_-4_6/Stone-stone_node_46_-4_6_2",
+			"normal": [
+				-0.998775064945221,
+				-0.0371872372925282,
+				0.032642874866724
+			]
+		},
+		"id": "DOOR168",
+		"position": [
+			48.1870994567871,
+			-2.95000004768372,
+			6.55000019073486
+		]
+	},
+	{
+		"area": "node:bay",
+		"evidence": {
+			"camera": [
+				42.3499984741211,
+				-2.34999990463257,
+				6.55000019073486
+			],
+			"direction": [
+				1.0,
+				0.0,
+				0.0
+			],
+			"height_above_route": 1.65,
+			"mesh": "/root/MatchWorld/CinderCrypt/Architecture/StonePassage_node_46_-4_6/Stone-stone_node_46_-4_6_2",
+			"normal": [
+				-0.98735100030899,
+				-0.147031128406525,
+				0.0593291148543358
+			]
+		},
+		"id": "DOOR169",
+		"position": [
+			48.2187271118164,
+			-2.34999990463257,
+			6.55000019073486
+		]
+	},
+	{
+		"area": "node:bay",
+		"evidence": {
+			"camera": [
+				42.3499984741211,
+				-1.75,
+				6.55000019073486
+			],
+			"direction": [
+				1.0,
+				0.0,
+				0.0
+			],
+			"height_above_route": 2.25,
+			"mesh": "/root/MatchWorld/CinderCrypt/Architecture/StonePassage_node_46_-4_6/Stone-stone_node_46_-4_6_2",
+			"normal": [
+				-0.996668994426727,
+				-0.0789555683732033,
+				-0.0204194821417332
+			]
+		},
+		"id": "DOOR170",
+		"position": [
+			48.2194137573242,
+			-1.75,
+			6.55000019073486
+		]
+	},
+	{
+		"area": "node:bay",
+		"evidence": {
+			"camera": [
+				42.3499984741211,
+				-1.15000009536743,
+				6.55000019073486
+			],
+			"direction": [
+				1.0,
+				0.0,
+				0.0
+			],
+			"height_above_route": 2.85,
+			"mesh": "/root/MatchWorld/CinderCrypt/Architecture/StonePassage_node_46_-4_6/Stone-stone_node_46_-4_6_2",
+			"normal": [
+				-0.998266875743866,
+				-0.0587192364037037,
+				0.00392027059569955
+			]
+		},
+		"id": "DOOR171",
+		"position": [
+			48.1998443603516,
+			-1.15000009536743,
+			6.55000019073486
+		]
+	},
+	{
+		"area": "node:bay",
+		"evidence": {
+			"camera": [
+				42.3499984741211,
+				-0.549999952316284,
+				6.55000019073486
+			],
+			"direction": [
+				1.0,
+				0.0,
+				0.0
+			],
+			"height_above_route": 3.45,
+			"mesh": "/root/MatchWorld/CinderCrypt/Architecture/StonePassage_node_46_-4_6/Stone-stone_node_46_-4_6_2",
+			"normal": [
+				-0.997652590274811,
+				0.0670917928218842,
+				0.0137138841673732
+			]
+		},
+		"id": "DOOR172",
+		"position": [
+			48.2064170837402,
+			-0.549999952316284,
+			6.55000019073486
+		]
+	},
+	{
+		"area": "node:bay",
+		"evidence": {
+			"camera": [
+				42.3499984741211,
+				-3.54999995231628,
+				6.0
+			],
+			"direction": [
+				1.0,
+				0.0,
+				0.0
+			],
+			"height_above_route": 0.45,
+			"mesh": "/root/MatchWorld/CinderCrypt/Architecture/StonePassage_node_46_-4_6/Stone-stone_node_46_-4_6_2",
+			"normal": [
+				-0.998194873332977,
+				0.0555674433708191,
+				-0.022786159068346
+			]
+		},
+		"id": "DOOR173",
+		"position": [
+			48.1852874755859,
+			-3.54999995231628,
+			6.0
+		]
+	},
+	{
+		"area": "node:bay",
+		"evidence": {
+			"camera": [
+				42.3499984741211,
+				-2.95000004768372,
+				6.0
+			],
+			"direction": [
+				1.0,
+				0.0,
+				0.0
+			],
+			"height_above_route": 1.05,
+			"mesh": "/root/MatchWorld/CinderCrypt/Architecture/StonePassage_node_46_-4_6/Stone-stone_node_46_-4_6_2",
+			"normal": [
+				-0.999457001686096,
+				0.0186093226075172,
+				0.0271933116018772
+			]
+		},
+		"id": "DOOR174",
+		"position": [
+			48.1963729858398,
+			-2.95000004768372,
+			6.0
+		]
+	},
+	{
+		"area": "node:bay",
+		"evidence": {
+			"camera": [
+				42.3499984741211,
+				-2.34999990463257,
+				6.0
+			],
+			"direction": [
+				1.0,
+				0.0,
+				0.0
+			],
+			"height_above_route": 1.65,
+			"mesh": "/root/MatchWorld/CinderCrypt/Architecture/StonePassage_node_46_-4_6/Stone-stone_node_46_-4_6_2",
+			"normal": [
+				-0.996552646160126,
+				-0.0703625604510307,
+				0.0439542271196842
+			]
+		},
+		"id": "DOOR175",
+		"position": [
+			48.1856307983398,
+			-2.34999990463257,
+			6.0
+		]
+	},
+	{
+		"area": "node:bay",
+		"evidence": {
+			"camera": [
+				42.3499984741211,
+				-1.75,
+				6.0
+			],
+			"direction": [
+				1.0,
+				0.0,
+				0.0
+			],
+			"height_above_route": 2.25,
+			"mesh": "/root/MatchWorld/CinderCrypt/Architecture/StonePassage_node_46_-4_6/Stone-stone_node_46_-4_6_2",
+			"normal": [
+				-0.939594089984894,
+				-0.318662613630295,
+				-0.124968372285366
+			]
+		},
+		"id": "DOOR176",
+		"position": [
+			48.2020988464355,
+			-1.75,
+			6.0
+		]
+	},
+	{
+		"area": "node:bay",
+		"evidence": {
+			"camera": [
+				42.3499984741211,
+				-0.549999952316284,
+				6.0
+			],
+			"direction": [
+				1.0,
+				0.0,
+				0.0
+			],
+			"height_above_route": 3.45,
+			"mesh": "/root/MatchWorld/CinderCrypt/Architecture/StonePassage_node_46_-4_6/Stone-stone_node_46_-4_6_2",
+			"normal": [
+				-0.994053423404694,
+				0.108670316636562,
+				0.00697529688477516
+			]
+		},
+		"id": "DOOR177",
+		"position": [
+			48.1980628967285,
+			-0.549999952316284,
+			6.0
+		]
+	},
+	{
+		"area": "node:bay",
+		"evidence": {
+			"camera": [
+				42.3499984741211,
+				-3.54999995231628,
+				5.44999980926514
+			],
+			"direction": [
+				1.0,
+				0.0,
+				0.0
+			],
+			"height_above_route": 0.45,
+			"mesh": "/root/MatchWorld/CinderCrypt/Architecture/StonePassage_node_46_-4_6/Stone-stone_node_46_-4_6_2",
+			"normal": [
+				-0.999855160713196,
+				-0.00731937633827329,
+				0.015365676023066
+			]
+		},
+		"id": "DOOR178",
+		"position": [
+			48.2032012939453,
+			-3.54999995231628,
+			5.44999980926514
+		]
+	},
+	{
+		"area": "node:bay",
+		"evidence": {
+			"camera": [
+				42.3499984741211,
+				-2.34999990463257,
+				5.44999980926514
+			],
+			"direction": [
+				1.0,
+				0.0,
+				0.0
+			],
+			"height_above_route": 1.65,
+			"mesh": "/root/MatchWorld/CinderCrypt/Architecture/StonePassage_node_46_-4_6/Stone-stone_node_46_-4_6_2",
+			"normal": [
+				-0.993560254573822,
+				-0.110205680131912,
+				-0.026319831609726
+			]
+		},
+		"id": "DOOR179",
+		"position": [
+			48.1966781616211,
+			-2.34999990463257,
+			5.44999980926514
+		]
+	},
+	{
+		"area": "node:bay",
+		"evidence": {
+			"camera": [
+				42.3499984741211,
+				-1.75,
+				5.44999980926514
+			],
+			"direction": [
+				1.0,
+				0.0,
+				0.0
+			],
+			"height_above_route": 2.25,
+			"mesh": "/root/MatchWorld/CinderCrypt/Architecture/StonePassage_node_46_-4_6/Stone-stone_node_46_-4_6_2",
+			"normal": [
+				-0.999652564525604,
+				-0.0263570938259363,
+				0.000359539379132912
+			]
+		},
+		"id": "DOOR180",
+		"position": [
+			48.2008972167969,
+			-1.75,
+			5.44999980926514
+		]
+	},
+	{
+		"area": "node:bay",
+		"evidence": {
+			"camera": [
+				42.3499984741211,
+				-1.15000009536743,
+				5.44999980926514
+			],
+			"direction": [
+				1.0,
+				0.0,
+				0.0
+			],
+			"height_above_route": 2.85,
+			"mesh": "/root/MatchWorld/CinderCrypt/Architecture/StonePassage_node_46_-4_6/Stone-stone_node_46_-4_6_2",
+			"normal": [
+				-0.995133459568024,
+				0.0578243583440781,
+				-0.0797857418656349
+			]
+		},
+		"id": "DOOR181",
+		"position": [
+			48.1912422180176,
+			-1.15000009536743,
+			5.44999980926514
+		]
+	},
+	{
+		"area": "node:bay",
+		"evidence": {
+			"camera": [
+				42.3499984741211,
+				-0.549999952316284,
+				5.44999980926514
+			],
+			"direction": [
+				1.0,
+				0.0,
+				0.0
+			],
+			"height_above_route": 3.45,
+			"mesh": "/root/MatchWorld/CinderCrypt/Architecture/StonePassage_node_46_-4_6/Stone-stone_node_46_-4_6_2",
+			"normal": [
+				-0.955983996391296,
+				0.0942811444401741,
+				0.277859032154083
+			]
+		},
+		"id": "DOOR182",
+		"position": [
+			48.1996307373047,
+			-0.549999952316284,
+			5.44999980926514
+		]
+	}
+]

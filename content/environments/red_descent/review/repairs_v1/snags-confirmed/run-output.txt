@@ -1,0 +1,34 @@
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+Metal 4.0 - Forward Mobile - Using Device #0: Apple - Apple M5 Max (Apple9)
+
+BUILD: a726a49 [6ca72acc7009]
+WARNING: Godot 3.x SpatialMaterial remapped parameter not found: specular
+     at: _set (scene/resources/material.cpp:4096)
+     GDScript backtrace (most recent call first):
+         [0] stone_roots (res://gameplay/environment/red_descent_geometry.gd:390)
+         [1] stone_room (res://gameplay/environment/red_descent_geometry.gd:469)
+         [2] build_room (res://gameplay/environment/red_descent_geometry.gd:492)
+         [3] build (res://gameplay/environment/red_descent_geometry.gd:47)
+         [4] _ready (res://gameplay/environment/crypt_dungeon.gd:55)
+         [5] add_map_node (res://gameplay/match_world.gd:186)
+         [6] build_arena (res://gameplay/match_world.gd:164)
+         [7] load_map (res://gameplay/match_world.gd:146)
+         [8] _ready (res://gameplay/match_world.gd:42)
+         [9] run (res://scripts/dungeon_issue_probe.gd:224)
+GENERATED_KIT_PLACED: {}
+RED_DESCENT_GEOMETRY_READY: 17 routes, 13 rooms, 34 lit landmarks, sloping crossings
+MAP: Cinder Crypt (crypt)
+Hosting on UDP 64934
+NET host · build a726a49 [6ca72acc7009]
+NET bolts in flight 0
+DUNGEON_ENCOUNTER_READY: five guards across two vertically separated halls, no replacements
+EXPLORER_MESHES: 5375
+ISSUE_PROBE: E0437 {"arrived":false,"contacts":[{"normal":[1.0,0.0,0.0000000437113882867379],"path":"/root/MatchWorld/CinderCrypt/Architecture/StoneRoom_choir/Collision_choir_9","position":[30.0500049591064,-26.5997428894043,11.9741868972778]}],"failed_goal":30080,"goals":18,"position":[30.4539909362793,-27.1020889282227,11.9739446640015],"reached_goals":17,"ticks":387}
+NET host · build a726a49 [6ca72acc7009]
+NET bolts in flight 0
+ISSUE_PROBE: E0438 {"arrived":false,"contacts":[{"normal":[-0.625373125076294,0.382690221071243,-0.6800417304039],"path":"/root/MatchWorld/CinderCrypt/Architecture/StoneRoom_first_stair_hall/Collision_first_stair_hall_5","position":[38.2442512512207,-7.35060787200928,-38.2442512512207]},{"normal":[-0.215100765228271,0.952608585357666,-0.215101212263107],"path":"/root/MatchWorld/CinderCrypt/Architecture/@StaticBody3D@869","position":[38.0846824645996,-7.57932567596436,-38.4360046386719]}],"failed_goal":37867,"goals":17,"position":[37.992790222168,-6.69826602935791,-38.5159149169922],"reached_goals":16,"ticks":374}
+ISSUE_PROBE: E0439 {"arrived":false,"contacts":[{"normal":[0.0000000437113882867379,0.0,-1.0],"path":"/root/MatchWorld/CinderCrypt/Architecture/StoneRoom_first_stair_hall/Collision_first_stair_hall_5","position":[41.4000511169434,-8.59909629821777,-39.5100059509277]},{"normal":[0.0,1.0,0.0],"path":"/root/MatchWorld/CinderCrypt/Architecture/@StaticBody3D@869","position":[41.3997993469238,-9.9999885559082,-39.9110107421875]}],"failed_goal":40747,"goals":15,"position":[41.3997993469238,-9.09907054901123,-39.9110069274902],"reached_goals":14,"ticks":392}
+issue probe finished
+ISSUE_PROBE_OK
+WARNING: 7 RIDs of type "Texture" were leaked.
+   at: finalize (servers/rendering/rendering_device.cpp:8900)

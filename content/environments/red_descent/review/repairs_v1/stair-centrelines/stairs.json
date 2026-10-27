@@ -1,0 +1,80 @@
+[
+	{
+		"arrived": true,
+		"contacts": [],
+		"goals": 6,
+		"position": [
+			31.9512939453125,
+			-9.09910774230957,
+			-29.0487060546875
+		],
+		"reached": 6,
+		"reverse": false,
+		"route": "first_stair"
+	},
+	{
+		"arrived": true,
+		"contacts": [],
+		"goals": 6,
+		"position": [
+			36.0919189453125,
+			-5.00799369812012,
+			-29.0024852752686
+		],
+		"reached": 6,
+		"reverse": true,
+		"route": "first_stair"
+	},
+	{
+		"arrived": true,
+		"contacts": [],
+		"goals": 6,
+		"position": [
+			-34.0,
+			-22.0991172790527,
+			24.0
+		],
+		"reached": 6,
+		"reverse": false,
+		"route": "second_stair"
+	},
+	{
+		"arrived": true,
+		"contacts": [],
+		"goals": 6,
+		"position": [
+			-29.9927005767822,
+			-19.0958576202393,
+			24.0056133270264
+		],
+		"reached": 6,
+		"reverse": true,
+		"route": "second_stair"
+	},
+	{
+		"arrived": true,
+		"contacts": [],
+		"goals": 9,
+		"position": [
+			28.3002815246582,
+			-9.09406757354736,
+			10.0052700042725
+		],
+		"reached": 9,
+		"reverse": false,
+		"route": "return_stair"
+	},
+	{
+		"arrived": true,
+		"contacts": [],
+		"goals": 9,
+		"position": [
+			38.0001029968262,
+			-27.0828590393066,
+			-2.02825975418091
+		],
+		"reached": 9,
+		"reverse": true,
+		"route": "return_stair"
+	}
+]

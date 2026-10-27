@@ -1,0 +1,73 @@
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+BUILD: f85421d+dirty [30dadcea7a7e]
+WARNING: Godot 3.x SpatialMaterial remapped parameter not found: specular
+     at: _set (scene/resources/material.cpp:4096)
+     GDScript backtrace (most recent call first):
+         [0] stone_roots (res://gameplay/environment/red_descent_geometry.gd:390)
+         [1] stone_room (res://gameplay/environment/red_descent_geometry.gd:469)
+         [2] build_room (res://gameplay/environment/red_descent_geometry.gd:492)
+         [3] build (res://gameplay/environment/red_descent_geometry.gd:47)
+         [4] _ready (res://gameplay/environment/crypt_dungeon.gd:55)
+         [5] add_map_node (res://gameplay/match_world.gd:186)
+         [6] build_arena (res://gameplay/match_world.gd:164)
+         [7] load_map (res://gameplay/match_world.gd:146)
+         [8] _ready (res://gameplay/match_world.gd:42)
+         [9] run (res://tests/dungeon_explorer.gd:1105)
+GENERATED_KIT_PLACED: {}
+RED_DESCENT_GEOMETRY_READY: 17 routes, 13 rooms, 34 lit landmarks, sloping crossings
+MAP: Cinder Crypt (crypt)
+Hosting on UDP 55588
+NET host · build f85421d+dirty [30dadcea7a7e]
+NET bolts in flight 0
+DUNGEON_ENCOUNTER_READY: five guards across two vertically separated halls, no replacements
+EXPLORER_ENEMIES: 8 scenarios; detector failures=0
+EXPLORER_MESHES: 5375
+EXPLORER_VISUAL: entry probes=25
+EXPLORER_VISUAL: antechamber probes=44
+EXPLORER_VISUAL: restraint probes=84
+EXPLORER_VISUAL: cells probes=99
+EXPLORER_VISUAL: chapel probes=167
+EXPLORER_VISUAL: nave probes=236
+EXPLORER_VISUAL: ossuary probes=276
+EXPLORER_VISUAL: bones probes=298
+EXPLORER_VISUAL: window probes=313
+EXPLORER_VISUAL: bell probes=360
+EXPLORER_VISUAL: choir probes=448
+EXPLORER_VISUAL: first_stair_hall probes=484
+EXPLORER_VISUAL: second_stair_hall probes=508
+EXPLORER_ROUTE_VISUAL: entry probes=54
+EXPLORER_ROUTE_VISUAL: high_span probes=153
+EXPLORER_ROUTE_VISUAL: upper_hall probes=213
+EXPLORER_ROUTE_VISUAL: first_stair probes=291
+EXPLORER_ROUTE_VISUAL: chapel_approach probes=372
+EXPLORER_ROUTE_VISUAL: central_ledge probes=501
+EXPLORER_ROUTE_VISUAL: nave probes=618
+EXPLORER_ROUTE_VISUAL: second_stair probes=690
+EXPLORER_ROUTE_VISUAL: root_tunnel probes=810
+EXPLORER_ROUTE_VISUAL: low_span probes=936
+EXPLORER_ROUTE_VISUAL: choir probes=972
+EXPLORER_ROUTE_VISUAL: return_stair probes=1119
+EXPLORER_ROUTE_VISUAL: return_gallery probes=1212
+EXPLORER_ROUTE_VISUAL: upper_cells probes=1314
+EXPLORER_ROUTE_VISUAL: ossuary_loop probes=1503
+EXPLORER_ROUTE_VISUAL: bell_loop probes=1650
+EXPLORER_ROUTE_VISUAL: cave_bypass probes=1707
+NET host · build f85421d+dirty [30dadcea7a7e]
+NET bolts in flight 0
+EXPLORER_SAMPLE: x=-100 cells=0
+EXPLORER_SAMPLE: x=-80 cells=1952
+EXPLORER_SAMPLE: x=-60 cells=6888
+EXPLORER_SAMPLE: x=-40 cells=11478
+EXPLORER_SAMPLE: x=-20 cells=14335
+EXPLORER_SAMPLE: x=0 cells=18652
+EXPLORER_SAMPLE: x=20 cells=23239
+EXPLORER_SAMPLE: x=40 cells=25913
+EXPLORER_SAMPLE: x=60 cells=30254
+EXPLORER_SAMPLE: x=80 cells=39817
+EXPLORER_DUNGEON_ENEMIES: both actual hall grids exercised
+EXPLORER_WALK: tick=0 visited=3 issues=150
+EXPLORER_WALK: tick=600 visited=394 issues=150
+EXPLORER_WALK: tick=1200 visited=734 issues=151
+EXPLORER_OK: reached=1125/21402 issues=151 report=/Users/theochernin/Projects/MultiPlayerProject/content/environments/red_descent/review/repairs_v1/arrival-iteration1
+explorer finished

@@ -1,0 +1,24 @@
+{
+  "game_files": {
+    "project.godot": "4bfbc182e33ca9cc0d5a63d5eee66fe211fba1f3c6f2ab14b020372a4da318a5",
+    "gameplay/match_world.gd": "062c1228f764c55a1a92f2293015b45a2e463053b8a21da54403921cc1140e80",
+    "gameplay/mobs/mob_system.gd": "24d16ba4975995523cc789bf352f17074ae844548a6feb52a6f0bec2a7618d04",
+    "gameplay/environment/red_descent_layout.gd": "5c877b8f63c485eb4759c806ed4ce987cac0452b1b67994ddef8f57065779718",
+    "gameplay/environment/red_descent_geometry.gd": "c05e6343f0324ea84a881fafe1917710cf6fa807581448c0b4124075c31eb4c8",
+    "gameplay/environment/crypt_dungeon.gd": "f99657a7251a1668a21047386242aeacfb1e03f882f8e96e64e55dce6c0ddde9",
+    "gameplay/environment/dungeon_dressing.gd": "834ae35a262c1f59038e371dfecf529d364ca25beabd786efc57ef702da79b4b",
+    "gameplay/mobs/hostile_mob.gd": "d702c0b5166057c5423d6c0496ae808dd5304ed1223742d9370fd604f370c0ab",
+    "gameplay/mobs/raider_mob.gd": "fc31f5efd373a93b6d9f56d0c982f64a42247ffe03ddd27ccac6ba5425c6ca2e",
+    "gameplay/mobs/mob_navigation.gd": "d14d0f7273d0560a8f9cb52189f1e57cc24abae6f0c9bb9a86fcd6821320a658",
+    "gameplay/mobs/dungeon_mobs.gd": "a712f2f24061a971f731f5bec3547fe79e478a3fc20cadb9da918c4a8bfad6fd",
+    "gameplay/player/player_character.gd": "33353c407f7fe215bd52e9ef74da2d6136e32636b8d8be0052882f686a36dcf5",
+    "content/environments/procedural_architecture_v1/index.json": "19ee6a39d89cffdd09caf48aeb068fcf5b97395fdc43ca45791c7cf4da5299e5"
+  },
+  "game_sha256": "87e7d5762f7259800e494b8d2ec80e451885086cadb7fdb3263e4da06e9fb770",
+  "harness_sha256": "e02c19e15a6785ca403e2e18f172e255a21b49311b93bd3b48381ae78f15f032",
+  "revision": "f85421d474f8c6e52eb97d654e16d413a930eeb1",
+  "dirty_tracked_paths": [
+    "gameplay/mobs/hostile_mob.gd",
+    "gameplay/mobs/mob_navigation.gd"
+  ]
+}

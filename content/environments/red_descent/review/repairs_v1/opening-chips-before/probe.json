@@ -1,0 +1,146 @@
+[
+	{
+		"area": "room:cells",
+		"direction": [
+			0.0,
+			0.0,
+			1.0
+		],
+		"eye": [
+			34.0,
+			-2.34999990463257,
+			-2.5
+		],
+		"hits": [],
+		"id": "cells-door-0-0",
+		"motion": {
+			"status": "no motion trace"
+		}
+	},
+	{
+		"area": "room:cells",
+		"direction": [
+			-1.0,
+			0.0,
+			0.0
+		],
+		"eye": [
+			44.5,
+			-2.34999990463257,
+			6.0
+		],
+		"hits": [],
+		"id": "cells-door-2-0",
+		"motion": {
+			"status": "no motion trace"
+		}
+	},
+	{
+		"area": "room:ossuary",
+		"direction": [
+			-1.0,
+			0.0,
+			0.0
+		],
+		"eye": [
+			-19.5,
+			-8.35000038146973,
+			-36.0
+		],
+		"hits": [],
+		"id": "ossuary-door-2-0",
+		"motion": {
+			"status": "no motion trace"
+		}
+	},
+	{
+		"area": "room:ossuary",
+		"direction": [
+			0.0,
+			0.0,
+			-1.0
+		],
+		"eye": [
+			-34.0,
+			-8.35000038146973,
+			-22.5
+		],
+		"hits": [],
+		"id": "ossuary-door-4-0",
+		"motion": {
+			"status": "no motion trace"
+		}
+	},
+	{
+		"area": "room:bones",
+		"direction": [
+			0.0,
+			0.0,
+			1.0
+		],
+		"eye": [
+			-34.0,
+			-8.35000038146973,
+			-22.5
+		],
+		"hits": [],
+		"id": "bones-door-0-0",
+		"motion": {
+			"status": "no motion trace"
+		}
+	},
+	{
+		"area": "room:bones",
+		"direction": [
+			0.0,
+			0.0,
+			-1.0
+		],
+		"eye": [
+			-24.0,
+			-8.35000038146973,
+			-9.5
+		],
+		"hits": [],
+		"id": "bones-door-3-0",
+		"motion": {
+			"status": "no motion trace"
+		}
+	},
+	{
+		"area": "room:window",
+		"direction": [
+			0.0,
+			0.0,
+			1.0
+		],
+		"eye": [
+			-24.0,
+			-8.35000038146973,
+			-12.5
+		],
+		"hits": [],
+		"id": "window-door-0-0",
+		"motion": {
+			"status": "no motion trace"
+		}
+	},
+	{
+		"area": "room:window",
+		"direction": [
+			0.0,
+			0.0,
+			1.0
+		],
+		"eye": [
+			-18.0,
+			-8.35000038146973,
+			-12.5
+		],
+		"hits": [],
+		"id": "window-door-0-1",
+		"motion": {
+			"status": "no motion trace"
+		}
+	}
+]

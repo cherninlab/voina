@@ -1,0 +1,337 @@
+[
+	{
+		"area": "room:choir",
+		"direction": [
+			-0.60649037361145,
+			-0.795028030872345,
+			0.00998572167009115
+		],
+		"eye": [
+			30.4554996490479,
+			-26.4528999328613,
+			11.9925003051758
+		],
+		"hits": [
+			{
+				"distance": 0.597331762313843,
+				"front": true,
+				"normal": [
+					0.99927681684494,
+					0.0300655793398619,
+					-0.0232797488570213
+				],
+				"path": "/root/MatchWorld/CinderCrypt/Architecture/StoneRoom_choir/Stone-stone_choir_9",
+				"position": [
+					30.0932235717773,
+					-26.9277954101562,
+					11.9984655380249
+				]
+			},
+			{
+				"distance": 0.66860157251358,
+				"front": true,
+				"normal": [
+					1.0,
+					0.0,
+					0.0
+				],
+				"path": "/root/MatchWorld/CinderCrypt/Architecture/StoneRoom_choir/Mortar_choir_9",
+				"position": [
+					30.0499992370605,
+					-26.9844570159912,
+					11.9991769790649
+				]
+			},
+			{
+				"distance": 1.94671523571014,
+				"front": true,
+				"normal": [
+					-0.00470411870628595,
+					0.999960541725159,
+					0.00754080107435584
+				],
+				"path": "/root/MatchWorld/CinderCrypt/Architecture/Floor_choir/@Node3D@523/stones_lod0",
+				"position": [
+					29.2748355865479,
+					-28.0005931854248,
+					12.0119400024414
+				]
+			},
+			{
+				"distance": 1.96986842155457,
+				"front": true,
+				"normal": [
+					0.0,
+					1.0,
+					0.0
+				],
+				"path": "/root/MatchWorld/CinderCrypt/Architecture/Floor_choir/@Node3D@523/dirt_lod0",
+				"position": [
+					29.2607936859131,
+					-28.0190010070801,
+					12.012170791626
+				]
+			},
+			{
+				"distance": 2.57487821578979,
+				"front": false,
+				"normal": [
+					0.0,
+					-1.0,
+					0.0
+				],
+				"path": "/root/MatchWorld/CinderCrypt/Architecture/@MeshInstance3D@735",
+				"position": [
+					28.8938598632812,
+					-28.5,
+					12.0182123184204
+				]
+			}
+		],
+		"id": "E0437",
+		"motion": {
+			"arrived": false,
+			"contacts": [
+				{
+					"normal": [
+						1.0,
+						0.0,
+						0.0000000437113882867379
+					],
+					"path": "/root/MatchWorld/CinderCrypt/Architecture/StoneRoom_choir/Collision_choir_9",
+					"position": [
+						30.0500049591064,
+						-26.5997428894043,
+						11.9741868972778
+					]
+				}
+			],
+			"failed_goal": 30080,
+			"goals": 18,
+			"position": [
+				30.4539909362793,
+				-27.1020889282227,
+				11.9739446640015
+			],
+			"reached_goals": 17,
+			"ticks": 387
+		}
+	},
+	{
+		"area": "route:first_stair",
+		"direction": [
+			0.566422283649445,
+			-0.731774389743805,
+			0.379041105508804
+		],
+		"eye": [
+			38.1964988708496,
+			-6.04500007629395,
+			-38.7030982971191
+		],
+		"hits": [
+			{
+				"distance": 1.6447457075119,
+				"front": true,
+				"normal": [
+					0.0136270299553871,
+					0.997831523418427,
+					0.0643943622708321
+				],
+				"path": "/root/MatchWorld/CinderCrypt/Architecture/StoneRoom_first_stair_hall/Stone-flag_first_stair_hall_5",
+				"position": [
+					39.1281204223633,
+					-7.24858283996582,
+					-38.0796737670898
+				]
+			},
+			{
+				"distance": 1.74468111991882,
+				"front": true,
+				"normal": [
+					0.000012531293577922,
+					0.989948511123657,
+					-0.141428291797638
+				],
+				"path": "/root/MatchWorld/CinderCrypt/Architecture/StoneRoom_first_stair_hall/Mortar_first_stair_hall_5",
+				"position": [
+					39.1847267150879,
+					-7.32171249389648,
+					-38.0417938232422
+				]
+			},
+			{
+				"distance": 1.80073153972626,
+				"front": true,
+				"normal": [
+					-0.161698341369629,
+					0.963001132011414,
+					-0.215597867965698
+				],
+				"path": "/root/MatchWorld/CinderCrypt/Architecture/@MeshInstance3D@758",
+				"position": [
+					39.2164726257324,
+					-7.3627290725708,
+					-38.0205459594727
+				]
+			}
+		],
+		"id": "E0438",
+		"motion": {
+			"arrived": false,
+			"contacts": [
+				{
+					"normal": [
+						-0.625373125076294,
+						0.382690221071243,
+						-0.6800417304039
+					],
+					"path": "/root/MatchWorld/CinderCrypt/Architecture/StoneRoom_first_stair_hall/Collision_first_stair_hall_5",
+					"position": [
+						38.2442512512207,
+						-7.35060787200928,
+						-38.2442512512207
+					]
+				},
+				{
+					"normal": [
+						-0.215100765228271,
+						0.952608585357666,
+						-0.215101212263107
+					],
+					"path": "/root/MatchWorld/CinderCrypt/Architecture/@StaticBody3D@869",
+					"position": [
+						38.0846824645996,
+						-7.57932567596436,
+						-38.4360046386719
+					]
+				}
+			],
+			"failed_goal": 37867,
+			"goals": 17,
+			"position": [
+				37.992790222168,
+				-6.69826602935791,
+				-38.5159149169922
+			],
+			"reached_goals": 16,
+			"ticks": 374
+		}
+	},
+	{
+		"area": "room:first_stair_hall",
+		"direction": [
+			0.0288491733372211,
+			-0.825501620769501,
+			0.563661992549896
+		],
+		"eye": [
+			41.4790000915527,
+			-8.44910049438477,
+			-39.9103012084961
+		],
+		"hits": [
+			{
+				"distance": 0.709824323654175,
+				"front": true,
+				"normal": [
+					0.0,
+					0.0,
+					-1.0
+				],
+				"path": "/root/MatchWorld/CinderCrypt/Architecture/StoneRoom_first_stair_hall/Mortar_first_stair_hall_5",
+				"position": [
+					41.4994773864746,
+					-9.03506183624268,
+					-39.5102005004883
+				]
+			},
+			{
+				"distance": 1.86863315105438,
+				"front": true,
+				"normal": [
+					0.00298625812865794,
+					0.999994695186615,
+					-0.00129385991021991
+				],
+				"path": "/root/MatchWorld/CinderCrypt/Architecture/Floor_first_stair_hall/@Node3D@619/stones_lod0",
+				"position": [
+					41.5329093933105,
+					-9.99166107177734,
+					-38.8570251464844
+				]
+			},
+			{
+				"distance": 1.90175211429596,
+				"front": true,
+				"normal": [
+					0.0,
+					1.0,
+					0.0
+				],
+				"path": "/root/MatchWorld/CinderCrypt/Architecture/Floor_first_stair_hall/@Node3D@619/dirt_lod0",
+				"position": [
+					41.533863067627,
+					-10.0190000534058,
+					-38.8383560180664
+				]
+			},
+			{
+				"distance": 2.48442697525024,
+				"front": false,
+				"normal": [
+					0.0,
+					-1.0,
+					0.0
+				],
+				"path": "/root/MatchWorld/CinderCrypt/Architecture/@MeshInstance3D@738",
+				"position": [
+					41.5506744384766,
+					-10.5,
+					-38.5099258422852
+				]
+			}
+		],
+		"id": "E0439",
+		"motion": {
+			"arrived": false,
+			"contacts": [
+				{
+					"normal": [
+						0.0000000437113882867379,
+						0.0,
+						-1.0
+					],
+					"path": "/root/MatchWorld/CinderCrypt/Architecture/StoneRoom_first_stair_hall/Collision_first_stair_hall_5",
+					"position": [
+						41.4000511169434,
+						-8.59909629821777,
+						-39.5100059509277
+					]
+				},
+				{
+					"normal": [
+						0.0,
+						1.0,
+						0.0
+					],
+					"path": "/root/MatchWorld/CinderCrypt/Architecture/@StaticBody3D@869",
+					"position": [
+						41.3997993469238,
+						-9.9999885559082,
+						-39.9110107421875
+					]
+				}
+			],
+			"failed_goal": 40747,
+			"goals": 15,
+			"position": [
+				41.3997993469238,
+				-9.09907054901123,
+				-39.9110069274902
+			],
+			"reached_goals": 14,
+			"ticks": 392
+		}
+	}
+]

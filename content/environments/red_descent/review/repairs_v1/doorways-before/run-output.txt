@@ -1,0 +1,30 @@
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+Metal 4.0 - Forward Mobile - Using Device #0: Apple - Apple M5 Max (Apple9)
+
+BUILD: 8693901+dirty [2f2db538a713]
+WARNING: Godot 3.x SpatialMaterial remapped parameter not found: specular
+     at: _set (scene/resources/material.cpp:4096)
+     GDScript backtrace (most recent call first):
+         [0] stone_roots (res://gameplay/environment/red_descent_geometry.gd:390)
+         [1] stone_room (res://gameplay/environment/red_descent_geometry.gd:469)
+         [2] build_room (res://gameplay/environment/red_descent_geometry.gd:492)
+         [3] build (res://gameplay/environment/red_descent_geometry.gd:47)
+         [4] _ready (res://gameplay/environment/crypt_dungeon.gd:55)
+         [5] add_map_node (res://gameplay/match_world.gd:186)
+         [6] build_arena (res://gameplay/match_world.gd:164)
+         [7] load_map (res://gameplay/match_world.gd:146)
+         [8] _ready (res://gameplay/match_world.gd:42)
+         [9] run (res://scripts/dungeon_issue_probe.gd:126)
+GENERATED_KIT_PLACED: {}
+RED_DESCENT_GEOMETRY_READY: 17 routes, 13 rooms, 34 lit landmarks, sloping crossings
+MAP: Cinder Crypt (crypt)
+Hosting on UDP 65430
+DUNGEON_ENCOUNTER_READY: five guards across two vertically separated halls, no replacements
+NET host · build 8693901+dirty [2f2db538a713]
+NET bolts in flight 0
+EXPLORER_MESHES: 5375
+DOORWAY_CANDIDATES: 0
+issue probe finished
+ISSUE_PROBE_OK
+WARNING: 7 RIDs of type "Texture" were leaked.
+   at: finalize (servers/rendering/rendering_device.cpp:8900)

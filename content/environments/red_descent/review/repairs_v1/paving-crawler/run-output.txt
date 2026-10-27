@@ -1,0 +1,144 @@
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+BUILD: 8693901+dirty [2f2db538a713]
+WARNING: Godot 3.x SpatialMaterial remapped parameter not found: specular
+     at: _set (scene/resources/material.cpp:4096)
+     GDScript backtrace (most recent call first):
+         [0] stone_roots (res://gameplay/environment/red_descent_geometry.gd:390)
+         [1] stone_room (res://gameplay/environment/red_descent_geometry.gd:469)
+         [2] build_room (res://gameplay/environment/red_descent_geometry.gd:492)
+         [3] build (res://gameplay/environment/red_descent_geometry.gd:47)
+         [4] _ready (res://gameplay/environment/crypt_dungeon.gd:55)
+         [5] add_map_node (res://gameplay/match_world.gd:186)
+         [6] build_arena (res://gameplay/match_world.gd:164)
+         [7] load_map (res://gameplay/match_world.gd:146)
+         [8] _ready (res://gameplay/match_world.gd:42)
+         [9] run (res://tests/dungeon_explorer.gd:1105)
+GENERATED_KIT_PLACED: {}
+RED_DESCENT_GEOMETRY_READY: 17 routes, 13 rooms, 34 lit landmarks, sloping crossings
+MAP: Cinder Crypt (crypt)
+Hosting on UDP 50374
+NET host · build 8693901+dirty [2f2db538a713]
+NET bolts in flight 0
+DUNGEON_ENCOUNTER_READY: five guards across two vertically separated halls, no replacements
+EXPLORER_ENEMIES: 8 scenarios; detector failures=0
+EXPLORER_MESHES: 5375
+EXPLORER_VISUAL: entry probes=214
+EXPLORER_VISUAL: antechamber probes=376
+EXPLORER_VISUAL: restraint probes=697
+EXPLORER_VISUAL: cells probes=837
+EXPLORER_VISUAL: chapel probes=1394
+EXPLORER_VISUAL: nave probes=1975
+EXPLORER_VISUAL: ossuary probes=2320
+EXPLORER_VISUAL: bones probes=2493
+EXPLORER_VISUAL: window probes=2597
+EXPLORER_VISUAL: bell probes=2984
+EXPLORER_VISUAL: choir probes=3743
+EXPLORER_VISUAL: first_stair_hall probes=3999
+EXPLORER_VISUAL: second_stair_hall probes=4197
+EXPLORER_ROUTE_VISUAL: entry probes=174
+EXPLORER_ROUTE_VISUAL: high_span probes=489
+EXPLORER_ROUTE_VISUAL: upper_hall probes=690
+EXPLORER_ROUTE_VISUAL: first_stair probes=930
+EXPLORER_ROUTE_VISUAL: chapel_approach probes=1191
+EXPLORER_ROUTE_VISUAL: central_ledge probes=1569
+EXPLORER_ROUTE_VISUAL: nave probes=1944
+EXPLORER_ROUTE_VISUAL: second_stair probes=2154
+EXPLORER_ROUTE_VISUAL: root_tunnel probes=2544
+EXPLORER_ROUTE_VISUAL: low_span probes=2961
+EXPLORER_ROUTE_VISUAL: choir probes=3072
+EXPLORER_ROUTE_VISUAL: return_stair probes=3558
+EXPLORER_ROUTE_VISUAL: return_gallery probes=3861
+EXPLORER_ROUTE_VISUAL: upper_cells probes=4197
+EXPLORER_ROUTE_VISUAL: ossuary_loop probes=4845
+EXPLORER_ROUTE_VISUAL: bell_loop probes=5379
+EXPLORER_ROUTE_VISUAL: cave_bypass probes=5562
+NET host · build 8693901+dirty [2f2db538a713]
+NET bolts in flight 0
+EXPLORER_SAMPLE: x=-100 cells=0
+EXPLORER_SAMPLE: x=-80 cells=1952
+EXPLORER_SAMPLE: x=-60 cells=6888
+EXPLORER_SAMPLE: x=-40 cells=11478
+EXPLORER_SAMPLE: x=-20 cells=14335
+EXPLORER_SAMPLE: x=0 cells=18652
+EXPLORER_SAMPLE: x=20 cells=23239
+EXPLORER_SAMPLE: x=40 cells=25913
+EXPLORER_SAMPLE: x=60 cells=30254
+EXPLORER_SAMPLE: x=80 cells=39817
+NET host · build 8693901+dirty [2f2db538a713]
+NET bolts in flight 0
+EXPLORER_DUNGEON_ENEMIES: both actual hall grids exercised
+EXPLORER_WALK: tick=0 visited=3 issues=373
+EXPLORER_WALK: tick=600 visited=394 issues=373
+EXPLORER_WALK: tick=1200 visited=734 issues=374
+EXPLORER_WALK: tick=1800 visited=1128 issues=374
+EXPLORER_WALK: tick=2400 visited=1520 issues=374
+EXPLORER_WALK: tick=3000 visited=1913 issues=374
+EXPLORER_WALK: tick=3600 visited=2277 issues=374
+EXPLORER_WALK: tick=4200 visited=2672 issues=374
+EXPLORER_WALK: tick=4800 visited=3011 issues=375
+EXPLORER_WALK: tick=5400 visited=3401 issues=375
+NET host · build 8693901+dirty [2f2db538a713]
+NET bolts in flight 0
+EXPLORER_WALK: tick=6000 visited=3792 issues=375
+EXPLORER_WALK: tick=6600 visited=4171 issues=375
+EXPLORER_WALK: tick=7200 visited=4399 issues=378
+EXPLORER_WALK: tick=7800 visited=4796 issues=378
+EXPLORER_WALK: tick=8400 visited=5168 issues=378
+EXPLORER_WALK: tick=9000 visited=5450 issues=381
+EXPLORER_WALK: tick=9600 visited=5823 issues=381
+EXPLORER_WALK: tick=10200 visited=6135 issues=382
+EXPLORER_WALK: tick=10800 visited=6462 issues=382
+EXPLORER_WALK: tick=11400 visited=6837 issues=382
+NET host · build 8693901+dirty [2f2db538a713]
+NET bolts in flight 0
+EXPLORER_WALK: tick=12000 visited=7199 issues=382
+EXPLORER_WALK: tick=12600 visited=7542 issues=382
+EXPLORER_WALK: tick=13200 visited=7806 issues=385
+EXPLORER_WALK: tick=13800 visited=8166 issues=385
+EXPLORER_WALK: tick=14400 visited=8463 issues=387
+EXPLORER_WALK: tick=15000 visited=8835 issues=387
+EXPLORER_WALK: tick=15600 visited=9106 issues=387
+EXPLORER_WALK: tick=16200 visited=9432 issues=388
+EXPLORER_WALK: tick=16800 visited=9741 issues=388
+EXPLORER_WALK: tick=17400 visited=10089 issues=388
+NET host · build 8693901+dirty [2f2db538a713]
+NET bolts in flight 0
+EXPLORER_WALK: tick=18000 visited=10386 issues=388
+EXPLORER_WALK: tick=18600 visited=10714 issues=388
+EXPLORER_WALK: tick=19200 visited=11016 issues=390
+EXPLORER_WALK: tick=19800 visited=11273 issues=390
+EXPLORER_WALK: tick=20400 visited=11597 issues=391
+EXPLORER_WALK: tick=21000 visited=11892 issues=391
+EXPLORER_WALK: tick=21600 visited=12243 issues=391
+EXPLORER_WALK: tick=22200 visited=12517 issues=393
+EXPLORER_WALK: tick=22800 visited=12673 issues=393
+EXPLORER_WALK: tick=23400 visited=12958 issues=393
+NET host · build 8693901+dirty [2f2db538a713]
+NET bolts in flight 0
+EXPLORER_WALK: tick=24000 visited=13214 issues=394
+EXPLORER_WALK: tick=24600 visited=13557 issues=394
+EXPLORER_WALK: tick=25200 visited=13725 issues=396
+EXPLORER_WALK: tick=25800 visited=13952 issues=396
+EXPLORER_WALK: tick=26400 visited=14138 issues=396
+EXPLORER_WALK: tick=27000 visited=14303 issues=396
+EXPLORER_WALK: tick=27600 visited=14601 issues=396
+EXPLORER_WALK: tick=28200 visited=14663 issues=400
+EXPLORER_WALK: tick=28800 visited=14825 issues=401
+EXPLORER_WALK: tick=29400 visited=15144 issues=401
+NET host · build 8693901+dirty [2f2db538a713]
+NET bolts in flight 0
+EXPLORER_WALK: tick=30000 visited=15325 issues=401
+EXPLORER_WALK: tick=30600 visited=15545 issues=403
+EXPLORER_WALK: tick=31200 visited=15807 issues=405
+EXPLORER_WALK: tick=31800 visited=16021 issues=406
+EXPLORER_WALK: tick=32400 visited=16236 issues=406
+EXPLORER_WALK: tick=33000 visited=16395 issues=410
+EXPLORER_WALK: tick=33600 visited=16602 issues=410
+EXPLORER_WALK: tick=34200 visited=16792 issues=410
+EXPLORER_WALK: tick=34800 visited=16833 issues=410
+EXPLORER_WALK: tick=35400 visited=17133 issues=410
+NET host · build 8693901+dirty [2f2db538a713]
+NET bolts in flight 0
+EXPLORER_OK: reached=17190/21402 issues=410 report=/Users/theochernin/Projects/MultiPlayerProject/content/environments/red_descent/review/repairs_v1/paving-crawler
+explorer finished

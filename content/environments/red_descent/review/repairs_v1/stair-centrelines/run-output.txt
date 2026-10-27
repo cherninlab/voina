@@ -1,0 +1,45 @@
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+Metal 4.0 - Forward Mobile - Using Device #0: Apple - Apple M5 Max (Apple9)
+
+BUILD: 0c6dbbb [6ca72acc7009]
+WARNING: Godot 3.x SpatialMaterial remapped parameter not found: specular
+     at: _set (scene/resources/material.cpp:4096)
+     GDScript backtrace (most recent call first):
+         [0] stone_roots (res://gameplay/environment/red_descent_geometry.gd:390)
+         [1] stone_room (res://gameplay/environment/red_descent_geometry.gd:469)
+         [2] build_room (res://gameplay/environment/red_descent_geometry.gd:492)
+         [3] build (res://gameplay/environment/red_descent_geometry.gd:47)
+         [4] _ready (res://gameplay/environment/crypt_dungeon.gd:55)
+         [5] add_map_node (res://gameplay/match_world.gd:186)
+         [6] build_arena (res://gameplay/match_world.gd:164)
+         [7] load_map (res://gameplay/match_world.gd:146)
+         [8] _ready (res://gameplay/match_world.gd:42)
+         [9] run (res://scripts/dungeon_issue_probe.gd:223)
+GENERATED_KIT_PLACED: {}
+RED_DESCENT_GEOMETRY_READY: 17 routes, 13 rooms, 34 lit landmarks, sloping crossings
+MAP: Cinder Crypt (crypt)
+Hosting on UDP 52629
+NET host · build 0c6dbbb [6ca72acc7009]
+NET bolts in flight 0
+DUNGEON_ENCOUNTER_READY: five guards across two vertically separated halls, no replacements
+EXPLORER_MESHES: 5375
+NET host · build 0c6dbbb [6ca72acc7009]
+NET bolts in flight 0
+STAIR_ROUTE: {"arrived":true,"contacts":[],"goals":6,"position":[31.9512939453125,-9.09910774230957,-29.0487060546875],"reached":6,"reverse":false,"route":"first_stair"}
+STAIR_ROUTE: {"arrived":true,"contacts":[],"goals":6,"position":[36.0919189453125,-5.00799369812012,-29.0024852752686],"reached":6,"reverse":true,"route":"first_stair"}
+NET host · build 0c6dbbb [6ca72acc7009]
+NET bolts in flight 0
+STAIR_ROUTE: {"arrived":true,"contacts":[],"goals":6,"position":[-34.0,-22.0991172790527,24.0],"reached":6,"reverse":false,"route":"second_stair"}
+STAIR_ROUTE: {"arrived":true,"contacts":[],"goals":6,"position":[-29.9927005767822,-19.0958576202393,24.0056133270264],"reached":6,"reverse":true,"route":"second_stair"}
+NET host · build 0c6dbbb [6ca72acc7009]
+NET bolts in flight 0
+STAIR_ROUTE: {"arrived":true,"contacts":[],"goals":9,"position":[28.3002815246582,-9.09406757354736,10.0052700042725],"reached":9,"reverse":false,"route":"return_stair"}
+NET host · build 0c6dbbb [6ca72acc7009]
+NET bolts in flight 0
+NET host · build 0c6dbbb [6ca72acc7009]
+NET bolts in flight 0
+STAIR_ROUTE: {"arrived":true,"contacts":[],"goals":9,"position":[38.0001029968262,-27.0828590393066,-2.02825975418091],"reached":9,"reverse":true,"route":"return_stair"}
+issue probe finished
+ISSUE_PROBE_OK
+WARNING: 7 RIDs of type "Texture" were leaked.
+   at: finalize (servers/rendering/rendering_device.cpp:8900)

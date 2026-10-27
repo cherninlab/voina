@@ -1,0 +1,371 @@
+[
+	{
+		"area": "room:cells",
+		"direction": [
+			0.0,
+			0.0,
+			1.0
+		],
+		"eye": [
+			33.4500007629395,
+			-1.75,
+			-1.10000002384186
+		],
+		"hits": [
+			{
+				"distance": 1.50207555294037,
+				"front": true,
+				"normal": [
+					0.834864318370819,
+					-0.526324450969696,
+					-0.161196067929268
+				],
+				"path": "/root/MatchWorld/CinderCrypt/Architecture/StoneRoom_cells/Stone-galleted_cells_0",
+				"position": [
+					33.4500007629395,
+					-1.75,
+					0.402075529098511
+				]
+			}
+		],
+		"id": "DOOR001",
+		"motion": {
+			"status": "no motion trace"
+		}
+	},
+	{
+		"area": "room:cells",
+		"direction": [
+			1.0,
+			0.0,
+			0.0
+		],
+		"eye": [
+			40.9000015258789,
+			-0.550000011920929,
+			5.44999980926514
+		],
+		"hits": [
+			{
+				"distance": 0.663539886474609,
+				"front": true,
+				"normal": [
+					-0.930058836936951,
+					-0.0391402468085289,
+					-0.365319848060608
+				],
+				"path": "/root/MatchWorld/CinderCrypt/Architecture/StoneRoom_cells/Stone-galleted_cells_2",
+				"position": [
+					41.5635414123535,
+					-0.550000011920929,
+					5.44999980926514
+				]
+			}
+		],
+		"id": "DOOR002",
+		"motion": {
+			"status": "no motion trace"
+		}
+	},
+	{
+		"area": "room:chapel",
+		"direction": [
+			1.0,
+			0.0,
+			0.0
+		],
+		"eye": [
+			-13.1000003814697,
+			-6.55000019073486,
+			-35.4500007629395
+		],
+		"hits": [
+			{
+				"distance": 0.0319061279296875,
+				"front": false,
+				"normal": [
+					0.999603509902954,
+					0.0280607026070356,
+					0.00232660747133195
+				],
+				"path": "/root/MatchWorld/CinderCrypt/Architecture/StonePassage_ossuary_loop/Stone-arch_ossuary_loop_22",
+				"position": [
+					-13.06809425354,
+					-6.55000019073486,
+					-35.4500007629395
+				]
+			},
+			{
+				"distance": 0.65000057220459,
+				"front": true,
+				"normal": [
+					-1.0,
+					0.0,
+					0.0
+				],
+				"path": "/root/MatchWorld/CinderCrypt/Architecture/StoneRoom_chapel/Mortar_chapel_6",
+				"position": [
+					-12.4499998092651,
+					-6.55000019073486,
+					-35.4500007629395
+				]
+			},
+			{
+				"distance": 0.665616989135742,
+				"front": true,
+				"normal": [
+					-0.974213540554047,
+					-0.179664731025696,
+					0.136486575007439
+				],
+				"path": "/root/MatchWorld/CinderCrypt/Architecture/StoneRoom_chapel/Stone-arch_chapel_6",
+				"position": [
+					-12.434383392334,
+					-6.55000019073486,
+					-35.4500007629395
+				]
+			},
+			{
+				"distance": 1.61000061035156,
+				"front": true,
+				"normal": [
+					-1.0,
+					0.0,
+					0.0
+				],
+				"path": "/root/MatchWorld/CinderCrypt/Architecture/StoneRoom_chapel/Plaster_chapel_6",
+				"position": [
+					-11.4899997711182,
+					-6.55000019073486,
+					-35.4500007629395
+				]
+			}
+		],
+		"id": "DOOR003",
+		"motion": {
+			"status": "no motion trace"
+		}
+	},
+	{
+		"area": "room:chapel",
+		"direction": [
+			1.0,
+			0.0,
+			0.0
+		],
+		"eye": [
+			-13.1000003814697,
+			-6.55000019073486,
+			-36.0
+		],
+		"hits": [
+			{
+				"distance": 0.0530195236206055,
+				"front": true,
+				"normal": [
+					-0.999848425388336,
+					0.00473965797573328,
+					-0.0167529731988907
+				],
+				"path": "/root/MatchWorld/CinderCrypt/Architecture/StonePassage_ossuary_loop/Stone-arch_ossuary_loop_22",
+				"position": [
+					-13.0469808578491,
+					-6.55000019073486,
+					-36.0
+				]
+			},
+			{
+				"distance": 0.641953468322754,
+				"front": true,
+				"normal": [
+					-0.999993860721588,
+					0.00201468402519822,
+					-0.00286402506753802
+				],
+				"path": "/root/MatchWorld/CinderCrypt/Architecture/StoneRoom_chapel/Stone-arch_chapel_6",
+				"position": [
+					-12.458046913147,
+					-6.55000019073486,
+					-36.0
+				]
+			},
+			{
+				"distance": 0.650001525878906,
+				"front": true,
+				"normal": [
+					-1.0,
+					0.0,
+					0.0
+				],
+				"path": "/root/MatchWorld/CinderCrypt/Architecture/StoneRoom_chapel/Mortar_chapel_6",
+				"position": [
+					-12.4499988555908,
+					-6.55000019073486,
+					-36.0
+				]
+			},
+			{
+				"distance": 1.6099967956543,
+				"front": true,
+				"normal": [
+					-1.0,
+					0.0,
+					0.0
+				],
+				"path": "/root/MatchWorld/CinderCrypt/Architecture/StoneRoom_chapel/Plaster_chapel_6",
+				"position": [
+					-11.4900035858154,
+					-6.55000019073486,
+					-36.0
+				]
+			}
+		],
+		"id": "DOOR004",
+		"motion": {
+			"status": "no motion trace"
+		}
+	},
+	{
+		"area": "room:chapel",
+		"direction": [
+			1.0,
+			0.0,
+			0.0
+		],
+		"eye": [
+			-13.1000003814697,
+			-6.55000019073486,
+			-36.5499992370605
+		],
+		"hits": [
+			{
+				"distance": 0.0712757110595703,
+				"front": false,
+				"normal": [
+					0.994093477725983,
+					-0.0617903545498848,
+					0.0892196670174599
+				],
+				"path": "/root/MatchWorld/CinderCrypt/Architecture/StonePassage_ossuary_loop/Stone-arch_ossuary_loop_22",
+				"position": [
+					-13.0287246704102,
+					-6.55000019073486,
+					-36.5499992370605
+				]
+			},
+			{
+				"distance": 0.650002479553223,
+				"front": true,
+				"normal": [
+					-1.0,
+					0.0,
+					0.0
+				],
+				"path": "/root/MatchWorld/CinderCrypt/Architecture/StoneRoom_chapel/Mortar_chapel_6",
+				"position": [
+					-12.4499979019165,
+					-6.55000019073486,
+					-36.5499992370605
+				]
+			},
+			{
+				"distance": 0.677242279052734,
+				"front": true,
+				"normal": [
+					-0.996511220932007,
+					-0.00697340676560998,
+					0.0831669270992279
+				],
+				"path": "/root/MatchWorld/CinderCrypt/Architecture/StoneRoom_chapel/Stone-arch_chapel_6",
+				"position": [
+					-12.422758102417,
+					-6.55000019073486,
+					-36.5499992370605
+				]
+			},
+			{
+				"distance": 1.61000823974609,
+				"front": true,
+				"normal": [
+					-1.0,
+					0.0,
+					0.0
+				],
+				"path": "/root/MatchWorld/CinderCrypt/Architecture/StoneRoom_chapel/Plaster_chapel_6",
+				"position": [
+					-11.4899921417236,
+					-6.55000019073486,
+					-36.5499992370605
+				]
+			}
+		],
+		"id": "DOOR005",
+		"motion": {
+			"status": "no motion trace"
+		}
+	},
+	{
+		"area": "room:ossuary",
+		"direction": [
+			0.0,
+			0.0,
+			-1.0
+		],
+		"eye": [
+			-33.4500007629395,
+			-6.55000019073486,
+			-23.8999996185303
+		],
+		"hits": [
+			{
+				"distance": 0.00597953796386719,
+				"front": true,
+				"normal": [
+					-0.0253621619194746,
+					-0.00300153577700257,
+					0.999673843383789
+				],
+				"path": "/root/MatchWorld/CinderCrypt/Architecture/StonePassage_ossuary_loop/Stone-arch_ossuary_loop_17",
+				"position": [
+					-33.4500007629395,
+					-6.55000019073486,
+					-23.9059791564941
+				]
+			},
+			{
+				"distance": 0.624759674072266,
+				"front": true,
+				"normal": [
+					0.0323736034333706,
+					0.0312602184712887,
+					0.998986899852753
+				],
+				"path": "/root/MatchWorld/CinderCrypt/Architecture/StoneRoom_ossuary/Stone-arch_ossuary_4",
+				"position": [
+					-33.4500007629395,
+					-6.55000019073486,
+					-24.5247592926025
+				]
+			},
+			{
+				"distance": 0.649999618530273,
+				"front": true,
+				"normal": [
+					0.0,
+					0.0,
+					1.0
+				],
+				"path": "/root/MatchWorld/CinderCrypt/Architecture/StoneRoom_ossuary/Mortar_ossuary_4",
+				"position": [
+					-33.4500007629395,
+					-6.55000019073486,
+					-24.5499992370605
+				]
+			}
+		],
+		"id": "DOOR006",
+		"motion": {
+			"status": "no motion trace"
+		}
+	}
+]
