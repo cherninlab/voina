@@ -17,7 +17,7 @@ TRELLIS.2-4B is a different Microsoft model family from the original TRELLIS-ima
 
 The Apple Silicon runtime is installed separately at `/Users/theochernin/Projects/CherninLab3D/.venv-trellis2/`, using MLX 0.32.4 and `lyonsno/trellis2mlx` revision `449bfbc011401fe03d684a01f0b1068bfe8f6ceb`. Import and CLI help checks passed. The existing Shape Studio environment and server code are unchanged.
 
-The official `facebook/dinov3-vitl16-pretrain-lvd1689m` encoder was initially awaiting Meta review. Access is now granted and the encoder is downloaded. The user redirected the first TRELLIS.2 trials to other sculptures; those results belong to T-197 in `../trellis2_statues_v1/` relative to the statue-library root, not to an E01 reconstruction. No alternate weight mirror, substituted encoder or random conditioning was used. [Installed files/status receipt](trellis2_install_status.json).
+The official `facebook/dinov3-vitl16-pretrain-lvd1689m` encoder was initially awaiting Meta review. Access is now granted and the encoder is downloaded. The user redirected the first TRELLIS.2 trials to other sculptures; those results belong to [T-197](../../trellis2_statues_v1/), not to an E01 reconstruction. No alternate weight mirror, substituted encoder or random conditioning was used. [Installed files/status receipt](trellis2_install_status.json).
 
 The prepared launcher supports any image/output path through `--image` and `--out`. Run from the game repo:
 
