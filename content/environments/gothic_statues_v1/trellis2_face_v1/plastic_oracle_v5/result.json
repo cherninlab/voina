@@ -1,0 +1,125 @@
+{
+  "model": "microsoft/TRELLIS.2-4B",
+  "model_revision": "af44b45f2e35a493886929c6d786e563ec68364d",
+  "encoder": "facebook/dinov3-vitl16-pretrain-lvd1689m",
+  "encoder_revision": "ea8dc2863c51be0a264bab82070e3e8836b02d51",
+  "input_count": 1,
+  "source_sha256": "528eac8ce3cabf3727872f169c834641eacf8eaadf3374152499a702c8263c41",
+  "resolution_requested": 768,
+  "steps": 24,
+  "seed": 42,
+  "runtime": "MLX native",
+  "triangles": 2624216,
+  "cleanup": "none",
+  "seconds": 124.27242070800276,
+  "command": [
+    "/Users/theochernin/Projects/CherninLab3D/.venv-trellis2/bin/python",
+    "-u",
+    "-c",
+    "import mlx.core as mx,runpy,sys;mx.set_memory_limit(42*1024**3);sys.argv=[sys.argv[1],*sys.argv[2:]];runpy.run_path(sys.argv[0],run_name='__main__')",
+    "/Users/theochernin/Projects/CherninLab3D/vendor/trellis2mlx/generate.py",
+    "--image",
+    "/Users/theochernin/Projects/MultiPlayerProject-agents/theo-codex-43/content/environments/gothic_statues_v1/trellis2_face_v1/plastic_oracle_v5/conditioning.png",
+    "--output",
+    "/Users/theochernin/Projects/MultiPlayerProject-agents/theo-codex-43/content/environments/gothic_statues_v1/trellis2_face_v1/plastic_oracle_v5/raw.glb",
+    "--resolution",
+    "768",
+    "--steps",
+    "24",
+    "--seed",
+    "42",
+    "--max-tokens",
+    "32768",
+    "--no-rembg",
+    "--target-faces",
+    "0",
+    "--no-cleanup",
+    "--no-hole-fill",
+    "--save-checkpoints",
+    "/Users/theochernin/Projects/MultiPlayerProject-agents/theo-codex-43/content/environments/gothic_statues_v1/trellis2_face_v1/plastic_oracle_v5/checkpoints",
+    "--stop-after-stage",
+    "mesh_raw"
+  ],
+  "resolution_actual": 768,
+  "max_tokens": 32768,
+  "memory_limit_guideline_gib": 42,
+  "conditioning_sha256": "99f1d7d89f368aff9da982ba8f37d89529c27c848b52cb0bf00526b1b6479756",
+  "source": "Exact user-supplied reference; U2Net pipeline foreground segmentation; no ImageGen edits",
+  "source_dimensions": [
+    687,
+    1024
+  ],
+  "source_mode": "RGB",
+  "conditioning_dimensions": [
+    512,
+    512
+  ],
+  "preprocessing": {
+    "schema": "trellis2mlx-preprocess-v1",
+    "route": "rembg-u2net",
+    "source_parity": "known-background-model-divergence-from-source-rmbg2",
+    "input": {
+      "path": "/Users/theochernin/Projects/MultiPlayerProject-agents/theo-codex-43/content/environments/gothic_statues_v1/trellis2_face_v1/plastic_oracle_v5/source.png",
+      "sha256": "528eac8ce3cabf3727872f169c834641eacf8eaadf3374152499a702c8263c41",
+      "mode": "RGB",
+      "size": [
+        687,
+        1024
+      ]
+    },
+    "resize": {
+      "max_size": 1024,
+      "scale": 1.0,
+      "input_size": [
+        687,
+        1024
+      ],
+      "output_size": [
+        687,
+        1024
+      ],
+      "resampling": "PIL.Image.Resampling.LANCZOS"
+    },
+    "background_model": {
+      "name": "u2net",
+      "path": "/Users/theochernin/Projects/CherninLab3D/models/matting/models/u2net/u2net.onnx",
+      "sha256": "8d10d2f3bb75ae3b6d527c77944fc5e7dcd94b29809d47a739a7a728a912b491"
+    },
+    "runtime": {
+      "rembg": "2.0.76",
+      "onnxruntime": "1.31.1",
+      "pillow": "12.3.0",
+      "numpy": "2.4.6"
+    },
+    "alpha_threshold": 204.0,
+    "foreground_pixels": 249665,
+    "foreground_bbox_xyxy": [
+      169,
+      0,
+      635,
+      1023
+    ],
+    "crop": {
+      "center_xy": [
+        402.0,
+        511.5
+      ],
+      "source_extent": 1023,
+      "bbox_xyxy": [
+        -109.0,
+        0.5,
+        913.0,
+        1022.5
+      ]
+    },
+    "output": {
+      "mode": "RGB",
+      "size": [
+        1022,
+        1022
+      ],
+      "pixel_sha256": "d0365f86d108cfb8cbfd115123720ed262937be686b6a98c20b3d5414d9180c5"
+    }
+  },
+  "vertices": 1258921
+}

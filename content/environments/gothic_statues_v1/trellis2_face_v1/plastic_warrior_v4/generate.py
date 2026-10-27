@@ -1,4 +1,4 @@
-"""Reconstruct the user's exact colored warrior image with the installed TRELLIS.2."""
+"""Reconstruct a supplied reference with the installed TRELLIS.2."""
 import argparse
 import hashlib
 import json
@@ -16,11 +16,12 @@ base_root = Path(__file__).resolve().parent
 parser = argparse.ArgumentParser()
 parser.add_argument("--resolution", type=int, choices=[512, 768], default=768)
 parser.add_argument("--out", type=Path, default=base_root)
+parser.add_argument("--image", type=Path, default=base_root / "source.png")
 args = parser.parse_args()
 root = args.out.resolve()
 root.mkdir(parents=True, exist_ok=True)
 cl3d = Path("/Users/theochernin/Projects/CherninLab3D")
-image_path = base_root / "source.png"
+image_path = args.image.resolve()
 image = Image.open(image_path).convert("RGB")
 os.environ.setdefault("U2NET_HOME", str(cl3d / "models/matting/models/u2net"))
 sys.path.insert(0, str(cl3d / "vendor/trellis2mlx"))
@@ -65,7 +66,7 @@ mesh.export(root / "preview.glb", include_normals=True)
 native_meta = json.loads((root / "checkpoints/mesh_raw.json").read_text())
 base = json.loads((base_root.parent.parent / "trellis2_statues_v1/oracle_768/result.json").read_text())
 base.update(
-    source="Exact user-supplied colored warrior; U2Net pipeline foreground segmentation; no ImageGen edits",
+    source="Exact user-supplied reference; U2Net pipeline foreground segmentation; no ImageGen edits",
     source_sha256=hashlib.sha256(image_path.read_bytes()).hexdigest(),
     source_dimensions=list(image.size), source_mode=image.mode,
     conditioning_sha256=hashlib.sha256((root / "conditioning.png").read_bytes()).hexdigest(),
@@ -75,4 +76,4 @@ base.update(
     triangles=len(faces), vertices=len(vertices), cleanup="none",
     seconds=time.monotonic()-started, command=command)
 (root / "result.json").write_text(json.dumps(base, indent=2) + "\n")
-print("USER_PLASTIC_WARRIOR_OK", len(faces), native_meta["mesh_grid_size"], flush=True)
+print("TRELLIS2_SOURCE_TRIAL_OK", len(faces), native_meta["mesh_grid_size"], flush=True)

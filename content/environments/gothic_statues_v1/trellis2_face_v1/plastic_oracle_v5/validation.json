@@ -1,0 +1,51 @@
+{
+  "source_unchanged_from_user_attachment": true,
+  "source_sha256": "528eac8ce3cabf3727872f169c834641eacf8eaadf3374152499a702c8263c41",
+  "exports": [
+    {
+      "file": "raw.glb",
+      "triangles": 2624216,
+      "vertices": 1258921,
+      "finite_and_indices_valid": true
+    },
+    {
+      "file": "preview.glb",
+      "triangles": 2624216,
+      "vertices": 1258921,
+      "finite_and_indices_valid": true
+    },
+    {
+      "file": "clean_high.glb",
+      "triangles": 2624104,
+      "vertices": 1590474,
+      "finite_and_indices_valid": true
+    },
+    {
+      "file": "pinholes_filled.glb",
+      "triangles": 2786013,
+      "vertices": 1590474,
+      "finite_and_indices_valid": true
+    }
+  ],
+  "godot_import_passed": true,
+  "godot_smoke_passed": true,
+  "art_assessment": "below quality target",
+  "remaining_defects": [
+    "broken eye and mouth geometry",
+    "malformed raised fingers",
+    "larger cracks and surface bumps",
+    "not watertight"
+  ],
+  "browser_review": {
+    "actual_model_loaded": true,
+    "verified_versions": [
+      "768-before",
+      "768-filled"
+    ],
+    "verified_camera_presets": [
+      "full",
+      "face"
+    ],
+    "source_reference_displayed": true
+  }
+}

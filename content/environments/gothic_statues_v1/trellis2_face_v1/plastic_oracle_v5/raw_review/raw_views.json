@@ -1,0 +1,54 @@
+{
+  "source_mesh": "/Users/theochernin/Projects/MultiPlayerProject-agents/theo-codex-43/content/environments/gothic_statues_v1/trellis2_face_v1/plastic_oracle_v5/preview.glb",
+  "actual_geometry_renders": true,
+  "world_bounds": [
+    [
+      -0.3111652731895447,
+      -0.24252170324325562,
+      0.0
+    ],
+    [
+      0.3111652731895447,
+      0.24252170324325562,
+      1.399999976158142
+    ]
+  ],
+  "blender_version": "5.2.2 LTS",
+  "views": [
+    {
+      "file": "raw_hero.png",
+      "azimuth": 315,
+      "elevation": 18
+    },
+    {
+      "file": "raw_front.png",
+      "azimuth": 0,
+      "elevation": 5
+    },
+    {
+      "file": "raw_front45.png",
+      "azimuth": 45,
+      "elevation": 15
+    },
+    {
+      "file": "raw_left.png",
+      "azimuth": 90,
+      "elevation": 5
+    },
+    {
+      "file": "raw_back135.png",
+      "azimuth": 135,
+      "elevation": 15
+    },
+    {
+      "file": "raw_back.png",
+      "azimuth": 180,
+      "elevation": 5
+    },
+    {
+      "file": "raw_right.png",
+      "azimuth": 270,
+      "elevation": 5
+    }
+  ]
+}
