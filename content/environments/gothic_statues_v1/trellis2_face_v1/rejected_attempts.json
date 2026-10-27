@@ -1,0 +1,18 @@
+[
+  {
+    "method": "facial depth-envelope transfer",
+    "status": "rejected",
+    "reason": "Distorted the existing facial surface and retained its broken topology; not the shipped reconstruction."
+  },
+  {
+    "method": "VDB directly on open sheets",
+    "status": "rejected",
+    "reason": "Did not have a reliable signed volume and deleted most open surfaces."
+  },
+  {
+    "method": "whole-object MeshFix repair",
+    "status": "rejected",
+    "triangles_remaining": 18550,
+    "reason": "Discarded body and cloth; single-solid assumptions do not fit this generated multi-shell sculpture."
+  }
+]

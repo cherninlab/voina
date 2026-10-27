@@ -1,0 +1,103 @@
+{
+  "model": "microsoft/TRELLIS.2-4B",
+  "model_revision": "af44b45f2e35a493886929c6d786e563ec68364d",
+  "source": "/Users/theochernin/Projects/MultiPlayerProject-agents/theo-codex-43/content/environments/gothic_statues_v1/trellis2_statues_v1/source/oracle.png",
+  "source_sha256": "dc2e226e69c1d08e3dfe4c4934a3e553b16e84df7b99a9798a69b5eb08084c0b",
+  "conditioning_sha256": "ef2ac76d1514a11c8ea0d67724f178fbae5b97bfead5de062a11863082eb4389",
+  "method": "Head and neck crop from approved source; no generated replacement image",
+  "source_polygon": [
+    [
+      443,
+      130
+    ],
+    [
+      508,
+      116
+    ],
+    [
+      561,
+      120
+    ],
+    [
+      596,
+      143
+    ],
+    [
+      614,
+      183
+    ],
+    [
+      609,
+      222
+    ],
+    [
+      588,
+      265
+    ],
+    [
+      589,
+      323
+    ],
+    [
+      624,
+      367
+    ],
+    [
+      423,
+      367
+    ],
+    [
+      449,
+      309
+    ],
+    [
+      443,
+      269
+    ],
+    [
+      409,
+      245
+    ],
+    [
+      414,
+      211
+    ],
+    [
+      425,
+      169
+    ]
+  ],
+  "input_count": 1,
+  "resolution": 512,
+  "seed": 42,
+  "steps": 12,
+  "triangles": 776696,
+  "seconds": 20.314718415989773,
+  "command": [
+    "/Users/theochernin/Projects/CherninLab3D/.venv-trellis2/bin/python",
+    "-u",
+    "-c",
+    "import mlx.core as mx,runpy,sys;mx.set_memory_limit(42*1024**3);sys.argv=[sys.argv[1],*sys.argv[2:]];runpy.run_path(sys.argv[0],run_name=\"__main__\")",
+    "/Users/theochernin/Projects/CherninLab3D/vendor/trellis2mlx/generate.py",
+    "--image",
+    "/Users/theochernin/Projects/MultiPlayerProject-agents/theo-codex-43/content/environments/gothic_statues_v1/trellis2_face_v1/head_512/conditioning.png",
+    "--output",
+    "/Users/theochernin/Projects/MultiPlayerProject-agents/theo-codex-43/content/environments/gothic_statues_v1/trellis2_face_v1/head_512/raw.glb",
+    "--resolution",
+    "512",
+    "--steps",
+    "12",
+    "--seed",
+    "42",
+    "--no-cascade",
+    "--no-rembg",
+    "--target-faces",
+    "0",
+    "--no-cleanup",
+    "--no-hole-fill",
+    "--save-checkpoints",
+    "/Users/theochernin/Projects/MultiPlayerProject-agents/theo-codex-43/content/environments/gothic_statues_v1/trellis2_face_v1/head_512/checkpoints",
+    "--stop-after-stage",
+    "mesh_raw"
+  ]
+}

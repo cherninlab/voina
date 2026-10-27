@@ -1,0 +1,22 @@
+{
+  "high": "content/environments/gothic_statues_v1/trellis2_face_v1/oracle_repaired_high.glb",
+  "low": "content/environments/gothic_statues_v1/trellis2_face_v1/oracle_150k.glb",
+  "high_triangles": 13196426,
+  "triangles": 147628,
+  "map_size": 4096,
+  "maps": [
+    "normal.png",
+    "ao.png"
+  ],
+  "normal_convention": "OpenGL tangent-space +Y",
+  "bake": "Cycles selected-to-active, auto cage 0.5mm, ray distance 4mm",
+  "normal_validation": {
+    "flipped_backface_texels": 284235,
+    "neutral_ray_miss_or_unused_texels": 375561,
+    "total_texels": 16777216,
+    "method": "unit-vector validation and tangent hemisphere orientation"
+  },
+  "blender_version": "5.2.2 LTS",
+  "seconds": 20.57433483299974,
+  "ambient_occlusion_material_strength": 0.35
+}

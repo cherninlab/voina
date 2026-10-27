@@ -1,0 +1,9 @@
+{
+  "source": "content/environments/gothic_statues_v1/trellis2_face_v1/oracle_repaired_high.glb",
+  "source_triangles": 13196426,
+  "target_triangles": 150000,
+  "result_triangles": 150000,
+  "reduction_percent": 98.863328601244,
+  "algorithm": "MeshLab quadric error metric; preserve boundary and normal; face quality x30, hands x8",
+  "seconds": 105.45617020799546
+}

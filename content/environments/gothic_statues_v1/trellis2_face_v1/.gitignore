@@ -1,0 +1,14 @@
+*/checkpoints/
+*.blend
+*.blend1
+head_aligned.glb
+oracle_refined_high.glb
+oracle_head_swap.glb
+oracle_repaired_low.glb
+refinement.json
+meshfix.json
+review/refined/
+review/refined_v2/
+review/replaced/
+review/shell_repair/
+review/meshfix/

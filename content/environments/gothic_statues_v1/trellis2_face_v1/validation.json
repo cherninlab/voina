@@ -1,0 +1,45 @@
+{
+  "oracle_150k.glb": {
+    "triangles": 150000,
+    "bytes": 3449076,
+    "embedded_images": 0,
+    "watertight": false,
+    "winding_consistent": true,
+    "geometric_boundary_edges": 0,
+    "geometric_non_manifold_edges": 4374
+  },
+  "baked_150k/statue.glb": {
+    "triangles": 147628,
+    "bytes": 19559360,
+    "embedded_images": 2,
+    "watertight": false,
+    "winding_consistent": true,
+    "geometric_boundary_edges": 3219,
+    "geometric_non_manifold_edges": 3893
+  },
+  "normal": {
+    "dimensions": [
+      4096,
+      4096,
+      3
+    ],
+    "per_channel_spatial_std": [
+      16.633707516508117,
+      17.798912758686583,
+      10.211272169955755
+    ]
+  },
+  "ao": {
+    "dimensions": [
+      4096,
+      4096,
+      3
+    ],
+    "per_channel_spatial_std": [
+      40.875089855212515,
+      40.875089855212515,
+      40.875089855212515
+    ]
+  },
+  "map_comparison_geometry_identical": true
+}

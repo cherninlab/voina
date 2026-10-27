@@ -1,0 +1,6 @@
+{
+  "removed_old_head_triangles": 63348,
+  "retained_body_triangles": 2741974,
+  "new_head_triangles": 590256,
+  "method": "Replace facial shell with close-up head; preserve original crown, horns and long hair; fuse using VDB next"
+}

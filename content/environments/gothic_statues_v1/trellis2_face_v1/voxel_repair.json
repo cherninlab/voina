@@ -1,0 +1,11 @@
+{
+  "method": "Symmetric sheet thickening, then Blender OpenVDB union",
+  "sheet_thickness_m": 0.0024,
+  "voxel_size_m": 0.001,
+  "adaptivity": 0.025,
+  "smoothing_iterations": 2,
+  "smoothing_factor": 0.4,
+  "polygons": 7431250,
+  "limitation": "Reconstructs surfaces at 1mm with a 2.4mm symmetric shell; may soften thin cloth and the smallest hair strands",
+  "seconds": 14.062557290992117
+}
