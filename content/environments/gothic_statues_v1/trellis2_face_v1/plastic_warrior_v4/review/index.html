@@ -1,0 +1,54 @@
+<!doctype html><html lang="en"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>TRELLIS.2 · supplied plastic warrior</title>
+<script type="module" src="/static/vendor/model-viewer.min.js"></script>
+<style>
+*{box-sizing:border-box}body{margin:0;background:#191c21;color:#e9e5dd;font:15px/1.5 system-ui,sans-serif}main{max-width:1500px;margin:auto;padding:22px}h1{font-size:25px;margin:0}h2{font-size:18px}p{color:#bec3cb;margin:8px 0 16px}a{color:#bbd6ff}nav{display:flex;gap:8px;flex-wrap:wrap;margin:14px 0}button,select,.button{font:inherit;background:#323a46;color:#f3efe7;border:1px solid #647080;border-radius:6px;padding:8px 12px;text-decoration:none}button,select{cursor:pointer}.layout{display:grid;grid-template-columns:minmax(0,2fr) minmax(210px,.65fr);gap:20px}model-viewer{width:100%;height:67vh;min-height:430px;border-radius:9px;background:#2b3037}.source{display:block;max-width:100%;max-height:65vh;margin:auto}#status{color:#d0e2aa}.details{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}.details img{width:100%;display:block;border-radius:7px}figure{margin:0}figcaption{color:#bdc4cf;padding:8px 0}footer{border-top:1px solid #4a5260;margin-top:22px;padding-top:15px}@media(max-width:850px){main{padding:15px}.layout,.details{grid-template-columns:1fr}model-viewer{height:55vh}.source{max-height:500px}}
+</style>
+<main>
+<h1>TRELLIS.2 · supplied plastic warrior</h1>
+<p>Your exact reference image with foreground segmentation. Compare 768 and 512 geometry grids · 24 sampling steps · seed 42.</p>
+<nav>
+<select id="variant" aria-label="Geometry version"><option value="768-filled">768 · small holes filled</option><option value="512-filled">512 · small holes filled</option><option value="768-before">768 · before hole filling</option><option value="512-before">512 · before hole filling</option></select>
+<button data-view="full">Full sculpture</button><button data-view="face">Face</button><button data-view="crown">Crown</button><button data-view="back">Back</button><a class="button" id="download" href="../clean_high.glb" download>Download GLB</a>
+</nav>
+<div class="layout">
+<section>
+<model-viewer id="model" src="../pinholes_filled.glb" camera-controls interaction-prompt="none" touch-action="pan-y" camera-target="0m .7m 0m" camera-orbit="0deg 85deg 3m" field-of-view="30deg" environment-image="neutral" exposure=".78" shadow-intensity=".45" min-camera-orbit="auto auto .05m" alt="Actual TRELLIS.2 mesh generated from the supplied colored warrior reference"></model-viewer>
+<div id="status" role="status">Loading actual geometry…</div>
+<p id="counts"></p>
+</section>
+<aside><a href="../source.png"><img class="source" src="../source.png" alt="Exact user-supplied faceted warrior with purple horns, orange hair and blue drapery"></a>
+<p>Original supplied image, unchanged. Colors condition the reconstruction; this review uses a constant neutral material so shape defects remain visible.</p>
+<a id="generation-receipt" href="../result.json">Generation receipt</a> · <a id="cleanup-receipt" href="../finish.json">Cleanup receipt</a> · <a href="../README.md">Notes</a></aside>
+</div>
+<h2>Actual mesh close-ups</h2>
+<p>Rendered from the exported GLB. These are geometry renders, not ImageGen previews.</p>
+<div class="details">
+<figure><img data-detail="face.png" src="../filled_review/face.png" alt="Front face of the actual reconstructed mesh"><figcaption>Face</figcaption></figure>
+<figure><img data-detail="crown.png" src="../filled_review/crown.png" alt="Top view of reconstructed horns and crown"><figcaption>Crown from above</figcaption></figure>
+<figure><img data-detail="head_back.png" src="../filled_review/head_back.png" alt="Back of reconstructed head and hair"><figcaption>Back of head</figcaption></figure>
+<figure><img data-detail="clean_back.png" src="../filled_review/clean_back.png" alt="Back of the complete reconstructed statue"><figcaption>Back of sculpture</figcaption></figure>
+<figure><img data-detail="weapon_hand.png" src="../filled_review/weapon_hand.png" alt="Weapon hand geometry"><figcaption>Weapon hand</figcaption></figure>
+<figure><img data-detail="free_hand.png" src="../filled_review/free_hand.png" alt="Free hand geometry"><figcaption>Free hand</figcaption></figure>
+</div>
+<footer><p id="limits">Dense reconstruction candidate. Small-hole filling preserves the existing vertices and triangles. Larger gaps and some surface defects remain.</p><a id="repair" href="../pinholes.json">Hole-filling measurements</a> · <a href="../preprocess.json">Foreground segmentation</a> · <a href="../../plastic_source_v3/index.html">Earlier rejected source studies</a> · <a href="../../head_cleanup_v2/review/index.html">Previous oracle repair</a></footer>
+</main>
+<script>
+const viewer=document.querySelector('#model'),status=document.querySelector('#status'),variant=document.querySelector('#variant');
+viewer.addEventListener('load',()=>{status.textContent='Actual reconstructed mesh loaded · drag to rotate';window.sculptureLoaded=true});
+viewer.addEventListener('error',()=>{status.textContent='Could not load mesh';window.sculptureLoaded=false});
+async function loadVariant(){
+ const is512=variant.value.startsWith('512'),filled=variant.value.endsWith('filled'),base=is512?'../comparison_512/':'../';
+ status.textContent='Loading actual geometry…';window.sculptureLoaded=false;
+ viewer.src=base+(filled?'pinholes_filled.glb':'clean_high.glb');document.querySelector('#download').href=viewer.src;
+ document.querySelector('#repair').href=base+'pinholes.json';
+ document.querySelector('#generation-receipt').href=base+'result.json';document.querySelector('#cleanup-receipt').href=base+'finish.json';
+ for(const img of document.querySelectorAll('[data-detail]'))img.src=base+(filled?'filled_review/':'review/')+img.dataset.detail;
+ const [run,finish,repair]=await Promise.all([fetch(base+'result.json').then(r=>r.json()),fetch(base+'finish.json').then(r=>r.json()),fetch(base+'pinholes.json').then(r=>r.json())]);
+ document.querySelector('#counts').textContent=(filled?repair.result_triangles:finish.clean_triangles).toLocaleString()+' triangles · '+run.resolution_actual+' grid · no decimation';
+}
+variant.addEventListener('change',loadVariant);
+const cameras={full:['0m .7m 0m','0deg 85deg 3m','30deg'],face:['.035m 1.17m .06m','0deg 85deg .62m','30deg'],crown:['.025m 1.27m 0m','0deg 10deg .90m','30deg'],back:['0m .7m 0m','180deg 85deg 3m','30deg']};
+for(const button of document.querySelectorAll('[data-view]'))button.onclick=()=>{const c=cameras[button.dataset.view];viewer.cameraTarget=c[0];viewer.cameraOrbit=c[1];viewer.fieldOfView=c[2]};
+loadVariant();
+</script></html>

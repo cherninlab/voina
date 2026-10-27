@@ -1,0 +1,7 @@
+**/checkpoints/
+/rejected_backing_slab/*
+!/rejected_backing_slab/README.md
+!/rejected_backing_slab/result.json
+!/rejected_backing_slab/finish.json
+!/rejected_backing_slab/clean_front.png
+!/rejected_backing_slab/conditioning.png

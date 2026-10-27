@@ -1,0 +1,83 @@
+{
+  "source_unchanged_from_user_attachment": true,
+  "source_sha256": "56e96fa99372160ebc52a0723b11e1d2bc270094bebefc6243bdbaf2634722a0",
+  "exports": [
+    {
+      "file": "raw.glb",
+      "triangles": 2225140,
+      "vertices": 1114537,
+      "finite_and_indices_valid": true,
+      "bytes": 53451632
+    },
+    {
+      "file": "preview.glb",
+      "triangles": 2225140,
+      "vertices": 1114537,
+      "finite_and_indices_valid": true,
+      "bytes": 53451852
+    },
+    {
+      "file": "clean_high.glb",
+      "triangles": 2225108,
+      "vertices": 1186050,
+      "finite_and_indices_valid": true,
+      "bytes": 55167780
+    },
+    {
+      "file": "pinholes_filled.glb",
+      "triangles": 2295552,
+      "vertices": 1186050,
+      "finite_and_indices_valid": true,
+      "bytes": 56013108
+    },
+    {
+      "file": "comparison_512/raw.glb",
+      "triangles": 1019110,
+      "vertices": 507608,
+      "finite_and_indices_valid": true,
+      "bytes": 24412968
+    },
+    {
+      "file": "comparison_512/preview.glb",
+      "triangles": 1019110,
+      "vertices": 507608,
+      "finite_and_indices_valid": true,
+      "bytes": 24413184
+    },
+    {
+      "file": "comparison_512/clean_high.glb",
+      "triangles": 1019108,
+      "vertices": 556806,
+      "finite_and_indices_valid": true,
+      "bytes": 25593916
+    },
+    {
+      "file": "comparison_512/pinholes_filled.glb",
+      "triangles": 1059244,
+      "vertices": 556806,
+      "finite_and_indices_valid": true,
+      "bytes": 26075544
+    }
+  ],
+  "same_conditioning_image_for_512_and_768": true,
+  "conditioning_sha256": "2f43fc8cc5ec32fd018bcfbef40b3f649d48e99f70f50675c7b388a449dabbe1",
+  "godot_import_passed": true,
+  "godot_smoke_passed": true,
+  "art_acceptance": "pending",
+  "remaining_defects": "larger gaps, surface bumps, cracks; not watertight",
+  "browser_review": {
+    "actual_model_loaded": true,
+    "verified_variants": [
+      "768-filled",
+      "512-filled",
+      "768-before"
+    ],
+    "verified_cameras": [
+      "full",
+      "face",
+      "crown"
+    ],
+    "selected_variant": "768-filled",
+    "source_reference_displayed": true
+  }
+}

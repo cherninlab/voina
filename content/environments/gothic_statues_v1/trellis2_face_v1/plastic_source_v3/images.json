@@ -1,0 +1,55 @@
+{
+  "generated_with": "built-in image_gen",
+  "date": "2026-10-27",
+  "reconstruction_run": false,
+  "images": [
+    {
+      "file": "original_oracle.png",
+      "source_path": "content/environments/gothic_statues_v1/trellis2_statues_v1/source/oracle.png",
+      "sha256": "dc2e226e69c1d08e3dfe4c4934a3e553b16e84df7b99a9798a69b5eb08084c0b",
+      "size": [
+        1024,
+        1536
+      ],
+      "mode": "RGBA",
+      "zero_alpha_percent": 49.581,
+      "alpha_range": [
+        0,
+        254
+      ],
+      "copied_without_pixel_edits": true
+    },
+    {
+      "file": "oracle_plastic_a.png",
+      "source_path": "/Users/theochernin/.codex/generated_images/01a16f6c-7c14-7a41-a209-467058cf0e62/exec-b681ac72-aba0-476c-8803-3d91d8fd5915.png",
+      "sha256": "883c19723c6942a3007ddf3c73fe0f2741349731cef3b5f1f7843c895a242dc8",
+      "size": [
+        1024,
+        1536
+      ],
+      "mode": "RGBA",
+      "zero_alpha_percent": 48.159,
+      "alpha_range": [
+        0,
+        254
+      ],
+      "copied_without_pixel_edits": true
+    },
+    {
+      "file": "oracle_plastic_b.png",
+      "source_path": "/Users/theochernin/.codex/generated_images/01a16f6c-7c14-7a41-a209-467058cf0e62/exec-3acc982c-01a4-4f0b-8dd9-2db23c7bdbeb.png",
+      "sha256": "fb5f08892f8e625f8b41f286dd1aca1c4c915d7e4fe2cf0d42c9bac1fdf0b002",
+      "size": [
+        1024,
+        1536
+      ],
+      "mode": "RGBA",
+      "zero_alpha_percent": 48.956,
+      "alpha_range": [
+        0,
+        254
+      ],
+      "copied_without_pixel_edits": true
+    }
+  ]
+}

@@ -1,0 +1,16 @@
+{
+  "method": "PyMeshLab meshing_close_holes",
+  "max_boundary_loop_edges": 16,
+  "self_intersection_checks": true,
+  "refinement": false,
+  "existing_vertices_byte_identical": true,
+  "existing_triangles_retained": true,
+  "source_triangles": 2225108,
+  "result_triangles": 2295552,
+  "added_triangles": 70444,
+  "boundary_edges_before": 148334,
+  "boundary_edges_after": 41020,
+  "watertight": false,
+  "winding_consistent": false,
+  "seconds": 2.69167070799449
+}

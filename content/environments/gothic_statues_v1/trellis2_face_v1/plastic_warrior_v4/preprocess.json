@@ -1,0 +1,67 @@
+{
+  "schema": "trellis2mlx-preprocess-v1",
+  "route": "rembg-u2net",
+  "source_parity": "known-background-model-divergence-from-source-rmbg2",
+  "input": {
+    "path": "/Users/theochernin/Projects/MultiPlayerProject-agents/theo-codex-43/content/environments/gothic_statues_v1/trellis2_face_v1/plastic_warrior_v4/source.png",
+    "sha256": "56e96fa99372160ebc52a0723b11e1d2bc270094bebefc6243bdbaf2634722a0",
+    "mode": "RGB",
+    "size": [
+      687,
+      1024
+    ]
+  },
+  "resize": {
+    "max_size": 1024,
+    "scale": 1.0,
+    "input_size": [
+      687,
+      1024
+    ],
+    "output_size": [
+      687,
+      1024
+    ],
+    "resampling": "PIL.Image.Resampling.LANCZOS"
+  },
+  "background_model": {
+    "name": "u2net",
+    "path": "/Users/theochernin/Projects/CherninLab3D/models/matting/models/u2net/u2net.onnx",
+    "sha256": "8d10d2f3bb75ae3b6d527c77944fc5e7dcd94b29809d47a739a7a728a912b491"
+  },
+  "runtime": {
+    "rembg": "2.0.76",
+    "onnxruntime": "1.31.1",
+    "pillow": "12.3.0",
+    "numpy": "2.4.6"
+  },
+  "alpha_threshold": 204.0,
+  "foreground_pixels": 300216,
+  "foreground_bbox_xyxy": [
+    13,
+    0,
+    604,
+    1019
+  ],
+  "crop": {
+    "center_xy": [
+      308.5,
+      509.5
+    ],
+    "source_extent": 1019,
+    "bbox_xyxy": [
+      -200.5,
+      0.5,
+      817.5,
+      1018.5
+    ]
+  },
+  "output": {
+    "mode": "RGB",
+    "size": [
+      1018,
+      1018
+    ],
+    "pixel_sha256": "107e3ec56691eb55759e1202a6c277eca8219da10e5a2b60c3d2b1c7925a941f"
+  }
+}
