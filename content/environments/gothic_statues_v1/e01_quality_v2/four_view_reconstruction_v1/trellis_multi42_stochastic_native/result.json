@@ -1,0 +1,54 @@
+{
+  "model": "microsoft/TRELLIS-image-large",
+  "weight_revision": "25e0d31ffbebe4b5a97464dd851910efc3002d96",
+  "method": "four-image inference using published image checkpoint; no explicit cameras",
+  "conditioning_mode": "stochastic",
+  "preprocessing": "native per-image foreground crop",
+  "seed": 42,
+  "structure_steps": 76,
+  "shape_steps": 76,
+  "color": "native decoder per-vertex RGB",
+  "device": "mps",
+  "view_order": [
+    "front",
+    "left",
+    "back",
+    "right"
+  ],
+  "inputs": [
+    {
+      "path": "/Users/theochernin/Projects/MultiPlayerProject-agents/theo-codex-43/content/environments/gothic_statues_v1/e01_quality_v2/four_view_reconstruction_v1/inputs/front_masked.png",
+      "sha256": "a8095ea0caf3a4c05616ca852a889b19b455eb08140f38a8307aa09be5c71a73"
+    },
+    {
+      "path": "/Users/theochernin/Projects/MultiPlayerProject-agents/theo-codex-43/content/environments/gothic_statues_v1/e01_quality_v2/four_view_reconstruction_v1/inputs/left_masked.png",
+      "sha256": "9812a46fd1fa1fcff040341be9e961281d49adc0485e35cf421f97b22a030ff1"
+    },
+    {
+      "path": "/Users/theochernin/Projects/MultiPlayerProject-agents/theo-codex-43/content/environments/gothic_statues_v1/e01_quality_v2/four_view_reconstruction_v1/inputs/back_masked.png",
+      "sha256": "d0cbc04083a984a2989b1fc12effcc98324bf5f7f8511ba1425e01c1d38595ad"
+    },
+    {
+      "path": "/Users/theochernin/Projects/MultiPlayerProject-agents/theo-codex-43/content/environments/gothic_statues_v1/e01_quality_v2/four_view_reconstruction_v1/inputs/right_masked.png",
+      "sha256": "6c78612e2bc26c22efe094689d26180fc4f6507b140c364e0e6cdfdab9ea5170"
+    }
+  ],
+  "vertices": 297932,
+  "triangles": 593010,
+  "watertight": false,
+  "components": 762,
+  "bounds": [
+    [
+      -0.5350594215322289,
+      -0.9386748556094203,
+      -1.0086166310399862
+    ],
+    [
+      0.5671285375924674,
+      0.9414725722595361,
+      0.9913833689600137
+    ]
+  ],
+  "seconds": 88.49436474998947,
+  "mesh_sha256": "9d122c903bddc62ee2704d46a799984e4af096c7bd54a9cf045473329e36dd15"
+}

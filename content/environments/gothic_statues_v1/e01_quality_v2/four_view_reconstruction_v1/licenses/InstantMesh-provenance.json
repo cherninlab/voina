@@ -1,0 +1,10 @@
+{
+  "model": "TencentARC/InstantMesh instant_nerf_large",
+  "weight_revision": "b785b4ecfb6636ef34a08c748f96f6a5686244d0",
+  "code_revision": "08822c52fdc399b93ea00e4fa9e596344ed52ccc",
+  "weight_source": "https://huggingface.co/TencentARC/InstantMesh/blob/b785b4ecfb6636ef34a08c748f96f6a5686244d0/instant_nerf_large.ckpt",
+  "model_card": "https://huggingface.co/TencentARC/InstantMesh/blob/b785b4ecfb6636ef34a08c748f96f6a5686244d0/README.md",
+  "license": "Apache-2.0 declared by model card. Imported encoder/transformer have Apache-2.0 source headers. NVIDIA renderer and UV modules are not imported by this experimental adapter.",
+  "weights_sha256": "530a344ea9b856e012492b9644ab73532ddf7c06d548f60c489e49a528322fb9",
+  "scope": "Experimental standalone MPS reconstruction; not integrated into current 7865 service."
+}

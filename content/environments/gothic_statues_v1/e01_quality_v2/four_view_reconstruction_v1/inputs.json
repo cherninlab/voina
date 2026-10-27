@@ -1,0 +1,91 @@
+{
+  "method": "U2Net alpha mask; uniform 2D scale/translation registration to each rig render; original RGB retained",
+  "canvas_size": [
+    900,
+    900
+  ],
+  "view_order": [
+    "front",
+    "left",
+    "back",
+    "right"
+  ],
+  "views": [
+    {
+      "view": "front",
+      "source": "/Users/theochernin/Projects/MultiPlayerProject-agents/theo-codex-43/content/environments/gothic_statues_v1/e01_quality_v2/statue_from_rig_v1/front.png",
+      "source_sha256": "14c9eda2da86ac6c9628dd13c251fd023d6123b513255f9a3b92e4d97a7498a4",
+      "input": "/Users/theochernin/Projects/MultiPlayerProject-agents/theo-codex-43/content/environments/gothic_statues_v1/e01_quality_v2/four_view_reconstruction_v1/inputs/front.png",
+      "input_sha256": "b4924c27eb00deb4044fe1a27999f8de9ca39c20e1dcebf0c4761132c88c550a",
+      "source_mask_bbox": [
+        123,
+        111,
+        471,
+        574
+      ],
+      "uniform_scale": 0.9025657781532832,
+      "crop_placement_xy": [
+        289,
+        331
+      ],
+      "rig_silhouette_iou": 0.6956399083137512
+    },
+    {
+      "view": "left",
+      "source": "/Users/theochernin/Projects/MultiPlayerProject-agents/theo-codex-43/content/environments/gothic_statues_v1/e01_quality_v2/statue_from_rig_v1/left.png",
+      "source_sha256": "9c2da7682843e12b31014f6afb8a4f7a223fd630cfa1cdacbe711ec7c8aaa1fb",
+      "input": "/Users/theochernin/Projects/MultiPlayerProject-agents/theo-codex-43/content/environments/gothic_statues_v1/e01_quality_v2/four_view_reconstruction_v1/inputs/left.png",
+      "input_sha256": "270c53ef2c51cf051c1f2870a689ed96730b635c8f29a29a2021161f87656b44",
+      "source_mask_bbox": [
+        7,
+        105,
+        575,
+        536
+      ],
+      "uniform_scale": 1.0467069804668427,
+      "crop_placement_xy": [
+        146,
+        265
+      ],
+      "rig_silhouette_iou": 0.5765460133552551
+    },
+    {
+      "view": "back",
+      "source": "/Users/theochernin/Projects/MultiPlayerProject-agents/theo-codex-43/content/environments/gothic_statues_v1/e01_quality_v2/statue_from_rig_v1/back.png",
+      "source_sha256": "b8b2c2d1a31d507e306c6ed08ac181b1b4c1c58a4d64f5b1eabaacb55d5a1e6b",
+      "input": "/Users/theochernin/Projects/MultiPlayerProject-agents/theo-codex-43/content/environments/gothic_statues_v1/e01_quality_v2/four_view_reconstruction_v1/inputs/back.png",
+      "input_sha256": "ffb18e5216a9730d0d86f3e5bb81c573936021f80695111cb40c063c697166d4",
+      "source_mask_bbox": [
+        154,
+        57,
+        458,
+        587
+      ],
+      "uniform_scale": 1.0386203229427335,
+      "crop_placement_xy": [
+        305,
+        245
+      ],
+      "rig_silhouette_iou": 0.7230027914047241
+    },
+    {
+      "view": "right",
+      "source": "/Users/theochernin/Projects/MultiPlayerProject-agents/theo-codex-43/content/environments/gothic_statues_v1/e01_quality_v2/statue_from_rig_v1/right.png",
+      "source_sha256": "db48b8c0234b9c2fd931ba18d131c2def5195d177f3286f8f98312583fa192fd",
+      "input": "/Users/theochernin/Projects/MultiPlayerProject-agents/theo-codex-43/content/environments/gothic_statues_v1/e01_quality_v2/four_view_reconstruction_v1/inputs/right.png",
+      "input_sha256": "736f15674d7ff4288cfb66f3d848958255d76befeafeea9e97458468b1e6aad4",
+      "source_mask_bbox": [
+        25,
+        71,
+        583,
+        532
+      ],
+      "uniform_scale": 1.1261234411171503,
+      "crop_placement_xy": [
+        153,
+        213
+      ],
+      "rig_silhouette_iou": 0.6662766933441162
+    }
+  ]
+}

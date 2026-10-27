@@ -1,0 +1,52 @@
+{
+  "model": "microsoft/TRELLIS-image-large",
+  "weight_revision": "25e0d31ffbebe4b5a97464dd851910efc3002d96",
+  "method": "four-image multidiffusion; published image checkpoint, all four conditions averaged at each denoising step; no explicit cameras",
+  "seed": 42,
+  "structure_steps": 50,
+  "shape_steps": 50,
+  "color": "native decoder per-vertex RGB",
+  "device": "mps",
+  "view_order": [
+    "front",
+    "left",
+    "back",
+    "right"
+  ],
+  "inputs": [
+    {
+      "path": "/Users/theochernin/Projects/MultiPlayerProject-agents/theo-codex-43/content/environments/gothic_statues_v1/e01_quality_v2/four_view_reconstruction_v1/inputs/front.png",
+      "sha256": "b4924c27eb00deb4044fe1a27999f8de9ca39c20e1dcebf0c4761132c88c550a"
+    },
+    {
+      "path": "/Users/theochernin/Projects/MultiPlayerProject-agents/theo-codex-43/content/environments/gothic_statues_v1/e01_quality_v2/four_view_reconstruction_v1/inputs/left.png",
+      "sha256": "270c53ef2c51cf051c1f2870a689ed96730b635c8f29a29a2021161f87656b44"
+    },
+    {
+      "path": "/Users/theochernin/Projects/MultiPlayerProject-agents/theo-codex-43/content/environments/gothic_statues_v1/e01_quality_v2/four_view_reconstruction_v1/inputs/back.png",
+      "sha256": "ffb18e5216a9730d0d86f3e5bb81c573936021f80695111cb40c063c697166d4"
+    },
+    {
+      "path": "/Users/theochernin/Projects/MultiPlayerProject-agents/theo-codex-43/content/environments/gothic_statues_v1/e01_quality_v2/four_view_reconstruction_v1/inputs/right.png",
+      "sha256": "736f15674d7ff4288cfb66f3d848958255d76befeafeea9e97458468b1e6aad4"
+    }
+  ],
+  "vertices": 182592,
+  "triangles": 363556,
+  "watertight": true,
+  "components": 435,
+  "bounds": [
+    [
+      -0.552292191899203,
+      -0.8319373579200332,
+      -0.9607845086907891
+    ],
+    [
+      0.5937438953977591,
+      0.8864261920106755,
+      1.039215491309211
+    ]
+  ],
+  "seconds": 121.26552562500001,
+  "mesh_sha256": "4e1fd8d16f21205af926cef73c48454a6343e401ba98725aedd28b900b000b15"
+}

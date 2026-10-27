@@ -1,0 +1,21 @@
+{
+  "selected": "trellis_multi42_stochastic_native",
+  "attempts": [
+    {
+      "id": "trellis_multi42_stochastic_native",
+      "label": "TRELLIS \u00b7 standard crops \u00b7 560k",
+      "description": "All four masked statue images jointly condition one generation. Standard foreground crops, stochastic view conditioning, 76 steps in both stages. Detached fragments removed; no smoothing or hole filling."
+    },
+    {
+      "id": "trellis_multi42",
+      "label": "TRELLIS \u00b7 shared framing \u00b7 344k",
+      "description": "All four registered images condition each denoising step through multidiffusion, 50 steps in both stages. This shared-frame trial is softer and has more broken thin surfaces."
+    },
+    {
+      "id": "instantmesh_256",
+      "label": "InstantMesh \u00b7 camera conditioned \u00b7 123k",
+      "description": "All four registered images encoded jointly with explicit front/left/back/right cameras. This experiment preserves the broad pose but has weak anatomy and lumpy surfaces."
+    }
+  ],
+  "limitations": "The face and raised fingers remain softer than the images. Thin-surface defects and inferred anatomy are visible, particularly on the back and around the cloth. This is a rough reconstruction for review, not a finished game asset."
+}

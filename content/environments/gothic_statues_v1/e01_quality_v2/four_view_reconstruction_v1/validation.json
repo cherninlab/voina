@@ -1,0 +1,32 @@
+{
+  "instantmesh_256": {
+    "four_distinct_input_hashes_verified": true,
+    "preview_glb_parse": "pass",
+    "finite_vertices": true,
+    "triangles": 123158,
+    "watertight": true,
+    "consistent_winding": true,
+    "positive_volume": 0.16457502442135172,
+    "maximum_extent_m": 1.399999976158142
+  },
+  "trellis_multi42": {
+    "four_distinct_input_hashes_verified": true,
+    "preview_glb_parse": "pass",
+    "finite_vertices": true,
+    "triangles": 344108,
+    "watertight": true,
+    "consistent_winding": true,
+    "positive_volume": 0.03748444979894618,
+    "maximum_extent_m": 1.399999976158142
+  },
+  "trellis_multi42_stochastic_native": {
+    "four_distinct_input_hashes_verified": true,
+    "preview_glb_parse": "pass",
+    "finite_vertices": true,
+    "triangles": 560216,
+    "watertight": true,
+    "consistent_winding": true,
+    "positive_volume": 0.04190276759818987,
+    "maximum_extent_m": 1.399999976158142
+  }
+}

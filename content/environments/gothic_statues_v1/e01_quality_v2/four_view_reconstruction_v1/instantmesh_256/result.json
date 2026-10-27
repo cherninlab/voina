@@ -1,0 +1,57 @@
+{
+  "model": "TencentARC/InstantMesh instant_nerf_large",
+  "weight_revision": "b785b4ecfb6636ef34a08c748f96f6a5686244d0",
+  "method": "all four images encoded jointly with explicit camera conditioning; local MPS NeRF-density extraction adapter",
+  "azimuths_degrees": [
+    90,
+    180,
+    270,
+    0
+  ],
+  "elevation_degrees": 20,
+  "resolution": 256,
+  "color": "shape only; neutral review material",
+  "device": "mps",
+  "view_order": [
+    "front",
+    "left",
+    "back",
+    "right"
+  ],
+  "inputs": [
+    {
+      "path": "/Users/theochernin/Projects/MultiPlayerProject-agents/theo-codex-43/content/environments/gothic_statues_v1/e01_quality_v2/four_view_reconstruction_v1/inputs/front.png",
+      "sha256": "b4924c27eb00deb4044fe1a27999f8de9ca39c20e1dcebf0c4761132c88c550a"
+    },
+    {
+      "path": "/Users/theochernin/Projects/MultiPlayerProject-agents/theo-codex-43/content/environments/gothic_statues_v1/e01_quality_v2/four_view_reconstruction_v1/inputs/left.png",
+      "sha256": "270c53ef2c51cf051c1f2870a689ed96730b635c8f29a29a2021161f87656b44"
+    },
+    {
+      "path": "/Users/theochernin/Projects/MultiPlayerProject-agents/theo-codex-43/content/environments/gothic_statues_v1/e01_quality_v2/four_view_reconstruction_v1/inputs/back.png",
+      "sha256": "ffb18e5216a9730d0d86f3e5bb81c573936021f80695111cb40c063c697166d4"
+    },
+    {
+      "path": "/Users/theochernin/Projects/MultiPlayerProject-agents/theo-codex-43/content/environments/gothic_statues_v1/e01_quality_v2/four_view_reconstruction_v1/inputs/right.png",
+      "sha256": "736f15674d7ff4288cfb66f3d848958255d76befeafeea9e97458468b1e6aad4"
+    }
+  ],
+  "vertices": 61701,
+  "triangles": 123362,
+  "watertight": true,
+  "components": 18,
+  "bounds": [
+    [
+      -0.3241286873817444,
+      -0.643021821975708,
+      -0.6401104927062988
+    ],
+    [
+      0.38089895248413086,
+      0.4552809000015259,
+      0.708113431930542
+    ]
+  ],
+  "seconds": 7.034586875000969,
+  "mesh_sha256": "72d881cbdf6ad0a8060d347381c3b2ebf48ac2642eb40788f0bb5d161b7a2914"
+}

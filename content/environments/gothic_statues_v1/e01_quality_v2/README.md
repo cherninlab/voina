@@ -6,4 +6,6 @@ The user rejected both generated four-view sheets: first for inconsistencies, th
 
 The current direction is [female_ik_v4](female_ik_v4/README.md): reuse the actual CC0 female character, solve a fixed pose with inverse kinematics, and render all four views from that single mesh. The actual hips and chest supply alignment cues. The rig, static GLB, transparent views, editable target controls and checks are included. This delivers a coherent pose foundation; statue detail and user visual approval remain open.
 
-The next [ImageGen statue sheet](statue_from_rig_v1/README.md) uses that rig sheet for pose and the previously approved statue for carving style. It includes a short tunic and carved hair, with four separately saved panels. The images await user review; generated details still vary slightly between views and no new reconstruction has run.
+The next [ImageGen statue sheet](statue_from_rig_v1/README.md) uses that rig sheet for pose and the previously approved statue for carving style. It includes a short tunic and carved hair, with four separately saved panels. The user approved these images for 3D; generated details still vary slightly between views.
+
+The user subsequently approved that sheet for 3D. [Three joint four-image reconstructions](four_view_reconstruction_v1/README.md) are now available, including a camera-conditioned InstantMesh trial and two TRELLIS multi-image trials. The strongest rough preview preserves the crawl but still has weak face/finger detail and thin-surface defects. It is not a final asset replacement or dungeon integration.

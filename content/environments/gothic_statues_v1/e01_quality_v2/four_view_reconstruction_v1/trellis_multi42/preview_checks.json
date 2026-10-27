@@ -1,0 +1,13 @@
+{
+  "source": "raw.glb",
+  "source_components": 435,
+  "retained_component_area_fraction": 0.9694225071336311,
+  "discarded_triangles": 19448,
+  "triangles": 344108,
+  "watertight": true,
+  "cleanup": "largest connected component only; no smoothing, hole filling or anatomical edits",
+  "maximum_extent_m": 1.4,
+  "floor_y": 0.0,
+  "orientation": "InstantMesh rotated 180 degrees about Y for comparable front; TRELLIS unchanged",
+  "material": "constant neutral marble; original decoded color retained in raw.glb"
+}
