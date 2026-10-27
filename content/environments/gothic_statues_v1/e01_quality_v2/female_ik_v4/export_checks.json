@@ -1,0 +1,77 @@
+{
+  "meshes": 3,
+  "vertices": 73547,
+  "triangles": 79120,
+  "bounds": [
+    [
+      -0.3456700540502325,
+      0.0011564920423552394,
+      -0.7611056846409471
+    ],
+    [
+      0.34101052124309433,
+      0.9172486662864685,
+      0.6041960873461506
+    ]
+  ],
+  "images": {
+    "front": {
+      "size": [
+        900,
+        900
+      ],
+      "alpha_min": 0,
+      "alpha_max": 255,
+      "subject_bounds": [
+        279,
+        367,
+        624,
+        755
+      ]
+    },
+    "left": {
+      "size": [
+        900,
+        900
+      ],
+      "alpha_min": 0,
+      "alpha_max": 255,
+      "subject_bounds": [
+        128,
+        293,
+        813,
+        713
+      ]
+    },
+    "back": {
+      "size": [
+        900,
+        900
+      ],
+      "alpha_min": 0,
+      "alpha_max": 255,
+      "subject_bounds": [
+        276,
+        149,
+        621,
+        807
+      ]
+    },
+    "right": {
+      "size": [
+        900,
+        900
+      ],
+      "alpha_min": 0,
+      "alpha_max": 255,
+      "subject_bounds": [
+        87,
+        222,
+        771,
+        725
+      ]
+    }
+  },
+  "static_export": true,
+  "guide_color_0_contains_regions": true
+}

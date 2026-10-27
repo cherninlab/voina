@@ -1,0 +1,97 @@
+[
+  {
+    "name": "front",
+    "azimuth_degrees_from_positive_y": 0,
+    "elevation_degrees": 20,
+    "camera_world": [
+      0.0,
+      3.878770351409912,
+      1.8780806064605713
+    ],
+    "target_world": [
+      0.0,
+      0.11999999731779099,
+      0.5099999904632568
+    ],
+    "projection": "orthographic",
+    "orthographic_scale": 1.7999999523162842,
+    "rgba": true,
+    "file": "front.png"
+  },
+  {
+    "name": "left",
+    "azimuth_degrees_from_positive_y": 90,
+    "elevation_degrees": 20,
+    "camera_world": [
+      -3.75877046585083,
+      0.11999999731779099,
+      1.8780806064605713
+    ],
+    "target_world": [
+      0.0,
+      0.11999999731779099,
+      0.5099999904632568
+    ],
+    "projection": "orthographic",
+    "orthographic_scale": 1.7999999523162842,
+    "rgba": true,
+    "file": "left.png"
+  },
+  {
+    "name": "back",
+    "azimuth_degrees_from_positive_y": 180,
+    "elevation_degrees": 20,
+    "camera_world": [
+      -4.603166141140013e-16,
+      -3.638770580291748,
+      1.8780806064605713
+    ],
+    "target_world": [
+      0.0,
+      0.11999999731779099,
+      0.5099999904632568
+    ],
+    "projection": "orthographic",
+    "orthographic_scale": 1.7999999523162842,
+    "rgba": true,
+    "file": "back.png"
+  },
+  {
+    "name": "right",
+    "azimuth_degrees_from_positive_y": 270,
+    "elevation_degrees": 20,
+    "camera_world": [
+      3.75877046585083,
+      0.11999999731779099,
+      1.8780806064605713
+    ],
+    "target_world": [
+      0.0,
+      0.11999999731779099,
+      0.5099999904632568
+    ],
+    "projection": "orthographic",
+    "orthographic_scale": 1.7999999523162842,
+    "rgba": true,
+    "file": "right.png"
+  },
+  {
+    "name": "hero",
+    "azimuth_degrees_from_positive_y": 315,
+    "elevation_degrees": 20,
+    "camera_world": [
+      2.6578521728515625,
+      2.7778520584106445,
+      1.8780806064605713
+    ],
+    "target_world": [
+      0.0,
+      0.11999999731779099,
+      0.5099999904632568
+    ],
+    "projection": "orthographic",
+    "orthographic_scale": 1.7999999523162842,
+    "rgba": false,
+    "file": "hero.png"
+  }
+]
