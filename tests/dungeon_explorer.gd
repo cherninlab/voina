@@ -32,8 +32,60 @@ var enemy_runs: Array[Dictionary] = []
 var detector_failures: int = 0
 var mesh_records: Array[Dictionary] = []
 var triangle_cache: Dictionary[int, TriangleMesh] = {}
+var triangle_faces: Dictionary[int, PackedVector3Array] = {}
 var overlap_points: Array[Dictionary] = []
-var inspection_views: Array[Dictionary] = []
+var mesh_buckets: Dictionary[Vector2i, Array] = {}
+var issue_counts: Dictionary[String, int] = {}
+var scheduled_starts: Array[int] = []
+var invalid_viewpoints: int = 0
+var walked_edges: Dictionary[String, float] = {}
+
+func valid_inspection_eye(eye: Vector3) -> bool:
+	var capsule: CapsuleShape3D = CapsuleShape3D.new()
+	capsule.radius = 0.4
+	capsule.height = 1.8
+	var query: PhysicsShapeQueryParameters3D = PhysicsShapeQueryParameters3D.new()
+	query.shape = capsule
+	query.exclude = exclude
+	query.collision_mask = 1
+	query.transform = Transform3D(Basis.IDENTITY, eye - Vector3.UP * 0.6)
+	return space.intersect_shape(query, 1).is_empty()
+
+func schedule_starts() -> void:
+	var groups: Dictionary[String, Array] = {}
+	for cell: Dictionary in cells:
+		if not bool(cell["walkable"]):
+			continue
+		var area: String = String(cell["area"])
+		if not groups.has(area):
+			groups[area] = []
+		groups[area].append(int(cell["id"]))
+	var ordered: Array[String] = ["route:root_tunnel", "room:nave", "route:return_stair", "room:choir", "room:second_stair_hall", "room:first_stair_hall", "room:bell"]
+	var names: Array = groups.keys()
+	names.sort()
+	for area: String in names:
+		if not ordered.has(area):
+			ordered.append(area)
+	var near_edges: Array[int] = []
+	for area: String in ordered:
+		if not groups.has(area):
+			continue
+		var ids: Array = groups[area] as Array
+		var centre: Vector3 = Vector3.ZERO
+		for id: int in ids:
+			centre += point(cells[id]["position"] as Array) / float(ids.size())
+		var middle: int = int(ids[0])
+		var edge: int = middle
+		for id: int in ids:
+			if centre.distance_squared_to(point(cells[id]["position"] as Array)) < centre.distance_squared_to(point(cells[middle]["position"] as Array)):
+				middle = id
+			if centre.distance_squared_to(point(cells[id]["position"] as Array)) > centre.distance_squared_to(point(cells[edge]["position"] as Array)):
+				edge = id
+		scheduled_starts.append(middle)
+		near_edges.append(edge)
+	scheduled_starts.append_array(near_edges)
+	report["survey"]["scheduled_starts"] = scheduled_starts
+	report["survey"]["restart_interval_ticks"] = 600
 
 func register_mesh(node: MeshInstance3D, count_geometry: bool = true) -> void:
 	if node.mesh == null:
@@ -54,13 +106,37 @@ func register_mesh(node: MeshInstance3D, count_geometry: bool = true) -> void:
 		return
 	var planes: PackedVector3Array = PackedVector3Array()
 	var material: ShaderMaterial = node.material_override as ShaderMaterial
+	var two_sided: bool = false
+	if node.material_override is BaseMaterial3D:
+		two_sided = (node.material_override as BaseMaterial3D).cull_mode == BaseMaterial3D.CULL_DISABLED
+	elif material != null:
+		two_sided = material.shader.code.contains("cull_disabled")
 	if material != null and material.shader.resource_path.ends_with("flagstone_clipped.gdshader"):
 		planes = material.get_shader_parameter("clip_planes") as PackedVector3Array
-	mesh_records.append({"path": path, "mesh": node.mesh, "transform": node.global_transform,
-		"inverse": node.global_transform.affine_inverse(), "bounds": node.get_aabb(), "clip": planes})
+	index_mesh({"path": path, "mesh": node.mesh, "transform": node.global_transform,
+		"inverse": node.global_transform.affine_inverse(), "bounds": node.get_aabb(), "clip": planes, "two_sided": two_sided})
+
+func index_mesh(record: Dictionary) -> void:
+	mesh_records.append(record)
+	var bounds: AABB = (record["transform"] as Transform3D) * (record["bounds"] as AABB)
+	for x: int in range(floori(bounds.position.x / 4.0), floori(bounds.end.x / 4.0) + 1):
+		for z: int in range(floori(bounds.position.z / 4.0), floori(bounds.end.z / 4.0) + 1):
+			var key: Vector2i = Vector2i(x, z)
+			if not mesh_buckets.has(key):
+				mesh_buckets[key] = []
+			mesh_buckets[key].append(mesh_records.size() - 1)
+
+func register_multi(node: MultiMeshInstance3D) -> void:
+	var multi: MultiMesh = node.multimesh
+	var count: int = multi.instance_count if multi.visible_instance_count < 0 else mini(multi.instance_count, multi.visible_instance_count)
+	for index: int in range(count):
+		var transform: Transform3D = node.global_transform * multi.get_instance_transform(index)
+		index_mesh({"path": String(node.get_path()), "mesh": multi.mesh, "transform": transform,
+			"inverse": transform.affine_inverse(), "bounds": multi.mesh.get_aabb(), "clip": PackedVector3Array(), "two_sided": false, "instance": index})
 
 func object_color(path: String) -> Color:
-	return Color.from_hsv(float(posmod(path.hash(), 65521)) / 65521.0, 0.72, 0.95)
+	var value: int = path.hash()
+	return Color.from_hsv(float(value & 65535) / 65535.0, 0.55 + float((value >> 16) & 255) / 1020.0, 0.75 + float((value >> 24) & 255) / 1020.0)
 
 func inventory() -> void:
 	for node: Node in dungeon.find_children("*", "MeshInstance3D", true, false):
@@ -72,6 +148,8 @@ func inventory() -> void:
 		geometry.append({"path": String(node.get_path()), "asset": multi.multimesh.mesh.resource_path,
 			"instances": multi.multimesh.instance_count, "triangles": multi.multimesh.mesh.get_faces().size() / 3 * multi.multimesh.instance_count,
 			"surfaces": multi.multimesh.mesh.get_surface_count(), "color": object_color(String(node.get_path())).to_html(false), "multimesh": true})
+		if multi.is_visible_in_tree():
+			register_multi(multi)
 	report["capabilities"]["geometry_counts"] = "per render object, explicit LOD range, material surfaces, MultiMesh instances; not GPU cost"
 	print("EXPLORER_MESHES: ", geometry.size())
 
@@ -91,6 +169,7 @@ func mesh_hit(record: Dictionary, a: Vector3, b: Vector3) -> Dictionary:
 	var key: int = mesh.get_instance_id()
 	if not triangle_cache.has(key):
 		triangle_cache[key] = mesh.generate_triangle_mesh()
+		triangle_faces[key] = triangle_cache[key].get_faces()
 	var hit: Dictionary = triangle_cache[key].intersect_segment(local_a, local_b)
 	if hit.is_empty():
 		return {}
@@ -98,12 +177,52 @@ func mesh_hit(record: Dictionary, a: Vector3, b: Vector3) -> Dictionary:
 	var location: Vector3 = transform * (hit["position"] as Vector3)
 	if not survives_clip(record, location):
 		return {}
-	return {"position": location, "normal": (inverse.basis.transposed() * (hit["normal"] as Vector3)).normalized(), "path": record["path"]}
+	# TriangleMesh's intersection normal faces the incoming ray. Recover authored
+	# winding from the actual face so a reversed sheet is not silently corrected.
+	var faces: PackedVector3Array = triangle_faces[key]
+	var face: int = int(hit["face_index"]) * 3
+	var normal: Vector3 = (faces[face + 2] - faces[face]).cross(faces[face + 1] - faces[face]).normalized()
+	return {"position": location, "normal": (inverse.basis.transposed() * normal).normalized(), "path": record["path"], "two_sided": record["two_sided"], "instance": record.get("instance", -1)}
+
+func inspect_surface(eye: Vector3, end: Vector3, area: String, ceiling: bool = false) -> void:
+	if not valid_inspection_eye(eye):
+		invalid_viewpoints += 1
+		return
+	var visible: Dictionary = visual_ray(eye, end)
+	var physics: Dictionary = ray(eye, end)
+	var direction: Vector3 = (end - eye).normalized()
+	var details: Dictionary = {"expected": "visible ceiling/backing" if ceiling else "visible floor near walking collision",
+		"camera": vector(eye), "direction": vector(direction), "collider": collider_path(physics),
+		"limits": "mesh rays omit shader displacement/peeling; openings and board joints may be intentional"}
+	if visible.is_empty():
+		if ceiling or not physics.is_empty():
+			details["observed"] = "no render triangle along probe"
+			issue("visible_ceiling_gap" if ceiling else "visible_floor_gap", eye, area, details, 2)
+	elif not bool(visible["two_sided"]) and (visible["normal"] as Vector3).dot(direction) > 0.01:
+		details["observed"] = "nearest render triangle faces away from viewer; backing requires inspection"
+		details["mesh"] = visible["path"]
+		details["normal"] = vector(visible["normal"] as Vector3)
+		issue("surface_backface_candidate", visible["position"] as Vector3, area, details, 2)
+	elif not ceiling and not physics.is_empty():
+		var difference: float = (visible["position"] as Vector3).y - (physics["position"] as Vector3).y
+		if absf(difference) > 0.15:
+			details["observed"] = "visible floor differs from collision by more than 15 cm"
+			details["height_difference_m"] = difference
+			details["mesh"] = visible["path"]
+			details["instance"] = visible["instance"]
+			issue("floor_collision_visual_mismatch" if difference < 0.0 else "raised_render_surface", visible["position"] as Vector3, area, details, 2 if difference < 0.0 else 3)
 
 func visual_ray(a: Vector3, b: Vector3) -> Dictionary:
 	var closest: Dictionary = {}
 	var distance: float = a.distance_to(b) + 0.01
-	for record: Dictionary in mesh_records:
+	var candidates: Array = mesh_buckets.get(Vector2i(floori(a.x / 4.0), floori(a.z / 4.0)), []) as Array
+	# Inspection rays are vertical; keep the general path correct for nonvertical controls.
+	if flat_distance(a, b) > 0.001:
+		candidates = range(mesh_records.size())
+	for index: int in candidates:
+		if index >= mesh_records.size():
+			continue
+		var record: Dictionary = mesh_records[index]
 		var hit: Dictionary = mesh_hit(record, a, b)
 		if not hit.is_empty() and a.distance_to(hit["position"] as Vector3) < distance:
 			closest = hit
@@ -130,6 +249,30 @@ func visual_controls() -> void:
 	var solid_hit: Dictionary = visual_ray(base + Vector3(1, 1, 0), base + Vector3(1, -1, 0))
 	verify("visual detector accepts solid floor control", not solid_hit.is_empty())
 	verify("normal diagnostic faces the viewer on a floor", not solid_hit.is_empty() and (solid_hit["normal"] as Vector3).y > 0.0)
+	var instanced: MultiMeshInstance3D = MultiMeshInstance3D.new()
+	var multi: MultiMesh = MultiMesh.new()
+	multi.transform_format = MultiMesh.TRANSFORM_3D
+	var fill: PlaneMesh = PlaneMesh.new()
+	fill.size = Vector2(0.08, 4)
+	multi.mesh = fill
+	multi.instance_count = 1
+	multi.set_instance_transform(0, Transform3D.IDENTITY)
+	instanced.multimesh = multi
+	instanced.position = base
+	root.add_child(instanced)
+	register_multi(instanced)
+	verify("instanced surfaces prevent a false gap report", not visual_ray(base + Vector3.UP, base + Vector3.DOWN).is_empty())
+	# Keep the reversed-sheet control on an ordinary render mesh.
+	var reversed: MeshInstance3D = root.get_child(2) as MeshInstance3D
+	var crossing: Dictionary = mesh_hit(mesh_records[size_before + 1], base + Vector3(0.4, 1, 0), base + Vector3(0.4, -1, 0))
+	verify("surface intersection probe finds a crossing edge", not crossing.is_empty())
+	reversed.rotation.z = PI
+	register_mesh(reversed, false)
+	var reversed_hit: Dictionary = mesh_hit(mesh_records[-1], base + Vector3(1, 1, 0), base + Vector3(1, -1, 0))
+	verify("backface control detects a reversed sheet", not reversed_hit.is_empty() and (reversed_hit["normal"] as Vector3).y < 0.0)
+	fixture_box(root, "BlockedCamera", Vector3(1, 3, 1), base + Vector3.UP * 1.5)
+	await frames(2)
+	verify("inspection rejects a camera embedded in a wall", not valid_inspection_eye(base + Vector3.UP * 1.6))
 	mesh_records.resize(size_before)
 	root.queue_free()
 	await frames(2)
@@ -152,27 +295,50 @@ func visual_audit() -> void:
 				if Geometry2D.is_point_in_polygon(at, polygon):
 					var eye: Vector3 = Vector3(x, float(room["floor"]) + 1.6, z)
 					var below: Vector3 = Vector3(x, float(room["floor"]) - 1.0, z)
-					var floor_hit: Dictionary = visual_ray(eye, below)
-					var physics: Dictionary = ray(eye, below)
 					sampled += 1
-					if floor_hit.is_empty() and not physics.is_empty():
-						issue("visible_floor_gap", point(vector(physics["position"] as Vector3)), "room:" + String(room["id"]),
-							{"expected": "visible floor over collision", "observed": "no render triangle on floor ray", "collider": collider_path(physics), "camera": vector(eye), "direction": [0, -1, 0], "limits": "mesh ray; shader displacement and alpha masks not evaluated"}, 1)
+					inspect_surface(eye, below, "room:" + String(room["id"]))
 					var roof_end: Vector3 = eye + Vector3.UP * (float(room["height"]) + 5.0)
-					var roof_hit: Dictionary = visual_ray(eye, roof_end)
-					if roof_hit.is_empty():
-						issue("visible_ceiling_gap", eye, "room:" + String(room["id"]), {"expected": "ceiling/backing over enclosed room", "observed": "no render triangle above", "camera": vector(eye), "direction": [0, 1, 0], "limits": "intentional openings require review"}, 2)
+					inspect_surface(eye, roof_end, "room:" + String(room["id"]), true)
 				z += stride
 			x += stride
 		print("EXPLORER_VISUAL: ", room["id"], " probes=", sampled)
 		await get_tree().process_frame
-	report["visual_audit"] = {"room_probe_count": sampled, "stride_m": 1.0 if full else 3.0, "limits": "sampled triangles, explicit near LOD; shader displacement/peeling and MultiMesh not evaluated; narrow gaps may be missed"}
+	var route_probes: int = 0
+	for route: Dictionary in routes:
+		var points: PackedVector3Array = route["points"] as PackedVector3Array
+		for segment: int in range(points.size() - 1):
+			var a: Vector3 = points[segment]
+			var b: Vector3 = points[segment + 1]
+			var tangent: Vector3 = b - a
+			tangent.y = 0.0
+			var side: Vector3 = Vector3(-tangent.z, 0, tangent.x).normalized()
+			var steps: int = ceili(a.distance_to(b) / (0.5 if full else 2.0))
+			for index: int in range(steps + 1):
+				for lane: float in [-0.42, 0.0, 0.42]:
+					var ground: Vector3 = a.lerp(b, float(index) / float(steps)) + side * float(route["width"]) * lane
+					var eye: Vector3 = ground + Vector3.UP * 1.6
+					inspect_surface(eye, ground + Vector3.DOWN, "route:" + String(route["id"]))
+					var inside_room: bool = false
+					for room: Dictionary in rooms:
+						inside_room = inside_room or (ground.y >= float(room["floor"]) - 0.7 and ground.y + 1.6 < float(room["floor"]) + float(room["height"]) and Geometry2D.is_point_in_polygon(Vector2(ground.x, ground.z), room["points"] as PackedVector2Array))
+					if bool(route["enclosed"]) and not inside_room:
+						inspect_surface(eye, eye + Vector3.UP * 8.0, "route:" + String(route["id"]), true)
+					route_probes += 1
+		print("EXPLORER_ROUTE_VISUAL: ", route["id"], " probes=", route_probes)
+		await get_tree().process_frame
+	report["visual_audit"] = {"room_probe_count": sampled, "stride_m": 1.0 if full else 3.0, "limits": "sampled triangles including MultiMesh instances, explicit near LOD; shader displacement/peeling not evaluated; narrow gaps may be missed"}
+	report["visual_audit"]["route_probe_count"] = route_probes
+	report["visual_audit"]["invalid_viewpoint_probes_skipped"] = invalid_viewpoints
 	report["capabilities"]["visual_holes"] = "sampled floor/ceiling mesh rays with known gap and solid controls; rendered captures are separate"
 
 func intersection_audit() -> void:
 	# ponytail: bounded surface samples find candidates, not an exhaustive mesh boolean.
-	for index: int in range(mesh_records.size()):
-		var record: Dictionary = mesh_records[index]
+	var records: Array[Dictionary] = []
+	for record: Dictionary in mesh_records:
+		if not record.has("instance"):
+			records.append(record)
+	for index: int in range(records.size()):
+		var record: Dictionary = records[index]
 		var mesh: Mesh = record["mesh"] as Mesh
 		var faces: PackedVector3Array = mesh.get_faces()
 		if faces.size() < 3:
@@ -183,8 +349,8 @@ func intersection_audit() -> void:
 			var face: int = (posmod(String(record["path"]).hash(), faces.size() / 3) + sample_index * 113) % (faces.size() / 3) * 3
 			var a: Vector3 = transform * faces[face]
 			var b: Vector3 = transform * faces[face + 1]
-			for other_index: int in range(index + 1, mesh_records.size()):
-				var other: Dictionary = mesh_records[other_index]
+			for other_index: int in range(index + 1, records.size()):
+				var other: Dictionary = records[other_index]
 				var hit: Dictionary = mesh_hit(other, a, b)
 				if hit.is_empty():
 					continue
@@ -196,7 +362,7 @@ func intersection_audit() -> void:
 				break
 		if index % 200 == 0:
 			await get_tree().process_frame
-	report["intersections"] = {"samples": overlap_points, "limit": 300, "method": "sampled triangle edges crossing another render object's triangles", "limits": "intentional mortar/stone contacts included; no self-intersections inside a merged mesh; not a defect verdict"}
+	report["intersections"] = {"samples": overlap_points, "limit": 300, "method": "sampled triangle edges crossing another render object's triangles", "limits": "intentional mortar/stone contacts included; no self-intersections inside a merged mesh or between MultiMesh instances; not a defect verdict"}
 	report["capabilities"]["intersections"] = "bounded geometric surface crossings between distinct objects; candidates only"
 
 func verify(name_value: String, condition: bool, details: Dictionary = {}) -> void:
@@ -264,10 +430,24 @@ func enemy_walk(mob: HostileMob, goal: Vector3, name_value: String, limit: int =
 		"seconds": ticks * DT, "max_stuck_seconds": longest_stuck * DT, "trace": trace}
 	enemy_runs.append(result)
 	if bad_arrival or longest_stuck >= 120:
-		issue("enemy_false_arrival" if bad_arrival else "enemy_stuck", mob.position, "fixture:" + name_value,
+		var direction: Vector3 = (goal - mob.position).normalized()
+		issue("enemy_false_arrival" if bad_arrival else "enemy_stuck", mob.position, ("guard:" if name_value.begins_with("dungeon-") else "fixture:") + name_value,
 			{"expected": "arrive at the requested 3D goal or report no route", "observed": result,
+			"camera": vector(mob.position + Vector3.UP * 0.65), "direction": vector(direction if direction.length() > 0.01 else Vector3.FORWARD),
 			"source": "gameplay/mobs/hostile_mob.gd:walk; gameplay/mobs/mob_navigation.gd:path"}, 1, "observed")
 	return result
+
+func dungeon_enemy_scenarios() -> void:
+	for index: int in [0, 2]:
+		var mob: RaiderMob = mobs.raiders.get_child(index) as RaiderMob
+		var origin: Vector3 = mob.position
+		var goal: Vector3 = mob.grid().stand_point(origin + Vector3(4, 0, 4))
+		await enemy_walk(mob, goal, "dungeon-hall-%d" % index, 600)
+		mob.position = origin
+		mob.sync_position = origin
+		mob.velocity = Vector3.ZERO
+		mob.route.clear()
+	print("EXPLORER_DUNGEON_ENEMIES: both actual hall grids exercised")
 
 func enemy_scenarios() -> void:
 	verify("arrival detector accepts valid arrival", not false_arrival(true, Vector3.ZERO, Vector3(0.1, 0.1, 0)))
@@ -301,6 +481,17 @@ func enemy_scenarios() -> void:
 	system.raider_grids[0].build(space, system.actor_rids(), Vector2(base.x, base.z))
 	var clear_run: Dictionary = await enemy_walk(mob, base + Vector3(6, 0.95, 0), "clear-floor")
 	verify("real enemy crosses clear floor", bool(clear_run["arrived"]), clear_run)
+	var blocker: RaiderMob = system.create_raider([1187, base + Vector3(0, 0.95, 0), 0.0, MobSystem.Zone.VILLAGE]) as RaiderMob
+	system.raiders.add_child(blocker)
+	blocker.set_physics_process(false)
+	blocker.set_process(false)
+	await frames(2)
+	var crowd: Dictionary = await enemy_walk(mob, base + Vector3(-6, 0.95, 0), "crowd-blocking")
+	verify("real actor obstruction is recorded", float(crowd["max_stuck_seconds"]) >= 2.0 or bool(crowd["arrived"]), crowd)
+	blocker.queue_free()
+	await frames(2)
+	var resumed: Dictionary = await enemy_walk(mob, base + Vector3(6, 0.95, 0), "actor-obstruction-removed")
+	verify("enemy can move after actor obstruction is removed", bool(resumed["arrived"]), resumed)
 	# The upper floor is real; reaching its x/z on the lower floor is not arrival.
 	fixture_box(arena, "UpperFloor", Vector3(4, 0.3, 4), base + Vector3(6, 5.85, 0))
 	await frames(2)
@@ -354,9 +545,21 @@ func enemy_scenarios() -> void:
 	enemy_runs.append({"scenario": "cover-memory-reacquire-return", "profile": "production RaiderMob physics/perception/actions", "trace": perception_trace})
 	mob.set_physics_process(false)
 	system.started = false
+	actor.position = base + Vector3(20, 0.95, 0)
+	actor.velocity = Vector3.ZERO
+	var fell: bool = false
+	for tick: int in range(120):
+		await get_tree().physics_frame
+		actor.velocity = Vector3(6.5, -0.6 if actor.is_on_floor() else actor.velocity.y - 18.0 * DT, 0)
+		actor.move_and_slide()
+		if actor.position.y < 0.95 - 2.5:
+			fell = true
+			break
+	verify("real player capsule exposes an unplanned floor-edge fall", fell, {"landed_or_last_position": vector(actor.position)})
 	arena.queue_free()
 	await frames(5)
 	report["capabilities"]["enemy_scenarios"] = "production enemy locomotion, blocked/changed paths, stacked floors, cover, memory, reacquisition, return home"
+	report["capabilities"]["crowd"] = "actual enemy body obstruction and removal tested; production avoidance limitations reported"
 	print("EXPLORER_ENEMIES: ", enemy_runs.size(), " scenarios; detector failures=", detector_failures)
 
 func _ready() -> void:
@@ -395,11 +598,12 @@ func issue(kind: String, position_value: Vector3, area: String, evidence: Dictio
 	if issue_keys.has(key):
 		issues[issue_keys[key]]["occurrences"] = int(issues[issue_keys[key]]["occurrences"]) + 1
 		return
-	if issues.size() >= 1000:
+	if issues.size() >= 1000 or (confidence == "candidate" and issue_counts.get(kind, 0) >= 100):
 		suppressed += 1
 		return
 	var id: String = "E%04d" % (issues.size() + 1)
 	issue_keys[key] = issues.size()
+	issue_counts[kind] = issue_counts.get(kind, 0) + 1
 	issues.append({"id": id, "kind": kind, "severity": severity, "confidence": confidence,
 		"area": area, "position": vector(position_value), "evidence": evidence, "occurrences": 1,
 		"replay": {"seed": seed_value, "mode": "full" if full else "fast", "ticks": tick_limit}})
@@ -555,8 +759,9 @@ func restart(worker: CharacterBody3D, job: Dictionary, cell_id: int, reason: Str
 	worker.velocity = Vector3.ZERO
 	job["current"] = cell_id
 	job["path"] = []
-	job["settle"] = 8
 	job["stuck_ticks"] = 0
+	job["attempt_target"] = -1
+	job["last_arrival_tick"] = int(job["tick"])
 	job["restarts"].append({"tick": int(job["tick"]), "cell": cell_id, "reason": reason, "position": vector(worker.position)})
 
 func explore() -> void:
@@ -566,10 +771,11 @@ func explore() -> void:
 		get_tree().quit(1)
 		return
 	report["survey"]["entry_component"] = int(cells[start]["component"])
+	schedule_starts()
 	for worker: CharacterBody3D in workers:
-		var job: Dictionary = {"tick": 0, "current": start, "path": [], "settle": 0, "stuck_ticks": 0,
+		var job: Dictionary = {"tick": 0, "current": start, "path": [], "stuck_ticks": 0,
 			"distance_m": 0.0, "restarts": [], "trace": [], "visited": 0, "idle": false}
-		restart(worker, job, start, "initial spawn")
+		restart(worker, job, scheduled_starts[jobs.size() % scheduled_starts.size()], "independent area trial; not an entrance-connectivity claim")
 		jobs.append(job)
 	for tick: int in range(tick_limit):
 		await get_tree().physics_frame
@@ -578,6 +784,10 @@ func explore() -> void:
 			var worker: CharacterBody3D = workers[index]
 			var job: Dictionary = jobs[index]
 			job["tick"] = tick
+			if tick > 0 and tick % 600 == 0:
+				job["idle"] = false
+				var scheduled: int = ((tick / 600) * workers.size() + index) % scheduled_starts.size()
+				restart(worker, job, scheduled_starts[scheduled], "scheduled area/edge trial to avoid entrance-only coverage")
 			if bool(job["idle"]):
 				continue
 			active = true
@@ -594,6 +804,10 @@ func explore() -> void:
 					path.append(next)
 			var target_id: int = int(path[0])
 			var target: Vector3 = point(cells[target_id]["position"] as Array) + Vector3.UP * 0.91
+			if int(job.get("attempt_target", -1)) != target_id:
+				job["attempt_target"] = target_id
+				job["best_distance"] = worker.position.distance_to(target)
+				job["progress_tick"] = tick
 			var before: Vector3 = worker.position
 			var delta: Vector3 = target - before
 			delta.y = 0.0
@@ -601,6 +815,9 @@ func explore() -> void:
 			worker.velocity = Vector3(horizontal.x, -0.6 if worker.is_on_floor() else worker.velocity.y - 18.0 * DT, horizontal.z)
 			worker.move_and_slide()
 			worker.apply_floor_snap()
+			if worker.position.distance_to(target) < float(job["best_distance"]) - 0.03:
+				job["best_distance"] = worker.position.distance_to(target)
+				job["progress_tick"] = tick
 			job["distance_m"] = float(job["distance_m"]) + before.distance_to(worker.position)
 			if tick % 12 == 0:
 				var trace: Array = job["trace"] as Array
@@ -608,11 +825,18 @@ func explore() -> void:
 				if trace.size() > 25:
 					trace.pop_front()
 			if flat_distance(worker.position, target) < 0.18 and absf(worker.position.y - target.y) < 0.6 and worker.is_on_floor():
+				var previous: int = int(job["current"])
+				if previous != target_id:
+					var edge: String = "%d:%d" % [previous, target_id]
+					var seconds: float = maxf(1.0, float(tick - int(job["last_arrival_tick"]))) * DT
+					walked_edges[edge] = minf(walked_edges.get(edge, INF), seconds)
+				job["last_arrival_tick"] = tick
 				if not bool(cells[target_id]["reached"]):
 					cells[target_id]["reached"] = true
 					cells[target_id]["reached_by"] = index
 					cells[target_id]["reached_tick"] = tick
 					job["visited"] = int(job["visited"]) + 1
+					observe_cell(cells[target_id])
 				job["current"] = target_id
 				job["stuck_ticks"] = 0
 				path.pop_front()
@@ -622,19 +846,35 @@ func explore() -> void:
 				restart(worker, job, int(job["current"]), "fall recovery")
 			else:
 				job["stuck_ticks"] = int(job["stuck_ticks"]) + (1 if flat_distance(before, worker.position) < 0.003 else -mini(2, int(job["stuck_ticks"])))
-				if int(job["stuck_ticks"]) > 90:
+				if int(job["stuck_ticks"]) > 90 or tick - int(job["progress_tick"]) > 180:
 					var contacts: Array[Dictionary] = []
 					for c: int in range(worker.get_slide_collision_count()):
 						var collision: KinematicCollision3D = worker.get_slide_collision(c)
 						var body: Node = collision.get_collider() as Node
 						contacts.append({"collider": String(body.get_path()) if body != null else "", "position": vector(collision.get_position()), "normal": vector(collision.get_normal())})
-					issue("stuck", worker.position, String(cells[target_id]["area"]), {"expected": "progress toward neighbour", "observed": "no progress for 1.5 simulated seconds", "target": target_id, "contacts": contacts, "trace": (job["trace"] as Array).duplicate(true)}, 1, "observed")
+					issue("stuck" if int(job["stuck_ticks"]) > 90 else "oscillation_or_no_progress", worker.position, String(cells[target_id]["area"]), {"expected": "progress toward neighbour", "observed": "stationary for 1.5 seconds or no goal progress for 3 seconds", "target": target_id, "contacts": contacts, "trace": (job["trace"] as Array).duplicate(true)}, 1, "observed")
 					links[int(job["current"])].erase(target_id)
 					restart(worker, job, int(job["current"]), "stuck recovery; failed edge removed")
 		if tick % 600 == 0:
 			print("EXPLORER_WALK: tick=", tick, " visited=", reached_count(), " issues=", issues.size())
 		if not active:
 			break
+
+func observe_cell(cell: Dictionary) -> void:
+	var location: Vector3 = point(cell["position"] as Array)
+	var distances: Array[float] = []
+	var ledges: Array[Dictionary] = []
+	for step: Vector2i in DIRECTIONS:
+		var direction: Vector3 = Vector3(step.x, 0, step.y)
+		var hit: Dictionary = ray(location + Vector3.UP * 0.95, location + Vector3.UP * 0.95 + direction * 3.0)
+		distances.append((hit["position"] as Vector3).distance_to(location + Vector3.UP * 0.95) if not hit.is_empty() else 3.0)
+		var edge: Vector3 = location + direction * 0.65
+		var below: Dictionary = ray(edge + Vector3.UP * 0.2, Vector3(edge.x, -55, edge.z))
+		var drop: float = location.y - (below["position"] as Vector3).y if not below.is_empty() else 999.0
+		if drop > 1.0 and (hit.is_empty() or distances[-1] > 0.65):
+			ledges.append({"direction": vector(direction), "drop_m": drop, "collider": collider_path(below), "classification": "hazard observation, may be an intentional ledge"})
+	cell["clearance_axes_m"] = [distances[0] + distances[1], distances[2] + distances[3]]
+	cell["ledges"] = ledges
 
 func reached_count() -> int:
 	var result: int = 0
@@ -655,6 +895,15 @@ func save_report() -> void:
 	report["geometry"] = geometry
 	report["checks"] = checks
 	report["enemy_runs"] = enemy_runs
+	report["walked_edges"] = walked_edges
+	var adjacent: Dictionary[String, bool] = {}
+	for id: int in range(links.size()):
+		for next: int in links[id]:
+			var a: String = String(cells[id]["area"])
+			var b: String = String(cells[next]["area"])
+			if a != b:
+				adjacent[(a + "|" + b) if a < b else (b + "|" + a)] = true
+	report["adjacent_areas"] = adjacent.keys()
 	var file: FileAccess = FileAccess.open(output.path_join("telemetry.json"), FileAccess.WRITE)
 	file.store_string(JSON.stringify(report))
 	print("EXPLORER_OK: reached=%d/%d issues=%d report=%s" % [reached_count(), walkable, issues.size(), output])
@@ -686,6 +935,10 @@ void fragment() {
 
 func capture_views() -> void:
 	var telemetry: Dictionary = JSON.parse_string(FileAccess.get_file_as_string(output.path_join("telemetry.json"))) as Dictionary
+	# These passes inspect static architecture; actors would otherwise keep their original
+	# shaders in a depth/normal image and contaminate its meaning.
+	(world.get("players") as Node3D).visible = false
+	mobs.visible = false
 	get_viewport().size = Vector2i(1152, 720)
 	get_viewport().disable_3d = false
 	for node: Node in get_tree().root.find_children("*", "CanvasLayer", true, false):
@@ -705,17 +958,40 @@ func capture_views() -> void:
 		if trace.is_empty():
 			continue
 		var last: Dictionary = trace[-1] as Dictionary
+		var forward: Vector3 = point(last["velocity"] as Array)
+		forward.y = 0.0
+		if forward.length() < 0.05:
+			forward = point(telemetry["cells"][int(last["goal"])]["position"] as Array) - point(last["position"] as Array)
+			forward.y = 0.0
+		var yaw_value: float = atan2(-forward.x, -forward.z) if forward.length() > 0.01 else 0.0
 		for lens: String in argument("--explorer-lenses", "forward,back,left,right,up,down").split(","):
 			if lenses.has(lens):
-				views.append({"name": "crawler%d-%s" % [index, lens], "eye": last["position"], "direction": vector(lenses[lens]), "tick": last["tick"], "head_offset_m": 0.65})
+				views.append({"name": "crawler%d-%s" % [index, lens], "eye": last["position"], "direction": vector(lenses[lens].rotated(Vector3.UP, yaw_value)), "tick": last["tick"], "head_offset_m": 0.65, "heading_radians": yaw_value})
 	var issue_views: int = 0
-	for finding: Dictionary in telemetry["issues"] as Array:
+	var findings: Array = (telemetry["issues"] as Array).duplicate()
+	findings.sort_custom(func(a: Dictionary, b: Dictionary) -> bool:
+		var score_a: int = int(a["severity"]) * 10 + (50 if String(a["area"]) in ["room:entry", "room:antechamber"] else 0)
+		var score_b: int = int(b["severity"]) * 10 + (50 if String(b["area"]) in ["room:entry", "room:antechamber"] else 0)
+		return score_a < score_b)
+	var captured_areas: Dictionary[String, bool] = {}
+	for finding: Dictionary in findings:
 		if String(finding["area"]).begins_with("fixture:"):
+			continue
+		if captured_areas.has(String(finding["area"])):
 			continue
 		var evidence: Dictionary = finding["evidence"] as Dictionary
 		if evidence.has("camera") and issue_views < 3:
 			views.append({"name": String(finding["id"]), "eye": evidence["camera"], "direction": evidence["direction"], "head_offset_m": 0.0})
 			issue_views += 1
+			captured_areas[String(finding["area"])] = true
+		elif evidence.has("target") and issue_views < 3:
+			var target: Vector3 = point(telemetry["cells"][int(evidence["target"])]["position"] as Array)
+			var eye: Vector3 = point(finding["position"] as Array) + Vector3.UP * 0.65
+			var direction: Vector3 = target + Vector3.UP * 0.95 - eye
+			if direction.length() > 0.01:
+				views.append({"name": String(finding["id"]), "eye": vector(eye), "direction": vector(direction.normalized()), "head_offset_m": 0.0})
+				issue_views += 1
+				captured_areas[String(finding["area"])] = true
 	var visuals: Array[GeometryInstance3D] = []
 	var originals: Array[Material] = []
 	var materials: Array[ShaderMaterial] = []
@@ -860,6 +1136,7 @@ func run() -> void:
 			exclude.append(worker.get_rid())
 		await sample()
 		connect_cells()
+		await dungeon_enemy_scenarios()
 		await explore()
 		save_report()
 	NetworkManager.stop("explorer finished")
@@ -875,5 +1152,6 @@ func run() -> void:
 	FlagstoneFloor.meshes.clear()
 	FlagstoneFloor.surfaces.clear()
 	triangle_cache.clear()
+	triangle_faces.clear()
 	mesh_records.clear()
 	get_tree().quit(1 if detector_failures > 0 else 0)

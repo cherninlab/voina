@@ -1,0 +1,180 @@
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+Metal 4.0 - Forward Mobile - Using Device #0: Apple - Apple M5 Max (Apple9)
+
+BUILD: aad2275 [b8a03c2cdaec]
+WARNING: Godot 3.x SpatialMaterial remapped parameter not found: specular
+     at: _set (scene/resources/material.cpp:4096)
+     GDScript backtrace (most recent call first):
+         [0] stone_roots (res://gameplay/environment/red_descent_geometry.gd:384)
+         [1] stone_room (res://gameplay/environment/red_descent_geometry.gd:463)
+         [2] build_room (res://gameplay/environment/red_descent_geometry.gd:486)
+         [3] build (res://gameplay/environment/red_descent_geometry.gd:41)
+         [4] _ready (res://gameplay/environment/crypt_dungeon.gd:55)
+         [5] add_map_node (res://gameplay/match_world.gd:186)
+         [6] build_arena (res://gameplay/match_world.gd:164)
+         [7] load_map (res://gameplay/match_world.gd:146)
+         [8] _ready (res://gameplay/match_world.gd:42)
+         [9] run (res://tests/dungeon_explorer.gd:1105)
+GENERATED_KIT_PLACED: {}
+RED_DESCENT_GEOMETRY_READY: 17 routes, 13 rooms, 34 lit landmarks, sloping crossings
+MAP: Cinder Crypt (crypt)
+Hosting on UDP 61120
+DUNGEON_ENCOUNTER_READY: five guards across two vertically separated halls, no replacements
+NET host · build aad2275 [b8a03c2cdaec]
+NET bolts in flight 0
+EXPLORER_CAPTURE: crawler0-forward-color.png
+EXPLORER_CAPTURE: crawler0-forward-objects.png
+EXPLORER_CAPTURE: crawler0-forward-depth.png
+EXPLORER_CAPTURE: crawler0-forward-normals.png
+EXPLORER_CAPTURE: crawler0-forward-intersections.png
+EXPLORER_CAPTURE: crawler0-forward-collision.png
+EXPLORER_CAPTURE: crawler0-forward-clearance.png
+EXPLORER_CAPTURE: crawler0-back-color.png
+EXPLORER_CAPTURE: crawler0-back-objects.png
+EXPLORER_CAPTURE: crawler0-back-depth.png
+EXPLORER_CAPTURE: crawler0-back-normals.png
+EXPLORER_CAPTURE: crawler0-back-intersections.png
+EXPLORER_CAPTURE: crawler0-back-collision.png
+EXPLORER_CAPTURE: crawler0-back-clearance.png
+EXPLORER_CAPTURE: crawler0-left-color.png
+EXPLORER_CAPTURE: crawler0-left-objects.png
+EXPLORER_CAPTURE: crawler0-left-depth.png
+EXPLORER_CAPTURE: crawler0-left-normals.png
+EXPLORER_CAPTURE: crawler0-left-intersections.png
+EXPLORER_CAPTURE: crawler0-left-collision.png
+EXPLORER_CAPTURE: crawler0-left-clearance.png
+EXPLORER_CAPTURE: crawler0-right-color.png
+EXPLORER_CAPTURE: crawler0-right-objects.png
+EXPLORER_CAPTURE: crawler0-right-depth.png
+EXPLORER_CAPTURE: crawler0-right-normals.png
+EXPLORER_CAPTURE: crawler0-right-intersections.png
+EXPLORER_CAPTURE: crawler0-right-collision.png
+EXPLORER_CAPTURE: crawler0-right-clearance.png
+EXPLORER_CAPTURE: crawler0-up-color.png
+EXPLORER_CAPTURE: crawler0-up-objects.png
+EXPLORER_CAPTURE: crawler0-up-depth.png
+EXPLORER_CAPTURE: crawler0-up-normals.png
+EXPLORER_CAPTURE: crawler0-up-intersections.png
+EXPLORER_CAPTURE: crawler0-up-collision.png
+EXPLORER_CAPTURE: crawler0-up-clearance.png
+EXPLORER_CAPTURE: crawler0-down-color.png
+NET host · build aad2275 [b8a03c2cdaec]
+NET bolts in flight 0
+EXPLORER_CAPTURE: crawler0-down-objects.png
+EXPLORER_CAPTURE: crawler0-down-depth.png
+EXPLORER_CAPTURE: crawler0-down-normals.png
+EXPLORER_CAPTURE: crawler0-down-intersections.png
+EXPLORER_CAPTURE: crawler0-down-collision.png
+EXPLORER_CAPTURE: crawler0-down-clearance.png
+EXPLORER_CAPTURE: crawler1-forward-color.png
+EXPLORER_CAPTURE: crawler1-forward-objects.png
+EXPLORER_CAPTURE: crawler1-forward-depth.png
+EXPLORER_CAPTURE: crawler1-forward-normals.png
+EXPLORER_CAPTURE: crawler1-forward-intersections.png
+EXPLORER_CAPTURE: crawler1-forward-collision.png
+EXPLORER_CAPTURE: crawler1-forward-clearance.png
+EXPLORER_CAPTURE: crawler1-back-color.png
+EXPLORER_CAPTURE: crawler1-back-objects.png
+EXPLORER_CAPTURE: crawler1-back-depth.png
+EXPLORER_CAPTURE: crawler1-back-normals.png
+EXPLORER_CAPTURE: crawler1-back-intersections.png
+EXPLORER_CAPTURE: crawler1-back-collision.png
+EXPLORER_CAPTURE: crawler1-back-clearance.png
+EXPLORER_CAPTURE: crawler1-left-color.png
+EXPLORER_CAPTURE: crawler1-left-objects.png
+EXPLORER_CAPTURE: crawler1-left-depth.png
+EXPLORER_CAPTURE: crawler1-left-normals.png
+EXPLORER_CAPTURE: crawler1-left-intersections.png
+EXPLORER_CAPTURE: crawler1-left-collision.png
+EXPLORER_CAPTURE: crawler1-left-clearance.png
+EXPLORER_CAPTURE: crawler1-right-color.png
+EXPLORER_CAPTURE: crawler1-right-objects.png
+EXPLORER_CAPTURE: crawler1-right-depth.png
+EXPLORER_CAPTURE: crawler1-right-normals.png
+EXPLORER_CAPTURE: crawler1-right-intersections.png
+EXPLORER_CAPTURE: crawler1-right-collision.png
+EXPLORER_CAPTURE: crawler1-right-clearance.png
+EXPLORER_CAPTURE: crawler1-up-color.png
+EXPLORER_CAPTURE: crawler1-up-objects.png
+EXPLORER_CAPTURE: crawler1-up-depth.png
+EXPLORER_CAPTURE: crawler1-up-normals.png
+EXPLORER_CAPTURE: crawler1-up-intersections.png
+EXPLORER_CAPTURE: crawler1-up-collision.png
+EXPLORER_CAPTURE: crawler1-up-clearance.png
+NET host · build aad2275 [b8a03c2cdaec]
+NET bolts in flight 0
+EXPLORER_CAPTURE: crawler1-down-color.png
+EXPLORER_CAPTURE: crawler1-down-objects.png
+EXPLORER_CAPTURE: crawler1-down-depth.png
+EXPLORER_CAPTURE: crawler1-down-normals.png
+EXPLORER_CAPTURE: crawler1-down-intersections.png
+EXPLORER_CAPTURE: crawler1-down-collision.png
+EXPLORER_CAPTURE: crawler1-down-clearance.png
+EXPLORER_CAPTURE: crawler2-forward-color.png
+EXPLORER_CAPTURE: crawler2-forward-objects.png
+EXPLORER_CAPTURE: crawler2-forward-depth.png
+EXPLORER_CAPTURE: crawler2-forward-normals.png
+EXPLORER_CAPTURE: crawler2-forward-intersections.png
+EXPLORER_CAPTURE: crawler2-forward-collision.png
+EXPLORER_CAPTURE: crawler2-forward-clearance.png
+EXPLORER_CAPTURE: crawler2-back-color.png
+EXPLORER_CAPTURE: crawler2-back-objects.png
+EXPLORER_CAPTURE: crawler2-back-depth.png
+EXPLORER_CAPTURE: crawler2-back-normals.png
+EXPLORER_CAPTURE: crawler2-back-intersections.png
+EXPLORER_CAPTURE: crawler2-back-collision.png
+EXPLORER_CAPTURE: crawler2-back-clearance.png
+EXPLORER_CAPTURE: crawler2-left-color.png
+EXPLORER_CAPTURE: crawler2-left-objects.png
+EXPLORER_CAPTURE: crawler2-left-depth.png
+EXPLORER_CAPTURE: crawler2-left-normals.png
+EXPLORER_CAPTURE: crawler2-left-intersections.png
+EXPLORER_CAPTURE: crawler2-left-collision.png
+EXPLORER_CAPTURE: crawler2-left-clearance.png
+EXPLORER_CAPTURE: crawler2-right-color.png
+EXPLORER_CAPTURE: crawler2-right-objects.png
+EXPLORER_CAPTURE: crawler2-right-depth.png
+EXPLORER_CAPTURE: crawler2-right-normals.png
+EXPLORER_CAPTURE: crawler2-right-intersections.png
+EXPLORER_CAPTURE: crawler2-right-collision.png
+EXPLORER_CAPTURE: crawler2-right-clearance.png
+EXPLORER_CAPTURE: crawler2-up-color.png
+EXPLORER_CAPTURE: crawler2-up-objects.png
+EXPLORER_CAPTURE: crawler2-up-depth.png
+EXPLORER_CAPTURE: crawler2-up-normals.png
+NET host · build aad2275 [b8a03c2cdaec]
+NET bolts in flight 0
+EXPLORER_CAPTURE: crawler2-up-intersections.png
+EXPLORER_CAPTURE: crawler2-up-collision.png
+EXPLORER_CAPTURE: crawler2-up-clearance.png
+EXPLORER_CAPTURE: crawler2-down-color.png
+EXPLORER_CAPTURE: crawler2-down-objects.png
+EXPLORER_CAPTURE: crawler2-down-depth.png
+EXPLORER_CAPTURE: crawler2-down-normals.png
+EXPLORER_CAPTURE: crawler2-down-intersections.png
+EXPLORER_CAPTURE: crawler2-down-collision.png
+EXPLORER_CAPTURE: crawler2-down-clearance.png
+EXPLORER_CAPTURE: E0437-color.png
+EXPLORER_CAPTURE: E0437-objects.png
+EXPLORER_CAPTURE: E0437-depth.png
+EXPLORER_CAPTURE: E0437-normals.png
+EXPLORER_CAPTURE: E0437-intersections.png
+EXPLORER_CAPTURE: E0437-collision.png
+EXPLORER_CAPTURE: E0437-clearance.png
+EXPLORER_CAPTURE: E0438-color.png
+EXPLORER_CAPTURE: E0438-objects.png
+EXPLORER_CAPTURE: E0438-depth.png
+EXPLORER_CAPTURE: E0438-normals.png
+EXPLORER_CAPTURE: E0438-intersections.png
+EXPLORER_CAPTURE: E0438-collision.png
+EXPLORER_CAPTURE: E0438-clearance.png
+EXPLORER_CAPTURE: E0439-color.png
+EXPLORER_CAPTURE: E0439-objects.png
+EXPLORER_CAPTURE: E0439-depth.png
+EXPLORER_CAPTURE: E0439-normals.png
+EXPLORER_CAPTURE: E0439-intersections.png
+EXPLORER_CAPTURE: E0439-collision.png
+EXPLORER_CAPTURE: E0439-clearance.png
+explorer finished
+WARNING: 7 RIDs of type "Texture" were leaked.
+   at: finalize (servers/rendering/rendering_device.cpp:8900)

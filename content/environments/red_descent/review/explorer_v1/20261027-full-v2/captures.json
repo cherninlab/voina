@@ -1,0 +1,3940 @@
+{
+	"legends": {
+		"clearance": "green=sampled capsule/headroom clear, red=blocked; not proof of reachability",
+		"collision": "green collision wire meshes shown through occluders",
+		"depth": "linear camera depth, black=0 m white=30 m; background black",
+		"intersections": "green markers at sampled triangle crossings, shown through occluders; intentional contacts included",
+		"limits": "debug materials preserve flagstone clipping but not shader peeling/displacement/transparency; paired color view is authoritative",
+		"normals": "world normal XYZ mapped to RGB",
+		"objects": "stable per-object colors; see objects.json; each MultiMesh is one object"
+	},
+	"views": [
+		{
+			"camera": [
+				0.0318,
+				-16.4491,
+				35.409
+			],
+			"draw_calls": 116.0,
+			"frame": "crawler0-forward-color.png",
+			"pass": "color",
+			"primitives": 484122.0,
+			"view": {
+				"direction": [
+					-0.3304,
+					0.0,
+					0.9439
+				],
+				"eye": [
+					0.0318,
+					-17.0991,
+					35.409
+				],
+				"head_offset_m": 0.65,
+				"heading_radians": 2.80491564965736,
+				"name": "crawler0-forward",
+				"tick": 35988.0
+			}
+		},
+		{
+			"camera": [
+				0.0318,
+				-16.4491,
+				35.409
+			],
+			"draw_calls": 116.0,
+			"frame": "crawler0-forward-objects.png",
+			"pass": "objects",
+			"primitives": 484122.0,
+			"view": {
+				"direction": [
+					-0.3304,
+					0.0,
+					0.9439
+				],
+				"eye": [
+					0.0318,
+					-17.0991,
+					35.409
+				],
+				"head_offset_m": 0.65,
+				"heading_radians": 2.80491564965736,
+				"name": "crawler0-forward",
+				"tick": 35988.0
+			}
+		},
+		{
+			"camera": [
+				0.0318,
+				-16.4491,
+				35.409
+			],
+			"draw_calls": 116.0,
+			"frame": "crawler0-forward-depth.png",
+			"pass": "depth",
+			"primitives": 484122.0,
+			"view": {
+				"direction": [
+					-0.3304,
+					0.0,
+					0.9439
+				],
+				"eye": [
+					0.0318,
+					-17.0991,
+					35.409
+				],
+				"head_offset_m": 0.65,
+				"heading_radians": 2.80491564965736,
+				"name": "crawler0-forward",
+				"tick": 35988.0
+			}
+		},
+		{
+			"camera": [
+				0.0318,
+				-16.4491,
+				35.409
+			],
+			"draw_calls": 116.0,
+			"frame": "crawler0-forward-normals.png",
+			"pass": "normals",
+			"primitives": 484122.0,
+			"view": {
+				"direction": [
+					-0.3304,
+					0.0,
+					0.9439
+				],
+				"eye": [
+					0.0318,
+					-17.0991,
+					35.409
+				],
+				"head_offset_m": 0.65,
+				"heading_radians": 2.80491564965736,
+				"name": "crawler0-forward",
+				"tick": 35988.0
+			}
+		},
+		{
+			"camera": [
+				0.0318,
+				-16.4491,
+				35.409
+			],
+			"draw_calls": 116.0,
+			"frame": "crawler0-forward-intersections.png",
+			"pass": "intersections",
+			"primitives": 484122.0,
+			"view": {
+				"direction": [
+					-0.3304,
+					0.0,
+					0.9439
+				],
+				"eye": [
+					0.0318,
+					-17.0991,
+					35.409
+				],
+				"head_offset_m": 0.65,
+				"heading_radians": 2.80491564965736,
+				"name": "crawler0-forward",
+				"tick": 35988.0
+			}
+		},
+		{
+			"camera": [
+				0.0318,
+				-16.4491,
+				35.409
+			],
+			"draw_calls": 166.0,
+			"frame": "crawler0-forward-collision.png",
+			"pass": "collision",
+			"primitives": 538456.0,
+			"view": {
+				"direction": [
+					-0.3304,
+					0.0,
+					0.9439
+				],
+				"eye": [
+					0.0318,
+					-17.0991,
+					35.409
+				],
+				"head_offset_m": 0.65,
+				"heading_radians": 2.80491564965736,
+				"name": "crawler0-forward",
+				"tick": 35988.0
+			}
+		},
+		{
+			"camera": [
+				0.0318,
+				-16.4491,
+				35.409
+			],
+			"draw_calls": 334.0,
+			"frame": "crawler0-forward-clearance.png",
+			"pass": "clearance",
+			"primitives": 486738.0,
+			"view": {
+				"direction": [
+					-0.3304,
+					0.0,
+					0.9439
+				],
+				"eye": [
+					0.0318,
+					-17.0991,
+					35.409
+				],
+				"head_offset_m": 0.65,
+				"heading_radians": 2.80491564965736,
+				"name": "crawler0-forward",
+				"tick": 35988.0
+			}
+		},
+		{
+			"camera": [
+				0.0318,
+				-16.4491,
+				35.409
+			],
+			"draw_calls": 2087.0,
+			"frame": "crawler0-back-color.png",
+			"pass": "color",
+			"primitives": 5842838.0,
+			"view": {
+				"direction": [
+					0.3304,
+					0.0,
+					-0.9439
+				],
+				"eye": [
+					0.0318,
+					-17.0991,
+					35.409
+				],
+				"head_offset_m": 0.65,
+				"heading_radians": 2.80491564965736,
+				"name": "crawler0-back",
+				"tick": 35988.0
+			}
+		},
+		{
+			"camera": [
+				0.0318,
+				-16.4491,
+				35.409
+			],
+			"draw_calls": 2087.0,
+			"frame": "crawler0-back-objects.png",
+			"pass": "objects",
+			"primitives": 5842838.0,
+			"view": {
+				"direction": [
+					0.3304,
+					0.0,
+					-0.9439
+				],
+				"eye": [
+					0.0318,
+					-17.0991,
+					35.409
+				],
+				"head_offset_m": 0.65,
+				"heading_radians": 2.80491564965736,
+				"name": "crawler0-back",
+				"tick": 35988.0
+			}
+		},
+		{
+			"camera": [
+				0.0318,
+				-16.4491,
+				35.409
+			],
+			"draw_calls": 2087.0,
+			"frame": "crawler0-back-depth.png",
+			"pass": "depth",
+			"primitives": 5842838.0,
+			"view": {
+				"direction": [
+					0.3304,
+					0.0,
+					-0.9439
+				],
+				"eye": [
+					0.0318,
+					-17.0991,
+					35.409
+				],
+				"head_offset_m": 0.65,
+				"heading_radians": 2.80491564965736,
+				"name": "crawler0-back",
+				"tick": 35988.0
+			}
+		},
+		{
+			"camera": [
+				0.0318,
+				-16.4491,
+				35.409
+			],
+			"draw_calls": 2087.0,
+			"frame": "crawler0-back-normals.png",
+			"pass": "normals",
+			"primitives": 5842838.0,
+			"view": {
+				"direction": [
+					0.3304,
+					0.0,
+					-0.9439
+				],
+				"eye": [
+					0.0318,
+					-17.0991,
+					35.409
+				],
+				"head_offset_m": 0.65,
+				"heading_radians": 2.80491564965736,
+				"name": "crawler0-back",
+				"tick": 35988.0
+			}
+		},
+		{
+			"camera": [
+				0.0318,
+				-16.4491,
+				35.409
+			],
+			"draw_calls": 2354.0,
+			"frame": "crawler0-back-intersections.png",
+			"pass": "intersections",
+			"primitives": 5864198.0,
+			"view": {
+				"direction": [
+					0.3304,
+					0.0,
+					-0.9439
+				],
+				"eye": [
+					0.0318,
+					-17.0991,
+					35.409
+				],
+				"head_offset_m": 0.65,
+				"heading_radians": 2.80491564965736,
+				"name": "crawler0-back",
+				"tick": 35988.0
+			}
+		},
+		{
+			"camera": [
+				0.0318,
+				-16.4491,
+				35.409
+			],
+			"draw_calls": 2582.0,
+			"frame": "crawler0-back-collision.png",
+			"pass": "collision",
+			"primitives": 6331290.0,
+			"view": {
+				"direction": [
+					0.3304,
+					0.0,
+					-0.9439
+				],
+				"eye": [
+					0.0318,
+					-17.0991,
+					35.409
+				],
+				"head_offset_m": 0.65,
+				"heading_radians": 2.80491564965736,
+				"name": "crawler0-back",
+				"tick": 35988.0
+			}
+		},
+		{
+			"camera": [
+				0.0318,
+				-16.4491,
+				35.409
+			],
+			"draw_calls": 2306.0,
+			"frame": "crawler0-back-clearance.png",
+			"pass": "clearance",
+			"primitives": 5854910.0,
+			"view": {
+				"direction": [
+					0.3304,
+					0.0,
+					-0.9439
+				],
+				"eye": [
+					0.0318,
+					-17.0991,
+					35.409
+				],
+				"head_offset_m": 0.65,
+				"heading_radians": 2.80491564965736,
+				"name": "crawler0-back",
+				"tick": 35988.0
+			}
+		},
+		{
+			"camera": [
+				0.0318,
+				-16.4491,
+				35.409
+			],
+			"draw_calls": 573.0,
+			"frame": "crawler0-left-color.png",
+			"pass": "color",
+			"primitives": 3816889.0,
+			"view": {
+				"direction": [
+					0.9439,
+					0.0,
+					0.3304
+				],
+				"eye": [
+					0.0318,
+					-17.0991,
+					35.409
+				],
+				"head_offset_m": 0.65,
+				"heading_radians": 2.80491564965736,
+				"name": "crawler0-left",
+				"tick": 35988.0
+			}
+		},
+		{
+			"camera": [
+				0.0318,
+				-16.4491,
+				35.409
+			],
+			"draw_calls": 573.0,
+			"frame": "crawler0-left-objects.png",
+			"pass": "objects",
+			"primitives": 3816889.0,
+			"view": {
+				"direction": [
+					0.9439,
+					0.0,
+					0.3304
+				],
+				"eye": [
+					0.0318,
+					-17.0991,
+					35.409
+				],
+				"head_offset_m": 0.65,
+				"heading_radians": 2.80491564965736,
+				"name": "crawler0-left",
+				"tick": 35988.0
+			}
+		},
+		{
+			"camera": [
+				0.0318,
+				-16.4491,
+				35.409
+			],
+			"draw_calls": 573.0,
+			"frame": "crawler0-left-depth.png",
+			"pass": "depth",
+			"primitives": 3816889.0,
+			"view": {
+				"direction": [
+					0.9439,
+					0.0,
+					0.3304
+				],
+				"eye": [
+					0.0318,
+					-17.0991,
+					35.409
+				],
+				"head_offset_m": 0.65,
+				"heading_radians": 2.80491564965736,
+				"name": "crawler0-left",
+				"tick": 35988.0
+			}
+		},
+		{
+			"camera": [
+				0.0318,
+				-16.4491,
+				35.409
+			],
+			"draw_calls": 573.0,
+			"frame": "crawler0-left-normals.png",
+			"pass": "normals",
+			"primitives": 3816889.0,
+			"view": {
+				"direction": [
+					0.9439,
+					0.0,
+					0.3304
+				],
+				"eye": [
+					0.0318,
+					-17.0991,
+					35.409
+				],
+				"head_offset_m": 0.65,
+				"heading_radians": 2.80491564965736,
+				"name": "crawler0-left",
+				"tick": 35988.0
+			}
+		},
+		{
+			"camera": [
+				0.0318,
+				-16.4491,
+				35.409
+			],
+			"draw_calls": 580.0,
+			"frame": "crawler0-left-intersections.png",
+			"pass": "intersections",
+			"primitives": 3817449.0,
+			"view": {
+				"direction": [
+					0.9439,
+					0.0,
+					0.3304
+				],
+				"eye": [
+					0.0318,
+					-17.0991,
+					35.409
+				],
+				"head_offset_m": 0.65,
+				"heading_radians": 2.80491564965736,
+				"name": "crawler0-left",
+				"tick": 35988.0
+			}
+		},
+		{
+			"camera": [
+				0.0318,
+				-16.4491,
+				35.409
+			],
+			"draw_calls": 709.0,
+			"frame": "crawler0-left-collision.png",
+			"pass": "collision",
+			"primitives": 4184887.0,
+			"view": {
+				"direction": [
+					0.9439,
+					0.0,
+					0.3304
+				],
+				"eye": [
+					0.0318,
+					-17.0991,
+					35.409
+				],
+				"head_offset_m": 0.65,
+				"heading_radians": 2.80491564965736,
+				"name": "crawler0-left",
+				"tick": 35988.0
+			}
+		},
+		{
+			"camera": [
+				0.0318,
+				-16.4491,
+				35.409
+			],
+			"draw_calls": 790.0,
+			"frame": "crawler0-left-clearance.png",
+			"pass": "clearance",
+			"primitives": 3828937.0,
+			"view": {
+				"direction": [
+					0.9439,
+					0.0,
+					0.3304
+				],
+				"eye": [
+					0.0318,
+					-17.0991,
+					35.409
+				],
+				"head_offset_m": 0.65,
+				"heading_radians": 2.80491564965736,
+				"name": "crawler0-left",
+				"tick": 35988.0
+			}
+		},
+		{
+			"camera": [
+				0.0318,
+				-16.4491,
+				35.409
+			],
+			"draw_calls": 1117.0,
+			"frame": "crawler0-right-color.png",
+			"pass": "color",
+			"primitives": 4276545.0,
+			"view": {
+				"direction": [
+					-0.9439,
+					0.0,
+					-0.3304
+				],
+				"eye": [
+					0.0318,
+					-17.0991,
+					35.409
+				],
+				"head_offset_m": 0.65,
+				"heading_radians": 2.80491564965736,
+				"name": "crawler0-right",
+				"tick": 35988.0
+			}
+		},
+		{
+			"camera": [
+				0.0318,
+				-16.4491,
+				35.409
+			],
+			"draw_calls": 1117.0,
+			"frame": "crawler0-right-objects.png",
+			"pass": "objects",
+			"primitives": 4276545.0,
+			"view": {
+				"direction": [
+					-0.9439,
+					0.0,
+					-0.3304
+				],
+				"eye": [
+					0.0318,
+					-17.0991,
+					35.409
+				],
+				"head_offset_m": 0.65,
+				"heading_radians": 2.80491564965736,
+				"name": "crawler0-right",
+				"tick": 35988.0
+			}
+		},
+		{
+			"camera": [
+				0.0318,
+				-16.4491,
+				35.409
+			],
+			"draw_calls": 1117.0,
+			"frame": "crawler0-right-depth.png",
+			"pass": "depth",
+			"primitives": 4276545.0,
+			"view": {
+				"direction": [
+					-0.9439,
+					0.0,
+					-0.3304
+				],
+				"eye": [
+					0.0318,
+					-17.0991,
+					35.409
+				],
+				"head_offset_m": 0.65,
+				"heading_radians": 2.80491564965736,
+				"name": "crawler0-right",
+				"tick": 35988.0
+			}
+		},
+		{
+			"camera": [
+				0.0318,
+				-16.4491,
+				35.409
+			],
+			"draw_calls": 1117.0,
+			"frame": "crawler0-right-normals.png",
+			"pass": "normals",
+			"primitives": 4276545.0,
+			"view": {
+				"direction": [
+					-0.9439,
+					0.0,
+					-0.3304
+				],
+				"eye": [
+					0.0318,
+					-17.0991,
+					35.409
+				],
+				"head_offset_m": 0.65,
+				"heading_radians": 2.80491564965736,
+				"name": "crawler0-right",
+				"tick": 35988.0
+			}
+		},
+		{
+			"camera": [
+				0.0318,
+				-16.4491,
+				35.409
+			],
+			"draw_calls": 1220.0,
+			"frame": "crawler0-right-intersections.png",
+			"pass": "intersections",
+			"primitives": 4284785.0,
+			"view": {
+				"direction": [
+					-0.9439,
+					0.0,
+					-0.3304
+				],
+				"eye": [
+					0.0318,
+					-17.0991,
+					35.409
+				],
+				"head_offset_m": 0.65,
+				"heading_radians": 2.80491564965736,
+				"name": "crawler0-right",
+				"tick": 35988.0
+			}
+		},
+		{
+			"camera": [
+				0.0318,
+				-16.4491,
+				35.409
+			],
+			"draw_calls": 1447.0,
+			"frame": "crawler0-right-collision.png",
+			"pass": "collision",
+			"primitives": 4698902.0,
+			"view": {
+				"direction": [
+					-0.9439,
+					0.0,
+					-0.3304
+				],
+				"eye": [
+					0.0318,
+					-17.0991,
+					35.409
+				],
+				"head_offset_m": 0.65,
+				"heading_radians": 2.80491564965736,
+				"name": "crawler0-right",
+				"tick": 35988.0
+			}
+		},
+		{
+			"camera": [
+				0.0318,
+				-16.4491,
+				35.409
+			],
+			"draw_calls": 1336.0,
+			"frame": "crawler0-right-clearance.png",
+			"pass": "clearance",
+			"primitives": 4288617.0,
+			"view": {
+				"direction": [
+					-0.9439,
+					0.0,
+					-0.3304
+				],
+				"eye": [
+					0.0318,
+					-17.0991,
+					35.409
+				],
+				"head_offset_m": 0.65,
+				"heading_radians": 2.80491564965736,
+				"name": "crawler0-right",
+				"tick": 35988.0
+			}
+		},
+		{
+			"camera": [
+				0.0318,
+				-16.4491,
+				35.409
+			],
+			"draw_calls": 113.0,
+			"frame": "crawler0-up-color.png",
+			"pass": "color",
+			"primitives": 2173864.0,
+			"view": {
+				"direction": [
+					0.0,
+					1.0,
+					0.0
+				],
+				"eye": [
+					0.0318,
+					-17.0991,
+					35.409
+				],
+				"head_offset_m": 0.65,
+				"heading_radians": 2.80491564965736,
+				"name": "crawler0-up",
+				"tick": 35988.0
+			}
+		},
+		{
+			"camera": [
+				0.0318,
+				-16.4491,
+				35.409
+			],
+			"draw_calls": 113.0,
+			"frame": "crawler0-up-objects.png",
+			"pass": "objects",
+			"primitives": 2173864.0,
+			"view": {
+				"direction": [
+					0.0,
+					1.0,
+					0.0
+				],
+				"eye": [
+					0.0318,
+					-17.0991,
+					35.409
+				],
+				"head_offset_m": 0.65,
+				"heading_radians": 2.80491564965736,
+				"name": "crawler0-up",
+				"tick": 35988.0
+			}
+		},
+		{
+			"camera": [
+				0.0318,
+				-16.4491,
+				35.409
+			],
+			"draw_calls": 113.0,
+			"frame": "crawler0-up-depth.png",
+			"pass": "depth",
+			"primitives": 2173864.0,
+			"view": {
+				"direction": [
+					0.0,
+					1.0,
+					0.0
+				],
+				"eye": [
+					0.0318,
+					-17.0991,
+					35.409
+				],
+				"head_offset_m": 0.65,
+				"heading_radians": 2.80491564965736,
+				"name": "crawler0-up",
+				"tick": 35988.0
+			}
+		},
+		{
+			"camera": [
+				0.0318,
+				-16.4491,
+				35.409
+			],
+			"draw_calls": 113.0,
+			"frame": "crawler0-up-normals.png",
+			"pass": "normals",
+			"primitives": 2173864.0,
+			"view": {
+				"direction": [
+					0.0,
+					1.0,
+					0.0
+				],
+				"eye": [
+					0.0318,
+					-17.0991,
+					35.409
+				],
+				"head_offset_m": 0.65,
+				"heading_radians": 2.80491564965736,
+				"name": "crawler0-up",
+				"tick": 35988.0
+			}
+		},
+		{
+			"camera": [
+				0.0318,
+				-16.4491,
+				35.409
+			],
+			"draw_calls": 113.0,
+			"frame": "crawler0-up-intersections.png",
+			"pass": "intersections",
+			"primitives": 2173864.0,
+			"view": {
+				"direction": [
+					0.0,
+					1.0,
+					0.0
+				],
+				"eye": [
+					0.0318,
+					-17.0991,
+					35.409
+				],
+				"head_offset_m": 0.65,
+				"heading_radians": 2.80491564965736,
+				"name": "crawler0-up",
+				"tick": 35988.0
+			}
+		},
+		{
+			"camera": [
+				0.0318,
+				-16.4491,
+				35.409
+			],
+			"draw_calls": 126.0,
+			"frame": "crawler0-up-collision.png",
+			"pass": "collision",
+			"primitives": 2509045.0,
+			"view": {
+				"direction": [
+					0.0,
+					1.0,
+					0.0
+				],
+				"eye": [
+					0.0318,
+					-17.0991,
+					35.409
+				],
+				"head_offset_m": 0.65,
+				"heading_radians": 2.80491564965736,
+				"name": "crawler0-up",
+				"tick": 35988.0
+			}
+		},
+		{
+			"camera": [
+				0.0318,
+				-16.4491,
+				35.409
+			],
+			"draw_calls": 113.0,
+			"frame": "crawler0-up-clearance.png",
+			"pass": "clearance",
+			"primitives": 2183308.0,
+			"view": {
+				"direction": [
+					0.0,
+					1.0,
+					0.0
+				],
+				"eye": [
+					0.0318,
+					-17.0991,
+					35.409
+				],
+				"head_offset_m": 0.65,
+				"heading_radians": 2.80491564965736,
+				"name": "crawler0-up",
+				"tick": 35988.0
+			}
+		},
+		{
+			"camera": [
+				0.0318,
+				-16.4491,
+				35.409
+			],
+			"draw_calls": 68.0,
+			"frame": "crawler0-down-color.png",
+			"pass": "color",
+			"primitives": 1957818.0,
+			"view": {
+				"direction": [
+					0.0,
+					-1.0,
+					0.0
+				],
+				"eye": [
+					0.0318,
+					-17.0991,
+					35.409
+				],
+				"head_offset_m": 0.65,
+				"heading_radians": 2.80491564965736,
+				"name": "crawler0-down",
+				"tick": 35988.0
+			}
+		},
+		{
+			"camera": [
+				0.0318,
+				-16.4491,
+				35.409
+			],
+			"draw_calls": 68.0,
+			"frame": "crawler0-down-objects.png",
+			"pass": "objects",
+			"primitives": 1957818.0,
+			"view": {
+				"direction": [
+					0.0,
+					-1.0,
+					0.0
+				],
+				"eye": [
+					0.0318,
+					-17.0991,
+					35.409
+				],
+				"head_offset_m": 0.65,
+				"heading_radians": 2.80491564965736,
+				"name": "crawler0-down",
+				"tick": 35988.0
+			}
+		},
+		{
+			"camera": [
+				0.0318,
+				-16.4491,
+				35.409
+			],
+			"draw_calls": 68.0,
+			"frame": "crawler0-down-depth.png",
+			"pass": "depth",
+			"primitives": 1957818.0,
+			"view": {
+				"direction": [
+					0.0,
+					-1.0,
+					0.0
+				],
+				"eye": [
+					0.0318,
+					-17.0991,
+					35.409
+				],
+				"head_offset_m": 0.65,
+				"heading_radians": 2.80491564965736,
+				"name": "crawler0-down",
+				"tick": 35988.0
+			}
+		},
+		{
+			"camera": [
+				0.0318,
+				-16.4491,
+				35.409
+			],
+			"draw_calls": 68.0,
+			"frame": "crawler0-down-normals.png",
+			"pass": "normals",
+			"primitives": 1957818.0,
+			"view": {
+				"direction": [
+					0.0,
+					-1.0,
+					0.0
+				],
+				"eye": [
+					0.0318,
+					-17.0991,
+					35.409
+				],
+				"head_offset_m": 0.65,
+				"heading_radians": 2.80491564965736,
+				"name": "crawler0-down",
+				"tick": 35988.0
+			}
+		},
+		{
+			"camera": [
+				0.0318,
+				-16.4491,
+				35.409
+			],
+			"draw_calls": 68.0,
+			"frame": "crawler0-down-intersections.png",
+			"pass": "intersections",
+			"primitives": 1957818.0,
+			"view": {
+				"direction": [
+					0.0,
+					-1.0,
+					0.0
+				],
+				"eye": [
+					0.0318,
+					-17.0991,
+					35.409
+				],
+				"head_offset_m": 0.65,
+				"heading_radians": 2.80491564965736,
+				"name": "crawler0-down",
+				"tick": 35988.0
+			}
+		},
+		{
+			"camera": [
+				0.0318,
+				-16.4491,
+				35.409
+			],
+			"draw_calls": 72.0,
+			"frame": "crawler0-down-collision.png",
+			"pass": "collision",
+			"primitives": 2290845.0,
+			"view": {
+				"direction": [
+					0.0,
+					-1.0,
+					0.0
+				],
+				"eye": [
+					0.0318,
+					-17.0991,
+					35.409
+				],
+				"head_offset_m": 0.65,
+				"heading_radians": 2.80491564965736,
+				"name": "crawler0-down",
+				"tick": 35988.0
+			}
+		},
+		{
+			"camera": [
+				0.0318,
+				-16.4491,
+				35.409
+			],
+			"draw_calls": 199.0,
+			"frame": "crawler0-down-clearance.png",
+			"pass": "clearance",
+			"primitives": 1968834.0,
+			"view": {
+				"direction": [
+					0.0,
+					-1.0,
+					0.0
+				],
+				"eye": [
+					0.0318,
+					-17.0991,
+					35.409
+				],
+				"head_offset_m": 0.65,
+				"heading_radians": 2.80491564965736,
+				"name": "crawler0-down",
+				"tick": 35988.0
+			}
+		},
+		{
+			"camera": [
+				27.5078,
+				-8.4491,
+				-29.8691
+			],
+			"draw_calls": 1510.0,
+			"frame": "crawler1-forward-color.png",
+			"pass": "color",
+			"primitives": 3796626.0,
+			"view": {
+				"direction": [
+					-0.0212,
+					0.0,
+					0.9998
+				],
+				"eye": [
+					27.5078,
+					-9.0991,
+					-29.8691
+				],
+				"head_offset_m": 0.65,
+				"heading_radians": 3.12036017516561,
+				"name": "crawler1-forward",
+				"tick": 35988.0
+			}
+		},
+		{
+			"camera": [
+				27.5078,
+				-8.4491,
+				-29.8691
+			],
+			"draw_calls": 1510.0,
+			"frame": "crawler1-forward-objects.png",
+			"pass": "objects",
+			"primitives": 3796626.0,
+			"view": {
+				"direction": [
+					-0.0212,
+					0.0,
+					0.9998
+				],
+				"eye": [
+					27.5078,
+					-9.0991,
+					-29.8691
+				],
+				"head_offset_m": 0.65,
+				"heading_radians": 3.12036017516561,
+				"name": "crawler1-forward",
+				"tick": 35988.0
+			}
+		},
+		{
+			"camera": [
+				27.5078,
+				-8.4491,
+				-29.8691
+			],
+			"draw_calls": 1510.0,
+			"frame": "crawler1-forward-depth.png",
+			"pass": "depth",
+			"primitives": 3796626.0,
+			"view": {
+				"direction": [
+					-0.0212,
+					0.0,
+					0.9998
+				],
+				"eye": [
+					27.5078,
+					-9.0991,
+					-29.8691
+				],
+				"head_offset_m": 0.65,
+				"heading_radians": 3.12036017516561,
+				"name": "crawler1-forward",
+				"tick": 35988.0
+			}
+		},
+		{
+			"camera": [
+				27.5078,
+				-8.4491,
+				-29.8691
+			],
+			"draw_calls": 1510.0,
+			"frame": "crawler1-forward-normals.png",
+			"pass": "normals",
+			"primitives": 3796626.0,
+			"view": {
+				"direction": [
+					-0.0212,
+					0.0,
+					0.9998
+				],
+				"eye": [
+					27.5078,
+					-9.0991,
+					-29.8691
+				],
+				"head_offset_m": 0.65,
+				"heading_radians": 3.12036017516561,
+				"name": "crawler1-forward",
+				"tick": 35988.0
+			}
+		},
+		{
+			"camera": [
+				27.5078,
+				-8.4491,
+				-29.8691
+			],
+			"draw_calls": 1647.0,
+			"frame": "crawler1-forward-intersections.png",
+			"pass": "intersections",
+			"primitives": 3807586.0,
+			"view": {
+				"direction": [
+					-0.0212,
+					0.0,
+					0.9998
+				],
+				"eye": [
+					27.5078,
+					-9.0991,
+					-29.8691
+				],
+				"head_offset_m": 0.65,
+				"heading_radians": 3.12036017516561,
+				"name": "crawler1-forward",
+				"tick": 35988.0
+			}
+		},
+		{
+			"camera": [
+				27.5078,
+				-8.4491,
+				-29.8691
+			],
+			"draw_calls": 1839.0,
+			"frame": "crawler1-forward-collision.png",
+			"pass": "collision",
+			"primitives": 3937054.0,
+			"view": {
+				"direction": [
+					-0.0212,
+					0.0,
+					0.9998
+				],
+				"eye": [
+					27.5078,
+					-9.0991,
+					-29.8691
+				],
+				"head_offset_m": 0.65,
+				"heading_radians": 3.12036017516561,
+				"name": "crawler1-forward",
+				"tick": 35988.0
+			}
+		},
+		{
+			"camera": [
+				27.5078,
+				-8.4491,
+				-29.8691
+			],
+			"draw_calls": 1652.0,
+			"frame": "crawler1-forward-clearance.png",
+			"pass": "clearance",
+			"primitives": 6693303.0,
+			"view": {
+				"direction": [
+					-0.0212,
+					0.0,
+					0.9998
+				],
+				"eye": [
+					27.5078,
+					-9.0991,
+					-29.8691
+				],
+				"head_offset_m": 0.65,
+				"heading_radians": 3.12036017516561,
+				"name": "crawler1-forward",
+				"tick": 35988.0
+			}
+		},
+		{
+			"camera": [
+				27.5078,
+				-8.4491,
+				-29.8691
+			],
+			"draw_calls": 154.0,
+			"frame": "crawler1-back-color.png",
+			"pass": "color",
+			"primitives": 3561228.0,
+			"view": {
+				"direction": [
+					0.0212,
+					0.0,
+					-0.9998
+				],
+				"eye": [
+					27.5078,
+					-9.0991,
+					-29.8691
+				],
+				"head_offset_m": 0.65,
+				"heading_radians": 3.12036017516561,
+				"name": "crawler1-back",
+				"tick": 35988.0
+			}
+		},
+		{
+			"camera": [
+				27.5078,
+				-8.4491,
+				-29.8691
+			],
+			"draw_calls": 154.0,
+			"frame": "crawler1-back-objects.png",
+			"pass": "objects",
+			"primitives": 3561228.0,
+			"view": {
+				"direction": [
+					0.0212,
+					0.0,
+					-0.9998
+				],
+				"eye": [
+					27.5078,
+					-9.0991,
+					-29.8691
+				],
+				"head_offset_m": 0.65,
+				"heading_radians": 3.12036017516561,
+				"name": "crawler1-back",
+				"tick": 35988.0
+			}
+		},
+		{
+			"camera": [
+				27.5078,
+				-8.4491,
+				-29.8691
+			],
+			"draw_calls": 154.0,
+			"frame": "crawler1-back-depth.png",
+			"pass": "depth",
+			"primitives": 3561228.0,
+			"view": {
+				"direction": [
+					0.0212,
+					0.0,
+					-0.9998
+				],
+				"eye": [
+					27.5078,
+					-9.0991,
+					-29.8691
+				],
+				"head_offset_m": 0.65,
+				"heading_radians": 3.12036017516561,
+				"name": "crawler1-back",
+				"tick": 35988.0
+			}
+		},
+		{
+			"camera": [
+				27.5078,
+				-8.4491,
+				-29.8691
+			],
+			"draw_calls": 154.0,
+			"frame": "crawler1-back-normals.png",
+			"pass": "normals",
+			"primitives": 3561228.0,
+			"view": {
+				"direction": [
+					0.0212,
+					0.0,
+					-0.9998
+				],
+				"eye": [
+					27.5078,
+					-9.0991,
+					-29.8691
+				],
+				"head_offset_m": 0.65,
+				"heading_radians": 3.12036017516561,
+				"name": "crawler1-back",
+				"tick": 35988.0
+			}
+		},
+		{
+			"camera": [
+				27.5078,
+				-8.4491,
+				-29.8691
+			],
+			"draw_calls": 154.0,
+			"frame": "crawler1-back-intersections.png",
+			"pass": "intersections",
+			"primitives": 3564668.0,
+			"view": {
+				"direction": [
+					0.0212,
+					0.0,
+					-0.9998
+				],
+				"eye": [
+					27.5078,
+					-9.0991,
+					-29.8691
+				],
+				"head_offset_m": 0.65,
+				"heading_radians": 3.12036017516561,
+				"name": "crawler1-back",
+				"tick": 35988.0
+			}
+		},
+		{
+			"camera": [
+				27.5078,
+				-8.4491,
+				-29.8691
+			],
+			"draw_calls": 194.0,
+			"frame": "crawler1-back-collision.png",
+			"pass": "collision",
+			"primitives": 3921077.0,
+			"view": {
+				"direction": [
+					0.0212,
+					0.0,
+					-0.9998
+				],
+				"eye": [
+					27.5078,
+					-9.0991,
+					-29.8691
+				],
+				"head_offset_m": 0.65,
+				"heading_radians": 3.12036017516561,
+				"name": "crawler1-back",
+				"tick": 35988.0
+			}
+		},
+		{
+			"camera": [
+				27.5078,
+				-8.4491,
+				-29.8691
+			],
+			"draw_calls": 347.0,
+			"frame": "crawler1-back-clearance.png",
+			"pass": "clearance",
+			"primitives": 3576588.0,
+			"view": {
+				"direction": [
+					0.0212,
+					0.0,
+					-0.9998
+				],
+				"eye": [
+					27.5078,
+					-9.0991,
+					-29.8691
+				],
+				"head_offset_m": 0.65,
+				"heading_radians": 3.12036017516561,
+				"name": "crawler1-back",
+				"tick": 35988.0
+			}
+		},
+		{
+			"camera": [
+				27.5078,
+				-8.4491,
+				-29.8691
+			],
+			"draw_calls": 233.0,
+			"frame": "crawler1-left-color.png",
+			"pass": "color",
+			"primitives": 4152143.0,
+			"view": {
+				"direction": [
+					0.9998,
+					0.0,
+					0.0212
+				],
+				"eye": [
+					27.5078,
+					-9.0991,
+					-29.8691
+				],
+				"head_offset_m": 0.65,
+				"heading_radians": 3.12036017516561,
+				"name": "crawler1-left",
+				"tick": 35988.0
+			}
+		},
+		{
+			"camera": [
+				27.5078,
+				-8.4491,
+				-29.8691
+			],
+			"draw_calls": 233.0,
+			"frame": "crawler1-left-objects.png",
+			"pass": "objects",
+			"primitives": 4152143.0,
+			"view": {
+				"direction": [
+					0.9998,
+					0.0,
+					0.0212
+				],
+				"eye": [
+					27.5078,
+					-9.0991,
+					-29.8691
+				],
+				"head_offset_m": 0.65,
+				"heading_radians": 3.12036017516561,
+				"name": "crawler1-left",
+				"tick": 35988.0
+			}
+		},
+		{
+			"camera": [
+				27.5078,
+				-8.4491,
+				-29.8691
+			],
+			"draw_calls": 233.0,
+			"frame": "crawler1-left-depth.png",
+			"pass": "depth",
+			"primitives": 4152143.0,
+			"view": {
+				"direction": [
+					0.9998,
+					0.0,
+					0.0212
+				],
+				"eye": [
+					27.5078,
+					-9.0991,
+					-29.8691
+				],
+				"head_offset_m": 0.65,
+				"heading_radians": 3.12036017516561,
+				"name": "crawler1-left",
+				"tick": 35988.0
+			}
+		},
+		{
+			"camera": [
+				27.5078,
+				-8.4491,
+				-29.8691
+			],
+			"draw_calls": 233.0,
+			"frame": "crawler1-left-normals.png",
+			"pass": "normals",
+			"primitives": 4152143.0,
+			"view": {
+				"direction": [
+					0.9998,
+					0.0,
+					0.0212
+				],
+				"eye": [
+					27.5078,
+					-9.0991,
+					-29.8691
+				],
+				"head_offset_m": 0.65,
+				"heading_radians": 3.12036017516561,
+				"name": "crawler1-left",
+				"tick": 35988.0
+			}
+		},
+		{
+			"camera": [
+				27.5078,
+				-8.4491,
+				-29.8691
+			],
+			"draw_calls": 259.0,
+			"frame": "crawler1-left-intersections.png",
+			"pass": "intersections",
+			"primitives": 4157663.0,
+			"view": {
+				"direction": [
+					0.9998,
+					0.0,
+					0.0212
+				],
+				"eye": [
+					27.5078,
+					-9.0991,
+					-29.8691
+				],
+				"head_offset_m": 0.65,
+				"heading_radians": 3.12036017516561,
+				"name": "crawler1-left",
+				"tick": 35988.0
+			}
+		},
+		{
+			"camera": [
+				27.5078,
+				-8.4491,
+				-29.8691
+			],
+			"draw_calls": 282.0,
+			"frame": "crawler1-left-collision.png",
+			"pass": "collision",
+			"primitives": 4515577.0,
+			"view": {
+				"direction": [
+					0.9998,
+					0.0,
+					0.0212
+				],
+				"eye": [
+					27.5078,
+					-9.0991,
+					-29.8691
+				],
+				"head_offset_m": 0.65,
+				"heading_radians": 3.12036017516561,
+				"name": "crawler1-left",
+				"tick": 35988.0
+			}
+		},
+		{
+			"camera": [
+				27.5078,
+				-8.4491,
+				-29.8691
+			],
+			"draw_calls": 480.0,
+			"frame": "crawler1-left-clearance.png",
+			"pass": "clearance",
+			"primitives": 4168151.0,
+			"view": {
+				"direction": [
+					0.9998,
+					0.0,
+					0.0212
+				],
+				"eye": [
+					27.5078,
+					-9.0991,
+					-29.8691
+				],
+				"head_offset_m": 0.65,
+				"heading_radians": 3.12036017516561,
+				"name": "crawler1-left",
+				"tick": 35988.0
+			}
+		},
+		{
+			"camera": [
+				27.5078,
+				-8.4491,
+				-29.8691
+			],
+			"draw_calls": 1447.0,
+			"frame": "crawler1-right-color.png",
+			"pass": "color",
+			"primitives": 6140104.0,
+			"view": {
+				"direction": [
+					-0.9998,
+					0.0,
+					-0.0212
+				],
+				"eye": [
+					27.5078,
+					-9.0991,
+					-29.8691
+				],
+				"head_offset_m": 0.65,
+				"heading_radians": 3.12036017516561,
+				"name": "crawler1-right",
+				"tick": 35988.0
+			}
+		},
+		{
+			"camera": [
+				27.5078,
+				-8.4491,
+				-29.8691
+			],
+			"draw_calls": 1447.0,
+			"frame": "crawler1-right-objects.png",
+			"pass": "objects",
+			"primitives": 6140104.0,
+			"view": {
+				"direction": [
+					-0.9998,
+					0.0,
+					-0.0212
+				],
+				"eye": [
+					27.5078,
+					-9.0991,
+					-29.8691
+				],
+				"head_offset_m": 0.65,
+				"heading_radians": 3.12036017516561,
+				"name": "crawler1-right",
+				"tick": 35988.0
+			}
+		},
+		{
+			"camera": [
+				27.5078,
+				-8.4491,
+				-29.8691
+			],
+			"draw_calls": 1447.0,
+			"frame": "crawler1-right-depth.png",
+			"pass": "depth",
+			"primitives": 6140104.0,
+			"view": {
+				"direction": [
+					-0.9998,
+					0.0,
+					-0.0212
+				],
+				"eye": [
+					27.5078,
+					-9.0991,
+					-29.8691
+				],
+				"head_offset_m": 0.65,
+				"heading_radians": 3.12036017516561,
+				"name": "crawler1-right",
+				"tick": 35988.0
+			}
+		},
+		{
+			"camera": [
+				27.5078,
+				-8.4491,
+				-29.8691
+			],
+			"draw_calls": 1447.0,
+			"frame": "crawler1-right-normals.png",
+			"pass": "normals",
+			"primitives": 6140104.0,
+			"view": {
+				"direction": [
+					-0.9998,
+					0.0,
+					-0.0212
+				],
+				"eye": [
+					27.5078,
+					-9.0991,
+					-29.8691
+				],
+				"head_offset_m": 0.65,
+				"heading_radians": 3.12036017516561,
+				"name": "crawler1-right",
+				"tick": 35988.0
+			}
+		},
+		{
+			"camera": [
+				27.5078,
+				-8.4491,
+				-29.8691
+			],
+			"draw_calls": 1568.0,
+			"frame": "crawler1-right-intersections.png",
+			"pass": "intersections",
+			"primitives": 6153224.0,
+			"view": {
+				"direction": [
+					-0.9998,
+					0.0,
+					-0.0212
+				],
+				"eye": [
+					27.5078,
+					-9.0991,
+					-29.8691
+				],
+				"head_offset_m": 0.65,
+				"heading_radians": 3.12036017516561,
+				"name": "crawler1-right",
+				"tick": 35988.0
+			}
+		},
+		{
+			"camera": [
+				27.5078,
+				-8.4491,
+				-29.8691
+			],
+			"draw_calls": 1881.0,
+			"frame": "crawler1-right-collision.png",
+			"pass": "collision",
+			"primitives": 6616029.0,
+			"view": {
+				"direction": [
+					-0.9998,
+					0.0,
+					-0.0212
+				],
+				"eye": [
+					27.5078,
+					-9.0991,
+					-29.8691
+				],
+				"head_offset_m": 0.65,
+				"heading_radians": 3.12036017516561,
+				"name": "crawler1-right",
+				"tick": 35988.0
+			}
+		},
+		{
+			"camera": [
+				27.5078,
+				-8.4491,
+				-29.8691
+			],
+			"draw_calls": 1554.0,
+			"frame": "crawler1-right-clearance.png",
+			"pass": "clearance",
+			"primitives": 6154432.0,
+			"view": {
+				"direction": [
+					-0.9998,
+					0.0,
+					-0.0212
+				],
+				"eye": [
+					27.5078,
+					-9.0991,
+					-29.8691
+				],
+				"head_offset_m": 0.65,
+				"heading_radians": 3.12036017516561,
+				"name": "crawler1-right",
+				"tick": 35988.0
+			}
+		},
+		{
+			"camera": [
+				27.5078,
+				-8.4491,
+				-29.8691
+			],
+			"draw_calls": 125.0,
+			"frame": "crawler1-up-color.png",
+			"pass": "color",
+			"primitives": 3573095.0,
+			"view": {
+				"direction": [
+					0.0,
+					1.0,
+					0.0
+				],
+				"eye": [
+					27.5078,
+					-9.0991,
+					-29.8691
+				],
+				"head_offset_m": 0.65,
+				"heading_radians": 3.12036017516561,
+				"name": "crawler1-up",
+				"tick": 35988.0
+			}
+		},
+		{
+			"camera": [
+				27.5078,
+				-8.4491,
+				-29.8691
+			],
+			"draw_calls": 125.0,
+			"frame": "crawler1-up-objects.png",
+			"pass": "objects",
+			"primitives": 3573095.0,
+			"view": {
+				"direction": [
+					0.0,
+					1.0,
+					0.0
+				],
+				"eye": [
+					27.5078,
+					-9.0991,
+					-29.8691
+				],
+				"head_offset_m": 0.65,
+				"heading_radians": 3.12036017516561,
+				"name": "crawler1-up",
+				"tick": 35988.0
+			}
+		},
+		{
+			"camera": [
+				27.5078,
+				-8.4491,
+				-29.8691
+			],
+			"draw_calls": 125.0,
+			"frame": "crawler1-up-depth.png",
+			"pass": "depth",
+			"primitives": 3573095.0,
+			"view": {
+				"direction": [
+					0.0,
+					1.0,
+					0.0
+				],
+				"eye": [
+					27.5078,
+					-9.0991,
+					-29.8691
+				],
+				"head_offset_m": 0.65,
+				"heading_radians": 3.12036017516561,
+				"name": "crawler1-up",
+				"tick": 35988.0
+			}
+		},
+		{
+			"camera": [
+				27.5078,
+				-8.4491,
+				-29.8691
+			],
+			"draw_calls": 125.0,
+			"frame": "crawler1-up-normals.png",
+			"pass": "normals",
+			"primitives": 3573095.0,
+			"view": {
+				"direction": [
+					0.0,
+					1.0,
+					0.0
+				],
+				"eye": [
+					27.5078,
+					-9.0991,
+					-29.8691
+				],
+				"head_offset_m": 0.65,
+				"heading_radians": 3.12036017516561,
+				"name": "crawler1-up",
+				"tick": 35988.0
+			}
+		},
+		{
+			"camera": [
+				27.5078,
+				-8.4491,
+				-29.8691
+			],
+			"draw_calls": 152.0,
+			"frame": "crawler1-up-intersections.png",
+			"pass": "intersections",
+			"primitives": 3578695.0,
+			"view": {
+				"direction": [
+					0.0,
+					1.0,
+					0.0
+				],
+				"eye": [
+					27.5078,
+					-9.0991,
+					-29.8691
+				],
+				"head_offset_m": 0.65,
+				"heading_radians": 3.12036017516561,
+				"name": "crawler1-up",
+				"tick": 35988.0
+			}
+		},
+		{
+			"camera": [
+				27.5078,
+				-8.4491,
+				-29.8691
+			],
+			"draw_calls": 152.0,
+			"frame": "crawler1-up-collision.png",
+			"pass": "collision",
+			"primitives": 3935700.0,
+			"view": {
+				"direction": [
+					0.0,
+					1.0,
+					0.0
+				],
+				"eye": [
+					27.5078,
+					-9.0991,
+					-29.8691
+				],
+				"head_offset_m": 0.65,
+				"heading_radians": 3.12036017516561,
+				"name": "crawler1-up",
+				"tick": 35988.0
+			}
+		},
+		{
+			"camera": [
+				27.5078,
+				-8.4491,
+				-29.8691
+			],
+			"draw_calls": 155.0,
+			"frame": "crawler1-up-clearance.png",
+			"pass": "clearance",
+			"primitives": 3586499.0,
+			"view": {
+				"direction": [
+					0.0,
+					1.0,
+					0.0
+				],
+				"eye": [
+					27.5078,
+					-9.0991,
+					-29.8691
+				],
+				"head_offset_m": 0.65,
+				"heading_radians": 3.12036017516561,
+				"name": "crawler1-up",
+				"tick": 35988.0
+			}
+		},
+		{
+			"camera": [
+				27.5078,
+				-8.4491,
+				-29.8691
+			],
+			"draw_calls": 95.0,
+			"frame": "crawler1-down-color.png",
+			"pass": "color",
+			"primitives": 3022313.0,
+			"view": {
+				"direction": [
+					0.0,
+					-1.0,
+					0.0
+				],
+				"eye": [
+					27.5078,
+					-9.0991,
+					-29.8691
+				],
+				"head_offset_m": 0.65,
+				"heading_radians": 3.12036017516561,
+				"name": "crawler1-down",
+				"tick": 35988.0
+			}
+		},
+		{
+			"camera": [
+				27.5078,
+				-8.4491,
+				-29.8691
+			],
+			"draw_calls": 95.0,
+			"frame": "crawler1-down-objects.png",
+			"pass": "objects",
+			"primitives": 3022313.0,
+			"view": {
+				"direction": [
+					0.0,
+					-1.0,
+					0.0
+				],
+				"eye": [
+					27.5078,
+					-9.0991,
+					-29.8691
+				],
+				"head_offset_m": 0.65,
+				"heading_radians": 3.12036017516561,
+				"name": "crawler1-down",
+				"tick": 35988.0
+			}
+		},
+		{
+			"camera": [
+				27.5078,
+				-8.4491,
+				-29.8691
+			],
+			"draw_calls": 95.0,
+			"frame": "crawler1-down-depth.png",
+			"pass": "depth",
+			"primitives": 3022313.0,
+			"view": {
+				"direction": [
+					0.0,
+					-1.0,
+					0.0
+				],
+				"eye": [
+					27.5078,
+					-9.0991,
+					-29.8691
+				],
+				"head_offset_m": 0.65,
+				"heading_radians": 3.12036017516561,
+				"name": "crawler1-down",
+				"tick": 35988.0
+			}
+		},
+		{
+			"camera": [
+				27.5078,
+				-8.4491,
+				-29.8691
+			],
+			"draw_calls": 95.0,
+			"frame": "crawler1-down-normals.png",
+			"pass": "normals",
+			"primitives": 3022313.0,
+			"view": {
+				"direction": [
+					0.0,
+					-1.0,
+					0.0
+				],
+				"eye": [
+					27.5078,
+					-9.0991,
+					-29.8691
+				],
+				"head_offset_m": 0.65,
+				"heading_radians": 3.12036017516561,
+				"name": "crawler1-down",
+				"tick": 35988.0
+			}
+		},
+		{
+			"camera": [
+				27.5078,
+				-8.4491,
+				-29.8691
+			],
+			"draw_calls": 95.0,
+			"frame": "crawler1-down-intersections.png",
+			"pass": "intersections",
+			"primitives": 3025753.0,
+			"view": {
+				"direction": [
+					0.0,
+					-1.0,
+					0.0
+				],
+				"eye": [
+					27.5078,
+					-9.0991,
+					-29.8691
+				],
+				"head_offset_m": 0.65,
+				"heading_radians": 3.12036017516561,
+				"name": "crawler1-down",
+				"tick": 35988.0
+			}
+		},
+		{
+			"camera": [
+				27.5078,
+				-8.4491,
+				-29.8691
+			],
+			"draw_calls": 105.0,
+			"frame": "crawler1-down-collision.png",
+			"pass": "collision",
+			"primitives": 3379591.0,
+			"view": {
+				"direction": [
+					0.0,
+					-1.0,
+					0.0
+				],
+				"eye": [
+					27.5078,
+					-9.0991,
+					-29.8691
+				],
+				"head_offset_m": 0.65,
+				"heading_radians": 3.12036017516561,
+				"name": "crawler1-down",
+				"tick": 35988.0
+			}
+		},
+		{
+			"camera": [
+				27.5078,
+				-8.4491,
+				-29.8691
+			],
+			"draw_calls": 221.0,
+			"frame": "crawler1-down-clearance.png",
+			"pass": "clearance",
+			"primitives": 3036869.0,
+			"view": {
+				"direction": [
+					0.0,
+					-1.0,
+					0.0
+				],
+				"eye": [
+					27.5078,
+					-9.0991,
+					-29.8691
+				],
+				"head_offset_m": 0.65,
+				"heading_radians": 3.12036017516561,
+				"name": "crawler1-down",
+				"tick": 35988.0
+			}
+		},
+		{
+			"camera": [
+				26.8684,
+				-8.4491,
+				-29.5089
+			],
+			"draw_calls": 1465.0,
+			"frame": "crawler2-forward-color.png",
+			"pass": "color",
+			"primitives": 6162338.0,
+			"view": {
+				"direction": [
+					-0.9997,
+					0.0,
+					0.0242
+				],
+				"eye": [
+					26.8684,
+					-9.0991,
+					-29.5089
+				],
+				"head_offset_m": 0.65,
+				"heading_radians": 1.59504481712395,
+				"name": "crawler2-forward",
+				"tick": 35988.0
+			}
+		},
+		{
+			"camera": [
+				26.8684,
+				-8.4491,
+				-29.5089
+			],
+			"draw_calls": 1465.0,
+			"frame": "crawler2-forward-objects.png",
+			"pass": "objects",
+			"primitives": 6162338.0,
+			"view": {
+				"direction": [
+					-0.9997,
+					0.0,
+					0.0242
+				],
+				"eye": [
+					26.8684,
+					-9.0991,
+					-29.5089
+				],
+				"head_offset_m": 0.65,
+				"heading_radians": 1.59504481712395,
+				"name": "crawler2-forward",
+				"tick": 35988.0
+			}
+		},
+		{
+			"camera": [
+				26.8684,
+				-8.4491,
+				-29.5089
+			],
+			"draw_calls": 1465.0,
+			"frame": "crawler2-forward-depth.png",
+			"pass": "depth",
+			"primitives": 6162338.0,
+			"view": {
+				"direction": [
+					-0.9997,
+					0.0,
+					0.0242
+				],
+				"eye": [
+					26.8684,
+					-9.0991,
+					-29.5089
+				],
+				"head_offset_m": 0.65,
+				"heading_radians": 1.59504481712395,
+				"name": "crawler2-forward",
+				"tick": 35988.0
+			}
+		},
+		{
+			"camera": [
+				26.8684,
+				-8.4491,
+				-29.5089
+			],
+			"draw_calls": 1465.0,
+			"frame": "crawler2-forward-normals.png",
+			"pass": "normals",
+			"primitives": 6162338.0,
+			"view": {
+				"direction": [
+					-0.9997,
+					0.0,
+					0.0242
+				],
+				"eye": [
+					26.8684,
+					-9.0991,
+					-29.5089
+				],
+				"head_offset_m": 0.65,
+				"heading_radians": 1.59504481712395,
+				"name": "crawler2-forward",
+				"tick": 35988.0
+			}
+		},
+		{
+			"camera": [
+				26.8684,
+				-8.4491,
+				-29.5089
+			],
+			"draw_calls": 1586.0,
+			"frame": "crawler2-forward-intersections.png",
+			"pass": "intersections",
+			"primitives": 6175458.0,
+			"view": {
+				"direction": [
+					-0.9997,
+					0.0,
+					0.0242
+				],
+				"eye": [
+					26.8684,
+					-9.0991,
+					-29.5089
+				],
+				"head_offset_m": 0.65,
+				"heading_radians": 1.59504481712395,
+				"name": "crawler2-forward",
+				"tick": 35988.0
+			}
+		},
+		{
+			"camera": [
+				26.8684,
+				-8.4491,
+				-29.5089
+			],
+			"draw_calls": 1900.0,
+			"frame": "crawler2-forward-collision.png",
+			"pass": "collision",
+			"primitives": 6638053.0,
+			"view": {
+				"direction": [
+					-0.9997,
+					0.0,
+					0.0242
+				],
+				"eye": [
+					26.8684,
+					-9.0991,
+					-29.5089
+				],
+				"head_offset_m": 0.65,
+				"heading_radians": 1.59504481712395,
+				"name": "crawler2-forward",
+				"tick": 35988.0
+			}
+		},
+		{
+			"camera": [
+				26.8684,
+				-8.4491,
+				-29.5089
+			],
+			"draw_calls": 1565.0,
+			"frame": "crawler2-forward-clearance.png",
+			"pass": "clearance",
+			"primitives": 6175082.0,
+			"view": {
+				"direction": [
+					-0.9997,
+					0.0,
+					0.0242
+				],
+				"eye": [
+					26.8684,
+					-9.0991,
+					-29.5089
+				],
+				"head_offset_m": 0.65,
+				"heading_radians": 1.59504481712395,
+				"name": "crawler2-forward",
+				"tick": 35988.0
+			}
+		},
+		{
+			"camera": [
+				26.8684,
+				-8.4491,
+				-29.5089
+			],
+			"draw_calls": 237.0,
+			"frame": "crawler2-back-color.png",
+			"pass": "color",
+			"primitives": 4140987.0,
+			"view": {
+				"direction": [
+					0.9997,
+					0.0,
+					-0.0242
+				],
+				"eye": [
+					26.8684,
+					-9.0991,
+					-29.5089
+				],
+				"head_offset_m": 0.65,
+				"heading_radians": 1.59504481712395,
+				"name": "crawler2-back",
+				"tick": 35988.0
+			}
+		},
+		{
+			"camera": [
+				26.8684,
+				-8.4491,
+				-29.5089
+			],
+			"draw_calls": 237.0,
+			"frame": "crawler2-back-objects.png",
+			"pass": "objects",
+			"primitives": 4140987.0,
+			"view": {
+				"direction": [
+					0.9997,
+					0.0,
+					-0.0242
+				],
+				"eye": [
+					26.8684,
+					-9.0991,
+					-29.5089
+				],
+				"head_offset_m": 0.65,
+				"heading_radians": 1.59504481712395,
+				"name": "crawler2-back",
+				"tick": 35988.0
+			}
+		},
+		{
+			"camera": [
+				26.8684,
+				-8.4491,
+				-29.5089
+			],
+			"draw_calls": 237.0,
+			"frame": "crawler2-back-depth.png",
+			"pass": "depth",
+			"primitives": 4140987.0,
+			"view": {
+				"direction": [
+					0.9997,
+					0.0,
+					-0.0242
+				],
+				"eye": [
+					26.8684,
+					-9.0991,
+					-29.5089
+				],
+				"head_offset_m": 0.65,
+				"heading_radians": 1.59504481712395,
+				"name": "crawler2-back",
+				"tick": 35988.0
+			}
+		},
+		{
+			"camera": [
+				26.8684,
+				-8.4491,
+				-29.5089
+			],
+			"draw_calls": 237.0,
+			"frame": "crawler2-back-normals.png",
+			"pass": "normals",
+			"primitives": 4140987.0,
+			"view": {
+				"direction": [
+					0.9997,
+					0.0,
+					-0.0242
+				],
+				"eye": [
+					26.8684,
+					-9.0991,
+					-29.5089
+				],
+				"head_offset_m": 0.65,
+				"heading_radians": 1.59504481712395,
+				"name": "crawler2-back",
+				"tick": 35988.0
+			}
+		},
+		{
+			"camera": [
+				26.8684,
+				-8.4491,
+				-29.5089
+			],
+			"draw_calls": 262.0,
+			"frame": "crawler2-back-intersections.png",
+			"pass": "intersections",
+			"primitives": 4146427.0,
+			"view": {
+				"direction": [
+					0.9997,
+					0.0,
+					-0.0242
+				],
+				"eye": [
+					26.8684,
+					-9.0991,
+					-29.5089
+				],
+				"head_offset_m": 0.65,
+				"heading_radians": 1.59504481712395,
+				"name": "crawler2-back",
+				"tick": 35988.0
+			}
+		},
+		{
+			"camera": [
+				26.8684,
+				-8.4491,
+				-29.5089
+			],
+			"draw_calls": 287.0,
+			"frame": "crawler2-back-collision.png",
+			"pass": "collision",
+			"primitives": 4504721.0,
+			"view": {
+				"direction": [
+					0.9997,
+					0.0,
+					-0.0242
+				],
+				"eye": [
+					26.8684,
+					-9.0991,
+					-29.5089
+				],
+				"head_offset_m": 0.65,
+				"heading_radians": 1.59504481712395,
+				"name": "crawler2-back",
+				"tick": 35988.0
+			}
+		},
+		{
+			"camera": [
+				26.8684,
+				-8.4491,
+				-29.5089
+			],
+			"draw_calls": 467.0,
+			"frame": "crawler2-back-clearance.png",
+			"pass": "clearance",
+			"primitives": 4155291.0,
+			"view": {
+				"direction": [
+					0.9997,
+					0.0,
+					-0.0242
+				],
+				"eye": [
+					26.8684,
+					-9.0991,
+					-29.5089
+				],
+				"head_offset_m": 0.65,
+				"heading_radians": 1.59504481712395,
+				"name": "crawler2-back",
+				"tick": 35988.0
+			}
+		},
+		{
+			"camera": [
+				26.8684,
+				-8.4491,
+				-29.5089
+			],
+			"draw_calls": 1507.0,
+			"frame": "crawler2-left-color.png",
+			"pass": "color",
+			"primitives": 6542688.0,
+			"view": {
+				"direction": [
+					0.0242,
+					0.0,
+					0.9997
+				],
+				"eye": [
+					26.8684,
+					-9.0991,
+					-29.5089
+				],
+				"head_offset_m": 0.65,
+				"heading_radians": 1.59504481712395,
+				"name": "crawler2-left",
+				"tick": 35988.0
+			}
+		},
+		{
+			"camera": [
+				26.8684,
+				-8.4491,
+				-29.5089
+			],
+			"draw_calls": 1507.0,
+			"frame": "crawler2-left-objects.png",
+			"pass": "objects",
+			"primitives": 6542688.0,
+			"view": {
+				"direction": [
+					0.0242,
+					0.0,
+					0.9997
+				],
+				"eye": [
+					26.8684,
+					-9.0991,
+					-29.5089
+				],
+				"head_offset_m": 0.65,
+				"heading_radians": 1.59504481712395,
+				"name": "crawler2-left",
+				"tick": 35988.0
+			}
+		},
+		{
+			"camera": [
+				26.8684,
+				-8.4491,
+				-29.5089
+			],
+			"draw_calls": 1507.0,
+			"frame": "crawler2-left-depth.png",
+			"pass": "depth",
+			"primitives": 6542688.0,
+			"view": {
+				"direction": [
+					0.0242,
+					0.0,
+					0.9997
+				],
+				"eye": [
+					26.8684,
+					-9.0991,
+					-29.5089
+				],
+				"head_offset_m": 0.65,
+				"heading_radians": 1.59504481712395,
+				"name": "crawler2-left",
+				"tick": 35988.0
+			}
+		},
+		{
+			"camera": [
+				26.8684,
+				-8.4491,
+				-29.5089
+			],
+			"draw_calls": 1507.0,
+			"frame": "crawler2-left-normals.png",
+			"pass": "normals",
+			"primitives": 6542688.0,
+			"view": {
+				"direction": [
+					0.0242,
+					0.0,
+					0.9997
+				],
+				"eye": [
+					26.8684,
+					-9.0991,
+					-29.5089
+				],
+				"head_offset_m": 0.65,
+				"heading_radians": 1.59504481712395,
+				"name": "crawler2-left",
+				"tick": 35988.0
+			}
+		},
+		{
+			"camera": [
+				26.8684,
+				-8.4491,
+				-29.5089
+			],
+			"draw_calls": 1644.0,
+			"frame": "crawler2-left-intersections.png",
+			"pass": "intersections",
+			"primitives": 6557088.0,
+			"view": {
+				"direction": [
+					0.0242,
+					0.0,
+					0.9997
+				],
+				"eye": [
+					26.8684,
+					-9.0991,
+					-29.5089
+				],
+				"head_offset_m": 0.65,
+				"heading_radians": 1.59504481712395,
+				"name": "crawler2-left",
+				"tick": 35988.0
+			}
+		},
+		{
+			"camera": [
+				26.8684,
+				-8.4491,
+				-29.5089
+			],
+			"draw_calls": 1840.0,
+			"frame": "crawler2-left-collision.png",
+			"pass": "collision",
+			"primitives": 7012350.0,
+			"view": {
+				"direction": [
+					0.0242,
+					0.0,
+					0.9997
+				],
+				"eye": [
+					26.8684,
+					-9.0991,
+					-29.5089
+				],
+				"head_offset_m": 0.65,
+				"heading_radians": 1.59504481712395,
+				"name": "crawler2-left",
+				"tick": 35988.0
+			}
+		},
+		{
+			"camera": [
+				26.8684,
+				-8.4491,
+				-29.5089
+			],
+			"draw_calls": 1586.0,
+			"frame": "crawler2-left-clearance.png",
+			"pass": "clearance",
+			"primitives": 6555180.0,
+			"view": {
+				"direction": [
+					0.0242,
+					0.0,
+					0.9997
+				],
+				"eye": [
+					26.8684,
+					-9.0991,
+					-29.5089
+				],
+				"head_offset_m": 0.65,
+				"heading_radians": 1.59504481712395,
+				"name": "crawler2-left",
+				"tick": 35988.0
+			}
+		},
+		{
+			"camera": [
+				26.8684,
+				-8.4491,
+				-29.5089
+			],
+			"draw_calls": 156.0,
+			"frame": "crawler2-right-color.png",
+			"pass": "color",
+			"primitives": 3530839.0,
+			"view": {
+				"direction": [
+					-0.0242,
+					0.0,
+					-0.9997
+				],
+				"eye": [
+					26.8684,
+					-9.0991,
+					-29.5089
+				],
+				"head_offset_m": 0.65,
+				"heading_radians": 1.59504481712395,
+				"name": "crawler2-right",
+				"tick": 35988.0
+			}
+		},
+		{
+			"camera": [
+				26.8684,
+				-8.4491,
+				-29.5089
+			],
+			"draw_calls": 156.0,
+			"frame": "crawler2-right-objects.png",
+			"pass": "objects",
+			"primitives": 3530839.0,
+			"view": {
+				"direction": [
+					-0.0242,
+					0.0,
+					-0.9997
+				],
+				"eye": [
+					26.8684,
+					-9.0991,
+					-29.5089
+				],
+				"head_offset_m": 0.65,
+				"heading_radians": 1.59504481712395,
+				"name": "crawler2-right",
+				"tick": 35988.0
+			}
+		},
+		{
+			"camera": [
+				26.8684,
+				-8.4491,
+				-29.5089
+			],
+			"draw_calls": 156.0,
+			"frame": "crawler2-right-depth.png",
+			"pass": "depth",
+			"primitives": 3530839.0,
+			"view": {
+				"direction": [
+					-0.0242,
+					0.0,
+					-0.9997
+				],
+				"eye": [
+					26.8684,
+					-9.0991,
+					-29.5089
+				],
+				"head_offset_m": 0.65,
+				"heading_radians": 1.59504481712395,
+				"name": "crawler2-right",
+				"tick": 35988.0
+			}
+		},
+		{
+			"camera": [
+				26.8684,
+				-8.4491,
+				-29.5089
+			],
+			"draw_calls": 156.0,
+			"frame": "crawler2-right-normals.png",
+			"pass": "normals",
+			"primitives": 3530839.0,
+			"view": {
+				"direction": [
+					-0.0242,
+					0.0,
+					-0.9997
+				],
+				"eye": [
+					26.8684,
+					-9.0991,
+					-29.5089
+				],
+				"head_offset_m": 0.65,
+				"heading_radians": 1.59504481712395,
+				"name": "crawler2-right",
+				"tick": 35988.0
+			}
+		},
+		{
+			"camera": [
+				26.8684,
+				-8.4491,
+				-29.5089
+			],
+			"draw_calls": 156.0,
+			"frame": "crawler2-right-intersections.png",
+			"pass": "intersections",
+			"primitives": 3534279.0,
+			"view": {
+				"direction": [
+					-0.0242,
+					0.0,
+					-0.9997
+				],
+				"eye": [
+					26.8684,
+					-9.0991,
+					-29.5089
+				],
+				"head_offset_m": 0.65,
+				"heading_radians": 1.59504481712395,
+				"name": "crawler2-right",
+				"tick": 35988.0
+			}
+		},
+		{
+			"camera": [
+				26.8684,
+				-8.4491,
+				-29.5089
+			],
+			"draw_calls": 199.0,
+			"frame": "crawler2-right-collision.png",
+			"pass": "collision",
+			"primitives": 3891118.0,
+			"view": {
+				"direction": [
+					-0.0242,
+					0.0,
+					-0.9997
+				],
+				"eye": [
+					26.8684,
+					-9.0991,
+					-29.5089
+				],
+				"head_offset_m": 0.65,
+				"heading_radians": 1.59504481712395,
+				"name": "crawler2-right",
+				"tick": 35988.0
+			}
+		},
+		{
+			"camera": [
+				26.8684,
+				-8.4491,
+				-29.5089
+			],
+			"draw_calls": 293.0,
+			"frame": "crawler2-right-clearance.png",
+			"pass": "clearance",
+			"primitives": 3544027.0,
+			"view": {
+				"direction": [
+					-0.0242,
+					0.0,
+					-0.9997
+				],
+				"eye": [
+					26.8684,
+					-9.0991,
+					-29.5089
+				],
+				"head_offset_m": 0.65,
+				"heading_radians": 1.59504481712395,
+				"name": "crawler2-right",
+				"tick": 35988.0
+			}
+		},
+		{
+			"camera": [
+				26.8684,
+				-8.4491,
+				-29.5089
+			],
+			"draw_calls": 128.0,
+			"frame": "crawler2-up-color.png",
+			"pass": "color",
+			"primitives": 3640258.0,
+			"view": {
+				"direction": [
+					0.0,
+					1.0,
+					0.0
+				],
+				"eye": [
+					26.8684,
+					-9.0991,
+					-29.5089
+				],
+				"head_offset_m": 0.65,
+				"heading_radians": 1.59504481712395,
+				"name": "crawler2-up",
+				"tick": 35988.0
+			}
+		},
+		{
+			"camera": [
+				26.8684,
+				-8.4491,
+				-29.5089
+			],
+			"draw_calls": 128.0,
+			"frame": "crawler2-up-objects.png",
+			"pass": "objects",
+			"primitives": 3640258.0,
+			"view": {
+				"direction": [
+					0.0,
+					1.0,
+					0.0
+				],
+				"eye": [
+					26.8684,
+					-9.0991,
+					-29.5089
+				],
+				"head_offset_m": 0.65,
+				"heading_radians": 1.59504481712395,
+				"name": "crawler2-up",
+				"tick": 35988.0
+			}
+		},
+		{
+			"camera": [
+				26.8684,
+				-8.4491,
+				-29.5089
+			],
+			"draw_calls": 128.0,
+			"frame": "crawler2-up-depth.png",
+			"pass": "depth",
+			"primitives": 3640258.0,
+			"view": {
+				"direction": [
+					0.0,
+					1.0,
+					0.0
+				],
+				"eye": [
+					26.8684,
+					-9.0991,
+					-29.5089
+				],
+				"head_offset_m": 0.65,
+				"heading_radians": 1.59504481712395,
+				"name": "crawler2-up",
+				"tick": 35988.0
+			}
+		},
+		{
+			"camera": [
+				26.8684,
+				-8.4491,
+				-29.5089
+			],
+			"draw_calls": 128.0,
+			"frame": "crawler2-up-normals.png",
+			"pass": "normals",
+			"primitives": 3640258.0,
+			"view": {
+				"direction": [
+					0.0,
+					1.0,
+					0.0
+				],
+				"eye": [
+					26.8684,
+					-9.0991,
+					-29.5089
+				],
+				"head_offset_m": 0.65,
+				"heading_radians": 1.59504481712395,
+				"name": "crawler2-up",
+				"tick": 35988.0
+			}
+		},
+		{
+			"camera": [
+				26.8684,
+				-8.4491,
+				-29.5089
+			],
+			"draw_calls": 155.0,
+			"frame": "crawler2-up-intersections.png",
+			"pass": "intersections",
+			"primitives": 3645858.0,
+			"view": {
+				"direction": [
+					0.0,
+					1.0,
+					0.0
+				],
+				"eye": [
+					26.8684,
+					-9.0991,
+					-29.5089
+				],
+				"head_offset_m": 0.65,
+				"heading_radians": 1.59504481712395,
+				"name": "crawler2-up",
+				"tick": 35988.0
+			}
+		},
+		{
+			"camera": [
+				26.8684,
+				-8.4491,
+				-29.5089
+			],
+			"draw_calls": 155.0,
+			"frame": "crawler2-up-collision.png",
+			"pass": "collision",
+			"primitives": 4002863.0,
+			"view": {
+				"direction": [
+					0.0,
+					1.0,
+					0.0
+				],
+				"eye": [
+					26.8684,
+					-9.0991,
+					-29.5089
+				],
+				"head_offset_m": 0.65,
+				"heading_radians": 1.59504481712395,
+				"name": "crawler2-up",
+				"tick": 35988.0
+			}
+		},
+		{
+			"camera": [
+				26.8684,
+				-8.4491,
+				-29.5089
+			],
+			"draw_calls": 137.0,
+			"frame": "crawler2-up-clearance.png",
+			"pass": "clearance",
+			"primitives": 3651910.0,
+			"view": {
+				"direction": [
+					0.0,
+					1.0,
+					0.0
+				],
+				"eye": [
+					26.8684,
+					-9.0991,
+					-29.5089
+				],
+				"head_offset_m": 0.65,
+				"heading_radians": 1.59504481712395,
+				"name": "crawler2-up",
+				"tick": 35988.0
+			}
+		},
+		{
+			"camera": [
+				26.8684,
+				-8.4491,
+				-29.5089
+			],
+			"draw_calls": 99.0,
+			"frame": "crawler2-down-color.png",
+			"pass": "color",
+			"primitives": 3022270.0,
+			"view": {
+				"direction": [
+					0.0,
+					-1.0,
+					0.0
+				],
+				"eye": [
+					26.8684,
+					-9.0991,
+					-29.5089
+				],
+				"head_offset_m": 0.65,
+				"heading_radians": 1.59504481712395,
+				"name": "crawler2-down",
+				"tick": 35988.0
+			}
+		},
+		{
+			"camera": [
+				26.8684,
+				-8.4491,
+				-29.5089
+			],
+			"draw_calls": 99.0,
+			"frame": "crawler2-down-objects.png",
+			"pass": "objects",
+			"primitives": 3022270.0,
+			"view": {
+				"direction": [
+					0.0,
+					-1.0,
+					0.0
+				],
+				"eye": [
+					26.8684,
+					-9.0991,
+					-29.5089
+				],
+				"head_offset_m": 0.65,
+				"heading_radians": 1.59504481712395,
+				"name": "crawler2-down",
+				"tick": 35988.0
+			}
+		},
+		{
+			"camera": [
+				26.8684,
+				-8.4491,
+				-29.5089
+			],
+			"draw_calls": 99.0,
+			"frame": "crawler2-down-depth.png",
+			"pass": "depth",
+			"primitives": 3022270.0,
+			"view": {
+				"direction": [
+					0.0,
+					-1.0,
+					0.0
+				],
+				"eye": [
+					26.8684,
+					-9.0991,
+					-29.5089
+				],
+				"head_offset_m": 0.65,
+				"heading_radians": 1.59504481712395,
+				"name": "crawler2-down",
+				"tick": 35988.0
+			}
+		},
+		{
+			"camera": [
+				26.8684,
+				-8.4491,
+				-29.5089
+			],
+			"draw_calls": 99.0,
+			"frame": "crawler2-down-normals.png",
+			"pass": "normals",
+			"primitives": 3022270.0,
+			"view": {
+				"direction": [
+					0.0,
+					-1.0,
+					0.0
+				],
+				"eye": [
+					26.8684,
+					-9.0991,
+					-29.5089
+				],
+				"head_offset_m": 0.65,
+				"heading_radians": 1.59504481712395,
+				"name": "crawler2-down",
+				"tick": 35988.0
+			}
+		},
+		{
+			"camera": [
+				26.8684,
+				-8.4491,
+				-29.5089
+			],
+			"draw_calls": 99.0,
+			"frame": "crawler2-down-intersections.png",
+			"pass": "intersections",
+			"primitives": 3025710.0,
+			"view": {
+				"direction": [
+					0.0,
+					-1.0,
+					0.0
+				],
+				"eye": [
+					26.8684,
+					-9.0991,
+					-29.5089
+				],
+				"head_offset_m": 0.65,
+				"heading_radians": 1.59504481712395,
+				"name": "crawler2-down",
+				"tick": 35988.0
+			}
+		},
+		{
+			"camera": [
+				26.8684,
+				-8.4491,
+				-29.5089
+			],
+			"draw_calls": 112.0,
+			"frame": "crawler2-down-collision.png",
+			"pass": "collision",
+			"primitives": 3379638.0,
+			"view": {
+				"direction": [
+					0.0,
+					-1.0,
+					0.0
+				],
+				"eye": [
+					26.8684,
+					-9.0991,
+					-29.5089
+				],
+				"head_offset_m": 0.65,
+				"heading_radians": 1.59504481712395,
+				"name": "crawler2-down",
+				"tick": 35988.0
+			}
+		},
+		{
+			"camera": [
+				26.8684,
+				-8.4491,
+				-29.5089
+			],
+			"draw_calls": 185.0,
+			"frame": "crawler2-down-clearance.png",
+			"pass": "clearance",
+			"primitives": 3034846.0,
+			"view": {
+				"direction": [
+					0.0,
+					-1.0,
+					0.0
+				],
+				"eye": [
+					26.8684,
+					-9.0991,
+					-29.5089
+				],
+				"head_offset_m": 0.65,
+				"heading_radians": 1.59504481712395,
+				"name": "crawler2-down",
+				"tick": 35988.0
+			}
+		},
+		{
+			"camera": [
+				30.4555,
+				-26.4529,
+				11.9925
+			],
+			"draw_calls": 96.0,
+			"frame": "E0437-color.png",
+			"pass": "color",
+			"primitives": 548177.0,
+			"view": {
+				"direction": [
+					-0.6065,
+					-0.795,
+					0.01
+				],
+				"eye": [
+					30.4555,
+					-26.4529,
+					11.9925
+				],
+				"head_offset_m": 0.0,
+				"name": "E0437"
+			}
+		},
+		{
+			"camera": [
+				30.4555,
+				-26.4529,
+				11.9925
+			],
+			"draw_calls": 96.0,
+			"frame": "E0437-objects.png",
+			"pass": "objects",
+			"primitives": 548177.0,
+			"view": {
+				"direction": [
+					-0.6065,
+					-0.795,
+					0.01
+				],
+				"eye": [
+					30.4555,
+					-26.4529,
+					11.9925
+				],
+				"head_offset_m": 0.0,
+				"name": "E0437"
+			}
+		},
+		{
+			"camera": [
+				30.4555,
+				-26.4529,
+				11.9925
+			],
+			"draw_calls": 96.0,
+			"frame": "E0437-depth.png",
+			"pass": "depth",
+			"primitives": 548177.0,
+			"view": {
+				"direction": [
+					-0.6065,
+					-0.795,
+					0.01
+				],
+				"eye": [
+					30.4555,
+					-26.4529,
+					11.9925
+				],
+				"head_offset_m": 0.0,
+				"name": "E0437"
+			}
+		},
+		{
+			"camera": [
+				30.4555,
+				-26.4529,
+				11.9925
+			],
+			"draw_calls": 96.0,
+			"frame": "E0437-normals.png",
+			"pass": "normals",
+			"primitives": 548177.0,
+			"view": {
+				"direction": [
+					-0.6065,
+					-0.795,
+					0.01
+				],
+				"eye": [
+					30.4555,
+					-26.4529,
+					11.9925
+				],
+				"head_offset_m": 0.0,
+				"name": "E0437"
+			}
+		},
+		{
+			"camera": [
+				30.4555,
+				-26.4529,
+				11.9925
+			],
+			"draw_calls": 96.0,
+			"frame": "E0437-intersections.png",
+			"pass": "intersections",
+			"primitives": 548177.0,
+			"view": {
+				"direction": [
+					-0.6065,
+					-0.795,
+					0.01
+				],
+				"eye": [
+					30.4555,
+					-26.4529,
+					11.9925
+				],
+				"head_offset_m": 0.0,
+				"name": "E0437"
+			}
+		},
+		{
+			"camera": [
+				30.4555,
+				-26.4529,
+				11.9925
+			],
+			"draw_calls": 99.0,
+			"frame": "E0437-collision.png",
+			"pass": "collision",
+			"primitives": 573881.0,
+			"view": {
+				"direction": [
+					-0.6065,
+					-0.795,
+					0.01
+				],
+				"eye": [
+					30.4555,
+					-26.4529,
+					11.9925
+				],
+				"head_offset_m": 0.0,
+				"name": "E0437"
+			}
+		},
+		{
+			"camera": [
+				30.4555,
+				-26.4529,
+				11.9925
+			],
+			"draw_calls": 361.0,
+			"frame": "E0437-clearance.png",
+			"pass": "clearance",
+			"primitives": 551357.0,
+			"view": {
+				"direction": [
+					-0.6065,
+					-0.795,
+					0.01
+				],
+				"eye": [
+					30.4555,
+					-26.4529,
+					11.9925
+				],
+				"head_offset_m": 0.0,
+				"name": "E0437"
+			}
+		},
+		{
+			"camera": [
+				38.1965,
+				-6.045,
+				-38.7031
+			],
+			"draw_calls": 280.0,
+			"frame": "E0438-color.png",
+			"pass": "color",
+			"primitives": 896109.0,
+			"view": {
+				"direction": [
+					0.5664,
+					-0.7318,
+					0.379
+				],
+				"eye": [
+					38.1965,
+					-6.045,
+					-38.7031
+				],
+				"head_offset_m": 0.0,
+				"name": "E0438"
+			}
+		},
+		{
+			"camera": [
+				38.1965,
+				-6.045,
+				-38.7031
+			],
+			"draw_calls": 298.0,
+			"frame": "E0438-objects.png",
+			"pass": "objects",
+			"primitives": 2248558.0,
+			"view": {
+				"direction": [
+					0.5664,
+					-0.7318,
+					0.379
+				],
+				"eye": [
+					38.1965,
+					-6.045,
+					-38.7031
+				],
+				"head_offset_m": 0.0,
+				"name": "E0438"
+			}
+		},
+		{
+			"camera": [
+				38.1965,
+				-6.045,
+				-38.7031
+			],
+			"draw_calls": 298.0,
+			"frame": "E0438-depth.png",
+			"pass": "depth",
+			"primitives": 2248558.0,
+			"view": {
+				"direction": [
+					0.5664,
+					-0.7318,
+					0.379
+				],
+				"eye": [
+					38.1965,
+					-6.045,
+					-38.7031
+				],
+				"head_offset_m": 0.0,
+				"name": "E0438"
+			}
+		},
+		{
+			"camera": [
+				38.1965,
+				-6.045,
+				-38.7031
+			],
+			"draw_calls": 298.0,
+			"frame": "E0438-normals.png",
+			"pass": "normals",
+			"primitives": 2248558.0,
+			"view": {
+				"direction": [
+					0.5664,
+					-0.7318,
+					0.379
+				],
+				"eye": [
+					38.1965,
+					-6.045,
+					-38.7031
+				],
+				"head_offset_m": 0.0,
+				"name": "E0438"
+			}
+		},
+		{
+			"camera": [
+				38.1965,
+				-6.045,
+				-38.7031
+			],
+			"draw_calls": 298.0,
+			"frame": "E0438-intersections.png",
+			"pass": "intersections",
+			"primitives": 2251758.0,
+			"view": {
+				"direction": [
+					0.5664,
+					-0.7318,
+					0.379
+				],
+				"eye": [
+					38.1965,
+					-6.045,
+					-38.7031
+				],
+				"head_offset_m": 0.0,
+				"name": "E0438"
+			}
+		},
+		{
+			"camera": [
+				38.1965,
+				-6.045,
+				-38.7031
+			],
+			"draw_calls": 342.0,
+			"frame": "E0438-collision.png",
+			"pass": "collision",
+			"primitives": 2454871.0,
+			"view": {
+				"direction": [
+					0.5664,
+					-0.7318,
+					0.379
+				],
+				"eye": [
+					38.1965,
+					-6.045,
+					-38.7031
+				],
+				"head_offset_m": 0.0,
+				"name": "E0438"
+			}
+		},
+		{
+			"camera": [
+				38.1965,
+				-6.045,
+				-38.7031
+			],
+			"draw_calls": 1068.0,
+			"frame": "E0438-clearance.png",
+			"pass": "clearance",
+			"primitives": 2257798.0,
+			"view": {
+				"direction": [
+					0.5664,
+					-0.7318,
+					0.379
+				],
+				"eye": [
+					38.1965,
+					-6.045,
+					-38.7031
+				],
+				"head_offset_m": 0.0,
+				"name": "E0438"
+			}
+		},
+		{
+			"camera": [
+				41.479,
+				-8.4491,
+				-39.9103
+			],
+			"draw_calls": 424.0,
+			"frame": "E0439-color.png",
+			"pass": "color",
+			"primitives": 2993736.0,
+			"view": {
+				"direction": [
+					0.0288,
+					-0.8255,
+					0.5637
+				],
+				"eye": [
+					41.479,
+					-8.4491,
+					-39.9103
+				],
+				"head_offset_m": 0.0,
+				"name": "E0439"
+			}
+		},
+		{
+			"camera": [
+				41.479,
+				-8.4491,
+				-39.9103
+			],
+			"draw_calls": 424.0,
+			"frame": "E0439-objects.png",
+			"pass": "objects",
+			"primitives": 2993736.0,
+			"view": {
+				"direction": [
+					0.0288,
+					-0.8255,
+					0.5637
+				],
+				"eye": [
+					41.479,
+					-8.4491,
+					-39.9103
+				],
+				"head_offset_m": 0.0,
+				"name": "E0439"
+			}
+		},
+		{
+			"camera": [
+				41.479,
+				-8.4491,
+				-39.9103
+			],
+			"draw_calls": 424.0,
+			"frame": "E0439-depth.png",
+			"pass": "depth",
+			"primitives": 2993736.0,
+			"view": {
+				"direction": [
+					0.0288,
+					-0.8255,
+					0.5637
+				],
+				"eye": [
+					41.479,
+					-8.4491,
+					-39.9103
+				],
+				"head_offset_m": 0.0,
+				"name": "E0439"
+			}
+		},
+		{
+			"camera": [
+				41.479,
+				-8.4491,
+				-39.9103
+			],
+			"draw_calls": 424.0,
+			"frame": "E0439-normals.png",
+			"pass": "normals",
+			"primitives": 2993736.0,
+			"view": {
+				"direction": [
+					0.0288,
+					-0.8255,
+					0.5637
+				],
+				"eye": [
+					41.479,
+					-8.4491,
+					-39.9103
+				],
+				"head_offset_m": 0.0,
+				"name": "E0439"
+			}
+		},
+		{
+			"camera": [
+				41.479,
+				-8.4491,
+				-39.9103
+			],
+			"draw_calls": 424.0,
+			"frame": "E0439-intersections.png",
+			"pass": "intersections",
+			"primitives": 2996936.0,
+			"view": {
+				"direction": [
+					0.0288,
+					-0.8255,
+					0.5637
+				],
+				"eye": [
+					41.479,
+					-8.4491,
+					-39.9103
+				],
+				"head_offset_m": 0.0,
+				"name": "E0439"
+			}
+		},
+		{
+			"camera": [
+				41.479,
+				-8.4491,
+				-39.9103
+			],
+			"draw_calls": 479.0,
+			"frame": "E0439-collision.png",
+			"pass": "collision",
+			"primitives": 3366983.0,
+			"view": {
+				"direction": [
+					0.0288,
+					-0.8255,
+					0.5637
+				],
+				"eye": [
+					41.479,
+					-8.4491,
+					-39.9103
+				],
+				"head_offset_m": 0.0,
+				"name": "E0439"
+			}
+		},
+		{
+			"camera": [
+				41.479,
+				-8.4491,
+				-39.9103
+			],
+			"draw_calls": 951.0,
+			"frame": "E0439-clearance.png",
+			"pass": "clearance",
+			"primitives": 3006324.0,
+			"view": {
+				"direction": [
+					0.0288,
+					-0.8255,
+					0.5637
+				],
+				"eye": [
+					41.479,
+					-8.4491,
+					-39.9103
+				],
+				"head_offset_m": 0.0,
+				"name": "E0439"
+			}
+		}
+	]
+}
