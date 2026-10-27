@@ -1,0 +1,102 @@
+[
+  {
+    "path": "hunyuan21-oracle-v1/review/index.html",
+    "status": 200,
+    "bytes": "6274"
+  },
+  {
+    "path": "hunyuan21-oracle-v1/comparison.json",
+    "status": 200,
+    "bytes": "4796"
+  },
+  {
+    "path": "hunyuan21-oracle-v1/README.md",
+    "status": 200,
+    "bytes": "5058"
+  },
+  {
+    "path": "oracle-resolution-v6/1536/remeshed/statue.glb",
+    "status": 200,
+    "bytes": "44513260"
+  },
+  {
+    "path": "hi3d-oracle-v1/1024/review.glb",
+    "status": 200,
+    "bytes": "23995644"
+  },
+  {
+    "path": "hunyuan21-oracle-v1/384_s0/review.glb",
+    "status": 200,
+    "bytes": "12843072"
+  },
+  {
+    "path": "hunyuan21-oracle-v1/384_s0/receipt.json",
+    "status": 200,
+    "bytes": "1893"
+  },
+  {
+    "path": "hunyuan21-oracle-v1/384_s0/review/face.png",
+    "status": 200,
+    "bytes": "683229"
+  },
+  {
+    "path": "hunyuan21-oracle-v1/384_s0/review/face45.png",
+    "status": 200,
+    "bytes": "652511"
+  },
+  {
+    "path": "hunyuan21-oracle-v1/384_s0/review/crown.png",
+    "status": 200,
+    "bytes": "681125"
+  },
+  {
+    "path": "hunyuan21-oracle-v1/384_s42/review.glb",
+    "status": 200,
+    "bytes": "12673316"
+  },
+  {
+    "path": "hunyuan21-oracle-v1/384_s42/receipt.json",
+    "status": 200,
+    "bytes": "1895"
+  },
+  {
+    "path": "hunyuan21-oracle-v1/384_s42/review/face.png",
+    "status": 200,
+    "bytes": "692763"
+  },
+  {
+    "path": "hunyuan21-oracle-v1/384_s42/review/face45.png",
+    "status": 200,
+    "bytes": "667917"
+  },
+  {
+    "path": "hunyuan21-oracle-v1/384_s42/review/crown.png",
+    "status": 200,
+    "bytes": "684913"
+  },
+  {
+    "path": "hunyuan21-oracle-v1/384_s42_maskfix/review.glb",
+    "status": 200,
+    "bytes": "12933020"
+  },
+  {
+    "path": "hunyuan21-oracle-v1/384_s42_maskfix/receipt.json",
+    "status": 200,
+    "bytes": "2005"
+  },
+  {
+    "path": "hunyuan21-oracle-v1/384_s42_maskfix/review/face.png",
+    "status": 200,
+    "bytes": "708617"
+  },
+  {
+    "path": "hunyuan21-oracle-v1/384_s42_maskfix/review/face45.png",
+    "status": 200,
+    "bytes": "683963"
+  },
+  {
+    "path": "hunyuan21-oracle-v1/384_s42_maskfix/review/crown.png",
+    "status": 200,
+    "bytes": "684214"
+  }
+]

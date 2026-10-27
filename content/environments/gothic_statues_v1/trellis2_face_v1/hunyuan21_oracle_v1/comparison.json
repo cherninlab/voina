@@ -1,0 +1,128 @@
+{
+  "selected": "maskfix",
+  "variants": [
+    {
+      "vertices": 269401,
+      "triangles": 538838,
+      "boundary_edges": 0,
+      "non_manifold_edges": 4,
+      "finite_and_indices_valid": true,
+      "watertight": false,
+      "winding_consistent": true,
+      "transform": {
+        "input_bbox_center": [
+          0.0034766942262649536,
+          -0.0028384625911712646,
+          0.0035437047481536865
+        ],
+        "uniform_scale": 0.7018600914583538,
+        "translation": [
+          0,
+          0.7,
+          0
+        ]
+      },
+      "changes": "Uniform centering, scale and neutral material only; no repair or simplification",
+      "raw_sha256": "205f9a12d0d42abcdfa72ba8377396d4aeca1a1df4fc9a4c8271d0fee692aace",
+      "review_sha256": "690b5a08ebc18fa73c21df687b7e3b27aed6aca5b364e0d39908f37584cf1ef5",
+      "id": "maskfix",
+      "label": "Hunyuan3D-2.1 \u00b7 local MPS \u00b7 seed 42 \u00b7 corrected mask \u00b7 octree 384",
+      "note": "U2Net plus black-background removal fixes the opaque gap between the horns. Same seed and sampling settings as the original seed 42 run. Shape geometry only. Horn opening restored; face and fingers remain soft. Four non-manifold edges remain. Not an accepted asset."
+    },
+    {
+      "vertices": 267533,
+      "triangles": 535078,
+      "boundary_edges": 0,
+      "non_manifold_edges": 0,
+      "finite_and_indices_valid": true,
+      "watertight": true,
+      "winding_consistent": true,
+      "transform": {
+        "input_bbox_center": [
+          -0.009164229035377502,
+          -0.002930372953414917,
+          0.0191156268119812
+        ],
+        "uniform_scale": 0.7019064021097502,
+        "translation": [
+          0,
+          0.7,
+          0
+        ]
+      },
+      "changes": "Uniform centering, scale and neutral material only; no repair or simplification",
+      "raw_sha256": "b9f37a6d07a7f025a6e7c96cbf87c2d08a4ad44fbcefd85c5a551e5dafe1ee31",
+      "review_sha256": "3dc0f02fb4f39c4512df96b88e84bcfb7d6b0944fe02de07ebdf113c6513c02e",
+      "id": "hunyuan0",
+      "label": "Hunyuan3D-2.1 \u00b7 local MPS \u00b7 seed 0 \u00b7 50 steps \u00b7 octree 384",
+      "note": "Initial U2Net mask erroneously kept the black gap between the horns opaque. Preserved to diagnose the resulting filled-in crown."
+    },
+    {
+      "vertices": 263997,
+      "triangles": 528006,
+      "boundary_edges": 0,
+      "non_manifold_edges": 0,
+      "finite_and_indices_valid": true,
+      "watertight": true,
+      "winding_consistent": true,
+      "transform": {
+        "input_bbox_center": [
+          0.0024512261152267456,
+          -0.0026634037494659424,
+          0.001061856746673584
+        ],
+        "uniform_scale": 0.70202501712389,
+        "translation": [
+          0,
+          0.7,
+          0
+        ]
+      },
+      "changes": "Uniform centering, scale and neutral material only; no repair or simplification",
+      "raw_sha256": "a295d341a486ee5ef9700f7ca84ebf15a3883ce0ce4e02286e694d8bbd834aef",
+      "review_sha256": "3d21dee33e4d3cb7ac0606fcce0c6cd49a581c719fe00859463c3ed350eb0778",
+      "id": "hunyuan",
+      "label": "Hunyuan3D-2.1 \u00b7 local MPS \u00b7 50 steps \u00b7 octree 384",
+      "note": "Initial U2Net mask erroneously kept the black gap between the horns opaque. Preserved to diagnose the resulting filled-in crown."
+    },
+    {
+      "id": "before",
+      "label": "TRELLIS.2 \u00b7 1536 remeshed",
+      "description": "1536 geometry grid \u00b7 1024px HR image features",
+      "file": "1536/remeshed/statue.glb",
+      "triangles": 1860684,
+      "vertices": 924324,
+      "boundary_edges": 0,
+      "non_manifold_edges": 8442,
+      "winding_consistent": true,
+      "watertight": false,
+      "finite_and_indices_valid": true,
+      "note": "Preserved earlier result."
+    },
+    {
+      "vertices": 499763,
+      "triangles": 999999,
+      "finite_and_indices_valid": true,
+      "boundary_edges": 81,
+      "non_manifold_edges": 22,
+      "winding_consistent": true,
+      "watertight": false,
+      "preview_transform": {
+        "input_bbox_center": [
+          0.04605008661746979,
+          0.019517183303833008,
+          0.012096092104911804
+        ],
+        "uniform_scale": 0.7232564232145084,
+        "subtract_y_floor": -0.7
+      },
+      "changes": "Uniform centering/scale/grounding and constant material only; no geometry repair",
+      "raw_sha256": "5468e4aa96afb571da99e84e119589efbfbafcf2e5c05a437375f64ab4283fa7",
+      "review_sha256": "65dcd04e07522178b49781f2ef8cb818664504fbe976d30884a9214d5c60c8c5",
+      "id": "hi3d",
+      "label": "Hi3D \u00b7 1024 full-statue refinement \u00b7 25 steps",
+      "note": "Earlier hosted CUDA refinement of the TRELLIS.2 mesh."
+    }
+  ],
+  "art_acceptance": "pending user review; no engine placement"
+}

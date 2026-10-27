@@ -1,0 +1,16 @@
+{
+  "hunyuan3d-dit-v2-1/config.yaml": {
+    "bytes": 2078,
+    "git_oid": "695b7d5c6ba96a7f1f849430da23b21c682d8116",
+    "lfs": null
+  },
+  "hunyuan3d-dit-v2-1/model.fp16.ckpt": {
+    "bytes": 7366389768,
+    "git_oid": "3dd05dc4116bcbb36a6d82d6431abca613c035dc",
+    "lfs": {
+      "oid": "6b519fc7242f78e9b5f47ea4d55668fe3d944a2d27332f4ca68d29a6ff603f5e",
+      "size": 7366389768,
+      "pointerSize": 135
+    }
+  }
+}

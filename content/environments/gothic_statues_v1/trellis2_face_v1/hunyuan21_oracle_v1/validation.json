@@ -1,0 +1,114 @@
+{
+  "runs": {
+    "384_s42": {
+      "status": "complete",
+      "mps_verified": true,
+      "hashes_verified": true,
+      "vertices": 263997,
+      "triangles": 528006,
+      "boundary_edges": 0,
+      "non_manifold_edges": 0,
+      "finite_and_indices_valid": true,
+      "watertight": true,
+      "winding_consistent": true,
+      "transform": {
+        "input_bbox_center": [
+          0.0024512261152267456,
+          -0.0026634037494659424,
+          0.001061856746673584
+        ],
+        "uniform_scale": 0.70202501712389,
+        "translation": [
+          0,
+          0.7,
+          0
+        ]
+      },
+      "changes": "Uniform centering, scale and neutral material only; no repair or simplification",
+      "raw_sha256": "a295d341a486ee5ef9700f7ca84ebf15a3883ce0ce4e02286e694d8bbd834aef",
+      "review_sha256": "3d21dee33e4d3cb7ac0606fcce0c6cd49a581c719fe00859463c3ed350eb0778"
+    },
+    "384_s0": {
+      "status": "complete",
+      "mps_verified": true,
+      "hashes_verified": true,
+      "vertices": 267533,
+      "triangles": 535078,
+      "boundary_edges": 0,
+      "non_manifold_edges": 0,
+      "finite_and_indices_valid": true,
+      "watertight": true,
+      "winding_consistent": true,
+      "transform": {
+        "input_bbox_center": [
+          -0.009164229035377502,
+          -0.002930372953414917,
+          0.0191156268119812
+        ],
+        "uniform_scale": 0.7019064021097502,
+        "translation": [
+          0,
+          0.7,
+          0
+        ]
+      },
+      "changes": "Uniform centering, scale and neutral material only; no repair or simplification",
+      "raw_sha256": "b9f37a6d07a7f025a6e7c96cbf87c2d08a4ad44fbcefd85c5a551e5dafe1ee31",
+      "review_sha256": "3dc0f02fb4f39c4512df96b88e84bcfb7d6b0944fe02de07ebdf113c6513c02e"
+    },
+    "384_s42_maskfix": {
+      "status": "complete",
+      "mps_verified": true,
+      "hashes_verified": true,
+      "vertices": 269401,
+      "triangles": 538838,
+      "boundary_edges": 0,
+      "non_manifold_edges": 4,
+      "finite_and_indices_valid": true,
+      "watertight": false,
+      "winding_consistent": true,
+      "transform": {
+        "input_bbox_center": [
+          0.0034766942262649536,
+          -0.0028384625911712646,
+          0.0035437047481536865
+        ],
+        "uniform_scale": 0.7018600914583538,
+        "translation": [
+          0,
+          0.7,
+          0
+        ]
+      },
+      "changes": "Uniform centering, scale and neutral material only; no repair or simplification",
+      "raw_sha256": "205f9a12d0d42abcdfa72ba8377396d4aeca1a1df4fc9a4c8271d0fee692aace",
+      "review_sha256": "690b5a08ebc18fa73c21df687b7e3b27aed6aca5b364e0d39908f37584cf1ef5"
+    }
+  },
+  "godot_import": "passed without errors",
+  "repository_smoke": "PASS: local two-process ENet integration and disconnect cleanup",
+  "browser": {
+    "url": "http://127.0.0.1:7865/static/trellis2-face-v1/hunyuan21-oracle-v1/review/index.html",
+    "variants_loaded": [
+      "maskfix",
+      "hunyuan0",
+      "hunyuan",
+      "before",
+      "hi3d"
+    ],
+    "controls_used": [
+      "Face",
+      "Full view",
+      "Raised hand"
+    ],
+    "download_and_receipt_paths": "verified from live page",
+    "screenshots": [
+      "review/browser_maskfix_full.png",
+      "review/browser_maskfix_face.png"
+    ]
+  },
+  "art_acceptance": false,
+  "engine_placement": false,
+  "textures_generated": false,
+  "quality": "Corrected mask restores separate horns; face and fingers remain too soft. Four non-manifold edges on corrected export."
+}

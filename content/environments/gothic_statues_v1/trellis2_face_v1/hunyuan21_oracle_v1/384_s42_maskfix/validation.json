@@ -1,0 +1,25 @@
+{
+  "vertices": 269401,
+  "triangles": 538838,
+  "boundary_edges": 0,
+  "non_manifold_edges": 4,
+  "finite_and_indices_valid": true,
+  "watertight": false,
+  "winding_consistent": true,
+  "transform": {
+    "input_bbox_center": [
+      0.0034766942262649536,
+      -0.0028384625911712646,
+      0.0035437047481536865
+    ],
+    "uniform_scale": 0.7018600914583538,
+    "translation": [
+      0,
+      0.7,
+      0
+    ]
+  },
+  "changes": "Uniform centering, scale and neutral material only; no repair or simplification",
+  "raw_sha256": "205f9a12d0d42abcdfa72ba8377396d4aeca1a1df4fc9a4c8271d0fee692aace",
+  "review_sha256": "690b5a08ebc18fa73c21df687b7e3b27aed6aca5b364e0d39908f37584cf1ef5"
+}

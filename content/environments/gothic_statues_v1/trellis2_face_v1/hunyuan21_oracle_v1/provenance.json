@@ -1,0 +1,23 @@
+{
+  "official_model": "tencent/Hunyuan3D-2.1",
+  "checkpoint_revision": "0b94677654c57bb9a6b6845cd7b704ccf551d327",
+  "upstream_code": {
+    "url": "https://github.com/Tencent-Hunyuan/Hunyuan3D-2.1",
+    "revision": "82920d643c0dc2f7bfd7255f45f62d386edfe60c"
+  },
+  "mac_compatibility": {
+    "url": "https://github.com/VladimirTalyzin/hunyuan3d-2.1-mac-rocm",
+    "revision": "6f4b63bd6419406f40291bca23a7c849bcaae2a3",
+    "files": {
+      "backend.py": "460af54172614ab162d5bd4f6f152e49a531f27426bc5afceb455473b57f75ac",
+      "compat_patches.py": "87d75732161c7920189fa8cf8befd56bbd33f1ac23e24e5bd0353c9820e06c13"
+    }
+  },
+  "model_artifacts": "model_artifacts.json",
+  "python": "/Users/theochernin/Projects/CherninLab3D/.venv/bin/python",
+  "installed_for_this_trial": {
+    "timm": "1.0.30"
+  },
+  "pipeline": "official shape pipeline with runtime-only compatibility patches; plain marching cubes; no texture generation",
+  "inference_location": "local Apple Silicon Mac MPS; unsupported operators and mesh extraction may use CPU"
+}

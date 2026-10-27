@@ -1,0 +1,30 @@
+SDF.R: Loader Marker V16.2.2 (__init__.py loaded from: /Users/theochernin/Library/Application Support/Blender/5.2/scripts/addons/rust_gpu_sdf_addon/__init__.py)
+SDF.R: --- Initializing GPU Engine (V16.2.2) ---
+SDF.R: No shader cache. This initial compilation may take a few minutes...
+SDF.R: Addon registered. Warming-up will start in 0.5s...
+22:55:03 | INFO: Data are loaded, start creating Blender stuff
+22:55:03 | INFO: Blender create Mesh node geometry_0
+22:55:03 | INFO: glTF import finished in 0.35s
+/Users/theochernin/Projects/MultiPlayerProject-agents/theo-codex-43/content/environments/gothic_statues_v1/e01_crawling_v1/render_review.py:26: DeprecationWarning: 'Material.use_nodes' is expected to be removed in Blender 6.0
+  material=bpy.data.materials.new('Neutral limestone geometry review');material.use_nodes=True
+/Users/theochernin/Projects/MultiPlayerProject-agents/theo-codex-43/content/environments/gothic_statues_v1/e01_crawling_v1/render_review.py:39: DeprecationWarning: 'World.use_nodes' is expected to be removed in Blender 6.0
+  scene.world=bpy.data.worlds.new('Review world');scene.world.use_nodes=True
+00:02.763  render           | Saved: '/Users/theochernin/Projects/MultiPlayerProject-agents/theo-codex-43/content/environments/gothic_statues_v1/trellis2_face_v1/hunyuan21_oracle_v1/384_s0/review/hy21_hero.png'
+00:04.592  render           | Saved: '/Users/theochernin/Projects/MultiPlayerProject-agents/theo-codex-43/content/environments/gothic_statues_v1/trellis2_face_v1/hunyuan21_oracle_v1/384_s0/review/hy21_front.png'
+00:06.335  render           | Saved: '/Users/theochernin/Projects/MultiPlayerProject-agents/theo-codex-43/content/environments/gothic_statues_v1/trellis2_face_v1/hunyuan21_oracle_v1/384_s0/review/hy21_front45.png'
+00:07.981  render           | Saved: '/Users/theochernin/Projects/MultiPlayerProject-agents/theo-codex-43/content/environments/gothic_statues_v1/trellis2_face_v1/hunyuan21_oracle_v1/384_s0/review/hy21_left.png'
+00:09.714  render           | Saved: '/Users/theochernin/Projects/MultiPlayerProject-agents/theo-codex-43/content/environments/gothic_statues_v1/trellis2_face_v1/hunyuan21_oracle_v1/384_s0/review/hy21_back135.png'
+00:11.432  render           | Saved: '/Users/theochernin/Projects/MultiPlayerProject-agents/theo-codex-43/content/environments/gothic_statues_v1/trellis2_face_v1/hunyuan21_oracle_v1/384_s0/review/hy21_back.png'
+00:13.026  render           | Saved: '/Users/theochernin/Projects/MultiPlayerProject-agents/theo-codex-43/content/environments/gothic_statues_v1/trellis2_face_v1/hunyuan21_oracle_v1/384_s0/review/hy21_right.png'
+REVIEW_RENDER_OK
+00:17.703  render           | Saved: '/Users/theochernin/Projects/MultiPlayerProject-agents/theo-codex-43/content/environments/gothic_statues_v1/trellis2_face_v1/hunyuan21_oracle_v1/384_s0/review/face.png'
+00:21.071  render           | Saved: '/Users/theochernin/Projects/MultiPlayerProject-agents/theo-codex-43/content/environments/gothic_statues_v1/trellis2_face_v1/hunyuan21_oracle_v1/384_s0/review/face45.png'
+00:25.882  render           | Saved: '/Users/theochernin/Projects/MultiPlayerProject-agents/theo-codex-43/content/environments/gothic_statues_v1/trellis2_face_v1/hunyuan21_oracle_v1/384_s0/review/crown.png'
+00:29.406  render           | Saved: '/Users/theochernin/Projects/MultiPlayerProject-agents/theo-codex-43/content/environments/gothic_statues_v1/trellis2_face_v1/hunyuan21_oracle_v1/384_s0/review/head_back.png'
+00:31.092  render           | Saved: '/Users/theochernin/Projects/MultiPlayerProject-agents/theo-codex-43/content/environments/gothic_statues_v1/trellis2_face_v1/hunyuan21_oracle_v1/384_s0/review/raised_hand.png'
+00:35.403  render           | Saved: '/Users/theochernin/Projects/MultiPlayerProject-agents/theo-codex-43/content/environments/gothic_statues_v1/trellis2_face_v1/hunyuan21_oracle_v1/384_s0/review/hip_hand.png'
+00:38.454  render           | Saved: '/Users/theochernin/Projects/MultiPlayerProject-agents/theo-codex-43/content/environments/gothic_statues_v1/trellis2_face_v1/hunyuan21_oracle_v1/384_s0/review/legs.png'
+PLASTIC_ORACLE_REVIEW_OK
+Blender 5.2.2 LTS (hash d13f752e3b9c built 2026-09-15 01:49:19)
+
+Blender quit

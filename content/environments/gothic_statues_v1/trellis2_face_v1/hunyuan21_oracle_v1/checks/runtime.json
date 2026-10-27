@@ -1,0 +1,16 @@
+{
+  "python": "3.11.15",
+  "platform": "macOS-26.6.2-arm64-arm-64bit",
+  "packages": {
+    "torch": "2.14.1",
+    "torchvision": "0.29.1",
+    "diffusers": "0.32.2",
+    "transformers": "4.48.0",
+    "timm": "1.0.30",
+    "trimesh": "5.1.1",
+    "rembg": "2.0.86",
+    "numpy": "2.4.6",
+    "scikit-image": "0.26.0",
+    "Pillow": "12.3.0"
+  }
+}
