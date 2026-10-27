@@ -1,0 +1,683 @@
+"""Hi3D v1.0 image-to-3D geometry on Hugging Face ZeroGPU (unofficial community demo).
+
+Pipeline, exactly as in the official repository (https://github.com/hi3d-official/Hi3Dv1.0):
+
+1. optional background removal (rembg, the official ``[demo]`` extra);
+2. coarse mesh from Hunyuan3D-2 mini turbo, using the official ``demo/coarse_stage.py``
+   adapter (30 steps, octree resolution 256);
+3. Hi3D v1.0 refinement with the official ``Sparc3DPipeline`` (512 / 1024 / 1536 ladder,
+   25 Heun updates per pass by default).
+
+ZeroGPU only offers torch>=2.8 on Blackwell GPUs, so the runtime stack differs from the
+official torch 2.5 / CUDA 12.4 pin; the model code and weights are unmodified.
+"""
+
+from __future__ import annotations
+
+import os
+
+os.environ.setdefault("PYTORCH_CUDA_ALLOC_CONF", "expandable_segments:True")
+os.environ.setdefault("HY3DGEN_MODELS", os.path.expanduser("~/.cache/hy3dgen"))
+
+import spaces  # noqa: E402  (must be imported before anything initializes CUDA)
+
+import importlib  # noqa: E402
+import json  # noqa: E402
+import logging  # noqa: E402
+import random  # noqa: E402
+import subprocess  # noqa: E402
+import sys  # noqa: E402
+import tempfile  # noqa: E402
+import time  # noqa: E402
+import uuid  # noqa: E402
+import warnings  # noqa: E402
+
+import gradio as gr  # noqa: E402
+import numpy as np  # noqa: E402
+import torch  # noqa: E402
+import trimesh  # noqa: E402
+from huggingface_hub import hf_hub_download, snapshot_download  # noqa: E402
+from PIL import Image  # noqa: E402
+
+logging.basicConfig(level=logging.INFO, format="%(asctime)s %(levelname)s %(name)s: %(message)s")
+logger = logging.getLogger("hi3d-space")
+
+HI3D_REPO = "hi3d-official/Hi3Dv1.0"
+HI3D_REVISION = "705fc0901c5d896cdcbf1dbf1feaa173e62bdd3a"
+HI3D_FILES = (
+    "model_index.json",
+    "scheduler/scheduler_config.json",
+    "vae/config.json",
+    "vae/model.safetensors",
+    "transformer_512/config.json",
+    "transformer_512/model.safetensors",
+    "transformer_1024/config.json",
+    "transformer_1024/model.safetensors",
+)
+HUNYUAN_REPO = "tencent/Hunyuan3D-2mini"
+HUNYUAN_REVISION = "f90a0f7df7d5e6f71109cf333f6a95a0ae3194a6"
+HUNYUAN_SUBFOLDER = "hunyuan3d-dit-v2-mini-turbo"
+HUNYUAN_GIT = (
+    "git+https://github.com/Tencent-Hunyuan/Hunyuan3D-2.git"
+    "@f8db63096c8282cb27354314d896feba5ba6ff8a"
+)
+
+RESOLUTIONS = (512, 1024, 1536)
+DEFAULT_STEPS = 25
+MAX_SEED = 2**31 - 1
+OUTPUT_DIR = os.path.join(tempfile.gettempdir(), "hi3d_outputs")
+os.makedirs(OUTPUT_DIR, exist_ok=True)
+
+# Upper-bound GPU-time model for ZeroGPU's dynamic duration, in seconds of wall time on
+# the GPU size that runs the request. Measured on this Space at 25 steps/pass:
+#   large  512 : coarse 10 s, pass1 sampling 9.5 s, total 29 s
+#   large  1024: coarse 10 s, pass1 16.8 s, pass2 75.3 s, total 146 s
+#   xlarge 1536: coarse 5 s, pass1 11.9 s, pass2 47.8 s, pass3 80.5 s, total 234 s
+# Sampling cost grows with the voxel count, which each pass's budget caps.
+COARSE_SECONDS = {"large": 12.0, "xlarge": 8.0}
+FIXED_SECONDS = 30.0  # includes ~30 s of one-time Triton/PTX JIT on a cold worker
+PASS_SECONDS_PER_STEP = {
+    "large": (1.5, 3.4, 5.0),
+    "xlarge": (0.8, 2.2, 3.6),
+}
+PASS_FIXED_SECONDS = {"large": (10.0, 30.0, 70.0), "xlarge": (8.0, 25.0, 70.0)}
+# On Blackwell, ZeroGPU multiplies the requested duration of `large` tasks by 1.5.
+LARGE_DURATION_FACTOR = 1.5
+# 1536 was only validated by the authors on a 96 GB GPU, so it runs on a full GPU.
+XLARGE_RESOLUTIONS = {1536}
+
+
+# --------------------------------------------------------------------------------------
+# Third-party coarse stage: hy3dgen (Hunyuan3D-2 shape generation)
+# --------------------------------------------------------------------------------------
+def _ensure_hy3dgen() -> None:
+    try:
+        import hy3dgen.shapegen  # noqa: F401
+    except ImportError:  # not installable through requirements.txt, see there
+        logger.info("Installing hy3dgen (Hunyuan3D-2) without dependencies")
+        subprocess.check_call(
+            [sys.executable, "-m", "pip", "install", "--no-deps", "--quiet", HUNYUAN_GIT]
+        )
+        importlib.invalidate_caches()
+
+
+def _stage_hunyuan_weights() -> None:
+    """Expose only the turbo DiT safetensors to hy3dgen's local-path loader.
+
+    hy3dgen otherwise snapshot-downloads the whole subfolder, including a duplicate
+    pickle checkpoint of the same weights.
+    """
+    target = os.path.join(os.environ["HY3DGEN_MODELS"], HUNYUAN_REPO, HUNYUAN_SUBFOLDER)
+    os.makedirs(target, exist_ok=True)
+    for name in ("config.yaml", "model.fp16.safetensors"):
+        source = hf_hub_download(
+            HUNYUAN_REPO, f"{HUNYUAN_SUBFOLDER}/{name}", revision=HUNYUAN_REVISION
+        )
+        destination = os.path.join(target, name)
+        if os.path.lexists(destination):
+            os.remove(destination)
+        os.symlink(source, destination)
+
+
+_ensure_hy3dgen()
+_stage_hunyuan_weights()
+
+from sparc3d import Sparc3DPipeline  # noqa: E402
+from sparc3d.pipelines.sparc3d_pipeline import STRUCTURE_RESOLUTIONS  # noqa: E402
+from sparc3d.utils.image import remove_background  # noqa: E402
+
+from coarse_stage import (  # noqa: E402
+    COARSE_OCTREE_RESOLUTION,
+    COARSE_STEPS,
+    generate_coarse_mesh,
+    load_coarse_generator,
+)
+
+# --------------------------------------------------------------------------------------
+# Model loading (module level, placed on "cuda" so ZeroGPU can pack the weights)
+# --------------------------------------------------------------------------------------
+t_load = time.perf_counter()
+logger.info("Loading Hi3D v1.0 pipeline from %s@%s", HI3D_REPO, HI3D_REVISION)
+# Load from a complete local snapshot: with a Hub ID, the official loader defers
+# transformer_1024 and then rejects its cached symlink as "unexpected" on every later
+# start, so a restarted Space could not load once that transformer was cached.
+hi3d_dir = snapshot_download(HI3D_REPO, revision=HI3D_REVISION, allow_patterns=list(HI3D_FILES))
+pipeline = Sparc3DPipeline.from_pretrained(hi3d_dir)
+# The 1024 transformer is lazy by default; materialize it now so ZeroGPU packs it too.
+_ = pipeline.transformer_1024
+pipeline.to("cuda")
+
+logger.info("Loading Hunyuan3D-2 mini turbo coarse generator")
+coarse_generator = load_coarse_generator(HUNYUAN_REPO, HUNYUAN_SUBFOLDER, "cuda")
+
+import rembg  # noqa: E402
+
+rembg_session = rembg.new_session("u2net")
+logger.info("All models loaded in %.1fs", time.perf_counter() - t_load)
+
+
+# --------------------------------------------------------------------------------------
+# Helpers
+# --------------------------------------------------------------------------------------
+def _num_passes(resolution: int) -> int:
+    return RESOLUTIONS.index(int(resolution)) + 1
+
+
+def _gpu_size(resolution: int) -> str:
+    return "xlarge" if int(resolution) in XLARGE_RESOLUTIONS else "large"
+
+
+def _estimate_seconds(resolution: int, steps: int, with_coarse: bool) -> float:
+    size = _gpu_size(resolution)
+    seconds = FIXED_SECONDS + (COARSE_SECONDS[size] if with_coarse else 0.0)
+    for index in range(_num_passes(resolution)):
+        seconds += PASS_FIXED_SECONDS[size][index] + PASS_SECONDS_PER_STEP[size][index] * steps
+    return seconds
+
+
+def _requested_duration(resolution: int, steps: int, with_coarse: bool) -> int:
+    seconds = _estimate_seconds(resolution, steps, with_coarse)
+    if _gpu_size(resolution) == "large":
+        seconds /= LARGE_DURATION_FACTOR
+    return int(min(max(seconds * 1.15, 60), 1800))
+
+
+def _has_transparency(image: Image.Image) -> bool:
+    if image.mode not in ("RGBA", "LA", "PA") and "transparency" not in image.info:
+        return False
+    alpha = np.asarray(image.convert("RGBA").getchannel("A"))
+    return bool(alpha.min() < 250)
+
+
+def _prepare_input(image: Image.Image | None, remove_bg: bool) -> tuple[Image.Image, str]:
+    if image is None:
+        raise gr.Error("Please provide an input image.")
+    if _has_transparency(image):
+        return image.convert("RGBA"), "kept existing alpha"
+    if remove_bg:
+        return remove_background(image.convert("RGB"), session=rembg_session), "rembg (u2net)"
+    return image.convert("RGB"), "none (full frame used)"
+
+
+def _validate_settings(resolution, steps, seed) -> tuple[int, int, int]:
+    resolution = int(resolution)
+    if resolution not in RESOLUTIONS:
+        raise gr.Error(f"resolution must be one of {RESOLUTIONS}")
+    steps = int(steps)
+    if not 1 <= steps <= 50:
+        raise gr.Error("steps per pass must be between 1 and 50")
+    seed = int(seed)
+    if not 0 <= seed <= MAX_SEED:
+        raise gr.Error(f"seed must be in [0, {MAX_SEED}]")
+    return resolution, steps, seed
+
+
+def _to_arrays(mesh: trimesh.Trimesh) -> tuple[np.ndarray, np.ndarray]:
+    return (
+        np.ascontiguousarray(mesh.vertices, dtype=np.float32),
+        np.ascontiguousarray(mesh.faces, dtype=np.int32),
+    )
+
+
+def _export_glb(vertices: np.ndarray, faces: np.ndarray, path: str) -> str:
+    """Write geometry unchanged, plus vertex normals and a neutral material for viewing."""
+    mesh = trimesh.Trimesh(vertices=vertices, faces=faces, process=False)
+    _ = mesh.vertex_normals
+    material = trimesh.visual.material.PBRMaterial(
+        baseColorFactor=[205, 205, 210, 255], metallicFactor=0.05, roughnessFactor=0.65
+    )
+    mesh.visual = trimesh.visual.TextureVisuals(material=material)
+    mesh.export(path)
+    return path
+
+
+def _new_run_dir() -> str:
+    path = os.path.join(OUTPUT_DIR, f"{time.strftime('%Y%m%d-%H%M%S')}-{uuid.uuid4().hex[:8]}")
+    os.makedirs(path, exist_ok=True)
+    return path
+
+
+# --------------------------------------------------------------------------------------
+# GPU work
+# --------------------------------------------------------------------------------------
+def _run_on_gpu(image, coarse_arrays, resolution, steps, seed, progress):
+    """Run inside a ZeroGPU worker; re-raise failures as gr.Error so messages survive."""
+    try:
+        return _run_on_gpu_unchecked(image, coarse_arrays, resolution, steps, seed, progress)
+    except gr.Error:
+        raise
+    except torch.OutOfMemoryError as exc:
+        logger.exception("GPU out of memory")
+        raise gr.Error("GPU out of memory. Try a lower resolution.") from exc
+    except Exception as exc:
+        logger.exception("GPU run failed")
+        raise gr.Error(f"Generation failed: {type(exc).__name__}: {exc}") from exc
+
+
+def _safe_progress(progress, value, desc):
+    try:
+        progress(value, desc=desc)
+    except Exception:  # progress reporting must never break generation
+        pass
+
+
+def _run_on_gpu_unchecked(image, coarse_arrays, resolution, steps, seed, progress):
+    """Coarse generation (optional) + Hi3D refinement."""
+    t_start = time.perf_counter()
+    torch.cuda.reset_peak_memory_stats()
+    timings: dict[str, float] = {}
+    num_passes = _num_passes(resolution)
+    total_updates = num_passes * steps
+
+    if coarse_arrays is None:
+        _safe_progress(progress, 0.0, "Coarse mesh (Hunyuan3D-2 mini turbo)")
+        t0 = time.perf_counter()
+        coarse_mesh = generate_coarse_mesh(coarse_generator, image, seed)
+        if coarse_mesh is None:
+            raise gr.Error("The coarse stage produced no surface for this image.")
+        if isinstance(coarse_mesh, trimesh.Scene):
+            coarse_mesh = coarse_mesh.dump(concatenate=True)
+        timings["coarse_s"] = round(time.perf_counter() - t0, 2)
+        torch.cuda.empty_cache()
+    else:
+        coarse_mesh = trimesh.Trimesh(
+            vertices=coarse_arrays[0], faces=coarse_arrays[1], process=False
+        )
+
+    pass_starts: dict[int, float] = {}
+
+    def report(event):
+        pass_starts.setdefault(event.pass_index, time.perf_counter())
+        done = event.pass_index * event.num_inference_steps + event.step
+        if event.step == event.num_inference_steps:
+            logger.info(
+                "pass %d/%d (structure %d^3) sampled in %.1fs",
+                event.pass_index + 1,
+                event.num_passes,
+                event.structure_resolution,
+                time.perf_counter() - pass_starts[event.pass_index],
+            )
+        _safe_progress(
+            progress,
+            done / total_updates,
+            f"Hi3D pass {event.pass_index + 1}/{event.num_passes} "
+            f"({event.structure_resolution}³) · step {event.step}/{event.num_inference_steps}",
+        )
+
+    pipeline.progress_callback = report
+    t0 = time.perf_counter()
+    with warnings.catch_warnings(record=True) as caught:
+        warnings.simplefilter("always")
+        result = pipeline(
+            image,
+            coarse_mesh,
+            resolution=resolution,
+            num_inference_steps=steps,
+            seed=seed,
+        )
+    pipeline.progress_callback = None
+    timings["refine_s"] = round(time.perf_counter() - t0, 2)
+    timings["gpu_total_s"] = round(time.perf_counter() - t_start, 2)
+
+    info = {
+        "resolution": int(result.resolution),
+        "passes": num_passes,
+        "structure_resolutions": list(STRUCTURE_RESOLUTIONS[:num_passes]),
+        "steps_per_pass": steps,
+        "seed": seed,
+        "timings": timings,
+        "gpu": torch.cuda.get_device_name(),
+        "peak_gpu_memory_gb": round(torch.cuda.max_memory_allocated() / 2**30, 2),
+        # Only Hi3D's own warnings (e.g. adaptive voxelization settling on a coarser grid).
+        "warnings": sorted({str(w.message) for w in caught if "sparc3d" in (w.filename or "")}),
+    }
+    logger.info("GPU run finished: %s", json.dumps(info))
+    return _to_arrays(coarse_mesh), _to_arrays(result.mesh), info
+
+
+def _duration_generate(image, resolution, steps, seed, progress=None):
+    return _requested_duration(resolution, steps, with_coarse=True)
+
+
+def _duration_refine(image, coarse_arrays, resolution, steps, seed, progress=None):
+    return _requested_duration(resolution, steps, with_coarse=False)
+
+
+@spaces.GPU(duration=_duration_generate)
+def _generate_large(image, resolution, steps, seed, progress=gr.Progress()):
+    return _run_on_gpu(image, None, resolution, steps, seed, progress)
+
+
+@spaces.GPU(duration=_duration_generate, size="xlarge")
+def _generate_xlarge(image, resolution, steps, seed, progress=gr.Progress()):
+    return _run_on_gpu(image, None, resolution, steps, seed, progress)
+
+
+@spaces.GPU(duration=_duration_refine)
+def _refine_large(image, coarse_arrays, resolution, steps, seed, progress=gr.Progress()):
+    return _run_on_gpu(image, coarse_arrays, resolution, steps, seed, progress)
+
+
+@spaces.GPU(duration=_duration_refine, size="xlarge")
+def _refine_xlarge(image, coarse_arrays, resolution, steps, seed, progress=gr.Progress()):
+    return _run_on_gpu(image, coarse_arrays, resolution, steps, seed, progress)
+
+
+def _finish(run_dir, coarse_arrays, refined_arrays, info, prep_note, wall_start):
+    refined_path = _export_glb(*refined_arrays, os.path.join(run_dir, "hi3d_refined.glb"))
+    info["refined_faces"] = int(len(refined_arrays[1]))
+    info["refined_vertices"] = int(len(refined_arrays[0]))
+    info["coarse_faces"] = int(len(coarse_arrays[1]))
+    info["background"] = prep_note
+    info["wall_time_s"] = round(time.perf_counter() - wall_start, 2)
+    info["gpu_size"] = _gpu_size(info["resolution"])
+    with open(os.path.join(run_dir, "info.json"), "w") as handle:
+        json.dump(info, handle, indent=2)
+    return refined_path, info
+
+
+def _gpu_error(exc: Exception) -> gr.Error:
+    if isinstance(exc, gr.Error):
+        return exc
+    return gr.Error(f"Generation failed: {type(exc).__name__}: {exc}")
+
+
+# --------------------------------------------------------------------------------------
+# Public endpoints
+# --------------------------------------------------------------------------------------
+def generate(
+    image: Image.Image,
+    resolution: int = 1024,
+    steps: int = DEFAULT_STEPS,
+    seed: int = 0,
+    remove_bg: bool = True,
+    progress=gr.Progress(),
+):
+    """Image -> coarse mesh (Hunyuan3D-2 mini) -> Hi3D v1.0 refined mesh.
+
+    Args:
+        image: Input image of a single object. Transparent cut-outs keep their alpha.
+        resolution: Hi3D target resolution: 512 (1 pass), 1024 (2 passes) or 1536 (3 passes).
+        steps: Scheduler updates per refinement pass (official default 25).
+        seed: Seed for both the coarse and refinement samplers.
+        remove_bg: Run rembg on opaque images before generation.
+
+    Returns:
+        Refined GLB, coarse GLB, preprocessed input image, and run information.
+    """
+    wall_start = time.perf_counter()
+    resolution, steps, seed = _validate_settings(resolution, steps, seed)
+    prepared, prep_note = _prepare_input(image, remove_bg)
+    run_dir = _new_run_dir()
+    prepared.save(os.path.join(run_dir, "input.png"))
+    runner = _generate_xlarge if _gpu_size(resolution) == "xlarge" else _generate_large
+    try:
+        coarse_arrays, refined_arrays, info = runner(prepared, resolution, steps, seed)
+    except Exception as exc:  # surface a readable error to UI and API callers
+        logger.exception("generation failed")
+        raise _gpu_error(exc) from exc
+    coarse_path = _export_glb(*coarse_arrays, os.path.join(run_dir, "coarse_hunyuan3d2mini.glb"))
+    refined_path, info = _finish(run_dir, coarse_arrays, refined_arrays, info, prep_note, wall_start)
+    info["coarse_stage"] = {
+        "model": f"{HUNYUAN_REPO}/{HUNYUAN_SUBFOLDER}",
+        "steps": COARSE_STEPS,
+        "octree_resolution": COARSE_OCTREE_RESOLUTION,
+    }
+    return refined_path, coarse_path, os.path.join(run_dir, "input.png"), info
+
+
+def refine(
+    image: Image.Image,
+    coarse_mesh_file: str,
+    resolution: int = 1024,
+    steps: int = DEFAULT_STEPS,
+    seed: int = 0,
+    remove_bg: bool = True,
+    progress=gr.Progress(),
+):
+    """Refine your own coarse mesh with Hi3D v1.0 (official refine_mesh.py path).
+
+    Args:
+        image: Reference image of the same object as the coarse mesh.
+        coarse_mesh_file: Coarse triangle mesh (.glb, .gltf, .obj, .ply, .stl, .off).
+        resolution: Hi3D target resolution: 512, 1024 or 1536.
+        steps: Scheduler updates per refinement pass (official default 25).
+        seed: Refinement seed.
+        remove_bg: Run rembg on opaque images before refinement.
+
+    Returns:
+        Refined GLB, preprocessed input image, and run information.
+    """
+    wall_start = time.perf_counter()
+    resolution, steps, seed = _validate_settings(resolution, steps, seed)
+    if not coarse_mesh_file:
+        raise gr.Error("Please upload a coarse mesh.")
+    path = coarse_mesh_file if isinstance(coarse_mesh_file, str) else coarse_mesh_file.name
+    try:
+        coarse = trimesh.load(path, force="mesh", process=False)
+    except Exception as exc:
+        raise gr.Error(f"Could not read the coarse mesh: {exc}") from exc
+    if len(coarse.faces) == 0:
+        raise gr.Error("The coarse mesh has no faces.")
+    if len(coarse.faces) > 2_000_000:
+        raise gr.Error("Coarse meshes are limited to 2M faces in this demo.")
+    prepared, prep_note = _prepare_input(image, remove_bg)
+    run_dir = _new_run_dir()
+    prepared.save(os.path.join(run_dir, "input.png"))
+    runner = _refine_xlarge if _gpu_size(resolution) == "xlarge" else _refine_large
+    try:
+        coarse_arrays, refined_arrays, info = runner(
+            prepared, _to_arrays(coarse), resolution, steps, seed
+        )
+    except Exception as exc:
+        logger.exception("refinement failed")
+        raise _gpu_error(exc) from exc
+    refined_path, info = _finish(run_dir, coarse_arrays, refined_arrays, info, prep_note, wall_start)
+    return refined_path, os.path.join(run_dir, "input.png"), info
+
+
+def estimate(resolution: int, steps: int) -> str:
+    resolution, steps = int(resolution), int(steps)
+    size = _gpu_size(resolution)
+    seconds = _estimate_seconds(resolution, steps, with_coarse=True)
+    quota = seconds * (2 if size == "xlarge" else 1)
+    label = "full GPU (xlarge, 2× quota)" if size == "xlarge" else "half GPU (large)"
+    return (
+        f"Up to ≈ {seconds / 60:.1f} min of GPU time on a ZeroGPU {label}; "
+        f"≈ {quota / 60:.1f} min of daily quota. Simple objects finish sooner."
+    )
+
+
+@spaces.GPU(duration=60)
+def selftest() -> dict:
+    """Check flash-attn, spconv and Triton kernels on the ZeroGPU device."""
+    import flash_attn
+    import spconv
+    import triton
+
+    report = {
+        "gpu": torch.cuda.get_device_name(),
+        "capability": list(torch.cuda.get_device_capability()),
+        "torch": torch.__version__,
+        "cuda": torch.version.cuda,
+        "flash_attn": flash_attn.__version__,
+        "spconv": spconv.__version__,
+        "triton": triton.__version__,
+    }
+    t0 = time.perf_counter()
+    qkv = torch.randn(4096, 3, 22, 96, device="cuda", dtype=torch.float16)
+    cu = torch.tensor([0, 4096], device="cuda", dtype=torch.int32)
+    out = flash_attn.flash_attn_varlen_qkvpacked_func(qkv, cu, 4096)
+    q, k, v = (qkv[:, i].transpose(0, 1).unsqueeze(0) for i in range(3))
+    ref = torch.nn.functional.scaled_dot_product_attention(q, k, v)[0].transpose(0, 1)
+    report["flash_attn_max_abs_err_vs_sdpa"] = float((out - ref).abs().max())
+
+    from sparc3d.ops.sparse_backend import Conv3d, sparse_tensor
+
+    conv = Conv3d(32, 64, 3).cuda().half()
+    coords = torch.unique(torch.randint(0, 48, (20000, 3), device="cuda"), dim=0).int()
+    coords = torch.cat([torch.zeros_like(coords[:, :1]), coords], 1)
+    feats = torch.randn(coords.shape[0], 32, device="cuda", dtype=torch.float16)
+    sparse_out = conv(sparse_tensor(feats, coords))
+    report["spconv_ok"] = bool(torch.isfinite(sparse_out.features).all())
+
+    from sparc3d.ops import adaptive_vox
+
+    box = trimesh.creation.icosphere(subdivisions=3)
+    voxels = adaptive_vox(box, resolution=64, target_num=80000, device="cuda")
+    report["triton_voxels"] = int(voxels.shape[0])
+    torch.cuda.synchronize()
+    report["selftest_s"] = round(time.perf_counter() - t0, 2)
+    logger.info("selftest: %s", json.dumps(report))
+    return report
+
+
+# --------------------------------------------------------------------------------------
+# UI
+# --------------------------------------------------------------------------------------
+EXAMPLES_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), "examples")
+EXAMPLES = sorted(
+    os.path.join(EXAMPLES_DIR, name)
+    for name in (os.listdir(EXAMPLES_DIR) if os.path.isdir(EXAMPLES_DIR) else [])
+    if name.lower().endswith((".png", ".jpg", ".jpeg", ".webp"))
+)
+
+RESULT_HINT = (
+    "Upload an image or pick an example, then press **Generate**. The refined mesh appears "
+    "above: drag to rotate, scroll to zoom, and use the download icon to save the GLB."
+)
+REFINE_HINT = (
+    "Add a reference image and a coarse mesh of the same object, then press **Refine**. "
+    "The refined mesh appears above."
+)
+WORKING = "Working… progress is shown on the viewer. Most runs take 1–4 minutes."
+
+
+def summarize(info) -> str:
+    """One readable line about the finished run; the raw JSON stays under Details."""
+    if not info:
+        return "No result: see the error message. Nothing was generated."
+    seconds = float(info.get("timings", {}).get("gpu_total_s", 0))
+    line = (
+        f"**Done**: {info.get('resolution')}³ · {info.get('refined_faces', 0) / 1e6:.1f} M faces · "
+        f"{int(seconds // 60)} min {int(seconds % 60)} s of GPU time. "
+        "Drag to rotate; use the download icon to save the GLB."
+    )
+    if info.get("warnings"):
+        line += " Hi3D used a coarser support grid for this object (see Details)."
+    return line
+
+
+HEADER = """
+# Hi3D 1.0 · ZeroGPU
+
+Unofficial community demo of **[Hi3D v1.0](https://github.com/hi3d-official/Hi3Dv1.0)**,
+high-resolution 3D geometry refinement built on Sparc3D. It uses the
+[official weights](https://huggingface.co/hi3d-official/Hi3Dv1.0) and inference code.
+Image → coarse mesh ([Hunyuan3D-2 mini turbo](https://huggingface.co/tencent/Hunyuan3D-2mini),
+the official example coarse stage) → Hi3D refinement at 512³ / 1024³ / 1536³.
+The output is **geometry only**: no textures, recentered and normalized to unit radius.
+"""
+
+FOOTER = """
+<div style="text-align:center;opacity:.8;font-size:.9em">
+<a href="http://hi3d.ai/" target="_blank">Powered by Hi3D 1.0</a> ·
+Hi3D materials are licensed under the
+<a href="https://github.com/hi3d-official/Hi3Dv1.0/blob/main/LICENSE" target="_blank">Hi3D Open License Agreement 1.0</a> ·
+Coarse stage: Hunyuan3D-2 mini under the
+<a href="https://huggingface.co/tencent/Hunyuan3D-2mini/blob/main/LICENSE" target="_blank">Tencent Hunyuan Community License</a>
+(not licensed for use in the EU, UK or South Korea) ·
+This Space is not affiliated with or endorsed by Hi3D or Tencent.
+</div>
+"""
+
+with gr.Blocks(title="Hi3D 1.0 ZeroGPU", delete_cache=(1800, 3600)) as demo:
+    gr.Markdown(HEADER)
+    with gr.Tab("Image → 3D"):
+        with gr.Row():
+            with gr.Column(scale=1):
+                in_image = gr.Image(label="Input image", type="pil", image_mode="RGBA", height=320)
+                with gr.Row():
+                    in_resolution = gr.Radio(
+                        list(RESOLUTIONS), value=1024, label="Hi3D resolution",
+                        info="512 = 1 pass · 1024 = 2 passes · 1536 = 3 passes (full GPU)",
+                    )
+                in_steps = gr.Slider(
+                    5, 50, value=DEFAULT_STEPS, step=1, label="Steps per pass",
+                    info="Official default: 25 Heun updates per pass",
+                )
+                with gr.Row():
+                    in_seed = gr.Number(value=0, label="Seed", precision=0, minimum=0, maximum=MAX_SEED)
+                    in_random = gr.Checkbox(value=False, label="Randomize seed")
+                in_rembg = gr.Checkbox(value=True, label="Remove background (opaque images only)")
+                eta = gr.Markdown(estimate(1024, DEFAULT_STEPS))
+                run_btn = gr.Button("Generate", variant="primary")
+                if EXAMPLES:
+                    gr.Examples(EXAMPLES, inputs=[in_image], label="Examples", cache_examples=False)
+            with gr.Column(scale=2):
+                out_refined = gr.Model3D(label="Hi3D v1.0 result", height=560, clear_color=[1, 1, 1, 1])
+                out_summary = gr.Markdown(RESULT_HINT)
+                with gr.Accordion("Details: coarse mesh, model input, run info", open=False):
+                    with gr.Row():
+                        out_coarse = gr.Model3D(label="Coarse mesh (Hunyuan3D-2 mini)", height=260, clear_color=[1, 1, 1, 1])
+                        out_input = gr.Image(label="Model input", height=260, interactive=False)
+                    out_info = gr.JSON(label="Run info")
+
+    with gr.Tab("Refine your own coarse mesh"):
+        gr.Markdown(
+            "Official `refine_mesh.py` path: give a reference image and a coarse mesh of the "
+            "**same object**. Hi3D re-voxelizes the mesh and refines it."
+        )
+        with gr.Row():
+            with gr.Column(scale=1):
+                r_image = gr.Image(label="Reference image", type="pil", image_mode="RGBA", height=280)
+                r_mesh = gr.File(
+                    label="Coarse mesh", file_types=[".glb", ".gltf", ".obj", ".ply", ".stl", ".off"],
+                    type="filepath",
+                )
+                r_resolution = gr.Radio(list(RESOLUTIONS), value=1024, label="Hi3D resolution")
+                r_steps = gr.Slider(5, 50, value=DEFAULT_STEPS, step=1, label="Steps per pass")
+                r_seed = gr.Number(value=0, label="Seed", precision=0, minimum=0, maximum=MAX_SEED)
+                r_rembg = gr.Checkbox(value=True, label="Remove background (opaque images only)")
+                r_btn = gr.Button("Refine", variant="primary")
+            with gr.Column(scale=2):
+                r_out = gr.Model3D(label="Hi3D v1.0 result", height=560, clear_color=[1, 1, 1, 1])
+                r_summary = gr.Markdown(REFINE_HINT)
+                with gr.Accordion("Details: model input, run info", open=False):
+                    with gr.Row():
+                        r_input = gr.Image(label="Model input", height=240, interactive=False)
+                        r_info = gr.JSON(label="Run info")
+
+    gr.HTML(FOOTER)
+
+    def _start(seed, randomize):
+        seed = random.randint(0, MAX_SEED) if randomize else int(seed)
+        return seed, WORKING, None
+
+    def _start_refine():
+        return WORKING, None
+
+    in_resolution.change(estimate, [in_resolution, in_steps], eta, api_name=False)
+    in_steps.change(estimate, [in_resolution, in_steps], eta, api_name=False)
+    run_btn.click(
+        _start, [in_seed, in_random], [in_seed, out_summary, out_info], api_name=False, queue=False
+    ).then(
+        generate,
+        [in_image, in_resolution, in_steps, in_seed, in_rembg],
+        [out_refined, out_coarse, out_input, out_info],
+        api_name="generate",
+    ).then(summarize, out_info, out_summary, api_name=False, queue=False)
+    r_btn.click(
+        _start_refine, None, [r_summary, r_info], api_name=False, queue=False
+    ).then(
+        refine,
+        [r_image, r_mesh, r_resolution, r_steps, r_seed, r_rembg],
+        [r_out, r_input, r_info],
+        api_name="refine",
+    ).then(summarize, r_info, r_summary, api_name=False, queue=False)
+    gr.api(selftest, api_name="selftest")
+
+demo.queue(max_size=20)
+
+if __name__ == "__main__":
+    demo.launch(allowed_paths=[OUTPUT_DIR])

@@ -1,0 +1,72 @@
+{
+  "selected": "head",
+  "variants": [
+    {
+      "vertices": 499763,
+      "triangles": 999999,
+      "finite_and_indices_valid": true,
+      "boundary_edges": 81,
+      "non_manifold_edges": 22,
+      "winding_consistent": true,
+      "watertight": false,
+      "preview_transform": {
+        "input_bbox_center": [
+          0.04605008661746979,
+          0.019517183303833008,
+          0.012096092104911804
+        ],
+        "uniform_scale": 0.7232564232145084,
+        "subtract_y_floor": -0.7
+      },
+      "changes": "Uniform centering/scale/grounding and constant material only; no geometry repair",
+      "raw_sha256": "5468e4aa96afb571da99e84e119589efbfbafcf2e5c05a437375f64ab4283fa7",
+      "review_sha256": "65dcd04e07522178b49781f2ef8cb818664504fbe976d30884a9214d5c60c8c5",
+      "id": "full",
+      "label": "Hi3D 1024 \u00b7 full statue \u00b7 25 steps",
+      "note": "Full-statue refinement of the preserved TRELLIS.2 mesh."
+    },
+    {
+      "vertices": 494274,
+      "triangles": 999999,
+      "finite_and_indices_valid": true,
+      "boundary_edges": 135,
+      "non_manifold_edges": 1249,
+      "winding_consistent": true,
+      "watertight": false,
+      "preview_transform": {
+        "input_bbox_center": [
+          -0.05300581455230713,
+          0.2820388376712799,
+          0.0025185048580169678
+        ],
+        "uniform_scale": 0.2920540298311708,
+        "translation": [
+          -0.06282105296850204,
+          1.215013325214386,
+          -0.02602672576904297
+        ]
+      },
+      "changes": "Uniform centering/scale/grounding and constant material only; no geometry repair",
+      "raw_sha256": "c05b4d82b23bf3d0930c28b13082869f4d015523b6844d98123b6c0339bf54b1",
+      "review_sha256": "81a76c05e0ee4a30a758ed006c716feaa810170f34712fffb407c45f15d4256a",
+      "id": "head",
+      "label": "Hi3D 1024 \u00b7 isolated head \u00b7 15 steps",
+      "note": "Head study only; no body replacement."
+    },
+    {
+      "id": "before",
+      "label": "TRELLIS.2 1536 \u00b7 remeshed input",
+      "description": "1536 geometry grid \u00b7 1024px HR image features",
+      "file": "1536/remeshed/statue.glb",
+      "triangles": 1860684,
+      "vertices": 924324,
+      "boundary_edges": 0,
+      "non_manifold_edges": 8442,
+      "winding_consistent": true,
+      "watertight": false,
+      "finite_and_indices_valid": true,
+      "note": "Preserved input before Hi3D refinement."
+    }
+  ],
+  "art_acceptance": "pending user review; no engine integration"
+}

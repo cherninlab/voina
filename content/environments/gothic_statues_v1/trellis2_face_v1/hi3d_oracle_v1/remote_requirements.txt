@@ -1,0 +1,31 @@
+# ZeroGPU runs on NVIDIA RTX PRO 6000 Blackwell (sm_120) and only supports torch>=2.8,
+# so the official torch 2.5.0+cu124 pin is replaced by the closest supported stack.
+torch==2.8.0
+torchvision==0.23.0
+# Official flash-attn wheel, built with CUDA 12.9 for sm_80/90/100/120.
+https://github.com/Dao-AILab/flash-attention/releases/download/v2.8.3/flash_attn-2.8.3+cu12torch2.8cxx11abiTRUE-cp310-cp310-linux_x86_64.whl
+# Same spconv build the released weights were validated with (PTX for compute_90 JITs on sm_120).
+spconv-cu120==2.3.6
+transformers==4.46.3
+numpy==1.26.4
+accelerate>=0.31.0,<2
+safetensors>=0.4.3
+huggingface-hub>=0.34.0,<1
+trimesh>=4.4.0,<5
+pyfqmr>=0.4.0
+# Official Hi3D v1.0 inference code (package name `sparc3d`), pinned to the release commit.
+sparc3d @ git+https://github.com/hi3d-official/Hi3Dv1.0.git@23dcc684bc6e1fab86ecafb99ec5270edad122f9
+# Background removal (official `[demo]` extra).
+rembg==2.0.60
+onnxruntime==1.20.1
+# Hunyuan3D-2 mini shape-generation dependencies (official coarse-stage example).
+# hy3dgen itself is installed with --no-deps at startup because its setup.py
+# requires transformers>=4.48, while the Hi3D weights were validated on 4.46.3.
+diffusers==0.35.2
+einops
+opencv-python-headless
+pymeshlab
+scikit-image
+pyyaml
+omegaconf
+tqdm

@@ -1,0 +1,75 @@
+{
+  "model": "hi3d-official/Hi3Dv1.0",
+  "space": "townbox/hi3d10-zerogpu",
+  "space_revision": "0900d7b60cc443e50f1b3659046d9eb2975f2691",
+  "model_revision": "705fc0901c5d896cdcbf1dbf1feaa173e62bdd3a",
+  "official_code_revision_inspected": "13657ad09afaa92e350b461a1cd66399e44a59c4",
+  "runtime_artifacts_match_current_model_revision": true,
+  "image": "head_source.png",
+  "image_sha256": "400ce5e7c4ed9410aed8b33a22723cc06c5cc6638b7cfc273ec20cce553640a7",
+  "coarse_mesh": "head_coarse.glb",
+  "coarse_sha256": "aeb6db202eb4dc9c78ecde2617c82b2bd681e17eb2b6539dae96afbc002fb3b5",
+  "resolution": 1024,
+  "steps_per_pass": 15,
+  "seed": 42,
+  "remove_bg": false,
+  "route": "remote community ZeroGPU API; local Mac has no CUDA path",
+  "status": "complete",
+  "crop_xyxy": [
+    190,
+    0,
+    505,
+    285
+  ],
+  "coarse_crop": {
+    "plane_y": 1.03,
+    "keep": "whole triangles above plane; largest connected component; open neck retained",
+    "vertices": 132972,
+    "triangles": 265182,
+    "bounds": [
+      [
+        -0.2516900599002838,
+        1.0300010442733765,
+        -0.1833784133195877
+      ],
+      [
+        0.12604795396327972,
+        1.4000256061553955,
+        0.13132496178150177
+      ]
+    ]
+  },
+  "purpose": "Head-only quality comparison; separate output, no body replacement",
+  "reason": "25-step head request refused before inference: reserved 220s exceeded 173s free quota; 15 steps fits the remaining allowance",
+  "wall_seconds": 151.44037933299842,
+  "progress": {
+    "code": "Status.FINISHED",
+    "rank": null,
+    "queue_size": null,
+    "progress": []
+  },
+  "run_info": {
+    "resolution": 1024,
+    "passes": 2,
+    "structure_resolutions": [
+      64,
+      128
+    ],
+    "steps_per_pass": 15,
+    "seed": 42,
+    "timings": {
+      "refine_s": 126.48,
+      "gpu_total_s": 126.49
+    },
+    "gpu": "NVIDIA RTX PRO 6000 Blackwell Server Edition MIG 2g.48gb",
+    "peak_gpu_memory_gb": 23.37,
+    "warnings": [],
+    "refined_faces": 999999,
+    "refined_vertices": 494274,
+    "coarse_faces": 265182,
+    "background": "kept existing alpha",
+    "wall_time_s": 133.42,
+    "gpu_size": "large"
+  },
+  "output_sha256": "c05b4d82b23bf3d0930c28b13082869f4d015523b6844d98123b6c0339bf54b1"
+}

@@ -1,0 +1,49 @@
+{
+  "model": "hi3d-official/Hi3Dv1.0",
+  "space": "townbox/hi3d10-zerogpu",
+  "space_revision": "0900d7b60cc443e50f1b3659046d9eb2975f2691",
+  "model_revision": "705fc0901c5d896cdcbf1dbf1feaa173e62bdd3a",
+  "official_code_revision_inspected": "13657ad09afaa92e350b461a1cd66399e44a59c4",
+  "runtime_artifacts_match_current_model_revision": true,
+  "image": "source.png",
+  "image_sha256": "528eac8ce3cabf3727872f169c834641eacf8eaadf3374152499a702c8263c41",
+  "coarse_mesh": "../oracle_resolution_v6/1536/remeshed/statue.glb",
+  "coarse_sha256": "1709ce2fb50629a0b07ded9b5893ec8c3d14de1a9014c583e42c4da58ee8a6e8",
+  "resolution": 1024,
+  "steps_per_pass": 25,
+  "seed": 42,
+  "remove_bg": true,
+  "route": "remote community ZeroGPU API; local Mac has no CUDA path",
+  "status": "complete",
+  "wall_seconds": 131.5926800409943,
+  "progress": {
+    "code": "Status.FINISHED",
+    "rank": null,
+    "queue_size": null,
+    "progress": []
+  },
+  "run_info": {
+    "resolution": 1024,
+    "passes": 2,
+    "structure_resolutions": [
+      64,
+      128
+    ],
+    "steps_per_pass": 25,
+    "seed": 42,
+    "timings": {
+      "refine_s": 79.19,
+      "gpu_total_s": 79.21
+    },
+    "gpu": "NVIDIA RTX PRO 6000 Blackwell Server Edition MIG 2g.48gb",
+    "peak_gpu_memory_gb": 17.66,
+    "warnings": [],
+    "refined_faces": 999999,
+    "refined_vertices": 499763,
+    "coarse_faces": 1860684,
+    "background": "rembg (u2net)",
+    "wall_time_s": 83.41,
+    "gpu_size": "large"
+  },
+  "output_sha256": "5468e4aa96afb571da99e84e119589efbfbafcf2e5c05a437375f64ab4283fa7"
+}

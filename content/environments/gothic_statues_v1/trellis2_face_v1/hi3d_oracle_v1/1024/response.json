@@ -1,0 +1,27 @@
+[
+  "/Users/theochernin/Projects/MultiPlayerProject-agents/theo-codex-43/content/environments/gothic_statues_v1/trellis2_face_v1/hi3d_oracle_v1/1024/downloads/5468e4aa96afb571da99e84e119589efbfbafcf2e5c05a437375f64ab4283fa7/hi3d_refined.glb",
+  "/Users/theochernin/Projects/MultiPlayerProject-agents/theo-codex-43/content/environments/gothic_statues_v1/trellis2_face_v1/hi3d_oracle_v1/1024/downloads/180656801cdc3539b8c32a9f2335473309168ef1be54c360fabc2d550f978fee/input.png",
+  {
+    "resolution": 1024,
+    "passes": 2,
+    "structure_resolutions": [
+      64,
+      128
+    ],
+    "steps_per_pass": 25,
+    "seed": 42,
+    "timings": {
+      "refine_s": 79.19,
+      "gpu_total_s": 79.21
+    },
+    "gpu": "NVIDIA RTX PRO 6000 Blackwell Server Edition MIG 2g.48gb",
+    "peak_gpu_memory_gb": 17.66,
+    "warnings": [],
+    "refined_faces": 999999,
+    "refined_vertices": 499763,
+    "coarse_faces": 1860684,
+    "background": "rembg (u2net)",
+    "wall_time_s": 83.41,
+    "gpu_size": "large"
+  }
+]

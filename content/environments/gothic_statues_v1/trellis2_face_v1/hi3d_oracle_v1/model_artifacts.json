@@ -1,0 +1,22 @@
+{
+  "705fc0901c5d896cdcbf1dbf1feaa173e62bdd3a": {
+    "model_index.json": "b63881777731bd5093112b934721202d01771065",
+    "scheduler/scheduler_config.json": "2a070592ea631dc2f158cf56ef0076cc87f2b872",
+    "transformer_1024/config.json": "daa180abc108fc26a5d60501d77b1118ae94a0f6",
+    "transformer_1024/model.safetensors": "a2ca5e44dde51cacecd59b42fceeb5f14e75d55e6dd047337752c4e6f281008c",
+    "transformer_512/config.json": "47d2b9e97f8002913a47dbd58c55ee1ae6fa2cf5",
+    "transformer_512/model.safetensors": "8ba88311dccf23463c6e10dd0d3bd5e0c5c35d1608c6f466413b6428b5ad8e56",
+    "vae/config.json": "c4f94b13cc30945292da5aac233405496a271dcc",
+    "vae/model.safetensors": "605d207c77f8db0b33c567a5861252f0090cf3c3604dfda1cfee09e8f0b53f3e"
+  },
+  "d502e938cbedc6e87aba8884614c5ca6d177a4b6": {
+    "model_index.json": "b63881777731bd5093112b934721202d01771065",
+    "scheduler/scheduler_config.json": "2a070592ea631dc2f158cf56ef0076cc87f2b872",
+    "transformer_1024/config.json": "daa180abc108fc26a5d60501d77b1118ae94a0f6",
+    "transformer_1024/model.safetensors": "a2ca5e44dde51cacecd59b42fceeb5f14e75d55e6dd047337752c4e6f281008c",
+    "transformer_512/config.json": "47d2b9e97f8002913a47dbd58c55ee1ae6fa2cf5",
+    "transformer_512/model.safetensors": "8ba88311dccf23463c6e10dd0d3bd5e0c5c35d1608c6f466413b6428b5ad8e56",
+    "vae/config.json": "c4f94b13cc30945292da5aac233405496a271dcc",
+    "vae/model.safetensors": "605d207c77f8db0b33c567a5861252f0090cf3c3604dfda1cfee09e8f0b53f3e"
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "community_space": "townbox/hi3d10-zerogpu",
+  "space_revision": "0900d7b60cc443e50f1b3659046d9eb2975f2691",
+  "remote_official_code_revision": "23dcc684bc6e1fab86ecafb99ec5270edad122f9",
+  "remote_torch": "2.8.0",
+  "remote_flash_attention": "2.8.3 CUDA12 wheel",
+  "remote_spconv": "spconv-cu120==2.3.6",
+  "runtime_note": "ZeroGPU Blackwell stack differs from the authors measured torch2.5.0 CUDA12.4 H20 stack; no numerical parity claim",
+  "app_sha256": "be954785b4845b9eb8eeca0cf070a1c55c78439eb352d32003df907ccfa8b303",
+  "artifact_hashes": "model_artifacts.json",
+  "source_unchanged": "source.png",
+  "local_code_checkout": "/Users/theochernin/Projects/CherninLab3D/vendor/Hi3Dv1.0",
+  "local_inspected_code_revision": "13657ad09afaa92e350b461a1cd66399e44a59c4"
+}

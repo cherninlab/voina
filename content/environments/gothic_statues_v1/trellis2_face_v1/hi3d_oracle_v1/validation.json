@@ -1,0 +1,31 @@
+{
+  "checks": {
+    "godot_import": "passed; checks/godot_import.txt",
+    "smoke": "passed; checks/smoke.txt",
+    "http_asset_checks": 19,
+    "browser_real_meshes_loaded": [
+      "Hi3D full",
+      "Hi3D head",
+      "TRELLIS before"
+    ],
+    "browser_controls_verified": [
+      "face",
+      "back",
+      "download targets",
+      "source and matching detail images"
+    ]
+  },
+  "scripts": {
+    "render_head.py": "543d5deac0c64bec88279e98c38374f06a64b1b578377995da978e02ba3363f5",
+    "run.py": "2baeb0d6bd0e934bb9a0145c9af9d0cd71cb00e1e95e864ebd6877a0a243ddb2",
+    "prepare_review.py": "2592700fa24ecf5770895302a1a98c3f38f5dcdf49dec95be2f062e2536a74db"
+  },
+  "assets": {
+    "head_coarse.glb": "aeb6db202eb4dc9c78ecde2617c82b2bd681e17eb2b6539dae96afbc002fb3b5",
+    "head_1024/hi3d.glb": "c05b4d82b23bf3d0930c28b13082869f4d015523b6844d98123b6c0339bf54b1",
+    "head_1024/review.glb": "81a76c05e0ee4a30a758ed006c716feaa810170f34712fffb407c45f15d4256a",
+    "1024/hi3d.glb": "5468e4aa96afb571da99e84e119589efbfbafcf2e5c05a437375f64ab4283fa7",
+    "1024/review.glb": "65dcd04e07522178b49781f2ef8cb818664504fbe976d30884a9214d5c60c8c5"
+  },
+  "quality": "head has clearer eyes and lips; raised brows/eyelids and frayed cut neck remain; no body merge or art acceptance"
+}
