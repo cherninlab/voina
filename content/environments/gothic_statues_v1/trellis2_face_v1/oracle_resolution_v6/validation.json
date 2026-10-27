@@ -86,7 +86,7 @@
   "godot_import": {
     "exit_code": 0,
     "error_lines": [],
-    "log": "checks/godot_import.log"
+    "log": "checks/godot_import.txt"
   },
   "godot_smoke": "PASS: local two-process ENet integration and disconnect cleanup",
   "review": "1536 preserves more facial form; eyelid and finger artifacts remain; crown visually closed; no final user art approval or engine placement",
@@ -127,5 +127,5 @@
     "remesh.py": "63f158e84dccdc35cf7c5b0bc424f40fa9d3fa5104c03c12a5b3b1c55a4d8740",
     "native_hr_conditioning.py": "a6589bed0e61b82e954fdc0efe89dcdc6387428982fa0482d411a26231799050"
   },
-  "godot_smoke_log": "checks/smoke.log"
+  "godot_smoke_log": "checks/smoke.txt"
 }
