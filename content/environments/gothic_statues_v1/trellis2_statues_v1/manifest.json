@@ -1,0 +1,27 @@
+{
+  "selected": "oracle_768",
+  "model": "microsoft/TRELLIS.2-4B",
+  "items": [
+    {
+      "id": "reaper_512",
+      "source": "reaper",
+      "label": "Hooded reaper \u00b7 512",
+      "description": "TRELLIS.2-4B \u00b7 512\u00b3 \u00b7 one image \u00b7 12 steps \u00b7 1,444,206 triangles retained.",
+      "limitations": "Fine pinholes and rough patches remain in the cloth and hair. Open thin surfaces and some winding inconsistencies remain; inspect the actual mesh before choosing it for further finishing."
+    },
+    {
+      "id": "oracle_512",
+      "source": "oracle",
+      "label": "Horned oracle \u00b7 512",
+      "description": "TRELLIS.2-4B \u00b7 512\u00b3 \u00b7 one image \u00b7 12 steps \u00b7 1,303,598 triangles retained.",
+      "limitations": "Fine pinholes and rough patches remain in the cloth and hair. Open thin surfaces and some winding inconsistencies remain; inspect the actual mesh before choosing it for further finishing."
+    },
+    {
+      "id": "oracle_768",
+      "source": "oracle",
+      "label": "Horned oracle \u00b7 768 \u00b7 2.8M",
+      "description": "TRELLIS.2-4B \u00b7 actual 768\u00b3 grid \u00b7 one image \u00b7 12 steps \u00b7 2,805,322 triangles retained.",
+      "limitations": "Face and drapery are sharper than the 512 trial, with separate slender fingers. Small holes, rough patches and some winding defects remain. This is a dense geometry review, not a finished game asset."
+    }
+  ]
+}

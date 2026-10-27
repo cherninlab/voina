@@ -1,0 +1,68 @@
+{
+  "reaper_512": {
+    "input_count_verified": 1,
+    "source_hash_verified": true,
+    "finite_vertices": true,
+    "triangles": 1444206,
+    "valid_face_indices": true,
+    "bounds": [
+      [
+        -0.42725980281829834,
+        0.0,
+        -0.35198280215263367
+      ],
+      [
+        0.42725980281829834,
+        1.399999976158142,
+        0.35198280215263367
+      ]
+    ],
+    "open_boundaries_expected": true,
+    "winding_consistent": false,
+    "watertight": false
+  },
+  "oracle_512": {
+    "input_count_verified": 1,
+    "source_hash_verified": true,
+    "finite_vertices": true,
+    "triangles": 1303598,
+    "valid_face_indices": true,
+    "bounds": [
+      [
+        -0.45714858174324036,
+        0.0,
+        -0.27684149146080017
+      ],
+      [
+        0.45714858174324036,
+        1.399999976158142,
+        0.27684149146080017
+      ]
+    ],
+    "open_boundaries_expected": true,
+    "winding_consistent": false,
+    "watertight": false
+  },
+  "oracle_768": {
+    "input_count_verified": 1,
+    "source_hash_verified": true,
+    "finite_vertices": true,
+    "triangles": 2805322,
+    "valid_face_indices": true,
+    "bounds": [
+      [
+        -0.4554462432861328,
+        0.0,
+        -0.27511289715766907
+      ],
+      [
+        0.4554462432861328,
+        1.399999976158142,
+        0.27511289715766907
+      ]
+    ],
+    "open_boundaries_expected": true,
+    "winding_consistent": false,
+    "watertight": false
+  }
+}

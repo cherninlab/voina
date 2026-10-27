@@ -1,0 +1,18 @@
+[
+  {
+    "id": "reaper",
+    "original": "content/environments/gothic_statues_v1/compositions_v2/references/S02-hooded-reaper.png",
+    "copy": "source/reaper.png",
+    "source_sha256": "aebf02d9431b5bcc6ed861cd9ceb85d6a4296f72e4637b77aa1f119b02f36e6e",
+    "approval": "parent concept selected earlier by user; current request authorizes TRELLIS.2 reconstruction trials",
+    "input_count": 1
+  },
+  {
+    "id": "oracle",
+    "original": "content/environments/gothic_statues_v1/compositions_v2/references/S06-horned-oracle.png",
+    "copy": "source/oracle.png",
+    "source_sha256": "dc2e226e69c1d08e3dfe4c4934a3e553b16e84df7b99a9798a69b5eb08084c0b",
+    "approval": "parent concept selected earlier by user; current request authorizes TRELLIS.2 reconstruction trials",
+    "input_count": 1
+  }
+]
