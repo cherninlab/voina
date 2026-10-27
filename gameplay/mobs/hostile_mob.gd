@@ -49,6 +49,10 @@ var memory_left: float = 0.0
 var sense_left: float = 0.0
 var path_left: float = 0.0
 var route: PackedVector3Array = PackedVector3Array()
+var walk_anchor: Vector3 = Vector3.INF
+var walk_stalled: float = 0.0
+var walk_retry: float = 0.0
+var recovering_route: bool = false
 var route_goal: Vector3 = Vector3.INF
 var did_strike: bool = false
 var corpse_left: float = 1.3
@@ -314,19 +318,49 @@ static func keep_in_yard(point: Vector3) -> Vector3:
 	flat = ChurchSite.YARD_CENTER + flat.limit_length(ChurchSite.YARD_RADIUS - 0.5)
 	return Vector3(flat.x, point.y, flat.y)
 
-# Follows the yard grid toward a point; true once there (or when no route leads closer).
+# Follows the yard grid toward a point; true only at the requested 3D goal.
 func walk(destination: Vector3, speed: float, gait_state: int, delta: float) -> bool:
-	if Vector2(destination.x - global_position.x, destination.z - global_position.z).length() < 0.35:
+	if Vector2(destination.x - global_position.x, destination.z - global_position.z).length() < 0.35 and absf(destination.y - global_position.y) < 0.6:
+		velocity.x = 0.0
+		velocity.z = 0.0
+		walk_stalled = 0.0
+		recovering_route = false
 		return true
+	var changed_goal: bool = route_goal.distance_to(destination) > 1.0
+	if changed_goal or global_position.distance_to(walk_anchor) > 0.12:
+		walk_anchor = global_position
+		walk_stalled = 0.0
+	else:
+		walk_stalled += delta
+	walk_retry = maxf(0.0, walk_retry - delta)
 	path_left -= delta
-	if path_left <= 0.0 or route.is_empty() or route_goal.distance_to(destination) > 1.0:
+	if walk_stalled >= 0.65 and walk_retry <= 0.0 and is_on_floor():
+		# Include other mobs as current obstacles; exclude ourselves and players
+		# so pursuing a player still has a reachable goal near their capsule.
+		var excluded: Array[RID] = [get_rid()]
+		if system != null and system.players != null:
+			for node: Node in system.players.get_children():
+				if node is CollisionObject3D:
+					excluded.append((node as CollisionObject3D).get_rid())
+		route = grid().fresh_path(get_world_3d().direct_space_state, excluded, global_position, destination)
+		route_goal = destination
+		recovering_route = true
+		walk_stalled = 0.0
+		walk_retry = 2.0
+		path_left = 0.4
+	elif changed_goal or (path_left <= 0.0 and not recovering_route):
 		route = grid().path(global_position, destination)
 		route_goal = destination
+		recovering_route = false
 		path_left = 0.4
-	while not route.is_empty() and Vector2(route[0].x - global_position.x, route[0].z - global_position.z).length() < 0.22:
+	while not route.is_empty() and Vector2(route[0].x - global_position.x, route[0].z - global_position.z).length() < 0.22 and absf(route[0].y - global_position.y) < 0.6:
 		route.remove_at(0)
 	if route.is_empty():
-		return true
+		recovering_route = false
+		velocity.x = 0.0
+		velocity.z = 0.0
+		state = State.IDLE
+		return false
 	var direction: Vector3 = route[0] - global_position
 	direction.y = 0
 	direction = direction.normalized()

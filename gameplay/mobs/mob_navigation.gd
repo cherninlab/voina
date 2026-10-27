@@ -120,3 +120,18 @@ func path(from: Vector3, to: Vector3) -> PackedVector3Array:
 	for cell: Vector2i in grid.get_id_path(nearest(from), nearest(to), true):
 		result.append(point_of(cell))
 	return result
+
+## A blocked mob can query current obstacles without replacing the encounter's
+## shared snapshot. Keep virtual floor sampling (the dungeon's stacked halls).
+## build() is synchronous: no other agent observes this scratch grid.
+func fresh_path(space: PhysicsDirectSpaceState3D, exclude: Array[RID], from: Vector3, to: Vector3) -> PackedVector3Array:
+	var saved_grid: AStarGrid2D = grid
+	var saved_heights: PackedFloat32Array = heights
+	var saved_origin: Vector2 = origin
+	grid = AStarGrid2D.new()
+	build(space, exclude, saved_origin + Vector2.ONE * CELL * float(CELLS - 1) * 0.5)
+	var result: PackedVector3Array = path(from, to)
+	grid = saved_grid
+	heights = saved_heights
+	origin = saved_origin
+	return result
