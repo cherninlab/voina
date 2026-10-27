@@ -1036,6 +1036,16 @@ def bays(room: dict, walls: list, rows: list, layout: dict, rng, lib, quoins, ri
     return parts
 
 
+def spall_in_opening(obj, openings: list) -> bool:
+    """A joint filler wholly in an arch's clear void has nothing to hold it."""
+    points = [obj.matrix_world @ Vector(corner) for corner in obj.bound_box]
+    for o in openings:
+        if all(o.x0 + 0.02 < p.x < o.x1 - 0.02 and o.sill + 0.02 < p.y <
+               o.cy + math.sqrt(max(0.0, o.radius ** 2 - (p.x - o.centre) ** 2)) - 0.02 for p in points):
+            return True
+    return False
+
+
 def build_room(room: dict, layout: dict, rng, lib, quoins, groups: dict = None) -> list:
     parts = []
     walls = room_walls(room, layout)
@@ -1071,8 +1081,13 @@ def build_room(room: dict, layout: dict, rng, lib, quoins, groups: dict = None) 
                             interlock=0.28, upper=UPPER)
         if room['id'] in ROUGH and KINDS:
             # Spalls pressed into the open joints of rough walling.
-            pieces += stonekinds.gallet([q for q in pieces if q.get('tone', 1.0) > 0 and q.matrix_world.translation.y < 3.0], rng,
+            fillers = stonekinds.gallet([q for q in pieces if q.get('tone', 1.0) > 0 and q.matrix_world.translation.y < 3.0], rng,
                                         cell=0.02, spacing=0.24, share=0.35, name=f'{room["id"]}_{number}_gallet')
+            for filler in fillers:
+                if spall_in_opening(filler, openings):
+                    core.discard(filler)
+                else:
+                    pieces.append(filler)
         if plastered:
             # The render: a thin skin 5-6 cm proud of the stones, holed at the openings.
             coat = masonry.Wall(length, room['height'], 0.012, openings, recess=0.0).core(f'{room["id"]}_{number}_coat')

@@ -147,8 +147,13 @@
   },
   "blender": "5.2.2 LTS",
   "files": {
-    "content/environments/procedural_architecture_v1/rooms/ossuary.glb": "a8ef9dc0408706c72a601993be58b45d90c0c1fef39dc79c8ecc3763c2e7f1b2"
+    "content/environments/procedural_architecture_v1/rooms/ossuary.glb": "489e089d65f7617526d27e640eb4367d252da28d756101c24a7bf44961777942"
   },
   "id": "ossuary",
-  "triangles": 221228
+  "opening_gallet_repair": {
+    "method": "Disconnected chips under 9 cm wholly inside authored opening; original attributes and collision unchanged.",
+    "removed_chips": 160,
+    "removed_triangles": 11129
+  },
+  "triangles": 210099
 }

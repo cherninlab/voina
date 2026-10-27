@@ -107,8 +107,13 @@
   },
   "blender": "5.2.2 LTS",
   "files": {
-    "content/environments/procedural_architecture_v1/rooms/bones.glb": "4f85d3ed787754d7bed1cf4ce4706d7e6c5105f897fa50da9f94c5564d2d6e7d"
+    "content/environments/procedural_architecture_v1/rooms/bones.glb": "7f148024624df124878ff117ae1a03a20f495416ad6cc486b5d7e86aa9a332c1"
   },
   "id": "bones",
-  "triangles": 182167
+  "opening_gallet_repair": {
+    "method": "Disconnected chips under 9 cm wholly inside authored opening; original attributes and collision unchanged.",
+    "removed_chips": 148,
+    "removed_triangles": 10289
+  },
+  "triangles": 171878
 }

@@ -79,8 +79,13 @@
   },
   "blender": "5.2.2 LTS",
   "files": {
-    "content/environments/procedural_architecture_v1/rooms/window.glb": "3078d99d02d98613024e6f02dc0bdbe43ba827acc0724dc83196dad38cc12c5a"
+    "content/environments/procedural_architecture_v1/rooms/window.glb": "d749ab58c4d878e080ba573bfded44c350adc2c595e0db41a53d1f16326fb783"
   },
   "id": "window",
-  "triangles": 164431
+  "opening_gallet_repair": {
+    "method": "Disconnected chips under 9 cm wholly inside authored opening; original attributes and collision unchanged.",
+    "removed_chips": 141,
+    "removed_triangles": 9799
+  },
+  "triangles": 154632
 }
