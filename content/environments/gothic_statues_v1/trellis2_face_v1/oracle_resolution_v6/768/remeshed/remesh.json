@@ -1,0 +1,75 @@
+{
+  "status": "complete",
+  "backend": {
+    "cumesh": {
+      "path": "/Users/theochernin/Projects/CherninLab3D/.venv/lib/python3.11/site-packages/cumesh/__init__.py",
+      "sha256": "2fc2eeb042043008cd2ccdb952321186b764f41152f668ec00d4948a97718427"
+    },
+    "cumesh._C": {
+      "path": "/Users/theochernin/Projects/CherninLab3D/.venv/lib/python3.11/site-packages/cumesh/_C.cpython-311-darwin.so",
+      "sha256": "9ad4901c0a0d1975fc483c5059a5961de12bdc36a2b81a230b6f2585a0dcc931"
+    },
+    "cumesh.metal_backend": {
+      "path": "/Users/theochernin/Projects/CherninLab3D/.venv/lib/python3.11/site-packages/cumesh/metal_backend.py",
+      "sha256": "a296417397a23317e085eb77704e719ef07953d48021fc92ef15c23a44df8325"
+    },
+    "cumesh.metal_remeshing": {
+      "path": "/Users/theochernin/Projects/CherninLab3D/.venv/lib/python3.11/site-packages/cumesh/metal_remeshing.py",
+      "sha256": "c4a2619dc6978b1e7396bbd636b5203ad920cc580af2a2e3be841583eb83869b"
+    },
+    "mtlbvh": {
+      "path": "/Users/theochernin/Projects/CherninLab3D/.venv/lib/python3.11/site-packages/mtlbvh/__init__.py",
+      "sha256": "f8fdfe474681b9c68a94e74c40c0ce8495700a899be3e68b898978bc1346192c"
+    },
+    "mtlbvh._C": {
+      "path": "/Users/theochernin/Projects/CherninLab3D/.venv/lib/python3.11/site-packages/mtlbvh/_C.cpython-311-darwin.so",
+      "sha256": "a58cb47407b425229b47dede12035c728b753b23d5fefeda04b4b07e664edd24"
+    },
+    "cumesh._C.metallib": {
+      "path": "/Users/theochernin/Projects/CherninLab3D/.venv/lib/python3.11/site-packages/cumesh/cumesh.metallib",
+      "sha256": "dad018b74c8152cb5a81d25765cc9a27c3bc6a14c48a1352415744b4b6535c39"
+    },
+    "mtlbvh._C.metallib": {
+      "path": "/Users/theochernin/Projects/CherninLab3D/.venv/lib/python3.11/site-packages/mtlbvh/mtlbvh.metallib",
+      "sha256": "56f5f5a3248bfd1a294ea3c4fad84ad578a38a3a7237dbe646e748a165d62fda"
+    }
+  },
+  "torch": "2.14.1",
+  "stages": [
+    {
+      "name": "raw",
+      "vertices": 1105158,
+      "triangles": 2235318,
+      "seconds": 0.11979191700811498
+    },
+    {
+      "name": "filled_original",
+      "vertices": 1107796,
+      "triangles": 2251420,
+      "seconds": 0.48429533300804906
+    },
+    {
+      "name": "rebuilt",
+      "vertices": 2091786,
+      "triangles": 4189024,
+      "seconds": 8.160055416999967
+    },
+    {
+      "name": "reduced",
+      "vertices": 930824,
+      "triangles": 1865922,
+      "seconds": 17.410919500005548
+    }
+  ],
+  "scope": "official geometry stage order via Torch-facing Metal kernels; no texture stage",
+  "grid": 768,
+  "target_faces": 2000000,
+  "band": 1.0,
+  "project_back": 0.9,
+  "active_phase": null,
+  "seconds": 17.79505991699989,
+  "vertices": 930824,
+  "triangles": 1865922,
+  "watertight": false,
+  "winding_consistent": true
+}

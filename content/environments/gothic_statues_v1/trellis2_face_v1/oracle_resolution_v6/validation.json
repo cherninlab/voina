@@ -1,0 +1,131 @@
+{
+  "geometry": [
+    {
+      "id": "768",
+      "label": "768 remeshed",
+      "description": "768 geometry grid \u00b7 1024px HR image features",
+      "file": "768/remeshed/statue.glb",
+      "triangles": 1865922,
+      "vertices": 930824,
+      "boundary_edges": 0,
+      "non_manifold_edges": 2905,
+      "winding_consistent": true,
+      "watertight": false,
+      "finite_and_indices_valid": true
+    },
+    {
+      "id": "768-raw",
+      "label": "768 raw",
+      "description": "768 geometry grid \u00b7 1024px HR image features",
+      "file": "768/raw.glb",
+      "triangles": 2235318,
+      "vertices": 1105158,
+      "boundary_edges": 39636,
+      "non_manifold_edges": 51885,
+      "winding_consistent": false,
+      "watertight": false,
+      "finite_and_indices_valid": true
+    },
+    {
+      "id": "1536",
+      "label": "1536 remeshed",
+      "description": "1536 geometry grid \u00b7 1024px HR image features",
+      "file": "1536/remeshed/statue.glb",
+      "triangles": 1860684,
+      "vertices": 924324,
+      "boundary_edges": 0,
+      "non_manifold_edges": 8442,
+      "winding_consistent": true,
+      "watertight": false,
+      "finite_and_indices_valid": true
+    },
+    {
+      "id": "1536-raw",
+      "label": "1536 raw",
+      "description": "1536 geometry grid \u00b7 1024px HR image features",
+      "file": "1536/raw.glb",
+      "triangles": 9528562,
+      "vertices": 4711882,
+      "boundary_edges": 123210,
+      "non_manifold_edges": 167284,
+      "winding_consistent": false,
+      "watertight": false,
+      "finite_and_indices_valid": true
+    },
+    {
+      "id": "baseline",
+      "label": "Previous 768",
+      "description": "Previous 768 grid \u00b7 512px image features \u00b7 small-hole patches",
+      "file": "../plastic_oracle_v5/pinholes_filled.glb",
+      "triangles": 2786013,
+      "vertices": 1590474,
+      "boundary_edges": 253289,
+      "non_manifold_edges": 0,
+      "winding_consistent": false,
+      "watertight": false,
+      "finite_and_indices_valid": true
+    }
+  ],
+  "same_source_and_conditioning": true,
+  "actual_grids": [
+    768,
+    1536
+  ],
+  "source_sha256": "528eac8ce3cabf3727872f169c834641eacf8eaadf3374152499a702c8263c41",
+  "outputs": {
+    "768/remeshed/statue.glb": "a8f9a9a1195be9e3fcffc4bbcc27fe756645fd4f0b95697bb2bbb292d78c654e",
+    "768/raw.glb": "94d62b08c35fc83b484af35d6a29d66c353cae7086031b9672a4e18733713175",
+    "1536/remeshed/statue.glb": "1709ce2fb50629a0b07ded9b5893ec8c3d14de1a9014c583e42c4da58ee8a6e8",
+    "1536/raw.glb": "9849a52cb4d134b378866d09eea21faedfeb5fd334e35b25263a862e394ae2c1",
+    "../plastic_oracle_v5/pinholes_filled.glb": "b2f0b675c783f14cf69afdf1e8dc9aa95766296e8da6ecd853b3eaede233f7dd"
+  },
+  "backend_revisions": {
+    "mtlmesh": "5e6749356ba39b15489c99487f55840d49923da7",
+    "mtlbvh": "fe6660bdb7de5a12ea00bd96df2e21bdcbdd40b1"
+  },
+  "godot_import": {
+    "exit_code": 0,
+    "error_lines": [],
+    "log": "checks/godot_import.log"
+  },
+  "godot_smoke": "PASS: local two-process ENet integration and disconnect cleanup",
+  "review": "1536 preserves more facial form; eyelid and finger artifacts remain; crown visually closed; no final user art approval or engine placement",
+  "http_assets_verified": [
+    "review/index.html",
+    "source.png",
+    "comparison.json",
+    "README.md",
+    "licenses/mtlmesh-LICENSE.txt",
+    "licenses/mtlbvh-LICENSE.txt",
+    "768/result.json",
+    "768/runtime_patch.json",
+    "768/remeshed/remesh.json",
+    "768/remeshed/statue.glb",
+    "768/raw.glb",
+    "768/review/face.png",
+    "768/review/raised_hand.png",
+    "768/review/crown.png",
+    "1536/result.json",
+    "1536/runtime_patch.json",
+    "1536/remeshed/remesh.json",
+    "1536/remeshed/statue.glb",
+    "1536/raw.glb",
+    "1536/review/face.png",
+    "1536/review/raised_hand.png",
+    "1536/review/crown.png"
+  ],
+  "browser_verified": [
+    "1536 remeshed real mesh loaded",
+    "768 remeshed real mesh loaded",
+    "previous 768 base real mesh loaded",
+    "matching face camera and detail images",
+    "1536 crown inspected",
+    "download links match selection"
+  ],
+  "scripts": {
+    "generate.py": "814807c92cf44094a5f065d19317b7b49833596d3ed889393765cda688abb521",
+    "remesh.py": "63f158e84dccdc35cf7c5b0bc424f40fa9d3fa5104c03c12a5b3b1c55a4d8740",
+    "native_hr_conditioning.py": "a6589bed0e61b82e954fdc0efe89dcdc6387428982fa0482d411a26231799050"
+  },
+  "godot_smoke_log": "checks/smoke.log"
+}

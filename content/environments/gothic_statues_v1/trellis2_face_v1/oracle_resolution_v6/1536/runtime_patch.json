@@ -1,0 +1,12 @@
+{
+  "base_generator": "/Users/theochernin/Projects/CherninLab3D/vendor/trellis2mlx/generate.py",
+  "base_sha256": "4a24bbf9e865685a71d933b16f8f21c7126abe8502740e6ed654f575a65ee3b1",
+  "patched_sha256": "9b41b6ed545e8c9e1d8f58ee937aa89f3430f2430c7a2d2cb56a9a443572a515",
+  "patch": "1024px HR image features immediately before HR flow; LR stays 512px",
+  "requested_grid": 1536,
+  "memory_limit_gib": 42,
+  "cache_limit_gib": 6,
+  "status": "complete",
+  "actual_grid": 1536,
+  "peak_mlx_memory_gib": 11.811873639002442
+}

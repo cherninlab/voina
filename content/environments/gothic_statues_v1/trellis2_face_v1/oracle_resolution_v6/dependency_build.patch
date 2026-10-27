@@ -1,0 +1,48 @@
+--- mtlbvh/setup.py
++++ mtlbvh/setup.py
+@@ -74,7 +74,7 @@
+         include_dirs=[os.path.join(ROOT, "src")] + torch_includes,
+         library_dirs=torch_libs,
+         extra_compile_args=[
+-            "-std=c++17", "-O2", "-fobjc-arc",
++            "-std=c++20", "-O2", "-fobjc-arc",
+             "-DTORCH_EXTENSION_NAME=_C",
+             "-DTORCH_API_INCLUDE_EXTENSION_H",
+         ],
+
+--- mtlmesh/setup.py
++++ mtlmesh/setup.py
+@@ -110,7 +110,7 @@
+         library_dirs=torch_libs,
+         extra_compile_args=[
+             "-x", "objective-c++",
+-            "-std=c++17", "-O2", "-fobjc-arc",
++            "-std=c++20", "-O2", "-fobjc-arc",
+             "-fmodules",
+             "-DTORCH_EXTENSION_NAME=_C",
+             "-DTORCH_API_INCLUDE_EXTENSION_H",
+@@ -137,7 +137,7 @@
+             ],
+             include_dirs=torch_includes,
+             library_dirs=torch_libs,
+-            extra_compile_args=["-O2", "-std=c++17",
++            extra_compile_args=["-O2", "-std=c++20",
+                                 "-DTORCH_EXTENSION_NAME=_xatlas",
+                                 "-DTORCH_API_INCLUDE_EXTENSION_H"],
+             extra_link_args=["-lc10", "-ltorch", "-ltorch_cpu", "-ltorch_python"],
+@@ -158,12 +158,12 @@
+     nvcc_flags = []
+     if IS_WINDOWS:
+         cxx_flags += ["/O2", "/std:c++17", "/EHsc", "/permissive-", "/Zc:__cplusplus"]
+-        nvcc_flags += ["-O3", "-std=c++17", "--expt-relaxed-constexpr", "--extended-lambda",
++        nvcc_flags += ["-O3", "-std=c++20", "--expt-relaxed-constexpr", "--extended-lambda",
+                        "-Xcompiler=/std:c++17", "-Xcompiler=/EHsc",
+                        "-Xcompiler=/permissive-", "-Xcompiler=/Zc:__cplusplus"]
+     else:
+-        cxx_flags += ["-O3", "-std=c++17"]
+-        nvcc_flags += ["-O3", "-std=c++17"]
++        cxx_flags += ["-O3", "-std=c++20"]
++        nvcc_flags += ["-O3", "-std=c++20"]
+ 
+     if IS_HIP:
+         archs = os.getenv("GPU_ARCHS", "native").split(";")

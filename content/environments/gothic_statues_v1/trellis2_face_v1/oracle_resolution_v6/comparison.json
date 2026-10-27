@@ -1,0 +1,86 @@
+{
+  "selected": "1536",
+  "variants": [
+    {
+      "id": "768",
+      "label": "768 remeshed",
+      "description": "768 geometry grid \u00b7 1024px HR image features",
+      "file": "768/remeshed/statue.glb",
+      "triangles": 1865922,
+      "vertices": 930824,
+      "boundary_edges": 0,
+      "non_manifold_edges": 2905,
+      "winding_consistent": true,
+      "watertight": false,
+      "finite_and_indices_valid": true
+    },
+    {
+      "id": "768-raw",
+      "label": "768 raw",
+      "description": "768 geometry grid \u00b7 1024px HR image features",
+      "file": "768/raw.glb",
+      "triangles": 2235318,
+      "vertices": 1105158,
+      "boundary_edges": 39636,
+      "non_manifold_edges": 51885,
+      "winding_consistent": false,
+      "watertight": false,
+      "finite_and_indices_valid": true
+    },
+    {
+      "id": "1536",
+      "label": "1536 remeshed",
+      "description": "1536 geometry grid \u00b7 1024px HR image features",
+      "file": "1536/remeshed/statue.glb",
+      "triangles": 1860684,
+      "vertices": 924324,
+      "boundary_edges": 0,
+      "non_manifold_edges": 8442,
+      "winding_consistent": true,
+      "watertight": false,
+      "finite_and_indices_valid": true
+    },
+    {
+      "id": "1536-raw",
+      "label": "1536 raw",
+      "description": "1536 geometry grid \u00b7 1024px HR image features",
+      "file": "1536/raw.glb",
+      "triangles": 9528562,
+      "vertices": 4711882,
+      "boundary_edges": 123210,
+      "non_manifold_edges": 167284,
+      "winding_consistent": false,
+      "watertight": false,
+      "finite_and_indices_valid": true
+    },
+    {
+      "id": "baseline",
+      "label": "Previous 768",
+      "description": "Previous 768 grid \u00b7 512px image features \u00b7 small-hole patches",
+      "file": "../plastic_oracle_v5/pinholes_filled.glb",
+      "triangles": 2786013,
+      "vertices": 1590474,
+      "boundary_edges": 253289,
+      "non_manifold_edges": 0,
+      "winding_consistent": false,
+      "watertight": false,
+      "finite_and_indices_valid": true
+    }
+  ],
+  "same_source_and_conditioning": true,
+  "same_seed_and_steps": true,
+  "new_trial_seed": 42,
+  "new_trial_steps": 24,
+  "hr_features_verified": [
+    1,
+    4101,
+    1024
+  ],
+  "actual_grids": [
+    768,
+    1536
+  ],
+  "godot_import_passed": true,
+  "godot_smoke_passed": true,
+  "art_acceptance": "comparison pending user review"
+}
