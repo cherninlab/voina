@@ -35,6 +35,12 @@ var fort_source: Node3D
 func build() -> void:
 	name = "Architecture"
 	integrate_materials()
+	# Paving has real open joints. Its continuous mortar bed remains visible
+	# below them when the old ribbon is replaced by the stone build.
+	var bedding: ShaderMaterial = (materials["plaster"] as ShaderMaterial).duplicate() as ShaderMaterial
+	bedding.set_shader_parameter("coat", false)
+	bedding.set_shader_parameter("plaster", 0.0)
+	materials["mortar_bedding"] = bedding
 	structure = DungeonStructure.new(self)
 	fort_source = load("res://content/environments/dungeon_geometry_v2/modular_fort_01/modular_fort_01_2k.gltf").instantiate() as Node3D
 	for room: Dictionary in rooms:
@@ -661,6 +667,9 @@ func build_path(path: Dictionary, light_route: bool) -> void:
 				var edge_b: Vector3 = edges[index].lerp(edges[index + 1], float(step + 1) / float(steps))
 				ribbon_top(a - edge_a, a + edge_a, b - edge_b, "collision" if sculpted_deck or stone_walk else material)
 				ribbon_top(a + edge_a, b + edge_b, b - edge_b, "collision" if sculpted_deck or stone_walk else material)
+				if stone_walk:
+					paving_bed(a - edge_a, a + edge_a, b - edge_b)
+					paving_bed(a + edge_a, b + edge_b, b - edge_b)
 				if not sculpted_deck and not stone_walk:
 					face(a - edge_a - Vector3.UP * 0.32, b - edge_b - Vector3.UP * 0.32, a + edge_a - Vector3.UP * 0.32, "stone")
 					face(a + edge_a - Vector3.UP * 0.32, b - edge_b - Vector3.UP * 0.32, b + edge_b - Vector3.UP * 0.32, "stone")
@@ -686,6 +695,15 @@ func build_path(path: Dictionary, light_route: bool) -> void:
 					# Clear of the parapet a stone walk carries along its edge.
 					torch_posts.append(at + side * (width * 0.5 - (0.65 if stone_walk else 0.35)))
 					since_light = 0.0
+
+## Recessed mortar across the same mitred ribbon as the real paving. Visual
+## only: the smooth walking collision above it remains authoritative.
+func paving_bed(a: Vector3, b: Vector3, c: Vector3) -> void:
+	var recess: Vector3 = Vector3.DOWN * 0.04
+	if (b - a).cross(c - a).y < 0.0:
+		face(a + recess, c + recess, b + recess, "mortar_bedding", false)
+	else:
+		face(a + recess, b + recess, c + recess, "mortar_bedding", false)
 
 ## Keep the original walking triangles; only trim flat route visuals at room thresholds.
 func ribbon_top(a: Vector3, b: Vector3, c: Vector3, material: String) -> void:
