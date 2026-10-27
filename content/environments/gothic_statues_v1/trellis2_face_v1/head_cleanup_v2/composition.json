@@ -1,0 +1,10 @@
+{
+  "source": "../baked_150k/statue.glb",
+  "patch": "content/environments/gothic_statues_v1/trellis2_face_v1/head_cleanup_v2/patch_baked/statue.glb",
+  "old_surround_triangles_removed": 22348,
+  "original_triangles_kept": 125280,
+  "protected_face_triangles_kept": 4800,
+  "new_patch_triangles": 59997,
+  "total_triangles": 185277,
+  "original_vertex_and_image_buffers_unchanged": true
+}

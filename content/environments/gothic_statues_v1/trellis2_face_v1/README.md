@@ -2,6 +2,8 @@
 
 This is a review candidate, not a finished or dungeon-integrated asset. The original TRELLIS.2 statue files are unchanged. The face is more readable, but the hair, neck transition and larger surface defects still need art cleanup.
 
+The face was subsequently approved by the user. [The crown and hair cleanup](head_cleanup_v2/README.md) provides the follow-up repair while retaining these original files.
+
 ## Deliverables
 
 - `baked_150k/statue.glb`: **147,628 triangles**, embedded 4096² OpenGL tangent normal and ambient-occlusion maps. About **94.7% fewer triangles** than the original 2,805,322-triangle Oracle. This is a geometry reduction measurement, not an FPS or memory benchmark.

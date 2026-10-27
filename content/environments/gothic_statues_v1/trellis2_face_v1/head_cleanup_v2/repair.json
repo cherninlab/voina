@@ -1,0 +1,29 @@
+{
+  "method": "Local Blender sheet repair, cranial cap, VDB union and bounded smoothing",
+  "voxel_size_m": 0.0014,
+  "sheet_thickness_m": 0.004,
+  "smoothing_iterations": 5,
+  "scalp_center_gltf": [
+    -0.005,
+    1.235,
+    0.032
+  ],
+  "scalp_radii_m": [
+    0.072,
+    0.043,
+    0.105
+  ],
+  "frontal_join_center_gltf": [
+    0.052,
+    1.244,
+    0.085
+  ],
+  "frontal_join_radii_m": [
+    0.023,
+    0.03,
+    0.03
+  ],
+  "source_head_triangles": 27147,
+  "polygons_before_face_exclusion": 218403,
+  "seconds": 0.5626820420002332
+}

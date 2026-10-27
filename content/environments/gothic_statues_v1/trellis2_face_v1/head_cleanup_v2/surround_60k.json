@@ -1,0 +1,9 @@
+{
+  "source": "content/environments/gothic_statues_v1/trellis2_face_v1/head_cleanup_v2/surround_patch_high.glb",
+  "source_triangles": 377132,
+  "target_triangles": 60000,
+  "result_triangles": 60000,
+  "reduction_percent": 84.09045108874346,
+  "algorithm": "MeshLab quadric error metric; preserve boundary and normal; face quality x30, hands x8",
+  "seconds": 2.0696986250113696
+}
