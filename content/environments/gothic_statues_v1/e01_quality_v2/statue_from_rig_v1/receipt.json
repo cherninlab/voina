@@ -1,0 +1,88 @@
+{
+  "generator": "built-in ImageGen",
+  "native_file": "/Users/theochernin/.codex/generated_images/01a16f6c-7c14-7a41-a209-467058cf0e62/exec-53a1ba0e-c95b-45b4-adea-f69ee85f1b5e.png",
+  "sheet_size": [
+    1217,
+    1293
+  ],
+  "sheet_sha256": "abe3be03a91eb7afb74a5eac28360e54d1ab24c60c34d4610621a9f3dd647823",
+  "prompt": "prompt.txt",
+  "references": [
+    {
+      "role": "authoritative four-view anatomy, pose and cameras",
+      "file": "../female_ik_v4/four_views.png",
+      "sha256": "b69810f06b4eea9ebc5ae3a596d7d6fd16ed45ba6f679178d1851497e31266c2"
+    },
+    {
+      "role": "classical marble, face, hair and short-tunic style only; not leg pose",
+      "file": "../../e01_crawling_v1/source/approved.png",
+      "sha256": "07b8275c2df6de491ca114453179e26a7865da8dc5bd4308e7880a6fec79dc61"
+    }
+  ],
+  "views": [
+    {
+      "view": "front",
+      "file": "front.png",
+      "crop_box": [
+        0,
+        0,
+        608,
+        646
+      ],
+      "size": [
+        608,
+        646
+      ],
+      "sha256": "14c9eda2da86ac6c9628dd13c251fd023d6123b513255f9a3b92e4d97a7498a4"
+    },
+    {
+      "view": "left",
+      "file": "left.png",
+      "crop_box": [
+        608,
+        0,
+        1217,
+        646
+      ],
+      "size": [
+        609,
+        646
+      ],
+      "sha256": "9c2da7682843e12b31014f6afb8a4f7a223fd630cfa1cdacbe711ec7c8aaa1fb"
+    },
+    {
+      "view": "back",
+      "file": "back.png",
+      "crop_box": [
+        0,
+        646,
+        608,
+        1293
+      ],
+      "size": [
+        608,
+        647
+      ],
+      "sha256": "b8b2c2d1a31d507e306c6ed08ac181b1b4c1c58a4d64f5b1eabaacb55d5a1e6b"
+    },
+    {
+      "view": "right",
+      "file": "right.png",
+      "crop_box": [
+        608,
+        646,
+        1217,
+        1293
+      ],
+      "size": [
+        609,
+        647
+      ],
+      "sha256": "db48b8c0234b9c2fd931ba18d131c2def5195d177f3286f8f98312583fa192fd"
+    }
+  ],
+  "cutting": "Exact half-sheet crops; no rescaling, repainting or independent recentering.",
+  "background": "opaque neutral gray; panels require masks before reconstruction",
+  "review": "Classical carving and short tunic are present across all four views; grounded kneeling pose follows the rig. ImageGen extended the reaching elbow more than the rig and changed some head, hair, garment and projection details. These are generated approximations, not calibrated renders of a single sculpted mesh.",
+  "approval": "pending user review; no new 3D reconstruction has run"
+}
