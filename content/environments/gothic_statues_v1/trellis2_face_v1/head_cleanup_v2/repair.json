@@ -23,7 +23,9 @@
     0.03,
     0.03
   ],
+  "crown_hair_relief_m": 0.004,
+  "crown_hair_pattern": "Swept S-shaped geometric ridges",
   "source_head_triangles": 27147,
-  "polygons_before_face_exclusion": 218403,
-  "seconds": 0.5626820420002332
+  "polygons_before_face_exclusion": 229535,
+  "seconds": 0.6974699999991572
 }

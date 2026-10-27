@@ -1,8 +1,8 @@
 {
   "high": "content/environments/gothic_statues_v1/trellis2_face_v1/head_cleanup_v2/surround_patch_high.glb",
   "low": "content/environments/gothic_statues_v1/trellis2_face_v1/head_cleanup_v2/surround_60k.glb",
-  "high_triangles": 377132,
-  "triangles": 59997,
+  "high_triangles": 397658,
+  "triangles": 59999,
   "map_size": 2048,
   "maps": [
     "normal.png",
@@ -11,12 +11,12 @@
   "normal_convention": "OpenGL tangent-space +Y",
   "bake": "Cycles selected-to-active, auto cage 0.5mm, ray distance 4mm",
   "normal_validation": {
-    "flipped_backface_texels": 18880,
-    "neutral_ray_miss_or_unused_texels": 33577,
+    "flipped_backface_texels": 20059,
+    "neutral_ray_miss_or_unused_texels": 35178,
     "total_texels": 4194304,
     "method": "unit-vector validation and tangent hemisphere orientation"
   },
   "ambient_occlusion_material_strength": 0.35,
   "blender_version": "5.2.2 LTS",
-  "seconds": 3.4157281250081724
+  "seconds": 3.4384314170019934
 }

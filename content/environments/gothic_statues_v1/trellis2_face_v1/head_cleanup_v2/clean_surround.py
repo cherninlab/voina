@@ -39,8 +39,12 @@ cap=bpy.context.object;cap.name='Rebuilt crown beneath hair'
 for v in cap.data.vertices:
     x,y,z=v.co
     theta=np.arctan2(y,x);vertical=np.clip(z,-1,1)
-    wave=.035*np.sin(14*theta+4*vertical)*max(0,1-vertical*vertical)
-    v.co=(x*.072*(1+wave),y*.105*(1+wave),z*.043*(1+wave))
+    wave=.005*np.sin(14*theta+4*vertical)*max(0,1-vertical*vertical)
+    # Sweep broad S-shaped stone hair ridges front-to-back over the repair.
+    # These are real relief geometry and are included in the normal-map bake.
+    phase=12*np.pi*(x+.12*np.sin(2*np.pi*y))
+    relief=.004*np.sin(phase)*max(0,float(z))**.5
+    v.co=(x*.072*(1+wave),y*.105*(1+wave),z*.043*(1+wave)+relief)
 bpy.ops.object.select_all(action='DESELECT');obj.select_set(True);cap.select_set(True)
 bpy.context.view_layer.objects.active=obj;bpy.ops.object.join()
 # A small fitted lobe meets the frontal rim at the right temple; the main
@@ -66,6 +70,7 @@ bpy.ops.export_scene.gltf(filepath=str(ROOT/'surround_full.glb'),export_format='
     'voxel_size_m':.0014,'sheet_thickness_m':.004,'smoothing_iterations':5,
     'scalp_center_gltf':[-.005,1.235,.032],'scalp_radii_m':[.072,.043,.105],
     'frontal_join_center_gltf':[.052,1.244,.085],'frontal_join_radii_m':[.023,.030,.030],
+    'crown_hair_relief_m':.004,'crown_hair_pattern':'Swept S-shaped geometric ridges',
     'source_head_triangles':len(head),'polygons_before_face_exclusion':len(obj.data.polygons),
     'seconds':time.monotonic()-started},indent=2)+'\n')
 print('HEAD_SURROUND_REPAIR_OK',flush=True)

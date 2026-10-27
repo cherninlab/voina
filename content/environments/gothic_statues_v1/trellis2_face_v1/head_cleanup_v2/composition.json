@@ -4,7 +4,7 @@
   "old_surround_triangles_removed": 22348,
   "original_triangles_kept": 125280,
   "protected_face_triangles_kept": 4800,
-  "new_patch_triangles": 59997,
-  "total_triangles": 185277,
+  "new_patch_triangles": 59999,
+  "total_triangles": 185279,
   "original_vertex_and_image_buffers_unchanged": true
 }

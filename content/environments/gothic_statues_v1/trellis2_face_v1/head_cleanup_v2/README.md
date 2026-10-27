@@ -4,7 +4,7 @@ The user approved the v1 face, then requested cleanup around the head and closur
 
 ## Deliverables
 
-- `statue.glb`: **185,277 triangles**, two materials. The retained source primitive still uses its original 4K normal/AO maps. The new head-surround primitive uses separate **2K normal/AO maps**. No face-generation model was rerun.
+- `statue.glb`: **185,279 triangles**, two materials. The retained source primitive still uses its original 4K normal/AO maps. The new head-surround primitive uses separate **2K normal/AO maps**. No face-generation model was rerun.
 - `patch_baked/normal.png`, `ao.png`: new OpenGL tangent normal and AO maps for the repaired hair/scalp. `patch_baked/bake.json` records the bake.
 - `surround_patch_high.glb`: dense local repair source for rebaking.
 - `review/index.html`: before/after mesh selector and crown/face/back/full views.
@@ -13,11 +13,11 @@ The user approved the v1 face, then requested cleanup around the head and closur
 
 ## Repair
 
-`clean_surround.py` extracts only the upper head and horn area from the existing reduced model. Blender repairs the thin broken sheets, adds a fitted, softly ridged cranial surface beneath the hair, closes the asymmetric frontal join, and unites/smooths the local geometry with OpenVDB. The altered hairline is above Y=1.252 m in this asset's coordinates; the facial features below it are protected.
+`clean_surround.py` extracts only the upper head and horn area from the existing reduced model. Blender repairs the thin broken sheets, adds a fitted cranial surface with swept S-shaped hair relief beneath the hair, closes the asymmetric frontal join, and unites/smooths the local geometry with OpenVDB. The altered hairline is above Y=1.252 m in this asset's coordinates; the facial features below it are protected.
 
 `compose.py` retains original face/body vertex, normal, UV, tangent and embedded-image buffers **byte-for-byte**. It removes only the selected old head-surround triangles, and appends the local replacement as another primitive. A rasterized facial depth buffer keeps that replacement behind the approved facial skin. The damaged hairline and temple boundary are trimmed, while the protected facial triangles remain at their exact original positions with the same material data.
 
-The local repair is reduced to roughly 60k triangles using the existing MeshLab quadric reduction, then receives a separate Blender normal/AO bake. This increases total triangles from 147,628 to 185,277 while remaining about 93.4% below the initial 2,805,322-triangle reconstruction. It is a triangle-count comparison, not a measured frame-rate result.
+The local repair is reduced to roughly 60k triangles using the existing MeshLab quadric reduction, then receives a separate Blender normal/AO bake. This increases total triangles from 147,628 to 185,279 while remaining about 93.4% below the initial 2,805,322-triangle reconstruction. It is a triangle-count comparison, not a measured frame-rate result.
 
 ## Checks
 
