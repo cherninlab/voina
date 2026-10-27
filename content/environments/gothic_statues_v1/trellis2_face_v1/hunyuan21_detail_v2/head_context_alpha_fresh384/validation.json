@@ -1,0 +1,12 @@
+{
+  "status": "complete",
+  "input_and_output_hashes_verified": true,
+  "local_mps_verified": true,
+  "triangles": 515212,
+  "vertices": 257608,
+  "boundary_edges": 0,
+  "non_manifold_edges": 4,
+  "winding_consistent": true,
+  "watertight": false,
+  "finite_and_indices_valid": true
+}

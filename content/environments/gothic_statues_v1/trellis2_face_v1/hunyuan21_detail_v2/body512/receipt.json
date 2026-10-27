@@ -1,0 +1,37 @@
+{
+  "status": "complete",
+  "model": "tencent/Hunyuan3D-2.1",
+  "job": "body512",
+  "checkpoint_sha256": "6b519fc7242f78e9b5f47ea4d55668fe3d944a2d27332f4ca68d29a6ff603f5e",
+  "source_sha256": "9059371f42a66fa932dda38698cfad9cca5b97f6a95e379e575cd608f8eb92fb",
+  "source": "/Users/theochernin/Projects/MultiPlayerProject-agents/theo-codex-43/content/environments/gothic_statues_v1/trellis2_face_v1/hunyuan21_oracle_v1/384_s42_maskfix/segmented_input.png",
+  "components": {
+    "model": {
+      "device": "mps:0",
+      "dtype": "torch.float16"
+    },
+    "vae": {
+      "device": "mps:0",
+      "dtype": "torch.float16"
+    },
+    "conditioner": {
+      "device": "mps:0",
+      "dtype": "torch.float16"
+    }
+  },
+  "torch": "2.14.1",
+  "device": "local Mac MPS",
+  "seed": 42,
+  "steps": 50,
+  "guidance": 5,
+  "octree_resolution": 512,
+  "query_chunk": 8000,
+  "textures": false,
+  "decoder": "VanillaVolumeDecoder",
+  "seconds": 152.68076220800867,
+  "method": "Decode the same saved final shape latents at 512; no resampling",
+  "latent_sha256": "948feb40597665232e26b98149f3e5861218741ed4705955b44b743d157b5ab4",
+  "triangles": 958360,
+  "vertices": 479164,
+  "output_sha256": "e140f586aa0ad4b5ecf37308f0686688a572847d947c7d88ee59be80dea8d93c"
+}

@@ -1,0 +1,37 @@
+{
+  "status": "complete",
+  "model": "tencent/Hunyuan3D-2.1",
+  "job": "raised_context384",
+  "checkpoint_sha256": "6b519fc7242f78e9b5f47ea4d55668fe3d944a2d27332f4ca68d29a6ff603f5e",
+  "source_sha256": "066d4f34f07ffc6f4de08449b62b60d7630d85024352a5800e54ea5f8288ab1d",
+  "source": "/Users/theochernin/Projects/MultiPlayerProject-agents/theo-codex-43/content/environments/gothic_statues_v1/trellis2_face_v1/hunyuan21_detail_v2/inputs/raised_context.png",
+  "components": {
+    "model": {
+      "device": "mps:0",
+      "dtype": "torch.float16"
+    },
+    "vae": {
+      "device": "mps:0",
+      "dtype": "torch.float16"
+    },
+    "conditioner": {
+      "device": "mps:0",
+      "dtype": "torch.float16"
+    }
+  },
+  "torch": "2.14.1",
+  "device": "local Mac MPS",
+  "seed": 42,
+  "steps": 50,
+  "guidance": 5,
+  "octree_resolution": 384,
+  "query_chunk": 8000,
+  "textures": false,
+  "decoder": "VanillaVolumeDecoder",
+  "seconds": 172.1236109159945,
+  "method": "Independent image-to-shape reconstruction from the recorded head/hand crop",
+  "step": 50,
+  "triangles": 170316,
+  "vertices": 85159,
+  "output_sha256": "6c575249de452d507f708c9215d2d1d51ed56e358cd87edec7d1483351fa24ed"
+}

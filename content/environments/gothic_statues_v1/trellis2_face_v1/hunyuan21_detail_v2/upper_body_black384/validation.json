@@ -1,0 +1,25 @@
+{
+  "vertices": 654339,
+  "triangles": 1308720,
+  "finite_and_indices_valid": true,
+  "boundary_edges": 0,
+  "non_manifold_edges": 9,
+  "watertight": false,
+  "winding_consistent": true,
+  "transform": {
+    "center": [
+      -0.002718806266784668,
+      -0.002635091543197632,
+      0.0025804638862609863
+    ],
+    "scale": 0.36090374279273796,
+    "target": [
+      0.0,
+      1.04,
+      0.025
+    ]
+  },
+  "raw_sha256": "76595a475947e834c9d0367934f50435753247f7016a5e605afe1561dd2249f6",
+  "review_sha256": "21fdaf8c628c81c26ef08e24412b441ee495ca82026ddd006755d4915d2f475e",
+  "method": "Uniform transform and neutral material only. Crop studies are separate geometry, not merged."
+}

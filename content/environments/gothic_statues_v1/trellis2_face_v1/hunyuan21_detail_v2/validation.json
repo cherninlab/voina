@@ -1,0 +1,154 @@
+{
+  "runs": {
+    "body512": {
+      "status": "complete",
+      "input_and_output_hashes_verified": true,
+      "local_mps_verified": true,
+      "triangles": 958360,
+      "vertices": 479164,
+      "boundary_edges": 0,
+      "non_manifold_edges": 4,
+      "winding_consistent": true,
+      "watertight": false,
+      "finite_and_indices_valid": true
+    },
+    "composed_face": {
+      "triangles": 1038958,
+      "vertices": 519465,
+      "finite_and_indices_valid": true,
+      "boundary_edges": 0,
+      "non_manifold_edges": 0,
+      "winding_consistent": true,
+      "watertight": true,
+      "outside_face_original_vertices_checked": 473855,
+      "outside_face_max_nearest_distance_m": 0.0,
+      "review_sha256": "838a7085e288ce53e21592f3ca010a314fd7d9c78be8c3ab6ad24a1e50617824"
+    },
+    "head384": {
+      "status": "complete",
+      "input_and_output_hashes_verified": true,
+      "local_mps_verified": true,
+      "triangles": 1243156,
+      "vertices": 621540,
+      "boundary_edges": 0,
+      "non_manifold_edges": 16,
+      "winding_consistent": true,
+      "watertight": false,
+      "finite_and_indices_valid": true
+    },
+    "head_context_alpha384": {
+      "status": "complete",
+      "input_and_output_hashes_verified": true,
+      "local_mps_verified": true,
+      "triangles": 515212,
+      "vertices": 257608,
+      "boundary_edges": 0,
+      "non_manifold_edges": 4,
+      "winding_consistent": true,
+      "watertight": false,
+      "finite_and_indices_valid": true
+    },
+    "head_context_alpha_fresh384": {
+      "status": "complete",
+      "input_and_output_hashes_verified": true,
+      "local_mps_verified": true,
+      "triangles": 515212,
+      "vertices": 257608,
+      "boundary_edges": 0,
+      "non_manifold_edges": 4,
+      "winding_consistent": true,
+      "watertight": false,
+      "finite_and_indices_valid": true
+    },
+    "head_context_black384": {
+      "status": "complete",
+      "input_and_output_hashes_verified": true,
+      "local_mps_verified": true,
+      "triangles": 1296330,
+      "vertices": 648156,
+      "boundary_edges": 0,
+      "non_manifold_edges": 10,
+      "winding_consistent": true,
+      "watertight": false,
+      "finite_and_indices_valid": true
+    },
+    "hip_context384": {
+      "status": "complete",
+      "input_and_output_hashes_verified": true,
+      "local_mps_verified": true,
+      "triangles": 764232,
+      "vertices": 382116,
+      "boundary_edges": 0,
+      "non_manifold_edges": 4,
+      "winding_consistent": true,
+      "watertight": false,
+      "finite_and_indices_valid": true
+    },
+    "raised384": {
+      "status": "cancelled",
+      "reason": "Stopped before completion after user requested contextual crops instead of tight part masks"
+    },
+    "raised_context384": {
+      "status": "complete",
+      "input_and_output_hashes_verified": true,
+      "local_mps_verified": true,
+      "triangles": 170316,
+      "vertices": 85159,
+      "boundary_edges": 0,
+      "non_manifold_edges": 2,
+      "winding_consistent": true,
+      "watertight": false,
+      "finite_and_indices_valid": true
+    },
+    "raised_context_black384": {
+      "status": "complete",
+      "input_and_output_hashes_verified": true,
+      "local_mps_verified": true,
+      "triangles": 139452,
+      "vertices": 69716,
+      "boundary_edges": 0,
+      "non_manifold_edges": 0,
+      "winding_consistent": true,
+      "watertight": true,
+      "finite_and_indices_valid": true
+    },
+    "upper_body_black384": {
+      "status": "complete",
+      "input_and_output_hashes_verified": true,
+      "local_mps_verified": true,
+      "triangles": 1308720,
+      "vertices": 654339,
+      "boundary_edges": 0,
+      "non_manifold_edges": 9,
+      "winding_consistent": true,
+      "watertight": false,
+      "finite_and_indices_valid": true
+    }
+  },
+  "godot_import": "passed without errors",
+  "repository_smoke": "passed",
+  "textures_generated": false,
+  "engine_placement": false,
+  "art_acceptance": false,
+  "background_repeat": {
+    "same_input": true,
+    "same_output": true,
+    "first": "aa84e645604cc43833b763f982d496420decdb25d626738f7a8cfaebf1d7ae52",
+    "fresh": "aa84e645604cc43833b763f982d496420decdb25d626738f7a8cfaebf1d7ae52",
+    "finding": "The transparent rectangular crop failure is reproducible in a freshly loaded process; the original black-background crop reconstructs a head."
+  },
+  "browser": {
+    "url": "http://127.0.0.1:7865/static/trellis2-face-v1/hunyuan21-detail-v2/review/index.html",
+    "variants_verified_loaded": [
+      "before",
+      "head_context_black384",
+      "body512",
+      "head_context_alpha384",
+      "raised_context_black384",
+      "upper_body_black384",
+      "composed_face"
+    ],
+    "screenshot": "review/browser_head_black.png",
+    "http_assets_verified": 61
+  }
+}

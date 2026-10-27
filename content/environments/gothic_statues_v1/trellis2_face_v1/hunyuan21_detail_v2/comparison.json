@@ -1,0 +1,127 @@
+{
+  "selected": "head_context_black384",
+  "variants": [
+    {
+      "id": "before",
+      "label": "Original full statue \u00b7 384",
+      "mesh": "../../hunyuan21-oracle-v1/384_s42_maskfix/review.glb",
+      "images": "../../hunyuan21-oracle-v1/384_s42_maskfix/review/",
+      "input": "../../hunyuan21-oracle-v1/source.png",
+      "receipt": "../../hunyuan21-oracle-v1/384_s42_maskfix/receipt.json",
+      "triangles": 538838,
+      "method": "Earlier whole-body input with background-only alpha mask.",
+      "note": "Baseline: soft face and fingers.",
+      "view": "face"
+    },
+    {
+      "id": "head_context_black384",
+      "label": "Head \u00b7 rectangular crop \u00b7 black background",
+      "mesh": "../head_context_black384/review.glb",
+      "images": "../head_context_black384/review/",
+      "input": "../inputs/head_context_black.png",
+      "receipt": "../head_context_black384/receipt.json",
+      "triangles": 1296330,
+      "method": "Rectangular RGB crop retaining hair, shoulders and clothing. No matting.",
+      "note": "More defined face; excessive eyelid folds remain. Separate crop study.",
+      "view": "face"
+    },
+    {
+      "id": "body512",
+      "label": "Full statue \u00b7 denser 512 decode",
+      "mesh": "../body512/review.glb",
+      "images": "../body512/review/",
+      "input": "../../hunyuan21-oracle-v1/source.png",
+      "receipt": "../body512/receipt.json",
+      "triangles": 958360,
+      "method": "Same saved final latents as the original statue; only the extraction resolution changes.",
+      "note": "958,360 triangles, with little visible improvement to the face.",
+      "view": "face"
+    },
+    {
+      "id": "head384",
+      "label": "Head \u00b7 early tight mask",
+      "mesh": "../head384/review.glb",
+      "images": "../head384/review/",
+      "input": "../inputs/head.png",
+      "receipt": "../head384/receipt.json",
+      "triangles": 1243156,
+      "method": "Early polygon/color part mask.",
+      "note": "Mask cut away useful context. Retained as a diagnostic comparison.",
+      "view": "face"
+    },
+    {
+      "id": "head_context_alpha384",
+      "label": "Head \u00b7 rectangular crop \u00b7 transparency",
+      "mesh": "../head_context_alpha384/review.glb",
+      "images": "../head_context_alpha384/review/",
+      "input": "../inputs/head_context_alpha.png",
+      "receipt": "../head_context_alpha384/receipt.json",
+      "triangles": 515212,
+      "method": "Identical rectangular crop, using background-only alpha and white compositing.",
+      "note": "Failed planar reconstruction. Fresh-process repeat produced the exact same GLB hash.",
+      "view": "face"
+    },
+    {
+      "id": "raised_context384",
+      "label": "Raised hand \u00b7 contextual crop \u00b7 transparency",
+      "mesh": "../raised_context384/review.glb",
+      "images": "../raised_context384/review/",
+      "input": "../inputs/raised_context.png",
+      "receipt": "../raised_context384/receipt.json",
+      "triangles": 170316,
+      "method": "Rectangular crop retaining wrist, bracer and forearm; background-only alpha.",
+      "note": "Failed: duplicate hand and elongated geometry. Separate crop study.",
+      "view": "hand"
+    },
+    {
+      "id": "raised_context_black384",
+      "label": "Raised hand \u00b7 contextual crop \u00b7 black",
+      "mesh": "../raised_context_black384/review.glb",
+      "images": "../raised_context_black384/review/",
+      "input": "../inputs/raised_context_black.png",
+      "receipt": "../raised_context_black384/receipt.json",
+      "triangles": 139452,
+      "method": "Same rectangular crop with original black background; no matting.",
+      "note": "Failed: disconnected hand and cuff, with poor fingers. The crop still lacks sufficient anatomy/context.",
+      "view": "hand"
+    },
+    {
+      "id": "hip_context384",
+      "label": "Hip hand \u00b7 contextual crop",
+      "mesh": "../hip_context384/review.glb",
+      "images": "../hip_context384/review/",
+      "input": "../inputs/hip_context.png",
+      "receipt": "../hip_context384/receipt.json",
+      "triangles": 764232,
+      "method": "Rectangular crop retaining bracer, hair and neighboring waist/clothing.",
+      "note": "Failed planar fragment. This crop has little evidence for the hidden palm and back of the hand.",
+      "view": "hip"
+    },
+    {
+      "id": "upper_body_black384",
+      "label": "Upper body \u00b7 both hands \u00b7 black",
+      "mesh": "../upper_body_black384/review.glb",
+      "images": "../upper_body_black384/review/",
+      "input": "../inputs/upper_body_black.png",
+      "receipt": "../upper_body_black384/receipt.json",
+      "triangles": 1308720,
+      "method": "Wide rectangular RGB crop retaining head, shoulders, arms, wrists and both hands; original black background.",
+      "note": "Face remains soft, fingers are rounded, and unwanted broad backing geometry appears. The wider crop did not solve hand quality.",
+      "view": "face"
+    },
+    {
+      "id": "composed_face",
+      "label": "Full statue \u00b7 experimental face transfer",
+      "mesh": "../composed_face/review.glb",
+      "images": "../composed_face/review/",
+      "input": "../inputs/head_context_black.png",
+      "receipt": "../composed_face/receipt.json",
+      "triangles": 1038958,
+      "method": "Conforming local subdivision and feathered facial depth transfer onto the 512 body.",
+      "note": "Face is more defined, but seams and eyelid artifacts remain. Hands are unchanged.",
+      "view": "face"
+    }
+  ],
+  "art_acceptance": false,
+  "textures_generated": false
+}

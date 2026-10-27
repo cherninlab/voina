@@ -1,0 +1,21 @@
+SDF.R: Loader Marker V16.2.2 (__init__.py loaded from: /Users/theochernin/Library/Application Support/Blender/5.2/scripts/addons/rust_gpu_sdf_addon/__init__.py)
+SDF.R: --- Initializing GPU Engine (V16.2.2) ---
+SDF.R: No shader cache. This initial compilation may take a few minutes...
+SDF.R: Addon registered. Warming-up will start in 0.5s...
+23:38:07 | INFO: Data are loaded, start creating Blender stuff
+23:38:07 | INFO: Blender create Mesh node geometry_0
+23:38:08 | INFO: glTF import finished in 0.82s
+23:38:08 | INFO: Data are loaded, start creating Blender stuff
+23:38:08 | INFO: Blender create Mesh node geometry_0
+23:38:09 | INFO: glTF import finished in 1.32s
+INFO Draco is available, use library at /Applications/Blender.app/Contents/Resources/5.2/scripts/addons_core/io_scene_gltf2/libbf_intern_draco_bridge.dylib
+INFO MeshOptimizer is available, use library at /Applications/Blender.app/Contents/Resources/5.2/scripts/addons_core/io_scene_gltf2/libbf_intern_meshopt_bridge.dylib
+23:38:13 | INFO: Starting glTF 2.0 export
+23:38:13 | INFO: Extracting primitive: geometry_0
+23:38:13 | INFO: Primitives created: 1
+23:38:14 | INFO: Finished glTF 2.0 export in 0.6291210651397705 s
+
+FACE_TRANSFER_COMPLETE {"method": "Conforming local subdivision, frontal depth transfer and smooth feather into untouched body. No cut, head replacement or voxel remesh.", "head": "content/environments/gothic_statues_v1/trellis2_face_v1/hunyuan21_detail_v2/head_context_black384/review.glb", "base": "body512/review.glb", "changed_vertices": 36442, "missed_rays": 0, "clamped_over_20mm": 5893, "median_depth_alignment_m": 0.03064578026533127, "max_displacement_m": 0.02, "original_vertices": 479164, "result_vertices": 519465, "triangles": 1038958, "changes": "Facial surface only; hands remain the body512 result", "acceptance": "Experimental comparison, pending visual review"}
+Blender 5.2.2 LTS (hash d13f752e3b9c built 2026-09-15 01:49:19)
+
+Blender quit

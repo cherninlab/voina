@@ -1,0 +1,12 @@
+{
+  "triangles": 1038958,
+  "vertices": 519465,
+  "finite_and_indices_valid": true,
+  "boundary_edges": 0,
+  "non_manifold_edges": 0,
+  "winding_consistent": true,
+  "watertight": true,
+  "outside_face_original_vertices_checked": 473855,
+  "outside_face_max_nearest_distance_m": 0.0,
+  "review_sha256": "838a7085e288ce53e21592f3ca010a314fd7d9c78be8c3ab6ad24a1e50617824"
+}

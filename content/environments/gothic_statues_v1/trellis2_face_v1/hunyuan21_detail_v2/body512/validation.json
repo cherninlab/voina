@@ -1,0 +1,23 @@
+{
+  "vertices": 479164,
+  "triangles": 958360,
+  "boundary_edges": 0,
+  "non_manifold_edges": 4,
+  "finite_and_indices_valid": true,
+  "winding_consistent": true,
+  "watertight": false,
+  "transform": {
+    "input_bbox_center": [
+      0.0034766942262649536,
+      -0.0028384625911712646,
+      0.0035437047481536865
+    ],
+    "uniform_scale": 0.7018600914583538,
+    "translation": [
+      0,
+      0.7,
+      0
+    ]
+  },
+  "method": "Reuse identical world transform from baseline; no geometry changes"
+}

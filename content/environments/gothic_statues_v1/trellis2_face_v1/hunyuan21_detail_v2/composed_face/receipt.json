@@ -1,0 +1,15 @@
+{
+  "method": "Conforming local subdivision, frontal depth transfer and smooth feather into untouched body. No cut, head replacement or voxel remesh.",
+  "head": "content/environments/gothic_statues_v1/trellis2_face_v1/hunyuan21_detail_v2/head_context_black384/review.glb",
+  "base": "body512/review.glb",
+  "changed_vertices": 36442,
+  "missed_rays": 0,
+  "clamped_over_20mm": 5893,
+  "median_depth_alignment_m": 0.03064578026533127,
+  "max_displacement_m": 0.02,
+  "original_vertices": 479164,
+  "result_vertices": 519465,
+  "triangles": 1038958,
+  "changes": "Facial surface only; hands remain the body512 result",
+  "acceptance": "Experimental comparison, pending visual review"
+}

@@ -1,0 +1,54 @@
+{
+  "source_mesh": "/Users/theochernin/Projects/MultiPlayerProject-agents/theo-codex-43/content/environments/gothic_statues_v1/trellis2_face_v1/hunyuan21_detail_v2/head384/review.glb",
+  "actual_geometry_renders": true,
+  "world_bounds": [
+    [
+      -0.14527438580989838,
+      -0.10361843556165695,
+      1.034999966621399
+    ],
+    [
+      0.015274389646947384,
+      0.05361843854188919,
+      1.2649999856948853
+    ]
+  ],
+  "blender_version": "5.2.2 LTS",
+  "views": [
+    {
+      "file": "detail_hero.png",
+      "azimuth": 315,
+      "elevation": 18
+    },
+    {
+      "file": "detail_front.png",
+      "azimuth": 0,
+      "elevation": 5
+    },
+    {
+      "file": "detail_front45.png",
+      "azimuth": 45,
+      "elevation": 15
+    },
+    {
+      "file": "detail_left.png",
+      "azimuth": 90,
+      "elevation": 5
+    },
+    {
+      "file": "detail_back135.png",
+      "azimuth": 135,
+      "elevation": 15
+    },
+    {
+      "file": "detail_back.png",
+      "azimuth": 180,
+      "elevation": 5
+    },
+    {
+      "file": "detail_right.png",
+      "azimuth": 270,
+      "elevation": 5
+    }
+  ]
+}

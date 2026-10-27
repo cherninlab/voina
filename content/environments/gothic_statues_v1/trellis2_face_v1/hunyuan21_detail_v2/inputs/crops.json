@@ -1,0 +1,384 @@
+{
+  "head": {
+    "source": "content/environments/gothic_statues_v1/trellis2_face_v1/hunyuan21_oracle_v1/384_s42_maskfix/segmented_input.png",
+    "source_sha256": "9059371f42a66fa932dda38698cfad9cca5b97f6a95e379e575cd608f8eb92fb",
+    "source_polygon": [
+      [
+        307,
+        83
+      ],
+      [
+        356,
+        80
+      ],
+      [
+        379,
+        90
+      ],
+      [
+        391,
+        111
+      ],
+      [
+        395,
+        130
+      ],
+      [
+        397,
+        153
+      ],
+      [
+        402,
+        174
+      ],
+      [
+        395,
+        199
+      ],
+      [
+        379,
+        217
+      ],
+      [
+        377,
+        240
+      ],
+      [
+        391,
+        255
+      ],
+      [
+        293,
+        255
+      ],
+      [
+        306,
+        235
+      ],
+      [
+        306,
+        215
+      ],
+      [
+        289,
+        201
+      ],
+      [
+        281,
+        179
+      ],
+      [
+        282,
+        160
+      ],
+      [
+        279,
+        143
+      ],
+      [
+        282,
+        122
+      ],
+      [
+        291,
+        101
+      ]
+    ],
+    "source_crop_box": [
+      271,
+      72,
+      411,
+      264
+    ],
+    "input_sha256": "8bf4874d1078c9d82e669fbe4c4f20e5f9ec781b1d7f57008b2178f884dd7f22",
+    "extra_mask": "Remove purple horn/shoulder outside neck"
+  },
+  "raised": {
+    "source": "content/environments/gothic_statues_v1/trellis2_face_v1/hunyuan21_oracle_v1/384_s42_maskfix/segmented_input.png",
+    "source_sha256": "9059371f42a66fa932dda38698cfad9cca5b97f6a95e379e575cd608f8eb92fb",
+    "source_polygon": [
+      [
+        527,
+        266
+      ],
+      [
+        535,
+        253
+      ],
+      [
+        558,
+        246
+      ],
+      [
+        575,
+        235
+      ],
+      [
+        590,
+        230
+      ],
+      [
+        594,
+        240
+      ],
+      [
+        602,
+        239
+      ],
+      [
+        606,
+        228
+      ],
+      [
+        614,
+        236
+      ],
+      [
+        614,
+        253
+      ],
+      [
+        627,
+        238
+      ],
+      [
+        635,
+        240
+      ],
+      [
+        632,
+        249
+      ],
+      [
+        642,
+        247
+      ],
+      [
+        640,
+        258
+      ],
+      [
+        626,
+        272
+      ],
+      [
+        603,
+        286
+      ],
+      [
+        574,
+        296
+      ],
+      [
+        540,
+        291
+      ]
+    ],
+    "source_crop_box": [
+      519,
+      220,
+      651,
+      305
+    ],
+    "input_sha256": "932d2dd3ee2e799551a71fd443c6c59e86ef482615279d95686b187b570ecdf5",
+    "extra_mask": "Skin HSV hue3..20/180, saturation<155/255, R>100; close one-pixel holes; combined with recorded polygon and source alpha"
+  },
+  "hip": {
+    "source": "content/environments/gothic_statues_v1/trellis2_face_v1/hunyuan21_oracle_v1/384_s42_maskfix/segmented_input.png",
+    "source_sha256": "9059371f42a66fa932dda38698cfad9cca5b97f6a95e379e575cd608f8eb92fb",
+    "source_polygon": [
+      [
+        242,
+        414
+      ],
+      [
+        250,
+        402
+      ],
+      [
+        263,
+        391
+      ],
+      [
+        275,
+        393
+      ],
+      [
+        286,
+        398
+      ],
+      [
+        300,
+        406
+      ],
+      [
+        300,
+        414
+      ],
+      [
+        292,
+        415
+      ],
+      [
+        277,
+        409
+      ],
+      [
+        280,
+        416
+      ],
+      [
+        299,
+        427
+      ],
+      [
+        304,
+        434
+      ],
+      [
+        299,
+        438
+      ],
+      [
+        290,
+        434
+      ],
+      [
+        278,
+        428
+      ],
+      [
+        303,
+        442
+      ],
+      [
+        303,
+        449
+      ],
+      [
+        296,
+        451
+      ],
+      [
+        281,
+        441
+      ],
+      [
+        298,
+        452
+      ],
+      [
+        298,
+        458
+      ],
+      [
+        291,
+        462
+      ],
+      [
+        268,
+        451
+      ],
+      [
+        255,
+        438
+      ],
+      [
+        245,
+        432
+      ]
+    ],
+    "source_crop_box": [
+      234,
+      383,
+      313,
+      471
+    ],
+    "input_sha256": "753d52dc275b92ff8f0c73ff1edd4d832beba5f084c95f16affe3d0de870773d",
+    "extra_mask": "Skin HSV hue3..20/180, saturation<155/255, R>100; close one-pixel holes; combined with recorded polygon and source alpha; keep largest connected alpha component"
+  },
+  "head_context_black": {
+    "source_crop_box": [
+      237,
+      65,
+      445,
+      319
+    ],
+    "source": "../hunyuan21_oracle_v1/source.png",
+    "mode": "RGB",
+    "method": "Plain rectangular crop retaining neighboring anatomy/clothing; no tight part mask",
+    "input_sha256": "1e152fd0dc4d050dca7365abc407c1d0288e6b8927e880b723b8bb6fea4dea1d"
+  },
+  "head_context_alpha": {
+    "source_crop_box": [
+      237,
+      65,
+      445,
+      319
+    ],
+    "source": "../hunyuan21_oracle_v1/384_s42_maskfix/segmented_input.png",
+    "mode": "RGBA",
+    "method": "Plain rectangular crop retaining neighboring anatomy/clothing; no tight part mask",
+    "input_sha256": "5365edf6027dfce9f304a6dfb6068d02f2df9a9e4af3339ba80364e3f7f690ab"
+  },
+  "raised_context": {
+    "source_crop_box": [
+      476,
+      211,
+      659,
+      366
+    ],
+    "source": "../hunyuan21_oracle_v1/384_s42_maskfix/segmented_input.png",
+    "mode": "RGBA",
+    "method": "Plain rectangular crop retaining neighboring anatomy/clothing; no tight part mask",
+    "input_sha256": "066d4f34f07ffc6f4de08449b62b60d7630d85024352a5800e54ea5f8288ab1d"
+  },
+  "hip_context": {
+    "source_crop_box": [
+      209,
+      359,
+      330,
+      480
+    ],
+    "source": "../hunyuan21_oracle_v1/384_s42_maskfix/segmented_input.png",
+    "mode": "RGBA",
+    "method": "Plain rectangular crop retaining neighboring anatomy/clothing; no tight part mask",
+    "input_sha256": "81630371fd6a059656c76df1a353603e26db314d67e4855f3965fac839c16480"
+  },
+  "head_context_alpha_fresh": {
+    "source_crop_box": [
+      237,
+      65,
+      445,
+      319
+    ],
+    "source": "../hunyuan21_oracle_v1/384_s42_maskfix/segmented_input.png",
+    "mode": "RGBA",
+    "method": "Identical transparent crop repeated in a freshly loaded process to check whether the earlier failure is reproducible",
+    "input_sha256": "5365edf6027dfce9f304a6dfb6068d02f2df9a9e4af3339ba80364e3f7f690ab"
+  },
+  "raised_context_black": {
+    "source_crop_box": [
+      476,
+      211,
+      659,
+      366
+    ],
+    "source": "../hunyuan21_oracle_v1/source.png",
+    "mode": "RGB",
+    "method": "Plain rectangular crop retaining neighboring anatomy/clothing; no tight part mask",
+    "input_sha256": "96d70b6b442120c4775fb60028f3e999330fc097670bc7ced9fec027298532a2"
+  },
+  "upper_body_black": {
+    "source_crop_box": [
+      160,
+      0,
+      660,
+      512
+    ],
+    "source": "../hunyuan21_oracle_v1/source.png",
+    "mode": "RGB",
+    "method": "Plain upper-body crop retaining head, shoulders, arms, wrists and both hands; original black background",
+    "input_sha256": "fc033117b38d1a0644ae1fb9a90ecddf36f51e2e773f0c985e362d5bee766b77"
+  }
+}

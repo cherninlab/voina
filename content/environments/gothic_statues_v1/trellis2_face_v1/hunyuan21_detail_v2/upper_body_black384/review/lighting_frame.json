@@ -1,0 +1,10 @@
+{
+  "reference": "/Users/theochernin/Projects/MultiPlayerProject-agents/theo-codex-43/content/environments/gothic_statues_v1/trellis2_face_v1/oracle_resolution_v6/1536/review/clean_views.json",
+  "center": [
+    9.715557098388672e-06,
+    -4.0628015995025635e-05,
+    0.6999703493529523
+  ],
+  "span": 1.4001105136048864,
+  "note": "Same area light locations, powers and sizes as the full TRELLIS.2 statue review"
+}

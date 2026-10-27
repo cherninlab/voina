@@ -1,0 +1,307 @@
+[
+  {
+    "url": "http://127.0.0.1:7865/static/trellis2-face-v1/hunyuan21-detail-v2/README.md",
+    "status": 200,
+    "bytes": "5586"
+  },
+  {
+    "url": "http://127.0.0.1:7865/static/trellis2-face-v1/hunyuan21-detail-v2/body512/receipt.json",
+    "status": 200,
+    "bytes": "1252"
+  },
+  {
+    "url": "http://127.0.0.1:7865/static/trellis2-face-v1/hunyuan21-detail-v2/body512/review.glb",
+    "status": 200,
+    "bytes": "23001608"
+  },
+  {
+    "url": "http://127.0.0.1:7865/static/trellis2-face-v1/hunyuan21-detail-v2/body512/review/crown.png",
+    "status": 200,
+    "bytes": "685451"
+  },
+  {
+    "url": "http://127.0.0.1:7865/static/trellis2-face-v1/hunyuan21-detail-v2/body512/review/face.png",
+    "status": 200,
+    "bytes": "711273"
+  },
+  {
+    "url": "http://127.0.0.1:7865/static/trellis2-face-v1/hunyuan21-detail-v2/body512/review/face45.png",
+    "status": 200,
+    "bytes": "684637"
+  },
+  {
+    "url": "http://127.0.0.1:7865/static/trellis2-face-v1/hunyuan21-detail-v2/comparison.json",
+    "status": 200,
+    "bytes": "5573"
+  },
+  {
+    "url": "http://127.0.0.1:7865/static/trellis2-face-v1/hunyuan21-detail-v2/composed_face/receipt.json",
+    "status": 200,
+    "bytes": "685"
+  },
+  {
+    "url": "http://127.0.0.1:7865/static/trellis2-face-v1/hunyuan21-detail-v2/composed_face/review.glb",
+    "status": 200,
+    "bytes": "24935764"
+  },
+  {
+    "url": "http://127.0.0.1:7865/static/trellis2-face-v1/hunyuan21-detail-v2/composed_face/review/crown.png",
+    "status": 200,
+    "bytes": "686156"
+  },
+  {
+    "url": "http://127.0.0.1:7865/static/trellis2-face-v1/hunyuan21-detail-v2/composed_face/review/face.png",
+    "status": 200,
+    "bytes": "731568"
+  },
+  {
+    "url": "http://127.0.0.1:7865/static/trellis2-face-v1/hunyuan21-detail-v2/composed_face/review/face45.png",
+    "status": 200,
+    "bytes": "696274"
+  },
+  {
+    "url": "http://127.0.0.1:7865/static/trellis2-face-v1/hunyuan21-detail-v2/head384/receipt.json",
+    "status": 200,
+    "bytes": "1171"
+  },
+  {
+    "url": "http://127.0.0.1:7865/static/trellis2-face-v1/hunyuan21-detail-v2/head384/review.glb",
+    "status": 200,
+    "bytes": "29836196"
+  },
+  {
+    "url": "http://127.0.0.1:7865/static/trellis2-face-v1/hunyuan21-detail-v2/head384/review/crown.png",
+    "status": 200,
+    "bytes": "617067"
+  },
+  {
+    "url": "http://127.0.0.1:7865/static/trellis2-face-v1/hunyuan21-detail-v2/head384/review/face.png",
+    "status": 200,
+    "bytes": "700535"
+  },
+  {
+    "url": "http://127.0.0.1:7865/static/trellis2-face-v1/hunyuan21-detail-v2/head384/review/face45.png",
+    "status": 200,
+    "bytes": "683673"
+  },
+  {
+    "url": "http://127.0.0.1:7865/static/trellis2-face-v1/hunyuan21-detail-v2/head_context_alpha384/receipt.json",
+    "status": 200,
+    "bytes": "1198"
+  },
+  {
+    "url": "http://127.0.0.1:7865/static/trellis2-face-v1/hunyuan21-detail-v2/head_context_alpha384/review.glb",
+    "status": 200,
+    "bytes": "12366500"
+  },
+  {
+    "url": "http://127.0.0.1:7865/static/trellis2-face-v1/hunyuan21-detail-v2/head_context_alpha384/review/crown.png",
+    "status": 200,
+    "bytes": "607753"
+  },
+  {
+    "url": "http://127.0.0.1:7865/static/trellis2-face-v1/hunyuan21-detail-v2/head_context_alpha384/review/face.png",
+    "status": 200,
+    "bytes": "592564"
+  },
+  {
+    "url": "http://127.0.0.1:7865/static/trellis2-face-v1/hunyuan21-detail-v2/head_context_alpha384/review/face45.png",
+    "status": 200,
+    "bytes": "599358"
+  },
+  {
+    "url": "http://127.0.0.1:7865/static/trellis2-face-v1/hunyuan21-detail-v2/head_context_black384/receipt.json",
+    "status": 200,
+    "bytes": "1199"
+  },
+  {
+    "url": "http://127.0.0.1:7865/static/trellis2-face-v1/hunyuan21-detail-v2/head_context_black384/review.glb",
+    "status": 200,
+    "bytes": "31113024"
+  },
+  {
+    "url": "http://127.0.0.1:7865/static/trellis2-face-v1/hunyuan21-detail-v2/head_context_black384/review/crown.png",
+    "status": 200,
+    "bytes": "659560"
+  },
+  {
+    "url": "http://127.0.0.1:7865/static/trellis2-face-v1/hunyuan21-detail-v2/head_context_black384/review/face.png",
+    "status": 200,
+    "bytes": "780375"
+  },
+  {
+    "url": "http://127.0.0.1:7865/static/trellis2-face-v1/hunyuan21-detail-v2/head_context_black384/review/face45.png",
+    "status": 200,
+    "bytes": "741810"
+  },
+  {
+    "url": "http://127.0.0.1:7865/static/trellis2-face-v1/hunyuan21-detail-v2/hip_context384/receipt.json",
+    "status": 200,
+    "bytes": "1183"
+  },
+  {
+    "url": "http://127.0.0.1:7865/static/trellis2-face-v1/hunyuan21-detail-v2/hip_context384/review.glb",
+    "status": 200,
+    "bytes": "18342932"
+  },
+  {
+    "url": "http://127.0.0.1:7865/static/trellis2-face-v1/hunyuan21-detail-v2/hip_context384/review/detail_back.png",
+    "status": 200,
+    "bytes": "594828"
+  },
+  {
+    "url": "http://127.0.0.1:7865/static/trellis2-face-v1/hunyuan21-detail-v2/hip_context384/review/detail_front45.png",
+    "status": 200,
+    "bytes": "596075"
+  },
+  {
+    "url": "http://127.0.0.1:7865/static/trellis2-face-v1/hunyuan21-detail-v2/hip_context384/review/hip_hand.png",
+    "status": 200,
+    "bytes": "584052"
+  },
+  {
+    "url": "http://127.0.0.1:7865/static/trellis2-face-v1/hunyuan21-detail-v2/inputs/head.png",
+    "status": 200,
+    "bytes": "51474"
+  },
+  {
+    "url": "http://127.0.0.1:7865/static/trellis2-face-v1/hunyuan21-detail-v2/inputs/head_context_alpha.png",
+    "status": 200,
+    "bytes": "96732"
+  },
+  {
+    "url": "http://127.0.0.1:7865/static/trellis2-face-v1/hunyuan21-detail-v2/inputs/head_context_black.png",
+    "status": 200,
+    "bytes": "83997"
+  },
+  {
+    "url": "http://127.0.0.1:7865/static/trellis2-face-v1/hunyuan21-detail-v2/inputs/hip_context.png",
+    "status": 200,
+    "bytes": "28997"
+  },
+  {
+    "url": "http://127.0.0.1:7865/static/trellis2-face-v1/hunyuan21-detail-v2/inputs/raised_context.png",
+    "status": 200,
+    "bytes": "24877"
+  },
+  {
+    "url": "http://127.0.0.1:7865/static/trellis2-face-v1/hunyuan21-detail-v2/inputs/raised_context_black.png",
+    "status": 200,
+    "bytes": "24358"
+  },
+  {
+    "url": "http://127.0.0.1:7865/static/trellis2-face-v1/hunyuan21-detail-v2/inputs/upper_body_black.png",
+    "status": 200,
+    "bytes": "225588"
+  },
+  {
+    "url": "http://127.0.0.1:7865/static/trellis2-face-v1/hunyuan21-detail-v2/raised_context384/receipt.json",
+    "status": 200,
+    "bytes": "1188"
+  },
+  {
+    "url": "http://127.0.0.1:7865/static/trellis2-face-v1/hunyuan21-detail-v2/raised_context384/review.glb",
+    "status": 200,
+    "bytes": "4088964"
+  },
+  {
+    "url": "http://127.0.0.1:7865/static/trellis2-face-v1/hunyuan21-detail-v2/raised_context384/review/detail_back.png",
+    "status": 200,
+    "bytes": "595288"
+  },
+  {
+    "url": "http://127.0.0.1:7865/static/trellis2-face-v1/hunyuan21-detail-v2/raised_context384/review/detail_front45.png",
+    "status": 200,
+    "bytes": "597330"
+  },
+  {
+    "url": "http://127.0.0.1:7865/static/trellis2-face-v1/hunyuan21-detail-v2/raised_context384/review/raised_hand.png",
+    "status": 200,
+    "bytes": "620664"
+  },
+  {
+    "url": "http://127.0.0.1:7865/static/trellis2-face-v1/hunyuan21-detail-v2/raised_context_black384/receipt.json",
+    "status": 200,
+    "bytes": "1201"
+  },
+  {
+    "url": "http://127.0.0.1:7865/static/trellis2-face-v1/hunyuan21-detail-v2/raised_context_black384/review.glb",
+    "status": 200,
+    "bytes": "3347948"
+  },
+  {
+    "url": "http://127.0.0.1:7865/static/trellis2-face-v1/hunyuan21-detail-v2/raised_context_black384/review/detail_back.png",
+    "status": 200,
+    "bytes": "594326"
+  },
+  {
+    "url": "http://127.0.0.1:7865/static/trellis2-face-v1/hunyuan21-detail-v2/raised_context_black384/review/detail_front45.png",
+    "status": 200,
+    "bytes": "594484"
+  },
+  {
+    "url": "http://127.0.0.1:7865/static/trellis2-face-v1/hunyuan21-detail-v2/raised_context_black384/review/raised_hand.png",
+    "status": 200,
+    "bytes": "613584"
+  },
+  {
+    "url": "http://127.0.0.1:7865/static/trellis2-face-v1/hunyuan21-detail-v2/review/index.html",
+    "status": 200,
+    "bytes": "5065"
+  },
+  {
+    "url": "http://127.0.0.1:7865/static/trellis2-face-v1/hunyuan21-detail-v2/upper_body_black384/receipt.json",
+    "status": 200,
+    "bytes": "1193"
+  },
+  {
+    "url": "http://127.0.0.1:7865/static/trellis2-face-v1/hunyuan21-detail-v2/upper_body_black384/review.glb",
+    "status": 200,
+    "bytes": "31410112"
+  },
+  {
+    "url": "http://127.0.0.1:7865/static/trellis2-face-v1/hunyuan21-detail-v2/upper_body_black384/review/crown.png",
+    "status": 200,
+    "bytes": "698574"
+  },
+  {
+    "url": "http://127.0.0.1:7865/static/trellis2-face-v1/hunyuan21-detail-v2/upper_body_black384/review/face.png",
+    "status": 200,
+    "bytes": "738464"
+  },
+  {
+    "url": "http://127.0.0.1:7865/static/trellis2-face-v1/hunyuan21-detail-v2/upper_body_black384/review/face45.png",
+    "status": 200,
+    "bytes": "717654"
+  },
+  {
+    "url": "http://127.0.0.1:7865/static/trellis2-face-v1/hunyuan21-oracle-v1/384_s42_maskfix/receipt.json",
+    "status": 200,
+    "bytes": "2005"
+  },
+  {
+    "url": "http://127.0.0.1:7865/static/trellis2-face-v1/hunyuan21-oracle-v1/384_s42_maskfix/review.glb",
+    "status": 200,
+    "bytes": "12933020"
+  },
+  {
+    "url": "http://127.0.0.1:7865/static/trellis2-face-v1/hunyuan21-oracle-v1/384_s42_maskfix/review/crown.png",
+    "status": 200,
+    "bytes": "684214"
+  },
+  {
+    "url": "http://127.0.0.1:7865/static/trellis2-face-v1/hunyuan21-oracle-v1/384_s42_maskfix/review/face.png",
+    "status": 200,
+    "bytes": "708617"
+  },
+  {
+    "url": "http://127.0.0.1:7865/static/trellis2-face-v1/hunyuan21-oracle-v1/384_s42_maskfix/review/face45.png",
+    "status": 200,
+    "bytes": "683963"
+  },
+  {
+    "url": "http://127.0.0.1:7865/static/trellis2-face-v1/hunyuan21-oracle-v1/source.png",
+    "status": 200,
+    "bytes": "436043"
+  }
+]

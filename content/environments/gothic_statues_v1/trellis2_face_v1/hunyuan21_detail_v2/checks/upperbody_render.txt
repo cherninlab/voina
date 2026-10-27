@@ -1,0 +1,30 @@
+SDF.R: Loader Marker V16.2.2 (__init__.py loaded from: /Users/theochernin/Library/Application Support/Blender/5.2/scripts/addons/rust_gpu_sdf_addon/__init__.py)
+SDF.R: --- Initializing GPU Engine (V16.2.2) ---
+SDF.R: No shader cache. This initial compilation may take a few minutes...
+SDF.R: Addon registered. Warming-up will start in 0.5s...
+23:47:02 | INFO: Data are loaded, start creating Blender stuff
+23:47:02 | INFO: Blender create Mesh node geometry_0
+23:47:03 | INFO: glTF import finished in 0.88s
+/Users/theochernin/Projects/MultiPlayerProject-agents/theo-codex-43/content/environments/gothic_statues_v1/e01_crawling_v1/render_review.py:26: DeprecationWarning: 'Material.use_nodes' is expected to be removed in Blender 6.0
+  material=bpy.data.materials.new('Neutral limestone geometry review');material.use_nodes=True
+/Users/theochernin/Projects/MultiPlayerProject-agents/theo-codex-43/content/environments/gothic_statues_v1/e01_crawling_v1/render_review.py:39: DeprecationWarning: 'World.use_nodes' is expected to be removed in Blender 6.0
+  scene.world=bpy.data.worlds.new('Review world');scene.world.use_nodes=True
+00:04.613  render           | Saved: '/Users/theochernin/Projects/MultiPlayerProject-agents/theo-codex-43/content/environments/gothic_statues_v1/trellis2_face_v1/hunyuan21_detail_v2/upper_body_black384/review/detail_hero.png'
+00:06.726  render           | Saved: '/Users/theochernin/Projects/MultiPlayerProject-agents/theo-codex-43/content/environments/gothic_statues_v1/trellis2_face_v1/hunyuan21_detail_v2/upper_body_black384/review/detail_front.png'
+00:08.527  render           | Saved: '/Users/theochernin/Projects/MultiPlayerProject-agents/theo-codex-43/content/environments/gothic_statues_v1/trellis2_face_v1/hunyuan21_detail_v2/upper_body_black384/review/detail_front45.png'
+00:09.983  render           | Saved: '/Users/theochernin/Projects/MultiPlayerProject-agents/theo-codex-43/content/environments/gothic_statues_v1/trellis2_face_v1/hunyuan21_detail_v2/upper_body_black384/review/detail_left.png'
+00:11.556  render           | Saved: '/Users/theochernin/Projects/MultiPlayerProject-agents/theo-codex-43/content/environments/gothic_statues_v1/trellis2_face_v1/hunyuan21_detail_v2/upper_body_black384/review/detail_back135.png'
+00:13.158  render           | Saved: '/Users/theochernin/Projects/MultiPlayerProject-agents/theo-codex-43/content/environments/gothic_statues_v1/trellis2_face_v1/hunyuan21_detail_v2/upper_body_black384/review/detail_back.png'
+00:14.582  render           | Saved: '/Users/theochernin/Projects/MultiPlayerProject-agents/theo-codex-43/content/environments/gothic_statues_v1/trellis2_face_v1/hunyuan21_detail_v2/upper_body_black384/review/detail_right.png'
+REVIEW_RENDER_OK
+00:20.640  render           | Saved: '/Users/theochernin/Projects/MultiPlayerProject-agents/theo-codex-43/content/environments/gothic_statues_v1/trellis2_face_v1/hunyuan21_detail_v2/upper_body_black384/review/face.png'
+00:26.223  render           | Saved: '/Users/theochernin/Projects/MultiPlayerProject-agents/theo-codex-43/content/environments/gothic_statues_v1/trellis2_face_v1/hunyuan21_detail_v2/upper_body_black384/review/face45.png'
+00:32.005  render           | Saved: '/Users/theochernin/Projects/MultiPlayerProject-agents/theo-codex-43/content/environments/gothic_statues_v1/trellis2_face_v1/hunyuan21_detail_v2/upper_body_black384/review/crown.png'
+00:35.838  render           | Saved: '/Users/theochernin/Projects/MultiPlayerProject-agents/theo-codex-43/content/environments/gothic_statues_v1/trellis2_face_v1/hunyuan21_detail_v2/upper_body_black384/review/head_back.png'
+00:40.652  render           | Saved: '/Users/theochernin/Projects/MultiPlayerProject-agents/theo-codex-43/content/environments/gothic_statues_v1/trellis2_face_v1/hunyuan21_detail_v2/upper_body_black384/review/raised_hand.png'
+00:45.923  render           | Saved: '/Users/theochernin/Projects/MultiPlayerProject-agents/theo-codex-43/content/environments/gothic_statues_v1/trellis2_face_v1/hunyuan21_detail_v2/upper_body_black384/review/hip_hand.png'
+00:47.295  render           | Saved: '/Users/theochernin/Projects/MultiPlayerProject-agents/theo-codex-43/content/environments/gothic_statues_v1/trellis2_face_v1/hunyuan21_detail_v2/upper_body_black384/review/legs.png'
+PLASTIC_ORACLE_REVIEW_OK
+Blender 5.2.2 LTS (hash d13f752e3b9c built 2026-09-15 01:49:19)
+
+Blender quit

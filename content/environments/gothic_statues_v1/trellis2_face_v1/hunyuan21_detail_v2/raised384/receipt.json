@@ -1,0 +1,37 @@
+{
+  "status": "cancelled",
+  "model": "tencent/Hunyuan3D-2.1",
+  "job": "raised384",
+  "checkpoint_sha256": "6b519fc7242f78e9b5f47ea4d55668fe3d944a2d27332f4ca68d29a6ff603f5e",
+  "source_sha256": "932d2dd3ee2e799551a71fd443c6c59e86ef482615279d95686b187b570ecdf5",
+  "source": "/Users/theochernin/Projects/MultiPlayerProject-agents/theo-codex-43/content/environments/gothic_statues_v1/trellis2_face_v1/hunyuan21_detail_v2/inputs/raised.png",
+  "components": {
+    "model": {
+      "device": "mps:0",
+      "dtype": "torch.float16"
+    },
+    "vae": {
+      "device": "mps:0",
+      "dtype": "torch.float16"
+    },
+    "conditioner": {
+      "device": "mps:0",
+      "dtype": "torch.float16"
+    }
+  },
+  "torch": "2.14.1",
+  "device": "local Mac MPS",
+  "seed": 42,
+  "steps": 50,
+  "guidance": 5,
+  "octree_resolution": 384,
+  "query_chunk": 8000,
+  "textures": false,
+  "decoder": "VanillaVolumeDecoder",
+  "seconds": 58.75836066697957,
+  "method": "Independent image-to-shape reconstruction from the recorded head/hand crop",
+  "step": 35,
+  "error": "",
+  "traceback": "Traceback (most recent call last):\n  File \"/Users/theochernin/Projects/MultiPlayerProject-agents/theo-codex-43/content/environments/gothic_statues_v1/trellis2_face_v1/hunyuan21_detail_v2/generate.py\", line 96, in <module>\n    mesh = pipe(image=Image.open(source), num_inference_steps=50, guidance_scale=5.,\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/theochernin/Projects/CherninLab3D/.venv/lib/python3.11/site-packages/torch/utils/_contextlib.py\", line 124, in decorate_context\n    return func(*args, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/theochernin/Projects/CherninLab3D/vendor/Hunyuan3D-2.1/hy3dshape/hy3dshape/pipelines.py\", line 764, in __call__\n    noise_pred = self.model(latent_model_input, timestep, cond, guidance=guidance)\n                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/theochernin/Projects/CherninLab3D/.venv/lib/python3.11/site-packages/torch/nn/modules/module.py\", line 1783, in _wrapped_call_impl\n    return self._call_impl(*args, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/theochernin/Projects/CherninLab3D/.venv/lib/python3.11/site-packages/torch/nn/modules/module.py\", line 1794, in _call_impl\n    return forward_call(*args, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/theochernin/Projects/CherninLab3D/vendor/Hunyuan3D-2.1/hy3dshape/hy3dshape/models/denoisers/hunyuandit.py\", line 662, in forward\n    x = block(x, c, cond, skip_value=skip_value)\n        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/theochernin/Projects/CherninLab3D/.venv/lib/python3.11/site-packages/torch/nn/modules/module.py\", line 1783, in _wrapped_call_impl\n    return self._call_impl(*args, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/theochernin/Projects/CherninLab3D/.venv/lib/python3.11/site-packages/torch/nn/modules/module.py\", line 1794, in _call_impl\n    return forward_call(*args, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/theochernin/Projects/CherninLab3D/vendor/Hunyuan3D-2.1/hy3dshape/hy3dshape/models/denoisers/hunyuandit.py\", line 401, in forward\n    x = x + self.moe(mlp_inputs)\n            ^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/theochernin/Projects/CherninLab3D/.venv/lib/python3.11/site-packages/torch/nn/modules/module.py\", line 1783, in _wrapped_call_impl\n    return self._call_impl(*args, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/theochernin/Projects/CherninLab3D/.venv/lib/python3.11/site-packages/torch/nn/modules/module.py\", line 1794, in _call_impl\n    return forward_call(*args, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/theochernin/Projects/CherninLab3D/vendor/Hunyuan3D-2.1/hy3dshape/hy3dshape/models/denoisers/moe_layers.py\", line 145, in forward\n    tmp = expert(hidden_states[flat_topk_idx == i])\n          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/theochernin/Projects/CherninLab3D/.venv/lib/python3.11/site-packages/torch/nn/modules/module.py\", line 1779, in _wrapped_call_impl\n    def _wrapped_call_impl(self, *args, **kwargs):\n    \nKeyboardInterrupt\n",
+  "reason": "Stopped before completion after user requested contextual crops instead of tight part masks"
+}
