@@ -17,5 +17,5 @@
       "description": "Previous TRELLIS four-image result, retained for direct comparison."
     }
   ],
-  "limitations": "The single-image TripoSG result has a cleaner hand silhouette than the TRELLIS retries, but fingertips and finger proportions remain imperfect. Face detail is soft and the unseen pose is inferred. TRELLIS.2-4B has not generated this preview; its image encoder still awaits Meta access approval."
+  "limitations": "The single-image TripoSG result has a cleaner hand silhouette than the TRELLIS retries, but fingertips and finger proportions remain imperfect. Face detail is soft and the unseen pose is inferred. TRELLIS.2-4B has not generated this preview; encoder access is now granted and separate statue trials are starting."
 }

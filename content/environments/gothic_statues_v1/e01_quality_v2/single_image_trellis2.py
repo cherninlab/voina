@@ -19,6 +19,8 @@ parser.add_argument('--resolution',type=int,choices=[512,768,1024],default=512)
 parser.add_argument('--steps',type=int,default=12)
 parser.add_argument('--seed',type=int,default=42)
 parser.add_argument('--check-only',action='store_true')
+parser.add_argument('--image',type=Path,default=root/'four_view_reconstruction_v1/inputs/front_masked.png')
+parser.add_argument('--out',type=Path)
 args=parser.parse_args()
 weights=cl3d/'models/TRELLIS.2-4B/ckpts'
 required=['ss_flow_img_dit_1_3B_64_bf16','slat_flow_img2shape_dit_1_3B_512_bf16','shape_dec_next_dc_f16c32_fp16']
@@ -36,9 +38,9 @@ if args.check_only:sys.exit(0)
 for name in ['model.safetensors','config.json','preprocessor_config.json']:
     hf_hub_download(encoder,name,revision=meta.commit_hash)
 
-folder=root/'single_image_retry_v1'/f'trellis2_{args.resolution}_seed{args.seed}'
-folder.mkdir(exist_ok=True)
-source=root/'four_view_reconstruction_v1/inputs/front_masked.png'
+folder=args.out or root/'single_image_retry_v1'/f'trellis2_{args.resolution}_seed{args.seed}'
+folder=folder.resolve();folder.mkdir(parents=True,exist_ok=True)
+source=args.image.resolve()
 image=Image.open(source).convert('RGBA')
 alpha=np.asarray(image.getchannel('A'));yy,xx=np.where(alpha>204)
 assert len(xx)>0
