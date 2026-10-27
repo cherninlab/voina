@@ -1,0 +1,23 @@
+{
+  "model": "VAST-AI/TripoSG",
+  "model_revision": "2c1c516d22d58db486a058d98d31bb6177344e06",
+  "input_count": 1,
+  "source": "/Users/theochernin/Projects/MultiPlayerProject-agents/theo-codex-43/content/environments/gothic_statues_v1/e01_quality_v2/four_view_reconstruction_v1/inputs/front_masked.png",
+  "source_sha256": "a8095ea0caf3a4c05616ca852a889b19b455eb08140f38a8307aa09be5c71a73",
+  "view": "front",
+  "device": "mps",
+  "seed": 42,
+  "steps": 75,
+  "tokens": 2048,
+  "guidance": 7,
+  "extraction": "hierarchical marching cubes 7 to 9",
+  "preprocess": "foreground crop, 20 percent side padding, white composite; published image encoder size",
+  "raw_triangles": 1165980,
+  "raw_watertight": true,
+  "preview_triangles": 1165180,
+  "preview_watertight": true,
+  "preview_retained_area_fraction": 0.9993668738106416,
+  "cleanup": "largest connected component only, no hand edits or smoothing",
+  "seconds": 67.85532299999613,
+  "mesh_sha256": "a22df42b773748f4569ecbbb3814e2fdf4d015685b9e358c0d32dd0d1aca59a1"
+}

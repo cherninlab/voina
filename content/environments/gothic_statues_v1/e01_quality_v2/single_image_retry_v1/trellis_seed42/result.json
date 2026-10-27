@@ -1,0 +1,21 @@
+{
+  "model": "microsoft/TRELLIS-image-large",
+  "model_revision": "25e0d31ffbebe4b5a97464dd851910efc3002d96",
+  "input_count": 1,
+  "source": "/Users/theochernin/Projects/MultiPlayerProject-agents/theo-codex-43/content/environments/gothic_statues_v1/e01_quality_v2/four_view_reconstruction_v1/inputs/front_masked.png",
+  "source_sha256": "a8095ea0caf3a4c05616ca852a889b19b455eb08140f38a8307aa09be5c71a73",
+  "view": "front",
+  "device": "mps",
+  "seed": 42,
+  "structure_steps": 75,
+  "shape_steps": 75,
+  "preprocess": "published native foreground crop and black composite",
+  "raw_triangles": 657728,
+  "raw_watertight": false,
+  "preview_triangles": 616952,
+  "preview_watertight": true,
+  "preview_retained_area_fraction": 0.9697894708638823,
+  "cleanup": "largest connected component only, no hand edits or smoothing",
+  "seconds": 104.64570695800649,
+  "mesh_sha256": "cc50ba42938a8e1554b5ecafe11e92b4107c8ca42a149580ba82769f2e4334d3"
+}

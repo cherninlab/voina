@@ -1,0 +1,16 @@
+{
+  "triposg_seed42": {
+    "single_input_hash_verified": true,
+    "triangles": 1165180,
+    "watertight": true,
+    "finite_vertices": true,
+    "positive_volume": 0.21201126395137607
+  },
+  "trellis_seed42": {
+    "single_input_hash_verified": true,
+    "triangles": 616952,
+    "watertight": true,
+    "finite_vertices": true,
+    "positive_volume": 0.08060430431645033
+  }
+}

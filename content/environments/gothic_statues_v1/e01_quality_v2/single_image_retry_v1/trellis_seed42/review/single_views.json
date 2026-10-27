@@ -1,0 +1,54 @@
+{
+  "source_mesh": "/Users/theochernin/Projects/MultiPlayerProject-agents/theo-codex-43/content/environments/gothic_statues_v1/e01_quality_v2/single_image_retry_v1/trellis_seed42/preview.glb",
+  "actual_geometry_renders": true,
+  "world_bounds": [
+    [
+      -0.42705652117729187,
+      -0.699999988079071,
+      0.0
+    ],
+    [
+      0.42705652117729187,
+      0.699999988079071,
+      1.2557579278945923
+    ]
+  ],
+  "blender_version": "5.2.2 LTS",
+  "views": [
+    {
+      "file": "single_hero.png",
+      "azimuth": 315,
+      "elevation": 18
+    },
+    {
+      "file": "single_front.png",
+      "azimuth": 0,
+      "elevation": 5
+    },
+    {
+      "file": "single_front45.png",
+      "azimuth": 45,
+      "elevation": 15
+    },
+    {
+      "file": "single_left.png",
+      "azimuth": 90,
+      "elevation": 5
+    },
+    {
+      "file": "single_back135.png",
+      "azimuth": 135,
+      "elevation": 15
+    },
+    {
+      "file": "single_back.png",
+      "azimuth": 180,
+      "elevation": 5
+    },
+    {
+      "file": "single_right.png",
+      "azimuth": 270,
+      "elevation": 5
+    }
+  ]
+}

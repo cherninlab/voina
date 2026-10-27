@@ -1,0 +1,21 @@
+{
+  "selected": "triposg_seed42",
+  "attempts": [
+    {
+      "id": "triposg_seed42",
+      "label": "TripoSG \u00b7 single image \u00b7 1.17M",
+      "description": "One front image, TripoSG 1.5B, 75 steps and published 2048-token settings. Original high-density geometry retained; detached fragments removed only."
+    },
+    {
+      "id": "trellis_seed42",
+      "label": "TRELLIS \u00b7 single image \u00b7 617k",
+      "description": "One front image, original TRELLIS-image-large, 75 steps in both generation stages. The reaching fingers still merge."
+    },
+    {
+      "id": "../four_view_reconstruction_v1/trellis_multi42_stochastic_native",
+      "label": "Previous four-image run \u00b7 560k",
+      "description": "Previous TRELLIS four-image result, retained for direct comparison."
+    }
+  ],
+  "limitations": "The single-image TripoSG result has a cleaner hand silhouette than the TRELLIS retries, but fingertips and finger proportions remain imperfect. Face detail is soft and the unseen pose is inferred. TRELLIS.2-4B has not generated this preview; its image encoder still awaits Meta access approval."
+}

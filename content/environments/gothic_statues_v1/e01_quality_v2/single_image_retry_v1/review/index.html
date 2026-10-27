@@ -1,0 +1,26 @@
+<!doctype html><html lang="en"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>E01 · Single-image retry</title>
+<script type="module" src="/static/vendor/model-viewer.min.js"></script>
+<style>
+*{box-sizing:border-box}body{margin:0;background:#1b1d20;color:#e7e2d8;font:15px/1.5 system-ui,sans-serif}main{max-width:1450px;margin:auto;padding:22px}h1{font-size:23px;margin:0 0 6px}p{color:#bfc3c6;margin:8px 0 14px}header{display:flex;gap:16px;justify-content:space-between;align-items:center;flex-wrap:wrap}nav{display:flex;gap:10px;flex-wrap:wrap}a,button,select{background:#303741;border:1px solid #505c69;color:#e7e2d8;padding:9px 13px;border-radius:7px;font:inherit;text-decoration:none}button,select{cursor:pointer}model-viewer{width:100%;height:65vh;min-height:390px;background:#282c31;border-radius:10px;margin-top:12px}.info{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-top:15px}.info img{width:100%;max-width:600px;border-radius:7px}.note{color:#c3beb2}#status{color:#d3dfa6;font-size:14px}details{margin-top:14px}footer{color:#aeb5be;font-size:14px;margin-top:15px}@media(max-width:750px){main{padding:15px}.info{grid-template-columns:1fr}model-viewer{height:53vh}}
+</style>
+<main><header><div><h1>E01 · Single-image retry</h1><p>One approved front image · compare with the previous four-image run.</p></div>
+<nav><label>Attempt <select id="attempt" aria-label="Reconstruction attempt"></select></label><button id="rotate">Auto rotate</button><a id="download" download>Download GLB</a></nav></header>
+<model-viewer id="statue" camera-controls touch-action="pan-y" camera-orbit="-35deg 70deg auto" environment-image="neutral" exposure="1" shadow-intensity="0.6" interaction-prompt="none" alt="Actual single-image statue reconstruction"></model-viewer>
+<span id="status" role="status">Loading reconstruction…</span><p id="description" class="note"></p>
+<div class="info"><div><h2 style="font-size:17px">Source statue image</h2><a href="../../statue_from_rig_v1/front.png"><img src="../../statue_from_rig_v1/front.png" alt="The approved front statue image used for reconstruction"></a></div>
+<div><h2 style="font-size:17px">Inspect the actual geometry</h2><p>Drag to orbit and scroll to zoom. Check the face, raised fingers, supporting palm, leg separation and the back of the tunic. These local reconstruction attempts are available for review; none has been placed into the dungeon.</p><a href="../../four_view_reconstruction_v1/inputs/front_masked.png">Single masked input</a> · <a href="../triposg_seed42/review/single_hand_front.png">TripoSG hand close-up</a><details><summary>Generation receipts</summary><div id="receipts"></div></details><p id="limits"></p></div></div>
+<footer>Preview cleanup removes detached fragments only; raw meshes are retained. A neutral marble material makes surface defects visible. No material bake or game integration is implied.</footer></main>
+<script>
+const viewer=document.querySelector('#statue'),choice=document.querySelector('#attempt'),status=document.querySelector('#status');
+fetch('../review_manifest.json').then(r=>r.json()).then(data=>{
+ document.querySelector('#limits').textContent=data.limitations;
+ for(const item of data.attempts){const option=document.createElement('option');option.value=item.id;option.textContent=item.label;choice.append(option);
+ const p=document.createElement('p'),a=document.createElement('a');a.href='../'+item.id+'/result.json';a.textContent=item.label+' receipt';p.append(a);document.querySelector('#receipts').append(p)}
+ function load(){const item=data.attempts.find(x=>x.id===choice.value);viewer.src='../'+item.id+'/preview.glb';status.textContent='Loading reconstruction…';document.querySelector('#download').href=viewer.src;document.querySelector('#description').textContent=item.description}
+ choice.value=data.selected;choice.onchange=load;load();
+});
+viewer.addEventListener('load',()=>{status.textContent='Actual reconstructed mesh loaded · drag to inspect';window.reconstructionReviewLoaded=true});
+viewer.addEventListener('error',()=>status.textContent='Mesh could not load');
+document.querySelector('#rotate').onclick=e=>{viewer.autoRotate=!viewer.autoRotate;e.target.textContent=viewer.autoRotate?'Stop rotation':'Auto rotate'};
+</script></html>

@@ -1,0 +1,56 @@
+{
+  "model": "microsoft/TRELLIS.2-4B",
+  "revision": "af44b45f2e35a493886929c6d786e563ec68364d",
+  "scope": "512 and 1024/cascade shape-only weights; DINOv3 access still required; no texture weights",
+  "files": [
+    {
+      "file": "pipeline.json",
+      "bytes": 4186
+    },
+    {
+      "file": "README.md",
+      "bytes": 6417
+    },
+    {
+      "file": "ckpts/ss_flow_img_dit_1_3B_64_bf16.json",
+      "bytes": 467
+    },
+    {
+      "file": "ckpts/ss_flow_img_dit_1_3B_64_bf16.safetensors",
+      "bytes": 2584426920
+    },
+    {
+      "file": "ckpts/slat_flow_img2shape_dit_1_3B_512_bf16.json",
+      "bytes": 458
+    },
+    {
+      "file": "ckpts/slat_flow_img2shape_dit_1_3B_512_bf16.safetensors",
+      "bytes": 2584574424
+    },
+    {
+      "file": "ckpts/shape_dec_next_dc_f16c32_fp16.json",
+      "bytes": 678
+    },
+    {
+      "file": "ckpts/shape_dec_next_dc_f16c32_fp16.safetensors",
+      "bytes": 948490494
+    },
+    {
+      "file": "ckpts/slat_flow_img2shape_dit_1_3B_1024_bf16.json",
+      "bytes": 458
+    },
+    {
+      "file": "ckpts/slat_flow_img2shape_dit_1_3B_1024_bf16.safetensors",
+      "bytes": 2584574424
+    }
+  ],
+  "seconds": 357.9321769160015,
+  "runtime_environment": "/Users/theochernin/Projects/CherninLab3D/.venv-trellis2",
+  "runtime": "MLX 0.32.4; isolated environment",
+  "port_revision": "449bfbc011401fe03d684a01f0b1068bfe8f6ceb",
+  "encoder": "facebook/dinov3-vitl16-pretrain-lvd1689m",
+  "encoder_status": "Hugging Face CLI authenticated; official model request still awaiting Meta review (HTTP 403)",
+  "inference_status": "not run; encoder access is required",
+  "parameter_label": "TRELLIS.2-4B, official family name",
+  "weights_total_bytes": 8702078926
+}
