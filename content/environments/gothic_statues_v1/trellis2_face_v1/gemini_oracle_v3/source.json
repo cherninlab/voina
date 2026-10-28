@@ -1,0 +1,11 @@
+{
+  "source": "/Users/theochernin/Downloads/Gemini_Generated_Image_gbe8hkgbe8hkgbe8.jpeg",
+  "sha256": "267da2d0b3b429e7b0ee6e0db67bbd1d056265ea024e7fa1671eb9d108331eb5",
+  "size": [
+    1696,
+    2528
+  ],
+  "source_type": "User supplied Gemini-generated sculpture reference",
+  "preprocessing": "Original RGB retained, black background retained, no part isolation",
+  "model_provenance": "../hunyuan21_oracle_v1/provenance.json"
+}

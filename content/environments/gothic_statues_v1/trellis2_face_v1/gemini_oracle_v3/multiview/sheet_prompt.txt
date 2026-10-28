@@ -1,0 +1,14 @@
+Create ONE very high-resolution square 2x2 orthographic turnaround sheet of the EXACT multicolored plastic female sculpture in the reference. Intended use: four camera-conditioned images for 3D reconstruction. Aim for a native 4096 x 4096 canvas so every quadrant retains fine facial and finger detail.
+
+Reference image 1 is the sole design and pose authority. Preserve this particular face, orange hair with its high rear bun and large descending curls, blue folded gown, shoulder drapes, purple-and-gold geometric belt and bracers, gold-and-purple hem decoration, exposed leg, bare feet, and both relaxed downward hands. There are NO horns. No added objects, pedestal, ornaments or background scenery. Preserve exactly the same limb lengths, body proportions, head turn, hand gesture, bent-knee configuration, forward leg and weight distribution in all four panels.
+
+The four panels are photographs of ONE stationary sculpture from four cameras; only the camera changes. Do not redraw a different pose, mirror the person, switch the forward leg, change which hand has which bracelet, or reverse the garment slit. Fingers form anatomically coherent hands with five digits including a thumb; digits may occlude naturally with camera rotation. Forearm and wrist continuity must remain intact. No floating fingers, duplicate limbs, fused extra hands, broken joints or inconsistent feet.
+
+Exact 2x2 layout:
+top-left = true front view;
+top-right = the sculpture's anatomical left side, camera 90 degrees around from front;
+bottom-left = true back view, 180 degrees;
+bottom-right = anatomical right side, 270 degrees.
+All cameras use the same orthographic magnification, camera elevation, and framing. Show the ENTIRE sculpture, including every hair tip, both hands, the entire gown and both feet, with generous breathing room. Feet sit on the identical floor line within each panel and figure heights match. Side views must be true side profiles, not front three-quarter views. Back view shows the actual back of hair, bun, shoulder drapery and gown. The same physical hair curls, belt, folds and silhouette must continue around the object.
+
+Matte solid blue plastic cloth, orange plastic hair, natural pale peach plastic skin, purple accents and gold trim, matching the reference rather than converting to marble. Soft broad neutral studio lighting with readable sculpted surfaces and restrained highlights, no cinematic shadow or depth of field. Uniform pure BLACK background and black panel gutters. No text, view labels, arrows, captions, logos or watermarks. Clean evenly divided quadrants suitable for exact cutting.

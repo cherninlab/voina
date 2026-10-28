@@ -1,0 +1,136 @@
+{
+  "models": {
+    "hunyuan21_single_s42": {
+      "vertices": 398544,
+      "triangles": 797192,
+      "boundary_edges": 0,
+      "non_manifold_edges": 12,
+      "finite_and_indices_valid": true,
+      "watertight": false,
+      "winding_consistent": true,
+      "transform": {
+        "input_bbox_center": [
+          -0.0001283884048461914,
+          -0.001094907522201538,
+          0.006039097905158997
+        ],
+        "uniform_scale": 0.703180744355845,
+        "translation": [
+          0,
+          0.7,
+          0
+        ]
+      },
+      "changes": "Uniform centering, scale and neutral material only; no repair or simplification",
+      "raw_sha256": "027a96e75f46257d2f07cf7e4e61311b645cf18010582d5d7d71bb4563b0c9d5",
+      "review_sha256": "8ee7884422197410da06231562bf268b251ae5873131e733daf6d09bfbf3a42f"
+    },
+    "multiview/reconstruction_s42": {
+      "vertices": 667244,
+      "triangles": 1334488,
+      "boundary_edges": 0,
+      "non_manifold_edges": 4,
+      "finite_and_indices_valid": true,
+      "watertight": false,
+      "winding_consistent": true,
+      "transform": {
+        "input_bbox_center": [
+          -0.0025829970836639404,
+          -0.0027840137481689453,
+          -0.002518177032470703
+        ],
+        "uniform_scale": 0.7015457475246785,
+        "translation": [
+          0,
+          0.7,
+          0
+        ]
+      },
+      "changes": "Uniform centering, scale and neutral material only; no repair or simplification",
+      "raw_sha256": "b3e270eed17ce349e6d684c41734cdbaf17e0a428064b3a220bec9781a825a83",
+      "review_sha256": "5e7596ea340c4219e8ed3825d2b77d3c081c61e9b926aa82fec3cf7e738b065f"
+    },
+    "multiview/reconstruction_s42_alpha": {
+      "vertices": 317974,
+      "triangles": 635960,
+      "boundary_edges": 0,
+      "non_manifold_edges": 4,
+      "finite_and_indices_valid": true,
+      "watertight": false,
+      "winding_consistent": true,
+      "transform": {
+        "input_bbox_center": [
+          0.0012997984886169434,
+          -0.0021010637283325195,
+          -0.000406116247177124
+        ],
+        "uniform_scale": 0.702152676885622,
+        "translation": [
+          0,
+          0.7,
+          0
+        ]
+      },
+      "changes": "Uniform centering, scale and neutral material only; no repair or simplification",
+      "raw_sha256": "5dfab18e79dc3b16de3a61816f077aa87dd32b500e1619c2ee7e2c13117afbef",
+      "review_sha256": "82f6b3e596dff7d61716f95c1c9c87a59b197056ae369f0eb5530ba44fd8e603"
+    },
+    "multiview/reconstruction_s42/clean": {
+      "finite_and_indices_valid": true,
+      "vertices": 331914,
+      "triangles": 663836,
+      "boundary_edges": 0,
+      "non_manifold_edges": 4,
+      "winding_consistent": true,
+      "watertight": false,
+      "retained_vertex_max_distance_from_original": 0.0,
+      "review_sha256": "c64cdf561e9f2c15fee2d9badbafe8ee4a03e976b3e5297da657a1ceb9f05214"
+    },
+    "multiview/reconstruction_s42_alpha_head": {
+      "vertices": 650040,
+      "triangles": 1300094,
+      "boundary_edges": 0,
+      "non_manifold_edges": 2,
+      "finite_and_indices_valid": true,
+      "watertight": false,
+      "winding_consistent": true,
+      "transform": {
+        "input_bbox_center": [
+          0.001284480094909668,
+          -0.0042039453983306885,
+          -0.009646773338317871
+        ],
+        "uniform_scale": 0.2759500061530107,
+        "translation": [
+          0.0,
+          1.13,
+          0.0
+        ]
+      },
+      "changes": "Uniform centering, scale and neutral material only; no repair or simplification",
+      "raw_sha256": "c6eac4fc0ff79f3dee5944d6049d81cdf4f7972761e8833982bac1edc3d3c4e5",
+      "review_sha256": "451099524f585d6497b25acdbbe2103ed588f9168bafb7247c156d9857273384"
+    }
+  },
+  "user_approved_four_generated_views": true,
+  "engine_placement": false,
+  "mesh_visual_acceptance": false,
+  "textures_generated": false,
+  "checks": {
+    "model_files_match_recorded_sha256": true,
+    "four_input_views_jointly_conditioned": true,
+    "preflight_receipt": "multiview/preflight/receipt.json",
+    "godot_editor_import": "checks/godot_editor_import_final.txt",
+    "network_smoke": "checks/smoke.txt",
+    "approved_input_hashes_match": true,
+    "prepared_alpha_input_hashes_match": true,
+    "http_resources_verified": 43,
+    "browser_all_five_variants_loaded": true,
+    "head_hand_controls_disabled": true,
+    "browser_screenshots": [
+      "review/browser_multiview_full.png",
+      "review/browser_head.png"
+    ],
+    "smoke_warnings": "ObjectDB leaks reported at test exit; smoke suite passed. No statue acceptance inferred."
+  }
+}

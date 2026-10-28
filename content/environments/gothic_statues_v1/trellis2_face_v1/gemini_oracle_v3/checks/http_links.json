@@ -1,0 +1,220 @@
+{
+  "all_passed": true,
+  "resources": [
+    {
+      "path": "README.md",
+      "status": 200,
+      "bytes": "8536"
+    },
+    {
+      "path": "comparison.json",
+      "status": 200,
+      "bytes": "4661"
+    },
+    {
+      "path": "hunyuan21_single_s42/receipt.json",
+      "status": 200,
+      "bytes": "1974"
+    },
+    {
+      "path": "hunyuan21_single_s42/review.glb",
+      "status": 200,
+      "bytes": "19132704"
+    },
+    {
+      "path": "hunyuan21_single_s42/review/face.png",
+      "status": 200,
+      "bytes": "695156"
+    },
+    {
+      "path": "hunyuan21_single_s42/review/left_hand.png",
+      "status": 200,
+      "bytes": "666980"
+    },
+    {
+      "path": "hunyuan21_single_s42/review/right_hand.png",
+      "status": 200,
+      "bytes": "714171"
+    },
+    {
+      "path": "multiview/back.png",
+      "status": 200,
+      "bytes": "978598"
+    },
+    {
+      "path": "multiview/back_prompt.txt",
+      "status": 200,
+      "bytes": "2177"
+    },
+    {
+      "path": "multiview/front.png",
+      "status": 200,
+      "bytes": "920969"
+    },
+    {
+      "path": "multiview/front_prompt.txt",
+      "status": 200,
+      "bytes": "2139"
+    },
+    {
+      "path": "multiview/inputs.json",
+      "status": 200,
+      "bytes": "3550"
+    },
+    {
+      "path": "multiview/inputs_alpha/front.png",
+      "status": 200,
+      "bytes": "1056960"
+    },
+    {
+      "path": "multiview/inputs_alpha_head/front.png",
+      "status": 200,
+      "bytes": "377387"
+    },
+    {
+      "path": "multiview/left.png",
+      "status": 200,
+      "bytes": "868275"
+    },
+    {
+      "path": "multiview/left_prompt.txt",
+      "status": 200,
+      "bytes": "2157"
+    },
+    {
+      "path": "multiview/licenses/MODEL_LICENSE",
+      "status": 200,
+      "bytes": "17828"
+    },
+    {
+      "path": "multiview/model.json",
+      "status": 200,
+      "bytes": "992"
+    },
+    {
+      "path": "multiview/preflight/receipt.json",
+      "status": 200,
+      "bytes": "1405"
+    },
+    {
+      "path": "multiview/reconstruction_s42/clean/receipt.json",
+      "status": 200,
+      "bytes": "840"
+    },
+    {
+      "path": "multiview/reconstruction_s42/clean/review.glb",
+      "status": 200,
+      "bytes": "15933108"
+    },
+    {
+      "path": "multiview/reconstruction_s42/clean/review/face.png",
+      "status": 200,
+      "bytes": "699523"
+    },
+    {
+      "path": "multiview/reconstruction_s42/clean/review/left_hand.png",
+      "status": 200,
+      "bytes": "667842"
+    },
+    {
+      "path": "multiview/reconstruction_s42/clean/review/right_hand.png",
+      "status": 200,
+      "bytes": "662961"
+    },
+    {
+      "path": "multiview/reconstruction_s42/receipt.json",
+      "status": 200,
+      "bytes": "1678"
+    },
+    {
+      "path": "multiview/reconstruction_s42/review.glb",
+      "status": 200,
+      "bytes": "32029016"
+    },
+    {
+      "path": "multiview/reconstruction_s42/review/face.png",
+      "status": 200,
+      "bytes": "692410"
+    },
+    {
+      "path": "multiview/reconstruction_s42/review/left_hand.png",
+      "status": 200,
+      "bytes": "660333"
+    },
+    {
+      "path": "multiview/reconstruction_s42/review/right_hand.png",
+      "status": 200,
+      "bytes": "677982"
+    },
+    {
+      "path": "multiview/reconstruction_s42_alpha/receipt.json",
+      "status": 200,
+      "bytes": "2194"
+    },
+    {
+      "path": "multiview/reconstruction_s42_alpha/review.glb",
+      "status": 200,
+      "bytes": "15264244"
+    },
+    {
+      "path": "multiview/reconstruction_s42_alpha/review/face.png",
+      "status": 200,
+      "bytes": "697339"
+    },
+    {
+      "path": "multiview/reconstruction_s42_alpha/review/left_hand.png",
+      "status": 200,
+      "bytes": "669215"
+    },
+    {
+      "path": "multiview/reconstruction_s42_alpha/review/right_hand.png",
+      "status": 200,
+      "bytes": "673241"
+    },
+    {
+      "path": "multiview/reconstruction_s42_alpha_head/receipt.json",
+      "status": 200,
+      "bytes": "2268"
+    },
+    {
+      "path": "multiview/reconstruction_s42_alpha_head/review.glb",
+      "status": 200,
+      "bytes": "31203436"
+    },
+    {
+      "path": "multiview/reconstruction_s42_alpha_head/review/face.png",
+      "status": 200,
+      "bytes": "745325"
+    },
+    {
+      "path": "multiview/reconstruction_s42_alpha_head/review/face45.png",
+      "status": 200,
+      "bytes": "731512"
+    },
+    {
+      "path": "multiview/reconstruction_s42_alpha_head/review/head_back.png",
+      "status": 200,
+      "bytes": "718236"
+    },
+    {
+      "path": "multiview/right.png",
+      "status": 200,
+      "bytes": "743001"
+    },
+    {
+      "path": "multiview/right_prompt.txt",
+      "status": 200,
+      "bytes": "2159"
+    },
+    {
+      "path": "review/index.html",
+      "status": 200,
+      "bytes": "5866"
+    },
+    {
+      "path": "source.jpg",
+      "status": 200,
+      "bytes": "1621221"
+    }
+  ]
+}

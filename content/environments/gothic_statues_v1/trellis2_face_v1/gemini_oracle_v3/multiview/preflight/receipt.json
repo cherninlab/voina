@@ -1,0 +1,69 @@
+{
+  "status": "complete",
+  "model": "tencent/Hunyuan3D-2mv",
+  "revision": "3a761b539b29fe4ff64714813aa9560fd66f5de0",
+  "checkpoint_sha256": "d36f5881bcdc56726b73e517cd444c13c60732431622da7268145355c8d38e9c",
+  "mode": "preflight",
+  "inference_location": "Local Mac MPS",
+  "torch": "2.14.1",
+  "input_views": [
+    "front",
+    "left",
+    "back",
+    "right"
+  ],
+  "geometry_generated": false,
+  "components": {
+    "model": {
+      "device": "mps:0",
+      "dtype": "torch.float16",
+      "parameters": 1113274432,
+      "active_missing_keys": [],
+      "unused_encoder_keys_omitted": 0,
+      "shape_mismatches": []
+    },
+    "vae": {
+      "device": "mps:0",
+      "dtype": "torch.float16",
+      "parameters": 327745153,
+      "active_missing_keys": [],
+      "unused_encoder_keys_omitted": 144,
+      "shape_mismatches": []
+    },
+    "conditioner": {
+      "device": "mps:0",
+      "dtype": "torch.float16",
+      "parameters": 1136480768,
+      "active_missing_keys": [],
+      "unused_encoder_keys_omitted": 0,
+      "shape_mismatches": []
+    }
+  },
+  "prepared_image_shape": [
+    1,
+    4,
+    3,
+    512,
+    512
+  ],
+  "camera_indices": [
+    [
+      0,
+      1,
+      2,
+      3
+    ]
+  ],
+  "joint_condition_shape": [
+    2,
+    5480,
+    1536
+  ],
+  "denoiser_output_shape": [
+    2,
+    3072,
+    64
+  ],
+  "joint_four_view_forward_finite": true,
+  "seconds": 15.121191583020845
+}

@@ -1,0 +1,29 @@
+SDF.R: Loader Marker V16.2.2 (__init__.py loaded from: /Users/theochernin/Library/Application Support/Blender/5.2/scripts/addons/rust_gpu_sdf_addon/__init__.py)
+SDF.R: --- Initializing GPU Engine (V16.2.2) ---
+SDF.R: No shader cache. This initial compilation may take a few minutes...
+SDF.R: Addon registered. Warming-up will start in 0.5s...
+01:21:57 | INFO: Data are loaded, start creating Blender stuff
+01:21:57 | INFO: Blender create Mesh node geometry_0
+01:21:58 | INFO: glTF import finished in 0.41s
+/Users/theochernin/Projects/MultiPlayerProject-agents/theo-codex-43/content/environments/gothic_statues_v1/e01_crawling_v1/render_review.py:26: DeprecationWarning: 'Material.use_nodes' is expected to be removed in Blender 6.0
+  material=bpy.data.materials.new('Neutral limestone geometry review');material.use_nodes=True
+/Users/theochernin/Projects/MultiPlayerProject-agents/theo-codex-43/content/environments/gothic_statues_v1/e01_crawling_v1/render_review.py:39: DeprecationWarning: 'World.use_nodes' is expected to be removed in Blender 6.0
+  scene.world=bpy.data.worlds.new('Review world');scene.world.use_nodes=True
+00:03.025  render           | Saved: '/Users/theochernin/Projects/MultiPlayerProject-agents/theo-codex-43/content/environments/gothic_statues_v1/trellis2_face_v1/gemini_oracle_v3/multiview/reconstruction_s42_alpha/review/alpha_hero.png'
+00:05.141  render           | Saved: '/Users/theochernin/Projects/MultiPlayerProject-agents/theo-codex-43/content/environments/gothic_statues_v1/trellis2_face_v1/gemini_oracle_v3/multiview/reconstruction_s42_alpha/review/alpha_front.png'
+00:07.169  render           | Saved: '/Users/theochernin/Projects/MultiPlayerProject-agents/theo-codex-43/content/environments/gothic_statues_v1/trellis2_face_v1/gemini_oracle_v3/multiview/reconstruction_s42_alpha/review/alpha_front45.png'
+00:08.938  render           | Saved: '/Users/theochernin/Projects/MultiPlayerProject-agents/theo-codex-43/content/environments/gothic_statues_v1/trellis2_face_v1/gemini_oracle_v3/multiview/reconstruction_s42_alpha/review/alpha_left.png'
+00:10.945  render           | Saved: '/Users/theochernin/Projects/MultiPlayerProject-agents/theo-codex-43/content/environments/gothic_statues_v1/trellis2_face_v1/gemini_oracle_v3/multiview/reconstruction_s42_alpha/review/alpha_back135.png'
+00:12.981  render           | Saved: '/Users/theochernin/Projects/MultiPlayerProject-agents/theo-codex-43/content/environments/gothic_statues_v1/trellis2_face_v1/gemini_oracle_v3/multiview/reconstruction_s42_alpha/review/alpha_back.png'
+00:14.813  render           | Saved: '/Users/theochernin/Projects/MultiPlayerProject-agents/theo-codex-43/content/environments/gothic_statues_v1/trellis2_face_v1/gemini_oracle_v3/multiview/reconstruction_s42_alpha/review/alpha_right.png'
+REVIEW_RENDER_OK
+00:19.419  render           | Saved: '/Users/theochernin/Projects/MultiPlayerProject-agents/theo-codex-43/content/environments/gothic_statues_v1/trellis2_face_v1/gemini_oracle_v3/multiview/reconstruction_s42_alpha/review/face.png'
+00:23.771  render           | Saved: '/Users/theochernin/Projects/MultiPlayerProject-agents/theo-codex-43/content/environments/gothic_statues_v1/trellis2_face_v1/gemini_oracle_v3/multiview/reconstruction_s42_alpha/review/face45.png'
+00:28.412  render           | Saved: '/Users/theochernin/Projects/MultiPlayerProject-agents/theo-codex-43/content/environments/gothic_statues_v1/trellis2_face_v1/gemini_oracle_v3/multiview/reconstruction_s42_alpha/review/left_hand.png'
+00:32.739  render           | Saved: '/Users/theochernin/Projects/MultiPlayerProject-agents/theo-codex-43/content/environments/gothic_statues_v1/trellis2_face_v1/gemini_oracle_v3/multiview/reconstruction_s42_alpha/review/right_hand.png'
+00:36.387  render           | Saved: '/Users/theochernin/Projects/MultiPlayerProject-agents/theo-codex-43/content/environments/gothic_statues_v1/trellis2_face_v1/gemini_oracle_v3/multiview/reconstruction_s42_alpha/review/head_back.png'
+00:40.927  render           | Saved: '/Users/theochernin/Projects/MultiPlayerProject-agents/theo-codex-43/content/environments/gothic_statues_v1/trellis2_face_v1/gemini_oracle_v3/multiview/reconstruction_s42_alpha/review/feet.png'
+GEMINI_SCULPTURE_REVIEW_OK
+Blender 5.2.2 LTS (hash d13f752e3b9c built 2026-09-15 01:49:19)
+
+Blender quit

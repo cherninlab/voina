@@ -1,0 +1,52 @@
+{
+  "status": "complete",
+  "model": "tencent/Hunyuan3D-2.1",
+  "model_revision": "0b94677654c57bb9a6b6845cd7b704ccf551d327",
+  "checkpoint": "/Users/theochernin/Projects/CherninLab3D/models/Hunyuan3D-2.1/hunyuan3d-dit-v2-1/model.fp16.ckpt",
+  "device_requested": "mps",
+  "inference_location": "local Mac; no hosted inference",
+  "torch": "2.14.1",
+  "architecture": "arm64",
+  "steps": 50,
+  "guidance_scale": 5.0,
+  "octree_resolution": 384,
+  "query_chunk": 8000,
+  "seed": 42,
+  "dtype": "float16",
+  "texture_stage": false,
+  "mask_method": "Original RGB image with its black background; no matting",
+  "upstream_revision": "82920d643c0dc2f7bfd7255f45f62d386edfe60c",
+  "compat_revision": "6f4b63bd6419406f40291bca23a7c849bcaae2a3",
+  "checkpoint_sha256": "6b519fc7242f78e9b5f47ea4d55668fe3d944a2d27332f4ca68d29a6ff603f5e",
+  "config_sha256": "a9e9b66f0163a9b827d730633ac88f47fcc8e3071dcbb9ee12d88ef7537c5c6e",
+  "source_sha256": "267da2d0b3b429e7b0ee6e0db67bbd1d056265ea024e7fa1671eb9d108331eb5",
+  "backend_description": "backend=mps device=mps dtype=float16 raster=torch gpu=Apple Silicon (arm64), 51.8 GiB [torch 2.14.1]",
+  "scheduler_compat_patch": true,
+  "input_sha256": "5362c8723c0435834c6d2db2e6ed6fbcbe5c8e6dec91896533aae1418a102f28",
+  "wall_seconds": 142.95092083400232,
+  "components": {
+    "model": {
+      "device": "mps:0",
+      "dtype": "torch.float16",
+      "parameters": 3050758720
+    },
+    "vae": {
+      "device": "mps:0",
+      "dtype": "torch.float16",
+      "parameters": 327746177
+    },
+    "conditioner": {
+      "device": "mps:0",
+      "dtype": "torch.float16",
+      "parameters": 304368640
+    }
+  },
+  "load_seconds": 18.507134084007703,
+  "sampling_step": 50,
+  "inference_seconds": 124.43441920800251,
+  "vertices": 398544,
+  "triangles": 797192,
+  "output_sha256": "027a96e75f46257d2f07cf7e4e61311b645cf18010582d5d7d71bb4563b0c9d5",
+  "mps_allocated_gib": 6.860071659088135,
+  "mps_driver_allocated_gib": 10.064163208007812
+}

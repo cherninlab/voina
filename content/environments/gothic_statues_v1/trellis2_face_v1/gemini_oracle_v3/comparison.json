@@ -1,0 +1,125 @@
+{
+  "selected": "multi_alpha",
+  "variants": [
+    {
+      "id": "single",
+      "label": "Single image \u00b7 Hunyuan3D-2.1",
+      "mesh": "../hunyuan21_single_s42/review.glb",
+      "images": "../hunyuan21_single_s42/review/",
+      "input": "../source.jpg",
+      "receipt": "../hunyuan21_single_s42/receipt.json",
+      "triangles": 797192,
+      "note": "Pose and clothing retained; face and hands remain soft.",
+      "method": "Original supplied 1696\u00d72528 RGB image, black background retained.",
+      "cameras": {
+        "left": [
+          "-.26m .79m .03m",
+          "0deg 82deg .68m"
+        ],
+        "right": [
+          ".10m .71m .10m",
+          "0deg 82deg .68m"
+        ]
+      },
+      "input_title": "Supplied Gemini image"
+    },
+    {
+      "id": "multi_alpha",
+      "label": "Four views \u00b7 Hunyuan3D-2mv \u00b7 background alpha",
+      "mesh": "../multiview/reconstruction_s42_alpha/review.glb",
+      "images": "../multiview/reconstruction_s42_alpha/review/",
+      "input": "../multiview/inputs_alpha/front.png",
+      "receipt": "../multiview/reconstruction_s42_alpha/receipt.json",
+      "triangles": 635960,
+      "note": "Background-only transparency removed the detached side planes. Face and fingers remain too soft; mesh is not accepted as a finished asset.",
+      "method": "Front/left/back/right approved images; only border-connected near-black background made transparent. No part masks.",
+      "cameras": {
+        "left": [
+          "-.23m .84m .10m",
+          "0deg 82deg .68m"
+        ],
+        "right": [
+          ".23m .80m .10m",
+          "0deg 82deg .68m"
+        ]
+      },
+      "input_title": "Front of four approved inputs"
+    },
+    {
+      "id": "multi_clean",
+      "label": "Four views \u00b7 RGB \u00b7 detached planes removed",
+      "mesh": "../multiview/reconstruction_s42/clean/review.glb",
+      "images": "../multiview/reconstruction_s42/clean/review/",
+      "input": "../multiview/front.png",
+      "receipt": "../multiview/reconstruction_s42/clean/receipt.json",
+      "triangles": 663836,
+      "note": "Only the two detached full-height side planes were removed. Fine facial and finger geometry is still soft.",
+      "method": "Same joint four-view RGB reconstruction as the raw option, with isolated side-plane components removed.",
+      "cameras": {
+        "left": [
+          "-.23m .84m .10m",
+          "0deg 82deg .68m"
+        ],
+        "right": [
+          ".23m .80m .10m",
+          "0deg 82deg .68m"
+        ]
+      },
+      "input_title": "Front of four approved inputs"
+    },
+    {
+      "id": "multi_raw",
+      "label": "Four views \u00b7 RGB \u00b7 raw output",
+      "mesh": "../multiview/reconstruction_s42/review.glb",
+      "images": "../multiview/reconstruction_s42/review/",
+      "input": "../multiview/front.png",
+      "receipt": "../multiview/reconstruction_s42/receipt.json",
+      "triangles": 1334488,
+      "note": "Unfiltered output includes two extraneous side planes, seen edge-on as vertical strips.",
+      "method": "Four approved 1024\u00d71536 RGB images with the original black backgrounds. Shared latent reconstruction.",
+      "cameras": {
+        "left": [
+          "-.23m .84m .10m",
+          "0deg 82deg .68m"
+        ],
+        "right": [
+          ".23m .80m .10m",
+          "0deg 82deg .68m"
+        ]
+      },
+      "input_title": "Front of four approved inputs"
+    },
+    {
+      "id": "head_multi",
+      "label": "Head and shoulders \u00b7 four-view crop",
+      "mesh": "../multiview/reconstruction_s42_alpha_head/review.glb",
+      "images": "../multiview/reconstruction_s42_alpha_head/review/",
+      "input": "../multiview/inputs_alpha_head/front.png",
+      "input_title": "Frontal crop of approved input",
+      "receipt": "../multiview/reconstruction_s42_alpha_head/receipt.json",
+      "triangles": 1300094,
+      "note": "The crop restores identifiable eyes, nose and mouth, but distorted creases remain around the eyelids and mouth. Separate bust; not attached to the body or accepted as a finished asset.",
+      "method": "Same four views cropped at identical native 584\u00d7550 rectangles. Background-only alpha retained. More conditioning and shape capacity allocated to the head.",
+      "cameras": {},
+      "no_hands": true,
+      "default_view": "face",
+      "details": [
+        [
+          "face.png",
+          "Face"
+        ],
+        [
+          "face45.png",
+          "Three-quarter"
+        ],
+        [
+          "head_back.png",
+          "Back of head"
+        ]
+      ]
+    }
+  ],
+  "reference_images_approved": true,
+  "mesh_art_acceptance": false,
+  "textures_generated": false
+}

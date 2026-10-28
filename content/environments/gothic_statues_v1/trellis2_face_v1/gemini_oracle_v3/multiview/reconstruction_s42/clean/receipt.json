@@ -1,0 +1,37 @@
+{
+  "method": "Remove only two detached full-height side planes; retain every other component. No vertex displacement, smoothing or remeshing.",
+  "removed": [
+    {
+      "component": 0,
+      "triangles": 335448,
+      "extents": [
+        0.008183389902114868,
+        1.3994728061952628,
+        0.7976425290107727
+      ],
+      "center": [
+        -0.43937282264232635,
+        0.7000622285704594,
+        -0.00011494755744934082
+      ]
+    },
+    {
+      "component": 5,
+      "triangles": 335204,
+      "extents": [
+        0.00825721025466919,
+        1.3992979063186795,
+        0.7982566952705383
+      ],
+      "center": [
+        0.4393359124660492,
+        0.7001190417213365,
+        0.0
+      ]
+    }
+  ],
+  "original_triangles": 1334488,
+  "triangles": 663836,
+  "removed_triangles": 670652,
+  "source": "../review.glb"
+}

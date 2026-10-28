@@ -1,0 +1,21 @@
+{
+  "status": "Approved four-view reconstruction and comparison completed",
+  "sheet_native_size": [
+    1254,
+    1254
+  ],
+  "per_view_size": [
+    627,
+    627
+  ],
+  "views": [
+    "front",
+    "left",
+    "back",
+    "right"
+  ],
+  "finding": "Final approved inputs are four separate native 1024x1536 images; the 1254px draft sheet and its 627px quadrants were not used for reconstruction.",
+  "image_approval": "User approved all four generated views before reconstruction",
+  "input_manifest": "inputs.json",
+  "mesh_art_acceptance": false
+}

@@ -1,0 +1,65 @@
+{
+  "status": "complete",
+  "model": "tencent/Hunyuan3D-2mv",
+  "revision": "3a761b539b29fe4ff64714813aa9560fd66f5de0",
+  "checkpoint_sha256": "d36f5881bcdc56726b73e517cd444c13c60732431622da7268145355c8d38e9c",
+  "mode": "reconstruct",
+  "inference_location": "Local Mac MPS",
+  "torch": "2.14.1",
+  "input_views": [
+    "front",
+    "left",
+    "back",
+    "right"
+  ],
+  "geometry_generated": true,
+  "background": "alpha",
+  "components": {
+    "model": {
+      "device": "mps:0",
+      "dtype": "torch.float16",
+      "parameters": 1113274432,
+      "active_missing_keys": [],
+      "unused_encoder_keys_omitted": 0,
+      "shape_mismatches": []
+    },
+    "vae": {
+      "device": "mps:0",
+      "dtype": "torch.float16",
+      "parameters": 327745153,
+      "active_missing_keys": [],
+      "unused_encoder_keys_omitted": 144,
+      "shape_mismatches": []
+    },
+    "conditioner": {
+      "device": "mps:0",
+      "dtype": "torch.float16",
+      "parameters": 1136480768,
+      "active_missing_keys": [],
+      "unused_encoder_keys_omitted": 0,
+      "shape_mismatches": []
+    }
+  },
+  "steps": 50,
+  "guidance": 5,
+  "seed": 42,
+  "octree_resolution": 384,
+  "query_chunk": 8000,
+  "input_sha256": {
+    "front": "235b39446fc42f9d438c06c3b5093653e858c63a84298d0dcac7e55918231094",
+    "left": "6adc7932ffea0ad54c868e40c1fa23a0f1cade9ab93a629fc595d7fa3b9d6f38",
+    "back": "8db4541805614fefa666d770a9e72b9c080e987936790f5610d50861a639b210",
+    "right": "c19482bf2bb98a597fd7e4edd1c0f2682f2a3763ec5ed9ef91dd19d4b5bde05c"
+  },
+  "prepared_input_sha256": {
+    "front": "36c1d0f027036947fa6500efe3e8d815fa56a28560400b04eeb57adc454c09b3",
+    "left": "292aa5afef28e5dc99e91794a0c23d7496a41f86cc63da088021600100f54a48",
+    "back": "6121c0e47388f60abf3ab30a334325fae8a0c9891aefbfd6ec8c98be55faaec8",
+    "right": "b2d758d3a45b4ed15cc8c9093a6731aa6bd6e93007c563ddf7f1b6a1adc9a61b"
+  },
+  "matting": "Only border-connected near-black background (maxRGB<=24) made transparent; interior dark details retained; no part masks",
+  "sampling_step": 50,
+  "seconds": 177.49927966599353,
+  "triangles": 635960,
+  "output_sha256": "5dfab18e79dc3b16de3a61816f077aa87dd32b500e1619c2ee7e2c13117afbef"
+}

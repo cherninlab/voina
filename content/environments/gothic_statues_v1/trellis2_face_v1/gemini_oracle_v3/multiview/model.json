@@ -1,0 +1,15 @@
+{
+  "repo_id": "tencent/Hunyuan3D-2mv",
+  "revision": "3a761b539b29fe4ff64714813aa9560fd66f5de0",
+  "checkpoint": "/Users/theochernin/Projects/CherninLab3D/models/Hunyuan3D-2mv/hunyuan3d-dit-v2-mv/model.fp16.safetensors",
+  "bytes": 4928151562,
+  "sha256": "d36f5881bcdc56726b73e517cd444c13c60732431622da7268145355c8d38e9c",
+  "lfs_hash_verified": true,
+  "original_config_sha256": "315fd5bf601d1d103130b9fda202f1bd28eda495e68ed1621bc823d5519c5e5b",
+  "derived_config_sha256": "2600a372e7bbe1b740add43497516297d251f77c18faf227b590b3c751fa6a3f",
+  "config_change": "Import namespace hy3dgen.shapegen -> hy3dshape; all model parameters unchanged",
+  "runtime": "Official Hunyuan3D-2.1 backward-compatible modules with the existing Mac compatibility wrapper",
+  "model_role": "Dedicated multiview geometry checkpoint; not the single-image 2.1 checkpoint",
+  "runtime_source_revision": "82920d643c0dc2f7bfd7255f45f62d386edfe60c",
+  "compat_revision": "6f4b63bd6419406f40291bca23a7c849bcaae2a3"
+}

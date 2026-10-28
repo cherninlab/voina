@@ -1,0 +1,105 @@
+{
+  "views": {
+    "front": {
+      "generated_file": "/Users/theochernin/.codex/generated_images/01a16f6c-7c14-7a41-a209-467058cf0e62/exec-7f661f92-24c9-4507-aca5-a0e1b0419b0b.png",
+      "native_size": [
+        1024,
+        1536
+      ],
+      "foreground_bbox": [
+        159,
+        11,
+        828,
+        1480
+      ],
+      "uniform_scale": 0.9407760381211708,
+      "prepared_size": [
+        1024,
+        1536
+      ],
+      "floor_y": 1459,
+      "generated_sha256": "709a67b79f2f93794f405061c07d32ed244415517e05012aee6cea8ad11fd774",
+      "input_sha256": "235b39446fc42f9d438c06c3b5093653e858c63a84298d0dcac7e55918231094",
+      "preprocessing": "Uniform framing only; RGB/black background retained; no alpha or color part mask; no upscaling"
+    },
+    "left": {
+      "generated_file": "/Users/theochernin/.codex/generated_images/01a16f6c-7c14-7a41-a209-467058cf0e62/exec-8dcade02-9c63-4978-8c15-4e6fc704d5d9.png",
+      "native_size": [
+        1024,
+        1536
+      ],
+      "foreground_bbox": [
+        230,
+        20,
+        829,
+        1453
+      ],
+      "uniform_scale": 0.9644103279832519,
+      "prepared_size": [
+        1024,
+        1536
+      ],
+      "floor_y": 1459,
+      "generated_sha256": "8165c093f7a508ee209d34824f8b96ce01d946c1615c7a313a7ac630b504fcd5",
+      "input_sha256": "6adc7932ffea0ad54c868e40c1fa23a0f1cade9ab93a629fc595d7fa3b9d6f38",
+      "preprocessing": "Uniform framing only; RGB/black background retained; no alpha or color part mask; no upscaling"
+    },
+    "back": {
+      "generated_file": "/Users/theochernin/.codex/generated_images/01a16f6c-7c14-7a41-a209-467058cf0e62/exec-57aaa957-204c-479b-bcb7-9d993bd603f8.png",
+      "native_size": [
+        1024,
+        1536
+      ],
+      "foreground_bbox": [
+        181,
+        18,
+        845,
+        1438
+      ],
+      "uniform_scale": 0.9732394366197183,
+      "prepared_size": [
+        1024,
+        1536
+      ],
+      "floor_y": 1459,
+      "generated_sha256": "55cc3bf0b54c95c60c2308f5dd85310e52ab2e7895a806fd779f3a2474a4475b",
+      "input_sha256": "8db4541805614fefa666d770a9e72b9c080e987936790f5610d50861a639b210",
+      "preprocessing": "Uniform framing only; RGB/black background retained; no alpha or color part mask; no upscaling"
+    },
+    "right": {
+      "generated_file": "/Users/theochernin/.codex/generated_images/01a16f6c-7c14-7a41-a209-467058cf0e62/exec-c1100c2d-e72c-42ce-a600-18f1bca06aca.png",
+      "native_size": [
+        1024,
+        1536
+      ],
+      "foreground_bbox": [
+        178,
+        14,
+        779,
+        1487
+      ],
+      "uniform_scale": 0.9382213170400543,
+      "prepared_size": [
+        1024,
+        1536
+      ],
+      "floor_y": 1459,
+      "generated_sha256": "96495b4dba79df19ec0bdcc671e814ed74ab94269539113c980e9bef05b2b465",
+      "input_sha256": "c19482bf2bb98a597fd7e4edd1c0f2682f2a3763ec5ed9ef91dd19d4b5bde05c",
+      "preprocessing": "Uniform framing only; RGB/black background retained; no alpha or color part mask; no upscaling"
+    }
+  },
+  "generation": "Built-in imagegen, individual views anchored to supplied Gemini image and draft turnaround",
+  "status": "Approved by user for multiview reconstruction",
+  "consistency_limits": "Generated back/side details are inferred; small fold, trim and finger differences remain. These are not measured photographs of a shared physical object.",
+  "user_approval": {
+    "answer": "Approve these four views",
+    "date": "2026-10-28",
+    "scope": [
+      "front",
+      "left",
+      "back",
+      "right"
+    ]
+  }
+}

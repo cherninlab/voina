@@ -1,0 +1,11 @@
+{
+  "finite_and_indices_valid": true,
+  "vertices": 331914,
+  "triangles": 663836,
+  "boundary_edges": 0,
+  "non_manifold_edges": 4,
+  "winding_consistent": true,
+  "watertight": false,
+  "retained_vertex_max_distance_from_original": 0.0,
+  "review_sha256": "c64cdf561e9f2c15fee2d9badbafe8ee4a03e976b3e5297da657a1ceb9f05214"
+}
