@@ -1,0 +1,22 @@
+{
+  "model-00001-of-00002.safetensors": {
+    "rfilename": "model-00001-of-00002.safetensors",
+    "blobId": "7ccddde7d2a68c18623ed36c103ebc8f6d5e2d61",
+    "size": 5357396433,
+    "lfs": {
+      "sha256": "dd06e8b7caa9ca70bd27eaf4837261d4fa9d51baf3b55f0369d500194ef0e137",
+      "size": 5357396433,
+      "pointerSize": 135
+    }
+  },
+  "model-00002-of-00002.safetensors": {
+    "rfilename": "model-00002-of-00002.safetensors",
+    "blobId": "915edd23c17415f119734b35800211573d67f489",
+    "size": 4800896668,
+    "lfs": {
+      "sha256": "1e748cac7c7c4378db99d6cd68d6e3760a10d707757a8036443e8b4f22914f01",
+      "size": 4800896668,
+      "pointerSize": 135
+    }
+  }
+}

@@ -1,0 +1,63 @@
+SPARC3D
+Copyright 2026 The SPARC3D Authors
+
+This product includes software developed by third parties. The following
+components are redistributed under their own licenses, reproduced in full in
+THIRD_PARTY_LICENSES.md:
+
+  * Microsoft TRELLIS (MIT License)
+    Copyright (c) Microsoft Corporation.
+    https://github.com/microsoft/TRELLIS
+
+  * Pointcept / Point Transformer V3 (MIT License)
+    Copyright (c) 2023 Pointcept
+    https://github.com/Pointcept/Pointcept
+
+  * O-CNN, ocnn-pytorch (MIT License)
+    Copyright (c) 2022 Peng-Shuai Wang <wangps@hotmail.com>
+    https://github.com/octree-nn/ocnn-pytorch
+
+  * NVIDIA FlexiCubes (Apache License 2.0)
+    Copyright (c) 2025 NVIDIA CORPORATION & AFFILIATES
+    https://github.com/nv-tlabs/FlexiCubes
+    License also included at sparc3d/ops/flexicubes/LICENSE.txt
+
+GPU surface voxelization in sparc3d/ops descends from the PyTorch extension
+written by Zhihao Li; see AUTHORS.
+
+
+Hi3D v1.0
+---------
+Hi3D v1.0 includes the SPARC3D inference implementation. Original copyright,
+attribution, license texts, and per-file modification notices are retained.
+The Python package and API names are sparc3d / Sparc3DPipeline.
+
+Hunyuan3D is referenced only by an optional coarse-mesh example adapter. Tencent's
+Hunyuan3D implementation and weights are not bundled with or relicensed by this
+distribution. External image encoders and any separately obtained model weights
+retain their own terms. See THIRD_PARTY_LICENSES.md for the source and model
+license index.
+
+
+Hi3D Open License Agreement Version 1.0 notice
+--------------------------------------------
+The following notice applies to the Hi3D Materials identified in Schedule 2 of
+LICENSE, only to the extent OCEANO HK HOLDING LIMITED owns or is authorized to
+license them. It does not replace the original third-party notices above or
+extend the Agreement to Excluded Materials. See THIRD_PARTY_LICENSES.md.
+
+Hi3D is licensed under the Hi3D Open License Agreement Version 1.0. Copyright © 2026 OCEANO HK HOLDING LIMITED. All rights not expressly granted are reserved. The Hi3D trademarks are owned by OCEANO HK HOLDING LIMITED or its applicable affiliate(s).
+
+MLX conversion (mlx-vlm ``hi3d``)
+---------------------------------
+This bundle is an unofficial MLX conversion of hi3d-official/Hi3Dv1.0
+(revision 705fc0901c5d896cdcbf1dbf1feaa173e62bdd3a). The Hi3D weights in model-*.safetensors are
+unmodified in value and dtype; their tensor names carry the prefixes
+``transformer_512.``, ``transformer_1024.`` and ``vae.``, and the constant
+``inv_grid_coord`` buffers were dropped. The bundle also contains, under
+``conditioner.``, the vision towers of facebook/dinov2-large (revision
+47b73eefe95e8d44ec3623f8890bd894b6ea2d6c, Apache-2.0, see LICENSE-APACHE) and
+openai/clip-vit-large-patch14 (revision 32bd64288804d66eefd0ccbe215aa642df71cc41, MIT, see
+LICENSE-CLIP), renamed to the mlx-vlm layouts with their patch-embedding
+convolutions transposed to channels-last. conversion.json lists every source
+file and transform.

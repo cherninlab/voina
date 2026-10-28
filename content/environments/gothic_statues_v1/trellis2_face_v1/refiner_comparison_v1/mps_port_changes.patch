@@ -1,0 +1,456 @@
+--- /Users/theochernin/Projects/CherninLab3D/vendor/UltraShape-1.0/ultrashape/pipelines.py	2026-10-28 01:56:04
++++ /Users/theochernin/Projects/CherninLab3D/vendor/ultrashape-mac/ultrashape/pipelines.py	2026-10-28 02:04:52
+@@ -37,6 +37,7 @@
+ from .models.autoencoders import ShapeVAE
+ from .models.autoencoders import SurfaceExtractors
+ from .utils import logger, synchronize_timer, smart_load_model
++from .utils.device import get_device
+ 
+ 
+ def retrieve_timesteps(
+@@ -144,11 +145,13 @@
+         cls,
+         ckpt_path,
+         config_path,
+-        device='cuda',
++        device=None,
+         dtype=torch.float16,
+         use_safetensors=None,
+         **kwargs,
+     ):
++        if device is None:
++            device = get_device()
+         # load config
+         with open(config_path, 'r') as f:
+             config = yaml.safe_load(f)
+@@ -203,13 +206,15 @@
+     def from_pretrained(
+         cls,
+         model_path,
+-        device='cuda',
++        device=None,
+         dtype=torch.float16,
+         use_safetensors=False,
+         variant='fp16',
+         subfolder='hunyuan3d-dit-v2-1',
+         **kwargs,
+     ):
++        if device is None:
++            device = get_device()
+         kwargs['from_pretrained_kwargs'] = dict(
+             model_path=model_path,
+             subfolder=subfolder,
+@@ -240,11 +245,13 @@
+         scheduler,
+         conditioner,
+         image_processor,
+-        device='cuda',
++        device=None,
+         dtype=torch.float16,
+         ref_model=None,
+         **kwargs
+     ):
++        if device is None:
++            device = get_device()
+         self.vae = vae
+         self.model = model
+         self.ref_model = ref_model
+@@ -322,7 +329,9 @@
+                     return torch.device(module._hf_hook.execution_device)
+         return self.device
+ 
+-    def enable_model_cpu_offload(self, gpu_id: Optional[int] = None, device: Union[torch.device, str] = "cuda"):
++    def enable_model_cpu_offload(self, gpu_id: Optional[int] = None, device: Union[torch.device, str] = None):
++        if device is None:
++            device = get_device()
+         r"""
+         Offloads all models to CPU using accelerate, reducing memory usage with a low impact on performance. Compared
+         to `enable_sequential_cpu_offload`, this method moves one whole model at a time to the GPU when its `forward`
+
+--- /Users/theochernin/Projects/CherninLab3D/vendor/UltraShape-1.0/ultrashape/utils/__init__.py	2026-10-28 01:56:04
++++ /Users/theochernin/Projects/CherninLab3D/vendor/ultrashape-mac/ultrashape/utils/__init__.py	2026-10-28 02:04:52
+@@ -4,3 +4,4 @@
+ from .misc import instantiate_from_config
+ from .utils import get_logger, logger, synchronize_timer, smart_load_model
+ from .voxelize import voxelize_from_point
++from .device import get_device, get_device_type, get_autocast_dtype, empty_cache, is_cuda, is_mps
+
+--- /Users/theochernin/Projects/CherninLab3D/vendor/UltraShape-1.0/ultrashape/utils/utils.py	2026-10-28 01:56:04
++++ /Users/theochernin/Projects/CherninLab3D/vendor/ultrashape-mac/ultrashape/utils/utils.py	2026-10-28 02:04:52
+@@ -60,19 +60,33 @@
+     def __enter__(self):
+         """Context manager entry: start timing."""
+         if os.environ.get('HY3DGEN_DEBUG', '0') == '1':
+-            self.start = torch.cuda.Event(enable_timing=True)
+-            self.end = torch.cuda.Event(enable_timing=True)
+-            self.start.record()
++            import time
++            if torch.cuda.is_available():
++                self.start = torch.cuda.Event(enable_timing=True)
++                self.end = torch.cuda.Event(enable_timing=True)
++                self.start.record()
++                self._use_cuda_events = True
++            else:
++                # Use time.perf_counter for MPS/CPU
++                self._start_time = time.perf_counter()
++                self._use_cuda_events = False
+             return lambda: self.time
+ 
+     def __exit__(self, exc_type, exc_value, exc_tb):
+         """Context manager exit: stop timing and log results."""
+         if os.environ.get('HY3DGEN_DEBUG', '0') == '1':
+-            self.end.record()
+-            torch.cuda.synchronize()
+-            self.time = self.start.elapsed_time(self.end)
++            import time
++            if self._use_cuda_events:
++                self.end.record()
++                torch.cuda.synchronize()
++                self.time = self.start.elapsed_time(self.end)
++            else:
++                # MPS/CPU timing
++                if torch.backends.mps.is_available():
++                    torch.mps.synchronize()
++                self.time = (time.perf_counter() - self._start_time) * 1000  # Convert to ms
+             if self.name is not None:
+-                logger.info(f'{self.name} takes {self.time} ms')
++                logger.info(f'{self.name} takes {self.time:.2f} ms')
+ 
+     def __call__(self, func):
+         """Decorator: wrap the function to time its execution."""
+
+--- /Users/theochernin/Projects/CherninLab3D/vendor/UltraShape-1.0/ultrashape/models/autoencoders/attention_processors.py	2026-10-28 01:56:04
++++ /Users/theochernin/Projects/CherninLab3D/vendor/ultrashape-mac/ultrashape/models/autoencoders/attention_processors.py	2026-10-28 02:04:52
+@@ -25,12 +25,18 @@
+ import torch.nn.functional as F
+ 
+ scaled_dot_product_attention = F.scaled_dot_product_attention
++
++# Only try to use sageattention if explicitly requested AND on CUDA
+ if os.environ.get('CA_USE_SAGEATTN', '0') == '1':
+     try:
+-        from sageattention import sageattn
++        if torch.cuda.is_available():
++            from sageattention import sageattn
++            scaled_dot_product_attention = sageattn
++            print("Using sageattention for cross-attention (CUDA)")
++        else:
++            print("sageattention requires CUDA, using PyTorch native attention")
+     except ImportError:
+-        raise ImportError('Please install the package "sageattention" to use this USE_SAGEATTN.')
+-    scaled_dot_product_attention = sageattn
++        print("sageattention not available, using PyTorch native attention")
+ 
+ 
+ class CrossAttentionProcessor:
+
+--- /Users/theochernin/Projects/CherninLab3D/vendor/UltraShape-1.0/ultrashape/models/autoencoders/attention_blocks.py	2026-10-28 01:56:04
++++ /Users/theochernin/Projects/CherninLab3D/vendor/ultrashape-mac/ultrashape/models/autoencoders/attention_blocks.py	2026-10-28 02:04:52
+@@ -44,12 +44,18 @@
+ 
+ scaled_dot_product_attention = nn.functional.scaled_dot_product_attention
+ 
++# Only try to use sageattention if explicitly requested AND on CUDA
+ if os.environ.get('USE_SAGEATTN', '0') == '1':
+     try:
+-        from sageattention import sageattn
++        import torch
++        if torch.cuda.is_available():
++            from sageattention import sageattn
++            scaled_dot_product_attention = sageattn
++            print("Using sageattention for CUDA acceleration")
++        else:
++            print("sageattention requires CUDA, using PyTorch native attention")
+     except ImportError:
+-        raise ImportError('Please install the package "sageattention" to use this USE_SAGEATTN.')
+-    scaled_dot_product_attention = sageattn
++        print("sageattention not available, using PyTorch native attention")
+ 
+ 
+ class FourierEmbedder(nn.Module):
+@@ -484,12 +490,83 @@
+     batch_size: Optional[int] = None,
+     ptr: Optional[Union[Tensor, List[int]]] = None,
+ ):
++    """
++    Farthest Point Sampling - uses torch_cluster on CUDA if available,
++    falls back to a pure PyTorch implementation otherwise.
++    """
+     src = src.float()
+-    from torch_cluster import fps as fps_fn
+-    output = fps_fn(src, batch, ratio, random_start, batch_size, ptr)
+-    return output
++
++    try:
++        from torch_cluster import fps as fps_fn
++        output = fps_fn(src, batch, ratio, random_start, batch_size, ptr)
++        return output
++    except ImportError:
++        # Fallback: Pure PyTorch FPS implementation for MPS/CPU
++        return _fps_pytorch(src, batch, ratio, random_start, batch_size)
+ 
+ 
++def _fps_pytorch(
++    src: torch.Tensor,
++    batch: Optional[Tensor] = None,
++    ratio: float = 0.5,
++    random_start: bool = True,
++    batch_size: Optional[int] = None,
++):
++    """
++    Pure PyTorch implementation of Farthest Point Sampling.
++    This is slower than torch_cluster but works on MPS and CPU.
++    """
++    device = src.device
++    n_points = src.shape[0]
++
++    if batch is None:
++        batch = torch.zeros(n_points, dtype=torch.long, device=device)
++
++    if batch_size is None:
++        batch_size = int(batch.max().item()) + 1
++
++    # Calculate number of points to sample per batch
++    n_sample = int(n_points / batch_size * ratio)
++
++    selected_indices = []
++
++    for b in range(batch_size):
++        mask = batch == b
++        points = src[mask]
++        n_pts = points.shape[0]
++        n_sel = min(n_sample, n_pts)
++
++        if n_sel == 0:
++            continue
++
++        # Initialize distances to infinity
++        distances = torch.full((n_pts,), float('inf'), device=device)
++
++        # Pick starting point
++        if random_start:
++            idx = torch.randint(0, n_pts, (1,), device=device).item()
++        else:
++            idx = 0
++
++        batch_selected = [idx]
++
++        for _ in range(n_sel - 1):
++            # Update distances
++            current_point = points[idx:idx+1]
++            dist_to_current = torch.cdist(points, current_point).squeeze(-1)
++            distances = torch.min(distances, dist_to_current)
++
++            # Select farthest point
++            idx = torch.argmax(distances).item()
++            batch_selected.append(idx)
++
++        # Convert local indices to global indices
++        global_indices = torch.where(mask)[0]
++        selected_indices.extend(global_indices[batch_selected].tolist())
++
++    return torch.tensor(selected_indices, dtype=torch.long, device=device)
++
++
+ class PointCrossAttentionEncoder(nn.Module):
+ 
+     def __init__(
+
+--- /Users/theochernin/Projects/CherninLab3D/vendor/UltraShape-1.0/ultrashape/models/autoencoders/surface_extractors.py	2026-10-28 01:56:04
++++ /Users/theochernin/Projects/CherninLab3D/vendor/ultrashape-mac/ultrashape/models/autoencoders/surface_extractors.py	2026-10-28 02:04:52
+@@ -24,9 +24,16 @@
+ import numpy as np
+ import torch
+ from skimage import measure
+-import cubvh
+ 
++# Try to import cubvh for CUDA acceleration, fall back to CPU implementation
++try:
++    import cubvh
++    HAS_CUBVH = True
++except ImportError:
++    HAS_CUBVH = False
++    print("cubvh not available, using CPU marching cubes (slower but compatible with Mac/MPS)")
+ 
++
+ class Latent2MeshOutput:
+     def __init__(self, mesh_v=None, mesh_f=None):
+         self.mesh_v = mesh_v
+@@ -207,20 +214,32 @@
+ 
+         Returns:
+             Tuple[np.ndarray, np.ndarray]: Tuple containing:
+-                - vertices (np.ndarray): Extracted mesh vertices, scaled and translated to bounding 
++                - vertices (np.ndarray): Extracted mesh vertices, scaled and translated to bounding
+                   box coordinates.
+                 - faces (np.ndarray): Extracted mesh faces (triangles).
+         """
+ 
+         grid_logit = grid_logit.detach()
+ 
+-        sparse_coords, sparse_logits = get_sparse_valid_voxels(grid_logit)
+-        # Convert to float32 only for the sparse set
+-        vertices, faces = cubvh.sparse_marching_cubes(sparse_coords, sparse_logits.float(), mc_level)
++        if HAS_CUBVH:
++            # Use GPU-accelerated sparse marching cubes (CUDA only)
++            sparse_coords, sparse_logits = get_sparse_valid_voxels(grid_logit)
++            vertices, faces = cubvh.sparse_marching_cubes(sparse_coords, sparse_logits.float(), mc_level)
++            vertices, faces = vertices.cpu().numpy(), faces.cpu().numpy()
++        else:
++            # Use CPU-based scikit-image marching cubes (works on Mac/MPS)
++            grid_np = grid_logit.cpu().numpy()
++            # Replace NaN with a value below the threshold to exclude from mesh
++            grid_np = np.nan_to_num(grid_np, nan=mc_level - 1.0)
++            try:
++                vertices, faces, normals, _ = measure.marching_cubes(
++                    grid_np, level=mc_level, method="lewiner"
++                )
++            except ValueError:
++                # If marching cubes fails (e.g., no surface), return empty mesh
++                vertices = np.zeros((0, 3), dtype=np.float32)
++                faces = np.zeros((0, 3), dtype=np.int64)
+ 
+-        vertices, faces = vertices.cpu().numpy(), faces.cpu().numpy()
+-        # vertices, faces, normals, _ = measure.marching_cubes(grid_logit,
+-        #             mc_level, method="lewiner", mask=(~np.isnan(grid_logit)))
+         grid_size, bbox_min, bbox_size = self._compute_box_stat(bounds, octree_resolution)
+         vertices = vertices / grid_size * bbox_size + bbox_min
+         return vertices, faces
+
+--- /Users/theochernin/Projects/CherninLab3D/vendor/UltraShape-1.0/ultrashape/models/denoisers/dit_mask.py	2026-10-28 01:56:04
++++ /Users/theochernin/Projects/CherninLab3D/vendor/ultrashape-mac/ultrashape/models/denoisers/dit_mask.py	2026-10-28 02:04:52
+@@ -42,7 +42,13 @@
+ from .moe_layers import MoEBlock
+ from ...utils import logger, synchronize_timer, smart_load_model
+ 
+-from flash_attn import flash_attn_varlen_func
++# Try to import flash_attn for CUDA acceleration, fall back to PyTorch native
++try:
++    from flash_attn import flash_attn_varlen_func
++    HAS_FLASH_ATTN = True
++except ImportError:
++    HAS_FLASH_ATTN = False
++    print("flash_attn not available, using PyTorch native attention (compatible with Mac/MPS)")
+ 
+ 
+ def modulate(x, shift, scale):
+@@ -190,53 +196,60 @@
+         k = self.k_norm(k)
+ 
+         if has_padding:
+-            seqlens_k = y_mask.sum(dim=1).int()
+-            q_flat = q.reshape(-1, self.num_heads, self.head_dim)
+-            
+-            # For k, v: only keep valid tokens (remove padding)
+-            # Create indices for valid tokens
+-            valid_indices = []
+-            cu_seqlens_k = [0]
+-            for i in range(b):
+-                valid_len = seqlens_k[i].item()
+-                batch_indices = torch.arange(valid_len, device=y.device) + i * s2
+-                valid_indices.append(batch_indices)
+-                cu_seqlens_k.append(cu_seqlens_k[-1] + valid_len)
+-            
+-            valid_indices = torch.cat(valid_indices)
+-            k_flat = k.reshape(b * s2, self.num_heads, self.head_dim)[valid_indices]  # [total_k, h, d]
+-            v_flat = v.reshape(b * s2, self.num_heads, self.head_dim)[valid_indices]  # [total_k, h, d]
+-            
+-            # Create cumulative sequence lengths
+-            cu_seqlens_q = torch.arange(0, (b + 1) * s1, s1, dtype=torch.int32, device=x.device)
+-            cu_seqlens_k = torch.tensor(cu_seqlens_k, dtype=torch.int32, device=x.device)
+-            
+-            # Call flash attention varlen
+-            q_flat = q_flat.to(torch.bfloat16)
+-            k_flat = k_flat.to(torch.bfloat16)
+-            v_flat = v_flat.to(torch.bfloat16)
++            if HAS_FLASH_ATTN and x.device.type == 'cuda':
++                # Use flash attention for CUDA with variable length sequences
++                seqlens_k = y_mask.sum(dim=1).int()
++                q_flat = q.reshape(-1, self.num_heads, self.head_dim)
+ 
+-            context = flash_attn_varlen_func(
+-                q_flat, k_flat, v_flat,
+-                cu_seqlens_q, cu_seqlens_k,
+-                s1, seqlens_k.max().item(),
+-                dropout_p=0.0,
+-                softmax_scale=None,
+-                causal=False
+-            )
+-            context = context.reshape(b, s1, -1)
+-        else:
+-            with torch.backends.cuda.sdp_kernel(
+-                enable_flash=True,
+-                enable_math=False,
+-                enable_mem_efficient=True
+-            ):
++                # For k, v: only keep valid tokens (remove padding)
++                # Create indices for valid tokens
++                valid_indices = []
++                cu_seqlens_k = [0]
++                for i in range(b):
++                    valid_len = seqlens_k[i].item()
++                    batch_indices = torch.arange(valid_len, device=y.device) + i * s2
++                    valid_indices.append(batch_indices)
++                    cu_seqlens_k.append(cu_seqlens_k[-1] + valid_len)
++
++                valid_indices = torch.cat(valid_indices)
++                k_flat = k.reshape(b * s2, self.num_heads, self.head_dim)[valid_indices]  # [total_k, h, d]
++                v_flat = v.reshape(b * s2, self.num_heads, self.head_dim)[valid_indices]  # [total_k, h, d]
++
++                # Create cumulative sequence lengths
++                cu_seqlens_q = torch.arange(0, (b + 1) * s1, s1, dtype=torch.int32, device=x.device)
++                cu_seqlens_k = torch.tensor(cu_seqlens_k, dtype=torch.int32, device=x.device)
++
++                # Call flash attention varlen
++                q_flat = q_flat.to(torch.bfloat16)
++                k_flat = k_flat.to(torch.bfloat16)
++                v_flat = v_flat.to(torch.bfloat16)
++
++                context = flash_attn_varlen_func(
++                    q_flat, k_flat, v_flat,
++                    cu_seqlens_q, cu_seqlens_k,
++                    s1, seqlens_k.max().item(),
++                    dropout_p=0.0,
++                    softmax_scale=None,
++                    causal=False
++                )
++                context = context.reshape(b, s1, -1)
++            else:
++                # Fallback for MPS/CPU: use standard attention with padding mask
+                 q, k, v = map(lambda t: rearrange(t, 'b n h d -> b h n d', h=self.num_heads), (q, k, v))
+-                
+-                attn_mask = None
++                # Create attention mask from y_mask: [b, s2] -> [b, 1, 1, s2]
++                attn_mask = y_mask.unsqueeze(1).unsqueeze(2).float()
++                attn_mask = attn_mask.masked_fill(~y_mask.unsqueeze(1).unsqueeze(2), float('-inf'))
++                attn_mask = attn_mask.masked_fill(y_mask.unsqueeze(1).unsqueeze(2), 0.0)
+                 context = F.scaled_dot_product_attention(
+                     q, k, v, attn_mask=attn_mask
+                 ).transpose(1, 2).reshape(b, s1, -1)
++        else:
++            # No padding - use standard scaled dot product attention
++            q, k, v = map(lambda t: rearrange(t, 'b n h d -> b h n d', h=self.num_heads), (q, k, v))
++            attn_mask = None
++            context = F.scaled_dot_product_attention(
++                q, k, v, attn_mask=attn_mask
++            ).transpose(1, 2).reshape(b, s1, -1)
+ 
+         out = self.out_proj(context)
+ 
+@@ -298,13 +311,9 @@
+             k = apply_rotary_emb(k, rotary_cos, rotary_sin)
+         # ==============================================================
+ 
+-        with torch.backends.cuda.sdp_kernel(
+-            enable_flash=True,
+-            enable_math=False,
+-            enable_mem_efficient=True
+-        ):
+-            x = F.scaled_dot_product_attention(q, k, v)
+-            x = x.transpose(1, 2).reshape(B, N, -1)
++        # Use scaled_dot_product_attention (works on CUDA, MPS, and CPU)
++        x = F.scaled_dot_product_attention(q, k, v)
++        x = x.transpose(1, 2).reshape(B, N, -1)
+ 
+         x = self.out_proj(x)
+         return x

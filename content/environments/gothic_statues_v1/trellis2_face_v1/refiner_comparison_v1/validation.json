@@ -1,0 +1,111 @@
+{
+  "mesh_visual_acceptance": false,
+  "engine_placement": false,
+  "browser_models_loaded": 4,
+  "http_resources": 28,
+  "godot_editor_import": "checks/godot_import.txt",
+  "smoke": "checks/smoke.txt",
+  "smoke_result": "PASS; ObjectDB warnings at test exit",
+  "models": {
+    "tunic/hunyuan21_single_s42": {
+      "vertices": 217808,
+      "triangles": 435636,
+      "boundary_edges": 0,
+      "non_manifold_edges": 0,
+      "finite_and_indices_valid": true,
+      "watertight": true,
+      "winding_consistent": true,
+      "transform": {
+        "input_bbox_center": [
+          -0.0011559128761291504,
+          -0.0023058652877807617,
+          0.005971759557723999
+        ],
+        "uniform_scale": 0.7017654966164342,
+        "translation": [
+          0.0,
+          0.7,
+          0.0
+        ]
+      },
+      "changes": "Uniform centering, scale and neutral material only; no repair or simplification",
+      "raw_sha256": "b4641132866899dae811619d81dba7a7ca319a4f2579baf4f4beae656c59db19",
+      "review_sha256": "057d1115c1c7e537e67c97fc7ba032bbe630b0749bb99c234a002ea31a51361e"
+    },
+    "tunic/ultrashape_s12_l8192_r512": {
+      "vertices": 613863,
+      "triangles": 1227538,
+      "boundary_edges": 0,
+      "non_manifold_edges": 4,
+      "finite_and_indices_valid": true,
+      "watertight": false,
+      "winding_consistent": true,
+      "transform": {
+        "input_bbox_center": [
+          -0.028882116079330444,
+          -0.019257456064224243,
+          -0.022859320044517517
+        ],
+        "uniform_scale": 0.7242294742905669,
+        "translation": [
+          0.0,
+          0.7,
+          0.0
+        ]
+      },
+      "changes": "Uniform centering, scale and neutral material only; no repair or simplification",
+      "raw_sha256": "f2a63647fe6e35988510f36e7b455d18a88efacf596bfda0685dddfeb7fbc796",
+      "review_sha256": "33bcfdfdaa56ea2a167d27f65ec7b5b8ae58b7cfcad786e61717e350e2c6ff5d"
+    },
+    "pillar/hunyuan21_single_s42": {
+      "vertices": 180938,
+      "triangles": 361924,
+      "boundary_edges": 0,
+      "non_manifold_edges": 0,
+      "finite_and_indices_valid": true,
+      "watertight": true,
+      "winding_consistent": true,
+      "transform": {
+        "input_bbox_center": [
+          0.0672798603773117,
+          -0.0030803382396698,
+          -0.012180909514427185
+        ],
+        "uniform_scale": 0.7022745037584288,
+        "translation": [
+          0.0,
+          0.7,
+          0.0
+        ]
+      },
+      "changes": "Uniform centering, scale and neutral material only; no repair or simplification",
+      "raw_sha256": "c0aff3fcaea8472605fa2648416402fc14d638c84b9a61af6a9f824ecc82e2b7",
+      "review_sha256": "958e801e546b756776538125858bc4aaa00622d5984ebe86f36e9cf92aad944b"
+    },
+    "pillar/ultrashape_s12_l8192_r512": {
+      "vertices": 518087,
+      "triangles": 1036264,
+      "boundary_edges": 0,
+      "non_manifold_edges": 2,
+      "finite_and_indices_valid": true,
+      "watertight": false,
+      "winding_consistent": true,
+      "transform": {
+        "input_bbox_center": [
+          -0.025711804628372192,
+          -0.01918855309486389,
+          -0.021062836050987244
+        ],
+        "uniform_scale": 0.7222385435149131,
+        "translation": [
+          0.0,
+          0.7,
+          0.0
+        ]
+      },
+      "changes": "Uniform centering, scale and neutral material only; no repair or simplification",
+      "raw_sha256": "521d9b125bead6d24b2aa9cf049a8c380d5493146c6c6a7d936c2dd85598c358",
+      "review_sha256": "f43f78dcc561408b08328acf6f4b6a9885b5e8e51fc594f1f1390096813b6e9a"
+    }
+  }
+}

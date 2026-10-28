@@ -1,0 +1,14 @@
+{
+  "repository": "infinith/UltraShape",
+  "revision": "5aeb21a7185d39f042d02b2695802f125a6f5159",
+  "file": {
+    "rfilename": "ultrashape_v1.pt",
+    "blobId": "1d480d260bc150cfb3e84e118ab4df8d0fca918c",
+    "size": 7366231254,
+    "lfs": {
+      "sha256": "c96ae010c4169597fd0006dcb08056bf6104a1fca249b10fed7ddded324c3f0f",
+      "size": 7366231254,
+      "pointerSize": 135
+    }
+  }
+}

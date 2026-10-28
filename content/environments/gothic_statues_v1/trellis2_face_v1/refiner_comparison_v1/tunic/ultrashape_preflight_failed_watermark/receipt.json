@@ -1,0 +1,22 @@
+{
+  "status": "failed",
+  "model": "infinith/UltraShape",
+  "seed": 42,
+  "model_revision": "5aeb21a7185d39f042d02b2695802f125a6f5159",
+  "mode": "preflight",
+  "steps": 12,
+  "latents": 8192,
+  "octree_resolution": 512,
+  "guidance": 5.0,
+  "chunks": 4096,
+  "device_requested": "mps",
+  "geometry_generated": false,
+  "texture_generation": false,
+  "torch": "2.14.1",
+  "port_revision": "2724fd7b5496f3c90789da3217d0ad6021ea939e",
+  "checkpoint_sha256": "c96ae010c4169597fd0006dcb08056bf6104a1fca249b10fed7ddded324c3f0f",
+  "components": {},
+  "error": "invalid low watermark ratio 1.4",
+  "traceback": "Traceback (most recent call last):\n  File \"/Users/theochernin/Projects/MultiPlayerProject-agents/theo-codex-43/content/environments/gothic_statues_v1/trellis2_face_v1/refiner_comparison_v1/run_ultrashape.py\", line 91, in <module>\n    module.eval().requires_grad_(False).to(device='mps', dtype=torch.float16)\n  File \"/Users/theochernin/Projects/CherninLab3D/.venv/lib/python3.11/site-packages/torch/nn/modules/module.py\", line 1388, in to\n    return self._apply(convert)\n           ^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/theochernin/Projects/CherninLab3D/.venv/lib/python3.11/site-packages/torch/nn/modules/module.py\", line 933, in _apply\n    module._apply(fn)\n  File \"/Users/theochernin/Projects/CherninLab3D/.venv/lib/python3.11/site-packages/torch/nn/modules/module.py\", line 1036, in _apply\n    self._buffers[key] = fn(buf)\n                         ^^^^^^^\n  File \"/Users/theochernin/Projects/CherninLab3D/.venv/lib/python3.11/site-packages/torch/nn/modules/module.py\", line 1374, in convert\n    return t.to(\n           ^^^^^\nRuntimeError: invalid low watermark ratio 1.4\n",
+  "wall_seconds": 4.343018667015713
+}

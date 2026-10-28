@@ -1,0 +1,117 @@
+{
+  "passed": true,
+  "resources": [
+    {
+      "path": "review/index.html",
+      "status": 200
+    },
+    {
+      "path": "README.md",
+      "status": 200
+    },
+    {
+      "path": "comparison.json",
+      "status": 200
+    },
+    {
+      "path": "provenance.json",
+      "status": 200
+    },
+    {
+      "path": "tunic/hunyuan21_single_s42/review.glb",
+      "status": 200
+    },
+    {
+      "path": "tunic/source.jpg",
+      "status": 200
+    },
+    {
+      "path": "tunic/hunyuan21_single_s42/receipt.json",
+      "status": 200
+    },
+    {
+      "path": "tunic/hunyuan21_single_s42/review/face.png",
+      "status": 200
+    },
+    {
+      "path": "tunic/hunyuan21_single_s42/review/left_hand.png",
+      "status": 200
+    },
+    {
+      "path": "tunic/hunyuan21_single_s42/review/right_hand.png",
+      "status": 200
+    },
+    {
+      "path": "tunic/ultrashape_s12_l8192_r512/review.glb",
+      "status": 200
+    },
+    {
+      "path": "tunic/source.jpg",
+      "status": 200
+    },
+    {
+      "path": "tunic/ultrashape_s12_l8192_r512/receipt.json",
+      "status": 200
+    },
+    {
+      "path": "tunic/ultrashape_s12_l8192_r512/review/face.png",
+      "status": 200
+    },
+    {
+      "path": "tunic/ultrashape_s12_l8192_r512/review/left_hand.png",
+      "status": 200
+    },
+    {
+      "path": "tunic/ultrashape_s12_l8192_r512/review/right_hand.png",
+      "status": 200
+    },
+    {
+      "path": "pillar/hunyuan21_single_s42/review.glb",
+      "status": 200
+    },
+    {
+      "path": "pillar/source.jpg",
+      "status": 200
+    },
+    {
+      "path": "pillar/hunyuan21_single_s42/receipt.json",
+      "status": 200
+    },
+    {
+      "path": "pillar/hunyuan21_single_s42/review/face.png",
+      "status": 200
+    },
+    {
+      "path": "pillar/hunyuan21_single_s42/review/left_hand.png",
+      "status": 200
+    },
+    {
+      "path": "pillar/hunyuan21_single_s42/review/right_hand.png",
+      "status": 200
+    },
+    {
+      "path": "pillar/ultrashape_s12_l8192_r512/review.glb",
+      "status": 200
+    },
+    {
+      "path": "pillar/source.jpg",
+      "status": 200
+    },
+    {
+      "path": "pillar/ultrashape_s12_l8192_r512/receipt.json",
+      "status": 200
+    },
+    {
+      "path": "pillar/ultrashape_s12_l8192_r512/review/face.png",
+      "status": 200
+    },
+    {
+      "path": "pillar/ultrashape_s12_l8192_r512/review/left_hand.png",
+      "status": 200
+    },
+    {
+      "path": "pillar/ultrashape_s12_l8192_r512/review/right_hand.png",
+      "status": 200
+    }
+  ]
+}

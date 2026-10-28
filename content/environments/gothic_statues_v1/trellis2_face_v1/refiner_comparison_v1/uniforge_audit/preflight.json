@@ -1,0 +1,19 @@
+{
+  "source": "https://github.com/xibushu/UniForge3D",
+  "revision": "8b6094780e202b8a6b1d239e0997552e18547026",
+  "mesh_generated": false,
+  "preflight": "import plus source/runtime capability audit",
+  "required_backend": "CUDA; sparse flex_gemm and FlashAttention; CuMesh/nvdiffrast for export",
+  "available_devices": {
+    "cuda": false,
+    "mps": true
+  },
+  "dependencies": {
+    "flex_gemm": false,
+    "flash_attn": false,
+    "cumesh": true,
+    "nvdiffrast": false
+  },
+  "import_error": "cannot import name 'DINOv3ViTModel' from 'transformers' (/Users/theochernin/Projects/CherninLab3D/.venv/lib/python3.11/site-packages/transformers/__init__.py)",
+  "traceback": "Traceback (most recent call last):\n  File \"<stdin>\", line 10, in <module>\n  File \"/Users/theochernin/Projects/CherninLab3D/vendor/UniForge3D/uniforge3d/__init__.py\", line 3, in <module>\n    from .pipelines import UniForge3DImageTo3DPipeline\n  File \"/Users/theochernin/Projects/CherninLab3D/vendor/UniForge3D/uniforge3d/pipelines/__init__.py\", line 3, in <module>\n    from .uniforge3d_image_to_3d import UniForge3DImageTo3DPipeline\n  File \"/Users/theochernin/Projects/CherninLab3D/vendor/UniForge3D/uniforge3d/pipelines/uniforge3d_image_to_3d.py\", line 14, in <module>\n    from ..models.loaders import load_models, resolve_checkpoint\n  File \"/Users/theochernin/Projects/CherninLab3D/vendor/UniForge3D/uniforge3d/models/loaders.py\", line 15, in <module>\n    from .dino import DinoV3Encoder\n  File \"/Users/theochernin/Projects/CherninLab3D/vendor/UniForge3D/uniforge3d/models/dino.py\", line 8, in <module>\n    from transformers import DINOv3ViTModel\nImportError: cannot import name 'DINOv3ViTModel' from 'transformers' (/Users/theochernin/Projects/CherninLab3D/.venv/lib/python3.11/site-packages/transformers/__init__.py)\n"
+}

@@ -1,0 +1,54 @@
+{
+  "source_mesh": "/Users/theochernin/Projects/MultiPlayerProject-agents/theo-codex-43/content/environments/gothic_statues_v1/trellis2_face_v1/refiner_comparison_v1/tunic/ultrashape_s12_l8192_r512/review.glb",
+  "actual_geometry_renders": true,
+  "world_bounds": [
+    [
+      -0.32079899311065674,
+      -0.2085586041212082,
+      0.0
+    ],
+    [
+      0.32079899311065674,
+      0.2085586041212082,
+      1.399999976158142
+    ]
+  ],
+  "blender_version": "5.2.2 LTS",
+  "views": [
+    {
+      "file": "ultra_hero.png",
+      "azimuth": 315,
+      "elevation": 18
+    },
+    {
+      "file": "ultra_front.png",
+      "azimuth": 0,
+      "elevation": 5
+    },
+    {
+      "file": "ultra_front45.png",
+      "azimuth": 45,
+      "elevation": 15
+    },
+    {
+      "file": "ultra_left.png",
+      "azimuth": 90,
+      "elevation": 5
+    },
+    {
+      "file": "ultra_back135.png",
+      "azimuth": 135,
+      "elevation": 15
+    },
+    {
+      "file": "ultra_back.png",
+      "azimuth": 180,
+      "elevation": 5
+    },
+    {
+      "file": "ultra_right.png",
+      "azimuth": 270,
+      "elevation": 5
+    }
+  ]
+}

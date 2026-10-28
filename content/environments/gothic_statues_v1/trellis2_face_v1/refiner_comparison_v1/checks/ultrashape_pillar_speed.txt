@@ -1,0 +1,21 @@
+cubvh not available, using CPU marching cubes (slower but compatible with Mac/MPS)
+PointCrossAttentionEncoder INFO: pc_sharpedge_size is zero
+flash_attn not available, using PyTorch native attention (compatible with Mac/MPS)
+Diffusion Sampling::   0%|          | 0/12 [00:00<?, ?it/s]ULTRASHAPE_STEP 1 / 12
+Diffusion Sampling::   8%|▊         | 1/12 [00:02<00:23,  2.09s/it]ULTRASHAPE_STEP 2 / 12
+Diffusion Sampling::  17%|█▋        | 2/12 [00:04<00:21,  2.13s/it]ULTRASHAPE_STEP 3 / 12
+Diffusion Sampling::  25%|██▌       | 3/12 [00:07<00:21,  2.42s/it]ULTRASHAPE_STEP 4 / 12
+Diffusion Sampling::  33%|███▎      | 4/12 [00:09<00:20,  2.54s/it]ULTRASHAPE_STEP 5 / 12
+Diffusion Sampling::  42%|████▏     | 5/12 [00:12<00:18,  2.62s/it]ULTRASHAPE_STEP 6 / 12
+Diffusion Sampling::  50%|█████     | 6/12 [00:15<00:16,  2.69s/it]ULTRASHAPE_STEP 7 / 12
+Diffusion Sampling::  58%|█████▊    | 7/12 [00:18<00:13,  2.74s/it]ULTRASHAPE_STEP 8 / 12
+Diffusion Sampling::  67%|██████▋   | 8/12 [00:20<00:10,  2.75s/it]ULTRASHAPE_STEP 9 / 12
+Diffusion Sampling::  75%|███████▌  | 9/12 [00:23<00:08,  2.77s/it]ULTRASHAPE_STEP 10 / 12
+Diffusion Sampling::  83%|████████▎ | 10/12 [00:26<00:05,  2.84s/it]ULTRASHAPE_STEP 11 / 12
+Diffusion Sampling::  92%|█████████▏| 11/12 [00:29<00:02,  2.89s/it]ULTRASHAPE_STEP 12 / 12
+Diffusion Sampling:: 100%|██████████| 12/12 [00:32<00:00,  2.95s/it]Diffusion Sampling:: 100%|██████████| 12/12 [00:32<00:00,  2.74s/it]
+2026-10-28 02:13:43,786 - hy3dgen.shapgen - INFO - FlashVDMVolumeDecoding Resolution: [63, 126, 252, 504]
+FlashVDM Volume Decoding:   0%|          | 0/64 [00:00<?, ?it/s]FlashVDM Volume Decoding: 100%|██████████| 64/64 [00:00<00:00, 2274.74it/s]
+/Users/theochernin/Projects/CherninLab3D/vendor/ultrashape-mac/ultrashape/models/autoencoders/volume_decoders.py:73: UserWarning: Using a non-tuple sequence for multidimensional indexing is deprecated and will be changed in pytorch 2.9; use x[tuple(seq)] instead of x[seq]. In pytorch 2.9 this will be interpreted as tensor index, x[torch.tensor(seq)], which will result either in an error or a different result (Triggered internally at /Users/runner/work/pytorch/pytorch/torch/csrc/autograd/python_variable_indexing.cpp:362.)
+  neighbor = padded[slice_dims]
+ULTRASHAPE_COMPLETE {"status": "complete", "model": "infinith/UltraShape", "seed": 42, "model_revision": "5aeb21a7185d39f042d02b2695802f125a6f5159", "mode": "refinement", "steps": 12, "latents": 8192, "octree_resolution": 512, "guidance": 5.0, "chunks": 4096, "device_requested": "mps", "geometry_generated": true, "texture_generation": false, "torch": "2.14.1", "port_revision": "2724fd7b5496f3c90789da3217d0ad6021ea939e", "checkpoint_sha256": "c96ae010c4169597fd0006dcb08056bf6104a1fca249b10fed7ddded324c3f0f", "components": {"vae": {"device": "mps:0", "dtype": "torch.float16", "parameters": 327799425, "strict_weights": true}, "dit": {"device": "mps:0", "dtype": "torch.float16", "parameters": 3050758720, "strict_weights": true}, "conditioner": {"device": "mps:0", "dtype": "torch.float16", "parameters": 304368640, "strict_weights": true}}, "source_sha256": "3eaf3599fdb21280be636169775a98a7c1070252505f753c2016622c532fd346", "coarse_sha256": "c0aff3fcaea8472605fa2648416402fc14d638c84b9a61af6a9f824ecc82e2b7", "input_sha256": "a88032f52d06d946555d09f409a852ab386a512930de6ba52f6d6d9fd0d98591", "background": "Only border-connected near-black pixels (maxRGB<=24) made transparent; no part mask", "load_seconds": 10.912712208984885, "wall_seconds": 54.26486708398443, "sampling_step": 12, "vertices": 518087, "triangles": 1036264, "output_sha256": "521d9b125bead6d24b2aa9cf049a8c380d5493146c6c6a7d936c2dd85598c358"}

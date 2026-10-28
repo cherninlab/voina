@@ -1,0 +1,46 @@
+{
+  "status": "failed",
+  "model": "infinith/UltraShape",
+  "seed": 42,
+  "model_revision": "5aeb21a7185d39f042d02b2695802f125a6f5159",
+  "mode": "preflight",
+  "steps": 12,
+  "latents": 8192,
+  "octree_resolution": 512,
+  "guidance": 5.0,
+  "chunks": 4096,
+  "device_requested": "mps",
+  "geometry_generated": false,
+  "texture_generation": false,
+  "torch": "2.14.1",
+  "port_revision": "2724fd7b5496f3c90789da3217d0ad6021ea939e",
+  "checkpoint_sha256": "c96ae010c4169597fd0006dcb08056bf6104a1fca249b10fed7ddded324c3f0f",
+  "components": {
+    "vae": {
+      "device": "mps:0",
+      "dtype": "torch.float16",
+      "parameters": 327799425,
+      "strict_weights": true
+    },
+    "dit": {
+      "device": "mps:0",
+      "dtype": "torch.float16",
+      "parameters": 3050758720,
+      "strict_weights": true
+    },
+    "conditioner": {
+      "device": "mps:0",
+      "dtype": "torch.float16",
+      "parameters": 304368640,
+      "strict_weights": true
+    }
+  },
+  "source_sha256": "eb837a1bbe7fb6eec3160bbec8195104367c98206b42cc0c1bde4081cf3df767",
+  "coarse_sha256": "b4641132866899dae811619d81dba7a7ca319a4f2579baf4f4beae656c59db19",
+  "input_sha256": "ecc6ea12e42b3e5d89378b4a1b6b741089a17ad8ed58e90930b0ae0dea0a75e8",
+  "background": "Only border-connected near-black pixels (maxRGB<=24) made transparent; no part mask",
+  "load_seconds": 9.613099082984263,
+  "wall_seconds": 10.040652166993823,
+  "error": "Expected query, key, and value to have the same dtype, but got query.dtype: float key.dtype: float and value.dtype: c10::Half instead.",
+  "traceback": "Traceback (most recent call last):\n  File \"/Users/theochernin/Projects/MultiPlayerProject-agents/theo-codex-43/content/environments/gothic_statues_v1/trellis2_face_v1/refiner_comparison_v1/run_ultrashape.py\", line 126, in <module>\n    velocity = pipe.model(torch.zeros((2, 32, 64), device='mps', dtype=torch.float16),\n               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/theochernin/Projects/CherninLab3D/.venv/lib/python3.11/site-packages/torch/nn/modules/module.py\", line 1783, in _wrapped_call_impl\n    return self._call_impl(*args, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/theochernin/Projects/CherninLab3D/.venv/lib/python3.11/site-packages/torch/nn/modules/module.py\", line 1794, in _call_impl\n    return forward_call(*args, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/theochernin/Projects/CherninLab3D/vendor/ultrashape-mac/ultrashape/models/denoisers/dit_mask.py\", line 640, in forward\n    x = block(x, c, cond, rotary_cos=rotary_cos, rotary_sin=rotary_sin, skip_value=skip_value)\n        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/theochernin/Projects/CherninLab3D/.venv/lib/python3.11/site-packages/torch/nn/modules/module.py\", line 1783, in _wrapped_call_impl\n    return self._call_impl(*args, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/theochernin/Projects/CherninLab3D/.venv/lib/python3.11/site-packages/torch/nn/modules/module.py\", line 1794, in _call_impl\n    return forward_call(*args, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/theochernin/Projects/CherninLab3D/vendor/ultrashape-mac/ultrashape/models/denoisers/dit_mask.py\", line 401, in forward\n    attn_out = self.attn1(self.norm1(x), rotary_cos=rotary_cos, rotary_sin=rotary_sin)\n               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/theochernin/Projects/CherninLab3D/.venv/lib/python3.11/site-packages/torch/nn/modules/module.py\", line 1783, in _wrapped_call_impl\n    return self._call_impl(*args, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/theochernin/Projects/CherninLab3D/.venv/lib/python3.11/site-packages/torch/nn/modules/module.py\", line 1794, in _call_impl\n    return forward_call(*args, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/theochernin/Projects/CherninLab3D/vendor/ultrashape-mac/ultrashape/models/denoisers/dit_mask.py\", line 315, in forward\n    x = F.scaled_dot_product_attention(q, k, v)\n        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nRuntimeError: Expected query, key, and value to have the same dtype, but got query.dtype: float key.dtype: float and value.dtype: c10::Half instead.\n"
+}
