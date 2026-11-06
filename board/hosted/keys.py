@@ -8,7 +8,7 @@ import re
 import secrets
 import sys
 
-ACTOR = re.compile(r"(?:human:[a-z0-9]+|[a-z0-9]+-[a-z0-9]+-[1-9][0-9]*)")
+ACTOR = re.compile(r"(?:human:[a-z0-9]+|[a-z0-9]+(?:-[a-z0-9]+)+-[1-9][0-9]*)")
 ROOT = Path.home() / ".config" / "secha-board"
 
 

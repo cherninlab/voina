@@ -26,6 +26,9 @@ function showSession(active) {
   byId("messages").replaceChildren();
   byId("action").hidden = true;
   byId("taskText").textContent = "Select a task.";
+  byId("legacy-history").hidden = true;
+  byId("legacy-history").open = false;
+  byId("legacy-source").textContent = "";
   if (!active) for (const id of ["create", "action", "message"]) byId(id).reset();
 }
 
@@ -42,12 +45,15 @@ async function refresh() {
     api("/api/tasks"), api("/api/messages"), selected ? api(`/api/tasks/${selected}`) : null,
   ]);
   const focused = document.activeElement?.dataset.task;
-  byId("tasks").replaceChildren(...tasks.map((entry) => {
+  const filter = byId("task-filter").value;
+  const visible = tasks.filter((task) => filter === "all" ||
+    (filter === "legacy" ? task.labels?.includes("legacy") : task.status !== "done"));
+  byId("tasks").replaceChildren(...visible.map((entry) => {
     const button = document.createElement("button");
     button.type = "button";
     button.dataset.task = entry.id;
     button.setAttribute("aria-current", String(entry.id === selected));
-    button.textContent = `${entry.id} · ${entry.title} · ${entry.status}${entry.stale ? " (stale)" : ""}${entry.owner ? " · " + entry.owner : ""}`;
+    button.textContent = `${entry.id} · ${entry.title} · ${entry.status}${entry.labels?.includes("legacy") ? " · legacy" : ""}${entry.stale ? " (stale)" : ""}${entry.owner ? " · " + entry.owner : ""}`;
     button.addEventListener("click", () => run(async () => { selected = entry.id; await refresh(); }));
     return button;
   }));
@@ -62,6 +68,8 @@ async function refresh() {
     ].filter(Boolean).join("\n");
     list("history", task.log.toReversed().map((entry) =>
       `${new Date(entry.at).toLocaleString()} · ${entry.actor} · ${entry.action}${entry.text ? "\n" + entry.text : ""}`));
+    byId("legacy-history").hidden = !task.legacyMarkdown;
+    byId("legacy-source").textContent = task.legacyMarkdown ?? "";
     byId("action").hidden = false;
   }
 }
@@ -126,6 +134,7 @@ form("message", async (body, element) => {
   await refresh();
 });
 byId("refresh").addEventListener("click", () => run(refresh));
+byId("task-filter").addEventListener("change", () => run(refresh));
 byId("logout").addEventListener("click", () => run(async () => {
   await api("/session", { method: "DELETE" });
   showSession(false);

@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""SECHA's hosted coordination board. Git task and ship commands stay in scripts/board.py."""
+"""SECHA's authoritative task board. Git shipping stays in scripts/board.py."""
 import argparse
 import json
 import os
@@ -13,7 +13,7 @@ from urllib.request import Request, urlopen
 
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--url", default=os.environ.get("SECHA_BOARD_URL"))
+    parser.add_argument("--url", default=os.environ.get("SECHA_BOARD_URL", "https://secha-agent-board.cherninlab.workers.dev"))
     parser.add_argument("--key-file", default=os.environ.get("SECHA_BOARD_KEY_FILE"))
     commands = parser.add_subparsers(dest="command", required=True)
     for name in ("whoami", "list", "show", "claim", "note", "done", "block", "release"):
@@ -43,14 +43,14 @@ def main():
     args = parser.parse_args()
 
     if not args.url or not args.key_file:
-        parser.error("set SECHA_BOARD_URL and SECHA_BOARD_KEY_FILE")
+        parser.error("set SECHA_BOARD_KEY_FILE")
     url = urlsplit(args.url)
     if not url.netloc or url.username or url.path not in ("", "/") or url.query or url.fragment:
         parser.error("use the board's origin URL")
     if url.scheme != "https" and not (url.scheme == "http" and url.hostname in ("localhost", "127.0.0.1")):
         parser.error("HTTPS is required outside loopback")
-    if hasattr(args, "task") and args.task and not re.fullmatch(r"H-[0-9]{3,12}", args.task):
-        parser.error("expected a hosted task ID such as H-001")
+    if hasattr(args, "task") and args.task and not re.fullmatch(r"[HT]-[0-9]{3,12}", args.task):
+        parser.error("expected a task ID such as H-001 or legacy T-001")
 
     body = None
     match args.command:

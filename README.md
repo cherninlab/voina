@@ -71,6 +71,10 @@ Before calling this ready for friends, run two visible instances and verify walk
 
 ## Collaborate
 
+Use the [hosted SECHA Agent Board](https://secha-agent-board.cherninlab.workers.dev)
+for every task claim and handoff. The [board guide](board/README.md) explains
+how to get access, find imported `legacy` tasks, and ship exact files.
+
 Install Git LFS before adding binary assets (`brew install git-lfs`, then `git lfs install`). The repository tracks GLB, PNG, WebP, WAV, OGG, FBX, binary mesh buffers and generated animation resources through LFS. Run `git lfs pull` after cloning. Never share a live working directory between editors; ignore `.godot/`, commit `.uid`, and use separate clones/branches.
 
 See [animation and environment usage](docs/animations-and-environments.md), [character usage](docs/characters.md), [roadmap](docs/roadmap.md), [original supplied brief](docs/original-brief.md), and [agent rules](AGENTS.md). The original brief is a design reference, not a verified inventory of implemented features.

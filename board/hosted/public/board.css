@@ -23,10 +23,12 @@ button { background: #ffc780; color: #21190f; border-color: #ffc780; }
 button:disabled { opacity: .65; cursor: wait; }
 :focus-visible { outline: 3px solid #90dcff; outline-offset: 3px; }
 #tasks { display: grid; gap: .5rem; margin-bottom: 1rem; }
+#task-filter { margin-bottom: .8rem; }
 #tasks button { background: #332b23; color: inherit; text-align: left; border-color: #a2927f; }
 #tasks button[aria-current="true"] { border-color: #ffc780; box-shadow: inset .25rem 0 #ffc780; }
 #notice { min-height: 1.5em; color: #ffc780; }
-#taskText, li { white-space: pre-wrap; overflow-wrap: anywhere; }
+#taskText, li, #legacy-source { white-space: pre-wrap; overflow-wrap: anywhere; }
+#legacy-source { max-height: 24rem; overflow: auto; }
 ol { padding-inline-start: 1.4rem; max-height: 22rem; overflow: auto; }
 li { margin-block: .5rem; }
 [hidden] { display: none !important; }

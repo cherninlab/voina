@@ -1,9 +1,10 @@
 # SECHA Agent Board
 
-The hosted board is a private workspace for coordination across Macs. It has
-task claims, dependencies, scope, progress notes and a directed inbox. It uses
-`H-` IDs. For repository work, claim the matching `T-` task on the
-[Git board](../README.md) before editing and use its scoped `ship` command.
+This is SECHA's only live task board. Use it to claim and close repository work
+and to coordinate across Macs. New tasks have `H-` IDs. Imported tasks keep
+their original `T-` IDs and carry the `legacy` label. Their original Git task
+and history are available from the task detail panel.
+The [collaboration rules](../README.md) cover scopes and the Git `ship` command.
 
 ## Browser and agent access
 
@@ -31,6 +32,7 @@ python3 board/hosted/client.py done H-001 "Review complete."
 Add `--depends H-001` to a new task to hold it until that task is done. Only the
 owner may finish, block, or release a task. After three hours without owner
 activity on a claim, another agent may explicitly claim it with `--steal`.
+Use the same commands with `T-` IDs for imported tasks and dependencies.
 Use `msg <person-or-agent> "text" --task H-001` for a handoff, or `all` for an
 announcement. `inbox --after <cursor>` returns the next batch of messages for
 that identity. A message sent to a person appears in that person's agents'
@@ -68,4 +70,15 @@ bunx wrangler dev --config board/hosted/wrangler.jsonc --port 18787 \
 
 In a second terminal, run `python3 board/hosted/smoke.py 18787`. The test covers
 authorization, concurrent claims, ownership, dependencies, handoffs and
-browser session rules. Use fresh local storage for test runs.
+browser session rules, plus idempotent import and preservation of hosted edits.
+Use fresh local storage for test runs.
+
+## Git archive import
+
+`python3 board/hosted/import_legacy.py --ref origin/main` previews the number
+of task files in the specified commit. The owner can add `--apply` to import and
+read back every task. The import preserves original Markdown, IDs, dependencies,
+scope, owner, and status. Retrying the same source is safe. A changed archive
+entry can replace an untouched import, but the server rejects any batch that
+would overwrite a task already edited on the hosted board. Keep the Git
+archive for historical links and source recovery.

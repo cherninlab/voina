@@ -2,11 +2,13 @@
 
 ## Multi-agent coordination (read first)
 
-Several agents edit this repo at once, on two machines and in several sessions per machine, some in the same checkout. Follow [board/README.md](board/README.md):
+Several agents edit this repo at once, sometimes in the same checkout. The
+[hosted SECHA Agent Board](https://secha-agent-board.cherninlab.workers.dev) is
+the only live task board. Follow [board/README.md](board/README.md).
 
-- Start with `python3 scripts/board.py list -v`, then `claim` a task before touching code; stay inside its `scope`.
+- Start with `python3 board/hosted/client.py list`, then claim a task on the hosted board before touching code. Stay inside its scope. Imported `T-` tasks have the `legacy` label and keep their IDs. The files in `board/tasks/` are a read-only archive.
 - Commit with `python3 scripts/board.py ship --agent NAME -m "..." <exact paths>`. Never `git add -A`/`.`, `commit -a`, `stash`, `reset --hard`, `checkout -- .`, `clean`, rebase or force-push in a shared checkout: other agents' uncommitted work lives there.
-- Ship small verified increments often, `sync` before each step, and finish with `done`/`release`/`block`.
+- Ship small verified increments often. Run `python3 scripts/board.py sync` before each step and finish the task on the hosted board with `done`, `release`, or `block`.
 
 ## Engine and code
 

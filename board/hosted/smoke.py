@@ -76,4 +76,24 @@ headers = {"Cookie": cookie.split(";")[0]}
 assert request("/api/me", headers=headers)[2]["actor"] == human
 request("/api/tasks", body={"title": "Foreign origin"}, headers=headers, expected=403)
 request("/session", method="DELETE", headers={**headers, "Origin": origin})
-print("Hosted board OK: authentication, concurrent claims, dependencies, lifecycle, scopes, inbox and browser session")
+
+legacy = {
+    "id": "T-999998", "title": "Human: review", "status": "open", "owner": "", "updated": "2026-10-16T19:15Z",
+    "scope": ["docs/"], "depends": [], "humanOnly": True, "legacyMarkdown": "Original task and log",
+}
+route = "/api/admin/import-legacy"
+request(route, theo, {"tasks": [legacy]}, expected=403)
+assert request(route, human, {"tasks": [legacy]})[2]["inserted"] == 1
+assert request(route, human, {"tasks": [legacy]})[2]["unchanged"] == 1
+task = request("/api/tasks/T-999998", human)[2]
+assert task["labels"] == ["legacy"] and task["legacyMarkdown"] == legacy["legacyMarkdown"]
+request("/api/tasks/T-999998/claim", theo, {}, expected=403)
+next_task = request("/api/tasks", theo, {"title": "After review", "depends": ["T-999998"]}, expected=201)[2]["id"]
+request(f"/api/tasks/{next_task}/claim", theo, {}, expected=409)
+request("/api/tasks/T-999998/claim", human, {})
+request("/api/tasks/T-999998/done", human, {})
+request(f"/api/tasks/{next_task}/claim", theo, {})
+request(route, human, {"tasks": [{**legacy, "id": "T-999999"}, {**legacy, "legacyMarkdown": "Git changed"}]}, expected=409)
+request("/api/tasks/T-999999", human, expected=404)
+assert request("/api/tasks/T-999998", human)[2]["status"] == "done"
+print("Hosted board OK: authentication, claims, dependencies, lifecycle, inbox, browser session and legacy import")

@@ -1,10 +1,7 @@
 #!/usr/bin/env python3
-"""Git-backed task board for many agents on many machines. Protocol: board/README.md.
+"""SECHA Git sync, scoped shipping, worktrees, and playtest pin support.
 
-Every mutation is a small commit of board files only, pushed straight to origin/main.
-A rejected push means someone else moved first: we refetch, re-check, and retry, so
-the remote decides who wins a claim. Nothing here stashes, resets --hard, or commits
-files other than the ones named, because several agents may share one checkout.
+Live tasks are on the hosted board. See board/README.md.
 """
 from __future__ import annotations
 
@@ -23,6 +20,7 @@ from typing import Callable, Dict, List, Optional, Tuple
 
 REMOTE = "origin"
 TRUNK = "main"
+HOSTED_BOARD = "https://secha-agent-board.cherninlab.workers.dev"
 STALE_HOURS = 3
 POKE_PORT = int(os.environ.get("BOARD_PORT", "47777"))
 FIELDS = ["id", "title", "status", "owner", "scope", "depends", "updated"]
@@ -371,8 +369,10 @@ def cmd_ship(args: argparse.Namespace) -> None:
     rel: List[str] = []
     for raw in args.paths:
         path = (Path.cwd() / raw).resolve()
-        if path == ROOT or ROOT not in path.parents:
+        if path == ROOT or ROOT not in path.parents or path.is_dir():
             raise BoardError(f"refusing to ship {raw!r}: name the exact files you changed")
+        if path == TASKS or TASKS in path.parents:
+            raise BoardError(f"the legacy task archive is read-only; use {HOSTED_BOARD}")
         rel.append(str(path.relative_to(ROOT)))
     git("add", "--all", "--", *rel)
     if git("diff", "--cached", "--quiet", "HEAD", "--", *rel, check=False).returncode == 0:
@@ -435,18 +435,18 @@ def main() -> None:
         return p
 
     command("sync", cmd_sync, "fetch, merge origin/main safely, push local commits")
-    p = command("list", cmd_list, "sync and list tasks")
+    p = command("list", cmd_list, "retired Git task listing; use the hosted board")
     p.add_argument("--all", action="store_true", help="include done tasks")
     p.add_argument("-v", "--verbose", action="store_true", help="show scopes")
     p.add_argument("--no-sync", action="store_true")
     command("show", cmd_show).add_argument("id")
-    p = command("new", cmd_new, "add an open task")
+    p = command("new", cmd_new, "retired Git task creation; use the hosted board")
     p.add_argument("title")
     p.add_argument("--scope", default="", help="comma-separated paths the task will touch")
     p.add_argument("--depends", default="", help="comma-separated task ids")
     p.add_argument("--body", default="")
     p.add_argument("--done-when", default="")
-    p = command("claim", cmd_claim, "take a task; the first push wins")
+    p = command("claim", cmd_claim, "retired Git task claim; use the hosted board")
     p.add_argument("id")
     p.add_argument("--steal", action="store_true", help="take over stale ownership after 3 hours (logged)")
     for name, fn, required in (("done", cmd_done, False), ("release", cmd_release, False),
@@ -462,6 +462,8 @@ def main() -> None:
     command("worktree", cmd_worktree, "create a private worktree for --agent")
 
     args = parser.parse_args()
+    if args.command in {"list", "show", "new", "claim", "done", "release", "block", "note"}:
+        parser.exit(2, f"board: Git task commands are retired. Use {HOSTED_BOARD} or python3 board/hosted/client.py.\n")
     try:
         args.fn(args)
     except BoardError as error:

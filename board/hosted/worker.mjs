@@ -1,8 +1,9 @@
 import { DurableObject } from "cloudflare:workers";
 
-const actorPattern = /^(?:human:[a-z0-9]+|[a-z0-9]+-[a-z0-9]+-[1-9][0-9]*)$/;
+const actorPattern = /^(?:human:[a-z0-9]+|[a-z0-9]+(?:-[a-z0-9]+)+-[1-9][0-9]*)$/;
 const tokenPattern = /^[0-9a-f]{64}$/;
-const taskPattern = /^H-(\d{3,12})$/;
+const taskPattern = /^[HT]-(\d{3,12})$/;
+const legacyPattern = /^T-\d{3,12}$/;
 const staleAfter = 3 * 60 * 60 * 1000;
 const areas = ["gameplay", "world", "art", "tools", "shared"];
 const privateHeaders = { "Cache-Control": "no-store", "X-Content-Type-Options": "nosniff" };
@@ -32,19 +33,19 @@ async function handle(run) {
   }
 }
 
-async function payload(request) {
+async function payload(request, limit = 16_384) {
   if (request.headers.get("Content-Type")?.split(";")[0].trim() !== "application/json")
     reject(415, "Send an application/json body.");
   if (!request.body) reject(400, "Send a JSON object.");
   const reader = request.body.getReader();
-  const bytes = new Uint8Array(16_384);
+  const bytes = new Uint8Array(limit);
   let length = 0;
   for (;;) {
     const { done, value } = await reader.read();
     if (done) break;
     if (length + value.length > bytes.length) {
       await reader.cancel();
-      reject(413, "JSON is limited to 16 KiB.");
+      reject(413, `JSON is limited to ${limit / 1024} KiB.`);
     }
     bytes.set(value, length);
     length += value.length;
@@ -137,14 +138,62 @@ export class Board extends DurableObject {
     this.storage = ctx.storage;
     this.sql = ctx.storage.sql;
     this.sql.exec("CREATE TABLE IF NOT EXISTS tasks (id INTEGER PRIMARY KEY, record TEXT NOT NULL)");
+    this.sql.exec("CREATE TABLE IF NOT EXISTS legacy_tasks (id TEXT PRIMARY KEY, record TEXT NOT NULL)");
     this.sql.exec("CREATE TABLE IF NOT EXISTS messages (id INTEGER PRIMARY KEY, sender TEXT NOT NULL, sender_person TEXT NOT NULL, recipient TEXT NOT NULL, task TEXT, text TEXT NOT NULL, at TEXT NOT NULL)");
   }
 
   task(id) {
-    const row = this.sql.exec("SELECT record FROM tasks WHERE id = ?", Number(taskPattern.exec(id)?.[1])).toArray()[0];
+    const row = (legacyPattern.test(id)
+      ? this.sql.exec("SELECT record FROM legacy_tasks WHERE id = ?", id)
+      : this.sql.exec("SELECT record FROM tasks WHERE id = ?", Number(taskPattern.exec(id)?.[1]))).toArray()[0];
     const record = row && JSON.parse(row.record);
     if (record?.id !== id) reject(404, "Task not found.");
     return record;
+  }
+
+  importLegacy(body) {
+    if (!Array.isArray(body.tasks) || body.tasks.length === 0 || body.tasks.length > 1000)
+      reject(400, "Send between 1 and 1,000 legacy tasks.");
+    const seen = new Set();
+    return this.storage.transactionSync(() => {
+      let inserted = 0;
+      let updated = 0;
+      let unchanged = 0;
+      for (const input of body.tasks) {
+        if (!input || typeof input.id !== "string" || !legacyPattern.test(input.id) || seen.has(input.id))
+          reject(400, "Each legacy task needs a unique T- ID.");
+        const { id, status, owner, updated: at, scope, depends, legacyMarkdown, humanOnly } = input;
+        seen.add(id);
+        if (!["open", "claimed", "blocked", "done"].includes(status) ||
+            typeof owner !== "string" || owner.length > 100 ||
+            typeof at !== "string" || !Number.isFinite(Date.parse(at)) ||
+            !Array.isArray(scope) || scope.some((path) => typeof path !== "string") ||
+            !Array.isArray(depends) || depends.some((dep) => typeof dep !== "string" || !legacyPattern.test(dep)) ||
+            typeof legacyMarkdown !== "string" || !legacyMarkdown || legacyMarkdown.length > 64_000 ||
+            typeof humanOnly !== "boolean")
+          reject(400, `Invalid legacy fields for ${id}.`);
+        const title = field(input.title, "Title", 500, true);
+        const goal = field(input.goal, "Goal", 32_000);
+        const doneWhen = field(input.doneWhen, "Done when", 32_000);
+        const row = this.sql.exec("SELECT record FROM legacy_tasks WHERE id = ?", id).toArray()[0];
+        const previous = row && JSON.parse(row.record);
+        if (previous?.legacyMarkdown === legacyMarkdown) {
+          unchanged++;
+          continue;
+        }
+        if (previous?.log.length)
+          reject(409, `${id} changed on the hosted board. Resolve the Git and hosted changes before retrying.`);
+        const record = {
+          id, title, area: "shared", status, scope, depends, goal, doneWhen, humanOnly, labels: ["legacy"],
+          forWho: "", owner: owner || null, ownerActive: owner ? at : null,
+          updated: at, legacyMarkdown, log: [],
+        };
+        this.sql.exec("INSERT OR REPLACE INTO legacy_tasks VALUES (?, ?)", id, JSON.stringify(record));
+        if (previous) updated++;
+        else inserted++;
+      }
+      return { inserted, updated, unchanged, total: seen.size };
+    });
   }
 
   create(body, actor, now) {
@@ -178,6 +227,7 @@ export class Board extends DurableObject {
       let text = note;
       if (action !== "note" && task.status === "done") reject(409, "This task is done.");
       if (action === "claim") {
+        if (task.humanOnly && !actor.startsWith("human:")) reject(403, "Reserved for a person.");
         if (task.forWho && task.forWho !== actor) reject(403, `Reserved for ${task.forWho}.`);
         const waiting = task.depends.filter((dep) => this.task(dep).status !== "done");
         if (waiting.length) reject(409, `Waiting for ${waiting.join(", ")}.`);
@@ -197,7 +247,8 @@ export class Board extends DurableObject {
       task.updated = now;
       // ponytail: keep the latest 100 entries on each task; split logs out if tasks need longer history.
       task.log = [...task.log, { at: now, actor, action, ...(text ? { text } : {}) }].slice(-100);
-      this.sql.exec("UPDATE tasks SET record = ? WHERE id = ?", JSON.stringify(task), Number(taskPattern.exec(id)[1]));
+      if (legacyPattern.test(id)) this.sql.exec("UPDATE legacy_tasks SET record = ? WHERE id = ?", JSON.stringify(task), id);
+      else this.sql.exec("UPDATE tasks SET record = ? WHERE id = ?", JSON.stringify(task), Number(taskPattern.exec(id)[1]));
       return task;
     });
   }
@@ -210,16 +261,24 @@ export class Board extends DurableObject {
       const method = request.method;
       const now = new Date().toISOString();
       if (pathname === "/api/me" && method === "GET") return json({ actor, areas });
+      if (pathname === "/api/admin/import-legacy" && method === "POST") {
+        if (actor !== "human:theo") reject(403, "Only the board owner can import legacy tasks.");
+        return json(this.importLegacy(await payload(request, 2 * 1024 * 1024)));
+      }
       if (pathname === "/api/tasks") {
         if (method === "POST") return json(this.create(await payload(request), actor, now), 201);
         if (method === "GET") {
-          return json(this.sql.exec("SELECT record FROM tasks ORDER BY id DESC").toArray().map(({ record }) => {
-            const { log, ...summary } = JSON.parse(record);
+          const rows = [
+            ...this.sql.exec("SELECT record FROM tasks ORDER BY id DESC"),
+            ...this.sql.exec("SELECT record FROM legacy_tasks ORDER BY length(id) DESC, id DESC"),
+          ];
+          return json(rows.map(({ record }) => {
+            const { log, legacyMarkdown, ...summary } = JSON.parse(record);
             return { ...summary, stale: summary.status === "claimed" && Date.parse(now) - Date.parse(summary.ownerActive) >= staleAfter };
           }));
         }
       }
-      const taskRoute = /^\/api\/tasks\/(H-\d{3,12})(?:\/(claim|note|done|block|release))?$/.exec(pathname);
+      const taskRoute = /^\/api\/tasks\/([HT]-\d{3,12})(?:\/(claim|note|done|block|release))?$/.exec(pathname);
       if (taskRoute) {
         const [, id, action] = taskRoute;
         if (!action && method === "GET") return json(this.task(id));

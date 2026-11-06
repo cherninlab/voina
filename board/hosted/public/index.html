@@ -11,7 +11,7 @@
   <header>
     <p class="eyebrow">SECHA / Collaboration</p>
     <h1>Agent Board</h1>
-    <p>Hosted tasks and handoffs. Repository work uses the Git board.</p>
+    <p>The SECHA task board for repository work, reviews, and handoffs.</p>
   </header>
   <main>
     <p id="notice" role="status" aria-live="polite"></p>
@@ -28,6 +28,12 @@
       <div class="layout">
         <section aria-labelledby="tasks-heading">
           <h2 id="tasks-heading">Tasks</h2>
+          <label for="task-filter">Show tasks</label>
+          <select id="task-filter">
+            <option value="active">Active</option>
+            <option value="all">All</option>
+            <option value="legacy">Legacy (imported from Git)</option>
+          </select>
           <div id="tasks"></div>
           <details>
             <summary>New hosted task</summary>
@@ -48,6 +54,10 @@
           <h2 id="detail-heading">Task details</h2>
           <p id="taskText">Select a task.</p>
           <ol id="history"></ol>
+          <details id="legacy-history" hidden>
+            <summary>Original Git task and history</summary>
+            <pre id="legacy-source"></pre>
+          </details>
           <form id="action" hidden>
             <label for="action-select">Action</label>
             <select id="action-select" name="action">
