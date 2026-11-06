@@ -17,7 +17,7 @@ Every element has a structural reason. A rule that can't be met stops the build;
 3. **A doorway onto an open crossing is sized by that crossing.** When an enclosed route leaves a room on its last segment and hands over to a bridge or ledge, the door matches the bridge, not the corridor.
 4. **A doorway must fit its wall.** If a route crosses too near a corner for its door plus jambs, the build prints `DOOR_DOES_NOT_FIT` and refuses to export. The fix is to change the room outline in `RedDescentLayout.rooms()`, never to shrink the door. Example: the entry room's east wall was turned square to its passage.
 5. **A stone build replaces everything it stands for.** A room with `rooms/<id>.glb` skips its old wall boxes, niches, pilasters and proximity arches. A stretch of route inside a passage, or within 1.6 m of a stone room, skips its old tunnel walls and lid (`stone_enclosed`).
-6. **The shaft's outline wall stops at rooms.** Rooms are cut into the rock at the shaft's edge. Where one stands in the outline, its own walls are the shaft wall over the room's height (`room_cuts`). Routes that pass beside the room still get their doorway.
+6. **The shaft's outline wall stops at rooms.** Rooms are cut into the rock at the shaft's edge. Where one stands in the outline, its own walls are the shaft wall over the room's height (`room_cuts`). A route centreline must cross the shaft outline to make an additional opening. That opening follows the mitred walking ribbon with clearance across the thickness of the wall. The wall face and collision backing use the same cuts, and the baked architecture supplies the arches.
 7. **Walls seen from the shaft are faced on both sides.** Their through-stones (jambs and voussoirs) serve both faces.
 8. **Enclosed routes form one network.** Every stretch of an enclosed route outside the rooms is a passage. Where stretches meet at a route vertex:
    - a slight bend (under 25°) is mitred;
@@ -135,6 +135,7 @@ For every passage it captures both directions inside, plus the approach from eac
 
 ## Open work
 
+- **Crossing sightlines:** from the upper bridge facing the restraint hall, the roof of the lower return gallery is exposed. At the lower bridge the choir landing still has an opening beneath the left jamb, and the root tunnel has a narrow gap beside its threshold. Inspect these in color and object ID from the same player camera pose.
 - **Shaft walls in stone:** the outline wall is still the old boxes. Its area (about 10,000 m²) needs instanced stones (one library, GPU instances with per-stone tone and texture offset) rather than merged unique meshes.
 - **Corner responds:** only the chapel and nave get pilasters, because transverse ribs need a long ridge and the other rooms are nearly square. A cloister vault's groins come down at the room's corners, so the next supports are engaged piers on each corner's bisector up to the springing, clear of doors and walks. Props and sconces must then keep clear of them.
 - **Reproducible rooms:** `main()` shares one random stream across every room built in a process, so a room's stones depend on which rooms came before it in that batch. Seed each room on its own (`core.rng(177, 'architecture', room id)`). After any room rebuild, regrow that room's roots and rubble, which are fitted to its stones.

@@ -891,6 +891,44 @@ func portal_levels(point: Vector2, radius: float) -> Array[float]:
 				result.append(y)
 	return result
 
+## Cut the shaft wall where the actual walking ribbons meet it. A route
+## running near the wall must not turn a whole masonry column into a doorway.
+func shaft_route_cuts(a: Vector2, b: Vector2, room_openings: Array[Dictionary]) -> Array[Dictionary]:
+	var cuts: Array[Dictionary] = []
+	var wall: Vector2 = b - a
+	for path: Dictionary in paths:
+		var points: PackedVector3Array = path["points"] as PackedVector3Array
+		var edges: PackedVector3Array = route_edges(path)
+		for index: int in range(points.size() - 1):
+			var from: Vector3 = points[index]
+			var to: Vector3 = points[index + 1]
+			var origin: Vector2 = Vector2(from.x, from.z)
+			var destination: Vector2 = Vector2(to.x, to.z)
+			var crossing: Variant = Geometry2D.segment_intersects_segment(a, b, origin, destination)
+			if crossing == null:
+				continue
+			var centre: Vector2 = crossing as Vector2
+			var axis: Vector2 = destination - origin
+			var wall_t: float = (centre - a).dot(wall) / wall.length_squared()
+			var floor_y: float = lerpf(from.y, to.y, (centre - origin).dot(axis) / axis.length_squared())
+			if room_openings.any(func(cut: Dictionary) -> bool:
+				var band: Vector2 = cut["band"] as Vector2
+				return wall_t > float(cut["t0"]) and wall_t < float(cut["t1"]) and floor_y >= band.x - 0.05 and floor_y + 2.0 < band.y
+			):
+				continue
+			var ribbon: PackedVector2Array = PackedVector2Array()
+			for corner: Vector3 in [from - edges[index], to - edges[index + 1], to + edges[index + 1], from + edges[index]]:
+				ribbon.append(Vector2(corner.x, corner.z))
+			# Include clearance across both faces of the one-metre-thick wall.
+			for padded: PackedVector2Array in Geometry2D.offset_polygon(ribbon, 0.6, Geometry2D.JOIN_MITER):
+				for inside: PackedVector2Array in Geometry2D.intersect_polyline_with_polygon(PackedVector2Array([a, b]), padded):
+					var t0: float = (inside[0] - a).dot(wall) / wall.length_squared()
+					var t1: float = (inside[-1] - a).dot(wall) / wall.length_squared()
+					var y0: float = lerpf(from.y, to.y, clampf((inside[0] - origin).dot(axis) / axis.length_squared(), 0.0, 1.0))
+					var y1: float = lerpf(from.y, to.y, clampf((inside[-1] - origin).dot(axis) / axis.length_squared(), 0.0, 1.0))
+					cuts.append({"t0": minf(t0, t1), "t1": maxf(t0, t1), "band": Vector2(minf(y0, y1) - 0.25, maxf(y0, y1) + 4.8)})
+	return cuts
+
 func build_vault(polygon: PackedVector2Array, central: bool) -> void:
 	for index: int in range(polygon.size()):
 		var a: Vector2 = polygon[index]
@@ -899,72 +937,45 @@ func build_vault(polygon: PackedVector2Array, central: bool) -> void:
 		var tangent: Vector2 = delta.normalized()
 		var normal: Vector2 = Vector2(tangent.y, -tangent.x) * (-1.0 if central else 1.0)
 		var basis: Basis = Basis(Vector3.UP, -atan2(tangent.y, tangent.x))
-		# Collision stays at the actual wall outline; blind reveals occupy the facing.
 		var count: int = maxi(1, roundi(delta.length() / 4.8))
-		var rooms_in_wall: Array[Dictionary] = room_cuts(a, b)
-		for column: int in range(count):
-			var center: Vector2 = a.lerp(b, (float(column) + 0.5) / float(count))
-			var width: float = delta.length() / float(count)
-			# Rooms standing in the outline: their own walls bound the shaft
-			# there, so this wall stops at them over the room's height.
-			var bands: Array[Vector2] = []
-			var beside: Array[Array] = []
-			var c0: float = float(column) / float(count)
-			var c1: float = float(column + 1) / float(count)
-			for cut: Dictionary in rooms_in_wall:
-				if float(cut["t1"]) <= c0 or float(cut["t0"]) >= c1:
-					continue
-				bands.append(cut["band"] as Vector2)
-				for part: Vector2 in [Vector2(c0, maxf(c0, float(cut["t0"]))), Vector2(minf(c1, float(cut["t1"])), c1)]:
-					if (part.y - part.x) * delta.length() > 0.05:
-						beside.append([part, cut["band"]])
-			var doors: Array[float] = []
-			if not central:
-				for level: float in portal_levels(center, width * 0.5):
-					if not bands.any(func(band: Vector2) -> bool: return level > band.x and level < band.y):
-						doors.append(level)
-			var gaps: Array[Vector2] = bands.duplicate()
-			for floor_y: float in doors:
-				gaps.append(Vector2(floor_y - 0.25, floor_y + 4.8))
-			var spans: Array[Vector2] = cut_spans([Vector2(-48, 14)], gaps)
-			var backing: float = 1.3 if central else 0.45
-			for span: Vector2 in spans:
-				piece(Vector3(width + 0.05, span.y - span.x, 0.8), Vector3(center.x + normal.x * backing, (span.x + span.y) * 0.5, center.y + normal.y * backing), "core_stone" if central else "dark", basis, true)
-			for part: Array in beside:
-				var range_t: Vector2 = part[0] as Vector2
-				var band: Vector2 = part[1] as Vector2
-				var middle: Vector2 = a.lerp(b, (range_t.x + range_t.y) * 0.5)
-				var part_width: float = (range_t.y - range_t.x) * delta.length()
-				# A route may still pass through the wall beside the room.
-				var part_gaps: Array[Vector2] = []
-				for level: float in ([] as Array[float]) if central else portal_levels(middle, part_width * 0.5):
-					if level > band.x and level < band.y:
-						part_gaps.append(Vector2(level - 0.25, level + 4.8))
-						arch(Vector3(middle.x, level, middle.y), tangent, part_width * 0.48)
-				for span: Vector2 in cut_spans([band], part_gaps):
-					piece(Vector3(part_width, span.y - span.x, 0.8), Vector3(middle.x + normal.x * backing, (span.x + span.y) * 0.5, middle.y + normal.y * backing), "core_stone" if central else "dark", basis, true)
-					piece(Vector3(part_width, span.y - span.x, 1.0), Vector3(middle.x + normal.x * (0.5 if central else 0.0), (span.x + span.y) * 0.5, middle.y + normal.y * (0.5 if central else 0.0)), "plaster" if central else "wall", basis)
-			for door_y: float in doors:
-				if not stone_node_near(Vector3(center.x, door_y, center.y), width * 0.5):
-					arch(Vector3(center.x, door_y, center.y), tangent, width * 0.48)
-			for row: int in range(10):
-				var y: float = -46.0 + float(row) * 6.0
-				var at: Vector3 = Vector3(center.x, y, center.y) + Vector3(normal.x, 0, normal.y) * (0.5 if central else 0.0)
-				var doorway: bool = false
-				for gap: Vector2 in gaps:
-					if y < gap.y and y + 6.0 > gap.x:
-						doorway = true
-				var wall_material: String = "plaster" if central else "wall"
-				if doorway:
-					# A portal or a room removes only its own height, never the entire six-metre row.
-					for span: Vector2 in cut_spans([Vector2(y, y + 6.0)], gaps):
-						piece(Vector3(width + 0.04, span.y - span.x, 1.0), Vector3(at.x, (span.x + span.y) * 0.5, at.z), wall_material, basis)
-					continue
-				# Continuous wall mass. No blind arcades: an opening with nothing behind
-				# it has no reason to exist.
-				piece(Vector3(width + 0.004, 6.0, 1.0), at + Vector3.UP * 3.0, wall_material, basis)
-				if not central and row in [3, 6] and posmod(index * 3 + column, 4) == 0 and posmod(index * 17 + column * 11 + row * 7, 23) <= 4:
-					torch_posts.append(at - Vector3(normal.x, 0, normal.y) * 1.1 + Vector3.UP * 0.8)
+		var cuts: Array[Dictionary] = room_cuts(a, b)
+		if not central:
+			cuts.append_array(shaft_route_cuts(a, b, cuts))
+		var breaks: Array[float] = []
+		for column: int in range(count + 1):
+			breaks.append(float(column) / float(count))
+		for cut: Dictionary in cuts:
+			breaks.append(float(cut["t0"]))
+			breaks.append(float(cut["t1"]))
+		breaks.sort()
+		# Apply all overlapping room and route cuts to the same slice, including
+		# the collision backing. Baked room and passage meshes supply the arches.
+		for part: int in range(breaks.size() - 1):
+			var width: float = (breaks[part + 1] - breaks[part]) * delta.length()
+			if width < 0.001:
+				continue
+			var t: float = (breaks[part] + breaks[part + 1]) * 0.5
+			var center: Vector2 = a.lerp(b, t)
+			var gaps: Array[Vector2] = []
+			for cut: Dictionary in cuts:
+				if t > float(cut["t0"]) and t < float(cut["t1"]):
+					gaps.append(cut["band"] as Vector2)
+			for span: Vector2 in cut_spans([Vector2(-48, 14)], gaps):
+				var at: Vector3 = Vector3(center.x, (span.x + span.y) * 0.5, center.y)
+				var offset: Vector3 = Vector3(normal.x, 0, normal.y)
+				piece(Vector3(width + 0.004, span.y - span.x, 0.8), at + offset * (1.3 if central else 0.45), "core_stone" if central else "dark", basis, true)
+				piece(Vector3(width + 0.004, span.y - span.x, 1.0), at + offset * (0.5 if central else 0.0), "plaster" if central else "wall", basis)
+		if not central:
+			for column: int in range(count):
+				var t: float = (float(column) + 0.5) / float(count)
+				var center: Vector2 = a.lerp(b, t)
+				for row: int in [3, 6]:
+					var y: float = -45.2 + float(row) * 6.0
+					if posmod(index * 3 + column, 4) == 0 and posmod(index * 17 + column * 11 + row * 7, 23) <= 4 and not cuts.any(func(cut: Dictionary) -> bool:
+						var band: Vector2 = cut["band"] as Vector2
+						return t > float(cut["t0"]) and t < float(cut["t1"]) and y > band.x and y < band.y
+					):
+						torch_posts.append(Vector3(center.x - normal.x * 1.1, y, center.y - normal.y * 1.1))
 	polygon_surface(polygon, 14, "stone", central)
 	if central:
 		polygon_surface(polygon, -48, "dark", false)
@@ -998,7 +1009,7 @@ func room_cuts(a: Vector2, b: Vector2) -> Array[Dictionary]:
 		for inside: PackedVector2Array in Geometry2D.intersect_polyline_with_polygon(PackedVector2Array([a, b]), grown[0]):
 			var t0: float = inside[0].distance_to(a) / length
 			var t1: float = inside[inside.size() - 1].distance_to(a) / length
-			result.append({"t0": minf(t0, t1), "t1": maxf(t0, t1), "band": Vector2(float(room["floor"]) - 0.6, float(room["floor"]) + float(room["height"]) + 0.6)})
+			result.append({"t0": minf(t0, t1), "t1": maxf(t0, t1), "band": Vector2(float(room["floor"]) - 0.04, float(room["floor"]) + float(room["height"]) + 0.6)})
 	return result
 
 func arch_spandrel(at: Vector3, basis: Basis, radius: float, material: String, spring: float = 2.9, top: float = 6.0, depth: float = 1.0) -> void:
