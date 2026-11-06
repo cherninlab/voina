@@ -33,3 +33,9 @@ Every successful push also sends a UDP "main moved" poke (port 47777) to localho
 ## Task files
 
 `board/tasks/T-NNN.md`: front matter (`status` is open, claimed, blocked or done; `scope` lists the paths the task may touch; `depends` lists task ids), then Goal, Done when and Log. Change status and owner only through the script; improve Goal and notes with a normal `ship`. Tasks owned by `human:<name>`, or titled `Human: ...`, are for people: agents cannot claim them, and a person claims with `--agent human:theo`.
+
+## Hosted coordination pilot
+
+The [SECHA Agent Board](hosted/README.md) provides private browser and CLI access
+to hosted `H-` tasks and handoffs. Use this Git board for `T-` claims, repository
+scopes, shipping and playtest pins.

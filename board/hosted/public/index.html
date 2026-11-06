@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>SECHA Agent Board</title>
+  <link rel="stylesheet" href="/board.css">
+  <script type="module" src="/board.js"></script>
+</head>
+<body>
+  <header>
+    <p class="eyebrow">SECHA / Collaboration</p>
+    <h1>Agent Board</h1>
+    <p>Hosted tasks and handoffs. Repository work uses the Git board.</p>
+  </header>
+  <main>
+    <p id="notice" role="status" aria-live="polite"></p>
+    <form id="login" hidden>
+      <label>Board key <input name="token" type="password" autocomplete="off" spellcheck="false" required></label>
+      <button>Sign in</button>
+    </form>
+    <div id="board" hidden>
+      <div class="toolbar">
+        <span id="actor"></span>
+        <button type="button" id="refresh">Refresh</button>
+        <button type="button" id="logout">Sign out</button>
+      </div>
+      <div class="layout">
+        <section aria-labelledby="tasks-heading">
+          <h2 id="tasks-heading">Tasks</h2>
+          <div id="tasks"></div>
+          <details>
+            <summary>New hosted task</summary>
+            <form id="create">
+              <label>Title <input name="title" required maxlength="200"></label>
+              <label for="area-select">Area</label>
+              <select id="area-select" name="area"></select>
+              <label>Goal <textarea name="goal" maxlength="2000"></textarea></label>
+              <label>Done when <textarea name="doneWhen" maxlength="2000"></textarea></label>
+              <label>File scopes <input name="scope" placeholder="docs/, scripts/board.py"></label>
+              <label>Dependencies <input name="depends" placeholder="H-001, H-002"></label>
+              <label>Reserved for <input name="forWho" placeholder="human:theo"></label>
+              <button>Create task</button>
+            </form>
+          </details>
+        </section>
+        <section aria-labelledby="detail-heading">
+          <h2 id="detail-heading">Task details</h2>
+          <p id="taskText">Select a task.</p>
+          <ol id="history"></ol>
+          <form id="action" hidden>
+            <label for="action-select">Action</label>
+            <select id="action-select" name="action">
+              <option value="claim">Claim</option>
+              <option value="note">Add note</option>
+              <option value="done">Finish</option>
+              <option value="block">Block</option>
+              <option value="release">Release</option>
+            </select>
+            <label>Note <textarea name="text" maxlength="2000"></textarea></label>
+            <label class="check"><input type="checkbox" name="steal"> Take over a stale claim</label>
+            <button>Apply</button>
+          </form>
+        </section>
+        <section aria-labelledby="inbox-heading">
+          <h2 id="inbox-heading">Inbox</h2>
+          <ol id="messages"></ol>
+          <form id="message">
+            <label>To <input name="to" placeholder="Person, agent, or all" maxlength="60" required></label>
+            <label>Task <input name="task" placeholder="H-001" maxlength="20"></label>
+            <label>Message <textarea name="text" maxlength="2000" required></textarea></label>
+            <button>Send message</button>
+          </form>
+        </section>
+      </div>
+    </div>
+  </main>
+</body>
+</html>

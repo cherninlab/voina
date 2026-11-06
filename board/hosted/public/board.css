@@ -1,0 +1,32 @@
+:root {
+  color-scheme: dark;
+  font: 100%/1.5 system-ui, sans-serif;
+  color: #f3ede2;
+  background: #191714;
+}
+body { max-width: 78rem; margin: auto; padding: 1rem clamp(1rem, 4vw, 3rem) 3rem; }
+h1, h2 { line-height: 1.15; }
+h1 { font: 700 clamp(2.5rem, 8vw, 5rem)/1 Georgia, serif; margin: .3rem 0; }
+.eyebrow { text-transform: uppercase; letter-spacing: .13em; color: #ffc780; }
+.toolbar, .layout { display: flex; gap: 1rem; flex-wrap: wrap; }
+.toolbar { align-items: center; margin-block: 1rem; }
+.layout { align-items: start; }
+section, #login { background: #26221e; border: 1px solid #746450; border-radius: .45rem; padding: 1rem; }
+section { flex: 1 1 18rem; min-width: 0; }
+form, label { display: grid; gap: .4rem; }
+form { margin-block: 1rem; gap: .8rem; }
+#login { max-width: 30rem; }
+.check { display: flex; align-items: center; }
+input, select, textarea, button { font: inherit; color: inherit; background: #191714; border: 1px solid #a2927f; border-radius: .3rem; padding: .4rem .55rem; min-width: 0; }
+button, summary { cursor: pointer; }
+button { background: #ffc780; color: #21190f; border-color: #ffc780; }
+button:disabled { opacity: .65; cursor: wait; }
+:focus-visible { outline: 3px solid #90dcff; outline-offset: 3px; }
+#tasks { display: grid; gap: .5rem; margin-bottom: 1rem; }
+#tasks button { background: #332b23; color: inherit; text-align: left; border-color: #a2927f; }
+#tasks button[aria-current="true"] { border-color: #ffc780; box-shadow: inset .25rem 0 #ffc780; }
+#notice { min-height: 1.5em; color: #ffc780; }
+#taskText, li { white-space: pre-wrap; overflow-wrap: anywhere; }
+ol { padding-inline-start: 1.4rem; max-height: 22rem; overflow: auto; }
+li { margin-block: .5rem; }
+[hidden] { display: none !important; }
