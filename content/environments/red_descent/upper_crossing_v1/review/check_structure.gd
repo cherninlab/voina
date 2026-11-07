@@ -37,9 +37,9 @@ func run() -> void:
 		assert(wall.mesh.get_surface_count() == 2, "Stone and cement surfaces must stay separate materials on one object")
 		var cement_surfaces: int = 0
 		for surface: int in range(wall.mesh.get_surface_count()):
-			var material: ShaderMaterial = wall.get_surface_override_material(surface) as ShaderMaterial
+			var material: Material = wall.get_surface_override_material(surface)
 			assert(material != null)
-			if material.get_shader_parameter("mapped") == false:
+			if material.resource_name == "SolidMortar":
 				cement_surfaces += 1
 				var arrays: Array = wall.mesh.surface_get_arrays(surface)
 				var vertices: PackedVector3Array = arrays[Mesh.ARRAY_VERTEX] as PackedVector3Array
@@ -60,8 +60,9 @@ func run() -> void:
 	var structure: Node3D = architecture.get_node("StructuralRelief") as Node3D
 	var matches: int = 0
 	var samples: int = 0
-	assert(structure.find_children("*UpperPostSocket*", "MeshInstance3D", true, false).size() == 2)
-	assert(structure.find_children("Foundation_UpperBridgeBearing", "MeshInstance3D", true, false).size() == 1)
+	assert(structure.find_children("*UpperPostSocket*", "MeshInstance3D", true, false).is_empty(), "Redundant socket blocks returned")
+	assert(structure.find_children("Foundation_UpperBridgeBearing", "MeshInstance3D", true, false).is_empty(), "Redundant bearing block returned")
+	assert(not architecture.has_node("UpperCrossingRock"), "Rejected inferred-rock overlay returned")
 	for node: Node in structure.find_children("*", "MeshInstance3D", true, false):
 		if not (node.name.begins_with("ShaftRock") or "UpperPostSocket" in String(node.name) or node.name == "Foundation_UpperBridgeBearing"):
 			continue

@@ -24,6 +24,7 @@ const STONE_INDEX: String = "res://content/environments/procedural_architecture_
 const UPPER_CROSSING: String = "res://content/environments/red_descent/upper_crossing_v1/"
 const STONE_FACE: String = UPPER_CROSSING + "materials/limestone/"
 const KREA_MATERIALS: String = UPPER_CROSSING + "materials/"
+const MASONRY_REPAIRS: String = "res://content/environments/red_descent/masonry_repairs_v1/"
 const ROOTS: String = "res://content/environments/procedural_roots_v1/"
 const PROP_SETS: String = "res://content/environments/procedural_props_aged_v1/sets/"
 const RUBBLE: String = "res://content/environments/procedural_rubble_v1/rooms/"
@@ -40,9 +41,7 @@ func build() -> void:
 	integrate_materials()
 	# Paving has real open joints. Its continuous mortar bed remains visible
 	# below them when the old ribbon is replaced by the stone build.
-	var bedding: ShaderMaterial = (materials["plaster"] as ShaderMaterial).duplicate() as ShaderMaterial
-	bedding.set_shader_parameter("coat", false)
-	bedding.set_shader_parameter("plaster", 0.0)
+	var bedding: StandardMaterial3D = mortar_material()
 	materials["mortar_bedding"] = bedding
 	structure = DungeonStructure.new(self)
 	fort_source = load("res://content/environments/dungeon_geometry_v2/modular_fort_01/modular_fort_01_2k.gltf").instantiate() as Node3D
@@ -55,7 +54,6 @@ func build() -> void:
 	load_structural_relief()
 	build_vault(RedDescentLayout.outline(), false)
 	build_vault(RedDescentLayout.spine(), true)
-	upper_crossing_rock()
 	# The void's base stops physics falls; the player recovery threshold is above it.
 	piece(Vector3(150, 1, 150), Vector3(0, -60, 0), "dark", Basis.IDENTITY, true)
 	flush()
@@ -110,18 +108,63 @@ func load_structural_relief() -> void:
 		relief_walls.append(int(index))
 	print("STRUCTURAL_RELIEF_READY: ", built.get_child_count(), " meshes, walls ", relief_walls)
 
-## Local TripoSG cliff geometry, carved away from the existing playable volumes.
-func upper_crossing_rock() -> void:
-	var cliff: Node3D = (load(UPPER_CROSSING + "rock_cliff.glb") as PackedScene).instantiate() as Node3D
-	cliff.name = "UpperCrossingRock"
-	var rock: ShaderMaterial = (materials["rock"] as ShaderMaterial).duplicate() as ShaderMaterial
-	rock.set_shader_parameter("wetness", 0.18)
-	rock.set_shader_parameter("dry_roughness_min", 0.86)
-	rock.set_shader_parameter("tint", Vector3(0.66, 0.69, 0.72))
-	rock.set_shader_parameter("normal_strength", 0.28)
-	for node: Node in cliff.find_children("*", "MeshInstance3D", true, false):
-		(node as MeshInstance3D).material_override = rock
-	add_child(cliff)
+## Opaque cement fills joints independently of the wet plaster/stone finish.
+func mortar_material() -> StandardMaterial3D:
+	if not materials.has("cement"):
+		var cement: StandardMaterial3D = StandardMaterial3D.new()
+		cement.resource_name = "SolidMortar"
+		cement.albedo_color = Color(0.36, 0.35, 0.32)
+		cement.vertex_color_use_as_albedo = true
+		cement.roughness = 0.98
+		cement.metallic_specular = 0.08
+		materials["cement"] = cement
+	return materials["cement"] as StandardMaterial3D
+
+## Replace the two legacy open vault sheets and their matching collision.
+## A stale source or layout keeps the original asset instead of hiding it.
+func repair_room_backing(built: Node3D, room: Dictionary, source: String) -> void:
+	var id: String = String(room["id"])
+	if id not in ["first_stair_hall", "second_stair_hall"]:
+		return
+	var report: Dictionary = JSON.parse_string(FileAccess.get_file_as_string(MASONRY_REPAIRS + "build.json")) as Dictionary
+	var entry: Dictionary = (report.get("rooms", {}) as Dictionary).get(id, {}) as Dictionary
+	if entry.is_empty() or String(entry.get("source_sha256", "")) != FileAccess.get_sha256(source):
+		push_warning("Stale masonry backing source: " + id)
+		return
+	var expected: Dictionary = entry["room"] as Dictionary
+	var polygon: PackedVector2Array = PackedVector2Array()
+	for point: Array in expected["points"] as Array:
+		polygon.append(Vector2(float(point[0]), float(point[1])))
+	if polygon != (room["points"] as PackedVector2Array) or float(expected["floor"]) != float(room["floor"]) or float(expected["height"]) != float(room["height"]):
+		push_warning("Stale masonry backing room: " + id)
+		return
+	if not ResourceLoader.exists(MASONRY_REPAIRS + String(entry["file"])):
+		push_warning("Missing masonry backing asset: " + id)
+		return
+	var repaired: Node3D = (load(MASONRY_REPAIRS + String(entry["file"])) as PackedScene).instantiate() as Node3D
+	var replacement: MeshInstance3D = repaired.find_children("*", "MeshInstance3D", true, false)[0] as MeshInstance3D
+	var name: String = String(entry["replace_mortar"])
+	var old: MeshInstance3D = built.get_node_or_null(name) as MeshInstance3D
+	var collision_name: String = name.replace("Mortar_", "Collision_")
+	var bodies: Array[Node] = built.find_children(collision_name + "*", "StaticBody3D", true, false)
+	if old == null or bodies.size() != 1:
+		repaired.free()
+		push_warning("Masonry backing node mismatch: " + id)
+		return
+	old.mesh = replacement.mesh
+	old.transform = replacement.transform
+	bodies[0].free()
+	var body: StaticBody3D = StaticBody3D.new()
+	body.name = collision_name
+	body.transform = replacement.transform
+	var shape: ConcavePolygonShape3D = ConcavePolygonShape3D.new()
+	shape.set_faces(replacement.mesh.get_faces())
+	var collider: CollisionShape3D = CollisionShape3D.new()
+	collider.shape = shape
+	body.add_child(collider)
+	built.add_child(body)
+	built.set_meta("closed_backing", true)
+	repaired.free()
 
 func piece(size: Vector3, at: Vector3, material: String, basis: Basis = Basis.IDENTITY, solid: bool = false, color: Color = Color.WHITE) -> void:
 	if material == "collision":
@@ -462,16 +505,16 @@ func stone_roots(file: String) -> void:
 		return
 	if not materials.has("roots"):
 		var roots: StandardMaterial3D = StandardMaterial3D.new()
-		roots.albedo_color = Color(0.75, 0.75, 0.75)
-		# Existing metre UVs run down the root. The neutral local Krea scan
-		# follows that direction, with shallow fibres and restrained normals.
+		roots.albedo_color = Color(0.66, 0.045, 0.07)
+		# Diseased crimson vascular growth; fine longitudinal tissue detail
+		# follows metre UVs without turning the infestation into brown wood.
 		roots.albedo_texture = load(KREA_MATERIALS + "roots/albedo.png") as Texture2D
 		roots.normal_enabled = true
 		roots.normal_texture = load(KREA_MATERIALS + "roots/normal_gl.png") as Texture2D
-		roots.normal_scale = 0.4
+		roots.normal_scale = 0.22
 		roots.uv1_scale = Vector3(0.8, 1.0, 1.0)
 		roots.vertex_color_use_as_albedo = true
-		roots.roughness = 0.9
+		roots.roughness = 0.62
 		roots.metallic_specular = 0.18
 		materials["roots"] = roots
 	var grown: Node3D = (load(file) as PackedScene).instantiate() as Node3D
@@ -508,6 +551,9 @@ func stone_face(kind: String) -> Material:
 		face.set_shader_parameter(map + "_map", load(STONE_FACE + ("normal_gl" if map == "normal" else map) + ".png"))
 	face.set_shader_parameter("aspect", 1.0)
 	face.set_shader_parameter("normal_strength", 0.28)
+	face.set_shader_parameter("wetness", 0.35)
+	face.set_shader_parameter("wet_roughness", 0.78)
+	face.set_shader_parameter("dry_roughness_min", 0.9)
 	face.set_shader_parameter("scale", 0.8)
 	face.set_shader_parameter("mapped", true)
 	materials[key] = face
@@ -533,25 +579,19 @@ func stone_materials(built: Node3D) -> void:
 		for key: String in ["normal", "roughness", "ao", "height"]:
 			mapped.set_shader_parameter(key + "_map", load(STONE_FACE + ("normal_gl" if key == "normal" else key) + ".png"))
 		mapped.set_shader_parameter("scale", 0.555)
-		mapped.set_shader_parameter("normal_strength", 0.75)
+		mapped.set_shader_parameter("normal_strength", 0.28)
+		mapped.set_shader_parameter("wetness", 0.35)
+		mapped.set_shader_parameter("wet_roughness", 0.78)
+		mapped.set_shader_parameter("dry_roughness_min", 0.9)
 		mapped.set_shader_parameter("mapped", true)
 		materials["built_stone"] = mapped
 	for node: Node in built.find_children("*", "MeshInstance3D", true, false):
 		var visual: MeshInstance3D = node as MeshInstance3D
 		if visual.name.begins_with("BondedGallery"):
-			if not materials.has("gallery_cement"):
-				var cement: ShaderMaterial = (materials["built_stone"] as ShaderMaterial).duplicate() as ShaderMaterial
-				cement.set_shader_parameter("mapped", false)
-				cement.set_shader_parameter("tint", Vector3(0.55, 0.54, 0.5))
-				cement.set_shader_parameter("normal_strength", 0.15)
-				cement.set_shader_parameter("wetness", 0.25)
-				cement.set_shader_parameter("dry_roughness_min", 0.9)
-				cement.set_shader_parameter("scale", 2.0)
-				materials["gallery_cement"] = cement
 			for surface: int in range(visual.mesh.get_surface_count()):
 				var source: Material = visual.mesh.surface_get_material(surface)
 				var is_cement: bool = source != null and source.resource_name.begins_with("GalleryMortar")
-				visual.set_surface_override_material(surface, materials["gallery_cement"] if is_cement else stone_face("stone"))
+				visual.set_surface_override_material(surface, mortar_material() if is_cement else stone_face("stone"))
 				if is_cement:
 					var arrays: Array = visual.mesh.surface_get_arrays(surface)
 					var vertices: PackedVector3Array = arrays[Mesh.ARRAY_VERTEX] as PackedVector3Array
@@ -572,6 +612,8 @@ func stone_materials(built: Node3D) -> void:
 					roof.set_shader_parameter("dry_roughness_min", 0.88)
 					materials["upper_roof"] = roof
 				visual.material_override = materials["upper_roof"]
+		elif visual.name.begins_with("Mortar"):
+			visual.material_override = mortar_material()
 		elif visual.name.begins_with("Plaster"):
 			visual.material_override = stone_coat("red_plaster" if visual.name.begins_with("Plaster_nave") else "plaster")
 		else:
@@ -586,6 +628,7 @@ func stone_room(room: Dictionary) -> bool:
 		return false
 	var built: Node3D = (load(file) as PackedScene).instantiate() as Node3D
 	built.name = "StoneRoom_" + String(room["id"])
+	repair_room_backing(built, room, file)
 	stone_materials(built)
 	add_child(built)
 	stone_roots(ROOTS + String(room["id"]) + ".glb")

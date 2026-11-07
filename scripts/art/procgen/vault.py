@@ -123,7 +123,7 @@ def cloister(lib, rng, inner: list, spring_z: float, rise: float, name: str, cou
 
 
 def _shell(inner, i, n, at, length, spring_z, reach, centre_h, planes, name) -> bpy.types.Object:
-    """Mortar behind web i: its arc surface pushed back a few centimetres."""
+    """Closed mortar behind web i, with its original recessed intrados."""
     a, b = inner[i], inner[(i + 1) % len(inner)]
     along2 = (b - a).normalized()
     start = a - along2 * (reach + 1.0)
@@ -147,11 +147,23 @@ def _shell(inner, i, n, at, length, spring_z, reach, centre_h, planes, name) -> 
     faces[steps // 2].normal_update()
     if faces[steps // 2].normal.dot(into_room) < 0:
         bmesh.ops.reverse_faces(bm, faces=faces)
+    # Close the backing before clipping it to its web. The room-facing
+    # intrados stays exactly where it was; thickness grows toward the roof.
+    boundary = [edge for edge in bm.edges if edge.is_boundary]
+    back = {vertex: bm.verts.new(vertex.co + UP * 0.24) for vertex in list(bm.verts)}
+    for face in list(bm.faces):
+        bm.faces.new([back[vertex] for vertex in reversed(face.verts)])
+    for edge in boundary:
+        a, b = edge.verts
+        bm.faces.new((a, b, back[b], back[a]))
+    bmesh.ops.recalc_face_normals(bm, faces=list(bm.faces))
+    assert all(edge.is_manifold for edge in bm.edges), name
     mesh = bpy.data.meshes.new(name)
     bm.to_mesh(mesh)
     bm.free()
     obj = core.link(bpy.data.objects.new(name, mesh))
     obj['tone'] = -1.0
     for point, normal in planes:
-        masonry.clip(obj, point, normal, fill=False)
+        # Tiny hidden overlap at groins allows a robust connected union.
+        masonry.clip(obj, point + normal * 0.015, normal, fill=True)
     return obj

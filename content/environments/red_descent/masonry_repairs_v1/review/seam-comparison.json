@@ -1,0 +1,41 @@
+{
+  "choir-joints": {
+    "region_pixels": [
+      180,
+      240,
+      650,
+      580
+    ],
+    "metric": "luminance > 9px median by 40; red >150 and green >65, fixed camera/exposure",
+    "measurements": {
+      "before": {
+        "isolated_bright_pixels": 52,
+        "peak_luminance": 188.375
+      },
+      "after": {
+        "isolated_bright_pixels": 1,
+        "peak_luminance": 121.29419999999999
+      }
+    }
+  },
+  "first-stair-lower": {
+    "region_pixels": [
+      1100,
+      380,
+      1380,
+      620
+    ],
+    "metric": "luminance > 9px median by 40; red >150 and green >65, fixed camera/exposure",
+    "measurements": {
+      "before": {
+        "isolated_bright_pixels": 154,
+        "peak_luminance": 250.37919999999997
+      },
+      "after": {
+        "isolated_bright_pixels": 95,
+        "peak_luminance": 250.52359999999996
+      }
+    },
+    "limits": "Region includes a real torch; count is not a leak acceptance test. Inspect matched images and geometry probes."
+  }
+}

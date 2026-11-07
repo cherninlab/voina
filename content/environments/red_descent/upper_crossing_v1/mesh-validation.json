@@ -86,22 +86,6 @@
       "euler_number": 6,
       "volume": 195.3405768374887
     },
-    "Stone-stone_UpperPostSocket_-1": {
-      "triangles": 44,
-      "boundary_edges": 0,
-      "nonmanifold_edges": 0,
-      "winding_consistent": true,
-      "euler_number": 2,
-      "volume": 0.10755591267506832
-    },
-    "Stone-stone_UpperPostSocket_1": {
-      "triangles": 44,
-      "boundary_edges": 0,
-      "nonmanifold_edges": 0,
-      "winding_consistent": true,
-      "euler_number": 2,
-      "volume": 0.10755591267506892
-    },
     "Stone-stone_support_arch_0.001": {
       "triangles": 62494,
       "boundary_edges": 0,
@@ -502,14 +486,6 @@
       "euler_number": 2,
       "volume": 108.89456152150404
     },
-    "Foundation_UpperBridgeBearing": {
-      "triangles": 12,
-      "boundary_edges": 0,
-      "nonmanifold_edges": 0,
-      "winding_consistent": true,
-      "euler_number": 2,
-      "volume": 1.8584041033718997
-    },
     "Foundation_restraint": {
       "triangles": 138,
       "boundary_edges": 0,
@@ -580,7 +556,7 @@
       "euler_number": 4,
       "volume": 12.049080396725136
     },
-    "BondedGallery_4_ac74e3": {
+    "BondedGallery_4_17e6de": {
       "triangles": 216,
       "boundary_edges": 0,
       "nonmanifold_edges": 0,
@@ -588,7 +564,7 @@
       "euler_number": 0,
       "volume": 31.927527388016454
     },
-    "BondedGallery_4_132a8d": {
+    "BondedGallery_4_5dc6bb": {
       "triangles": 60066,
       "boundary_edges": 0,
       "nonmanifold_edges": 0,
@@ -596,7 +572,7 @@
       "euler_number": 1020,
       "volume": 18.112214687442073
     },
-    "BondedGallery_3_270c53": {
+    "BondedGallery_3_c268ee": {
       "triangles": 216,
       "boundary_edges": 0,
       "nonmanifold_edges": 0,
@@ -604,7 +580,7 @@
       "euler_number": 0,
       "volume": 90.74572585671517
     },
-    "BondedGallery_3_908607": {
+    "BondedGallery_3_8e568b": {
       "triangles": 159354,
       "boundary_edges": 0,
       "nonmanifold_edges": 0,
@@ -612,7 +588,7 @@
       "euler_number": 2656,
       "volume": 51.10216752731011
     },
-    "BondedGallery_2_5efcf8": {
+    "BondedGallery_2_8a94b1": {
       "triangles": 216,
       "boundary_edges": 0,
       "nonmanifold_edges": 0,
@@ -620,7 +596,7 @@
       "euler_number": 0,
       "volume": 116.02019931496949
     },
-    "BondedGallery_2_d4f5a6": {
+    "BondedGallery_2_1337c3": {
       "triangles": 207562,
       "boundary_edges": 0,
       "nonmanifold_edges": 0,
@@ -628,7 +604,7 @@
       "euler_number": 3402,
       "volume": 65.53939895145565
     },
-    "BondedGallery_1_a1731d": {
+    "BondedGallery_1_5f838e": {
       "triangles": 216,
       "boundary_edges": 0,
       "nonmanifold_edges": 0,
@@ -636,7 +612,7 @@
       "euler_number": 0,
       "volume": 78.62843511940027
     },
-    "BondedGallery_1_4171e7": {
+    "BondedGallery_1_04573a": {
       "triangles": 140282,
       "boundary_edges": 0,
       "nonmanifold_edges": 0,
@@ -644,7 +620,7 @@
       "euler_number": 2316,
       "volume": 44.301971837027885
     },
-    "BondedGallery_0_4541b8": {
+    "BondedGallery_0_a4fcba": {
       "triangles": 216,
       "boundary_edges": 0,
       "nonmanifold_edges": 0,
@@ -652,7 +628,7 @@
       "euler_number": 0,
       "volume": 12.012758765924877
     },
-    "BondedGallery_0_7ec05c": {
+    "BondedGallery_0_7f3b8c": {
       "triangles": 24864,
       "boundary_edges": 0,
       "nonmanifold_edges": 0,
@@ -662,27 +638,27 @@
     }
   },
   "connected_cement_shells": {
-    "BondedGallery_4_316acd": {
+    "BondedGallery_4_857816": {
       "connected_components": 1,
       "watertight": true,
       "triangles": 216
     },
-    "BondedGallery_3_6ed882": {
+    "BondedGallery_3_f4a559": {
       "connected_components": 1,
       "watertight": true,
       "triangles": 216
     },
-    "BondedGallery_2_51a59a": {
+    "BondedGallery_2_95fc9f": {
       "connected_components": 1,
       "watertight": true,
       "triangles": 216
     },
-    "BondedGallery_1_63fc53": {
+    "BondedGallery_1_1fb631": {
       "connected_components": 1,
       "watertight": true,
       "triangles": 216
     },
-    "BondedGallery_0_38e4af": {
+    "BondedGallery_0_1c7f3c": {
       "connected_components": 1,
       "watertight": true,
       "triangles": 216
@@ -693,6 +669,6 @@
     "rock_lod0.glb": "faeb59019302e0621ff2a8918fa9a2dacc4530f0fd78c27b452f58c4e5989ad6",
     "rock_lod1.glb": "d55c1db13208adf12aa3ac10900e6acd997c6d391d4047409fa5abd32c777023",
     "rock_cliff.glb": "9cd49c4ca84671fffe37012644c8a79655e694df0f2734a0fdc1e39270c3d2d0",
-    "structure.glb": "0f7a5512f392d8cba1a80d97ad2affe22a6a6c1f497a0efbb6610dc6d14eabb1"
+    "structure.glb": "02cbe4ccf722bb70cb94e7643f58e7a9373f68090b4239b3700b6080f6763480"
   }
 }

@@ -1,0 +1,16 @@
+INFO Draco is available, use library at /Applications/Blender.app/Contents/Resources/5.2/scripts/addons_core/io_scene_gltf2/libbf_intern_draco_bridge.dylib
+INFO MeshOptimizer is available, use library at /Applications/Blender.app/Contents/Resources/5.2/scripts/addons_core/io_scene_gltf2/libbf_intern_meshopt_bridge.dylib
+19:17:54 | INFO: Starting glTF 2.0 export
+19:17:54 | INFO: Extracting primitive: Cement_first_stair_hall_0.002
+19:17:54 | INFO: Primitives created: 1
+19:17:54 | INFO: Finished glTF 2.0 export in 0.0031461715698242188 s
+
+19:17:55 | INFO: Starting glTF 2.0 export
+19:17:55 | INFO: Extracting primitive: Cement_second_stair_hall_0.002
+19:17:55 | INFO: Primitives created: 1
+19:17:55 | INFO: Finished glTF 2.0 export in 0.0022988319396972656 s
+
+MASONRY_BACKING_BUILT {"source_layout_sha256": "e37b06498dd3c54539e773f241f9c3d7351849d3d1b9ac2ae336d4e563e1c3a1", "rooms": {"first_stair_hall": {"source_sha256": "b8d96bf199b7eea3ea6551eede27a25bef554bee550d0347607fccff8991d7fe", "room": {"floor": -10.0, "height": 10.0, "id": "first_stair_hall", "points": [[27.0, -42.0], [42.5, -42.0], [42.5, -25.7999992370605], [27.0, -25.7999992370605]]}, "file": "first_stair_hall.glb", "replace_mortar": "Mortar_first_stair_hall_4", "triangles": 1294, "rise_m": 2.189999771118164, "thickness_m": 0.24}, "second_stair_hall": {"source_sha256": "97d4d25399d654cc8c5080995bbd97d66c55035b6882d7458cfde13fab7e7208", "room": {"floor": -23.0, "height": 7.5, "id": "second_stair_hall", "points": [[-36.5, 20.5], [-25.5, 20.5], [-25.5, 38.5], [-36.5, 38.5]]}, "file": "second_stair_hall.glb", "replace_mortar": "Mortar_second_stair_hall_4", "triangles": 1292, "rise_m": 1.514999771118164, "thickness_m": 0.24}}, "method": "Native cloister profile; original intrados, 0.24m finite roof-side thickness, closed mitres and connected exact union. No added junction blocks."}
+Blender 5.2.2 LTS (hash d13f752e3b9c built 2026-09-15 01:49:19)
+
+Blender quit

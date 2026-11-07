@@ -517,49 +517,6 @@ def rock():
     print("ROCK_CLIFF_BUILT", json.dumps(report), flush=True)
 
 
-def bridge_bearing(layout):
-    """Seat the east upper crossing at its exact baked endpoint post stations."""
-    route = next(route for route in layout["routes"] if route["id"] == "high_span")
-    a, b = (Vector(point) for point in route["points"][-2:])
-    ea, eb = (Vector(point) for point in route["edges"][-2:])
-    outward_along = b - a
-    outward_along.y = 0
-    outward_along.normalize()
-    # A single bearing under the route mitre ties the deck to the stone hall.
-    plan = [b - eb - outward_along * 0.16, b + eb - outward_along * 0.16,
-            b + eb + outward_along * 0.85, b - eb + outward_along * 0.85]
-    polygon = architecture.ccw([Vector((point.x, -point.z)) for point in plan])
-    objects = [prism("Foundation_UpperBridgeBearing", polygon, b.y - 0.65, b.y - 0.075)]
-    stations = []
-    for sign in (-1, 1):
-        tangent = b - a + (eb - ea) * sign
-        tangent.y = 0
-        tangent.normalize()
-        outward = Vector((-tangent.z, 0, tangent.x))
-        outward *= 1 if outward.dot(ea * sign) > 0 else -1
-        # Matches POST_GAP + POST / 2 in build_procedural_bridge.py.
-        base = b + eb * sign + outward * 0.13
-        corners = [base + tangent * x + outward * y for x, y in
-                   [(-0.24, -0.21), (0.24, -0.21), (0.24, 0.21), (-0.24, 0.21)]]
-        polygon = architecture.ccw([Vector((point.x, -point.z)) for point in corners])
-        obj = prism(f"Stone-stone_UpperPostSocket_{sign}", polygon, b.y - 0.75, b.y - 0.20)
-        # Small worn edges; the socket remains a closed solid below the deck.
-        core.select_only([obj])
-        bevel = obj.modifiers.new("Worn socket arris", "BEVEL")
-        bevel.width = 0.035
-        bevel.segments = 1
-        bpy.ops.object.modifier_apply(modifier=bevel.name)
-        colour = obj.data.color_attributes.new("Color", "FLOAT_COLOR", "CORNER")
-        for item in colour.data:
-            item.color = (0.72, 0.72, 0.72, 1)
-        obj.data.color_attributes.active_color = colour
-        obj["frame"] = [*core.to_blender(tangent), 0, 0, 1, *core.to_blender(outward)]
-        architecture.map_stone(obj, core.rng(20261107, "post-socket", sign))
-        objects.append(obj)
-        stations.append(list(base))
-    return objects, stations
-
-
 def structure_assets():
     """Closed relief and load paths on the east side of the actual shaft."""
     core.empty_scene()
@@ -675,15 +632,12 @@ def structure_assets():
             for item in obj.data.color_attributes["Color"].data:
                 item.color = (0.42, 0.42, 0.42, 1)
         objects.append(obj)
-    bearing, stations = bridge_bearing(layout)
-    objects.extend(bearing)
     export.glb(objects, OUT / "structure.glb")
     report = {"outline": layout["outline"], "routes": {route["id"]: route["layout_hash"] for route in layout["routes"]},
               "rooms": [{k: room[k] for k in ["id", "floor", "height", "points"]} for room in layout["rooms"]],
-              "upper_bridge_post_stations_godot": stations, "upper_bridge_bearing_top_below_deck_m": 0.075,
               "wall_indices": indices, "mesh_count": len(objects), "source_layout_sha256": core.sha256(layout_path),
               "triangles": sum(sum(len(face.vertices) - 2 for face in obj.data.polygons) for obj in objects),
-              "method": "Closed relief, floor plinths, piers and masonry arches carved outside playable envelopes; upper bridge bearing and post sockets below deck",
+              "method": "Closed relief, floor plinths, piers and masonry arches carved outside playable envelopes. Redundant bridge patch blocks removed; original timber brackets provide the landing connection.",
               "collision": "New relief/support collision follows the carved render meshes; existing route and gallery collision preserved"}
     (OUT / "structure-build.json").write_text(json.dumps(report, indent=2) + "\n")
     print("STRUCTURE_BUILT", json.dumps({k:v for k,v in report.items() if k not in ["outline", "routes", "rooms"]}), flush=True)

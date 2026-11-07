@@ -1,0 +1,273 @@
+{
+	"legends": {
+		"clearance": "green=sampled capsule/headroom clear, red=blocked; not proof of reachability",
+		"collision": "green collision wire meshes shown through occluders",
+		"depth": "linear camera depth, black=0 m white=30 m; background black",
+		"intersections": "green markers at sampled triangle crossings, shown through occluders; intentional contacts included",
+		"limits": "debug materials preserve flagstone clipping but not shader peeling/displacement/transparency; paired color view is authoritative",
+		"normals": "world normal XYZ mapped to RGB",
+		"objects": "stable per-object colors; see objects.json; each MultiMesh is one object"
+	},
+	"views": [
+		{
+			"camera": [
+				32.15,
+				-26.2,
+				-4.3375
+			],
+			"draw_calls": 632.0,
+			"frame": "choir-joints-color.png",
+			"pass": "color",
+			"primitives": 2005385.0,
+			"view": {
+				"direction": [
+					3.85,
+					0.3,
+					10.5875
+				],
+				"eye": [
+					32.15,
+					-26.2,
+					-4.3375
+				],
+				"fov": 90.0,
+				"head_offset_m": 0.0,
+				"name": "choir-joints"
+			}
+		},
+		{
+			"camera": [
+				32.15,
+				-26.2,
+				-4.3375
+			],
+			"draw_calls": 681.0,
+			"frame": "choir-joints-albedo.png",
+			"pass": "albedo",
+			"primitives": 7102607.0,
+			"view": {
+				"direction": [
+					3.85,
+					0.3,
+					10.5875
+				],
+				"eye": [
+					32.15,
+					-26.2,
+					-4.3375
+				],
+				"fov": 90.0,
+				"head_offset_m": 0.0,
+				"name": "choir-joints"
+			}
+		},
+		{
+			"camera": [
+				32.15,
+				-26.2,
+				-4.3375
+			],
+			"draw_calls": 680.0,
+			"frame": "choir-joints-objects.png",
+			"pass": "objects",
+			"primitives": 7097805.0,
+			"view": {
+				"direction": [
+					3.85,
+					0.3,
+					10.5875
+				],
+				"eye": [
+					32.15,
+					-26.2,
+					-4.3375
+				],
+				"fov": 90.0,
+				"head_offset_m": 0.0,
+				"name": "choir-joints"
+			}
+		},
+		{
+			"camera": [
+				32.15,
+				-26.2,
+				-4.3375
+			],
+			"draw_calls": 680.0,
+			"frame": "choir-joints-normals.png",
+			"pass": "normals",
+			"primitives": 7033485.0,
+			"view": {
+				"direction": [
+					3.85,
+					0.3,
+					10.5875
+				],
+				"eye": [
+					32.15,
+					-26.2,
+					-4.3375
+				],
+				"fov": 90.0,
+				"head_offset_m": 0.0,
+				"name": "choir-joints"
+			}
+		},
+		{
+			"camera": [
+				32.15,
+				-26.2,
+				-4.3375
+			],
+			"draw_calls": 845.0,
+			"frame": "choir-joints-collision.png",
+			"pass": "collision",
+			"primitives": 11422391.0,
+			"view": {
+				"direction": [
+					3.85,
+					0.3,
+					10.5875
+				],
+				"eye": [
+					32.15,
+					-26.2,
+					-4.3375
+				],
+				"fov": 90.0,
+				"head_offset_m": 0.0,
+				"name": "choir-joints"
+			}
+		},
+		{
+			"camera": [
+				31.0,
+				-8.2,
+				-30.0
+			],
+			"draw_calls": 169.0,
+			"frame": "first-stair-lower-color.png",
+			"pass": "color",
+			"primitives": 849422.0,
+			"view": {
+				"direction": [
+					-1.5,
+					1.2,
+					-9.5
+				],
+				"eye": [
+					31.0,
+					-8.2,
+					-30.0
+				],
+				"fov": 90.0,
+				"head_offset_m": 0.0,
+				"name": "first-stair-lower"
+			}
+		},
+		{
+			"camera": [
+				31.0,
+				-8.2,
+				-30.0
+			],
+			"draw_calls": 169.0,
+			"frame": "first-stair-lower-albedo.png",
+			"pass": "albedo",
+			"primitives": 849422.0,
+			"view": {
+				"direction": [
+					-1.5,
+					1.2,
+					-9.5
+				],
+				"eye": [
+					31.0,
+					-8.2,
+					-30.0
+				],
+				"fov": 90.0,
+				"head_offset_m": 0.0,
+				"name": "first-stair-lower"
+			}
+		},
+		{
+			"camera": [
+				31.0,
+				-8.2,
+				-30.0
+			],
+			"draw_calls": 169.0,
+			"frame": "first-stair-lower-objects.png",
+			"pass": "objects",
+			"primitives": 849422.0,
+			"view": {
+				"direction": [
+					-1.5,
+					1.2,
+					-9.5
+				],
+				"eye": [
+					31.0,
+					-8.2,
+					-30.0
+				],
+				"fov": 90.0,
+				"head_offset_m": 0.0,
+				"name": "first-stair-lower"
+			}
+		},
+		{
+			"camera": [
+				31.0,
+				-8.2,
+				-30.0
+			],
+			"draw_calls": 193.0,
+			"frame": "first-stair-lower-normals.png",
+			"pass": "normals",
+			"primitives": 4439068.0,
+			"view": {
+				"direction": [
+					-1.5,
+					1.2,
+					-9.5
+				],
+				"eye": [
+					31.0,
+					-8.2,
+					-30.0
+				],
+				"fov": 90.0,
+				"head_offset_m": 0.0,
+				"name": "first-stair-lower"
+			}
+		},
+		{
+			"camera": [
+				31.0,
+				-8.2,
+				-30.0
+			],
+			"draw_calls": 249.0,
+			"frame": "first-stair-lower-collision.png",
+			"pass": "collision",
+			"primitives": 8777666.0,
+			"view": {
+				"direction": [
+					-1.5,
+					1.2,
+					-9.5
+				],
+				"eye": [
+					31.0,
+					-8.2,
+					-30.0
+				],
+				"fov": 90.0,
+				"head_offset_m": 0.0,
+				"name": "first-stair-lower"
+			}
+		}
+	]
+}

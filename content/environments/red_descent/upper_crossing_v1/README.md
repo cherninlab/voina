@@ -111,3 +111,7 @@ Editor/core checks pass. Seven matched engine cameras and a fresh 3,840 × 2,160
 ## Iteration 7 — fitted upper landing
 
 A continuous below-deck bearing and two bevelled masonry sockets seat the upper east bridge's end posts at their actual baked stations. The original walking ribbon remains above them. Three new closed meshes add only 100 triangles, with collision taken from the same render faces. Current/stale guards, 270 cement rays, 504 relief/junction rays, core smoke and fresh 1,235 m traversal pass. Matched colour, low bearing detail, 16 diagnostic frames and a fresh 4K image are under `review/iteration7/`. Other junctions and art refinements remain in the issue register.
+
+## H-007 correction — remove patch masses, seal stair backing
+
+The recent three upper bridge bearing/socket blocks and inferred-rock overlay are removed from the live scene after multi-angle review. The existing timber brackets and native masonry supports remain. Opaque matte mortar replaces wet plaster on cores and bedding, and rough damp masonry removes the false seam sparkles. The two actual open stair-vault sheets are replaced with connected closed native cement shells; their intrados is preserved. See `../masonry_repairs_v1/README.md` and its matched eight-angle review. Native stair-end facings and tread joins remain the next increment, not an accepted final junction treatment.

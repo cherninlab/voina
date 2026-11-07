@@ -1,0 +1,68 @@
+{
+  "source_layout_sha256": "e37b06498dd3c54539e773f241f9c3d7351849d3d1b9ac2ae336d4e563e1c3a1",
+  "rooms": {
+    "first_stair_hall": {
+      "source_sha256": "b8d96bf199b7eea3ea6551eede27a25bef554bee550d0347607fccff8991d7fe",
+      "room": {
+        "floor": -10.0,
+        "height": 10.0,
+        "id": "first_stair_hall",
+        "points": [
+          [
+            27.0,
+            -42.0
+          ],
+          [
+            42.5,
+            -42.0
+          ],
+          [
+            42.5,
+            -25.7999992370605
+          ],
+          [
+            27.0,
+            -25.7999992370605
+          ]
+        ]
+      },
+      "file": "first_stair_hall.glb",
+      "replace_mortar": "Mortar_first_stair_hall_4",
+      "triangles": 1294,
+      "rise_m": 2.189999771118164,
+      "thickness_m": 0.24
+    },
+    "second_stair_hall": {
+      "source_sha256": "97d4d25399d654cc8c5080995bbd97d66c55035b6882d7458cfde13fab7e7208",
+      "room": {
+        "floor": -23.0,
+        "height": 7.5,
+        "id": "second_stair_hall",
+        "points": [
+          [
+            -36.5,
+            20.5
+          ],
+          [
+            -25.5,
+            20.5
+          ],
+          [
+            -25.5,
+            38.5
+          ],
+          [
+            -36.5,
+            38.5
+          ]
+        ]
+      },
+      "file": "second_stair_hall.glb",
+      "replace_mortar": "Mortar_second_stair_hall_4",
+      "triangles": 1292,
+      "rise_m": 1.514999771118164,
+      "thickness_m": 0.24
+    }
+  },
+  "method": "Native cloister profile; original intrados, 0.24m finite roof-side thickness, closed mitres and connected exact union. No added junction blocks."
+}
