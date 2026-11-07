@@ -21,6 +21,7 @@ var collision_faces: PackedVector3Array = PackedVector3Array()
 var ribbon_edges: Dictionary[String, PackedVector3Array] = {}
 const STONE_ROOMS: String = "res://content/environments/procedural_architecture_v1/rooms/"
 const STONE_INDEX: String = "res://content/environments/procedural_architecture_v1/index.json"
+const UPPER_CROSSING: String = "res://content/environments/red_descent/upper_crossing_v1/"
 const STONE_FACE: String = "res://content/environments/procedural_stone_surface_v1/limestone/"
 const ROOTS: String = "res://content/environments/procedural_roots_v1/"
 const PROP_SETS: String = "res://content/environments/procedural_props_aged_v1/sets/"
@@ -51,6 +52,7 @@ func build() -> void:
 		build_path(paths[index], index < RedDescentLayout.MAIN_PATHS)
 	build_vault(RedDescentLayout.outline(), false)
 	build_vault(RedDescentLayout.spine(), true)
+	upper_crossing_rock()
 	# The void's base stops physics falls; the player recovery threshold is above it.
 	piece(Vector3(150, 1, 150), Vector3(0, -60, 0), "dark", Basis.IDENTITY, true)
 	flush()
@@ -58,6 +60,19 @@ func build() -> void:
 	fort_source = null
 	print("GENERATED_KIT_PLACED: ", JSON.stringify(module_counts))
 	print("RED_DESCENT_GEOMETRY_READY: %d routes, %d rooms, %d lit landmarks, sloping crossings" % [paths.size(), rooms.size(), torch_posts.size()])
+
+## Local TripoSG cliff geometry, carved away from the existing playable volumes.
+func upper_crossing_rock() -> void:
+	var cliff: Node3D = (load(UPPER_CROSSING + "rock_cliff.glb") as PackedScene).instantiate() as Node3D
+	cliff.name = "UpperCrossingRock"
+	var rock: ShaderMaterial = (materials["rock"] as ShaderMaterial).duplicate() as ShaderMaterial
+	rock.set_shader_parameter("wetness", 0.18)
+	rock.set_shader_parameter("dry_roughness_min", 0.86)
+	rock.set_shader_parameter("tint", Vector3(0.66, 0.69, 0.72))
+	rock.set_shader_parameter("normal_strength", 0.35)
+	for node: Node in cliff.find_children("*", "MeshInstance3D", true, false):
+		(node as MeshInstance3D).material_override = rock
+	add_child(cliff)
 
 func piece(size: Vector3, at: Vector3, material: String, basis: Basis = Basis.IDENTITY, solid: bool = false, color: Color = Color.WHITE) -> void:
 	if material == "collision":
@@ -204,7 +219,15 @@ func load_stone_passages() -> void:
 		if not current:
 			push_warning("Stale stone passage %s; rerun scripts/art/build_architecture.py" % file["file"])
 			continue
-		var built: Node3D = (load("res://content/environments/procedural_architecture_v1/" + String(file["file"])) as PackedScene).instantiate() as Node3D
+		var asset: String = "res://content/environments/procedural_architecture_v1/" + String(file["file"])
+		if String(file["file"]) == "passages/return_gallery.glb" and ResourceLoader.exists(UPPER_CROSSING + "gallery.glb"):
+			var build: Dictionary = JSON.parse_string(FileAccess.get_file_as_string(UPPER_CROSSING + "gallery-build.json")) as Dictionary
+			var matches_source: bool = not FileAccess.file_exists(asset) or FileAccess.get_sha256(asset) == String(build.get("source_sha256", ""))
+			if matches_source and build.get("source_routes", {}) == file["routes"]:
+				asset = UPPER_CROSSING + "gallery.glb"
+			else:
+				push_warning("Upper gallery exterior is stale; rerun scripts/art/build_upper_crossing.py")
+		var built: Node3D = (load(asset) as PackedScene).instantiate() as Node3D
 		built.name = "StonePassage_" + String(file["file"]).get_file().get_basename()
 		stone_materials(built)
 		add_child(built)
@@ -450,6 +473,15 @@ func stone_materials(built: Node3D) -> void:
 			# "Stone-<kind>_...": each stone kind wears its own face (T-182 shapes, T-183 faces).
 			var kind: String = visual.name.get_slice("_", 0).trim_prefix("Stone-") if visual.name.begins_with("Stone-") else "stone"
 			visual.material_override = stone_face(kind)
+			if visual.name.begins_with("Stone-stone_upper_gallery_roof"):
+				if not materials.has("upper_roof"):
+					var roof: ShaderMaterial = (stone_face("stone") as ShaderMaterial).duplicate() as ShaderMaterial
+					roof.set_shader_parameter("algae", 0.08)
+					roof.set_shader_parameter("wetness", 0.25)
+					roof.set_shader_parameter("tint", Vector3(0.8, 0.86, 0.92))
+					roof.set_shader_parameter("dry_roughness_min", 0.88)
+					materials["upper_roof"] = roof
+				visual.material_override = materials["upper_roof"]
 		elif visual.name.begins_with("Plaster"):
 			visual.material_override = stone_coat("red_plaster" if visual.name.begins_with("Plaster_nave") else "plaster")
 		else:

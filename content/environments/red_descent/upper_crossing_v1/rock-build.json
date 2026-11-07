@@ -1,0 +1,20 @@
+{
+  "source_triangles": 45980,
+  "voxel_shell_faces": 126408,
+  "voxel_size_unit_height": 0.0075,
+  "finishing": "Closed voxel shell, Blender quadric reduction, Y-up unit height GLBs",
+  "outputs": {
+    "lod0": {
+      "triangles": 18000,
+      "vertices": 9002,
+      "boundary_edges": 0,
+      "nonmanifold_edges": 0
+    },
+    "lod1": {
+      "triangles": 4500,
+      "vertices": 2252,
+      "boundary_edges": 0,
+      "nonmanifold_edges": 0
+    }
+  }
+}

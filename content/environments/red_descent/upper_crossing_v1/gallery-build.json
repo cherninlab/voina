@@ -1,0 +1,17 @@
+{
+  "source_sha256": "cf295ddf258c535d3aa1903713d378b6eaf6252e389e3eb08181cb7653170d00",
+  "source_routes": {
+    "return_gallery": "e6b840df7e0af7915c1bfd575585aaba886004f4ed2e8f7017119579130ab719"
+  },
+  "collision_meshes": 5,
+  "collision_vertex_coordinates_unchanged": true,
+  "protected_mortar_vertices_unchanged": 80,
+  "profile": {
+    "spring_m": 2.4,
+    "rise_m": 1.35,
+    "intrados_radius_m": 2.467592592592593
+  },
+  "roof_stones": 672,
+  "roof_triangles": 47030,
+  "operation": "Preserve the original collision and interior; round the exterior mortar and add stone roofing."
+}

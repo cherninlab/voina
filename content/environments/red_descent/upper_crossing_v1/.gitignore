@@ -1,0 +1,4 @@
+mesh/*_raw.glb
+mesh/*_latents.pt
+mesh/*_solid.glb
+!review/validation/*.log

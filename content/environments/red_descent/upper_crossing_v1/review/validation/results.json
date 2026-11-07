@@ -1,0 +1,26 @@
+{
+  "editor_import": "passed; no ERROR output",
+  "core_smoke": "passed; deterministic combat and two-process ENet regressions",
+  "dungeon_traversal": "passed; 1235m real capsule movement, both bridge lanes, optional loops and recovery",
+  "mesh_validation": "mesh-validation.json; final GLB hashes and topology checks",
+  "matched_color_cameras": 3,
+  "diagnostic_frames": 24,
+  "wide_pixels": [
+    3840,
+    2160
+  ],
+  "known_warnings": [
+    "Existing roots material specular remap warning",
+    "Capture shutdown texture RID/ObjectDB leak warnings"
+  ],
+  "art_limits": [
+    "First structural slice; wider dungeon style remains unfinished",
+    "Rock reconstruction hidden surfaces are inferred; raw not watertight, shipped exports repaired",
+    "New roof AO not baked; per-stone tone exported as grey"
+  ],
+  "not_measured": [
+    "Human input/camera acceptance",
+    "Two-Mac Tailscale",
+    "Sustained performance/thermals"
+  ]
+}

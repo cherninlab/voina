@@ -2,6 +2,7 @@ extends SceneTree
 ## Bridge review frames: a fixed close set, or with --tour a full walk of every
 ## open wooden crossing (deck views both ways per segment, side views per span,
 ## close-ups of every missing board from the bake report).
+## --upper-crossing captures matched landing, gallery exterior and interior.
 ## scripts/godot_bg.sh --path . --script scripts/capture_bridges.gd -- --dungeon --shading-ephemeral --capture-dir=/abs/dir [--tour] [--no-baked-bridges]
 
 const VIEWS: Array[Array] = [
@@ -12,6 +13,11 @@ const VIEWS: Array[Array] = [
 	["b4-low-bend", Vector3(31.5, -22.4, 34.3), Vector3(38.5, -24.3, 38.5), 70.0],
 	["b5-low-side", Vector3(44.0, -23.0, 61.5), Vector3(51.0, -26.0, 56.0), 70.0],
 	["b6-rail-detail", Vector3(39.6, 0.4, 37.0), Vector3(41.8, -0.4, 38.9), 50.0],
+]
+const UPPER_CROSSING_VIEWS: Array[Array] = [
+	["upper-landing", Vector3(16.7889, 1.0086, -13.3896), Vector3(17.5219, 0.4640, -12.9824), 90.0],
+	["gallery-exterior", Vector3(14, -3.3, 0), Vector3(21, -7.4, -5), 80.0],
+	["gallery-interior", Vector3(21, -8.35, -2), Vector3(20.4, -8.2, -12), 78.0],
 ]
 const EYE: float = 1.6
 
@@ -39,7 +45,9 @@ func capture() -> void:
 	var camera: Camera3D = Camera3D.new()
 	world.add_child(camera)
 	var views: Array[Array] = []
-	if tour:
+	if "--upper-crossing" in OS.get_cmdline_user_args():
+		views.assign(UPPER_CROSSING_VIEWS)
+	elif tour:
 		views = tour_views(world)
 	else:
 		for view: Array in VIEWS:
@@ -53,7 +61,7 @@ func capture() -> void:
 		# dozen frames is enough for lights and shadows to settle.
 		for frame: int in range(12 if tour else 30):
 			await process_frame
-		await RenderingServer.frame_post_draw
+		RenderingServer.force_draw()
 		var file: String = directory.path_join(String(view[0]) + ".png")
 		if root.get_texture().get_image().save_png(file) != OK:
 			printerr("BRIDGE_CAPTURE_FAIL: " + file)

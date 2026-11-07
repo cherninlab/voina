@@ -1,0 +1,613 @@
+{
+	"legends": {
+		"clearance": "green=sampled capsule/headroom clear, red=blocked; not proof of reachability",
+		"collision": "green collision wire meshes shown through occluders",
+		"depth": "linear camera depth, black=0 m white=30 m; background black",
+		"intersections": "green markers at sampled triangle crossings, shown through occluders; intentional contacts included",
+		"limits": "debug materials preserve flagstone clipping but not shader peeling/displacement/transparency; paired color view is authoritative",
+		"normals": "world normal XYZ mapped to RGB",
+		"objects": "stable per-object colors; see objects.json; each MultiMesh is one object"
+	},
+	"views": [
+		{
+			"camera": [
+				16.7889,
+				1.0086,
+				-13.3896
+			],
+			"draw_calls": 1079.0,
+			"frame": "upper-landing-color.png",
+			"pass": "color",
+			"primitives": 2994880.0,
+			"view": {
+				"direction": [
+					0.733,
+					-0.5446,
+					0.4072
+				],
+				"eye": [
+					16.7889,
+					1.0086,
+					-13.3896
+				],
+				"head_offset_m": 0.0,
+				"name": "upper-landing"
+			}
+		},
+		{
+			"camera": [
+				16.7889,
+				1.0086,
+				-13.3896
+			],
+			"draw_calls": 1079.0,
+			"frame": "upper-landing-albedo.png",
+			"pass": "albedo",
+			"primitives": 2994880.0,
+			"view": {
+				"direction": [
+					0.733,
+					-0.5446,
+					0.4072
+				],
+				"eye": [
+					16.7889,
+					1.0086,
+					-13.3896
+				],
+				"head_offset_m": 0.0,
+				"name": "upper-landing"
+			}
+		},
+		{
+			"camera": [
+				16.7889,
+				1.0086,
+				-13.3896
+			],
+			"draw_calls": 1078.0,
+			"frame": "upper-landing-objects.png",
+			"pass": "objects",
+			"primitives": 2990078.0,
+			"view": {
+				"direction": [
+					0.733,
+					-0.5446,
+					0.4072
+				],
+				"eye": [
+					16.7889,
+					1.0086,
+					-13.3896
+				],
+				"head_offset_m": 0.0,
+				"name": "upper-landing"
+			}
+		},
+		{
+			"camera": [
+				16.7889,
+				1.0086,
+				-13.3896
+			],
+			"draw_calls": 1124.0,
+			"frame": "upper-landing-depth.png",
+			"pass": "depth",
+			"primitives": 6394213.0,
+			"view": {
+				"direction": [
+					0.733,
+					-0.5446,
+					0.4072
+				],
+				"eye": [
+					16.7889,
+					1.0086,
+					-13.3896
+				],
+				"head_offset_m": 0.0,
+				"name": "upper-landing"
+			}
+		},
+		{
+			"camera": [
+				16.7889,
+				1.0086,
+				-13.3896
+			],
+			"draw_calls": 1124.0,
+			"frame": "upper-landing-depth-far.png",
+			"pass": "depth-far",
+			"primitives": 6394213.0,
+			"view": {
+				"direction": [
+					0.733,
+					-0.5446,
+					0.4072
+				],
+				"eye": [
+					16.7889,
+					1.0086,
+					-13.3896
+				],
+				"head_offset_m": 0.0,
+				"name": "upper-landing"
+			}
+		},
+		{
+			"camera": [
+				16.7889,
+				1.0086,
+				-13.3896
+			],
+			"draw_calls": 1124.0,
+			"frame": "upper-landing-normals.png",
+			"pass": "normals",
+			"primitives": 6394213.0,
+			"view": {
+				"direction": [
+					0.733,
+					-0.5446,
+					0.4072
+				],
+				"eye": [
+					16.7889,
+					1.0086,
+					-13.3896
+				],
+				"head_offset_m": 0.0,
+				"name": "upper-landing"
+			}
+		},
+		{
+			"camera": [
+				16.7889,
+				1.0086,
+				-13.3896
+			],
+			"draw_calls": 1223.0,
+			"frame": "upper-landing-intersections.png",
+			"pass": "intersections",
+			"primitives": 6408375.0,
+			"view": {
+				"direction": [
+					0.733,
+					-0.5446,
+					0.4072
+				],
+				"eye": [
+					16.7889,
+					1.0086,
+					-13.3896
+				],
+				"head_offset_m": 0.0,
+				"name": "upper-landing"
+			}
+		},
+		{
+			"camera": [
+				16.7889,
+				1.0086,
+				-13.3896
+			],
+			"draw_calls": 1400.0,
+			"frame": "upper-landing-collision.png",
+			"pass": "collision",
+			"primitives": 6845562.0,
+			"view": {
+				"direction": [
+					0.733,
+					-0.5446,
+					0.4072
+				],
+				"eye": [
+					16.7889,
+					1.0086,
+					-13.3896
+				],
+				"head_offset_m": 0.0,
+				"name": "upper-landing"
+			}
+		},
+		{
+			"camera": [
+				14.0,
+				-3.3,
+				0.0
+			],
+			"draw_calls": 866.0,
+			"frame": "gallery-exterior-color.png",
+			"pass": "color",
+			"primitives": 6112063.0,
+			"view": {
+				"direction": [
+					7,
+					-4.1,
+					-5
+				],
+				"eye": [
+					14,
+					-3.3,
+					0
+				],
+				"head_offset_m": 0.0,
+				"name": "gallery-exterior"
+			}
+		},
+		{
+			"camera": [
+				14.0,
+				-3.3,
+				0.0
+			],
+			"draw_calls": 866.0,
+			"frame": "gallery-exterior-albedo.png",
+			"pass": "albedo",
+			"primitives": 6112063.0,
+			"view": {
+				"direction": [
+					7,
+					-4.1,
+					-5
+				],
+				"eye": [
+					14,
+					-3.3,
+					0
+				],
+				"head_offset_m": 0.0,
+				"name": "gallery-exterior"
+			}
+		},
+		{
+			"camera": [
+				14.0,
+				-3.3,
+				0.0
+			],
+			"draw_calls": 865.0,
+			"frame": "gallery-exterior-objects.png",
+			"pass": "objects",
+			"primitives": 6107261.0,
+			"view": {
+				"direction": [
+					7,
+					-4.1,
+					-5
+				],
+				"eye": [
+					14,
+					-3.3,
+					0
+				],
+				"head_offset_m": 0.0,
+				"name": "gallery-exterior"
+			}
+		},
+		{
+			"camera": [
+				14.0,
+				-3.3,
+				0.0
+			],
+			"draw_calls": 865.0,
+			"frame": "gallery-exterior-depth.png",
+			"pass": "depth",
+			"primitives": 6107261.0,
+			"view": {
+				"direction": [
+					7,
+					-4.1,
+					-5
+				],
+				"eye": [
+					14,
+					-3.3,
+					0
+				],
+				"head_offset_m": 0.0,
+				"name": "gallery-exterior"
+			}
+		},
+		{
+			"camera": [
+				14.0,
+				-3.3,
+				0.0
+			],
+			"draw_calls": 865.0,
+			"frame": "gallery-exterior-depth-far.png",
+			"pass": "depth-far",
+			"primitives": 6107261.0,
+			"view": {
+				"direction": [
+					7,
+					-4.1,
+					-5
+				],
+				"eye": [
+					14,
+					-3.3,
+					0
+				],
+				"head_offset_m": 0.0,
+				"name": "gallery-exterior"
+			}
+		},
+		{
+			"camera": [
+				14.0,
+				-3.3,
+				0.0
+			],
+			"draw_calls": 865.0,
+			"frame": "gallery-exterior-normals.png",
+			"pass": "normals",
+			"primitives": 6107261.0,
+			"view": {
+				"direction": [
+					7,
+					-4.1,
+					-5
+				],
+				"eye": [
+					14,
+					-3.3,
+					0
+				],
+				"head_offset_m": 0.0,
+				"name": "gallery-exterior"
+			}
+		},
+		{
+			"camera": [
+				14.0,
+				-3.3,
+				0.0
+			],
+			"draw_calls": 954.0,
+			"frame": "gallery-exterior-intersections.png",
+			"pass": "intersections",
+			"primitives": 6120623.0,
+			"view": {
+				"direction": [
+					7,
+					-4.1,
+					-5
+				],
+				"eye": [
+					14,
+					-3.3,
+					0
+				],
+				"head_offset_m": 0.0,
+				"name": "gallery-exterior"
+			}
+		},
+		{
+			"camera": [
+				14.0,
+				-3.3,
+				0.0
+			],
+			"draw_calls": 1053.0,
+			"frame": "gallery-exterior-collision.png",
+			"pass": "collision",
+			"primitives": 6531374.0,
+			"view": {
+				"direction": [
+					7,
+					-4.1,
+					-5
+				],
+				"eye": [
+					14,
+					-3.3,
+					0
+				],
+				"head_offset_m": 0.0,
+				"name": "gallery-exterior"
+			}
+		},
+		{
+			"camera": [
+				21.0,
+				-8.35,
+				-2.0
+			],
+			"draw_calls": 830.0,
+			"frame": "gallery-interior-color.png",
+			"pass": "color",
+			"primitives": 5173820.0,
+			"view": {
+				"direction": [
+					-0.6,
+					0.15,
+					-10
+				],
+				"eye": [
+					21,
+					-8.35,
+					-2
+				],
+				"head_offset_m": 0.0,
+				"name": "gallery-interior"
+			}
+		},
+		{
+			"camera": [
+				21.0,
+				-8.35,
+				-2.0
+			],
+			"draw_calls": 830.0,
+			"frame": "gallery-interior-albedo.png",
+			"pass": "albedo",
+			"primitives": 5173820.0,
+			"view": {
+				"direction": [
+					-0.6,
+					0.15,
+					-10
+				],
+				"eye": [
+					21,
+					-8.35,
+					-2
+				],
+				"head_offset_m": 0.0,
+				"name": "gallery-interior"
+			}
+		},
+		{
+			"camera": [
+				21.0,
+				-8.35,
+				-2.0
+			],
+			"draw_calls": 829.0,
+			"frame": "gallery-interior-objects.png",
+			"pass": "objects",
+			"primitives": 5169018.0,
+			"view": {
+				"direction": [
+					-0.6,
+					0.15,
+					-10
+				],
+				"eye": [
+					21,
+					-8.35,
+					-2
+				],
+				"head_offset_m": 0.0,
+				"name": "gallery-interior"
+			}
+		},
+		{
+			"camera": [
+				21.0,
+				-8.35,
+				-2.0
+			],
+			"draw_calls": 829.0,
+			"frame": "gallery-interior-depth.png",
+			"pass": "depth",
+			"primitives": 5169018.0,
+			"view": {
+				"direction": [
+					-0.6,
+					0.15,
+					-10
+				],
+				"eye": [
+					21,
+					-8.35,
+					-2
+				],
+				"head_offset_m": 0.0,
+				"name": "gallery-interior"
+			}
+		},
+		{
+			"camera": [
+				21.0,
+				-8.35,
+				-2.0
+			],
+			"draw_calls": 829.0,
+			"frame": "gallery-interior-depth-far.png",
+			"pass": "depth-far",
+			"primitives": 5169018.0,
+			"view": {
+				"direction": [
+					-0.6,
+					0.15,
+					-10
+				],
+				"eye": [
+					21,
+					-8.35,
+					-2
+				],
+				"head_offset_m": 0.0,
+				"name": "gallery-interior"
+			}
+		},
+		{
+			"camera": [
+				21.0,
+				-8.35,
+				-2.0
+			],
+			"draw_calls": 829.0,
+			"frame": "gallery-interior-normals.png",
+			"pass": "normals",
+			"primitives": 5169018.0,
+			"view": {
+				"direction": [
+					-0.6,
+					0.15,
+					-10
+				],
+				"eye": [
+					21,
+					-8.35,
+					-2
+				],
+				"head_offset_m": 0.0,
+				"name": "gallery-interior"
+			}
+		},
+		{
+			"camera": [
+				21.0,
+				-8.35,
+				-2.0
+			],
+			"draw_calls": 833.0,
+			"frame": "gallery-interior-intersections.png",
+			"pass": "intersections",
+			"primitives": 5175580.0,
+			"view": {
+				"direction": [
+					-0.6,
+					0.15,
+					-10
+				],
+				"eye": [
+					21,
+					-8.35,
+					-2
+				],
+				"head_offset_m": 0.0,
+				"name": "gallery-interior"
+			}
+		},
+		{
+			"camera": [
+				21.0,
+				-8.35,
+				-2.0
+			],
+			"draw_calls": 1044.0,
+			"frame": "gallery-interior-collision.png",
+			"pass": "collision",
+			"primitives": 5433400.0,
+			"view": {
+				"direction": [
+					-0.6,
+					0.15,
+					-10
+				],
+				"eye": [
+					21,
+					-8.35,
+					-2
+				],
+				"head_offset_m": 0.0,
+				"name": "gallery-interior"
+			}
+		}
+	]
+}

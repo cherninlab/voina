@@ -1,0 +1,9 @@
+{
+  "voxel_size_unit_height": 0.0125,
+  "closing_radius_voxels": 3,
+  "triangles": 45980,
+  "watertight": true,
+  "euler_number": 2,
+  "removed_components": 0,
+  "method": "Voxelize, morphological close and directional solid fill, keep largest solid, marching cubes"
+}

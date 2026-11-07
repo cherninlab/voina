@@ -1,0 +1,9 @@
+{
+  "source": "rock_lod0.glb",
+  "instances": 3,
+  "boundary_edges": 0,
+  "nonmanifold_edges": 0,
+  "triangles": 42000,
+  "collision": "none; existing shaft collision is retained",
+  "clearance": "Visual mesh carved outside room volumes and route ribbons with 0.9m lateral margin."
+}

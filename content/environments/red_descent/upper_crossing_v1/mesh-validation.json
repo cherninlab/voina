@@ -1,0 +1,90 @@
+{
+  "rock_lod0.glb": {
+    "UpperRock_LOD0": {
+      "triangles": 18000,
+      "boundary_edges": 0,
+      "nonmanifold_edges": 0,
+      "winding_consistent": true,
+      "euler_number": 2,
+      "volume": 0.29294041457702563
+    }
+  },
+  "rock_lod1.glb": {
+    "UpperRock_LOD1": {
+      "triangles": 4500,
+      "boundary_edges": 0,
+      "nonmanifold_edges": 0,
+      "winding_consistent": true,
+      "euler_number": 2,
+      "volume": 0.2928795485914928
+    }
+  },
+  "rock_cliff.glb": {
+    "UpperRockCliff_2": {
+      "triangles": 14000,
+      "boundary_edges": 0,
+      "nonmanifold_edges": 0,
+      "winding_consistent": true,
+      "euler_number": 2,
+      "volume": 141.57781075410898
+    },
+    "UpperRockCliff_1": {
+      "triangles": 14000,
+      "boundary_edges": 0,
+      "nonmanifold_edges": 0,
+      "winding_consistent": true,
+      "euler_number": 2,
+      "volume": 287.7174100036378
+    },
+    "UpperRockCliff_0": {
+      "triangles": 14000,
+      "boundary_edges": 0,
+      "nonmanifold_edges": 0,
+      "winding_consistent": true,
+      "euler_number": 4,
+      "volume": 138.2997631340664
+    }
+  },
+  "gallery_collision": {
+    "meshes": 5,
+    "vertex_positions_unchanged": true
+  },
+  "roof_and_mortar": {
+    "Stone-stone_upper_gallery_roof_0": {
+      "triangles": 47030,
+      "boundary_edges": 0,
+      "nonmanifold_edges": 0
+    },
+    "Mortar_return_gallery_23": {
+      "triangles": 138,
+      "boundary_edges": 0,
+      "nonmanifold_edges": 0
+    },
+    "Mortar_return_gallery_18": {
+      "triangles": 138,
+      "boundary_edges": 0,
+      "nonmanifold_edges": 0
+    },
+    "Mortar_return_gallery_13": {
+      "triangles": 138,
+      "boundary_edges": 0,
+      "nonmanifold_edges": 0
+    },
+    "Mortar_return_gallery_8": {
+      "triangles": 138,
+      "boundary_edges": 0,
+      "nonmanifold_edges": 0
+    },
+    "Mortar_return_gallery_3": {
+      "triangles": 138,
+      "boundary_edges": 0,
+      "nonmanifold_edges": 0
+    }
+  },
+  "sha256": {
+    "gallery.glb": "8898208adf6e38cef8c4e59853455eedf763d1d5fc7f2e3746bc28b143039d65",
+    "rock_lod0.glb": "faeb59019302e0621ff2a8918fa9a2dacc4530f0fd78c27b452f58c4e5989ad6",
+    "rock_lod1.glb": "d55c1db13208adf12aa3ac10900e6acd997c6d391d4047409fa5abd32c777023",
+    "rock_cliff.glb": "919883e6a9268150c79c3af855319ede1445c8fb7f5260c1b9206fe6abd908ca"
+  }
+}
