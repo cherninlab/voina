@@ -977,10 +977,10 @@
 				-17.0,
 				36.5
 			],
-			"draw_calls": 851.0,
+			"draw_calls": 882.0,
 			"frame": "second-root-grazing-objects.png",
 			"pass": "objects",
-			"primitives": 2382943.0,
+			"primitives": 5256289.0,
 			"view": {
 				"direction": [
 					3.8,

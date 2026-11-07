@@ -1,6 +1,6 @@
 {
   "first_stair_hall": {
-    "sha256": "2148f4303734c58699a1403be58d1f76f4a08a199a5e8de6ddd0e43847dbef54",
+    "sha256": "beeb2f6d6ff2e66a4d7bf4ee51fd320cbfd99b657858e7cccd8a15cb573d73a0",
     "meshes": {
       "Roots_first_stair_hall_3": {
         "triangles": 1566,
@@ -57,12 +57,12 @@
       "content/environments/red_descent/masonry_repairs_v1/walls/first_stair_hall.glb": "7f5836834674101b32eed805c88393790e903b47d66cb75ac2043961045ee599",
       "content/environments/red_descent/stair_art_v1/ritual_wall_art.glb": "1b01dbdf7c4411ea0db3525ace00782a47e676a3ef28a96747cc631f7fadd13d",
       "content/environments/red_descent/vascular_shape_v2/paths.json": "15bbd4b4dfe6232193345ae35340408eefdb11ed09d61bdc7ecb777e0bd16d20",
-      "scripts/art/build_roots.py": "817797bbe6d0ed68c61c8a339414b69f5c6cb3dfc96b3e9eff1a75f02caea653",
+      "scripts/art/build_roots.py": "1d6b69b4adef154db8f7dab758e0b32f3840564a5f95588af20874d9682154d4",
       "scripts/art/procgen/roots.py": "3714841f150fe6903e6bff1c93a3327cfa183633ebb2dd0998b8a05f95609c92"
     }
   },
   "second_stair_hall": {
-    "sha256": "49674efc05f860e85a763614de68bc9cccb7f076ca890e57e070a2b56f2a7db2",
+    "sha256": "972b9e32f75a672b128d35505737f7bdf254e0240e53abc3bc6f3f86473b8209",
     "meshes": {
       "Roots_second_stair_hall_3": {
         "triangles": 1544,
@@ -118,7 +118,7 @@
       "content/environments/red_descent/masonry_repairs_v1/walls/second_stair_hall.glb": "edfdc1b19f6c3ed844ba56013828b2cd0021a6f235977d6878e6ef69d36cafd9",
       "content/environments/red_descent/stair_art_v1/ritual_wall_art.glb": "1b01dbdf7c4411ea0db3525ace00782a47e676a3ef28a96747cc631f7fadd13d",
       "content/environments/red_descent/vascular_shape_v2/paths.json": "15bbd4b4dfe6232193345ae35340408eefdb11ed09d61bdc7ecb777e0bd16d20",
-      "scripts/art/build_roots.py": "817797bbe6d0ed68c61c8a339414b69f5c6cb3dfc96b3e9eff1a75f02caea653",
+      "scripts/art/build_roots.py": "1d6b69b4adef154db8f7dab758e0b32f3840564a5f95588af20874d9682154d4",
       "scripts/art/procgen/roots.py": "3714841f150fe6903e6bff1c93a3327cfa183633ebb2dd0998b8a05f95609c92"
     }
   }

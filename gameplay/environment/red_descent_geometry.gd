@@ -559,6 +559,7 @@ func stone_roots(file: String) -> void:
 		tissue.metallic_specular = 0.24
 		materials["vascular_tissue"] = tissue
 		var nodule: StandardMaterial3D = tissue.duplicate() as StandardMaterial3D
+		nodule.albedo_color = Color(0.78, 0.055, 0.085)
 		nodule.roughness = 0.52
 		nodule.normal_scale = 0.3
 		materials["vascular_nodule"] = nodule

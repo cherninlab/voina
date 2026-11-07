@@ -6,7 +6,13 @@ builds (`procedural_architecture_v1`, T-177), baked for the game.
 Generator: `scripts/art/build_roots.py` (driver) and `scripts/art/procgen/roots.py`
 (growth, settling and skinning; reusable for other surfaces).
 
-## Current stair-only repair (H-015)
+## Current organic stair art (H-016)
+
+FIRST and SECOND now use sparse authored asymmetric branching veins, fine children and one original closed native nodule/membrane per focal bay. Their paths/design, actual matched game review, material isolation and validation receipts are in `../red_descent/vascular_shape_v2/`. This replaces the former U/catenary body loops in these two halls; other room/passage exports remain unchanged.
+
+Reproduce with `--rooms first_stair_hall,second_stair_hall --passages none --budget 15000 --mesh-budget 40000 --no-render`. The resulting two GLBs total21,374 triangles, including both nodules. The native generator fits current masonry, full branch/cap closure and route clearance; it uses no CL3D output mesh. The H-015 structural checks below remain the basis for attachment/closed backing.
+
+## Structural stair repair (H-015)
 
 FIRST and SECOND were rebuilt against the current guarded masonry/stair repairs and ritual art. Their tubes have closed child bases, full-ring wall/parent burial checks, softer folds, stable cap frames, and true mitred-route clearance. The other files below retain their older builds; historical QA numbers and ceiling assumptions are not current certification for them. The detailed matched engine review, remaining cable-like morphology limits and independent mesh checks are in `../red_descent/vascular_repairs_v1/`.
 

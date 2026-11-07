@@ -2,7 +2,7 @@
   "baseline": "f950c5422f34d99c30d418bbbd4a6168c549798d",
   "geometry": "Original authored native curves plus voxel-unioned original ellipsoid nodules and sealed rounded membrane. No generated 3D model or third-party mesh vertices imported.",
   "generator_sha256": {
-    "scripts/art/build_roots.py": "817797bbe6d0ed68c61c8a339414b69f5c6cb3dfc96b3e9eff1a75f02caea653",
+    "scripts/art/build_roots.py": "1d6b69b4adef154db8f7dab758e0b32f3840564a5f95588af20874d9682154d4",
     "scripts/art/procgen/roots.py": "3714841f150fe6903e6bff1c93a3327cfa183633ebb2dd0998b8a05f95609c92",
     "content/environments/red_descent/vascular_shape_v2/paths.json": "15bbd4b4dfe6232193345ae35340408eefdb11ed09d61bdc7ecb777e0bd16d20"
   },
@@ -20,5 +20,11 @@
     "content/environments/red_descent/upper_crossing_v1/materials/roots/albedo.png": "ef79ebb1b43f4d131b67f129e910a98a9c63b6682a7a1317e86f4cf96b80c6d2",
     "content/environments/red_descent/upper_crossing_v1/materials/roots/normal_gl.png": "a2c216120f4ac476d43dfd1f7bebd2c8473aea7d57fc330ce7fece32218e17ca",
     "content/environments/red_descent/upper_crossing_v1/materials/roots/roughness.png": "4db67d9aac6ff37284c8f6351ace3aafc2f88afb1df42663cf75dd2458bba564"
+  },
+  "runtime_material_script_sha256": "ee99382e3675b5c9b7469c5c929d55b613f5704185b5bdd14d727f727c9ca0b8",
+  "followup": {
+    "baseline": "d4ce7dd83d54e3df403d627ceda19a377befd549",
+    "change": "Nodule UVs follow actual parent artery arc/radial field; only nodule diffuse tint gently lifted. All triangle positions unchanged.",
+    "check": "review/check_uv_polish.py"
   }
 }

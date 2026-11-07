@@ -34,7 +34,9 @@ func run() -> void:
 			assert(instance.global_transform == Transform3D.IDENTITY)
 			room_triangles += instance.mesh.get_faces().size() / 3
 			var material: StandardMaterial3D = instance.material_override as StandardMaterial3D
-			assert(material != null and material.albedo_color == Color(0.66, 0.045, 0.07))
+			var nodule: bool = String(instance.name).begins_with("Graft_")
+			var expected: Color = Color(0.78, 0.055, 0.085) if nodule else Color(0.66, 0.045, 0.07)
+			assert(material != null and material.albedo_color == expected)
 			assert(material.albedo_texture.resource_path.ends_with("roots/albedo.png"))
 			assert(material.roughness_texture.resource_path.ends_with("roots/roughness.png"))
 			assert(material != base_material)

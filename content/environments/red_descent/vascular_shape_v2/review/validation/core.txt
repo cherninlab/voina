@@ -1,90 +1,90 @@
 Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
 
-BUILD: f950c54+dirty [e8915398cbe1]
+BUILD: d4ce7dd+dirty [0f4dc3f455f7]
 COMBAT_OK: parry, latency grace, recovery, block, guard break, stamina, dodge, active sweep, respawn cancellation, bolt release, capped cut follow-through
-WARNING: 2 ObjectDB instances were leaked at exit (run with `--verbose` for details).
+WARNING: 3 ObjectDB instances were leaked at exit (run with `--verbose` for details).
    at: cleanup (core/object/object.cpp:2536)
 Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
 
-BUILD: f950c54+dirty [e8915398cbe1]
+BUILD: d4ce7dd+dirty [0f4dc3f455f7]
 STAGGER_OK: drift allowance, clamp, release
 WARNING: 2 ObjectDB instances were leaked at exit (run with `--verbose` for details).
    at: cleanup (core/object/object.cpp:2536)
 Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
 
-BUILD: f950c54+dirty [e8915398cbe1]
+BUILD: d4ce7dd+dirty [0f4dc3f455f7]
 GAME_AUDIO_OK: 10 events resolve to catalog clips, pool of 24 voices, 2 ambience beds
 WARNING: 3 ObjectDB instances were leaked at exit (run with `--verbose` for details).
    at: cleanup (core/object/object.cpp:2536)
 Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
 
-BUILD: f950c54+dirty [e8915398cbe1]
+BUILD: d4ce7dd+dirty [0f4dc3f455f7]
 ASSETS_OK: both animated rigs, bound tracks, moving bones, FBX scale and collision
 WARNING: 4 ObjectDB instances were leaked at exit (run with `--verbose` for details).
    at: cleanup (core/object/object.cpp:2536)
 Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
 
-BUILD: f950c54+dirty [e8915398cbe1]
+BUILD: d4ce7dd+dirty [0f4dc3f455f7]
 HIT_RESOLVER_OK: history, rewind caps, head start, capsule ray, cone, cover
 WARNING: 3 ObjectDB instances were leaked at exit (run with `--verbose` for details).
    at: cleanup (core/object/object.cpp:2536)
 Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
 
-BUILD: f950c54+dirty [e8915398cbe1]
+BUILD: d4ce7dd+dirty [0f4dc3f455f7]
 CAR_OK: 10 models, textures, scale, collision hull, cover
 WARNING: 2 ObjectDB instances were leaked at exit (run with `--verbose` for details).
    at: cleanup (core/object/object.cpp:2536)
 Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
 
-BUILD: f950c54+dirty [e8915398cbe1]
+BUILD: d4ce7dd+dirty [0f4dc3f455f7]
 PROJECTILE_OK: hit, cover, validation, wall-muzzle clamp, cooldown, in-flight cap, lifetime, dash pass-through, block, parry reflect, disconnect
 WARNING: 1 ObjectDB instance was leaked at exit (run with `--verbose` for details).
    at: cleanup (core/object/object.cpp:2536)
 Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
 
-BUILD: f950c54+dirty [e8915398cbe1]
+BUILD: d4ce7dd+dirty [0f4dc3f455f7]
 REMOTE_MOTION_OK: hold, projection, projection cap, faded correction, teleport snap, jump arc
-WARNING: 3 ObjectDB instances were leaked at exit (run with `--verbose` for details).
+WARNING: 2 ObjectDB instances were leaked at exit (run with `--verbose` for details).
    at: cleanup (core/object/object.cpp:2536)
 Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
 
-BUILD: f950c54+dirty [e8915398cbe1]
+BUILD: d4ce7dd+dirty [0f4dc3f455f7]
 SWING_CAMERA_OK: still at rest, ignores mouse look, follows a cut 7.0/10.0 deg yaw/roll, settles after landing, mirrors
-WARNING: 3 ObjectDB instances were leaked at exit (run with `--verbose` for details).
+WARNING: 2 ObjectDB instances were leaked at exit (run with `--verbose` for details).
    at: cleanup (core/object/object.cpp:2536)
 Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
 
-BUILD: f950c54+dirty [e8915398cbe1]
+BUILD: d4ce7dd+dirty [0f4dc3f455f7]
 WALK_CAMERA_OK: still at rest, 2.0 cm bob at walking speed (0.9 cm slow), fades out airborne and stopped, 23 sliders drive live values
 WARNING: 2 ObjectDB instances were leaked at exit (run with `--verbose` for details).
    at: cleanup (core/object/object.cpp:2536)
 Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
 
-BUILD: f950c54+dirty [e8915398cbe1]
+BUILD: d4ce7dd+dirty [0f4dc3f455f7]
 NET_OK: fingerprint, auth payloads, 60 Hz movement, push knockback, remote easing
 WARNING: 1 ObjectDB instance was leaked at exit (run with `--verbose` for details).
    at: cleanup (core/object/object.cpp:2536)
 Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
 
-BUILD: f950c54+dirty [e8915398cbe1]
+BUILD: d4ce7dd+dirty [0f4dc3f455f7]
 MATCH_OK: waiting, frozen and movement-locked countdown, kill rounds, sudden-death ring burn and closed-ring healthiest/draw, first to three, result freeze, rematch, leaver
-WARNING: 1 ObjectDB instance was leaked at exit (run with `--verbose` for details).
+WARNING: 2 ObjectDB instances were leaked at exit (run with `--verbose` for details).
    at: cleanup (core/object/object.cpp:2536)
 Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
 
-BUILD: f950c54+dirty [e8915398cbe1]
+BUILD: d4ce7dd+dirty [0f4dc3f455f7]
 BLADE_CONTACT_OK: segment geometry, gentle shove, shove and damage, wound, cooldown, one hit per swing, swing gate, farthest respawn, one-shot bisect, cone hit wounds, lethal bisect
 WARNING: 1 ObjectDB instance was leaked at exit (run with `--verbose` for details).
    at: cleanup (core/object/object.cpp:2536)
 Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
 
-BUILD: f950c54+dirty [e8915398cbe1]
+BUILD: d4ce7dd+dirty [0f4dc3f455f7]
 STROKE_CONTACT_OK: 170-degree raider hit after the window, landing ends damage, cap, old-window shove, no approval no damage, block and stagger cancel
 WARNING: 2 ObjectDB instances were leaked at exit (run with `--verbose` for details).
    at: cleanup (core/object/object.cpp:2536)
 Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
 
-BUILD: f950c54+dirty [e8915398cbe1]
+BUILD: d4ce7dd+dirty [0f4dc3f455f7]
 VILLAGE_APRON_RETIRED: gate apron overlay replaced by the village skirt
 VILLAGE_GROUNDED: 356 tree/bush plants and 72 rocks seated on the visible ground
 VILLAGE_TRAIL_CLEAR: 2 cosmetic tree/bush meshes excluded from trail
@@ -102,12 +102,12 @@ CHURCH_ROAD_OK: 7 torch stakes, 5 lit, 8 mud chunks, 5 omni lights
 ASHEN_VILLAGE_OK: storm sky, material maps, 8 practical lights
 HAUNTED_FOREST_OK: { "bog pools": 2, "trunk colliders": 31, "arch trees": 9, "dead trees": 72, "graveyard ring trees": 26, "spruces": 44, "logs": 16, "stumps": 18, "rocks": 20, "reed clumps": 190, "dead grass tufts": 1429, "light shafts": 8, "mist cards": 80, "ember patches": 7, "road boulders hidden": 1, "village trees stripped bare": 11, "village crowns darkened": 36 }
 Connected
-NET client 2063842825 · build f950c54+dirty [e8915398cbe1]
-NET peer 1 rtt 23 ms jitter 7 ms loss 0.0%
-NET player 1 snaps 59/s drift 0.00 m corrections 0
+NET client 452924566 · build d4ce7dd+dirty [0f4dc3f455f7]
+NET peer 1 rtt 16 ms jitter 3 ms loss 0.0%
+NET player 1 snaps 60/s drift 0.00 m corrections 0
 NET bolts in flight 0
-NET client 2063842825 · build f950c54+dirty [e8915398cbe1]
-NET peer 1 rtt 24 ms jitter 7 ms loss 0.0%
+NET client 452924566 · build d4ce7dd+dirty [0f4dc3f455f7]
+NET peer 1 rtt 16 ms jitter 3 ms loss 0.0%
 NET player 1 snaps 59/s drift 0.00 m corrections 0
 NET bolts in flight 0
 SMOKE_OK: spawn, hitscan, cooldown, ownership, health, respawn, melee, dash, rejection, block
@@ -115,7 +115,7 @@ WARNING: 1 ObjectDB instance was leaked at exit (run with `--verbose` for detail
    at: cleanup (core/object/object.cpp:2536)
 Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
 
-BUILD: f950c54+dirty [e8915398cbe1]
+BUILD: d4ce7dd+dirty [0f4dc3f455f7]
 VILLAGE_APRON_RETIRED: gate apron overlay replaced by the village skirt
 VILLAGE_GROUNDED: 356 tree/bush plants and 72 rocks seated on the visible ground
 VILLAGE_TRAIL_CLEAR: 2 cosmetic tree/bush meshes excluded from trail
@@ -128,23 +128,23 @@ CHURCH_GRAVES: 33 markers, 3 open graves, 3 disturbed mounds
 CHURCH_CLEARED: 5 village plant/rock meshes hidden, 0 instanced plants collapsed
 CHURCH_GROUNDS_OK: floor 6.0 m, 59 collision shapes, 6 lights, 30 flames, 397 dead grass clumps, 5 village plants hidden
 MAP: Village (village)
-Hosting on UDP 52253
+Hosting on UDP 56391
 CHURCH_ROAD_OK: 7 torch stakes, 5 lit, 8 mud chunks, 5 omni lights
 ASHEN_VILLAGE_OK: storm sky, material maps, 8 practical lights
 HAUNTED_FOREST_OK: { "bog pools": 2, "trunk colliders": 31, "arch trees": 9, "dead trees": 72, "graveyard ring trees": 26, "spruces": 44, "logs": 16, "stumps": 18, "rocks": 20, "reed clumps": 190, "dead grass tufts": 1429, "light shafts": 8, "mist cards": 80, "ember patches": 7, "road boulders hidden": 1, "village trees stripped bare": 11, "village crowns darkened": 36 }
-SPAWNED 2063842825
-NET host · build f950c54+dirty [e8915398cbe1]
-NET peer 2063842825 rtt 20 ms jitter 4 ms loss 0.0%
-NET player 2063842825 snaps 59/s drift 0.00 m corrections 0
+SPAWNED 452924566
+NET host · build d4ce7dd+dirty [0f4dc3f455f7]
+NET peer 452924566 rtt 19 ms jitter 3 ms loss 0.0%
+NET player 452924566 snaps 60/s drift 0.00 m corrections 0
 NET bolts in flight 0
-NET host · build f950c54+dirty [e8915398cbe1]
-NET peer 2063842825 rtt 24 ms jitter 8 ms loss 0.0%
-NET player 2063842825 snaps 61/s drift 0.00 m corrections 0
+NET host · build d4ce7dd+dirty [0f4dc3f455f7]
+NET peer 452924566 rtt 19 ms jitter 3 ms loss 0.0%
+NET player 452924566 snaps 59/s drift 0.00 m corrections 0
 NET bolts in flight 0
-DESPAWNED 2063842825
+DESPAWNED 452924566
 Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
 
-BUILD: f950c54+dirty [e8915398cbe1]
+BUILD: d4ce7dd+dirty [0f4dc3f455f7]
 VILLAGE_APRON_RETIRED: gate apron overlay replaced by the village skirt
 VILLAGE_GROUNDED: 356 tree/bush plants and 72 rocks seated on the visible ground
 VILLAGE_TRAIL_CLEAR: 2 cosmetic tree/bush meshes excluded from trail
@@ -162,16 +162,16 @@ CHURCH_ROAD_OK: 7 torch stakes, 5 lit, 8 mud chunks, 5 omni lights
 ASHEN_VILLAGE_OK: storm sky, material maps, 8 practical lights
 HAUNTED_FOREST_OK: { "bog pools": 2, "trunk colliders": 31, "arch trees": 9, "dead trees": 72, "graveyard ring trees": 26, "spruces": 44, "logs": 16, "stumps": 18, "rocks": 20, "reed clumps": 190, "dead grass tufts": 1429, "light shafts": 8, "mist cards": 80, "ember patches": 7, "road boulders hidden": 1, "village trees stripped bare": 11, "village crowns darkened": 36 }
 Connected
-NET client 43658997 · build f950c54+dirty [e8915398cbe1]
-NET peer 1 rtt 20 ms jitter 4 ms loss 0.0%
-NET player 1 snaps 59/s drift 0.00 m corrections 0
+NET client 453726145 · build d4ce7dd+dirty [0f4dc3f455f7]
+NET peer 1 rtt 23 ms jitter 7 ms loss 0.0%
+NET player 1 snaps 60/s drift 0.00 m corrections 0
 NET bolts in flight 0
 PROJECTILE_SMOKE_OK: refusal, prediction confirm, cooldown, host-decided hit, cleanup
 WARNING: 1 ObjectDB instance was leaked at exit (run with `--verbose` for details).
    at: cleanup (core/object/object.cpp:2536)
 Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
 
-BUILD: f950c54+dirty [e8915398cbe1]
+BUILD: d4ce7dd+dirty [0f4dc3f455f7]
 VILLAGE_APRON_RETIRED: gate apron overlay replaced by the village skirt
 VILLAGE_GROUNDED: 356 tree/bush plants and 72 rocks seated on the visible ground
 VILLAGE_TRAIL_CLEAR: 2 cosmetic tree/bush meshes excluded from trail
@@ -184,19 +184,19 @@ CHURCH_GRAVES: 33 markers, 3 open graves, 3 disturbed mounds
 CHURCH_CLEARED: 5 village plant/rock meshes hidden, 0 instanced plants collapsed
 CHURCH_GROUNDS_OK: floor 6.0 m, 59 collision shapes, 6 lights, 30 flames, 397 dead grass clumps, 5 village plants hidden
 MAP: Village (village)
-Hosting on UDP 49628
+Hosting on UDP 64132
 CHURCH_ROAD_OK: 7 torch stakes, 5 lit, 8 mud chunks, 5 omni lights
 ASHEN_VILLAGE_OK: storm sky, material maps, 8 practical lights
 HAUNTED_FOREST_OK: { "bog pools": 2, "trunk colliders": 31, "arch trees": 9, "dead trees": 72, "graveyard ring trees": 26, "spruces": 44, "logs": 16, "stumps": 18, "rocks": 20, "reed clumps": 190, "dead grass tufts": 1429, "light shafts": 8, "mist cards": 80, "ember patches": 7, "road boulders hidden": 1, "village trees stripped bare": 11, "village crowns darkened": 36 }
-SPAWNED 43658997
-NET host · build f950c54+dirty [e8915398cbe1]
-NET peer 43658997 rtt 18 ms jitter 3 ms loss 0.0%
-NET player 43658997 snaps 58/s drift 0.00 m corrections 0
+SPAWNED 453726145
+NET host · build d4ce7dd+dirty [0f4dc3f455f7]
+NET peer 453726145 rtt 17 ms jitter 3 ms loss 0.0%
+NET player 453726145 snaps 59/s drift 0.00 m corrections 0
 NET bolts in flight 0
-DESPAWNED 43658997
+DESPAWNED 453726145
 Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
 
-BUILD: f950c54+dirty [e8915398cbe1]
+BUILD: d4ce7dd+dirty [0f4dc3f455f7]
 VILLAGE_APRON_RETIRED: gate apron overlay replaced by the village skirt
 VILLAGE_GROUNDED: 356 tree/bush plants and 72 rocks seated on the visible ground
 VILLAGE_TRAIL_CLEAR: 2 cosmetic tree/bush meshes excluded from trail
@@ -214,16 +214,16 @@ CHURCH_ROAD_OK: 7 torch stakes, 5 lit, 8 mud chunks, 5 omni lights
 ASHEN_VILLAGE_OK: storm sky, material maps, 8 practical lights
 HAUNTED_FOREST_OK: { "bog pools": 2, "trunk colliders": 31, "arch trees": 9, "dead trees": 72, "graveyard ring trees": 26, "spruces": 44, "logs": 16, "stumps": 18, "rocks": 20, "reed clumps": 190, "dead grass tufts": 1429, "light shafts": 8, "mist cards": 80, "ember patches": 7, "road boulders hidden": 1, "village trees stripped bare": 11, "village crowns darkened": 36 }
 Connected
-NET client 1840699177 · build f950c54+dirty [e8915398cbe1]
-NET peer 1 rtt 18 ms jitter 4 ms loss 0.0%
+NET client 182842295 · build d4ce7dd+dirty [0f4dc3f455f7]
+NET peer 1 rtt 16 ms jitter 3 ms loss 0.0%
 NET player 1 snaps 60/s drift 0.00 m corrections 0
 NET bolts in flight 0
-NET_SMOKE_OK: peer 1 rtt 18 ms jitter 3 ms loss 0.0%; host snapshots 60/s
+NET_SMOKE_OK: peer 1 rtt 16 ms jitter 3 ms loss 0.0%; host snapshots 60/s
 WARNING: 1 ObjectDB instance was leaked at exit (run with `--verbose` for details).
    at: cleanup (core/object/object.cpp:2536)
 Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
 
-BUILD: f950c54+dirty [e8915398cbe1]
+BUILD: d4ce7dd+dirty [0f4dc3f455f7]
 VILLAGE_APRON_RETIRED: gate apron overlay replaced by the village skirt
 VILLAGE_GROUNDED: 356 tree/bush plants and 72 rocks seated on the visible ground
 VILLAGE_TRAIL_CLEAR: 2 cosmetic tree/bush meshes excluded from trail
@@ -236,19 +236,19 @@ CHURCH_GRAVES: 33 markers, 3 open graves, 3 disturbed mounds
 CHURCH_CLEARED: 5 village plant/rock meshes hidden, 0 instanced plants collapsed
 CHURCH_GROUNDS_OK: floor 6.0 m, 59 collision shapes, 6 lights, 30 flames, 397 dead grass clumps, 5 village plants hidden
 MAP: Village (village)
-Hosting on UDP 51368
+Hosting on UDP 59899
 CHURCH_ROAD_OK: 7 torch stakes, 5 lit, 8 mud chunks, 5 omni lights
 ASHEN_VILLAGE_OK: storm sky, material maps, 8 practical lights
 HAUNTED_FOREST_OK: { "bog pools": 2, "trunk colliders": 31, "arch trees": 9, "dead trees": 72, "graveyard ring trees": 26, "spruces": 44, "logs": 16, "stumps": 18, "rocks": 20, "reed clumps": 190, "dead grass tufts": 1429, "light shafts": 8, "mist cards": 80, "ember patches": 7, "road boulders hidden": 1, "village trees stripped bare": 11, "village crowns darkened": 36 }
-SPAWNED 1840699177
-NET host · build f950c54+dirty [e8915398cbe1]
-NET peer 1840699177 rtt 16 ms jitter 3 ms loss 0.0%
-NET player 1840699177 snaps 59/s drift 0.00 m corrections 0
+SPAWNED 182842295
+NET host · build d4ce7dd+dirty [0f4dc3f455f7]
+NET peer 182842295 rtt 17 ms jitter 3 ms loss 0.0%
+NET player 182842295 snaps 59/s drift 0.00 m corrections 0
 NET bolts in flight 0
-DESPAWNED 1840699177
+DESPAWNED 182842295
 Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
 
-BUILD: f950c54+dirty [e8915398cbe1]
+BUILD: d4ce7dd+dirty [0f4dc3f455f7]
 VILLAGE_APRON_RETIRED: gate apron overlay replaced by the village skirt
 VILLAGE_GROUNDED: 356 tree/bush plants and 72 rocks seated on the visible ground
 VILLAGE_TRAIL_CLEAR: 2 cosmetic tree/bush meshes excluded from trail
@@ -266,16 +266,16 @@ CHURCH_ROAD_OK: 7 torch stakes, 5 lit, 8 mud chunks, 5 omni lights
 ASHEN_VILLAGE_OK: storm sky, material maps, 8 practical lights
 HAUNTED_FOREST_OK: { "bog pools": 2, "trunk colliders": 31, "arch trees": 9, "dead trees": 72, "graveyard ring trees": 26, "spruces": 44, "logs": 16, "stumps": 18, "rocks": 20, "reed clumps": 190, "dead grass tufts": 1429, "light shafts": 8, "mist cards": 80, "ember patches": 7, "road boulders hidden": 1, "village trees stripped bare": 11, "village crowns darkened": 36 }
 Connected
-NET client 1966968378 · build f950c54+dirty [e8915398cbe1]
-NET peer 1 rtt 18 ms jitter 3 ms loss 0.0%
-NET player 1 snaps 59/s drift 0.00 m corrections 0
+NET client 1595777614 · build d4ce7dd+dirty [0f4dc3f455f7]
+NET peer 1 rtt 20 ms jitter 3 ms loss 0.0%
+NET player 1 snaps 60/s drift 0.00 m corrections 0
 NET bolts in flight 0
 MATCH_SMOKE_OK: client sees round Fight! with 88 s left
 WARNING: 1 ObjectDB instance was leaked at exit (run with `--verbose` for details).
    at: cleanup (core/object/object.cpp:2536)
 Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
 
-BUILD: f950c54+dirty [e8915398cbe1]
+BUILD: d4ce7dd+dirty [0f4dc3f455f7]
 VILLAGE_APRON_RETIRED: gate apron overlay replaced by the village skirt
 VILLAGE_GROUNDED: 356 tree/bush plants and 72 rocks seated on the visible ground
 VILLAGE_TRAIL_CLEAR: 2 cosmetic tree/bush meshes excluded from trail
@@ -288,19 +288,19 @@ CHURCH_GRAVES: 33 markers, 3 open graves, 3 disturbed mounds
 CHURCH_CLEARED: 5 village plant/rock meshes hidden, 0 instanced plants collapsed
 CHURCH_GROUNDS_OK: floor 6.0 m, 59 collision shapes, 6 lights, 30 flames, 397 dead grass clumps, 5 village plants hidden
 MAP: Village (village)
-Hosting on UDP 62221
+Hosting on UDP 59699
 CHURCH_ROAD_OK: 7 torch stakes, 5 lit, 8 mud chunks, 5 omni lights
 ASHEN_VILLAGE_OK: storm sky, material maps, 8 practical lights
 HAUNTED_FOREST_OK: { "bog pools": 2, "trunk colliders": 31, "arch trees": 9, "dead trees": 72, "graveyard ring trees": 26, "spruces": 44, "logs": 16, "stumps": 18, "rocks": 20, "reed clumps": 190, "dead grass tufts": 1429, "light shafts": 8, "mist cards": 80, "ember patches": 7, "road boulders hidden": 1, "village trees stripped bare": 11, "village crowns darkened": 36 }
-SPAWNED 1966968378
-NET host · build f950c54+dirty [e8915398cbe1]
-NET peer 1966968378 rtt 16 ms jitter 3 ms loss 0.0%
-NET player 1966968378 snaps 59/s drift 0.00 m corrections 0
+SPAWNED 1595777614
+NET host · build d4ce7dd+dirty [0f4dc3f455f7]
+NET peer 1595777614 rtt 16 ms jitter 3 ms loss 0.0%
+NET player 1595777614 snaps 58/s drift 0.00 m corrections 0
 NET bolts in flight 0
-DESPAWNED 1966968378
+DESPAWNED 1595777614
 Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
 
-BUILD: f950c54+dirty [0123456789ab]
+BUILD: d4ce7dd+dirty [0123456789ab]
 VILLAGE_APRON_RETIRED: gate apron overlay replaced by the village skirt
 VILLAGE_GROUNDED: 356 tree/bush plants and 72 rocks seated on the visible ground
 VILLAGE_TRAIL_CLEAR: 2 cosmetic tree/bush meshes excluded from trail
@@ -317,14 +317,14 @@ Connecting to 127.0.0.1
 CHURCH_ROAD_OK: 7 torch stakes, 5 lit, 8 mud chunks, 5 omni lights
 ASHEN_VILLAGE_OK: storm sky, material maps, 8 practical lights
 HAUNTED_FOREST_OK: { "bog pools": 2, "trunk colliders": 31, "arch trees": 9, "dead trees": 72, "graveyard ring trees": 26, "spruces": 44, "logs": 16, "stumps": 18, "rocks": 20, "reed clumps": 190, "dead grass tufts": 1429, "light shafts": 8, "mist cards": 80, "ember patches": 7, "road boulders hidden": 1, "village trees stripped bare": 11, "village crowns darkened": 36 }
-VERSION_MISMATCH: Host runs f950c54+dirty [e8915398cbe1], you run f950c54+dirty [0123456789ab]. Run: python3 scripts/playtest.py sync --commit f950c54
-Host runs f950c54+dirty [e8915398cbe1], you run f950c54+dirty [0123456789ab]. Run: python3 scripts/playtest.py sync --commit f950c54
-VERSION_MISMATCH_OK: refused before spawn by host build f950c54+dirty
+VERSION_MISMATCH: Host runs d4ce7dd+dirty [0f4dc3f455f7], you run d4ce7dd+dirty [0123456789ab]. Run: python3 scripts/playtest.py sync --commit d4ce7dd
+Host runs d4ce7dd+dirty [0f4dc3f455f7], you run d4ce7dd+dirty [0123456789ab]. Run: python3 scripts/playtest.py sync --commit d4ce7dd
+VERSION_MISMATCH_OK: refused before spawn by host build d4ce7dd+dirty
 WARNING: 1 ObjectDB instance was leaked at exit (run with `--verbose` for details).
    at: cleanup (core/object/object.cpp:2536)
 Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
 
-BUILD: f950c54+dirty [e8915398cbe1]
+BUILD: d4ce7dd+dirty [0f4dc3f455f7]
 VILLAGE_APRON_RETIRED: gate apron overlay replaced by the village skirt
 VILLAGE_GROUNDED: 356 tree/bush plants and 72 rocks seated on the visible ground
 VILLAGE_TRAIL_CLEAR: 2 cosmetic tree/bush meshes excluded from trail
@@ -337,11 +337,11 @@ CHURCH_GRAVES: 33 markers, 3 open graves, 3 disturbed mounds
 CHURCH_CLEARED: 5 village plant/rock meshes hidden, 0 instanced plants collapsed
 CHURCH_GROUNDS_OK: floor 6.0 m, 59 collision shapes, 6 lights, 30 flames, 397 dead grass clumps, 5 village plants hidden
 MAP: Village (village)
-Hosting on UDP 60557
+Hosting on UDP 49222
 CHURCH_ROAD_OK: 7 torch stakes, 5 lit, 8 mud chunks, 5 omni lights
 ASHEN_VILLAGE_OK: storm sky, material maps, 8 practical lights
 HAUNTED_FOREST_OK: { "bog pools": 2, "trunk colliders": 31, "arch trees": 9, "dead trees": 72, "graveyard ring trees": 26, "spruces": 44, "logs": 16, "stumps": 18, "rocks": 20, "reed clumps": 190, "dead grass tufts": 1429, "light shafts": 8, "mist cards": 80, "ember patches": 7, "road boulders hidden": 1, "village trees stripped bare": 11, "village crowns darkened": 36 }
-BUILD_REFUSED: peer 520593995 runs f950c54+dirty [0123456789ab]; host runs f950c54+dirty [e8915398cbe1]
-Refused a player on build f950c54+dirty; you run f950c54+dirty [e8915398cbe1]
-BUILD_REFUSED: peer 520593995 left before proving a matching build
+BUILD_REFUSED: peer 1348272197 runs d4ce7dd+dirty [0123456789ab]; host runs d4ce7dd+dirty [0f4dc3f455f7]
+Refused a player on build d4ce7dd+dirty; you run d4ce7dd+dirty [0f4dc3f455f7]
+BUILD_REFUSED: peer 1348272197 left before proving a matching build
 PASS: local two-process ENet integration and disconnect cleanup

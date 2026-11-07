@@ -1,0 +1,41 @@
+{
+  "commit": "d4ce7dd83d54e3df403d627ceda19a377befd549",
+  "geometry": {
+    "first_stair_hall": {
+      "Roots_first_stair_hall_3": {
+        "triangles": 1566,
+        "position_triangles_sha256": "b76aa163c688ae9e9d0f24923c9dde92d1b4622e546a18fef2841502ce6e0f5c"
+      },
+      "Roots_first_stair_hall_2": {
+        "triangles": 4248,
+        "position_triangles_sha256": "f3a64bee5bf8a3dc0275c88d2b425a35de200bf942dfcf95e2ee9b992d50bc00"
+      },
+      "Roots_first_stair_hall_1": {
+        "triangles": 1690,
+        "position_triangles_sha256": "d8591623187547d79c11663c64683d2a206e5383cc87d82c1cd049a7c148e82a"
+      },
+      "Graft_first_stair_hall": {
+        "triangles": 4000,
+        "position_triangles_sha256": "c1a154d5acaca600174317d4cc5d0bce6eb272bc86c409b07c973b59f9155377"
+      }
+    },
+    "second_stair_hall": {
+      "Roots_second_stair_hall_3": {
+        "triangles": 1544,
+        "position_triangles_sha256": "608e7e8452d78f651d3c8705d60eedd39cd1089b35f2c89794754b99b34435af"
+      },
+      "Roots_second_stair_hall_1": {
+        "triangles": 1106,
+        "position_triangles_sha256": "ebd11295e59d5378f3638b9a37f631b32d1d56a5549eab3cc63646e367cef59b"
+      },
+      "Roots_second_stair_hall_0": {
+        "triangles": 3220,
+        "position_triangles_sha256": "61bd0b957815f23004fc143132c85f16caa2f3ed8fbb4baaef2bee5a0f92063e"
+      },
+      "Graft_second_stair_hall": {
+        "triangles": 4000,
+        "position_triangles_sha256": "51755c7db94e6b7b738f8d5eea87b02356f0b81bcd26c77de781f255f9e9c3cb"
+      }
+    }
+  }
+}

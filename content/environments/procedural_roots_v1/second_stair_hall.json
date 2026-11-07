@@ -36,7 +36,7 @@
     }
   ],
   "files": {
-    "content/environments/procedural_roots_v1/second_stair_hall.glb": "49674efc05f860e85a763614de68bc9cccb7f076ca890e57e070a2b56f2a7db2"
+    "content/environments/procedural_roots_v1/second_stair_hall.glb": "972b9e32f75a672b128d35505737f7bdf254e0240e53abc3bc6f3f86473b8209"
   },
   "growth_budget": 15000,
   "id": "second_stair_hall",
@@ -65,9 +65,9 @@
       "back_exposed_vertices": 0,
       "back_vertices_seated": 45,
       "centre": [
-        -30.100000381469727,
-        -17.600000381469727,
-        38.5
+        -30.105167388916016,
+        -17.65826988220215,
+        38.02082061767578
       ],
       "generator": "original native vessel/nodule/membrane voxel union",
       "method": "Closed native nodule and rounded membrane; full rear sample seated inside actual masonry, no separate free ports.",
@@ -183,7 +183,7 @@
     "content/environments/red_descent/masonry_repairs_v1/walls/second_stair_hall.glb": "edfdc1b19f6c3ed844ba56013828b2cd0021a6f235977d6878e6ef69d36cafd9",
     "content/environments/red_descent/stair_art_v1/ritual_wall_art.glb": "1b01dbdf7c4411ea0db3525ace00782a47e676a3ef28a96747cc631f7fadd13d",
     "content/environments/red_descent/vascular_shape_v2/paths.json": "15bbd4b4dfe6232193345ae35340408eefdb11ed09d61bdc7ecb777e0bd16d20",
-    "scripts/art/build_roots.py": "817797bbe6d0ed68c61c8a339414b69f5c6cb3dfc96b3e9eff1a75f02caea653",
+    "scripts/art/build_roots.py": "1d6b69b4adef154db8f7dab758e0b32f3840564a5f95588af20874d9682154d4",
     "scripts/art/procgen/roots.py": "3714841f150fe6903e6bff1c93a3327cfa183633ebb2dd0998b8a05f95609c92"
   },
   "systems": {

@@ -1034,9 +1034,9 @@ class Grower:
                 hit=self.walls.face(wall_id,(point-wall['a']).dot(wall['along'])/wall['length'],point.z)
                 if hit is not None:support.append(hit[0].dot(normal))
         outer=max(support)
-        backs=[];local_points=[]
+        backs=[]
         for vertex in obj.data.vertices:
-            local=vertex.co.copy();local_points.append(local)
+            local=vertex.co.copy()
             point=centre+across*local.x+roots.UP*local.z
             hit=self.walls.face(wall_id,(point-wall['a']).dot(wall['along'])/wall['length'],point.z)
             assert hit is not None,'Native graft has no supporting wall'
@@ -1051,11 +1051,28 @@ class Grower:
             if depth<.001:backs.append(vertex.co.copy())
         assert backs,'Native nodule has no seated back'
         assert self.ring_embedded(backs),'Native nodule back outside closed backing'
-        # Rebuild attributes after voxel union; UVs stay in the local tissue plane.
+        # Match texture flow to the parent artery rather than a separate planar patch.
         for layer in list(obj.data.uv_layers):obj.data.uv_layers.remove(layer)
         uv=obj.data.uv_layers.new(name='UVMap')
+        parent=self.systems[0][0]
+        arc=parent.arc();frames=roots.frames(parent)
+        flow=[]
+        for vertex in obj.data.vertices:
+            nearest=None
+            for i,(a,b) in enumerate(zip(parent.points,parent.points[1:])):
+                delta=b-a
+                t=min(1,max(0,(vertex.co-a).dot(delta)/max(delta.length_squared,1e-12)))
+                centre=a+delta*t
+                distance=(vertex.co-centre).length_squared
+                if nearest is None or distance<nearest[0]:nearest=(distance,i,t,centre)
+            _,i,t,centre=nearest
+            a,c=roots.ellipse(parent,i)
+            _,n,b=frames[i]
+            offset=vertex.co-centre
+            angle=math.atan2(offset.dot(n)/max(c,1e-6),offset.dot(b)/max(a,1e-6))
+            flow.append(Vector((arc[i]+t*(arc[i+1]-arc[i]),((angle-math.pi*.5)/(2*math.pi))%1)))
         for loop in obj.data.loops:
-            p=local_points[loop.vertex_index];uv.data[loop.index].uv=(p.z*2.5,p.x*3)
+            uv.data[loop.index].uv=flow[loop.vertex_index]
         for attribute in list(obj.data.color_attributes):obj.data.color_attributes.remove(attribute)
         colour=obj.data.color_attributes.new(name='Color',type='FLOAT_COLOR',domain='CORNER')
         for item in colour.data:item.color=(1,1.02,0,1)
