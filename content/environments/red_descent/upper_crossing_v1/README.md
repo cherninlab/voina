@@ -77,3 +77,7 @@ scripts/godot_bg.sh --path . \
 ```
 
 Validation receipts and logs are under `review/validation/`. Automated checks establish asset loading, collision traversal and combat/network regression. Human input, camera feel, two-Mac Tailscale behavior, sustained performance and art acceptance remain separate.
+
+## Iteration 2 — exterior joins
+
+Roof and exterior side stones are clipped by the same network mitre/room planes as the source passage. The roof is staggered by half a stone on alternating rings; joints have deeper backing. A bonded 986-stone exterior facing replaces the broad bare mortar strip. Original interior and five collision meshes are preserved. Matched cameras are under `review/iteration2/`; `review/issues.json` keeps the wider unfinished work explicit.

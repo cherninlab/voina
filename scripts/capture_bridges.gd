@@ -18,6 +18,10 @@ const UPPER_CROSSING_VIEWS: Array[Array] = [
 	["upper-landing", Vector3(16.7889, 1.0086, -13.3896), Vector3(17.5219, 0.4640, -12.9824), 90.0],
 	["gallery-exterior", Vector3(14, -3.3, 0), Vector3(21, -7.4, -5), 80.0],
 	["gallery-interior", Vector3(21, -8.35, -2), Vector3(20.4, -8.2, -12), 78.0],
+    ["upper-doorway-reverse", Vector3(28.5, -2.3, -12.5), Vector3(15, -1.0, -13.3), 90.0],
+    ["gallery-underside", Vector3(13, -14, -4), Vector3(21, -9.5, -4), 85.0],
+    ["upper-foundation", Vector3(13, -7, -20), Vector3(26, -6, -14), 85.0],
+    ["gallery-bend-north", Vector3(14, -4, -17), Vector3(20.3, -6.2, -14), 85.0],
 ]
 const EYE: float = 1.6
 

@@ -1,5 +1,6 @@
 extends "res://tests/dungeon_explorer.gd"
 ## Matched diagnostic cameras for this asset iteration.
+const CaptureViews: GDScript = preload("res://scripts/capture_bridges.gd")
 
 func intersection_audit() -> void:
 	var walls: Array[Dictionary] = []
@@ -53,17 +54,17 @@ uniform vec3 clip_planes[12];
 varying vec3 world_position;
 varying vec3 world_normal;
 void vertex() {
-    world_position = (MODEL_MATRIX * vec4(VERTEX, 1.0)).xyz;
-    world_normal = MODEL_NORMAL_MATRIX * NORMAL;
+	world_position = (MODEL_MATRIX * vec4(VERTEX, 1.0)).xyz;
+	world_normal = MODEL_NORMAL_MATRIX * NORMAL;
 }
 void fragment() {
-    for (int i = 0; i < clip_count; i++) {
-        if (dot(world_position.xz, clip_planes[i].xy) > clip_planes[i].z) { discard; }
-    }
-    if (mode == 0) { ALBEDO = explorer_color.rgb; }
-    else if (mode == 1) { ALBEDO = vec3(clamp(-VERTEX.z / depth_m, 0.0, 1.0)); }
-    else if (mode == 2) { ALBEDO = normalize(world_normal) * 0.5 + 0.5; }
-    else { ALBEDO = vec3(0.012); }
+	for (int i = 0; i < clip_count; i++) {
+		if (dot(world_position.xz, clip_planes[i].xy) > clip_planes[i].z) { discard; }
+	}
+	if (mode == 0) { ALBEDO = explorer_color.rgb; }
+	else if (mode == 1) { ALBEDO = vec3(clamp(-VERTEX.z / depth_m, 0.0, 1.0)); }
+	else if (mode == 2) { ALBEDO = normalize(world_normal) * 0.5 + 0.5; }
+	else { ALBEDO = vec3(0.012); }
 }"""
 	return shader
 
@@ -100,11 +101,12 @@ func capture_views() -> void:
 	debug_environment.background_mode = Environment.BG_COLOR
 	debug_environment.background_color = Color.BLACK
 	debug_environment.tonemap_mode = Environment.TONE_MAPPER_LINEAR
-	var views: Array[Dictionary] = [
-        {"name": "upper-landing", "eye": [16.7889, 1.0086, -13.3896], "direction": [0.733, -0.5446, 0.4072], "head_offset_m": 0.0},
-        {"name": "gallery-exterior", "eye": [14, -3.3, 0], "direction": [7, -4.1, -5], "head_offset_m": 0.0},
-        {"name": "gallery-interior", "eye": [21, -8.35, -2], "direction": [-0.6, 0.15, -10], "head_offset_m": 0.0},
-    ]
+	var views: Array[Dictionary] = []
+	for entry: Array in CaptureViews.UPPER_CROSSING_VIEWS:
+		var eye: Vector3 = entry[1] as Vector3
+		var target: Vector3 = entry[2] as Vector3
+		views.append({"name": entry[0], "eye": vector(eye), "direction": vector(target - eye), "head_offset_m": 0.0, "fov": float(entry[3])})
+
 	dungeon.get_node("DeepWater").hide()
 	var visuals: Array[GeometryInstance3D] = []
 	var originals: Array[Material] = []
@@ -158,7 +160,7 @@ func capture_views() -> void:
 	tile.size = Vector3(0.42, 0.02, 0.42)
 	var results: Array[Dictionary] = []
 	for view: Dictionary in views:
-		camera.fov = {"upper-landing": 90.0, "gallery-exterior": 80.0, "gallery-interior": 78.0}[String(view["name"])]
+		camera.fov = float(view["fov"])
 		camera.position = point(view["eye"] as Array) + Vector3.UP * float(view["head_offset_m"])
 		var direction: Vector3 = point(view["direction"] as Array)
 		camera.look_at(camera.position + direction, Vector3.FORWARD if absf(direction.normalized().y) > 0.99 else Vector3.UP)

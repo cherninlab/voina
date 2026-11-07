@@ -59,7 +59,7 @@ assert len(before) == 5 and before == after, "Collision geometry changed during 
 report["gallery_collision"] = {"meshes": len(before), "vertex_positions_unchanged": True}
 roof = {}
 for node in gallery.graph.nodes_geometry:
-    if node.startswith("Stone-stone_upper_gallery_roof") or node.startswith("Mortar_return_gallery"):
+    if node.startswith("Stone-stone_upper_gallery_roof") or node.startswith("Mortar_return_gallery") or node.startswith("Stone-stone_gallery_exterior"):
         transform, name = gallery.graph[node]
         mesh = gallery.geometry[name].copy()
         mesh.merge_vertices(merge_tex=True, merge_norm=True)
@@ -68,7 +68,7 @@ for node in gallery.graph.nodes_geometry:
                       "nonmanifold_edges": int((incident > 2).sum())}
         assert not (incident == 1).any() and not (incident > 2).any(), roof[node]
 report["roof_and_mortar"] = roof
-assert len(roof) == 6, "Missing exterior roof or mortar mass"
+assert len(roof) == 7, "Missing exterior roof, facing or mortar mass"
 report["sha256"] = {name: hashlib.sha256((ROOT / name).read_bytes()).hexdigest() for name in ["gallery.glb", "rock_lod0.glb", "rock_lod1.glb", "rock_cliff.glb"]}
 (ROOT / "mesh-validation.json").write_text(json.dumps(report, indent=2) + "\n")
 print("UPPER_ASSETS_VALID", json.dumps(report), flush=True)

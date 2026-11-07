@@ -17,7 +17,7 @@ from mathutils import Matrix, Vector
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 import build_architecture as architecture
-from procgen import core, export, stones
+from procgen import core, export, masonry, stonelib, stones
 
 OUT = core.ROOT / "content/environments/red_descent/upper_crossing_v1"
 SOURCE = core.ROOT / "content/environments/procedural_architecture_v1/passages/return_gallery.glb"
@@ -81,12 +81,17 @@ def gallery():
     route = next(route for route in layout["routes"] if route["id"] == "return_gallery")
     profile = architecture.profile(route, layout)
     rng = core.rng(20261107, "upper-gallery")
+    runs, nodes = architecture.network(layout)
+    wall_library = stonelib.Library(core.rng(20261107, "gallery-facing"), "squared_rubble", count=8, triangles=140)
+    facings = []
     roofs = []
     protected = 0
     for segment, (p, q) in enumerate(zip(route["points"], route["points"][1:])):
         a = core.to_blender(p)
         b = core.to_blender(q)
         direction = (b - a).normalized()
+        stretch_number, stretch = next((number, stretch) for number, stretch in enumerate(runs[route["id"]]) if stretch is not None and stretch[0] == segment)
+        planes, _ = architecture.run_planes(route, stretch_number, stretch, nodes)
         side = direction.cross(Vector((0, 0, 1)))
         centre = a + Vector((0, 0, profile.cy))
         mass = next(obj for obj in objects if obj.name == f"Mortar_return_gallery_{segment * 5 + 3}")
@@ -100,21 +105,47 @@ def gallery():
         count = math.ceil(sweep * (profile.radius + 0.6) / 0.58)
         frame = Matrix((side, direction, Vector((0, 0, 1)))).transposed().to_4x4()
         for row in range(rows):
-            for number in range(count):
-                angle = profile.a0 + number * sweep / count
+            for number in range(-1, count):
+                angle = max(profile.a0, profile.a0 + (number + 0.5 * (row % 2)) * sweep / count)
+                finish = min(math.pi - profile.a0, profile.a0 + (number + 1 + 0.5 * (row % 2)) * sweep / count)
+                if finish - angle < 0.01:
+                    continue
                 piece = stones.voussoir(
-                    rng, inner=profile.radius + 0.50, depth=rng.uniform(0.12, 0.18),
-                    angle=sweep / count * 0.975, thickness=row_width - 0.018,
-                    start=angle, name=f"roof_arch_{segment}_{row}_{number}", triangles=70,
+                    rng, inner=profile.radius + 0.47, depth=rng.uniform(0.18, 0.24),
+                    angle=(finish - angle) * 0.985, thickness=row_width - 0.012,
+                    start=angle, name=f"roof_arch_{segment}_{row}_{number}", triangles=110,
                 )
                 origin = centre + direction * (start + (row + 0.5) * row_width)
                 piece.matrix_world = Matrix.Translation(origin) @ frame @ piece.matrix_world
                 piece["tone"] = rng.uniform(0.68, 1.02)
                 piece["frame"] = [*direction, 0.0, 0.0, 1.0, *side]
-                roofs.append(piece)
+                if all(masonry.clip(piece, point, normal) for point, normal in planes):
+                    roofs.append(piece)
+                else:
+                    core.discard(piece)
+        # Bond the visible exterior sides in the same planes as the source
+        # passage. The interior lining and collision remain the imported ones.
+        for sign in (-1, 1):
+            outward = side * sign
+            along_axis = direction if direction.cross(Vector((0, 0, 1))).dot(outward) > 0 else -direction
+            base = a + direction * (start if along_axis.dot(direction) > 0 else end) + outward * (profile.half + 0.94)
+            facing = masonry.Wall(end - start, profile.spring, thickness=0.22, joint=(0.008, 0.014))
+            pieces = facing.build(wall_library, rng, name=f"gallery_exterior_{segment}_{sign}", core=False)
+            masonry.place(pieces, base, along_axis, Vector((0, 0, 1)))
+            for piece in pieces:
+                trim = list(planes)
+                for k in range(19):
+                    angle = profile.a0 + sweep * k / 18
+                    radial = side * math.cos(angle) + Vector((0, 0, math.sin(angle)))
+                    trim.append((centre + radial * (profile.radius + 0.62), radial))
+                if all(masonry.clip(piece, point, normal) for point, normal in trim):
+                    facings.append(piece)
+                else:
+                    core.discard(piece)
     roof = architecture.merge("upper_gallery_roof", {0: roofs}, rng)
+    facing = architecture.merge("gallery_exterior", {0: facings}, rng)
     # The exterior shares the existing grey limestone, rather than arch sandstone.
-    for obj in roof:
+    for obj in roof + facing:
         obj.name = obj.name.replace("Stone-arch_", "Stone-stone_")
         # merge() encodes tone/freshness for the later AO bake. This small
         # exterior addition has no AO bake, so export its per-stone grey tone
@@ -123,7 +154,7 @@ def gallery():
             grey = item.color[1] * 1.25
             item.color = (grey, grey, grey, 1.0)
     assert coordinates(collisions) == before, "Original collision changed"
-    export.glb(objects + roof, OUT / "gallery.glb")
+    export.glb(objects + roof + facing, OUT / "gallery.glb")
     report = {
         "source_sha256": core.sha256(SOURCE),
         "source_routes": next(entry["routes"] for entry in json.loads(
@@ -135,6 +166,9 @@ def gallery():
         "profile": {"spring_m": profile.spring, "rise_m": profile.crown - profile.spring,
                     "intrados_radius_m": profile.radius},
         "roof_stones": len(roofs),
+        "exterior_facing_stones": len(facings),
+        "roof_and_facing_mitres": "authoritative run_planes from the source passage network",
+        "roof_bond": "alternating half-stone circumferential offsets",
         "roof_triangles": sum(sum(len(face.vertices) - 2 for face in obj.data.polygons) for obj in roof),
         "operation": "Preserve the original collision and interior; round the exterior mortar and add stone roofing.",
     }

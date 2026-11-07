@@ -11,7 +11,10 @@
     "rise_m": 1.35,
     "intrados_radius_m": 2.467592592592593
   },
-  "roof_stones": 672,
-  "roof_triangles": 47030,
+  "roof_stones": 695,
+  "exterior_facing_stones": 986,
+  "roof_and_facing_mitres": "authoritative run_planes from the source passage network",
+  "roof_bond": "alternating half-stone circumferential offsets",
+  "roof_triangles": 76324,
   "operation": "Preserve the original collision and interior; round the exterior mortar and add stone roofing."
 }

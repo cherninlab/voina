@@ -1,0 +1,90 @@
+{
+  "baseline": "1e85884",
+  "user_evidence": "Normal/object views supplied on 2026-11-07",
+  "issues": [
+    {
+      "id": 1,
+      "issue": "Gallery roof blocks intersect across unmitred bends",
+      "status": "implemented; exterior capture and topology checked",
+      "iteration": 2
+    },
+    {
+      "id": 2,
+      "issue": "Gallery joints expose contrasting core through irregular wedge gaps",
+      "status": "implemented; exterior capture and topology checked",
+      "iteration": 2
+    },
+    {
+      "id": 3,
+      "issue": "Roof courses align into a repetitive tile grid",
+      "status": "implemented; exterior capture and topology checked",
+      "iteration": 2
+    },
+    {
+      "id": 4,
+      "issue": "Long gallery reads as an unsupported pipe across the shaft",
+      "status": "open"
+    },
+    {
+      "id": 5,
+      "issue": "Exposed gallery side mortar/plaster strip lacks a coherent exterior face",
+      "status": "implemented; exterior capture and topology checked",
+      "iteration": 2
+    },
+    {
+      "id": 6,
+      "issue": "Gallery segment ends have abrupt unframed terminations",
+      "status": "open"
+    },
+    {
+      "id": 7,
+      "issue": "Room facade bottom ends at a floating horizontal cut",
+      "status": "open"
+    },
+    {
+      "id": 8,
+      "issue": "Thin runtime shaft slabs show hard vertical side edges",
+      "status": "open"
+    },
+    {
+      "id": 9,
+      "issue": "Locally generated rock meets the roof in a broad horizontal clearance cut",
+      "status": "open"
+    },
+    {
+      "id": 10,
+      "issue": "Carved rock islands remain detached from the main abutment",
+      "status": "open"
+    },
+    {
+      "id": 11,
+      "issue": "Rock detail has directional fill/voxel terraces",
+      "status": "open"
+    },
+    {
+      "id": 12,
+      "issue": "Huge shaft faces lack physical relief at grazing angles",
+      "status": "open"
+    },
+    {
+      "id": 13,
+      "issue": "Bridge rail terminations lack visible masonry anchorage",
+      "status": "open"
+    },
+    {
+      "id": 14,
+      "issue": "Portal threshold/deck junction needs a fitted transition",
+      "status": "open"
+    },
+    {
+      "id": 15,
+      "issue": "Room, roof and rock surfaces use inconsistent material grain and colour",
+      "status": "open"
+    },
+    {
+      "id": 16,
+      "issue": "Roots read as smooth red cables rather than fibrous dry roots",
+      "status": "open"
+    }
+  ]
+}
