@@ -81,3 +81,7 @@ Validation receipts and logs are under `review/validation/`. Automated checks es
 ## Iteration 2 — exterior joins
 
 Roof and exterior side stones are clipped by the same network mitre/room planes as the source passage. The roof is staggered by half a stone on alternating rings; joints have deeper backing. A bonded 986-stone exterior facing replaces the broad bare mortar strip. Original interior and five collision meshes are preserved. Matched cameras are under `review/iteration2/`; `review/issues.json` keeps the wider unfinished work explicit.
+
+## Iteration 3 — local Krea material family
+
+Three real offline Krea 2 generations provide neutral limestone, bedrock and aged lime-plaster surfaces. Sources, exact prompts, MLX metadata, pinned model/license provenance and deterministic finishing are in `materials/`. The existing stone geometry now shares the limestone face; the red nave retains its separate lime-plaster role. Roots use the existing licensed bark scan with high roughness, replacing smooth red gloss. Core/editor checks and seven engine camera captures are under `review/iteration3/`. Derived PBR channels are estimates and art acceptance remains separate.

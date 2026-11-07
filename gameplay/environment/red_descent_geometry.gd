@@ -22,7 +22,8 @@ var ribbon_edges: Dictionary[String, PackedVector3Array] = {}
 const STONE_ROOMS: String = "res://content/environments/procedural_architecture_v1/rooms/"
 const STONE_INDEX: String = "res://content/environments/procedural_architecture_v1/index.json"
 const UPPER_CROSSING: String = "res://content/environments/red_descent/upper_crossing_v1/"
-const STONE_FACE: String = "res://content/environments/procedural_stone_surface_v1/limestone/"
+const STONE_FACE: String = UPPER_CROSSING + "materials/limestone/"
+const KREA_MATERIALS: String = UPPER_CROSSING + "materials/"
 const ROOTS: String = "res://content/environments/procedural_roots_v1/"
 const PROP_SETS: String = "res://content/environments/procedural_props_aged_v1/sets/"
 const RUBBLE: String = "res://content/environments/procedural_rubble_v1/rooms/"
@@ -69,7 +70,7 @@ func upper_crossing_rock() -> void:
 	rock.set_shader_parameter("wetness", 0.18)
 	rock.set_shader_parameter("dry_roughness_min", 0.86)
 	rock.set_shader_parameter("tint", Vector3(0.66, 0.69, 0.72))
-	rock.set_shader_parameter("normal_strength", 0.35)
+	rock.set_shader_parameter("normal_strength", 0.28)
 	for node: Node in cliff.find_children("*", "MeshInstance3D", true, false):
 		(node as MeshInstance3D).material_override = rock
 	add_child(cliff)
@@ -303,6 +304,12 @@ func integrate_materials() -> void:
 	swap_maps("wood", well + "bridge_oak/", 0.65)
 	swap_maps("floor", nave + "broken_stone_floor/", 0.333)
 	swap_maps("wall", well + "damp_masonry/", 0.4)
+	# One locally generated, neutral material family keeps the cavern and its
+	# construction in the same palette. The red nave keeps its own lime plaster.
+	swap_maps("rock", KREA_MATERIALS + "bedrock/", 0.24)
+	swap_maps("plaster", KREA_MATERIALS + "plaster/", 0.32)
+	(materials["rock"] as ShaderMaterial).set_shader_parameter("tint", Vector3(0.9, 0.92, 0.88))
+	(materials["rock"] as ShaderMaterial).set_shader_parameter("normal_strength", 0.28)
 	# The plaster sets carry their own colour; the old red tint was for grey concrete.
 	if materials.has("red_plaster"):
 		(materials["red_plaster"] as ShaderMaterial).set_shader_parameter("tint", Vector3(0.95, 0.92, 0.9))
@@ -401,16 +408,20 @@ func stone_rubble(room_id: String) -> void:
 	add_child(fallen)
 
 ## Roots grown over a stone build in Blender (T-178, scripts/art/build_roots.py):
-## dark wet red, darkened by their baked contact occlusion; no collision.
+## rough bark fibres, darkened by their baked contact occlusion; no collision.
 func stone_roots(file: String) -> void:
 	if not ResourceLoader.exists(file):
 		return
 	if not materials.has("roots"):
 		var roots: StandardMaterial3D = StandardMaterial3D.new()
-		roots.albedo_color = Color8(80, 11, 16)
+		roots.albedo_color = Color8(88, 66, 43)
+		# Existing metre UVs run down the root. Use the existing bark scan for
+		# fine fibres, keeping it rough instead of glossy red tubing.
+		roots.albedo_texture = load("res://content/environments/valhalla/textures/KB3D_VHL_LogBark_basecolor.png") as Texture2D
+		roots.uv1_scale = Vector3(1.4, 3.0, 1.0)
 		roots.vertex_color_use_as_albedo = true
-		roots.roughness = 0.35
-		roots.specular = 0.45
+		roots.roughness = 0.9
+		roots.metallic_specular = 0.18
 		materials["roots"] = roots
 	var grown: Node3D = (load(file) as PackedScene).instantiate() as Node3D
 	grown.name = "Roots_" + file.get_file().get_basename()
@@ -429,6 +440,8 @@ func stone_face(kind: String) -> Material:
 	var key: String = "built_" + kind
 	if materials.has(key):
 		return materials[key]
+	# Stone kinds keep their sculpted geometry and per-block variation;
+	# their face texture comes from the same Krea limestone family.
 	var preset: String = "res://content/environments/stone_brick_materials_v1/materials/%s/surface.tres" % KIND_FACES.get(kind, "")
 	if not KIND_FACES.has(kind) or not ResourceLoader.exists(preset):
 		materials[key] = materials["built_stone"]
@@ -440,6 +453,11 @@ func stone_face(kind: String) -> Material:
 		var value: Variant = rock.get_shader_parameter(parameter)
 		if value != null:
 			face.set_shader_parameter(parameter, value)
+	for map: String in ["albedo", "normal", "roughness", "ao", "height", "metallic"]:
+		face.set_shader_parameter(map + "_map", load(STONE_FACE + ("normal_gl" if map == "normal" else map) + ".png"))
+	face.set_shader_parameter("aspect", 1.0)
+	face.set_shader_parameter("normal_strength", 0.28)
+	face.set_shader_parameter("scale", 0.8)
 	face.set_shader_parameter("mapped", true)
 	materials[key] = face
 	return face
