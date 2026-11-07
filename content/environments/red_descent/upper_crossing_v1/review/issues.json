@@ -102,6 +102,11 @@
       "issue": "Gallery paving has a single-sided bedding surface; underside inspection shows open joint light leaks",
       "status": "implemented; reported slit absent in matched engine capture, 5 connected watertight cement cores, 270/270 cement collision rays and 1235 m traversal passed",
       "iteration": 5
+    },
+    {
+      "id": 18,
+      "issue": "Bright pinpoints at choir/stair stone joints need occlusion-versus-highlight diagnosis; gallery fix does not establish room-wide sealing",
+      "status": "open; broad pack preserves the visible evidence, choir source mortar is closed, two stair-vault source cores have open edges"
     }
   ]
 }

@@ -1,0 +1,74 @@
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+Metal 4.0 - Forward Mobile - Using Device #0: Apple - Apple M5 Max (Apple9)
+
+BUILD: 9e27ff9 [79a641c9444f]
+STRUCTURAL_RELIEF_READY: 61 meshes, walls [3, 4, 5, 6]
+GENERATED_KIT_PLACED: {}
+RED_DESCENT_GEOMETRY_READY: 17 routes, 13 rooms, 36 lit landmarks, sloping crossings
+MAP: Cinder Crypt (crypt)
+EXPLORER_MESHES: 5367
+PACK_CAMERA: antechamber collision_clear=true eye=(-24.2, 1.8, -27.85)
+PACK_CAMERA: restraint collision_clear=true eye=(31.25, -2.2, -18.275)
+PACK_CAMERA: cells collision_clear=true eye=(33.19375, -2.2, 2.64375)
+PACK_CAMERA: chapel collision_clear=true eye=(-3.65625, -8.2, -38.66875)
+PACK_CAMERA: nave collision_clear=true eye=(-7.48125, -16.2, 32.66875)
+PACK_CAMERA: ossuary collision_clear=true eye=(-35.85, -8.2, -38.95)
+PACK_CAMERA: bones collision_clear=true eye=(-36.83572, -8.2, -18.36071)
+PACK_CAMERA: window collision_clear=true eye=(-24.575, -8.2, -8.2)
+PACK_CAMERA: bell collision_clear=true eye=(32.06562, -16.2, 33.58437)
+PACK_CAMERA: choir collision_clear=true eye=(32.15, -26.2, -4.337501)
+PACK_CAMERA: first_stair_hall collision_clear=true eye=(39.0125, -8.2, -38.355)
+PACK_CAMERA: second_stair_hall collision_clear=true eye=(-34.025, -21.2, 24.55)
+EXPLORER_CAPTURE: room-antechamber-color.png
+EXPLORER_CAPTURE: room-antechamber-depth.png
+EXPLORER_CAPTURE: room-antechamber-normals.png
+EXPLORER_CAPTURE: room-restraint-color.png
+EXPLORER_CAPTURE: room-restraint-depth.png
+EXPLORER_CAPTURE: room-restraint-normals.png
+EXPLORER_CAPTURE: room-cells-color.png
+EXPLORER_CAPTURE: room-cells-depth.png
+EXPLORER_CAPTURE: room-cells-normals.png
+EXPLORER_CAPTURE: room-chapel-color.png
+EXPLORER_CAPTURE: room-chapel-depth.png
+EXPLORER_CAPTURE: room-chapel-normals.png
+EXPLORER_CAPTURE: room-nave-color.png
+EXPLORER_CAPTURE: room-nave-depth.png
+EXPLORER_CAPTURE: room-nave-normals.png
+EXPLORER_CAPTURE: room-ossuary-color.png
+EXPLORER_CAPTURE: room-ossuary-depth.png
+EXPLORER_CAPTURE: room-ossuary-normals.png
+EXPLORER_CAPTURE: room-bones-color.png
+EXPLORER_CAPTURE: room-bones-depth.png
+EXPLORER_CAPTURE: room-bones-normals.png
+EXPLORER_CAPTURE: room-window-color.png
+EXPLORER_CAPTURE: room-window-depth.png
+EXPLORER_CAPTURE: room-window-normals.png
+EXPLORER_CAPTURE: room-bell-color.png
+EXPLORER_CAPTURE: room-bell-depth.png
+EXPLORER_CAPTURE: room-bell-normals.png
+EXPLORER_CAPTURE: room-choir-color.png
+EXPLORER_CAPTURE: room-choir-depth.png
+EXPLORER_CAPTURE: room-choir-normals.png
+EXPLORER_CAPTURE: room-first_stair_hall-color.png
+EXPLORER_CAPTURE: room-first_stair_hall-depth.png
+EXPLORER_CAPTURE: room-first_stair_hall-normals.png
+EXPLORER_CAPTURE: room-second_stair_hall-color.png
+EXPLORER_CAPTURE: room-second_stair_hall-depth.png
+EXPLORER_CAPTURE: room-second_stair_hall-normals.png
+EXPLORER_CAPTURE: upper-landing-color.png
+EXPLORER_CAPTURE: upper-landing-depth.png
+EXPLORER_CAPTURE: upper-landing-normals.png
+EXPLORER_CAPTURE: gallery-interior-color.png
+EXPLORER_CAPTURE: gallery-interior-depth.png
+EXPLORER_CAPTURE: gallery-interior-normals.png
+EXPLORER_CAPTURE: route-low_span-color.png
+EXPLORER_CAPTURE: route-low_span-depth.png
+EXPLORER_CAPTURE: route-low_span-normals.png
+EXPLORER_CAPTURE: route-root_tunnel-color.png
+EXPLORER_CAPTURE: route-root_tunnel-depth.png
+EXPLORER_CAPTURE: route-root_tunnel-normals.png
+explorer finished
+WARNING: 7 RIDs of type "Texture" were leaked.
+   at: finalize (servers/rendering/rendering_device.cpp:8900)
+WARNING: 1 ObjectDB instance was leaked at exit (run with `--verbose` for details).
+   at: cleanup (core/object/object.cpp:2536)

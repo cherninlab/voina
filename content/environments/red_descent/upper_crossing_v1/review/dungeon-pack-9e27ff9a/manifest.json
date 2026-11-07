@@ -1,0 +1,479 @@
+{
+  "baseline_commit": "9e27ff9a05c7fde19181e850128a4cfecd163bf6",
+  "game_state": "9e27ff9a: bonded cement gallery, refined neutral Krea surfaces, fitted upper-east bridge bearing; review scripts do not change game geometry",
+  "dimensions": [
+    1440,
+    900
+  ],
+  "views": [
+    {
+      "name": "room-antechamber",
+      "camera": {
+        "direction": [
+          2.2,
+          0.3,
+          3.85
+        ],
+        "eye": [
+          -24.2,
+          1.8,
+          -27.85
+        ],
+        "fov": 90.0,
+        "head_offset_m": 0.0,
+        "name": "room-antechamber"
+      },
+      "frames": {
+        "color": "room-antechamber-color.png",
+        "depth": "room-antechamber-depth.png",
+        "normals": "room-antechamber-normals.png",
+        "depth-near": "room-antechamber-depth-near.png"
+      }
+    },
+    {
+      "name": "room-restraint",
+      "camera": {
+        "direction": [
+          2.75,
+          0.3,
+          5.775
+        ],
+        "eye": [
+          31.25,
+          -2.2,
+          -18.275
+        ],
+        "fov": 90.0,
+        "head_offset_m": 0.0,
+        "name": "room-restraint"
+      },
+      "frames": {
+        "color": "room-restraint-color.png",
+        "depth": "room-restraint-depth.png",
+        "normals": "room-restraint-normals.png",
+        "depth-near": "room-restraint-depth-near.png"
+      }
+    },
+    {
+      "name": "room-cells",
+      "camera": {
+        "direction": [
+          2.6813,
+          0.3,
+          3.2313
+        ],
+        "eye": [
+          33.1937,
+          -2.2,
+          2.6437
+        ],
+        "fov": 90.0,
+        "head_offset_m": 0.0,
+        "name": "room-cells"
+      },
+      "frames": {
+        "color": "room-cells-color.png",
+        "depth": "room-cells-depth.png",
+        "normals": "room-cells-normals.png",
+        "depth-near": "room-cells-depth-near.png"
+      }
+    },
+    {
+      "name": "room-chapel",
+      "camera": {
+        "direction": [
+          6.5313,
+          0.3,
+          5.2938
+        ],
+        "eye": [
+          -3.6562,
+          -8.2,
+          -38.6688
+        ],
+        "fov": 90.0,
+        "head_offset_m": 0.0,
+        "name": "room-chapel"
+      },
+      "frames": {
+        "color": "room-chapel-color.png",
+        "depth": "room-chapel-depth.png",
+        "normals": "room-chapel-normals.png",
+        "depth-near": "room-chapel-depth-near.png"
+      }
+    },
+    {
+      "name": "room-nave",
+      "camera": {
+        "direction": [
+          7.3563,
+          0.3,
+          5.7062
+        ],
+        "eye": [
+          -7.4813,
+          -16.2,
+          32.6688
+        ],
+        "fov": 90.0,
+        "head_offset_m": 0.0,
+        "name": "room-nave"
+      },
+      "frames": {
+        "color": "room-nave-color.png",
+        "depth": "room-nave-depth.png",
+        "normals": "room-nave-normals.png",
+        "depth-near": "room-nave-depth-near.png"
+      }
+    },
+    {
+      "name": "room-ossuary",
+      "camera": {
+        "direction": [
+          3.85,
+          0.3,
+          4.95
+        ],
+        "eye": [
+          -35.85,
+          -8.2,
+          -38.95
+        ],
+        "fov": 90.0,
+        "head_offset_m": 0.0,
+        "name": "room-ossuary"
+      },
+      "frames": {
+        "color": "room-ossuary-color.png",
+        "depth": "room-ossuary-depth.png",
+        "normals": "room-ossuary-normals.png",
+        "depth-near": "room-ossuary-depth-near.png"
+      }
+    },
+    {
+      "name": "room-bones",
+      "camera": {
+        "direction": [
+          4.4786,
+          0.3,
+          2.0036
+        ],
+        "eye": [
+          -36.8357,
+          -8.2,
+          -18.3607
+        ],
+        "fov": 90.0,
+        "head_offset_m": 0.0,
+        "name": "room-bones"
+      },
+      "frames": {
+        "color": "room-bones-color.png",
+        "depth": "room-bones-depth.png",
+        "normals": "room-bones-normals.png",
+        "depth-near": "room-bones-depth-near.png"
+      }
+    },
+    {
+      "name": "room-window",
+      "camera": {
+        "direction": [
+          3.575,
+          0.3,
+          2.2
+        ],
+        "eye": [
+          -24.575,
+          -8.2,
+          -8.2
+        ],
+        "fov": 90.0,
+        "head_offset_m": 0.0,
+        "name": "room-window"
+      },
+      "frames": {
+        "color": "room-window-color.png",
+        "depth": "room-window-depth.png",
+        "normals": "room-window-normals.png",
+        "depth-near": "room-window-depth-near.png"
+      }
+    },
+    {
+      "name": "room-bell",
+      "camera": {
+        "direction": [
+          3.7469,
+          0.3,
+          5.6031
+        ],
+        "eye": [
+          32.0656,
+          -16.2,
+          33.5844
+        ],
+        "fov": 90.0,
+        "head_offset_m": 0.0,
+        "name": "room-bell"
+      },
+      "frames": {
+        "color": "room-bell-color.png",
+        "depth": "room-bell-depth.png",
+        "normals": "room-bell-normals.png",
+        "depth-near": "room-bell-depth-near.png"
+      }
+    },
+    {
+      "name": "room-choir",
+      "camera": {
+        "direction": [
+          3.85,
+          0.3,
+          10.5875
+        ],
+        "eye": [
+          32.15,
+          -26.2,
+          -4.3375
+        ],
+        "fov": 90.0,
+        "head_offset_m": 0.0,
+        "name": "room-choir"
+      },
+      "frames": {
+        "color": "room-choir-color.png",
+        "depth": "room-choir-depth.png",
+        "normals": "room-choir-normals.png",
+        "depth-near": "room-choir-depth-near.png"
+      }
+    },
+    {
+      "name": "room-second_stair_hall",
+      "camera": {
+        "direction": [
+          3.025,
+          0.3,
+          4.95
+        ],
+        "eye": [
+          -34.025,
+          -21.2,
+          24.55
+        ],
+        "fov": 90.0,
+        "head_offset_m": 0.0,
+        "name": "room-second_stair_hall"
+      },
+      "frames": {
+        "color": "room-second_stair_hall-color.png",
+        "depth": "room-second_stair_hall-depth.png",
+        "normals": "room-second_stair_hall-normals.png",
+        "depth-near": "room-second_stair_hall-depth-near.png"
+      }
+    },
+    {
+      "name": "upper-landing",
+      "camera": {
+        "direction": [
+          0.733,
+          -0.5446,
+          0.4072
+        ],
+        "eye": [
+          16.7889,
+          1.0086,
+          -13.3896
+        ],
+        "fov": 90.0,
+        "head_offset_m": 0.0,
+        "name": "upper-landing"
+      },
+      "frames": {
+        "color": "upper-landing-color.png",
+        "depth": "upper-landing-depth.png",
+        "normals": "upper-landing-normals.png",
+        "depth-near": "upper-landing-depth-near.png"
+      }
+    },
+    {
+      "name": "gallery-interior",
+      "camera": {
+        "direction": [
+          -0.6,
+          0.15,
+          -10.0
+        ],
+        "eye": [
+          21.0,
+          -8.35,
+          -2.0
+        ],
+        "fov": 78.0,
+        "head_offset_m": 0.0,
+        "name": "gallery-interior"
+      },
+      "frames": {
+        "color": "gallery-interior-color.png",
+        "depth": "gallery-interior-depth.png",
+        "normals": "gallery-interior-normals.png",
+        "depth-near": "gallery-interior-depth-near.png"
+      }
+    },
+    {
+      "name": "route-low_span",
+      "camera": {
+        "direction": [
+          6.24,
+          -1.28,
+          3.9
+        ],
+        "eye": [
+          -1.24,
+          -23.42,
+          5.1
+        ],
+        "fov": 90.0,
+        "head_offset_m": 0.0,
+        "name": "route-low_span"
+      },
+      "frames": {
+        "color": "route-low_span-color.png",
+        "depth": "route-low_span-depth.png",
+        "normals": "route-low_span-normals.png",
+        "depth-near": "route-low_span-depth-near.png"
+      }
+    },
+    {
+      "name": "route-root_tunnel",
+      "camera": {
+        "direction": [
+          -5.46,
+          -0.5,
+          0.0
+        ],
+        "eye": [
+          -35.54,
+          -21.2,
+          24.0
+        ],
+        "fov": 90.0,
+        "head_offset_m": 0.0,
+        "name": "route-root_tunnel"
+      },
+      "frames": {
+        "color": "route-root_tunnel-color.png",
+        "depth": "route-root_tunnel-depth.png",
+        "normals": "route-root_tunnel-normals.png",
+        "depth-near": "route-root_tunnel-depth-near.png"
+      }
+    },
+    {
+      "name": "room-first_stair_hall",
+      "camera": {
+        "direction": [
+          -1.5,
+          1.2,
+          -9.5
+        ],
+        "eye": [
+          31.0,
+          -8.2,
+          -30.0
+        ],
+        "fov": 90.0,
+        "head_offset_m": 0.0,
+        "name": "room-first_stair_hall"
+      },
+      "frames": {
+        "color": "room-first_stair_hall-color.png",
+        "depth": "room-first_stair_hall-depth.png",
+        "normals": "room-first_stair_hall-normals.png",
+        "depth-near": "room-first_stair_hall-depth-near.png"
+      }
+    }
+  ],
+  "depth": {
+    "coordinate": "view-axis d=-VERTEX.z, not Euclidean range",
+    "normalization_m": 30,
+    "near_clip_m": 0.05,
+    "forward": "ALBEDO=clamp(d/30,0,1), near black/far white, background black",
+    "inverse": "ALBEDO=1-clamp(d/30,0,1), near white/far black, background black",
+    "encoding": "Unshaded linear ALBEDO rendered through linear tonemap to display-encoded RGB8 PNG; decode sRGB before interpreting normalized depth numerically. Inverse is computed inside shader before display encoding.",
+    "limitations": "Actors/HUD hidden. Depth/normal overrides preserve flagstone clipping but not plaster peel/displacement/transparency. Use structural guidance only, not metric depth truth."
+  },
+  "review": {
+    "color_views_visually_inspected": 16,
+    "camera_correction": "First-stair view moved from beneath upper flight to lower landing, eye [31,-8.2,-30], target [29.5,-7,-39.5].",
+    "known_defects": "Small choir/stair light seams and unfinished art remain visible in the actual inputs; generated concepts must not be treated as repairs."
+  },
+  "sha256": {
+    "gallery-interior-color.png": "96fa41bb482a675b13a2be01e04ed29ff1451a903714c0df9252f4da3dd083b0",
+    "gallery-interior-depth-near.png": "1072d59d63b74f3f1f576b1cceb08a8953af8e396ce8e7c0e9f592bc9905158e",
+    "gallery-interior-depth.png": "4069a90684a3839ab286cbf03af5dcef21c2bf4eb8d1f0dc0b8cc49cb826099e",
+    "gallery-interior-normals.png": "ce46a6411da3c2219e20775e4f0e75c6e8d89c5acf23c820a5c4828e13400bd0",
+    "room-antechamber-color.png": "40b0cca0e879731ddfbe4ead664415064cc637bd5ac0ae390e974dff7923c8e3",
+    "room-antechamber-depth-near.png": "aed707e22806b91e89a43ea69ca74bb07c3b1d40cd5c075245c815992de32a8b",
+    "room-antechamber-depth.png": "9caff870f32e746c1a0e91d68bb12816a55d77e98a5674d6abac76911512e322",
+    "room-antechamber-normals.png": "a521423d03e17a6cb7a750003ccd6a9ea8bdfec1794ef7facf05fa1f488ae211",
+    "room-bell-color.png": "5a3579044633f3151954d52114440ccff2e5b69456ff6349705059aae89a9d4b",
+    "room-bell-depth-near.png": "aab9837a1414bab054d2bc01cdee6369440918466e6cbade249a583f0f93f47f",
+    "room-bell-depth.png": "8a9696159b612653ecf5d75f707e7eada37cd23ef70c4a171e36e0d46feb72e0",
+    "room-bell-normals.png": "dd0ca87238ab3da799a884b62d99fe2be09e8803240e10cf74b2863dc63a1e84",
+    "room-bones-color.png": "84bb846e7a138a6eceed9431cd240c5780537f3ae17a94c1e4c412c71bcd4801",
+    "room-bones-depth-near.png": "830ab3967248ead023e67566ee32f9088d3718eb2a9175ce8e2eefb21e0a2330",
+    "room-bones-depth.png": "9c5de593fac68929a7e46618633c902897f299ad25050848236c18fc804a4edf",
+    "room-bones-normals.png": "44b7519b28b90ea4786e895be1cf632ff884dd53f06a62c74baa108d9fcaa998",
+    "room-cells-color.png": "8cd670469cc006d489feffeaeb18f95cbca7d8bd2e1786afd11929c8434fb896",
+    "room-cells-depth-near.png": "81d4c8e1eb5f44c33065ec461873c88d46ede0ce30f11936d635f3104e174558",
+    "room-cells-depth.png": "fcc4ca169eb87f63e1e68c4a4c74d319637e4f382c2e8ec2dd9e331a00ba24cc",
+    "room-cells-normals.png": "08b057c58ca17a2e292db5a5835b2e2331b6d942727330070aa9dd715066b152",
+    "room-chapel-color.png": "af6fae14d397ae316450c56fcf7fb70ac27ae80d787699188c031db1ffabb001",
+    "room-chapel-depth-near.png": "b85d74738e1417a1d27ce12fd57eeab73bbb01c0e86db1fab07452388329ae79",
+    "room-chapel-depth.png": "2b4dcfd9ee4f4bf6997c3da2334105a19a4df7c77df008721f2cddf3447635b4",
+    "room-chapel-normals.png": "de29cacbd76d4a7cefbabdba7901c718b87a1133c24503ef0a436a4ac22ab63f",
+    "room-choir-color.png": "4c3d15bfc66c98d573484b3074e307f7c95facdba1911d0f48ad1d007a0a5be9",
+    "room-choir-depth-near.png": "5f6a53ffcfe2041e4650dd9ed457f8e27e449da423a716f511ad5fb40c78d445",
+    "room-choir-depth.png": "ded070e6081da7280d33d6f7a7b246a11bcf51c7eefa9c69207c921b350e0e27",
+    "room-choir-normals.png": "3d690938f76cc39c95b56ada8840b68bf10a248066a8b9ae60985d5fc57b56f2",
+    "room-first_stair_hall-color.png": "322fe82bf547a572600e8edd7f1f0231530fac20188eb23d91b48a502e60dc98",
+    "room-first_stair_hall-depth-near.png": "ac25ebd28d3ed01be978e204edd419c2035a5d01321f1e13dd63a9cbc730cb87",
+    "room-first_stair_hall-depth.png": "bdb87902d6722650adc457609192265642f3c11d8648ed3cfe6312056724fbce",
+    "room-first_stair_hall-normals.png": "7a6f714009b6312c3908ffa92ee5d0b2255755d09ee5b5a0acb035fae309c945",
+    "room-nave-color.png": "1bfe9d627225a4702618aad3b89baf8ad89899eeaa0debb48d11b0b470f6f670",
+    "room-nave-depth-near.png": "660f3a877a051a3378280baa16dd90430c7ec51996042a7fb6608c87bd442821",
+    "room-nave-depth.png": "4a7c2551c136f6952505bbdaf0bc011691ff0049e5f96b8143784776c50997a1",
+    "room-nave-normals.png": "2a32c7c70bdd857fec484fb59ff38fbb38b3b82950a796444fd5a44369eb7d91",
+    "room-ossuary-color.png": "8e0b3cd08100d48b4b2c930cc925aa39aa9ee613a5f601c368e688093878d026",
+    "room-ossuary-depth-near.png": "bd3b8b77180619cba5ba1d7f7f95e6818bd06819536b4bd778f1fde34e2b773e",
+    "room-ossuary-depth.png": "aad8953071ce9d249c22857518ace33900b6c71395df2487a45ec6d0593956a4",
+    "room-ossuary-normals.png": "afaa5d003f3fbe6854607065c02b7b4cb38f76a9ffccb6075fafdfd6f7afd6c0",
+    "room-restraint-color.png": "77849143b6b4c68023a0dad491f87fd5906d44bf44aa8d9e5bc9290b7f7c18bf",
+    "room-restraint-depth-near.png": "e7ed7f957cbebb02a0d7899f4f988038903420e83f69d45f0c18cd9ad7fd8e69",
+    "room-restraint-depth.png": "d6bc652d4a9d0a2dd9e58fc4baaa5f754cf3c22379f6cf4b9a190104eadc06b4",
+    "room-restraint-normals.png": "6539949eaf04f2cd6f78a77f36f465fbe1336d2cd22d16e9a8f38633e31224e1",
+    "room-second_stair_hall-color.png": "100e420107f47af3b6d2d9a473e3e697fae6aad9630b909997efcd37ba497de5",
+    "room-second_stair_hall-depth-near.png": "bd7f325d5e63785c9d291076bfec8b5e913dc04e8e08c5f96b0b94b93a4fec2e",
+    "room-second_stair_hall-depth.png": "c1b77dbc4e3b8ceeadb8d2c8ae295e1c958e8ccd47400cf72a52c4d7e18992ff",
+    "room-second_stair_hall-normals.png": "5ff3c01d94eaf0b783bbe787962cb758ebdfa18d5699d85749dcdbb9806a5a70",
+    "room-window-color.png": "1696992659518d1f1e2c155221a41d31996d2d7ae3f0b882078a7ce97e9451fe",
+    "room-window-depth-near.png": "38c9aa2557d371ad9567591732062e07de7d7ae2fe80c2c02f732940b49a2a86",
+    "room-window-depth.png": "71532d324754dce0929e7d005be7a1e6d380f86642cc78eec328ff67f366bfff",
+    "room-window-normals.png": "cf9e4fcab307a08085a84c84802d7a431125fc4cb1a04e627e0d61bfe744a942",
+    "route-low_span-color.png": "94beacc29476d3fc472f2ccec97899f74b4af4f8a2342d67e893d2421f33410d",
+    "route-low_span-depth-near.png": "fe088889fe7fdb2b43729d1b68a1173abba079fe9ef89ca88a25060fa668b588",
+    "route-low_span-depth.png": "a7b0fe5d059db1debed45fae15f5eb797bf79355e3c7f4ae6c3b7bc73ebf37c5",
+    "route-low_span-normals.png": "ca850c3ac0073b6c2fbb50eee24fe20bac9c30288368f1704b773d000043936b",
+    "route-root_tunnel-color.png": "788ee1596417ae28e65aa0937141e0f574fd4360546044cc3f227faf2092a150",
+    "route-root_tunnel-depth-near.png": "6c6bbc7fd4d89bb25a4499b918ff840d23f11aa6a329aa28a8c3edaeb00973e3",
+    "route-root_tunnel-depth.png": "71f469ba01e978bf5af5b570f847433ab03333cc6e09d7a098d1268c3d1264e7",
+    "route-root_tunnel-normals.png": "d38d9737fa816b1d18e38f14a86cbb9794b1ec61aa3da75d2ef230839d897ef9",
+    "upper-landing-color.png": "76ee112923a033808a884d4a5519a9a9e0a7ce7675ce03123661cfe2bb648f5d",
+    "upper-landing-depth-near.png": "efa0e3d93457963f36c9c910fa1e2ab632cc4fd6862d454e6f64dfdb4e0b2bd5",
+    "upper-landing-depth.png": "aa7d2e8f1d781b808533f28e29accc8db08b2bf6e343482d096b55cdabdf21fe",
+    "upper-landing-normals.png": "40eb2872d42537c5a1483526b1d79ccf11bd45fa3991940b5187b1b94a1ed3eb"
+  },
+  "capture_helper_sha256": {
+    "capture_diagnostics.gd": "837a178cbc3a9b4e4e69da3d64fd3a82596c7bfc8ca8bbf0e3b2f7d8bd930da9",
+    "capture_dungeon_pack.gd": "c8c76eae1977b9da43ed2d1f014a088d47f4ece3b5df123d15563c48d6b6dcfe",
+    "run_dungeon_pack.gd": "962806cdaaad6063ad136f92282494d93b3e62ae2982b506cc4f50beb9015ff4"
+  }
+}

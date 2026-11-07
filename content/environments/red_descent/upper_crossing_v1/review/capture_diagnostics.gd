@@ -64,10 +64,17 @@ void fragment() {
 	if (mode == 0) { ALBEDO = explorer_color.rgb; }
 	else if (mode == 1) { ALBEDO = vec3(clamp(-VERTEX.z / depth_m, 0.0, 1.0)); }
 	else if (mode == 2) { ALBEDO = normalize(world_normal) * 0.5 + 0.5; }
+	else if (mode == 4) { ALBEDO = vec3(1.0 - clamp(-VERTEX.z / depth_m, 0.0, 1.0)); }
 	else { ALBEDO = vec3(0.012); }
 }"""
 	return shader
 
+
+func review_views() -> Array[Array]:
+	return CaptureViews.UPPER_CROSSING_VIEWS
+
+func review_passes() -> PackedStringArray:
+	return PackedStringArray(["color", "albedo", "objects", "depth", "depth-far", "normals", "intersections", "collision"])
 
 func capture_views() -> void:
 	world.get_node("GameUI").set_process(false)
@@ -106,7 +113,7 @@ func capture_views() -> void:
 	for argument: String in OS.get_cmdline_user_args():
 		if argument.begins_with("--capture-views="):
 			selected = argument.trim_prefix("--capture-views=").split(",")
-	for entry: Array in CaptureViews.UPPER_CROSSING_VIEWS:
+	for entry: Array in review_views():
 		if not selected.is_empty() and not selected.has(String(entry[0])):
 			continue
 		var eye: Vector3 = entry[1] as Vector3
@@ -185,8 +192,8 @@ func capture_views() -> void:
 			marker.material_override = color
 			marker.position = location + Vector3.UP * 0.04
 			clearance.add_child(marker)
-		for pass_name: String in ["color", "albedo", "objects", "depth", "depth-far", "normals", "intersections", "collision"]:
-			var mode: int = {"objects": 0, "depth": 1, "depth-far": 1, "normals": 2}.get(pass_name, 3)
+		for pass_name: String in review_passes():
+			var mode: int = {"objects": 0, "depth": 1, "depth-far": 1, "normals": 2, "depth-near": 4}.get(pass_name, 3)
 			var material_view: bool = pass_name in ["color", "albedo", "intersections"]
 			dungeon.get_node("DeepWater").visible = material_view
 			camera.environment = null if material_view else debug_environment
