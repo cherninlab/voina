@@ -1,0 +1,25 @@
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+BUILD: 83781d5+dirty [1afd013e686c]
+STRUCTURAL_RELIEF_READY: 58 meshes, walls [3, 4, 5, 6]
+GENERATED_KIT_PLACED: {}
+RED_DESCENT_GEOMETRY_READY: 17 routes, 13 rooms, 36 lit landmarks, sloping crossings
+MAP: Cinder Crypt (crypt)
+WARNING: Stale masonry backing room: first_stair_hall
+     at: push_warning (core/variant/variant_utility.cpp:1033)
+     GDScript backtrace (most recent call first):
+         [0] repair_room_backing (res://gameplay/environment/red_descent_geometry.gd:144)
+         [1] run (res://content/environments/red_descent/masonry_repairs_v1/review/check.gd:55)
+WARNING: Stale masonry backing room: second_stair_hall
+     at: push_warning (core/variant/variant_utility.cpp:1033)
+     GDScript backtrace (most recent call first):
+         [0] repair_room_backing (res://gameplay/environment/red_descent_geometry.gd:144)
+         [1] run (res://content/environments/red_descent/masonry_repairs_v1/review/check.gd:55)
+WARNING: Stale masonry backing route: choir
+     at: push_warning (core/variant/variant_utility.cpp:1033)
+     GDScript backtrace (most recent call first):
+         [0] repair_room_backing (res://gameplay/environment/red_descent_geometry.gd:137)
+         [1] run (res://content/environments/red_descent/masonry_repairs_v1/review/check.gd:62)
+MASONRY_CHECK_OK: 195/195 new vault render/collision rays; 13 recessed rooms, 3 fitted stairs with preserved stone contact, single vault replacement bodies, opaque mortar, stale-room/route rejection
+WARNING: 1 ObjectDB instance was leaked at exit (run with `--verbose` for details).
+   at: cleanup (core/object/object.cpp:2536)

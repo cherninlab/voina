@@ -79,7 +79,7 @@ def rebuild_cement(target, profile, origin, direction, side, start, end, planes)
     End vertices are solved directly on the source mitre planes. No capping
     operation may accidentally fill the doorway or leave two touching shells.
     """
-    recess = 0.034
+    recess = 0.12
     hole = masonry.Opening(-profile.half - recess, profile.half + recess, spring=profile.spring,
                            rise=profile.crown - profile.spring + recess)
     half = profile.half + 0.94 - recess
@@ -88,7 +88,7 @@ def rebuild_cement(target, profile, origin, direction, side, start, end, planes)
     outer = [(-half, -0.34), (half, -0.34), (half, corner)]
     outer += [(outer_radius * math.cos(t), profile.cy + outer_radius * math.sin(t)) for t in [profile.a0 + (math.pi - 2 * profile.a0) * k / 22 for k in range(23)]]
     outer += [(-half, corner)]
-    inner = [(-hole.half, -0.06), (hole.half, -0.06)]
+    inner = [(-hole.half, -0.12), (hole.half, -0.12)]
     inner += [(hole.radius * math.cos(t), hole.cy + hole.radius * math.sin(t)) for t in [hole.a0 + (math.pi - 2 * hole.a0) * k / 24 for k in range(25)]]
     assert len(inner) == len(outer)
     n = len(inner)
@@ -305,8 +305,8 @@ def gallery():
         "cap_preserved_interior_vertices_before_bonding": protected,
         "bonded_cement_shells": 5,
         "render_objects": 5,
-        "cement_floor_recess_m": 0.06,
-        "cement_floor_thickness_m": 0.28,
+        "cement_floor_recess_m": 0.12,
+        "cement_floor_thickness_m": 0.22,
         "profile": {"spring_m": profile.spring, "rise_m": profile.crown - profile.spring,
                     "intrados_radius_m": profile.radius},
         "roof_stones": len(roofs),

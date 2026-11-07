@@ -133,10 +133,10 @@ def _shell(inner, i, n, at, length, spring_z, reach, centre_h, planes, name) -> 
     steps = 24
     inward = Vector((n.x, n.y, 0.0))
     # Down behind the wall's top course first, so no gap shows at the springing.
-    rows.append([bm.verts.new(Vector((p.x, p.y, spring_z - 0.3)) - inward * 0.04) for p in (start, end)])
+    rows.append([bm.verts.new(Vector((p.x, p.y, spring_z - 0.3)) - inward * 0.12) for p in (start, end)])
     for k in range(steps + 1):
         u, z = at(length * k / steps)
-        back = -(inward * (reach - u) + UP * (centre_h - z)).normalized() * 0.04
+        back = -(inward * (reach - u) + UP * (centre_h - z)).normalized() * 0.12
         rows.append([bm.verts.new(Vector((p.x, p.y, spring_z)) + inward * u + UP * z + back) for p in (start, end)])
     faces = [bm.faces.new((rows[k][0], rows[k][1], rows[k + 1][1], rows[k + 1][0])) for k in range(steps + 1)]
     # An open sheet has no inside to recalculate normals against: face it into

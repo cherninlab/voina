@@ -556,116 +556,116 @@
       "euler_number": 4,
       "volume": 12.049080396725136
     },
-    "BondedGallery_4_17e6de": {
+    "BondedGallery_4_931f3e": {
       "triangles": 216,
       "boundary_edges": 0,
       "nonmanifold_edges": 0,
       "winding_consistent": true,
       "euler_number": 0,
-      "volume": 31.927527388016454
+      "volume": 26.376058562150348
     },
-    "BondedGallery_4_5dc6bb": {
+    "BondedGallery_4_aa61fe": {
       "triangles": 60066,
       "boundary_edges": 0,
       "nonmanifold_edges": 0,
       "winding_consistent": true,
       "euler_number": 1020,
-      "volume": 18.112214687442073
+      "volume": 18.112216661096564
     },
-    "BondedGallery_3_c268ee": {
+    "BondedGallery_3_3dfab7": {
       "triangles": 216,
       "boundary_edges": 0,
       "nonmanifold_edges": 0,
       "winding_consistent": true,
       "euler_number": 0,
-      "volume": 90.74572585671517
+      "volume": 74.96696560313516
     },
-    "BondedGallery_3_8e568b": {
+    "BondedGallery_3_9cf784": {
       "triangles": 159354,
       "boundary_edges": 0,
       "nonmanifold_edges": 0,
       "winding_consistent": true,
       "euler_number": 2656,
-      "volume": 51.10216752731011
+      "volume": 51.10216776933118
     },
-    "BondedGallery_2_8a94b1": {
+    "BondedGallery_2_9ad000": {
       "triangles": 216,
       "boundary_edges": 0,
       "nonmanifold_edges": 0,
       "winding_consistent": true,
       "euler_number": 0,
-      "volume": 116.02019931496949
+      "volume": 95.84696658444692
     },
-    "BondedGallery_2_1337c3": {
+    "BondedGallery_2_5fc4ff": {
       "triangles": 207562,
       "boundary_edges": 0,
       "nonmanifold_edges": 0,
       "winding_consistent": true,
       "euler_number": 3402,
-      "volume": 65.53939895145565
+      "volume": 65.53939982476392
     },
-    "BondedGallery_1_5f838e": {
+    "BondedGallery_1_3700e8": {
       "triangles": 216,
       "boundary_edges": 0,
       "nonmanifold_edges": 0,
       "winding_consistent": true,
       "euler_number": 0,
-      "volume": 78.62843511940027
+      "volume": 64.956550960702
     },
-    "BondedGallery_1_04573a": {
+    "BondedGallery_1_47e7d8": {
       "triangles": 140282,
       "boundary_edges": 0,
       "nonmanifold_edges": 0,
       "winding_consistent": true,
       "euler_number": 2316,
-      "volume": 44.301971837027885
+      "volume": 44.30196737860467
     },
-    "BondedGallery_0_a4fcba": {
+    "BondedGallery_0_14816d": {
       "triangles": 216,
       "boundary_edges": 0,
       "nonmanifold_edges": 0,
       "winding_consistent": true,
       "euler_number": 0,
-      "volume": 12.012758765924877
+      "volume": 9.924001591708423
     },
-    "BondedGallery_0_7f3b8c": {
+    "BondedGallery_0_8068e5": {
       "triangles": 24864,
       "boundary_edges": 0,
       "nonmanifold_edges": 0,
       "winding_consistent": true,
       "euler_number": 404,
-      "volume": 6.778217748053844
+      "volume": 6.778218011642415
     }
   },
   "connected_cement_shells": {
-    "BondedGallery_4_857816": {
+    "BondedGallery_4_161b4d": {
       "connected_components": 1,
       "watertight": true,
       "triangles": 216
     },
-    "BondedGallery_3_f4a559": {
+    "BondedGallery_3_6a513c": {
       "connected_components": 1,
       "watertight": true,
       "triangles": 216
     },
-    "BondedGallery_2_95fc9f": {
+    "BondedGallery_2_5786e7": {
       "connected_components": 1,
       "watertight": true,
       "triangles": 216
     },
-    "BondedGallery_1_1fb631": {
+    "BondedGallery_1_b7da9a": {
       "connected_components": 1,
       "watertight": true,
       "triangles": 216
     },
-    "BondedGallery_0_1c7f3c": {
+    "BondedGallery_0_cb8342": {
       "connected_components": 1,
       "watertight": true,
       "triangles": 216
     }
   },
   "sha256": {
-    "gallery.glb": "953cc6e864c511d5d4d3dff6d361a308fcd8c27d68a937ff1afc7a69c451afb1",
+    "gallery.glb": "996b6943a44887aff9522011e2f4443270b9d85e045dbd784f8e5062be780e82",
     "rock_lod0.glb": "faeb59019302e0621ff2a8918fa9a2dacc4530f0fd78c27b452f58c4e5989ad6",
     "rock_lod1.glb": "d55c1db13208adf12aa3ac10900e6acd997c6d391d4047409fa5abd32c777023",
     "rock_cliff.glb": "9cd49c4ca84671fffe37012644c8a79655e694df0f2734a0fdc1e39270c3d2d0",

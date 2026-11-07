@@ -52,19 +52,19 @@
     {
       "id": 9,
       "issue": "Locally generated rock meets the roof in a broad horizontal clearance cut",
-      "status": "implemented and captured; collision/traversal and closed mesh checks passed",
+      "status": "Inferred-rock overlay removed from the live game in83781d5; original generated assets retained only for provenance. Native relief remains.",
       "iteration": 4
     },
     {
       "id": 10,
       "issue": "Carved rock islands remain detached from the main abutment",
-      "status": "implemented and captured; collision/traversal and closed mesh checks passed",
+      "status": "Inferred-rock overlay removed from the live game in83781d5; original generated assets retained only for provenance. Native relief remains.",
       "iteration": 4
     },
     {
       "id": 11,
       "issue": "Rock detail has directional fill/voxel terraces",
-      "status": "improved with continuous native relief; inferred rock surface still needs art refinement",
+      "status": "Inferred-rock overlay removed from the live game in83781d5; original generated assets retained only for provenance. Native relief remains.",
       "iteration": 4
     },
     {
@@ -76,13 +76,13 @@
     {
       "id": 13,
       "issue": "Bridge rail terminations lack visible masonry anchorage",
-      "status": "upper east landing fitted with masonry post-foot sockets; other bridge junctions remain unreviewed",
+      "status": "Socket patches removed in83781d5 after junction review; original timber rail/bracket construction retained. Broader rail anchorage design remains open.",
       "iteration": 7
     },
     {
       "id": 14,
       "issue": "Portal threshold/deck junction needs a fitted transition",
-      "status": "upper east deck/stone junction fitted with a below-deck continuous bearing; other thresholds remain unreviewed",
+      "status": "Bearing patch removed in83781d5; native masonry threshold and timber deck retained. Broader threshold design remains open.",
       "iteration": 7
     },
     {
@@ -93,8 +93,8 @@
     },
     {
       "id": 16,
-      "issue": "Roots read as smooth red cables rather than fibrous dry roots",
-      "status": "improved with longitudinal local Krea fibres and restrained normals; branch shapes/attachments still need refinement",
+      "issue": "Vascular lianas need diseased red colour and fibrous surface",
+      "status": "Crimson vascular tint restored in83781d5 to follow direct user art correction; branch attachments/shapes remain separate art work.",
       "iteration": 6
     },
     {
@@ -106,7 +106,12 @@
     {
       "id": 18,
       "issue": "Bright pinpoints at choir/stair stone joints need occlusion-versus-highlight diagnosis; gallery fix does not establish room-wide sealing",
-      "status": "backing/shading repaired: opaque rough cement, closed connected stair-vault shells; eight matched views checked. Bare stair ends/jagged tread joins continue under H-007."
+      "status": "Opaque rough cement and closed stair-vault shells retained.91 room cores recessed, three stair visual groups refitted with end returns/full outer mitres; duplicated runtime bedding removed. Current multi-angle review under masonry_repairs_v1."
+    },
+    {
+      "id": 19,
+      "issue": "Shallow cement buries stone fronts and shows square ends at corners",
+      "status": "91 room cores recessed0.12 m with0.10 m end setbacks; gallery/vault backing deeper; parapet backing recessed on both faces. Close/grazing game views and exported clearance measurements under H-007/H-010."
     }
   ]
 }

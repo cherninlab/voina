@@ -1,4 +1,23 @@
 {
+  "routes": {
+    "entry": "20aa6015a7f9f4f7c12b59b90acfe080b07298d8b2b180c7054b532be72d00d4",
+    "high_span": "cab14c2f9b8382ab855aa0c56ee6d315e0c5ed0c6463a8747e4cf3eee25fb27d",
+    "upper_hall": "56384f8b20344e6f8f3a85aad938a2120e7b5ede367b93efc7953afcc5387b25",
+    "first_stair": "cc0e4b4531284905fab4be52977b99a6e41095d40f976d32e6f7098a25d43170",
+    "chapel_approach": "844dc747e5dad4a6f828d2fdf3b787713be8bbb885076d3e1451256fe4f5625c",
+    "central_ledge": "b20f7b857345b8e2ccce1c5ea0c7f3ff2ef5244c2c9c7a172ad51a7796e9e8be",
+    "nave": "7c51b81a0749b81ca08abdd730ba502d27a7bb17cd731ccc12c18e4331a21cf2",
+    "second_stair": "7c554d9e54e398f81464c7e261349a7fcd3018beb0aa24c29c7a0db84b103b1b",
+    "root_tunnel": "0a7f77c625fe702318914cc3c05c313540627801ab267bbb81f2db78b3f73c1d",
+    "low_span": "4765cad4d0a3f97f9ad53b57762e8a250ff013cc8fe713d4f79819c914493f8c",
+    "choir": "9d1dd0032e0ef377d163fafc8e6f2f52b61d50568724c3610e91092521f3bcd0",
+    "return_stair": "6acae602009352bc19b681cb28b31a8d30ec58e61fa277bac7283cdae0569194",
+    "return_gallery": "e6b840df7e0af7915c1bfd575585aaba886004f4ed2e8f7017119579130ab719",
+    "upper_cells": "56847e1d52770abab28d04528d36b3bb2319becf6dfde3d9dbaa9b847761a999",
+    "ossuary_loop": "ad0cef25f33e70eb6d54b86925b87e78bfaa6f4cba9085e39be674245f5f4801",
+    "bell_loop": "d7303872457ea00139883b59e8e40422be81d5b1a2aeab7f7b684f7a2bc97b8d",
+    "cave_bypass": "3a84aa68d4569f39d804e593f96de273561d221312fcda6b7c6aef33f8edb2de"
+  },
   "source_layout_sha256": "e37b06498dd3c54539e773f241f9c3d7351849d3d1b9ac2ae336d4e563e1c3a1",
   "rooms": {
     "first_stair_hall": {
@@ -28,9 +47,120 @@
       },
       "file": "first_stair_hall.glb",
       "replace_mortar": "Mortar_first_stair_hall_4",
-      "triangles": 1294,
+      "triangles": 1262,
       "rise_m": 2.189999771118164,
-      "thickness_m": 0.24
+      "thickness_m": 0.24,
+      "stairs_file": "stairs/first_stair_hall.glb",
+      "replace_stair_group": 5,
+      "stairs_triangles": 119888,
+      "tiny_trim_fragments_removed": 14,
+      "stairs_method": "Complete free-span facings, fitted raised-walk end returns, native treads, unioned continuous mortar; replaces original stair group.",
+      "walls_file": "walls/first_stair_hall.glb",
+      "front_recess_m": 0.12,
+      "corner_end_recess_m": 0.1,
+      "wall_collision": "Original stone contact boundary preserved",
+      "wall_planes": [
+        {
+          "name": "Mortar_first_stair_hall_0",
+          "nominal_front": [
+            27.0,
+            -10.0,
+            -41.54999923706055
+          ],
+          "front_normal": [
+            0.0,
+            0.0,
+            1.0
+          ],
+          "wall_start": [
+            27.0,
+            -10.0,
+            -42.0
+          ],
+          "along": [
+            1.0,
+            0.0,
+            -0.0
+          ],
+          "length_m": 15.5,
+          "outside_faced": false
+        },
+        {
+          "name": "Mortar_first_stair_hall_1",
+          "nominal_front": [
+            42.04999923706055,
+            -10.0,
+            -42.0
+          ],
+          "front_normal": [
+            -1.0,
+            0.0,
+            -0.0
+          ],
+          "wall_start": [
+            42.5,
+            -10.0,
+            -42.0
+          ],
+          "along": [
+            0.0,
+            0.0,
+            1.0
+          ],
+          "length_m": 16.20000101725257,
+          "outside_faced": false
+        },
+        {
+          "name": "Mortar_first_stair_hall_2",
+          "nominal_front": [
+            42.5,
+            -10.0,
+            -26.25
+          ],
+          "front_normal": [
+            0.0,
+            -0.0,
+            -1.0
+          ],
+          "wall_start": [
+            42.5,
+            -10.0,
+            -25.799999237060547
+          ],
+          "along": [
+            -1.0,
+            0.0,
+            -0.0
+          ],
+          "length_m": 15.5,
+          "outside_faced": false
+        },
+        {
+          "name": "Mortar_first_stair_hall_3",
+          "nominal_front": [
+            27.450000762939453,
+            -10.0,
+            -25.799999237060547
+          ],
+          "front_normal": [
+            1.0,
+            0.0,
+            -0.0
+          ],
+          "wall_start": [
+            27.0,
+            -10.0,
+            -25.799999237060547
+          ],
+          "along": [
+            0.0,
+            0.0,
+            -1.0
+          ],
+          "length_m": 16.20000101725257,
+          "outside_faced": false
+        }
+      ]
     },
     "second_stair_hall": {
       "source_sha256": "97d4d25399d654cc8c5080995bbd97d66c55035b6882d7458cfde13fab7e7208",
@@ -59,10 +189,2709 @@
       },
       "file": "second_stair_hall.glb",
       "replace_mortar": "Mortar_second_stair_hall_4",
-      "triangles": 1292,
+      "triangles": 1260,
       "rise_m": 1.514999771118164,
-      "thickness_m": 0.24
+      "thickness_m": 0.24,
+      "stairs_file": "stairs/second_stair_hall.glb",
+      "replace_stair_group": 5,
+      "stairs_triangles": 95922,
+      "tiny_trim_fragments_removed": 12,
+      "stairs_method": "Complete free-span facings, fitted raised-walk end returns, native treads, unioned continuous mortar; replaces original stair group.",
+      "walls_file": "walls/second_stair_hall.glb",
+      "front_recess_m": 0.12,
+      "corner_end_recess_m": 0.1,
+      "wall_collision": "Original stone contact boundary preserved",
+      "wall_planes": [
+        {
+          "name": "Mortar_second_stair_hall_0",
+          "nominal_front": [
+            -36.5,
+            -23.0,
+            20.950000762939453
+          ],
+          "front_normal": [
+            0.0,
+            0.0,
+            1.0
+          ],
+          "wall_start": [
+            -36.5,
+            -23.0,
+            20.5
+          ],
+          "along": [
+            1.0,
+            0.0,
+            -0.0
+          ],
+          "length_m": 11.0,
+          "outside_faced": false
+        },
+        {
+          "name": "Mortar_second_stair_hall_1",
+          "nominal_front": [
+            -25.950000762939453,
+            -23.0,
+            20.5
+          ],
+          "front_normal": [
+            -1.0,
+            0.0,
+            -0.0
+          ],
+          "wall_start": [
+            -25.5,
+            -23.0,
+            20.5
+          ],
+          "along": [
+            0.0,
+            0.0,
+            1.0
+          ],
+          "length_m": 18.0,
+          "outside_faced": false
+        },
+        {
+          "name": "Mortar_second_stair_hall_2",
+          "nominal_front": [
+            -25.5,
+            -23.0,
+            38.04999923706055
+          ],
+          "front_normal": [
+            0.0,
+            -0.0,
+            -1.0
+          ],
+          "wall_start": [
+            -25.5,
+            -23.0,
+            38.5
+          ],
+          "along": [
+            -1.0,
+            0.0,
+            -0.0
+          ],
+          "length_m": 11.0,
+          "outside_faced": false
+        },
+        {
+          "name": "Mortar_second_stair_hall_3",
+          "nominal_front": [
+            -36.04999923706055,
+            -23.0,
+            38.5
+          ],
+          "front_normal": [
+            1.0,
+            0.0,
+            -0.0
+          ],
+          "wall_start": [
+            -36.5,
+            -23.0,
+            38.5
+          ],
+          "along": [
+            0.0,
+            0.0,
+            -1.0
+          ],
+          "length_m": 18.0,
+          "outside_faced": false
+        }
+      ]
+    },
+    "choir": {
+      "source_sha256": "eed6498ef6c6e88aaea2abaaaa9094aeab70011b20a0f8812b90838eb2c14238",
+      "room": {
+        "floor": -28.0,
+        "height": 22.5,
+        "id": "choir",
+        "points": [
+          [
+            29.0,
+            -13.0
+          ],
+          [
+            43.0,
+            -13.0
+          ],
+          [
+            46.0,
+            -10.0
+          ],
+          [
+            46.0,
+            22.5
+          ],
+          [
+            43.0,
+            25.5
+          ],
+          [
+            29.0,
+            25.5
+          ],
+          [
+            26.0,
+            22.5
+          ],
+          [
+            26.0,
+            -10.0
+          ]
+        ]
+      },
+      "stairs_file": "stairs/choir.glb",
+      "replace_stair_group": 9,
+      "stairs_triangles": 635810,
+      "tiny_trim_fragments_removed": 36,
+      "stairs_method": "Complete free-span facings, fitted raised-walk end returns, native treads, unioned continuous mortar; replaces original stair group.",
+      "walls_file": "walls/choir.glb",
+      "front_recess_m": 0.12,
+      "corner_end_recess_m": 0.1,
+      "wall_collision": "Original stone contact boundary preserved",
+      "wall_planes": [
+        {
+          "name": "Mortar_choir_0",
+          "nominal_front": [
+            29.0,
+            -28.0,
+            -12.550000190734863
+          ],
+          "front_normal": [
+            0.0,
+            0.0,
+            1.0
+          ],
+          "wall_start": [
+            29.0,
+            -28.0,
+            -13.0
+          ],
+          "along": [
+            1.0,
+            0.0,
+            -0.0
+          ],
+          "length_m": 14.0,
+          "outside_faced": false
+        },
+        {
+          "name": "Mortar_choir_1",
+          "nominal_front": [
+            42.681800842285156,
+            -28.0,
+            -12.681801795959473
+          ],
+          "front_normal": [
+            -0.7071068286895752,
+            0.0,
+            0.7071068286895752
+          ],
+          "wall_start": [
+            43.0,
+            -28.0,
+            -13.0
+          ],
+          "along": [
+            0.7071068286895752,
+            0.0,
+            0.7071068286895752
+          ],
+          "length_m": 4.242640687119285,
+          "outside_faced": false
+        },
+        {
+          "name": "Mortar_choir_2",
+          "nominal_front": [
+            45.54999923706055,
+            -28.0,
+            -10.0
+          ],
+          "front_normal": [
+            -1.0,
+            0.0,
+            -0.0
+          ],
+          "wall_start": [
+            46.0,
+            -28.0,
+            -10.0
+          ],
+          "along": [
+            0.0,
+            0.0,
+            1.0
+          ],
+          "length_m": 32.5,
+          "outside_faced": false
+        },
+        {
+          "name": "Mortar_choir_3",
+          "nominal_front": [
+            45.681800842285156,
+            -28.0,
+            22.18180274963379
+          ],
+          "front_normal": [
+            -0.7071068286895752,
+            0.0,
+            -0.7071068286895752
+          ],
+          "wall_start": [
+            46.0,
+            -28.0,
+            22.5
+          ],
+          "along": [
+            -0.7071068286895752,
+            0.0,
+            0.7071068286895752
+          ],
+          "length_m": 4.242640687119285,
+          "outside_faced": false
+        },
+        {
+          "name": "Mortar_choir_4",
+          "nominal_front": [
+            43.0,
+            -28.0,
+            25.049999237060547
+          ],
+          "front_normal": [
+            0.0,
+            -0.0,
+            -1.0
+          ],
+          "wall_start": [
+            43.0,
+            -28.0,
+            25.5
+          ],
+          "along": [
+            -1.0,
+            0.0,
+            -0.0
+          ],
+          "length_m": 14.0,
+          "outside_faced": false
+        },
+        {
+          "name": "Mortar_choir_5",
+          "nominal_front": [
+            29.31819725036621,
+            -28.0,
+            25.18180274963379
+          ],
+          "front_normal": [
+            0.7071068286895752,
+            -0.0,
+            -0.7071068286895752
+          ],
+          "wall_start": [
+            29.0,
+            -28.0,
+            25.5
+          ],
+          "along": [
+            -0.7071068286895752,
+            0.0,
+            -0.7071068286895752
+          ],
+          "length_m": 4.242640687119285,
+          "outside_faced": false
+        },
+        {
+          "name": "Mortar_choir_6",
+          "nominal_front": [
+            26.450000762939453,
+            -28.0,
+            22.5
+          ],
+          "front_normal": [
+            1.0,
+            0.0,
+            -0.0
+          ],
+          "wall_start": [
+            26.0,
+            -28.0,
+            22.5
+          ],
+          "along": [
+            0.0,
+            0.0,
+            -1.0
+          ],
+          "length_m": 32.5,
+          "outside_faced": true
+        },
+        {
+          "name": "Mortar_choir_7",
+          "nominal_front": [
+            26.31819725036621,
+            -28.0,
+            -9.681801795959473
+          ],
+          "front_normal": [
+            0.7071068286895752,
+            0.0,
+            0.7071068286895752
+          ],
+          "wall_start": [
+            26.0,
+            -28.0,
+            -10.0
+          ],
+          "along": [
+            0.7071068286895752,
+            0.0,
+            -0.7071068286895752
+          ],
+          "length_m": 4.242640687119285,
+          "outside_faced": false
+        }
+      ]
+    },
+    "entry": {
+      "source_sha256": "4c2e5bd25fd9ac07555d1ed0b48b7e80e1bde129893180a58a41a666a114828e",
+      "room": {
+        "floor": 0.0,
+        "height": 5.0,
+        "id": "entry",
+        "points": [
+          [
+            -48.0,
+            -29.0
+          ],
+          [
+            -42.0,
+            -32.0
+          ],
+          [
+            -34.0,
+            -30.0
+          ],
+          [
+            -31.0,
+            -27.0
+          ],
+          [
+            -34.0,
+            -18.0
+          ],
+          [
+            -40.0,
+            -15.0
+          ],
+          [
+            -46.0,
+            -18.0
+          ],
+          [
+            -48.0,
+            -22.0
+          ]
+        ]
+      },
+      "walls_file": "walls/entry.glb",
+      "front_recess_m": 0.12,
+      "corner_end_recess_m": 0.1,
+      "wall_collision": "Original stone contact boundary preserved",
+      "wall_planes": [
+        {
+          "name": "Mortar_entry_0",
+          "nominal_front": [
+            -47.79875564575195,
+            0.0,
+            -28.59750747680664
+          ],
+          "front_normal": [
+            0.4472135901451111,
+            0.0,
+            0.8944271802902222
+          ],
+          "wall_start": [
+            -48.0,
+            0.0,
+            -29.0
+          ],
+          "along": [
+            0.8944271802902222,
+            0.0,
+            -0.4472135901451111
+          ],
+          "length_m": 6.708203932499369,
+          "outside_faced": false
+        },
+        {
+          "name": "Mortar_entry_1",
+          "nominal_front": [
+            -42.1091423034668,
+            0.0,
+            -31.56343650817871
+          ],
+          "front_normal": [
+            -0.24253563582897186,
+            0.0,
+            0.9701425433158875
+          ],
+          "wall_start": [
+            -42.0,
+            0.0,
+            -32.0
+          ],
+          "along": [
+            0.9701425433158875,
+            0.0,
+            0.24253563582897186
+          ],
+          "length_m": 8.246211251235321,
+          "outside_faced": false
+        },
+        {
+          "name": "Mortar_entry_2",
+          "nominal_front": [
+            -34.318199157714844,
+            0.0,
+            -29.68180274963379
+          ],
+          "front_normal": [
+            -0.7071068286895752,
+            0.0,
+            0.7071068286895752
+          ],
+          "wall_start": [
+            -34.0,
+            0.0,
+            -30.0
+          ],
+          "along": [
+            0.7071068286895752,
+            0.0,
+            0.7071068286895752
+          ],
+          "length_m": 4.242640687119285,
+          "outside_faced": false
+        },
+        {
+          "name": "Mortar_entry_3",
+          "nominal_front": [
+            -31.42690658569336,
+            0.0,
+            -27.142301559448242
+          ],
+          "front_normal": [
+            -0.9486833214759827,
+            0.0,
+            -0.3162277638912201
+          ],
+          "wall_start": [
+            -31.0,
+            0.0,
+            -27.0
+          ],
+          "along": [
+            -0.3162277638912201,
+            0.0,
+            0.9486833214759827
+          ],
+          "length_m": 9.486832980505138,
+          "outside_faced": false
+        },
+        {
+          "name": "Mortar_entry_4",
+          "nominal_front": [
+            -34.20124435424805,
+            0.0,
+            -18.40249252319336
+          ],
+          "front_normal": [
+            -0.4472135901451111,
+            0.0,
+            -0.8944271802902222
+          ],
+          "wall_start": [
+            -34.0,
+            0.0,
+            -18.0
+          ],
+          "along": [
+            -0.8944271802902222,
+            0.0,
+            0.4472135901451111
+          ],
+          "length_m": 6.708203932499369,
+          "outside_faced": false
+        },
+        {
+          "name": "Mortar_entry_5",
+          "nominal_front": [
+            -39.79875564575195,
+            0.0,
+            -15.40249252319336
+          ],
+          "front_normal": [
+            0.4472135901451111,
+            -0.0,
+            -0.8944271802902222
+          ],
+          "wall_start": [
+            -40.0,
+            0.0,
+            -15.0
+          ],
+          "along": [
+            -0.8944271802902222,
+            0.0,
+            -0.4472135901451111
+          ],
+          "length_m": 6.708203932499369,
+          "outside_faced": false
+        },
+        {
+          "name": "Mortar_entry_6",
+          "nominal_front": [
+            -45.59750747680664,
+            0.0,
+            -18.20124626159668
+          ],
+          "front_normal": [
+            0.8944271802902222,
+            -0.0,
+            -0.4472135901451111
+          ],
+          "wall_start": [
+            -46.0,
+            0.0,
+            -18.0
+          ],
+          "along": [
+            -0.4472135901451111,
+            0.0,
+            -0.8944271802902222
+          ],
+          "length_m": 4.47213595499958,
+          "outside_faced": false
+        },
+        {
+          "name": "Mortar_entry_7",
+          "nominal_front": [
+            -47.54999923706055,
+            0.0,
+            -22.0
+          ],
+          "front_normal": [
+            1.0,
+            0.0,
+            -0.0
+          ],
+          "wall_start": [
+            -48.0,
+            0.0,
+            -22.0
+          ],
+          "along": [
+            0.0,
+            0.0,
+            -1.0
+          ],
+          "length_m": 7.0,
+          "outside_faced": false
+        }
+      ]
+    },
+    "antechamber": {
+      "source_sha256": "7f8965a15c32b28539b5354ccc8c8f249d9b48739778b791bbd7ad32ea8ed21a",
+      "room": {
+        "floor": 0.0,
+        "height": 7.0,
+        "id": "antechamber",
+        "points": [
+          [
+            -26.0,
+            -31.0
+          ],
+          [
+            -18.0,
+            -31.0
+          ],
+          [
+            -16.0,
+            -29.0
+          ],
+          [
+            -16.0,
+            -19.0
+          ],
+          [
+            -18.0,
+            -17.0
+          ],
+          [
+            -26.0,
+            -17.0
+          ],
+          [
+            -28.0,
+            -19.0
+          ],
+          [
+            -28.0,
+            -29.0
+          ]
+        ]
+      },
+      "walls_file": "walls/antechamber.glb",
+      "front_recess_m": 0.12,
+      "corner_end_recess_m": 0.1,
+      "wall_collision": "Original stone contact boundary preserved",
+      "wall_planes": [
+        {
+          "name": "Mortar_antechamber_0",
+          "nominal_front": [
+            -26.0,
+            0.0,
+            -30.549999237060547
+          ],
+          "front_normal": [
+            0.0,
+            0.0,
+            1.0
+          ],
+          "wall_start": [
+            -26.0,
+            0.0,
+            -31.0
+          ],
+          "along": [
+            1.0,
+            0.0,
+            -0.0
+          ],
+          "length_m": 8.0,
+          "outside_faced": false
+        },
+        {
+          "name": "Mortar_antechamber_1",
+          "nominal_front": [
+            -18.31819725036621,
+            0.0,
+            -30.68180274963379
+          ],
+          "front_normal": [
+            -0.7071067690849304,
+            0.0,
+            0.7071067690849304
+          ],
+          "wall_start": [
+            -18.0,
+            0.0,
+            -31.0
+          ],
+          "along": [
+            0.7071067690849304,
+            0.0,
+            0.7071067690849304
+          ],
+          "length_m": 2.8284271247461903,
+          "outside_faced": false
+        },
+        {
+          "name": "Mortar_antechamber_2",
+          "nominal_front": [
+            -16.450000762939453,
+            0.0,
+            -29.0
+          ],
+          "front_normal": [
+            -1.0,
+            0.0,
+            -0.0
+          ],
+          "wall_start": [
+            -16.0,
+            0.0,
+            -29.0
+          ],
+          "along": [
+            0.0,
+            0.0,
+            1.0
+          ],
+          "length_m": 10.0,
+          "outside_faced": true
+        },
+        {
+          "name": "Mortar_antechamber_3",
+          "nominal_front": [
+            -16.31819725036621,
+            0.0,
+            -19.31819725036621
+          ],
+          "front_normal": [
+            -0.7071067690849304,
+            0.0,
+            -0.7071067690849304
+          ],
+          "wall_start": [
+            -16.0,
+            0.0,
+            -19.0
+          ],
+          "along": [
+            -0.7071067690849304,
+            0.0,
+            0.7071067690849304
+          ],
+          "length_m": 2.8284271247461903,
+          "outside_faced": true
+        },
+        {
+          "name": "Mortar_antechamber_4",
+          "nominal_front": [
+            -18.0,
+            0.0,
+            -17.450000762939453
+          ],
+          "front_normal": [
+            0.0,
+            -0.0,
+            -1.0
+          ],
+          "wall_start": [
+            -18.0,
+            0.0,
+            -17.0
+          ],
+          "along": [
+            -1.0,
+            0.0,
+            -0.0
+          ],
+          "length_m": 8.0,
+          "outside_faced": false
+        },
+        {
+          "name": "Mortar_antechamber_5",
+          "nominal_front": [
+            -25.68180274963379,
+            0.0,
+            -17.31819725036621
+          ],
+          "front_normal": [
+            0.7071067690849304,
+            -0.0,
+            -0.7071067690849304
+          ],
+          "wall_start": [
+            -26.0,
+            0.0,
+            -17.0
+          ],
+          "along": [
+            -0.7071067690849304,
+            0.0,
+            -0.7071067690849304
+          ],
+          "length_m": 2.8284271247461903,
+          "outside_faced": false
+        },
+        {
+          "name": "Mortar_antechamber_6",
+          "nominal_front": [
+            -27.549999237060547,
+            0.0,
+            -19.0
+          ],
+          "front_normal": [
+            1.0,
+            0.0,
+            -0.0
+          ],
+          "wall_start": [
+            -28.0,
+            0.0,
+            -19.0
+          ],
+          "along": [
+            0.0,
+            0.0,
+            -1.0
+          ],
+          "length_m": 10.0,
+          "outside_faced": false
+        },
+        {
+          "name": "Mortar_antechamber_7",
+          "nominal_front": [
+            -27.68180274963379,
+            0.0,
+            -28.68180274963379
+          ],
+          "front_normal": [
+            0.7071067690849304,
+            0.0,
+            0.7071067690849304
+          ],
+          "wall_start": [
+            -28.0,
+            0.0,
+            -29.0
+          ],
+          "along": [
+            0.7071067690849304,
+            0.0,
+            -0.7071067690849304
+          ],
+          "length_m": 2.8284271247461903,
+          "outside_faced": false
+        }
+      ]
+    },
+    "restraint": {
+      "source_sha256": "27daf6cab0b3c38511ed8d07e1bca38fd89b8aa4b46b292d85962a6f7ba44e5f",
+      "room": {
+        "floor": -4.0,
+        "height": 14.0,
+        "id": "restraint",
+        "points": [
+          [
+            29.0,
+            -23.0
+          ],
+          [
+            39.0,
+            -23.0
+          ],
+          [
+            42.0,
+            -20.0
+          ],
+          [
+            42.0,
+            -5.0
+          ],
+          [
+            39.0,
+            -2.0
+          ],
+          [
+            29.0,
+            -2.0
+          ],
+          [
+            26.0,
+            -5.0
+          ],
+          [
+            26.0,
+            -20.0
+          ]
+        ]
+      },
+      "walls_file": "walls/restraint.glb",
+      "front_recess_m": 0.12,
+      "corner_end_recess_m": 0.1,
+      "wall_collision": "Original stone contact boundary preserved",
+      "wall_planes": [
+        {
+          "name": "Mortar_restraint_0",
+          "nominal_front": [
+            29.0,
+            -4.0,
+            -22.549999237060547
+          ],
+          "front_normal": [
+            0.0,
+            0.0,
+            1.0
+          ],
+          "wall_start": [
+            29.0,
+            -4.0,
+            -23.0
+          ],
+          "along": [
+            1.0,
+            0.0,
+            -0.0
+          ],
+          "length_m": 10.0,
+          "outside_faced": false
+        },
+        {
+          "name": "Mortar_restraint_1",
+          "nominal_front": [
+            38.681800842285156,
+            -4.0,
+            -22.68180274963379
+          ],
+          "front_normal": [
+            -0.7071068286895752,
+            0.0,
+            0.7071068286895752
+          ],
+          "wall_start": [
+            39.0,
+            -4.0,
+            -23.0
+          ],
+          "along": [
+            0.7071068286895752,
+            0.0,
+            0.7071068286895752
+          ],
+          "length_m": 4.242640687119285,
+          "outside_faced": false
+        },
+        {
+          "name": "Mortar_restraint_2",
+          "nominal_front": [
+            41.54999923706055,
+            -4.0,
+            -20.0
+          ],
+          "front_normal": [
+            -1.0,
+            0.0,
+            -0.0
+          ],
+          "wall_start": [
+            42.0,
+            -4.0,
+            -20.0
+          ],
+          "along": [
+            0.0,
+            0.0,
+            1.0
+          ],
+          "length_m": 15.0,
+          "outside_faced": false
+        },
+        {
+          "name": "Mortar_restraint_3",
+          "nominal_front": [
+            41.681800842285156,
+            -4.0,
+            -5.318198204040527
+          ],
+          "front_normal": [
+            -0.7071068286895752,
+            0.0,
+            -0.7071068286895752
+          ],
+          "wall_start": [
+            42.0,
+            -4.0,
+            -5.0
+          ],
+          "along": [
+            -0.7071068286895752,
+            0.0,
+            0.7071068286895752
+          ],
+          "length_m": 4.242640687119285,
+          "outside_faced": false
+        },
+        {
+          "name": "Mortar_restraint_4",
+          "nominal_front": [
+            39.0,
+            -4.0,
+            -2.450000047683716
+          ],
+          "front_normal": [
+            0.0,
+            -0.0,
+            -1.0
+          ],
+          "wall_start": [
+            39.0,
+            -4.0,
+            -2.0
+          ],
+          "along": [
+            -1.0,
+            0.0,
+            -0.0
+          ],
+          "length_m": 10.0,
+          "outside_faced": false
+        },
+        {
+          "name": "Mortar_restraint_5",
+          "nominal_front": [
+            29.31819725036621,
+            -4.0,
+            -2.3181979656219482
+          ],
+          "front_normal": [
+            0.7071068286895752,
+            -0.0,
+            -0.7071068286895752
+          ],
+          "wall_start": [
+            29.0,
+            -4.0,
+            -2.0
+          ],
+          "along": [
+            -0.7071068286895752,
+            0.0,
+            -0.7071068286895752
+          ],
+          "length_m": 4.242640687119285,
+          "outside_faced": false
+        },
+        {
+          "name": "Mortar_restraint_6",
+          "nominal_front": [
+            26.450000762939453,
+            -4.0,
+            -5.0
+          ],
+          "front_normal": [
+            1.0,
+            0.0,
+            -0.0
+          ],
+          "wall_start": [
+            26.0,
+            -4.0,
+            -5.0
+          ],
+          "along": [
+            0.0,
+            0.0,
+            -1.0
+          ],
+          "length_m": 15.0,
+          "outside_faced": true
+        },
+        {
+          "name": "Mortar_restraint_7",
+          "nominal_front": [
+            26.31819725036621,
+            -4.0,
+            -19.68180274963379
+          ],
+          "front_normal": [
+            0.7071068286895752,
+            0.0,
+            0.7071068286895752
+          ],
+          "wall_start": [
+            26.0,
+            -4.0,
+            -20.0
+          ],
+          "along": [
+            0.7071068286895752,
+            0.0,
+            -0.7071068286895752
+          ],
+          "length_m": 4.242640687119285,
+          "outside_faced": false
+        }
+      ]
+    },
+    "cells": {
+      "source_sha256": "e0b5933ae8152262d2e36658d34a7d05bea07d0dfb4d83ab52e4b68d821ff279",
+      "room": {
+        "floor": -4.0,
+        "height": 5.0,
+        "id": "cells",
+        "points": [
+          [
+            31.0,
+            0.0
+          ],
+          [
+            40.0,
+            0.0
+          ],
+          [
+            42.0,
+            2.0
+          ],
+          [
+            42.0,
+            10.0
+          ],
+          [
+            40.0,
+            12.0
+          ],
+          [
+            32.0,
+            12.0
+          ],
+          [
+            30.0,
+            10.0
+          ],
+          [
+            30.0,
+            1.0
+          ]
+        ]
+      },
+      "walls_file": "walls/cells.glb",
+      "front_recess_m": 0.12,
+      "corner_end_recess_m": 0.1,
+      "wall_collision": "Original stone contact boundary preserved",
+      "wall_planes": [
+        {
+          "name": "Mortar_cells_0",
+          "nominal_front": [
+            31.0,
+            -4.0,
+            0.44999998807907104
+          ],
+          "front_normal": [
+            0.0,
+            0.0,
+            1.0
+          ],
+          "wall_start": [
+            31.0,
+            -4.0,
+            0.0
+          ],
+          "along": [
+            1.0,
+            0.0,
+            -0.0
+          ],
+          "length_m": 9.0,
+          "outside_faced": false
+        },
+        {
+          "name": "Mortar_cells_1",
+          "nominal_front": [
+            39.681800842285156,
+            -4.0,
+            0.318198025226593
+          ],
+          "front_normal": [
+            -0.7071067690849304,
+            0.0,
+            0.7071067690849304
+          ],
+          "wall_start": [
+            40.0,
+            -4.0,
+            0.0
+          ],
+          "along": [
+            0.7071067690849304,
+            0.0,
+            0.7071067690849304
+          ],
+          "length_m": 2.8284271247461903,
+          "outside_faced": false
+        },
+        {
+          "name": "Mortar_cells_2",
+          "nominal_front": [
+            41.54999923706055,
+            -4.0,
+            2.0
+          ],
+          "front_normal": [
+            -1.0,
+            0.0,
+            -0.0
+          ],
+          "wall_start": [
+            42.0,
+            -4.0,
+            2.0
+          ],
+          "along": [
+            0.0,
+            0.0,
+            1.0
+          ],
+          "length_m": 8.0,
+          "outside_faced": false
+        },
+        {
+          "name": "Mortar_cells_3",
+          "nominal_front": [
+            41.681800842285156,
+            -4.0,
+            9.681801795959473
+          ],
+          "front_normal": [
+            -0.7071067690849304,
+            0.0,
+            -0.7071067690849304
+          ],
+          "wall_start": [
+            42.0,
+            -4.0,
+            10.0
+          ],
+          "along": [
+            -0.7071067690849304,
+            0.0,
+            0.7071067690849304
+          ],
+          "length_m": 2.8284271247461903,
+          "outside_faced": false
+        },
+        {
+          "name": "Mortar_cells_4",
+          "nominal_front": [
+            40.0,
+            -4.0,
+            11.550000190734863
+          ],
+          "front_normal": [
+            0.0,
+            -0.0,
+            -1.0
+          ],
+          "wall_start": [
+            40.0,
+            -4.0,
+            12.0
+          ],
+          "along": [
+            -1.0,
+            0.0,
+            -0.0
+          ],
+          "length_m": 8.0,
+          "outside_faced": false
+        },
+        {
+          "name": "Mortar_cells_5",
+          "nominal_front": [
+            32.318199157714844,
+            -4.0,
+            11.681801795959473
+          ],
+          "front_normal": [
+            0.7071067690849304,
+            -0.0,
+            -0.7071067690849304
+          ],
+          "wall_start": [
+            32.0,
+            -4.0,
+            12.0
+          ],
+          "along": [
+            -0.7071067690849304,
+            0.0,
+            -0.7071067690849304
+          ],
+          "length_m": 2.8284271247461903,
+          "outside_faced": false
+        },
+        {
+          "name": "Mortar_cells_6",
+          "nominal_front": [
+            30.450000762939453,
+            -4.0,
+            10.0
+          ],
+          "front_normal": [
+            1.0,
+            0.0,
+            -0.0
+          ],
+          "wall_start": [
+            30.0,
+            -4.0,
+            10.0
+          ],
+          "along": [
+            0.0,
+            0.0,
+            -1.0
+          ],
+          "length_m": 9.0,
+          "outside_faced": false
+        },
+        {
+          "name": "Mortar_cells_7",
+          "nominal_front": [
+            30.31819725036621,
+            -4.0,
+            1.3181979656219482
+          ],
+          "front_normal": [
+            0.7071067690849304,
+            0.0,
+            0.7071067690849304
+          ],
+          "wall_start": [
+            30.0,
+            -4.0,
+            1.0
+          ],
+          "along": [
+            0.7071067690849304,
+            0.0,
+            -0.7071067690849304
+          ],
+          "length_m": 1.4142135623730951,
+          "outside_faced": false
+        }
+      ]
+    },
+    "chapel": {
+      "source_sha256": "a9b5fbe0b7a30b831252ed23cfe1b73c13631643d14faf94e5c68b222083e4c3",
+      "room": {
+        "floor": -10.0,
+        "height": 16.0,
+        "id": "chapel",
+        "points": [
+          [
+            -9.0,
+            -43.0
+          ],
+          [
+            15.0,
+            -43.0
+          ],
+          [
+            18.0,
+            -40.0
+          ],
+          [
+            18.0,
+            -27.0
+          ],
+          [
+            15.0,
+            -24.0
+          ],
+          [
+            -10.0,
+            -24.0
+          ],
+          [
+            -12.0,
+            -26.0
+          ],
+          [
+            -12.0,
+            -40.0
+          ]
+        ]
+      },
+      "walls_file": "walls/chapel.glb",
+      "front_recess_m": 0.12,
+      "corner_end_recess_m": 0.1,
+      "wall_collision": "Original stone contact boundary preserved",
+      "wall_planes": [
+        {
+          "name": "Mortar_chapel_0",
+          "nominal_front": [
+            -9.0,
+            -10.0,
+            -42.54999923706055
+          ],
+          "front_normal": [
+            0.0,
+            0.0,
+            1.0
+          ],
+          "wall_start": [
+            -9.0,
+            -10.0,
+            -43.0
+          ],
+          "along": [
+            1.0,
+            0.0,
+            -0.0
+          ],
+          "length_m": 24.0,
+          "outside_faced": false
+        },
+        {
+          "name": "Mortar_chapel_1",
+          "nominal_front": [
+            14.681801795959473,
+            -10.0,
+            -42.681800842285156
+          ],
+          "front_normal": [
+            -0.7071068286895752,
+            0.0,
+            0.7071068286895752
+          ],
+          "wall_start": [
+            15.0,
+            -10.0,
+            -43.0
+          ],
+          "along": [
+            0.7071068286895752,
+            0.0,
+            0.7071068286895752
+          ],
+          "length_m": 4.242640687119285,
+          "outside_faced": false
+        },
+        {
+          "name": "Mortar_chapel_2",
+          "nominal_front": [
+            17.549999237060547,
+            -10.0,
+            -40.0
+          ],
+          "front_normal": [
+            -1.0,
+            0.0,
+            -0.0
+          ],
+          "wall_start": [
+            18.0,
+            -10.0,
+            -40.0
+          ],
+          "along": [
+            0.0,
+            0.0,
+            1.0
+          ],
+          "length_m": 13.0,
+          "outside_faced": false
+        },
+        {
+          "name": "Mortar_chapel_3",
+          "nominal_front": [
+            17.68180274963379,
+            -10.0,
+            -27.31819725036621
+          ],
+          "front_normal": [
+            -0.7071068286895752,
+            0.0,
+            -0.7071068286895752
+          ],
+          "wall_start": [
+            18.0,
+            -10.0,
+            -27.0
+          ],
+          "along": [
+            -0.7071068286895752,
+            0.0,
+            0.7071068286895752
+          ],
+          "length_m": 4.242640687119285,
+          "outside_faced": true
+        },
+        {
+          "name": "Mortar_chapel_4",
+          "nominal_front": [
+            15.0,
+            -10.0,
+            -24.450000762939453
+          ],
+          "front_normal": [
+            0.0,
+            -0.0,
+            -1.0
+          ],
+          "wall_start": [
+            15.0,
+            -10.0,
+            -24.0
+          ],
+          "along": [
+            -1.0,
+            0.0,
+            -0.0
+          ],
+          "length_m": 25.0,
+          "outside_faced": true
+        },
+        {
+          "name": "Mortar_chapel_5",
+          "nominal_front": [
+            -9.681801795959473,
+            -10.0,
+            -24.31819725036621
+          ],
+          "front_normal": [
+            0.7071067690849304,
+            -0.0,
+            -0.7071067690849304
+          ],
+          "wall_start": [
+            -10.0,
+            -10.0,
+            -24.0
+          ],
+          "along": [
+            -0.7071067690849304,
+            0.0,
+            -0.7071067690849304
+          ],
+          "length_m": 2.8284271247461903,
+          "outside_faced": true
+        },
+        {
+          "name": "Mortar_chapel_6",
+          "nominal_front": [
+            -11.550000190734863,
+            -10.0,
+            -26.0
+          ],
+          "front_normal": [
+            1.0,
+            0.0,
+            -0.0
+          ],
+          "wall_start": [
+            -12.0,
+            -10.0,
+            -26.0
+          ],
+          "along": [
+            0.0,
+            0.0,
+            -1.0
+          ],
+          "length_m": 14.0,
+          "outside_faced": false
+        },
+        {
+          "name": "Mortar_chapel_7",
+          "nominal_front": [
+            -11.681801795959473,
+            -10.0,
+            -39.681800842285156
+          ],
+          "front_normal": [
+            0.7071068286895752,
+            0.0,
+            0.7071068286895752
+          ],
+          "wall_start": [
+            -12.0,
+            -10.0,
+            -40.0
+          ],
+          "along": [
+            0.7071068286895752,
+            0.0,
+            -0.7071068286895752
+          ],
+          "length_m": 4.242640687119285,
+          "outside_faced": false
+        }
+      ]
+    },
+    "nave": {
+      "source_sha256": "ebca9ced64c40f8059ec7592d464602f557b19a45e5bfa5e503ffa6998d54077",
+      "room": {
+        "floor": -18.0,
+        "height": 20.0,
+        "id": "nave",
+        "points": [
+          [
+            -13.5,
+            28.0
+          ],
+          [
+            11.0,
+            28.0
+          ],
+          [
+            14.0,
+            31.0
+          ],
+          [
+            14.0,
+            47.5
+          ],
+          [
+            12.5,
+            49.0
+          ],
+          [
+            -11.0,
+            49.0
+          ],
+          [
+            -14.0,
+            46.0
+          ],
+          [
+            -14.0,
+            28.5
+          ]
+        ]
+      },
+      "walls_file": "walls/nave.glb",
+      "front_recess_m": 0.12,
+      "corner_end_recess_m": 0.1,
+      "wall_collision": "Original stone contact boundary preserved",
+      "wall_planes": [
+        {
+          "name": "Mortar_nave_0",
+          "nominal_front": [
+            -13.5,
+            -18.0,
+            28.450000762939453
+          ],
+          "front_normal": [
+            0.0,
+            0.0,
+            1.0
+          ],
+          "wall_start": [
+            -13.5,
+            -18.0,
+            28.0
+          ],
+          "along": [
+            1.0,
+            0.0,
+            -0.0
+          ],
+          "length_m": 24.5,
+          "outside_faced": false
+        },
+        {
+          "name": "Mortar_nave_1",
+          "nominal_front": [
+            10.681801795959473,
+            -18.0,
+            28.31819725036621
+          ],
+          "front_normal": [
+            -0.7071068286895752,
+            0.0,
+            0.7071068286895752
+          ],
+          "wall_start": [
+            11.0,
+            -18.0,
+            28.0
+          ],
+          "along": [
+            0.7071068286895752,
+            0.0,
+            0.7071068286895752
+          ],
+          "length_m": 4.242640687119285,
+          "outside_faced": false
+        },
+        {
+          "name": "Mortar_nave_2",
+          "nominal_front": [
+            13.550000190734863,
+            -18.0,
+            31.0
+          ],
+          "front_normal": [
+            -1.0,
+            0.0,
+            -0.0
+          ],
+          "wall_start": [
+            14.0,
+            -18.0,
+            31.0
+          ],
+          "along": [
+            0.0,
+            0.0,
+            1.0
+          ],
+          "length_m": 16.5,
+          "outside_faced": false
+        },
+        {
+          "name": "Mortar_nave_3",
+          "nominal_front": [
+            13.681801795959473,
+            -18.0,
+            47.181800842285156
+          ],
+          "front_normal": [
+            -0.7071068286895752,
+            0.0,
+            -0.7071068286895752
+          ],
+          "wall_start": [
+            14.0,
+            -18.0,
+            47.5
+          ],
+          "along": [
+            -0.7071068286895752,
+            0.0,
+            0.7071068286895752
+          ],
+          "length_m": 2.1213203435596424,
+          "outside_faced": false
+        },
+        {
+          "name": "Mortar_nave_4",
+          "nominal_front": [
+            12.5,
+            -18.0,
+            48.54999923706055
+          ],
+          "front_normal": [
+            0.0,
+            -0.0,
+            -0.9999999403953552
+          ],
+          "wall_start": [
+            12.5,
+            -18.0,
+            49.0
+          ],
+          "along": [
+            -0.9999999403953552,
+            0.0,
+            -0.0
+          ],
+          "length_m": 23.5,
+          "outside_faced": false
+        },
+        {
+          "name": "Mortar_nave_5",
+          "nominal_front": [
+            -10.681801795959473,
+            -18.0,
+            48.681800842285156
+          ],
+          "front_normal": [
+            0.7071068286895752,
+            -0.0,
+            -0.7071068286895752
+          ],
+          "wall_start": [
+            -11.0,
+            -18.0,
+            49.0
+          ],
+          "along": [
+            -0.7071068286895752,
+            0.0,
+            -0.7071068286895752
+          ],
+          "length_m": 4.242640687119285,
+          "outside_faced": false
+        },
+        {
+          "name": "Mortar_nave_6",
+          "nominal_front": [
+            -13.550000190734863,
+            -18.0,
+            46.0
+          ],
+          "front_normal": [
+            1.0,
+            0.0,
+            -0.0
+          ],
+          "wall_start": [
+            -14.0,
+            -18.0,
+            46.0
+          ],
+          "along": [
+            0.0,
+            0.0,
+            -1.0
+          ],
+          "length_m": 17.5,
+          "outside_faced": false
+        },
+        {
+          "name": "Mortar_nave_7",
+          "nominal_front": [
+            -13.681801795959473,
+            -18.0,
+            28.81819725036621
+          ],
+          "front_normal": [
+            0.7071067690849304,
+            0.0,
+            0.7071067690849304
+          ],
+          "wall_start": [
+            -14.0,
+            -18.0,
+            28.5
+          ],
+          "along": [
+            0.7071067690849304,
+            0.0,
+            -0.7071067690849304
+          ],
+          "length_m": 0.7071067811865476,
+          "outside_faced": false
+        }
+      ]
+    },
+    "ossuary": {
+      "source_sha256": "489e089d65f7617526d27e640eb4367d252da28d756101c24a7bf44961777942",
+      "room": {
+        "floor": -10.0,
+        "height": 7.0,
+        "id": "ossuary",
+        "points": [
+          [
+            -39.0,
+            -43.0
+          ],
+          [
+            -25.0,
+            -43.0
+          ],
+          [
+            -22.0,
+            -40.0
+          ],
+          [
+            -22.0,
+            -28.0
+          ],
+          [
+            -25.0,
+            -25.0
+          ],
+          [
+            -39.0,
+            -25.0
+          ],
+          [
+            -42.0,
+            -28.0
+          ],
+          [
+            -42.0,
+            -40.0
+          ]
+        ]
+      },
+      "walls_file": "walls/ossuary.glb",
+      "front_recess_m": 0.12,
+      "corner_end_recess_m": 0.1,
+      "wall_collision": "Original stone contact boundary preserved",
+      "wall_planes": [
+        {
+          "name": "Mortar_ossuary_0",
+          "nominal_front": [
+            -39.0,
+            -10.0,
+            -42.54999923706055
+          ],
+          "front_normal": [
+            0.0,
+            0.0,
+            1.0
+          ],
+          "wall_start": [
+            -39.0,
+            -10.0,
+            -43.0
+          ],
+          "along": [
+            1.0,
+            0.0,
+            -0.0
+          ],
+          "length_m": 14.0,
+          "outside_faced": false
+        },
+        {
+          "name": "Mortar_ossuary_1",
+          "nominal_front": [
+            -25.31819725036621,
+            -10.0,
+            -42.681800842285156
+          ],
+          "front_normal": [
+            -0.7071068286895752,
+            0.0,
+            0.7071068286895752
+          ],
+          "wall_start": [
+            -25.0,
+            -10.0,
+            -43.0
+          ],
+          "along": [
+            0.7071068286895752,
+            0.0,
+            0.7071068286895752
+          ],
+          "length_m": 4.242640687119285,
+          "outside_faced": false
+        },
+        {
+          "name": "Mortar_ossuary_2",
+          "nominal_front": [
+            -22.450000762939453,
+            -10.0,
+            -40.0
+          ],
+          "front_normal": [
+            -1.0,
+            0.0,
+            -0.0
+          ],
+          "wall_start": [
+            -22.0,
+            -10.0,
+            -40.0
+          ],
+          "along": [
+            0.0,
+            0.0,
+            1.0
+          ],
+          "length_m": 12.0,
+          "outside_faced": false
+        },
+        {
+          "name": "Mortar_ossuary_3",
+          "nominal_front": [
+            -22.31819725036621,
+            -10.0,
+            -28.31819725036621
+          ],
+          "front_normal": [
+            -0.7071068286895752,
+            0.0,
+            -0.7071068286895752
+          ],
+          "wall_start": [
+            -22.0,
+            -10.0,
+            -28.0
+          ],
+          "along": [
+            -0.7071068286895752,
+            0.0,
+            0.7071068286895752
+          ],
+          "length_m": 4.242640687119285,
+          "outside_faced": false
+        },
+        {
+          "name": "Mortar_ossuary_4",
+          "nominal_front": [
+            -25.0,
+            -10.0,
+            -25.450000762939453
+          ],
+          "front_normal": [
+            0.0,
+            -0.0,
+            -1.0
+          ],
+          "wall_start": [
+            -25.0,
+            -10.0,
+            -25.0
+          ],
+          "along": [
+            -1.0,
+            0.0,
+            -0.0
+          ],
+          "length_m": 14.0,
+          "outside_faced": false
+        },
+        {
+          "name": "Mortar_ossuary_5",
+          "nominal_front": [
+            -38.681800842285156,
+            -10.0,
+            -25.31819725036621
+          ],
+          "front_normal": [
+            0.7071068286895752,
+            -0.0,
+            -0.7071068286895752
+          ],
+          "wall_start": [
+            -39.0,
+            -10.0,
+            -25.0
+          ],
+          "along": [
+            -0.7071068286895752,
+            0.0,
+            -0.7071068286895752
+          ],
+          "length_m": 4.242640687119285,
+          "outside_faced": false
+        },
+        {
+          "name": "Mortar_ossuary_6",
+          "nominal_front": [
+            -41.54999923706055,
+            -10.0,
+            -28.0
+          ],
+          "front_normal": [
+            1.0,
+            0.0,
+            -0.0
+          ],
+          "wall_start": [
+            -42.0,
+            -10.0,
+            -28.0
+          ],
+          "along": [
+            0.0,
+            0.0,
+            -1.0
+          ],
+          "length_m": 12.0,
+          "outside_faced": false
+        },
+        {
+          "name": "Mortar_ossuary_7",
+          "nominal_front": [
+            -41.681800842285156,
+            -10.0,
+            -39.681800842285156
+          ],
+          "front_normal": [
+            0.7071068286895752,
+            0.0,
+            0.7071068286895752
+          ],
+          "wall_start": [
+            -42.0,
+            -10.0,
+            -40.0
+          ],
+          "along": [
+            0.7071068286895752,
+            0.0,
+            -0.7071068286895752
+          ],
+          "length_m": 4.242640687119285,
+          "outside_faced": false
+        }
+      ]
+    },
+    "bones": {
+      "source_sha256": "7f148024624df124878ff117ae1a03a20f495416ad6cc486b5d7e86aa9a332c1",
+      "room": {
+        "floor": -10.0,
+        "height": 4.0,
+        "id": "bones",
+        "points": [
+          [
+            -40.5,
+            -20.0
+          ],
+          [
+            -21.5,
+            -20.0
+          ],
+          [
+            -20.0,
+            -18.5
+          ],
+          [
+            -20.0,
+            -12.0
+          ],
+          [
+            -40.5,
+            -12.0
+          ],
+          [
+            -42.0,
+            -13.5
+          ],
+          [
+            -42.0,
+            -18.5
+          ]
+        ]
+      },
+      "walls_file": "walls/bones.glb",
+      "front_recess_m": 0.12,
+      "corner_end_recess_m": 0.1,
+      "wall_collision": "Original stone contact boundary preserved",
+      "wall_planes": [
+        {
+          "name": "Mortar_bones_0",
+          "nominal_front": [
+            -40.5,
+            -10.0,
+            -19.549999237060547
+          ],
+          "front_normal": [
+            0.0,
+            0.0,
+            1.0
+          ],
+          "wall_start": [
+            -40.5,
+            -10.0,
+            -20.0
+          ],
+          "along": [
+            1.0,
+            0.0,
+            -0.0
+          ],
+          "length_m": 19.0,
+          "outside_faced": false
+        },
+        {
+          "name": "Mortar_bones_1",
+          "nominal_front": [
+            -21.81819725036621,
+            -10.0,
+            -19.68180274963379
+          ],
+          "front_normal": [
+            -0.7071068286895752,
+            0.0,
+            0.7071068286895752
+          ],
+          "wall_start": [
+            -21.5,
+            -10.0,
+            -20.0
+          ],
+          "along": [
+            0.7071068286895752,
+            0.0,
+            0.7071068286895752
+          ],
+          "length_m": 2.1213203435596424,
+          "outside_faced": false
+        },
+        {
+          "name": "Mortar_bones_2",
+          "nominal_front": [
+            -20.450000762939453,
+            -10.0,
+            -18.5
+          ],
+          "front_normal": [
+            -1.0,
+            0.0,
+            -0.0
+          ],
+          "wall_start": [
+            -20.0,
+            -10.0,
+            -18.5
+          ],
+          "along": [
+            0.0,
+            0.0,
+            1.0
+          ],
+          "length_m": 6.5,
+          "outside_faced": true
+        },
+        {
+          "name": "Mortar_bones_3",
+          "nominal_front": [
+            -20.0,
+            -10.0,
+            -12.449999809265137
+          ],
+          "front_normal": [
+            0.0,
+            -0.0,
+            -0.9999999403953552
+          ],
+          "wall_start": [
+            -20.0,
+            -10.0,
+            -12.0
+          ],
+          "along": [
+            -0.9999999403953552,
+            0.0,
+            -0.0
+          ],
+          "length_m": 20.5,
+          "outside_faced": false
+        },
+        {
+          "name": "Mortar_bones_4",
+          "nominal_front": [
+            -40.181800842285156,
+            -10.0,
+            -12.318198204040527
+          ],
+          "front_normal": [
+            0.7071068286895752,
+            -0.0,
+            -0.7071068286895752
+          ],
+          "wall_start": [
+            -40.5,
+            -10.0,
+            -12.0
+          ],
+          "along": [
+            -0.7071068286895752,
+            0.0,
+            -0.7071068286895752
+          ],
+          "length_m": 2.1213203435596424,
+          "outside_faced": false
+        },
+        {
+          "name": "Mortar_bones_5",
+          "nominal_front": [
+            -41.54999923706055,
+            -10.0,
+            -13.5
+          ],
+          "front_normal": [
+            1.0,
+            0.0,
+            -0.0
+          ],
+          "wall_start": [
+            -42.0,
+            -10.0,
+            -13.5
+          ],
+          "along": [
+            0.0,
+            0.0,
+            -1.0
+          ],
+          "length_m": 5.0,
+          "outside_faced": false
+        },
+        {
+          "name": "Mortar_bones_6",
+          "nominal_front": [
+            -41.681800842285156,
+            -10.0,
+            -18.18180274963379
+          ],
+          "front_normal": [
+            0.7071068286895752,
+            0.0,
+            0.7071068286895752
+          ],
+          "wall_start": [
+            -42.0,
+            -10.0,
+            -18.5
+          ],
+          "along": [
+            0.7071068286895752,
+            0.0,
+            -0.7071068286895752
+          ],
+          "length_m": 2.1213203435596424,
+          "outside_faced": false
+        }
+      ]
+    },
+    "window": {
+      "source_sha256": "d749ab58c4d878e080ba573bfded44c350adc2c595e0db41a53d1f16326fb783",
+      "room": {
+        "floor": -10.0,
+        "height": 6.0,
+        "id": "window",
+        "points": [
+          [
+            -27.5,
+            -10.0
+          ],
+          [
+            -14.5,
+            -10.0
+          ],
+          [
+            -14.5,
+            -2.0
+          ],
+          [
+            -27.5,
+            -2.0
+          ]
+        ]
+      },
+      "walls_file": "walls/window.glb",
+      "front_recess_m": 0.12,
+      "corner_end_recess_m": 0.1,
+      "wall_collision": "Original stone contact boundary preserved",
+      "wall_planes": [
+        {
+          "name": "Mortar_window_0",
+          "nominal_front": [
+            -27.5,
+            -10.0,
+            -9.550000190734863
+          ],
+          "front_normal": [
+            0.0,
+            0.0,
+            1.0
+          ],
+          "wall_start": [
+            -27.5,
+            -10.0,
+            -10.0
+          ],
+          "along": [
+            1.0,
+            0.0,
+            -0.0
+          ],
+          "length_m": 13.0,
+          "outside_faced": false
+        },
+        {
+          "name": "Mortar_window_1",
+          "nominal_front": [
+            -14.949999809265137,
+            -10.0,
+            -10.0
+          ],
+          "front_normal": [
+            -1.0,
+            0.0,
+            -0.0
+          ],
+          "wall_start": [
+            -14.5,
+            -10.0,
+            -10.0
+          ],
+          "along": [
+            0.0,
+            0.0,
+            1.0
+          ],
+          "length_m": 8.0,
+          "outside_faced": true
+        },
+        {
+          "name": "Mortar_window_2",
+          "nominal_front": [
+            -14.5,
+            -10.0,
+            -2.450000047683716
+          ],
+          "front_normal": [
+            0.0,
+            -0.0,
+            -1.0
+          ],
+          "wall_start": [
+            -14.5,
+            -10.0,
+            -2.0
+          ],
+          "along": [
+            -1.0,
+            0.0,
+            -0.0
+          ],
+          "length_m": 13.0,
+          "outside_faced": true
+        },
+        {
+          "name": "Mortar_window_3",
+          "nominal_front": [
+            -27.049999237060547,
+            -10.0,
+            -2.0
+          ],
+          "front_normal": [
+            1.0,
+            0.0,
+            -0.0
+          ],
+          "wall_start": [
+            -27.5,
+            -10.0,
+            -2.0
+          ],
+          "along": [
+            0.0,
+            0.0,
+            -1.0
+          ],
+          "length_m": 8.0,
+          "outside_faced": false
+        }
+      ]
+    },
+    "bell": {
+      "source_sha256": "242dd9afd54ca18215bfacabfa940a5fcc3316d0c38d079932bccb6014191ef7",
+      "room": {
+        "floor": -18.0,
+        "height": 12.0,
+        "id": "bell",
+        "points": [
+          [
+            29.0,
+            29.0
+          ],
+          [
+            43.0,
+            29.0
+          ],
+          [
+            46.0,
+            32.0
+          ],
+          [
+            46.0,
+            46.0
+          ],
+          [
+            43.0,
+            49.0
+          ],
+          [
+            27.5,
+            49.0
+          ],
+          [
+            26.0,
+            47.5
+          ],
+          [
+            26.0,
+            32.0
+          ]
+        ]
+      },
+      "walls_file": "walls/bell.glb",
+      "front_recess_m": 0.12,
+      "corner_end_recess_m": 0.1,
+      "wall_collision": "Original stone contact boundary preserved",
+      "wall_planes": [
+        {
+          "name": "Mortar_bell_0",
+          "nominal_front": [
+            29.0,
+            -18.0,
+            29.450000762939453
+          ],
+          "front_normal": [
+            0.0,
+            0.0,
+            1.0
+          ],
+          "wall_start": [
+            29.0,
+            -18.0,
+            29.0
+          ],
+          "along": [
+            1.0,
+            0.0,
+            -0.0
+          ],
+          "length_m": 14.0,
+          "outside_faced": false
+        },
+        {
+          "name": "Mortar_bell_1",
+          "nominal_front": [
+            42.681800842285156,
+            -18.0,
+            29.31819725036621
+          ],
+          "front_normal": [
+            -0.7071068286895752,
+            0.0,
+            0.7071068286895752
+          ],
+          "wall_start": [
+            43.0,
+            -18.0,
+            29.0
+          ],
+          "along": [
+            0.7071068286895752,
+            0.0,
+            0.7071068286895752
+          ],
+          "length_m": 4.242640687119285,
+          "outside_faced": false
+        },
+        {
+          "name": "Mortar_bell_2",
+          "nominal_front": [
+            45.54999923706055,
+            -18.0,
+            32.0
+          ],
+          "front_normal": [
+            -1.0,
+            0.0,
+            -0.0
+          ],
+          "wall_start": [
+            46.0,
+            -18.0,
+            32.0
+          ],
+          "along": [
+            0.0,
+            0.0,
+            1.0
+          ],
+          "length_m": 14.0,
+          "outside_faced": false
+        },
+        {
+          "name": "Mortar_bell_3",
+          "nominal_front": [
+            45.681800842285156,
+            -18.0,
+            45.681800842285156
+          ],
+          "front_normal": [
+            -0.7071068286895752,
+            0.0,
+            -0.7071068286895752
+          ],
+          "wall_start": [
+            46.0,
+            -18.0,
+            46.0
+          ],
+          "along": [
+            -0.7071068286895752,
+            0.0,
+            0.7071068286895752
+          ],
+          "length_m": 4.242640687119285,
+          "outside_faced": false
+        },
+        {
+          "name": "Mortar_bell_4",
+          "nominal_front": [
+            43.0,
+            -18.0,
+            48.54999923706055
+          ],
+          "front_normal": [
+            0.0,
+            -0.0,
+            -1.0
+          ],
+          "wall_start": [
+            43.0,
+            -18.0,
+            49.0
+          ],
+          "along": [
+            -1.0,
+            0.0,
+            -0.0
+          ],
+          "length_m": 15.5,
+          "outside_faced": false
+        },
+        {
+          "name": "Mortar_bell_5",
+          "nominal_front": [
+            27.81819725036621,
+            -18.0,
+            48.681800842285156
+          ],
+          "front_normal": [
+            0.7071068286895752,
+            -0.0,
+            -0.7071068286895752
+          ],
+          "wall_start": [
+            27.5,
+            -18.0,
+            49.0
+          ],
+          "along": [
+            -0.7071068286895752,
+            0.0,
+            -0.7071068286895752
+          ],
+          "length_m": 2.1213203435596424,
+          "outside_faced": false
+        },
+        {
+          "name": "Mortar_bell_6",
+          "nominal_front": [
+            26.450000762939453,
+            -18.0,
+            47.5
+          ],
+          "front_normal": [
+            1.0,
+            0.0,
+            -0.0
+          ],
+          "wall_start": [
+            26.0,
+            -18.0,
+            47.5
+          ],
+          "along": [
+            0.0,
+            0.0,
+            -1.0
+          ],
+          "length_m": 15.5,
+          "outside_faced": false
+        },
+        {
+          "name": "Mortar_bell_7",
+          "nominal_front": [
+            26.31819725036621,
+            -18.0,
+            32.318199157714844
+          ],
+          "front_normal": [
+            0.7071068286895752,
+            0.0,
+            0.7071068286895752
+          ],
+          "wall_start": [
+            26.0,
+            -18.0,
+            32.0
+          ],
+          "along": [
+            0.7071068286895752,
+            0.0,
+            -0.7071068286895752
+          ],
+          "length_m": 4.242640687119285,
+          "outside_faced": false
+        }
+      ]
     }
   },
-  "method": "Native cloister profile; original intrados, 0.24m finite roof-side thickness, closed mitres and connected exact union. No added junction blocks."
+  "method": "Native room cores recessed behind worn stone faces; closed roof-side vault shells; fitted full-mitre stair masonry replaces source visuals, preserving original stone contact collision. No extra junction blocks."
 }

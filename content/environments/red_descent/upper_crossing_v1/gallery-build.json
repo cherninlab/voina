@@ -8,8 +8,8 @@
   "cap_preserved_interior_vertices_before_bonding": 80,
   "bonded_cement_shells": 5,
   "render_objects": 5,
-  "cement_floor_recess_m": 0.06,
-  "cement_floor_thickness_m": 0.28,
+  "cement_floor_recess_m": 0.12,
+  "cement_floor_thickness_m": 0.22,
   "profile": {
     "spring_m": 2.4,
     "rise_m": 1.35,

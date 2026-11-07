@@ -1,0 +1,135 @@
+{
+  "views": [
+    {
+      "camera": [
+        39.5,
+        -4.3,
+        -30.5
+      ],
+      "draw_calls": 938.0,
+      "frame": "first-stair-upper-color.png",
+      "pass": "color",
+      "primitives": 6142617.0,
+      "view": {
+        "direction": [
+          -8.0,
+          -2.2,
+          -9.0
+        ],
+        "eye": [
+          39.5,
+          -4.3,
+          -30.5
+        ],
+        "fov": 90.0,
+        "head_offset_m": 0.0,
+        "name": "first-stair-upper"
+      }
+    },
+    {
+      "camera": [
+        -34.025,
+        -21.2,
+        24.55
+      ],
+      "draw_calls": 792.0,
+      "frame": "second-stair-lower-color.png",
+      "pass": "color",
+      "primitives": 2199134.0,
+      "view": {
+        "direction": [
+          3.025,
+          0.3,
+          3.45
+        ],
+        "eye": [
+          -34.025,
+          -21.2,
+          24.55
+        ],
+        "fov": 90.0,
+        "head_offset_m": 0.0,
+        "name": "second-stair-lower"
+      }
+    },
+    {
+      "camera": [
+        39.0,
+        -4.8,
+        -33.0
+      ],
+      "draw_calls": 139.0,
+      "frame": "first-stair-coping-color.png",
+      "pass": "color",
+      "primitives": 3528845.0,
+      "view": {
+        "direction": [
+          -1.4,
+          -1.2,
+          -3.0
+        ],
+        "eye": [
+          39.0,
+          -4.8,
+          -33.0
+        ],
+        "fov": 65.0,
+        "head_offset_m": 0.0,
+        "name": "first-stair-coping"
+      }
+    },
+    {
+      "camera": [
+        39.0,
+        -4.8,
+        -33.0
+      ],
+      "draw_calls": 138.0,
+      "frame": "first-stair-coping-objects.png",
+      "pass": "objects",
+      "primitives": 3524043.0,
+      "view": {
+        "direction": [
+          -1.4,
+          -1.2,
+          -3.0
+        ],
+        "eye": [
+          39.0,
+          -4.8,
+          -33.0
+        ],
+        "fov": 65.0,
+        "head_offset_m": 0.0,
+        "name": "first-stair-coping"
+      }
+    },
+    {
+      "camera": [
+        39.0,
+        -4.8,
+        -33.0
+      ],
+      "draw_calls": 138.0,
+      "frame": "first-stair-coping-normals.png",
+      "pass": "normals",
+      "primitives": 3524043.0,
+      "view": {
+        "direction": [
+          -1.4,
+          -1.2,
+          -3.0
+        ],
+        "eye": [
+          39.0,
+          -4.8,
+          -33.0
+        ],
+        "fov": 65.0,
+        "head_offset_m": 0.0,
+        "name": "first-stair-coping"
+      }
+    }
+  ],
+  "note": "Diagnostic intermediate: exposed bedding corner before full mitred stone treads; not final game state."
+}

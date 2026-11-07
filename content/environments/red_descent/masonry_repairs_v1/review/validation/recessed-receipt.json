@@ -1,0 +1,72 @@
+{
+  "base_commit": "83781d5fa77a984a7c59f602785c288686f597f3",
+  "assets_and_owning_source_sha256": {
+    "content/environments/red_descent/masonry_repairs_v1/first_stair_hall.glb": "590fd477b8981236ddc07ddff71b62dc217b626c213a1978cc824f626d950dd9",
+    "content/environments/red_descent/masonry_repairs_v1/second_stair_hall.glb": "bca065b414004a5f9555e3d4c0352429545918a254ce429139b0cb91379087a3",
+    "content/environments/red_descent/masonry_repairs_v1/stairs/first_stair_hall.glb": "65e5b1bb8039f7829afaf763c3fcf6c34ad9aba4a336625abab31a6c908b3365",
+    "content/environments/red_descent/masonry_repairs_v1/stairs/second_stair_hall.glb": "797fd280ba0f43b40840e163221a67bf1de7db382b45d78c46ad696b4e2e46da",
+    "content/environments/red_descent/masonry_repairs_v1/stairs/choir.glb": "4beb2a7f4eaaa5a9444a0cfe115972431b679f484bb7fb657478dd62da8e8f25",
+    "content/environments/red_descent/masonry_repairs_v1/walls/entry.glb": "d433818958895832e6090b8fce2854ac0fb6a1de86385343241e0680248d3039",
+    "content/environments/red_descent/masonry_repairs_v1/walls/restraint.glb": "6b4eabbec6765bd64a4267a5405eb757a1172876633108c5a2a3ccc0a5f30c18",
+    "content/environments/red_descent/masonry_repairs_v1/walls/window.glb": "7e7d9485165bc1c4af49584d79fa7048579b503a2e59d2a61c07439187e8c42f",
+    "content/environments/red_descent/masonry_repairs_v1/walls/bones.glb": "a12fe0e9f482ab49723e03d85b9b59b74eab91c4a290b04e3d69427ffb7d4da3",
+    "content/environments/red_descent/masonry_repairs_v1/walls/antechamber.glb": "acccf9c0af8e9f2ac141496fced396177e5e689fd88e5d8e26a692abc2d654fd",
+    "content/environments/red_descent/masonry_repairs_v1/walls/nave.glb": "7b49864fff8ad2263deb4f336a764492c65c6adc77287fcb964a0c80b5088c5e",
+    "content/environments/red_descent/masonry_repairs_v1/walls/first_stair_hall.glb": "7f5836834674101b32eed805c88393790e903b47d66cb75ac2043961045ee599",
+    "content/environments/red_descent/masonry_repairs_v1/walls/cells.glb": "39c5d31658653d01aecf2fa4dd75a1df213a2d066b470125f1faba00183bc60f",
+    "content/environments/red_descent/masonry_repairs_v1/walls/bell.glb": "63e268cfe391b93bff855c22e94ff98d5441585e85c8af90b9ce6feee2d973a1",
+    "content/environments/red_descent/masonry_repairs_v1/walls/chapel.glb": "a269032ec732e8acc6bce7dc6097971feb465c37de6999891d048468d0544035",
+    "content/environments/red_descent/masonry_repairs_v1/walls/second_stair_hall.glb": "edfdc1b19f6c3ed844ba56013828b2cd0021a6f235977d6878e6ef69d36cafd9",
+    "content/environments/red_descent/masonry_repairs_v1/walls/choir.glb": "663b1a05c958ad96eb0152ae03934820364dec2bf52c204a4ff37a930d22ce57",
+    "content/environments/red_descent/masonry_repairs_v1/walls/ossuary.glb": "305bf58f778e1c43877d40d7bce2b19bb1252f201d1d9c13a094690a2acc4cb8",
+    "content/environments/red_descent/upper_crossing_v1/gallery.glb": "996b6943a44887aff9522011e2f4443270b9d85e045dbd784f8e5062be780e82",
+    "gameplay/environment/red_descent_geometry.gd": "f604807f3580572788eb5c82180f21ee7600fc04ce793779e3d1de4fdecab1e8",
+    "scripts/art/build_architecture.py": "35e1848718b7a105cd01c293ba12f800ed46dd79a7132780c5238c3f578e0058",
+    "scripts/art/build_masonry_repairs.py": "a50db5c0aa280bf12d01c908f52941f3447fe8f62126170bfaf2ebb87edeffac",
+    "scripts/art/procgen/masonry.py": "097dc95c9a5179514b7a1532a2c63e3ce289a76a14cdb15a961a45942973f3ac",
+    "scripts/art/procgen/vault.py": "4d5fe717501da00f70460565f3e6b093770799c10ae453e04460e61fcbd75e0f"
+  },
+  "captures": {
+    "angles": 11,
+    "passes": [
+      "color",
+      "albedo",
+      "objects",
+      "normals",
+      "collision"
+    ],
+    "four_k": {
+      "file": "review/recessed/stair-wide-4k.png",
+      "size": [
+        3840,
+        2160
+      ],
+      "fov": 95,
+      "eye": [
+        39,
+        -4.8,
+        -33
+      ],
+      "target": [
+        37.6,
+        -6,
+        -36
+      ]
+    },
+    "method": "Actual Godot4.7.2 Mobile/Metal, unfocused wrapper, dummy audio; unretouched files. Actors hidden for55 diagnostic captures;4K uses live scene."
+  },
+  "checks": {
+    "editor": "pass, no ERROR output",
+    "exported_meshes": "pass;91 recessed closed wall cores,3 closed fitted stair assemblies,2 connected closed vault shells; gallery topology and preserved source collision pass",
+    "runtime": "195/195 vault rays;13 room repairs and3 fitted stairs loaded; original stone stair-contact collision unchanged; stale route/room rejected",
+    "structure": "269/270 gallery cement and480/480 relief rays",
+    "traversal": "1235m actual capsule walk pass",
+    "core": "isolated complete suite PASS, including NET_SMOKE60/s; previous run failed with1/s client startup snapshots, retained receipt. No network code changed."
+  },
+  "limits": [
+    "Debug passes omit shader peeling/displacement.",
+    "Bounded intersection samples are not exhaustive.",
+    "Known exit warnings:1 ObjectDB and7 texture RIDs during windowed capture.",
+    "Broader art, human camera/input and two-Mac Tailscale acceptance remain separate."
+  ]
+}

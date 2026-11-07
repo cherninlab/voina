@@ -33,6 +33,7 @@ var stone_passages: Array[Dictionary] = []
 ## Bays and portals built in stone: centre (x, y, z) and plan radius.
 var stone_nodes: Array[Vector4] = []
 var relief_walls: PackedInt32Array = PackedInt32Array()
+var bonded_gallery: bool = false
 var cube_faces: PackedVector3Array = BoxMesh.new().get_faces()
 var fort_source: Node3D
 
@@ -120,17 +121,21 @@ func mortar_material() -> StandardMaterial3D:
 		materials["cement"] = cement
 	return materials["cement"] as StandardMaterial3D
 
-## Replace the two legacy open vault sheets and their matching collision.
+## Recess room cores and replace legacy stair/vault assemblies and collision.
 ## A stale source or layout keeps the original asset instead of hiding it.
 func repair_room_backing(built: Node3D, room: Dictionary, source: String) -> void:
 	var id: String = String(room["id"])
-	if id not in ["first_stair_hall", "second_stair_hall"]:
-		return
 	var report: Dictionary = JSON.parse_string(FileAccess.get_file_as_string(MASONRY_REPAIRS + "build.json")) as Dictionary
 	var entry: Dictionary = (report.get("rooms", {}) as Dictionary).get(id, {}) as Dictionary
-	if entry.is_empty() or String(entry.get("source_sha256", "")) != FileAccess.get_sha256(source):
+	if entry.is_empty():
+		return
+	if String(entry.get("source_sha256", "")) != FileAccess.get_sha256(source):
 		push_warning("Stale masonry backing source: " + id)
 		return
+	for path: Dictionary in paths:
+		if (report.get("routes", {}) as Dictionary).get(String(path["id"]), "") != DungeonStructure.layout_hash(path, route_edges(path)):
+			push_warning("Stale masonry backing route: " + id)
+			return
 	var expected: Dictionary = entry["room"] as Dictionary
 	var polygon: PackedVector2Array = PackedVector2Array()
 	for point: Array in expected["points"] as Array:
@@ -138,33 +143,57 @@ func repair_room_backing(built: Node3D, room: Dictionary, source: String) -> voi
 	if polygon != (room["points"] as PackedVector2Array) or float(expected["floor"]) != float(room["floor"]) or float(expected["height"]) != float(room["height"]):
 		push_warning("Stale masonry backing room: " + id)
 		return
-	if not ResourceLoader.exists(MASONRY_REPAIRS + String(entry["file"])):
-		push_warning("Missing masonry backing asset: " + id)
-		return
-	var repaired: Node3D = (load(MASONRY_REPAIRS + String(entry["file"])) as PackedScene).instantiate() as Node3D
-	var replacement: MeshInstance3D = repaired.find_children("*", "MeshInstance3D", true, false)[0] as MeshInstance3D
-	var name: String = String(entry["replace_mortar"])
-	var old: MeshInstance3D = built.get_node_or_null(name) as MeshInstance3D
-	var collision_name: String = name.replace("Mortar_", "Collision_")
-	var bodies: Array[Node] = built.find_children(collision_name + "*", "StaticBody3D", true, false)
-	if old == null or bodies.size() != 1:
+	if entry.has("walls_file") and ResourceLoader.exists(MASONRY_REPAIRS + String(entry["walls_file"])):
+		var walls: Node3D = (load(MASONRY_REPAIRS + String(entry["walls_file"])) as PackedScene).instantiate() as Node3D
+		for node: Node in walls.find_children("Mortar*", "MeshInstance3D", true, false):
+			var inset: MeshInstance3D = node as MeshInstance3D
+			var original: MeshInstance3D = built.get_node_or_null(NodePath(String(inset.name))) as MeshInstance3D
+			if original != null:
+				original.mesh = inset.mesh
+				original.transform = inset.transform
+		# Wall collision still represents contact with the stone facing.
+		# The visible cement is recessed behind that contact surface.
+		walls.free()
+		built.set_meta("recessed_wall_backing", true)
+	if entry.has("file"):
+		if not ResourceLoader.exists(MASONRY_REPAIRS + String(entry["file"])):
+			push_warning("Missing masonry backing asset: " + id)
+			return
+		var repaired: Node3D = (load(MASONRY_REPAIRS + String(entry["file"])) as PackedScene).instantiate() as Node3D
+		var replacement: MeshInstance3D = repaired.find_children("*", "MeshInstance3D", true, false)[0] as MeshInstance3D
+		var name: String = String(entry["replace_mortar"])
+		var old: MeshInstance3D = built.get_node_or_null(name) as MeshInstance3D
+		var collision_name: String = name.replace("Mortar_", "Collision_")
+		var bodies: Array[Node] = built.find_children(collision_name + "*", "StaticBody3D", true, false)
+		if old == null or bodies.size() != 1:
+			repaired.free()
+			push_warning("Masonry backing node mismatch: " + id)
+			return
+		old.mesh = replacement.mesh
+		old.transform = replacement.transform
+		bodies[0].free()
+		var body: StaticBody3D = StaticBody3D.new()
+		body.name = collision_name
+		body.transform = replacement.transform
+		var shape: ConcavePolygonShape3D = ConcavePolygonShape3D.new()
+		shape.set_faces(replacement.mesh.get_faces())
+		var collider: CollisionShape3D = CollisionShape3D.new()
+		collider.shape = shape
+		body.add_child(collider)
+		built.add_child(body)
+		built.set_meta("closed_backing", true)
 		repaired.free()
-		push_warning("Masonry backing node mismatch: " + id)
-		return
-	old.mesh = replacement.mesh
-	old.transform = replacement.transform
-	bodies[0].free()
-	var body: StaticBody3D = StaticBody3D.new()
-	body.name = collision_name
-	body.transform = replacement.transform
-	var shape: ConcavePolygonShape3D = ConcavePolygonShape3D.new()
-	shape.set_faces(replacement.mesh.get_faces())
-	var collider: CollisionShape3D = CollisionShape3D.new()
-	collider.shape = shape
-	body.add_child(collider)
-	built.add_child(body)
-	built.set_meta("closed_backing", true)
-	repaired.free()
+	if entry.has("stairs_file") and ResourceLoader.exists(MASONRY_REPAIRS + String(entry["stairs_file"])):
+		var stairs: Node3D = (load(MASONRY_REPAIRS + String(entry["stairs_file"])) as PackedScene).instantiate() as Node3D
+		var suffix: String = "_" + str(int(entry["replace_stair_group"]))
+		for child: Node in built.get_children():
+			if String(child.name).ends_with(suffix) and (child.name.begins_with("Stone") or child.name.begins_with("Mortar")):
+				child.free()
+		stairs.name = "FittedStairMasonry"
+		built.add_child(stairs)
+		# Preserve contact with the stone walking surface. Recessed visible
+		# cement must not create a second floor below the smooth route ribbon.
+		built.set_meta("fitted_stairs", true)
 
 func piece(size: Vector3, at: Vector3, material: String, basis: Basis = Basis.IDENTITY, solid: bool = false, color: Color = Color.WHITE) -> void:
 	if material == "collision":
@@ -317,6 +346,7 @@ func load_stone_passages() -> void:
 			var matches_source: bool = not FileAccess.file_exists(asset) or FileAccess.get_sha256(asset) == String(build.get("source_sha256", ""))
 			if matches_source and build.get("source_routes", {}) == file["routes"]:
 				asset = UPPER_CROSSING + "gallery.glb"
+				bonded_gallery = true
 			else:
 				push_warning("Upper gallery exterior is stale; rerun scripts/art/build_upper_crossing.py")
 		var built: Node3D = (load(asset) as PackedScene).instantiate() as Node3D
@@ -832,7 +862,7 @@ func build_path(path: Dictionary, light_route: bool) -> void:
 				var edge_b: Vector3 = edges[index].lerp(edges[index + 1], float(step + 1) / float(steps))
 				ribbon_top(a - edge_a, a + edge_a, b - edge_b, "collision" if sculpted_deck or stone_walk else material)
 				ribbon_top(a + edge_a, b + edge_b, b - edge_b, "collision" if sculpted_deck or stone_walk else material)
-				if stone_walk:
+				if stone_walk and not stone_raised(at) and not (bonded_gallery and String(path["id"]) == "return_gallery"):
 					paving_bed(a - edge_a, a + edge_a, b - edge_b)
 					paving_bed(a + edge_a, b + edge_b, b - edge_b)
 				if not sculpted_deck and not stone_walk:
@@ -864,7 +894,7 @@ func build_path(path: Dictionary, light_route: bool) -> void:
 ## Recessed solid bedding across the same mitred ribbon as the real paving.
 ## The original smooth walking triangles above it remain authoritative.
 func paving_bed(a: Vector3, b: Vector3, c: Vector3) -> void:
-	var recess: Vector3 = Vector3.DOWN * 0.04
+	var recess: Vector3 = Vector3.DOWN * 0.12
 	var depth: Vector3 = Vector3.DOWN * 0.28
 	var top: PackedVector3Array = PackedVector3Array([a + recess, b + recess, c + recess])
 	if (b - a).cross(c - a).y < 0.0:

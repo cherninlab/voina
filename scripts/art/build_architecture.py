@@ -576,7 +576,8 @@ def merge(label: str, groups: dict, rng) -> list:
             if kind.startswith('Stone'):
                 for obj in objects:
                     map_stone(obj, rng)
-            bpy.ops.object.join()
+            if len(objects) > 1:
+                bpy.ops.object.join()
             joined = bpy.context.view_layer.objects.active
             joined.name = f'{kind}_{label}_{number}'
             merged.append(joined)
@@ -644,10 +645,11 @@ def stair_bodies(room: dict, layout: dict, rng, lib) -> list:
     inner = outset(ccw(outline), -THICKNESS * 0.5)
     up = Vector((0.0, 0.0, 1.0))
 
-    def kept(objects, planes):
+    def kept(objects, planes, recess_top=False):
         result = []
         for obj in objects:
-            if all(masonry.clip(obj, point, normal) for point, normal in planes):
+            trims = [(point - normal * 0.002 if obj.get('tone', 1) >= 0 else point - up * 0.12 if recess_top and normal.z > 0.3 else point, normal) for point, normal in planes]
+            if all(masonry.clip(obj, point, normal) for point, normal in trims):
                 result.append(obj)
             else:
                 core.discard(obj)
@@ -705,18 +707,43 @@ def stair_bodies(room: dict, layout: dict, rng, lib) -> list:
             # The body: mortar from the floor to just under the walk, out to the wall where it is near.
             width = 2.0 * half + reach[1.0] + reach[-1.0]
             centre_shift = (reach[1.0] - reach[-1.0]) * 0.5
-            low = min(p[1], q[1])
-            body = masonry.Wall(width, max(p[1], q[1]) - floor + 0.2, run + 0.02, recess=0.0).core(name + '_body')
-            origin = Vector((a2.x, a2.y, floor)) + side * (centre_shift - width * 0.5) - d * 0.01
-            # Wall-local x runs across (side), y up, z out = side x up = -d: the block runs along -z, i.e. +d.
-            masonry.place([body], origin, side, up)
-            parts += kept([body], [(Vector((a2.x, a2.y, p[1] - 0.03)), surface)] + mitres)
+            # Cover the outside of each mitred turn, not only the centreline
+            # interval. Clipping a short rectangle leaves a triangular void.
+            start_s, end_s = 0.0, run
+            for point, normal in mitres:
+                nd = normal.dot(d)
+                if abs(nd) < 1e-6:
+                    continue
+                limits = [(-normal.dot(Vector((a2.x, a2.y, 0.0)) - point) - normal.dot(side) * x) / nd
+                          for x in (-half - reach[-1.0], half + reach[1.0])]
+                if nd < 0:
+                    start_s = min(start_s, min(limits))
+                else:
+                    end_s = max(end_s, max(limits))
+            # Outside a turn, both flights meet at the shared node level.
+            # Continuing their gradients beyond the node separates the two
+            # halves of the landing and exposes the core at their seam.
+            for begin, end, normal, level in (
+                    (start_s, 0.0, up, p[1]),
+                    (0.0, run, surface, p[1]),
+                    (run, end_s, up, q[1])):
+                if end - begin < 0.001:
+                    continue
+                height = max(p[1], q[1]) - floor + 0.2
+                body = masonry.Wall(width, height, end - begin + 0.002, recess=0.0).core(name + '_body')
+                origin = Vector((a2.x, a2.y, floor)) + side * (centre_shift - width * 0.5) + d * (begin - 0.001)
+                masonry.place([body], origin, side, up)
+                top = Vector((a2.x, a2.y, level - 0.12)) + (d * begin if normal == up else Vector())
+                parts += kept([body], [(top, normal)] + mitres)
             # Treads (sloped) or paving (level), across the walk and out to the wall.
             step = 0.34 if abs(slope) > 0.06 else rng.uniform(0.5, 0.8)
-            s = 0.0
-            while run - s > 0.05:
-                depth = min(step if abs(slope) > 0.06 else rng.uniform(0.45, 0.85), run - s)
-                top = p[1] + slope * (s + depth if slope > 0 else s) + 0.02
+            s = start_s
+            while end_s - s > 0.05:
+                depth = min(step if abs(slope) > 0.06 else rng.uniform(0.45, 0.85), end_s - s)
+                for boundary in (0.0, run):
+                    if s < boundary < s + depth:
+                        depth = boundary - s
+                top = p[1] + slope * max(0.0, min(run, s + depth if slope > 0 else s)) + 0.02
                 x = -half - reach[-1.0]
                 while width - (x + half + reach[-1.0]) > 0.05:
                     length = rng.uniform(0.7, 1.5)
@@ -738,44 +765,64 @@ def stair_bodies(room: dict, layout: dict, rng, lib) -> list:
                 outward = side * sign
                 o2 = Vector((outward.x, outward.y))
                 # Where another walk takes over this edge (a corridor arriving, the
-                # next flight), the face and parapet stop: only the longest stretch
-                # of the edge no other walk covers is built.
-                free, best, current = [], (0.0, 0.0), None
-                steps = max(2, int(run / 0.2))
+                # next flight), the face and parapet stop; every exposed stretch
+                # of the edge no other walk covers is faced.
+                free, current = [], None
+                steps = max(2, int((end_s - start_s) / 0.2))
                 for k in range(steps + 1):
-                    sk = run * k / steps
+                    sk = start_s + (end_s - start_s) * k / steps
                     level = p[1] + slope * sk
                     other = ribbon_level(layout, a2 + (b2 - a2) * (k / steps) + o2 * (half - 0.2), ignore=(route['id'], i))
                     covered = other is not None and abs(other - level) < 1.5
                     if not covered and current is None:
                         current = sk
                     if (covered or k == steps) and current is not None:
-                        end = sk if covered else run
-                        if end - current > best[1] - best[0]:
-                            best = (current, end)
+                        end = sk if covered else end_s
+                        free.append((current, end))
                         current = None
-                s0, s1 = best
-                if s1 - s0 < 0.4:
+                for s0, s1 in free:
+                    if s1 - s0 < 0.4:
+                        continue
+                    span = s1 - s0
+                    edge_a = Vector((a2.x, a2.y, 0.0)) + d * s0 + outward * (half + 0.03)
+                    probe = a2 + (b2 - a2) * ((s0 + s1) * 0.5 / run) + o2 * (half + 0.5)
+                    beside = ribbon_level(layout, probe, ignore=(route['id'], i))
+                    parapet = p[1] + slope * (s0 + s1) * 0.5 - (beside if beside is not None else floor) > 1.0
+                    rise = 1.0 if parapet else 0.0
+                    height = max(p[1], q[1]) - floor + rise + 0.05
+                    along = up.cross(outward)
+                    start = edge_a if along.dot(d) >= 0 else edge_a + d * span
+                    # The inner face is 0.43m behind the outer one. Recess
+                    # the core from that face too, instead of burying it.
+                    face = masonry.Wall(span, height, 0.31 if parapet else 0.3).build(lib, rng, name=f'{name}_face{int(sign)}', core=parapet)
+                    masonry.place(face, Vector((start.x, start.y, floor)), along, up)
+                    parts += kept(face, [(Vector((a2.x, a2.y, p[1] + rise)) + outward * half, surface)] + mitres, recess_top=True)
+                    if parapet:
+                        along = up.cross(-outward)
+                        start = edge_a - outward * 0.43
+                        start = start if along.dot(d) >= 0 else start + d * span
+                        back = masonry.Wall(span, height, 0.2).build(lib, rng, name=f'{name}_parapet{int(sign)}', core=False, dress=False)
+                        masonry.place(back, Vector((start.x, start.y, floor)), along, up)
+                        parts += kept(back, [(Vector((a2.x, a2.y, p[1])), -surface), (Vector((a2.x, a2.y, p[1] + rise)), surface)] + mitres)
+            for endpoint, node, outward, neighbour in (
+                    (0, a2, -d, i - 1), (1, b2, d, i + 2)):
+                if 0 <= neighbour < len(points) and contains(outline, flat((points[neighbour][0], points[neighbour][2]))):
                     continue
-                span = s1 - s0
-                edge_a = Vector((a2.x, a2.y, 0.0)) + d * s0 + outward * (half + 0.03)
-                probe = a2 + (b2 - a2) * ((s0 + s1) * 0.5 / run) + o2 * (half + 0.5)
-                beside = ribbon_level(layout, probe, ignore=(route['id'], i))
-                parapet = p[1] + slope * (s0 + s1) * 0.5 - (beside if beside is not None else floor) > 1.0
-                rise = 1.0 if parapet else 0.0
-                height = max(p[1], q[1]) - floor + rise + 0.05
-                along = up.cross(outward)
-                start = edge_a if along.dot(d) >= 0 else edge_a + d * span
-                face = masonry.Wall(span, height, 0.4 if parapet else 0.3).build(lib, rng, name=f'{name}_face{int(sign)}', core=parapet)
-                masonry.place(face, Vector((start.x, start.y, floor)), along, up)
-                parts += kept(face, [(Vector((a2.x, a2.y, p[1] + rise)) + outward * half, surface)])
-                if parapet:
-                    along = up.cross(-outward)
-                    start = edge_a - outward * 0.43
-                    start = start if along.dot(d) >= 0 else start + d * span
-                    back = masonry.Wall(span, height, 0.2).build(lib, rng, name=f'{name}_parapet{int(sign)}', core=False, dress=False)
-                    masonry.place(back, Vector((start.x, start.y, floor)), along, up)
-                    parts += kept(back, [(Vector((a2.x, a2.y, p[1])), -surface), (Vector((a2.x, a2.y, p[1] + rise)), surface)])
+                level = p[1] if endpoint == 0 else q[1]
+                if level - floor < 0.25:
+                    continue
+                plane = next(((point, normal) for point, normal in mitres if normal.dot(outward) > 0.5),
+                             (Vector((node.x, node.y, 0.0)), outward))
+                along = up.cross(plane[1]).normalized()
+                span = width * 2.0 + 2.0
+                cap = masonry.Wall(span, max(p[1], q[1]) - floor + 0.05, 0.26).build(
+                    lib, rng, name=f'{name}_return{endpoint}', core=False, dress=False)
+                base = Vector((node.x, node.y, floor)) - along * span * 0.5 + plane[1] * 0.025
+                masonry.place(cap, base, along, up)
+                left = Vector((a2.x, a2.y, 0.0)) - side * (half + reach[-1.0])
+                right = Vector((a2.x, a2.y, 0.0)) + side * (half + reach[1.0])
+                parts += kept(cap, [(left, -side), (right, side),
+                                    (Vector((a2.x, a2.y, p[1] - 0.03)), surface)])
     return parts
 
 

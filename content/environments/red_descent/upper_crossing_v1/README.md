@@ -1,5 +1,7 @@
 # Upper crossing, first in-game iteration
 
+Current state: the inferred-rock overlay and the later bridge bearing/socket patch blocks were removed in83781d5. The historical iterations below document their provenance, not current placement. Native shaft relief, arches and piers remain. The current cement-recess/stair work is documented in `../masonry_repairs_v1/README.md`.
+
 The gallery exterior now follows its barrel vault instead of exposing a flat mortar slab. New roofing stones cover the curved crown. The existing gallery interior, paving, and five collision meshes come from the original asset. The build checks their protected mortar vertices and collision vertex positions.
 
 A locally reconstructed rock abutment breaks up the shaft wall beside the restraint hall. Its visual mesh is cut away from room interiors and walking ribbons with a 0.9 m lateral margin. It adds no collision. Existing shaft walls provide its backing.

@@ -73,7 +73,7 @@ class Opening:
 
 class Wall:
     def __init__(self, length: float, height: float, thickness: float = 0.9, openings=(), course=(0.2, 0.44),
-                 stone=(0.3, 0.95), joint=(0.006, 0.016), proud=(-0.006, 0.018), recess=0.034, ring=0.4,
+                 stone=(0.3, 0.95), joint=(0.006, 0.016), proud=(-0.006, 0.018), recess=0.12, ring=0.4,
                  bow: float = 0.0, lean: float = 0.0, wave: float = 0.0, plinth: bool = False, cornice: bool = False,
                  thresholds: bool = False):
         """`bow` (m) bulges the face out towards its middle, `lean` (m per m)
@@ -84,7 +84,7 @@ class Wall:
         self.length, self.height, self.thickness = length, height, thickness
         self.openings = list(openings)
         self.course, self.stone, self.joint, self.proud = course, stone, joint, proud
-        self.recess, self.ring = recess, ring
+        self.recess, self.ring = min(recess, thickness * 0.4), ring
         self.bow, self.lean, self.wave = bow, lean, wave
         self.plinth, self.cornice, self.thresholds = plinth, cornice, thresholds
         self.lacing = None  # a thin-slab library: rows under 16 cm are laid from it
@@ -276,16 +276,16 @@ class Wall:
         bm = bmesh.new()
         bmesh.ops.create_cube(bm, size=1.0)
         bmesh.ops.scale(bm, vec=(self.length, self.height, self.thickness - self.recess), verts=bm.verts)
-        bmesh.ops.translate(bm, vec=(self.length * 0.5, self.height * 0.5, -(self.thickness + self.recess) * 0.5), verts=bm.verts)
+        bmesh.ops.translate(bm, vec=(self.length * 0.5, self.height * 0.5 - min(self.recess, self.height * 0.25), -(self.thickness + self.recess) * 0.5), verts=bm.verts)
         mesh = bpy.data.meshes.new(f'{name}_core')
         bm.to_mesh(mesh)
         bm.free()
         obj = core.link(bpy.data.objects.new(f'{name}_core', mesh))
         obj['tone'] = -1.0
         for number, o in enumerate(self.openings):
-            # The hole stands back by the recess too, so the reveal and soffit
-            # show the jamb stones and voussoirs, not the mortar behind them.
-            r = self.recess
+            # Keep the original opening allowance separate from the deeper face
+            # setback, so door clearance does not change with mortar style.
+            r = min(self.recess, 0.034)
             o = Opening(o.x0 - r, o.x1 + r, sill=o.sill - r if o.sill > 0 else o.sill, spring=o.spring,
                         rise=o.crown - o.spring + r)
             cutter = bpy.data.meshes.new('cut')

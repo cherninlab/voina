@@ -19,7 +19,12 @@ func capture() -> void:
 	camera.fov = 106.0
 	camera.near = 0.05
 	viewport.add_child(camera)
-	camera.look_at(camera.position + Vector3(0.67, -0.54, 0.51))
+	if "--stair-coping" in OS.get_cmdline_user_args():
+		camera.position = Vector3(39, -4.8, -33)
+		camera.fov = 95.0
+		camera.look_at(Vector3(37.6, -6, -36))
+	else:
+		camera.look_at(camera.position + Vector3(0.67, -0.54, 0.51))
 	camera.make_current()
 	for frame: int in range(26):
 		await process_frame
