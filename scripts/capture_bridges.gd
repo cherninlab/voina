@@ -31,9 +31,12 @@ func _initialize() -> void:
 func capture() -> void:
 	var directory: String = "/tmp/red-descent-bridges"
 	var tour: bool = "--tour" in OS.get_cmdline_user_args()
+	var selected: PackedStringArray = PackedStringArray()
 	for argument: String in OS.get_cmdline_user_args():
 		if argument.begins_with("--capture-dir="):
 			directory = argument.trim_prefix("--capture-dir=")
+		if argument.begins_with("--capture-views="):
+			selected = argument.trim_prefix("--capture-views=").split(",")
 	DirAccess.make_dir_recursive_absolute(directory)
 	root.size = Vector2i(1600, 1000) if tour else Vector2i(1440, 900)
 	var world: Node3D = load("res://gameplay/match_world.tscn").instantiate() as Node3D
@@ -57,6 +60,8 @@ func capture() -> void:
 		for view: Array in VIEWS:
 			views.append([view[0], RedDescentLayout.at(view[1] as Vector3), RedDescentLayout.at(view[2] as Vector3), view[3]])
 	for view: Array in views:
+		if not selected.is_empty() and not selected.has(String(view[0])):
+			continue
 		camera.fov = float(view[3])
 		camera.position = view[1] as Vector3
 		camera.look_at(view[2] as Vector3)

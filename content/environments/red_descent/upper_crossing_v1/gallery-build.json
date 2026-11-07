@@ -5,16 +5,20 @@
   },
   "collision_meshes": 5,
   "collision_vertex_coordinates_unchanged": true,
-  "protected_mortar_vertices_unchanged": 80,
+  "cap_preserved_interior_vertices_before_bonding": 80,
+  "bonded_cement_shells": 5,
+  "render_objects": 5,
+  "cement_floor_recess_m": 0.06,
+  "cement_floor_thickness_m": 0.28,
   "profile": {
     "spring_m": 2.4,
     "rise_m": 1.35,
     "intrados_radius_m": 2.467592592592593
   },
   "roof_stones": 695,
-  "exterior_facing_stones": 986,
+  "exterior_facing_stones": 985,
   "roof_and_facing_mitres": "authoritative run_planes from the source passage network",
   "roof_bond": "alternating half-stone circumferential offsets",
   "roof_triangles": 76324,
-  "operation": "Preserve the original collision and interior; round the exterior mortar and add stone roofing."
+  "operation": "Preserve source collision and visible stone faces; cap hidden backs, rebuild connected cement and bond each section."
 }

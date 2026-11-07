@@ -535,7 +535,28 @@ func stone_materials(built: Node3D) -> void:
 		materials["built_stone"] = mapped
 	for node: Node in built.find_children("*", "MeshInstance3D", true, false):
 		var visual: MeshInstance3D = node as MeshInstance3D
-		if visual.name.begins_with("Stone"):
+		if visual.name.begins_with("BondedGallery"):
+			if not materials.has("gallery_cement"):
+				var cement: ShaderMaterial = (materials["built_stone"] as ShaderMaterial).duplicate() as ShaderMaterial
+				cement.set_shader_parameter("mapped", false)
+				cement.set_shader_parameter("tint", Vector3(0.55, 0.54, 0.5))
+				cement.set_shader_parameter("normal_strength", 0.15)
+				cement.set_shader_parameter("wetness", 0.25)
+				cement.set_shader_parameter("dry_roughness_min", 0.9)
+				cement.set_shader_parameter("scale", 2.0)
+				materials["gallery_cement"] = cement
+			for surface: int in range(visual.mesh.get_surface_count()):
+				var source: Material = visual.mesh.surface_get_material(surface)
+				var is_cement: bool = source != null and source.resource_name.begins_with("GalleryMortar")
+				visual.set_surface_override_material(surface, materials["gallery_cement"] if is_cement else stone_face("stone"))
+				if is_cement:
+					var arrays: Array = visual.mesh.surface_get_arrays(surface)
+					var vertices: PackedVector3Array = arrays[Mesh.ARRAY_VERTEX] as PackedVector3Array
+					var indices: PackedInt32Array = arrays[Mesh.ARRAY_INDEX] as PackedInt32Array
+					var transform: Transform3D = visual.transform
+					for index: int in indices:
+						collision_faces.append(transform * vertices[index])
+		elif visual.name.begins_with("Stone"):
 			# "Stone-<kind>_...": each stone kind wears its own face (T-182 shapes, T-183 faces).
 			var kind: String = visual.name.get_slice("_", 0).trim_prefix("Stone-") if visual.name.begins_with("Stone-") else "stone"
 			visual.material_override = stone_face(kind)
@@ -794,14 +815,25 @@ func build_path(path: Dictionary, light_route: bool) -> void:
 					torch_posts.append(at + side * (width * 0.5 - (0.65 if stone_walk else 0.35)))
 					since_light = 0.0
 
-## Recessed mortar across the same mitred ribbon as the real paving. Visual
-## only: the smooth walking collision above it remains authoritative.
+## Recessed solid bedding across the same mitred ribbon as the real paving.
+## The original smooth walking triangles above it remain authoritative.
 func paving_bed(a: Vector3, b: Vector3, c: Vector3) -> void:
 	var recess: Vector3 = Vector3.DOWN * 0.04
+	var depth: Vector3 = Vector3.DOWN * 0.28
+	var top: PackedVector3Array = PackedVector3Array([a + recess, b + recess, c + recess])
 	if (b - a).cross(c - a).y < 0.0:
-		face(a + recess, c + recess, b + recess, "mortar_bedding", false)
-	else:
-		face(a + recess, b + recess, c + recess, "mortar_bedding", false)
+		top = PackedVector3Array([a + recess, c + recess, b + recess])
+	# A closed triangular prism follows the exact sloped walking ribbon.
+	# The original smooth walk remains above it; the underside and reveals
+	# now block both light leaks and camera/head rays from below.
+	face(top[0], top[1], top[2], "mortar_bedding")
+	face(top[0] + depth, top[2] + depth, top[1] + depth, "mortar_bedding")
+	for index: int in range(3):
+		var next: int = (index + 1) % 3
+		var outward: Vector3 = (top[next] - top[index]).cross(Vector3.UP).normalized()
+		quad(top[index], top[index] + depth, top[next] + depth, top[next], outward, "mortar_bedding")
+		face(top[index], top[index] + depth, top[next] + depth, "collision")
+		face(top[index], top[next] + depth, top[next], "collision")
 
 ## Keep the original walking triangles; only trim flat route visuals at room thresholds.
 func ribbon_top(a: Vector3, b: Vector3, c: Vector3, material: String) -> void:

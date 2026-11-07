@@ -93,3 +93,11 @@ Four east-shaft edges now have closed, sculpted relief solids rather than thin t
 Rock clearances now follow the arched passage envelope, retain floor bearing and use actual room roof heights. Two detached reconstruction fragments were removed. New mortar caps receive a grey vertex colour so a closed shoulder does not render as a black slit.
 
 `review/check_structure.gd` checks 480 render/collision ray samples, current loading and stale route/room rejection. Full core smoke and 1,235 m traversal pass. Exported relief, plinths, supports and inferred rock all pass the independent topology checks. Seven matched cameras, 56 diagnostic frames and a 4K frame are under `review/iteration4/`. This inspection exposed a separate gallery underside bedding leak, retained in the issue register for the next increment.
+
+## Iteration 5 — bonded gallery cement
+
+The five gallery sections now export as one render object per section, with separate stone and cement material surfaces. Each cement core is a single connected closed tube around the open passage, including 0.28 m of floor bearing recessed 0.06 m below the paving. End faces follow the authoritative mitres. Older stone backs, deliberately omitted by the source libraries, are capped; the exported gallery has zero boundary/nonmanifold edges and consistent winding. This is a bonded assembly, not a Boolean fusion of every decorative stone.
+
+The five original collision meshes retain their vertex positions; the continuous cement adds matching collision. Runtime paving bedding is also a closed sloped prism. Checks cover 270 cement and 480 shaft-relief surface/collision rays, current/stale asset guards, core smoke and 1,235 m of capsule walking.
+
+`review/iteration5/bonded/` holds three matched actual-game captures. `review/iteration5/compare.html` compares the exact underside camera before/after without image retouching. The reported slit region had 63 bright pixels before and zero after, with fixed camera/exposure. This is a regression check for that seam, not proof that every map seam is repaired. Other camera files under local `iteration5/after/` were an intermediate bedding-only experiment and are not the bonded result.

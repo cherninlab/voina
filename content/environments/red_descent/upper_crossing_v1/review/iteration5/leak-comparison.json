@@ -1,0 +1,23 @@
+{
+  "camera": "gallery-underside",
+  "region_pixels": [
+    760,
+    380,
+    840,
+    420
+  ],
+  "threshold": "all RGB channels > 200",
+  "before_bright_pixels": 63,
+  "after_bright_pixels": 0,
+  "before_peak_rgb": [
+    255,
+    255,
+    255
+  ],
+  "after_peak_rgb": [
+    28,
+    28,
+    9
+  ],
+  "scope": "Exact reported slit, fixed camera/exposure; not a map-wide leak proof."
+}

@@ -98,7 +98,8 @@
     {
       "id": 17,
       "issue": "Gallery paving has a single-sided bedding surface; underside inspection shows open joint light leaks",
-      "status": "open"
+      "status": "implemented; reported slit absent in matched engine capture, 5 connected watertight cement cores, 270/270 cement collision rays and 1235 m traversal passed",
+      "iteration": 5
     }
   ]
 }

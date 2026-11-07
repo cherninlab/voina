@@ -3,8 +3,8 @@
 Run in Blender 5.2:
   blender -b --python-exit-code 1 --python scripts/art/build_upper_crossing.py
 
-The gallery keeps the imported interior, paving, and collision meshes. Only
-its exterior mortar is trimmed to the vault profile, then given roof stones.
+The gallery retains the imported stone faces and collision meshes, caps hidden
+backs, and bonds each section around a connected cement core with open doorways.
 """
 import json
 import math
@@ -73,6 +73,127 @@ def cap_mass(obj, centre, side, radius, spring_angle):
     return len(protected)
 
 
+def rebuild_cement(target, profile, origin, direction, side, start, end, planes):
+    """One connected cement tube with an open passage and a recessed solid floor.
+
+    End vertices are solved directly on the source mitre planes. No capping
+    operation may accidentally fill the doorway or leave two touching shells.
+    """
+    recess = 0.034
+    hole = masonry.Opening(-profile.half - recess, profile.half + recess, spring=profile.spring,
+                           rise=profile.crown - profile.spring + recess)
+    half = profile.half + 0.94 - recess
+    outer_radius = profile.radius + 0.52
+    corner = profile.cy + (outer_radius - half * math.cos(profile.a0)) / math.sin(profile.a0)
+    outer = [(-half, -0.34), (half, -0.34), (half, corner)]
+    outer += [(outer_radius * math.cos(t), profile.cy + outer_radius * math.sin(t)) for t in [profile.a0 + (math.pi - 2 * profile.a0) * k / 22 for k in range(23)]]
+    outer += [(-half, corner)]
+    inner = [(-hole.half, -0.06), (hole.half, -0.06)]
+    inner += [(hole.radius * math.cos(t), hole.cy + hole.radius * math.sin(t)) for t in [hole.a0 + (math.pi - 2 * hole.a0) * k / 24 for k in range(25)]]
+    assert len(inner) == len(outer)
+    n = len(inner)
+    vertices = []
+    for back in (False, True):
+        for contour in (outer, inner):
+            for x, z in contour:
+                offset = side * x + Vector((0, 0, z))
+                low, high = start - 0.05, end + 0.05
+                for point, normal in planes:
+                    denominator = direction.dot(normal)
+                    assert abs(denominator) > 0.01
+                    limit = (point - origin - offset).dot(normal) / denominator
+                    if denominator > 0:
+                        high = min(high, limit)
+                    else:
+                        low = max(low, limit)
+                assert high > low + 0.001, target.name
+                vertices.append(tuple(origin + offset + direction * (high if back else low)))
+    faces = []
+    for k in range(n):
+        j = (k + 1) % n
+        faces += [(k, j, j + 2*n, k + 2*n), (k+n, k+3*n, j+3*n, j+n),
+                  (k, k+n, j+n, j), (k+2*n, j+2*n, j+3*n, k+3*n)]
+    data = bpy.data.meshes.new(target.name + "_solid_cement")
+    data.from_pydata(vertices, [], faces)
+    shell = bmesh.new(); shell.from_mesh(data)
+    bmesh.ops.triangulate(shell, faces=list(shell.faces))
+    bmesh.ops.recalc_face_normals(shell, faces=list(shell.faces))
+    assert all(edge.is_manifold for edge in shell.edges), target.name
+    shell.to_mesh(data); shell.free()
+    data.update()
+    colour = data.color_attributes.new("Color", "FLOAT_COLOR", "CORNER")
+    for item in colour.data:
+        item.color = (0.72, 0.72, 0.72, 1)
+    data.color_attributes.active_color = colour
+    target.data = data
+
+
+def export_bonded_gallery(objects, roof, facing, collisions):
+    """One render object per passage section, with stone and cement surfaces."""
+    stone_material = bpy.data.materials.new("GalleryStone")
+    mortar_material = bpy.data.materials.new("GalleryMortar")
+    groups = []
+    for segment in range(5):
+        original = [obj for obj in objects if obj not in collisions and int(obj.name.rsplit("_", 1)[1]) // 5 == segment]
+        extra = [obj for obj in roof + facing if int(obj.name.rsplit("_", 1)[1]) == segment]
+        groups.append(original + extra)
+    joined = []
+    for segment, pieces in enumerate(groups):
+        for obj in pieces:
+            if not obj.name.startswith("Mortar"):
+                # The legacy interior libraries deliberately omitted hidden
+                # backs. Close them before packaging the bonded wall object.
+                shell = bmesh.new(); shell.from_mesh(obj.data)
+                bmesh.ops.remove_doubles(shell, verts=list(shell.verts), dist=0.000001)
+                boundary = {edge for edge in shell.edges if edge.is_boundary}
+                caps = []
+                # Jagged backs are nonplanar. A generic ngon fill can reuse
+                # visible stone diagonals and create nonmanifold edges. Give
+                # each closed boundary its own hidden centre and triangle fan.
+                while boundary:
+                    edge = next(iter(boundary))
+                    start = current = edge.verts[0]
+                    loop = []
+                    while True:
+                        loop.append(current)
+                        boundary.remove(edge)
+                        current = edge.other_vert(current)
+                        if current == start:
+                            break
+                        choices = [candidate for candidate in current.link_edges if candidate in boundary]
+                        assert len(choices) == 1, (obj.name, "Branched open back")
+                        edge = choices[0]
+                    centre = shell.verts.new(sum((vertex.co for vertex in loop), Vector()) / len(loop))
+                    for index, vertex in enumerate(loop):
+                        caps.append(shell.faces.new((vertex, loop[(index + 1) % len(loop)], centre)))
+                for layer in list(shell.loops.layers.float_color.values()) + list(shell.loops.layers.color.values()):
+                    for face in caps:
+                        for loop in face.loops:
+                            loop[layer] = (0.65, 0.65, 0.65, 1)
+                bmesh.ops.triangulate(shell, faces=list(shell.faces))
+                bmesh.ops.recalc_face_normals(shell, faces=list(shell.faces))
+                assert all(edge.is_manifold for edge in shell.edges), obj.name
+                shell.to_mesh(obj.data); shell.free()
+                obj.data.update(); obj.data.calc_loop_triangles()
+                obj.data.normals_split_custom_set([(0.0, 0.0, 0.0)] * len(obj.data.loops))
+                for face in obj.data.polygons:
+                    face.use_smooth = False
+            material = mortar_material if obj.name.startswith("Mortar") else stone_material
+            obj.data.materials.clear(); obj.data.materials.append(material)
+            for face in obj.data.polygons:
+                face.material_index = 0
+        core.select_only(pieces)
+        bpy.ops.object.join()
+        obj = bpy.context.view_layer.objects.active
+        obj.name = f"BondedGallery_{segment}"
+        joined.append(obj)
+    core.select_only(joined + collisions)
+    bpy.ops.export_scene.gltf(filepath=str(OUT / "gallery.glb"), export_format="GLB", use_selection=True,
+        export_yup=True, export_apply=True, export_texcoords=True, export_normals=True,
+        export_vertex_color="NAME", export_vertex_color_name="Color", export_all_vertex_colors=False,
+        export_materials="EXPORT", export_animations=False, export_extras=True)
+
+
 def gallery():
     core.empty_scene()
     bpy.ops.import_scene.gltf(filepath=str(SOURCE))
@@ -124,6 +245,7 @@ def gallery():
                 )
                 origin = centre + direction * (start + (row + 0.5) * row_width)
                 piece.matrix_world = Matrix.Translation(origin) @ frame @ piece.matrix_world
+                piece["gallery_segment"] = segment
                 piece["tone"] = rng.uniform(0.68, 1.02)
                 piece["frame"] = [*direction, 0.0, 0.0, 1.0, *side]
                 if all(masonry.clip(piece, point, normal) for point, normal in planes):
@@ -135,8 +257,8 @@ def gallery():
         for sign in (-1, 1):
             outward = side * sign
             along_axis = direction if direction.cross(Vector((0, 0, 1))).dot(outward) > 0 else -direction
-            base = a + direction * (start if along_axis.dot(direction) > 0 else end) + outward * (profile.half + 0.94)
-            facing = masonry.Wall(end - start, profile.spring, thickness=0.22, joint=(0.008, 0.014))
+            base = a + direction * (start if along_axis.dot(direction) > 0 else end) + outward * (profile.half + 0.94) - Vector((0, 0, 0.32))
+            facing = masonry.Wall(end - start, profile.spring + 0.32, thickness=0.36, joint=(0.008, 0.014))
             pieces = facing.build(wall_library, rng, name=f"gallery_exterior_{segment}_{sign}", core=False)
             masonry.place(pieces, base, along_axis, Vector((0, 0, 1)))
             for piece in pieces:
@@ -146,11 +268,13 @@ def gallery():
                     radial = side * math.cos(angle) + Vector((0, 0, math.sin(angle)))
                     trim.append((centre + radial * (profile.radius + 0.62), radial))
                 if all(masonry.clip(piece, point, normal) for point, normal in trim):
+                    piece["gallery_segment"] = segment
                     facings.append(piece)
                 else:
                     core.discard(piece)
-    roof = architecture.merge("upper_gallery_roof", {0: roofs}, rng)
-    facing = architecture.merge("gallery_exterior", {0: facings}, rng)
+        rebuild_cement(mass, profile, a, direction, side, start, end, planes)
+    roof = architecture.merge("upper_gallery_roof", {segment: [piece for piece in roofs if piece["gallery_segment"] == segment] for segment in range(5)}, rng)
+    facing = architecture.merge("gallery_exterior", {segment: [piece for piece in facings if piece["gallery_segment"] == segment] for segment in range(5)}, rng)
     # The exterior shares the existing grey limestone, rather than arch sandstone.
     for obj in roof + facing:
         obj.name = obj.name.replace("Stone-arch_", "Stone-stone_")
@@ -169,7 +293,8 @@ def gallery():
         for face in obj.data.polygons:
             face.use_smooth = False
     assert coordinates(collisions) == before, "Original collision changed"
-    export.glb(objects + roof + facing, OUT / "gallery.glb")
+    roof_triangles = sum(sum(len(face.vertices) - 2 for face in obj.data.polygons) for obj in roof)
+    export_bonded_gallery(objects, roof, facing, collisions)
     report = {
         "source_sha256": core.sha256(SOURCE),
         "source_routes": next(entry["routes"] for entry in json.loads(
@@ -177,15 +302,19 @@ def gallery():
         )["files"] if entry["file"] == "passages/return_gallery.glb"),
         "collision_meshes": len(collisions),
         "collision_vertex_coordinates_unchanged": True,
-        "protected_mortar_vertices_unchanged": protected,
+        "cap_preserved_interior_vertices_before_bonding": protected,
+        "bonded_cement_shells": 5,
+        "render_objects": 5,
+        "cement_floor_recess_m": 0.06,
+        "cement_floor_thickness_m": 0.28,
         "profile": {"spring_m": profile.spring, "rise_m": profile.crown - profile.spring,
                     "intrados_radius_m": profile.radius},
         "roof_stones": len(roofs),
         "exterior_facing_stones": len(facings),
         "roof_and_facing_mitres": "authoritative run_planes from the source passage network",
         "roof_bond": "alternating half-stone circumferential offsets",
-        "roof_triangles": sum(sum(len(face.vertices) - 2 for face in obj.data.polygons) for obj in roof),
-        "operation": "Preserve the original collision and interior; round the exterior mortar and add stone roofing.",
+        "roof_triangles": roof_triangles,
+        "operation": "Preserve source collision and visible stone faces; cap hidden backs, rebuild connected cement and bond each section.",
     }
     (OUT / "gallery-build.json").write_text(json.dumps(report, indent=2) + "\n")
     print("UPPER_GALLERY_BUILT", json.dumps(report), flush=True)

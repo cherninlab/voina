@@ -57,18 +57,19 @@ before = collision_vertices(source)
 after = collision_vertices(gallery)
 assert len(before) == 5 and before == after, "Collision geometry changed during export"
 report["gallery_collision"] = {"meshes": len(before), "vertex_positions_unchanged": True}
-roof = {}
+report["gallery"] = topology("gallery.glb")
+cement = {}
 for node in gallery.graph.nodes_geometry:
-    if node.startswith("Stone-stone_upper_gallery_roof") or node.startswith("Mortar_return_gallery") or node.startswith("Stone-stone_gallery_exterior"):
-        transform, name = gallery.graph[node]
-        mesh = gallery.geometry[name].copy()
+    transform, name = gallery.graph[node]
+    mesh = gallery.geometry[name].copy()
+    material = getattr(mesh.visual, "material", None)
+    if getattr(material, "name", "") == "GalleryMortar":
         mesh.merge_vertices(merge_tex=True, merge_norm=True)
-        incident = np.bincount(mesh.edges_unique_inverse)
-        roof[node] = {"triangles": len(mesh.faces), "boundary_edges": int((incident == 1).sum()),
-                      "nonmanifold_edges": int((incident > 2).sum())}
-        assert not (incident == 1).any() and not (incident > 2).any(), roof[node]
-report["roof_and_mortar"] = roof
-assert len(roof) == 7, "Missing exterior roof, facing or mortar mass"
+        components = mesh.split(only_watertight=False)
+        assert len(components) == 1, (node, "Disconnected cement shell", len(components))
+        cement[node] = {"connected_components": len(components), "watertight": bool(mesh.is_watertight), "triangles": len(mesh.faces)}
+assert len(cement) == 5, ("Expected five solid cement shells", cement)
+report["connected_cement_shells"] = cement
 report["sha256"] = {name: hashlib.sha256((ROOT / name).read_bytes()).hexdigest() for name in ["gallery.glb", "rock_lod0.glb", "rock_lod1.glb", "rock_cliff.glb", "structure.glb"]}
 (ROOT / "mesh-validation.json").write_text(json.dumps(report, indent=2) + "\n")
 print("UPPER_ASSETS_VALID", json.dumps(report), flush=True)
