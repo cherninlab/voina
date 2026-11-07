@@ -1,0 +1,76 @@
+{
+  "sha256": "1b01dbdf7c4411ea0db3525ace00782a47e676a3ef28a96747cc631f7fadd13d",
+  "meshes": {
+    "Tissue_second_stair_hall": {
+      "triangles": 2712,
+      "watertight": true,
+      "winding_consistent": true,
+      "boundary_edges": 0,
+      "nonmanifold_edges": 0,
+      "closed_components": 7,
+      "route_conflicts": 0,
+      "minimum_overhead_margin_m": 0.973999786376953
+    },
+    "StoneRim_first_stair_hall": {
+      "triangles": 1024,
+      "watertight": true,
+      "winding_consistent": true,
+      "boundary_edges": 0,
+      "nonmanifold_edges": 0,
+      "closed_components": 1,
+      "route_conflicts": 0,
+      "minimum_overhead_margin_m": 1.0632814386168308
+    },
+    "Stone_first_stair_hall": {
+      "triangles": 2462,
+      "watertight": true,
+      "winding_consistent": true,
+      "boundary_edges": 0,
+      "nonmanifold_edges": 0,
+      "closed_components": 3,
+      "route_conflicts": 0,
+      "minimum_overhead_margin_m": 1.019972360535756
+    },
+    "Iron_second_stair_hall": {
+      "triangles": 2128,
+      "watertight": true,
+      "winding_consistent": true,
+      "boundary_edges": 0,
+      "nonmanifold_edges": 0,
+      "closed_components": 16,
+      "route_conflicts": 0,
+      "minimum_overhead_margin_m": 0.750000762939453
+    },
+    "Iron_first_stair_hall": {
+      "triangles": 2308,
+      "watertight": true,
+      "winding_consistent": true,
+      "boundary_edges": 0,
+      "nonmanifold_edges": 0,
+      "closed_components": 20,
+      "route_conflicts": 0,
+      "minimum_overhead_margin_m": 0.7118218421936033
+    },
+    "Bronze_second_stair_hall": {
+      "triangles": 7628,
+      "watertight": true,
+      "winding_consistent": true,
+      "boundary_edges": 0,
+      "nonmanifold_edges": 0,
+      "closed_components": 26,
+      "route_conflicts": 0,
+      "minimum_overhead_margin_m": 0.829020309448242
+    },
+    "Bronze_first_stair_hall": {
+      "triangles": 3980,
+      "watertight": true,
+      "winding_consistent": true,
+      "boundary_edges": 0,
+      "nonmanifold_edges": 0,
+      "closed_components": 19,
+      "route_conflicts": 0,
+      "minimum_overhead_margin_m": 0.748296546936035
+    }
+  },
+  "method": "All exported vertices against every route segment: full half-width plus0.35m capsule radius, floor-0.15..floor+2.7m. Fixtures remain above the protected envelope. Actual collision/traversal checked separately."
+}

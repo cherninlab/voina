@@ -1,0 +1,793 @@
+{
+	"legends": {
+		"clearance": "green=sampled capsule/headroom clear, red=blocked; not proof of reachability",
+		"collision": "green collision wire meshes shown through occluders",
+		"depth": "linear camera depth, black=0 m white=30 m; background black",
+		"intersections": "green markers at sampled triangle crossings, shown through occluders; intentional contacts included",
+		"limits": "debug materials preserve flagstone clipping but not shader peeling/displacement/transparency; paired color view is authoritative",
+		"normals": "world normal XYZ mapped to RGB",
+		"objects": "stable per-object colors; see objects.json; each MultiMesh is one object"
+	},
+	"views": [
+		{
+			"camera": [
+				31.0,
+				-8.2,
+				-30.0
+			],
+			"draw_calls": 169.0,
+			"frame": "first-stair-lower-color.png",
+			"pass": "color",
+			"primitives": 913110.0,
+			"view": {
+				"direction": [
+					-1.5,
+					1.2,
+					-9.5
+				],
+				"eye": [
+					31.0,
+					-8.2,
+					-30.0
+				],
+				"fov": 90.0,
+				"head_offset_m": 0.0,
+				"name": "first-stair-lower"
+			}
+		},
+		{
+			"camera": [
+				31.0,
+				-8.2,
+				-30.0
+			],
+			"draw_calls": 169.0,
+			"frame": "first-stair-lower-albedo.png",
+			"pass": "albedo",
+			"primitives": 913110.0,
+			"view": {
+				"direction": [
+					-1.5,
+					1.2,
+					-9.5
+				],
+				"eye": [
+					31.0,
+					-8.2,
+					-30.0
+				],
+				"fov": 90.0,
+				"head_offset_m": 0.0,
+				"name": "first-stair-lower"
+			}
+		},
+		{
+			"camera": [
+				31.0,
+				-8.2,
+				-30.0
+			],
+			"draw_calls": 188.0,
+			"frame": "first-stair-lower-objects.png",
+			"pass": "objects",
+			"primitives": 5048042.0,
+			"view": {
+				"direction": [
+					-1.5,
+					1.2,
+					-9.5
+				],
+				"eye": [
+					31.0,
+					-8.2,
+					-30.0
+				],
+				"fov": 90.0,
+				"head_offset_m": 0.0,
+				"name": "first-stair-lower"
+			}
+		},
+		{
+			"camera": [
+				31.0,
+				-8.2,
+				-30.0
+			],
+			"draw_calls": 188.0,
+			"frame": "first-stair-lower-normals.png",
+			"pass": "normals",
+			"primitives": 5048042.0,
+			"view": {
+				"direction": [
+					-1.5,
+					1.2,
+					-9.5
+				],
+				"eye": [
+					31.0,
+					-8.2,
+					-30.0
+				],
+				"fov": 90.0,
+				"head_offset_m": 0.0,
+				"name": "first-stair-lower"
+			}
+		},
+		{
+			"camera": [
+				31.0,
+				-8.2,
+				-30.0
+			],
+			"draw_calls": 244.0,
+			"frame": "first-stair-lower-collision.png",
+			"pass": "collision",
+			"primitives": 9343584.0,
+			"view": {
+				"direction": [
+					-1.5,
+					1.2,
+					-9.5
+				],
+				"eye": [
+					31.0,
+					-8.2,
+					-30.0
+				],
+				"fov": 90.0,
+				"head_offset_m": 0.0,
+				"name": "first-stair-lower"
+			}
+		},
+		{
+			"camera": [
+				-34.025,
+				-21.2,
+				24.55
+			],
+			"draw_calls": 788.0,
+			"frame": "second-stair-lower-color.png",
+			"pass": "color",
+			"primitives": 2230184.0,
+			"view": {
+				"direction": [
+					3.025,
+					0.3,
+					3.45
+				],
+				"eye": [
+					-34.025,
+					-21.2,
+					24.55
+				],
+				"fov": 90.0,
+				"head_offset_m": 0.0,
+				"name": "second-stair-lower"
+			}
+		},
+		{
+			"camera": [
+				-34.025,
+				-21.2,
+				24.55
+			],
+			"draw_calls": 788.0,
+			"frame": "second-stair-lower-albedo.png",
+			"pass": "albedo",
+			"primitives": 2230184.0,
+			"view": {
+				"direction": [
+					3.025,
+					0.3,
+					3.45
+				],
+				"eye": [
+					-34.025,
+					-21.2,
+					24.55
+				],
+				"fov": 90.0,
+				"head_offset_m": 0.0,
+				"name": "second-stair-lower"
+			}
+		},
+		{
+			"camera": [
+				-34.025,
+				-21.2,
+				24.55
+			],
+			"draw_calls": 819.0,
+			"frame": "second-stair-lower-objects.png",
+			"pass": "objects",
+			"primitives": 5144895.0,
+			"view": {
+				"direction": [
+					3.025,
+					0.3,
+					3.45
+				],
+				"eye": [
+					-34.025,
+					-21.2,
+					24.55
+				],
+				"fov": 90.0,
+				"head_offset_m": 0.0,
+				"name": "second-stair-lower"
+			}
+		},
+		{
+			"camera": [
+				-34.025,
+				-21.2,
+				24.55
+			],
+			"draw_calls": 819.0,
+			"frame": "second-stair-lower-normals.png",
+			"pass": "normals",
+			"primitives": 5144895.0,
+			"view": {
+				"direction": [
+					3.025,
+					0.3,
+					3.45
+				],
+				"eye": [
+					-34.025,
+					-21.2,
+					24.55
+				],
+				"fov": 90.0,
+				"head_offset_m": 0.0,
+				"name": "second-stair-lower"
+			}
+		},
+		{
+			"camera": [
+				-34.025,
+				-21.2,
+				24.55
+			],
+			"draw_calls": 1022.0,
+			"frame": "second-stair-lower-collision.png",
+			"pass": "collision",
+			"primitives": 9493912.0,
+			"view": {
+				"direction": [
+					3.025,
+					0.3,
+					3.45
+				],
+				"eye": [
+					-34.025,
+					-21.2,
+					24.55
+				],
+				"fov": 90.0,
+				"head_offset_m": 0.0,
+				"name": "second-stair-lower"
+			}
+		},
+		{
+			"camera": [
+				-32.0,
+				-20.0,
+				32.0
+			],
+			"draw_calls": 676.0,
+			"frame": "second-stair-side-color.png",
+			"pass": "color",
+			"primitives": 4612014.0,
+			"view": {
+				"direction": [
+					-7.0,
+					2.0,
+					-5.0
+				],
+				"eye": [
+					-32.0,
+					-20.0,
+					32.0
+				],
+				"fov": 90.0,
+				"head_offset_m": 0.0,
+				"name": "second-stair-side"
+			}
+		},
+		{
+			"camera": [
+				-32.0,
+				-20.0,
+				32.0
+			],
+			"draw_calls": 676.0,
+			"frame": "second-stair-side-albedo.png",
+			"pass": "albedo",
+			"primitives": 4612014.0,
+			"view": {
+				"direction": [
+					-7.0,
+					2.0,
+					-5.0
+				],
+				"eye": [
+					-32.0,
+					-20.0,
+					32.0
+				],
+				"fov": 90.0,
+				"head_offset_m": 0.0,
+				"name": "second-stair-side"
+			}
+		},
+		{
+			"camera": [
+				-32.0,
+				-20.0,
+				32.0
+			],
+			"draw_calls": 675.0,
+			"frame": "second-stair-side-objects.png",
+			"pass": "objects",
+			"primitives": 4607212.0,
+			"view": {
+				"direction": [
+					-7.0,
+					2.0,
+					-5.0
+				],
+				"eye": [
+					-32.0,
+					-20.0,
+					32.0
+				],
+				"fov": 90.0,
+				"head_offset_m": 0.0,
+				"name": "second-stair-side"
+			}
+		},
+		{
+			"camera": [
+				-32.0,
+				-20.0,
+				32.0
+			],
+			"draw_calls": 675.0,
+			"frame": "second-stair-side-normals.png",
+			"pass": "normals",
+			"primitives": 4607212.0,
+			"view": {
+				"direction": [
+					-7.0,
+					2.0,
+					-5.0
+				],
+				"eye": [
+					-32.0,
+					-20.0,
+					32.0
+				],
+				"fov": 90.0,
+				"head_offset_m": 0.0,
+				"name": "second-stair-side"
+			}
+		},
+		{
+			"camera": [
+				-32.0,
+				-20.0,
+				32.0
+			],
+			"draw_calls": 934.0,
+			"frame": "second-stair-side-collision.png",
+			"pass": "collision",
+			"primitives": 8956806.0,
+			"view": {
+				"direction": [
+					-7.0,
+					2.0,
+					-5.0
+				],
+				"eye": [
+					-32.0,
+					-20.0,
+					32.0
+				],
+				"fov": 90.0,
+				"head_offset_m": 0.0,
+				"name": "second-stair-side"
+			}
+		},
+		{
+			"camera": [
+				39.0,
+				-4.8,
+				-33.0
+			],
+			"draw_calls": 115.0,
+			"frame": "first-stair-coping-color.png",
+			"pass": "color",
+			"primitives": 568905.0,
+			"view": {
+				"direction": [
+					-1.4,
+					-1.2,
+					-3.0
+				],
+				"eye": [
+					39.0,
+					-4.8,
+					-33.0
+				],
+				"fov": 65.0,
+				"head_offset_m": 0.0,
+				"name": "first-stair-coping"
+			}
+		},
+		{
+			"camera": [
+				39.0,
+				-4.8,
+				-33.0
+			],
+			"draw_calls": 134.0,
+			"frame": "first-stair-coping-albedo.png",
+			"pass": "albedo",
+			"primitives": 2695102.0,
+			"view": {
+				"direction": [
+					-1.4,
+					-1.2,
+					-3.0
+				],
+				"eye": [
+					39.0,
+					-4.8,
+					-33.0
+				],
+				"fov": 65.0,
+				"head_offset_m": 0.0,
+				"name": "first-stair-coping"
+			}
+		},
+		{
+			"camera": [
+				39.0,
+				-4.8,
+				-33.0
+			],
+			"draw_calls": 133.0,
+			"frame": "first-stair-coping-objects.png",
+			"pass": "objects",
+			"primitives": 2690300.0,
+			"view": {
+				"direction": [
+					-1.4,
+					-1.2,
+					-3.0
+				],
+				"eye": [
+					39.0,
+					-4.8,
+					-33.0
+				],
+				"fov": 65.0,
+				"head_offset_m": 0.0,
+				"name": "first-stair-coping"
+			}
+		},
+		{
+			"camera": [
+				39.0,
+				-4.8,
+				-33.0
+			],
+			"draw_calls": 133.0,
+			"frame": "first-stair-coping-normals.png",
+			"pass": "normals",
+			"primitives": 2690300.0,
+			"view": {
+				"direction": [
+					-1.4,
+					-1.2,
+					-3.0
+				],
+				"eye": [
+					39.0,
+					-4.8,
+					-33.0
+				],
+				"fov": 65.0,
+				"head_offset_m": 0.0,
+				"name": "first-stair-coping"
+			}
+		},
+		{
+			"camera": [
+				39.0,
+				-4.8,
+				-33.0
+			],
+			"draw_calls": 166.0,
+			"frame": "first-stair-coping-collision.png",
+			"pass": "collision",
+			"primitives": 7898724.0,
+			"view": {
+				"direction": [
+					-1.4,
+					-1.2,
+					-3.0
+				],
+				"eye": [
+					39.0,
+					-4.8,
+					-33.0
+				],
+				"fov": 65.0,
+				"head_offset_m": 0.0,
+				"name": "first-stair-coping"
+			}
+		},
+		{
+			"camera": [
+				36.4,
+				-3.65,
+				-37.5
+			],
+			"draw_calls": 30.0,
+			"frame": "first-bell-close-color.png",
+			"pass": "color",
+			"primitives": 3149755.0,
+			"view": {
+				"direction": [
+					0.0,
+					0.0,
+					-4.05
+				],
+				"eye": [
+					36.4,
+					-3.65,
+					-37.5
+				],
+				"fov": 55.0,
+				"head_offset_m": 0.0,
+				"name": "first-bell-close"
+			}
+		},
+		{
+			"camera": [
+				36.4,
+				-3.65,
+				-37.5
+			],
+			"draw_calls": 30.0,
+			"frame": "first-bell-close-albedo.png",
+			"pass": "albedo",
+			"primitives": 3149755.0,
+			"view": {
+				"direction": [
+					0.0,
+					0.0,
+					-4.05
+				],
+				"eye": [
+					36.4,
+					-3.65,
+					-37.5
+				],
+				"fov": 55.0,
+				"head_offset_m": 0.0,
+				"name": "first-bell-close"
+			}
+		},
+		{
+			"camera": [
+				36.4,
+				-3.65,
+				-37.5
+			],
+			"draw_calls": 30.0,
+			"frame": "first-bell-close-objects.png",
+			"pass": "objects",
+			"primitives": 3149755.0,
+			"view": {
+				"direction": [
+					0.0,
+					0.0,
+					-4.05
+				],
+				"eye": [
+					36.4,
+					-3.65,
+					-37.5
+				],
+				"fov": 55.0,
+				"head_offset_m": 0.0,
+				"name": "first-bell-close"
+			}
+		},
+		{
+			"camera": [
+				36.4,
+				-3.65,
+				-37.5
+			],
+			"draw_calls": 30.0,
+			"frame": "first-bell-close-normals.png",
+			"pass": "normals",
+			"primitives": 3149755.0,
+			"view": {
+				"direction": [
+					0.0,
+					0.0,
+					-4.05
+				],
+				"eye": [
+					36.4,
+					-3.65,
+					-37.5
+				],
+				"fov": 55.0,
+				"head_offset_m": 0.0,
+				"name": "first-bell-close"
+			}
+		},
+		{
+			"camera": [
+				36.4,
+				-3.65,
+				-37.5
+			],
+			"draw_calls": 38.0,
+			"frame": "first-bell-close-collision.png",
+			"pass": "collision",
+			"primitives": 7424611.0,
+			"view": {
+				"direction": [
+					0.0,
+					0.0,
+					-4.05
+				],
+				"eye": [
+					36.4,
+					-3.65,
+					-37.5
+				],
+				"fov": 55.0,
+				"head_offset_m": 0.0,
+				"name": "first-bell-close"
+			}
+		},
+		{
+			"camera": [
+				-28.7,
+				-16.9,
+				34.2
+			],
+			"draw_calls": 15.0,
+			"frame": "second-reliquary-close-color.png",
+			"pass": "color",
+			"primitives": 94468.0,
+			"view": {
+				"direction": [
+					0.0,
+					0.0,
+					3.85
+				],
+				"eye": [
+					-28.7,
+					-16.9,
+					34.2
+				],
+				"fov": 60.0,
+				"head_offset_m": 0.0,
+				"name": "second-reliquary-close"
+			}
+		},
+		{
+			"camera": [
+				-28.7,
+				-16.9,
+				34.2
+			],
+			"draw_calls": 15.0,
+			"frame": "second-reliquary-close-albedo.png",
+			"pass": "albedo",
+			"primitives": 94468.0,
+			"view": {
+				"direction": [
+					0.0,
+					0.0,
+					3.85
+				],
+				"eye": [
+					-28.7,
+					-16.9,
+					34.2
+				],
+				"fov": 60.0,
+				"head_offset_m": 0.0,
+				"name": "second-reliquary-close"
+			}
+		},
+		{
+			"camera": [
+				-28.7,
+				-16.9,
+				34.2
+			],
+			"draw_calls": 15.0,
+			"frame": "second-reliquary-close-objects.png",
+			"pass": "objects",
+			"primitives": 94468.0,
+			"view": {
+				"direction": [
+					0.0,
+					0.0,
+					3.85
+				],
+				"eye": [
+					-28.7,
+					-16.9,
+					34.2
+				],
+				"fov": 60.0,
+				"head_offset_m": 0.0,
+				"name": "second-reliquary-close"
+			}
+		},
+		{
+			"camera": [
+				-28.7,
+				-16.9,
+				34.2
+			],
+			"draw_calls": 15.0,
+			"frame": "second-reliquary-close-normals.png",
+			"pass": "normals",
+			"primitives": 94468.0,
+			"view": {
+				"direction": [
+					0.0,
+					0.0,
+					3.85
+				],
+				"eye": [
+					-28.7,
+					-16.9,
+					34.2
+				],
+				"fov": 60.0,
+				"head_offset_m": 0.0,
+				"name": "second-reliquary-close"
+			}
+		},
+		{
+			"camera": [
+				-28.7,
+				-16.9,
+				34.2
+			],
+			"draw_calls": 20.0,
+			"frame": "second-reliquary-close-collision.png",
+			"pass": "collision",
+			"primitives": 423666.0,
+			"view": {
+				"direction": [
+					0.0,
+					0.0,
+					3.85
+				],
+				"eye": [
+					-28.7,
+					-16.9,
+					34.2
+				],
+				"fov": 60.0,
+				"head_offset_m": 0.0,
+				"name": "second-reliquary-close"
+			}
+		}
+	]
+}

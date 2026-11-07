@@ -1,0 +1,25 @@
+{
+  "geometry": "Original closed procedural project art, built in Blender5.2.2; no external mesh or image-to-mesh inference.",
+  "generator": "scripts/art/build_stair_art.py",
+  "structural_baseline": "366005e578ee25a9b7ebcef9d4bf97476cebb6fa",
+  "reference_role": "Local H-011 Krea concepts guide motif/material vocabulary only. Stairs/doors/supports invented by those images are not implemented.",
+  "references": {
+    "/Users/theochernin/AI/krea2/tests/stair-art-pass-20261107/HANDOFF.md": "4105f6097b95db10621f89bcd84b241c02a7c8759966ae86859cd59fbf955947",
+    "/Users/theochernin/AI/krea2/tests/stair-art-pass-20261107/outputs/02-first-processional.png": "09e49a992e399013f0f13aea278e6a62935f021880b87619975db554b7cf728a",
+    "/Users/theochernin/AI/krea2/tests/stair-art-pass-20261107/outputs/03-second-reliquary.png": "d3725115cc7e5d5e37f51054d99f7721d223d66de2a748822a9582d9229b4990",
+    "/Users/theochernin/AI/krea2/tests/stair-art-pass-20261107/outputs/06-first-bell-oath.png": "535296b511e3bfafb041e07887026de4932517f46ab9dace5522885139d19e72"
+  },
+  "reused_material_sha256": {
+    "content/environments/red_nave_v1/oxidized_iron/albedo.png": "fd679b5372d63ac1ad973a6cf709a8af4ae53e6a47cd7be176b020cc4d4d0043",
+    "content/environments/red_descent/upper_crossing_v1/materials/limestone/albedo.png": "cfeca5ff75f24f9a0e7600053874c14fe684e8d1844e7d7e3f6c42a4d82033a8",
+    "content/environments/red_descent/upper_crossing_v1/materials/limestone/normal_gl.png": "893d7e75b7011304641d9cbd06d57ba2759dc681b9d07d3cd37d35da0ffe6777",
+    "content/environments/red_descent/upper_crossing_v1/materials/limestone/roughness.png": "54ee818645de9cf74e60e45dc8faf676c570afcbcb494e921313351163d5229d",
+    "content/environments/red_descent/upper_crossing_v1/materials/roots/albedo.png": "ef79ebb1b43f4d131b67f129e910a98a9c63b6682a7a1317e86f4cf96b80c6d2",
+    "content/environments/red_descent/upper_crossing_v1/materials/roots/normal_gl.png": "a2c216120f4ac476d43dfd1f7bebd2c8473aea7d57fc330ce7fece32218e17ca"
+  },
+  "material_provenance": [
+    "content/environments/red_nave_v1/README.md",
+    "content/environments/red_descent/upper_crossing_v1/materials/provenance.json"
+  ],
+  "engine": "Godot4.7.2 Standard, Mobile/Metal; native original geometry and existing project materials."
+}

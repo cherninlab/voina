@@ -58,6 +58,8 @@ func build() -> void:
 	# The void's base stops physics falls; the player recovery threshold is above it.
 	piece(Vector3(150, 1, 150), Vector3(0, -60, 0), "dark", Basis.IDENTITY, true)
 	flush()
+	if "--no-stair-art" not in OS.get_cmdline_user_args():
+		RedDescentStairArt.install(self)
 	fort_source.free()
 	fort_source = null
 	print("GENERATED_KIT_PLACED: ", JSON.stringify(module_counts))

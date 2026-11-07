@@ -1,0 +1,28 @@
+{
+  "baseline": "366005e",
+  "files_sha256": {
+    "scripts/art/build_stair_art.py": "d52d94389bc25381ead224e0e887759ca1909256060501d2dce7169d4bd7e690",
+    "gameplay/environment/red_descent_stair_art.gd": "b35f6f6eefabf10c2f5cb934d484a70811e7a7b20532f0e08d8ae2045d4f404d",
+    "gameplay/environment/red_descent_geometry.gd": "1b60f0c29a7159abc242820998091f426ca3a9fb27aa5de80e302e8123d7ab42",
+    "content/environments/red_descent/dungeon_surface.gdshader": "7fc6811bbd5451bcc45eb2e875230a3053bb32e0adaaeb085df05a0f6e6ec37e",
+    "content/environments/stone_brick_materials_v1/stone_brick_stochastic.gdshader": "148ffb376c1750d1fc32b3c0d12a51fc63a531566174d6f22633e26fb4781e7d",
+    "content/environments/red_descent/stair_art_v1/surface.gdshaderinc": "cd4f5f56e269ff86aa0c2f9193a8536790173e69699fea21859a73c80fb306d0",
+    "content/environments/red_descent/stair_art_v1/ritual_wall_art.glb": "1b01dbdf7c4411ea0db3525ace00782a47e676a3ef28a96747cc631f7fadd13d",
+    "content/environments/red_descent/stair_art_v1/build.json": "fb181371deecfc64fe66c2ad5c4d09300a19d503d00d73151ff65b72e0090c11"
+  },
+  "checks": {
+    "editor": "PASS, no ERROR lines",
+    "new_meshes": "7 meshes,22242 triangles; closed/winding/positive normals; full route width plus0.35m radius and2.7m vertical envelope clear",
+    "before_after_runtime": "4886 original visual mesh resources,620 collision shapes and transforms, floor clip planes unchanged; no added lights/collision; other-room material/default-off preserved",
+    "traversal": "1235m actual capsule walk PASS",
+    "core": "complete isolated suite PASS; real local ENet integration, host snapshots60/s",
+    "capture": "6 angles x5 diagnostic passes plus3840x2160 wide view; four gameplay cameras match structural baseline",
+    "art_review": "H-011 collaborator inspected six actual frames; requested first placement/readability corrections applied; no visual blocker for this bounded pass; fixture scale/material richness remains quieter than concepts"
+  },
+  "limits": [
+    "Existing thick crimson root cords/cut ends are not repaired here.",
+    "New membrane is a restrained dark-red tissue insert, not a complex organic mass.",
+    "Known windowed teardown warnings:7 texture RIDs and1 ObjectDB instance.",
+    "Human art acceptance, manual camera/input and two-Mac Tailscale are separate."
+  ]
+}

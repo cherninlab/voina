@@ -1,0 +1,1537 @@
+{
+	"limit": 300,
+	"limits": "Contacts include intentional masonry connections. This is an edge sample, so it does not prove the absence of intersections.",
+	"method": "Edges of runtime shaft wall boxes intersecting baked room or passage triangles, up to 100 unique locations per region.",
+	"samples": [
+		{
+			"a": "/root/@Node3D@82/MatchWorld/CinderCrypt/Architecture/wall_1_-4_0_lod0",
+			"b": "/root/@Node3D@82/MatchWorld/CinderCrypt/Architecture/StoneRoom_choir/Mortar_choir_6",
+			"position": [
+				26.33,
+				-28.04,
+				10.1176
+			]
+		},
+		{
+			"a": "/root/@Node3D@82/MatchWorld/CinderCrypt/Architecture/wall_1_-4_0_lod0",
+			"b": "/root/@Node3D@82/MatchWorld/CinderCrypt/Architecture/StoneRoom_choir/Mortar_choir_6",
+			"position": [
+				26.33,
+				-28.04,
+				11.9668
+			]
+		},
+		{
+			"a": "/root/@Node3D@82/MatchWorld/CinderCrypt/Architecture/wall_1_-4_0_lod0",
+			"b": "/root/@Node3D@82/MatchWorld/CinderCrypt/Architecture/StoneRoom_choir/Mortar_choir_6",
+			"position": [
+				25.9695,
+				-28.12,
+				12.5276
+			]
+		},
+		{
+			"a": "/root/@Node3D@82/MatchWorld/CinderCrypt/Architecture/wall_1_-4_0_lod0",
+			"b": "/root/@Node3D@82/MatchWorld/CinderCrypt/Architecture/StoneRoom_choir/Mortar_choir_6",
+			"position": [
+				25.67,
+				-28.04,
+				12.3351
+			]
+		},
+		{
+			"a": "/root/@Node3D@82/MatchWorld/CinderCrypt/Architecture/wall_1_-4_0_lod0",
+			"b": "/root/@Node3D@82/MatchWorld/CinderCrypt/Architecture/StoneRoom_choir/Mortar_choir_6",
+			"position": [
+				25.67,
+				-28.04,
+				11.1443
+			]
+		},
+		{
+			"a": "/root/@Node3D@82/MatchWorld/CinderCrypt/Architecture/wall_1_-4_0_lod0",
+			"b": "/root/@Node3D@82/MatchWorld/CinderCrypt/Architecture/StoneRoom_choir/Mortar_choir_6",
+			"position": [
+				26.33,
+				-28.04,
+				10.8758
+			]
+		},
+		{
+			"a": "/root/@Node3D@82/MatchWorld/CinderCrypt/Architecture/wall_1_-3_0_lod0",
+			"b": "/root/@Node3D@82/MatchWorld/CinderCrypt/Architecture/StoneRoom_choir/Mortar_choir_6",
+			"position": [
+				25.8658,
+				-28.12,
+				12.6889
+			]
+		},
+		{
+			"a": "/root/@Node3D@82/MatchWorld/CinderCrypt/Architecture/wall_1_-3_0_lod0",
+			"b": "/root/@Node3D@82/MatchWorld/CinderCrypt/Architecture/StoneRoom_choir/Mortar_choir_6",
+			"position": [
+				25.7481,
+				-28.12,
+				12.8721
+			]
+		},
+		{
+			"a": "/root/@Node3D@82/MatchWorld/CinderCrypt/Architecture/wall_1_-3_0_lod0",
+			"b": "/root/@Node3D@82/MatchWorld/CinderCrypt/Architecture/StoneRoom_choir/Mortar_choir_6",
+			"position": [
+				25.67,
+				-10.25,
+				12.8219
+			]
+		},
+		{
+			"a": "/root/@Node3D@82/MatchWorld/CinderCrypt/Architecture/wall_1_-3_0_lod0",
+			"b": "/root/@Node3D@82/MatchWorld/CinderCrypt/Architecture/StoneRoom_choir/Mortar_choir_6",
+			"position": [
+				25.67,
+				-13.7541,
+				12.8219
+			]
+		},
+		{
+			"a": "/root/@Node3D@82/MatchWorld/CinderCrypt/Architecture/wall_1_-3_0_lod0",
+			"b": "/root/@Node3D@82/MatchWorld/CinderCrypt/Architecture/StoneRoom_choir/Mortar_choir_6",
+			"position": [
+				25.67,
+				-10.25,
+				12.3303
+			]
+		},
+		{
+			"a": "/root/@Node3D@82/MatchWorld/CinderCrypt/Architecture/wall_1_-3_0_lod0",
+			"b": "/root/@Node3D@82/MatchWorld/CinderCrypt/Architecture/StoneRoom_choir/Mortar_choir_6",
+			"position": [
+				25.67,
+				-10.25,
+				12.7597
+			]
+		},
+		{
+			"a": "/root/@Node3D@82/MatchWorld/CinderCrypt/Architecture/wall_1_-3_0_lod0",
+			"b": "/root/@Node3D@82/MatchWorld/CinderCrypt/Architecture/StoneRoom_choir/Stone-stone_choir_6",
+			"position": [
+				25.5463,
+				-10.25,
+				12.7424
+			]
+		},
+		{
+			"a": "/root/@Node3D@82/MatchWorld/CinderCrypt/Architecture/wall_1_-3_0_lod0",
+			"b": "/root/@Node3D@82/MatchWorld/CinderCrypt/Architecture/StoneRoom_choir/Stone-stone_choir_6",
+			"position": [
+				25.5972,
+				-17.0194,
+				12.7751
+			]
+		},
+		{
+			"a": "/root/@Node3D@82/MatchWorld/CinderCrypt/Architecture/wall_1_-3_0_lod0",
+			"b": "/root/@Node3D@82/MatchWorld/CinderCrypt/Architecture/StoneRoom_choir/Stone-stone_choir_6",
+			"position": [
+				25.54,
+				-19.587,
+				12.7383
+			]
+		},
+		{
+			"a": "/root/@Node3D@82/MatchWorld/CinderCrypt/Architecture/wall_1_-3_0_lod0",
+			"b": "/root/@Node3D@82/MatchWorld/CinderCrypt/Architecture/StoneRoom_choir/Stone-stone_choir_6",
+			"position": [
+				25.5503,
+				-10.25,
+				12.5875
+			]
+		},
+		{
+			"a": "/root/@Node3D@82/MatchWorld/CinderCrypt/Architecture/wall_1_-3_0_lod0",
+			"b": "/root/@Node3D@82/MatchWorld/CinderCrypt/Architecture/StonePassage_return_gallery/BondedGallery_0",
+			"position": [
+				24.9074,
+				-10.34,
+				12.3305
+			]
+		},
+		{
+			"a": "/root/@Node3D@82/MatchWorld/CinderCrypt/Architecture/wall_1_-3_0_lod0",
+			"b": "/root/@Node3D@82/MatchWorld/CinderCrypt/Architecture/StonePassage_return_gallery/BondedGallery_0",
+			"position": [
+				25.1305,
+				-10.34,
+				11.9835
+			]
+		},
+		{
+			"a": "/root/@Node3D@82/MatchWorld/CinderCrypt/Architecture/wall_1_-3_0_lod0",
+			"b": "/root/@Node3D@82/MatchWorld/CinderCrypt/Architecture/StonePassage_return_gallery/BondedGallery_0",
+			"position": [
+				25.55,
+				-10.25,
+				12.2532
+			]
+		},
+		{
+			"a": "/root/@Node3D@82/MatchWorld/CinderCrypt/Architecture/wall_1_-2_0_lod0",
+			"b": "/root/@Node3D@82/MatchWorld/CinderCrypt/Architecture/StoneRoom_choir/Mortar_choir_6",
+			"position": [
+				25.7502,
+				-5.62,
+				12.8687
+			]
+		},
+		{
+			"a": "/root/@Node3D@82/MatchWorld/CinderCrypt/Architecture/wall_1_-2_0_lod0",
+			"b": "/root/@Node3D@82/MatchWorld/CinderCrypt/Architecture/StonePassage_return_gallery/BondedGallery_0",
+			"position": [
+				25.1916,
+				-6.8252,
+				12.5096
+			]
+		},
+		{
+			"a": "/root/@Node3D@82/MatchWorld/CinderCrypt/Architecture/wall_1_-2_0_lod0",
+			"b": "/root/@Node3D@82/MatchWorld/CinderCrypt/Architecture/StonePassage_return_gallery/BondedGallery_0",
+			"position": [
+				24.9091,
+				-6.6113,
+				12.3279
+			]
+		},
+		{
+			"a": "/root/@Node3D@82/MatchWorld/CinderCrypt/Architecture/wall_1_-2_0_lod0",
+			"b": "/root/@Node3D@82/MatchWorld/CinderCrypt/Architecture/StonePassage_return_gallery/BondedGallery_0",
+			"position": [
+				25.2393,
+				-10.34,
+				12.5402
+			]
+		},
+		{
+			"a": "/root/@Node3D@82/MatchWorld/CinderCrypt/Architecture/wall_1_-2_0_lod0",
+			"b": "/root/@Node3D@82/MatchWorld/CinderCrypt/Architecture/StonePassage_node_22_-10_10/Mortar_node_22_-10_10_6",
+			"position": [
+				24.9091,
+				-10.0,
+				12.3279
+			]
+		},
+		{
+			"a": "/root/@Node3D@82/MatchWorld/CinderCrypt/Architecture/wall_1_-2_0_lod0",
+			"b": "/root/@Node3D@82/MatchWorld/CinderCrypt/Architecture/StonePassage_node_22_-10_10/Mortar_node_22_-10_10_6",
+			"position": [
+				24.9091,
+				-5.55,
+				12.3279
+			]
+		},
+		{
+			"a": "/root/@Node3D@82/MatchWorld/CinderCrypt/Architecture/wall_-2_-2_-1_lod0",
+			"b": "/root/@Node3D@82/MatchWorld/CinderCrypt/Architecture/StoneRoom_bones/Mortar_bones_3",
+			"position": [
+				-25.3672,
+				-6.12,
+				-11.7228
+			]
+		},
+		{
+			"a": "/root/@Node3D@82/MatchWorld/CinderCrypt/Architecture/wall_-2_-2_-1_lod0",
+			"b": "/root/@Node3D@82/MatchWorld/CinderCrypt/Architecture/StoneRoom_bones/Mortar_bones_3",
+			"position": [
+				-25.3672,
+				-10.12,
+				-11.7228
+			]
+		},
+		{
+			"a": "/root/@Node3D@82/MatchWorld/CinderCrypt/Architecture/wall_-2_-2_-1_lod0",
+			"b": "/root/@Node3D@82/MatchWorld/CinderCrypt/Architecture/StoneRoom_bones/Stone-arch_bones_3",
+			"position": [
+				-25.3672,
+				-6.6239,
+				-11.7228
+			]
+		},
+		{
+			"a": "/root/@Node3D@82/MatchWorld/CinderCrypt/Architecture/wall_-2_-2_-1_lod0",
+			"b": "/root/@Node3D@82/MatchWorld/CinderCrypt/Architecture/StoneRoom_bones/Stone-arch_bones_3",
+			"position": [
+				-25.3672,
+				-7.0305,
+				-11.7228
+			]
+		},
+		{
+			"a": "/root/@Node3D@82/MatchWorld/CinderCrypt/Architecture/wall_-2_-2_-1_lod0",
+			"b": "/root/@Node3D@82/MatchWorld/CinderCrypt/Architecture/StoneRoom_bones/Stone-ashlar_bones_3",
+			"position": [
+				-25.3672,
+				-9.9953,
+				-11.7228
+			]
+		},
+		{
+			"a": "/root/@Node3D@82/MatchWorld/CinderCrypt/Architecture/wall_-2_-2_-1_lod0",
+			"b": "/root/@Node3D@82/MatchWorld/CinderCrypt/Architecture/StoneRoom_bones/Stone-ashlar_bones_3",
+			"position": [
+				-25.3672,
+				-10.4562,
+				-11.7228
+			]
+		},
+		{
+			"a": "/root/@Node3D@82/MatchWorld/CinderCrypt/Architecture/wall_-2_-2_-1_lod0",
+			"b": "/root/@Node3D@82/MatchWorld/CinderCrypt/Architecture/StoneRoom_window/Mortar_window_0",
+			"position": [
+				-25.9056,
+				-4.12,
+				-10.2772
+			]
+		},
+		{
+			"a": "/root/@Node3D@82/MatchWorld/CinderCrypt/Architecture/wall_-2_-2_-1_lod0",
+			"b": "/root/@Node3D@82/MatchWorld/CinderCrypt/Architecture/StoneRoom_window/Mortar_window_0",
+			"position": [
+				-25.9056,
+				-10.12,
+				-10.2772
+			]
+		},
+		{
+			"a": "/root/@Node3D@82/MatchWorld/CinderCrypt/Architecture/wall_-2_-2_-1_lod0",
+			"b": "/root/@Node3D@82/MatchWorld/CinderCrypt/Architecture/StoneRoom_window/Stone-arch_window_0",
+			"position": [
+				-25.9056,
+				-6.8943,
+				-10.2772
+			]
+		},
+		{
+			"a": "/root/@Node3D@82/MatchWorld/CinderCrypt/Architecture/wall_-2_-2_-1_lod0",
+			"b": "/root/@Node3D@82/MatchWorld/CinderCrypt/Architecture/StoneRoom_window/Stone-arch_window_0",
+			"position": [
+				-25.9056,
+				-7.3531,
+				-10.2772
+			]
+		},
+		{
+			"a": "/root/@Node3D@82/MatchWorld/CinderCrypt/Architecture/wall_-2_-2_-1_lod0",
+			"b": "/root/@Node3D@82/MatchWorld/CinderCrypt/Architecture/StoneRoom_window/Stone-ashlar_window_0",
+			"position": [
+				-25.9056,
+				-9.9924,
+				-10.2772
+			]
+		},
+		{
+			"a": "/root/@Node3D@82/MatchWorld/CinderCrypt/Architecture/wall_-2_-2_-1_lod0",
+			"b": "/root/@Node3D@82/MatchWorld/CinderCrypt/Architecture/StoneRoom_window/Stone-ashlar_window_0",
+			"position": [
+				-25.9056,
+				-10.4429,
+				-10.2772
+			]
+		},
+		{
+			"a": "/root/@Node3D@82/MatchWorld/CinderCrypt/Architecture/wall_-2_-2_-1_lod0",
+			"b": "/root/@Node3D@82/MatchWorld/CinderCrypt/Architecture/StonePassage_root_tunnel/Mortar_root_tunnel_28",
+			"position": [
+				-25.1652,
+				-17.2,
+				-11.1673
+			]
+		},
+		{
+			"a": "/root/@Node3D@82/MatchWorld/CinderCrypt/Architecture/wall_-2_-2_-1_lod0",
+			"b": "/root/@Node3D@82/MatchWorld/CinderCrypt/Architecture/StonePassage_root_tunnel/Mortar_root_tunnel_28",
+			"position": [
+				-24.9658,
+				-18.9729,
+				-10.619
+			]
+		},
+		{
+			"a": "/root/@Node3D@82/MatchWorld/CinderCrypt/Architecture/wall_-2_-2_-1_lod0",
+			"b": "/root/@Node3D@82/MatchWorld/CinderCrypt/Architecture/StonePassage_root_tunnel/Mortar_root_tunnel_28",
+			"position": [
+				-25.3672,
+				-17.2,
+				-11.7228
+			]
+		},
+		{
+			"a": "/root/@Node3D@82/MatchWorld/CinderCrypt/Architecture/wall_-2_-2_-1_lod0",
+			"b": "/root/@Node3D@82/MatchWorld/CinderCrypt/Architecture/StonePassage_root_tunnel/Mortar_root_tunnel_28",
+			"position": [
+				-25.1571,
+				-18.4487,
+				-11.1451
+			]
+		},
+		{
+			"a": "/root/@Node3D@82/MatchWorld/CinderCrypt/Architecture/wall_-2_-2_-1_lod0",
+			"b": "/root/@Node3D@82/MatchWorld/CinderCrypt/Architecture/StonePassage_root_tunnel/Mortar_root_tunnel_28",
+			"position": [
+				-26.1076,
+				-17.2,
+				-10.8327
+			]
+		},
+		{
+			"a": "/root/@Node3D@82/MatchWorld/CinderCrypt/Architecture/wall_-2_-2_-1_lod0",
+			"b": "/root/@Node3D@82/MatchWorld/CinderCrypt/Architecture/StonePassage_root_tunnel/Mortar_root_tunnel_28",
+			"position": [
+				-26.3069,
+				-17.9323,
+				-11.381
+			]
+		},
+		{
+			"a": "/root/@Node3D@82/MatchWorld/CinderCrypt/Architecture/wall_-2_-2_-1_lod0",
+			"b": "/root/@Node3D@82/MatchWorld/CinderCrypt/Architecture/StonePassage_root_tunnel/Mortar_root_tunnel_28",
+			"position": [
+				-25.9056,
+				-17.2,
+				-10.2772
+			]
+		},
+		{
+			"a": "/root/@Node3D@82/MatchWorld/CinderCrypt/Architecture/wall_-2_-2_-1_lod0",
+			"b": "/root/@Node3D@82/MatchWorld/CinderCrypt/Architecture/StonePassage_root_tunnel/Mortar_root_tunnel_28",
+			"position": [
+				-26.1136,
+				-18.131,
+				-10.8493
+			]
+		},
+		{
+			"a": "/root/@Node3D@82/MatchWorld/CinderCrypt/Architecture/wall_-2_-2_-1_lod0",
+			"b": "/root/@Node3D@82/MatchWorld/CinderCrypt/Architecture/StonePassage_root_tunnel/Mortar_root_tunnel_28",
+			"position": [
+				-25.834,
+				-17.2,
+				-11.553
+			]
+		},
+		{
+			"a": "/root/@Node3D@82/MatchWorld/CinderCrypt/Architecture/wall_-2_-2_-1_lod0",
+			"b": "/root/@Node3D@82/MatchWorld/CinderCrypt/Architecture/StonePassage_root_tunnel/Mortar_root_tunnel_28",
+			"position": [
+				-25.3672,
+				-18.1062,
+				-11.7228
+			]
+		},
+		{
+			"a": "/root/@Node3D@82/MatchWorld/CinderCrypt/Architecture/wall_-2_-2_-1_lod0",
+			"b": "/root/@Node3D@82/MatchWorld/CinderCrypt/Architecture/StonePassage_root_tunnel/Mortar_root_tunnel_28",
+			"position": [
+				-26.3069,
+				-17.2,
+				-11.381
+			]
+		},
+		{
+			"a": "/root/@Node3D@82/MatchWorld/CinderCrypt/Architecture/wall_-2_-2_-1_lod0",
+			"b": "/root/@Node3D@82/MatchWorld/CinderCrypt/Architecture/StonePassage_root_tunnel/Mortar_root_tunnel_28",
+			"position": [
+				-25.8217,
+				-18.0119,
+				-11.5575
+			]
+		},
+		{
+			"a": "/root/@Node3D@82/MatchWorld/CinderCrypt/Architecture/wall_-2_-2_-1_lod0",
+			"b": "/root/@Node3D@82/MatchWorld/CinderCrypt/Architecture/StonePassage_root_tunnel/Mortar_root_tunnel_28",
+			"position": [
+				-25.4387,
+				-17.2,
+				-10.447
+			]
+		},
+		{
+			"a": "/root/@Node3D@82/MatchWorld/CinderCrypt/Architecture/wall_-2_-2_-1_lod0",
+			"b": "/root/@Node3D@82/MatchWorld/CinderCrypt/Architecture/StonePassage_root_tunnel/Mortar_root_tunnel_28",
+			"position": [
+				-25.9056,
+				-18.488,
+				-10.2772
+			]
+		},
+		{
+			"a": "/root/@Node3D@82/MatchWorld/CinderCrypt/Architecture/wall_-2_-2_-1_lod0",
+			"b": "/root/@Node3D@82/MatchWorld/CinderCrypt/Architecture/StonePassage_root_tunnel/Mortar_root_tunnel_28",
+			"position": [
+				-24.9658,
+				-17.2,
+				-10.619
+			]
+		},
+		{
+			"a": "/root/@Node3D@82/MatchWorld/CinderCrypt/Architecture/wall_-2_-2_-1_lod0",
+			"b": "/root/@Node3D@82/MatchWorld/CinderCrypt/Architecture/StonePassage_root_tunnel/Mortar_root_tunnel_28",
+			"position": [
+				-25.4612,
+				-18.6862,
+				-10.4388
+			]
+		},
+		{
+			"a": "/root/@Node3D@82/MatchWorld/CinderCrypt/Architecture/wall_-2_-2_-1_lod0",
+			"b": "/root/@Node3D@82/MatchWorld/CinderCrypt/Architecture/StonePassage_root_tunnel/Stone-arch_root_tunnel_27",
+			"position": [
+				-25.159,
+				-18.155,
+				-11.1503
+			]
+		},
+		{
+			"a": "/root/@Node3D@82/MatchWorld/CinderCrypt/Architecture/wall_-2_-2_-1_lod0",
+			"b": "/root/@Node3D@82/MatchWorld/CinderCrypt/Architecture/StonePassage_root_tunnel/Stone-arch_root_tunnel_27",
+			"position": [
+				-24.9658,
+				-19.0406,
+				-10.619
+			]
+		},
+		{
+			"a": "/root/@Node3D@82/MatchWorld/CinderCrypt/Architecture/wall_-2_-2_-1_lod0",
+			"b": "/root/@Node3D@82/MatchWorld/CinderCrypt/Architecture/StonePassage_root_tunnel/Stone-arch_root_tunnel_27",
+			"position": [
+				-25.3672,
+				-17.7435,
+				-11.7228
+			]
+		},
+		{
+			"a": "/root/@Node3D@82/MatchWorld/CinderCrypt/Architecture/wall_-2_-2_-1_lod0",
+			"b": "/root/@Node3D@82/MatchWorld/CinderCrypt/Architecture/StonePassage_root_tunnel/Stone-arch_root_tunnel_27",
+			"position": [
+				-25.1588,
+				-18.1902,
+				-11.1497
+			]
+		},
+		{
+			"a": "/root/@Node3D@82/MatchWorld/CinderCrypt/Architecture/wall_-2_-2_-1_lod0",
+			"b": "/root/@Node3D@82/MatchWorld/CinderCrypt/Architecture/StonePassage_root_tunnel/Stone-arch_root_tunnel_27",
+			"position": [
+				-26.1112,
+				-17.7649,
+				-10.8427
+			]
+		},
+		{
+			"a": "/root/@Node3D@82/MatchWorld/CinderCrypt/Architecture/wall_-2_-2_-1_lod0",
+			"b": "/root/@Node3D@82/MatchWorld/CinderCrypt/Architecture/StonePassage_root_tunnel/Stone-arch_root_tunnel_27",
+			"position": [
+				-26.3069,
+				-17.9433,
+				-11.381
+			]
+		},
+		{
+			"a": "/root/@Node3D@82/MatchWorld/CinderCrypt/Architecture/wall_-2_-2_-1_lod0",
+			"b": "/root/@Node3D@82/MatchWorld/CinderCrypt/Architecture/StonePassage_root_tunnel/Stone-arch_root_tunnel_27",
+			"position": [
+				-25.9056,
+				-18.0676,
+				-10.2772
+			]
+		},
+		{
+			"a": "/root/@Node3D@82/MatchWorld/CinderCrypt/Architecture/wall_-2_-2_-1_lod0",
+			"b": "/root/@Node3D@82/MatchWorld/CinderCrypt/Architecture/StonePassage_root_tunnel/Stone-arch_root_tunnel_27",
+			"position": [
+				-26.1139,
+				-18.1813,
+				-10.8502
+			]
+		},
+		{
+			"a": "/root/@Node3D@82/MatchWorld/CinderCrypt/Architecture/wall_-2_-2_-1_lod0",
+			"b": "/root/@Node3D@82/MatchWorld/CinderCrypt/Architecture/StonePassage_root_tunnel/Stone-arch_root_tunnel_27",
+			"position": [
+				-25.8271,
+				-17.6571,
+				-11.5555
+			]
+		},
+		{
+			"a": "/root/@Node3D@82/MatchWorld/CinderCrypt/Architecture/wall_-2_-2_-1_lod0",
+			"b": "/root/@Node3D@82/MatchWorld/CinderCrypt/Architecture/StonePassage_root_tunnel/Stone-arch_root_tunnel_27",
+			"position": [
+				-25.3672,
+				-18.1678,
+				-11.7228
+			]
+		},
+		{
+			"a": "/root/@Node3D@82/MatchWorld/CinderCrypt/Architecture/wall_-2_-2_-1_lod0",
+			"b": "/root/@Node3D@82/MatchWorld/CinderCrypt/Architecture/StonePassage_root_tunnel/Stone-arch_root_tunnel_27",
+			"position": [
+				-26.3069,
+				-17.5924,
+				-11.381
+			]
+		},
+		{
+			"a": "/root/@Node3D@82/MatchWorld/CinderCrypt/Architecture/wall_-2_-2_-1_lod0",
+			"b": "/root/@Node3D@82/MatchWorld/CinderCrypt/Architecture/StonePassage_root_tunnel/Stone-arch_root_tunnel_27",
+			"position": [
+				-25.8209,
+				-18.0632,
+				-11.5577
+			]
+		},
+		{
+			"a": "/root/@Node3D@82/MatchWorld/CinderCrypt/Architecture/wall_-2_-2_-1_lod0",
+			"b": "/root/@Node3D@82/MatchWorld/CinderCrypt/Architecture/StonePassage_root_tunnel/Stone-arch_root_tunnel_27",
+			"position": [
+				-25.4544,
+				-18.2349,
+				-10.4413
+			]
+		},
+		{
+			"a": "/root/@Node3D@82/MatchWorld/CinderCrypt/Architecture/wall_-2_-2_-1_lod0",
+			"b": "/root/@Node3D@82/MatchWorld/CinderCrypt/Architecture/StonePassage_root_tunnel/Stone-arch_root_tunnel_27",
+			"position": [
+				-25.9056,
+				-18.5652,
+				-10.2772
+			]
+		},
+		{
+			"a": "/root/@Node3D@82/MatchWorld/CinderCrypt/Architecture/wall_-2_-2_-1_lod0",
+			"b": "/root/@Node3D@82/MatchWorld/CinderCrypt/Architecture/StonePassage_root_tunnel/Stone-arch_root_tunnel_27",
+			"position": [
+				-24.9658,
+				-18.4532,
+				-10.619
+			]
+		},
+		{
+			"a": "/root/@Node3D@82/MatchWorld/CinderCrypt/Architecture/wall_-2_-2_-1_lod0",
+			"b": "/root/@Node3D@82/MatchWorld/CinderCrypt/Architecture/StonePassage_root_tunnel/Stone-arch_root_tunnel_27",
+			"position": [
+				-25.4623,
+				-18.7552,
+				-10.4384
+			]
+		},
+		{
+			"a": "/root/@Node3D@82/MatchWorld/CinderCrypt/Architecture/wall_-2_-2_-1_lod0",
+			"b": "/root/@Node3D@82/MatchWorld/CinderCrypt/Architecture/StonePassage_root_tunnel/Stone-flag_root_tunnel_29",
+			"position": [
+				-25.1276,
+				-22.998,
+				-11.0641
+			]
+		},
+		{
+			"a": "/root/@Node3D@82/MatchWorld/CinderCrypt/Architecture/wall_-2_-2_-1_lod0",
+			"b": "/root/@Node3D@82/MatchWorld/CinderCrypt/Architecture/StonePassage_root_tunnel/Stone-flag_root_tunnel_29",
+			"position": [
+				-24.9658,
+				-23.1052,
+				-10.619
+			]
+		},
+		{
+			"a": "/root/@Node3D@82/MatchWorld/CinderCrypt/Architecture/wall_-2_-2_-1_lod0",
+			"b": "/root/@Node3D@82/MatchWorld/CinderCrypt/Architecture/StonePassage_root_tunnel/Stone-flag_root_tunnel_29",
+			"position": [
+				-25.3672,
+				-22.9935,
+				-11.7228
+			]
+		},
+		{
+			"a": "/root/@Node3D@82/MatchWorld/CinderCrypt/Architecture/wall_-2_-2_-1_lod0",
+			"b": "/root/@Node3D@82/MatchWorld/CinderCrypt/Architecture/StonePassage_root_tunnel/Stone-flag_root_tunnel_29",
+			"position": [
+				-25.1269,
+				-23.1153,
+				-11.062
+			]
+		},
+		{
+			"a": "/root/@Node3D@82/MatchWorld/CinderCrypt/Architecture/wall_-2_-2_-1_lod0",
+			"b": "/root/@Node3D@82/MatchWorld/CinderCrypt/Architecture/StonePassage_root_tunnel/Stone-flag_root_tunnel_29",
+			"position": [
+				-26.1451,
+				-22.9994,
+				-10.9359
+			]
+		},
+		{
+			"a": "/root/@Node3D@82/MatchWorld/CinderCrypt/Architecture/wall_-2_-2_-1_lod0",
+			"b": "/root/@Node3D@82/MatchWorld/CinderCrypt/Architecture/StonePassage_root_tunnel/Stone-flag_root_tunnel_29",
+			"position": [
+				-26.3069,
+				-23.073,
+				-11.381
+			]
+		},
+		{
+			"a": "/root/@Node3D@82/MatchWorld/CinderCrypt/Architecture/wall_-2_-2_-1_lod0",
+			"b": "/root/@Node3D@82/MatchWorld/CinderCrypt/Architecture/StonePassage_root_tunnel/Stone-flag_root_tunnel_29",
+			"position": [
+				-25.9056,
+				-22.9892,
+				-10.2772
+			]
+		},
+		{
+			"a": "/root/@Node3D@82/MatchWorld/CinderCrypt/Architecture/wall_-2_-2_-1_lod0",
+			"b": "/root/@Node3D@82/MatchWorld/CinderCrypt/Architecture/StonePassage_root_tunnel/Stone-flag_root_tunnel_29",
+			"position": [
+				-26.1457,
+				-23.09,
+				-10.9375
+			]
+		},
+		{
+			"a": "/root/@Node3D@82/MatchWorld/CinderCrypt/Architecture/wall_-2_-2_-1_lod0",
+			"b": "/root/@Node3D@82/MatchWorld/CinderCrypt/Architecture/StonePassage_root_tunnel/Stone-flag_root_tunnel_29",
+			"position": [
+				-25.7462,
+				-22.9923,
+				-11.5849
+			]
+		},
+		{
+			"a": "/root/@Node3D@82/MatchWorld/CinderCrypt/Architecture/wall_-2_-2_-1_lod0",
+			"b": "/root/@Node3D@82/MatchWorld/CinderCrypt/Architecture/StonePassage_root_tunnel/Stone-flag_root_tunnel_29",
+			"position": [
+				-25.3672,
+				-23.1085,
+				-11.7228
+			]
+		},
+		{
+			"a": "/root/@Node3D@82/MatchWorld/CinderCrypt/Architecture/wall_-2_-2_-1_lod0",
+			"b": "/root/@Node3D@82/MatchWorld/CinderCrypt/Architecture/StonePassage_root_tunnel/Stone-flag_root_tunnel_29",
+			"position": [
+				-26.3069,
+				-22.996,
+				-11.381
+			]
+		},
+		{
+			"a": "/root/@Node3D@82/MatchWorld/CinderCrypt/Architecture/wall_-2_-2_-1_lod0",
+			"b": "/root/@Node3D@82/MatchWorld/CinderCrypt/Architecture/StonePassage_root_tunnel/Stone-flag_root_tunnel_29",
+			"position": [
+				-25.7444,
+				-23.1132,
+				-11.5856
+			]
+		},
+		{
+			"a": "/root/@Node3D@82/MatchWorld/CinderCrypt/Architecture/wall_-2_-2_-1_lod0",
+			"b": "/root/@Node3D@82/MatchWorld/CinderCrypt/Architecture/StonePassage_root_tunnel/Stone-flag_root_tunnel_29",
+			"position": [
+				-25.5266,
+				-22.9958,
+				-10.4151
+			]
+		},
+		{
+			"a": "/root/@Node3D@82/MatchWorld/CinderCrypt/Architecture/wall_-2_-2_-1_lod0",
+			"b": "/root/@Node3D@82/MatchWorld/CinderCrypt/Architecture/StonePassage_root_tunnel/Stone-flag_root_tunnel_29",
+			"position": [
+				-25.9056,
+				-23.1003,
+				-10.2772
+			]
+		},
+		{
+			"a": "/root/@Node3D@82/MatchWorld/CinderCrypt/Architecture/wall_-2_-2_-1_lod0",
+			"b": "/root/@Node3D@82/MatchWorld/CinderCrypt/Architecture/StonePassage_root_tunnel/Stone-flag_root_tunnel_29",
+			"position": [
+				-24.9658,
+				-22.9927,
+				-10.619
+			]
+		},
+		{
+			"a": "/root/@Node3D@82/MatchWorld/CinderCrypt/Architecture/wall_-2_-2_-1_lod0",
+			"b": "/root/@Node3D@82/MatchWorld/CinderCrypt/Architecture/StonePassage_root_tunnel/Stone-flag_root_tunnel_29",
+			"position": [
+				-25.5281,
+				-23.0954,
+				-10.4145
+			]
+		},
+		{
+			"a": "/root/@Node3D@82/MatchWorld/CinderCrypt/Architecture/wall_-2_-2_-1_lod0",
+			"b": "/root/@Node3D@82/MatchWorld/CinderCrypt/Architecture/StonePassage_ossuary_loop/Mortar_ossuary_loop_13",
+			"position": [
+				-26.0354,
+				-6.05,
+				-10.6342
+			]
+		},
+		{
+			"a": "/root/@Node3D@82/MatchWorld/CinderCrypt/Architecture/wall_-2_-2_-1_lod0",
+			"b": "/root/@Node3D@82/MatchWorld/CinderCrypt/Architecture/StonePassage_ossuary_loop/Mortar_ossuary_loop_13",
+			"position": [
+				-26.3069,
+				-10.0,
+				-11.381
+			]
+		},
+		{
+			"a": "/root/@Node3D@82/MatchWorld/CinderCrypt/Architecture/wall_-2_-2_-1_lod0",
+			"b": "/root/@Node3D@82/MatchWorld/CinderCrypt/Architecture/StonePassage_ossuary_loop/Mortar_ossuary_loop_13",
+			"position": [
+				-26.0391,
+				-6.6178,
+				-10.6443
+			]
+		},
+		{
+			"a": "/root/@Node3D@82/MatchWorld/CinderCrypt/Architecture/wall_-2_-2_-1_lod0",
+			"b": "/root/@Node3D@82/MatchWorld/CinderCrypt/Architecture/StonePassage_ossuary_loop/Mortar_ossuary_loop_13",
+			"position": [
+				-26.003,
+				-6.05,
+				-11.4915
+			]
+		},
+		{
+			"a": "/root/@Node3D@82/MatchWorld/CinderCrypt/Architecture/wall_-2_-2_-1_lod0",
+			"b": "/root/@Node3D@82/MatchWorld/CinderCrypt/Architecture/StonePassage_ossuary_loop/Mortar_ossuary_loop_13",
+			"position": [
+				-26.3069,
+				-6.05,
+				-11.381
+			]
+		},
+		{
+			"a": "/root/@Node3D@82/MatchWorld/CinderCrypt/Architecture/wall_-2_-2_-1_lod0",
+			"b": "/root/@Node3D@82/MatchWorld/CinderCrypt/Architecture/StonePassage_ossuary_loop/Mortar_ossuary_loop_13",
+			"position": [
+				-25.9958,
+				-6.53,
+				-11.4942
+			]
+		},
+		{
+			"a": "/root/@Node3D@82/MatchWorld/CinderCrypt/Architecture/wall_-2_-2_-1_lod0",
+			"b": "/root/@Node3D@82/MatchWorld/CinderCrypt/Architecture/StonePassage_ossuary_loop/Stone-arch_ossuary_loop_12",
+			"position": [
+				-25.234,
+				-6.565,
+				-11.3566
+			]
+		},
+		{
+			"a": "/root/@Node3D@82/MatchWorld/CinderCrypt/Architecture/wall_-2_-2_-1_lod0",
+			"b": "/root/@Node3D@82/MatchWorld/CinderCrypt/Architecture/StonePassage_ossuary_loop/Stone-arch_ossuary_loop_12",
+			"position": [
+				-25.2314,
+				-6.9767,
+				-11.3493
+			]
+		},
+		{
+			"a": "/root/@Node3D@82/MatchWorld/CinderCrypt/Architecture/wall_-2_-2_-1_lod0",
+			"b": "/root/@Node3D@82/MatchWorld/CinderCrypt/Architecture/StonePassage_ossuary_loop/Stone-arch_ossuary_loop_12",
+			"position": [
+				-26.0438,
+				-7.351,
+				-10.6574
+			]
+		},
+		{
+			"a": "/root/@Node3D@82/MatchWorld/CinderCrypt/Architecture/wall_-2_-2_-1_lod0",
+			"b": "/root/@Node3D@82/MatchWorld/CinderCrypt/Architecture/StonePassage_ossuary_loop/Stone-arch_ossuary_loop_12",
+			"position": [
+				-26.3069,
+				-7.4767,
+				-11.381
+			]
+		},
+		{
+			"a": "/root/@Node3D@82/MatchWorld/CinderCrypt/Architecture/wall_-2_-2_-1_lod0",
+			"b": "/root/@Node3D@82/MatchWorld/CinderCrypt/Architecture/StonePassage_ossuary_loop/Stone-arch_ossuary_loop_12",
+			"position": [
+				-26.0444,
+				-7.4478,
+				-10.6591
+			]
+		},
+		{
+			"a": "/root/@Node3D@82/MatchWorld/CinderCrypt/Architecture/wall_-2_-2_-1_lod0",
+			"b": "/root/@Node3D@82/MatchWorld/CinderCrypt/Architecture/StonePassage_ossuary_loop/Stone-arch_ossuary_loop_12",
+			"position": [
+				-25.9895,
+				-6.9412,
+				-11.4964
+			]
+		},
+		{
+			"a": "/root/@Node3D@82/MatchWorld/CinderCrypt/Architecture/wall_-2_-2_-1_lod0",
+			"b": "/root/@Node3D@82/MatchWorld/CinderCrypt/Architecture/StonePassage_ossuary_loop/Stone-arch_ossuary_loop_12",
+			"position": [
+				-26.3069,
+				-7.1694,
+				-11.381
+			]
+		},
+		{
+			"a": "/root/@Node3D@82/MatchWorld/CinderCrypt/Architecture/wall_-2_-2_-1_lod0",
+			"b": "/root/@Node3D@82/MatchWorld/CinderCrypt/Architecture/StonePassage_ossuary_loop/Stone-arch_ossuary_loop_12",
+			"position": [
+				-25.9826,
+				-7.4008,
+				-11.499
+			]
+		},
+		{
+			"a": "/root/@Node3D@82/MatchWorld/CinderCrypt/Architecture/wall_-2_-2_-1_lod0",
+			"b": "/root/@Node3D@82/MatchWorld/CinderCrypt/Architecture/StonePassage_ossuary_loop/Stone-arch_ossuary_loop_12",
+			"position": [
+				-25.2778,
+				-6.5845,
+				-10.5055
+			]
+		},
+		{
+			"a": "/root/@Node3D@82/MatchWorld/CinderCrypt/Architecture/wall_-2_-2_-1_lod0",
+			"b": "/root/@Node3D@82/MatchWorld/CinderCrypt/Architecture/StonePassage_ossuary_loop/Stone-arch_ossuary_loop_12",
+			"position": [
+				-25.2842,
+				-7.0037,
+				-10.5032
+			]
+		},
+		{
+			"a": "/root/@Node3D@82/MatchWorld/CinderCrypt/Architecture/wall_-2_-2_-1_lod0",
+			"b": "/root/@Node3D@82/MatchWorld/CinderCrypt/Architecture/StonePassage_ossuary_loop/Stone-flag_ossuary_loop_14",
+			"position": [
+				-25.2118,
+				-9.9941,
+				-11.2956
+			]
+		},
+		{
+			"a": "/root/@Node3D@82/MatchWorld/CinderCrypt/Architecture/wall_-2_-2_-1_lod0",
+			"b": "/root/@Node3D@82/MatchWorld/CinderCrypt/Architecture/StonePassage_ossuary_loop/Stone-flag_ossuary_loop_14",
+			"position": [
+				-25.2111,
+				-10.112,
+				-11.2935
+			]
+		},
+		{
+			"a": "/root/@Node3D@82/MatchWorld/CinderCrypt/Architecture/wall_-2_-2_-1_lod0",
+			"b": "/root/@Node3D@82/MatchWorld/CinderCrypt/Architecture/StonePassage_ossuary_loop/Stone-flag_ossuary_loop_14",
+			"position": [
+				-26.0609,
+				-9.9902,
+				-10.7043
+			]
+		},
+		{
+			"a": "/root/@Node3D@82/MatchWorld/CinderCrypt/Architecture/wall_-2_-2_-1_lod0",
+			"b": "/root/@Node3D@82/MatchWorld/CinderCrypt/Architecture/StonePassage_ossuary_loop/Stone-flag_ossuary_loop_14",
+			"position": [
+				-26.0616,
+				-10.1079,
+				-10.7064
+			]
+		},
+		{
+			"a": "/root/@Node3D@82/MatchWorld/CinderCrypt/Architecture/wall_-2_-2_-1_lod0",
+			"b": "/root/@Node3D@82/MatchWorld/CinderCrypt/Architecture/StonePassage_ossuary_loop/Stone-flag_ossuary_loop_14",
+			"position": [
+				-25.9433,
+				-9.9883,
+				-11.5132
+			]
+		},
+		{
+			"a": "/root/@Node3D@82/MatchWorld/CinderCrypt/Architecture/wall_-2_-2_-1_lod0",
+			"b": "/root/@Node3D@82/MatchWorld/CinderCrypt/Architecture/StonePassage_ossuary_loop/Stone-flag_ossuary_loop_14",
+			"position": [
+				-25.9416,
+				-10.1007,
+				-11.5139
+			]
+		},
+		{
+			"a": "/root/@Node3D@82/MatchWorld/CinderCrypt/Architecture/wall_-2_-2_-1_lod0",
+			"b": "/root/@Node3D@82/MatchWorld/CinderCrypt/Architecture/StonePassage_ossuary_loop/Stone-flag_ossuary_loop_14",
+			"position": [
+				-25.3295,
+				-9.9982,
+				-10.4867
+			]
+		},
+		{
+			"a": "/root/@Node3D@82/MatchWorld/CinderCrypt/Architecture/wall_-2_-2_-1_lod0",
+			"b": "/root/@Node3D@82/MatchWorld/CinderCrypt/Architecture/StonePassage_ossuary_loop/Stone-flag_ossuary_loop_14",
+			"position": [
+				-25.3312,
+				-10.1103,
+				-10.4861
+			]
+		},
+		{
+			"a": "/root/@Node3D@82/MatchWorld/CinderCrypt/Architecture/wall_-2_-2_-1_lod0",
+			"b": "/root/@Node3D@82/MatchWorld/CinderCrypt/Architecture/StoneRoom_bones/Mortar_bones_3",
+			"position": [
+				-25.276,
+				-10.04,
+				-12.33
+			]
+		},
+		{
+			"a": "/root/@Node3D@82/MatchWorld/CinderCrypt/Architecture/wall_-2_-2_-1_lod0",
+			"b": "/root/@Node3D@82/MatchWorld/CinderCrypt/Architecture/StoneRoom_bones/Mortar_bones_3",
+			"position": [
+				-25.5537,
+				-10.12,
+				-11.7746
+			]
+		},
+		{
+			"a": "/root/@Node3D@82/MatchWorld/CinderCrypt/Architecture/wall_-2_-2_-1_lod0",
+			"b": "/root/@Node3D@82/MatchWorld/CinderCrypt/Architecture/StoneRoom_bones/Mortar_bones_3",
+			"position": [
+				-26.394,
+				-10.04,
+				-12.33
+			]
+		},
+		{
+			"a": "/root/@Node3D@82/MatchWorld/CinderCrypt/Architecture/wall_-2_-2_-1_lod0",
+			"b": "/root/@Node3D@82/MatchWorld/CinderCrypt/Architecture/StoneRoom_bones/Mortar_bones_3",
+			"position": [
+				-26.4258,
+				-10.12,
+				-12.2665
+			]
+		},
+		{
+			"a": "/root/@Node3D@82/MatchWorld/CinderCrypt/Architecture/wall_-2_-2_-1_lod0",
+			"b": "/root/@Node3D@82/MatchWorld/CinderCrypt/Architecture/StoneRoom_bones/Mortar_bones_3",
+			"position": [
+				-26.4481,
+				-10.12,
+				-12.2218
+			]
+		},
+		{
+			"a": "/root/@Node3D@82/MatchWorld/CinderCrypt/Architecture/wall_-2_-2_-1_lod0",
+			"b": "/root/@Node3D@82/MatchWorld/CinderCrypt/Architecture/StoneRoom_bones/Mortar_bones_3",
+			"position": [
+				-25.4002,
+				-10.04,
+				-12.33
+			]
+		},
+		{
+			"a": "/root/@Node3D@82/MatchWorld/CinderCrypt/Architecture/wall_-2_-2_-1_lod0",
+			"b": "/root/@Node3D@82/MatchWorld/CinderCrypt/Architecture/StoneRoom_bones/Stone-ashlar_bones_3",
+			"position": [
+				-25.2092,
+				-10.04,
+				-12.4635
+			]
+		},
+		{
+			"a": "/root/@Node3D@82/MatchWorld/CinderCrypt/Architecture/wall_-2_-2_-1_lod0",
+			"b": "/root/@Node3D@82/MatchWorld/CinderCrypt/Architecture/StoneRoom_bones/Stone-ashlar_bones_3",
+			"position": [
+				-25.5537,
+				-10.4534,
+				-11.7746
+			]
+		},
+		{
+			"a": "/root/@Node3D@82/MatchWorld/CinderCrypt/Architecture/wall_-2_-2_-1_lod0",
+			"b": "/root/@Node3D@82/MatchWorld/CinderCrypt/Architecture/StoneRoom_bones/Stone-ashlar_bones_3",
+			"position": [
+				-26.3152,
+				-10.04,
+				-12.1554
+			]
+		},
+		{
+			"a": "/root/@Node3D@82/MatchWorld/CinderCrypt/Architecture/wall_-2_-2_-1_lod0",
+			"b": "/root/@Node3D@82/MatchWorld/CinderCrypt/Architecture/StoneRoom_bones/Stone-ashlar_bones_3",
+			"position": [
+				-25.5989,
+				-10.4526,
+				-11.7972
+			]
+		},
+		{
+			"a": "/root/@Node3D@82/MatchWorld/CinderCrypt/Architecture/wall_-2_-2_-1_lod0",
+			"b": "/root/@Node3D@82/MatchWorld/CinderCrypt/Architecture/StoneRoom_bones/Stone-ashlar_bones_3",
+			"position": [
+				-25.3635,
+				-10.04,
+				-12.4626
+			]
+		},
+		{
+			"a": "/root/@Node3D@82/MatchWorld/CinderCrypt/Architecture/wall_-2_-2_-1_lod0",
+			"b": "/root/@Node3D@82/MatchWorld/CinderCrypt/Architecture/StonePassage_root_tunnel/Mortar_root_tunnel_28",
+			"position": [
+				-25.2747,
+				-17.2,
+				-12.3326
+			]
+		},
+		{
+			"a": "/root/@Node3D@82/MatchWorld/CinderCrypt/Architecture/wall_-2_-2_-1_lod0",
+			"b": "/root/@Node3D@82/MatchWorld/CinderCrypt/Architecture/StonePassage_root_tunnel/Mortar_root_tunnel_28",
+			"position": [
+				-25.5537,
+				-18.0281,
+				-11.7746
+			]
+		},
+		{
+			"a": "/root/@Node3D@82/MatchWorld/CinderCrypt/Architecture/wall_-2_-2_-1_lod0",
+			"b": "/root/@Node3D@82/MatchWorld/CinderCrypt/Architecture/StonePassage_root_tunnel/Mortar_root_tunnel_28",
+			"position": [
+				-25.5027,
+				-18.0171,
+				-11.8766
+			]
+		},
+		{
+			"a": "/root/@Node3D@82/MatchWorld/CinderCrypt/Architecture/wall_-2_-2_-1_lod0",
+			"b": "/root/@Node3D@82/MatchWorld/CinderCrypt/Architecture/StonePassage_root_tunnel/Mortar_root_tunnel_28",
+			"position": [
+				-26.4481,
+				-17.2,
+				-12.2218
+			]
+		},
+		{
+			"a": "/root/@Node3D@82/MatchWorld/CinderCrypt/Architecture/wall_-2_-2_-1_lod0",
+			"b": "/root/@Node3D@82/MatchWorld/CinderCrypt/Architecture/StonePassage_root_tunnel/Mortar_root_tunnel_28",
+			"position": [
+				-26.3385,
+				-17.2,
+				-12.167
+			]
+		},
+		{
+			"a": "/root/@Node3D@82/MatchWorld/CinderCrypt/Architecture/wall_0_-2_1_lod0",
+			"b": "/root/@Node3D@82/MatchWorld/CinderCrypt/Architecture/StonePassage_nave/Mortar_nave_3",
+			"position": [
+				9.6607,
+				-13.5501,
+				25.8626
+			]
+		},
+		{
+			"a": "/root/@Node3D@82/MatchWorld/CinderCrypt/Architecture/wall_0_-2_1_lod0",
+			"b": "/root/@Node3D@82/MatchWorld/CinderCrypt/Architecture/StonePassage_nave/Mortar_nave_3",
+			"position": [
+				9.9354,
+				-18.0,
+				26.8242
+			]
+		},
+		{
+			"a": "/root/@Node3D@82/MatchWorld/CinderCrypt/Architecture/wall_0_-2_1_lod0",
+			"b": "/root/@Node3D@82/MatchWorld/CinderCrypt/Architecture/StonePassage_nave/Mortar_nave_3",
+			"position": [
+				9.8134,
+				-13.5501,
+				26.3969
+			]
+		},
+		{
+			"a": "/root/@Node3D@82/MatchWorld/CinderCrypt/Architecture/wall_0_-2_1_lod0",
+			"b": "/root/@Node3D@82/MatchWorld/CinderCrypt/Architecture/StonePassage_nave/Mortar_nave_3",
+			"position": [
+				9.6607,
+				-18.0,
+				25.8626
+			]
+		},
+		{
+			"a": "/root/@Node3D@82/MatchWorld/CinderCrypt/Architecture/wall_0_-2_1_lod0",
+			"b": "/root/@Node3D@82/MatchWorld/CinderCrypt/Architecture/StonePassage_nave/Mortar_nave_3",
+			"position": [
+				9.9354,
+				-13.5501,
+				26.8242
+			]
+		},
+		{
+			"a": "/root/@Node3D@82/MatchWorld/CinderCrypt/Architecture/wall_0_-2_1_lod0",
+			"b": "/root/@Node3D@82/MatchWorld/CinderCrypt/Architecture/StonePassage_nave/Mortar_nave_3",
+			"position": [
+				9.7937,
+				-18.0,
+				26.3279
+			]
+		},
+		{
+			"a": "/root/@Node3D@82/MatchWorld/CinderCrypt/Architecture/wall_0_-2_1_lod0",
+			"b": "/root/@Node3D@82/MatchWorld/CinderCrypt/Architecture/StonePassage_nave/Stone-arch_nave_2",
+			"position": [
+				9.6607,
+				-15.2794,
+				25.8626
+			]
+		},
+		{
+			"a": "/root/@Node3D@82/MatchWorld/CinderCrypt/Architecture/wall_0_-2_1_lod0",
+			"b": "/root/@Node3D@82/MatchWorld/CinderCrypt/Architecture/StonePassage_nave/Stone-arch_nave_2",
+			"position": [
+				9.6607,
+				-15.4216,
+				25.8626
+			]
+		},
+		{
+			"a": "/root/@Node3D@82/MatchWorld/CinderCrypt/Architecture/wall_0_-2_1_lod0",
+			"b": "/root/@Node3D@82/MatchWorld/CinderCrypt/Architecture/StoneRoom_nave/Mortar_nave_0",
+			"position": [
+				2.3811,
+				1.88,
+				27.6865
+			]
+		},
+		{
+			"a": "/root/@Node3D@82/MatchWorld/CinderCrypt/Architecture/wall_0_-2_1_lod0",
+			"b": "/root/@Node3D@82/MatchWorld/CinderCrypt/Architecture/StoneRoom_nave/Mortar_nave_0",
+			"position": [
+				2.9373,
+				1.88,
+				27.9899
+			]
+		},
+		{
+			"a": "/root/@Node3D@82/MatchWorld/CinderCrypt/Architecture/wall_0_-2_1_lod0",
+			"b": "/root/@Node3D@82/MatchWorld/CinderCrypt/Architecture/StoneRoom_nave/Mortar_nave_0",
+			"position": [
+				2.1308,
+				-3.5746,
+				27.55
+			]
+		},
+		{
+			"a": "/root/@Node3D@82/MatchWorld/CinderCrypt/Architecture/wall_0_-2_1_lod0",
+			"b": "/root/@Node3D@82/MatchWorld/CinderCrypt/Architecture/StoneRoom_nave/Mortar_nave_0",
+			"position": [
+				3.1773,
+				-16.9321,
+				27.55
+			]
+		},
+		{
+			"a": "/root/@Node3D@82/MatchWorld/CinderCrypt/Architecture/wall_0_-2_1_lod0",
+			"b": "/root/@Node3D@82/MatchWorld/CinderCrypt/Architecture/StoneRoom_nave/Mortar_nave_0",
+			"position": [
+				2.9373,
+				-18.12,
+				27.9899
+			]
+		},
+		{
+			"a": "/root/@Node3D@82/MatchWorld/CinderCrypt/Architecture/wall_0_-2_1_lod0",
+			"b": "/root/@Node3D@82/MatchWorld/CinderCrypt/Architecture/StoneRoom_nave/Mortar_nave_0",
+			"position": [
+				3.1681,
+				-18.12,
+				27.5668
+			]
+		},
+		{
+			"a": "/root/@Node3D@82/MatchWorld/CinderCrypt/Architecture/wall_0_-3_1_lod0",
+			"b": "/root/@Node3D@82/MatchWorld/CinderCrypt/Architecture/StoneRoom_nave/Stone-ashlar_nave_0",
+			"position": [
+				5.8659,
+				-18.25,
+				27.9869
+			]
+		},
+		{
+			"a": "/root/@Node3D@82/MatchWorld/CinderCrypt/Architecture/wall_0_-3_1_lod0",
+			"b": "/root/@Node3D@82/MatchWorld/CinderCrypt/Architecture/StoneRoom_nave/Stone-ashlar_nave_0",
+			"position": [
+				5.7104,
+				-18.6131,
+				28.0313
+			]
+		},
+		{
+			"a": "/root/@Node3D@82/MatchWorld/CinderCrypt/Architecture/wall_0_-3_1_lod0",
+			"b": "/root/@Node3D@82/MatchWorld/CinderCrypt/Architecture/StoneRoom_nave/Stone-ashlar_nave_0",
+			"position": [
+				5.5754,
+				-18.25,
+				27.5588
+			]
+		},
+		{
+			"a": "/root/@Node3D@82/MatchWorld/CinderCrypt/Architecture/wall_0_-3_1_lod0",
+			"b": "/root/@Node3D@82/MatchWorld/CinderCrypt/Architecture/StoneRoom_nave/Stone-ashlar_nave_0",
+			"position": [
+				5.7071,
+				-18.6131,
+				28.0196
+			]
+		},
+		{
+			"a": "/root/@Node3D@82/MatchWorld/CinderCrypt/Architecture/wall_0_-3_1_lod0",
+			"b": "/root/@Node3D@82/MatchWorld/CinderCrypt/Architecture/StoneRoom_nave/Stone-ashlar_nave_0",
+			"position": [
+				6.4368,
+				-18.25,
+				27.556
+			]
+		},
+		{
+			"a": "/root/@Node3D@82/MatchWorld/CinderCrypt/Architecture/wall_0_-3_1_lod0",
+			"b": "/root/@Node3D@82/MatchWorld/CinderCrypt/Architecture/StoneRoom_nave/Stone-ashlar_nave_0",
+			"position": [
+				7.388,
+				-18.25,
+				27.552
+			]
+		},
+		{
+			"a": "/root/@Node3D@82/MatchWorld/CinderCrypt/Architecture/wall_0_-3_1_lod0",
+			"b": "/root/@Node3D@82/MatchWorld/CinderCrypt/Architecture/StoneRoom_nave/Stone-ashlar_nave_0",
+			"position": [
+				5.8665,
+				-18.25,
+				27.9292
+			]
+		},
+		{
+			"a": "/root/@Node3D@82/MatchWorld/CinderCrypt/Architecture/wall_0_-3_1_lod0",
+			"b": "/root/@Node3D@82/MatchWorld/CinderCrypt/Architecture/StoneRoom_nave/Stone-ashlar_nave_0",
+			"position": [
+				4.6431,
+				-18.25,
+				28.3363
+			]
+		},
+		{
+			"a": "/root/@Node3D@82/MatchWorld/CinderCrypt/Architecture/wall_0_-3_1_lod0",
+			"b": "/root/@Node3D@82/MatchWorld/CinderCrypt/Architecture/StoneRoom_nave/Stone-ashlar_nave_0",
+			"position": [
+				5.6974,
+				-18.6133,
+				28.035
+			]
+		},
+		{
+			"a": "/root/@Node3D@82/MatchWorld/CinderCrypt/Architecture/wall_0_-3_1_lod0",
+			"b": "/root/@Node3D@82/MatchWorld/CinderCrypt/Architecture/StoneRoom_nave/Stone-ashlar_nave_0",
+			"position": [
+				5.0452,
+				-18.25,
+				27.5529
+			]
+		},
+		{
+			"a": "/root/@Node3D@82/MatchWorld/CinderCrypt/Architecture/wall_0_-3_1_lod0",
+			"b": "/root/@Node3D@82/MatchWorld/CinderCrypt/Architecture/StoneRoom_nave/Stone-ashlar_nave_0",
+			"position": [
+				4.6407,
+				-18.25,
+				28.0494
+			]
+		},
+		{
+			"a": "/root/@Node3D@82/MatchWorld/CinderCrypt/Architecture/wall_0_-3_1_lod0",
+			"b": "/root/@Node3D@82/MatchWorld/CinderCrypt/Architecture/StoneRoom_nave/Mortar_nave_0",
+			"position": [
+				3.8693,
+				-18.04,
+				27.55
+			]
+		},
+		{
+			"a": "/root/@Node3D@82/MatchWorld/CinderCrypt/Architecture/wall_0_-3_1_lod0",
+			"b": "/root/@Node3D@82/MatchWorld/CinderCrypt/Architecture/StoneRoom_nave/Mortar_nave_0",
+			"position": [
+				4.3127,
+				-18.04,
+				28.33
+			]
+		},
+		{
+			"a": "/root/@Node3D@82/MatchWorld/CinderCrypt/Architecture/wall_0_-3_1_lod0",
+			"b": "/root/@Node3D@82/MatchWorld/CinderCrypt/Architecture/StoneRoom_nave/Mortar_nave_0",
+			"position": [
+				4.0707,
+				-18.04,
+				27.55
+			]
+		},
+		{
+			"a": "/root/@Node3D@82/MatchWorld/CinderCrypt/Architecture/wall_0_-3_1_lod0",
+			"b": "/root/@Node3D@82/MatchWorld/CinderCrypt/Architecture/StoneRoom_nave/Mortar_nave_0",
+			"position": [
+				4.0922,
+				-18.04,
+				28.33
+			]
+		},
+		{
+			"a": "/root/@Node3D@82/MatchWorld/CinderCrypt/Architecture/wall_0_-3_1_lod0",
+			"b": "/root/@Node3D@82/MatchWorld/CinderCrypt/Architecture/StoneRoom_nave/Mortar_nave_0",
+			"position": [
+				4.1249,
+				-18.04,
+				28.33
+			]
+		},
+		{
+			"a": "/root/@Node3D@82/MatchWorld/CinderCrypt/Architecture/wall_0_-3_1_lod0",
+			"b": "/root/@Node3D@82/MatchWorld/CinderCrypt/Architecture/StoneRoom_nave/Mortar_nave_0",
+			"position": [
+				4.2192,
+				-18.04,
+				27.55
+			]
+		},
+		{
+			"a": "/root/@Node3D@82/MatchWorld/CinderCrypt/Architecture/wall_0_-3_1_lod0",
+			"b": "/root/@Node3D@82/MatchWorld/CinderCrypt/Architecture/StoneRoom_nave/Mortar_nave_0",
+			"position": [
+				4.2412,
+				-18.12,
+				27.562
+			]
+		},
+		{
+			"a": "/root/@Node3D@82/MatchWorld/CinderCrypt/Architecture/wall_0_-3_1_lod0",
+			"b": "/root/@Node3D@82/MatchWorld/CinderCrypt/Architecture/StoneRoom_nave/Mortar_nave_0",
+			"position": [
+				3.5608,
+				-18.04,
+				28.33
+			]
+		},
+		{
+			"a": "/root/@Node3D@82/MatchWorld/CinderCrypt/Architecture/wall_0_-3_1_lod0",
+			"b": "/root/@Node3D@82/MatchWorld/CinderCrypt/Architecture/StoneRoom_nave/Mortar_nave_0",
+			"position": [
+				3.1727,
+				-18.04,
+				27.55
+			]
+		},
+		{
+			"a": "/root/@Node3D@82/MatchWorld/CinderCrypt/Architecture/wall_0_-3_1_lod0",
+			"b": "/root/@Node3D@82/MatchWorld/CinderCrypt/Architecture/StoneRoom_nave/Mortar_nave_0",
+			"position": [
+				3.8223,
+				-18.04,
+				28.33
+			]
+		},
+		{
+			"a": "/root/@Node3D@82/MatchWorld/CinderCrypt/Architecture/wall_0_0_1_lod0",
+			"b": "/root/@Node3D@82/MatchWorld/CinderCrypt/Architecture/StoneRoom_nave/Mortar_nave_0",
+			"position": [
+				7.395,
+				1.6024,
+				27.55
+			]
+		},
+		{
+			"a": "/root/@Node3D@82/MatchWorld/CinderCrypt/Architecture/wall_0_0_1_lod0",
+			"b": "/root/@Node3D@82/MatchWorld/CinderCrypt/Architecture/StoneRoom_nave/Mortar_nave_0",
+			"position": [
+				5.7104,
+				1.88,
+				28.0313
+			]
+		},
+		{
+			"a": "/root/@Node3D@82/MatchWorld/CinderCrypt/Architecture/wall_0_0_1_lod0",
+			"b": "/root/@Node3D@82/MatchWorld/CinderCrypt/Architecture/StoneRoom_nave/Mortar_nave_0",
+			"position": [
+				6.3912,
+				-13.2,
+				27.8368
+			]
+		},
+		{
+			"a": "/root/@Node3D@82/MatchWorld/CinderCrypt/Architecture/wall_0_0_1_lod0",
+			"b": "/root/@Node3D@82/MatchWorld/CinderCrypt/Architecture/StoneRoom_nave/Mortar_nave_0",
+			"position": [
+				5.588,
+				1.88,
+				27.6029
+			]
+		},
+		{
+			"a": "/root/@Node3D@82/MatchWorld/CinderCrypt/Architecture/wall_0_0_1_lod0",
+			"b": "/root/@Node3D@82/MatchWorld/CinderCrypt/Architecture/StoneRoom_nave/Mortar_nave_0",
+			"position": [
+				5.5729,
+				-13.2,
+				27.55
+			]
+		},
+		{
+			"a": "/root/@Node3D@82/MatchWorld/CinderCrypt/Architecture/wall_0_0_1_lod0",
+			"b": "/root/@Node3D@82/MatchWorld/CinderCrypt/Architecture/StoneRoom_nave/Mortar_nave_0",
+			"position": [
+				5.5729,
+				0.3843,
+				27.55
+			]
+		},
+		{
+			"a": "/root/@Node3D@82/MatchWorld/CinderCrypt/Architecture/wall_0_0_1_lod0",
+			"b": "/root/@Node3D@82/MatchWorld/CinderCrypt/Architecture/StoneRoom_nave/Stone-arch_nave_0",
+			"position": [
+				5.7229,
+				-13.0908,
+				28.0278
+			]
+		},
+		{
+			"a": "/root/@Node3D@82/MatchWorld/CinderCrypt/Architecture/wall_0_0_1_lod0",
+			"b": "/root/@Node3D@82/MatchWorld/CinderCrypt/Architecture/StoneRoom_nave/Stone-arch_nave_0",
+			"position": [
+				6.4203,
+				-13.2,
+				27.8285
+			]
+		},
+		{
+			"a": "/root/@Node3D@82/MatchWorld/CinderCrypt/Architecture/wall_0_0_1_lod0",
+			"b": "/root/@Node3D@82/MatchWorld/CinderCrypt/Architecture/StoneRoom_nave/Stone-arch_nave_0",
+			"position": [
+				5.6184,
+				-13.2,
+				27.7094
+			]
+		},
+		{
+			"a": "/root/@Node3D@82/MatchWorld/CinderCrypt/Architecture/wall_0_0_1_lod0",
+			"b": "/root/@Node3D@82/MatchWorld/CinderCrypt/Architecture/StoneRoom_nave/Stone-arch_nave_0",
+			"position": [
+				5.9546,
+				-13.2,
+				27.9616
+			]
+		}
+	]
+}

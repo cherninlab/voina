@@ -1,4 +1,5 @@
 shader_type spatial;
+#include "res://content/environments/red_descent/stair_art_v1/surface.gdshaderinc"
 // Project in metres on the existing UV-less architecture. Timber follows each instance.
 uniform sampler2D albedo_map : source_color, filter_linear_mipmap_anisotropic, repeat_enable;
 uniform sampler2D normal_map : hint_normal, filter_linear_mipmap_anisotropic, repeat_enable;
@@ -168,6 +169,7 @@ void fragment() {
 	float growth = smoothstep(0.48, 0.72, texture(algae_map, metres * 0.16).r * 0.55 + stains * 0.45) * lower * algae;
 	color = mix(color, color * vec3(0.38, 0.48, 0.32), growth);
 	float wet = smoothstep(0.54, 0.74, coverage * 0.55 + stains * 0.3 + broad * 0.15) * wetness * mix(0.65, 1.0, lower);
+	color = stair_surface(color, world_position, n, medium);
 	ALBEDO = mix(color, color * vec3(0.64, 0.68, 0.66), wet);
 	float dry = mix(material_sample(roughness_map, uv).r, texture(substrate_roughness, foundation_uv).r, exposed);
 	// Remap into the dry range instead of clipping away the scan's roughness variation.

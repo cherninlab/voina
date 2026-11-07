@@ -1,0 +1,225 @@
+{
+  "baseline": "366005e",
+  "generator": "scripts/art/build_stair_art.py",
+  "provenance": "Original project-created procedural reliefs, sealed plaques, capillary vessels and iron fixings. H-011 references guide motifs only; no image-to-mesh inference or external mesh used.",
+  "placements": [
+    {
+      "room": "first_stair_hall",
+      "name": "Bell oath",
+      "at": [
+        36.400001525878906,
+        -3.6500000953674316,
+        -41.49488067626953
+      ],
+      "nominal_at": [
+        36.4,
+        -3.65,
+        -41.55
+      ],
+      "support_front_depth_m": 0.029117584228515625,
+      "relief_depth_scale": 0.65,
+      "normal": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "purpose": "One shallow carved bell-mask oath medallion above the northern turn"
+    },
+    {
+      "room": "first_stair_hall",
+      "name": "West votive",
+      "at": [
+        32.70000076293945,
+        -3.75,
+        -41.49832534790039
+      ],
+      "nominal_at": [
+        32.7,
+        -3.75,
+        -41.55
+      ],
+      "support_front_depth_m": 0.02567291259765625,
+      "relief_depth_scale": 0.65,
+      "normal": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "purpose": "Small iron votive tablet flanking the bell oath"
+    },
+    {
+      "room": "first_stair_hall",
+      "name": "East votive",
+      "at": [
+        39.400001525878906,
+        -3.75,
+        -41.520042419433594
+      ],
+      "nominal_at": [
+        39.4,
+        -3.75,
+        -41.55
+      ],
+      "support_front_depth_m": 0.003955841064453125,
+      "relief_depth_scale": 0.65,
+      "normal": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "purpose": "Small iron votive tablet flanking the bell oath"
+    },
+    {
+      "room": "second_stair_hall",
+      "name": "Vascular reliquary",
+      "at": [
+        -28.700000762939453,
+        -16.899999618530273,
+        38.00787353515625
+      ],
+      "nominal_at": [
+        -28.7,
+        -16.9,
+        38.05
+      ],
+      "support_front_depth_m": 0.016124725341796875,
+      "relief_depth_scale": 0.65,
+      "normal": [
+        0.0,
+        0.0,
+        -1.0
+      ],
+      "purpose": "Principal sealed oval membrane reliquary with a three-bar grille"
+    },
+    {
+      "room": "second_stair_hall",
+      "name": "Lower witness",
+      "at": [
+        -26.899999618530273,
+        -17.0,
+        38.012630462646484
+      ],
+      "nominal_at": [
+        -26.9,
+        -17.0,
+        38.05
+      ],
+      "support_front_depth_m": 0.0113677978515625,
+      "relief_depth_scale": 0.65,
+      "normal": [
+        0.0,
+        0.0,
+        -1.0
+      ],
+      "purpose": "Narrow iron witness tablet"
+    },
+    {
+      "room": "second_stair_hall",
+      "name": "Upper witness",
+      "at": [
+        -30.5,
+        -17.0,
+        38.01103973388672
+      ],
+      "nominal_at": [
+        -30.5,
+        -17.0,
+        38.05
+      ],
+      "support_front_depth_m": 0.012958526611328125,
+      "relief_depth_scale": 0.65,
+      "normal": [
+        0.0,
+        0.0,
+        -1.0
+      ],
+      "purpose": "Narrow iron witness tablet"
+    },
+    {
+      "room": "second_stair_hall",
+      "name": "Clamped vessels",
+      "at": [
+        -28.700000762939453,
+        -16.899999618530273,
+        38.04003143310547
+      ],
+      "nominal_at": [
+        -28.7,
+        -16.9,
+        38.05
+      ],
+      "support_front_depth_m": 0.01596832275390625,
+      "relief_depth_scale": 0.65,
+      "normal": [
+        0.0,
+        0.0,
+        -1.0
+      ],
+      "purpose": "Short localized flattened vessels, nodules and four wall-fixed iron clamps"
+    }
+  ],
+  "meshes": {
+    "Stone_first_stair_hall": {
+      "triangles": 2462,
+      "source_closed_components": 3
+    },
+    "StoneRim_first_stair_hall": {
+      "triangles": 1024,
+      "source_closed_components": 1
+    },
+    "Iron_first_stair_hall": {
+      "triangles": 2308,
+      "source_closed_components": 20
+    },
+    "Bronze_first_stair_hall": {
+      "triangles": 3980,
+      "source_closed_components": 19
+    },
+    "Iron_second_stair_hall": {
+      "triangles": 2128,
+      "source_closed_components": 16
+    },
+    "Bronze_second_stair_hall": {
+      "triangles": 7628,
+      "source_closed_components": 26
+    },
+    "Tissue_second_stair_hall": {
+      "triangles": 2712,
+      "source_closed_components": 7
+    }
+  },
+  "stairs_sha256": {
+    "first_stair_hall": "65e5b1bb8039f7829afaf763c3fcf6c34ad9aba4a336625abab31a6c908b3365",
+    "second_stair_hall": "797fd280ba0f43b40840e163221a67bf1de7db382b45d78c46ad696b4e2e46da"
+  },
+  "sha256": "1b01dbdf7c4411ea0db3525ace00782a47e676a3ef28a96747cc631f7fadd13d",
+  "seal_bands": {
+    "first_stair_hall": {
+      "at": [
+        36.4,
+        -4.6,
+        -41.55
+      ],
+      "normal": [
+        0,
+        0,
+        1
+      ],
+      "length_m": 3.8
+    },
+    "second_stair_hall": {
+      "at": [
+        -28.7,
+        -17.85,
+        38.05
+      ],
+      "normal": [
+        0,
+        0,
+        -1
+      ],
+      "length_m": 3.8
+    }
+  },
+  "collision": "None; route, room, stair and vault collision are unchanged."
+}
