@@ -1,31 +1,31 @@
 {
   "ao": {
+    "Graft_second_stair_hall": {
+      "mean": 0.64,
+      "min": 0.2
+    },
     "Roots_second_stair_hall_0": {
-      "mean": 0.358,
+      "mean": 0.538,
       "min": 0.2
     },
     "Roots_second_stair_hall_1": {
-      "mean": 0.307,
-      "min": 0.2
-    },
-    "Roots_second_stair_hall_2": {
-      "mean": 0.447,
+      "mean": 0.565,
       "min": 0.2
     },
     "Roots_second_stair_hall_3": {
-      "mean": 0.455,
+      "mean": 0.601,
       "min": 0.2
     }
   },
   "blender": "5.2.2 LTS",
-  "budget": 30000,
+  "budget": 40000,
   "clearance": {
     "ankle_m": 0.03,
     "headroom_m": 2.7,
     "route_margin_m": 0.3
   },
   "diameter_cm": {
-    "max": 15.9,
+    "max": 14.6,
     "min": 0.0
   },
   "doorways": [
@@ -36,7 +36,7 @@
     }
   ],
   "files": {
-    "content/environments/procedural_roots_v1/second_stair_hall.glb": "784947e88328ec296eb49da35ea241a1aff08b6cdd9830336e87762e69f5c522"
+    "content/environments/procedural_roots_v1/second_stair_hall.glb": "49674efc05f860e85a763614de68bc9cccb7f076ca890e57e070a2b56f2a7db2"
   },
   "growth_budget": 15000,
   "id": "second_stair_hall",
@@ -44,26 +44,39 @@
   "meshes": [
     "Roots_second_stair_hall_0",
     "Roots_second_stair_hall_1",
-    "Roots_second_stair_hall_2",
-    "Roots_second_stair_hall_3"
+    "Roots_second_stair_hall_3",
+    "Graft_second_stair_hall"
   ],
   "qa": {
     "audit": {
-      "cut_deeper_than_1cm": 9,
-      "cut_into_stone": 20,
-      "emerging_from_joint": 47,
+      "cut_deeper_than_1cm": 1,
+      "cut_into_stone": 1,
+      "emerging_from_joint": 0,
       "in_walking_corridor": 0,
-      "vertices": 11974
+      "vertices": 2890
     },
     "cling_gap_m": {
-      "max": 0.0422,
-      "p50": 0.0044,
-      "p95": 0.0165
+      "max": 0.0636,
+      "p50": 0.003,
+      "p95": 0.0335
     },
-    "clipped_at_corridor": 1,
-    "pruned": 49,
-    "rings": 1338,
-    "rings_touching_stone": 11,
+    "clipped_at_corridor": 0,
+    "graft": {
+      "back_exposed_vertices": 0,
+      "back_vertices_seated": 45,
+      "centre": [
+        -30.100000381469727,
+        -17.600000381469727,
+        38.5
+      ],
+      "generator": "original native vessel/nodule/membrane voxel union",
+      "method": "Closed native nodule and rounded membrane; full rear sample seated inside actual masonry, no separate free ports.",
+      "voxel_m": 0.0035,
+      "wall": 0
+    },
+    "pruned": 0,
+    "rings": 373,
+    "rings_touching_stone": 0,
     "terminal_rings": [
       {
         "end": "start",
@@ -80,367 +93,85 @@
       {
         "end": "branch",
         "exposed_vertices": 0,
-        "root": 3,
+        "root": 2,
         "vertices": 10
       },
       {
         "end": "branch",
+        "exposed_vertices": 0,
+        "root": 4,
+        "vertices": 5
+      },
+      {
+        "end": "branch",
+        "exposed_vertices": 0,
+        "root": 3,
+        "vertices": 8
+      },
+      {
+        "end": "branch",
+        "exposed_vertices": 0,
+        "root": 6,
+        "vertices": 5
+      },
+      {
+        "end": "branch",
+        "exposed_vertices": 0,
+        "root": 7,
+        "vertices": 6
+      },
+      {
+        "end": "start",
         "exposed_vertices": 0,
         "root": 8,
-        "vertices": 8
-      },
-      {
-        "end": "branch",
-        "exposed_vertices": 0,
-        "root": 4,
         "vertices": 10
       },
       {
         "end": "return",
         "exposed_vertices": 0,
-        "root": 4,
+        "root": 8,
         "vertices": 10
       },
       {
         "end": "branch",
+        "exposed_vertices": 0,
+        "root": 9,
+        "vertices": 6
+      },
+      {
+        "end": "branch",
+        "exposed_vertices": 0,
+        "root": 10,
+        "vertices": 5
+      },
+      {
+        "end": "start",
         "exposed_vertices": 0,
         "root": 11,
-        "vertices": 8
+        "vertices": 10
+      },
+      {
+        "end": "return",
+        "exposed_vertices": 0,
+        "root": 11,
+        "vertices": 10
       },
       {
         "end": "branch",
         "exposed_vertices": 0,
-        "root": 5,
-        "vertices": 8
-      },
-      {
-        "end": "start",
-        "exposed_vertices": 0,
-        "root": 25,
-        "vertices": 8
-      },
-      {
-        "end": "branch",
-        "exposed_vertices": 0,
-        "root": 27,
+        "root": 12,
         "vertices": 6
       },
       {
         "end": "branch",
         "exposed_vertices": 0,
-        "root": 28,
-        "vertices": 6
-      },
-      {
-        "end": "branch",
-        "exposed_vertices": 0,
-        "root": 33,
-        "vertices": 6
-      },
-      {
-        "end": "start",
-        "exposed_vertices": 0,
-        "root": 38,
-        "vertices": 10
-      },
-      {
-        "end": "start",
-        "exposed_vertices": 0,
-        "root": 54,
-        "vertices": 10
-      },
-      {
-        "end": "start",
-        "exposed_vertices": 0,
-        "root": 57,
-        "vertices": 8
-      },
-      {
-        "end": "return",
-        "exposed_vertices": 0,
-        "root": 57,
-        "vertices": 8
-      },
-      {
-        "end": "branch",
-        "exposed_vertices": 0,
-        "root": 61,
-        "vertices": 8
-      },
-      {
-        "end": "branch",
-        "exposed_vertices": 0,
-        "root": 64,
-        "vertices": 8
-      },
-      {
-        "end": "start",
-        "exposed_vertices": 0,
-        "root": 69,
-        "vertices": 10
-      },
-      {
-        "end": "start",
-        "exposed_vertices": 0,
-        "root": 70,
-        "vertices": 10
-      },
-      {
-        "end": "return",
-        "exposed_vertices": 0,
-        "root": 70,
-        "vertices": 10
-      },
-      {
-        "end": "branch",
-        "exposed_vertices": 0,
-        "root": 72,
-        "vertices": 10
-      },
-      {
-        "end": "return",
-        "exposed_vertices": 0,
-        "root": 72,
-        "vertices": 10
-      },
-      {
-        "end": "branch",
-        "exposed_vertices": 0,
-        "root": 73,
-        "vertices": 10
-      },
-      {
-        "end": "return",
-        "exposed_vertices": 0,
-        "root": 73,
-        "vertices": 10
-      },
-      {
-        "end": "start",
-        "exposed_vertices": 0,
-        "root": 74,
-        "vertices": 10
-      },
-      {
-        "end": "return",
-        "exposed_vertices": 0,
-        "root": 74,
-        "vertices": 10
-      },
-      {
-        "end": "start",
-        "exposed_vertices": 0,
-        "root": 75,
-        "vertices": 10
-      },
-      {
-        "end": "start",
-        "exposed_vertices": 0,
-        "root": 76,
-        "vertices": 10
-      },
-      {
-        "end": "return",
-        "exposed_vertices": 0,
-        "root": 76,
-        "vertices": 10
-      },
-      {
-        "end": "start",
-        "exposed_vertices": 0,
-        "root": 77,
-        "vertices": 10
-      },
-      {
-        "end": "return",
-        "exposed_vertices": 0,
-        "root": 77,
-        "vertices": 10
-      },
-      {
-        "end": "branch",
-        "exposed_vertices": 0,
-        "root": 81,
-        "vertices": 10
-      },
-      {
-        "end": "start",
-        "exposed_vertices": 0,
-        "root": 84,
-        "vertices": 10
-      },
-      {
-        "end": "return",
-        "exposed_vertices": 0,
-        "root": 84,
-        "vertices": 10
-      },
-      {
-        "end": "branch",
-        "exposed_vertices": 0,
-        "root": 86,
-        "vertices": 10
-      },
-      {
-        "end": "return",
-        "exposed_vertices": 0,
-        "root": 86,
-        "vertices": 10
-      },
-      {
-        "end": "branch",
-        "exposed_vertices": 0,
-        "root": 87,
-        "vertices": 10
-      },
-      {
-        "end": "return",
-        "exposed_vertices": 0,
-        "root": 87,
-        "vertices": 10
-      },
-      {
-        "end": "branch",
-        "exposed_vertices": 0,
-        "root": 88,
-        "vertices": 10
-      },
-      {
-        "end": "branch",
-        "exposed_vertices": 0,
-        "root": 89,
-        "vertices": 10
-      },
-      {
-        "end": "return",
-        "exposed_vertices": 0,
-        "root": 89,
-        "vertices": 10
-      },
-      {
-        "end": "branch",
-        "exposed_vertices": 0,
-        "root": 95,
-        "vertices": 10
-      },
-      {
-        "end": "start",
-        "exposed_vertices": 0,
-        "root": 99,
-        "vertices": 10
-      },
-      {
-        "end": "start",
-        "exposed_vertices": 0,
-        "root": 100,
-        "vertices": 10
-      },
-      {
-        "end": "return",
-        "exposed_vertices": 0,
-        "root": 100,
-        "vertices": 10
-      },
-      {
-        "end": "branch",
-        "exposed_vertices": 0,
-        "root": 104,
-        "vertices": 10
-      },
-      {
-        "end": "branch",
-        "exposed_vertices": 0,
-        "root": 107,
-        "vertices": 8
-      },
-      {
-        "end": "branch",
-        "exposed_vertices": 0,
-        "root": 105,
-        "vertices": 10
-      },
-      {
-        "end": "return",
-        "exposed_vertices": 0,
-        "root": 105,
-        "vertices": 10
-      },
-      {
-        "end": "branch",
-        "exposed_vertices": 0,
-        "root": 108,
-        "vertices": 8
-      },
-      {
-        "end": "branch",
-        "exposed_vertices": 0,
-        "root": 109,
-        "vertices": 10
-      },
-      {
-        "end": "branch",
-        "exposed_vertices": 0,
-        "root": 110,
-        "vertices": 8
-      },
-      {
-        "end": "branch",
-        "exposed_vertices": 0,
-        "root": 106,
-        "vertices": 10
-      },
-      {
-        "end": "return",
-        "exposed_vertices": 0,
-        "root": 106,
-        "vertices": 10
-      },
-      {
-        "end": "start",
-        "exposed_vertices": 0,
-        "root": 114,
-        "vertices": 10
-      },
-      {
-        "end": "return",
-        "exposed_vertices": 0,
-        "root": 114,
-        "vertices": 10
-      },
-      {
-        "end": "branch",
-        "exposed_vertices": 0,
-        "root": 116,
-        "vertices": 10
-      },
-      {
-        "end": "return",
-        "exposed_vertices": 0,
-        "root": 116,
-        "vertices": 10
-      },
-      {
-        "end": "branch",
-        "exposed_vertices": 0,
-        "root": 117,
-        "vertices": 8
-      },
-      {
-        "end": "return",
-        "exposed_vertices": 0,
-        "root": 117,
-        "vertices": 8
-      },
-      {
-        "end": "branch",
-        "exposed_vertices": 0,
-        "root": 118,
-        "vertices": 10
+        "root": 13,
+        "vertices": 5
       }
     ],
-    "unmounted_systems_pruned": 1
+    "unmounted_systems_pruned": 0
   },
-  "roots": 43,
+  "roots": 12,
   "seed": 178,
   "sources": {
     "content/environments/procedural_architecture_v1/passages/nave.glb": "2d71cb11229bc4cee24f584c0411a6de2c3b476e3a6e8bd650c5cdc46471b604",
@@ -450,12 +181,13 @@
     "content/environments/red_descent/masonry_repairs_v1/second_stair_hall.glb": "bca065b414004a5f9555e3d4c0352429545918a254ce429139b0cb91379087a3",
     "content/environments/red_descent/masonry_repairs_v1/stairs/second_stair_hall.glb": "797fd280ba0f43b40840e163221a67bf1de7db382b45d78c46ad696b4e2e46da",
     "content/environments/red_descent/masonry_repairs_v1/walls/second_stair_hall.glb": "edfdc1b19f6c3ed844ba56013828b2cd0021a6f235977d6878e6ef69d36cafd9",
-    "content/environments/red_descent/stair_art_v1/ritual_wall_art.glb": "1b01dbdf7c4411ea0db3525ace00782a47e676a3ef28a96747cc631f7fadd13d"
+    "content/environments/red_descent/stair_art_v1/ritual_wall_art.glb": "1b01dbdf7c4411ea0db3525ace00782a47e676a3ef28a96747cc631f7fadd13d",
+    "content/environments/red_descent/vascular_shape_v2/paths.json": "15bbd4b4dfe6232193345ae35340408eefdb11ed09d61bdc7ecb777e0bd16d20",
+    "scripts/art/build_roots.py": "817797bbe6d0ed68c61c8a339414b69f5c6cb3dfc96b3e9eff1a75f02caea653",
+    "scripts/art/procgen/roots.py": "3714841f150fe6903e6bff1c93a3327cfa183633ebb2dd0998b8a05f95609c92"
   },
   "systems": {
-    "branch": 2,
-    "loop": 2,
-    "trunk": 11
+    "trunk": 3
   },
-  "triangles": 24488
+  "triangles": 9870
 }

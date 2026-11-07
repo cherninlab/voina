@@ -1,0 +1,83 @@
+{
+  "baseline": "f950c5422f34d99c30d418bbbd4a6168c549798d",
+  "engine": "Godot4.7.2 Standard Mobile/Metal",
+  "models": {
+    "content/environments/procedural_roots_v1/first_stair_hall.glb": "2148f4303734c58699a1403be58d1f76f4a08a199a5e8de6ddd0e43847dbef54",
+    "content/environments/procedural_roots_v1/second_stair_hall.glb": "49674efc05f860e85a763614de68bc9cccb7f076ca890e57e070a2b56f2a7db2"
+  },
+  "captures": {
+    "views": 10,
+    "passes_per_view": 5,
+    "wide": [
+      3840,
+      2160
+    ],
+    "images": {
+      "first-bell-close-albedo.png": "9ac41e3ee7a3fa8d7157647e2285cfacfa88e0bc82c4a1c9ab27362297865fa6",
+      "first-bell-close-collision.png": "789ea9e45326f1e234e0da638528827867cef8c2c9f4c7ae0539f1eb5a21cc19",
+      "first-bell-close-color.png": "22631777b6dfa1fc2d8b745f8202fe5191b83eadbcc56aee6ef377ef3036949a",
+      "first-bell-close-normals.png": "37dc487551118a4d6a9eddb410ecf997f00a2c5bcb01c56c580c717d0058cbb5",
+      "first-bell-close-objects.png": "1609c210bb2eac55404e6a592a14e6db5f1f3986ced3a1669eaa5b49f86b1907",
+      "first-junction-close-albedo.png": "30b3580f32dd8d7ffe8385012cd5a336cecfb1418947e9f7bdd177681df7f7ad",
+      "first-junction-close-collision.png": "789ea9e45326f1e234e0da638528827867cef8c2c9f4c7ae0539f1eb5a21cc19",
+      "first-junction-close-color.png": "9513bc13cc6702aa4d749236582cb3398599f153e844ab7761910b31a65d8495",
+      "first-junction-close-normals.png": "ae779639701aa9766141be52dbf921529ff490b8827a75356b314e71de8659fe",
+      "first-junction-close-objects.png": "a944dce65322ac926a546ca6574d338a7c8b05a1c50cc1d213beb86f5c701967",
+      "first-root-grazing-albedo.png": "664278cdc9d3b2a1333b7b7cf92ce72b05fac93bd8ef8f7d977721ce4d600ba1",
+      "first-root-grazing-collision.png": "789ea9e45326f1e234e0da638528827867cef8c2c9f4c7ae0539f1eb5a21cc19",
+      "first-root-grazing-color.png": "283fd5d768aa5526c5960580baae3dc4124584405a448da3950993ff661ce62d",
+      "first-root-grazing-normals.png": "aaeffc757e5b31e4a69554cd3ca2602bef75a2a0965c722bfefe780521f180c3",
+      "first-root-grazing-objects.png": "078c15f382acca53ed1e4e773cbcee12bb9d7c8f69507873f95732c1e0d8bb82",
+      "first-stair-coping-albedo.png": "bbe716117c97f3857afa64275c01c34290ef32ae8bb50535ec1c7512680da8a8",
+      "first-stair-coping-collision.png": "789ea9e45326f1e234e0da638528827867cef8c2c9f4c7ae0539f1eb5a21cc19",
+      "first-stair-coping-color.png": "ac7ca360d295f6ed00166914d4e23f6c399bfa4620315c7dde77af91f747c0bb",
+      "first-stair-coping-normals.png": "4b7bdf7823c03c4277c06992da4f31f1ce826b14d75a73e6f302e4595795afc9",
+      "first-stair-coping-objects.png": "24658899dcd5e0ac592efbd751938cbce3ef3322c4c1c3a97fc0bfc3b2c9a8e6",
+      "first-stair-lower-albedo.png": "2afed9d359b8b611dd3b05a0fd760b63527ee02848676fecaa827c0a6ed9a923",
+      "first-stair-lower-collision.png": "789ea9e45326f1e234e0da638528827867cef8c2c9f4c7ae0539f1eb5a21cc19",
+      "first-stair-lower-color.png": "cdfb797f2585f91961d2f3bf59a3daf50f5ae60942b7d9530fd8dcaaf4c01cd5",
+      "first-stair-lower-normals.png": "0f406d024f0589b69634594ce899c385b25e9270cb13a472832bb287d4d75947",
+      "first-stair-lower-objects.png": "b87fbb779d6deeb54fe8de5aff1360dad004018557bba663ca10782a1991ce77",
+      "second-junction-close-albedo.png": "7db48b6a12aceb071dbfdee6e746ce556a49ded38ef0f6653482188503b42445",
+      "second-junction-close-collision.png": "789ea9e45326f1e234e0da638528827867cef8c2c9f4c7ae0539f1eb5a21cc19",
+      "second-junction-close-color.png": "1604b732c7f1b007c7c5d608bb2543f6387c13096c4678e1b10fcff7d2541c10",
+      "second-junction-close-normals.png": "20dfd434a8a45e17e8993395a3d8066a2df88e13ace1ab8aee98bd8f48593b6f",
+      "second-junction-close-objects.png": "e5d6f14ae703dc1653a62a258f1a8cb858e93576df958257933b3537f732b82a",
+      "second-reliquary-close-albedo.png": "ca8e340c15c2b0e256ef10f07dcd1a442ef724d1cbe84ddb89190b0567d6f5c1",
+      "second-reliquary-close-collision.png": "789ea9e45326f1e234e0da638528827867cef8c2c9f4c7ae0539f1eb5a21cc19",
+      "second-reliquary-close-color.png": "7942d2a3757774e74277d4f79184dfcfdbd56a6461632d7502607ba5495a8344",
+      "second-reliquary-close-normals.png": "c6567849d02c7ea77dc7d0178449d64e8427ef1ed5365955de88ee8a5f9b0429",
+      "second-reliquary-close-objects.png": "456082b60edea3305ae2d10aa215dc95ed9f127c2998e8ffa567ee73066e8a78",
+      "second-root-grazing-albedo.png": "f45e08ff26e164ad165067f40e80d37b19aa5731b06516f6291a4cd600cdd5a2",
+      "second-root-grazing-collision.png": "789ea9e45326f1e234e0da638528827867cef8c2c9f4c7ae0539f1eb5a21cc19",
+      "second-root-grazing-color.png": "762b8f6fa05793d60b7303990550413116d42fd53c4fbd108ba0c1499a6641d9",
+      "second-root-grazing-normals.png": "2a296df6bd6f12bcef6f483fa7697ca12169f777ea9d8905525d8edeb2414f20",
+      "second-root-grazing-objects.png": "9051c0c91b633688d64709877988465efe54ccca6c20a23072873cb0c086ca9f",
+      "second-stair-lower-albedo.png": "42251a9c2943607b93b73c75219d252e1ce5617e4abc2122d436e616239282bd",
+      "second-stair-lower-collision.png": "789ea9e45326f1e234e0da638528827867cef8c2c9f4c7ae0539f1eb5a21cc19",
+      "second-stair-lower-color.png": "1050090d44f55d32e7a837395e79c8556cc55e32c138a8f86a22cf3c0f4d1b7b",
+      "second-stair-lower-normals.png": "20879229508d00e4861bd1e18213633a52743711adeafa6f87f08274a334578b",
+      "second-stair-lower-objects.png": "3d6b22275efc90ea630a4a4a5131491ca4ae4bc349c4bcd0fa1a1a87ebcac011",
+      "second-stair-side-albedo.png": "d4484d31d5975ee358e812bf3db69eb1312d86cac057d1128f37eb0b118c675d",
+      "second-stair-side-collision.png": "2503e45c5275f7d379adc85f74cf66ec3ffafe74e7fe4ee08f820ddeae8d1d2d",
+      "second-stair-side-color.png": "33332b148fef9f3b6ba7fa753c8894950974ab60ed517804184f9ddecc882965",
+      "second-stair-side-normals.png": "758da0bf8327215e31622ce20cf1b13ecb0168b42f82c53ee4e51b88d6f73ede",
+      "second-stair-side-objects.png": "de959dc41af3e01ffb084f67840c0468dbbe8b599172eb05528e87e3b4e1df84",
+      "stair-wide-4k.png": "02cc0c343594c93ec0aff1cd35fb3eda46061fa3827f927fb16024095b1a6d98"
+    }
+  },
+  "checks": {
+    "editor": "PASS",
+    "independent_mesh_sources_normals_winding_closed_volume_full_ribbon": "PASS",
+    "runtime_material_isolation": "PASS:8batches,21374tris;620colliders,7stair-art meshes retained; other rooms keep base material",
+    "traversal": "PASS:1235m actual player capsule",
+    "isolated_core": "PASS:full suite including ENet integration"
+  },
+  "visual_review": "H-017 peer accepts bounded organic pass after ten-view review; no remaining shape changes requested before checks/ship. Human acceptance remains separate.",
+  "limits": [
+    "FIRST swelling remains dark/subtle under existing light.",
+    "Close-up junction has a minor collar-like transition; tissue remains stylized.",
+    "No new camera/input/Tailscale human acceptance.",
+    "Known ObjectDB/texture-RID teardown warnings retained."
+  ]
+}

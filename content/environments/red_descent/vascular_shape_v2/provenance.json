@@ -1,0 +1,24 @@
+{
+  "baseline": "f950c5422f34d99c30d418bbbd4a6168c549798d",
+  "geometry": "Original authored native curves plus voxel-unioned original ellipsoid nodules and sealed rounded membrane. No generated 3D model or third-party mesh vertices imported.",
+  "generator_sha256": {
+    "scripts/art/build_roots.py": "817797bbe6d0ed68c61c8a339414b69f5c6cb3dfc96b3e9eff1a75f02caea653",
+    "scripts/art/procgen/roots.py": "3714841f150fe6903e6bff1c93a3327cfa183633ebb2dd0998b8a05f95609c92",
+    "content/environments/red_descent/vascular_shape_v2/paths.json": "15bbd4b4dfe6232193345ae35340408eefdb11ed09d61bdc7ecb777e0bd16d20"
+  },
+  "references": {
+    "/Users/theochernin/AI/krea2/tests/vascular-refinement-20261107/outputs/01-wall-ingress.png": "4fbca4b46e44ad943e9f12a577e64fce9a2f7fd41bfa111c282a6084359ef229",
+    "/Users/theochernin/AI/krea2/tests/vascular-refinement-20261107/outputs/02-capillary-fan.png": "cf5b261d795762eb93ebabf4cc048b3d8282cc48444b71eac13c65f64cc12243",
+    "/Users/theochernin/AI/krea2/tests/organic-vascular-art-20261107/outputs/01-vascular-junction.png": "8698f5e885598e2caf841ea34462ec39ae2d5e8cb249c6afa951c9d2b15ff448"
+  },
+  "reference_role": "Independent local Krea images guide vascular taper, unequal lobes and membrane morphology. Architecture/lights/clearance invented by images were not used.",
+  "local_3d_study": "H-017 evaluated CL3D/2mini externally. It was held from game import at provenance review; this native geometry does not use its output vertices. The model study and its license-review receipt remain outside this repository.",
+  "external_study_receipt": "/Users/theochernin/AI/krea2/tests/organic-vascular-art-20261107/HANDOFF.md",
+  "materials": "Existing local Krea fibrous tissue albedo/normal/roughness. Only two stair-room material copies use the existing roughness map; slightly wetter nodule copy. All other roots/stone retain their existing material.",
+  "material_provenance": "content/environments/red_descent/upper_crossing_v1/materials/provenance.json",
+  "reused_texture_sha256": {
+    "content/environments/red_descent/upper_crossing_v1/materials/roots/albedo.png": "ef79ebb1b43f4d131b67f129e910a98a9c63b6682a7a1317e86f4cf96b80c6d2",
+    "content/environments/red_descent/upper_crossing_v1/materials/roots/normal_gl.png": "a2c216120f4ac476d43dfd1f7bebd2c8473aea7d57fc330ce7fece32218e17ca",
+    "content/environments/red_descent/upper_crossing_v1/materials/roots/roughness.png": "4db67d9aac6ff37284c8f6351ace3aafc2f88afb1df42663cf75dd2458bba564"
+  }
+}

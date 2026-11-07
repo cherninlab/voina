@@ -261,6 +261,7 @@ class Grower:
         self.top = room['floor'] + room['height']
         self.seed_base = 0
         self.backing_solids = surface.solids
+        self.organic = room.get('id') in ('first_stair_hall', 'second_stair_hall')
 
     # -- seeds ---------------------------------------------------------------
     def free(self, p: Vector, spacing: float) -> bool:
@@ -583,6 +584,9 @@ class Grower:
         round the whole perimeter (thicker where a slow noise 'heat' along the
         walls is high); extra trunks clustered at two or three hot spots; then
         veins beside the roots already there until the budget is used."""
+        if self.organic:
+            self.grow_vascular()
+            return
         from mathutils import noise
         rng, walls = self.rng, self.walls
         count = len(walls.walls)
@@ -686,6 +690,62 @@ class Grower:
             heading = roots.turn(roots.DOWN, hit[1], rng.uniform(-1.6, 1.6))
             self.system('vein', hit, rng.uniform(0.004, 0.008), heading, rng.uniform(0.5, 1.6), group)
 
+    def grow_vascular(self) -> None:
+        """Sparse authored branching silhouettes, fitted to the actual stone.
+
+        The old crawler turns around every block and produces cable hairpins.
+        These curves guide only the wall-plane silhouette; depth/contact still
+        come from the current masonry and all final clearance/cap checks apply.
+        """
+        path = core.ROOT / 'content/environments/red_descent/vascular_shape_v2/paths.json'
+        design = json.loads(path.read_text())[self.room['id']]
+        built = {}
+        for record in design:
+            wall = self.walls.walls[record['wall']]
+            anchors = [Vector(p) for p in record['anchors']]
+            samples = []
+            for i in range(len(anchors)-1):
+                a,b,c,d = anchors[max(0,i-1)],anchors[i],anchors[i+1],anchors[min(len(anchors)-1,i+2)]
+                count = max(3,math.ceil((c-b).length/.075))
+                for j in range(count):
+                    t = j/count
+                    samples.append((b*2+(c-a)*t+(a*2-b*5+c*4-d)*t*t+(-a+b*3-c*3+d)*t**3)*.5)
+            samples.append(anchors[-1])
+            parent = built.get(record.get('parent'))
+            root = roots.Root(record['kind'],len(self.systems),self.rng.uniform(.82,1.08),parent)
+            root.group = record['wall']
+            root.vascular = True
+            root.flat = 1.1 if root.kind=='trunk' else 1.45
+            root.wall_normal = wall['inward'].copy()
+            root.adhesion_surface = self.surface
+            root.buried = parent is None
+            root.dived = record.get('return',False)
+            root.twist = self.rng.uniform(1.5,3.0)
+            r0 = record['radius']
+            profile = record.get('profile',[1.0,.8,.45,.05])
+            def radius_at(s,L,profile=profile,r0=r0):
+                u = min(len(profile)-1,max(0,s/max(L,1e-6)*(len(profile)-1)))
+                k = min(len(profile)-2,int(u));t = u-k
+                return roots.TIP+(r0-roots.TIP)*(profile[k]*(1-t)+profile[k+1]*t)
+            root.profile = radius_at
+            for j,sample in enumerate(samples):
+                # Design coordinates are along-wall metres and world height.
+                hit = self.walls.face(root.group,sample.x/wall['length'],sample.y)
+                if hit is None:break
+                r = radius_at(j,len(samples)-1)
+                point = hit[0]+root.wall_normal*roots.standoff(r,root.flat)
+                if not self.rules.route_clear(point,r*2):break
+                root.points.append(point);root.normals.append(root.wall_normal.copy())
+            if len(root.points)<6:continue
+            if parent is not None:
+                arc = parent.arc()
+                nearest = min(range(len(parent.points)),key=lambda i:(parent.points[i]-root.points[0]).length)
+                root.at_s = arc[nearest]
+                parent.children.append(root)
+            else:
+                self.systems.append((root,r0,.7,root.group))
+            built[record['id']] = root
+
     # -- finishing -------------------------------------------------------------
     def finish(self, budget: int) -> dict:
         """Final radii, decimation and budget (thinnest leaves go first, then
@@ -694,7 +754,15 @@ class Grower:
         rng = self.rng
 
         def tolerance(r):
-            return max(0.005, 0.4 * r)
+            return max(0.002, 0.18 * r) if self.organic else max(0.005, 0.4 * r)
+
+        if self.organic:
+            for trunk, *_ in self.systems:
+                for root in trunk.walk():
+                    root.vascular = True
+                    if root.wall_normal is None:
+                        root.flat = 1.65 if root.kind != 'vein' else 1.4
+                    root.adhesion_surface = self.surface
 
         stats = {}
         for trunk, *_ in self.systems:
@@ -925,6 +993,78 @@ class Grower:
             obj.data.attributes.remove(flags)
             objects.append(obj)
         return objects
+
+    def vascular_graft(self):
+        """Original closed native sculpt; no inferred/model-service mesh used."""
+        if not self.organic:
+            return None, None
+        builder = Builder('Graft_'+self.room['id'])
+        for location,scale in [((-.025,-.04,-.025),(.105,.045,.10)),((.045,-.042,.035),(.070,.035,.065))]:
+            made=bmesh.ops.create_icosphere(builder.bm,subdivisions=3,radius=1.0)['verts']
+            for vertex in made:
+                vertex.co=Vector((vertex.co.x*scale[0],vertex.co.y*scale[1],vertex.co.z*scale[2]))+Vector(location)
+        # Rounded sealed tissue web; its edge blends into the nodule, without
+        # independent spur-like arms competing with the actual vessel network.
+        made=bmesh.ops.create_icosphere(builder.bm,subdivisions=3,radius=1.0)['verts']
+        for vertex in made:
+            vertex.co=Vector((vertex.co.x*.065,vertex.co.y*.013-.030,vertex.co.z*.075+.065))
+        bmesh.ops.recalc_face_normals(builder.bm,faces=list(builder.bm.faces))
+        obj=builder.to_object(smooth_angle=70)
+        bpy.context.view_layer.objects.active=obj
+        obj.select_set(True)
+        obj.data.remesh_voxel_size=.0035
+        bpy.ops.object.voxel_remesh()
+        modifier=obj.modifiers.new('Native union reduction','DECIMATE')
+        modifier.ratio=min(1.0,4000/max(1,sum(len(p.vertices)-2 for p in obj.data.polygons)))
+        bpy.ops.object.modifier_apply(modifier=modifier.name)
+        bm=bmesh.new();bm.from_mesh(obj.data)
+        bmesh.ops.triangulate(bm,faces=list(bm.faces))
+        assert all(edge.is_manifold for edge in bm.edges),'Open native graft'
+        assert bm.calc_volume(signed=True)>0,'Inverted native graft'
+        bm.to_mesh(obj.data);bm.free()
+        first=self.room['id']=='first_stair_hall'
+        wall_id=2 if first else 0
+        centre=Vector((34.4,0,-3.15)) if first else Vector((-30.1,0,-17.6))
+        wall=self.walls.walls[wall_id];centre.y=wall['a'].y
+        normal=wall['inward'];across=roots.UP.cross(normal)
+        support=[]
+        for x in (-.18,-.09,0,.09,.18):
+            for y in (-.30,-.15,0,.15,.30):
+                point=centre+across*x+roots.UP*y
+                hit=self.walls.face(wall_id,(point-wall['a']).dot(wall['along'])/wall['length'],point.z)
+                if hit is not None:support.append(hit[0].dot(normal))
+        outer=max(support)
+        backs=[];local_points=[]
+        for vertex in obj.data.vertices:
+            local=vertex.co.copy();local_points.append(local)
+            point=centre+across*local.x+roots.UP*local.z
+            hit=self.walls.face(wall_id,(point-wall['a']).dot(wall['along'])/wall['length'],point.z)
+            assert hit is not None,'Native graft has no supporting wall'
+            t=min(1,max(0,(abs(local.z)-.14)/.10))
+            burial=.28*t*t*(3-2*t)
+            depth=-local.y
+            blend=min(1,max(0,depth/.04));blend=blend*blend*(3-2*blend)
+            fitted=hit[0].dot(normal)*(1-blend)+outer*blend
+            swelling=.035*blend*(1-t*t*(3-2*t))
+            seat=.20*(1-blend)
+            vertex.co=point+normal*(fitted+depth-.012+swelling-burial-seat-point.dot(normal))
+            if depth<.001:backs.append(vertex.co.copy())
+        assert backs,'Native nodule has no seated back'
+        assert self.ring_embedded(backs),'Native nodule back outside closed backing'
+        # Rebuild attributes after voxel union; UVs stay in the local tissue plane.
+        for layer in list(obj.data.uv_layers):obj.data.uv_layers.remove(layer)
+        uv=obj.data.uv_layers.new(name='UVMap')
+        for loop in obj.data.loops:
+            p=local_points[loop.vertex_index];uv.data[loop.index].uv=(p.z*2.5,p.x*3)
+        for attribute in list(obj.data.color_attributes):obj.data.color_attributes.remove(attribute)
+        colour=obj.data.color_attributes.new(name='Color',type='FLOAT_COLOR',domain='CORNER')
+        for item in colour.data:item.color=(1,1.02,0,1)
+        obj.data.color_attributes.active_color=colour
+        obj.data.update();obj.data.shade_smooth();obj.data.set_sharp_from_angle(angle=math.radians(65))
+        return obj,{'generator':'original native vessel/nodule/membrane voxel union',
+                    'centre':core.to_godot(centre),'back_vertices_seated':len(backs),
+                    'back_exposed_vertices':0,'wall':wall_id,'voxel_m':.0035,
+                    'method':'Closed native nodule and rounded membrane; full rear sample seated inside actual masonry, no separate free ports.'}
 
 
 # -- review ---------------------------------------------------------------------
@@ -1191,8 +1331,13 @@ def bake_and_write(grower: Grower, rules: roots.Rules, label: str, out_dir: Path
     """Budget, settle, skin, bake AO against everything in the scene, write
     <out_dir>/<label>.glb and .json."""
     mesh_budget = options.get('mesh-budget') or budget
+    sources = list(sources) + [Path(__file__), Path(roots.__file__)]
     qa = grower.finish(mesh_budget)
     objects = grower.meshes(label)
+    graft, graft_report = grower.vascular_graft()
+    if graft is not None:
+        objects.append(graft)
+        qa['graft'] = graft_report
     if not objects:
         # A short stretch can leave no room for a root: nothing to write.
         print('ROOTS_EMPTY', label, flush=True)
@@ -1247,6 +1392,8 @@ def build_room(options: dict, room: dict, layout: dict, index: dict) -> dict:
     grower = Grower(surface, rules, walls, core.rng(options['seed'], 'roots', room['id']), room, options['headroom'])
     grower.seed_base = options['seed']
     grower.grow(options['budget'])
+    if grower.organic:
+        loaded['sources'].append(core.ROOT / 'content/environments/red_descent/vascular_shape_v2/paths.json')
     doorways = [{'wall': d['wall'], 'width': round(d['width'], 2), 'crown': round(d['crown'] - room['floor'], 2)}
                 for d in walls.openings]
     objects, report = bake_and_write(grower, rules, room['id'], options['out'], options, layout, loaded['sources'],

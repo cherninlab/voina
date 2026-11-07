@@ -551,8 +551,22 @@ func stone_roots(file: String) -> void:
 		materials["roots"] = roots
 	var grown: Node3D = (load(file) as PackedScene).instantiate() as Node3D
 	grown.name = "Roots_" + file.get_file().get_basename()
+	var stair_tissue: bool = file.get_file().get_basename() in ["first_stair_hall", "second_stair_hall"]
+	if stair_tissue and not materials.has("vascular_tissue"):
+		var tissue: StandardMaterial3D = materials["roots"].duplicate() as StandardMaterial3D
+		tissue.roughness_texture = load(KREA_MATERIALS + "roots/roughness.png") as Texture2D
+		tissue.roughness = 0.68
+		tissue.metallic_specular = 0.24
+		materials["vascular_tissue"] = tissue
+		var nodule: StandardMaterial3D = tissue.duplicate() as StandardMaterial3D
+		nodule.roughness = 0.52
+		nodule.normal_scale = 0.3
+		materials["vascular_nodule"] = nodule
 	for node: Node in grown.find_children("*", "MeshInstance3D", true, false):
-		(node as MeshInstance3D).material_override = materials["roots"]
+		var key: String = "roots"
+		if stair_tissue:
+			key = "vascular_nodule" if String(node.name).begins_with("Graft_") else "vascular_tissue"
+		(node as MeshInstance3D).material_override = materials[key]
 	add_child(grown)
 
 ## Face materials by stone kind: dressed ashlar, lacing slabs, quoins, rough

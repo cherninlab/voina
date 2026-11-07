@@ -1,31 +1,31 @@
 {
   "ao": {
-    "Roots_first_stair_hall_0": {
-      "mean": 0.4,
+    "Graft_first_stair_hall": {
+      "mean": 0.612,
       "min": 0.2
     },
     "Roots_first_stair_hall_1": {
-      "mean": 0.32,
+      "mean": 0.584,
       "min": 0.2
     },
     "Roots_first_stair_hall_2": {
-      "mean": 0.406,
+      "mean": 0.577,
       "min": 0.2
     },
     "Roots_first_stair_hall_3": {
-      "mean": 0.449,
+      "mean": 0.614,
       "min": 0.2
     }
   },
   "blender": "5.2.2 LTS",
-  "budget": 30000,
+  "budget": 40000,
   "clearance": {
     "ankle_m": 0.03,
     "headroom_m": 2.7,
     "route_margin_m": 0.3
   },
   "diameter_cm": {
-    "max": 14.7,
+    "max": 14.5,
     "min": 0.0
   },
   "doorways": [
@@ -36,34 +36,47 @@
     }
   ],
   "files": {
-    "content/environments/procedural_roots_v1/first_stair_hall.glb": "580f7f87fff2ad30a6d2a3b137b98b87ba652e325d50be608b9546d73decf87b"
+    "content/environments/procedural_roots_v1/first_stair_hall.glb": "2148f4303734c58699a1403be58d1f76f4a08a199a5e8de6ddd0e43847dbef54"
   },
   "growth_budget": 15000,
   "id": "first_stair_hall",
   "layout_hash": "20aa6015a7f9f4f7c12b59b90acfe080b07298d8b2b180c7054b532be72d00d4",
   "meshes": [
-    "Roots_first_stair_hall_0",
     "Roots_first_stair_hall_1",
     "Roots_first_stair_hall_2",
-    "Roots_first_stair_hall_3"
+    "Roots_first_stair_hall_3",
+    "Graft_first_stair_hall"
   ],
   "qa": {
     "audit": {
-      "cut_deeper_than_1cm": 41,
-      "cut_into_stone": 91,
-      "emerging_from_joint": 38,
+      "cut_deeper_than_1cm": 0,
+      "cut_into_stone": 0,
+      "emerging_from_joint": 0,
       "in_walking_corridor": 0,
-      "vertices": 12984
+      "vertices": 3701
     },
     "cling_gap_m": {
-      "max": 0.0377,
-      "p50": 0.0039,
-      "p95": 0.014
+      "max": 0.0707,
+      "p50": 0.003,
+      "p95": 0.0298
     },
-    "clipped_at_corridor": 1,
+    "clipped_at_corridor": 0,
+    "graft": {
+      "back_exposed_vertices": 0,
+      "back_vertices_seated": 45,
+      "centre": [
+        34.400001525878906,
+        -3.1500000953674316,
+        -42.0
+      ],
+      "generator": "original native vessel/nodule/membrane voxel union",
+      "method": "Closed native nodule and rounded membrane; full rear sample seated inside actual masonry, no separate free ports.",
+      "voxel_m": 0.0035,
+      "wall": 2
+    },
     "pruned": 0,
-    "rings": 1523,
-    "rings_touching_stone": 29,
+    "rings": 475,
+    "rings_touching_stone": 0,
     "terminal_rings": [
       {
         "end": "start",
@@ -81,330 +94,96 @@
         "end": "branch",
         "exposed_vertices": 0,
         "root": 2,
-        "vertices": 5
-      },
-      {
-        "end": "branch",
-        "exposed_vertices": 0,
-        "root": 3,
-        "vertices": 8
-      },
-      {
-        "end": "return",
-        "exposed_vertices": 0,
-        "root": 3,
-        "vertices": 8
+        "vertices": 10
       },
       {
         "end": "branch",
         "exposed_vertices": 0,
         "root": 4,
-        "vertices": 10
+        "vertices": 5
+      },
+      {
+        "end": "branch",
+        "exposed_vertices": 0,
+        "root": 5,
+        "vertices": 5
+      },
+      {
+        "end": "branch",
+        "exposed_vertices": 0,
+        "root": 3,
+        "vertices": 8
+      },
+      {
+        "end": "return",
+        "exposed_vertices": 0,
+        "root": 3,
+        "vertices": 8
       },
       {
         "end": "branch",
         "exposed_vertices": 0,
         "root": 6,
-        "vertices": 8
-      },
-      {
-        "end": "start",
-        "exposed_vertices": 0,
-        "root": 18,
-        "vertices": 8
-      },
-      {
-        "end": "start",
-        "exposed_vertices": 0,
-        "root": 21,
-        "vertices": 10
-      },
-      {
-        "end": "branch",
-        "exposed_vertices": 0,
-        "root": 22,
-        "vertices": 5
-      },
-      {
-        "end": "start",
-        "exposed_vertices": 0,
-        "root": 25,
-        "vertices": 10
-      },
-      {
-        "end": "branch",
-        "exposed_vertices": 0,
-        "root": 26,
         "vertices": 5
       },
       {
         "end": "branch",
         "exposed_vertices": 0,
-        "root": 27,
+        "root": 7,
         "vertices": 6
       },
       {
         "end": "start",
         "exposed_vertices": 0,
-        "root": 30,
-        "vertices": 10
-      },
-      {
-        "end": "branch",
-        "exposed_vertices": 0,
-        "root": 31,
-        "vertices": 5
-      },
-      {
-        "end": "branch",
-        "exposed_vertices": 0,
-        "root": 32,
-        "vertices": 5
-      },
-      {
-        "end": "start",
-        "exposed_vertices": 0,
-        "root": 33,
-        "vertices": 10
-      },
-      {
-        "end": "start",
-        "exposed_vertices": 0,
-        "root": 34,
-        "vertices": 10
-      },
-      {
-        "end": "branch",
-        "exposed_vertices": 0,
-        "root": 35,
-        "vertices": 5
-      },
-      {
-        "end": "branch",
-        "exposed_vertices": 0,
-        "root": 36,
-        "vertices": 5
-      },
-      {
-        "end": "start",
-        "exposed_vertices": 0,
-        "root": 37,
+        "root": 8,
         "vertices": 10
       },
       {
         "end": "return",
         "exposed_vertices": 0,
-        "root": 37,
+        "root": 8,
         "vertices": 10
       },
       {
         "end": "branch",
         "exposed_vertices": 0,
-        "root": 38,
-        "vertices": 6
-      },
-      {
-        "end": "branch",
-        "exposed_vertices": 0,
-        "root": 39,
-        "vertices": 10
-      },
-      {
-        "end": "return",
-        "exposed_vertices": 0,
-        "root": 39,
-        "vertices": 10
-      },
-      {
-        "end": "branch",
-        "exposed_vertices": 0,
-        "root": 40,
-        "vertices": 10
-      },
-      {
-        "end": "return",
-        "exposed_vertices": 0,
-        "root": 40,
-        "vertices": 10
-      },
-      {
-        "end": "start",
-        "exposed_vertices": 0,
-        "root": 41,
-        "vertices": 10
-      },
-      {
-        "end": "return",
-        "exposed_vertices": 0,
-        "root": 41,
-        "vertices": 10
-      },
-      {
-        "end": "branch",
-        "exposed_vertices": 0,
-        "root": 42,
+        "root": 9,
         "vertices": 8
       },
       {
         "end": "branch",
         "exposed_vertices": 0,
-        "root": 45,
-        "vertices": 6
-      },
-      {
-        "end": "branch",
-        "exposed_vertices": 0,
-        "root": 43,
-        "vertices": 6
-      },
-      {
-        "end": "branch",
-        "exposed_vertices": 0,
-        "root": 44,
-        "vertices": 6
+        "root": 10,
+        "vertices": 5
       },
       {
         "end": "start",
         "exposed_vertices": 0,
-        "root": 47,
-        "vertices": 8
-      },
-      {
-        "end": "start",
-        "exposed_vertices": 0,
-        "root": 48,
-        "vertices": 10
-      },
-      {
-        "end": "start",
-        "exposed_vertices": 0,
-        "root": 49,
+        "root": 11,
         "vertices": 10
       },
       {
         "end": "return",
         "exposed_vertices": 0,
-        "root": 49,
+        "root": 11,
         "vertices": 10
       },
       {
         "end": "branch",
         "exposed_vertices": 0,
-        "root": 50,
-        "vertices": 10
-      },
-      {
-        "end": "start",
-        "exposed_vertices": 0,
-        "root": 52,
-        "vertices": 10
-      },
-      {
-        "end": "return",
-        "exposed_vertices": 0,
-        "root": 52,
-        "vertices": 10
-      },
-      {
-        "end": "branch",
-        "exposed_vertices": 0,
-        "root": 53,
-        "vertices": 10
-      },
-      {
-        "end": "start",
-        "exposed_vertices": 0,
-        "root": 54,
+        "root": 12,
         "vertices": 6
       },
       {
         "end": "branch",
         "exposed_vertices": 0,
-        "root": 55,
-        "vertices": 5
-      },
-      {
-        "end": "branch",
-        "exposed_vertices": 0,
-        "root": 56,
-        "vertices": 6
-      },
-      {
-        "end": "start",
-        "exposed_vertices": 0,
-        "root": 59,
-        "vertices": 6
-      },
-      {
-        "end": "branch",
-        "exposed_vertices": 0,
-        "root": 61,
-        "vertices": 6
-      },
-      {
-        "end": "branch",
-        "exposed_vertices": 0,
-        "root": 65,
-        "vertices": 5
-      },
-      {
-        "end": "start",
-        "exposed_vertices": 0,
-        "root": 69,
-        "vertices": 6
-      },
-      {
-        "end": "branch",
-        "exposed_vertices": 0,
-        "root": 70,
-        "vertices": 5
-      },
-      {
-        "end": "start",
-        "exposed_vertices": 0,
-        "root": 71,
-        "vertices": 6
-      },
-      {
-        "end": "start",
-        "exposed_vertices": 0,
-        "root": 72,
-        "vertices": 6
-      },
-      {
-        "end": "start",
-        "exposed_vertices": 0,
-        "root": 74,
-        "vertices": 6
-      },
-      {
-        "end": "start",
-        "exposed_vertices": 0,
-        "root": 75,
-        "vertices": 5
-      },
-      {
-        "end": "start",
-        "exposed_vertices": 0,
-        "root": 76,
-        "vertices": 6
-      },
-      {
-        "end": "branch",
-        "exposed_vertices": 0,
-        "root": 77,
-        "vertices": 5
-      },
-      {
-        "end": "branch",
-        "exposed_vertices": 0,
-        "root": 78,
+        "root": 13,
         "vertices": 5
       }
     ],
     "unmounted_systems_pruned": 0
   },
-  "roots": 48,
+  "roots": 13,
   "seed": 178,
   "sources": {
     "content/environments/procedural_architecture_v1/passages/chapel_approach.glb": "3a2afdfd17fefb411e6738f8fe6c9af2575b43c5b9669580a16465e6c0bba0e9",
@@ -415,13 +194,13 @@
     "content/environments/red_descent/masonry_repairs_v1/first_stair_hall.glb": "590fd477b8981236ddc07ddff71b62dc217b626c213a1978cc824f626d950dd9",
     "content/environments/red_descent/masonry_repairs_v1/stairs/first_stair_hall.glb": "65e5b1bb8039f7829afaf763c3fcf6c34ad9aba4a336625abab31a6c908b3365",
     "content/environments/red_descent/masonry_repairs_v1/walls/first_stair_hall.glb": "7f5836834674101b32eed805c88393790e903b47d66cb75ac2043961045ee599",
-    "content/environments/red_descent/stair_art_v1/ritual_wall_art.glb": "1b01dbdf7c4411ea0db3525ace00782a47e676a3ef28a96747cc631f7fadd13d"
+    "content/environments/red_descent/stair_art_v1/ritual_wall_art.glb": "1b01dbdf7c4411ea0db3525ace00782a47e676a3ef28a96747cc631f7fadd13d",
+    "content/environments/red_descent/vascular_shape_v2/paths.json": "15bbd4b4dfe6232193345ae35340408eefdb11ed09d61bdc7ecb777e0bd16d20",
+    "scripts/art/build_roots.py": "817797bbe6d0ed68c61c8a339414b69f5c6cb3dfc96b3e9eff1a75f02caea653",
+    "scripts/art/procgen/roots.py": "3714841f150fe6903e6bff1c93a3327cfa183633ebb2dd0998b8a05f95609c92"
   },
   "systems": {
-    "branch": 5,
-    "loop": 3,
-    "trunk": 5,
-    "vein": 8
+    "trunk": 3
   },
-  "triangles": 26358
+  "triangles": 11504
 }

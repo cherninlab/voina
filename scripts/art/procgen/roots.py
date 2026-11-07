@@ -264,6 +264,9 @@ class Root:
         self.seed = 0.0
         self.group = 0
         self.entry_rings = set()
+        self.vascular = False
+        self.adhesion_surface = None
+        self.wall_normal = None
 
     def arc(self) -> list:
         s = [0.0]
@@ -476,8 +479,11 @@ def assign_radii(trunk: Root, r0: float, gamma: float, rng) -> None:
             if root.profile is not None:
                 base = root.profile(s, arc[-1])
             else:
-                base = TIP + (r0 - TIP) * (downstream[root.uid][i] / d0) ** gamma * (1.0 - taper * s / max(arc[-1], 1e-6))
+                exponent = max(gamma, 0.7) if root.vascular else gamma
+                base = TIP + (r0 - TIP) * (downstream[root.uid][i] / d0) ** exponent * (1.0 - taper * s / max(arc[-1], 1e-6))
             lump = 1.0 + 0.12 * noise.noise(Vector((s * 3.0, seed, 1.7)))
+            if root.vascular:
+                lump *= 0.86 + 0.32 * noise.noise(Vector((s * 1.8, seed, 4.1)))
             for at, amount, width in bumps:
                 lump += amount * math.exp(-((s - at) / width) ** 2) * min(1.0, base / 0.01) * min(1.0, s / 0.5)
             for child in root.children:
@@ -489,6 +495,13 @@ def assign_radii(trunk: Root, r0: float, gamma: float, rng) -> None:
             reach = max(0.08, radii[i] * 10.0)
             if left < reach:
                 radii[i] = TIP + (radii[i] - TIP) * (left / reach) ** 0.7
+        if root.vascular and root.parent is not None:
+            parent_arc = root.parent.arc()
+            mount = min(range(len(parent_arc)), key=lambda i: abs(parent_arc[i] - root.at_s))
+            ratio = {'trunk': 0.62, 'branch': 0.40, 'vein': 0.19}.get(root.kind, 0.4)
+            limit = max(TIP * 1.2, root.parent.radii[mount] * ratio)
+            scale = min(1.0, limit / max(radii))
+            radii = [TIP + (r - TIP) * scale for r in radii]
         root.radii = radii
 
 
@@ -535,7 +548,7 @@ def simplify(root: Root, tolerance) -> None:
                 worst, index = dist, i
         if worst > tolerance(root.radii[index]):
             split = index
-        elif (pts[b] - pts[a]).length > min(0.4, max(0.2, root.radii[index] * 8.0)):
+        elif (pts[b] - pts[a]).length > (0.12 if root.vascular else min(0.4, max(0.2, root.radii[index] * 8.0))):
             split = (a + b) // 2
         else:
             continue
@@ -555,6 +568,11 @@ def ellipse(root: Root, i: int):
     """Semi-axes (across the stone, off the stone) of ring i."""
     r = root.radii[i]
     f = root.flat if root.normals[i] is not None else 0.0
+    if root.vascular and f:
+        point = root.points[i]
+        # Broad, uneven contact and a low living ridge, rather than a round wire.
+        spread = 1.0 + 0.18 * noise.noise(point * 2.4 + Vector((root.seed, 0, 2)))
+        return r * (1.0 + WIDE * f) * spread, r * (1.0 - THIN * f)
     return r * (1.0 + WIDE * f), r * (1.0 - THIN * f)
 
 
@@ -600,11 +618,22 @@ def settle(surface: Surface, root: Root, passes: int = 4) -> int:
             if i in fixed or root.normals[i] is None:
                 continue
             _, off = ellipse(root, i)
-            near = surface.nearest(root.points[i], off * 3 + 0.05)
+            if root.wall_normal is not None:
+                across = UP.cross(root.wall_normal)
+                width = ellipse(root,i)[0]
+                hits = [surface.cast(root.points[i]+across*x+UP*y+root.wall_normal*.4,-root.wall_normal,.9)
+                        for x,y in ((0,0),(-width,0),(width,0),(0,-.07),(0,.07))]
+                hits = [hit for hit in hits if hit is not None]
+                near = max(hits,key=lambda hit:hit[0].dot(root.wall_normal)) if hits else None
+            else:
+                near = surface.nearest(root.points[i], off * 3 + 0.05)
             if near is None:
                 continue
-            n = Surface.outward(root.points[i], near)
-            root.points[i] = near[0] + n * (off + GAP)
+            n = root.wall_normal or Surface.outward(root.points[i], near)
+            if root.wall_normal is not None:
+                root.points[i] += n*(near[0].dot(n)+off+GAP-root.points[i].dot(n))
+            else:
+                root.points[i] = near[0] + n * (off + GAP)
             root.normals[i] = n
         smoothed = list(root.points)
         for i in range(1, count - 1):
@@ -612,6 +641,12 @@ def settle(surface: Surface, root: Root, passes: int = 4) -> int:
                 continue
             smoothed[i] = root.points[i] * 0.5 + (root.points[i - 1] + root.points[i + 1]) * 0.25
         root.points = smoothed
+        if root.wall_normal is not None:
+            depths = [p.dot(root.wall_normal) for p in root.points]
+            for i in range(count):
+                if i not in fixed:
+                    depth = max(depths[max(0,i-2):min(count,i+3)])
+                    root.points[i] += root.wall_normal*(depth-depths[i])
         _push(surface, root, fixed)
     for _ in range(8):
         _push(surface, root, fixed)
@@ -648,8 +683,8 @@ def _push(surface: Surface, root: Root, fixed: set) -> None:
             if hit is not None:
                 # Move away from the obstruction along its own normal: a proud
                 # stone face beside a flattened root pushes it off the wall, not sideways.
-                away = hit[1].normalized()
-                if away.dot(v) > 0:
+                away = root.wall_normal or hit[1].normalized()
+                if root.wall_normal is None and away.dot(v) > 0:
                     away = -away
                 deficit = (reach - hit[3]) / max(0.6, -away.dot(v))
                 if push.dot(away) < deficit:
@@ -658,7 +693,7 @@ def _push(surface: Surface, root: Root, fixed: set) -> None:
             if push.length > c * 0.6 + GAP:
                 push = push.normalized() * (c * 0.6 + GAP)
             moved = root.points[i] + push
-            if not surface.blocked(root.points[i], moved):
+            if root.wall_normal is not None or not surface.blocked(root.points[i], moved):
                 root.points[i] = moved
 
 
@@ -669,10 +704,23 @@ def gaps(surface: Surface, root: Root) -> list:
         if root.normals[i] is None or i in root.entry_rings or (i == 0 and (root.buried or root.parent is not None)) or (root.dived and i == len(root.points) - 1):
             continue
         _, c = ellipse(root, i)
-        near = surface.nearest(root.points[i], 1.0)
+        foot = adhere(root, root.points[i] - n * c, n, 1.0, root.radii[i])
+        near = surface.nearest(foot, 1.0)
         if near is not None:
-            result.append(near[3] - c)
+            result.append(near[3])
     return result
+
+
+def adhere(root: Root, point: Vector, normal: Vector, weight: float, radius: float) -> Vector:
+    """Fit the underside to worn stone, preserving the rounded living crest."""
+    if root.adhesion_surface is None or weight <= 0:
+        return point
+    hit = root.adhesion_surface.cast(point + normal * 0.08, -normal, 0.16)
+    if hit is None or hit[1].dot(normal) < 0.3 or hit[3] < 0.08 - GAP:
+        return point
+    if hit[3] - 0.08 > max(0.008, min(0.08, radius * 3)):
+        return point
+    return point.lerp(hit[0] + hit[1] * GAP, min(1.0, weight))
 
 
 def sides_for(root: Root, r0: float) -> int:
@@ -712,6 +760,9 @@ def skin(builder: Builder, root: Root, audit: list = None) -> int:
             angle = phi + math.pi * 0.5
             scale = 1.0 + (ridge if k % 2 == 0 else -ridge * 0.6) if sides % 2 == 0 else 1.0 + ridge * 0.5 * math.cos(3 * phi)
             pos = root.points[i] + (b * math.cos(angle) * a + n * math.sin(angle) * c) * scale
+            hidden = i in root.entry_rings or (i == 0 and (root.buried or root.parent is not None)) or (root.dived and i == count - 1)
+            if not hidden:
+                pos = adhere(root, pos, n, max(0.0, -math.sin(angle)), root.radii[i])
             ring.append(builder.bm.verts.new(pos))
         rings.append(ring)
         if audit is not None:
