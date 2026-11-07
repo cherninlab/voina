@@ -60,7 +60,11 @@ func run() -> void:
 	var structure: Node3D = architecture.get_node("StructuralRelief") as Node3D
 	var matches: int = 0
 	var samples: int = 0
-	for node: Node in structure.find_children("ShaftRock*", "MeshInstance3D", true, false):
+	assert(structure.find_children("*UpperPostSocket*", "MeshInstance3D", true, false).size() == 2)
+	assert(structure.find_children("Foundation_UpperBridgeBearing", "MeshInstance3D", true, false).size() == 1)
+	for node: Node in structure.find_children("*", "MeshInstance3D", true, false):
+		if not (node.name.begins_with("ShaftRock") or "UpperPostSocket" in String(node.name) or node.name == "Foundation_UpperBridgeBearing"):
+			continue
 		var visual: MeshInstance3D = node as MeshInstance3D
 		var faces: PackedVector3Array = visual.mesh.get_faces()
 		for index: int in range(0, mini(faces.size(), 90), 9):

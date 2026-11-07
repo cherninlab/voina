@@ -22,6 +22,7 @@ const UPPER_CROSSING_VIEWS: Array[Array] = [
     ["gallery-underside", Vector3(13, -14, -4), Vector3(21, -9.5, -4), 85.0],
     ["upper-foundation", Vector3(13, -7, -20), Vector3(26, -6, -14), 85.0],
     ["gallery-bend-north", Vector3(14, -4, -17), Vector3(20.3, -6.2, -14), 85.0],
+	["upper-bridge-bearing", Vector3(25, -5.7, -13.0), Vector3(24.2, -4.6, -10.6), 80.0],
 ]
 const EYE: float = 1.6
 

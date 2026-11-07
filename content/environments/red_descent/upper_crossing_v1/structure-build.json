@@ -541,15 +541,28 @@
       ]
     }
   ],
+  "upper_bridge_post_stations_godot": [
+    [
+      24.586944580078125,
+      -4.0,
+      -11.652969360351562
+    ],
+    [
+      23.413055419921875,
+      -4.0,
+      -8.347030639648438
+    ]
+  ],
+  "upper_bridge_bearing_top_below_deck_m": 0.075,
   "wall_indices": [
     3,
     4,
     5,
     6
   ],
-  "mesh_count": 58,
+  "mesh_count": 61,
   "source_layout_sha256": "e37b06498dd3c54539e773f241f9c3d7351849d3d1b9ac2ae336d4e563e1c3a1",
-  "triangles": 117264,
-  "method": "Closed relief solids, room floor plinths, continuous project pier geometry and masonry arches; all carved outside playable envelopes",
+  "triangles": 117364,
+  "method": "Closed relief, floor plinths, piers and masonry arches carved outside playable envelopes; upper bridge bearing and post sockets below deck",
   "collision": "New relief/support collision follows the carved render meshes; existing route and gallery collision preserved"
 }

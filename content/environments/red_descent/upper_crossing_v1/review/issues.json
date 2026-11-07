@@ -76,12 +76,14 @@
     {
       "id": 13,
       "issue": "Bridge rail terminations lack visible masonry anchorage",
-      "status": "open"
+      "status": "upper east landing fitted with masonry post-foot sockets; other bridge junctions remain unreviewed",
+      "iteration": 7
     },
     {
       "id": 14,
       "issue": "Portal threshold/deck junction needs a fitted transition",
-      "status": "open"
+      "status": "upper east deck/stone junction fitted with a below-deck continuous bearing; other thresholds remain unreviewed",
+      "iteration": 7
     },
     {
       "id": 15,

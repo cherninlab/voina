@@ -1,0 +1,429 @@
+{
+	"legends": {
+		"clearance": "green=sampled capsule/headroom clear, red=blocked; not proof of reachability",
+		"collision": "green collision wire meshes shown through occluders",
+		"depth": "linear camera depth, black=0 m white=30 m; background black",
+		"intersections": "green markers at sampled triangle crossings, shown through occluders; intentional contacts included",
+		"limits": "debug materials preserve flagstone clipping but not shader peeling/displacement/transparency; paired color view is authoritative",
+		"normals": "world normal XYZ mapped to RGB",
+		"objects": "stable per-object colors; see objects.json; each MultiMesh is one object"
+	},
+	"views": [
+		{
+			"camera": [
+				13.0,
+				-14.0,
+				-4.0
+			],
+			"draw_calls": 658.0,
+			"frame": "gallery-underside-color.png",
+			"pass": "color",
+			"primitives": 2868300.0,
+			"view": {
+				"direction": [
+					8.0,
+					4.5,
+					0.0
+				],
+				"eye": [
+					13.0,
+					-14.0,
+					-4.0
+				],
+				"fov": 85.0,
+				"head_offset_m": 0.0,
+				"name": "gallery-underside"
+			}
+		},
+		{
+			"camera": [
+				13.0,
+				-14.0,
+				-4.0
+			],
+			"draw_calls": 658.0,
+			"frame": "gallery-underside-albedo.png",
+			"pass": "albedo",
+			"primitives": 2868300.0,
+			"view": {
+				"direction": [
+					8.0,
+					4.5,
+					0.0
+				],
+				"eye": [
+					13.0,
+					-14.0,
+					-4.0
+				],
+				"fov": 85.0,
+				"head_offset_m": 0.0,
+				"name": "gallery-underside"
+			}
+		},
+		{
+			"camera": [
+				13.0,
+				-14.0,
+				-4.0
+			],
+			"draw_calls": 658.0,
+			"frame": "gallery-underside-objects.png",
+			"pass": "objects",
+			"primitives": 2868300.0,
+			"view": {
+				"direction": [
+					8.0,
+					4.5,
+					0.0
+				],
+				"eye": [
+					13.0,
+					-14.0,
+					-4.0
+				],
+				"fov": 85.0,
+				"head_offset_m": 0.0,
+				"name": "gallery-underside"
+			}
+		},
+		{
+			"camera": [
+				13.0,
+				-14.0,
+				-4.0
+			],
+			"draw_calls": 658.0,
+			"frame": "gallery-underside-depth.png",
+			"pass": "depth",
+			"primitives": 2868300.0,
+			"view": {
+				"direction": [
+					8.0,
+					4.5,
+					0.0
+				],
+				"eye": [
+					13.0,
+					-14.0,
+					-4.0
+				],
+				"fov": 85.0,
+				"head_offset_m": 0.0,
+				"name": "gallery-underside"
+			}
+		},
+		{
+			"camera": [
+				13.0,
+				-14.0,
+				-4.0
+			],
+			"draw_calls": 658.0,
+			"frame": "gallery-underside-depth-far.png",
+			"pass": "depth-far",
+			"primitives": 2868300.0,
+			"view": {
+				"direction": [
+					8.0,
+					4.5,
+					0.0
+				],
+				"eye": [
+					13.0,
+					-14.0,
+					-4.0
+				],
+				"fov": 85.0,
+				"head_offset_m": 0.0,
+				"name": "gallery-underside"
+			}
+		},
+		{
+			"camera": [
+				13.0,
+				-14.0,
+				-4.0
+			],
+			"draw_calls": 658.0,
+			"frame": "gallery-underside-normals.png",
+			"pass": "normals",
+			"primitives": 2868300.0,
+			"view": {
+				"direction": [
+					8.0,
+					4.5,
+					0.0
+				],
+				"eye": [
+					13.0,
+					-14.0,
+					-4.0
+				],
+				"fov": 85.0,
+				"head_offset_m": 0.0,
+				"name": "gallery-underside"
+			}
+		},
+		{
+			"camera": [
+				13.0,
+				-14.0,
+				-4.0
+			],
+			"draw_calls": 672.0,
+			"frame": "gallery-underside-intersections.png",
+			"pass": "intersections",
+			"primitives": 2869420.0,
+			"view": {
+				"direction": [
+					8.0,
+					4.5,
+					0.0
+				],
+				"eye": [
+					13.0,
+					-14.0,
+					-4.0
+				],
+				"fov": 85.0,
+				"head_offset_m": 0.0,
+				"name": "gallery-underside"
+			}
+		},
+		{
+			"camera": [
+				13.0,
+				-14.0,
+				-4.0
+			],
+			"draw_calls": 813.0,
+			"frame": "gallery-underside-collision.png",
+			"pass": "collision",
+			"primitives": 3237731.0,
+			"view": {
+				"direction": [
+					8.0,
+					4.5,
+					0.0
+				],
+				"eye": [
+					13.0,
+					-14.0,
+					-4.0
+				],
+				"fov": 85.0,
+				"head_offset_m": 0.0,
+				"name": "gallery-underside"
+			}
+		},
+		{
+			"camera": [
+				25.0,
+				-5.7,
+				-13.0
+			],
+			"draw_calls": 920.0,
+			"frame": "upper-bridge-bearing-color.png",
+			"pass": "color",
+			"primitives": 3091154.0,
+			"view": {
+				"direction": [
+					-0.8,
+					1.1,
+					2.4
+				],
+				"eye": [
+					25.0,
+					-5.7,
+					-13.0
+				],
+				"fov": 80.0,
+				"head_offset_m": 0.0,
+				"name": "upper-bridge-bearing"
+			}
+		},
+		{
+			"camera": [
+				25.0,
+				-5.7,
+				-13.0
+			],
+			"draw_calls": 920.0,
+			"frame": "upper-bridge-bearing-albedo.png",
+			"pass": "albedo",
+			"primitives": 3091154.0,
+			"view": {
+				"direction": [
+					-0.8,
+					1.1,
+					2.4
+				],
+				"eye": [
+					25.0,
+					-5.7,
+					-13.0
+				],
+				"fov": 80.0,
+				"head_offset_m": 0.0,
+				"name": "upper-bridge-bearing"
+			}
+		},
+		{
+			"camera": [
+				25.0,
+				-5.7,
+				-13.0
+			],
+			"draw_calls": 1006.0,
+			"frame": "upper-bridge-bearing-objects.png",
+			"pass": "objects",
+			"primitives": 11622097.0,
+			"view": {
+				"direction": [
+					-0.8,
+					1.1,
+					2.4
+				],
+				"eye": [
+					25.0,
+					-5.7,
+					-13.0
+				],
+				"fov": 80.0,
+				"head_offset_m": 0.0,
+				"name": "upper-bridge-bearing"
+			}
+		},
+		{
+			"camera": [
+				25.0,
+				-5.7,
+				-13.0
+			],
+			"draw_calls": 1006.0,
+			"frame": "upper-bridge-bearing-depth.png",
+			"pass": "depth",
+			"primitives": 11622097.0,
+			"view": {
+				"direction": [
+					-0.8,
+					1.1,
+					2.4
+				],
+				"eye": [
+					25.0,
+					-5.7,
+					-13.0
+				],
+				"fov": 80.0,
+				"head_offset_m": 0.0,
+				"name": "upper-bridge-bearing"
+			}
+		},
+		{
+			"camera": [
+				25.0,
+				-5.7,
+				-13.0
+			],
+			"draw_calls": 1006.0,
+			"frame": "upper-bridge-bearing-depth-far.png",
+			"pass": "depth-far",
+			"primitives": 11622097.0,
+			"view": {
+				"direction": [
+					-0.8,
+					1.1,
+					2.4
+				],
+				"eye": [
+					25.0,
+					-5.7,
+					-13.0
+				],
+				"fov": 80.0,
+				"head_offset_m": 0.0,
+				"name": "upper-bridge-bearing"
+			}
+		},
+		{
+			"camera": [
+				25.0,
+				-5.7,
+				-13.0
+			],
+			"draw_calls": 1006.0,
+			"frame": "upper-bridge-bearing-normals.png",
+			"pass": "normals",
+			"primitives": 11622097.0,
+			"view": {
+				"direction": [
+					-0.8,
+					1.1,
+					2.4
+				],
+				"eye": [
+					25.0,
+					-5.7,
+					-13.0
+				],
+				"fov": 80.0,
+				"head_offset_m": 0.0,
+				"name": "upper-bridge-bearing"
+			}
+		},
+		{
+			"camera": [
+				25.0,
+				-5.7,
+				-13.0
+			],
+			"draw_calls": 1055.0,
+			"frame": "upper-bridge-bearing-intersections.png",
+			"pass": "intersections",
+			"primitives": 11626017.0,
+			"view": {
+				"direction": [
+					-0.8,
+					1.1,
+					2.4
+				],
+				"eye": [
+					25.0,
+					-5.7,
+					-13.0
+				],
+				"fov": 80.0,
+				"head_offset_m": 0.0,
+				"name": "upper-bridge-bearing"
+			}
+		},
+		{
+			"camera": [
+				25.0,
+				-5.7,
+				-13.0
+			],
+			"draw_calls": 1214.0,
+			"frame": "upper-bridge-bearing-collision.png",
+			"pass": "collision",
+			"primitives": 16039820.0,
+			"view": {
+				"direction": [
+					-0.8,
+					1.1,
+					2.4
+				],
+				"eye": [
+					25.0,
+					-5.7,
+					-13.0
+				],
+				"fov": 80.0,
+				"head_offset_m": 0.0,
+				"name": "upper-bridge-bearing"
+			}
+		}
+	]
+}

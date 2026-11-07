@@ -102,7 +102,13 @@ func capture_views() -> void:
 	debug_environment.background_color = Color.BLACK
 	debug_environment.tonemap_mode = Environment.TONE_MAPPER_LINEAR
 	var views: Array[Dictionary] = []
+	var selected: PackedStringArray = PackedStringArray()
+	for argument: String in OS.get_cmdline_user_args():
+		if argument.begins_with("--capture-views="):
+			selected = argument.trim_prefix("--capture-views=").split(",")
 	for entry: Array in CaptureViews.UPPER_CROSSING_VIEWS:
+		if not selected.is_empty() and not selected.has(String(entry[0])):
+			continue
 		var eye: Vector3 = entry[1] as Vector3
 		var target: Vector3 = entry[2] as Vector3
 		views.append({"name": entry[0], "eye": vector(eye), "direction": vector(target - eye), "head_offset_m": 0.0, "fov": float(entry[3])})

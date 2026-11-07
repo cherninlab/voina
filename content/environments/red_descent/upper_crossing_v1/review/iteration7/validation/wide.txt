@@ -1,0 +1,13 @@
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+Metal 4.0 - Forward Mobile - Using Device #0: Apple - Apple M5 Max (Apple9)
+
+BUILD: 810258e [79a641c9444f]
+STRUCTURAL_RELIEF_READY: 61 meshes, walls [3, 4, 5, 6]
+GENERATED_KIT_PLACED: {}
+RED_DESCENT_GEOMETRY_READY: 17 routes, 13 rooms, 36 lit landmarks, sloping crossings
+MAP: Cinder Crypt (crypt)
+WIDE_CAPTURE: (3840, 2160) /Users/theochernin/Projects/MultiPlayerProject-agents/theo-codex-shaft-1/content/environments/red_descent/upper_crossing_v1/review/iteration7/after/upper-landing-4k.png
+WARNING: 7 RIDs of type "Texture" were leaked.
+   at: finalize (servers/rendering/rendering_device.cpp:8900)
+WARNING: 1 ObjectDB instance was leaked at exit (run with `--verbose` for details).
+   at: cleanup (core/object/object.cpp:2536)
