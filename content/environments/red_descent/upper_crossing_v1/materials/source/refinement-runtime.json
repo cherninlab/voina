@@ -1,0 +1,16 @@
+{
+  "base_model": "krea/Krea-2-Turbo",
+  "quantized_model": {
+    "repo": "MLXBits/krea-2-mlx-q8",
+    "revision": "9a6edbc94ab786c8b9511247b07ad628c73dc91c",
+    "quantization": "8-bit MLX",
+    "saved_with_mflux": "0.18.0"
+  },
+  "runtime": {
+    "mflux": "0.24.0",
+    "mlx": "0.32.4",
+    "python": "3.13.15",
+    "dependencies": "requirements.lock.txt"
+  },
+  "license_status": "User confirmed acceptance on 2026-11-07; authenticated official repository access check passed"
+}

@@ -86,14 +86,14 @@
     {
       "id": 15,
       "issue": "Room, roof and rock surfaces use inconsistent material grain and colour",
-      "status": "implemented; shared local Krea family integrated, art refinement remains",
-      "iteration": 3
+      "status": "shared local Krea family with quieter plaster integrated; seven engine views and 4K inspected, art refinement remains",
+      "iteration": 6
     },
     {
       "id": 16,
       "issue": "Roots read as smooth red cables rather than fibrous dry roots",
-      "status": "improved; rough bark replaces red gloss, root shapes still need review",
-      "iteration": 3
+      "status": "improved with longitudinal local Krea fibres and restrained normals; branch shapes/attachments still need refinement",
+      "iteration": 6
     },
     {
       "id": 17,

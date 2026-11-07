@@ -355,15 +355,15 @@ func integrate_materials() -> void:
 	# One locally generated, neutral material family keeps the cavern and its
 	# construction in the same palette. The red nave keeps its own lime plaster.
 	swap_maps("rock", KREA_MATERIALS + "bedrock/", 0.24)
-	swap_maps("plaster", KREA_MATERIALS + "plaster/", 0.32)
+	swap_maps("plaster", KREA_MATERIALS + "plaster_quiet/", 0.32)
 	(materials["rock"] as ShaderMaterial).set_shader_parameter("tint", Vector3(0.9, 0.92, 0.88))
 	(materials["rock"] as ShaderMaterial).set_shader_parameter("normal_strength", 0.28)
 	# The plaster sets carry their own colour; the old red tint was for grey concrete.
 	if materials.has("red_plaster"):
 		(materials["red_plaster"] as ShaderMaterial).set_shader_parameter("tint", Vector3(0.95, 0.92, 0.9))
-	# The well's mineral plaster is fresh cream; centuries of smoke and damp grey it down.
+	# The neutral Krea plaster is already graded; avoid tinting its greys twice.
 	if materials.has("plaster"):
-		(materials["plaster"] as ShaderMaterial).set_shader_parameter("tint", Vector3(0.52, 0.5, 0.46))
+		(materials["plaster"] as ShaderMaterial).set_shader_parameter("tint", Vector3(0.85, 0.85, 0.80))
 
 func swap_maps(key: String, folder: String, scale: float, normal_file: String = "normal_gl.png") -> void:
 	if not materials.has(key) or not ResourceLoader.exists(folder + "albedo.png") or not materials[key] is ShaderMaterial:
@@ -462,11 +462,14 @@ func stone_roots(file: String) -> void:
 		return
 	if not materials.has("roots"):
 		var roots: StandardMaterial3D = StandardMaterial3D.new()
-		roots.albedo_color = Color8(88, 66, 43)
-		# Existing metre UVs run down the root. Use the existing bark scan for
-		# fine fibres, keeping it rough instead of glossy red tubing.
-		roots.albedo_texture = load("res://content/environments/valhalla/textures/KB3D_VHL_LogBark_basecolor.png") as Texture2D
-		roots.uv1_scale = Vector3(1.4, 3.0, 1.0)
+		roots.albedo_color = Color(0.75, 0.75, 0.75)
+		# Existing metre UVs run down the root. The neutral local Krea scan
+		# follows that direction, with shallow fibres and restrained normals.
+		roots.albedo_texture = load(KREA_MATERIALS + "roots/albedo.png") as Texture2D
+		roots.normal_enabled = true
+		roots.normal_texture = load(KREA_MATERIALS + "roots/normal_gl.png") as Texture2D
+		roots.normal_scale = 0.4
+		roots.uv1_scale = Vector3(0.8, 1.0, 1.0)
 		roots.vertex_color_use_as_albedo = true
 		roots.roughness = 0.9
 		roots.metallic_specular = 0.18

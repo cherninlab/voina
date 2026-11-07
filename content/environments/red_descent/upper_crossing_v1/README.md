@@ -101,3 +101,9 @@ The five gallery sections now export as one render object per section, with sepa
 The five original collision meshes retain their vertex positions; the continuous cement adds matching collision. Runtime paving bedding is also a closed sloped prism. Checks cover 270 cement and 480 shaft-relief surface/collision rays, current/stale asset guards, core smoke and 1,235 m of capsule walking.
 
 `review/iteration5/bonded/` holds three matched actual-game captures. `review/iteration5/compare.html` compares the exact underside camera before/after without image retouching. The reported slit region had 63 bright pixels before and zero after, with fixed camera/exposure. This is a regression check for that seam, not proof that every map seam is repaired. Other camera files under local `iteration5/after/` were an intermediate bedding-only experiment and are not the bonded result.
+
+## Iteration 6 — quieter plaster and fibrous roots
+
+Two neutral base-only Krea sources from the local evaluation are now integrated: quieter worn plaster and continuous root bark. Source prompts, seed-42 metadata and experiment/runtime receipts are preserved alongside the first material family. Existing plaster peeling and root meshes stay the same; plaster avoids double darkening and root normal detail follows the length UVs at high roughness. This improves the surfaces; root shapes and attachments still need refinement.
+
+Editor/core checks pass. Seven matched engine cameras and a fresh 3,840 × 2,160 wide view are under `review/iteration6/after/`. The cement slit remains closed in this material pass. Parallel LoRA concepts are inspiration and were not substituted for actual game evidence.

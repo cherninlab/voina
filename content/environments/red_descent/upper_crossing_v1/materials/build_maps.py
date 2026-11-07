@@ -36,16 +36,18 @@ def save(path, data):
 
 report = {"model": "Krea 2 Turbo Q8 local MLX",
           "license": {"name": "Krea 2 Community License", "url": "https://huggingface.co/krea/Krea-2-Turbo", "acceptance": "User confirmed on 2026-11-07 in the local setup chat"},
-          "runtime": {"mflux": "0.24.0", "mlx": "0.32.4", "offline": True}, "model_revision": "9a6edbc94ab786c8b9511247b07ad628c73dc91c", "seed": 186, "steps": 8, "lora": None,
+          "runtime": {"mflux": "0.24.0", "mlx": "0.32.4", "offline": True}, "model_revision": "9a6edbc94ab786c8b9511247b07ad628c73dc91c", "lora": None,
           "maps": "Albedo from generated images, periodic edge correction and shared grey-green grade. Other channels are image-derived estimates.", "surfaces": {}}
-for name, target, amplitude in [("bedrock", (0.34, 0.35, 0.32), 0.18), ("limestone", (0.48, 0.49, 0.45), 0.08), ("plaster", (0.43, 0.44, 0.40), 0.10)]:
+for name, target, amplitude in [("bedrock", (0.34, 0.35, 0.32), 0.18), ("limestone", (0.48, 0.49, 0.45), 0.08), ("plaster", (0.43, 0.44, 0.40), 0.10), ("plaster_quiet", (0.60, 0.60, 0.56), 0.08), ("roots", (0.42, 0.35, 0.27), 0.12)]:
     source = ROOT / "source" / (name + ".png")
     image = np.array(Image.open(source).convert("RGB"), dtype=np.float64) / 255
+    if name == "roots":
+        image = np.rot90(image)  # Fibres follow root U (length in metres).
     image = periodic(image)
     luma = image @ [0.2126, 0.7152, 0.0722]
     # Match material value/chroma without introducing directional lighting.
     detail = image - luma[:, :, None]
-    contrast = {"bedrock": 0.6, "limestone": 0.3, "plaster": 0.35}[name]
+    contrast = {"bedrock": 0.6, "limestone": 0.3, "plaster": 0.35, "plaster_quiet": 0.7, "roots": 0.55}[name]
     value = np.clip(1 + (luma / np.median(luma) - 1) * contrast, 0.78, 1.22)
     albedo = value[:, :, None] * np.array(target) + detail * 0.4
     out = ROOT / name
@@ -67,7 +69,8 @@ for name, target, amplitude in [("bedrock", (0.34, 0.35, 0.32), 0.18), ("limesto
     adjacent = np.concatenate((np.diff(albedo, axis=0).ravel(), np.diff(albedo, axis=1).ravel()))
     ratio = float(np.mean(np.abs(seam)) / np.mean(np.abs(adjacent)))
     assert ratio < 1.5, (name, ratio)
-    report["surfaces"][name] = {"source_sha256": hashlib.sha256(source.read_bytes()).hexdigest(), "edge_vs_adjacent_mean_difference": ratio,
+    metadata = json.loads((ROOT / "source" / (name + ".metadata.json")).read_text())
+    report["surfaces"][name] = {"generation": {key: metadata.get(key) for key in ["seed", "steps", "width", "height", "guidance", "mflux_version"]}, "rotate_quarter_turn": name == "roots","source_sha256": hashlib.sha256(source.read_bytes()).hexdigest(), "edge_vs_adjacent_mean_difference": ratio,
                                 "maps_sha256": {p.name: hashlib.sha256(p.read_bytes()).hexdigest() for p in sorted(out.glob("*.png"))}}
 (ROOT / "provenance.json").write_text(json.dumps(report, indent=2) + "\n")
 print("KREA_MATERIALS_PREPARED", json.dumps(report), flush=True)

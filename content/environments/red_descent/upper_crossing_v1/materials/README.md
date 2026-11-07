@@ -1,6 +1,6 @@
 # Shared dungeon material family — local Krea 2
 
-The three source images were generated offline on this Mac with the user’s installed Krea 2 Turbo Q8 model (MLXBits revision `9a6edbc94ab786c8b9511247b07ad628c73dc91c`). The user accepted the Krea 2 Community License in the parallel setup chat on 2026-11-07. No LoRA is applied to these surface scans: the three prompts share one neutral grey-green/umber material brief, without film lighting or perspective.
+The first three source images were generated offline on this Mac with the user’s installed Krea 2 Turbo Q8 model (MLXBits revision `9a6edbc94ab786c8b9511247b07ad628c73dc91c`). The user accepted the Krea 2 Community License in the parallel setup chat on 2026-11-07. No LoRA is applied to these surface scans: the three prompts share one neutral grey-green/umber material brief, without film lighting or perspective.
 
 `source/` preserves each exact prompt, image and MFLUX metadata. Generation used seed 186, 1024 × 1024, eight steps, guidance 1.0. `provenance.json` records source/map hashes and runtime versions. The local setup is `/Users/theochernin/AI/krea2/README.md`.
 
@@ -12,4 +12,8 @@ Reproduce after generation with the installed CherninLab3D Python environment:
 /Users/theochernin/Projects/CherninLab3D/.venv/bin/python content/environments/red_descent/upper_crossing_v1/materials/build_maps.py
 ```
 
-The seam check compares opposite-edge differences against ordinary adjacent-pixel differences; all three are below 1.5×. World/metre mapping and the existing stochastic sampler control texture scale and repetition in the game.
+The seam check compares opposite-edge differences against ordinary adjacent-pixel differences; all five are below 1.5×. World/metre mapping and the existing stochastic sampler control texture scale and repetition in the game.
+
+The second neutral pass comes from the parallel local Krea evaluation: `source/plaster_quiet.png` and `source/roots.png`, seed 42, 1024 × 1024, eight steps, guidance 1.0, no LoRA. Their prompts, per-source metadata and copied refinement manifest/runtime receipts are preserved. The experiment manifest's generic `lora_strength` field is inert for these base-only cases; each source metadata file confirms `lora_paths: null`.
+
+The game uses the quieter plaster in place of the original plaster candidate and reduces the old extra dark tint, retaining the existing peel geometry. The root source is rotated 90° so its longitudinal fibres follow the mesh's metre U coordinate. The game uses its albedo/normal at high roughness; source lighting is not used as scene lighting. These texture changes do not repair branch shape or root attachment geometry.
