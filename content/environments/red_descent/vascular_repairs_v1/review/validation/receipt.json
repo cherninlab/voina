@@ -1,0 +1,309 @@
+{
+  "baseline": "1fe4d60",
+  "engine": "Godot 4.7.2 Standard Mobile/Metal",
+  "capture": "Eight actual views, five passes each; matched first-stair wide3840x2160. Native wrapper keeps windows unfocused and silent.",
+  "models": {
+    "content/environments/procedural_roots_v1/first_stair_hall.glb": "580f7f87fff2ad30a6d2a3b137b98b87ba652e325d50be608b9546d73decf87b",
+    "content/environments/procedural_roots_v1/second_stair_hall.glb": "784947e88328ec296eb49da35ea241a1aff08b6cdd9830336e87762e69f5c522"
+  },
+  "images": {
+    "first-bell-close-albedo.png": {
+      "sha256": "f7c4c9f4c18d6cee897fb71166b48702cc6d7374b6880629ddc5e8bee8acd7b4",
+      "size": [
+        1440,
+        900
+      ]
+    },
+    "first-bell-close-collision.png": {
+      "sha256": "789ea9e45326f1e234e0da638528827867cef8c2c9f4c7ae0539f1eb5a21cc19",
+      "size": [
+        1440,
+        900
+      ]
+    },
+    "first-bell-close-color.png": {
+      "sha256": "6d59b6d2995df027dfe5ea6697075b29dacfe40d0edacc6d4b8be55fc6bd4fbf",
+      "size": [
+        1440,
+        900
+      ]
+    },
+    "first-bell-close-normals.png": {
+      "sha256": "2291a7d3171c71245724a937030d7af2ea6320bef1bc36eb76e0f1d862008277",
+      "size": [
+        1440,
+        900
+      ]
+    },
+    "first-bell-close-objects.png": {
+      "sha256": "23b7a6effe47d70f6a1f1edc134c3cc772046ca88a0a551169e398abe5685082",
+      "size": [
+        1440,
+        900
+      ]
+    },
+    "first-root-grazing-albedo.png": {
+      "sha256": "967dcd612d1b82904fb29697ded4b5dea6cdd8543bcba04d8242e1398c8d36e2",
+      "size": [
+        1440,
+        900
+      ]
+    },
+    "first-root-grazing-collision.png": {
+      "sha256": "789ea9e45326f1e234e0da638528827867cef8c2c9f4c7ae0539f1eb5a21cc19",
+      "size": [
+        1440,
+        900
+      ]
+    },
+    "first-root-grazing-color.png": {
+      "sha256": "e6e3d382788a791e18de749558e5dabee97ebe9f4e95ca94fbebbe12b544fa91",
+      "size": [
+        1440,
+        900
+      ]
+    },
+    "first-root-grazing-normals.png": {
+      "sha256": "0736aa35a37f83ff8d70370b7b35919f25b7c24a6e3c8cdbbf0cdf64fc70908d",
+      "size": [
+        1440,
+        900
+      ]
+    },
+    "first-root-grazing-objects.png": {
+      "sha256": "0593a6326c0171bc351a199f06e8192fa7fdf4dfff54355a986a9092d4a99c38",
+      "size": [
+        1440,
+        900
+      ]
+    },
+    "first-stair-coping-albedo.png": {
+      "sha256": "bc4e20fbf733ea91ba8ec608d264d973269751d559f517c172c53876377a9ebd",
+      "size": [
+        1440,
+        900
+      ]
+    },
+    "first-stair-coping-collision.png": {
+      "sha256": "789ea9e45326f1e234e0da638528827867cef8c2c9f4c7ae0539f1eb5a21cc19",
+      "size": [
+        1440,
+        900
+      ]
+    },
+    "first-stair-coping-color.png": {
+      "sha256": "a2c2e0de5a15aaa3f84c68b286f9accd8c3bcd6da809badd5963bd7ae47ca72b",
+      "size": [
+        1440,
+        900
+      ]
+    },
+    "first-stair-coping-normals.png": {
+      "sha256": "582e8e222c18d62d3580fa20ebbc6280f3c0b9dda76ae1dc1411cb7cffc1e9b7",
+      "size": [
+        1440,
+        900
+      ]
+    },
+    "first-stair-coping-objects.png": {
+      "sha256": "336a682d55979f39b3047d10baa0aef040297ed35528e25907dcc6539aa675ae",
+      "size": [
+        1440,
+        900
+      ]
+    },
+    "first-stair-lower-albedo.png": {
+      "sha256": "2fdcab789dc24eae6331d5b2c893f7003d9d863ee49cf7e76a1c694ceb447537",
+      "size": [
+        1440,
+        900
+      ]
+    },
+    "first-stair-lower-collision.png": {
+      "sha256": "789ea9e45326f1e234e0da638528827867cef8c2c9f4c7ae0539f1eb5a21cc19",
+      "size": [
+        1440,
+        900
+      ]
+    },
+    "first-stair-lower-color.png": {
+      "sha256": "68970b2e2af7ef0d07b96167fc880c2e008ea36d2b8de23af33a02f9fb53d660",
+      "size": [
+        1440,
+        900
+      ]
+    },
+    "first-stair-lower-normals.png": {
+      "sha256": "40be98186fb83d3df3968944031e75482b752e780f02b491d95b6dd737b7dbe1",
+      "size": [
+        1440,
+        900
+      ]
+    },
+    "first-stair-lower-objects.png": {
+      "sha256": "f13e13786e2fd59ee7ca388848ed7273f79f105a3232b135226249ebd0200a97",
+      "size": [
+        1440,
+        900
+      ]
+    },
+    "second-reliquary-close-albedo.png": {
+      "sha256": "0c7b324fa970b0691bf7a46c23f9950a3ca10aa934be22eba63c52aca5235d40",
+      "size": [
+        1440,
+        900
+      ]
+    },
+    "second-reliquary-close-collision.png": {
+      "sha256": "789ea9e45326f1e234e0da638528827867cef8c2c9f4c7ae0539f1eb5a21cc19",
+      "size": [
+        1440,
+        900
+      ]
+    },
+    "second-reliquary-close-color.png": {
+      "sha256": "33031a6413e3ec21cd09e95a4a4867c64e4b7e308795e8a38c1bbe4104c79313",
+      "size": [
+        1440,
+        900
+      ]
+    },
+    "second-reliquary-close-normals.png": {
+      "sha256": "e24fc98ded07ab224afdadd0b584945bdd728846a199bce817f8dc9a1442bf4f",
+      "size": [
+        1440,
+        900
+      ]
+    },
+    "second-reliquary-close-objects.png": {
+      "sha256": "4f9f8b6e1526db98d9ea39106061956af52b55ad1f3d87f6bd100ebe597a25a6",
+      "size": [
+        1440,
+        900
+      ]
+    },
+    "second-root-grazing-albedo.png": {
+      "sha256": "d09c228e578d7b02b8a60a6a1c6b547a2251310c9158f2145db3956f8c6ca3e1",
+      "size": [
+        1440,
+        900
+      ]
+    },
+    "second-root-grazing-collision.png": {
+      "sha256": "789ea9e45326f1e234e0da638528827867cef8c2c9f4c7ae0539f1eb5a21cc19",
+      "size": [
+        1440,
+        900
+      ]
+    },
+    "second-root-grazing-color.png": {
+      "sha256": "02722dcac4bd3ff2fb8e7dcf6867198dbd69067f764eb96bae439cb95d99b3e3",
+      "size": [
+        1440,
+        900
+      ]
+    },
+    "second-root-grazing-normals.png": {
+      "sha256": "2bcaba319584a7af1c9220a2b4eac6974b7eaac9eacc12731561ac0eb876f8ac",
+      "size": [
+        1440,
+        900
+      ]
+    },
+    "second-root-grazing-objects.png": {
+      "sha256": "131d5e2131077797d70c90160450bf900054afeb48fd61b5b7699a57dc94b1e6",
+      "size": [
+        1440,
+        900
+      ]
+    },
+    "second-stair-lower-albedo.png": {
+      "sha256": "72770fcd2132a9f112a76bd12f681c7347cce9d8c4dfcf43e81cd64b49774e0c",
+      "size": [
+        1440,
+        900
+      ]
+    },
+    "second-stair-lower-collision.png": {
+      "sha256": "789ea9e45326f1e234e0da638528827867cef8c2c9f4c7ae0539f1eb5a21cc19",
+      "size": [
+        1440,
+        900
+      ]
+    },
+    "second-stair-lower-color.png": {
+      "sha256": "0ce2d6563d555bc627d5cf4d49574a23452d8fb25515fd3db93c5f19785f7201",
+      "size": [
+        1440,
+        900
+      ]
+    },
+    "second-stair-lower-normals.png": {
+      "sha256": "0c93bdd2dfdc089115f2f713b3a0a03089db8e50ff4bc8f39ec6c95325741ae0",
+      "size": [
+        1440,
+        900
+      ]
+    },
+    "second-stair-lower-objects.png": {
+      "sha256": "1ead00353d327be5e89ab4867281d2cb84b00971d145b76473532c11d23ec0a9",
+      "size": [
+        1440,
+        900
+      ]
+    },
+    "second-stair-side-albedo.png": {
+      "sha256": "4ed45d9266b37c51da1a6e776ac17b25a9ca9eec2f8b99c81bcd758a01c93c45",
+      "size": [
+        1440,
+        900
+      ]
+    },
+    "second-stair-side-collision.png": {
+      "sha256": "2503e45c5275f7d379adc85f74cf66ec3ffafe74e7fe4ee08f820ddeae8d1d2d",
+      "size": [
+        1440,
+        900
+      ]
+    },
+    "second-stair-side-color.png": {
+      "sha256": "5a60ac6b2a74f75030bb37f6169e139ce5a891d3350998f087a07d23c6c6d6b5",
+      "size": [
+        1440,
+        900
+      ]
+    },
+    "second-stair-side-normals.png": {
+      "sha256": "daf48462bbb6bb4c50ca48a678eda6b42b19d35ac5743e86e3c13d4c3ecbb0f4",
+      "size": [
+        1440,
+        900
+      ]
+    },
+    "second-stair-side-objects.png": {
+      "sha256": "f8163e4c57e72d87798ed82f9c438f0ef69e2c2a92215bac4a69a34893304825",
+      "size": [
+        1440,
+        900
+      ]
+    },
+    "stair-wide-4k.png": {
+      "sha256": "b6f91026e678e2ff1d7a93992775ca7291d9dd9d7ebd9b25f70c9345c8a84376",
+      "size": [
+        3840,
+        2160
+      ]
+    }
+  },
+  "checks": {
+    "independent_mesh": "PASS",
+    "runtime": "PASS: eight batches,50846tris;620 collision shapes,7 stair-art meshes; no growth collision/lights",
+    "traversal": "PASS:1235m real capsule",
+    "isolated_core": "PASS: complete suite including local ENet integration"
+  },
+  "limits": [
+    "Body loops and some occluded bends remain cable-like; not full visual-art acceptance.",
+    "Known exit warnings retained in raw logs.",
+    "No manual input/camera or two-Mac Tailscale acceptance."
+  ]
+}

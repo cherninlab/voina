@@ -37,6 +37,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parent))
 import bmesh
 import bpy
 from mathutils import Vector
+from mathutils.bvhtree import BVHTree
 
 from procgen import bake, core, export, roots
 from procgen.shapes import Builder
@@ -51,7 +52,7 @@ def parse():
                'layout': core.ROOT / 'content/environments/procedural_bridge_v1/layout.json',
                'out': core.ROOT / 'content/environments/procedural_roots_v1',
                'rooms': None, 'passages': None, 'seed': 178, 'budget': 15000, 'headroom': 2.7, 'samples': 96,
-               'render': True}
+               'render': True, 'mesh-budget': None}
     i = 0
     while i < len(values):
         key = values[i]
@@ -61,7 +62,7 @@ def parse():
             options['rooms'] = [v for v in values[i + 1].split(',') if v]; i += 2
         elif key == '--passages':
             options['passages'] = [v for v in values[i + 1].split(',') if v]; i += 2
-        elif key in ('--seed', '--budget', '--samples'):
+        elif key in ('--seed', '--budget', '--mesh-budget', '--samples'):
             options[key[2:]] = int(values[i + 1]); i += 2
         elif key == '--headroom':
             options['headroom'] = float(values[i + 1]); i += 2
@@ -107,6 +108,39 @@ def load_room(options: dict, room: dict, index: dict) -> dict:
     before = set(bpy.data.objects)
     bpy.ops.import_scene.gltf(filepath=str(options['arch'] / 'rooms' / f'{room["id"]}.glb'))
     room_objects = sorted(set(bpy.data.objects) - before, key=lambda o: o.name)
+    repair_dir = core.ROOT / 'content/environments/red_descent/masonry_repairs_v1'
+    report = json.loads((repair_dir / 'build.json').read_text())
+    repair = report['rooms'].get(room['id'], {})
+    repair_current = (repair.get('source_sha256') == core.sha256(options['arch'] / 'rooms' / (room['id'] + '.glb'))
+            and report['source_layout_sha256'] == core.sha256(options['layout']) and repair.get('room') == room)
+    if repair_current:
+        for field in ('walls_file', 'file', 'stairs_file'):
+            if field not in repair:
+                continue
+            if field == 'stairs_file':
+                suffix = '_' + str(repair['replace_stair_group'])
+                old = [o for o in room_objects if o.type == 'MESH' and o.name.endswith(suffix)
+                       and o.name.startswith(('Stone', 'Mortar'))]
+            elif field == 'file':
+                old = [o for o in room_objects if o.name == repair['replace_mortar']]
+            else:
+                old = [o for o in room_objects if o.name.startswith('Mortar') and o.name.rsplit('_', 1)[-1].isdigit()
+                       and int(o.name.rsplit('_', 1)[-1]) < len(room['points'])]
+            for obj in old:
+                room_objects.remove(obj);core.discard(obj)
+            before = set(bpy.data.objects)
+            bpy.ops.import_scene.gltf(filepath=str(repair_dir / repair[field]))
+            added = sorted(set(bpy.data.objects) - before, key=lambda o: o.name)
+            if field == 'file':
+                next(o for o in added if o.type == 'MESH').name = repair['replace_mortar']
+            room_objects += added
+    art = core.ROOT / 'content/environments/red_descent/stair_art_v1/ritual_wall_art.glb'
+    if repair_current and room['id'] in ('first_stair_hall','second_stair_hall') and art.exists():
+        before = set(bpy.data.objects)
+        bpy.ops.import_scene.gltf(filepath=str(art))
+        for obj in sorted(set(bpy.data.objects)-before,key=lambda o:o.name):
+            if obj.type=='MESH' and obj.name.endswith('_'+room['id']):room_objects.append(obj)
+            else:core.discard(obj)
     outline = plan(room['points'])
     grown = outset(outline, THICKNESS + 1.0)
     lo = Vector((min(p.x for p in grown), min(p.y for p in grown)))
@@ -141,7 +175,8 @@ def load_room(options: dict, room: dict, index: dict) -> dict:
     floor = polygon_object('ProxyFloor', outset(outline, 2.0), room['floor'])
     ceiling = polygon_object('ProxyCeiling', outset(outline, 2.0), room['floor'] + room['height'], down=True)
     return {'stone': stone, 'mortar': mortar, 'floor': floor, 'ceiling': ceiling,
-            'outline': outline, 'sources': sources}
+            'outline': outline, 'sources': sources + [repair_dir / repair[field] for field in ('walls_file', 'file', 'stairs_file')
+                if field in repair and repair_current] + ([art] if repair_current and room['id'] in ('first_stair_hall','second_stair_hall') and art.exists() else [])}
 
 
 class Walls:
@@ -225,6 +260,7 @@ class Grower:
         self.floor = room['floor']
         self.top = room['floor'] + room['height']
         self.seed_base = 0
+        self.backing_solids = surface.solids
 
     # -- seeds ---------------------------------------------------------------
     def free(self, p: Vector, spacing: float) -> bool:
@@ -697,18 +733,134 @@ class Grower:
         print('ROOTS_SPENT', {k: (round(v[0], 1), v[1], round(v[1] / max(v[0], 1e-6))) for k, v in spent.items()}, flush=True)
         touching, rings, gaps = 0, 0, []
         clipped = 0
-        for trunk, *_ in self.systems:
-            for root in list(trunk.walk()):
+        kept_systems=[]
+        unmounted=0
+        for system in self.systems:
+            trunk=system[0]
+            valid=True
+            for root in trunk.walk():
                 root.tone = min(1.15, max(0.75, root.tone))
                 touching += roots.settle(self.surface, root)
                 clipped += self.keep_corridor_clear(root)
+                if not self.fit_entries(root):
+                    valid=False;unmounted+=1;break
                 rings += len(root.points)
                 gaps += roots.gaps(self.surface, root)
+            if valid:kept_systems.append(system)
+        self.systems=kept_systems
         gaps.sort()
-        return {'pruned': pruned, 'clipped_at_corridor': clipped, 'rings': rings, 'rings_touching_stone': touching,
+        return {'unmounted_systems_pruned':unmounted,'pruned': pruned, 'clipped_at_corridor': clipped, 'rings': rings, 'rings_touching_stone': touching,
                 'cling_gap_m': {'p50': round(gaps[len(gaps) // 2], 4) if gaps else 0,
                                 'p95': round(gaps[int(len(gaps) * 0.95)], 4) if gaps else 0,
                                 'max': round(gaps[-1], 4) if gaps else 0}}
+
+    def fit_entries(self, root):
+        """Cap the final skin inside real backing; trim phantom wall-head starts."""
+        for start in (False, True):
+            branch = start and root.parent is not None and not root.buried
+            if not (root.buried or branch if start else root.dived) or len(root.points)<3:
+                continue
+            solids = [self.root_solid(root.parent)] if branch else self.backing_solids
+            original=list(root.points);normals=list(root.normals);radii=list(root.radii)
+            choices=range(1,min(12,len(original)-1)) if start else range(len(original)-2,max(0,len(original)-8),-1)
+            fitted=False
+            for index in choices:
+                visible=original[index];normal=normals[index]
+                if normal is None and not branch:continue
+                normal=normal or roots.unit(visible-root.parent.points[0],roots.UP)
+                normal=normal.normalized()
+                neighbour=index+1 if start else index-1
+                heading=roots.unit(roots.tangent(visible-original[neighbour],normal),normal.orthogonal())
+                run=max(.06,min(.40,radii[index]*6))
+                entry=visible+heading*run
+                candidates=[]
+                if branch:
+                    for a,b in zip(root.parent.points,root.parent.points[1:]):
+                        delta=b-a
+                        t=max(0,min(1,(visible-a).dot(delta)/max(delta.length_squared,1e-12)))
+                        location=a+delta*t
+                        candidates.append(((location-visible).length,location))
+                    candidates=sorted(candidates,key=lambda value:value[0])[:3]
+                else:
+                    for solid in solids:
+                        loc,face,_,distance=solid.ray_cast(entry+normal*.30,-normal,1.5)
+                        if loc is not None and face.dot(normal)>.05:candidates.append((distance,loc))
+                for _,location in sorted(candidates,key=lambda value:value[0]):
+                    for depth in ((0.0,) if branch else (.025,.045,.07,.10,.14,.19,.25,.33,.42)):
+                        target=location-normal*depth
+                        c1=visible+heading*min(run*.45,(target-visible).length*.4)
+                        c2=target+(visible-target)*.2 if branch else target+normal*min(depth*.6,.12)-heading*run*.15
+                        points=[];profile=[];entry_normals=[]
+                        for t in (.125,.25,.375,.5,.625,.75,.875,1.0):
+                            cap_radius=min(radii[index]*.2,min(root.parent.radii)*.15) if branch else radii[index]*.2
+                            radius=max(.0002, radii[index]*(1-min(1,t/.75)**1.3)+cap_radius*min(1,t/.75)**1.3)
+                            point=visible*(1-t)**3+c1*3*(1-t)**2*t+c2*3*(1-t)*t*t+target*t**3
+                            facing=normal
+                            if not branch and t<=.75:
+                                # Keep the narrowing neck visible on the worn
+                                # stone; bury only its thin final quarter.
+                                point=visible+heading*run*(t/.75)
+                                near=self.surface.nearest(point,.6)
+                                if near is not None:
+                                    facing=roots.Surface.outward(point,near)
+                                    point=near[0]+facing*roots.standoff(radius,root.flat)
+                            elif not branch and t<1:
+                                point=points[-1].lerp(target,.5)
+                            points.append(point);profile.append(radius);entry_normals.append(facing.copy())
+                        root.points=(list(reversed(points))+original[index:]) if start else (original[:index+1]+points)
+                        root.normals=(list(reversed(entry_normals))+normals[index:]) if start else (normals[:index+1]+entry_normals)
+                        root.radii=(list(reversed(profile))+radii[index:]) if start else (radii[:index+1]+profile)
+                        probe=Builder('TerminalProbe');audit=[]
+                        roots.skin(probe,root,audit=audit);probe.bm.free()
+                        clear = not branch or all(self.rules.route_clear(v,0.0) for _,ring,_ in audit for v in ring)
+                        if clear and self.ring_embedded(audit[0 if start else -1][1],solids):
+                            fitted=True;break
+                    if fitted:break
+                if fitted:break
+            if not fitted:
+                root.points,root.normals,root.radii=original,normals,radii
+                if start:return False
+                root.dived=False
+                root.points=root.points[:-1];root.normals=root.normals[:-1];root.radii=root.radii[:-1]
+                arc=root.arc();reach=max(.18,max(root.radii)*10)
+                for i,value in enumerate(arc):
+                    root.radii[i]=roots.TIP+(root.radii[i]-roots.TIP)*min(1.0,(arc[-1]-value)/reach)**.7
+                continue
+            old_arc=[0.0]
+            for p,q in zip(original,original[1:]):old_arc.append(old_arc[-1]+(p-q).length)
+            if start:
+                root.children=[child for child in root.children if child.at_s>=old_arc[index]]
+                shift=8-index
+                root.entry_rings={i+shift for i in root.entry_rings if i>=index}|set(range(1,9))
+                prefix=sum((p-q).length for p,q in zip(root.points[:8],root.points[1:9]))
+                for child in root.children:child.at_s=child.at_s-old_arc[index]+prefix
+                for field in ('floor_index','soffit_index'):
+                    old=getattr(root,field)
+                    if old is not None:setattr(root,field,old+shift if old>=index else None)
+            else:
+                root.children=[child for child in root.children if child.at_s<=old_arc[index]]
+                root.entry_rings.update(range(len(root.points)-9,len(root.points)-1))
+        return True
+
+    @staticmethod
+    def root_solid(root):
+        probe=Builder('BranchMountProbe')
+        roots.skin(probe,root)
+        probe.bm.normal_update()
+        solid=BVHTree.FromBMesh(probe.bm)
+        probe.bm.free()
+        return solid
+
+    def ring_embedded(self, ring, solids=None):
+        direction=Vector((.811,.331,.478)).normalized()
+        for solid in self.backing_solids if solids is None else solids:
+            embedded=True
+            for vertex in ring:
+                _,normal,_,_=solid.ray_cast(vertex,direction,50.0)
+                if normal is None or normal.dot(direction)<=0:
+                    embedded=False;break
+            if embedded:return True
+        return False
 
     def keep_corridor_clear(self, root: roots.Root) -> int:
         """Settling can nudge a ring a few millimetres; if any ring now reaches
@@ -726,10 +878,11 @@ class Grower:
                         setattr(root, name, None)
                 root.children = [child for child in root.children if child.at_s < root.arc()[-1]]
                 arc = root.arc()
+                reach = max(.18,max(root.radii)*10)
                 for k in range(len(arc)):
                     left = arc[-1] - arc[k]
-                    if left < 0.08:
-                        root.radii[k] = roots.TIP + (root.radii[k] - roots.TIP) * (left / 0.08) ** 0.7
+                    if left < reach:
+                        root.radii[k] = roots.TIP + (root.radii[k] - roots.TIP) * (left / reach) ** 0.7
                 return 1
         return 0
 
@@ -738,18 +891,38 @@ class Grower:
         if len(root.points) < 2:
             return 0
         sides = roots.sides_for(root, root.radii[0])
-        return (len(root.points) - 1) * sides * 2 + sides + (sides - 2 if root.parent is None else 0)
+        count = len(root.points) + 7 * (int(root.buried or root.parent is not None) + int(root.dived))
+        return (count - 1) * sides * 2 + (sides - 2 if root.dived else sides) + sides - 2
 
     def meshes(self, room_id: str) -> list:
         builders = {}
         self.audit_rings = []
+        self.terminal_rings = []
         for trunk, r0, gamma, group in self.systems:
             builder = builders.get(group) or builders.setdefault(group, Builder(f'Roots_{room_id}_{group}'))
             for root in trunk.walk():
-                roots.skin(builder, root, cap=root.parent is None, audit=self.audit_rings)
+                before = len(self.audit_rings)
+                roots.skin(builder, root, audit=self.audit_rings)
+                for index in ([0] if root.buried or root.parent is not None else []) + ([len(root.points)-1] if root.dived else []):
+                    ring = self.audit_rings[before+index][1]
+                    branch = index==0 and root.parent is not None and not root.buried
+                    solids = [self.root_solid(root.parent)] if branch else self.backing_solids
+                    exposed = 0 if self.ring_embedded(ring,solids) else len(ring)
+                    self.terminal_rings.append({'root':root.uid,'end':('branch' if branch else 'start') if index==0 else 'return',
+                                                'vertices':len(ring),'exposed_vertices':exposed})
         objects = []
         for group in sorted(builders):
-            obj = builders[group].to_object(smooth_angle=180.0)
+            builder = builders[group]
+            cap_layer = builder.bm.faces.layers.int.new('ClosedCap')
+            for face in builder.bm.faces:
+                face[cap_layer] = int(len(face.verts) != 4)
+            # Compute shading on the triangles actually exported, not warped quads.
+            bmesh.ops.triangulate(builder.bm, faces=list(builder.bm.faces))
+            obj = builder.to_object(smooth_angle=75.0)
+            flags = obj.data.attributes['ClosedCap']
+            for face in obj.data.polygons:
+                face.use_smooth = not bool(flags.data[face.index].value)
+            obj.data.attributes.remove(flags)
             objects.append(obj)
         return objects
 
@@ -1017,13 +1190,17 @@ def bake_and_write(grower: Grower, rules: roots.Rules, label: str, out_dir: Path
                    sources: list, extra: dict, budget: int) -> tuple:
     """Budget, settle, skin, bake AO against everything in the scene, write
     <out_dir>/<label>.glb and .json."""
-    qa = grower.finish(budget)
+    mesh_budget = options.get('mesh-budget') or budget
+    qa = grower.finish(mesh_budget)
     objects = grower.meshes(label)
     if not objects:
         # A short stretch can leave no room for a root: nothing to write.
         print('ROOTS_EMPTY', label, flush=True)
         return [], {}
     qa['audit'] = audit(grower, rules)
+    qa['terminal_rings'] = grower.terminal_rings
+    assert all(item['exposed_vertices']==0 for item in grower.terminal_rings),(label,'Exposed wall terminal')
+    print('ROOTS_TERMINALS',label,json.dumps(grower.terminal_rings),flush=True)
     ao = bake.ao_to_color(objects, samples=64, distance=0.5, floor=0.2)
     for obj in objects:
         colour = obj.data.color_attributes['Color']
@@ -1040,12 +1217,11 @@ def bake_and_write(grower: Grower, rules: roots.Rules, label: str, out_dir: Path
     radii = [r for trunk, *_ in grower.systems for root in trunk.walk() for r in root.radii]
     report = {
         'id': label, 'seed': options['seed'], 'triangles': tris, 'roots': count, 'systems': kinds,
-        'meshes': [o.name for o in objects], 'budget': budget,
+        'meshes': [o.name for o in objects], 'budget': mesh_budget, 'growth_budget': budget,
         'diameter_cm': {'max': round(max(radii) * 200, 1), 'min': round(min(radii) * 200, 1)},
         'clearance': {'route_margin_m': rules.margin, 'ankle_m': rules.ankle, 'headroom_m': rules.headroom},
         'qa': qa, 'ao': ao,
-        'sources': {f'{options["arch"].name}/{Path(p).relative_to(options["arch"]).as_posix()}': core.sha256(p)
-                    for p in sources},
+        'sources': {(Path(p).relative_to(core.ROOT).as_posix() if Path(p).is_relative_to(core.ROOT) else str(p)): core.sha256(p) for p in sources},
         'layout_hash': layout['routes'][0].get('layout_hash'),
         **extra,
     }
@@ -1081,7 +1257,8 @@ def build_room(options: dict, room: dict, layout: dict, index: dict) -> dict:
 
 
 def blender_routes(layout: dict) -> list:
-    return [{'width': r['width'], 'points': [core.to_blender(p) for p in r['points']]} for r in layout['routes']]
+    return [{'width': r['width'], 'points': [core.to_blender(p) for p in r['points']],
+             'edges': [core.to_blender(p) for p in r.get('edges', [])]} for r in layout['routes']]
 
 
 def passage_label(entry: dict) -> str:

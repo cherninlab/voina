@@ -1,0 +1,45 @@
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+BUILD: 1fe4d60 [7451d8f6a788]
+STRUCTURAL_RELIEF_READY: 58 meshes, walls [3, 4, 5, 6]
+GENERATED_KIT_PLACED: {}
+RED_DESCENT_GEOMETRY_READY: 17 routes, 13 rooms, 36 lit landmarks, sloping crossings
+MAP: Cinder Crypt (crypt)
+Hosting on UDP 55431
+DUNGEON_ENCOUNTER_READY: five guards across two vertically separated halls, no replacements
+NET host · build 1fe4d60 [7451d8f6a788]
+NET bolts in flight 0
+NET host · build 1fe4d60 [7451d8f6a788]
+NET bolts in flight 0
+NET host · build 1fe4d60 [7451d8f6a788]
+NET bolts in flight 0
+NET host · build 1fe4d60 [7451d8f6a788]
+NET bolts in flight 0
+DUNGEON_ROUTE_OK: descent (57 nodes)
+NET host · build 1fe4d60 [7451d8f6a788]
+NET bolts in flight 0
+DUNGEON_ROUTE_OK: return stair (15 nodes)
+DUNGEON_ROUTE_OK: egress first_stair (6 nodes)
+NET host · build 1fe4d60 [7451d8f6a788]
+NET bolts in flight 0
+DUNGEON_ROUTE_OK: egress upper_hall (4 nodes)
+DUNGEON_ROUTE_OK: egress high_span (6 nodes)
+DUNGEON_ROUTE_OK: egress entry (4 nodes)
+NET host · build 1fe4d60 [7451d8f6a788]
+NET bolts in flight 0
+DUNGEON_ROUTE_OK: upper_cells (6 nodes)
+DUNGEON_ROUTE_OK: ossuary_loop (10 nodes)
+NET host · build 1fe4d60 [7451d8f6a788]
+NET bolts in flight 0
+DUNGEON_ROUTE_OK: bell_loop (7 nodes)
+DUNGEON_ROUTE_OK: cave_bypass (4 nodes)
+NET host · build 1fe4d60 [7451d8f6a788]
+NET bolts in flight 0
+DUNGEON_ROUTE_OK: high_span lane -0.75 (6 nodes)
+DUNGEON_ROUTE_OK: high_span lane 0.75 (6 nodes)
+NET host · build 1fe4d60 [7451d8f6a788]
+NET bolts in flight 0
+DUNGEON_ROUTE_OK: low_span lane -0.75 (8 nodes)
+DUNGEON_ROUTE_OK: low_span lane 0.75 (8 nodes)
+DUNGEON_TRAVERSAL_OK: 1235 m actual capsule walking; descent, slopes, return, egress, four optional loops, both bridge lanes, deep-floor recovery
+

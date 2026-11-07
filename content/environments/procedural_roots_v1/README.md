@@ -6,6 +6,12 @@ builds (`procedural_architecture_v1`, T-177), baked for the game.
 Generator: `scripts/art/build_roots.py` (driver) and `scripts/art/procgen/roots.py`
 (growth, settling and skinning; reusable for other surfaces).
 
+## Current stair-only repair (H-015)
+
+FIRST and SECOND were rebuilt against the current guarded masonry/stair repairs and ritual art. Their tubes have closed child bases, full-ring wall/parent burial checks, softer folds, stable cap frames, and true mitred-route clearance. The other files below retain their older builds; historical QA numbers and ceiling assumptions are not current certification for them. The detailed matched engine review, remaining cable-like morphology limits and independent mesh checks are in `../red_descent/vascular_repairs_v1/`.
+
+Reproduce this bounded update with `--rooms first_stair_hall,second_stair_hall --passages none --budget 15000 --mesh-budget 30000 --no-render`. Growth layout budget and final rounded-skin budget are separate. Current export skinning closes every branch; buried caps are flat, free ends pointed. Only these two existing GLBs were replaced here.
+
 ## Re-run
 
 ```
@@ -37,7 +43,7 @@ Max.
 The meshes are in world space: the same frame as the stone GLBs (the glTF
 exporter turns Blender z-up back into Godot y-up). Instance them at the origin,
 next to the room's stone build. They have no collision and no `-colonly` nodes.
-Roots never enter walking corridors, so traversal is unaffected.
+The two H-015 stair exports pass full walking-ribbon inspection and actual capsule traversal. Older exports require their own fresh validation when changed.
 
 ### Vertex data
 - `COLOR_0` (Blender attribute `Color`) is grey: baked AO against the room's

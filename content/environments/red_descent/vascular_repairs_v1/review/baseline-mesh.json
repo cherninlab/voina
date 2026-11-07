@@ -1,0 +1,42 @@
+{
+  "first_stair_hall": {
+    "Roots_first_stair_hall_3": {
+      "triangles": 7801,
+      "boundary_edges": 119,
+      "nonmanifold_edges": 0,
+      "watertight": false
+    },
+    "Roots_first_stair_hall_2": {
+      "triangles": 2700,
+      "boundary_edges": 12,
+      "nonmanifold_edges": 0,
+      "watertight": false
+    },
+    "Roots_first_stair_hall_1": {
+      "triangles": 2268,
+      "boundary_edges": 0,
+      "nonmanifold_edges": 0,
+      "watertight": true
+    }
+  },
+  "second_stair_hall": {
+    "Roots_second_stair_hall_3": {
+      "triangles": 8386,
+      "boundary_edges": 162,
+      "nonmanifold_edges": 0,
+      "watertight": false
+    },
+    "Roots_second_stair_hall_2": {
+      "triangles": 1005,
+      "boundary_edges": 13,
+      "nonmanifold_edges": 0,
+      "watertight": false
+    },
+    "Roots_second_stair_hall_1": {
+      "triangles": 2786,
+      "boundary_edges": 28,
+      "nonmanifold_edges": 0,
+      "watertight": false
+    }
+  }
+}

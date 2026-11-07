@@ -1,0 +1,24 @@
+{
+  "baseline": "1fe4d60",
+  "geometry": "Original project procedural meshes, Blender5.2.2; no new external mesh or image-to-mesh inference.",
+  "generator_sha256": {
+    "scripts/art/build_roots.py": "c2f03b284e86807cd047e7a4ecc9b6733b8ea666003d3e62f355675e85612424",
+    "scripts/art/procgen/roots.py": "d62df234979fca35befc440d92705c42824105e7568710caedff21abbff55ccc"
+  },
+  "references": {
+    "/Users/theochernin/AI/krea2/tests/vascular-refinement-20261107/HANDOFF.md": "d7b852dbf8c5fe2330d74e2c877793b57489ddc6e3fc1b56191946aec665f247",
+    "/Users/theochernin/AI/krea2/tests/vascular-refinement-20261107/DIAGNOSIS.md": "40f6a9abeb7201e9959c22c88af7a535aac345086930c1eff0c3305994613e1d",
+    "/Users/theochernin/AI/krea2/tests/vascular-refinement-20261107/outputs/01-wall-ingress.png": "4fbca4b46e44ad943e9f12a577e64fce9a2f7fd41bfa111c282a6084359ef229",
+    "/Users/theochernin/AI/krea2/tests/vascular-refinement-20261107/outputs/02-capillary-fan.png": "cf5b261d795762eb93ebabf4cc048b3d8282cc48444b71eac13c65f64cc12243",
+    "/Users/theochernin/AI/krea2/tests/vascular-refinement-20261107/outputs/03-tapered-tip.png": "9e18c66e7c29d7322cb79bcd2f89cc7fda5b541bd5119d9b4cb5c2ed33b5d1da",
+    "/Users/theochernin/AI/krea2/tests/vascular-refinement-20261107/outputs/04-reliquary-junction.png": "bdc9382a7372fb77202817bc719c747771d79598f524e13397e8bfa563141831"
+  },
+  "reference_role": "H-014 local Krea pack informed vessel folds, gradual ingress and hierarchy. Invented masonry openings, cavities, hardware, lights and dense capillary mats were not transferred.",
+  "materials": "Existing crimson fibrous albedo/normal and runtime material unchanged; provenance in upper_crossing_v1/materials/provenance.json.",
+  "local_models": "CherninLab3D Python environment used for independent trimesh/NumPy mesh validation. No CL3D inference used for this generator repair.",
+  "limits": [
+    "Separate closed branch volumes overlap; not a Boolean-unified network.",
+    "Long uniform loops and some stone-occluded bends remain cable-like; structural closure is not human visual acceptance.",
+    "Only FIRST and SECOND stair halls regenerated; other room/passage assets remain unchanged."
+  ]
+}

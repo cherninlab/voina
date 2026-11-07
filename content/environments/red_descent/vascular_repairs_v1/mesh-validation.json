@@ -1,0 +1,119 @@
+{
+  "first_stair_hall": {
+    "sha256": "580f7f87fff2ad30a6d2a3b137b98b87ba652e325d50be608b9546d73decf87b",
+    "meshes": {
+      "Roots_first_stair_hall_3": {
+        "triangles": 10288,
+        "watertight": true,
+        "winding_consistent": true,
+        "closed_components": 26,
+        "boundary_edges": 0,
+        "nonmanifold_edges": 0,
+        "minimum_shading_alignment": 0.3377243543000985,
+        "walking_ribbon_conflicts": 0
+      },
+      "Roots_first_stair_hall_2": {
+        "triangles": 5556,
+        "watertight": true,
+        "winding_consistent": true,
+        "closed_components": 8,
+        "boundary_edges": 0,
+        "nonmanifold_edges": 0,
+        "minimum_shading_alignment": 0.4726110347840034,
+        "walking_ribbon_conflicts": 0
+      },
+      "Roots_first_stair_hall_1": {
+        "triangles": 7662,
+        "watertight": true,
+        "winding_consistent": true,
+        "closed_components": 8,
+        "boundary_edges": 0,
+        "nonmanifold_edges": 0,
+        "minimum_shading_alignment": 0.5206326222454244,
+        "walking_ribbon_conflicts": 0
+      },
+      "Roots_first_stair_hall_0": {
+        "triangles": 2852,
+        "watertight": true,
+        "winding_consistent": true,
+        "closed_components": 6,
+        "boundary_edges": 0,
+        "nonmanifold_edges": 0,
+        "minimum_shading_alignment": 0.644752702844563,
+        "walking_ribbon_conflicts": 0
+      }
+    },
+    "closed_terminal_rings": 56,
+    "parent_mounts": 27,
+    "wall_mounts": 29,
+    "sources": {
+      "content/environments/procedural_architecture_v1/passages/chapel_approach.glb": "3a2afdfd17fefb411e6738f8fe6c9af2575b43c5b9669580a16465e6c0bba0e9",
+      "content/environments/procedural_architecture_v1/passages/node_22_-10_-30.glb": "84c6957f68e4f677eafc756c9c1d49fdb0092be83ffae1d330e98fdfff7ae5a8",
+      "content/environments/procedural_architecture_v1/passages/return_gallery.glb": "cf295ddf258c535d3aa1903713d378b6eaf6252e389e3eb08181cb7653170d00",
+      "content/environments/procedural_architecture_v1/passages/upper_hall.glb": "b01cbe2de0a2db75b8d9472c9fe36f34fa92c92e4d055c210d47819308647f41",
+      "content/environments/procedural_architecture_v1/rooms/first_stair_hall.glb": "b8d96bf199b7eea3ea6551eede27a25bef554bee550d0347607fccff8991d7fe",
+      "content/environments/red_descent/masonry_repairs_v1/first_stair_hall.glb": "590fd477b8981236ddc07ddff71b62dc217b626c213a1978cc824f626d950dd9",
+      "content/environments/red_descent/masonry_repairs_v1/stairs/first_stair_hall.glb": "65e5b1bb8039f7829afaf763c3fcf6c34ad9aba4a336625abab31a6c908b3365",
+      "content/environments/red_descent/masonry_repairs_v1/walls/first_stair_hall.glb": "7f5836834674101b32eed805c88393790e903b47d66cb75ac2043961045ee599",
+      "content/environments/red_descent/stair_art_v1/ritual_wall_art.glb": "1b01dbdf7c4411ea0db3525ace00782a47e676a3ef28a96747cc631f7fadd13d"
+    }
+  },
+  "second_stair_hall": {
+    "sha256": "784947e88328ec296eb49da35ea241a1aff08b6cdd9830336e87762e69f5c522",
+    "meshes": {
+      "Roots_second_stair_hall_3": {
+        "triangles": 8846,
+        "watertight": true,
+        "winding_consistent": true,
+        "closed_components": 19,
+        "boundary_edges": 0,
+        "nonmanifold_edges": 0,
+        "minimum_shading_alignment": 0.37164643626516475,
+        "walking_ribbon_conflicts": 0
+      },
+      "Roots_second_stair_hall_2": {
+        "triangles": 3394,
+        "watertight": true,
+        "winding_consistent": true,
+        "closed_components": 3,
+        "boundary_edges": 0,
+        "nonmanifold_edges": 0,
+        "minimum_shading_alignment": 0.6554387896594678,
+        "walking_ribbon_conflicts": 0
+      },
+      "Roots_second_stair_hall_1": {
+        "triangles": 2070,
+        "watertight": true,
+        "winding_consistent": true,
+        "closed_components": 3,
+        "boundary_edges": 0,
+        "nonmanifold_edges": 0,
+        "minimum_shading_alignment": 0.48118393978435875,
+        "walking_ribbon_conflicts": 0
+      },
+      "Roots_second_stair_hall_0": {
+        "triangles": 10178,
+        "watertight": true,
+        "winding_consistent": true,
+        "closed_components": 18,
+        "boundary_edges": 0,
+        "nonmanifold_edges": 0,
+        "minimum_shading_alignment": 0.45021450862768203,
+        "walking_ribbon_conflicts": 0
+      }
+    },
+    "closed_terminal_rings": 62,
+    "parent_mounts": 28,
+    "wall_mounts": 34,
+    "sources": {
+      "content/environments/procedural_architecture_v1/passages/nave.glb": "2d71cb11229bc4cee24f584c0411a6de2c3b476e3a6e8bd650c5cdc46471b604",
+      "content/environments/procedural_architecture_v1/passages/node_-41_-23_24.glb": "22d333f1afb0343c1777c38c0a174385cf986e439fa418d5c8bbea7104f15c6d",
+      "content/environments/procedural_architecture_v1/passages/root_tunnel.glb": "b48fe6141d5053221415c9a463643004c5c3e4b223a7f50b21343de00976188c",
+      "content/environments/procedural_architecture_v1/rooms/second_stair_hall.glb": "97d4d25399d654cc8c5080995bbd97d66c55035b6882d7458cfde13fab7e7208",
+      "content/environments/red_descent/masonry_repairs_v1/second_stair_hall.glb": "bca065b414004a5f9555e3d4c0352429545918a254ce429139b0cb91379087a3",
+      "content/environments/red_descent/masonry_repairs_v1/stairs/second_stair_hall.glb": "797fd280ba0f43b40840e163221a67bf1de7db382b45d78c46ad696b4e2e46da",
+      "content/environments/red_descent/masonry_repairs_v1/walls/second_stair_hall.glb": "edfdc1b19f6c3ed844ba56013828b2cd0021a6f235977d6878e6ef69d36cafd9",
+      "content/environments/red_descent/stair_art_v1/ritual_wall_art.glb": "1b01dbdf7c4411ea0db3525ace00782a47e676a3ef28a96747cc631f7fadd13d"
+    }
+  }
+}

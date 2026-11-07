@@ -18,7 +18,7 @@ at TIP. Hanging pieces (catenary loops, tendrils) have normal None.
 
 Then `settle` decimates, re-clings with the final radii and pushes every ring
 out of the stone (rays from the centre to the ring's ellipse), and `skin`
-turns the lines into flattened, bark-twisted tubes with lumps and knots,
+turns the lines into closed flattened vessels with soft folds and knots,
 UV u along the root in metres, Color = (AO placeholder, tone, 0, 1).
 """
 import math
@@ -77,13 +77,17 @@ class Surface:
     def __init__(self):
         self.verts, self.polys, self.kinds = [], [], []
         self.tree = None
+        self.solids = []
 
     def add_object(self, obj, kind: str) -> None:
         matrix = obj.matrix_world
         base = len(self.verts)
-        self.verts.extend(matrix @ v.co for v in obj.data.vertices)
+        vertices = [matrix @ v.co for v in obj.data.vertices]
+        self.verts.extend(vertices)
         self.polys.extend(tuple(base + i for i in p.vertices) for p in obj.data.polygons)
         self.kinds.extend([kind] * len(obj.data.polygons))
+        if kind == 'mortar':
+            self.solids.append(BVHTree.FromPolygons(vertices, [tuple(p.vertices) for p in obj.data.polygons]))
 
     def build(self) -> None:
         self.tree = BVHTree.FromPolygons(self.verts, self.polys, all_triangles=False)
@@ -126,11 +130,25 @@ class Rules:
         self.floor, self.top = floor, floor + height
         self.reach, self.margin, self.ankle, self.headroom = reach, margin, ankle, headroom
         self.segments = []
+        self.ribbons = []
         for route in routes:
             half = route['width'] * 0.5 + margin
             pts = route['points']
             for a, b in zip(pts, pts[1:]):
                 self.segments.append((a, b, half))
+            # A mitred turn extends beyond the centre-line capsules. Protect
+            # the actual walkway triangles too, including their full height.
+            edges = route.get('edges', [])
+            for i in range(len(edges) - 1):
+                a, b, ea, eb = pts[i], pts[i + 1], edges[i], edges[i + 1]
+                for p, q, r in ((a-ea, a+ea, b-eb), (a+ea, b+eb, b-eb)):
+                    ab, ac = q-p, r-p
+                    determinant = ab.x*ac.y-ab.y*ac.x
+                    if abs(determinant) < 1e-8:
+                        continue
+                    gu = Vector((ac.y, -ac.x))/determinant
+                    gv = Vector((-ab.y, ab.x))/determinant
+                    self.ribbons.append((p, ab.z, ac.z, gu, gv))
 
     def plan_inside(self, p) -> bool:
         x, y = p.x, p.y
@@ -173,6 +191,15 @@ class Rules:
                 continue
             z = a.z + (b.z - a.z) * t
             if p.z + extent > z + self.ankle and p.z - extent < z + self.headroom:
+                return False
+        reach = self.margin + extent
+        for a, dz_u, dz_v, gu, gv in self.ribbons:
+            offset = q-Vector((a.x, a.y))
+            u, v = offset.dot(gu), offset.dot(gv)
+            if u < -reach*gu.length or v < -reach*gv.length or u+v > 1+reach*(gu+gv).length:
+                continue
+            z = a.z+u*dz_u+v*dz_v
+            if p.z+extent > z+self.ankle and p.z-extent < z+self.headroom:
                 return False
         return True
 
@@ -236,6 +263,7 @@ class Root:
         self.twist = 0.0
         self.seed = 0.0
         self.group = 0
+        self.entry_rings = set()
 
     def arc(self) -> list:
         s = [0.0]
@@ -549,8 +577,12 @@ def frames(root: Root) -> list:
         n = smooth[i]
         if n is None or root.normals[i] is None:
             n = previous if previous is not None else unit(UP.cross(t), Vector((1, 0, 0)))
-        n = unit(n - t * n.dot(t), t.orthogonal())
-        b = t.cross(n)
+        n = n - t * n.dot(t)
+        # A wall-normal burial can make these vectors parallel. Float32
+        # cancellation must not collapse the final closed ring into a line.
+        n = n.normalized() if n.length > 1e-4 else t.orthogonal().normalized()
+        b = t.cross(n).normalized()
+        n = b.cross(t).normalized()
         result.append((t, n, b))
         previous = n
     return result
@@ -598,7 +630,7 @@ def settle(surface: Surface, root: Root, passes: int = 4) -> int:
     return touching
 
 
-RELIEF = 1.14  # skin() raises bark ridges up to 12-13 % proud of the ellipse
+RELIEF = 1.05  # conservative envelope for the softer vascular folds
 
 
 def _push(surface: Surface, root: Root, fixed: set) -> None:
@@ -634,7 +666,7 @@ def gaps(surface: Surface, root: Root) -> list:
     """Skin-to-stone distance under every clinging ring (for the report)."""
     result = []
     for i, (t, n, b) in enumerate(frames(root)):
-        if root.normals[i] is None or (i == 0 and (root.buried or root.parent is not None)) or (root.dived and i == len(root.points) - 1):
+        if root.normals[i] is None or i in root.entry_rings or (i == 0 and (root.buried or root.parent is not None)) or (root.dived and i == len(root.points) - 1):
             continue
         _, c = ellipse(root, i)
         near = surface.nearest(root.points[i], 1.0)
@@ -646,18 +678,17 @@ def gaps(surface: Surface, root: Root) -> list:
 def sides_for(root: Root, r0: float) -> int:
     base = max(root.radii) if root.radii else TIP
     if base > 0.022:
-        return 6
+        return 10
     if base > 0.01:
-        return 5
+        return 8
     if base > 0.005:
-        return 4
-    return 3
+        return 6
+    return 5
 
 
-def skin(builder: Builder, root: Root, cap: bool, audit: list = None) -> int:
-    """Tube along the root: elliptical, pressed flat against the stone, with
-    alternate vertices raised into ridges that spiral along the length (bark
-    twist). Ends in a point. Returns triangles added."""
+def skin(builder: Builder, root: Root, audit: list = None) -> int:
+    """Closed elliptical vessel with soft longitudinal folds. Wall returns
+    close inside backing; free tips taper to a point. Returns triangle count."""
     count = len(root.points)
     if count < 2:
         return 0
@@ -668,13 +699,14 @@ def skin(builder: Builder, root: Root, cap: bool, audit: list = None) -> int:
     rings = []
     for i, (t, n, b) in enumerate(frames(root)):
         a, c = ellipse(root, i)
-        ridge = 0.12 if base_r > 0.03 else (0.08 if sides >= 6 else 0.0)
+        ridge = 0.035 if base_r > 0.03 else 0.02
         ring = []
         # Pressed against stone, the back of a root is never seen: spend the
         # ring's vertices on the front (phi measured from the outward normal).
         warp = 0.42 if root.normals[i] is not None else 0.0
         for k in range(sides):
-            phi = 2 * math.pi * k / sides + root.twist * arc[i]
+            # Vessels have soft longitudinal folds, not rotating bark blades.
+            phi = 2 * math.pi * k / sides + 0.12 * math.sin(root.twist * arc[i])
             phi = math.atan2(math.sin(phi), math.cos(phi))
             phi = phi - warp * math.sin(phi)
             angle = phi + math.pi * 0.5
@@ -686,7 +718,7 @@ def skin(builder: Builder, root: Root, cap: bool, audit: list = None) -> int:
             # Buried ends are meant to be in the stone; the ring after a buried
             # start (before a dive) is where the root comes out of (goes into) its joint.
             exempt = (i == 0 and root.buried) or (i == count - 1 and root.dived)
-            joint = (i == 1 and root.buried) or (i == count - 2 and root.dived)
+            joint = (i == 1 and root.buried) or (i == count - 2 and root.dived) or i in root.entry_rings
             audit.append((root.points[i].copy(), [v.co.copy() for v in ring], 'buried' if exempt else ('joint' if joint else '')))
     tris = 0
     for i in range(count - 1):
@@ -699,21 +731,30 @@ def skin(builder: Builder, root: Root, cap: bool, audit: list = None) -> int:
                          [Vector((u0, k / sides)), Vector((u1, k / sides)),
                           Vector((u1, (k + 1) / sides)), Vector((u0, (k + 1) / sides))], tone)
             tris += 2
-    # Point at the tip, a little beyond the last ring.
-    t_last = unit(root.points[-1] - root.points[-2], DOWN)
-    tip = builder.bm.verts.new(root.points[-1] + t_last * max(root.radii[-1] * 2.0, 0.006))
-    last = rings[-1]
-    for k in range(sides):
-        k1 = (k + 1) % sides
-        builder.face([last[k1], last[k], tip], [Vector((arc[-1], (k + 1) / sides)), Vector((arc[-1], k / sides)),
-                                                 Vector((arc[-1] + 0.01, 0.5))], tone)
-        tris += 1
-    if cap:
-        first = rings[0]
-        builder.face(list(first), [Vector((0.0, k / sides)) for k in range(sides)], tone)  # faces back along -t
+    if root.dived:
+        # A buried end closes inside its backing, without an extra cone that
+        # can poke through a thin vault or become a visible arrow-shaped stub.
+        last = rings[-1]
+        builder.face(list(reversed(last)), [Vector((arc[-1], k / sides)) for k in range(sides)], tone)
         tris += sides - 2
+    else:
+        tris += _tip(builder, root, rings[-1], arc[-1], tone, sides)
+    # Branch bases overlap their parents, but still need their own closed back.
+    first = rings[0]
+    builder.face(list(first), [Vector((0.0, k / sides)) for k in range(sides)], tone)
+    tris += sides - 2
     builder.pieces += 1
     return tris
+
+
+def _tip(builder, root, last, length, tone, sides):
+    t_last = unit(root.points[-1] - root.points[-2], DOWN)
+    tip = builder.bm.verts.new(root.points[-1] + t_last * max(root.radii[-1] * 2.0, 0.006))
+    for k in range(sides):
+        k1 = (k + 1) % sides
+        builder.face([last[k1], last[k], tip], [Vector((length, (k + 1) / sides)), Vector((length, k / sides)),
+                                                 Vector((length + 0.01, 0.5))], tone)
+    return sides
 
 
 def estimate_triangles(root: Root, spacing) -> int:
