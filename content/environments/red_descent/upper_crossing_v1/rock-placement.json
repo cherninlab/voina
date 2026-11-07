@@ -1,9 +1,11 @@
 {
   "source": "rock_lod0.glb",
   "instances": 3,
+  "detached_components_removed": 2,
+  "clearance_profile": "arched passage envelope; room support retained to 0.08m below floors",
   "boundary_edges": 0,
   "nonmanifold_edges": 0,
-  "triangles": 42000,
+  "triangles": 39478,
   "collision": "none; existing shaft collision is retained",
-  "clearance": "Visual mesh carved outside room volumes and route ribbons with 0.9m lateral margin."
+  "clearance": "Room walls offset 0.65m; enclosed passage arch grown 0.78m; open ribbons offset 0.9m; support retained below floors."
 }

@@ -13,7 +13,7 @@ import sys
 
 import bmesh
 import bpy
-from mathutils import Matrix, Vector
+from mathutils import Matrix, Vector, noise
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 import build_architecture as architecture
@@ -51,7 +51,14 @@ def cap_mass(obj, centre, side, radius, spring_angle):
         )
         edges = [edge for edge in result["geom_cut"] if isinstance(edge, bmesh.types.BMEdge)]
         if edges:
-            bmesh.ops.holes_fill(mesh, edges=edges, sides=0)
+            caps = bmesh.ops.holes_fill(mesh, edges=edges, sides=0)["faces"]
+            # New cap loops otherwise default to black, which makes a solid
+            # shoulder read as an open slit in the game.
+            for layer in list(mesh.loops.layers.float_color.values()) + list(mesh.loops.layers.color.values()):
+                for face in caps:
+                    for loop in face.loops:
+                        loop[layer] = (0.72, 0.72, 0.72, 1.0)
+    bmesh.ops.triangulate(mesh, faces=list(mesh.faces))
     bmesh.ops.recalc_face_normals(mesh, faces=list(mesh.faces))
     assert all(edge.is_manifold for edge in mesh.edges), obj.name
     retained = {tuple(round(value, 5) for value in vertex.co) for vertex in mesh.verts}
@@ -153,6 +160,14 @@ def gallery():
         for item in obj.data.color_attributes["Color"].data:
             grey = item.color[1] * 1.25
             item.color = (grey, grey, grey, 1.0)
+        triangles = bmesh.new(); triangles.from_mesh(obj.data)
+        bmesh.ops.triangulate(triangles, faces=list(triangles.faces))
+        bmesh.ops.recalc_face_normals(triangles, faces=list(triangles.faces))
+        triangles.to_mesh(obj.data); triangles.free()
+        obj.data.update(); obj.data.calc_loop_triangles()
+        obj.data.normals_split_custom_set([(0.0, 0.0, 0.0)] * len(obj.data.loops))
+        for face in obj.data.polygons:
+            face.use_smooth = False
     assert coordinates(collisions) == before, "Original collision changed"
     export.glb(objects + roof + facing, OUT / "gallery.glb")
     report = {
@@ -194,6 +209,87 @@ def prism(name, polygon, floor, top):
     return obj
 
 
+def clearances(layout):
+    """Actual room roofs and arched passage envelopes, with route clearance."""
+    cutters = []
+    tops = json.loads((core.ROOT / "content/environments/procedural_architecture_v1/index.json").read_text())["tops"]
+    for room in layout["rooms"]:
+        plan = architecture.ccw([architecture.flat(point) for point in room["points"]])
+        polygon = architecture.outset(plan, 0.65)
+        cutters.append(prism("RoomClearance", polygon, room["floor"] - 0.08, tops.get(room["id"], room["floor"] + room["height"]) + 0.15))
+    for route in layout["routes"]:
+        for p, q in zip(route["points"], route["points"][1:]):
+            a, b = core.to_blender(p), core.to_blender(q)
+            axis = b - a
+            axis.z = 0
+            length = axis.length
+            axis.normalize()
+            side = axis.cross(Vector((0, 0, 1)))
+            if route["enclosed"]:
+                profile = architecture.profile(route, layout)
+                radius = profile.radius + 0.78
+                half = min(profile.half + 1.05, radius - 0.01)
+                angle = math.acos(half / radius)
+                section = [(-half, -0.2), (half, -0.2)]
+                section += [(radius * math.cos(t), profile.cy + radius * math.sin(t)) for t in [angle + (math.pi - 2 * angle) * k / 24 for k in range(25)]]
+                vertices = []
+                for at, extend in [(a, -0.8), (b, 0.8)]:
+                    origin = at + axis * extend + Vector((0, 0, (b.z - a.z) * extend / length))
+                    vertices += [tuple(origin + side * x + Vector((0, 0, z))) for x, z in section]
+                n = len(section)
+                faces = [tuple(reversed(range(n))), tuple(range(n, n * 2))]
+                faces += [(k, (k + 1) % n, (k + 1) % n + n, k + n) for k in range(n)]
+                data = bpy.data.meshes.new("VaultClearance")
+                data.from_pydata(vertices, [], faces)
+                obj = core.link(bpy.data.objects.new("VaultClearance", data))
+                shell = bmesh.new(); shell.from_mesh(data)
+                bmesh.ops.recalc_face_normals(shell, faces=list(shell.faces))
+                shell.to_mesh(data); shell.free()
+                cutters.append(obj)
+            else:
+                side *= route["width"] * 0.5 + 0.9
+                front, back = a - axis * 0.8, b + axis * 0.8
+                polygon = [(point.x, point.y) for point in [front - side, back - side, back + side, front + side]]
+                cutters.append(prism("RouteClearance", polygon, min(a.z, b.z) - 0.2, max(a.z, b.z) + 3.5))
+    return cutters
+
+
+def carve(obj, cutters):
+    """Subtract only overlapping clearance volumes, then validate the closed solid."""
+    bpy.ops.object.select_all(action="DESELECT")
+    obj.select_set(True)
+    bpy.context.view_layer.objects.active = obj
+    low = Vector(tuple(min(vertex.co[i] for vertex in obj.data.vertices) for i in range(3)))
+    high = Vector(tuple(max(vertex.co[i] for vertex in obj.data.vertices) for i in range(3)))
+    for cutter in cutters:
+        points = [vertex.co for vertex in cutter.data.vertices]
+        if any(low[i] > max(point[i] for point in points) or high[i] < min(point[i] for point in points) for i in range(3)):
+            continue
+        difference = obj.modifiers.new("PlayableVolume", "BOOLEAN")
+        difference.object = cutter
+        difference.operation = "DIFFERENCE"
+        difference.solver = "EXACT"
+        bpy.ops.object.modifier_apply(modifier=difference.name)
+        if len(obj.data.polygons) == 0:
+            core.discard(obj)
+            return False
+    mesh = bmesh.new(); mesh.from_mesh(obj.data)
+    bmesh.ops.remove_doubles(mesh, verts=list(mesh.verts), dist=0.00001)
+    bmesh.ops.dissolve_degenerate(mesh, edges=list(mesh.edges), dist=0.000001)
+    boundary = [edge for edge in mesh.edges if edge.is_boundary]
+    if boundary:
+        bmesh.ops.holes_fill(mesh, edges=boundary, sides=0)
+    bmesh.ops.triangulate(mesh, faces=list(mesh.faces))
+    bmesh.ops.recalc_face_normals(mesh, faces=list(mesh.faces))
+    assert all(edge.is_manifold for edge in mesh.edges), obj.name
+    mesh.to_mesh(obj.data); mesh.free()
+    obj.data.update(); obj.data.calc_loop_triangles()
+    for face in obj.data.polygons:
+        face.use_smooth = False
+    obj.data.normals_split_custom_set([(0.0, 0.0, 0.0)] * len(obj.data.loops))
+    return True
+
+
 def rock():
     core.empty_scene()
     bpy.ops.import_scene.gltf(filepath=str(OUT / "rock_lod0.glb"))
@@ -201,23 +297,9 @@ def rock():
     source.data.transform(source.matrix_world)
     source.matrix_world = Matrix.Identity(4)
     layout = json.loads((core.ROOT / "content/environments/procedural_bridge_v1/layout.json").read_text())
-    cutters = []
-    for room in layout["rooms"]:
-        plan = [architecture.flat(point) for point in room["points"]]
-        centre = sum(plan, Vector((0, 0))) / len(plan)
-        polygon = [point + (point - centre).normalized() * 0.9 for point in plan]
-        cutters.append(prism("RoomClearance", polygon, room["floor"] - 0.3, room["floor"] + room["height"] + 0.8))
-    for route in layout["routes"]:
-        for p, q in zip(route["points"], route["points"][1:]):
-            a, b = core.to_blender(p), core.to_blender(q)
-            axis = b - a
-            axis.z = 0
-            axis.normalize()
-            side = axis.cross(Vector((0, 0, 1))) * (route["width"] * 0.5 + 0.9)
-            front, back = a - axis * 0.8, b + axis * 0.8
-            polygon = [(point.x, point.y) for point in [front - side, back - side, back + side, front + side]]
-            cutters.append(prism("RouteClearance", polygon, min(a.z, b.z) - 0.3, max(a.z, b.z) + 4.5))
+    cutters = clearances(layout)
     rocks = []
+    discarded_islands = 0
     for index, (at, height, angle) in enumerate([
         ((25.8, -15.0, -3.5), 11.0, 0.2),
         ((25.6, -5.0, -3.0), 11.0, -0.55),
@@ -265,6 +347,21 @@ def rock():
         if boundary:
             bmesh.ops.holes_fill(shell, edges=boundary, sides=0)
         bmesh.ops.triangulate(shell, faces=list(shell.faces))
+        pending = set(shell.verts)
+        components = []
+        while pending:
+            component = {pending.pop()}
+            frontier = list(component)
+            while frontier:
+                vertex = frontier.pop()
+                for edge in vertex.link_edges:
+                    other = edge.other_vert(vertex)
+                    if other in pending:
+                        pending.remove(other); component.add(other); frontier.append(other)
+            components.append(component)
+        largest = max(components, key=lambda group: sum(face.calc_area() for face in {face for vertex in group for face in vertex.link_faces}))
+        discarded_islands += len(components) - 1
+        bmesh.ops.delete(shell, geom=list(set(shell.verts) - largest), context="VERTS")
         bmesh.ops.recalc_face_normals(shell, faces=list(shell.faces))
         assert all(edge.is_manifold for edge in shell.edges), obj.name
         shell.to_mesh(obj.data)
@@ -279,16 +376,149 @@ def rock():
     report = {
         "source": "rock_lod0.glb",
         "instances": len(rocks),
+        "detached_components_removed": discarded_islands,
+        "clearance_profile": "arched passage envelope; room support retained to 0.08m below floors",
         "boundary_edges": 0,
         "nonmanifold_edges": 0,
         "triangles": sum(sum(len(face.vertices) - 2 for face in obj.data.polygons) for obj in rocks),
         "collision": "none; existing shaft collision is retained",
-        "clearance": "Visual mesh carved outside room volumes and route ribbons with 0.9m lateral margin.",
+        "clearance": "Room walls offset 0.65m, enclosed passage arch grown 0.78m, open route ribbons offset 0.9m; room floor bearing retained.",
     }
     (OUT / "rock-placement.json").write_text(json.dumps(report, indent=2) + "\n")
     print("ROCK_CLIFF_BUILT", json.dumps(report), flush=True)
 
 
+def structure_assets():
+    """Closed relief and load paths on the east side of the actual shaft."""
+    core.empty_scene()
+    layout_path = core.ROOT / "content/environments/procedural_bridge_v1/layout.json"
+    layout = json.loads(layout_path.read_text())
+    cutters = clearances(layout)
+    outline = [architecture.flat(point) for point in layout["outline"]]
+    # The source outline is clockwise in Blender. Inward offsets are explicit
+    # so source indices stay identical to the runtime wall indices.
+    area = sum(a.x * b.y - a.y * b.x for a, b in zip(outline, outline[1:] + outline[:1]))
+    normals = []
+    for a, b in zip(outline, outline[1:] + outline[:1]):
+        d = (b - a).normalized()
+        normals.append(Vector((d.y, -d.x)) * (1 if area > 0 else -1))
+    mitres = [(normals[i - 1] + normals[i]) / (1 + normals[i - 1].dot(normals[i])) for i in range(len(outline))]
+    objects = []
+    indices = [3, 4, 5, 6]
+    for index in indices:
+        a, b = outline[index], outline[(index + 1) % len(outline)]
+        span = (b - a).length
+        chunks = max(1, math.ceil(span / 8))
+        for chunk in range(chunks):
+            t0, t1 = chunk / chunks, (chunk + 1) / chunks
+            steps = max(2, math.ceil(span / chunks))
+            for band in range(6):
+                low, high = -48 + 62 * band / 6, -48 + 62 * (band + 1) / 6
+                rows = max(2, math.ceil(high - low))
+                vertices = []
+                for back in (False, True):
+                    for row in range(rows + 1):
+                        z = low + (high - low) * row / rows
+                        for col in range(steps + 1):
+                            t = t0 + (t1 - t0) * col / steps
+                            point = a.lerp(b, t)
+                            offset = mitres[index].lerp(mitres[(index + 1) % len(outline)], t)
+                            sample = Vector((point.x, point.y, z))
+                            depth = 0.95 + 0.2 * noise.noise(sample * 0.38) + 0.10 * noise.noise(sample * 1.4) + 0.07 * math.sin(z * 1.7 + point.x * 0.3)
+                            point += offset * (0.9 if back else -depth)
+                            vertices.append((point.x, point.y, z))
+                size = (rows + 1) * (steps + 1)
+                faces = []
+                for row in range(rows):
+                    for col in range(steps):
+                        q = row * (steps + 1) + col
+                        faces.append((q, q + 1, q + steps + 2, q + steps + 1))
+                        faces.append((q + size, q + steps + 1 + size, q + steps + 2 + size, q + 1 + size))
+                boundary = list(range(steps + 1))
+                boundary += [row * (steps + 1) + steps for row in range(1, rows + 1)]
+                boundary += list(range(rows * (steps + 1) + steps - 1, rows * (steps + 1) - 1, -1))
+                boundary += [row * (steps + 1) for row in range(rows - 1, 0, -1)]
+                faces += [(q, boundary[(k + 1) % len(boundary)], boundary[(k + 1) % len(boundary)] + size, q + size) for k, q in enumerate(boundary)]
+                data = bpy.data.meshes.new("ShaftRelief")
+                data.from_pydata(vertices, [], faces)
+                obj = core.link(bpy.data.objects.new(f"ShaftRock_{index}_{chunk}_{band}", data))
+                shell = bmesh.new(); shell.from_mesh(data)
+                bmesh.ops.triangulate(shell, faces=list(shell.faces))
+                bmesh.ops.recalc_face_normals(shell, faces=list(shell.faces))
+                shell.to_mesh(data); shell.free()
+                if carve(obj, cutters):
+                    objects.append(obj)
+    # A real thickness under the room floors closes their open perimeter
+    # between the stone facade and its former single underside plane.
+    for room in layout["rooms"]:
+        if room["id"] not in ["restraint", "cells", "first_stair_hall"]:
+            continue
+        polygon = architecture.outset(architecture.ccw([architecture.flat(point) for point in room["points"]]), 0.50)
+        obj = prism("Foundation_" + room["id"], polygon, room["floor"] - 0.65, room["floor"] - 0.015)
+        # Own room is above this plinth. Keep its floor support while cutting
+        # every other playable volume, including lower rooms and stairs.
+        if carve(obj, cutters[len(layout["rooms"]):]):
+            objects.append(obj)
+    bpy.ops.wm.obj_import(filepath=str(core.ROOT / "content/environments/dungeon_masonry_v1/pier.obj"), forward_axis="NEGATIVE_Z", up_axis="Y")
+    source = bpy.context.view_layer.objects.active
+    source.data.transform(source.matrix_world)
+    source.matrix_world = Matrix.Identity(4)
+    pier_template = source.data.copy()
+    core.discard(source)
+    centres = [(24.4, 10), (23.4, -1), (22.4, -14), (24.4, -24)]
+    for index, (x, z) in enumerate(centres):
+        obj = core.link(bpy.data.objects.new(f"Support_Pier_{index}", pier_template.copy()))
+        obj.data.transform(Matrix.Translation(core.to_blender((x, -29.25, z))) @ Matrix.Diagonal((2.0, 2.2, 37.5, 1)))
+        if carve(obj, cutters):
+            objects.append(obj)
+    # Segmental masonry arches transfer the gallery to its piers. This uses
+    # the same wall/ring builder as the project's passage interiors.
+    rng = core.rng(20261107, "gallery-supports")
+    library = stonelib.Library(rng, "squared_rubble", count=8, triangles=140)
+    arch_parts = []
+    for index, (p, q) in enumerate(zip(centres, centres[1:])):
+        a, b = core.to_blender((p[0], 0, p[1])), core.to_blender((q[0], 0, q[1]))
+        along = (b - a).normalized()
+        length = (b - a).length
+        rise = min((length - 2.0) * 0.45, 4.7)
+        o = masonry.Opening(0.9, length - 0.9, spring=0.0, rise=rise)
+        wall = masonry.Wall(length, rise + 0.72, thickness=2.0, openings=[o], ring=0.55, joint=(0.008, 0.014))
+        pieces = wall.build(library, rng, name=f"support_arch_{index}")
+        masonry.place(pieces, a + Vector((0, 0, -10.48 - rise - 0.72)), along, Vector((0, 0, 1)))
+        for piece in pieces:
+            piece.data = piece.data.copy()
+            piece.data.transform(piece.matrix_world)
+            piece.matrix_world = Matrix.Identity(4)
+            if carve(piece, cutters):
+                arch_parts.append(piece)
+    groups = architecture.merge("support_arch", {0: arch_parts}, rng)
+    for obj in groups:
+        obj.name = obj.name.replace("Stone-arch_", "Stone-stone_")
+        if obj.name.startswith("Stone"):
+            for item in obj.data.color_attributes["Color"].data:
+                grey = item.color[1] * 1.25
+                item.color = (grey, grey, grey, 1)
+        else:
+            obj.name = "Support_" + obj.name
+            for item in obj.data.color_attributes["Color"].data:
+                item.color = (0.42, 0.42, 0.42, 1)
+        objects.append(obj)
+    export.glb(objects, OUT / "structure.glb")
+    report = {"outline": layout["outline"], "routes": {route["id"]: route["layout_hash"] for route in layout["routes"]},
+              "rooms": [{k: room[k] for k in ["id", "floor", "height", "points"]} for room in layout["rooms"]],
+              "wall_indices": indices, "mesh_count": len(objects), "source_layout_sha256": core.sha256(layout_path),
+              "triangles": sum(sum(len(face.vertices) - 2 for face in obj.data.polygons) for obj in objects),
+              "method": "Closed relief solids, room floor plinths, continuous project pier geometry and masonry arches; all carved outside playable envelopes",
+              "collision": "New relief/support collision follows the carved render meshes; existing route and gallery collision preserved"}
+    (OUT / "structure-build.json").write_text(json.dumps(report, indent=2) + "\n")
+    print("STRUCTURE_BUILT", json.dumps({k:v for k,v in report.items() if k not in ["outline", "routes", "rooms"]}), flush=True)
+
+
 if __name__ == "__main__":
-    gallery()
-    rock()
+    arguments = core.args()
+    if not arguments or "--gallery-only" in arguments:
+        gallery()
+    if not arguments or "--rock-only" in arguments:
+        rock()
+    if not arguments or "--structure-only" in arguments:
+        structure_assets()

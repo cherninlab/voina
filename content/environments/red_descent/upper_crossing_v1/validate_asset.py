@@ -49,7 +49,7 @@ def collision_vertices(scene):
 
 
 report = {}
-for filename in ["rock_lod0.glb", "rock_lod1.glb", "rock_cliff.glb"]:
+for filename in ["rock_lod0.glb", "rock_lod1.glb", "rock_cliff.glb", "structure.glb"]:
     report[filename] = topology(filename)
 source = trimesh.load(SOURCE, force="scene")
 gallery = trimesh.load(ROOT / "gallery.glb", force="scene")
@@ -69,6 +69,6 @@ for node in gallery.graph.nodes_geometry:
         assert not (incident == 1).any() and not (incident > 2).any(), roof[node]
 report["roof_and_mortar"] = roof
 assert len(roof) == 7, "Missing exterior roof, facing or mortar mass"
-report["sha256"] = {name: hashlib.sha256((ROOT / name).read_bytes()).hexdigest() for name in ["gallery.glb", "rock_lod0.glb", "rock_lod1.glb", "rock_cliff.glb"]}
+report["sha256"] = {name: hashlib.sha256((ROOT / name).read_bytes()).hexdigest() for name in ["gallery.glb", "rock_lod0.glb", "rock_lod1.glb", "rock_cliff.glb", "structure.glb"]}
 (ROOT / "mesh-validation.json").write_text(json.dumps(report, indent=2) + "\n")
 print("UPPER_ASSETS_VALID", json.dumps(report), flush=True)

@@ -59,5 +59,6 @@
     "rock-placement.json",
     "gallery-build.json",
     "mesh-validation.json"
-  ]
+  ],
+  "structure": "Project-authored closed depth-field relief for four east-shaft wall edges, floor plinths, existing original procedural pier.obj, and original masonry.Wall supports. No new third-party geometry."
 }

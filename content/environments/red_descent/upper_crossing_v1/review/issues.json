@@ -23,7 +23,8 @@
     {
       "id": 4,
       "issue": "Long gallery reads as an unsupported pipe across the shaft",
-      "status": "open"
+      "status": "implemented and captured; collision/traversal and closed mesh checks passed",
+      "iteration": 4
     },
     {
       "id": 5,
@@ -39,32 +40,38 @@
     {
       "id": 7,
       "issue": "Room facade bottom ends at a floating horizontal cut",
-      "status": "open"
+      "status": "implemented and captured; collision/traversal and closed mesh checks passed",
+      "iteration": 4
     },
     {
       "id": 8,
       "issue": "Thin runtime shaft slabs show hard vertical side edges",
-      "status": "open"
+      "status": "implemented and captured; collision/traversal and closed mesh checks passed",
+      "iteration": 4
     },
     {
       "id": 9,
       "issue": "Locally generated rock meets the roof in a broad horizontal clearance cut",
-      "status": "open"
+      "status": "implemented and captured; collision/traversal and closed mesh checks passed",
+      "iteration": 4
     },
     {
       "id": 10,
       "issue": "Carved rock islands remain detached from the main abutment",
-      "status": "open"
+      "status": "implemented and captured; collision/traversal and closed mesh checks passed",
+      "iteration": 4
     },
     {
       "id": 11,
       "issue": "Rock detail has directional fill/voxel terraces",
-      "status": "open"
+      "status": "improved with continuous native relief; inferred rock surface still needs art refinement",
+      "iteration": 4
     },
     {
       "id": 12,
       "issue": "Huge shaft faces lack physical relief at grazing angles",
-      "status": "open"
+      "status": "implemented and captured; collision/traversal and closed mesh checks passed",
+      "iteration": 4
     },
     {
       "id": 13,
@@ -87,6 +94,11 @@
       "issue": "Roots read as smooth red cables rather than fibrous dry roots",
       "status": "improved; rough bark replaces red gloss, root shapes still need review",
       "iteration": 3
+    },
+    {
+      "id": 17,
+      "issue": "Gallery paving has a single-sided bedding surface; underside inspection shows open joint light leaks",
+      "status": "open"
     }
   ]
 }

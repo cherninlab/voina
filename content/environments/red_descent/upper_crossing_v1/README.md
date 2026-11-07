@@ -85,3 +85,11 @@ Roof and exterior side stones are clipped by the same network mitre/room planes 
 ## Iteration 3 — local Krea material family
 
 Three real offline Krea 2 generations provide neutral limestone, bedrock and aged lime-plaster surfaces. Sources, exact prompts, MLX metadata, pinned model/license provenance and deterministic finishing are in `materials/`. The existing stone geometry now shares the limestone face; the red nave retains its separate lime-plaster role. Roots use the existing licensed bark scan with high roughness, replacing smooth red gloss. Core/editor checks and seven engine camera captures are under `review/iteration3/`. Derived PBR channels are estimates and art acceptance remains separate.
+
+## Iteration 4 — load paths and real shaft relief
+
+Four east-shaft edges now have closed, sculpted relief solids rather than thin textured slab faces. Three room floors have real plinth thickness. Four continuous piers reach the shaft base, and three segmental masonry arches support the outer gallery. The new relief/support collision uses the same triangles as the render geometry. A runtime guard compares the source outline, route hashes and native-precision room polygons before replacing any wall.
+
+Rock clearances now follow the arched passage envelope, retain floor bearing and use actual room roof heights. Two detached reconstruction fragments were removed. New mortar caps receive a grey vertex colour so a closed shoulder does not render as a black slit.
+
+`review/check_structure.gd` checks 480 render/collision ray samples, current loading and stale route/room rejection. Full core smoke and 1,235 m traversal pass. Exported relief, plinths, supports and inferred rock all pass the independent topology checks. Seven matched cameras, 56 diagnostic frames and a 4K frame are under `review/iteration4/`. This inspection exposed a separate gallery underside bedding leak, retained in the issue register for the next increment.

@@ -31,6 +31,7 @@ const RUBBLE: String = "res://content/environments/procedural_rubble_v1/rooms/"
 var stone_passages: Array[Dictionary] = []
 ## Bays and portals built in stone: centre (x, y, z) and plan radius.
 var stone_nodes: Array[Vector4] = []
+var relief_walls: PackedInt32Array = PackedInt32Array()
 var cube_faces: PackedVector3Array = BoxMesh.new().get_faces()
 var fort_source: Node3D
 
@@ -51,6 +52,7 @@ func build() -> void:
 	stone_props()
 	for index: int in range(paths.size()):
 		build_path(paths[index], index < RedDescentLayout.MAIN_PATHS)
+	load_structural_relief()
 	build_vault(RedDescentLayout.outline(), false)
 	build_vault(RedDescentLayout.spine(), true)
 	upper_crossing_rock()
@@ -61,6 +63,52 @@ func build() -> void:
 	fort_source = null
 	print("GENERATED_KIT_PLACED: ", JSON.stringify(module_counts))
 	print("RED_DESCENT_GEOMETRY_READY: %d routes, %d rooms, %d lit landmarks, sloping crossings" % [paths.size(), rooms.size(), torch_posts.size()])
+
+## Closed shaft relief and gallery supports share the rendered and collision faces.
+## Reject stale geometry before hiding any original wall.
+func load_structural_relief() -> void:
+	if not ResourceLoader.exists(UPPER_CROSSING + "structure.glb"):
+		return
+	var build: Dictionary = JSON.parse_string(FileAccess.get_file_as_string(UPPER_CROSSING + "structure-build.json")) as Dictionary
+	var outline: Array[Array] = []
+	for point: Vector2 in RedDescentLayout.outline():
+		outline.append([point.x, point.y])
+	if build.get("outline", []) != outline:
+		push_warning("Stale shaft relief outline; rebuild upper crossing")
+		return
+	for path: Dictionary in paths:
+		if (build.get("routes", {}) as Dictionary).get(String(path["id"]), "") != DungeonStructure.layout_hash(path, route_edges(path)):
+			push_warning("Stale shaft relief route; rebuild upper crossing")
+			return
+	var expected_rooms: Array = build.get("rooms", []) as Array
+	if expected_rooms.size() != rooms.size():
+		return
+	for room: Dictionary in rooms:
+		var matches: Array = expected_rooms.filter(func(entry: Dictionary) -> bool: return entry["id"] == room["id"])
+		if matches.size() != 1:
+			return
+		var expected: Dictionary = matches[0] as Dictionary
+		var polygon: PackedVector2Array = PackedVector2Array()
+		for point: Array in expected["points"] as Array:
+			polygon.append(Vector2(float(point[0]), float(point[1])))
+		if polygon != (room["points"] as PackedVector2Array) or float(expected["floor"]) != float(room["floor"]) or float(expected["height"]) != float(room["height"]):
+			push_warning("Stale shaft relief room; rebuild upper crossing")
+			return
+	var built: Node3D = (load(UPPER_CROSSING + "structure.glb") as PackedScene).instantiate() as Node3D
+	built.name = "StructuralRelief"
+	add_child(built)
+	var stone: ShaderMaterial = (materials["built_stone"] as ShaderMaterial).duplicate() as ShaderMaterial
+	stone.set_shader_parameter("mapped", false)
+	stone.set_shader_parameter("scale", 0.8)
+	for node: Node in built.find_children("*", "MeshInstance3D", true, false):
+		var visual: MeshInstance3D = node as MeshInstance3D
+		visual.material_override = materials["rock"] if visual.name.begins_with("ShaftRock") else (stone_face("stone") if visual.name.begins_with("Stone") else stone)
+		var transform: Transform3D = global_transform.affine_inverse() * visual.global_transform
+		for vertex: Vector3 in visual.mesh.get_faces():
+			collision_faces.append(transform * vertex)
+	for index: Variant in build["wall_indices"] as Array:
+		relief_walls.append(int(index))
+	print("STRUCTURAL_RELIEF_READY: ", built.get_child_count(), " meshes, walls ", relief_walls)
 
 ## Local TripoSG cliff geometry, carved away from the existing playable volumes.
 func upper_crossing_rock() -> void:
@@ -1014,7 +1062,8 @@ func build_vault(polygon: PackedVector2Array, central: bool) -> void:
 				var at: Vector3 = Vector3(center.x, (span.x + span.y) * 0.5, center.y)
 				var offset: Vector3 = Vector3(normal.x, 0, normal.y)
 				piece(Vector3(width + 0.004, span.y - span.x, 0.8), at + offset * (1.3 if central else 0.45), "core_stone" if central else "dark", basis, true)
-				piece(Vector3(width + 0.004, span.y - span.x, 1.0), at + offset * (0.5 if central else 0.0), "plaster" if central else "wall", basis)
+				if central or not relief_walls.has(index):
+					piece(Vector3(width + 0.004, span.y - span.x, 1.0), at + offset * (0.5 if central else 0.0), "plaster" if central else "wall", basis)
 		if not central:
 			for column: int in range(count):
 				var t: float = (float(column) + 0.5) / float(count)
