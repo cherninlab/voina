@@ -114,14 +114,69 @@ for obj in paving:
 core.discard(clip)
 fit={'at':joint,'arrivals':[{'route':ledge,'slope':-.1},{'route':nave,'slope':0}]}
 architecture.fit_junction_floor({21:kept},fit)
-groups={0:[body],1:walls,2:kept}
+# Full-depth wedge stones follow the actual loft intrados, meeting the side
+# courses. Their backs sit inside the existing core; no extra collision skin.
+def underside(s, u):
+    s=max(0.0,min(travel,s))
+    for index in range(len(stations)-1):
+        a,e,sa=stations[index];b,f,sb=stations[index+1]
+        if s <= sb+1e-6:
+            t=(s-sa)/(sb-sa)
+            at=a.lerp(b,t)
+            edge=e.lerp(f,t)
+            tangent=Vector((b.x-a.x,b.y-a.y,0)).normalized()
+            if edge.dot(passage.UP.cross(tangent)) < 0:edge=-edge
+            edge+=edge.normalized()*.24
+            da=.8+3.2*(1-math.sin(math.pi*sa/travel))
+            db=.8+3.2*(1-math.sin(math.pi*sb/travel))
+            return at+edge*u-passage.UP*(da+(db-da)*t)
+    raise AssertionError('Intrados station missing')
+
+def soffit_normal(s,u):
+    s=max(.001,min(travel-.001,s));u=max(-.999,min(.999,u))
+    across=underside(s,min(1,u+.01))-underside(s,max(-1,u-.01))
+    along=underside(min(travel,s+.025),u)-underside(max(0,s-.025),u)
+    normal=across.cross(along).normalized()
+    assert normal.z < 0,'Soffit stone must face down'
+    return normal
+
+intrados=[]
+rows=math.ceil(travel/.48)
+for row in range(rows):
+    s0=travel*row/rows;s1=travel*(row+1)/rows;mid=(s0+s1)*.5
+    width=(underside(mid,-1)-underside(mid,1)).length
+    # Bonded joints: alternate seven and eight stones across the barrel.
+    columns=math.ceil(width/.7)+(row%2)
+    cell=width/columns
+    for column in range(columns):
+        u=-1+(column+.5)*2/columns
+        stone=lib.place(rng,cell-.016,s1-s0-.015,.25,'abutment_intrados')
+        passage._bake_transform(stone)
+        for vertex in stone.data.vertices:
+            local=vertex.co.copy()
+            station=mid+local.y
+            across=u+local.x*2/width
+            vertex.co=underside(station,across)+soffit_normal(station,across)*(local.z+.028)
+        # Curved faces need freshly computed normals after world deformation.
+        import bmesh
+        bm=bmesh.new();bm.from_mesh(stone.data)
+        bmesh.ops.recalc_face_normals(bm,faces=list(bm.faces))
+        assert all(edge.is_manifold for edge in bm.edges),stone.name
+        bm.to_mesh(stone.data);bm.free()
+        along=(underside(min(travel,mid+.02),u)-underside(max(0,mid-.02),u)).normalized()
+        out=soffit_normal(mid,u);across=along.cross(out).normalized()
+        stone['frame']=[*across,*along,*out]
+        stone['tone']=rng.uniform(.86,1.04)
+        stone.data.name+='_arch'
+        intrados.append(stone)
+groups={0:[body],1:walls,2:kept,3:intrados}
 core.flush_trash()
 out=core.ROOT/'content/environments/red_descent/passage_landings_v1'
 architecture.PASSAGE_REPORTS['nave_abutment']={'design':'One continuous segmental arch from the existing ledge pier into the shaft wall; one paving field through the portal',
- 'source_routes':{r['id']:r['layout_hash'] for r in (ledge,nave)},'old_endpoint_bracket_replaced':True,'arch_depth_m':{'spring':4.0,'crown':.8}}
+ 'source_routes':{r['id']:r['layout_hash'] for r in (ledge,nave)},'old_endpoint_bracket_replaced':True,'arch_depth_m':{'spring':4.0,'crown':.8},'intrados':{'stones':len(intrados),'bond':'alternating courses across continuous loft','depth_m':.25,'collision':'existing core unchanged'}}
 architecture.bake_all([('meshes','nave_abutment',groups)],out)
 metadata={'routes':{r['id']:r['layout_hash'] for r in (ledge,nave)},'route':'central_ledge','segment':len(ledge['points'])-2,
  'deck':nave['points'][0],'base':[8.62264,-21.2,26.67925],'seat':[7,-18.97,21],
  'floor_polygon':[[v.x,-v.y] for v in polygon],'floor_y':floor}
 (out/'landing.json').write_text(json.dumps(metadata,indent=2)+'\n')
-print('NAVE_ABUTMENT_BUILT',len(walls),'facing stones',len(kept),'flags',flush=True)
+print('NAVE_ABUTMENT_BUILT',len(walls),'facing stones',len(kept),'flags',len(intrados),'intrados stones',flush=True)

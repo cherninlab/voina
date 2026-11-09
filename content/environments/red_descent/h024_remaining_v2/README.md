@@ -33,3 +33,6 @@ Validation, inspected before shipment:
 - [31 protected assets](turn-carve-protected-assets.json) remain byte-identical.
 
 Shutdown ObjectDB/Texture RID leak warnings remain in the logs. No manual input, two-Mac or performance acceptance is claimed. Landing underside facing and remaining material/threshold finishing are still open. This is a verified incremental repair, not whole-builder visual acceptance.
+
+
+The nave support underside now has actual wedge-stone masonry. [Before/after and unchanged collision proof](landing-intrados/README.md).

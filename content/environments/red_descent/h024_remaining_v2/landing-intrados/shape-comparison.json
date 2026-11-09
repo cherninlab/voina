@@ -1,0 +1,53 @@
+{
+  "before": {
+    "Collision_nave_abutment_0-colonly": {
+      "geometry_sha256": "7e888b524356a7c90e722dd08a2c61287b0e0382b195d8361aa358ede9430d89",
+      "faces": 316,
+      "vertices": 560
+    },
+    "Mortar_nave_abutment_0": {
+      "geometry_sha256": "7e888b524356a7c90e722dd08a2c61287b0e0382b195d8361aa358ede9430d89",
+      "faces": 316,
+      "vertices": 560
+    },
+    "Stone-flag_nave_abutment_2": {
+      "geometry_sha256": "5bc4a3582fdb358991b6d46b4ed22c027b1f4aa9a32b27d2160ad673c4d2e53e",
+      "faces": 8300,
+      "vertices": 8484
+    },
+    "Stone-stone_nave_abutment_1": {
+      "geometry_sha256": "cc7f9874c05f5426e7bc4fcf394540438941a7beb89a98a369cad6c93579d22d",
+      "faces": 52114,
+      "vertices": 50109
+    }
+  },
+  "after": {
+    "Collision_nave_abutment_0-colonly": {
+      "geometry_sha256": "7e888b524356a7c90e722dd08a2c61287b0e0382b195d8361aa358ede9430d89",
+      "faces": 316,
+      "vertices": 558
+    },
+    "Mortar_nave_abutment_0": {
+      "geometry_sha256": "7e888b524356a7c90e722dd08a2c61287b0e0382b195d8361aa358ede9430d89",
+      "faces": 316,
+      "vertices": 558
+    },
+    "Stone-arch_nave_abutment_3": {
+      "geometry_sha256": "663991567c875ab23db913036e4fc01ea9f1ae5773cea8e4017047c77074be5d",
+      "faces": 52000,
+      "vertices": 49486
+    },
+    "Stone-flag_nave_abutment_2": {
+      "geometry_sha256": "5bc4a3582fdb358991b6d46b4ed22c027b1f4aa9a32b27d2160ad673c4d2e53e",
+      "faces": 8300,
+      "vertices": 8484
+    },
+    "Stone-stone_nave_abutment_1": {
+      "geometry_sha256": "cc7f9874c05f5426e7bc4fcf394540438941a7beb89a98a369cad6c93579d22d",
+      "faces": 52114,
+      "vertices": 49700
+    }
+  },
+  "existing_triangles_identical": true,
+  "note": "glTF vertex splitting/deduplication differs with baked shading; canonical world-space face coordinates are identical"
+}
