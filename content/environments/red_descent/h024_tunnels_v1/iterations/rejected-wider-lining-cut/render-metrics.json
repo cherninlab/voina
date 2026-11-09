@@ -1,0 +1,14 @@
+[
+	{
+		"capture_frame_median_ms": 16.651,
+		"draw_calls": 997.0,
+		"primitives": 9400571.0,
+		"view": "nave_5-forward"
+	},
+	{
+		"capture_frame_median_ms": 16.714,
+		"draw_calls": 667.0,
+		"primitives": 11581869.0,
+		"view": "nave_5-back"
+	}
+]

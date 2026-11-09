@@ -1,0 +1,185 @@
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+Metal 4.0 - Forward Mobile - Using Device #0: Apple - Apple M5 Max (Apple9)
+
+BUILD: 89bc19d0+dirty [6fa229775fa2]
+STRUCTURAL_RELIEF_READY: 58 meshes, walls [3, 4, 5, 6]
+GENERATED_KIT_PLACED: {}
+RED_DESCENT_GEOMETRY_READY: 17 routes, 13 rooms, 36 lit landmarks, sloping crossings
+MAP: Cinder Crypt (crypt)
+Hosting on UDP 18933
+DUNGEON_ENCOUNTER_READY: five guards across two vertically separated halls, no replacements
+NET host · build 89bc19d0+dirty [6fa229775fa2]
+NET bolts in flight 0
+CAPTURE_STONE: res://content/environments/dungeon_pbr_v2/Bricks089/albedo.png scale 0.16
+CAPTURE_CENTRE_HIT: choir-walk-upper_cells-0-up /root/MatchWorld/CinderCrypt/Architecture/StoneRoom_cells/Collision_cells_4 at (34.0, -3.042688, 11.584)
+DUNGEON_CAPTURE: /tmp/h024-normal-mapped/choir-walk-upper_cells-0-up.png
+CAPTURE_CENTRE_HIT: choir-walk-upper_cells-1-up /root/MatchWorld/CinderCrypt/Architecture/StoneRoom_cells/Collision_cells_3 at (40.70584, -3.741168, 10.70584)
+DUNGEON_CAPTURE: /tmp/h024-normal-mapped/choir-walk-upper_cells-1-up.png
+NET host · build 89bc19d0+dirty [6fa229775fa2]
+NET bolts in flight 0
+CAPTURE_CENTRE_HIT: choir-walk-upper_cells-2-up /root/MatchWorld/CinderCrypt/Architecture/StonePassage_node_46_-4_6/Collision_node_46_-4_6_2 at (48.32, -2.8928, 6.0)
+DUNGEON_CAPTURE: /tmp/h024-normal-mapped/choir-walk-upper_cells-2-up.png
+CAPTURE_CENTRE_HIT: first_stair_hall-walk-first_stair-0-up /root/MatchWorld/CinderCrypt/Architecture/StoneRoom_first_stair_hall/Collision_first_stair_hall_1 at (42.084, -5.095315, -29.0)
+DUNGEON_CAPTURE: /tmp/h024-normal-mapped/first_stair_hall-walk-first_stair-0-up.png
+CAPTURE_CENTRE_HIT: first_stair_hall-walk-first_stair-1-down /root/MatchWorld/CinderCrypt/Architecture/StoneRoom_first_stair_hall/Collision_first_stair_hall_0 at (39.5, -6.677105, -41.584)
+DUNGEON_CAPTURE: /tmp/h024-normal-mapped/first_stair_hall-walk-first_stair-1-down.png
+CAPTURE_CENTRE_HIT: first_stair_hall-walk-first_stair-2-down /root/MatchWorld/CinderCrypt/Architecture/StoneRoom_first_stair_hall/Collision_first_stair_hall_3 at (27.416, -8.07512, -39.5)
+DUNGEON_CAPTURE: /tmp/h024-normal-mapped/first_stair_hall-walk-first_stair-2-down.png
+NET host · build 89bc19d0+dirty [6fa229775fa2]
+NET bolts in flight 0
+CAPTURE_CENTRE_HIT: first_stair_hall-walk-first_stair-3-down /root/MatchWorld/CinderCrypt/Architecture/StoneRoom_first_stair_hall/Collision_first_stair_hall_2 at (29.5, -9.790751, -26.216)
+DUNGEON_CAPTURE: /tmp/h024-normal-mapped/first_stair_hall-walk-first_stair-3-down.png
+CAPTURE_CENTRE_HIT: second_stair_hall-walk-second_stair-0-up /root/MatchWorld/CinderCrypt/Architecture/StoneRoom_second_stair_hall/Collision_second_stair_hall_1 at (-25.916, -19.2168, 27.063)
+DUNGEON_CAPTURE: /tmp/h024-normal-mapped/second_stair_hall-walk-second_stair-0-up.png
+CAPTURE_CENTRE_HIT: second_stair_hall-walk-second_stair-1-down /root/MatchWorld/CinderCrypt/Architecture/StoneRoom_second_stair_hall/Collision_second_stair_hall_2 at (-28.0, -20.07787, 38.084)
+DUNGEON_CAPTURE: /tmp/h024-normal-mapped/second_stair_hall-walk-second_stair-1-down.png
+CAPTURE_CENTRE_HIT: second_stair_hall-walk-second_stair-2-down /root/MatchWorld/CinderCrypt/Architecture/StoneRoom_second_stair_hall/Collision_second_stair_hall_3 at (-36.084, -21.0168, 36.0)
+DUNGEON_CAPTURE: /tmp/h024-normal-mapped/second_stair_hall-walk-second_stair-2-down.png
+NET host · build 89bc19d0+dirty [6fa229775fa2]
+NET bolts in flight 0
+CAPTURE_CENTRE_HIT: second_stair_hall-walk-second_stair-3-down /root/MatchWorld/CinderCrypt/Architecture/StoneRoom_second_stair_hall/Collision_second_stair_hall_0 at (-34.0, -22.61344, 20.916)
+DUNGEON_CAPTURE: /tmp/h024-normal-mapped/second_stair_hall-walk-second_stair-3-down.png
+CAPTURE_CENTRE_HIT: entry_0-forward /root/MatchWorld/CinderCrypt/Architecture/StoneRoom_antechamber/Collision_antechamber_2 at (-16.416, 2.145468, -22.49506)
+DUNGEON_CAPTURE: /tmp/h024-normal-mapped/entry_0-forward.png
+CAPTURE_CENTRE_HIT: entry_0-back /root/MatchWorld/CinderCrypt/Architecture/StoneRoom_entry/Collision_entry_7 at (-47.584, 2.291622, -24.32847)
+DUNGEON_CAPTURE: /tmp/h024-normal-mapped/entry_0-back.png
+CAPTURE_CENTRE_HIT: chapel_approach_0-forward /root/MatchWorld/CinderCrypt/Architecture/StoneRoom_chapel/Collision_chapel_6 at (-11.584, -7.155159, -33.35841)
+DUNGEON_CAPTURE: /tmp/h024-normal-mapped/chapel_approach_0-forward.png
+CAPTURE_CENTRE_HIT: chapel_approach_0-back /root/MatchWorld/CinderCrypt/Architecture/StoneRoom_first_stair_hall/Collision_first_stair_hall_5 at (35.99, -7.979589, -28.601)
+NET host · build 89bc19d0+dirty [6fa229775fa2]
+NET bolts in flight 0
+DUNGEON_CAPTURE: /tmp/h024-normal-mapped/chapel_approach_0-back.png
+CAPTURE_CENTRE_HIT: chapel_approach_1-forward /root/MatchWorld/CinderCrypt/Architecture/StoneRoom_chapel/Collision_chapel_7 at (-9.572128, -7.219994, -41.83955)
+DUNGEON_CAPTURE: /tmp/h024-normal-mapped/chapel_approach_1-forward.png
+CAPTURE_CENTRE_HIT: chapel_approach_1-back /root/MatchWorld/CinderCrypt/Architecture/StoneRoom_first_stair_hall/Collision_first_stair_hall_2 at (32.09065, -7.916974, -26.216)
+DUNGEON_CAPTURE: /tmp/h024-normal-mapped/chapel_approach_1-back.png
+CAPTURE_CENTRE_HIT: nave_0-forward /root/MatchWorld/CinderCrypt/Architecture/StoneRoom_nave/Collision_nave_4 at (6.999996, -15.67534, 48.584)
+DUNGEON_CAPTURE: /tmp/h024-normal-mapped/nave_0-forward.png
+CAPTURE_CENTRE_HIT: nave_0-back /root/MatchWorld/CinderCrypt/Architecture/@StaticBody3D@854 at (7.0, -16.04873, 12.80012)
+DUNGEON_CAPTURE: /tmp/h024-normal-mapped/nave_0-back.png
+NET host · build 89bc19d0+dirty [6fa229775fa2]
+NET bolts in flight 0
+CAPTURE_CENTRE_HIT: nave_5-forward /root/MatchWorld/CinderCrypt/Architecture/StonePassage_nave/Collision_nave_18 at (-17.29067, -17.98381, 21.532)
+DUNGEON_CAPTURE: /tmp/h024-normal-mapped/nave_5-forward.png
+CAPTURE_CENTRE_HIT: nave_5-back /root/MatchWorld/CinderCrypt/Architecture/StoneRoom_nave/Collision_nave_2 at (13.584, -9.423805, 44.688)
+DUNGEON_CAPTURE: /tmp/h024-normal-mapped/nave_5-back.png
+CAPTURE_CENTRE_HIT: nave_6-forward /root/MatchWorld/CinderCrypt/Architecture/StonePassage_node_-41_-23_24/Collision_node_-41_-23_24_2 at (-43.82, -18.7177, 24.0)
+DUNGEON_CAPTURE: /tmp/h024-normal-mapped/nave_6-forward.png
+CAPTURE_CENTRE_HIT: nave_6-back /root/MatchWorld/CinderCrypt/Architecture/StonePassage_node_-14_-19_24/Collision_node_-14_-19_24_20 at (-9.999999, -16.92794, 24.0)
+DUNGEON_CAPTURE: /tmp/h024-normal-mapped/nave_6-back.png
+NET host · build 89bc19d0+dirty [6fa229775fa2]
+NET bolts in flight 0
+CAPTURE_CENTRE_HIT: root_tunnel_0-forward /root/MatchWorld/CinderCrypt/Architecture/StonePassage_node_-41_-23_24/Collision_node_-41_-23_24_2 at (-43.82, -21.2064, 24.0)
+DUNGEON_CAPTURE: /tmp/h024-normal-mapped/root_tunnel_0-forward.png
+CAPTURE_CENTRE_HIT: root_tunnel_0-back /root/MatchWorld/CinderCrypt/Architecture/StoneRoom_second_stair_hall/Collision_second_stair_hall_5 at (-30.0125, -21.06001, 24.0)
+DUNGEON_CAPTURE: /tmp/h024-normal-mapped/root_tunnel_0-back.png
+CAPTURE_CENTRE_HIT: root_tunnel_1-forward /root/MatchWorld/CinderCrypt/Architecture/StonePassage_root_tunnel/Collision_root_tunnel_13 at (-41.0, -21.17174, 9.78486)
+DUNGEON_CAPTURE: /tmp/h024-normal-mapped/root_tunnel_1-forward.png
+CAPTURE_CENTRE_HIT: root_tunnel_1-back /root/MatchWorld/CinderCrypt/Architecture/StonePassage_node_-41_-23_24/Collision_node_-41_-23_24_3 at (-41.0, -21.20419, 26.82)
+DUNGEON_CAPTURE: /tmp/h024-normal-mapped/root_tunnel_1-back.png
+CAPTURE_CENTRE_HIT: root_tunnel_2-forward /root/MatchWorld/CinderCrypt/Architecture/StonePassage_node_-31_-23_6/Collision_node_-31_-23_6_20 at (-28.89165, -21.206, 4.313323)
+NET host · build 89bc19d0+dirty [6fa229775fa2]
+NET bolts in flight 0
+DUNGEON_CAPTURE: /tmp/h024-normal-mapped/root_tunnel_2-forward.png
+CAPTURE_CENTRE_HIT: root_tunnel_2-back /root/MatchWorld/CinderCrypt/Architecture/StonePassage_node_-41_-23_14/Collision_node_-41_-23_14_20 at (-43.7, -21.19085, 16.16)
+DUNGEON_CAPTURE: /tmp/h024-normal-mapped/root_tunnel_2-back.png
+CAPTURE_CENTRE_HIT: root_tunnel_3-forward /root/MatchWorld/CinderCrypt/Architecture/StonePassage_node_-43_-23_-6/Collision_node_-43_-23_-6_20 at (-43.87722, -21.06708, -8.716825)
+DUNGEON_CAPTURE: /tmp/h024-normal-mapped/root_tunnel_3-forward.png
+CAPTURE_CENTRE_HIT: root_tunnel_3-back /root/MatchWorld/CinderCrypt/Architecture/StonePassage_node_-31_-23_6/Collision_node_-31_-23_6_20 at (-29.22031, -21.20667, 8.033933)
+DUNGEON_CAPTURE: /tmp/h024-normal-mapped/root_tunnel_3-back.png
+CAPTURE_CENTRE_HIT: root_tunnel_4-forward /root/MatchWorld/CinderCrypt/Architecture/@StaticBody3D@854 at (-26.62801, -21.16928, -11.23974)
+DUNGEON_CAPTURE: /tmp/h024-normal-mapped/root_tunnel_4-forward.png
+NET host · build 89bc19d0+dirty [6fa229775fa2]
+NET bolts in flight 0
+CAPTURE_CENTRE_HIT: root_tunnel_4-back /root/MatchWorld/CinderCrypt/Architecture/StonePassage_cave_bypass/Collision_cave_bypass_13 at (-40.09691, -21.20681, -0.296264)
+DUNGEON_CAPTURE: /tmp/h024-normal-mapped/root_tunnel_4-back.png
+CAPTURE_CENTRE_HIT: root_tunnel_5-forward /root/MatchWorld/CinderCrypt/Architecture/@StaticBody3D@854 at (-11.09949, -20.86914, -28.75055)
+DUNGEON_CAPTURE: /tmp/h024-normal-mapped/root_tunnel_5-forward.png
+CAPTURE_CENTRE_HIT: root_tunnel_5-back /root/MatchWorld/CinderCrypt/Architecture/StonePassage_node_-38_-23_-2/Collision_node_-38_-23_-2_20 at (-38.91623, -20.96935, 1.053092)
+DUNGEON_CAPTURE: /tmp/h024-normal-mapped/root_tunnel_5-back.png
+CAPTURE_CENTRE_HIT: return_gallery_0-forward /root/MatchWorld/CinderCrypt/Architecture/StonePassage_node_22_-10_10/Collision_node_22_-10_10_20 at (19.79093, -8.229429, 10.0)
+DUNGEON_CAPTURE: /tmp/h024-normal-mapped/return_gallery_0-forward.png
+CAPTURE_CENTRE_HIT: return_gallery_0-back /root/MatchWorld/CinderCrypt/Architecture/StoneRoom_choir/Collision_choir_2 at (45.584, -7.566182, 10.0)
+NET host · build 89bc19d0+dirty [6fa229775fa2]
+NET bolts in flight 0
+DUNGEON_CAPTURE: /tmp/h024-normal-mapped/return_gallery_0-back.png
+CAPTURE_CENTRE_HIT: return_gallery_1-forward /root/MatchWorld/CinderCrypt/Architecture/StonePassage_return_gallery/Collision_return_gallery_18 at (19.15221, -7.818326, -21.32566)
+DUNGEON_CAPTURE: /tmp/h024-normal-mapped/return_gallery_1-forward.png
+CAPTURE_CENTRE_HIT: return_gallery_1-back /root/MatchWorld/CinderCrypt/Architecture/StonePassage_node_22_-10_10/Collision_node_22_-10_10_20 at (22.2, -8.21734, 12.2)
+DUNGEON_CAPTURE: /tmp/h024-normal-mapped/return_gallery_1-back.png
+CAPTURE_CENTRE_HIT: return_gallery_2-forward /root/MatchWorld/CinderCrypt/Architecture/StonePassage_return_gallery/Collision_return_gallery_18 at (19.35752, -8.093729, -22.3522)
+DUNGEON_CAPTURE: /tmp/h024-normal-mapped/return_gallery_2-forward.png
+CAPTURE_CENTRE_HIT: return_gallery_2-back /root/MatchWorld/CinderCrypt/Architecture/StonePassage_node_22_-10_10/Collision_node_22_-10_10_20 at (22.01538, -7.997633, 12.2)
+DUNGEON_CAPTURE: /tmp/h024-normal-mapped/return_gallery_2-back.png
+NET host · build 89bc19d0+dirty [6fa229775fa2]
+NET bolts in flight 0
+CAPTURE_CENTRE_HIT: return_gallery_3-forward /root/MatchWorld/CinderCrypt/Architecture/StonePassage_node_22_-10_-30/Collision_node_22_-10_-30_20 at (23.64941, -8.07561, -32.24703)
+DUNGEON_CAPTURE: /tmp/h024-normal-mapped/return_gallery_3-forward.png
+CAPTURE_CENTRE_HIT: return_gallery_3-back /root/MatchWorld/CinderCrypt/Architecture/StonePassage_return_gallery/Collision_return_gallery_13 at (18.35716, -8.07638, -5.785804)
+DUNGEON_CAPTURE: /tmp/h024-normal-mapped/return_gallery_3-back.png
+CAPTURE_CENTRE_HIT: return_gallery_4-forward /root/MatchWorld/CinderCrypt/Architecture/StonePassage_node_22_-10_-30/Collision_node_22_-10_-30_20 at (22.0, -8.213236, -32.5632)
+DUNGEON_CAPTURE: /tmp/h024-normal-mapped/return_gallery_4-forward.png
+CAPTURE_CENTRE_HIT: return_gallery_4-back /root/MatchWorld/CinderCrypt/Architecture/StonePassage_node_22_-10_10/Collision_node_22_-10_10_20 at (21.99999, -7.19394, 12.2)
+DUNGEON_CAPTURE: /tmp/h024-normal-mapped/return_gallery_4-back.png
+NET host · build 89bc19d0+dirty [6fa229775fa2]
+NET bolts in flight 0
+CAPTURE_CENTRE_HIT: upper_cells_2-forward /root/MatchWorld/CinderCrypt/Architecture/StonePassage_node_46_-4_6/Collision_node_46_-4_6_2 at (48.32, -2.225302, 6.0)
+DUNGEON_CAPTURE: /tmp/h024-normal-mapped/upper_cells_2-forward.png
+CAPTURE_CENTRE_HIT: upper_cells_2-back /root/MatchWorld/CinderCrypt/Architecture/StoneRoom_cells/Collision_cells_6 at (30.416, -1.863851, 6.0)
+DUNGEON_CAPTURE: /tmp/h024-normal-mapped/upper_cells_2-back.png
+CAPTURE_CENTRE_HIT: upper_cells_3-forward /root/MatchWorld/CinderCrypt/Architecture/StonePassage_node_46_-4_-15/Collision_node_46_-4_-15_2 at (46.0, -2.209646, -17.32)
+DUNGEON_CAPTURE: /tmp/h024-normal-mapped/upper_cells_3-forward.png
+CAPTURE_CENTRE_HIT: upper_cells_3-back /root/MatchWorld/CinderCrypt/Architecture/StonePassage_node_46_-4_6/Collision_node_46_-4_6_1 at (46.0, -2.209646, 8.320002)
+DUNGEON_CAPTURE: /tmp/h024-normal-mapped/upper_cells_3-back.png
+CAPTURE_CENTRE_HIT: upper_cells_4-forward /root/MatchWorld/CinderCrypt/Architecture/StoneRoom_restraint/Collision_restraint_6 at (26.416, -1.714989, -15.0)
+DUNGEON_CAPTURE: /tmp/h024-normal-mapped/upper_cells_4-forward.png
+NET host · build 89bc19d0+dirty [6fa229775fa2]
+NET bolts in flight 0
+CAPTURE_CENTRE_HIT: upper_cells_4-back /root/MatchWorld/CinderCrypt/Architecture/StonePassage_node_46_-4_-15/Collision_node_46_-4_-15_1 at (48.32, -2.225303, -15.0)
+DUNGEON_CAPTURE: /tmp/h024-normal-mapped/upper_cells_4-back.png
+CAPTURE_CENTRE_HIT: ossuary_loop_0-forward /root/MatchWorld/CinderCrypt/Architecture/StonePassage_node_-18_-10_-30/Collision_node_-18_-10_-30_2 at (-20.32, -8.221333, -30.0)
+DUNGEON_CAPTURE: /tmp/h024-normal-mapped/ossuary_loop_0-forward.png
+CAPTURE_CENTRE_HIT: ossuary_loop_0-back /root/MatchWorld/CinderCrypt/Architecture/StoneRoom_first_stair_hall/Collision_first_stair_hall_5 at (35.98999, -6.77449, -30.0)
+DUNGEON_CAPTURE: /tmp/h024-normal-mapped/ossuary_loop_0-back.png
+CAPTURE_CENTRE_HIT: ossuary_loop_1-forward /root/MatchWorld/CinderCrypt/Architecture/StoneRoom_window/Collision_window_2 at (-18.0, -8.124732, -2.416)
+DUNGEON_CAPTURE: /tmp/h024-normal-mapped/ossuary_loop_1-forward.png
+CAPTURE_CENTRE_HIT: ossuary_loop_1-back /root/MatchWorld/CinderCrypt/Architecture/StonePassage_node_-18_-10_-30/Collision_node_-18_-10_-30_1 at (-18.0, -8.210168, -32.32)
+NET host · build 89bc19d0+dirty [6fa229775fa2]
+NET bolts in flight 0
+DUNGEON_CAPTURE: /tmp/h024-normal-mapped/ossuary_loop_1-back.png
+CAPTURE_CENTRE_HIT: ossuary_loop_5-forward /root/MatchWorld/CinderCrypt/Architecture/StoneRoom_ossuary/Collision_ossuary_0 at (-34.0, -7.667842, -42.584)
+DUNGEON_CAPTURE: /tmp/h024-normal-mapped/ossuary_loop_5-forward.png
+CAPTURE_CENTRE_HIT: ossuary_loop_5-back /root/MatchWorld/CinderCrypt/Architecture/StoneRoom_bones/Collision_bones_3 at (-34.0, -8.021826, -12.416)
+DUNGEON_CAPTURE: /tmp/h024-normal-mapped/ossuary_loop_5-back.png
+CAPTURE_CENTRE_HIT: ossuary_loop_7-forward /root/MatchWorld/CinderCrypt/Architecture/StoneRoom_chapel/Collision_chapel_2 at (17.584, -7.536589, -36.0)
+DUNGEON_CAPTURE: /tmp/h024-normal-mapped/ossuary_loop_7-forward.png
+CAPTURE_CENTRE_HIT: ossuary_loop_7-back /root/MatchWorld/CinderCrypt/Architecture/StoneRoom_ossuary/Collision_ossuary_6 at (-41.584, -7.781988, -36.0)
+DUNGEON_CAPTURE: /tmp/h024-normal-mapped/ossuary_loop_7-back.png
+NET host · build 89bc19d0+dirty [6fa229775fa2]
+NET bolts in flight 0
+CAPTURE_CENTRE_HIT: bell_loop_2-forward /root/MatchWorld/CinderCrypt/Architecture/StoneRoom_bell/Collision_bell_2 at (45.584, -15.79322, 36.0)
+DUNGEON_CAPTURE: /tmp/h024-normal-mapped/bell_loop_2-forward.png
+CAPTURE_CENTRE_HIT: bell_loop_2-back /root/MatchWorld/CinderCrypt/Architecture/StoneRoom_nave/Collision_nave_6 at (-13.584, -15.56516, 36.0)
+DUNGEON_CAPTURE: /tmp/h024-normal-mapped/bell_loop_2-back.png
+CAPTURE_CENTRE_HIT: bell_loop_4-forward /root/MatchWorld/CinderCrypt/Architecture/StoneRoom_nave/Collision_nave_6 at (-13.584, -15.65279, 44.0)
+DUNGEON_CAPTURE: /tmp/h024-normal-mapped/bell_loop_4-forward.png
+CAPTURE_CENTRE_HIT: bell_loop_4-back /root/MatchWorld/CinderCrypt/Architecture/StoneRoom_bell/Collision_bell_2 at (45.584, -15.8277, 44.0)
+DUNGEON_CAPTURE: /tmp/h024-normal-mapped/bell_loop_4-back.png
+NET host · build 89bc19d0+dirty [6fa229775fa2]
+NET bolts in flight 0
+CAPTURE_CENTRE_HIT: cave_bypass_0-forward /root/MatchWorld/CinderCrypt/Architecture/StonePassage_node_-46_-23_7/Collision_node_-46_-23_7_20 at (-47.90041, -21.19318, 4.339427)
+DUNGEON_CAPTURE: /tmp/h024-normal-mapped/cave_bypass_0-forward.png
+CAPTURE_CENTRE_HIT: cave_bypass_0-back /root/MatchWorld/CinderCrypt/Architecture/StonePassage_root_tunnel/Collision_root_tunnel_8 at (-38.232, -21.15539, 17.8752)
+DUNGEON_CAPTURE: /tmp/h024-normal-mapped/cave_bypass_0-back.png
+CAPTURE_CENTRE_HIT: cave_bypass_1-forward /root/MatchWorld/CinderCrypt/Architecture/StonePassage_node_-43_-23_-6/Collision_node_-43_-23_-6_20 at (-42.44909, -21.21071, -8.387256)
+DUNGEON_CAPTURE: /tmp/h024-normal-mapped/cave_bypass_1-forward.png
+CAPTURE_CENTRE_HIT: cave_bypass_1-back /root/MatchWorld/CinderCrypt/Architecture/StonePassage_node_-46_-23_7/Collision_node_-46_-23_7_20 at (-46.7352, -21.19475, 10.18586)
+DUNGEON_CAPTURE: /tmp/h024-normal-mapped/cave_bypass_1-back.png
+CAPTURE_CENTRE_HIT: cave_bypass_2-forward /root/MatchWorld/CinderCrypt/Architecture/StonePassage_node_-31_-23_6/Collision_node_-31_-23_6_20 at (-27.33895, -20.88676, 6.528843)
+DUNGEON_CAPTURE: /tmp/h024-normal-mapped/cave_bypass_2-forward.png
+NET host · build 89bc19d0+dirty [6fa229775fa2]
+NET bolts in flight 0
+CAPTURE_CENTRE_HIT: cave_bypass_2-back /root/MatchWorld/CinderCrypt/Architecture/StonePassage_node_-43_-23_-6/Collision_node_-43_-23_-6_20 at (-45.12254, -21.20829, -7.698032)
+DUNGEON_CAPTURE: /tmp/h024-normal-mapped/cave_bypass_2-back.png
+WARNING: 7 RIDs of type "Texture" were leaked.
+   at: finalize (servers/rendering/rendering_device.cpp:8900)

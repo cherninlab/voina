@@ -1,0 +1,22 @@
+SDF.R: Loader Marker V16.2.2 (__init__.py loaded from: /Users/theochernin/Library/Application Support/Blender/5.2/scripts/addons/rust_gpu_sdf_addon/__init__.py)
+SDF.R: --- Initializing GPU Engine (V16.2.2) ---
+SDF.R: No shader cache. This initial compilation may take a few minutes...
+SDF.R: Addon registered. Warming-up will start in 0.5s...
+INFO Draco is available, use library at /Applications/Blender.app/Contents/Resources/5.2/scripts/addons_core/io_scene_gltf2/libbf_intern_draco_bridge.dylib
+INFO MeshOptimizer is available, use library at /Applications/Blender.app/Contents/Resources/5.2/scripts/addons_core/io_scene_gltf2/libbf_intern_meshopt_bridge.dylib
+20:31:52 | INFO: Starting glTF 2.0 export
+20:31:52 | INFO: Extracting primitive: abutment_core.002
+20:31:52 | INFO: Primitives created: 1
+20:31:52 | INFO: Extracting primitive: abutment_core.001
+20:31:52 | INFO: Primitives created: 1
+20:31:53 | INFO: Extracting primitive: flag_lib_2.101
+20:31:53 | INFO: Primitives created: 1
+20:31:53 | INFO: Extracting primitive: squared_rubble_lib_15.152
+20:31:53 | INFO: Primitives created: 1
+20:31:53 | INFO: Finished glTF 2.0 export in 0.034380197525024414 s
+
+ARCHITECTURE_BAKED meshes nave_abutment 60730 tris
+NAVE_ABUTMENT_BUILT 271 facing stones 84 flags
+Blender 5.2.2 LTS (hash d13f752e3b9c built 2026-09-15 01:49:19)
+
+Blender quit

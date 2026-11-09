@@ -1,0 +1,23 @@
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+Metal 4.0 - Forward Mobile - Using Device #0: Apple - Apple M5 Max (Apple9)
+
+BUILD: 89bc19d0+dirty [379218563482]
+NAVE_ABUTMENT_READY: continuous arch and paving; old endpoint bracket replaced
+STRUCTURAL_RELIEF_READY: 58 meshes, walls [3, 4, 5, 6]
+GENERATED_KIT_PLACED: {}
+RED_DESCENT_GEOMETRY_READY: 17 routes, 13 rooms, 35 lit landmarks, sloping crossings
+MAP: Cinder Crypt (crypt)
+Hosting on UDP 18998
+DUNGEON_ENCOUNTER_READY: five guards across two vertically separated halls, no replacements
+NET host · build 89bc19d0+dirty [379218563482]
+NET bolts in flight 0
+EXPLORER_MESHES: 5329
+NET host · build 89bc19d0+dirty [379218563482]
+NET bolts in flight 0
+MARKED_WALL_PROBE_OK: /tmp/h024-fresh-marked-probe
+WARNING: 7 RIDs of type "Texture" were leaked.
+   at: finalize (servers/rendering/rendering_device.cpp:8900)
+WARNING: 10 ObjectDB instances were leaked at exit (run with `--verbose` for details).
+   at: cleanup (core/object/object.cpp:2536)
+ERROR: 4 resources still in use at exit (run with --verbose for details).
+   at: clear (core/io/resource.cpp:822)

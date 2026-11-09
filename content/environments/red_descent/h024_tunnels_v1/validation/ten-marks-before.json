@@ -1,0 +1,659 @@
+[
+	{
+		"hits": [
+			{
+				"distance": 4.20110702514648,
+				"path": "/root/MatchWorld/CinderCrypt/Architecture/StonePassage_chapel_approach/Stone-arch_chapel_approach_2",
+				"position": [
+					21.9903602600098,
+					-7.20474815368652,
+					-27.5889854431152
+				]
+			},
+			{
+				"distance": 6.44947290420532,
+				"path": "/root/MatchWorld/CinderCrypt/Architecture/StonePassage_return_gallery/BondedGallery_4",
+				"position": [
+					23.235710144043,
+					-6.56506824493408,
+					-25.8297061920166
+				]
+			},
+			{
+				"distance": 13.1806106567383,
+				"path": "/root/MatchWorld/CinderCrypt/Architecture/StructuralRelief/Foundation_restraint",
+				"position": [
+					26.9640293121338,
+					-4.65000009536743,
+					-20.5627937316895
+				]
+			},
+			{
+				"distance": 13.707836151123,
+				"path": "/root/MatchWorld/CinderCrypt/Architecture/@MeshInstance3D@688",
+				"position": [
+					27.2560539245605,
+					-4.5,
+					-20.1502552032471
+				]
+			},
+			{
+				"distance": 15.3984699249268,
+				"path": "/root/MatchWorld/CinderCrypt/Architecture/Floor_restraint/@Node3D@169/dirt_lod0",
+				"position": [
+					28.1924819946289,
+					-4.0189995765686,
+					-18.8273849487305
+				]
+			},
+			{
+				"distance": 15.4395875930786,
+				"path": "/root/MatchWorld/CinderCrypt/Architecture/Floor_restraint/@Node3D@169/stones_lod0",
+				"position": [
+					28.2152557373047,
+					-4.00730228424072,
+					-18.7952117919922
+				]
+			}
+		],
+		"pixel": [
+			1135.0,
+			253.0
+		],
+		"view": "chapel_approach_1-back"
+	},
+	{
+		"hits": [
+			{
+				"distance": 3.88916611671448,
+				"path": "/root/MatchWorld/CinderCrypt/Architecture/StonePassage_node_22_-10_-30/Mortar_node_22_-10_-30_20",
+				"position": [
+					23.2883396148682,
+					-8.32257556915283,
+					-32.2831535339355
+				]
+			},
+			{
+				"distance": 3.88916921615601,
+				"path": "/root/MatchWorld/CinderCrypt/Architecture/StonePassage_chapel_approach/Stone-stone_chapel_approach_1",
+				"position": [
+					23.2883415222168,
+					-8.32257556915283,
+					-32.2831573486328
+				]
+			},
+			{
+				"distance": 3.90393352508545,
+				"path": "/root/MatchWorld/CinderCrypt/Architecture/StonePassage_node_22_-10_-30/Stone-stone_node_22_-10_-30_1",
+				"position": [
+					23.3021030426025,
+					-8.32228183746338,
+					-32.2884979248047
+				]
+			},
+			{
+				"distance": 4.0395941734314,
+				"path": "/root/MatchWorld/CinderCrypt/Architecture/StonePassage_chapel_approach/Mortar_chapel_approach_3",
+				"position": [
+					23.4285469055176,
+					-8.31958103179932,
+					-32.337574005127
+				]
+			},
+			{
+				"distance": 5.39758014678955,
+				"path": "/root/MatchWorld/CinderCrypt/Architecture/StonePassage_node_22_-10_-30/Stone-stone_node_22_-10_-30_0",
+				"position": [
+					24.6942710876465,
+					-8.29254627227783,
+					-32.8288345336914
+				]
+			},
+			{
+				"distance": 7.38857555389404,
+				"path": "/root/MatchWorld/CinderCrypt/Architecture/StoneRoom_first_stair_hall/Mortar_first_stair_hall_3",
+				"position": [
+					26.5499992370605,
+					-8.25291061401367,
+					-33.5490875244141
+				]
+			},
+			{
+				"distance": 8.3671407699585,
+				"path": "/root/MatchWorld/CinderCrypt/Architecture/StoneRoom_first_stair_hall/Stone-stone_first_stair_hall_3",
+				"position": [
+					27.4620800018311,
+					-8.23342895507812,
+					-33.9030914306641
+				]
+			},
+			{
+				"distance": 18.5069999694824,
+				"path": "/root/MatchWorld/CinderCrypt/Architecture/StoneRoom_first_stair_hall/FittedStairMasonry/Stone-stone_fitted_first_stair_hall_0",
+				"position": [
+					36.9130401611328,
+					-8.03156852722168,
+					-37.5712471008301
+				]
+			},
+			{
+				"distance": 18.5845413208008,
+				"path": "/root/MatchWorld/CinderCrypt/Architecture/StoneRoom_first_stair_hall/FittedStairMasonry/Mortar_fitted_first_stair_hall_0",
+				"position": [
+					36.9853134155273,
+					-8.03002452850342,
+					-37.5993003845215
+				]
+			},
+			{
+				"distance": 24.0873374938965,
+				"path": "/root/MatchWorld/CinderCrypt/Architecture/StoneRoom_first_stair_hall/Stone-stone_first_stair_hall_1",
+				"position": [
+					42.1142501831055,
+					-7.92047691345215,
+					-39.5899696350098
+				]
+			},
+			{
+				"distance": 24.1471500396729,
+				"path": "/root/MatchWorld/CinderCrypt/Architecture/StoneRoom_first_stair_hall/Mortar_first_stair_hall_1",
+				"position": [
+					42.1699981689453,
+					-7.91928625106812,
+					-39.6116065979004
+				]
+			}
+		],
+		"pixel": [
+			167.0,
+			456.0
+		],
+		"view": "chapel_approach_1-back"
+	},
+	{
+		"hits": [
+			{
+				"distance": 14.0302534103394,
+				"path": "/root/MatchWorld/CinderCrypt/Architecture/StoneRoom_first_stair_hall/Stone-stone_first_stair_hall_2",
+				"position": [
+					32.3174781799316,
+					-4.46043014526367,
+					-26.2716407775879
+				]
+			},
+			{
+				"distance": 14.4618425369263,
+				"path": "/root/MatchWorld/CinderCrypt/Architecture/StoneRoom_first_stair_hall/Mortar_first_stair_hall_2",
+				"position": [
+					32.7067337036133,
+					-4.33924388885498,
+					-26.1299991607666
+				]
+			},
+			{
+				"distance": 15.0298299789429,
+				"path": "/root/MatchWorld/CinderCrypt/Architecture/StoneRoom_first_stair_hall/Stone-ashlar_first_stair_hall_2",
+				"position": [
+					33.2190093994141,
+					-4.17975759506226,
+					-25.9435901641846
+				]
+			},
+			{
+				"distance": 20.7869968414307,
+				"path": "/root/MatchWorld/CinderCrypt/Architecture/StonePassage_upper_hall/Stone-stone_upper_hall_6",
+				"position": [
+					38.4114761352539,
+					-2.56319713592529,
+					-24.0541496276855
+				]
+			},
+			{
+				"distance": 20.8758392333984,
+				"path": "/root/MatchWorld/CinderCrypt/Architecture/StonePassage_upper_hall/Mortar_upper_hall_8",
+				"position": [
+					38.4916038513184,
+					-2.5382513999939,
+					-24.0249919891357
+				]
+			}
+		],
+		"pixel": [
+			714.0,
+			293.0
+		],
+		"view": "chapel_approach_1-back"
+	},
+	{
+		"hits": [
+			{
+				"distance": 5.38557863235474,
+				"path": "/root/MatchWorld/CinderCrypt/Architecture/Floor_nave/@Node3D@321/stones_lod0",
+				"position": [
+					7.42644262313843,
+					-17.9901332855225,
+					28.8024749755859
+				]
+			},
+			{
+				"distance": 5.48334550857544,
+				"path": "/root/MatchWorld/CinderCrypt/Architecture/Floor_nave/@Node3D@321/dirt_lod0",
+				"position": [
+					7.43418407440186,
+					-18.0190010070801,
+					28.8955612182617
+				]
+			},
+			{
+				"distance": 7.11243009567261,
+				"path": "/root/MatchWorld/CinderCrypt/Architecture/@MeshInstance3D@714",
+				"position": [
+					7.56317853927612,
+					-18.5,
+					30.446662902832
+				]
+			}
+		],
+		"pixel": [
+			668.0,
+			662.0
+		],
+		"view": "nave_0-forward"
+	},
+	{
+		"hits": [
+			{
+				"distance": 4.51823568344116,
+				"path": "/root/MatchWorld/CinderCrypt/Architecture/StonePassage_node_-14_-19_24/Mortar_node_-14_-19_24_20",
+				"position": [
+					-16.289306640625,
+					-15.4000854492188,
+					24.1882781982422
+				]
+			},
+			{
+				"distance": 4.58960723876953,
+				"path": "/root/MatchWorld/CinderCrypt/Architecture/StonePassage_node_-14_-19_24/Stone-arch_node_-14_-19_24_5",
+				"position": [
+					-16.22873878479,
+					-15.3624486923218,
+					24.1912536621094
+				]
+			},
+			{
+				"distance": 19.443811416626,
+				"path": "/root/MatchWorld/CinderCrypt/Architecture/dark_-1_-2_1_lod0",
+				"position": [
+					-3.62297534942627,
+					-7.52925586700439,
+					24.8102397918701
+				]
+			},
+			{
+				"distance": 20.3903007507324,
+				"path": "/root/MatchWorld/CinderCrypt/Architecture/wall_-1_-2_1_lod0",
+				"position": [
+					-2.81975078582764,
+					-7.0301342010498,
+					24.8496799468994
+				]
+			}
+		],
+		"pixel": [
+			749.0,
+			134.0
+		],
+		"view": "nave_6-back"
+	},
+	{
+		"hits": [
+			{
+				"distance": 3.66496515274048,
+				"path": "/root/MatchWorld/CinderCrypt/Architecture/StonePassage_node_-14_-19_24/Stone-flag_node_-14_-19_24_21",
+				"position": [
+					-16.6849384307861,
+					-18.9952430725098,
+					24.3703575134277
+				]
+			},
+			{
+				"distance": 4.42907333374023,
+				"path": "/root/MatchWorld/CinderCrypt/Architecture/@MeshInstance3D@781",
+				"position": [
+					-15.9680061340332,
+					-19.2480411529541,
+					24.4475746154785
+				]
+			},
+			{
+				"distance": 5.00197410583496,
+				"path": "/root/MatchWorld/CinderCrypt/Architecture/@MeshInstance3D@783",
+				"position": [
+					-15.4304761886597,
+					-19.4375801086426,
+					24.5054683685303
+				]
+			},
+			{
+				"distance": 19.9406452178955,
+				"path": "/root/MatchWorld/CinderCrypt/Architecture/dark_-1_-2_1_lod0",
+				"position": [
+					-1.41411101818085,
+					-24.3798961639404,
+					26.0150737762451
+				]
+			},
+			{
+				"distance": 20.9113216400146,
+				"path": "/root/MatchWorld/CinderCrypt/Architecture/wall_-1_-2_1_lod0",
+				"position": [
+					-0.503361940383911,
+					-24.7010345458984,
+					26.1131649017334
+				]
+			},
+			{
+				"distance": 21.6891651153564,
+				"path": "/root/MatchWorld/CinderCrypt/Architecture/dark_0_-2_1_lod0",
+				"position": [
+					0.226454734802246,
+					-24.9583797454834,
+					26.1917686462402
+				]
+			},
+			{
+				"distance": 21.6891651153564,
+				"path": "/root/MatchWorld/CinderCrypt/Architecture/wall_0_-2_1_lod0",
+				"position": [
+					0.226454734802246,
+					-24.9583797454834,
+					26.1917686462402
+				]
+			},
+			{
+				"distance": 28.0998935699463,
+				"path": "/root/MatchWorld/CinderCrypt/Architecture/wall_0_-3_1_lod0",
+				"position": [
+					6.24139022827148,
+					-27.0793075561523,
+					26.8395957946777
+				]
+			},
+			{
+				"distance": 29.6495208740234,
+				"path": "/root/MatchWorld/CinderCrypt/Architecture/dark_0_-3_1_lod0",
+				"position": [
+					7.69534397125244,
+					-27.5919857025146,
+					26.9961891174316
+				]
+			}
+		],
+		"pixel": [
+			789.0,
+			729.0
+		],
+		"view": "nave_6-back"
+	},
+	{
+		"hits": [
+			{
+				"distance": 6.23669481277466,
+				"path": "/root/MatchWorld/CinderCrypt/Architecture/StonePassage_node_-41_-23_14/Mortar_node_-41_-23_14_20",
+				"position": [
+					-40.7260704040527,
+					-17.9154567718506,
+					14.1352577209473
+				]
+			},
+			{
+				"distance": 6.24275159835815,
+				"path": "/root/MatchWorld/CinderCrypt/Architecture/StonePassage_node_-41_-23_14/Stone-arch_node_-41_-23_14_5",
+				"position": [
+					-40.7230377197266,
+					-17.912073135376,
+					14.1392621994019
+				]
+			},
+			{
+				"distance": 6.24747610092163,
+				"path": "/root/MatchWorld/CinderCrypt/Architecture/StonePassage_node_-41_-23_14/Stone-arch_node_-41_-23_14_4",
+				"position": [
+					-40.7206726074219,
+					-17.9094333648682,
+					14.1423864364624
+				]
+			},
+			{
+				"distance": 6.48306512832642,
+				"path": "/root/MatchWorld/CinderCrypt/Architecture/StonePassage_node_-41_-23_14/Stone-arch_node_-41_-23_14_6",
+				"position": [
+					-40.6027145385742,
+					-17.7778053283691,
+					14.298150062561
+				]
+			}
+		],
+		"pixel": [
+			703.0,
+			55.0
+		],
+		"view": "cave_bypass_0-back"
+	},
+	{
+		"hits": [
+			{
+				"distance": 7.3885178565979,
+				"path": "/root/MatchWorld/CinderCrypt/Architecture/StonePassage_root_tunnel/Stone-arch_root_tunnel_7",
+				"position": [
+					-38.2999992370605,
+					-19.8499717712402,
+					14.6376695632935
+				]
+			},
+			{
+				"distance": 7.74565935134888,
+				"path": "/root/MatchWorld/CinderCrypt/Architecture/StonePassage_root_tunnel/Stone-rock_root_tunnel_10",
+				"position": [
+					-38.0317878723145,
+					-19.7750473022461,
+					14.8612747192383
+				]
+			},
+			{
+				"distance": 7.78758907318115,
+				"path": "/root/MatchWorld/CinderCrypt/Architecture/StonePassage_root_tunnel/Mortar_root_tunnel_8",
+				"position": [
+					-38.0002975463867,
+					-19.7662506103516,
+					14.8875255584717
+				]
+			},
+			{
+				"distance": 7.78762674331665,
+				"path": "/root/MatchWorld/CinderCrypt/Architecture/StonePassage_node_-41_-23_14/Mortar_node_-41_-23_14_20",
+				"position": [
+					-38.0002708435059,
+					-19.766242980957,
+					14.8875503540039
+				]
+			},
+			{
+				"distance": 7.85245609283447,
+				"path": "/root/MatchWorld/CinderCrypt/Architecture/StonePassage_root_tunnel/Mortar_root_tunnel_13",
+				"position": [
+					-37.9515838623047,
+					-19.7526416778564,
+					14.9281396865845
+				]
+			},
+			{
+				"distance": 16.0331058502197,
+				"path": "/root/MatchWorld/CinderCrypt/Architecture/StoneRoom_second_stair_hall/Mortar_second_stair_hall_0",
+				"position": [
+					-31.8079509735107,
+					-18.036434173584,
+					20.0499992370605
+				]
+			},
+			{
+				"distance": 17.5143146514893,
+				"path": "/root/MatchWorld/CinderCrypt/Architecture/StoneRoom_second_stair_hall/Stone-stone_second_stair_hall_0",
+				"position": [
+					-30.6955699920654,
+					-17.7256927490234,
+					20.9773750305176
+				]
+			},
+			{
+				"distance": 24.23046875,
+				"path": "/root/MatchWorld/CinderCrypt/Architecture/StoneRoom_second_stair_hall/Stone-arch_second_stair_hall_1",
+				"position": [
+					-25.6517677307129,
+					-16.3167190551758,
+					25.1823234558105
+				]
+			},
+			{
+				"distance": 24.2980785369873,
+				"path": "/root/MatchWorld/CinderCrypt/Architecture/StoneRoom_second_stair_hall/Mortar_second_stair_hall_1",
+				"position": [
+					-25.6009941101074,
+					-16.3025360107422,
+					25.2246532440186
+				]
+			},
+			{
+				"distance": 25.0317611694336,
+				"path": "/root/MatchWorld/CinderCrypt/Architecture/StonePassage_nave/Stone-arch_nave_17",
+				"position": [
+					-25.0500011444092,
+					-16.1486167907715,
+					25.6840076446533
+				]
+			},
+			{
+				"distance": 25.7321510314941,
+				"path": "/root/MatchWorld/CinderCrypt/Architecture/StonePassage_nave/Mortar_nave_18",
+				"position": [
+					-24.5240116119385,
+					-16.0016822814941,
+					26.1225166320801
+				]
+			}
+		],
+		"pixel": [
+			559.0,
+			329.0
+		],
+		"view": "cave_bypass_0-back"
+	},
+	{
+		"hits": [
+			{
+				"distance": 3.7867648601532,
+				"path": "/root/MatchWorld/CinderCrypt/Architecture/StonePassage_cave_bypass/Stone-flag_cave_bypass_4",
+				"position": [
+					-40.6023139953613,
+					-22.9869689941406,
+					11.143931388855
+				]
+			},
+			{
+				"distance": 3.80434679985046,
+				"path": "/root/MatchWorld/CinderCrypt/Architecture/StonePassage_root_tunnel/Stone-flag_root_tunnel_14",
+				"position": [
+					-40.5872421264648,
+					-22.9943389892578,
+					11.1491889953613
+				]
+			},
+			{
+				"distance": 4.10419273376465,
+				"path": "/root/MatchWorld/CinderCrypt/Architecture/@MeshInstance3D@796",
+				"position": [
+					-40.3301811218262,
+					-23.1199989318848,
+					11.2388372421265
+				]
+			},
+			{
+				"distance": 23.8822383880615,
+				"path": "/root/MatchWorld/CinderCrypt/Architecture/dark_-2_-2_1_lod0",
+				"position": [
+					-23.3742771148682,
+					-31.4086494445801,
+					17.1521034240723
+				]
+			},
+			{
+				"distance": 24.4350814819336,
+				"path": "/root/MatchWorld/CinderCrypt/Architecture/wall_-2_-2_1_lod0",
+				"position": [
+					-22.9003200531006,
+					-31.6403350830078,
+					17.3173942565918
+				]
+			}
+		],
+		"pixel": [
+			276.0,
+			821.0
+		],
+		"view": "cave_bypass_0-back"
+	},
+	{
+		"hits": [
+			{
+				"distance": 6.08535861968994,
+				"path": "/root/MatchWorld/CinderCrypt/Architecture/StonePassage_node_-43_-23_-6/Stone-arch_node_-43_-23_-6_4",
+				"position": [
+					-44.820240020752,
+					-18.451847076416,
+					-5.9506402015686
+				]
+			},
+			{
+				"distance": 6.08538198471069,
+				"path": "/root/MatchWorld/CinderCrypt/Architecture/StonePassage_node_-43_-23_-6/Mortar_node_-43_-23_-6_20",
+				"position": [
+					-44.8202590942383,
+					-18.4518356323242,
+					-5.95064878463745
+				]
+			},
+			{
+				"distance": 6.11083316802979,
+				"path": "/root/MatchWorld/CinderCrypt/Architecture/StonePassage_node_-43_-23_-6/Stone-arch_node_-43_-23_-6_5",
+				"position": [
+					-44.8402862548828,
+					-18.4395046234131,
+					-5.96037483215332
+				]
+			},
+			{
+				"distance": 6.89171171188354,
+				"path": "/root/MatchWorld/CinderCrypt/Architecture/StonePassage_cave_bypass/Mortar_cave_bypass_8",
+				"position": [
+					-45.4547843933105,
+					-18.0611953735352,
+					-6.25877952575684
+				]
+			},
+			{
+				"distance": 6.90467929840088,
+				"path": "/root/MatchWorld/CinderCrypt/Architecture/StonePassage_node_-43_-23_-6/Stone-stone_node_-43_-23_-6_3",
+				"position": [
+					-45.4649887084961,
+					-18.0549125671387,
+					-6.26373481750488
+				]
+			}
+		],
+		"pixel": [
+			582.0,
+			122.0
+		],
+		"view": "cave_bypass_2-back"
+	}
+]

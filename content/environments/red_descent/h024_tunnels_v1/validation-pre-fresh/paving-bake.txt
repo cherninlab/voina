@@ -1,0 +1,960 @@
+SDF.R: Loader Marker V16.2.2 (__init__.py loaded from: /Users/theochernin/Library/Application Support/Blender/5.2/scripts/addons/rust_gpu_sdf_addon/__init__.py)
+SDF.R: --- Initializing GPU Engine (V16.2.2) ---
+SDF.R: No shader cache. This initial compilation may take a few minutes...
+SDF.R: Addon registered. Warming-up will start in 0.5s...
+20:31:51 | INFO: Data are loaded, start creating Blender stuff
+20:31:51 | INFO: Blender create Mesh node Mortar_bell_loop_8_core.005
+20:31:51 | INFO: Blender create Mesh node Mortar_bell_loop_13_core.005
+20:31:51 | INFO: Blender create Mesh node Mortar_bell_loop_8_core.004
+20:31:51 | INFO: Blender create Mesh node Mortar_bell_loop_13_core.004
+20:31:51 | INFO: Blender create Mesh node vault_template_15_0_5.018
+20:31:51 | INFO: Blender create Mesh node vault_template_14_1_0.025
+20:31:51 | INFO: Blender create Mesh node flag_lib_24.214
+20:31:51 | INFO: Blender create Mesh node flag_lib_30.211
+20:31:51 | INFO: Blender create Mesh node squared_rubble_lib_52.135
+20:31:51 | INFO: Blender create Mesh node squared_rubble_lib_122.227
+20:31:51 | INFO: Blender create Mesh node squared_rubble_lib_153.420
+20:31:51 | INFO: Blender create Mesh node squared_rubble_lib_143.298
+20:31:51 | INFO: Blender create Mesh node tunnel_spall.354
+20:31:51 | INFO: Blender create Mesh node tunnel_spall.360
+20:31:51 | INFO: glTF import finished in 0.29s
+INFO Draco is available, use library at /Applications/Blender.app/Contents/Resources/5.2/scripts/addons_core/io_scene_gltf2/libbf_intern_draco_bridge.dylib
+INFO MeshOptimizer is available, use library at /Applications/Blender.app/Contents/Resources/5.2/scripts/addons_core/io_scene_gltf2/libbf_intern_meshopt_bridge.dylib
+20:31:51 | INFO: Starting glTF 2.0 export
+20:31:51 | INFO: Extracting primitive: Mortar_bell_loop_8_core.005
+20:31:51 | INFO: Primitives created: 1
+20:31:51 | INFO: Extracting primitive: Mortar_bell_loop_13_core.005
+20:31:51 | INFO: Primitives created: 1
+20:31:51 | INFO: Extracting primitive: Mortar_bell_loop_8_core.004
+20:31:51 | INFO: Primitives created: 1
+20:31:51 | INFO: Extracting primitive: Mortar_bell_loop_13_core.004
+20:31:51 | INFO: Primitives created: 1
+20:31:51 | INFO: Extracting primitive: vault_template_15_0_5.018
+20:31:52 | INFO: Primitives created: 1
+20:31:52 | INFO: Extracting primitive: vault_template_14_1_0.025
+20:31:52 | INFO: Primitives created: 1
+20:31:52 | INFO: Extracting primitive: flag_lib_15.093
+20:31:52 | INFO: Primitives created: 1
+20:31:52 | INFO: Extracting primitive: flag_lib_2.113
+20:31:52 | INFO: Primitives created: 1
+20:31:52 | INFO: Extracting primitive: squared_rubble_lib_52.135
+20:31:52 | INFO: Primitives created: 1
+20:31:52 | INFO: Extracting primitive: squared_rubble_lib_122.227
+20:31:52 | INFO: Primitives created: 1
+20:31:52 | INFO: Extracting primitive: squared_rubble_lib_153.420
+20:31:52 | INFO: Primitives created: 1
+20:31:52 | INFO: Extracting primitive: squared_rubble_lib_143.298
+20:31:52 | INFO: Primitives created: 1
+20:31:52 | INFO: Extracting primitive: tunnel_spall.354
+20:31:52 | INFO: Primitives created: 1
+20:31:52 | INFO: Extracting primitive: tunnel_spall.360
+20:31:52 | INFO: Primitives created: 1
+20:31:52 | INFO: Finished glTF 2.0 export in 0.18702220916748047 s
+
+PASSAGE_PAVING_REBUILT bell_loop 2
+20:31:55 | INFO: Data are loaded, start creating Blender stuff
+20:31:55 | INFO: Blender create Mesh node Mortar_cave_bypass_3_core.015
+20:31:55 | INFO: Blender create Mesh node Mortar_cave_bypass_8_core.013
+20:31:55 | INFO: Blender create Mesh node Mortar_cave_bypass_13_core.015
+20:31:55 | INFO: Blender create Mesh node Mortar_cave_bypass_3_core.014
+20:31:55 | INFO: Blender create Mesh node Mortar_cave_bypass_8_core.012
+20:31:55 | INFO: Blender create Mesh node Mortar_cave_bypass_13_core.014
+20:31:55 | INFO: Blender create Mesh node flag_lib_13.005
+20:31:55 | INFO: Blender create Mesh node flag_lib_6.007
+20:31:55 | INFO: Blender create Mesh node flag_lib_12.007
+20:31:55 | INFO: Blender create Mesh node tunnel_rock_refitted_0.012
+20:31:55 | INFO: Blender create Mesh node tunnel_rock_refitted_1.010
+20:31:55 | INFO: Blender create Mesh node tunnel_rock_refitted_2.012
+20:31:55 | INFO: Blender create Mesh node tunnel_wood_repaired_0.010
+20:31:55 | INFO: Blender create Mesh node tunnel_wood_repaired_1.008
+20:31:55 | INFO: glTF import finished in 0.05s
+20:31:55 | INFO: Starting glTF 2.0 export
+20:31:55 | INFO: Extracting primitive: Mortar_cave_bypass_3_core.015
+20:31:55 | INFO: Primitives created: 1
+20:31:55 | INFO: Extracting primitive: Mortar_cave_bypass_8_core.013
+20:31:55 | INFO: Primitives created: 1
+20:31:55 | INFO: Extracting primitive: Mortar_cave_bypass_13_core.015
+20:31:55 | INFO: Primitives created: 1
+20:31:55 | INFO: Extracting primitive: Mortar_cave_bypass_3_core.014
+20:31:55 | INFO: Primitives created: 1
+20:31:55 | INFO: Extracting primitive: Mortar_cave_bypass_8_core.012
+20:31:55 | INFO: Primitives created: 1
+20:31:55 | INFO: Extracting primitive: Mortar_cave_bypass_13_core.014
+20:31:55 | INFO: Primitives created: 1
+20:31:56 | INFO: Extracting primitive: flag_lib_7.294
+20:31:56 | INFO: Primitives created: 1
+20:31:56 | INFO: Extracting primitive: flag_lib_8.319
+20:31:56 | INFO: Primitives created: 1
+20:31:56 | INFO: Extracting primitive: flag_lib_7.315
+20:31:56 | INFO: Primitives created: 1
+20:31:56 | INFO: Extracting primitive: tunnel_rock_refitted_0.012
+20:31:56 | INFO: Primitives created: 1
+20:31:56 | INFO: Extracting primitive: tunnel_rock_refitted_1.010
+20:31:56 | INFO: Primitives created: 1
+20:31:56 | INFO: Extracting primitive: tunnel_rock_refitted_2.012
+20:31:56 | INFO: Primitives created: 1
+20:31:56 | INFO: Extracting primitive: tunnel_wood_repaired_0.010
+20:31:56 | INFO: Primitives created: 1
+20:31:56 | INFO: Extracting primitive: tunnel_wood_repaired_1.008
+20:31:56 | INFO: Primitives created: 1
+20:31:56 | INFO: Finished glTF 2.0 export in 0.024737119674682617 s
+
+PASSAGE_PAVING_REBUILT cave_bypass 3
+20:31:59 | INFO: Data are loaded, start creating Blender stuff
+20:31:59 | INFO: Blender create Mesh node Mortar_chapel_approach_3_core.010
+20:31:59 | INFO: Blender create Mesh node Mortar_chapel_approach_8_core.010
+20:31:59 | INFO: Blender create Mesh node Mortar_chapel_approach_3_core.009
+20:31:59 | INFO: Blender create Mesh node Mortar_chapel_approach_8_core.009
+20:31:59 | INFO: Blender create Mesh node vault_template_0_1_18.006
+20:31:59 | INFO: Blender create Mesh node vault_template_0_1_3.006
+20:31:59 | INFO: Blender create Mesh node flag_lib_8.002
+20:31:59 | INFO: Blender create Mesh node flag_lib_0.004
+20:31:59 | INFO: Blender create Mesh node squared_rubble_lib_16.005
+20:31:59 | INFO: Blender create Mesh node squared_rubble_lib_6.005
+20:31:59 | INFO: Blender create Mesh node squared_rubble_lib_23.006
+20:31:59 | INFO: Blender create Mesh node squared_rubble_lib_18.005
+20:31:59 | INFO: glTF import finished in 0.10s
+20:31:59 | INFO: Starting glTF 2.0 export
+20:31:59 | INFO: Extracting primitive: Mortar_chapel_approach_3_core.010
+20:31:59 | INFO: Primitives created: 1
+20:31:59 | INFO: Extracting primitive: Mortar_chapel_approach_8_core.010
+20:31:59 | INFO: Primitives created: 1
+20:31:59 | INFO: Extracting primitive: Mortar_chapel_approach_3_core.009
+20:31:59 | INFO: Primitives created: 1
+20:31:59 | INFO: Extracting primitive: Mortar_chapel_approach_8_core.009
+20:31:59 | INFO: Primitives created: 1
+20:31:59 | INFO: Extracting primitive: vault_template_0_1_18.006
+20:31:59 | INFO: Primitives created: 1
+20:31:59 | INFO: Extracting primitive: vault_template_0_1_3.006
+20:31:59 | INFO: Primitives created: 1
+20:31:59 | INFO: Extracting primitive: flag_lib_15.076
+20:31:59 | INFO: Primitives created: 1
+20:31:59 | INFO: Extracting primitive: flag_lib_11.074
+20:31:59 | INFO: Primitives created: 1
+20:31:59 | INFO: Extracting primitive: squared_rubble_lib_16.005
+20:31:59 | INFO: Primitives created: 1
+20:31:59 | INFO: Extracting primitive: squared_rubble_lib_6.005
+20:31:59 | INFO: Primitives created: 1
+20:31:59 | INFO: Extracting primitive: squared_rubble_lib_23.006
+20:31:59 | INFO: Primitives created: 1
+20:31:59 | INFO: Extracting primitive: squared_rubble_lib_18.005
+20:31:59 | INFO: Primitives created: 1
+20:31:59 | INFO: Finished glTF 2.0 export in 0.06941795349121094 s
+
+PASSAGE_PAVING_REBUILT chapel_approach 2
+20:32:02 | INFO: Data are loaded, start creating Blender stuff
+20:32:02 | INFO: Blender create Mesh node Mortar_entry_3_core.005
+20:32:02 | INFO: Blender create Mesh node Mortar_entry_3_core.004
+20:32:02 | INFO: Blender create Mesh node vault_template_1_2_0.010
+20:32:02 | INFO: Blender create Mesh node flag_lib_3.162
+20:32:02 | INFO: Blender create Mesh node squared_rubble_lib_104.147
+20:32:02 | INFO: Blender create Mesh node squared_rubble_lib_96.115
+20:32:02 | INFO: glTF import finished in 0.05s
+20:32:02 | INFO: Starting glTF 2.0 export
+20:32:02 | INFO: Extracting primitive: Mortar_entry_3_core.005
+20:32:02 | INFO: Primitives created: 1
+20:32:02 | INFO: Extracting primitive: Mortar_entry_3_core.004
+20:32:02 | INFO: Primitives created: 1
+20:32:02 | INFO: Extracting primitive: vault_template_1_2_0.010
+20:32:02 | INFO: Primitives created: 1
+20:32:02 | INFO: Extracting primitive: flag_lib_7.029
+20:32:02 | INFO: Primitives created: 1
+20:32:02 | INFO: Extracting primitive: squared_rubble_lib_104.147
+20:32:02 | INFO: Primitives created: 1
+20:32:02 | INFO: Extracting primitive: squared_rubble_lib_96.115
+20:32:02 | INFO: Primitives created: 1
+20:32:02 | INFO: Finished glTF 2.0 export in 0.028720855712890625 s
+
+PASSAGE_PAVING_REBUILT entry 1
+20:32:05 | INFO: Data are loaded, start creating Blender stuff
+20:32:05 | INFO: Blender create Mesh node Mortar_nave_3_core.005
+20:32:05 | INFO: Blender create Mesh node Mortar_nave_13_core.009
+20:32:05 | INFO: Blender create Mesh node Mortar_nave_18_core.009
+20:32:05 | INFO: Blender create Mesh node Mortar_nave_3_core.004
+20:32:05 | INFO: Blender create Mesh node Mortar_nave_13_core.008
+20:32:05 | INFO: Blender create Mesh node Mortar_nave_18_core.008
+20:32:05 | INFO: Blender create Mesh node vault_template_3_1_0.082
+20:32:05 | INFO: Blender create Mesh node vault_template_3_0_0.004
+20:32:05 | INFO: Blender create Mesh node vault_template_2_2_0.004
+20:32:05 | INFO: Blender create Mesh node flag_lib_13.320
+20:32:05 | INFO: Blender create Mesh node flag_lib_12.002
+20:32:05 | INFO: Blender create Mesh node flag_lib_7.004
+20:32:05 | INFO: Blender create Mesh node squared_rubble_lib_9.1424
+20:32:05 | INFO: Blender create Mesh node squared_rubble_lib_17.1663
+20:32:05 | INFO: Blender create Mesh node squared_rubble_lib_22.004
+20:32:05 | INFO: Blender create Mesh node squared_rubble_lib_11.003
+20:32:05 | INFO: Blender create Mesh node squared_rubble_lib_23.004
+20:32:05 | INFO: Blender create Mesh node squared_rubble_lib_16.003
+20:32:05 | INFO: Blender create Mesh node tunnel_spall.342
+20:32:05 | INFO: Blender create Mesh node tunnel_spall.002
+20:32:05 | INFO: glTF import finished in 0.27s
+20:32:06 | INFO: Starting glTF 2.0 export
+20:32:06 | INFO: Extracting primitive: Mortar_nave_3_core.005
+20:32:06 | INFO: Primitives created: 1
+20:32:06 | INFO: Extracting primitive: Mortar_nave_13_core.009
+20:32:06 | INFO: Primitives created: 1
+20:32:06 | INFO: Extracting primitive: Mortar_nave_18_core.009
+20:32:06 | INFO: Primitives created: 1
+20:32:06 | INFO: Extracting primitive: Mortar_nave_3_core.004
+20:32:06 | INFO: Primitives created: 1
+20:32:06 | INFO: Extracting primitive: Mortar_nave_13_core.008
+20:32:06 | INFO: Primitives created: 1
+20:32:06 | INFO: Extracting primitive: Mortar_nave_18_core.008
+20:32:06 | INFO: Primitives created: 1
+20:32:06 | INFO: Extracting primitive: vault_template_3_1_0.082
+20:32:06 | INFO: Primitives created: 1
+20:32:06 | INFO: Extracting primitive: vault_template_3_0_0.004
+20:32:06 | INFO: Primitives created: 1
+20:32:06 | INFO: Extracting primitive: vault_template_2_2_0.004
+20:32:06 | INFO: Primitives created: 1
+20:32:06 | INFO: Extracting primitive: flag_lib_11.411
+20:32:06 | INFO: Primitives created: 1
+20:32:06 | INFO: Extracting primitive: flag_lib_2.451
+20:32:06 | INFO: Primitives created: 1
+20:32:06 | INFO: Extracting primitive: flag_lib_7.352
+20:32:06 | INFO: Primitives created: 1
+20:32:06 | INFO: Extracting primitive: squared_rubble_lib_9.1424
+20:32:06 | INFO: Primitives created: 1
+20:32:06 | INFO: Extracting primitive: squared_rubble_lib_17.1663
+20:32:06 | INFO: Primitives created: 1
+20:32:06 | INFO: Extracting primitive: squared_rubble_lib_22.004
+20:32:06 | INFO: Primitives created: 1
+20:32:06 | INFO: Extracting primitive: squared_rubble_lib_11.003
+20:32:06 | INFO: Primitives created: 1
+20:32:06 | INFO: Extracting primitive: squared_rubble_lib_23.004
+20:32:06 | INFO: Primitives created: 1
+20:32:06 | INFO: Extracting primitive: squared_rubble_lib_16.003
+20:32:06 | INFO: Primitives created: 1
+20:32:06 | INFO: Extracting primitive: tunnel_spall.342
+20:32:06 | INFO: Primitives created: 1
+20:32:06 | INFO: Extracting primitive: tunnel_spall.002
+20:32:06 | INFO: Primitives created: 1
+20:32:06 | INFO: Finished glTF 2.0 export in 0.18648910522460938 s
+
+PASSAGE_PAVING_REBUILT nave 3
+20:32:09 | INFO: Data are loaded, start creating Blender stuff
+20:32:09 | INFO: Blender create Mesh node node_-14_-19_24_mass.011
+20:32:09 | INFO: Blender create Mesh node node_-14_-19_24_mass.010
+20:32:09 | INFO: Blender create Mesh node vault_template_1_2_0.033
+20:32:10 | INFO: Blender create Mesh node vault_template_0_1_10.026
+20:32:10 | INFO: Blender create Mesh node flag_lib_6.026
+20:32:10 | INFO: Blender create Mesh node squared_rubble_lib_16.342
+20:32:10 | INFO: Blender create Mesh node squared_rubble_lib_19.319
+20:32:10 | INFO: Blender create Mesh node squared_rubble_lib_18.381
+20:32:10 | INFO: Blender create Mesh node squared_rubble_lib_21.341
+20:32:10 | INFO: glTF import finished in 0.12s
+20:32:10 | INFO: Starting glTF 2.0 export
+20:32:10 | INFO: Extracting primitive: node_-14_-19_24_mass.011
+20:32:10 | INFO: Primitives created: 1
+20:32:10 | INFO: Extracting primitive: node_-14_-19_24_mass.010
+20:32:10 | INFO: Primitives created: 1
+20:32:10 | INFO: Extracting primitive: vault_template_1_2_0.033
+20:32:10 | INFO: Primitives created: 1
+20:32:10 | INFO: Extracting primitive: vault_template_0_1_10.026
+20:32:10 | INFO: Primitives created: 1
+20:32:10 | INFO: Extracting primitive: flag_lib_2.063
+20:32:10 | INFO: Primitives created: 1
+20:32:10 | INFO: Extracting primitive: squared_rubble_lib_16.342
+20:32:10 | INFO: Primitives created: 1
+20:32:10 | INFO: Extracting primitive: squared_rubble_lib_19.319
+20:32:10 | INFO: Primitives created: 1
+20:32:10 | INFO: Extracting primitive: squared_rubble_lib_18.381
+20:32:10 | INFO: Primitives created: 1
+20:32:10 | INFO: Extracting primitive: squared_rubble_lib_21.341
+20:32:10 | INFO: Primitives created: 1
+20:32:10 | INFO: Finished glTF 2.0 export in 0.0643460750579834 s
+
+PASSAGE_PAVING_REBUILT node_-14_-19_24 1
+20:32:13 | INFO: Data are loaded, start creating Blender stuff
+20:32:13 | INFO: Blender create Mesh node node_-18_-10_-30_wall1_core.002
+20:32:13 | INFO: Blender create Mesh node node_-18_-10_-30_wall2_core.002
+20:32:13 | INFO: Blender create Mesh node node_-18_-10_-30_mass_core.005
+20:32:13 | INFO: Blender create Mesh node node_-18_-10_-30_wall1_core.001
+20:32:13 | INFO: Blender create Mesh node node_-18_-10_-30_wall2_core.001
+20:32:13 | INFO: Blender create Mesh node node_-18_-10_-30_mass_core.004
+20:32:13 | INFO: Blender create Mesh node vault_template_12_0_0.042
+20:32:13 | INFO: Blender create Mesh node vault_template_12_0_0.043
+20:32:13 | INFO: Blender create Mesh node flag_lib_27.227
+20:32:13 | INFO: Blender create Mesh node squared_rubble_lib_151.294
+20:32:13 | INFO: Blender create Mesh node squared_rubble_lib_58.119
+20:32:13 | INFO: glTF import finished in 0.05s
+20:32:13 | INFO: Starting glTF 2.0 export
+20:32:13 | INFO: Extracting primitive: node_-18_-10_-30_wall1_core.002
+20:32:13 | INFO: Primitives created: 1
+20:32:13 | INFO: Extracting primitive: node_-18_-10_-30_wall2_core.002
+20:32:13 | INFO: Primitives created: 1
+20:32:13 | INFO: Extracting primitive: node_-18_-10_-30_mass_core.005
+20:32:13 | INFO: Primitives created: 1
+20:32:13 | INFO: Extracting primitive: node_-18_-10_-30_wall1_core.001
+20:32:13 | INFO: Primitives created: 1
+20:32:13 | INFO: Extracting primitive: node_-18_-10_-30_wall2_core.001
+20:32:13 | INFO: Primitives created: 1
+20:32:13 | INFO: Extracting primitive: node_-18_-10_-30_mass_core.004
+20:32:13 | INFO: Primitives created: 1
+20:32:13 | INFO: Extracting primitive: vault_template_12_0_0.042
+20:32:13 | INFO: Primitives created: 1
+20:32:13 | INFO: Extracting primitive: vault_template_12_0_0.043
+20:32:13 | INFO: Primitives created: 1
+20:32:13 | INFO: Extracting primitive: flag_lib_11.015
+20:32:13 | INFO: Primitives created: 1
+20:32:13 | INFO: Extracting primitive: squared_rubble_lib_151.294
+20:32:13 | INFO: Primitives created: 1
+20:32:13 | INFO: Extracting primitive: squared_rubble_lib_58.119
+20:32:13 | INFO: Primitives created: 1
+20:32:13 | INFO: Finished glTF 2.0 export in 0.032788991928100586 s
+
+PASSAGE_PAVING_REBUILT node_-18_-10_-30 1
+20:32:16 | INFO: Data are loaded, start creating Blender stuff
+20:32:16 | INFO: Blender create Mesh node node_-31_-23_6_mass.011
+20:32:16 | INFO: Blender create Mesh node node_-31_-23_6_mass.010
+20:32:16 | INFO: Blender create Mesh node flag_lib_14.019
+20:32:16 | INFO: Blender create Mesh node tunnel_rock_node_-31_-23_6.014
+20:32:16 | INFO: glTF import finished in 0.02s
+20:32:16 | INFO: Starting glTF 2.0 export
+20:32:16 | INFO: Extracting primitive: node_-31_-23_6_mass.011
+20:32:16 | INFO: Primitives created: 1
+20:32:16 | INFO: Extracting primitive: node_-31_-23_6_mass.010
+20:32:16 | INFO: Primitives created: 1
+20:32:16 | INFO: Extracting primitive: flag_lib_2.028
+20:32:16 | INFO: Primitives created: 1
+20:32:16 | INFO: Extracting primitive: tunnel_rock_node_-31_-23_6.014
+20:32:16 | INFO: Primitives created: 1
+20:32:16 | INFO: Finished glTF 2.0 export in 0.008426904678344727 s
+
+PASSAGE_PAVING_REBUILT node_-31_-23_6 1
+20:32:19 | INFO: Data are loaded, start creating Blender stuff
+20:32:19 | INFO: Blender create Mesh node node_-38_-23_-2_mass.015
+20:32:19 | INFO: Blender create Mesh node node_-38_-23_-2_mass.014
+20:32:19 | INFO: Blender create Mesh node flag_lib_2.017
+20:32:19 | INFO: Blender create Mesh node tunnel_rock_node_-38_-23_-2.020
+20:32:19 | INFO: glTF import finished in 0.02s
+20:32:19 | INFO: Starting glTF 2.0 export
+20:32:19 | INFO: Extracting primitive: node_-38_-23_-2_mass.015
+20:32:19 | INFO: Primitives created: 1
+20:32:19 | INFO: Extracting primitive: node_-38_-23_-2_mass.014
+20:32:19 | INFO: Primitives created: 1
+20:32:19 | INFO: Extracting primitive: flag_lib_7.035
+20:32:19 | INFO: Primitives created: 1
+20:32:19 | INFO: Extracting primitive: tunnel_rock_node_-38_-23_-2.020
+20:32:19 | INFO: Primitives created: 1
+20:32:19 | INFO: Finished glTF 2.0 export in 0.010151863098144531 s
+
+PASSAGE_PAVING_REBUILT node_-38_-23_-2 1
+20:32:22 | INFO: Data are loaded, start creating Blender stuff
+20:32:22 | INFO: Blender create Mesh node node_-41_-23_14_mass.015
+20:32:22 | INFO: Blender create Mesh node node_-41_-23_14_mass.014
+20:32:22 | INFO: Blender create Mesh node flag_lib_8.010
+20:32:22 | INFO: Blender create Mesh node tunnel_rock_node_-41_-23_14.020
+20:32:22 | INFO: glTF import finished in 0.01s
+20:32:22 | INFO: Starting glTF 2.0 export
+20:32:22 | INFO: Extracting primitive: node_-41_-23_14_mass.015
+20:32:22 | INFO: Primitives created: 1
+20:32:22 | INFO: Extracting primitive: node_-41_-23_14_mass.014
+20:32:22 | INFO: Primitives created: 1
+20:32:22 | INFO: Extracting primitive: flag_lib_7.024
+20:32:22 | INFO: Primitives created: 1
+20:32:22 | INFO: Extracting primitive: tunnel_rock_node_-41_-23_14.020
+20:32:22 | INFO: Primitives created: 1
+20:32:22 | INFO: Finished glTF 2.0 export in 0.008900165557861328 s
+
+PASSAGE_PAVING_REBUILT node_-41_-23_14 1
+20:32:25 | INFO: Data are loaded, start creating Blender stuff
+20:32:25 | INFO: Blender create Mesh node node_-41_-23_24_mass.011
+20:32:25 | INFO: Blender create Mesh node node_-41_-23_24_mass.010
+20:32:25 | INFO: Blender create Mesh node flag_lib_11.013
+20:32:25 | INFO: Blender create Mesh node tunnel_rock_node_-41_-23_24.014
+20:32:25 | INFO: glTF import finished in 0.01s
+20:32:26 | INFO: Starting glTF 2.0 export
+20:32:26 | INFO: Extracting primitive: node_-41_-23_24_mass.011
+20:32:26 | INFO: Primitives created: 1
+20:32:26 | INFO: Extracting primitive: node_-41_-23_24_mass.010
+20:32:26 | INFO: Primitives created: 1
+20:32:26 | INFO: Extracting primitive: flag_lib_2.026
+20:32:26 | INFO: Primitives created: 1
+20:32:26 | INFO: Extracting primitive: tunnel_rock_node_-41_-23_24.014
+20:32:26 | INFO: Primitives created: 1
+20:32:26 | INFO: Finished glTF 2.0 export in 0.008077859878540039 s
+
+PASSAGE_PAVING_REBUILT node_-41_-23_24 1
+20:32:29 | INFO: Data are loaded, start creating Blender stuff
+20:32:29 | INFO: Blender create Mesh node node_-43_-23_-6_mass.011
+20:32:29 | INFO: Blender create Mesh node node_-43_-23_-6_mass.010
+20:32:29 | INFO: Blender create Mesh node flag_lib_8.007
+20:32:29 | INFO: Blender create Mesh node tunnel_rock_node_-43_-23_-6.014
+20:32:29 | INFO: glTF import finished in 0.01s
+20:32:29 | INFO: Starting glTF 2.0 export
+20:32:29 | INFO: Extracting primitive: node_-43_-23_-6_mass.011
+20:32:29 | INFO: Primitives created: 1
+20:32:29 | INFO: Extracting primitive: node_-43_-23_-6_mass.010
+20:32:29 | INFO: Primitives created: 1
+20:32:29 | INFO: Extracting primitive: flag_lib_7.022
+20:32:29 | INFO: Primitives created: 1
+20:32:29 | INFO: Extracting primitive: tunnel_rock_node_-43_-23_-6.014
+20:32:29 | INFO: Primitives created: 1
+20:32:29 | INFO: Finished glTF 2.0 export in 0.007946014404296875 s
+
+PASSAGE_PAVING_REBUILT node_-43_-23_-6 1
+20:32:32 | INFO: Data are loaded, start creating Blender stuff
+20:32:32 | INFO: Blender create Mesh node node_-46_-23_7_mass.011
+20:32:32 | INFO: Blender create Mesh node node_-46_-23_7_mass.010
+20:32:32 | INFO: Blender create Mesh node flag_lib_4.005
+20:32:32 | INFO: Blender create Mesh node tunnel_rock_node_-46_-23_7.014
+20:32:32 | INFO: glTF import finished in 0.01s
+20:32:32 | INFO: Starting glTF 2.0 export
+20:32:32 | INFO: Extracting primitive: node_-46_-23_7_mass.011
+20:32:32 | INFO: Primitives created: 1
+20:32:32 | INFO: Extracting primitive: node_-46_-23_7_mass.010
+20:32:32 | INFO: Primitives created: 1
+20:32:32 | INFO: Extracting primitive: flag_lib_15.037
+20:32:32 | INFO: Primitives created: 1
+20:32:32 | INFO: Extracting primitive: tunnel_rock_node_-46_-23_7.014
+20:32:32 | INFO: Primitives created: 1
+20:32:32 | INFO: Finished glTF 2.0 export in 0.00822591781616211 s
+
+PASSAGE_PAVING_REBUILT node_-46_-23_7 1
+20:32:35 | INFO: Data are loaded, start creating Blender stuff
+20:32:35 | INFO: Blender create Mesh node node_22_-10_-30_mass.015
+20:32:35 | INFO: Blender create Mesh node node_22_-10_-30_mass.014
+20:32:35 | INFO: Blender create Mesh node vault_template_2_1_6.016
+20:32:35 | INFO: Blender create Mesh node vault_template_2_0_20.019
+20:32:35 | INFO: Blender create Mesh node vault_template_4_0_5.013
+20:32:35 | INFO: Blender create Mesh node flag_lib_12.019
+20:32:35 | INFO: Blender create Mesh node squared_rubble_lib_23.329
+20:32:35 | INFO: Blender create Mesh node squared_rubble_lib_4.241
+20:32:35 | INFO: Blender create Mesh node squared_rubble_lib_9.257
+20:32:35 | INFO: Blender create Mesh node squared_rubble_lib_21.353
+20:32:35 | INFO: glTF import finished in 0.12s
+20:32:35 | INFO: Starting glTF 2.0 export
+20:32:35 | INFO: Extracting primitive: node_22_-10_-30_mass.015
+20:32:35 | INFO: Primitives created: 1
+20:32:35 | INFO: Extracting primitive: node_22_-10_-30_mass.014
+20:32:35 | INFO: Primitives created: 1
+20:32:35 | INFO: Extracting primitive: vault_template_2_1_6.016
+20:32:35 | INFO: Primitives created: 1
+20:32:35 | INFO: Extracting primitive: vault_template_2_0_20.019
+20:32:35 | INFO: Primitives created: 1
+20:32:35 | INFO: Extracting primitive: vault_template_4_0_5.013
+20:32:35 | INFO: Primitives created: 1
+20:32:35 | INFO: Extracting primitive: flag_lib_2.023
+20:32:35 | INFO: Primitives created: 1
+20:32:35 | INFO: Extracting primitive: squared_rubble_lib_23.329
+20:32:35 | INFO: Primitives created: 1
+20:32:35 | INFO: Extracting primitive: squared_rubble_lib_4.241
+20:32:35 | INFO: Primitives created: 1
+20:32:35 | INFO: Extracting primitive: squared_rubble_lib_9.257
+20:32:35 | INFO: Primitives created: 1
+20:32:35 | INFO: Extracting primitive: squared_rubble_lib_21.353
+20:32:35 | INFO: Primitives created: 1
+20:32:35 | INFO: Finished glTF 2.0 export in 0.06850194931030273 s
+
+PASSAGE_PAVING_REBUILT node_22_-10_-30 1
+20:32:38 | INFO: Data are loaded, start creating Blender stuff
+20:32:38 | INFO: Blender create Mesh node node_22_-10_10_mass.011
+20:32:38 | INFO: Blender create Mesh node node_22_-10_10_mass.010
+20:32:38 | INFO: Blender create Mesh node vault_template_5_2_1.014
+20:32:38 | INFO: Blender create Mesh node vault_template_4_1_2.014
+20:32:38 | INFO: Blender create Mesh node flag_lib_10.029
+20:32:38 | INFO: Blender create Mesh node squared_rubble_lib_20.364
+20:32:38 | INFO: Blender create Mesh node squared_rubble_lib_1.199
+20:32:38 | INFO: Blender create Mesh node squared_rubble_lib_14.317
+20:32:38 | INFO: Blender create Mesh node squared_rubble_lib_11.331
+20:32:38 | INFO: glTF import finished in 0.11s
+20:32:38 | INFO: Starting glTF 2.0 export
+20:32:38 | INFO: Extracting primitive: node_22_-10_10_mass.011
+20:32:38 | INFO: Primitives created: 1
+20:32:38 | INFO: Extracting primitive: node_22_-10_10_mass.010
+20:32:38 | INFO: Primitives created: 1
+20:32:38 | INFO: Extracting primitive: vault_template_5_2_1.014
+20:32:38 | INFO: Primitives created: 1
+20:32:38 | INFO: Extracting primitive: vault_template_4_1_2.014
+20:32:38 | INFO: Primitives created: 1
+20:32:38 | INFO: Extracting primitive: flag_lib_11.021
+20:32:38 | INFO: Primitives created: 1
+20:32:38 | INFO: Extracting primitive: squared_rubble_lib_20.364
+20:32:38 | INFO: Primitives created: 1
+20:32:38 | INFO: Extracting primitive: squared_rubble_lib_1.199
+20:32:38 | INFO: Primitives created: 1
+20:32:38 | INFO: Extracting primitive: squared_rubble_lib_14.317
+20:32:38 | INFO: Primitives created: 1
+20:32:38 | INFO: Extracting primitive: squared_rubble_lib_11.331
+20:32:38 | INFO: Primitives created: 1
+20:32:38 | INFO: Finished glTF 2.0 export in 0.06319904327392578 s
+
+PASSAGE_PAVING_REBUILT node_22_-10_10 1
+20:32:41 | INFO: Data are loaded, start creating Blender stuff
+20:32:41 | INFO: Blender create Mesh node node_46_-4_-15_wall1_core.002
+20:32:41 | INFO: Blender create Mesh node node_46_-4_-15_wall2_core.002
+20:32:41 | INFO: Blender create Mesh node node_46_-4_-15_mass_core.005
+20:32:41 | INFO: Blender create Mesh node node_46_-4_-15_wall1_core.001
+20:32:41 | INFO: Blender create Mesh node node_46_-4_-15_wall2_core.001
+20:32:41 | INFO: Blender create Mesh node node_46_-4_-15_mass_core.004
+20:32:41 | INFO: Blender create Mesh node vault_template_10_0_0.018
+20:32:41 | INFO: Blender create Mesh node vault_template_10_2_0.037
+20:32:41 | INFO: Blender create Mesh node flag_lib_10.233
+20:32:41 | INFO: Blender create Mesh node squared_rubble_lib_147.472
+20:32:41 | INFO: Blender create Mesh node squared_rubble_lib_83.165
+20:32:41 | INFO: glTF import finished in 0.05s
+20:32:42 | INFO: Starting glTF 2.0 export
+20:32:42 | INFO: Extracting primitive: node_46_-4_-15_wall1_core.002
+20:32:42 | INFO: Primitives created: 1
+20:32:42 | INFO: Extracting primitive: node_46_-4_-15_wall2_core.002
+20:32:42 | INFO: Primitives created: 1
+20:32:42 | INFO: Extracting primitive: node_46_-4_-15_mass_core.005
+20:32:42 | INFO: Primitives created: 1
+20:32:42 | INFO: Extracting primitive: node_46_-4_-15_wall1_core.001
+20:32:42 | INFO: Primitives created: 1
+20:32:42 | INFO: Extracting primitive: node_46_-4_-15_wall2_core.001
+20:32:42 | INFO: Primitives created: 1
+20:32:42 | INFO: Extracting primitive: node_46_-4_-15_mass_core.004
+20:32:42 | INFO: Primitives created: 1
+20:32:42 | INFO: Extracting primitive: vault_template_10_0_0.018
+20:32:42 | INFO: Primitives created: 1
+20:32:42 | INFO: Extracting primitive: vault_template_10_2_0.037
+20:32:42 | INFO: Primitives created: 1
+20:32:42 | INFO: Extracting primitive: flag_lib_15.028
+20:32:42 | INFO: Primitives created: 1
+20:32:42 | INFO: Extracting primitive: squared_rubble_lib_147.472
+20:32:42 | INFO: Primitives created: 1
+20:32:42 | INFO: Extracting primitive: squared_rubble_lib_83.165
+20:32:42 | INFO: Primitives created: 1
+20:32:42 | INFO: Finished glTF 2.0 export in 0.03428030014038086 s
+
+PASSAGE_PAVING_REBUILT node_46_-4_-15 1
+20:32:45 | INFO: Data are loaded, start creating Blender stuff
+20:32:45 | INFO: Blender create Mesh node node_46_-4_6_wall1_core.002
+20:32:45 | INFO: Blender create Mesh node node_46_-4_6_wall2_core.002
+20:32:45 | INFO: Blender create Mesh node node_46_-4_6_mass_core.005
+20:32:45 | INFO: Blender create Mesh node node_46_-4_6_wall1_core.001
+20:32:45 | INFO: Blender create Mesh node node_46_-4_6_wall2_core.001
+20:32:45 | INFO: Blender create Mesh node node_46_-4_6_mass_core.004
+20:32:45 | INFO: Blender create Mesh node vault_template_10_2_0.038
+20:32:45 | INFO: Blender create Mesh node vault_template_10_0_0.019
+20:32:45 | INFO: Blender create Mesh node flag_lib_9.243
+20:32:45 | INFO: Blender create Mesh node squared_rubble_lib_153.460
+20:32:45 | INFO: Blender create Mesh node squared_rubble_lib_158.505
+20:32:45 | INFO: glTF import finished in 0.05s
+20:32:45 | INFO: Starting glTF 2.0 export
+20:32:45 | INFO: Extracting primitive: node_46_-4_6_wall1_core.002
+20:32:45 | INFO: Primitives created: 1
+20:32:45 | INFO: Extracting primitive: node_46_-4_6_wall2_core.002
+20:32:45 | INFO: Primitives created: 1
+20:32:45 | INFO: Extracting primitive: node_46_-4_6_mass_core.005
+20:32:45 | INFO: Primitives created: 1
+20:32:45 | INFO: Extracting primitive: node_46_-4_6_wall1_core.001
+20:32:45 | INFO: Primitives created: 1
+20:32:45 | INFO: Extracting primitive: node_46_-4_6_wall2_core.001
+20:32:45 | INFO: Primitives created: 1
+20:32:45 | INFO: Extracting primitive: node_46_-4_6_mass_core.004
+20:32:45 | INFO: Primitives created: 1
+20:32:45 | INFO: Extracting primitive: vault_template_10_2_0.038
+20:32:45 | INFO: Primitives created: 1
+20:32:45 | INFO: Extracting primitive: vault_template_10_0_0.019
+20:32:45 | INFO: Primitives created: 1
+20:32:45 | INFO: Extracting primitive: flag_lib_2.023
+20:32:45 | INFO: Primitives created: 1
+20:32:45 | INFO: Extracting primitive: squared_rubble_lib_153.460
+20:32:45 | INFO: Primitives created: 1
+20:32:45 | INFO: Extracting primitive: squared_rubble_lib_158.505
+20:32:45 | INFO: Primitives created: 1
+20:32:45 | INFO: Finished glTF 2.0 export in 0.04110312461853027 s
+
+PASSAGE_PAVING_REBUILT node_46_-4_6 1
+20:32:48 | INFO: Data are loaded, start creating Blender stuff
+20:32:48 | INFO: Blender create Mesh node Mortar_ossuary_loop_3_core.005
+20:32:48 | INFO: Blender create Mesh node Mortar_ossuary_loop_8_core.005
+20:32:48 | INFO: Blender create Mesh node Mortar_ossuary_loop_13_core.005
+20:32:48 | INFO: Blender create Mesh node Mortar_ossuary_loop_18_core.005
+20:32:48 | INFO: Blender create Mesh node Mortar_ossuary_loop_23_core.005
+20:32:48 | INFO: Blender create Mesh node Mortar_ossuary_loop_3_core.004
+20:32:48 | INFO: Blender create Mesh node Mortar_ossuary_loop_8_core.004
+20:32:48 | INFO: Blender create Mesh node Mortar_ossuary_loop_13_core.004
+20:32:48 | INFO: Blender create Mesh node Mortar_ossuary_loop_18_core.004
+20:32:48 | INFO: Blender create Mesh node Mortar_ossuary_loop_23_core.004
+20:32:48 | INFO: Blender create Mesh node vault_template_12_2_0.021
+20:32:48 | INFO: Blender create Mesh node vault_template_12_0_2.030
+20:32:48 | INFO: Blender create Mesh node vault_template_12_1_0.027
+20:32:48 | INFO: Blender create Mesh node vault_template_12_0_0.035
+20:32:48 | INFO: Blender create Mesh node vault_template_12_0_0.037
+20:32:48 | INFO: Blender create Mesh node flag_lib_5.209
+20:32:48 | INFO: Blender create Mesh node flag_lib_15.199
+20:32:48 | INFO: Blender create Mesh node flag_lib_19.139
+20:32:48 | INFO: Blender create Mesh node flag_lib_7.200
+20:32:48 | INFO: Blender create Mesh node flag_lib_0.216
+20:32:48 | INFO: Blender create Mesh node squared_rubble_lib_137.282
+20:32:48 | INFO: Blender create Mesh node squared_rubble_lib_157.358
+20:32:48 | INFO: Blender create Mesh node squared_rubble_lib_107.201
+20:32:48 | INFO: Blender create Mesh node squared_rubble_lib_138.170
+20:32:48 | INFO: Blender create Mesh node squared_rubble_lib_157.366
+20:32:48 | INFO: Blender create Mesh node squared_rubble_lib_54.108
+20:32:48 | INFO: Blender create Mesh node squared_rubble_lib_47.123
+20:32:48 | INFO: Blender create Mesh node squared_rubble_lib_89.204
+20:32:48 | INFO: Blender create Mesh node squared_rubble_lib_107.208
+20:32:48 | INFO: Blender create Mesh node squared_rubble_lib_153.412
+20:32:48 | INFO: Blender create Mesh node tunnel_spall.343
+20:32:48 | INFO: Blender create Mesh node tunnel_spall.350
+20:32:48 | INFO: glTF import finished in 0.36s
+20:32:49 | INFO: Starting glTF 2.0 export
+20:32:49 | INFO: Extracting primitive: Mortar_ossuary_loop_3_core.005
+20:32:49 | INFO: Primitives created: 1
+20:32:49 | INFO: Extracting primitive: Mortar_ossuary_loop_8_core.005
+20:32:49 | INFO: Primitives created: 1
+20:32:49 | INFO: Extracting primitive: Mortar_ossuary_loop_13_core.005
+20:32:49 | INFO: Primitives created: 1
+20:32:49 | INFO: Extracting primitive: Mortar_ossuary_loop_18_core.005
+20:32:49 | INFO: Primitives created: 1
+20:32:49 | INFO: Extracting primitive: Mortar_ossuary_loop_23_core.005
+20:32:49 | INFO: Primitives created: 1
+20:32:49 | INFO: Extracting primitive: Mortar_ossuary_loop_3_core.004
+20:32:49 | INFO: Primitives created: 1
+20:32:49 | INFO: Extracting primitive: Mortar_ossuary_loop_8_core.004
+20:32:49 | INFO: Primitives created: 1
+20:32:49 | INFO: Extracting primitive: Mortar_ossuary_loop_13_core.004
+20:32:49 | INFO: Primitives created: 1
+20:32:49 | INFO: Extracting primitive: Mortar_ossuary_loop_18_core.004
+20:32:49 | INFO: Primitives created: 1
+20:32:49 | INFO: Extracting primitive: Mortar_ossuary_loop_23_core.004
+20:32:49 | INFO: Primitives created: 1
+20:32:49 | INFO: Extracting primitive: vault_template_12_2_0.021
+20:32:49 | INFO: Primitives created: 1
+20:32:49 | INFO: Extracting primitive: vault_template_12_0_2.030
+20:32:49 | INFO: Primitives created: 1
+20:32:49 | INFO: Extracting primitive: vault_template_12_1_0.027
+20:32:49 | INFO: Primitives created: 1
+20:32:49 | INFO: Extracting primitive: vault_template_12_0_0.035
+20:32:49 | INFO: Primitives created: 1
+20:32:49 | INFO: Extracting primitive: vault_template_12_0_0.037
+20:32:49 | INFO: Primitives created: 1
+20:32:49 | INFO: Extracting primitive: flag_lib_8.196
+20:32:49 | INFO: Primitives created: 1
+20:32:49 | INFO: Extracting primitive: flag_lib_8.210
+20:32:49 | INFO: Primitives created: 1
+20:32:49 | INFO: Extracting primitive: flag_lib_15.156
+20:32:49 | INFO: Primitives created: 1
+20:32:49 | INFO: Extracting primitive: flag_lib_8.249
+20:32:49 | INFO: Primitives created: 1
+20:32:49 | INFO: Extracting primitive: flag_lib_12.162
+20:32:49 | INFO: Primitives created: 1
+20:32:49 | INFO: Extracting primitive: squared_rubble_lib_137.282
+20:32:49 | INFO: Primitives created: 1
+20:32:49 | INFO: Extracting primitive: squared_rubble_lib_157.358
+20:32:49 | INFO: Primitives created: 1
+20:32:49 | INFO: Extracting primitive: squared_rubble_lib_107.201
+20:32:49 | INFO: Primitives created: 1
+20:32:49 | INFO: Extracting primitive: squared_rubble_lib_138.170
+20:32:49 | INFO: Primitives created: 1
+20:32:49 | INFO: Extracting primitive: squared_rubble_lib_157.366
+20:32:49 | INFO: Primitives created: 1
+20:32:49 | INFO: Extracting primitive: squared_rubble_lib_54.108
+20:32:49 | INFO: Primitives created: 1
+20:32:49 | INFO: Extracting primitive: squared_rubble_lib_47.123
+20:32:49 | INFO: Primitives created: 1
+20:32:49 | INFO: Extracting primitive: squared_rubble_lib_89.204
+20:32:49 | INFO: Primitives created: 1
+20:32:49 | INFO: Extracting primitive: squared_rubble_lib_107.208
+20:32:49 | INFO: Primitives created: 1
+20:32:49 | INFO: Extracting primitive: squared_rubble_lib_153.412
+20:32:49 | INFO: Primitives created: 1
+20:32:49 | INFO: Extracting primitive: tunnel_spall.343
+20:32:49 | INFO: Primitives created: 1
+20:32:49 | INFO: Extracting primitive: tunnel_spall.350
+20:32:49 | INFO: Primitives created: 1
+20:32:49 | INFO: Finished glTF 2.0 export in 0.21341800689697266 s
+
+PASSAGE_PAVING_REBUILT ossuary_loop 5
+20:32:52 | INFO: Data are loaded, start creating Blender stuff
+20:32:52 | INFO: Blender create Mesh node Mortar_return_gallery_3_core.007
+20:32:52 | INFO: Blender create Mesh node Mortar_return_gallery_8_core.007
+20:32:52 | INFO: Blender create Mesh node Mortar_return_gallery_13_core.004
+20:32:52 | INFO: Blender create Mesh node Mortar_return_gallery_18_core.004
+20:32:52 | INFO: Blender create Mesh node Mortar_return_gallery_23_core.009
+20:32:52 | INFO: Blender create Mesh node Mortar_return_gallery_3_core.006
+20:32:52 | INFO: Blender create Mesh node Mortar_return_gallery_8_core.006
+20:32:52 | INFO: Blender create Mesh node Mortar_return_gallery_13_core.003
+20:32:52 | INFO: Blender create Mesh node Mortar_return_gallery_18_core.003
+20:32:52 | INFO: Blender create Mesh node Mortar_return_gallery_23_core.008
+20:32:52 | INFO: Blender create Mesh node vault_template_6_0_0.004
+20:32:52 | INFO: Blender create Mesh node vault_template_6_2_0.004
+20:32:52 | INFO: Blender create Mesh node vault_template_6_1_0.033
+20:32:53 | INFO: Blender create Mesh node vault_template_7_2_0.057
+20:32:53 | INFO: Blender create Mesh node vault_template_6_2_0.010
+20:32:53 | INFO: Blender create Mesh node flag_lib_2.002
+20:32:53 | INFO: Blender create Mesh node flag_lib_8.004
+20:32:53 | INFO: Blender create Mesh node flag_lib_6.399
+20:32:53 | INFO: Blender create Mesh node flag_lib_13.384
+20:32:53 | INFO: Blender create Mesh node flag_lib_0.006
+20:32:53 | INFO: Blender create Mesh node squared_rubble_lib_8.003
+20:32:53 | INFO: Blender create Mesh node squared_rubble_lib_3.004
+20:32:53 | INFO: Blender create Mesh node squared_rubble_lib_1.003
+20:32:53 | INFO: Blender create Mesh node squared_rubble_lib_15.004
+20:32:53 | INFO: Blender create Mesh node squared_rubble_lib_19.1811
+20:32:53 | INFO: Blender create Mesh node squared_rubble_lib_18.1822
+20:32:53 | INFO: Blender create Mesh node squared_rubble_lib_19.1830
+20:32:53 | INFO: Blender create Mesh node squared_rubble_lib_6.1353
+20:32:53 | INFO: Blender create Mesh node squared_rubble_lib_12.005
+20:32:53 | INFO: Blender create Mesh node squared_rubble_lib_21.004
+20:32:53 | INFO: Blender create Mesh node tunnel_spall.002
+20:32:53 | INFO: Blender create Mesh node tunnel_spall.382
+20:32:53 | INFO: Blender create Mesh node tunnel_spall.386
+20:32:53 | INFO: Blender create Mesh node tunnel_spall.006
+20:32:53 | INFO: glTF import finished in 0.50s
+20:32:54 | INFO: Starting glTF 2.0 export
+20:32:54 | INFO: Extracting primitive: Mortar_return_gallery_3_core.007
+20:32:54 | INFO: Primitives created: 1
+20:32:54 | INFO: Extracting primitive: Mortar_return_gallery_8_core.007
+20:32:54 | INFO: Primitives created: 1
+20:32:54 | INFO: Extracting primitive: Mortar_return_gallery_13_core.004
+20:32:54 | INFO: Primitives created: 1
+20:32:54 | INFO: Extracting primitive: Mortar_return_gallery_18_core.004
+20:32:54 | INFO: Primitives created: 1
+20:32:54 | INFO: Extracting primitive: Mortar_return_gallery_23_core.009
+20:32:54 | INFO: Primitives created: 1
+20:32:54 | INFO: Extracting primitive: Mortar_return_gallery_3_core.006
+20:32:54 | INFO: Primitives created: 1
+20:32:54 | INFO: Extracting primitive: Mortar_return_gallery_8_core.006
+20:32:54 | INFO: Primitives created: 1
+20:32:54 | INFO: Extracting primitive: Mortar_return_gallery_13_core.003
+20:32:54 | INFO: Primitives created: 1
+20:32:54 | INFO: Extracting primitive: Mortar_return_gallery_18_core.003
+20:32:54 | INFO: Primitives created: 1
+20:32:54 | INFO: Extracting primitive: Mortar_return_gallery_23_core.008
+20:32:54 | INFO: Primitives created: 1
+20:32:54 | INFO: Extracting primitive: vault_template_6_0_0.004
+20:32:54 | INFO: Primitives created: 1
+20:32:54 | INFO: Extracting primitive: vault_template_6_2_0.004
+20:32:54 | INFO: Primitives created: 1
+20:32:54 | INFO: Extracting primitive: vault_template_6_1_0.033
+20:32:54 | INFO: Primitives created: 1
+20:32:54 | INFO: Extracting primitive: vault_template_7_2_0.057
+20:32:54 | INFO: Primitives created: 1
+20:32:54 | INFO: Extracting primitive: vault_template_6_2_0.010
+20:32:54 | INFO: Primitives created: 1
+20:32:54 | INFO: Extracting primitive: flag_lib_8.241
+20:32:54 | INFO: Primitives created: 1
+20:32:54 | INFO: Extracting primitive: flag_lib_12.246
+20:32:54 | INFO: Primitives created: 1
+20:32:54 | INFO: Extracting primitive: flag_lib_12.266
+20:32:54 | INFO: Primitives created: 1
+20:32:54 | INFO: Extracting primitive: flag_lib_7.322
+20:32:54 | INFO: Primitives created: 1
+20:32:54 | INFO: Extracting primitive: flag_lib_15.258
+20:32:54 | INFO: Primitives created: 1
+20:32:54 | INFO: Extracting primitive: squared_rubble_lib_8.003
+20:32:54 | INFO: Primitives created: 1
+20:32:54 | INFO: Extracting primitive: squared_rubble_lib_3.004
+20:32:54 | INFO: Primitives created: 1
+20:32:54 | INFO: Extracting primitive: squared_rubble_lib_1.003
+20:32:54 | INFO: Primitives created: 1
+20:32:54 | INFO: Extracting primitive: squared_rubble_lib_15.004
+20:32:54 | INFO: Primitives created: 1
+20:32:54 | INFO: Extracting primitive: squared_rubble_lib_19.1811
+20:32:54 | INFO: Primitives created: 1
+20:32:54 | INFO: Extracting primitive: squared_rubble_lib_18.1822
+20:32:54 | INFO: Primitives created: 1
+20:32:54 | INFO: Extracting primitive: squared_rubble_lib_19.1830
+20:32:54 | INFO: Primitives created: 1
+20:32:54 | INFO: Extracting primitive: squared_rubble_lib_6.1353
+20:32:54 | INFO: Primitives created: 1
+20:32:54 | INFO: Extracting primitive: squared_rubble_lib_12.005
+20:32:54 | INFO: Primitives created: 1
+20:32:54 | INFO: Extracting primitive: squared_rubble_lib_21.004
+20:32:54 | INFO: Primitives created: 1
+20:32:54 | INFO: Extracting primitive: tunnel_spall.002
+20:32:54 | INFO: Primitives created: 1
+20:32:54 | INFO: Extracting primitive: tunnel_spall.382
+20:32:54 | INFO: Primitives created: 1
+20:32:54 | INFO: Extracting primitive: tunnel_spall.386
+20:32:54 | INFO: Primitives created: 1
+20:32:54 | INFO: Extracting primitive: tunnel_spall.006
+20:32:54 | INFO: Primitives created: 1
+20:32:54 | INFO: Finished glTF 2.0 export in 0.34633898735046387 s
+
+PASSAGE_PAVING_REBUILT return_gallery 5
+20:32:57 | INFO: Data are loaded, start creating Blender stuff
+20:32:57 | INFO: Blender create Mesh node Mortar_root_tunnel_3_core.010
+20:32:57 | INFO: Blender create Mesh node Mortar_root_tunnel_8_core.015
+20:32:57 | INFO: Blender create Mesh node Mortar_root_tunnel_13_core.015
+20:32:57 | INFO: Blender create Mesh node Mortar_root_tunnel_18_core.015
+20:32:57 | INFO: Blender create Mesh node Mortar_root_tunnel_23_core.012
+20:32:57 | INFO: Blender create Mesh node Mortar_root_tunnel_28_core.007
+20:32:57 | INFO: Blender create Mesh node Mortar_root_tunnel_3_core.009
+20:32:57 | INFO: Blender create Mesh node Mortar_root_tunnel_8_core.014
+20:32:57 | INFO: Blender create Mesh node Mortar_root_tunnel_13_core.014
+20:32:57 | INFO: Blender create Mesh node Mortar_root_tunnel_18_core.014
+20:32:57 | INFO: Blender create Mesh node Mortar_root_tunnel_23_core.011
+20:32:57 | INFO: Blender create Mesh node Mortar_root_tunnel_28_core.006
+20:32:57 | INFO: Blender create Mesh node flag_lib_11.002
+20:32:57 | INFO: Blender create Mesh node flag_lib_3.008
+20:32:57 | INFO: Blender create Mesh node flag_lib_2.009
+20:32:57 | INFO: Blender create Mesh node flag_lib_4.009
+20:32:57 | INFO: Blender create Mesh node flag_lib_6.007
+20:32:57 | INFO: Blender create Mesh node flag_lib_5.366
+20:32:57 | INFO: Blender create Mesh node tunnel_rock_refitted_0.007
+20:32:57 | INFO: Blender create Mesh node tunnel_rock_refitted_1.012
+20:32:57 | INFO: Blender create Mesh node tunnel_rock_refitted_2.012
+20:32:57 | INFO: Blender create Mesh node tunnel_rock_refitted_3.012
+20:32:57 | INFO: Blender create Mesh node tunnel_rock_refitted_4.009
+20:32:57 | INFO: Blender create Mesh node tunnel_rock_refitted_5.004
+20:32:57 | INFO: glTF import finished in 0.09s
+20:32:59 | INFO: Starting glTF 2.0 export
+20:32:59 | INFO: Extracting primitive: Mortar_root_tunnel_3_core.010
+20:32:59 | INFO: Primitives created: 1
+20:32:59 | INFO: Extracting primitive: Mortar_root_tunnel_8_core.015
+20:32:59 | INFO: Primitives created: 1
+20:32:59 | INFO: Extracting primitive: Mortar_root_tunnel_13_core.015
+20:32:59 | INFO: Primitives created: 1
+20:32:59 | INFO: Extracting primitive: Mortar_root_tunnel_18_core.015
+20:32:59 | INFO: Primitives created: 1
+20:32:59 | INFO: Extracting primitive: Mortar_root_tunnel_23_core.012
+20:32:59 | INFO: Primitives created: 1
+20:32:59 | INFO: Extracting primitive: Mortar_root_tunnel_28_core.007
+20:32:59 | INFO: Primitives created: 1
+20:32:59 | INFO: Extracting primitive: Mortar_root_tunnel_3_core.009
+20:32:59 | INFO: Primitives created: 1
+20:32:59 | INFO: Extracting primitive: Mortar_root_tunnel_8_core.014
+20:32:59 | INFO: Primitives created: 1
+20:32:59 | INFO: Extracting primitive: Mortar_root_tunnel_13_core.014
+20:32:59 | INFO: Primitives created: 1
+20:32:59 | INFO: Extracting primitive: Mortar_root_tunnel_18_core.014
+20:32:59 | INFO: Primitives created: 1
+20:32:59 | INFO: Extracting primitive: Mortar_root_tunnel_23_core.011
+20:32:59 | INFO: Primitives created: 1
+20:32:59 | INFO: Extracting primitive: Mortar_root_tunnel_28_core.006
+20:32:59 | INFO: Primitives created: 1
+20:32:59 | INFO: Extracting primitive: flag_lib_11.613
+20:32:59 | INFO: Primitives created: 1
+20:32:59 | INFO: Extracting primitive: flag_lib_15.765
+20:32:59 | INFO: Primitives created: 1
+20:32:59 | INFO: Extracting primitive: flag_lib_15.785
+20:32:59 | INFO: Primitives created: 1
+20:32:59 | INFO: Extracting primitive: flag_lib_11.641
+20:32:59 | INFO: Primitives created: 1
+20:32:59 | INFO: Extracting primitive: flag_lib_2.698
+20:32:59 | INFO: Primitives created: 1
+20:32:59 | INFO: Extracting primitive: flag_lib_15.838
+20:32:59 | INFO: Primitives created: 1
+20:32:59 | INFO: Extracting primitive: tunnel_rock_refitted_0.007
+20:32:59 | INFO: Primitives created: 1
+20:32:59 | INFO: Extracting primitive: tunnel_rock_refitted_1.012
+20:32:59 | INFO: Primitives created: 1
+20:32:59 | INFO: Extracting primitive: tunnel_rock_refitted_2.012
+20:32:59 | INFO: Primitives created: 1
+20:32:59 | INFO: Extracting primitive: tunnel_rock_refitted_3.012
+20:32:59 | INFO: Primitives created: 1
+20:32:59 | INFO: Extracting primitive: tunnel_rock_refitted_4.009
+20:32:59 | INFO: Primitives created: 1
+20:32:59 | INFO: Extracting primitive: tunnel_rock_refitted_5.004
+20:32:59 | INFO: Primitives created: 1
+20:32:59 | INFO: Finished glTF 2.0 export in 0.05248594284057617 s
+
+PASSAGE_PAVING_REBUILT root_tunnel 6
+20:33:02 | INFO: Data are loaded, start creating Blender stuff
+20:33:02 | INFO: Blender create Mesh node Mortar_upper_cells_3_core.005
+20:33:02 | INFO: Blender create Mesh node Mortar_upper_cells_8_core.005
+20:33:02 | INFO: Blender create Mesh node Mortar_upper_cells_13_core.005
+20:33:02 | INFO: Blender create Mesh node Mortar_upper_cells_18_core.005
+20:33:02 | INFO: Blender create Mesh node Mortar_upper_cells_3_core.004
+20:33:02 | INFO: Blender create Mesh node Mortar_upper_cells_8_core.004
+20:33:02 | INFO: Blender create Mesh node Mortar_upper_cells_13_core.004
+20:33:02 | INFO: Blender create Mesh node Mortar_upper_cells_18_core.004
+20:33:02 | INFO: Blender create Mesh node vault_template_10_2_0.024
+20:33:02 | INFO: Blender create Mesh node vault_template_10_1_0.018
+20:33:02 | INFO: Blender create Mesh node vault_template_11_0_0.015
+20:33:02 | INFO: Blender create Mesh node vault_template_11_2_0.025
+20:33:02 | INFO: Blender create Mesh node flag_lib_27.190
+20:33:02 | INFO: Blender create Mesh node flag_lib_8.193
+20:33:02 | INFO: Blender create Mesh node flag_lib_3.206
+20:33:02 | INFO: Blender create Mesh node flag_lib_7.193
+20:33:02 | INFO: Blender create Mesh node squared_rubble_lib_124.148
+20:33:02 | INFO: Blender create Mesh node squared_rubble_lib_112.145
+20:33:02 | INFO: Blender create Mesh node squared_rubble_lib_45.111
+20:33:02 | INFO: Blender create Mesh node squared_rubble_lib_97.165
+20:33:02 | INFO: Blender create Mesh node squared_rubble_lib_126.162
+20:33:02 | INFO: Blender create Mesh node squared_rubble_lib_107.198
+20:33:02 | INFO: Blender create Mesh node squared_rubble_lib_108.187
+20:33:02 | INFO: Blender create Mesh node squared_rubble_lib_133.155
+20:33:02 | INFO: Blender create Mesh node tunnel_spall.339
+20:33:02 | INFO: glTF import finished in 0.26s
+20:33:03 | INFO: Starting glTF 2.0 export
+20:33:03 | INFO: Extracting primitive: Mortar_upper_cells_3_core.005
+20:33:03 | INFO: Primitives created: 1
+20:33:03 | INFO: Extracting primitive: Mortar_upper_cells_8_core.005
+20:33:03 | INFO: Primitives created: 1
+20:33:03 | INFO: Extracting primitive: Mortar_upper_cells_13_core.005
+20:33:03 | INFO: Primitives created: 1
+20:33:03 | INFO: Extracting primitive: Mortar_upper_cells_18_core.005
+20:33:03 | INFO: Primitives created: 1
+20:33:03 | INFO: Extracting primitive: Mortar_upper_cells_3_core.004
+20:33:03 | INFO: Primitives created: 1
+20:33:03 | INFO: Extracting primitive: Mortar_upper_cells_8_core.004
+20:33:03 | INFO: Primitives created: 1
+20:33:03 | INFO: Extracting primitive: Mortar_upper_cells_13_core.004
+20:33:03 | INFO: Primitives created: 1
+20:33:03 | INFO: Extracting primitive: Mortar_upper_cells_18_core.004
+20:33:03 | INFO: Primitives created: 1
+20:33:03 | INFO: Extracting primitive: vault_template_10_2_0.024
+20:33:03 | INFO: Primitives created: 1
+20:33:03 | INFO: Extracting primitive: vault_template_10_1_0.018
+20:33:03 | INFO: Primitives created: 1
+20:33:03 | INFO: Extracting primitive: vault_template_11_0_0.015
+20:33:03 | INFO: Primitives created: 1
+20:33:03 | INFO: Extracting primitive: vault_template_11_2_0.025
+20:33:03 | INFO: Primitives created: 1
+20:33:03 | INFO: Extracting primitive: flag_lib_2.127
+20:33:03 | INFO: Primitives created: 1
+20:33:03 | INFO: Extracting primitive: flag_lib_15.129
+20:33:03 | INFO: Primitives created: 1
+20:33:03 | INFO: Extracting primitive: flag_lib_11.131
+20:33:03 | INFO: Primitives created: 1
+20:33:03 | INFO: Extracting primitive: flag_lib_12.105
+20:33:03 | INFO: Primitives created: 1
+20:33:03 | INFO: Extracting primitive: squared_rubble_lib_124.148
+20:33:03 | INFO: Primitives created: 1
+20:33:03 | INFO: Extracting primitive: squared_rubble_lib_112.145
+20:33:03 | INFO: Primitives created: 1
+20:33:03 | INFO: Extracting primitive: squared_rubble_lib_45.111
+20:33:03 | INFO: Primitives created: 1
+20:33:03 | INFO: Extracting primitive: squared_rubble_lib_97.165
+20:33:03 | INFO: Primitives created: 1
+20:33:03 | INFO: Extracting primitive: squared_rubble_lib_126.162
+20:33:03 | INFO: Primitives created: 1
+20:33:03 | INFO: Extracting primitive: squared_rubble_lib_107.198
+20:33:03 | INFO: Primitives created: 1
+20:33:03 | INFO: Extracting primitive: squared_rubble_lib_108.187
+20:33:03 | INFO: Primitives created: 1
+20:33:03 | INFO: Extracting primitive: squared_rubble_lib_133.155
+20:33:03 | INFO: Primitives created: 1
+20:33:03 | INFO: Extracting primitive: tunnel_spall.339
+20:33:03 | INFO: Primitives created: 1
+20:33:03 | INFO: Finished glTF 2.0 export in 0.15903377532958984 s
+
+PASSAGE_PAVING_REBUILT upper_cells 4
+20:33:06 | INFO: Data are loaded, start creating Blender stuff
+20:33:06 | INFO: Blender create Mesh node Mortar_upper_hall_8_core.005
+20:33:06 | INFO: Blender create Mesh node Mortar_upper_hall_8_core.004
+20:33:06 | INFO: Blender create Mesh node vault_template_2_1_21.031
+20:33:06 | INFO: Blender create Mesh node flag_lib_36.161
+20:33:06 | INFO: Blender create Mesh node squared_rubble_lib_115.190
+20:33:06 | INFO: Blender create Mesh node squared_rubble_lib_50.088
+20:33:06 | INFO: Blender create Mesh node tunnel_spall.279
+20:33:06 | INFO: glTF import finished in 0.03s
+20:33:06 | INFO: Starting glTF 2.0 export
+20:33:06 | INFO: Extracting primitive: Mortar_upper_hall_8_core.005
+20:33:06 | INFO: Primitives created: 1
+20:33:06 | INFO: Extracting primitive: Mortar_upper_hall_8_core.004
+20:33:06 | INFO: Primitives created: 1
+20:33:06 | INFO: Extracting primitive: vault_template_2_1_21.031
+20:33:06 | INFO: Primitives created: 1
+20:33:06 | INFO: Extracting primitive: flag_lib_12.053
+20:33:06 | INFO: Primitives created: 1
+20:33:06 | INFO: Extracting primitive: squared_rubble_lib_115.190
+20:33:06 | INFO: Primitives created: 1
+20:33:06 | INFO: Extracting primitive: squared_rubble_lib_50.088
+20:33:06 | INFO: Primitives created: 1
+20:33:06 | INFO: Extracting primitive: tunnel_spall.279
+20:33:06 | INFO: Primitives created: 1
+20:33:06 | INFO: Finished glTF 2.0 export in 0.02117300033569336 s
+
+PASSAGE_PAVING_REBUILT upper_hall 1
+Blender 5.2.2 LTS (hash d13f752e3b9c built 2026-09-15 01:49:19)
+
+Blender quit

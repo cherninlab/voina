@@ -1,0 +1,166 @@
+{
+  "content/environments/procedural_architecture_v1/passages/bell_loop.glb": {
+    "baseline_sha256": "831e826c37f65657c503b85dc98371998881ca546c0f77eb0759fbc0eed17d21",
+    "current_sha256": "1c52fb66366eaa657cbe631f63dc446370d30f878c25cae7ae2bb099d5a01d87",
+    "changed": true
+  },
+  "content/environments/procedural_architecture_v1/passages/cave_bypass.glb": {
+    "baseline_sha256": "ca7b15357383098cc9a13e82c7aa212b0711e97f4ad661852474cfd44b1c7b95",
+    "current_sha256": "9ce58c11b402fbfaeda009545b391bded74bb96f25c6d3d19e079af84adf5604",
+    "changed": true
+  },
+  "content/environments/procedural_architecture_v1/passages/chapel_approach.glb": {
+    "baseline_sha256": "3a2afdfd17fefb411e6738f8fe6c9af2575b43c5b9669580a16465e6c0bba0e9",
+    "current_sha256": "99d9d3fe64bbf2ef8c402dd4a7c6ce2c9bd870be2b118e35f1fe97c2d133e4b0",
+    "changed": true
+  },
+  "content/environments/procedural_architecture_v1/passages/entry.glb": {
+    "baseline_sha256": "912c5aea1608ed100c3765a39271c06a33d805d70a10270a63784137c195452c",
+    "current_sha256": "1a4349d15afb7ba3cd1eaaa406c2e7032eee6a8a9a7688f6277431e2e6a2b4c0",
+    "changed": true
+  },
+  "content/environments/procedural_architecture_v1/passages/nave.glb": {
+    "baseline_sha256": "2d71cb11229bc4cee24f584c0411a6de2c3b476e3a6e8bd650c5cdc46471b604",
+    "current_sha256": "95a506d0121e9e9fe7f662895bc04dcf8a58a9571d8fe3e4d5cdb0dc7544799a",
+    "changed": true
+  },
+  "content/environments/procedural_architecture_v1/passages/node_-14_-19_24.glb": {
+    "baseline_sha256": "9a57e185f593735201e149c8284ea92503871b103a1444f9851de6360d4a6767",
+    "current_sha256": "9d60f6025867de4a592dd1ec639b8d91b387936c9c6fefaa336d63e7a05ee777",
+    "changed": true
+  },
+  "content/environments/procedural_architecture_v1/passages/node_-18_-10_-30.glb": {
+    "baseline_sha256": "03061babd27d66f8c62da6cbfcc88585a25ed16113e42e77d8888f0ef8cfa544",
+    "current_sha256": "944628c44d922c0a36fb4f4625cfadf5d9091624fd521d2fc5f30069bc5a1bc1",
+    "changed": true
+  },
+  "content/environments/procedural_architecture_v1/passages/node_-23_-23_-16.glb": {
+    "baseline_sha256": "f3f246fcc6af053f6c14f3b5f804ce16ccb345ddc80afe2ec592f857026cff09",
+    "current_sha256": "7e9f56dde6d7e478711da100a07beacb0821ca429812046a2e45ce6ce6305a8e",
+    "changed": true
+  },
+  "content/environments/procedural_architecture_v1/passages/node_-31_-23_6.glb": {
+    "baseline_sha256": "ed68293d7e8a4253d75a11eccbbbb8b3ccbf91463627f3d492968c4f13daa243",
+    "current_sha256": "3a2ed12c2eadee1a679f1d7c6a3c6c2c85f25f1844f19e991dd9829630dd9840",
+    "changed": true
+  },
+  "content/environments/procedural_architecture_v1/passages/node_-38_-23_-2.glb": {
+    "baseline_sha256": "5543c3602e4c61a96f6f637830e819c1e74cb8e10929bee77a5312e82daf12ca",
+    "current_sha256": "3a3be73d618b746e492dff0d7bb91f8a5548fc2d9d94f2a99ae4233e28b2f93b",
+    "changed": true
+  },
+  "content/environments/procedural_architecture_v1/passages/node_-41_-23_14.glb": {
+    "baseline_sha256": "aec5fff3207afdce49f38ff48833fa138ae8e6dea471ab5df2a5a4597ea9fa85",
+    "current_sha256": "7723acd6f37a37bdaa04188687ea860918a5bbc77f4c86fd2a352fca1863b73b",
+    "changed": true
+  },
+  "content/environments/procedural_architecture_v1/passages/node_-41_-23_24.glb": {
+    "baseline_sha256": "22d333f1afb0343c1777c38c0a174385cf986e439fa418d5c8bbea7104f15c6d",
+    "current_sha256": "f905796af457679e837e13ac2f9735baeff3f51dac0be987cc2fee37442bece9",
+    "changed": true
+  },
+  "content/environments/procedural_architecture_v1/passages/node_-43_-23_-6.glb": {
+    "baseline_sha256": "d1b663fde07595ada514e93582f037743c34626a8b9872e927d2a0b10e0f456c",
+    "current_sha256": "65ad3418ae4546cf3eae678ecac2ea59e1c349d6b2918a214c2907b599279d32",
+    "changed": true
+  },
+  "content/environments/procedural_architecture_v1/passages/node_-46_-23_7.glb": {
+    "baseline_sha256": "dfbb393ce26d15c54465c2d9d285376d6e7e2142b3cc3424b54cb882f5da18f5",
+    "current_sha256": "6896330c48898ebe56d6559fe98300a5e0ea00101d49b3d01c22951397b43b7e",
+    "changed": true
+  },
+  "content/environments/procedural_architecture_v1/passages/node_22_-10_-30.glb": {
+    "baseline_sha256": "84c6957f68e4f677eafc756c9c1d49fdb0092be83ffae1d330e98fdfff7ae5a8",
+    "current_sha256": "4d39c14c807b3a968afe5644d1a17c9f25b54c7a67c9d0dbddaa596c09763935",
+    "changed": true
+  },
+  "content/environments/procedural_architecture_v1/passages/node_22_-10_10.glb": {
+    "baseline_sha256": "bb37ba8792f4afa480b1a688da1452b5952435b7b02aa124861cc7ea8368d5c5",
+    "current_sha256": "cf35238cb62520087d2d99df4a918fbd88b3c9f221a235f748b9b1321f72d094",
+    "changed": true
+  },
+  "content/environments/procedural_architecture_v1/passages/node_46_-4_-15.glb": {
+    "baseline_sha256": "47b34c2649bb89fd5d0f70a7c90030669bd5b65213a3b5f5d96b1e7e1bbad861",
+    "current_sha256": "11b5303cda7806391b3c07b9a3d09a2ffda01684bbd626299e6e8ae0815ae74f",
+    "changed": true
+  },
+  "content/environments/procedural_architecture_v1/passages/node_46_-4_6.glb": {
+    "baseline_sha256": "fd7fb867e802f0041a969628eb5534c038d3b72cbe977960c35ff579a9e516b3",
+    "current_sha256": "ba5ccd82023bf8b155a978a52cfef51ed24a10ea6e7bd71b2d95f38763c5a27b",
+    "changed": true
+  },
+  "content/environments/procedural_architecture_v1/passages/node_7_-18_21.glb": {
+    "baseline_sha256": "944be0d2a17b1b3e33080c444d30a20b4db810dcb1521b5ce4aa377116916964",
+    "current_sha256": "71da5efd9e189f9393c4d2d0144a7a3fa1ff5c9bc6b48f2a89a4e0035546e918",
+    "changed": true
+  },
+  "content/environments/procedural_architecture_v1/passages/ossuary_loop.glb": {
+    "baseline_sha256": "99cd9381aab1f0cbbc3192792798c79180b551387b3f0c6f0678382dbff7e974",
+    "current_sha256": "6799f062706598078555b8cb62280f6e729d9dd87c6cd6b095e079e5df5371ef",
+    "changed": true
+  },
+  "content/environments/procedural_architecture_v1/passages/return_gallery.glb": {
+    "baseline_sha256": "cf295ddf258c535d3aa1903713d378b6eaf6252e389e3eb08181cb7653170d00",
+    "current_sha256": "941fc0406d99349e77a2e93a298be2b39d37039fe0a85614c3d764475e5f5e52",
+    "changed": true
+  },
+  "content/environments/procedural_architecture_v1/passages/root_tunnel.glb": {
+    "baseline_sha256": "b48fe6141d5053221415c9a463643004c5c3e4b223a7f50b21343de00976188c",
+    "current_sha256": "26b6ca1b45ef89592ada8f0a2c200b174c3f561557c52420416e70b01d682b8e",
+    "changed": true
+  },
+  "content/environments/procedural_architecture_v1/passages/upper_cells.glb": {
+    "baseline_sha256": "efc6ef1fcfda3ff49a8da42ec9ce64fa4d95d4321459350158ffbe0326dc138e",
+    "current_sha256": "c1451ed2253541be569eb79e46e035051c3f983afe7e4f50f5554d6a623c6603",
+    "changed": true
+  },
+  "content/environments/procedural_architecture_v1/passages/upper_hall.glb": {
+    "baseline_sha256": "b01cbe2de0a2db75b8d9472c9fe36f34fa92c92e4d055c210d47819308647f41",
+    "current_sha256": "3b6d60c8bc23c928a23ed693c9ff730699a3ba87cf5d9516d266240c38c0db11",
+    "changed": true
+  },
+  "content/environments/red_descent/masonry_repairs_v1/stairs/choir.glb": {
+    "baseline_sha256": "4beb2a7f4eaaa5a9444a0cfe115972431b679f484bb7fb657478dd62da8e8f25",
+    "current_sha256": "4beb2a7f4eaaa5a9444a0cfe115972431b679f484bb7fb657478dd62da8e8f25",
+    "changed": false
+  },
+  "content/environments/red_descent/masonry_repairs_v1/stairs/first_stair_hall.glb": {
+    "baseline_sha256": "65e5b1bb8039f7829afaf763c3fcf6c34ad9aba4a336625abab31a6c908b3365",
+    "current_sha256": "65e5b1bb8039f7829afaf763c3fcf6c34ad9aba4a336625abab31a6c908b3365",
+    "changed": false
+  },
+  "content/environments/red_descent/masonry_repairs_v1/stairs/second_stair_hall.glb": {
+    "baseline_sha256": "797fd280ba0f43b40840e163221a67bf1de7db382b45d78c46ad696b4e2e46da",
+    "current_sha256": "797fd280ba0f43b40840e163221a67bf1de7db382b45d78c46ad696b4e2e46da",
+    "changed": false
+  },
+  "content/environments/red_descent/upper_crossing_v1/gallery.glb": {
+    "baseline_sha256": "996b6943a44887aff9522011e2f4443270b9d85e045dbd784f8e5062be780e82",
+    "current_sha256": "8e43dffee43c25b52002193981f231c0adbb8283dda537306bc8da0a6db38863",
+    "changed": true
+  },
+  "content/environments/procedural_architecture_v1/rooms/bones.glb": {
+    "baseline_sha256": "7f148024624df124878ff117ae1a03a20f495416ad6cc486b5d7e86aa9a332c1",
+    "preservation_required": true,
+    "current_sha256": "7f148024624df124878ff117ae1a03a20f495416ad6cc486b5d7e86aa9a332c1",
+    "changed": false
+  },
+  "content/environments/procedural_architecture_v1/rooms/cells.glb": {
+    "baseline_sha256": "e0b5933ae8152262d2e36658d34a7d05bea07d0dfb4d83ab52e4b68d821ff279",
+    "preservation_required": true,
+    "current_sha256": "e0b5933ae8152262d2e36658d34a7d05bea07d0dfb4d83ab52e4b68d821ff279",
+    "changed": false
+  },
+  "content/environments/procedural_architecture_v1/rooms/ossuary.glb": {
+    "baseline_sha256": "489e089d65f7617526d27e640eb4367d252da28d756101c24a7bf44961777942",
+    "preservation_required": true,
+    "current_sha256": "489e089d65f7617526d27e640eb4367d252da28d756101c24a7bf44961777942",
+    "changed": false
+  },
+  "content/environments/procedural_architecture_v1/rooms/window.glb": {
+    "baseline_sha256": "d749ab58c4d878e080ba573bfded44c350adc2c595e0db41a53d1f16326fb783",
+    "preservation_required": true,
+    "current_sha256": "d749ab58c4d878e080ba573bfded44c350adc2c595e0db41a53d1f16326fb783",
+    "changed": false
+  }
+}

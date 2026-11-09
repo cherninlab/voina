@@ -1,0 +1,1492 @@
+{
+  "content/environments/procedural_architecture_v1/passages/bell_loop.glb": {
+    "Collision_bell_loop_8-colonly": {
+      "validation_changed": false,
+      "finite_coordinates": true,
+      "triangles": 740
+    },
+    "Collision_bell_loop_13-colonly": {
+      "validation_changed": false,
+      "finite_coordinates": true,
+      "triangles": 1484
+    },
+    "Mortar_bell_loop_8": {
+      "validation_changed": false,
+      "finite_coordinates": true,
+      "triangles": 740
+    },
+    "Mortar_bell_loop_13": {
+      "validation_changed": false,
+      "finite_coordinates": true,
+      "triangles": 1484
+    },
+    "Stone-arch_bell_loop_7": {
+      "validation_changed": false,
+      "finite_coordinates": true,
+      "triangles": 102202
+    },
+    "Stone-arch_bell_loop_12": {
+      "validation_changed": false,
+      "finite_coordinates": true,
+      "triangles": 98528
+    },
+    "Stone-flag_bell_loop_9": {
+      "validation_changed": false,
+      "finite_coordinates": true,
+      "triangles": 11096
+    },
+    "Stone-flag_bell_loop_14": {
+      "validation_changed": false,
+      "finite_coordinates": true,
+      "triangles": 11344
+    },
+    "Stone-stone_bell_loop_5": {
+      "validation_changed": false,
+      "finite_coordinates": true,
+      "triangles": 8412
+    },
+    "Stone-stone_bell_loop_6": {
+      "validation_changed": false,
+      "finite_coordinates": true,
+      "triangles": 8363
+    },
+    "Stone-stone_bell_loop_10": {
+      "validation_changed": false,
+      "finite_coordinates": true,
+      "triangles": 8779
+    },
+    "Stone-stone_bell_loop_11": {
+      "validation_changed": false,
+      "finite_coordinates": true,
+      "triangles": 8708
+    },
+    "Stone-stone_bell_loop_1016": {
+      "validation_changed": false,
+      "finite_coordinates": true,
+      "triangles": 120
+    },
+    "Stone-stone_bell_loop_1026": {
+      "validation_changed": false,
+      "finite_coordinates": true,
+      "triangles": 120
+    }
+  },
+  "content/environments/procedural_architecture_v1/passages/cave_bypass.glb": {
+    "Collision_cave_bypass_3-colonly": {
+      "validation_changed": false,
+      "finite_coordinates": true,
+      "triangles": 938
+    },
+    "Collision_cave_bypass_8-colonly": {
+      "validation_changed": false,
+      "finite_coordinates": true,
+      "triangles": 1558
+    },
+    "Collision_cave_bypass_13-colonly": {
+      "validation_changed": false,
+      "finite_coordinates": true,
+      "triangles": 394
+    },
+    "Mortar_cave_bypass_3": {
+      "validation_changed": false,
+      "finite_coordinates": true,
+      "triangles": 938
+    },
+    "Mortar_cave_bypass_8": {
+      "validation_changed": false,
+      "finite_coordinates": true,
+      "triangles": 1558
+    },
+    "Mortar_cave_bypass_13": {
+      "validation_changed": false,
+      "finite_coordinates": true,
+      "triangles": 394
+    },
+    "Stone-flag_cave_bypass_4": {
+      "validation_changed": false,
+      "finite_coordinates": true,
+      "triangles": 8052
+    },
+    "Stone-flag_cave_bypass_9": {
+      "validation_changed": false,
+      "finite_coordinates": true,
+      "triangles": 15096
+    },
+    "Stone-flag_cave_bypass_14": {
+      "validation_changed": false,
+      "finite_coordinates": true,
+      "triangles": 6464
+    },
+    "Stone-rock_cave_bypass_0": {
+      "validation_changed": false,
+      "finite_coordinates": true,
+      "triangles": 1498
+    },
+    "Stone-rock_cave_bypass_5": {
+      "validation_changed": false,
+      "finite_coordinates": true,
+      "triangles": 2454
+    },
+    "Stone-rock_cave_bypass_10": {
+      "validation_changed": false,
+      "finite_coordinates": true,
+      "triangles": 916
+    },
+    "Stone-wood_cave_bypass_1005.001": {
+      "validation_changed": false,
+      "finite_coordinates": true,
+      "triangles": 876
+    },
+    "Stone-wood_cave_bypass_1015.001": {
+      "validation_changed": false,
+      "finite_coordinates": true,
+      "triangles": 1752
+    }
+  },
+  "content/environments/procedural_architecture_v1/passages/chapel_approach.glb": {
+    "Collision_chapel_approach_3-colonly": {
+      "validation_changed": false,
+      "finite_coordinates": true,
+      "triangles": 264
+    },
+    "Collision_chapel_approach_8-colonly": {
+      "validation_changed": false,
+      "finite_coordinates": true,
+      "triangles": 214
+    },
+    "Mortar_chapel_approach_3": {
+      "validation_changed": false,
+      "finite_coordinates": true,
+      "triangles": 264
+    },
+    "Mortar_chapel_approach_8": {
+      "validation_changed": false,
+      "finite_coordinates": true,
+      "triangles": 214
+    },
+    "Stone-arch_chapel_approach_2": {
+      "validation_changed": false,
+      "finite_coordinates": true,
+      "triangles": 30049
+    },
+    "Stone-arch_chapel_approach_7": {
+      "validation_changed": false,
+      "finite_coordinates": true,
+      "triangles": 24728
+    },
+    "Stone-flag_chapel_approach_4": {
+      "validation_changed": false,
+      "finite_coordinates": true,
+      "triangles": 3484
+    },
+    "Stone-flag_chapel_approach_9": {
+      "validation_changed": false,
+      "finite_coordinates": true,
+      "triangles": 2594
+    },
+    "Stone-stone_chapel_approach_0": {
+      "validation_changed": false,
+      "finite_coordinates": true,
+      "triangles": 6958
+    },
+    "Stone-stone_chapel_approach_1": {
+      "validation_changed": false,
+      "finite_coordinates": true,
+      "triangles": 14108
+    },
+    "Stone-stone_chapel_approach_5": {
+      "validation_changed": false,
+      "finite_coordinates": true,
+      "triangles": 4441
+    },
+    "Stone-stone_chapel_approach_6": {
+      "validation_changed": false,
+      "finite_coordinates": true,
+      "triangles": 13058
+    }
+  },
+  "content/environments/procedural_architecture_v1/passages/entry.glb": {
+    "Collision_entry_3-colonly": {
+      "validation_changed": false,
+      "finite_coordinates": true,
+      "triangles": 96
+    },
+    "Mortar_entry_3": {
+      "validation_changed": false,
+      "finite_coordinates": true,
+      "triangles": 96
+    },
+    "Stone-arch_entry_2": {
+      "validation_changed": false,
+      "finite_coordinates": true,
+      "triangles": 29702
+    },
+    "Stone-flag_entry_4": {
+      "validation_changed": false,
+      "finite_coordinates": true,
+      "triangles": 4408
+    },
+    "Stone-stone_entry_0": {
+      "validation_changed": false,
+      "finite_coordinates": true,
+      "triangles": 1987
+    },
+    "Stone-stone_entry_1": {
+      "validation_changed": false,
+      "finite_coordinates": true,
+      "triangles": 3230
+    }
+  },
+  "content/environments/procedural_architecture_v1/passages/nave.glb": {
+    "Collision_nave_3-colonly": {
+      "validation_changed": false,
+      "finite_coordinates": true,
+      "triangles": 88
+    },
+    "Collision_nave_13-colonly": {
+      "validation_changed": false,
+      "finite_coordinates": true,
+      "triangles": 136
+    },
+    "Collision_nave_18-colonly": {
+      "validation_changed": false,
+      "finite_coordinates": true,
+      "triangles": 1096
+    },
+    "Mortar_nave_3": {
+      "validation_changed": false,
+      "finite_coordinates": true,
+      "triangles": 88
+    },
+    "Mortar_nave_13": {
+      "validation_changed": false,
+      "finite_coordinates": true,
+      "triangles": 136
+    },
+    "Mortar_nave_18": {
+      "validation_changed": false,
+      "finite_coordinates": true,
+      "triangles": 1096
+    },
+    "Stone-arch_nave_2": {
+      "validation_changed": false,
+      "finite_coordinates": true,
+      "triangles": 40024
+    },
+    "Stone-arch_nave_12": {
+      "validation_changed": false,
+      "finite_coordinates": true,
+      "triangles": 28566
+    },
+    "Stone-arch_nave_17": {
+      "validation_changed": false,
+      "finite_coordinates": true,
+      "triangles": 63574
+    },
+    "Stone-flag_nave_4": {
+      "validation_changed": false,
+      "finite_coordinates": true,
+      "triangles": 6538
+    },
+    "Stone-flag_nave_14": {
+      "validation_changed": false,
+      "finite_coordinates": true,
+      "triangles": 5254
+    },
+    "Stone-flag_nave_19": {
+      "validation_changed": false,
+      "finite_coordinates": true,
+      "triangles": 10462
+    },
+    "Stone-stone_nave_0": {
+      "validation_changed": false,
+      "finite_coordinates": true,
+      "triangles": 14398
+    },
+    "Stone-stone_nave_1": {
+      "validation_changed": false,
+      "finite_coordinates": true,
+      "triangles": 14758
+    },
+    "Stone-stone_nave_10": {
+      "validation_changed": false,
+      "finite_coordinates": true,
+      "triangles": 6184
+    },
+    "Stone-stone_nave_11": {
+      "validation_changed": false,
+      "finite_coordinates": true,
+      "triangles": 26996
+    },
+    "Stone-stone_nave_15": {
+      "validation_changed": false,
+      "finite_coordinates": true,
+      "triangles": 30446
+    },
+    "Stone-stone_nave_16": {
+      "validation_changed": false,
+      "finite_coordinates": true,
+      "triangles": 27606
+    },
+    "Stone-stone_nave_1006": {
+      "validation_changed": false,
+      "finite_coordinates": true,
+      "triangles": 80
+    },
+    "Stone-stone_nave_1026": {
+      "validation_changed": false,
+      "finite_coordinates": true,
+      "triangles": 124
+    },
+    "Stone-stone_nave_1036": {
+      "validation_changed": false,
+      "finite_coordinates": true,
+      "triangles": 140
+    }
+  },
+  "content/environments/procedural_architecture_v1/passages/node_-14_-19_24.glb": {
+    "Collision_node_-14_-19_24_20-colonly": {
+      "validation_changed": false,
+      "finite_coordinates": true,
+      "triangles": 1340
+    },
+    "Mortar_node_-14_-19_24_20": {
+      "validation_changed": false,
+      "finite_coordinates": true,
+      "triangles": 1340
+    },
+    "Stone-arch_node_-14_-19_24_4": {
+      "validation_changed": false,
+      "finite_coordinates": true,
+      "triangles": 27790
+    },
+    "Stone-arch_node_-14_-19_24_5": {
+      "validation_changed": false,
+      "finite_coordinates": true,
+      "triangles": 17048
+    },
+    "Stone-flag_node_-14_-19_24_21": {
+      "validation_changed": false,
+      "finite_coordinates": true,
+      "triangles": 5118
+    },
+    "Stone-stone_node_-14_-19_24_0": {
+      "validation_changed": false,
+      "finite_coordinates": true,
+      "triangles": 7706
+    },
+    "Stone-stone_node_-14_-19_24_1": {
+      "validation_changed": false,
+      "finite_coordinates": true,
+      "triangles": 19420
+    },
+    "Stone-stone_node_-14_-19_24_2": {
+      "validation_changed": false,
+      "finite_coordinates": true,
+      "triangles": 11644
+    },
+    "Stone-stone_node_-14_-19_24_3": {
+      "validation_changed": false,
+      "finite_coordinates": true,
+      "triangles": 5566
+    }
+  },
+  "content/environments/procedural_architecture_v1/passages/node_-18_-10_-30.glb": {
+    "Collision_node_-18_-10_-30_1-colonly": {
+      "validation_changed": false,
+      "finite_coordinates": true,
+      "triangles": 12
+    },
+    "Collision_node_-18_-10_-30_2-colonly": {
+      "validation_changed": false,
+      "finite_coordinates": true,
+      "triangles": 12
+    },
+    "Collision_node_-18_-10_-30_6-colonly": {
+      "validation_changed": false,
+      "finite_coordinates": true,
+      "triangles": 212
+    },
+    "Mortar_node_-18_-10_-30_1": {
+      "validation_changed": false,
+      "finite_coordinates": true,
+      "triangles": 12
+    },
+    "Mortar_node_-18_-10_-30_2": {
+      "validation_changed": false,
+      "finite_coordinates": true,
+      "triangles": 12
+    },
+    "Mortar_node_-18_-10_-30_6": {
+      "validation_changed": false,
+      "finite_coordinates": true,
+      "triangles": 212
+    },
+    "Stone-arch_node_-18_-10_-30_4": {
+      "validation_changed": false,
+      "finite_coordinates": true,
+      "triangles": 13664
+    },
+    "Stone-arch_node_-18_-10_-30_5": {
+      "validation_changed": false,
+      "finite_coordinates": true,
+      "triangles": 13558
+    },
+    "Stone-flag_node_-18_-10_-30_7": {
+      "validation_changed": false,
+      "finite_coordinates": true,
+      "triangles": 4050
+    },
+    "Stone-stone_node_-18_-10_-30_1": {
+      "validation_changed": false,
+      "finite_coordinates": true,
+      "triangles": 4740
+    },
+    "Stone-stone_node_-18_-10_-30_2": {
+      "validation_changed": false,
+      "finite_coordinates": true,
+      "triangles": 4463
+    }
+  },
+  "content/environments/procedural_architecture_v1/passages/node_-23_-23_-16.glb": {
+    "Collision_node_-23_-23_-16_0-colonly": {
+      "validation_changed": false,
+      "finite_coordinates": true,
+      "triangles": 120
+    },
+    "Mortar_node_-23_-23_-16_0": {
+      "validation_changed": false,
+      "finite_coordinates": true,
+      "triangles": 120
+    },
+    "Stone-arch_node_-23_-23_-16_0": {
+      "validation_changed": false,
+      "finite_coordinates": true,
+      "triangles": 13044
+    },
+    "Stone-ashlar_node_-23_-23_-16_0": {
+      "validation_changed": false,
+      "finite_coordinates": true,
+      "triangles": 3200
+    },
+    "Stone-stone_node_-23_-23_-16_0": {
+      "validation_changed": false,
+      "finite_coordinates": true,
+      "triangles": 22598
+    }
+  },
+  "content/environments/procedural_architecture_v1/passages/node_-31_-23_6.glb": {
+    "Collision_node_-31_-23_6_20-colonly": {
+      "validation_changed": false,
+      "finite_coordinates": true,
+      "triangles": 667
+    },
+    "Mortar_node_-31_-23_6_20": {
+      "validation_changed": false,
+      "finite_coordinates": true,
+      "triangles": 667
+    },
+    "Stone-flag_node_-31_-23_6_21": {
+      "validation_changed": false,
+      "finite_coordinates": true,
+      "triangles": 6284
+    },
+    "Stone-rock_node_-31_-23_6_0": {
+      "validation_changed": false,
+      "finite_coordinates": true,
+      "triangles": 1245
+    }
+  },
+  "content/environments/procedural_architecture_v1/passages/node_-38_-23_-2.glb": {
+    "Collision_node_-38_-23_-2_20-colonly": {
+      "validation_changed": false,
+      "finite_coordinates": true,
+      "triangles": 901
+    },
+    "Mortar_node_-38_-23_-2_20": {
+      "validation_changed": false,
+      "finite_coordinates": true,
+      "triangles": 901
+    },
+    "Stone-flag_node_-38_-23_-2_21": {
+      "validation_changed": false,
+      "finite_coordinates": true,
+      "triangles": 6322
+    },
+    "Stone-rock_node_-38_-23_-2_0": {
+      "validation_changed": false,
+      "finite_coordinates": true,
+      "triangles": 1812
+    }
+  },
+  "content/environments/procedural_architecture_v1/passages/node_-41_-23_14.glb": {
+    "Collision_node_-41_-23_14_20-colonly": {
+      "validation_changed": false,
+      "finite_coordinates": true,
+      "triangles": 672
+    },
+    "Mortar_node_-41_-23_14_20": {
+      "validation_changed": false,
+      "finite_coordinates": true,
+      "triangles": 672
+    },
+    "Stone-flag_node_-41_-23_14_21": {
+      "validation_changed": false,
+      "finite_coordinates": true,
+      "triangles": 6178
+    },
+    "Stone-rock_node_-41_-23_14_0": {
+      "validation_changed": false,
+      "finite_coordinates": true,
+      "triangles": 1138
+    }
+  },
+  "content/environments/procedural_architecture_v1/passages/node_-41_-23_24.glb": {
+    "Collision_node_-41_-23_24_20-colonly": {
+      "validation_changed": false,
+      "finite_coordinates": true,
+      "triangles": 574
+    },
+    "Mortar_node_-41_-23_24_20": {
+      "validation_changed": false,
+      "finite_coordinates": true,
+      "triangles": 574
+    },
+    "Stone-flag_node_-41_-23_24_21": {
+      "validation_changed": false,
+      "finite_coordinates": true,
+      "triangles": 6282
+    },
+    "Stone-rock_node_-41_-23_24_0": {
+      "validation_changed": false,
+      "finite_coordinates": true,
+      "triangles": 950
+    }
+  },
+  "content/environments/procedural_architecture_v1/passages/node_-43_-23_-6.glb": {
+    "Collision_node_-43_-23_-6_20-colonly": {
+      "validation_changed": false,
+      "finite_coordinates": true,
+      "triangles": 438
+    },
+    "Mortar_node_-43_-23_-6_20": {
+      "validation_changed": false,
+      "finite_coordinates": true,
+      "triangles": 438
+    },
+    "Stone-flag_node_-43_-23_-6_21": {
+      "validation_changed": false,
+      "finite_coordinates": true,
+      "triangles": 5316
+    },
+    "Stone-rock_node_-43_-23_-6_0": {
+      "validation_changed": false,
+      "finite_coordinates": true,
+      "triangles": 872
+    }
+  },
+  "content/environments/procedural_architecture_v1/passages/node_-46_-23_7.glb": {
+    "Collision_node_-46_-23_7_20-colonly": {
+      "validation_changed": false,
+      "finite_coordinates": true,
+      "triangles": 632
+    },
+    "Mortar_node_-46_-23_7_20": {
+      "validation_changed": false,
+      "finite_coordinates": true,
+      "triangles": 632
+    },
+    "Stone-flag_node_-46_-23_7_21": {
+      "validation_changed": false,
+      "finite_coordinates": true,
+      "triangles": 5288
+    },
+    "Stone-rock_node_-46_-23_7_0": {
+      "validation_changed": false,
+      "finite_coordinates": true,
+      "triangles": 2
+    }
+  },
+  "content/environments/procedural_architecture_v1/passages/node_22_-10_-30.glb": {
+    "Collision_node_22_-10_-30_20-colonly": {
+      "validation_changed": false,
+      "finite_coordinates": true,
+      "triangles": 1655
+    },
+    "Mortar_node_22_-10_-30_20": {
+      "validation_changed": false,
+      "finite_coordinates": true,
+      "triangles": 1655
+    },
+    "Stone-arch_node_22_-10_-30_4": {
+      "validation_changed": false,
+      "finite_coordinates": true,
+      "triangles": 35614
+    },
+    "Stone-arch_node_22_-10_-30_5": {
+      "validation_changed": false,
+      "finite_coordinates": true,
+      "triangles": 14814
+    },
+    "Stone-arch_node_22_-10_-30_6": {
+      "validation_changed": false,
+      "finite_coordinates": true,
+      "triangles": 794
+    },
+    "Stone-flag_node_22_-10_-30_21": {
+      "validation_changed": false,
+      "finite_coordinates": true,
+      "triangles": 5038
+    },
+    "Stone-stone_node_22_-10_-30_0": {
+      "validation_changed": false,
+      "finite_coordinates": true,
+      "triangles": 8086
+    },
+    "Stone-stone_node_22_-10_-30_1": {
+      "validation_changed": false,
+      "finite_coordinates": true,
+      "triangles": 9916
+    },
+    "Stone-stone_node_22_-10_-30_2": {
+      "validation_changed": false,
+      "finite_coordinates": true,
+      "triangles": 10354
+    },
+    "Stone-stone_node_22_-10_-30_3": {
+      "validation_changed": false,
+      "finite_coordinates": true,
+      "triangles": 15122
+    }
+  },
+  "content/environments/procedural_architecture_v1/passages/node_22_-10_10.glb": {
+    "Collision_node_22_-10_10_20-colonly": {
+      "validation_changed": false,
+      "finite_coordinates": true,
+      "triangles": 1190
+    },
+    "Mortar_node_22_-10_10_20": {
+      "validation_changed": false,
+      "finite_coordinates": true,
+      "triangles": 1190
+    },
+    "Stone-arch_node_22_-10_10_4": {
+      "validation_changed": false,
+      "finite_coordinates": true,
+      "triangles": 24532
+    },
+    "Stone-arch_node_22_-10_10_5": {
+      "validation_changed": false,
+      "finite_coordinates": true,
+      "triangles": 13592
+    },
+    "Stone-flag_node_22_-10_10_21": {
+      "validation_changed": false,
+      "finite_coordinates": true,
+      "triangles": 4180
+    },
+    "Stone-stone_node_22_-10_10_0": {
+      "validation_changed": false,
+      "finite_coordinates": true,
+      "triangles": 8246
+    },
+    "Stone-stone_node_22_-10_10_1": {
+      "validation_changed": false,
+      "finite_coordinates": true,
+      "triangles": 5804
+    },
+    "Stone-stone_node_22_-10_10_2": {
+      "validation_changed": false,
+      "finite_coordinates": true,
+      "triangles": 18232
+    },
+    "Stone-stone_node_22_-10_10_3": {
+      "validation_changed": false,
+      "finite_coordinates": true,
+      "triangles": 18838
+    }
+  },
+  "content/environments/procedural_architecture_v1/passages/node_46_-4_-15.glb": {
+    "Collision_node_46_-4_-15_1-colonly": {
+      "validation_changed": false,
+      "finite_coordinates": true,
+      "triangles": 12
+    },
+    "Collision_node_46_-4_-15_2-colonly": {
+      "validation_changed": false,
+      "finite_coordinates": true,
+      "triangles": 12
+    },
+    "Collision_node_46_-4_-15_6-colonly": {
+      "validation_changed": false,
+      "finite_coordinates": true,
+      "triangles": 360
+    },
+    "Mortar_node_46_-4_-15_1": {
+      "validation_changed": false,
+      "finite_coordinates": true,
+      "triangles": 12
+    },
+    "Mortar_node_46_-4_-15_2": {
+      "validation_changed": false,
+      "finite_coordinates": true,
+      "triangles": 12
+    },
+    "Mortar_node_46_-4_-15_6": {
+      "validation_changed": false,
+      "finite_coordinates": true,
+      "triangles": 360
+    },
+    "Stone-arch_node_46_-4_-15_4": {
+      "validation_changed": false,
+      "finite_coordinates": true,
+      "triangles": 15138
+    },
+    "Stone-arch_node_46_-4_-15_5": {
+      "validation_changed": false,
+      "finite_coordinates": true,
+      "triangles": 13488
+    },
+    "Stone-flag_node_46_-4_-15_7": {
+      "validation_changed": false,
+      "finite_coordinates": true,
+      "triangles": 4384
+    },
+    "Stone-stone_node_46_-4_-15_1": {
+      "validation_changed": false,
+      "finite_coordinates": true,
+      "triangles": 5585
+    },
+    "Stone-stone_node_46_-4_-15_2": {
+      "validation_changed": false,
+      "finite_coordinates": true,
+      "triangles": 5598
+    }
+  },
+  "content/environments/procedural_architecture_v1/passages/node_46_-4_6.glb": {
+    "Collision_node_46_-4_6_1-colonly": {
+      "validation_changed": false,
+      "finite_coordinates": true,
+      "triangles": 12
+    },
+    "Collision_node_46_-4_6_2-colonly": {
+      "validation_changed": false,
+      "finite_coordinates": true,
+      "triangles": 12
+    },
+    "Collision_node_46_-4_6_6-colonly": {
+      "validation_changed": false,
+      "finite_coordinates": true,
+      "triangles": 362
+    },
+    "Mortar_node_46_-4_6_1": {
+      "validation_changed": false,
+      "finite_coordinates": true,
+      "triangles": 12
+    },
+    "Mortar_node_46_-4_6_2": {
+      "validation_changed": false,
+      "finite_coordinates": true,
+      "triangles": 12
+    },
+    "Mortar_node_46_-4_6_6": {
+      "validation_changed": false,
+      "finite_coordinates": true,
+      "triangles": 362
+    },
+    "Stone-arch_node_46_-4_6_4": {
+      "validation_changed": false,
+      "finite_coordinates": true,
+      "triangles": 13378
+    },
+    "Stone-arch_node_46_-4_6_5": {
+      "validation_changed": false,
+      "finite_coordinates": true,
+      "triangles": 14174
+    },
+    "Stone-flag_node_46_-4_6_7": {
+      "validation_changed": false,
+      "finite_coordinates": true,
+      "triangles": 4360
+    },
+    "Stone-stone_node_46_-4_6_1": {
+      "validation_changed": false,
+      "finite_coordinates": true,
+      "triangles": 5589
+    },
+    "Stone-stone_node_46_-4_6_2": {
+      "validation_changed": false,
+      "finite_coordinates": true,
+      "triangles": 5706
+    }
+  },
+  "content/environments/procedural_architecture_v1/passages/node_7_-18_21.glb": {
+    "Collision_node_7_-18_21_0-colonly": {
+      "validation_changed": false,
+      "finite_coordinates": true,
+      "triangles": 120
+    },
+    "Mortar_node_7_-18_21_0": {
+      "validation_changed": false,
+      "finite_coordinates": true,
+      "triangles": 120
+    },
+    "Stone-arch_node_7_-18_21_0": {
+      "validation_changed": false,
+      "finite_coordinates": true,
+      "triangles": 8544
+    },
+    "Stone-ashlar_node_7_-18_21_0": {
+      "validation_changed": false,
+      "finite_coordinates": true,
+      "triangles": 3196
+    },
+    "Stone-stone_node_7_-18_21_0": {
+      "validation_changed": false,
+      "finite_coordinates": true,
+      "triangles": 17584
+    }
+  },
+  "content/environments/procedural_architecture_v1/passages/ossuary_loop.glb": {
+    "Collision_ossuary_loop_3-colonly": {
+      "validation_changed": false,
+      "finite_coordinates": true,
+      "triangles": 72
+    },
+    "Collision_ossuary_loop_8-colonly": {
+      "validation_changed": false,
+      "finite_coordinates": true,
+      "triangles": 1472
+    },
+    "Collision_ossuary_loop_13-colonly": {
+      "validation_changed": false,
+      "finite_coordinates": true,
+      "triangles": 72
+    },
+    "Collision_ossuary_loop_18-colonly": {
+      "validation_changed": false,
+      "finite_coordinates": true,
+      "triangles": 72
+    },
+    "Collision_ossuary_loop_23-colonly": {
+      "validation_changed": false,
+      "finite_coordinates": true,
+      "triangles": 792
+    },
+    "Mortar_ossuary_loop_3": {
+      "validation_changed": false,
+      "finite_coordinates": true,
+      "triangles": 72
+    },
+    "Mortar_ossuary_loop_8": {
+      "validation_changed": false,
+      "finite_coordinates": true,
+      "triangles": 1472
+    },
+    "Mortar_ossuary_loop_13": {
+      "validation_changed": false,
+      "finite_coordinates": true,
+      "triangles": 72
+    },
+    "Mortar_ossuary_loop_18": {
+      "validation_changed": false,
+      "finite_coordinates": true,
+      "triangles": 72
+    },
+    "Mortar_ossuary_loop_23": {
+      "validation_changed": false,
+      "finite_coordinates": true,
+      "triangles": 792
+    },
+    "Stone-arch_ossuary_loop_2": {
+      "validation_changed": false,
+      "finite_coordinates": true,
+      "triangles": 22830
+    },
+    "Stone-arch_ossuary_loop_7": {
+      "validation_changed": false,
+      "finite_coordinates": true,
+      "triangles": 106110
+    },
+    "Stone-arch_ossuary_loop_12": {
+      "validation_changed": false,
+      "finite_coordinates": true,
+      "triangles": 7586
+    },
+    "Stone-arch_ossuary_loop_17": {
+      "validation_changed": false,
+      "finite_coordinates": true,
+      "triangles": 27136
+    },
+    "Stone-arch_ossuary_loop_22": {
+      "validation_changed": false,
+      "finite_coordinates": true,
+      "triangles": 57804
+    },
+    "Stone-flag_ossuary_loop_4": {
+      "validation_changed": false,
+      "finite_coordinates": true,
+      "triangles": 3842
+    },
+    "Stone-flag_ossuary_loop_9": {
+      "validation_changed": false,
+      "finite_coordinates": true,
+      "triangles": 17550
+    },
+    "Stone-flag_ossuary_loop_14": {
+      "validation_changed": false,
+      "finite_coordinates": true,
+      "triangles": 1716
+    },
+    "Stone-flag_ossuary_loop_19": {
+      "validation_changed": false,
+      "finite_coordinates": true,
+      "triangles": 4570
+    },
+    "Stone-flag_ossuary_loop_24": {
+      "validation_changed": false,
+      "finite_coordinates": true,
+      "triangles": 9286
+    },
+    "Stone-stone_ossuary_loop_0": {
+      "validation_changed": false,
+      "finite_coordinates": true,
+      "triangles": 2647
+    },
+    "Stone-stone_ossuary_loop_1": {
+      "validation_changed": false,
+      "finite_coordinates": true,
+      "triangles": 2929
+    },
+    "Stone-stone_ossuary_loop_5": {
+      "validation_changed": false,
+      "finite_coordinates": true,
+      "triangles": 13032
+    },
+    "Stone-stone_ossuary_loop_6": {
+      "validation_changed": false,
+      "finite_coordinates": true,
+      "triangles": 13515
+    },
+    "Stone-stone_ossuary_loop_10": {
+      "validation_changed": false,
+      "finite_coordinates": true,
+      "triangles": 1006
+    },
+    "Stone-stone_ossuary_loop_11": {
+      "validation_changed": false,
+      "finite_coordinates": true,
+      "triangles": 1240
+    },
+    "Stone-stone_ossuary_loop_15": {
+      "validation_changed": false,
+      "finite_coordinates": true,
+      "triangles": 3229
+    },
+    "Stone-stone_ossuary_loop_16": {
+      "validation_changed": false,
+      "finite_coordinates": true,
+      "triangles": 3263
+    },
+    "Stone-stone_ossuary_loop_20": {
+      "validation_changed": false,
+      "finite_coordinates": true,
+      "triangles": 6991
+    },
+    "Stone-stone_ossuary_loop_21": {
+      "validation_changed": false,
+      "finite_coordinates": true,
+      "triangles": 7414
+    },
+    "Stone-stone_ossuary_loop_1016": {
+      "validation_changed": false,
+      "finite_coordinates": true,
+      "triangles": 140
+    },
+    "Stone-stone_ossuary_loop_1046": {
+      "validation_changed": false,
+      "finite_coordinates": true,
+      "triangles": 80
+    }
+  },
+  "content/environments/procedural_architecture_v1/passages/return_gallery.glb": {
+    "Collision_return_gallery_3-colonly": {
+      "validation_changed": false,
+      "finite_coordinates": true,
+      "triangles": 206
+    },
+    "Collision_return_gallery_8-colonly": {
+      "validation_changed": false,
+      "finite_coordinates": true,
+      "triangles": 210
+    },
+    "Collision_return_gallery_13-colonly": {
+      "validation_changed": false,
+      "finite_coordinates": true,
+      "triangles": 96
+    },
+    "Collision_return_gallery_18-colonly": {
+      "validation_changed": false,
+      "finite_coordinates": true,
+      "triangles": 96
+    },
+    "Collision_return_gallery_23-colonly": {
+      "validation_changed": false,
+      "finite_coordinates": true,
+      "triangles": 230
+    },
+    "Mortar_return_gallery_3": {
+      "validation_changed": false,
+      "finite_coordinates": true,
+      "triangles": 206
+    },
+    "Mortar_return_gallery_8": {
+      "validation_changed": false,
+      "finite_coordinates": true,
+      "triangles": 210
+    },
+    "Mortar_return_gallery_13": {
+      "validation_changed": false,
+      "finite_coordinates": true,
+      "triangles": 96
+    },
+    "Mortar_return_gallery_18": {
+      "validation_changed": false,
+      "finite_coordinates": true,
+      "triangles": 96
+    },
+    "Mortar_return_gallery_23": {
+      "validation_changed": false,
+      "finite_coordinates": true,
+      "triangles": 230
+    },
+    "Stone-arch_return_gallery_2": {
+      "validation_changed": false,
+      "finite_coordinates": true,
+      "triangles": 13652
+    },
+    "Stone-arch_return_gallery_7": {
+      "validation_changed": false,
+      "finite_coordinates": true,
+      "triangles": 66122
+    },
+    "Stone-arch_return_gallery_12": {
+      "validation_changed": false,
+      "finite_coordinates": true,
+      "triangles": 91318
+    },
+    "Stone-arch_return_gallery_17": {
+      "validation_changed": false,
+      "finite_coordinates": true,
+      "triangles": 71284
+    },
+    "Stone-arch_return_gallery_22": {
+      "validation_changed": false,
+      "finite_coordinates": true,
+      "triangles": 27209
+    },
+    "Stone-flag_return_gallery_4": {
+      "validation_changed": false,
+      "finite_coordinates": true,
+      "triangles": 1674
+    },
+    "Stone-flag_return_gallery_9": {
+      "validation_changed": false,
+      "finite_coordinates": true,
+      "triangles": 8526
+    },
+    "Stone-flag_return_gallery_14": {
+      "validation_changed": false,
+      "finite_coordinates": true,
+      "triangles": 11884
+    },
+    "Stone-flag_return_gallery_19": {
+      "validation_changed": false,
+      "finite_coordinates": true,
+      "triangles": 9400
+    },
+    "Stone-flag_return_gallery_24": {
+      "validation_changed": false,
+      "finite_coordinates": true,
+      "triangles": 3530
+    },
+    "Stone-stone_return_gallery_0": {
+      "validation_changed": false,
+      "finite_coordinates": true,
+      "triangles": 10384
+    },
+    "Stone-stone_return_gallery_1": {
+      "validation_changed": false,
+      "finite_coordinates": true,
+      "triangles": 5024
+    },
+    "Stone-stone_return_gallery_5": {
+      "validation_changed": false,
+      "finite_coordinates": true,
+      "triangles": 29240
+    },
+    "Stone-stone_return_gallery_6": {
+      "validation_changed": false,
+      "finite_coordinates": true,
+      "triangles": 24534
+    },
+    "Stone-stone_return_gallery_10": {
+      "validation_changed": false,
+      "finite_coordinates": true,
+      "triangles": 35754
+    },
+    "Stone-stone_return_gallery_11": {
+      "validation_changed": false,
+      "finite_coordinates": true,
+      "triangles": 33112
+    },
+    "Stone-stone_return_gallery_15": {
+      "validation_changed": false,
+      "finite_coordinates": true,
+      "triangles": 25938
+    },
+    "Stone-stone_return_gallery_16": {
+      "validation_changed": false,
+      "finite_coordinates": true,
+      "triangles": 26492
+    },
+    "Stone-stone_return_gallery_20": {
+      "validation_changed": false,
+      "finite_coordinates": true,
+      "triangles": 10554
+    },
+    "Stone-stone_return_gallery_21": {
+      "validation_changed": false,
+      "finite_coordinates": true,
+      "triangles": 9724
+    },
+    "Stone-stone_return_gallery_1016": {
+      "validation_changed": false,
+      "finite_coordinates": true,
+      "triangles": 120
+    },
+    "Stone-stone_return_gallery_1026": {
+      "validation_changed": false,
+      "finite_coordinates": true,
+      "triangles": 80
+    },
+    "Stone-stone_return_gallery_1036": {
+      "validation_changed": false,
+      "finite_coordinates": true,
+      "triangles": 140
+    },
+    "Stone-stone_return_gallery_1046": {
+      "validation_changed": false,
+      "finite_coordinates": true,
+      "triangles": 124
+    }
+  },
+  "content/environments/procedural_architecture_v1/passages/root_tunnel.glb": {
+    "Collision_root_tunnel_3-colonly": {
+      "validation_changed": false,
+      "finite_coordinates": true,
+      "triangles": 234
+    },
+    "Collision_root_tunnel_8-colonly": {
+      "validation_changed": false,
+      "finite_coordinates": true,
+      "triangles": 1126
+    },
+    "Collision_root_tunnel_13-colonly": {
+      "validation_changed": false,
+      "finite_coordinates": true,
+      "triangles": 1530
+    },
+    "Collision_root_tunnel_18-colonly": {
+      "validation_changed": false,
+      "finite_coordinates": true,
+      "triangles": 1224
+    },
+    "Collision_root_tunnel_23-colonly": {
+      "validation_changed": false,
+      "finite_coordinates": true,
+      "triangles": 1298
+    },
+    "Collision_root_tunnel_28-colonly": {
+      "validation_changed": false,
+      "finite_coordinates": true,
+      "triangles": 1276
+    },
+    "Mortar_root_tunnel_3": {
+      "validation_changed": false,
+      "finite_coordinates": true,
+      "triangles": 234
+    },
+    "Mortar_root_tunnel_8": {
+      "validation_changed": false,
+      "finite_coordinates": true,
+      "triangles": 1126
+    },
+    "Mortar_root_tunnel_13": {
+      "validation_changed": false,
+      "finite_coordinates": true,
+      "triangles": 1530
+    },
+    "Mortar_root_tunnel_18": {
+      "validation_changed": false,
+      "finite_coordinates": true,
+      "triangles": 1224
+    },
+    "Mortar_root_tunnel_23": {
+      "validation_changed": false,
+      "finite_coordinates": true,
+      "triangles": 1298
+    },
+    "Mortar_root_tunnel_28": {
+      "validation_changed": false,
+      "finite_coordinates": true,
+      "triangles": 1276
+    },
+    "Stone-flag_root_tunnel_4": {
+      "validation_changed": false,
+      "finite_coordinates": true,
+      "triangles": 2998
+    },
+    "Stone-flag_root_tunnel_9": {
+      "validation_changed": false,
+      "finite_coordinates": true,
+      "triangles": 7284
+    },
+    "Stone-flag_root_tunnel_14": {
+      "validation_changed": false,
+      "finite_coordinates": true,
+      "triangles": 13467
+    },
+    "Stone-flag_root_tunnel_19": {
+      "validation_changed": false,
+      "finite_coordinates": true,
+      "triangles": 13792
+    },
+    "Stone-flag_root_tunnel_24": {
+      "validation_changed": false,
+      "finite_coordinates": true,
+      "triangles": 10729
+    },
+    "Stone-flag_root_tunnel_29": {
+      "validation_changed": false,
+      "finite_coordinates": true,
+      "triangles": 11494
+    },
+    "Stone-rock_root_tunnel_0": {
+      "validation_changed": false,
+      "finite_coordinates": true,
+      "triangles": 804
+    },
+    "Stone-rock_root_tunnel_5": {
+      "validation_changed": false,
+      "finite_coordinates": true,
+      "triangles": 1714
+    },
+    "Stone-rock_root_tunnel_10": {
+      "validation_changed": false,
+      "finite_coordinates": true,
+      "triangles": 2264
+    },
+    "Stone-rock_root_tunnel_15": {
+      "validation_changed": false,
+      "finite_coordinates": true,
+      "triangles": 1768
+    },
+    "Stone-rock_root_tunnel_20": {
+      "validation_changed": false,
+      "finite_coordinates": true,
+      "triangles": 2096
+    },
+    "Stone-rock_root_tunnel_25": {
+      "validation_changed": false,
+      "finite_coordinates": true,
+      "triangles": 2330
+    }
+  },
+  "content/environments/procedural_architecture_v1/passages/upper_cells.glb": {
+    "Collision_upper_cells_3-colonly": {
+      "validation_changed": false,
+      "finite_coordinates": true,
+      "triangles": 120
+    },
+    "Collision_upper_cells_8-colonly": {
+      "validation_changed": false,
+      "finite_coordinates": true,
+      "triangles": 120
+    },
+    "Collision_upper_cells_13-colonly": {
+      "validation_changed": false,
+      "finite_coordinates": true,
+      "triangles": 2166
+    },
+    "Collision_upper_cells_18-colonly": {
+      "validation_changed": false,
+      "finite_coordinates": true,
+      "triangles": 120
+    },
+    "Mortar_upper_cells_3": {
+      "validation_changed": false,
+      "finite_coordinates": true,
+      "triangles": 120
+    },
+    "Mortar_upper_cells_8": {
+      "validation_changed": false,
+      "finite_coordinates": true,
+      "triangles": 120
+    },
+    "Mortar_upper_cells_13": {
+      "validation_changed": false,
+      "finite_coordinates": true,
+      "triangles": 2166
+    },
+    "Mortar_upper_cells_18": {
+      "validation_changed": false,
+      "finite_coordinates": true,
+      "triangles": 120
+    },
+    "Stone-arch_upper_cells_2": {
+      "validation_changed": false,
+      "finite_coordinates": true,
+      "triangles": 11734
+    },
+    "Stone-arch_upper_cells_7": {
+      "validation_changed": false,
+      "finite_coordinates": true,
+      "triangles": 12218
+    },
+    "Stone-arch_upper_cells_12": {
+      "validation_changed": false,
+      "finite_coordinates": true,
+      "triangles": 128032
+    },
+    "Stone-arch_upper_cells_17": {
+      "validation_changed": false,
+      "finite_coordinates": true,
+      "triangles": 12388
+    },
+    "Stone-flag_upper_cells_4": {
+      "validation_changed": false,
+      "finite_coordinates": true,
+      "triangles": 1674
+    },
+    "Stone-flag_upper_cells_9": {
+      "validation_changed": false,
+      "finite_coordinates": true,
+      "triangles": 1844
+    },
+    "Stone-flag_upper_cells_14": {
+      "validation_changed": false,
+      "finite_coordinates": true,
+      "triangles": 16836
+    },
+    "Stone-flag_upper_cells_19": {
+      "validation_changed": false,
+      "finite_coordinates": true,
+      "triangles": 1862
+    },
+    "Stone-stone_upper_cells_0": {
+      "validation_changed": false,
+      "finite_coordinates": true,
+      "triangles": 963
+    },
+    "Stone-stone_upper_cells_1": {
+      "validation_changed": false,
+      "finite_coordinates": true,
+      "triangles": 915
+    },
+    "Stone-stone_upper_cells_5": {
+      "validation_changed": false,
+      "finite_coordinates": true,
+      "triangles": 1126
+    },
+    "Stone-stone_upper_cells_6": {
+      "validation_changed": false,
+      "finite_coordinates": true,
+      "triangles": 1203
+    },
+    "Stone-stone_upper_cells_10": {
+      "validation_changed": false,
+      "finite_coordinates": true,
+      "triangles": 12789
+    },
+    "Stone-stone_upper_cells_11": {
+      "validation_changed": false,
+      "finite_coordinates": true,
+      "triangles": 12828
+    },
+    "Stone-stone_upper_cells_15": {
+      "validation_changed": false,
+      "finite_coordinates": true,
+      "triangles": 1292
+    },
+    "Stone-stone_upper_cells_16": {
+      "validation_changed": false,
+      "finite_coordinates": true,
+      "triangles": 1162
+    },
+    "Stone-stone_upper_cells_1026": {
+      "validation_changed": false,
+      "finite_coordinates": true,
+      "triangles": 80
+    }
+  },
+  "content/environments/procedural_architecture_v1/passages/upper_hall.glb": {
+    "Collision_upper_hall_8-colonly": {
+      "validation_changed": false,
+      "finite_coordinates": true,
+      "triangles": 120
+    },
+    "Mortar_upper_hall_8": {
+      "validation_changed": false,
+      "finite_coordinates": true,
+      "triangles": 120
+    },
+    "Stone-arch_upper_hall_7": {
+      "validation_changed": false,
+      "finite_coordinates": true,
+      "triangles": 20592
+    },
+    "Stone-flag_upper_hall_9": {
+      "validation_changed": false,
+      "finite_coordinates": true,
+      "triangles": 2652
+    },
+    "Stone-stone_upper_hall_5": {
+      "validation_changed": false,
+      "finite_coordinates": true,
+      "triangles": 1590
+    },
+    "Stone-stone_upper_hall_6": {
+      "validation_changed": false,
+      "finite_coordinates": true,
+      "triangles": 1559
+    },
+    "Stone-stone_upper_hall_1016": {
+      "validation_changed": false,
+      "finite_coordinates": true,
+      "triangles": 20
+    }
+  },
+  "content/environments/red_descent/passage_landings_v1/meshes/nave_abutment.glb": {
+    "Collision_nave_abutment_0-colonly": {
+      "validation_changed": false,
+      "finite_coordinates": true,
+      "triangles": 316
+    },
+    "Mortar_nave_abutment_0": {
+      "validation_changed": false,
+      "finite_coordinates": true,
+      "triangles": 316
+    },
+    "Stone-flag_nave_abutment_2": {
+      "validation_changed": false,
+      "finite_coordinates": true,
+      "triangles": 8300
+    },
+    "Stone-stone_nave_abutment_1": {
+      "validation_changed": false,
+      "finite_coordinates": true,
+      "triangles": 52114
+    }
+  }
+}

@@ -1,0 +1,37 @@
+SDF.R: Loader Marker V16.2.2 (__init__.py loaded from: /Users/theochernin/Library/Application Support/Blender/5.2/scripts/addons/rust_gpu_sdf_addon/__init__.py)
+SDF.R: --- Initializing GPU Engine (V16.2.2) ---
+SDF.R: No shader cache. This initial compilation may take a few minutes...
+SDF.R: Addon registered. Warming-up will start in 0.5s...
+21:13:13 | INFO: Data are loaded, start creating Blender stuff
+21:13:13 | INFO: Blender create Mesh node Mortar_chapel_approach_3_core.010
+21:13:13 | INFO: Blender create Mesh node Mortar_chapel_approach_8_core.010
+21:13:13 | INFO: Blender create Mesh node Mortar_chapel_approach_3_core.009
+21:13:13 | INFO: Blender create Mesh node Mortar_chapel_approach_8_core.009
+21:13:13 | INFO: Blender create Mesh node vault_template_0_1_18.006
+21:13:13 | INFO: Blender create Mesh node vault_template_0_1_3.006
+21:13:13 | INFO: Blender create Mesh node flag_lib_15.076
+21:13:13 | INFO: Blender create Mesh node flag_lib_11.074
+21:13:13 | INFO: Blender create Mesh node squared_rubble_lib_16.005
+21:13:13 | INFO: Blender create Mesh node squared_rubble_lib_6.005
+21:13:13 | INFO: Blender create Mesh node squared_rubble_lib_23.006
+21:13:13 | INFO: Blender create Mesh node squared_rubble_lib_18.005
+21:13:13 | INFO: glTF import finished in 0.10s
+21:13:13 | INFO: Data are loaded, start creating Blender stuff
+21:13:13 | INFO: Blender create Mesh node chapel_approach_0_mass_core.011
+21:13:13 | INFO: Blender create Mesh node chapel_approach_1_mass_core.011
+21:13:13 | INFO: Blender create Mesh node chapel_approach_0_mass_core.010
+21:13:13 | INFO: Blender create Mesh node chapel_approach_1_mass_core.010
+21:13:13 | INFO: Blender create Mesh node vault_template_2_0_0.035
+21:13:13 | INFO: Blender create Mesh node vault_template_2_0_3.038
+21:13:13 | INFO: Blender create Mesh node flag_lib_15.2304
+21:13:13 | INFO: Blender create Mesh node flag_lib_11.2462
+21:13:13 | INFO: Blender create Mesh node squared_rubble_lib_16.836
+21:13:13 | INFO: Blender create Mesh node squared_rubble_lib_6.551
+21:13:13 | INFO: Blender create Mesh node squared_rubble_lib_6.552
+21:13:13 | INFO: Blender create Mesh node squared_rubble_lib_12.818
+21:13:13 | INFO: glTF import finished in 0.10s
+CHAPEL_BAD_CONTROL (2.8880138397216797, 'Stone-stone_chapel_approach_5') CHAPEL_CURRENT (inf, 'none')
+CHAPEL_REBUILD_REGRESSION_OK
+Blender 5.2.2 LTS (hash d13f752e3b9c built 2026-09-15 01:49:19)
+
+Blender quit

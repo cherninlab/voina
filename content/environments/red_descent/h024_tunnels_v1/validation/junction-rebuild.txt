@@ -1,0 +1,205 @@
+JUNCTION_REBUILT node_-46_-23_7
+JUNCTION_REBUILT node_-43_-23_-6
+JUNCTION_REBUILT node_-41_-23_14
+JUNCTION_REBUILT node_-38_-23_-2
+JUNCTION_REBUILT node_-31_-23_6
+JUNCTION_REBUILT node_-14_-19_24
+JUNCTION_REBUILT node_22_-10_-30
+JUNCTION_REBUILT node_22_-10_10
+INFO Draco is available, use library at /Applications/Blender.app/Contents/Resources/5.2/scripts/addons_core/io_scene_gltf2/libbf_intern_draco_bridge.dylib
+INFO MeshOptimizer is available, use library at /Applications/Blender.app/Contents/Resources/5.2/scripts/addons_core/io_scene_gltf2/libbf_intern_meshopt_bridge.dylib
+18:51:00 | INFO: Starting glTF 2.0 export
+18:51:00 | WARNING: Mesh node_-46_-23_7_mass.011 is not valid, and may be exported wrongly
+18:51:00 | INFO: Extracting primitive: node_-46_-23_7_mass.011
+18:51:00 | INFO: Primitives created: 1
+18:51:00 | WARNING: Mesh node_-46_-23_7_mass.010 is not valid, and may be exported wrongly
+18:51:00 | INFO: Extracting primitive: node_-46_-23_7_mass.010
+18:51:00 | INFO: Primitives created: 1
+18:51:00 | INFO: Extracting primitive: vault_template_0_0_0.024
+18:51:00 | INFO: Primitives created: 1
+18:51:00 | INFO: Extracting primitive: vault_template_0_1_11.046
+18:51:00 | INFO: Primitives created: 1
+18:51:00 | INFO: Extracting primitive: flag_lib_4.001
+18:51:00 | INFO: Primitives created: 1
+18:51:00 | INFO: Extracting primitive: squared_rubble_lib_1.884
+18:51:00 | INFO: Primitives created: 1
+18:51:00 | INFO: Extracting primitive: squared_rubble_lib_17.1286
+18:51:00 | INFO: Primitives created: 1
+18:51:00 | INFO: Extracting primitive: squared_rubble_lib_21.1372
+18:51:00 | INFO: Primitives created: 1
+18:51:00 | INFO: Extracting primitive: squared_rubble_lib_22.1489
+18:51:00 | INFO: Primitives created: 1
+18:51:00 | INFO: Finished glTF 2.0 export in 0.06291985511779785 s
+
+ARCHITECTURE_BAKED passages node_-46_-23_7 98873 tris
+18:51:00 | INFO: Starting glTF 2.0 export
+18:51:00 | INFO: Extracting primitive: node_-43_-23_-6_mass.011
+18:51:00 | INFO: Primitives created: 1
+18:51:00 | INFO: Extracting primitive: node_-43_-23_-6_mass.010
+18:51:00 | INFO: Primitives created: 1
+18:51:00 | INFO: Extracting primitive: vault_template_0_1_0.036
+18:51:00 | INFO: Primitives created: 1
+18:51:00 | INFO: Extracting primitive: vault_template_0_0_16.061
+18:51:00 | INFO: Primitives created: 1
+18:51:00 | INFO: Extracting primitive: flag_lib_6.004
+18:51:00 | INFO: Primitives created: 1
+18:51:00 | WARNING: Mesh squared_rubble_lib_6.1128 is not valid, and may be exported wrongly
+18:51:00 | INFO: Extracting primitive: squared_rubble_lib_6.1128
+18:51:00 | INFO: Primitives created: 1
+18:51:00 | INFO: Extracting primitive: squared_rubble_lib_8.1091
+18:51:00 | INFO: Primitives created: 1
+18:51:00 | INFO: Extracting primitive: squared_rubble_lib_21.1389
+18:51:00 | INFO: Primitives created: 1
+18:51:00 | INFO: Extracting primitive: squared_rubble_lib_6.1142
+18:51:00 | INFO: Primitives created: 1
+18:51:00 | INFO: Finished glTF 2.0 export in 0.05823087692260742 s
+
+ARCHITECTURE_BAKED passages node_-43_-23_-6 97650 tris
+18:51:00 | INFO: Starting glTF 2.0 export
+18:51:00 | INFO: Extracting primitive: node_-41_-23_14_mass.015
+18:51:00 | INFO: Primitives created: 1
+18:51:00 | INFO: Extracting primitive: node_-41_-23_14_mass.014
+18:51:00 | INFO: Primitives created: 1
+18:51:00 | INFO: Extracting primitive: vault_template_3_2_9.055
+18:51:00 | INFO: Primitives created: 1
+18:51:00 | INFO: Extracting primitive: vault_template_3_1_15.035
+18:51:00 | INFO: Primitives created: 1
+18:51:00 | INFO: Extracting primitive: vault_template_1_1_11.069
+18:51:00 | INFO: Primitives created: 1
+18:51:00 | INFO: Extracting primitive: flag_lib_2.007
+18:51:00 | INFO: Primitives created: 1
+18:51:00 | WARNING: Mesh squared_rubble_lib_10.1265 is not valid, and may be exported wrongly
+18:51:00 | INFO: Extracting primitive: squared_rubble_lib_10.1265
+18:51:00 | INFO: Primitives created: 1
+18:51:00 | WARNING: Mesh squared_rubble_lib_15.1498 is not valid, and may be exported wrongly
+18:51:00 | INFO: Extracting primitive: squared_rubble_lib_15.1498
+18:51:00 | INFO: Primitives created: 1
+18:51:00 | INFO: Extracting primitive: squared_rubble_lib_7.1082
+18:51:00 | INFO: Primitives created: 1
+18:51:00 | INFO: Extracting primitive: squared_rubble_lib_3.924
+18:51:00 | INFO: Primitives created: 1
+18:51:00 | INFO: Finished glTF 2.0 export in 0.06039595603942871 s
+
+ARCHITECTURE_BAKED passages node_-41_-23_14 105422 tris
+18:51:00 | INFO: Starting glTF 2.0 export
+18:51:00 | INFO: Extracting primitive: node_-38_-23_-2_mass.015
+18:51:00 | INFO: Primitives created: 1
+18:51:00 | INFO: Extracting primitive: node_-38_-23_-2_mass.014
+18:51:00 | INFO: Primitives created: 1
+18:51:00 | INFO: Extracting primitive: vault_template_3_1_3.046
+18:51:01 | INFO: Primitives created: 1
+18:51:01 | INFO: Extracting primitive: vault_template_3_0_0.027
+18:51:01 | INFO: Primitives created: 1
+18:51:01 | INFO: Extracting primitive: vault_template_0_1_4.043
+18:51:01 | INFO: Primitives created: 1
+18:51:01 | INFO: Extracting primitive: flag_lib_11.011
+18:51:01 | INFO: Primitives created: 1
+18:51:01 | INFO: Extracting primitive: squared_rubble_lib_15.1513
+18:51:01 | INFO: Primitives created: 1
+18:51:01 | INFO: Extracting primitive: squared_rubble_lib_21.1428
+18:51:01 | INFO: Primitives created: 1
+18:51:01 | INFO: Extracting primitive: squared_rubble_lib_12.1416
+18:51:01 | INFO: Primitives created: 1
+18:51:01 | INFO: Extracting primitive: squared_rubble_lib_23.1460
+18:51:01 | INFO: Primitives created: 1
+18:51:01 | INFO: Finished glTF 2.0 export in 0.07896614074707031 s
+
+ARCHITECTURE_BAKED passages node_-38_-23_-2 121024 tris
+18:51:01 | INFO: Starting glTF 2.0 export
+18:51:01 | INFO: Extracting primitive: node_-31_-23_6_mass.011
+18:51:01 | INFO: Primitives created: 1
+18:51:01 | INFO: Extracting primitive: node_-31_-23_6_mass.010
+18:51:01 | INFO: Primitives created: 1
+18:51:01 | INFO: Extracting primitive: vault_template_2_0_2.041
+18:51:01 | INFO: Primitives created: 1
+18:51:01 | INFO: Extracting primitive: vault_template_3_1_3.047
+18:51:01 | INFO: Primitives created: 1
+18:51:01 | INFO: Extracting primitive: flag_lib_3.014
+18:51:01 | INFO: Primitives created: 1
+18:51:01 | WARNING: Mesh squared_rubble_lib_22.1562 is not valid, and may be exported wrongly
+18:51:01 | INFO: Extracting primitive: squared_rubble_lib_22.1562
+18:51:01 | INFO: Primitives created: 1
+18:51:01 | INFO: Extracting primitive: squared_rubble_lib_6.1189
+18:51:01 | INFO: Primitives created: 1
+18:51:01 | INFO: Extracting primitive: squared_rubble_lib_19.1428
+18:51:01 | INFO: Primitives created: 1
+18:51:01 | INFO: Extracting primitive: squared_rubble_lib_21.1471
+18:51:01 | INFO: Primitives created: 1
+18:51:01 | INFO: Finished glTF 2.0 export in 0.06388401985168457 s
+
+ARCHITECTURE_BAKED passages node_-31_-23_6 112820 tris
+18:51:01 | INFO: Starting glTF 2.0 export
+18:51:01 | WARNING: Mesh node_-14_-19_24_mass.011 is not valid, and may be exported wrongly
+18:51:01 | INFO: Extracting primitive: node_-14_-19_24_mass.011
+18:51:01 | INFO: Primitives created: 1
+18:51:01 | WARNING: Mesh node_-14_-19_24_mass.010 is not valid, and may be exported wrongly
+18:51:01 | INFO: Extracting primitive: node_-14_-19_24_mass.010
+18:51:01 | INFO: Primitives created: 1
+18:51:01 | INFO: Extracting primitive: vault_template_5_2_0.033
+18:51:01 | INFO: Primitives created: 1
+18:51:01 | INFO: Extracting primitive: vault_template_4_1_10.026
+18:51:01 | INFO: Primitives created: 1
+18:51:01 | INFO: Extracting primitive: flag_lib_5.018
+18:51:01 | INFO: Primitives created: 1
+18:51:01 | INFO: Extracting primitive: squared_rubble_lib_14.1295
+18:51:01 | INFO: Primitives created: 1
+18:51:01 | INFO: Extracting primitive: squared_rubble_lib_22.1599
+18:51:01 | INFO: Primitives created: 1
+18:51:01 | INFO: Extracting primitive: squared_rubble_lib_18.1563
+18:51:01 | INFO: Primitives created: 1
+18:51:01 | INFO: Extracting primitive: squared_rubble_lib_10.1342
+18:51:01 | INFO: Primitives created: 1
+18:51:01 | INFO: Finished glTF 2.0 export in 0.05132102966308594 s
+
+ARCHITECTURE_BAKED passages node_-14_-19_24 86804 tris
+18:51:01 | INFO: Starting glTF 2.0 export
+18:51:01 | INFO: Extracting primitive: node_22_-10_-30_mass.015
+18:51:01 | INFO: Primitives created: 1
+18:51:01 | INFO: Extracting primitive: node_22_-10_-30_mass.014
+18:51:01 | INFO: Primitives created: 1
+18:51:01 | INFO: Extracting primitive: vault_template_6_1_6.016
+18:51:01 | INFO: Primitives created: 1
+18:51:01 | INFO: Extracting primitive: vault_template_6_0_20.025
+18:51:01 | INFO: Primitives created: 1
+18:51:01 | INFO: Extracting primitive: vault_template_9_1_6.027
+18:51:01 | INFO: Primitives created: 1
+18:51:01 | INFO: Extracting primitive: flag_lib_12.018
+18:51:01 | INFO: Primitives created: 1
+18:51:01 | INFO: Extracting primitive: squared_rubble_lib_17.1398
+18:51:01 | INFO: Primitives created: 1
+18:51:01 | INFO: Extracting primitive: squared_rubble_lib_19.1457
+18:51:01 | INFO: Primitives created: 1
+18:51:01 | INFO: Extracting primitive: squared_rubble_lib_9.1280
+18:51:01 | INFO: Primitives created: 1
+18:51:01 | INFO: Extracting primitive: squared_rubble_lib_8.1186
+18:51:01 | INFO: Primitives created: 1
+18:51:01 | INFO: Finished glTF 2.0 export in 0.06188321113586426 s
+
+ARCHITECTURE_BAKED passages node_22_-10_-30 107938 tris
+18:51:01 | INFO: Starting glTF 2.0 export
+18:51:01 | INFO: Extracting primitive: node_22_-10_10_mass.011
+18:51:01 | INFO: Primitives created: 1
+18:51:01 | INFO: Extracting primitive: node_22_-10_10_mass.010
+18:51:01 | INFO: Primitives created: 1
+18:51:01 | INFO: Extracting primitive: vault_template_9_2_1.014
+18:51:01 | INFO: Primitives created: 1
+18:51:01 | INFO: Extracting primitive: vault_template_8_1_1.018
+18:51:01 | INFO: Primitives created: 1
+18:51:01 | INFO: Extracting primitive: flag_lib_5.024
+18:51:01 | INFO: Primitives created: 1
+18:51:01 | INFO: Extracting primitive: squared_rubble_lib_21.1511
+18:51:01 | INFO: Primitives created: 1
+18:51:01 | INFO: Extracting primitive: squared_rubble_lib_1.988
+18:51:01 | INFO: Primitives created: 1
+18:51:01 | INFO: Extracting primitive: squared_rubble_lib_14.1338
+18:51:02 | INFO: Primitives created: 1
+18:51:02 | WARNING: Mesh squared_rubble_lib_20.1597 is not valid, and may be exported wrongly
+18:51:02 | INFO: Extracting primitive: squared_rubble_lib_20.1597
+18:51:02 | INFO: Primitives created: 1
+18:51:02 | INFO: Finished glTF 2.0 export in 0.04854774475097656 s
+
+ARCHITECTURE_BAKED passages node_22_-10_10 78357 tris
+JUNCTIONS_BAKED 8
+Blender 5.2.2 LTS (hash d13f752e3b9c built 2026-09-15 01:49:19)
+
+Blender quit

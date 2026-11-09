@@ -1,0 +1,102 @@
+{
+  "content/environments/procedural_architecture_v1/passages/bell_loop.glb": {
+    "baseline_sha256": "831e826c37f65657c503b85dc98371998881ca546c0f77eb0759fbc0eed17d21"
+  },
+  "content/environments/procedural_architecture_v1/passages/cave_bypass.glb": {
+    "baseline_sha256": "ca7b15357383098cc9a13e82c7aa212b0711e97f4ad661852474cfd44b1c7b95"
+  },
+  "content/environments/procedural_architecture_v1/passages/chapel_approach.glb": {
+    "baseline_sha256": "3a2afdfd17fefb411e6738f8fe6c9af2575b43c5b9669580a16465e6c0bba0e9"
+  },
+  "content/environments/procedural_architecture_v1/passages/entry.glb": {
+    "baseline_sha256": "912c5aea1608ed100c3765a39271c06a33d805d70a10270a63784137c195452c"
+  },
+  "content/environments/procedural_architecture_v1/passages/nave.glb": {
+    "baseline_sha256": "2d71cb11229bc4cee24f584c0411a6de2c3b476e3a6e8bd650c5cdc46471b604"
+  },
+  "content/environments/procedural_architecture_v1/passages/node_-14_-19_24.glb": {
+    "baseline_sha256": "9a57e185f593735201e149c8284ea92503871b103a1444f9851de6360d4a6767"
+  },
+  "content/environments/procedural_architecture_v1/passages/node_-18_-10_-30.glb": {
+    "baseline_sha256": "03061babd27d66f8c62da6cbfcc88585a25ed16113e42e77d8888f0ef8cfa544"
+  },
+  "content/environments/procedural_architecture_v1/passages/node_-23_-23_-16.glb": {
+    "baseline_sha256": "f3f246fcc6af053f6c14f3b5f804ce16ccb345ddc80afe2ec592f857026cff09"
+  },
+  "content/environments/procedural_architecture_v1/passages/node_-31_-23_6.glb": {
+    "baseline_sha256": "ed68293d7e8a4253d75a11eccbbbb8b3ccbf91463627f3d492968c4f13daa243"
+  },
+  "content/environments/procedural_architecture_v1/passages/node_-38_-23_-2.glb": {
+    "baseline_sha256": "5543c3602e4c61a96f6f637830e819c1e74cb8e10929bee77a5312e82daf12ca"
+  },
+  "content/environments/procedural_architecture_v1/passages/node_-41_-23_14.glb": {
+    "baseline_sha256": "aec5fff3207afdce49f38ff48833fa138ae8e6dea471ab5df2a5a4597ea9fa85"
+  },
+  "content/environments/procedural_architecture_v1/passages/node_-41_-23_24.glb": {
+    "baseline_sha256": "22d333f1afb0343c1777c38c0a174385cf986e439fa418d5c8bbea7104f15c6d"
+  },
+  "content/environments/procedural_architecture_v1/passages/node_-43_-23_-6.glb": {
+    "baseline_sha256": "d1b663fde07595ada514e93582f037743c34626a8b9872e927d2a0b10e0f456c"
+  },
+  "content/environments/procedural_architecture_v1/passages/node_-46_-23_7.glb": {
+    "baseline_sha256": "dfbb393ce26d15c54465c2d9d285376d6e7e2142b3cc3424b54cb882f5da18f5"
+  },
+  "content/environments/procedural_architecture_v1/passages/node_22_-10_-30.glb": {
+    "baseline_sha256": "84c6957f68e4f677eafc756c9c1d49fdb0092be83ffae1d330e98fdfff7ae5a8"
+  },
+  "content/environments/procedural_architecture_v1/passages/node_22_-10_10.glb": {
+    "baseline_sha256": "bb37ba8792f4afa480b1a688da1452b5952435b7b02aa124861cc7ea8368d5c5"
+  },
+  "content/environments/procedural_architecture_v1/passages/node_46_-4_-15.glb": {
+    "baseline_sha256": "47b34c2649bb89fd5d0f70a7c90030669bd5b65213a3b5f5d96b1e7e1bbad861"
+  },
+  "content/environments/procedural_architecture_v1/passages/node_46_-4_6.glb": {
+    "baseline_sha256": "fd7fb867e802f0041a969628eb5534c038d3b72cbe977960c35ff579a9e516b3"
+  },
+  "content/environments/procedural_architecture_v1/passages/node_7_-18_21.glb": {
+    "baseline_sha256": "944be0d2a17b1b3e33080c444d30a20b4db810dcb1521b5ce4aa377116916964"
+  },
+  "content/environments/procedural_architecture_v1/passages/ossuary_loop.glb": {
+    "baseline_sha256": "99cd9381aab1f0cbbc3192792798c79180b551387b3f0c6f0678382dbff7e974"
+  },
+  "content/environments/procedural_architecture_v1/passages/return_gallery.glb": {
+    "baseline_sha256": "cf295ddf258c535d3aa1903713d378b6eaf6252e389e3eb08181cb7653170d00"
+  },
+  "content/environments/procedural_architecture_v1/passages/root_tunnel.glb": {
+    "baseline_sha256": "b48fe6141d5053221415c9a463643004c5c3e4b223a7f50b21343de00976188c"
+  },
+  "content/environments/procedural_architecture_v1/passages/upper_cells.glb": {
+    "baseline_sha256": "efc6ef1fcfda3ff49a8da42ec9ce64fa4d95d4321459350158ffbe0326dc138e"
+  },
+  "content/environments/procedural_architecture_v1/passages/upper_hall.glb": {
+    "baseline_sha256": "b01cbe2de0a2db75b8d9472c9fe36f34fa92c92e4d055c210d47819308647f41"
+  },
+  "content/environments/red_descent/masonry_repairs_v1/stairs/choir.glb": {
+    "baseline_sha256": "4beb2a7f4eaaa5a9444a0cfe115972431b679f484bb7fb657478dd62da8e8f25"
+  },
+  "content/environments/red_descent/masonry_repairs_v1/stairs/first_stair_hall.glb": {
+    "baseline_sha256": "65e5b1bb8039f7829afaf763c3fcf6c34ad9aba4a336625abab31a6c908b3365"
+  },
+  "content/environments/red_descent/masonry_repairs_v1/stairs/second_stair_hall.glb": {
+    "baseline_sha256": "797fd280ba0f43b40840e163221a67bf1de7db382b45d78c46ad696b4e2e46da"
+  },
+  "content/environments/red_descent/upper_crossing_v1/gallery.glb": {
+    "baseline_sha256": "996b6943a44887aff9522011e2f4443270b9d85e045dbd784f8e5062be780e82"
+  },
+  "content/environments/procedural_architecture_v1/rooms/bones.glb": {
+    "baseline_sha256": "7f148024624df124878ff117ae1a03a20f495416ad6cc486b5d7e86aa9a332c1",
+    "preservation_required": true
+  },
+  "content/environments/procedural_architecture_v1/rooms/cells.glb": {
+    "baseline_sha256": "e0b5933ae8152262d2e36658d34a7d05bea07d0dfb4d83ab52e4b68d821ff279",
+    "preservation_required": true
+  },
+  "content/environments/procedural_architecture_v1/rooms/ossuary.glb": {
+    "baseline_sha256": "489e089d65f7617526d27e640eb4367d252da28d756101c24a7bf44961777942",
+    "preservation_required": true
+  },
+  "content/environments/procedural_architecture_v1/rooms/window.glb": {
+    "baseline_sha256": "d749ab58c4d878e080ba573bfded44c350adc2c595e0db41a53d1f16326fb783",
+    "preservation_required": true
+  }
+}

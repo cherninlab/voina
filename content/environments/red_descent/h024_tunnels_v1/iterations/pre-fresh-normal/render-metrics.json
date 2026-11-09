@@ -1,0 +1,14 @@
+[
+	{
+		"capture_frame_median_ms": 16.666,
+		"draw_calls": 1051.0,
+		"primitives": 9777521.0,
+		"view": "ossuary_loop_1-forward"
+	},
+	{
+		"capture_frame_median_ms": 16.684,
+		"draw_calls": 441.0,
+		"primitives": 13817855.0,
+		"view": "ossuary_loop_1-back"
+	}
+]

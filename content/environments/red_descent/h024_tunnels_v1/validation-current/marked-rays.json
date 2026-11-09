@@ -1,0 +1,6313 @@
+[
+	{
+		"camera": [
+			24.8720226287842,
+			-8.39999961853027,
+			-29.712797164917
+		],
+		"direction": [
+			-0.994463324546814,
+			0.033957302570343,
+			-0.0994464978575706
+		],
+		"hits": [
+			{
+				"albedo": "res://content/environments/red_descent/upper_crossing_v1/materials/plaster_quiet/albedo.png",
+				"camera": [
+					24.8720226287842,
+					-8.39999961853027,
+					-29.712797164917
+				],
+				"direction": [
+					-0.994463324546814,
+					0.033957302570343,
+					-0.0994464978575706
+				],
+				"distance": 36.5524063110352,
+				"mesh": "res://content/environments/procedural_architecture_v1/rooms/chapel.glb::ArrayMesh_fgggb",
+				"path": "/root/MatchWorld/CinderCrypt/Architecture/StoneRoom_chapel/Plaster_chapel_6",
+				"position": [
+					-11.478006362915,
+					-7.15877866744995,
+					-33.3478050231934
+				]
+			},
+			{
+				"albedo": "res://content/environments/red_descent/upper_crossing_v1/materials/limestone/albedo.png",
+				"camera": [
+					24.8720226287842,
+					-8.39999961853027,
+					-29.712797164917
+				],
+				"direction": [
+					-0.994463324546814,
+					0.033957302570343,
+					-0.0994464978575706
+				],
+				"distance": 36.6044425964355,
+				"mesh": "res://content/environments/procedural_architecture_v1/rooms/chapel.glb::ArrayMesh_5t1gt",
+				"path": "/root/MatchWorld/CinderCrypt/Architecture/StoneRoom_chapel/Stone-stone_chapel_6",
+				"position": [
+					-11.5297527313232,
+					-7.15701150894165,
+					-33.3529815673828
+				]
+			},
+			{
+				"albedo": "",
+				"camera": [
+					24.8720226287842,
+					-8.39999961853027,
+					-29.712797164917
+				],
+				"direction": [
+					-0.994463324546814,
+					0.033957302570343,
+					-0.0994464978575706
+				],
+				"distance": 36.7454681396484,
+				"mesh": "res://content/environments/red_descent/masonry_repairs_v1/walls/chapel.glb::ArrayMesh_6es6o",
+				"path": "/root/MatchWorld/CinderCrypt/Architecture/StoneRoom_chapel/Mortar_chapel_6",
+				"position": [
+					-11.6699962615967,
+					-7.15222263336182,
+					-33.3670043945312
+				]
+			},
+			{
+				"albedo": "",
+				"camera": [
+					24.8720226287842,
+					-8.39999961853027,
+					-29.712797164917
+				],
+				"direction": [
+					-0.994463324546814,
+					0.033957302570343,
+					-0.0994464978575706
+				],
+				"distance": 37.5298118591309,
+				"mesh": "res://content/environments/procedural_architecture_v1/passages/ossuary_loop.glb::ArrayMesh_xc3ux",
+				"path": "/root/MatchWorld/CinderCrypt/Architecture/StonePassage_ossuary_loop/Mortar_ossuary_loop_23",
+				"position": [
+					-12.4499988555908,
+					-7.12558841705322,
+					-33.4450073242188
+				]
+			},
+			{
+				"albedo": "res://content/environments/red_descent/upper_crossing_v1/materials/limestone/albedo.png",
+				"camera": [
+					24.8720226287842,
+					-8.39999961853027,
+					-29.712797164917
+				],
+				"direction": [
+					-0.994463324546814,
+					0.033957302570343,
+					-0.0994464978575706
+				],
+				"distance": 43.5668525695801,
+				"mesh": "res://content/environments/procedural_architecture_v1/passages/ossuary_loop.glb::ArrayMesh_tomeq",
+				"path": "/root/MatchWorld/CinderCrypt/Architecture/StonePassage_ossuary_loop/Stone-arch_ossuary_loop_22",
+				"position": [
+					-18.4536151885986,
+					-6.92058658599854,
+					-34.0453681945801
+				]
+			},
+			{
+				"albedo": "",
+				"camera": [
+					24.8720226287842,
+					-8.39999961853027,
+					-29.712797164917
+				],
+				"direction": [
+					-0.994463324546814,
+					0.033957302570343,
+					-0.0994464978575706
+				],
+				"distance": 46.6805725097656,
+				"mesh": "res://content/environments/red_descent/masonry_repairs_v1/walls/ossuary.glb::ArrayMesh_adsr2",
+				"path": "/root/MatchWorld/CinderCrypt/Architecture/StoneRoom_ossuary/Mortar_ossuary_2",
+				"position": [
+					-21.5500926971436,
+					-6.81485366821289,
+					-34.3550186157227
+				]
+			},
+			{
+				"albedo": "res://content/environments/red_descent/upper_crossing_v1/materials/limestone/albedo.png",
+				"camera": [
+					24.8720226287842,
+					-8.39999961853027,
+					-29.712797164917
+				],
+				"direction": [
+					-0.994463324546814,
+					0.033957302570343,
+					-0.0994464978575706
+				],
+				"distance": 46.7477111816406,
+				"mesh": "res://content/environments/procedural_architecture_v1/rooms/ossuary.glb::ArrayMesh_8lai5",
+				"path": "/root/MatchWorld/CinderCrypt/Architecture/StoneRoom_ossuary/Stone-arch_ossuary_2",
+				"position": [
+					-21.6168613433838,
+					-6.81257343292236,
+					-34.3616943359375
+				]
+			},
+			{
+				"albedo": "res://content/environments/red_descent/upper_crossing_v1/materials/limestone/albedo.png",
+				"camera": [
+					24.8720226287842,
+					-8.39999961853027,
+					-29.712797164917
+				],
+				"direction": [
+					-0.994463324546814,
+					0.033957302570343,
+					-0.0994464978575706
+				],
+				"distance": 66.7819442749023,
+				"mesh": "res://content/environments/procedural_architecture_v1/rooms/ossuary.glb::ArrayMesh_a1e6x",
+				"path": "/root/MatchWorld/CinderCrypt/Architecture/StoneRoom_ossuary/Stone-galleted_ossuary_6",
+				"position": [
+					-41.540168762207,
+					-6.13226509094238,
+					-36.3540267944336
+				]
+			},
+			{
+				"albedo": "",
+				"camera": [
+					24.8720226287842,
+					-8.39999961853027,
+					-29.712797164917
+				],
+				"direction": [
+					-0.994463324546814,
+					0.033957302570343,
+					-0.0994464978575706
+				],
+				"distance": 66.9124984741211,
+				"mesh": "res://content/environments/red_descent/masonry_repairs_v1/walls/ossuary.glb::ArrayMesh_ue7vc",
+				"path": "/root/MatchWorld/CinderCrypt/Architecture/StoneRoom_ossuary/Mortar_ossuary_6",
+				"position": [
+					-41.6699981689453,
+					-6.12783193588257,
+					-36.3670120239258
+				]
+			}
+		],
+		"pixel": [
+			720.0,
+			450.0
+		],
+		"view": "chapel_approach_0-forward"
+	},
+	{
+		"camera": [
+			24.8720226287842,
+			-8.39999961853027,
+			-29.712797164917
+		],
+		"direction": [
+			-0.92718517780304,
+			0.0326081961393356,
+			-0.373181521892548
+		],
+		"hits": [
+			{
+				"albedo": "res://content/environments/red_descent/upper_crossing_v1/materials/plaster_quiet/albedo.png",
+				"camera": [
+					24.8720226287842,
+					-8.39999961853027,
+					-29.712797164917
+				],
+				"direction": [
+					-0.92718517780304,
+					0.0326081961393356,
+					-0.373181521892548
+				],
+				"distance": 34.206413269043,
+				"mesh": "res://content/environments/procedural_architecture_v1/rooms/chapel.glb::ArrayMesh_amkrt",
+				"path": "/root/MatchWorld/CinderCrypt/Architecture/StoneRoom_chapel/Plaster_chapel_0",
+				"position": [
+					-6.84365463256836,
+					-7.28459024429321,
+					-42.4780006408691
+				]
+			},
+			{
+				"albedo": "res://content/environments/red_descent/upper_crossing_v1/materials/limestone/albedo.png",
+				"camera": [
+					24.8720226287842,
+					-8.39999961853027,
+					-29.712797164917
+				],
+				"direction": [
+					-0.92718517780304,
+					0.0326081961393356,
+					-0.373181521892548
+				],
+				"distance": 34.3807830810547,
+				"mesh": "res://content/environments/procedural_architecture_v1/rooms/chapel.glb::ArrayMesh_bojg7",
+				"path": "/root/MatchWorld/CinderCrypt/Architecture/StoneRoom_chapel/Stone-stone_chapel_0",
+				"position": [
+					-7.00532913208008,
+					-7.27890396118164,
+					-42.5430717468262
+				]
+			},
+			{
+				"albedo": "",
+				"camera": [
+					24.8720226287842,
+					-8.39999961853027,
+					-29.712797164917
+				],
+				"direction": [
+					-0.92718517780304,
+					0.0326081961393356,
+					-0.373181521892548
+				],
+				"distance": 34.7209053039551,
+				"mesh": "res://content/environments/red_descent/masonry_repairs_v1/walls/chapel.glb::ArrayMesh_7bpdk",
+				"path": "/root/MatchWorld/CinderCrypt/Architecture/StoneRoom_chapel/Mortar_chapel_0",
+				"position": [
+					-7.3206844329834,
+					-7.26781368255615,
+					-42.6699981689453
+				]
+			}
+		],
+		"pixel": [
+			900.0,
+			450.0
+		],
+		"view": "chapel_approach_0-forward"
+	},
+	{
+		"camera": [
+			24.8720226287842,
+			-8.39999961853027,
+			-29.712797164917
+		],
+		"direction": [
+			-0.725774765014648,
+			-0.036856085062027,
+			-0.686944484710693
+		],
+		"hits": [
+			{
+				"albedo": "res://content/environments/red_descent/upper_crossing_v1/materials/limestone/albedo.png",
+				"camera": [
+					24.8720226287842,
+					-8.39999961853027,
+					-29.712797164917
+				],
+				"direction": [
+					-0.725774765014648,
+					-0.036856085062027,
+					-0.686944484710693
+				],
+				"distance": 4.2921028137207,
+				"mesh": "res://content/environments/procedural_architecture_v1/passages/chapel_approach.glb::ArrayMesh_pv7ys",
+				"path": "/root/MatchWorld/CinderCrypt/Architecture/StonePassage_chapel_approach/Stone-stone_chapel_approach_6",
+				"position": [
+					21.7569217681885,
+					-8.55818939208984,
+					-32.6612319946289
+				]
+			},
+			{
+				"albedo": "",
+				"camera": [
+					24.8720226287842,
+					-8.39999961853027,
+					-29.712797164917
+				],
+				"direction": [
+					-0.725774765014648,
+					-0.036856085062027,
+					-0.686944484710693
+				],
+				"distance": 4.36319351196289,
+				"mesh": "res://content/environments/procedural_architecture_v1/passages/node_22_-10_-30.glb::ArrayMesh_j4xem",
+				"path": "/root/MatchWorld/CinderCrypt/Architecture/StonePassage_node_22_-10_-30/Mortar_node_22_-10_-30_20",
+				"position": [
+					21.7053260803223,
+					-8.56081008911133,
+					-32.7100677490234
+				]
+			},
+			{
+				"albedo": "",
+				"camera": [
+					24.8720226287842,
+					-8.39999961853027,
+					-29.712797164917
+				],
+				"direction": [
+					-0.725774765014648,
+					-0.036856085062027,
+					-0.686944484710693
+				],
+				"distance": 4.45064783096313,
+				"mesh": "res://content/environments/procedural_architecture_v1/passages/chapel_approach.glb::ArrayMesh_b134a",
+				"path": "/root/MatchWorld/CinderCrypt/Architecture/StonePassage_chapel_approach/Mortar_chapel_approach_8",
+				"position": [
+					21.6418552398682,
+					-8.56403350830078,
+					-32.7701454162598
+				]
+			},
+			{
+				"albedo": "",
+				"camera": [
+					24.8720226287842,
+					-8.39999961853027,
+					-29.712797164917
+				],
+				"direction": [
+					-0.725774765014648,
+					-0.036856085062027,
+					-0.686944484710693
+				],
+				"distance": 8.84850692749023,
+				"mesh": "res://content/environments/red_descent/masonry_repairs_v1/walls/chapel.glb::ArrayMesh_53tpn",
+				"path": "/root/MatchWorld/CinderCrypt/Architecture/StoneRoom_chapel/Mortar_chapel_2",
+				"position": [
+					18.4499988555908,
+					-8.7261209487915,
+					-35.7912292480469
+				]
+			},
+			{
+				"albedo": "res://content/environments/red_descent/upper_crossing_v1/materials/plaster_quiet/albedo.png",
+				"camera": [
+					24.8720226287842,
+					-8.39999961853027,
+					-29.712797164917
+				],
+				"direction": [
+					-0.725774765014648,
+					-0.036856085062027,
+					-0.686944484710693
+				],
+				"distance": 10.1712312698364,
+				"mesh": "res://content/environments/procedural_architecture_v1/rooms/chapel.glb::ArrayMesh_dbc8f",
+				"path": "/root/MatchWorld/CinderCrypt/Architecture/StoneRoom_chapel/Plaster_chapel_2",
+				"position": [
+					17.4899997711182,
+					-8.77487087249756,
+					-36.6998672485352
+				]
+			},
+			{
+				"albedo": "res://content/environments/red_descent/upper_crossing_v1/materials/plaster_quiet/albedo.png",
+				"camera": [
+					24.8720226287842,
+					-8.39999961853027,
+					-29.712797164917
+				],
+				"direction": [
+					-0.725774765014648,
+					-0.036856085062027,
+					-0.686944484710693
+				],
+				"distance": 18.5825843811035,
+				"mesh": "res://content/environments/procedural_architecture_v1/rooms/chapel.glb::ArrayMesh_amkrt",
+				"path": "/root/MatchWorld/CinderCrypt/Architecture/StoneRoom_chapel/Plaster_chapel_0",
+				"position": [
+					11.3852519989014,
+					-9.08488082885742,
+					-42.4780006408691
+				]
+			},
+			{
+				"albedo": "",
+				"camera": [
+					24.8720226287842,
+					-8.39999961853027,
+					-29.712797164917
+				],
+				"direction": [
+					-0.725774765014648,
+					-0.036856085062027,
+					-0.686944484710693
+				],
+				"distance": 18.8620796203613,
+				"mesh": "res://content/environments/red_descent/masonry_repairs_v1/walls/chapel.glb::ArrayMesh_7bpdk",
+				"path": "/root/MatchWorld/CinderCrypt/Architecture/StoneRoom_chapel/Mortar_chapel_0",
+				"position": [
+					11.1824026107788,
+					-9.09518146514893,
+					-42.6699981689453
+				]
+			}
+		],
+		"pixel": [
+			1200.0,
+			500.0
+		],
+		"view": "chapel_approach_0-forward"
+	},
+	{
+		"camera": [
+			19.663402557373,
+			-8.39999961853027,
+			-30.8762245178223
+		],
+		"direction": [
+			0.553891360759735,
+			0.284508764743805,
+			0.782469928264618
+		],
+		"hits": [
+			{
+				"albedo": "",
+				"camera": [
+					19.663402557373,
+					-8.39999961853027,
+					-30.8762245178223
+				],
+				"direction": [
+					0.553891360759735,
+					0.284508764743805,
+					0.782469928264618
+				],
+				"distance": 6.49202585220337,
+				"mesh": "res://content/environments/red_descent/upper_crossing_v1/gallery.glb::ArrayMesh_3jngc",
+				"path": "/root/MatchWorld/CinderCrypt/Architecture/StonePassage_return_gallery/BondedGallery_4",
+				"position": [
+					23.2592792510986,
+					-6.5529613494873,
+					-25.7964096069336
+				]
+			},
+			{
+				"albedo": "res://content/environments/red_descent/upper_crossing_v1/materials/limestone/albedo.png",
+				"camera": [
+					19.663402557373,
+					-8.39999961853027,
+					-30.8762245178223
+				],
+				"direction": [
+					0.553891360759735,
+					0.284508764743805,
+					0.782469928264618
+				],
+				"distance": 13.1806106567383,
+				"mesh": "res://content/environments/red_descent/upper_crossing_v1/structure.glb::ArrayMesh_0nlju",
+				"path": "/root/MatchWorld/CinderCrypt/Architecture/StructuralRelief/Foundation_restraint",
+				"position": [
+					26.9640293121338,
+					-4.65000057220459,
+					-20.5627937316895
+				]
+			},
+			{
+				"albedo": "res://content/environments/dungeon_pbr_v2/Bricks089/albedo.png",
+				"camera": [
+					19.663402557373,
+					-8.39999961853027,
+					-30.8762245178223
+				],
+				"direction": [
+					0.553891360759735,
+					0.284508764743805,
+					0.782469928264618
+				],
+				"distance": 13.7078351974487,
+				"mesh": "",
+				"path": "/root/MatchWorld/CinderCrypt/Architecture/@MeshInstance3D@688",
+				"position": [
+					27.2560539245605,
+					-4.50000047683716,
+					-20.1502552032471
+				]
+			},
+			{
+				"albedo": "res://content/environments/dungeon_pbr_v2/Rocks025/albedo.png",
+				"camera": [
+					19.663402557373,
+					-8.39999961853027,
+					-30.8762245178223
+				],
+				"direction": [
+					0.553891360759735,
+					0.284508764743805,
+					0.782469928264618
+				],
+				"distance": 15.3984699249268,
+				"mesh": "res://content/environments/procedural_flagstone_v1/flagstone_coursed_c.glb::ArrayMesh_p5n0b",
+				"path": "/root/MatchWorld/CinderCrypt/Architecture/Floor_restraint/@Node3D@169/dirt_lod0",
+				"position": [
+					28.1924819946289,
+					-4.01900005340576,
+					-18.8273849487305
+				]
+			},
+			{
+				"albedo": "res://content/environments/dungeon_pbr_v2/Concrete012/albedo.png",
+				"camera": [
+					19.663402557373,
+					-8.39999961853027,
+					-30.8762245178223
+				],
+				"direction": [
+					0.553891360759735,
+					0.284508764743805,
+					0.782469928264618
+				],
+				"distance": 15.4395875930786,
+				"mesh": "res://content/environments/procedural_flagstone_v1/flagstone_coursed_c.glb::ArrayMesh_kfrra",
+				"path": "/root/MatchWorld/CinderCrypt/Architecture/Floor_restraint/@Node3D@169/stones_lod0",
+				"position": [
+					28.2152557373047,
+					-4.00730228424072,
+					-18.7952117919922
+				]
+			},
+			{
+				"albedo": "res://content/environments/red_descent/upper_crossing_v1/materials/plaster_quiet/albedo.png",
+				"camera": [
+					19.663402557373,
+					-8.39999961853027,
+					-30.8762245178223
+				],
+				"direction": [
+					0.553891360759735,
+					0.284508764743805,
+					0.782469928264618
+				],
+				"distance": 35.5252876281738,
+				"mesh": "res://content/environments/procedural_architecture_v1/rooms/restraint.glb::ArrayMesh_ix3va",
+				"path": "/root/MatchWorld/CinderCrypt/Architecture/StoneRoom_restraint/Plaster_restraint_3",
+				"position": [
+					39.3405532836914,
+					1.70725536346436,
+					-3.07875633239746
+				]
+			},
+			{
+				"albedo": "res://content/environments/red_descent/upper_crossing_v1/materials/limestone/albedo.png",
+				"camera": [
+					19.663402557373,
+					-8.39999961853027,
+					-30.8762245178223
+				],
+				"direction": [
+					0.553891360759735,
+					0.284508764743805,
+					0.782469928264618
+				],
+				"distance": 35.595760345459,
+				"mesh": "res://content/environments/procedural_architecture_v1/rooms/restraint.glb::ArrayMesh_bagac",
+				"path": "/root/MatchWorld/CinderCrypt/Architecture/StoneRoom_restraint/Stone-stone_restraint_3",
+				"position": [
+					39.3795852661133,
+					1.72730541229248,
+					-3.02361297607422
+				]
+			},
+			{
+				"albedo": "",
+				"camera": [
+					19.663402557373,
+					-8.39999961853027,
+					-30.8762245178223
+				],
+				"direction": [
+					0.553891360759735,
+					0.284508764743805,
+					0.782469928264618
+				],
+				"distance": 35.7284545898438,
+				"mesh": "res://content/environments/red_descent/masonry_repairs_v1/walls/restraint.glb::ArrayMesh_seldl",
+				"path": "/root/MatchWorld/CinderCrypt/Architecture/StoneRoom_restraint/Mortar_restraint_3",
+				"position": [
+					39.4530868530273,
+					1.76505851745605,
+					-2.9197826385498
+				]
+			}
+		],
+		"pixel": [
+			1135.0,
+			253.0
+		],
+		"view": "chapel_approach_1-back"
+	},
+	{
+		"camera": [
+			19.663402557373,
+			-8.39999961853027,
+			-30.8762245178223
+		],
+		"direction": [
+			0.932060182094574,
+			0.0199076663702726,
+			-0.361756205558777
+		],
+		"hits": [
+			{
+				"albedo": "res://content/environments/red_descent/upper_crossing_v1/materials/limestone/albedo.png",
+				"camera": [
+					19.663402557373,
+					-8.39999961853027,
+					-30.8762245178223
+				],
+				"direction": [
+					0.932060182094574,
+					0.0199076663702726,
+					-0.361756205558777
+				],
+				"distance": 3.8891589641571,
+				"mesh": "res://content/environments/procedural_architecture_v1/passages/chapel_approach.glb::ArrayMesh_78t8v",
+				"path": "/root/MatchWorld/CinderCrypt/Architecture/StonePassage_chapel_approach/Stone-stone_chapel_approach_1",
+				"position": [
+					23.2883319854736,
+					-8.32257556915283,
+					-32.2831535339355
+				]
+			},
+			{
+				"albedo": "",
+				"camera": [
+					19.663402557373,
+					-8.39999961853027,
+					-30.8762245178223
+				],
+				"direction": [
+					0.932060182094574,
+					0.0199076663702726,
+					-0.361756205558777
+				],
+				"distance": 3.96433138847351,
+				"mesh": "res://content/environments/procedural_architecture_v1/passages/node_22_-10_-30.glb::ArrayMesh_j4xem",
+				"path": "/root/MatchWorld/CinderCrypt/Architecture/StonePassage_node_22_-10_-30/Mortar_node_22_-10_-30_20",
+				"position": [
+					23.3583984375,
+					-8.32107925415039,
+					-32.3103446960449
+				]
+			},
+			{
+				"albedo": "",
+				"camera": [
+					19.663402557373,
+					-8.39999961853027,
+					-30.8762245178223
+				],
+				"direction": [
+					0.932060182094574,
+					0.0199076663702726,
+					-0.361756205558777
+				],
+				"distance": 4.03943157196045,
+				"mesh": "res://content/environments/procedural_architecture_v1/passages/chapel_approach.glb::ArrayMesh_j8asc",
+				"path": "/root/MatchWorld/CinderCrypt/Architecture/StonePassage_chapel_approach/Mortar_chapel_approach_3",
+				"position": [
+					23.4283962249756,
+					-8.31958389282227,
+					-32.3375129699707
+				]
+			},
+			{
+				"albedo": "res://content/environments/red_descent/upper_crossing_v1/materials/limestone/albedo.png",
+				"camera": [
+					19.663402557373,
+					-8.39999961853027,
+					-30.8762245178223
+				],
+				"direction": [
+					0.932060182094574,
+					0.0199076663702726,
+					-0.361756205558777
+				],
+				"distance": 5.39756679534912,
+				"mesh": "res://content/environments/procedural_architecture_v1/passages/node_22_-10_-30.glb::ArrayMesh_e83ky",
+				"path": "/root/MatchWorld/CinderCrypt/Architecture/StonePassage_node_22_-10_-30/Stone-stone_node_22_-10_-30_0",
+				"position": [
+					24.6942596435547,
+					-8.29254627227783,
+					-32.8288269042969
+				]
+			},
+			{
+				"albedo": "",
+				"camera": [
+					19.663402557373,
+					-8.39999961853027,
+					-30.8762245178223
+				],
+				"direction": [
+					0.932060182094574,
+					0.0199076663702726,
+					-0.361756205558777
+				],
+				"distance": 7.38857555389404,
+				"mesh": "res://content/environments/red_descent/masonry_repairs_v1/walls/first_stair_hall.glb::ArrayMesh_1qqu7",
+				"path": "/root/MatchWorld/CinderCrypt/Architecture/StoneRoom_first_stair_hall/Mortar_first_stair_hall_3",
+				"position": [
+					26.5499992370605,
+					-8.25291061401367,
+					-33.5490875244141
+				]
+			},
+			{
+				"albedo": "res://content/environments/red_descent/upper_crossing_v1/materials/limestone/albedo.png",
+				"camera": [
+					19.663402557373,
+					-8.39999961853027,
+					-30.8762245178223
+				],
+				"direction": [
+					0.932060182094574,
+					0.0199076663702726,
+					-0.361756205558777
+				],
+				"distance": 8.36713886260986,
+				"mesh": "res://content/environments/procedural_architecture_v1/rooms/first_stair_hall.glb::ArrayMesh_0nt67",
+				"path": "/root/MatchWorld/CinderCrypt/Architecture/StoneRoom_first_stair_hall/Stone-stone_first_stair_hall_3",
+				"position": [
+					27.4620800018311,
+					-8.23342895507812,
+					-33.9030876159668
+				]
+			},
+			{
+				"albedo": "res://content/environments/red_descent/upper_crossing_v1/materials/limestone/albedo.png",
+				"camera": [
+					19.663402557373,
+					-8.39999961853027,
+					-30.8762245178223
+				],
+				"direction": [
+					0.932060182094574,
+					0.0199076663702726,
+					-0.361756205558777
+				],
+				"distance": 18.5069999694824,
+				"mesh": "res://content/environments/red_descent/masonry_repairs_v1/stairs/first_stair_hall.glb::ArrayMesh_tm2k3",
+				"path": "/root/MatchWorld/CinderCrypt/Architecture/StoneRoom_first_stair_hall/FittedStairMasonry/Stone-stone_fitted_first_stair_hall_0",
+				"position": [
+					36.9130401611328,
+					-8.03156852722168,
+					-37.5712471008301
+				]
+			},
+			{
+				"albedo": "",
+				"camera": [
+					19.663402557373,
+					-8.39999961853027,
+					-30.8762245178223
+				],
+				"direction": [
+					0.932060182094574,
+					0.0199076663702726,
+					-0.361756205558777
+				],
+				"distance": 18.5845489501953,
+				"mesh": "res://content/environments/red_descent/masonry_repairs_v1/stairs/first_stair_hall.glb::ArrayMesh_ofvi5",
+				"path": "/root/MatchWorld/CinderCrypt/Architecture/StoneRoom_first_stair_hall/FittedStairMasonry/Mortar_fitted_first_stair_hall_0",
+				"position": [
+					36.9853210449219,
+					-8.03002452850342,
+					-37.5993003845215
+				]
+			},
+			{
+				"albedo": "res://content/environments/red_descent/upper_crossing_v1/materials/limestone/albedo.png",
+				"camera": [
+					19.663402557373,
+					-8.39999961853027,
+					-30.8762245178223
+				],
+				"direction": [
+					0.932060182094574,
+					0.0199076663702726,
+					-0.361756205558777
+				],
+				"distance": 24.0873374938965,
+				"mesh": "res://content/environments/procedural_architecture_v1/rooms/first_stair_hall.glb::ArrayMesh_43tto",
+				"path": "/root/MatchWorld/CinderCrypt/Architecture/StoneRoom_first_stair_hall/Stone-stone_first_stair_hall_1",
+				"position": [
+					42.1142501831055,
+					-7.92047691345215,
+					-39.5899696350098
+				]
+			},
+			{
+				"albedo": "",
+				"camera": [
+					19.663402557373,
+					-8.39999961853027,
+					-30.8762245178223
+				],
+				"direction": [
+					0.932060182094574,
+					0.0199076663702726,
+					-0.361756205558777
+				],
+				"distance": 24.1471500396729,
+				"mesh": "res://content/environments/red_descent/masonry_repairs_v1/walls/first_stair_hall.glb::ArrayMesh_scn7p",
+				"path": "/root/MatchWorld/CinderCrypt/Architecture/StoneRoom_first_stair_hall/Mortar_first_stair_hall_1",
+				"position": [
+					42.1699981689453,
+					-7.91928625106812,
+					-39.6116065979004
+				]
+			}
+		],
+		"pixel": [
+			167.0,
+			456.0
+		],
+		"view": "chapel_approach_1-back"
+	},
+	{
+		"camera": [
+			19.663402557373,
+			-8.39999961853027,
+			-30.8762245178223
+		],
+		"direction": [
+			0.901913523674011,
+			0.280791074037552,
+			0.328189581632614
+		],
+		"hits": [
+			{
+				"albedo": "res://content/environments/red_descent/upper_crossing_v1/materials/limestone/albedo.png",
+				"camera": [
+					19.663402557373,
+					-8.39999961853027,
+					-30.8762245178223
+				],
+				"direction": [
+					0.901913523674011,
+					0.280791074037552,
+					0.328189581632614
+				],
+				"distance": 14.0302543640137,
+				"mesh": "res://content/environments/procedural_architecture_v1/rooms/first_stair_hall.glb::ArrayMesh_bbgrw",
+				"path": "/root/MatchWorld/CinderCrypt/Architecture/StoneRoom_first_stair_hall/Stone-stone_first_stair_hall_2",
+				"position": [
+					32.3174781799316,
+					-4.46042966842651,
+					-26.2716407775879
+				]
+			},
+			{
+				"albedo": "",
+				"camera": [
+					19.663402557373,
+					-8.39999961853027,
+					-30.8762245178223
+				],
+				"direction": [
+					0.901913523674011,
+					0.280791074037552,
+					0.328189581632614
+				],
+				"distance": 14.461838722229,
+				"mesh": "res://content/environments/red_descent/masonry_repairs_v1/walls/first_stair_hall.glb::ArrayMesh_weohi",
+				"path": "/root/MatchWorld/CinderCrypt/Architecture/StoneRoom_first_stair_hall/Mortar_first_stair_hall_2",
+				"position": [
+					32.706729888916,
+					-4.33924388885498,
+					-26.1299991607666
+				]
+			},
+			{
+				"albedo": "res://content/environments/red_descent/upper_crossing_v1/materials/limestone/albedo.png",
+				"camera": [
+					19.663402557373,
+					-8.39999961853027,
+					-30.8762245178223
+				],
+				"direction": [
+					0.901913523674011,
+					0.280791074037552,
+					0.328189581632614
+				],
+				"distance": 15.0298290252686,
+				"mesh": "res://content/environments/procedural_architecture_v1/rooms/first_stair_hall.glb::ArrayMesh_xd6rt",
+				"path": "/root/MatchWorld/CinderCrypt/Architecture/StoneRoom_first_stair_hall/Stone-ashlar_first_stair_hall_2",
+				"position": [
+					33.2190093994141,
+					-4.17975807189941,
+					-25.9435920715332
+				]
+			},
+			{
+				"albedo": "res://content/environments/red_descent/upper_crossing_v1/materials/limestone/albedo.png",
+				"camera": [
+					19.663402557373,
+					-8.39999961853027,
+					-30.8762245178223
+				],
+				"direction": [
+					0.901913523674011,
+					0.280791074037552,
+					0.328189581632614
+				],
+				"distance": 20.792329788208,
+				"mesh": "res://content/environments/procedural_architecture_v1/passages/upper_hall.glb::ArrayMesh_dpcja",
+				"path": "/root/MatchWorld/CinderCrypt/Architecture/StonePassage_upper_hall/Stone-stone_upper_hall_6",
+				"position": [
+					38.4162864685059,
+					-2.56169843673706,
+					-24.0523986816406
+				]
+			},
+			{
+				"albedo": "",
+				"camera": [
+					19.663402557373,
+					-8.39999961853027,
+					-30.8762245178223
+				],
+				"direction": [
+					0.901913523674011,
+					0.280791074037552,
+					0.328189581632614
+				],
+				"distance": 20.8758392333984,
+				"mesh": "res://content/environments/procedural_architecture_v1/passages/upper_hall.glb::ArrayMesh_xvm7q",
+				"path": "/root/MatchWorld/CinderCrypt/Architecture/StonePassage_upper_hall/Mortar_upper_hall_8",
+				"position": [
+					38.4916038513184,
+					-2.53824996948242,
+					-24.0249900817871
+				]
+			}
+		],
+		"pixel": [
+			714.0,
+			293.0
+		],
+		"view": "chapel_approach_1-back"
+	},
+	{
+		"camera": [
+			7.0,
+			-16.3999996185303,
+			23.6746997833252
+		],
+		"direction": [
+			0.0791823342442513,
+			-0.295257925987244,
+			0.952130734920502
+		],
+		"hits": [
+			{
+				"albedo": "res://content/environments/dungeon_pbr_v2/Concrete012/albedo.png",
+				"camera": [
+					7.0,
+					-16.3999996185303,
+					23.6746997833252
+				],
+				"direction": [
+					0.0791823342442513,
+					-0.295257925987244,
+					0.952130734920502
+				],
+				"distance": 5.3855767250061,
+				"mesh": "res://content/environments/procedural_flagstone_v1/flagstone_coursed_b.glb::ArrayMesh_cmhjl",
+				"path": "/root/MatchWorld/CinderCrypt/Architecture/Floor_nave/@Node3D@321/stones_lod0",
+				"position": [
+					7.42644262313843,
+					-17.9901332855225,
+					28.8024730682373
+				]
+			},
+			{
+				"albedo": "res://content/environments/dungeon_pbr_v2/Rocks025/albedo.png",
+				"camera": [
+					7.0,
+					-16.3999996185303,
+					23.6746997833252
+				],
+				"direction": [
+					0.0791823342442513,
+					-0.295257925987244,
+					0.952130734920502
+				],
+				"distance": 5.48334360122681,
+				"mesh": "res://content/environments/procedural_flagstone_v1/flagstone_coursed_b.glb::ArrayMesh_jmy6i",
+				"path": "/root/MatchWorld/CinderCrypt/Architecture/Floor_nave/@Node3D@321/dirt_lod0",
+				"position": [
+					7.43418407440186,
+					-18.0190010070801,
+					28.8955593109131
+				]
+			},
+			{
+				"albedo": "res://content/environments/dungeon_pbr_v2/Bricks089/albedo.png",
+				"camera": [
+					7.0,
+					-16.3999996185303,
+					23.6746997833252
+				],
+				"direction": [
+					0.0791823342442513,
+					-0.295257925987244,
+					0.952130734920502
+				],
+				"distance": 7.11242628097534,
+				"mesh": "",
+				"path": "/root/MatchWorld/CinderCrypt/Architecture/@MeshInstance3D@714",
+				"position": [
+					7.56317853927612,
+					-18.5,
+					30.4466590881348
+				]
+			}
+		],
+		"pixel": [
+			668.0,
+			662.0
+		],
+		"view": "nave_0-forward"
+	},
+	{
+		"camera": [
+			7.0,
+			-16.3999996185303,
+			23.6746997833252
+		],
+		"direction": [
+			0.0282948631793261,
+			-0.455329984426498,
+			0.889873087406158
+		],
+		"floor_gap_m": 0.00229263305664062,
+		"hits": [
+			{
+				"albedo": "res://content/environments/red_descent/upper_crossing_v1/materials/limestone/albedo.png",
+				"camera": [
+					7.0,
+					-16.3999996185303,
+					23.6746997833252
+				],
+				"direction": [
+					0.0282948631793261,
+					-0.455329984426498,
+					0.889873087406158
+				],
+				"distance": 3.50891804695129,
+				"mesh": "res://content/environments/procedural_architecture_v1/passages/nave.glb::ArrayMesh_fpnvl",
+				"path": "/root/MatchWorld/CinderCrypt/Architecture/StonePassage_nave/Stone-flag_nave_4",
+				"position": [
+					7.09928417205811,
+					-17.9977149963379,
+					26.797191619873
+				]
+			},
+			{
+				"albedo": "",
+				"camera": [
+					7.0,
+					-16.3999996185303,
+					23.6746997833252
+				],
+				"direction": [
+					0.0282948631793261,
+					-0.455329984426498,
+					0.889873087406158
+				],
+				"distance": 3.77747917175293,
+				"mesh": "",
+				"path": "/root/MatchWorld/CinderCrypt/Architecture/@MeshInstance3D@776",
+				"position": [
+					7.10688304901123,
+					-18.1199989318848,
+					27.0361766815186
+				]
+			},
+			{
+				"albedo": "",
+				"camera": [
+					7.0,
+					-16.3999996185303,
+					23.6746997833252
+				],
+				"direction": [
+					0.0282948631793261,
+					-0.455329984426498,
+					0.889873087406158
+				],
+				"distance": 3.8655469417572,
+				"mesh": "res://content/environments/red_descent/passage_landings_v1/meshes/nave_abutment.glb::ArrayMesh_qqdti",
+				"path": "/root/MatchWorld/CinderCrypt/Architecture/NaveAbutment/Mortar_nave_abutment_0",
+				"position": [
+					7.109375,
+					-18.160099029541,
+					27.1145458221436
+				]
+			},
+			{
+				"albedo": "",
+				"camera": [
+					7.0,
+					-16.3999996185303,
+					23.6746997833252
+				],
+				"direction": [
+					0.0282948631793261,
+					-0.455329984426498,
+					0.889873087406158
+				],
+				"distance": 4.06298637390137,
+				"mesh": "",
+				"path": "/root/MatchWorld/CinderCrypt/Architecture/wall_0_-3_1_lod0",
+				"position": [
+					7.11496257781982,
+					-18.25,
+					27.2902412414551
+				]
+			},
+			{
+				"albedo": "",
+				"camera": [
+					7.0,
+					-16.3999996185303,
+					23.6746997833252
+				],
+				"direction": [
+					0.0282948631793261,
+					-0.455329984426498,
+					0.889873087406158
+				],
+				"distance": 4.06298780441284,
+				"mesh": "",
+				"path": "/root/MatchWorld/CinderCrypt/Architecture/dark_0_-3_1_lod0",
+				"position": [
+					7.11496162414551,
+					-18.25,
+					27.2902431488037
+				]
+			},
+			{
+				"albedo": "res://content/environments/red_descent/upper_crossing_v1/materials/limestone/albedo.png",
+				"camera": [
+					7.0,
+					-16.3999996185303,
+					23.6746997833252
+				],
+				"direction": [
+					0.0282948631793261,
+					-0.455329984426498,
+					0.889873087406158
+				],
+				"distance": 4.36541843414307,
+				"mesh": "res://content/environments/procedural_architecture_v1/rooms/nave.glb::ArrayMesh_8gorg",
+				"path": "/root/MatchWorld/CinderCrypt/Architecture/StoneRoom_nave/Stone-ashlar_nave_0",
+				"position": [
+					7.12351894378662,
+					-18.3877048492432,
+					27.5593681335449
+				]
+			}
+		],
+		"pixel": [
+			700.0,
+			790.0
+		],
+		"view": "nave_0-forward"
+	},
+	{
+		"camera": [
+			7.0,
+			-16.3999996185303,
+			23.6746997833252
+		],
+		"direction": [
+			0.412560999393463,
+			-0.414939820766449,
+			0.810936748981476
+		],
+		"floor_gap_m": 0.0118904113769531,
+		"hits": [
+			{
+				"albedo": "res://content/environments/red_descent/upper_crossing_v1/materials/limestone/albedo.png",
+				"camera": [
+					7.0,
+					-16.3999996185303,
+					23.6746997833252
+				],
+				"direction": [
+					0.412560999393463,
+					-0.414939820766449,
+					0.810936748981476
+				],
+				"distance": 3.82734680175781,
+				"mesh": "res://content/environments/procedural_architecture_v1/passages/nave.glb::ArrayMesh_fpnvl",
+				"path": "/root/MatchWorld/CinderCrypt/Architecture/StonePassage_nave/Stone-flag_nave_4",
+				"position": [
+					8.57901382446289,
+					-17.9881172180176,
+					26.7784366607666
+				]
+			},
+			{
+				"albedo": "",
+				"camera": [
+					7.0,
+					-16.3999996185303,
+					23.6746997833252
+				],
+				"direction": [
+					0.412560999393463,
+					-0.414939820766449,
+					0.810936748981476
+				],
+				"distance": 4.14517784118652,
+				"mesh": "",
+				"path": "/root/MatchWorld/CinderCrypt/Architecture/@MeshInstance3D@776",
+				"position": [
+					8.71013832092285,
+					-18.1199989318848,
+					27.0361766815186
+				]
+			},
+			{
+				"albedo": "",
+				"camera": [
+					7.0,
+					-16.3999996185303,
+					23.6746997833252
+				],
+				"direction": [
+					0.412560999393463,
+					-0.414939820766449,
+					0.810936748981476
+				],
+				"distance": 4.24182033538818,
+				"mesh": "res://content/environments/red_descent/passage_landings_v1/meshes/nave_abutment.glb::ArrayMesh_qqdti",
+				"path": "/root/MatchWorld/CinderCrypt/Architecture/NaveAbutment/Mortar_nave_abutment_0",
+				"position": [
+					8.75000953674316,
+					-18.160099029541,
+					27.1145477294922
+				]
+			},
+			{
+				"albedo": "",
+				"camera": [
+					7.0,
+					-16.3999996185303,
+					23.6746997833252
+				],
+				"direction": [
+					0.412560999393463,
+					-0.414939820766449,
+					0.810936748981476
+				],
+				"distance": 4.45847797393799,
+				"mesh": "",
+				"path": "/root/MatchWorld/CinderCrypt/Architecture/dark_0_-3_1_lod0",
+				"position": [
+					8.83939361572266,
+					-18.25,
+					27.2902431488037
+				]
+			},
+			{
+				"albedo": "",
+				"camera": [
+					7.0,
+					-16.3999996185303,
+					23.6746997833252
+				],
+				"direction": [
+					0.412560999393463,
+					-0.414939820766449,
+					0.810936748981476
+				],
+				"distance": 4.47704315185547,
+				"mesh": "",
+				"path": "/root/MatchWorld/CinderCrypt/Architecture/dark_0_-3_1_lod0",
+				"position": [
+					8.84705257415771,
+					-18.2577056884766,
+					27.3052978515625
+				]
+			},
+			{
+				"albedo": "res://content/environments/red_descent/upper_crossing_v1/materials/limestone/albedo.png",
+				"camera": [
+					7.0,
+					-16.3999996185303,
+					23.6746997833252
+				],
+				"direction": [
+					0.412560999393463,
+					-0.414939820766449,
+					0.810936748981476
+				],
+				"distance": 4.78340625762939,
+				"mesh": "res://content/environments/procedural_architecture_v1/rooms/nave.glb::ArrayMesh_8gorg",
+				"path": "/root/MatchWorld/CinderCrypt/Architecture/StoneRoom_nave/Stone-ashlar_nave_0",
+				"position": [
+					8.9734468460083,
+					-18.3848247528076,
+					27.5537395477295
+				]
+			},
+			{
+				"albedo": "res://content/environments/red_descent/upper_crossing_v1/materials/limestone/albedo.png",
+				"camera": [
+					7.0,
+					-16.3999996185303,
+					23.6746997833252
+				],
+				"direction": [
+					0.412560999393463,
+					-0.414939820766449,
+					0.810936748981476
+				],
+				"distance": 5.11221075057983,
+				"mesh": "res://content/environments/red_descent/passage_landings_v1/meshes/nave_abutment.glb::ArrayMesh_emul4",
+				"path": "/root/MatchWorld/CinderCrypt/Architecture/NaveAbutment/Stone-stone_nave_abutment_1",
+				"position": [
+					9.10909843444824,
+					-18.5212593078613,
+					27.8203792572021
+				]
+			}
+		],
+		"pixel": [
+			400.0,
+			790.0
+		],
+		"view": "nave_0-forward"
+	},
+	{
+		"camera": [
+			7.0,
+			-16.3999996185303,
+			23.6746997833252
+		],
+		"direction": [
+			-0.368414252996445,
+			-0.42347240447998,
+			0.827612280845642
+		],
+		"floor_gap_m": 0.0110797882080078,
+		"hits": [
+			{
+				"albedo": "res://content/environments/red_descent/upper_crossing_v1/materials/limestone/albedo.png",
+				"camera": [
+					7.0,
+					-16.3999996185303,
+					23.6746997833252
+				],
+				"direction": [
+					-0.368414252996445,
+					-0.42347240447998,
+					0.827612280845642
+				],
+				"distance": 3.75214123725891,
+				"mesh": "res://content/environments/procedural_architecture_v1/passages/nave.glb::ArrayMesh_fpnvl",
+				"path": "/root/MatchWorld/CinderCrypt/Architecture/StonePassage_nave/Stone-flag_nave_4",
+				"position": [
+					5.61765766143799,
+					-17.9889278411865,
+					26.7800178527832
+				]
+			},
+			{
+				"albedo": "",
+				"camera": [
+					7.0,
+					-16.3999996185303,
+					23.6746997833252
+				],
+				"direction": [
+					-0.368414252996445,
+					-0.42347240447998,
+					0.827612280845642
+				],
+				"distance": 4.36864566802979,
+				"mesh": "",
+				"path": "/root/MatchWorld/CinderCrypt/Architecture/wall_0_-3_1_lod0",
+				"position": [
+					5.39052963256836,
+					-18.25,
+					27.2902450561523
+				]
+			},
+			{
+				"albedo": "res://content/environments/dungeon_pbr_v2/Bricks089/albedo.png",
+				"camera": [
+					7.0,
+					-16.3999996185303,
+					23.6746997833252
+				],
+				"direction": [
+					-0.368414252996445,
+					-0.42347240447998,
+					0.827612280845642
+				],
+				"distance": 4.53394412994385,
+				"mesh": "",
+				"path": "/root/MatchWorld/CinderCrypt/Architecture/@MeshInstance3D@714",
+				"position": [
+					5.32963037490845,
+					-18.3199996948242,
+					27.4270477294922
+				]
+			},
+			{
+				"albedo": "res://content/environments/red_descent/upper_crossing_v1/materials/limestone/albedo.png",
+				"camera": [
+					7.0,
+					-16.3999996185303,
+					23.6746997833252
+				],
+				"direction": [
+					-0.368414252996445,
+					-0.42347240447998,
+					0.827612280845642
+				],
+				"distance": 4.69186544418335,
+				"mesh": "res://content/environments/procedural_architecture_v1/rooms/nave.glb::ArrayMesh_8gorg",
+				"path": "/root/MatchWorld/CinderCrypt/Architecture/StoneRoom_nave/Stone-ashlar_nave_0",
+				"position": [
+					5.27145004272461,
+					-18.3868751525879,
+					27.5577449798584
+				]
+			},
+			{
+				"albedo": "",
+				"camera": [
+					7.0,
+					-16.3999996185303,
+					23.6746997833252
+				],
+				"direction": [
+					-0.368414252996445,
+					-0.42347240447998,
+					0.827612280845642
+				],
+				"distance": 4.87319564819336,
+				"mesh": "",
+				"path": "/root/MatchWorld/CinderCrypt/Architecture/dark_0_-3_1_lod0",
+				"position": [
+					5.20464420318604,
+					-18.4636650085449,
+					27.7078151702881
+				]
+			}
+		],
+		"pixel": [
+			1000.0,
+			790.0
+		],
+		"view": "nave_0-forward"
+	},
+	{
+		"camera": [
+			7.0,
+			-16.3999996185303,
+			23.6746997833252
+		],
+		"direction": [
+			0.0290488637983799,
+			-0.409390181303024,
+			0.911896884441376
+		],
+		"floor_gap_m": 0.0110874176025391,
+		"hits": [
+			{
+				"albedo": "res://content/environments/red_descent/upper_crossing_v1/materials/limestone/albedo.png",
+				"camera": [
+					7.0,
+					-16.3999996185303,
+					23.6746997833252
+				],
+				"direction": [
+					0.0290488637983799,
+					-0.409390181303024,
+					0.911896884441376
+				],
+				"distance": 3.88118886947632,
+				"mesh": "res://content/environments/procedural_architecture_v1/passages/nave.glb::ArrayMesh_fpnvl",
+				"path": "/root/MatchWorld/CinderCrypt/Architecture/StonePassage_nave/Stone-flag_nave_4",
+				"position": [
+					7.11274433135986,
+					-17.988920211792,
+					27.2139434814453
+				]
+			},
+			{
+				"albedo": "",
+				"camera": [
+					7.0,
+					-16.3999996185303,
+					23.6746997833252
+				],
+				"direction": [
+					0.0290488637983799,
+					-0.409390181303024,
+					0.911896884441376
+				],
+				"distance": 4.20137071609497,
+				"mesh": "",
+				"path": "/root/MatchWorld/CinderCrypt/Architecture/@MeshInstance3D@776",
+				"position": [
+					7.12204504013062,
+					-18.1199989318848,
+					27.505916595459
+				]
+			},
+			{
+				"albedo": "res://content/environments/red_descent/upper_crossing_v1/materials/limestone/albedo.png",
+				"camera": [
+					7.0,
+					-16.3999996185303,
+					23.6746997833252
+				],
+				"direction": [
+					0.0290488637983799,
+					-0.409390181303024,
+					0.911896884441376
+				],
+				"distance": 4.25156831741333,
+				"mesh": "res://content/environments/procedural_architecture_v1/rooms/nave.glb::ArrayMesh_8gorg",
+				"path": "/root/MatchWorld/CinderCrypt/Architecture/StoneRoom_nave/Stone-ashlar_nave_0",
+				"position": [
+					7.1235032081604,
+					-18.1405506134033,
+					27.5516910552979
+				]
+			},
+			{
+				"albedo": "",
+				"camera": [
+					7.0,
+					-16.3999996185303,
+					23.6746997833252
+				],
+				"direction": [
+					0.0290488637983799,
+					-0.409390181303024,
+					0.911896884441376
+				],
+				"distance": 4.51891613006592,
+				"mesh": "",
+				"path": "/root/MatchWorld/CinderCrypt/Architecture/dark_0_-3_1_lod0",
+				"position": [
+					7.13126945495605,
+					-18.25,
+					27.7954845428467
+				]
+			},
+			{
+				"albedo": "res://content/environments/dungeon_pbr_v2/Bricks089/albedo.png",
+				"camera": [
+					7.0,
+					-16.3999996185303,
+					23.6746997833252
+				],
+				"direction": [
+					0.0290488637983799,
+					-0.409390181303024,
+					0.911896884441376
+				],
+				"distance": 4.6899037361145,
+				"mesh": "",
+				"path": "/root/MatchWorld/CinderCrypt/Architecture/@MeshInstance3D@714",
+				"position": [
+					7.1362361907959,
+					-18.3199996948242,
+					27.9514083862305
+				]
+			}
+		],
+		"pixel": [
+			700.0,
+			750.0
+		],
+		"view": "nave_0-forward"
+	},
+	{
+		"camera": [
+			-11.5293216705322,
+			-16.7823295593262,
+			25.8530082702637
+		],
+		"direction": [
+			-0.295810729265213,
+			-0.134153351187706,
+			-0.94577956199646
+		],
+		"hits": [
+			{
+				"albedo": "res://content/environments/red_descent/upper_crossing_v1/materials/limestone/albedo.png",
+				"camera": [
+					-11.5293216705322,
+					-16.7823295593262,
+					25.8530082702637
+				],
+				"direction": [
+					-0.295810729265213,
+					-0.134153351187706,
+					-0.94577956199646
+				],
+				"distance": 4.1476879119873,
+				"mesh": "res://content/environments/procedural_architecture_v1/passages/node_-14_-19_24.glb::ArrayMesh_f7h23",
+				"path": "/root/MatchWorld/CinderCrypt/Architecture/StonePassage_node_-14_-19_24/Stone-stone_node_-14_-19_24_1",
+				"position": [
+					-12.7562522888184,
+					-17.3387565612793,
+					21.9302101135254
+				]
+			},
+			{
+				"albedo": "",
+				"camera": [
+					-11.5293216705322,
+					-16.7823295593262,
+					25.8530082702637
+				],
+				"direction": [
+					-0.295810729265213,
+					-0.134153351187706,
+					-0.94577956199646
+				],
+				"distance": 4.20283842086792,
+				"mesh": "res://content/environments/procedural_architecture_v1/passages/node_-14_-19_24.glb::ArrayMesh_wgdi3",
+				"path": "/root/MatchWorld/CinderCrypt/Architecture/StonePassage_node_-14_-19_24/Mortar_node_-14_-19_24_20",
+				"position": [
+					-12.7725658416748,
+					-17.346155166626,
+					21.8780498504639
+				]
+			},
+			{
+				"albedo": "",
+				"camera": [
+					-11.5293216705322,
+					-16.7823295593262,
+					25.8530082702637
+				],
+				"direction": [
+					-0.295810729265213,
+					-0.134153351187706,
+					-0.94577956199646
+				],
+				"distance": 38.6994171142578,
+				"mesh": "res://content/environments/procedural_architecture_v1/passages/root_tunnel.glb::ArrayMesh_wupqc",
+				"path": "/root/MatchWorld/CinderCrypt/Architecture/StonePassage_root_tunnel/Mortar_root_tunnel_28",
+				"position": [
+					-22.9770240783691,
+					-21.9739856719971,
+					-10.7481079101562
+				]
+			},
+			{
+				"albedo": "res://content/environments/red_descent/upper_crossing_v1/materials/bedrock/albedo.png",
+				"camera": [
+					-11.5293216705322,
+					-16.7823295593262,
+					25.8530082702637
+				],
+				"direction": [
+					-0.295810729265213,
+					-0.134153351187706,
+					-0.94577956199646
+				],
+				"distance": 39.1061630249023,
+				"mesh": "res://content/environments/procedural_architecture_v1/passages/root_tunnel.glb::ArrayMesh_qryee",
+				"path": "/root/MatchWorld/CinderCrypt/Architecture/StonePassage_root_tunnel/Stone-rock_root_tunnel_25",
+				"position": [
+					-23.0973434448242,
+					-22.0285530090332,
+					-11.1328010559082
+				]
+			},
+			{
+				"albedo": "",
+				"camera": [
+					-11.5293216705322,
+					-16.7823295593262,
+					25.8530082702637
+				],
+				"direction": [
+					-0.295810729265213,
+					-0.134153351187706,
+					-0.94577956199646
+				],
+				"distance": 46.0515098571777,
+				"mesh": "res://content/environments/procedural_architecture_v1/passages/node_-23_-23_-16.glb::ArrayMesh_8x51i",
+				"path": "/root/MatchWorld/CinderCrypt/Architecture/StonePassage_node_-23_-23_-16/Mortar_node_-23_-23_-16_0",
+				"position": [
+					-25.1518516540527,
+					-22.9602947235107,
+					-17.7015686035156
+				]
+			},
+			{
+				"albedo": "res://content/environments/red_descent/upper_crossing_v1/materials/limestone/albedo.png",
+				"camera": [
+					-11.5293216705322,
+					-16.7823295593262,
+					25.8530082702637
+				],
+				"direction": [
+					-0.295810729265213,
+					-0.134153351187706,
+					-0.94577956199646
+				],
+				"distance": 46.057918548584,
+				"mesh": "res://content/environments/procedural_architecture_v1/passages/node_-23_-23_-16.glb::ArrayMesh_e44ei",
+				"path": "/root/MatchWorld/CinderCrypt/Architecture/StonePassage_node_-23_-23_-16/Stone-ashlar_node_-23_-23_-16_0",
+				"position": [
+					-25.1537475585938,
+					-22.9611549377441,
+					-17.7076301574707
+				]
+			}
+		],
+		"pixel": [
+			1160.0,
+			450.0
+		],
+		"view": "nave_5-forward"
+	},
+	{
+		"camera": [
+			-11.5293216705322,
+			-16.7823295593262,
+			25.8530082702637
+		],
+		"direction": [
+			-0.133136719465256,
+			-0.231029465794563,
+			-0.963794648647308
+		],
+		"hits": [
+			{
+				"albedo": "res://content/environments/red_descent/upper_crossing_v1/materials/limestone/albedo.png",
+				"camera": [
+					-11.5293216705322,
+					-16.7823295593262,
+					25.8530082702637
+				],
+				"direction": [
+					-0.133136719465256,
+					-0.231029465794563,
+					-0.963794648647308
+				],
+				"distance": 3.4776656627655,
+				"mesh": "res://content/environments/procedural_architecture_v1/passages/nave.glb::ArrayMesh_nmxxm",
+				"path": "/root/MatchWorld/CinderCrypt/Architecture/StonePassage_nave/Stone-stone_nave_11",
+				"position": [
+					-11.9923267364502,
+					-17.5857734680176,
+					22.5012531280518
+				]
+			},
+			{
+				"albedo": "",
+				"camera": [
+					-11.5293216705322,
+					-16.7823295593262,
+					25.8530082702637
+				],
+				"direction": [
+					-0.133136719465256,
+					-0.231029465794563,
+					-0.963794648647308
+				],
+				"distance": 3.52173185348511,
+				"mesh": "res://content/environments/procedural_architecture_v1/passages/node_-14_-19_24.glb::ArrayMesh_wgdi3",
+				"path": "/root/MatchWorld/CinderCrypt/Architecture/StonePassage_node_-14_-19_24/Mortar_node_-14_-19_24_20",
+				"position": [
+					-11.9981937408447,
+					-17.5959529876709,
+					22.4587821960449
+				]
+			},
+			{
+				"albedo": "",
+				"camera": [
+					-11.5293216705322,
+					-16.7823295593262,
+					25.8530082702637
+				],
+				"direction": [
+					-0.133136719465256,
+					-0.231029465794563,
+					-0.963794648647308
+				],
+				"distance": 3.57094550132751,
+				"mesh": "res://content/environments/procedural_architecture_v1/passages/nave.glb::ArrayMesh_1h005",
+				"path": "/root/MatchWorld/CinderCrypt/Architecture/StonePassage_nave/Mortar_nave_13",
+				"position": [
+					-12.0047454833984,
+					-17.6073226928711,
+					22.4113502502441
+				]
+			},
+			{
+				"albedo": "",
+				"camera": [
+					-11.5293216705322,
+					-16.7823295593262,
+					25.8530082702637
+				],
+				"direction": [
+					-0.133136719465256,
+					-0.231029465794563,
+					-0.963794648647308
+				],
+				"distance": 52.0104560852051,
+				"mesh": "",
+				"path": "/root/MatchWorld/CinderCrypt/Architecture/wall_-2_-3_-2_lod0",
+				"position": [
+					-18.4538230895996,
+					-28.7982769012451,
+					-24.2743873596191
+				]
+			},
+			{
+				"albedo": "",
+				"camera": [
+					-11.5293216705322,
+					-16.7823295593262,
+					25.8530082702637
+				],
+				"direction": [
+					-0.133136719465256,
+					-0.231029465794563,
+					-0.963794648647308
+				],
+				"distance": 52.7751007080078,
+				"mesh": "",
+				"path": "/root/MatchWorld/CinderCrypt/Architecture/dark_-2_-3_-2_lod0",
+				"position": [
+					-18.5556259155273,
+					-28.9749317169189,
+					-25.0113506317139
+				]
+			},
+			{
+				"albedo": "",
+				"camera": [
+					-11.5293216705322,
+					-16.7823295593262,
+					25.8530082702637
+				],
+				"direction": [
+					-0.133136719465256,
+					-0.231029465794563,
+					-0.963794648647308
+				],
+				"distance": 52.8130912780762,
+				"mesh": "",
+				"path": "/root/MatchWorld/CinderCrypt/Architecture/dark_-1_-3_-2_lod0",
+				"position": [
+					-18.5606822967529,
+					-28.9837074279785,
+					-25.0479602813721
+				]
+			},
+			{
+				"albedo": "",
+				"camera": [
+					-11.5293216705322,
+					-16.7823295593262,
+					25.8530082702637
+				],
+				"direction": [
+					-0.133136719465256,
+					-0.231029465794563,
+					-0.963794648647308
+				],
+				"distance": 52.8130989074707,
+				"mesh": "",
+				"path": "/root/MatchWorld/CinderCrypt/Architecture/wall_-1_-3_-2_lod0",
+				"position": [
+					-18.5606880187988,
+					-28.9837112426758,
+					-25.0479698181152
+				]
+			}
+		],
+		"pixel": [
+			1320.0,
+			550.0
+		],
+		"view": "nave_5-forward"
+	},
+	{
+		"camera": [
+			-11.5293216705322,
+			-16.7823295593262,
+			25.8530082702637
+		],
+		"direction": [
+			-0.961742579936981,
+			-0.229196831583977,
+			0.150066748261452
+		],
+		"hits": [
+			{
+				"albedo": "res://content/environments/red_descent/upper_crossing_v1/materials/limestone/albedo.png",
+				"camera": [
+					-11.5293216705322,
+					-16.7823295593262,
+					25.8530082702637
+				],
+				"direction": [
+					-0.961742579936981,
+					-0.229196831583977,
+					0.150066748261452
+				],
+				"distance": 3.65563488006592,
+				"mesh": "res://content/environments/procedural_architecture_v1/passages/nave.glb::ArrayMesh_rucw2",
+				"path": "/root/MatchWorld/CinderCrypt/Architecture/StonePassage_nave/Stone-stone_nave_15",
+				"position": [
+					-15.0451011657715,
+					-17.620189666748,
+					26.4015979766846
+				]
+			},
+			{
+				"albedo": "res://content/environments/red_descent/upper_crossing_v1/materials/limestone/albedo.png",
+				"camera": [
+					-11.5293216705322,
+					-16.7823295593262,
+					25.8530082702637
+				],
+				"direction": [
+					-0.961742579936981,
+					-0.229196831583977,
+					0.150066748261452
+				],
+				"distance": 3.74199986457825,
+				"mesh": "res://content/environments/procedural_architecture_v1/passages/nave.glb::ArrayMesh_mdf7i",
+				"path": "/root/MatchWorld/CinderCrypt/Architecture/StonePassage_nave/Stone-stone_nave_10",
+				"position": [
+					-15.1281623840332,
+					-17.6399841308594,
+					26.4145584106445
+				]
+			},
+			{
+				"albedo": "",
+				"camera": [
+					-11.5293216705322,
+					-16.7823295593262,
+					25.8530082702637
+				],
+				"direction": [
+					-0.961742579936981,
+					-0.229196831583977,
+					0.150066748261452
+				],
+				"distance": 3.8708815574646,
+				"mesh": "res://content/environments/procedural_architecture_v1/passages/nave.glb::ArrayMesh_1h005",
+				"path": "/root/MatchWorld/CinderCrypt/Architecture/StonePassage_nave/Mortar_nave_13",
+				"position": [
+					-15.2521133422852,
+					-17.6695232391357,
+					26.4338989257812
+				]
+			},
+			{
+				"albedo": "",
+				"camera": [
+					-11.5293216705322,
+					-16.7823295593262,
+					25.8530082702637
+				],
+				"direction": [
+					-0.961742579936981,
+					-0.229196831583977,
+					0.150066748261452
+				],
+				"distance": 3.8708815574646,
+				"mesh": "res://content/environments/procedural_architecture_v1/passages/node_-14_-19_24.glb::ArrayMesh_wgdi3",
+				"path": "/root/MatchWorld/CinderCrypt/Architecture/StonePassage_node_-14_-19_24/Mortar_node_-14_-19_24_20",
+				"position": [
+					-15.2521133422852,
+					-17.6695232391357,
+					26.4338989257812
+				]
+			},
+			{
+				"albedo": "",
+				"camera": [
+					-11.5293216705322,
+					-16.7823295593262,
+					25.8530082702637
+				],
+				"direction": [
+					-0.961742579936981,
+					-0.229196831583977,
+					0.150066748261452
+				],
+				"distance": 4.09745073318481,
+				"mesh": "res://content/environments/procedural_architecture_v1/passages/nave.glb::ArrayMesh_1bgsg",
+				"path": "/root/MatchWorld/CinderCrypt/Architecture/StonePassage_nave/Mortar_nave_18",
+				"position": [
+					-15.4700145721436,
+					-17.7214527130127,
+					26.4678993225098
+				]
+			},
+			{
+				"albedo": "",
+				"camera": [
+					-11.5293216705322,
+					-16.7823295593262,
+					25.8530082702637
+				],
+				"direction": [
+					-0.961742579936981,
+					-0.229196831583977,
+					0.150066748261452
+				],
+				"distance": 14.0585203170776,
+				"mesh": "res://content/environments/red_descent/masonry_repairs_v1/walls/second_stair_hall.glb::ArrayMesh_i1wk3",
+				"path": "/root/MatchWorld/CinderCrypt/Architecture/StoneRoom_second_stair_hall/Mortar_second_stair_hall_1",
+				"position": [
+					-25.0499992370605,
+					-20.0044975280762,
+					27.9627246856689
+				]
+			},
+			{
+				"albedo": "res://content/environments/red_descent/upper_crossing_v1/materials/limestone/albedo.png",
+				"camera": [
+					-11.5293216705322,
+					-16.7823295593262,
+					25.8530082702637
+				],
+				"direction": [
+					-0.961742579936981,
+					-0.229196831583977,
+					0.150066748261452
+				],
+				"distance": 15.0169115066528,
+				"mesh": "res://content/environments/procedural_architecture_v1/rooms/second_stair_hall.glb::ArrayMesh_bsoem",
+				"path": "/root/MatchWorld/CinderCrypt/Architecture/StoneRoom_second_stair_hall/Stone-stone_second_stair_hall_1",
+				"position": [
+					-25.9717254638672,
+					-20.224157333374,
+					28.1065483093262
+				]
+			},
+			{
+				"albedo": "res://content/environments/red_descent/upper_crossing_v1/materials/limestone/albedo.png",
+				"camera": [
+					-11.5293216705322,
+					-16.7823295593262,
+					25.8530082702637
+				],
+				"direction": [
+					-0.961742579936981,
+					-0.229196831583977,
+					0.150066748261452
+				],
+				"distance": 15.0440425872803,
+				"mesh": "res://content/environments/red_descent/masonry_repairs_v1/stairs/second_stair_hall.glb::ArrayMesh_0b5vq",
+				"path": "/root/MatchWorld/CinderCrypt/Architecture/StoneRoom_second_stair_hall/FittedStairMasonry/Stone-flag_fitted_second_stair_hall_0",
+				"position": [
+					-25.9978179931641,
+					-20.2303771972656,
+					28.1106185913086
+				]
+			},
+			{
+				"albedo": "",
+				"camera": [
+					-11.5293216705322,
+					-16.7823295593262,
+					25.8530082702637
+				],
+				"direction": [
+					-0.961742579936981,
+					-0.229196831583977,
+					0.150066748261452
+				],
+				"distance": 15.6850891113281,
+				"mesh": "res://content/environments/red_descent/masonry_repairs_v1/stairs/second_stair_hall.glb::ArrayMesh_7v0ru",
+				"path": "/root/MatchWorld/CinderCrypt/Architecture/StoneRoom_second_stair_hall/FittedStairMasonry/Mortar_fitted_second_stair_hall_0",
+				"position": [
+					-26.6143398284912,
+					-20.3773021697998,
+					28.2068176269531
+				]
+			},
+			{
+				"albedo": "res://content/environments/red_descent/upper_crossing_v1/materials/limestone/albedo.png",
+				"camera": [
+					-11.5293216705322,
+					-16.7823295593262,
+					25.8530082702637
+				],
+				"direction": [
+					-0.961742579936981,
+					-0.229196831583977,
+					0.150066748261452
+				],
+				"distance": 18.9748916625977,
+				"mesh": "res://content/environments/red_descent/masonry_repairs_v1/stairs/second_stair_hall.glb::ArrayMesh_nudco",
+				"path": "/root/MatchWorld/CinderCrypt/Architecture/StoneRoom_second_stair_hall/FittedStairMasonry/Stone-stone_fitted_second_stair_hall_0",
+				"position": [
+					-29.7782821655273,
+					-21.1313133239746,
+					28.7005081176758
+				]
+			},
+			{
+				"albedo": "res://content/environments/red_descent/upper_crossing_v1/materials/limestone/albedo.png",
+				"camera": [
+					-11.5293216705322,
+					-16.7823295593262,
+					25.8530082702637
+				],
+				"direction": [
+					-0.961742579936981,
+					-0.229196831583977,
+					0.150066748261452
+				],
+				"distance": 25.4963340759277,
+				"mesh": "res://content/environments/procedural_architecture_v1/rooms/second_stair_hall.glb::ArrayMesh_qfone",
+				"path": "/root/MatchWorld/CinderCrypt/Architecture/StoneRoom_second_stair_hall/Stone-stone_second_stair_hall_3",
+				"position": [
+					-36.0502319335938,
+					-22.6260089874268,
+					29.6791610717773
+				]
+			},
+			{
+				"albedo": "",
+				"camera": [
+					-11.5293216705322,
+					-16.7823295593262,
+					25.8530082702637
+				],
+				"direction": [
+					-0.961742579936981,
+					-0.229196831583977,
+					0.150066748261452
+				],
+				"distance": 25.6208686828613,
+				"mesh": "res://content/environments/red_descent/masonry_repairs_v1/walls/second_stair_hall.glb::ArrayMesh_hr448",
+				"path": "/root/MatchWorld/CinderCrypt/Architecture/StoneRoom_second_stair_hall/Mortar_second_stair_hall_3",
+				"position": [
+					-36.1700019836426,
+					-22.6545524597168,
+					29.6978492736816
+				]
+			},
+			{
+				"albedo": "res://content/environments/red_descent/upper_crossing_v1/materials/limestone/albedo.png",
+				"camera": [
+					-11.5293216705322,
+					-16.7823295593262,
+					25.8530082702637
+				],
+				"direction": [
+					-0.961742579936981,
+					-0.229196831583977,
+					0.150066748261452
+				],
+				"distance": 25.6777591705322,
+				"mesh": "res://content/environments/procedural_architecture_v1/rooms/second_stair_hall.glb::ArrayMesh_4sqm2",
+				"path": "/root/MatchWorld/CinderCrypt/Architecture/StoneRoom_second_stair_hall/Stone-ashlar_second_stair_hall_3",
+				"position": [
+					-36.2247161865234,
+					-22.6675910949707,
+					29.7063865661621
+				]
+			}
+		],
+		"pixel": [
+			110.0,
+			550.0
+		],
+		"view": "nave_5-forward"
+	},
+	{
+		"camera": [
+			-11.5293216705322,
+			-16.7823295593262,
+			25.8530082702637
+		],
+		"direction": [
+			-0.190467551350594,
+			-0.0628872588276863,
+			-0.979677140712738
+		],
+		"hits": [
+			{
+				"albedo": "",
+				"camera": [
+					-11.5293216705322,
+					-16.7823295593262,
+					25.8530082702637
+				],
+				"direction": [
+					-0.190467551350594,
+					-0.0628872588276863,
+					-0.979677140712738
+				],
+				"distance": 3.63579869270325,
+				"mesh": "res://content/environments/procedural_architecture_v1/passages/node_-14_-19_24.glb::ArrayMesh_wgdi3",
+				"path": "/root/MatchWorld/CinderCrypt/Architecture/StonePassage_node_-14_-19_24/Mortar_node_-14_-19_24_20",
+				"position": [
+					-12.2218236923218,
+					-17.0109748840332,
+					22.2910995483398
+				]
+			},
+			{
+				"albedo": "res://content/environments/red_descent/upper_crossing_v1/materials/limestone/albedo.png",
+				"camera": [
+					-11.5293216705322,
+					-16.7823295593262,
+					25.8530082702637
+				],
+				"direction": [
+					-0.190467551350594,
+					-0.0628872588276863,
+					-0.979677140712738
+				],
+				"distance": 3.64306449890137,
+				"mesh": "res://content/environments/procedural_architecture_v1/passages/nave.glb::ArrayMesh_nmxxm",
+				"path": "/root/MatchWorld/CinderCrypt/Architecture/StonePassage_nave/Stone-stone_nave_11",
+				"position": [
+					-12.2232074737549,
+					-17.0114326477051,
+					22.2839813232422
+				]
+			},
+			{
+				"albedo": "",
+				"camera": [
+					-11.5293216705322,
+					-16.7823295593262,
+					25.8530082702637
+				],
+				"direction": [
+					-0.190467551350594,
+					-0.0628872588276863,
+					-0.979677140712738
+				],
+				"distance": 3.68665981292725,
+				"mesh": "res://content/environments/procedural_architecture_v1/passages/nave.glb::ArrayMesh_1h005",
+				"path": "/root/MatchWorld/CinderCrypt/Architecture/StonePassage_nave/Mortar_nave_13",
+				"position": [
+					-12.2315111160278,
+					-17.0141735076904,
+					22.2412719726562
+				]
+			},
+			{
+				"albedo": "",
+				"camera": [
+					-11.5293216705322,
+					-16.7823295593262,
+					25.8530082702637
+				],
+				"direction": [
+					-0.190467551350594,
+					-0.0628872588276863,
+					-0.979677140712738
+				],
+				"distance": 48.2696876525879,
+				"mesh": "",
+				"path": "/root/MatchWorld/CinderCrypt/Architecture/wall_-2_-3_-2_lod0",
+				"position": [
+					-20.7231311798096,
+					-19.8178787231445,
+					-21.4357032775879
+				]
+			},
+			{
+				"albedo": "",
+				"camera": [
+					-11.5293216705322,
+					-16.7823295593262,
+					25.8530082702637
+				],
+				"direction": [
+					-0.190467551350594,
+					-0.0628872588276863,
+					-0.979677140712738
+				],
+				"distance": 48.6728439331055,
+				"mesh": "",
+				"path": "/root/MatchWorld/CinderCrypt/Architecture/wall_-2_-3_-2_lod0",
+				"position": [
+					-20.7999210357666,
+					-19.8432312011719,
+					-21.8306636810303
+				]
+			},
+			{
+				"albedo": "",
+				"camera": [
+					-11.5293216705322,
+					-16.7823295593262,
+					25.8530082702637
+				],
+				"direction": [
+					-0.190467551350594,
+					-0.0628872588276863,
+					-0.979677140712738
+				],
+				"distance": 49.0763549804688,
+				"mesh": "",
+				"path": "/root/MatchWorld/CinderCrypt/Architecture/dark_-2_-3_-2_lod0",
+				"position": [
+					-20.8767776489258,
+					-19.8686065673828,
+					-22.2259731292725
+				]
+			},
+			{
+				"albedo": "",
+				"camera": [
+					-11.5293216705322,
+					-16.7823295593262,
+					25.8530082702637
+				],
+				"direction": [
+					-0.190467551350594,
+					-0.0628872588276863,
+					-0.979677140712738
+				],
+				"distance": 49.6635551452637,
+				"mesh": "",
+				"path": "/root/MatchWorld/CinderCrypt/Architecture/dark_-2_-3_-2_lod0",
+				"position": [
+					-20.988618850708,
+					-19.9055347442627,
+					-22.8012409210205
+				]
+			}
+		],
+		"pixel": [
+			1280.0,
+			400.0
+		],
+		"view": "nave_5-forward"
+	},
+	{
+		"camera": [
+			-20.1236305236816,
+			-17.7827243804932,
+			24.0
+		],
+		"direction": [
+			0.848632872104645,
+			0.52733838558197,
+			0.0416708365082741
+		],
+		"hits": [
+			{
+				"albedo": "res://content/environments/red_descent/upper_crossing_v1/materials/limestone/albedo.png",
+				"camera": [
+					-20.1236305236816,
+					-17.7827243804932,
+					24.0
+				],
+				"direction": [
+					0.848632872104645,
+					0.52733838558197,
+					0.0416708365082741
+				],
+				"distance": 4.54968404769897,
+				"mesh": "res://content/environments/procedural_architecture_v1/passages/node_-14_-19_24.glb::ArrayMesh_6ml0y",
+				"path": "/root/MatchWorld/CinderCrypt/Architecture/StonePassage_node_-14_-19_24/Stone-arch_node_-14_-19_24_5",
+				"position": [
+					-16.2626190185547,
+					-15.3835010528564,
+					24.1895885467529
+				]
+			},
+			{
+				"albedo": "",
+				"camera": [
+					-20.1236305236816,
+					-17.7827243804932,
+					24.0
+				],
+				"direction": [
+					0.848632872104645,
+					0.52733838558197,
+					0.0416708365082741
+				],
+				"distance": 4.58958292007446,
+				"mesh": "res://content/environments/procedural_architecture_v1/passages/node_-14_-19_24.glb::ArrayMesh_wgdi3",
+				"path": "/root/MatchWorld/CinderCrypt/Architecture/StonePassage_node_-14_-19_24/Mortar_node_-14_-19_24_20",
+				"position": [
+					-16.228759765625,
+					-15.3624610900879,
+					24.1912517547607
+				]
+			},
+			{
+				"albedo": "",
+				"camera": [
+					-20.1236305236816,
+					-17.7827243804932,
+					24.0
+				],
+				"direction": [
+					0.848632872104645,
+					0.52733838558197,
+					0.0416708365082741
+				],
+				"distance": 19.4438076019287,
+				"mesh": "",
+				"path": "/root/MatchWorld/CinderCrypt/Architecture/dark_-1_-2_1_lod0",
+				"position": [
+					-3.62297701835632,
+					-7.52925682067871,
+					24.8102378845215
+				]
+			},
+			{
+				"albedo": "",
+				"camera": [
+					-20.1236305236816,
+					-17.7827243804932,
+					24.0
+				],
+				"direction": [
+					0.848632872104645,
+					0.52733838558197,
+					0.0416708365082741
+				],
+				"distance": 20.3903007507324,
+				"mesh": "",
+				"path": "/root/MatchWorld/CinderCrypt/Architecture/wall_-1_-2_1_lod0",
+				"position": [
+					-2.81975150108337,
+					-7.0301342010498,
+					24.8496799468994
+				]
+			},
+			{
+				"albedo": "",
+				"camera": [
+					-20.1236305236816,
+					-17.7827243804932,
+					24.0
+				],
+				"direction": [
+					0.848632872104645,
+					0.52733838558197,
+					0.0416708365082741
+				],
+				"distance": 36.5050849914551,
+				"mesh": "",
+				"path": "/root/MatchWorld/CinderCrypt/Architecture/wall_0_-2_1_lod0",
+				"position": [
+					10.8557806015015,
+					1.46780776977539,
+					25.5211982727051
+				]
+			},
+			{
+				"albedo": "",
+				"camera": [
+					-20.1236305236816,
+					-17.7827243804932,
+					24.0
+				],
+				"direction": [
+					0.848632872104645,
+					0.52733838558197,
+					0.0416708365082741
+				],
+				"distance": 38.5182189941406,
+				"mesh": "",
+				"path": "/root/MatchWorld/CinderCrypt/Architecture/dark_0_-2_1_lod0",
+				"position": [
+					12.5641984939575,
+					2.52941131591797,
+					25.6050872802734
+				]
+			},
+			{
+				"albedo": "",
+				"camera": [
+					-20.1236305236816,
+					-17.7827243804932,
+					24.0
+				],
+				"direction": [
+					0.848632872104645,
+					0.52733838558197,
+					0.0416708365082741
+				],
+				"distance": 39.5277481079102,
+				"mesh": "",
+				"path": "/root/MatchWorld/CinderCrypt/Architecture/dark_0_-2_1_lod0",
+				"position": [
+					13.420916557312,
+					3.06177139282227,
+					25.6471557617188
+				]
+			},
+			{
+				"albedo": "",
+				"camera": [
+					-20.1236305236816,
+					-17.7827243804932,
+					24.0
+				],
+				"direction": [
+					0.848632872104645,
+					0.52733838558197,
+					0.0416708365082741
+				],
+				"distance": 39.5277481079102,
+				"mesh": "",
+				"path": "/root/MatchWorld/CinderCrypt/Architecture/wall_0_-2_1_lod0",
+				"position": [
+					13.4209156036377,
+					3.06177139282227,
+					25.6471538543701
+				]
+			}
+		],
+		"pixel": [
+			749.0,
+			134.0
+		],
+		"view": "nave_6-back"
+	},
+	{
+		"camera": [
+			-20.1236305236816,
+			-17.7827243804932,
+			24.0
+		],
+		"direction": [
+			0.938260495662689,
+			-0.330840468406677,
+			0.101053655147552
+		],
+		"floor_gap_m": 0.00325584411621094,
+		"hits": [
+			{
+				"albedo": "res://content/environments/red_descent/upper_crossing_v1/materials/limestone/albedo.png",
+				"camera": [
+					-20.1236305236816,
+					-17.7827243804932,
+					24.0
+				],
+				"direction": [
+					0.938260495662689,
+					-0.330840468406677,
+					0.101053655147552
+				],
+				"distance": 4.1102032661438,
+				"mesh": "res://content/environments/procedural_architecture_v1/passages/node_-14_-19_24.glb::ArrayMesh_y6bnj",
+				"path": "/root/MatchWorld/CinderCrypt/Architecture/StonePassage_node_-14_-19_24/Stone-flag_node_-14_-19_24_21",
+				"position": [
+					-16.2671890258789,
+					-19.1425457000732,
+					24.4153518676758
+				]
+			},
+			{
+				"albedo": "",
+				"camera": [
+					-20.1236305236816,
+					-17.7827243804932,
+					24.0
+				],
+				"direction": [
+					0.938260495662689,
+					-0.330840468406677,
+					0.101053655147552
+				],
+				"distance": 4.42907333374023,
+				"mesh": "",
+				"path": "/root/MatchWorld/CinderCrypt/Architecture/@MeshInstance3D@781",
+				"position": [
+					-15.9680061340332,
+					-19.2480411529541,
+					24.4475746154785
+				]
+			},
+			{
+				"albedo": "",
+				"camera": [
+					-20.1236305236816,
+					-17.7827243804932,
+					24.0
+				],
+				"direction": [
+					0.938260495662689,
+					-0.330840468406677,
+					0.101053655147552
+				],
+				"distance": 5.00197505950928,
+				"mesh": "",
+				"path": "/root/MatchWorld/CinderCrypt/Architecture/@MeshInstance3D@783",
+				"position": [
+					-15.4304752349854,
+					-19.4375801086426,
+					24.5054683685303
+				]
+			},
+			{
+				"albedo": "",
+				"camera": [
+					-20.1236305236816,
+					-17.7827243804932,
+					24.0
+				],
+				"direction": [
+					0.938260495662689,
+					-0.330840468406677,
+					0.101053655147552
+				],
+				"distance": 19.9406433105469,
+				"mesh": "",
+				"path": "/root/MatchWorld/CinderCrypt/Architecture/dark_-1_-2_1_lod0",
+				"position": [
+					-1.41411137580872,
+					-24.3798961639404,
+					26.0150737762451
+				]
+			},
+			{
+				"albedo": "",
+				"camera": [
+					-20.1236305236816,
+					-17.7827243804932,
+					24.0
+				],
+				"direction": [
+					0.938260495662689,
+					-0.330840468406677,
+					0.101053655147552
+				],
+				"distance": 20.9113216400146,
+				"mesh": "",
+				"path": "/root/MatchWorld/CinderCrypt/Architecture/wall_-1_-2_1_lod0",
+				"position": [
+					-0.50336217880249,
+					-24.7010345458984,
+					26.1131649017334
+				]
+			},
+			{
+				"albedo": "",
+				"camera": [
+					-20.1236305236816,
+					-17.7827243804932,
+					24.0
+				],
+				"direction": [
+					0.938260495662689,
+					-0.330840468406677,
+					0.101053655147552
+				],
+				"distance": 21.6891632080078,
+				"mesh": "",
+				"path": "/root/MatchWorld/CinderCrypt/Architecture/dark_0_-2_1_lod0",
+				"position": [
+					0.226454019546509,
+					-24.9583778381348,
+					26.1917705535889
+				]
+			},
+			{
+				"albedo": "",
+				"camera": [
+					-20.1236305236816,
+					-17.7827243804932,
+					24.0
+				],
+				"direction": [
+					0.938260495662689,
+					-0.330840468406677,
+					0.101053655147552
+				],
+				"distance": 21.6891632080078,
+				"mesh": "",
+				"path": "/root/MatchWorld/CinderCrypt/Architecture/wall_0_-2_1_lod0",
+				"position": [
+					0.226454019546509,
+					-24.9583778381348,
+					26.1917686462402
+				]
+			},
+			{
+				"albedo": "",
+				"camera": [
+					-20.1236305236816,
+					-17.7827243804932,
+					24.0
+				],
+				"direction": [
+					0.938260495662689,
+					-0.330840468406677,
+					0.101053655147552
+				],
+				"distance": 28.0998859405518,
+				"mesh": "",
+				"path": "/root/MatchWorld/CinderCrypt/Architecture/wall_0_-3_1_lod0",
+				"position": [
+					6.24138259887695,
+					-27.0793075561523,
+					26.8395977020264
+				]
+			},
+			{
+				"albedo": "",
+				"camera": [
+					-20.1236305236816,
+					-17.7827243804932,
+					24.0
+				],
+				"direction": [
+					0.938260495662689,
+					-0.330840468406677,
+					0.101053655147552
+				],
+				"distance": 29.6495113372803,
+				"mesh": "",
+				"path": "/root/MatchWorld/CinderCrypt/Architecture/dark_0_-3_1_lod0",
+				"position": [
+					7.69533443450928,
+					-27.591983795166,
+					26.9961910247803
+				]
+			},
+			{
+				"albedo": "",
+				"camera": [
+					-20.1236305236816,
+					-17.7827243804932,
+					24.0
+				],
+				"direction": [
+					0.938260495662689,
+					-0.330840468406677,
+					0.101053655147552
+				],
+				"distance": 30.8188743591309,
+				"mesh": "",
+				"path": "/root/MatchWorld/CinderCrypt/Architecture/dark_0_-3_1_lod0",
+				"position": [
+					8.79250144958496,
+					-27.9788570404053,
+					27.1143589019775
+				]
+			},
+			{
+				"albedo": "",
+				"camera": [
+					-20.1236305236816,
+					-17.7827243804932,
+					24.0
+				],
+				"direction": [
+					0.938260495662689,
+					-0.330840468406677,
+					0.101053655147552
+				],
+				"distance": 30.8188743591309,
+				"mesh": "",
+				"path": "/root/MatchWorld/CinderCrypt/Architecture/wall_0_-3_1_lod0",
+				"position": [
+					8.79250144958496,
+					-27.9788551330566,
+					27.1143608093262
+				]
+			}
+		],
+		"pixel": [
+			789.0,
+			729.0
+		],
+		"view": "nave_6-back"
+	},
+	{
+		"camera": [
+			-39.5748977661133,
+			-21.3999996185303,
+			24.0
+		],
+		"direction": [
+			0.898837506771088,
+			-0.406400859355927,
+			0.164102405309677
+		],
+		"hits": [
+			{
+				"albedo": "res://content/environments/red_descent/upper_crossing_v1/materials/limestone/albedo.png",
+				"camera": [
+					-39.5748977661133,
+					-21.3999996185303,
+					24.0
+				],
+				"direction": [
+					0.898837506771088,
+					-0.406400859355927,
+					0.164102405309677
+				],
+				"distance": 3.91921734809875,
+				"mesh": "res://content/environments/procedural_flagstone_v1/flagstone_border_b.glb::ArrayMesh_6r5sk",
+				"path": "/root/MatchWorld/CinderCrypt/Architecture/Floor_second_stair_hall/@Node3D@664/stones_lod0",
+				"position": [
+					-36.0521583557129,
+					-22.9927730560303,
+					24.6431522369385
+				]
+			},
+			{
+				"albedo": "res://content/environments/dungeon_pbr_v2/Rocks025/albedo.png",
+				"camera": [
+					-39.5748977661133,
+					-21.3999996185303,
+					24.0
+				],
+				"direction": [
+					0.898837506771088,
+					-0.406400859355927,
+					0.164102405309677
+				],
+				"distance": 3.98375201225281,
+				"mesh": "res://content/environments/procedural_flagstone_v1/flagstone_coursed_b.glb::ArrayMesh_jmy6i",
+				"path": "/root/MatchWorld/CinderCrypt/Architecture/Floor_second_stair_hall/coursed_b/dirt_lod0",
+				"position": [
+					-35.9941520690918,
+					-23.0189990997314,
+					24.6537437438965
+				]
+			},
+			{
+				"albedo": "res://content/environments/dungeon_pbr_v2/Bricks089/albedo.png",
+				"camera": [
+					-39.5748977661133,
+					-21.3999996185303,
+					24.0
+				],
+				"direction": [
+					0.898837506771088,
+					-0.406400859355927,
+					0.164102405309677
+				],
+				"distance": 5.16731214523315,
+				"mesh": "",
+				"path": "/root/MatchWorld/CinderCrypt/Architecture/@MeshInstance3D@743",
+				"position": [
+					-34.9303245544434,
+					-23.5,
+					24.8479690551758
+				]
+			},
+			{
+				"albedo": "",
+				"camera": [
+					-39.5748977661133,
+					-21.3999996185303,
+					24.0
+				],
+				"direction": [
+					0.898837506771088,
+					-0.406400859355927,
+					0.164102405309677
+				],
+				"distance": 64.2223052978516,
+				"mesh": "",
+				"path": "/root/MatchWorld/CinderCrypt/DeepWater",
+				"position": [
+					18.150520324707,
+					-47.5,
+					34.5390357971191
+				]
+			}
+		],
+		"pixel": [
+			835.0,
+			757.0
+		],
+		"view": "root_tunnel_0-back"
+	},
+	{
+		"camera": [
+			-41.0,
+			-21.3999996185303,
+			19.6000003814697
+		],
+		"direction": [
+			-0.510280609130859,
+			0.179237261414528,
+			-0.841122925281525
+		],
+		"hits": [
+			{
+				"albedo": "res://content/environments/red_descent/upper_crossing_v1/materials/bedrock/albedo.png",
+				"camera": [
+					-41.0,
+					-21.3999996185303,
+					19.6000003814697
+				],
+				"direction": [
+					-0.510280609130859,
+					0.179237261414528,
+					-0.841122925281525
+				],
+				"distance": 5.20425939559937,
+				"mesh": "res://content/environments/procedural_architecture_v1/passages/node_-41_-23_14.glb::ArrayMesh_j74mw",
+				"path": "/root/MatchWorld/CinderCrypt/Architecture/StonePassage_node_-41_-23_14/Stone-rock_node_-41_-23_14_0",
+				"position": [
+					-43.655632019043,
+					-20.4672031402588,
+					15.2225780487061
+				]
+			},
+			{
+				"albedo": "res://content/environments/red_descent/upper_crossing_v1/materials/bedrock/albedo.png",
+				"camera": [
+					-41.0,
+					-21.3999996185303,
+					19.6000003814697
+				],
+				"direction": [
+					-0.510280609130859,
+					0.179237261414528,
+					-0.841122925281525
+				],
+				"distance": 5.29120779037476,
+				"mesh": "res://content/environments/procedural_architecture_v1/passages/root_tunnel.glb::ArrayMesh_ivqeb",
+				"path": "/root/MatchWorld/CinderCrypt/Architecture/StonePassage_root_tunnel/Stone-rock_root_tunnel_5",
+				"position": [
+					-43.7000007629395,
+					-20.4516181945801,
+					15.1494445800781
+				]
+			},
+			{
+				"albedo": "res://content/environments/red_descent/upper_crossing_v1/materials/bedrock/albedo.png",
+				"camera": [
+					-41.0,
+					-21.3999996185303,
+					19.6000003814697
+				],
+				"direction": [
+					-0.510280609130859,
+					0.179237261414528,
+					-0.841122925281525
+				],
+				"distance": 5.2914023399353,
+				"mesh": "res://content/environments/procedural_architecture_v1/passages/cave_bypass.glb::ArrayMesh_4eiph",
+				"path": "/root/MatchWorld/CinderCrypt/Architecture/StonePassage_cave_bypass/Stone-rock_cave_bypass_0",
+				"position": [
+					-43.7000999450684,
+					-20.4515838623047,
+					15.1492805480957
+				]
+			},
+			{
+				"albedo": "",
+				"camera": [
+					-41.0,
+					-21.3999996185303,
+					19.6000003814697
+				],
+				"direction": [
+					-0.510280609130859,
+					0.179237261414528,
+					-0.841122925281525
+				],
+				"distance": 5.34784126281738,
+				"mesh": "res://content/environments/procedural_architecture_v1/passages/node_-41_-23_14.glb::ArrayMesh_7jspa",
+				"path": "/root/MatchWorld/CinderCrypt/Architecture/StonePassage_node_-41_-23_14/Mortar_node_-41_-23_14_20",
+				"position": [
+					-43.7289009094238,
+					-20.4414672851562,
+					15.1018095016479
+				]
+			},
+			{
+				"albedo": "",
+				"camera": [
+					-41.0,
+					-21.3999996185303,
+					19.6000003814697
+				],
+				"direction": [
+					-0.510280609130859,
+					0.179237261414528,
+					-0.841122925281525
+				],
+				"distance": 5.35783243179321,
+				"mesh": "res://content/environments/procedural_architecture_v1/passages/cave_bypass.glb::ArrayMesh_6a8ec",
+				"path": "/root/MatchWorld/CinderCrypt/Architecture/StonePassage_cave_bypass/Mortar_cave_bypass_3",
+				"position": [
+					-43.7339973449707,
+					-20.43967628479,
+					15.0934047698975
+				]
+			},
+			{
+				"albedo": "",
+				"camera": [
+					-41.0,
+					-21.3999996185303,
+					19.6000003814697
+				],
+				"direction": [
+					-0.510280609130859,
+					0.179237261414528,
+					-0.841122925281525
+				],
+				"distance": 5.40301322937012,
+				"mesh": "res://content/environments/procedural_architecture_v1/passages/root_tunnel.glb::ArrayMesh_w4qrk",
+				"path": "/root/MatchWorld/CinderCrypt/Architecture/StonePassage_root_tunnel/Mortar_root_tunnel_8",
+				"position": [
+					-43.7570533752441,
+					-20.4315776824951,
+					15.0554027557373
+				]
+			},
+			{
+				"albedo": "",
+				"camera": [
+					-41.0,
+					-21.3999996185303,
+					19.6000003814697
+				],
+				"direction": [
+					-0.510280609130859,
+					0.179237261414528,
+					-0.841122925281525
+				],
+				"distance": 9.99885559082031,
+				"mesh": "res://content/environments/procedural_architecture_v1/passages/node_-46_-23_7.glb::ArrayMesh_t1mdv",
+				"path": "/root/MatchWorld/CinderCrypt/Architecture/StonePassage_node_-46_-23_7/Mortar_node_-46_-23_7_20",
+				"position": [
+					-46.102222442627,
+					-19.6078319549561,
+					11.1897344589233
+				]
+			},
+			{
+				"albedo": "",
+				"camera": [
+					-41.0,
+					-21.3999996185303,
+					19.6000003814697
+				],
+				"direction": [
+					-0.510280609130859,
+					0.179237261414528,
+					-0.841122925281525
+				],
+				"distance": 15.9456520080566,
+				"mesh": "res://content/environments/procedural_architecture_v1/passages/cave_bypass.glb::ArrayMesh_fnr3d",
+				"path": "/root/MatchWorld/CinderCrypt/Architecture/StonePassage_cave_bypass/Mortar_cave_bypass_8",
+				"position": [
+					-49.1367568969727,
+					-18.5419445037842,
+					6.18774795532227
+				]
+			}
+		],
+		"pixel": [
+			346.0,
+			333.0
+		],
+		"view": "root_tunnel_1-forward"
+	},
+	{
+		"camera": [
+			-36.4685211181641,
+			-21.3999996185303,
+			10.3748168945312
+		],
+		"direction": [
+			0.70470118522644,
+			0.198269933462143,
+			-0.681238114833832
+		],
+		"hits": [
+			{
+				"albedo": "res://content/environments/red_descent/upper_crossing_v1/materials/bedrock/albedo.png",
+				"camera": [
+					-36.4685211181641,
+					-21.3999996185303,
+					10.3748168945312
+				],
+				"direction": [
+					0.70470118522644,
+					0.198269933462143,
+					-0.681238114833832
+				],
+				"distance": 9.94321155548096,
+				"mesh": "res://content/environments/procedural_architecture_v1/passages/root_tunnel.glb::ArrayMesh_povtn",
+				"path": "/root/MatchWorld/CinderCrypt/Architecture/StonePassage_root_tunnel/Stone-rock_root_tunnel_15",
+				"position": [
+					-29.4615287780762,
+					-19.428560256958,
+					3.60112237930298
+				]
+			},
+			{
+				"albedo": "res://content/environments/red_descent/upper_crossing_v1/materials/bedrock/albedo.png",
+				"camera": [
+					-36.4685211181641,
+					-21.3999996185303,
+					10.3748168945312
+				],
+				"direction": [
+					0.70470118522644,
+					0.198269933462143,
+					-0.681238114833832
+				],
+				"distance": 9.95558071136475,
+				"mesh": "res://content/environments/procedural_architecture_v1/passages/node_-31_-23_6.glb::ArrayMesh_37wfe",
+				"path": "/root/MatchWorld/CinderCrypt/Architecture/StonePassage_node_-31_-23_6/Stone-rock_node_-31_-23_6_0",
+				"position": [
+					-29.4528121948242,
+					-19.4261074066162,
+					3.59269618988037
+				]
+			},
+			{
+				"albedo": "",
+				"camera": [
+					-36.4685211181641,
+					-21.3999996185303,
+					10.3748168945312
+				],
+				"direction": [
+					0.70470118522644,
+					0.198269933462143,
+					-0.681238114833832
+				],
+				"distance": 9.97811317443848,
+				"mesh": "res://content/environments/procedural_architecture_v1/passages/node_-31_-23_6.glb::ArrayMesh_qbyt2",
+				"path": "/root/MatchWorld/CinderCrypt/Architecture/StonePassage_node_-31_-23_6/Mortar_node_-31_-23_6_20",
+				"position": [
+					-29.4369335174561,
+					-19.4216403961182,
+					3.5773458480835
+				]
+			},
+			{
+				"albedo": "",
+				"camera": [
+					-36.4685211181641,
+					-21.3999996185303,
+					10.3748168945312
+				],
+				"direction": [
+					0.70470118522644,
+					0.198269933462143,
+					-0.681238114833832
+				],
+				"distance": 9.97817420959473,
+				"mesh": "res://content/environments/procedural_architecture_v1/passages/root_tunnel.glb::ArrayMesh_q6vwg",
+				"path": "/root/MatchWorld/CinderCrypt/Architecture/StonePassage_root_tunnel/Mortar_root_tunnel_18",
+				"position": [
+					-29.4368896484375,
+					-19.4216270446777,
+					3.57730484008789
+				]
+			},
+			{
+				"albedo": "",
+				"camera": [
+					-36.4685211181641,
+					-21.3999996185303,
+					10.3748168945312
+				],
+				"direction": [
+					0.70470118522644,
+					0.198269933462143,
+					-0.681238114833832
+				],
+				"distance": 18.5845394134521,
+				"mesh": "",
+				"path": "/root/MatchWorld/CinderCrypt/Architecture/dark_-2_-3_-1_lod0",
+				"position": [
+					-23.3719749450684,
+					-17.7152442932129,
+					-2.28567934036255
+				]
+			},
+			{
+				"albedo": "",
+				"camera": [
+					-36.4685211181641,
+					-21.3999996185303,
+					10.3748168945312
+				],
+				"direction": [
+					0.70470118522644,
+					0.198269933462143,
+					-0.681238114833832
+				],
+				"distance": 18.9755630493164,
+				"mesh": "",
+				"path": "/root/MatchWorld/CinderCrypt/Architecture/wall_-2_-3_-1_lod0",
+				"position": [
+					-23.0964183807373,
+					-17.6377143859863,
+					-2.55205965042114
+				]
+			},
+			{
+				"albedo": "",
+				"camera": [
+					-36.4685211181641,
+					-21.3999996185303,
+					10.3748168945312
+				],
+				"direction": [
+					0.70470118522644,
+					0.198269933462143,
+					-0.681238114833832
+				],
+				"distance": 42.2007179260254,
+				"mesh": "",
+				"path": "/root/MatchWorld/CinderCrypt/Architecture/structure_meshes_bearing_cap_lod1_-1_-2_-2_lod0",
+				"position": [
+					-6.72962522506714,
+					-13.0328664779663,
+					-18.3739185333252
+				]
+			},
+			{
+				"albedo": "",
+				"camera": [
+					-36.4685211181641,
+					-21.3999996185303,
+					10.3748168945312
+				],
+				"direction": [
+					0.70470118522644,
+					0.198269933462143,
+					-0.681238114833832
+				],
+				"distance": 43.3185882568359,
+				"mesh": "",
+				"path": "/root/MatchWorld/CinderCrypt/Architecture/structure_hewn_timber_1_-1_-2_-2_lod0",
+				"position": [
+					-5.94186305999756,
+					-12.8112239837646,
+					-19.1354560852051
+				]
+			},
+			{
+				"albedo": "res://content/environments/dungeon_pbr_v2/Bricks089/albedo.png",
+				"camera": [
+					-36.4685211181641,
+					-21.3999996185303,
+					10.3748168945312
+				],
+				"direction": [
+					0.70470118522644,
+					0.198269933462143,
+					-0.681238114833832
+				],
+				"distance": 54.9755554199219,
+				"mesh": "",
+				"path": "/root/MatchWorld/CinderCrypt/Architecture/@MeshInstance3D@703",
+				"position": [
+					2.2728157043457,
+					-10.5,
+					-27.0766258239746
+				]
+			},
+			{
+				"albedo": "",
+				"camera": [
+					-36.4685211181641,
+					-21.3999996185303,
+					10.3748168945312
+				],
+				"direction": [
+					0.70470118522644,
+					0.198269933462143,
+					-0.681238114833832
+				],
+				"distance": 55.6771621704102,
+				"mesh": "",
+				"path": "/root/MatchWorld/CinderCrypt/Architecture/wall_0_-3_-2_lod0",
+				"position": [
+					2.76724004745483,
+					-10.3608932495117,
+					-27.5545883178711
+				]
+			},
+			{
+				"albedo": "",
+				"camera": [
+					-36.4685211181641,
+					-21.3999996185303,
+					10.3748168945312
+				],
+				"direction": [
+					0.70470118522644,
+					0.198269933462143,
+					-0.681238114833832
+				],
+				"distance": 55.7985000610352,
+				"mesh": "",
+				"path": "/root/MatchWorld/CinderCrypt/Architecture/wall_0_-3_-2_lod0",
+				"position": [
+					2.8527455329895,
+					-10.3368377685547,
+					-27.6372489929199
+				]
+			},
+			{
+				"albedo": "",
+				"camera": [
+					-36.4685211181641,
+					-21.3999996185303,
+					10.3748168945312
+				],
+				"direction": [
+					0.70470118522644,
+					0.198269933462143,
+					-0.681238114833832
+				],
+				"distance": 56.2922210693359,
+				"mesh": "",
+				"path": "/root/MatchWorld/CinderCrypt/Architecture/dark_0_-3_-2_lod0",
+				"position": [
+					3.20066738128662,
+					-10.2389430999756,
+					-27.9735851287842
+				]
+			},
+			{
+				"albedo": "res://content/environments/dungeon_pbr_v2/Rocks025/albedo.png",
+				"camera": [
+					-36.4685211181641,
+					-21.3999996185303,
+					10.3748168945312
+				],
+				"direction": [
+					0.70470118522644,
+					0.198269933462143,
+					-0.681238114833832
+				],
+				"distance": 57.401538848877,
+				"mesh": "res://content/environments/procedural_flagstone_v1/flagstone_coursed_a.glb::ArrayMesh_tgxvs",
+				"path": "/root/MatchWorld/CinderCrypt/Architecture/Floor_chapel/@Node3D@247/dirt_lod0",
+				"position": [
+					3.9824104309082,
+					-10.0190000534058,
+					-28.7292976379395
+				]
+			},
+			{
+				"albedo": "res://content/environments/dungeon_pbr_v2/Concrete012/albedo.png",
+				"camera": [
+					-36.4685211181641,
+					-21.3999996185303,
+					10.3748168945312
+				],
+				"direction": [
+					0.70470118522644,
+					0.198269933462143,
+					-0.681238114833832
+				],
+				"distance": 57.4926795959473,
+				"mesh": "res://content/environments/procedural_flagstone_v1/flagstone_coursed_c.glb::ArrayMesh_kfrra",
+				"path": "/root/MatchWorld/CinderCrypt/Architecture/Floor_chapel/@Node3D@252/stones_lod0",
+				"position": [
+					4.04663467407227,
+					-10.0009298324585,
+					-28.7913856506348
+				]
+			},
+			{
+				"albedo": "res://content/environments/red_descent/upper_crossing_v1/materials/plaster_quiet/albedo.png",
+				"camera": [
+					-36.4685211181641,
+					-21.3999996185303,
+					10.3748168945312
+				],
+				"direction": [
+					0.70470118522644,
+					0.198269933462143,
+					-0.681238114833832
+				],
+				"distance": 75.1152267456055,
+				"mesh": "res://content/environments/procedural_architecture_v1/rooms/chapel.glb::ArrayMesh_1ki6q",
+				"path": "/root/MatchWorld/CinderCrypt/Architecture/StoneRoom_chapel/Plaster_chapel_1",
+				"position": [
+					16.4652633666992,
+					-6.50691032409668,
+					-40.7965354919434
+				]
+			},
+			{
+				"albedo": "res://content/environments/red_descent/upper_crossing_v1/materials/limestone/albedo.png",
+				"camera": [
+					-36.4685211181641,
+					-21.3999996185303,
+					10.3748168945312
+				],
+				"direction": [
+					0.70470118522644,
+					0.198269933462143,
+					-0.681238114833832
+				],
+				"distance": 75.1911849975586,
+				"mesh": "res://content/environments/procedural_architecture_v1/rooms/chapel.glb::ArrayMesh_2ndf7",
+				"path": "/root/MatchWorld/CinderCrypt/Architecture/StoneRoom_chapel/Stone-stone_chapel_1",
+				"position": [
+					16.518798828125,
+					-6.49184703826904,
+					-40.8482856750488
+				]
+			},
+			{
+				"albedo": "",
+				"camera": [
+					-36.4685211181641,
+					-21.3999996185303,
+					10.3748168945312
+				],
+				"direction": [
+					0.70470118522644,
+					0.198269933462143,
+					-0.681238114833832
+				],
+				"distance": 75.3111419677734,
+				"mesh": "res://content/environments/red_descent/masonry_repairs_v1/walls/chapel.glb::ArrayMesh_loau6",
+				"path": "/root/MatchWorld/CinderCrypt/Architecture/StoneRoom_chapel/Mortar_chapel_1",
+				"position": [
+					16.6033248901367,
+					-6.46806526184082,
+					-40.9300003051758
+				]
+			}
+		],
+		"pixel": [
+			662.0,
+			337.0
+		],
+		"view": "root_tunnel_2-forward"
+	},
+	{
+		"camera": [
+			-35.5314788818359,
+			-21.3999996185303,
+			9.62518310546875
+		],
+		"direction": [
+			-0.789302706718445,
+			-0.356381505727768,
+			0.499993503093719
+		],
+		"floor_gap_m": 0.0133457183837891,
+		"hits": [
+			{
+				"albedo": "res://content/environments/red_descent/upper_crossing_v1/materials/limestone/albedo.png",
+				"camera": [
+					-35.5314788818359,
+					-21.3999996185303,
+					9.62518310546875
+				],
+				"direction": [
+					-0.789302706718445,
+					-0.356381505727768,
+					0.499993503093719
+				],
+				"distance": 4.45211362838745,
+				"mesh": "res://content/environments/procedural_architecture_v1/passages/node_-41_-23_14.glb::ArrayMesh_sikb5",
+				"path": "/root/MatchWorld/CinderCrypt/Architecture/StonePassage_node_-41_-23_14/Stone-flag_node_-41_-23_14_21",
+				"position": [
+					-39.0455436706543,
+					-22.9866504669189,
+					11.8512115478516
+				]
+			},
+			{
+				"albedo": "",
+				"camera": [
+					-35.5314788818359,
+					-21.3999996185303,
+					9.62518310546875
+				],
+				"direction": [
+					-0.789302706718445,
+					-0.356381505727768,
+					0.499993503093719
+				],
+				"distance": 4.82628774642944,
+				"mesh": "",
+				"path": "/root/MatchWorld/CinderCrypt/Architecture/@MeshInstance3D@796",
+				"position": [
+					-39.3408813476562,
+					-23.1199989318848,
+					12.0382947921753
+				]
+			},
+			{
+				"albedo": "",
+				"camera": [
+					-35.5314788818359,
+					-21.3999996185303,
+					9.62518310546875
+				],
+				"direction": [
+					-0.789302706718445,
+					-0.356381505727768,
+					0.499993503093719
+				],
+				"distance": 5.08387327194214,
+				"mesh": "",
+				"path": "/root/MatchWorld/CinderCrypt/Architecture/@MeshInstance3D@795",
+				"position": [
+					-39.5441932678223,
+					-23.2117977142334,
+					12.1670875549316
+				]
+			}
+		],
+		"pixel": [
+			789.0,
+			702.0
+		],
+		"view": "root_tunnel_2-back"
+	},
+	{
+		"camera": [
+			-34.1048965454102,
+			-21.3999996185303,
+			2.45154595375061
+		],
+		"direction": [
+			-0.935421228408813,
+			0.155030697584152,
+			-0.317730516195297
+		],
+		"hits": [
+			{
+				"albedo": "res://content/environments/red_descent/upper_crossing_v1/materials/bedrock/albedo.png",
+				"camera": [
+					-34.1048965454102,
+					-21.3999996185303,
+					2.45154595375061
+				],
+				"direction": [
+					-0.935421228408813,
+					0.155030697584152,
+					-0.317730516195297
+				],
+				"distance": 5.37429904937744,
+				"mesh": "res://content/environments/procedural_architecture_v1/passages/node_-38_-23_-2.glb::ArrayMesh_slgkx",
+				"path": "/root/MatchWorld/CinderCrypt/Architecture/StonePassage_node_-38_-23_-2/Stone-rock_node_-38_-23_-2_0",
+				"position": [
+					-39.1321296691895,
+					-20.5668182373047,
+					0.743967413902283
+				]
+			},
+			{
+				"albedo": "res://content/environments/red_descent/upper_crossing_v1/materials/bedrock/albedo.png",
+				"camera": [
+					-34.1048965454102,
+					-21.3999996185303,
+					2.45154595375061
+				],
+				"direction": [
+					-0.935421228408813,
+					0.155030697584152,
+					-0.317730516195297
+				],
+				"distance": 5.45742177963257,
+				"mesh": "res://content/environments/procedural_architecture_v1/passages/root_tunnel.glb::ArrayMesh_povtn",
+				"path": "/root/MatchWorld/CinderCrypt/Architecture/StonePassage_root_tunnel/Stone-rock_root_tunnel_15",
+				"position": [
+					-39.2098846435547,
+					-20.5539321899414,
+					0.717556953430176
+				]
+			},
+			{
+				"albedo": "",
+				"camera": [
+					-34.1048965454102,
+					-21.3999996185303,
+					2.45154595375061
+				],
+				"direction": [
+					-0.935421228408813,
+					0.155030697584152,
+					-0.317730516195297
+				],
+				"distance": 5.52228784561157,
+				"mesh": "res://content/environments/procedural_architecture_v1/passages/node_-38_-23_-2.glb::ArrayMesh_sgvm4",
+				"path": "/root/MatchWorld/CinderCrypt/Architecture/StonePassage_node_-38_-23_-2/Mortar_node_-38_-23_-2_20",
+				"position": [
+					-39.2705612182617,
+					-20.5438747406006,
+					0.696946620941162
+				]
+			},
+			{
+				"albedo": "",
+				"camera": [
+					-34.1048965454102,
+					-21.3999996185303,
+					2.45154595375061
+				],
+				"direction": [
+					-0.935421228408813,
+					0.155030697584152,
+					-0.317730516195297
+				],
+				"distance": 5.58603525161743,
+				"mesh": "res://content/environments/procedural_architecture_v1/passages/root_tunnel.glb::ArrayMesh_q6vwg",
+				"path": "/root/MatchWorld/CinderCrypt/Architecture/StonePassage_root_tunnel/Mortar_root_tunnel_18",
+				"position": [
+					-39.330192565918,
+					-20.533992767334,
+					0.676692605018616
+				]
+			},
+			{
+				"albedo": "",
+				"camera": [
+					-34.1048965454102,
+					-21.3999996185303,
+					2.45154595375061
+				],
+				"direction": [
+					-0.935421228408813,
+					0.155030697584152,
+					-0.317730516195297
+				],
+				"distance": 6.26800012588501,
+				"mesh": "res://content/environments/procedural_architecture_v1/passages/cave_bypass.glb::ArrayMesh_erln3",
+				"path": "/root/MatchWorld/CinderCrypt/Architecture/StonePassage_cave_bypass/Mortar_cave_bypass_13",
+				"position": [
+					-39.9681167602539,
+					-20.4282665252686,
+					0.46001136302948
+				]
+			},
+			{
+				"albedo": "",
+				"camera": [
+					-34.1048965454102,
+					-21.3999996185303,
+					2.45154595375061
+				],
+				"direction": [
+					-0.935421228408813,
+					0.155030697584152,
+					-0.317730516195297
+				],
+				"distance": 7.14391326904297,
+				"mesh": "res://content/environments/procedural_architecture_v1/passages/cave_bypass.glb::ArrayMesh_fnr3d",
+				"path": "/root/MatchWorld/CinderCrypt/Architecture/StonePassage_cave_bypass/Mortar_cave_bypass_8",
+				"position": [
+					-40.7874641418457,
+					-20.2924728393555,
+					0.181706666946411
+				]
+			},
+			{
+				"albedo": "res://content/environments/red_descent/upper_crossing_v1/materials/bedrock/albedo.png",
+				"camera": [
+					-34.1048965454102,
+					-21.3999996185303,
+					2.45154595375061
+				],
+				"direction": [
+					-0.935421228408813,
+					0.155030697584152,
+					-0.317730516195297
+				],
+				"distance": 7.55518436431885,
+				"mesh": "res://content/environments/procedural_architecture_v1/passages/cave_bypass.glb::ArrayMesh_wi8hq",
+				"path": "/root/MatchWorld/CinderCrypt/Architecture/StonePassage_cave_bypass/Stone-rock_cave_bypass_5",
+				"position": [
+					-41.172176361084,
+					-20.2287139892578,
+					0.0510334968566895
+				]
+			}
+		],
+		"pixel": [
+			363.0,
+			352.0
+		],
+		"view": "root_tunnel_3-forward"
+	},
+	{
+		"camera": [
+			-34.8951034545898,
+			-21.3999996185303,
+			1.5484539270401
+		],
+		"direction": [
+			0.516421794891357,
+			0.24093322455883,
+			0.821741878986359
+		],
+		"hits": [
+			{
+				"albedo": "res://content/environments/red_descent/upper_crossing_v1/materials/bedrock/albedo.png",
+				"camera": [
+					-34.8951034545898,
+					-21.3999996185303,
+					1.5484539270401
+				],
+				"direction": [
+					0.516421794891357,
+					0.24093322455883,
+					0.821741878986359
+				],
+				"distance": 8.55529117584229,
+				"mesh": "res://content/environments/procedural_architecture_v1/passages/node_-31_-23_6.glb::ArrayMesh_37wfe",
+				"path": "/root/MatchWorld/CinderCrypt/Architecture/StonePassage_node_-31_-23_6/Stone-rock_node_-31_-23_6_0",
+				"position": [
+					-30.4769649505615,
+					-19.3387451171875,
+					8.57869434356689
+				]
+			},
+			{
+				"albedo": "",
+				"camera": [
+					-34.8951034545898,
+					-21.3999996185303,
+					1.5484539270401
+				],
+				"direction": [
+					0.516421794891357,
+					0.24093322455883,
+					0.821741878986359
+				],
+				"distance": 8.63187885284424,
+				"mesh": "res://content/environments/procedural_architecture_v1/passages/node_-31_-23_6.glb::ArrayMesh_qbyt2",
+				"path": "/root/MatchWorld/CinderCrypt/Architecture/StonePassage_node_-31_-23_6/Mortar_node_-31_-23_6_20",
+				"position": [
+					-30.4374122619629,
+					-19.3202934265137,
+					8.64163017272949
+				]
+			},
+			{
+				"albedo": "res://content/environments/red_descent/upper_crossing_v1/materials/bedrock/albedo.png",
+				"camera": [
+					-34.8951034545898,
+					-21.3999996185303,
+					1.5484539270401
+				],
+				"direction": [
+					0.516421794891357,
+					0.24093322455883,
+					0.821741878986359
+				],
+				"distance": 8.92810535430908,
+				"mesh": "res://content/environments/procedural_architecture_v1/passages/root_tunnel.glb::ArrayMesh_o11wh",
+				"path": "/root/MatchWorld/CinderCrypt/Architecture/StonePassage_root_tunnel/Stone-rock_root_tunnel_10",
+				"position": [
+					-30.2844352722168,
+					-19.2489223480225,
+					8.88505172729492
+				]
+			},
+			{
+				"albedo": "",
+				"camera": [
+					-34.8951034545898,
+					-21.3999996185303,
+					1.5484539270401
+				],
+				"direction": [
+					0.516421794891357,
+					0.24093322455883,
+					0.821741878986359
+				],
+				"distance": 8.96332836151123,
+				"mesh": "res://content/environments/procedural_architecture_v1/passages/root_tunnel.glb::ArrayMesh_rv1wn",
+				"path": "/root/MatchWorld/CinderCrypt/Architecture/StonePassage_root_tunnel/Mortar_root_tunnel_13",
+				"position": [
+					-30.2662448883057,
+					-19.2404365539551,
+					8.91399669647217
+				]
+			},
+			{
+				"albedo": "",
+				"camera": [
+					-34.8951034545898,
+					-21.3999996185303,
+					1.5484539270401
+				],
+				"direction": [
+					0.516421794891357,
+					0.24093322455883,
+					0.821741878986359
+				],
+				"distance": 23.3060321807861,
+				"mesh": "res://content/environments/procedural_architecture_v1/passages/nave.glb::ArrayMesh_1bgsg",
+				"path": "/root/MatchWorld/CinderCrypt/Architecture/StonePassage_nave/Mortar_nave_18",
+				"position": [
+					-22.8593597412109,
+					-15.7848014831543,
+					20.6999969482422
+				]
+			},
+			{
+				"albedo": "",
+				"camera": [
+					-34.8951034545898,
+					-21.3999996185303,
+					1.5484539270401
+				],
+				"direction": [
+					0.516421794891357,
+					0.24093322455883,
+					0.821741878986359
+				],
+				"distance": 39.5899314880371,
+				"mesh": "res://content/environments/red_descent/masonry_repairs_v1/walls/nave.glb::ArrayMesh_1m5yp",
+				"path": "/root/MatchWorld/CinderCrypt/Architecture/StoneRoom_nave/Mortar_nave_6",
+				"position": [
+					-14.4500007629395,
+					-11.8614702224731,
+					34.0811576843262
+				]
+			},
+			{
+				"albedo": "res://content/environments/red_descent/upper_crossing_v1/materials/limestone/albedo.png",
+				"camera": [
+					-34.8951034545898,
+					-21.3999996185303,
+					1.5484539270401
+				],
+				"direction": [
+					0.516421794891357,
+					0.24093322455883,
+					0.821741878986359
+				],
+				"distance": 41.3577499389648,
+				"mesh": "res://content/environments/procedural_architecture_v1/rooms/nave.glb::ArrayMesh_y0n6i",
+				"path": "/root/MatchWorld/CinderCrypt/Architecture/StoneRoom_nave/Stone-stone_nave_6",
+				"position": [
+					-13.5370597839355,
+					-11.4355430603027,
+					35.5338516235352
+				]
+			},
+			{
+				"albedo": "res://content/environments/red_nave_v1/red_lime_plaster/albedo.png",
+				"camera": [
+					-34.8951034545898,
+					-21.3999996185303,
+					1.5484539270401
+				],
+				"direction": [
+					0.516421794891357,
+					0.24093322455883,
+					0.821741878986359
+				],
+				"distance": 41.4488792419434,
+				"mesh": "res://content/environments/procedural_architecture_v1/rooms/nave.glb::ArrayMesh_y3eic",
+				"path": "/root/MatchWorld/CinderCrypt/Architecture/StoneRoom_nave/Plaster_nave_6",
+				"position": [
+					-13.4899997711182,
+					-11.4135875701904,
+					35.6087341308594
+				]
+			},
+			{
+				"albedo": "res://content/environments/red_nave_v1/red_lime_plaster/albedo.png",
+				"camera": [
+					-34.8951034545898,
+					-21.3999996185303,
+					1.5484539270401
+				],
+				"direction": [
+					0.516421794891357,
+					0.24093322455883,
+					0.821741878986359
+				],
+				"distance": 57.1098403930664,
+				"mesh": "res://content/environments/procedural_architecture_v1/rooms/nave.glb::ArrayMesh_ws86h",
+				"path": "/root/MatchWorld/CinderCrypt/Architecture/StoneRoom_nave/Plaster_nave_4",
+				"position": [
+					-5.4023380279541,
+					-7.64034175872803,
+					48.4780006408691
+				]
+			},
+			{
+				"albedo": "res://content/environments/red_descent/upper_crossing_v1/materials/limestone/albedo.png",
+				"camera": [
+					-34.8951034545898,
+					-21.3999996185303,
+					1.5484539270401
+				],
+				"direction": [
+					0.516421794891357,
+					0.24093322455883,
+					0.821741878986359
+				],
+				"distance": 57.1890068054199,
+				"mesh": "res://content/environments/procedural_architecture_v1/rooms/nave.glb::ArrayMesh_uhy5f",
+				"path": "/root/MatchWorld/CinderCrypt/Architecture/StoneRoom_nave/Stone-stone_nave_4",
+				"position": [
+					-5.36145401000977,
+					-7.62126731872559,
+					48.5430564880371
+				]
+			},
+			{
+				"albedo": "",
+				"camera": [
+					-34.8951034545898,
+					-21.3999996185303,
+					1.5484539270401
+				],
+				"direction": [
+					0.516421794891357,
+					0.24093322455883,
+					0.821741878986359
+				],
+				"distance": 57.3434829711914,
+				"mesh": "res://content/environments/red_descent/masonry_repairs_v1/walls/nave.glb::ArrayMesh_wak5q",
+				"path": "/root/MatchWorld/CinderCrypt/Architecture/StoneRoom_nave/Mortar_nave_4",
+				"position": [
+					-5.28167915344238,
+					-7.58404922485352,
+					48.669994354248
+				]
+			}
+		],
+		"pixel": [
+			818.0,
+			309.0
+		],
+		"view": "root_tunnel_3-back"
+	},
+	{
+		"camera": [
+			-26.9093914031982,
+			-21.3999996185303,
+			-11.8113670349121
+		],
+		"direction": [
+			0.405960917472839,
+			0.0734574571251869,
+			-0.910933494567871
+		],
+		"hits": [],
+		"pixel": [
+			507.0,
+			416.0
+		],
+		"view": "root_tunnel_5-forward"
+	},
+	{
+		"camera": [
+			-26.9093914031982,
+			-21.3999996185303,
+			-11.8113670349121
+		],
+		"direction": [
+			0.570237517356873,
+			0.19422921538353,
+			-0.798188090324402
+		],
+		"hits": [
+			{
+				"albedo": "",
+				"camera": [
+					-26.9093914031982,
+					-21.3999996185303,
+					-11.8113670349121
+				],
+				"direction": [
+					0.570237517356873,
+					0.19422921538353,
+					-0.798188090324402
+				],
+				"distance": 7.24969816207886,
+				"mesh": "",
+				"path": "/root/MatchWorld/CinderCrypt/Architecture/wall_-2_-3_-2_lod0",
+				"position": [
+					-22.7753429412842,
+					-19.9918956756592,
+					-17.5979900360107
+				]
+			},
+			{
+				"albedo": "",
+				"camera": [
+					-26.9093914031982,
+					-21.3999996185303,
+					-11.8113670349121
+				],
+				"direction": [
+					0.570237517356873,
+					0.19422921538353,
+					-0.798188090324402
+				],
+				"distance": 19.7077865600586,
+				"mesh": "",
+				"path": "/root/MatchWorld/CinderCrypt/Architecture/wall_-1_-3_-2_lod0",
+				"position": [
+					-15.6712703704834,
+					-17.5721702575684,
+					-27.5418853759766
+				]
+			},
+			{
+				"albedo": "",
+				"camera": [
+					-26.9093914031982,
+					-21.3999996185303,
+					-11.8113670349121
+				],
+				"direction": [
+					0.570237517356873,
+					0.19422921538353,
+					-0.798188090324402
+				],
+				"distance": 19.9911231994629,
+				"mesh": "",
+				"path": "/root/MatchWorld/CinderCrypt/Architecture/wall_-1_-3_-2_lod0",
+				"position": [
+					-15.5097026824951,
+					-17.5171394348145,
+					-27.7680435180664
+				]
+			},
+			{
+				"albedo": "",
+				"camera": [
+					-26.9093914031982,
+					-21.3999996185303,
+					-11.8113670349121
+				],
+				"direction": [
+					0.570237517356873,
+					0.19422921538353,
+					-0.798188090324402
+				],
+				"distance": 20.2148094177246,
+				"mesh": "",
+				"path": "/root/MatchWorld/CinderCrypt/Architecture/wall_-1_-3_-2_lod0",
+				"position": [
+					-15.3821458816528,
+					-17.4736938476562,
+					-27.9465847015381
+				]
+			},
+			{
+				"albedo": "",
+				"camera": [
+					-26.9093914031982,
+					-21.3999996185303,
+					-11.8113670349121
+				],
+				"direction": [
+					0.570237517356873,
+					0.19422921538353,
+					-0.798188090324402
+				],
+				"distance": 20.4829540252686,
+				"mesh": "",
+				"path": "/root/MatchWorld/CinderCrypt/Architecture/dark_-1_-3_-2_lod0",
+				"position": [
+					-15.2292423248291,
+					-17.4216136932373,
+					-28.1606159210205
+				]
+			}
+		],
+		"pixel": [
+			639.0,
+			341.0
+		],
+		"view": "root_tunnel_5-forward"
+	},
+	{
+		"camera": [
+			-26.9093914031982,
+			-21.3999996185303,
+			-11.8113670349121
+		],
+		"direction": [
+			0.725113213062286,
+			-0.404591947793961,
+			-0.557239890098572
+		],
+		"floor_gap_m": -0.000850677490234375,
+		"hits": [
+			{
+				"albedo": "res://content/environments/red_descent/upper_crossing_v1/materials/limestone/albedo.png",
+				"camera": [
+					-26.9093914031982,
+					-21.3999996185303,
+					-11.8113670349121
+				],
+				"direction": [
+					0.725113213062286,
+					-0.404591947793961,
+					-0.557239890098572
+				],
+				"distance": 3.95669651031494,
+				"mesh": "res://content/environments/procedural_architecture_v1/passages/root_tunnel.glb::ArrayMesh_yjaly",
+				"path": "/root/MatchWorld/CinderCrypt/Architecture/StonePassage_root_tunnel/Stone-flag_root_tunnel_29",
+				"position": [
+					-24.0403385162354,
+					-23.000846862793,
+					-14.0161962509155
+				]
+			},
+			{
+				"albedo": "",
+				"camera": [
+					-26.9093914031982,
+					-21.3999996185303,
+					-11.8113670349121
+				],
+				"direction": [
+					0.725113213062286,
+					-0.404591947793961,
+					-0.557239890098572
+				],
+				"distance": 4.25119543075562,
+				"mesh": "",
+				"path": "/root/MatchWorld/CinderCrypt/Architecture/@MeshInstance3D@802",
+				"position": [
+					-23.8267936706543,
+					-23.1199989318848,
+					-14.1803026199341
+				]
+			},
+			{
+				"albedo": "",
+				"camera": [
+					-26.9093914031982,
+					-21.3999996185303,
+					-11.8113670349121
+				],
+				"direction": [
+					0.725113213062286,
+					-0.404591947793961,
+					-0.557239890098572
+				],
+				"distance": 5.69739198684692,
+				"mesh": "",
+				"path": "/root/MatchWorld/CinderCrypt/Architecture/structure_hewn_timber_2_-2_-2_-2_lod0",
+				"position": [
+					-22.7781372070312,
+					-23.7051181793213,
+					-14.9861812591553
+				]
+			},
+			{
+				"albedo": "",
+				"camera": [
+					-26.9093914031982,
+					-21.3999996185303,
+					-11.8113670349121
+				],
+				"direction": [
+					0.725113213062286,
+					-0.404591947793961,
+					-0.557239890098572
+				],
+				"distance": 31.1363372802734,
+				"mesh": "",
+				"path": "/root/MatchWorld/CinderCrypt/Architecture/wall_-1_-3_-2_lod0",
+				"position": [
+					-4.33202266693115,
+					-33.9975090026855,
+					-29.1617774963379
+				]
+			},
+			{
+				"albedo": "",
+				"camera": [
+					-26.9093914031982,
+					-21.3999996185303,
+					-11.8113670349121
+				],
+				"direction": [
+					0.725113213062286,
+					-0.404591947793961,
+					-0.557239890098572
+				],
+				"distance": 32.361026763916,
+				"mesh": "",
+				"path": "/root/MatchWorld/CinderCrypt/Architecture/dark_-1_-3_-2_lod0",
+				"position": [
+					-3.44398593902588,
+					-34.4930076599121,
+					-29.8442230224609
+				]
+			},
+			{
+				"albedo": "",
+				"camera": [
+					-26.9093914031982,
+					-21.3999996185303,
+					-11.8113670349121
+				],
+				"direction": [
+					0.725113213062286,
+					-0.404591947793961,
+					-0.557239890098572
+				],
+				"distance": 64.5094451904297,
+				"mesh": "",
+				"path": "/root/MatchWorld/CinderCrypt/DeepWater",
+				"position": [
+					19.8672580718994,
+					-47.5,
+					-47.7586059570312
+				]
+			}
+		],
+		"pixel": [
+			824.0,
+			745.0
+		],
+		"view": "root_tunnel_5-forward"
+	},
+	{
+		"camera": [
+			-26.9093914031982,
+			-21.3999996185303,
+			-11.8113670349121
+		],
+		"direction": [
+			0.745521187782288,
+			0.190078049898148,
+			-0.638802468776703
+		],
+		"hits": [
+			{
+				"albedo": "",
+				"camera": [
+					-26.9093914031982,
+					-21.3999996185303,
+					-11.8113670349121
+				],
+				"direction": [
+					0.745521187782288,
+					0.190078049898148,
+					-0.638802468776703
+				],
+				"distance": 26.5359497070312,
+				"mesh": "",
+				"path": "/root/MatchWorld/CinderCrypt/Architecture/wall_-1_-3_-2_lod0",
+				"position": [
+					-7.1262788772583,
+					-16.3560981750488,
+					-28.7625980377197
+				]
+			},
+			{
+				"albedo": "",
+				"camera": [
+					-26.9093914031982,
+					-21.3999996185303,
+					-11.8113670349121
+				],
+				"direction": [
+					0.745521187782288,
+					0.190078049898148,
+					-0.638802468776703
+				],
+				"distance": 27.1802387237549,
+				"mesh": "",
+				"path": "/root/MatchWorld/CinderCrypt/Architecture/wall_-1_-3_-2_lod0",
+				"position": [
+					-6.64594984054565,
+					-16.2336311340332,
+					-29.1741695404053
+				]
+			},
+			{
+				"albedo": "",
+				"camera": [
+					-26.9093914031982,
+					-21.3999996185303,
+					-11.8113670349121
+				],
+				"direction": [
+					0.745521187782288,
+					0.190078049898148,
+					-0.638802468776703
+				],
+				"distance": 27.5796909332275,
+				"mesh": "",
+				"path": "/root/MatchWorld/CinderCrypt/Architecture/dark_-1_-3_-2_lod0",
+				"position": [
+					-6.34814977645874,
+					-16.1577053070068,
+					-29.4293422698975
+				]
+			}
+		],
+		"pixel": [
+			789.0,
+			344.0
+		],
+		"view": "root_tunnel_5-forward"
+	},
+	{
+		"camera": [
+			-26.0906085968018,
+			-21.3999996185303,
+			-12.6886329650879
+		],
+		"direction": [
+			-0.429988384246826,
+			0.177115947008133,
+			0.885290920734406
+		],
+		"hits": [
+			{
+				"albedo": "res://content/environments/red_descent/upper_crossing_v1/materials/bedrock/albedo.png",
+				"camera": [
+					-26.0906085968018,
+					-21.3999996185303,
+					-12.6886329650879
+				],
+				"direction": [
+					-0.429988384246826,
+					0.177115947008133,
+					0.885290920734406
+				],
+				"distance": 8.07246208190918,
+				"mesh": "res://content/environments/procedural_architecture_v1/passages/root_tunnel.glb::ArrayMesh_qwch1",
+				"path": "/root/MatchWorld/CinderCrypt/Architecture/StonePassage_root_tunnel/Stone-rock_root_tunnel_20",
+				"position": [
+					-29.561674118042,
+					-19.9702377319336,
+					-5.54215574264526
+				]
+			},
+			{
+				"albedo": "",
+				"camera": [
+					-26.0906085968018,
+					-21.3999996185303,
+					-12.6886329650879
+				],
+				"direction": [
+					-0.429988384246826,
+					0.177115947008133,
+					0.885290920734406
+				],
+				"distance": 8.33573722839355,
+				"mesh": "res://content/environments/procedural_architecture_v1/passages/root_tunnel.glb::ArrayMesh_qjbh5",
+				"path": "/root/MatchWorld/CinderCrypt/Architecture/StonePassage_root_tunnel/Mortar_root_tunnel_23",
+				"position": [
+					-29.6748790740967,
+					-19.9236068725586,
+					-5.30908155441284
+				]
+			},
+			{
+				"albedo": "",
+				"camera": [
+					-26.0906085968018,
+					-21.3999996185303,
+					-12.6886329650879
+				],
+				"direction": [
+					-0.429988384246826,
+					0.177115947008133,
+					0.885290920734406
+				],
+				"distance": 13.5709257125854,
+				"mesh": "res://content/environments/procedural_architecture_v1/passages/root_tunnel.glb::ArrayMesh_q6vwg",
+				"path": "/root/MatchWorld/CinderCrypt/Architecture/StonePassage_root_tunnel/Mortar_root_tunnel_18",
+				"position": [
+					-31.9259490966797,
+					-18.9963722229004,
+					-0.674416542053223
+				]
+			},
+			{
+				"albedo": "res://content/environments/red_descent/upper_crossing_v1/materials/bedrock/albedo.png",
+				"camera": [
+					-26.0906085968018,
+					-21.3999996185303,
+					-12.6886329650879
+				],
+				"direction": [
+					-0.429988384246826,
+					0.177115947008133,
+					0.885290920734406
+				],
+				"distance": 14.5891084671021,
+				"mesh": "res://content/environments/procedural_architecture_v1/passages/root_tunnel.glb::ArrayMesh_povtn",
+				"path": "/root/MatchWorld/CinderCrypt/Architecture/StonePassage_root_tunnel/Stone-rock_root_tunnel_15",
+				"position": [
+					-32.3637542724609,
+					-18.8160362243652,
+					0.226972579956055
+				]
+			},
+			{
+				"albedo": "",
+				"camera": [
+					-26.0906085968018,
+					-21.3999996185303,
+					-12.6886329650879
+				],
+				"direction": [
+					-0.429988384246826,
+					0.177115947008133,
+					0.885290920734406
+				],
+				"distance": 18.7952117919922,
+				"mesh": "res://content/environments/procedural_architecture_v1/passages/root_tunnel.glb::ArrayMesh_rv1wn",
+				"path": "/root/MatchWorld/CinderCrypt/Architecture/StonePassage_root_tunnel/Mortar_root_tunnel_13",
+				"position": [
+					-34.1723327636719,
+					-18.0710678100586,
+					3.95059585571289
+				]
+			},
+			{
+				"albedo": "",
+				"camera": [
+					-26.0906085968018,
+					-21.3999996185303,
+					-12.6886329650879
+				],
+				"direction": [
+					-0.429988384246826,
+					0.177115947008133,
+					0.885290920734406
+				],
+				"distance": 18.795389175415,
+				"mesh": "res://content/environments/procedural_architecture_v1/passages/node_-31_-23_6.glb::ArrayMesh_qbyt2",
+				"path": "/root/MatchWorld/CinderCrypt/Architecture/StonePassage_node_-31_-23_6/Mortar_node_-31_-23_6_20",
+				"position": [
+					-34.1724090576172,
+					-18.0710372924805,
+					3.95075225830078
+				]
+			},
+			{
+				"albedo": "res://content/environments/red_descent/upper_crossing_v1/materials/bedrock/albedo.png",
+				"camera": [
+					-26.0906085968018,
+					-21.3999996185303,
+					-12.6886329650879
+				],
+				"direction": [
+					-0.429988384246826,
+					0.177115947008133,
+					0.885290920734406
+				],
+				"distance": 19.7444095611572,
+				"mesh": "res://content/environments/procedural_architecture_v1/passages/node_-31_-23_6.glb::ArrayMesh_37wfe",
+				"path": "/root/MatchWorld/CinderCrypt/Architecture/StonePassage_node_-31_-23_6/Stone-rock_node_-31_-23_6_0",
+				"position": [
+					-34.5804748535156,
+					-17.9029502868652,
+					4.79091262817383
+				]
+			}
+		],
+		"pixel": [
+			530.0,
+			348.0
+		],
+		"view": "root_tunnel_5-back"
+	},
+	{
+		"camera": [
+			-43.8487434387207,
+			-21.3999996185303,
+			10.0117597579956
+		],
+		"direction": [
+			0.500693619251251,
+			0.558716177940369,
+			0.661167323589325
+		],
+		"hits": [
+			{
+				"albedo": "res://content/environments/red_descent/upper_crossing_v1/materials/bedrock/albedo.png",
+				"camera": [
+					-43.8487434387207,
+					-21.3999996185303,
+					10.0117597579956
+				],
+				"direction": [
+					0.500693619251251,
+					0.558716177940369,
+					0.661167323589325
+				],
+				"distance": 6.17365550994873,
+				"mesh": "res://content/environments/procedural_architecture_v1/passages/node_-41_-23_14.glb::ArrayMesh_j74mw",
+				"path": "/root/MatchWorld/CinderCrypt/Architecture/StonePassage_node_-41_-23_14/Stone-rock_node_-41_-23_14_0",
+				"position": [
+					-40.7576332092285,
+					-17.9506778717041,
+					14.093578338623
+				]
+			},
+			{
+				"albedo": "",
+				"camera": [
+					-43.8487434387207,
+					-21.3999996185303,
+					10.0117597579956
+				],
+				"direction": [
+					0.500693619251251,
+					0.558716177940369,
+					0.661167323589325
+				],
+				"distance": 6.29284572601318,
+				"mesh": "res://content/environments/procedural_architecture_v1/passages/node_-41_-23_14.glb::ArrayMesh_7jspa",
+				"path": "/root/MatchWorld/CinderCrypt/Architecture/StonePassage_node_-41_-23_14/Mortar_node_-41_-23_14_20",
+				"position": [
+					-40.6979560852051,
+					-17.8840847015381,
+					14.1723833084106
+				]
+			}
+		],
+		"pixel": [
+			703.0,
+			55.0
+		],
+		"view": "cave_bypass_0-back"
+	},
+	{
+		"camera": [
+			-43.8487434387207,
+			-21.3999996185303,
+			10.0117597579956
+		],
+		"direction": [
+			0.750995516777039,
+			0.209788769483566,
+			0.626094460487366
+		],
+		"hits": [
+			{
+				"albedo": "res://content/environments/red_descent/upper_crossing_v1/materials/bedrock/albedo.png",
+				"camera": [
+					-43.8487434387207,
+					-21.3999996185303,
+					10.0117597579956
+				],
+				"direction": [
+					0.750995516777039,
+					0.209788769483566,
+					0.626094460487366
+				],
+				"distance": 7.75408983230591,
+				"mesh": "res://content/environments/procedural_architecture_v1/passages/root_tunnel.glb::ArrayMesh_o11wh",
+				"path": "/root/MatchWorld/CinderCrypt/Architecture/StonePassage_root_tunnel/Stone-rock_root_tunnel_10",
+				"position": [
+					-38.0254554748535,
+					-19.7732791900635,
+					14.8665523529053
+				]
+			},
+			{
+				"albedo": "res://content/environments/red_descent/upper_crossing_v1/materials/bedrock/albedo.png",
+				"camera": [
+					-43.8487434387207,
+					-21.3999996185303,
+					10.0117597579956
+				],
+				"direction": [
+					0.750995516777039,
+					0.209788769483566,
+					0.626094460487366
+				],
+				"distance": 7.78775691986084,
+				"mesh": "res://content/environments/procedural_architecture_v1/passages/root_tunnel.glb::ArrayMesh_ivqeb",
+				"path": "/root/MatchWorld/CinderCrypt/Architecture/StonePassage_root_tunnel/Stone-rock_root_tunnel_5",
+				"position": [
+					-38.000171661377,
+					-19.7662162780762,
+					14.8876304626465
+				]
+			},
+			{
+				"albedo": "",
+				"camera": [
+					-43.8487434387207,
+					-21.3999996185303,
+					10.0117597579956
+				],
+				"direction": [
+					0.750995516777039,
+					0.209788769483566,
+					0.626094460487366
+				],
+				"distance": 7.82235431671143,
+				"mesh": "res://content/environments/procedural_architecture_v1/passages/root_tunnel.glb::ArrayMesh_w4qrk",
+				"path": "/root/MatchWorld/CinderCrypt/Architecture/StonePassage_root_tunnel/Mortar_root_tunnel_8",
+				"position": [
+					-37.9741897583008,
+					-19.7589569091797,
+					14.9092922210693
+				]
+			},
+			{
+				"albedo": "",
+				"camera": [
+					-43.8487434387207,
+					-21.3999996185303,
+					10.0117597579956
+				],
+				"direction": [
+					0.750995516777039,
+					0.209788769483566,
+					0.626094460487366
+				],
+				"distance": 7.82238531112671,
+				"mesh": "res://content/environments/procedural_architecture_v1/passages/node_-41_-23_14.glb::ArrayMesh_7jspa",
+				"path": "/root/MatchWorld/CinderCrypt/Architecture/StonePassage_node_-41_-23_14/Mortar_node_-41_-23_14_20",
+				"position": [
+					-37.9741668701172,
+					-19.7589511871338,
+					14.90931224823
+				]
+			},
+			{
+				"albedo": "",
+				"camera": [
+					-43.8487434387207,
+					-21.3999996185303,
+					10.0117597579956
+				],
+				"direction": [
+					0.750995516777039,
+					0.209788769483566,
+					0.626094460487366
+				],
+				"distance": 7.85245609283447,
+				"mesh": "res://content/environments/procedural_architecture_v1/passages/root_tunnel.glb::ArrayMesh_rv1wn",
+				"path": "/root/MatchWorld/CinderCrypt/Architecture/StonePassage_root_tunnel/Mortar_root_tunnel_13",
+				"position": [
+					-37.9515838623047,
+					-19.7526416778564,
+					14.9281396865845
+				]
+			},
+			{
+				"albedo": "res://content/environments/red_descent/upper_crossing_v1/materials/bedrock/albedo.png",
+				"camera": [
+					-43.8487434387207,
+					-21.3999996185303,
+					10.0117597579956
+				],
+				"direction": [
+					0.750995516777039,
+					0.209788769483566,
+					0.626094460487366
+				],
+				"distance": 8.40110969543457,
+				"mesh": "res://content/environments/procedural_architecture_v1/passages/node_-41_-23_14.glb::ArrayMesh_j74mw",
+				"path": "/root/MatchWorld/CinderCrypt/Architecture/StonePassage_node_-41_-23_14/Stone-rock_node_-41_-23_14_0",
+				"position": [
+					-37.5395469665527,
+					-19.6375408172607,
+					15.2716484069824
+				]
+			},
+			{
+				"albedo": "",
+				"camera": [
+					-43.8487434387207,
+					-21.3999996185303,
+					10.0117597579956
+				],
+				"direction": [
+					0.750995516777039,
+					0.209788769483566,
+					0.626094460487366
+				],
+				"distance": 16.0331058502197,
+				"mesh": "res://content/environments/red_descent/masonry_repairs_v1/walls/second_stair_hall.glb::ArrayMesh_4e5b3",
+				"path": "/root/MatchWorld/CinderCrypt/Architecture/StoneRoom_second_stair_hall/Mortar_second_stair_hall_0",
+				"position": [
+					-31.8079509735107,
+					-18.036434173584,
+					20.0499992370605
+				]
+			},
+			{
+				"albedo": "res://content/environments/red_descent/upper_crossing_v1/materials/limestone/albedo.png",
+				"camera": [
+					-43.8487434387207,
+					-21.3999996185303,
+					10.0117597579956
+				],
+				"direction": [
+					0.750995516777039,
+					0.209788769483566,
+					0.626094460487366
+				],
+				"distance": 17.5143165588379,
+				"mesh": "res://content/environments/procedural_architecture_v1/rooms/second_stair_hall.glb::ArrayMesh_m38df",
+				"path": "/root/MatchWorld/CinderCrypt/Architecture/StoneRoom_second_stair_hall/Stone-stone_second_stair_hall_0",
+				"position": [
+					-30.6955680847168,
+					-17.7256927490234,
+					20.9773769378662
+				]
+			},
+			{
+				"albedo": "res://content/environments/red_descent/upper_crossing_v1/materials/limestone/albedo.png",
+				"camera": [
+					-43.8487434387207,
+					-21.3999996185303,
+					10.0117597579956
+				],
+				"direction": [
+					0.750995516777039,
+					0.209788769483566,
+					0.626094460487366
+				],
+				"distance": 24.23046875,
+				"mesh": "res://content/environments/procedural_architecture_v1/rooms/second_stair_hall.glb::ArrayMesh_m6uai",
+				"path": "/root/MatchWorld/CinderCrypt/Architecture/StoneRoom_second_stair_hall/Stone-arch_second_stair_hall_1",
+				"position": [
+					-25.6517677307129,
+					-16.3167190551758,
+					25.1823234558105
+				]
+			},
+			{
+				"albedo": "",
+				"camera": [
+					-43.8487434387207,
+					-21.3999996185303,
+					10.0117597579956
+				],
+				"direction": [
+					0.750995516777039,
+					0.209788769483566,
+					0.626094460487366
+				],
+				"distance": 24.2980804443359,
+				"mesh": "res://content/environments/red_descent/masonry_repairs_v1/walls/second_stair_hall.glb::ArrayMesh_i1wk3",
+				"path": "/root/MatchWorld/CinderCrypt/Architecture/StoneRoom_second_stair_hall/Mortar_second_stair_hall_1",
+				"position": [
+					-25.6009922027588,
+					-16.3025360107422,
+					25.2246532440186
+				]
+			},
+			{
+				"albedo": "res://content/environments/red_descent/upper_crossing_v1/materials/limestone/albedo.png",
+				"camera": [
+					-43.8487434387207,
+					-21.3999996185303,
+					10.0117597579956
+				],
+				"direction": [
+					0.750995516777039,
+					0.209788769483566,
+					0.626094460487366
+				],
+				"distance": 25.0317687988281,
+				"mesh": "res://content/environments/procedural_architecture_v1/passages/nave.glb::ArrayMesh_1tw62",
+				"path": "/root/MatchWorld/CinderCrypt/Architecture/StonePassage_nave/Stone-arch_nave_17",
+				"position": [
+					-25.0499954223633,
+					-16.1486148834229,
+					25.6840114593506
+				]
+			},
+			{
+				"albedo": "",
+				"camera": [
+					-43.8487434387207,
+					-21.3999996185303,
+					10.0117597579956
+				],
+				"direction": [
+					0.750995516777039,
+					0.209788769483566,
+					0.626094460487366
+				],
+				"distance": 25.7321491241455,
+				"mesh": "res://content/environments/procedural_architecture_v1/passages/nave.glb::ArrayMesh_1bgsg",
+				"path": "/root/MatchWorld/CinderCrypt/Architecture/StonePassage_nave/Mortar_nave_18",
+				"position": [
+					-24.5240135192871,
+					-16.0016822814941,
+					26.1225166320801
+				]
+			},
+			{
+				"albedo": "",
+				"camera": [
+					-43.8487434387207,
+					-21.3999996185303,
+					10.0117597579956
+				],
+				"direction": [
+					0.750995516777039,
+					0.209788769483566,
+					0.626094460487366
+				],
+				"distance": 39.1463584899902,
+				"mesh": "res://content/environments/red_descent/masonry_repairs_v1/walls/nave.glb::ArrayMesh_1m5yp",
+				"path": "/root/MatchWorld/CinderCrypt/Architecture/StoneRoom_nave/Mortar_nave_6",
+				"position": [
+					-14.4500007629395,
+					-13.1875324249268,
+					34.5210800170898
+				]
+			},
+			{
+				"albedo": "res://content/environments/red_descent/upper_crossing_v1/materials/limestone/albedo.png",
+				"camera": [
+					-43.8487434387207,
+					-21.3999996185303,
+					10.0117597579956
+				],
+				"direction": [
+					0.750995516777039,
+					0.209788769483566,
+					0.626094460487366
+				],
+				"distance": 40.3569183349609,
+				"mesh": "res://content/environments/procedural_architecture_v1/rooms/nave.glb::ArrayMesh_y0n6i",
+				"path": "/root/MatchWorld/CinderCrypt/Architecture/StoneRoom_nave/Stone-stone_nave_6",
+				"position": [
+					-13.5408744812012,
+					-12.9335699081421,
+					35.2790031433105
+				]
+			},
+			{
+				"albedo": "res://content/environments/red_nave_v1/red_lime_plaster/albedo.png",
+				"camera": [
+					-43.8487434387207,
+					-21.3999996185303,
+					10.0117597579956
+				],
+				"direction": [
+					0.750995516777039,
+					0.209788769483566,
+					0.626094460487366
+				],
+				"distance": 40.4246635437012,
+				"mesh": "res://content/environments/procedural_architecture_v1/rooms/nave.glb::ArrayMesh_y3eic",
+				"path": "/root/MatchWorld/CinderCrypt/Architecture/StoneRoom_nave/Plaster_nave_6",
+				"position": [
+					-13.4899997711182,
+					-12.919358253479,
+					35.321418762207
+				]
+			},
+			{
+				"albedo": "",
+				"camera": [
+					-43.8487434387207,
+					-21.3999996185303,
+					10.0117597579956
+				],
+				"direction": [
+					0.750995516777039,
+					0.209788769483566,
+					0.626094460487366
+				],
+				"distance": 60.8606834411621,
+				"mesh": "res://content/environments/procedural_architecture_v1/rooms/nave.glb::ArrayMesh_lnfj1",
+				"path": "/root/MatchWorld/CinderCrypt/Architecture/StoneRoom_nave/Mortar_nave_10",
+				"position": [
+					1.85736083984375,
+					-8.63211059570312,
+					48.1162986755371
+				]
+			},
+			{
+				"albedo": "res://content/environments/red_descent/upper_crossing_v1/materials/limestone/albedo.png",
+				"camera": [
+					-43.8487434387207,
+					-21.3999996185303,
+					10.0117597579956
+				],
+				"direction": [
+					0.750995516777039,
+					0.209788769483566,
+					0.626094460487366
+				],
+				"distance": 60.9277229309082,
+				"mesh": "res://content/environments/procedural_architecture_v1/rooms/nave.glb::ArrayMesh_su21p",
+				"path": "/root/MatchWorld/CinderCrypt/Architecture/StoneRoom_nave/Stone-quoin_nave_10",
+				"position": [
+					1.90770721435547,
+					-8.61804676055908,
+					48.1582717895508
+				]
+			},
+			{
+				"albedo": "res://content/environments/red_nave_v1/red_lime_plaster/albedo.png",
+				"camera": [
+					-43.8487434387207,
+					-21.3999996185303,
+					10.0117597579956
+				],
+				"direction": [
+					0.750995516777039,
+					0.209788769483566,
+					0.626094460487366
+				],
+				"distance": 61.4384002685547,
+				"mesh": "res://content/environments/procedural_architecture_v1/rooms/nave.glb::ArrayMesh_ws86h",
+				"path": "/root/MatchWorld/CinderCrypt/Architecture/StoneRoom_nave/Plaster_nave_4",
+				"position": [
+					2.29122161865234,
+					-8.51091194152832,
+					48.4780044555664
+				]
+			},
+			{
+				"albedo": "res://content/environments/red_descent/upper_crossing_v1/materials/limestone/albedo.png",
+				"camera": [
+					-43.8487434387207,
+					-21.3999996185303,
+					10.0117597579956
+				],
+				"direction": [
+					0.750995516777039,
+					0.209788769483566,
+					0.626094460487366
+				],
+				"distance": 61.5378837585449,
+				"mesh": "res://content/environments/procedural_architecture_v1/rooms/nave.glb::ArrayMesh_uhy5f",
+				"path": "/root/MatchWorld/CinderCrypt/Architecture/StoneRoom_nave/Stone-stone_nave_4",
+				"position": [
+					2.36593627929688,
+					-8.49004077911377,
+					48.5402908325195
+				]
+			},
+			{
+				"albedo": "",
+				"camera": [
+					-43.8487434387207,
+					-21.3999996185303,
+					10.0117597579956
+				],
+				"direction": [
+					0.750995516777039,
+					0.209788769483566,
+					0.626094460487366
+				],
+				"distance": 61.7450561523438,
+				"mesh": "res://content/environments/red_descent/masonry_repairs_v1/walls/nave.glb::ArrayMesh_wak5q",
+				"path": "/root/MatchWorld/CinderCrypt/Architecture/StoneRoom_nave/Mortar_nave_4",
+				"position": [
+					2.52152252197266,
+					-8.44657897949219,
+					48.6700019836426
+				]
+			}
+		],
+		"pixel": [
+			559.0,
+			329.0
+		],
+		"view": "cave_bypass_0-back"
+	},
+	{
+		"camera": [
+			-43.8487434387207,
+			-21.3999996185303,
+			10.0117597579956
+		],
+		"direction": [
+			0.857309341430664,
+			-0.419083327054977,
+			0.298981368541718
+		],
+		"floor_gap_m": 0.00752449035644531,
+		"hits": [
+			{
+				"albedo": "res://content/environments/red_descent/upper_crossing_v1/materials/limestone/albedo.png",
+				"camera": [
+					-43.8487434387207,
+					-21.3999996185303,
+					10.0117597579956
+				],
+				"direction": [
+					0.857309341430664,
+					-0.419083327054977,
+					0.298981368541718
+				],
+				"distance": 3.79989218711853,
+				"mesh": "res://content/environments/procedural_architecture_v1/passages/cave_bypass.glb::ArrayMesh_ujg1d",
+				"path": "/root/MatchWorld/CinderCrypt/Architecture/StonePassage_cave_bypass/Stone-flag_cave_bypass_4",
+				"position": [
+					-40.5910606384277,
+					-22.9924716949463,
+					11.1478567123413
+				]
+			},
+			{
+				"albedo": "",
+				"camera": [
+					-43.8487434387207,
+					-21.3999996185303,
+					10.0117597579956
+				],
+				"direction": [
+					0.857309341430664,
+					-0.419083327054977,
+					0.298981368541718
+				],
+				"distance": 4.10419607162476,
+				"mesh": "",
+				"path": "/root/MatchWorld/CinderCrypt/Architecture/@MeshInstance3D@796",
+				"position": [
+					-40.3301773071289,
+					-23.1199989318848,
+					11.2388372421265
+				]
+			},
+			{
+				"albedo": "",
+				"camera": [
+					-43.8487434387207,
+					-21.3999996185303,
+					10.0117597579956
+				],
+				"direction": [
+					0.857309341430664,
+					-0.419083327054977,
+					0.298981368541718
+				],
+				"distance": 23.8822402954102,
+				"mesh": "",
+				"path": "/root/MatchWorld/CinderCrypt/Architecture/dark_-2_-2_1_lod0",
+				"position": [
+					-23.3742771148682,
+					-31.4086494445801,
+					17.1521053314209
+				]
+			},
+			{
+				"albedo": "",
+				"camera": [
+					-43.8487434387207,
+					-21.3999996185303,
+					10.0117597579956
+				],
+				"direction": [
+					0.857309341430664,
+					-0.419083327054977,
+					0.298981368541718
+				],
+				"distance": 24.4350776672363,
+				"mesh": "",
+				"path": "/root/MatchWorld/CinderCrypt/Architecture/wall_-2_-2_1_lod0",
+				"position": [
+					-22.9003219604492,
+					-31.6403350830078,
+					17.3173923492432
+				]
+			},
+			{
+				"albedo": "",
+				"camera": [
+					-43.8487434387207,
+					-21.3999996185303,
+					10.0117597579956
+				],
+				"direction": [
+					0.857309341430664,
+					-0.419083327054977,
+					0.298981368541718
+				],
+				"distance": 39.8826599121094,
+				"mesh": "",
+				"path": "/root/MatchWorld/CinderCrypt/Architecture/wall_-1_-2_1_lod0",
+				"position": [
+					-9.65696334838867,
+					-38.1141586303711,
+					21.9359302520752
+				]
+			},
+			{
+				"albedo": "",
+				"camera": [
+					-43.8487434387207,
+					-21.3999996185303,
+					10.0117597579956
+				],
+				"direction": [
+					0.857309341430664,
+					-0.419083327054977,
+					0.298981368541718
+				],
+				"distance": 41.1445503234863,
+				"mesh": "",
+				"path": "/root/MatchWorld/CinderCrypt/Architecture/dark_-1_-2_1_lod0",
+				"position": [
+					-8.57513999938965,
+					-38.642993927002,
+					22.3132133483887
+				]
+			},
+			{
+				"albedo": "",
+				"camera": [
+					-43.8487434387207,
+					-21.3999996185303,
+					10.0117597579956
+				],
+				"direction": [
+					0.857309341430664,
+					-0.419083327054977,
+					0.298981368541718
+				],
+				"distance": 42.5185508728027,
+				"mesh": "",
+				"path": "/root/MatchWorld/CinderCrypt/Architecture/dark_-1_-2_1_lod0",
+				"position": [
+					-7.39719486236572,
+					-39.2188148498535,
+					22.7240142822266
+				]
+			},
+			{
+				"albedo": "",
+				"camera": [
+					-43.8487434387207,
+					-21.3999996185303,
+					10.0117597579956
+				],
+				"direction": [
+					0.857309341430664,
+					-0.419083327054977,
+					0.298981368541718
+				],
+				"distance": 44.7191963195801,
+				"mesh": "",
+				"path": "/root/MatchWorld/CinderCrypt/Architecture/wall_-1_-2_1_lod0",
+				"position": [
+					-5.51055765151978,
+					-40.1410675048828,
+					23.381965637207
+				]
+			},
+			{
+				"albedo": "",
+				"camera": [
+					-43.8487434387207,
+					-21.3999996185303,
+					10.0117597579956
+				],
+				"direction": [
+					0.857309341430664,
+					-0.419083327054977,
+					0.298981368541718
+				],
+				"distance": 47.1810569763184,
+				"mesh": "",
+				"path": "/root/MatchWorld/CinderCrypt/Architecture/dark_-1_-2_1_lod0",
+				"position": [
+					-3.39998340606689,
+					-41.172794342041,
+					24.1180152893066
+				]
+			},
+			{
+				"albedo": "",
+				"camera": [
+					-43.8487434387207,
+					-21.3999996185303,
+					10.0117597579956
+				],
+				"direction": [
+					0.857309341430664,
+					-0.419083327054977,
+					0.298981368541718
+				],
+				"distance": 47.1810569763184,
+				"mesh": "",
+				"path": "/root/MatchWorld/CinderCrypt/Architecture/wall_-1_-2_1_lod0",
+				"position": [
+					-3.39998388290405,
+					-41.172794342041,
+					24.1180152893066
+				]
+			},
+			{
+				"albedo": "",
+				"camera": [
+					-43.8487434387207,
+					-21.3999996185303,
+					10.0117597579956
+				],
+				"direction": [
+					0.857309341430664,
+					-0.419083327054977,
+					0.298981368541718
+				],
+				"distance": 57.2490539550781,
+				"mesh": "",
+				"path": "/root/MatchWorld/CinderCrypt/Architecture/wall_0_-3_1_lod0",
+				"position": [
+					5.23140287399292,
+					-45.3921241760254,
+					27.1281604766846
+				]
+			},
+			{
+				"albedo": "",
+				"camera": [
+					-43.8487434387207,
+					-21.3999996185303,
+					10.0117597579956
+				],
+				"direction": [
+					0.857309341430664,
+					-0.419083327054977,
+					0.298981368541718
+				],
+				"distance": 57.5353393554688,
+				"mesh": "",
+				"path": "/root/MatchWorld/CinderCrypt/Architecture/wall_0_-3_1_lod0",
+				"position": [
+					5.47683906555176,
+					-45.5121002197266,
+					27.2137546539307
+				]
+			},
+			{
+				"albedo": "",
+				"camera": [
+					-43.8487434387207,
+					-21.3999996185303,
+					10.0117597579956
+				],
+				"direction": [
+					0.857309341430664,
+					-0.419083327054977,
+					0.298981368541718
+				],
+				"distance": 58.3006858825684,
+				"mesh": "",
+				"path": "/root/MatchWorld/CinderCrypt/Architecture/dark_0_-3_1_lod0",
+				"position": [
+					6.13297748565674,
+					-45.8328475952148,
+					27.4425792694092
+				]
+			},
+			{
+				"albedo": "",
+				"camera": [
+					-43.8487434387207,
+					-21.3999996185303,
+					10.0117597579956
+				],
+				"direction": [
+					0.857309341430664,
+					-0.419083327054977,
+					0.298981368541718
+				],
+				"distance": 62.2787895202637,
+				"mesh": "",
+				"path": "/root/MatchWorld/CinderCrypt/DeepWater",
+				"position": [
+					9.5434455871582,
+					-47.5,
+					28.6319580078125
+				]
+			}
+		],
+		"pixel": [
+			276.0,
+			821.0
+		],
+		"view": "cave_bypass_0-back"
+	},
+	{
+		"camera": [
+			-43.8487434387207,
+			-21.3999996185303,
+			10.0117597579956
+		],
+		"direction": [
+			0.476110517978668,
+			0.301976948976517,
+			0.825910806655884
+		],
+		"hits": [
+			{
+				"albedo": "res://content/environments/red_descent/upper_crossing_v1/materials/bedrock/albedo.png",
+				"camera": [
+					-43.8487434387207,
+					-21.3999996185303,
+					10.0117597579956
+				],
+				"direction": [
+					0.476110517978668,
+					0.301976948976517,
+					0.825910806655884
+				],
+				"distance": 9.52432918548584,
+				"mesh": "res://content/environments/procedural_architecture_v1/passages/root_tunnel.glb::ArrayMesh_ivqeb",
+				"path": "/root/MatchWorld/CinderCrypt/Architecture/StonePassage_root_tunnel/Stone-rock_root_tunnel_5",
+				"position": [
+					-39.3141098022461,
+					-18.5238723754883,
+					17.8780059814453
+				]
+			},
+			{
+				"albedo": "",
+				"camera": [
+					-43.8487434387207,
+					-21.3999996185303,
+					10.0117597579956
+				],
+				"direction": [
+					0.476110517978668,
+					0.301976948976517,
+					0.825910806655884
+				],
+				"distance": 9.68973445892334,
+				"mesh": "res://content/environments/procedural_architecture_v1/passages/root_tunnel.glb::ArrayMesh_w4qrk",
+				"path": "/root/MatchWorld/CinderCrypt/Architecture/StonePassage_root_tunnel/Mortar_root_tunnel_8",
+				"position": [
+					-39.2353591918945,
+					-18.4739227294922,
+					18.0146160125732
+				]
+			},
+			{
+				"albedo": "",
+				"camera": [
+					-43.8487434387207,
+					-21.3999996185303,
+					10.0117597579956
+				],
+				"direction": [
+					0.476110517978668,
+					0.301976948976517,
+					0.825910806655884
+				],
+				"distance": 12.577919960022,
+				"mesh": "res://content/environments/procedural_architecture_v1/passages/root_tunnel.glb::ArrayMesh_48u4j",
+				"path": "/root/MatchWorld/CinderCrypt/Architecture/StonePassage_root_tunnel/Mortar_root_tunnel_3",
+				"position": [
+					-37.8602638244629,
+					-17.6017570495605,
+					20.3999996185303
+				]
+			},
+			{
+				"albedo": "res://content/environments/red_descent/upper_crossing_v1/materials/bedrock/albedo.png",
+				"camera": [
+					-43.8487434387207,
+					-21.3999996185303,
+					10.0117597579956
+				],
+				"direction": [
+					0.476110517978668,
+					0.301976948976517,
+					0.825910806655884
+				],
+				"distance": 12.577919960022,
+				"mesh": "res://content/environments/procedural_architecture_v1/passages/node_-41_-23_24.glb::ArrayMesh_jpjls",
+				"path": "/root/MatchWorld/CinderCrypt/Architecture/StonePassage_node_-41_-23_24/Stone-rock_node_-41_-23_24_0",
+				"position": [
+					-37.8602638244629,
+					-17.6017570495605,
+					20.3999996185303
+				]
+			},
+			{
+				"albedo": "",
+				"camera": [
+					-43.8487434387207,
+					-21.3999996185303,
+					10.0117597579956
+				],
+				"direction": [
+					0.476110517978668,
+					0.301976948976517,
+					0.825910806655884
+				],
+				"distance": 12.5779209136963,
+				"mesh": "res://content/environments/procedural_architecture_v1/passages/node_-41_-23_24.glb::ArrayMesh_x6bd0",
+				"path": "/root/MatchWorld/CinderCrypt/Architecture/StonePassage_node_-41_-23_24/Mortar_node_-41_-23_24_20",
+				"position": [
+					-37.8602638244629,
+					-17.6017570495605,
+					20.4000015258789
+				]
+			},
+			{
+				"albedo": "",
+				"camera": [
+					-43.8487434387207,
+					-21.3999996185303,
+					10.0117597579956
+				],
+				"direction": [
+					0.476110517978668,
+					0.301976948976517,
+					0.825910806655884
+				],
+				"distance": 14.4897994995117,
+				"mesh": "res://content/environments/red_descent/masonry_repairs_v1/walls/second_stair_hall.glb::ArrayMesh_hr448",
+				"path": "/root/MatchWorld/CinderCrypt/Architecture/StoneRoom_second_stair_hall/Mortar_second_stair_hall_3",
+				"position": [
+					-36.9499969482422,
+					-17.0244140625,
+					21.9790420532227
+				]
+			},
+			{
+				"albedo": "res://content/environments/red_descent/upper_crossing_v1/materials/limestone/albedo.png",
+				"camera": [
+					-43.8487434387207,
+					-21.3999996185303,
+					10.0117597579956
+				],
+				"direction": [
+					0.476110517978668,
+					0.301976948976517,
+					0.825910806655884
+				],
+				"distance": 16.284008026123,
+				"mesh": "res://content/environments/procedural_architecture_v1/rooms/second_stair_hall.glb::ArrayMesh_qfone",
+				"path": "/root/MatchWorld/CinderCrypt/Architecture/StoneRoom_second_stair_hall/Stone-stone_second_stair_hall_3",
+				"position": [
+					-36.0957565307617,
+					-16.4826030731201,
+					23.4608993530273
+				]
+			},
+			{
+				"albedo": "res://content/environments/red_descent/upper_crossing_v1/materials/limestone/albedo.png",
+				"camera": [
+					-43.8487434387207,
+					-21.3999996185303,
+					10.0117597579956
+				],
+				"direction": [
+					0.476110517978668,
+					0.301976948976517,
+					0.825910806655884
+				],
+				"distance": 24.2980308532715,
+				"mesh": "res://content/environments/procedural_architecture_v1/rooms/second_stair_hall.glb::ArrayMesh_jesp6",
+				"path": "/root/MatchWorld/CinderCrypt/Architecture/StoneRoom_second_stair_hall/Stone-stone_second_stair_hall_4",
+				"position": [
+					-32.2801933288574,
+					-14.0625534057617,
+					30.0797653198242
+				]
+			},
+			{
+				"albedo": "",
+				"camera": [
+					-43.8487434387207,
+					-21.3999996185303,
+					10.0117597579956
+				],
+				"direction": [
+					0.476110517978668,
+					0.301976948976517,
+					0.825910806655884
+				],
+				"distance": 24.7471370697021,
+				"mesh": "res://content/environments/red_descent/masonry_repairs_v1/second_stair_hall.glb::ArrayMesh_64h11",
+				"path": "/root/MatchWorld/CinderCrypt/Architecture/StoneRoom_second_stair_hall/Mortar_second_stair_hall_4",
+				"position": [
+					-32.0663681030273,
+					-13.9269332885742,
+					30.4506874084473
+				]
+			},
+			{
+				"albedo": "res://content/environments/dungeon_pbr_v2/Bricks089/albedo.png",
+				"camera": [
+					-43.8487434387207,
+					-21.3999996185303,
+					10.0117597579956
+				],
+				"direction": [
+					0.476110517978668,
+					0.301976948976517,
+					0.825910806655884
+				],
+				"distance": 25.5483055114746,
+				"mesh": "",
+				"path": "/root/MatchWorld/CinderCrypt/Architecture/@MeshInstance3D@744",
+				"position": [
+					-31.6849250793457,
+					-13.6849994659424,
+					31.1123809814453
+				]
+			}
+		],
+		"pixel": [
+			780.0,
+			270.0
+		],
+		"view": "cave_bypass_0-back"
+	},
+	{
+		"camera": [
+			-43.8487434387207,
+			-21.3999996185303,
+			10.0117597579956
+		],
+		"direction": [
+			0.164784401655197,
+			0.488263845443726,
+			0.856997430324554
+		],
+		"hits": [
+			{
+				"albedo": "res://content/environments/red_descent/upper_crossing_v1/materials/bedrock/albedo.png",
+				"camera": [
+					-43.8487434387207,
+					-21.3999996185303,
+					10.0117597579956
+				],
+				"direction": [
+					0.164784401655197,
+					0.488263845443726,
+					0.856997430324554
+				],
+				"distance": 5.27516746520996,
+				"mesh": "res://content/environments/procedural_architecture_v1/passages/node_-41_-23_14.glb::ArrayMesh_j74mw",
+				"path": "/root/MatchWorld/CinderCrypt/Architecture/StonePassage_node_-41_-23_14/Stone-rock_node_-41_-23_14_0",
+				"position": [
+					-42.9794769287109,
+					-18.8243255615234,
+					14.532564163208
+				]
+			},
+			{
+				"albedo": "",
+				"camera": [
+					-43.8487434387207,
+					-21.3999996185303,
+					10.0117597579956
+				],
+				"direction": [
+					0.164784401655197,
+					0.488263845443726,
+					0.856997430324554
+				],
+				"distance": 5.61711502075195,
+				"mesh": "res://content/environments/procedural_architecture_v1/passages/node_-41_-23_14.glb::ArrayMesh_7jspa",
+				"path": "/root/MatchWorld/CinderCrypt/Architecture/StonePassage_node_-41_-23_14/Mortar_node_-41_-23_14_20",
+				"position": [
+					-42.9231300354004,
+					-18.6573657989502,
+					14.8256130218506
+				]
+			},
+			{
+				"albedo": "",
+				"camera": [
+					-43.8487434387207,
+					-21.3999996185303,
+					10.0117597579956
+				],
+				"direction": [
+					0.164784401655197,
+					0.488263845443726,
+					0.856997430324554
+				],
+				"distance": 7.84394407272339,
+				"mesh": "res://content/environments/procedural_architecture_v1/passages/root_tunnel.glb::ArrayMesh_w4qrk",
+				"path": "/root/MatchWorld/CinderCrypt/Architecture/StonePassage_root_tunnel/Mortar_root_tunnel_8",
+				"position": [
+					-42.5561828613281,
+					-17.5700855255127,
+					16.7339992523193
+				]
+			}
+		],
+		"pixel": [
+			1000.0,
+			90.0
+		],
+		"view": "cave_bypass_0-back"
+	},
+	{
+		"camera": [
+			-40.0314788818359,
+			-21.3999996185303,
+			-3.62518286705017
+		],
+		"direction": [
+			-0.786931693553925,
+			0.484466582536697,
+			-0.382139712572098
+		],
+		"hits": [
+			{
+				"albedo": "res://content/environments/red_descent/upper_crossing_v1/materials/bedrock/albedo.png",
+				"camera": [
+					-40.0314788818359,
+					-21.3999996185303,
+					-3.62518286705017
+				],
+				"direction": [
+					-0.786931693553925,
+					0.484466582536697,
+					-0.382139712572098
+				],
+				"distance": 5.67650508880615,
+				"mesh": "res://content/environments/procedural_architecture_v1/passages/node_-43_-23_-6.glb::ArrayMesh_1ttvq",
+				"path": "/root/MatchWorld/CinderCrypt/Architecture/StonePassage_node_-43_-23_-6/Stone-rock_node_-43_-23_-6_0",
+				"position": [
+					-44.4985008239746,
+					-18.649923324585,
+					-5.79440021514893
+				]
+			},
+			{
+				"albedo": "",
+				"camera": [
+					-40.0314788818359,
+					-21.3999996185303,
+					-3.62518286705017
+				],
+				"direction": [
+					-0.786931693553925,
+					0.484466582536697,
+					-0.382139712572098
+				],
+				"distance": 5.75963068008423,
+				"mesh": "res://content/environments/procedural_architecture_v1/passages/node_-43_-23_-6.glb::ArrayMesh_85rp8",
+				"path": "/root/MatchWorld/CinderCrypt/Architecture/StonePassage_node_-43_-23_-6/Mortar_node_-43_-23_-6_20",
+				"position": [
+					-44.5639152526855,
+					-18.6096515655518,
+					-5.8261661529541
+				]
+			},
+			{
+				"albedo": "",
+				"camera": [
+					-40.0314788818359,
+					-21.3999996185303,
+					-3.62518286705017
+				],
+				"direction": [
+					-0.786931693553925,
+					0.484466582536697,
+					-0.382139712572098
+				],
+				"distance": 6.93151330947876,
+				"mesh": "res://content/environments/procedural_architecture_v1/passages/cave_bypass.glb::ArrayMesh_fnr3d",
+				"path": "/root/MatchWorld/CinderCrypt/Architecture/StonePassage_cave_bypass/Mortar_cave_bypass_8",
+				"position": [
+					-45.4861068725586,
+					-18.0419139862061,
+					-6.27398872375488
+				]
+			}
+		],
+		"pixel": [
+			582.0,
+			122.0
+		],
+		"view": "cave_bypass_2-back"
+	},
+	{
+		"camera": [
+			-40.0314788818359,
+			-21.3999996185303,
+			-3.62518286705017
+		],
+		"direction": [
+			-0.898586273193359,
+			0.279667019844055,
+			-0.338125824928284
+		],
+		"hits": [
+			{
+				"albedo": "res://content/environments/red_descent/upper_crossing_v1/materials/bedrock/albedo.png",
+				"camera": [
+					-40.0314788818359,
+					-21.3999996185303,
+					-3.62518286705017
+				],
+				"direction": [
+					-0.898586273193359,
+					0.279667019844055,
+					-0.338125824928284
+				],
+				"distance": 5.96222639083862,
+				"mesh": "res://content/environments/procedural_architecture_v1/passages/node_-43_-23_-6.glb::ArrayMesh_1ttvq",
+				"path": "/root/MatchWorld/CinderCrypt/Architecture/StonePassage_node_-43_-23_-6/Stone-rock_node_-43_-23_-6_0",
+				"position": [
+					-45.3890533447266,
+					-19.7325611114502,
+					-5.6411657333374
+				]
+			},
+			{
+				"albedo": "",
+				"camera": [
+					-40.0314788818359,
+					-21.3999996185303,
+					-3.62518286705017
+				],
+				"direction": [
+					-0.898586273193359,
+					0.279667019844055,
+					-0.338125824928284
+				],
+				"distance": 6.03702259063721,
+				"mesh": "res://content/environments/procedural_architecture_v1/passages/node_-43_-23_-6.glb::ArrayMesh_85rp8",
+				"path": "/root/MatchWorld/CinderCrypt/Architecture/StonePassage_node_-43_-23_-6/Mortar_node_-43_-23_-6_20",
+				"position": [
+					-45.4562644958496,
+					-19.7116432189941,
+					-5.66645622253418
+				]
+			},
+			{
+				"albedo": "res://content/environments/red_descent/upper_crossing_v1/materials/bedrock/albedo.png",
+				"camera": [
+					-40.0314788818359,
+					-21.3999996185303,
+					-3.62518286705017
+				],
+				"direction": [
+					-0.898586273193359,
+					0.279667019844055,
+					-0.338125824928284
+				],
+				"distance": 6.17540836334229,
+				"mesh": "res://content/environments/procedural_architecture_v1/passages/cave_bypass.glb::ArrayMesh_wi8hq",
+				"path": "/root/MatchWorld/CinderCrypt/Architecture/StonePassage_cave_bypass/Stone-rock_cave_bypass_5",
+				"position": [
+					-45.5806159973145,
+					-19.6729412078857,
+					-5.71324825286865
+				]
+			},
+			{
+				"albedo": "",
+				"camera": [
+					-40.0314788818359,
+					-21.3999996185303,
+					-3.62518286705017
+				],
+				"direction": [
+					-0.898586273193359,
+					0.279667019844055,
+					-0.338125824928284
+				],
+				"distance": 6.21114444732666,
+				"mesh": "res://content/environments/procedural_architecture_v1/passages/cave_bypass.glb::ArrayMesh_fnr3d",
+				"path": "/root/MatchWorld/CinderCrypt/Architecture/StonePassage_cave_bypass/Mortar_cave_bypass_8",
+				"position": [
+					-45.6127281188965,
+					-19.6629467010498,
+					-5.72533130645752
+				]
+			}
+		],
+		"pixel": [
+			520.0,
+			280.0
+		],
+		"view": "cave_bypass_2-back"
+	},
+	{
+		"camera": [
+			-40.0314788818359,
+			-21.3999996185303,
+			-3.62518286705017
+		],
+		"direction": [
+			-0.876291155815125,
+			0.256822824478149,
+			-0.407622218132019
+		],
+		"hits": [
+			{
+				"albedo": "res://content/environments/red_descent/upper_crossing_v1/materials/bedrock/albedo.png",
+				"camera": [
+					-40.0314788818359,
+					-21.3999996185303,
+					-3.62518286705017
+				],
+				"direction": [
+					-0.876291155815125,
+					0.256822824478149,
+					-0.407622218132019
+				],
+				"distance": 6.04478359222412,
+				"mesh": "res://content/environments/procedural_architecture_v1/passages/node_-43_-23_-6.glb::ArrayMesh_1ttvq",
+				"path": "/root/MatchWorld/CinderCrypt/Architecture/StonePassage_node_-43_-23_-6/Stone-rock_node_-43_-23_-6_0",
+				"position": [
+					-45.3284683227539,
+					-19.8475608825684,
+					-6.08917140960693
+				]
+			},
+			{
+				"albedo": "",
+				"camera": [
+					-40.0314788818359,
+					-21.3999996185303,
+					-3.62518286705017
+				],
+				"direction": [
+					-0.876291155815125,
+					0.256822824478149,
+					-0.407622218132019
+				],
+				"distance": 6.12031030654907,
+				"mesh": "res://content/environments/procedural_architecture_v1/passages/node_-43_-23_-6.glb::ArrayMesh_85rp8",
+				"path": "/root/MatchWorld/CinderCrypt/Architecture/StonePassage_node_-43_-23_-6/Mortar_node_-43_-23_-6_20",
+				"position": [
+					-45.3946533203125,
+					-19.8281650543213,
+					-6.11995697021484
+				]
+			},
+			{
+				"albedo": "res://content/environments/red_descent/upper_crossing_v1/materials/bedrock/albedo.png",
+				"camera": [
+					-40.0314788818359,
+					-21.3999996185303,
+					-3.62518286705017
+				],
+				"direction": [
+					-0.876291155815125,
+					0.256822824478149,
+					-0.407622218132019
+				],
+				"distance": 6.21522903442383,
+				"mesh": "res://content/environments/procedural_architecture_v1/passages/cave_bypass.glb::ArrayMesh_wi8hq",
+				"path": "/root/MatchWorld/CinderCrypt/Architecture/StonePassage_cave_bypass/Stone-rock_cave_bypass_5",
+				"position": [
+					-45.4778289794922,
+					-19.8037872314453,
+					-6.15864849090576
+				]
+			},
+			{
+				"albedo": "",
+				"camera": [
+					-40.0314788818359,
+					-21.3999996185303,
+					-3.62518286705017
+				],
+				"direction": [
+					-0.876291155815125,
+					0.256822824478149,
+					-0.407622218132019
+				],
+				"distance": 6.25119066238403,
+				"mesh": "res://content/environments/procedural_architecture_v1/passages/cave_bypass.glb::ArrayMesh_fnr3d",
+				"path": "/root/MatchWorld/CinderCrypt/Architecture/StonePassage_cave_bypass/Mortar_cave_bypass_8",
+				"position": [
+					-45.5093421936035,
+					-19.7945518493652,
+					-6.17330694198608
+				]
+			}
+		],
+		"pixel": [
+			570.0,
+			300.0
+		],
+		"view": "cave_bypass_2-back"
+	},
+	{
+		"camera": [
+			-40.0314788818359,
+			-21.3999996185303,
+			-3.62518286705017
+		],
+		"direction": [
+			-0.855559110641479,
+			0.466051191091537,
+			-0.225421667098999
+		],
+		"hits": [
+			{
+				"albedo": "res://content/environments/red_descent/upper_crossing_v1/materials/bedrock/albedo.png",
+				"camera": [
+					-40.0314788818359,
+					-21.3999996185303,
+					-3.62518286705017
+				],
+				"direction": [
+					-0.855559110641479,
+					0.466051191091537,
+					-0.225421667098999
+				],
+				"distance": 5.64521980285645,
+				"mesh": "res://content/environments/procedural_architecture_v1/passages/node_-43_-23_-6.glb::ArrayMesh_1ttvq",
+				"path": "/root/MatchWorld/CinderCrypt/Architecture/StonePassage_node_-43_-23_-6/Stone-rock_node_-43_-23_-6_0",
+				"position": [
+					-44.8612976074219,
+					-18.7690372467041,
+					-4.89773797988892
+				]
+			},
+			{
+				"albedo": "",
+				"camera": [
+					-40.0314788818359,
+					-21.3999996185303,
+					-3.62518286705017
+				],
+				"direction": [
+					-0.855559110641479,
+					0.466051191091537,
+					-0.225421667098999
+				],
+				"distance": 5.72551679611206,
+				"mesh": "res://content/environments/procedural_architecture_v1/passages/node_-43_-23_-6.glb::ArrayMesh_85rp8",
+				"path": "/root/MatchWorld/CinderCrypt/Architecture/StonePassage_node_-43_-23_-6/Mortar_node_-43_-23_-6_20",
+				"position": [
+					-44.9299964904785,
+					-18.7316150665283,
+					-4.91583824157715
+				]
+			},
+			{
+				"albedo": "",
+				"camera": [
+					-40.0314788818359,
+					-21.3999996185303,
+					-3.62518286705017
+				],
+				"direction": [
+					-0.855559110641479,
+					0.466051191091537,
+					-0.225421667098999
+				],
+				"distance": 6.6836142539978,
+				"mesh": "res://content/environments/procedural_architecture_v1/passages/cave_bypass.glb::ArrayMesh_fnr3d",
+				"path": "/root/MatchWorld/CinderCrypt/Architecture/StonePassage_cave_bypass/Mortar_cave_bypass_8",
+				"position": [
+					-45.7497062683105,
+					-18.2850933074951,
+					-5.13181400299072
+				]
+			}
+		],
+		"pixel": [
+			450.0,
+			117.0
+		],
+		"view": "cave_bypass_2-back"
+	},
+	{
+		"camera": [
+			-40.0314788818359,
+			-21.3999996185303,
+			-3.62518286705017
+		],
+		"direction": [
+			-0.879350483417511,
+			0.434646457433701,
+			-0.194487303495407
+		],
+		"hits": [
+			{
+				"albedo": "res://content/environments/red_descent/upper_crossing_v1/materials/bedrock/albedo.png",
+				"camera": [
+					-40.0314788818359,
+					-21.3999996185303,
+					-3.62518286705017
+				],
+				"direction": [
+					-0.879350483417511,
+					0.434646457433701,
+					-0.194487303495407
+				],
+				"distance": 5.71708488464355,
+				"mesh": "res://content/environments/procedural_architecture_v1/passages/node_-43_-23_-6.glb::ArrayMesh_1ttvq",
+				"path": "/root/MatchWorld/CinderCrypt/Architecture/StonePassage_node_-43_-23_-6/Stone-rock_node_-43_-23_-6_0",
+				"position": [
+					-45.0587997436523,
+					-18.9150886535645,
+					-4.73708343505859
+				]
+			},
+			{
+				"albedo": "",
+				"camera": [
+					-40.0314788818359,
+					-21.3999996185303,
+					-3.62518286705017
+				],
+				"direction": [
+					-0.879350483417511,
+					0.434646457433701,
+					-0.194487303495407
+				],
+				"distance": 5.79461050033569,
+				"mesh": "res://content/environments/procedural_architecture_v1/passages/node_-43_-23_-6.glb::ArrayMesh_85rp8",
+				"path": "/root/MatchWorld/CinderCrypt/Architecture/StonePassage_node_-43_-23_-6/Mortar_node_-43_-23_-6_20",
+				"position": [
+					-45.1269721984863,
+					-18.8813934326172,
+					-4.75216102600098
+				]
+			},
+			{
+				"albedo": "",
+				"camera": [
+					-40.0314788818359,
+					-21.3999996185303,
+					-3.62518286705017
+				],
+				"direction": [
+					-0.879350483417511,
+					0.434646457433701,
+					-0.194487303495407
+				],
+				"distance": 6.5631890296936,
+				"mesh": "res://content/environments/procedural_architecture_v1/passages/cave_bypass.glb::ArrayMesh_fnr3d",
+				"path": "/root/MatchWorld/CinderCrypt/Architecture/StonePassage_cave_bypass/Mortar_cave_bypass_8",
+				"position": [
+					-45.8028221130371,
+					-18.5473327636719,
+					-4.90163993835449
+				]
+			}
+		],
+		"pixel": [
+			420.0,
+			140.0
+		],
+		"view": "cave_bypass_2-back"
+	},
+	{
+		"camera": [
+			-40.0314788818359,
+			-21.3999996185303,
+			-3.62518286705017
+		],
+		"direction": [
+			-0.901759684085846,
+			0.400128453969955,
+			-0.163482904434204
+		],
+		"hits": [
+			{
+				"albedo": "res://content/environments/red_descent/upper_crossing_v1/materials/bedrock/albedo.png",
+				"camera": [
+					-40.0314788818359,
+					-21.3999996185303,
+					-3.62518286705017
+				],
+				"direction": [
+					-0.901759684085846,
+					0.400128453969955,
+					-0.163482904434204
+				],
+				"distance": 5.78790473937988,
+				"mesh": "res://content/environments/procedural_architecture_v1/passages/node_-43_-23_-6.glb::ArrayMesh_1ttvq",
+				"path": "/root/MatchWorld/CinderCrypt/Architecture/StonePassage_node_-43_-23_-6/Stone-rock_node_-43_-23_-6_0",
+				"position": [
+					-45.2507781982422,
+					-19.0840950012207,
+					-4.57140636444092
+				]
+			},
+			{
+				"albedo": "",
+				"camera": [
+					-40.0314788818359,
+					-21.3999996185303,
+					-3.62518286705017
+				],
+				"direction": [
+					-0.901759684085846,
+					0.400128453969955,
+					-0.163482904434204
+				],
+				"distance": 5.8648533821106,
+				"mesh": "res://content/environments/procedural_architecture_v1/passages/node_-43_-23_-6.glb::ArrayMesh_85rp8",
+				"path": "/root/MatchWorld/CinderCrypt/Architecture/StonePassage_node_-43_-23_-6/Mortar_node_-43_-23_-6_20",
+				"position": [
+					-45.3201675415039,
+					-19.0533046722412,
+					-4.58398628234863
+				]
+			},
+			{
+				"albedo": "",
+				"camera": [
+					-40.0314788818359,
+					-21.3999996185303,
+					-3.62518286705017
+				],
+				"direction": [
+					-0.901759684085846,
+					0.400128453969955,
+					-0.163482904434204
+				],
+				"distance": 6.45662689208984,
+				"mesh": "res://content/environments/procedural_architecture_v1/passages/cave_bypass.glb::ArrayMesh_fnr3d",
+				"path": "/root/MatchWorld/CinderCrypt/Architecture/StonePassage_cave_bypass/Mortar_cave_bypass_8",
+				"position": [
+					-45.8538055419922,
+					-18.816520690918,
+					-4.68073081970215
+				]
+			}
+		],
+		"pixel": [
+			390.0,
+			165.0
+		],
+		"view": "cave_bypass_2-back"
+	},
+	{
+		"camera": [
+			-40.0314788818359,
+			-21.3999996185303,
+			-3.62518286705017
+		],
+		"direction": [
+			-0.919336676597595,
+			0.350059002637863,
+			-0.179663002490997
+		],
+		"hits": [
+			{
+				"albedo": "res://content/environments/red_descent/upper_crossing_v1/materials/bedrock/albedo.png",
+				"camera": [
+					-40.0314788818359,
+					-21.3999996185303,
+					-3.62518286705017
+				],
+				"direction": [
+					-0.919336676597595,
+					0.350059002637863,
+					-0.179663002490997
+				],
+				"distance": 5.85888528823853,
+				"mesh": "res://content/environments/procedural_architecture_v1/passages/node_-43_-23_-6.glb::ArrayMesh_1ttvq",
+				"path": "/root/MatchWorld/CinderCrypt/Architecture/StonePassage_node_-43_-23_-6/Stone-rock_node_-43_-23_-6_0",
+				"position": [
+					-45.4177665710449,
+					-19.3490428924561,
+					-4.67780780792236
+				]
+			},
+			{
+				"albedo": "",
+				"camera": [
+					-40.0314788818359,
+					-21.3999996185303,
+					-3.62518286705017
+				],
+				"direction": [
+					-0.919336676597595,
+					0.350059002637863,
+					-0.179663002490997
+				],
+				"distance": 5.93442010879517,
+				"mesh": "res://content/environments/procedural_architecture_v1/passages/node_-43_-23_-6.glb::ArrayMesh_85rp8",
+				"path": "/root/MatchWorld/CinderCrypt/Architecture/StonePassage_node_-43_-23_-6/Mortar_node_-43_-23_-6_20",
+				"position": [
+					-45.4872093200684,
+					-19.322603225708,
+					-4.69137859344482
+				]
+			},
+			{
+				"albedo": "res://content/environments/red_descent/upper_crossing_v1/materials/bedrock/albedo.png",
+				"camera": [
+					-40.0314788818359,
+					-21.3999996185303,
+					-3.62518286705017
+				],
+				"direction": [
+					-0.919336676597595,
+					0.350059002637863,
+					-0.179663002490997
+				],
+				"distance": 6.27713203430176,
+				"mesh": "res://content/environments/procedural_architecture_v1/passages/cave_bypass.glb::ArrayMesh_wi8hq",
+				"path": "/root/MatchWorld/CinderCrypt/Architecture/StonePassage_cave_bypass/Stone-rock_cave_bypass_5",
+				"position": [
+					-45.8022766113281,
+					-19.2026329040527,
+					-4.75295162200928
+				]
+			},
+			{
+				"albedo": "",
+				"camera": [
+					-40.0314788818359,
+					-21.3999996185303,
+					-3.62518286705017
+				],
+				"direction": [
+					-0.919336676597595,
+					0.350059002637863,
+					-0.179663002490997
+				],
+				"distance": 6.31341028213501,
+				"mesh": "res://content/environments/procedural_architecture_v1/passages/cave_bypass.glb::ArrayMesh_fnr3d",
+				"path": "/root/MatchWorld/CinderCrypt/Architecture/StonePassage_cave_bypass/Mortar_cave_bypass_8",
+				"position": [
+					-45.8356285095215,
+					-19.1899337768555,
+					-4.7594690322876
+				]
+			}
+		],
+		"pixel": [
+			400.0,
+			210.0
+		],
+		"view": "cave_bypass_2-back"
+	}
+]

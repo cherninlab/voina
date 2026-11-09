@@ -1,0 +1,627 @@
+{
+  "actor": {
+    "height_m": 1.8,
+    "profile": "production player scene, scripted movement",
+    "radius_m": 0.4,
+    "speed_m_s": 6.5,
+    "step_seconds": 0.0166666666666667
+  },
+  "build": "89bc19d04e15d21a6dc673ef354a3a9e5b09c44d",
+  "capabilities": {
+    "capsule_exploration": "implemented",
+    "collision_survey": "implemented",
+    "crowd": "actual enemy body obstruction and removal tested; production avoidance limitations reported",
+    "enemy_scenarios": "production enemy locomotion, blocked/changed paths, stacked floors, cover, memory, reacquisition, return home",
+    "geometry_counts": "per render object, explicit LOD range, material surfaces, MultiMesh instances; not GPU cost",
+    "performance": "unchecked",
+    "visual_holes": "sampled floor/ceiling mesh rays with known gap and solid controls; rendered captures are separate"
+  },
+  "checks": [
+    {
+      "details": {},
+      "name": "arrival detector accepts valid arrival",
+      "passed": true
+    },
+    {
+      "details": {},
+      "name": "arrival detector catches empty-route success",
+      "passed": true
+    },
+    {
+      "details": {},
+      "name": "arrival detector catches wrong floor",
+      "passed": true
+    },
+    {
+      "details": {},
+      "name": "arrival detector accepts honest no-route",
+      "passed": true
+    },
+    {
+      "details": {
+        "arrived": true,
+        "claimed_arrival": true,
+        "direct_distance_m": 12.0,
+        "distance_m": 11.7445526123047,
+        "end": [
+          205.6546,
+          0.9009,
+          200.0
+        ],
+        "false_arrival": false,
+        "goal": [
+          206.0,
+          0.95,
+          200.0
+        ],
+        "max_stuck_seconds": 0.0166666666666667,
+        "profile": "production RaiderMob.walk + move_and_slide",
+        "scenario": "clear-floor",
+        "seconds": 4.36666666666667,
+        "start": [
+          194.0,
+          0.95,
+          200.0
+        ]
+      },
+      "name": "real enemy crosses clear floor",
+      "passed": true
+    },
+    {
+      "details": {
+        "arrived": true,
+        "claimed_arrival": true,
+        "direct_distance_m": 11.6546602249146,
+        "distance_m": 12.7285788394511,
+        "end": [
+          194.312,
+          0.9009,
+          200.0589
+        ],
+        "false_arrival": false,
+        "goal": [
+          194.0,
+          0.95,
+          200.0
+        ],
+        "max_stuck_seconds": 0.65,
+        "profile": "production RaiderMob.walk + move_and_slide",
+        "scenario": "crowd-blocking",
+        "seconds": 5.38333333333333,
+        "start": [
+          205.6546,
+          0.9009,
+          200.0
+        ]
+      },
+      "name": "real actor obstruction is recorded",
+      "passed": true
+    },
+    {
+      "details": {
+        "arrived": true,
+        "claimed_arrival": true,
+        "direct_distance_m": 11.6882848739624,
+        "distance_m": 13.0945807732642,
+        "end": [
+          205.6947,
+          0.9009,
+          200.0
+        ],
+        "false_arrival": false,
+        "goal": [
+          206.0,
+          0.95,
+          200.0
+        ],
+        "max_stuck_seconds": 0.0166666666666667,
+        "profile": "production RaiderMob.walk + move_and_slide",
+        "scenario": "actor-obstruction-removed",
+        "seconds": 4.86666666666667,
+        "start": [
+          194.312,
+          0.9009,
+          200.0589
+        ]
+      },
+      "name": "enemy can move after actor obstruction is removed",
+      "passed": true
+    },
+    {
+      "details": {
+        "arrived": true,
+        "claimed_arrival": true,
+        "direct_distance_m": 11.7847547531128,
+        "distance_m": 20.4971545264125,
+        "end": [
+          194.071,
+          0.9009,
+          199.6973
+        ],
+        "false_arrival": false,
+        "goal": [
+          194.0,
+          0.95,
+          200.0
+        ],
+        "max_stuck_seconds": 0.583333333333333,
+        "profile": "production RaiderMob.walk + move_and_slide",
+        "scenario": "changed-obstacle",
+        "seconds": 8.25,
+        "start": [
+          205.7847,
+          0.9009,
+          200.0
+        ]
+      },
+      "name": "stuck detector sees changed obstacle",
+      "passed": true
+    },
+    {
+      "details": {
+        "arrived": true,
+        "claimed_arrival": true,
+        "direct_distance_m": 0.314784616231918,
+        "distance_m": 0.0,
+        "end": [
+          194.071,
+          0.9009,
+          199.6973
+        ],
+        "false_arrival": false,
+        "goal": [
+          194.0,
+          0.95,
+          200.0
+        ],
+        "max_stuck_seconds": 0.0166666666666667,
+        "profile": "production RaiderMob.walk + move_and_slide",
+        "scenario": "static-detour",
+        "seconds": 0.0166666666666667,
+        "start": [
+          194.071,
+          0.9009,
+          199.6973
+        ]
+      },
+      "name": "real enemy routes around static cover",
+      "passed": true
+    },
+    {
+      "details": {},
+      "name": "real enemy sees unobstructed target",
+      "passed": true
+    },
+    {
+      "details": {},
+      "name": "cover prevents hidden-position updates",
+      "passed": true
+    },
+    {
+      "details": {},
+      "name": "production target memory expires behind cover",
+      "passed": true
+    },
+    {
+      "details": {},
+      "name": "real enemy reacquires target",
+      "passed": true
+    },
+    {
+      "details": {},
+      "name": "enemy gives up outside its zone and returns home",
+      "passed": true
+    },
+    {
+      "details": {
+        "landed_or_last_position": [
+          224.4418,
+          -1.6394,
+          200.0
+        ]
+      },
+      "name": "real player capsule exposes an unplanned floor-edge fall",
+      "passed": true
+    },
+    {
+      "details": {},
+      "name": "visual detector sees a gap above solid collision",
+      "passed": true
+    },
+    {
+      "details": {},
+      "name": "visual detector accepts solid floor control",
+      "passed": true
+    },
+    {
+      "details": {},
+      "name": "normal diagnostic faces the viewer on a floor",
+      "passed": true
+    },
+    {
+      "details": {},
+      "name": "instanced surfaces prevent a false gap report",
+      "passed": true
+    },
+    {
+      "details": {},
+      "name": "surface intersection probe finds a crossing edge",
+      "passed": true
+    },
+    {
+      "details": {},
+      "name": "backface control detects a reversed sheet",
+      "passed": true
+    },
+    {
+      "details": {},
+      "name": "inspection rejects a camera embedded in a wall",
+      "passed": true
+    }
+  ],
+  "coverage": {
+    "budget_ticks": 36000,
+    "entry_component_cells": 20092,
+    "reached": 17079,
+    "sampled": 49798,
+    "simulated_seconds_limit": 600.0,
+    "suppressed_issue_locations": 1166,
+    "walkable": 21417,
+    "workers": [
+      {
+        "attempt_target": 19912,
+        "best_distance": 0.291304975748062,
+        "current": 19910,
+        "distance_m": 3692.6286552212,
+        "idle": false,
+        "last_arrival_tick": 35997,
+        "progress_tick": 35999,
+        "stuck_ticks": 0,
+        "tick": 35999,
+        "visited": 6155
+      },
+      {
+        "attempt_target": 38492,
+        "best_distance": 0.558290421962738,
+        "current": 38497,
+        "distance_m": 3695.06259743148,
+        "idle": false,
+        "last_arrival_tick": 35998,
+        "progress_tick": 35999,
+        "stuck_ticks": 0,
+        "tick": 35999,
+        "visited": 5725
+      },
+      {
+        "attempt_target": 38532,
+        "best_distance": 0.12947753071785,
+        "current": 38532,
+        "distance_m": 3623.03525660152,
+        "idle": false,
+        "last_arrival_tick": 35999,
+        "progress_tick": 35999,
+        "stuck_ticks": 0,
+        "tick": 35999,
+        "visited": 5199
+      }
+    ]
+  },
+  "enemy_runs": [
+    {
+      "arrived": true,
+      "claimed_arrival": true,
+      "direct_distance_m": 12.0,
+      "distance_m": 11.7445526123047,
+      "end": [
+        205.6546,
+        0.9009,
+        200.0
+      ],
+      "false_arrival": false,
+      "goal": [
+        206.0,
+        0.95,
+        200.0
+      ],
+      "max_stuck_seconds": 0.0166666666666667,
+      "profile": "production RaiderMob.walk + move_and_slide",
+      "scenario": "clear-floor",
+      "seconds": 4.36666666666667,
+      "start": [
+        194.0,
+        0.95,
+        200.0
+      ]
+    },
+    {
+      "arrived": true,
+      "claimed_arrival": true,
+      "direct_distance_m": 11.6546602249146,
+      "distance_m": 12.7285788394511,
+      "end": [
+        194.312,
+        0.9009,
+        200.0589
+      ],
+      "false_arrival": false,
+      "goal": [
+        194.0,
+        0.95,
+        200.0
+      ],
+      "max_stuck_seconds": 0.65,
+      "profile": "production RaiderMob.walk + move_and_slide",
+      "scenario": "crowd-blocking",
+      "seconds": 5.38333333333333,
+      "start": [
+        205.6546,
+        0.9009,
+        200.0
+      ]
+    },
+    {
+      "arrived": true,
+      "claimed_arrival": true,
+      "direct_distance_m": 11.6882848739624,
+      "distance_m": 13.0945807732642,
+      "end": [
+        205.6947,
+        0.9009,
+        200.0
+      ],
+      "false_arrival": false,
+      "goal": [
+        206.0,
+        0.95,
+        200.0
+      ],
+      "max_stuck_seconds": 0.0166666666666667,
+      "profile": "production RaiderMob.walk + move_and_slide",
+      "scenario": "actor-obstruction-removed",
+      "seconds": 4.86666666666667,
+      "start": [
+        194.312,
+        0.9009,
+        200.0589
+      ]
+    },
+    {
+      "arrived": false,
+      "claimed_arrival": false,
+      "direct_distance_m": 6.05678939819336,
+      "distance_m": 0.089996337890625,
+      "end": [
+        205.7847,
+        0.9009,
+        200.0
+      ],
+      "false_arrival": false,
+      "goal": [
+        206.0,
+        6.95,
+        200.0
+      ],
+      "max_stuck_seconds": 1.46666666666667,
+      "profile": "production RaiderMob.walk + move_and_slide",
+      "scenario": "stacked-floor",
+      "seconds": 1.5,
+      "start": [
+        205.6947,
+        0.9009,
+        200.0
+      ]
+    },
+    {
+      "arrived": true,
+      "claimed_arrival": true,
+      "direct_distance_m": 11.7847547531128,
+      "distance_m": 20.4971545264125,
+      "end": [
+        194.071,
+        0.9009,
+        199.6973
+      ],
+      "false_arrival": false,
+      "goal": [
+        194.0,
+        0.95,
+        200.0
+      ],
+      "max_stuck_seconds": 0.583333333333333,
+      "profile": "production RaiderMob.walk + move_and_slide",
+      "scenario": "changed-obstacle",
+      "seconds": 8.25,
+      "start": [
+        205.7847,
+        0.9009,
+        200.0
+      ]
+    },
+    {
+      "arrived": true,
+      "claimed_arrival": true,
+      "direct_distance_m": 0.314784616231918,
+      "distance_m": 0.0,
+      "end": [
+        194.071,
+        0.9009,
+        199.6973
+      ],
+      "false_arrival": false,
+      "goal": [
+        194.0,
+        0.95,
+        200.0
+      ],
+      "max_stuck_seconds": 0.0166666666666667,
+      "profile": "production RaiderMob.walk + move_and_slide",
+      "scenario": "static-detour",
+      "seconds": 0.0166666666666667,
+      "start": [
+        194.071,
+        0.9009,
+        199.6973
+      ]
+    },
+    {
+      "arrived": false,
+      "claimed_arrival": false,
+      "direct_distance_m": 11.9329423904419,
+      "distance_m": 4.40991063788533,
+      "end": [
+        198.3291,
+        0.9009,
+        199.8741
+      ],
+      "false_arrival": false,
+      "goal": [
+        206.0,
+        0.95,
+        200.0
+      ],
+      "max_stuck_seconds": 2.0,
+      "profile": "production RaiderMob.walk + move_and_slide",
+      "scenario": "unreachable-goal",
+      "seconds": 3.63333333333333,
+      "start": [
+        194.071,
+        0.9009,
+        199.6973
+      ]
+    },
+    {
+      "profile": "production RaiderMob physics/perception/actions",
+      "scenario": "cover-memory-reacquire-return"
+    },
+    {
+      "arrived": true,
+      "claimed_arrival": true,
+      "direct_distance_m": 5.65707540512085,
+      "distance_m": 5.39996334165335,
+      "end": [
+        33.7547,
+        -3.0991,
+        -10.2453
+      ],
+      "false_arrival": false,
+      "goal": [
+        34.0,
+        -3.05,
+        -10.0
+      ],
+      "max_stuck_seconds": 0.0166666666666667,
+      "profile": "production RaiderMob.walk + move_and_slide",
+      "scenario": "dungeon-hall-0",
+      "seconds": 2.01666666666667,
+      "start": [
+        30.0,
+        -3.1,
+        -14.0
+      ]
+    },
+    {
+      "arrived": true,
+      "claimed_arrival": true,
+      "direct_distance_m": 5.65707540512085,
+      "distance_m": 5.39984491840005,
+      "end": [
+        35.7546,
+        -27.0991,
+        -0.2454
+      ],
+      "false_arrival": false,
+      "goal": [
+        36.0,
+        -27.05,
+        0.0
+      ],
+      "max_stuck_seconds": 0.0166666666666667,
+      "profile": "production RaiderMob.walk + move_and_slide",
+      "scenario": "dungeon-hall-2",
+      "seconds": 2.01666666666667,
+      "start": [
+        32.0,
+        -27.1,
+        -4.0
+      ]
+    }
+  ],
+  "engine": "4.7.2-stable (official)",
+  "mode": "full",
+  "schema": 1,
+  "seed": 186,
+  "survey": {
+    "bounds": [
+      -51,
+      -46,
+      49,
+      51.5
+    ],
+    "cell_m": 0.5,
+    "columns": 20813,
+    "entry_component": 1,
+    "max_surfaces_per_column": 32,
+    "restart_interval_ticks": 600,
+    "sampled_components": 172,
+    "scope": "layout room polygons and route widths; all matching height layers",
+    "surface_hits": 93144
+  },
+  "visual_audit": {
+    "invalid_viewpoint_probes_skipped": 2895,
+    "limits": "sampled triangles including MultiMesh instances, explicit near LOD; shader displacement/peeling not evaluated; narrow gaps may be missed",
+    "room_probe_count": 4197,
+    "route_probe_count": 5562,
+    "stride_m": 1.0
+  },
+  "identity": {
+    "game_files": {
+      "project.godot": "4bfbc182e33ca9cc0d5a63d5eee66fe211fba1f3c6f2ab14b020372a4da318a5",
+      "gameplay/match_world.gd": "062c1228f764c55a1a92f2293015b45a2e463053b8a21da54403921cc1140e80",
+      "gameplay/mobs/mob_system.gd": "24d16ba4975995523cc789bf352f17074ae844548a6feb52a6f0bec2a7618d04",
+      "gameplay/environment/red_descent_layout.gd": "5c877b8f63c485eb4759c806ed4ce987cac0452b1b67994ddef8f57065779718",
+      "gameplay/environment/red_descent_geometry.gd": "154a278611e51b446fea476a74ad7d6ec1bba52c2bd64d322bbcda337c09153c",
+      "gameplay/environment/crypt_dungeon.gd": "f99657a7251a1668a21047386242aeacfb1e03f882f8e96e64e55dce6c0ddde9",
+      "gameplay/environment/dungeon_dressing.gd": "834ae35a262c1f59038e371dfecf529d364ca25beabd786efc57ef702da79b4b",
+      "gameplay/mobs/hostile_mob.gd": "d702c0b5166057c5423d6c0496ae808dd5304ed1223742d9370fd604f370c0ab",
+      "gameplay/mobs/raider_mob.gd": "fc31f5efd373a93b6d9f56d0c982f64a42247ffe03ddd27ccac6ba5425c6ca2e",
+      "gameplay/mobs/mob_navigation.gd": "d14d0f7273d0560a8f9cb52189f1e57cc24abae6f0c9bb9a86fcd6821320a658",
+      "gameplay/mobs/dungeon_mobs.gd": "a712f2f24061a971f731f5bec3547fe79e478a3fc20cadb9da918c4a8bfad6fd",
+      "gameplay/player/player_character.gd": "33353c407f7fe215bd52e9ef74da2d6136e32636b8d8be0052882f686a36dcf5",
+      "content/environments/procedural_architecture_v1/index.json": "19ee6a39d89cffdd09caf48aeb068fcf5b97395fdc43ca45791c7cf4da5299e5"
+    },
+    "game_sha256": "b007f7c23daa965a6fcdd2fbbcd3b537aaa3bdb0a0d4dbb7d197f204f59b57c0",
+    "harness_sha256": "e02c19e15a6785ca403e2e18f172e255a21b49311b93bd3b48381ae78f15f032",
+    "revision": "89bc19d04e15d21a6dc673ef354a3a9e5b09c44d",
+    "dirty_tracked_paths": [
+      "gameplay/environment/red_descent_geometry.gd",
+      "scripts/art/build_architecture.py",
+      "scripts/art/procgen/passage.py"
+    ]
+  },
+  "issue_counts": {
+    "enemy_stuck": 1,
+    "raised_render_surface": 100,
+    "surface_backface_candidate": 100,
+    "visible_floor_gap": 59,
+    "visible_ceiling_gap": 16,
+    "floor_collision_visual_mismatch": 12,
+    "missing_floor_candidate": 100,
+    "stuck": 37
+  },
+  "stalls_by_area": {
+    "room:entry": 4,
+    "room:first_stair_hall": 9,
+    "room:choir": 8,
+    "room:antechamber": 1,
+    "route:chapel_approach": 2,
+    "room:bell": 1,
+    "route:nave": 1,
+    "route:second_stair": 1,
+    "room:second_stair_hall": 2,
+    "room:ossuary": 2,
+    "room:restraint": 3,
+    "route:cave_bypass": 1,
+    "route:return_stair": 1,
+    "route:root_tunnel": 1
+  }
+}

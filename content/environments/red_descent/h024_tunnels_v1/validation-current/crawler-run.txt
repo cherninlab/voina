@@ -1,0 +1,135 @@
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+BUILD: 89bc19d0+dirty [379218563482]
+NAVE_ABUTMENT_READY: continuous arch and paving; old endpoint bracket replaced
+STRUCTURAL_RELIEF_READY: 58 meshes, walls [3, 4, 5, 6]
+GENERATED_KIT_PLACED: {}
+RED_DESCENT_GEOMETRY_READY: 17 routes, 13 rooms, 35 lit landmarks, sloping crossings
+MAP: Cinder Crypt (crypt)
+Hosting on UDP 60025
+NET host · build 89bc19d0+dirty [379218563482]
+NET bolts in flight 0
+DUNGEON_ENCOUNTER_READY: five guards across two vertically separated halls, no replacements
+EXPLORER_ENEMIES: 8 scenarios; detector failures=0
+EXPLORER_MESHES: 5321
+EXPLORER_VISUAL: entry probes=214
+EXPLORER_VISUAL: antechamber probes=376
+EXPLORER_VISUAL: restraint probes=697
+EXPLORER_VISUAL: cells probes=837
+EXPLORER_VISUAL: chapel probes=1394
+EXPLORER_VISUAL: nave probes=1975
+EXPLORER_VISUAL: ossuary probes=2320
+EXPLORER_VISUAL: bones probes=2493
+EXPLORER_VISUAL: window probes=2597
+EXPLORER_VISUAL: bell probes=2984
+EXPLORER_VISUAL: choir probes=3743
+EXPLORER_VISUAL: first_stair_hall probes=3999
+EXPLORER_VISUAL: second_stair_hall probes=4197
+EXPLORER_ROUTE_VISUAL: entry probes=174
+EXPLORER_ROUTE_VISUAL: high_span probes=489
+EXPLORER_ROUTE_VISUAL: upper_hall probes=690
+EXPLORER_ROUTE_VISUAL: first_stair probes=930
+EXPLORER_ROUTE_VISUAL: chapel_approach probes=1191
+EXPLORER_ROUTE_VISUAL: central_ledge probes=1569
+EXPLORER_ROUTE_VISUAL: nave probes=1944
+EXPLORER_ROUTE_VISUAL: second_stair probes=2154
+EXPLORER_ROUTE_VISUAL: root_tunnel probes=2544
+EXPLORER_ROUTE_VISUAL: low_span probes=2961
+EXPLORER_ROUTE_VISUAL: choir probes=3072
+EXPLORER_ROUTE_VISUAL: return_stair probes=3558
+EXPLORER_ROUTE_VISUAL: return_gallery probes=3861
+EXPLORER_ROUTE_VISUAL: upper_cells probes=4197
+EXPLORER_ROUTE_VISUAL: ossuary_loop probes=4845
+EXPLORER_ROUTE_VISUAL: bell_loop probes=5379
+EXPLORER_ROUTE_VISUAL: cave_bypass probes=5562
+NET host · build 89bc19d0+dirty [379218563482]
+NET bolts in flight 0
+NET host · build 89bc19d0+dirty [379218563482]
+NET bolts in flight 0
+EXPLORER_SAMPLE: x=-100 cells=0
+EXPLORER_SAMPLE: x=-80 cells=2559
+EXPLORER_SAMPLE: x=-60 cells=8322
+EXPLORER_SAMPLE: x=-40 cells=13316
+EXPLORER_SAMPLE: x=-20 cells=16769
+EXPLORER_SAMPLE: x=0 cells=21128
+EXPLORER_SAMPLE: x=20 cells=25934
+EXPLORER_SAMPLE: x=40 cells=28982
+EXPLORER_SAMPLE: x=60 cells=34419
+EXPLORER_SAMPLE: x=80 cells=45012
+EXPLORER_DUNGEON_ENEMIES: both actual hall grids exercised
+EXPLORER_WALK: tick=0 visited=3 issues=382
+EXPLORER_WALK: tick=600 visited=395 issues=382
+EXPLORER_WALK: tick=1200 visited=733 issues=385
+EXPLORER_WALK: tick=1800 visited=1108 issues=386
+EXPLORER_WALK: tick=2400 visited=1484 issues=387
+NET host · build 89bc19d0+dirty [379218563482]
+NET bolts in flight 0
+EXPLORER_WALK: tick=3000 visited=1836 issues=389
+EXPLORER_WALK: tick=3600 visited=2227 issues=389
+EXPLORER_WALK: tick=4200 visited=2607 issues=389
+EXPLORER_WALK: tick=4800 visited=2964 issues=389
+EXPLORER_WALK: tick=5400 visited=3337 issues=389
+EXPLORER_WALK: tick=6000 visited=3701 issues=389
+EXPLORER_WALK: tick=6600 visited=4077 issues=389
+EXPLORER_WALK: tick=7200 visited=4375 issues=391
+NET host · build 89bc19d0+dirty [379218563482]
+NET bolts in flight 0
+EXPLORER_WALK: tick=7800 visited=4743 issues=391
+EXPLORER_WALK: tick=8400 visited=5122 issues=391
+EXPLORER_WALK: tick=9000 visited=5517 issues=391
+EXPLORER_WALK: tick=9600 visited=5899 issues=391
+EXPLORER_WALK: tick=10200 visited=6248 issues=391
+EXPLORER_WALK: tick=10800 visited=6611 issues=391
+EXPLORER_WALK: tick=11400 visited=6979 issues=391
+EXPLORER_WALK: tick=12000 visited=7303 issues=392
+NET host · build 89bc19d0+dirty [379218563482]
+NET bolts in flight 0
+EXPLORER_WALK: tick=12600 visited=7666 issues=392
+EXPLORER_WALK: tick=13200 visited=7995 issues=393
+EXPLORER_WALK: tick=13800 visited=8314 issues=393
+EXPLORER_WALK: tick=14400 visited=8690 issues=393
+EXPLORER_WALK: tick=15000 visited=9066 issues=393
+EXPLORER_WALK: tick=15600 visited=9436 issues=393
+EXPLORER_WALK: tick=16200 visited=9691 issues=394
+EXPLORER_WALK: tick=16800 visited=9917 issues=395
+EXPLORER_WALK: tick=17400 visited=10274 issues=395
+NET host · build 89bc19d0+dirty [379218563482]
+NET bolts in flight 0
+EXPLORER_WALK: tick=18000 visited=10595 issues=395
+EXPLORER_WALK: tick=18600 visited=10832 issues=397
+EXPLORER_WALK: tick=19200 visited=11140 issues=398
+EXPLORER_WALK: tick=19800 visited=11442 issues=398
+EXPLORER_WALK: tick=20400 visited=11764 issues=398
+EXPLORER_WALK: tick=21000 visited=12017 issues=398
+EXPLORER_WALK: tick=21600 visited=12366 issues=398
+EXPLORER_WALK: tick=22200 visited=12641 issues=398
+NET host · build 89bc19d0+dirty [379218563482]
+NET bolts in flight 0
+EXPLORER_WALK: tick=22800 visited=12834 issues=398
+EXPLORER_WALK: tick=23400 visited=13125 issues=398
+EXPLORER_WALK: tick=24000 visited=13442 issues=398
+EXPLORER_WALK: tick=24600 visited=13739 issues=398
+EXPLORER_WALK: tick=25200 visited=13913 issues=401
+EXPLORER_WALK: tick=25800 visited=14090 issues=401
+EXPLORER_WALK: tick=26400 visited=14255 issues=401
+EXPLORER_WALK: tick=27000 visited=14544 issues=401
+EXPLORER_WALK: tick=27600 visited=14808 issues=401
+NET host · build 89bc19d0+dirty [379218563482]
+NET bolts in flight 0
+EXPLORER_WALK: tick=28200 visited=14941 issues=403
+EXPLORER_WALK: tick=28800 visited=15044 issues=403
+EXPLORER_WALK: tick=29400 visited=15300 issues=404
+EXPLORER_WALK: tick=30000 visited=15492 issues=404
+EXPLORER_WALK: tick=30600 visited=15737 issues=404
+EXPLORER_WALK: tick=31200 visited=15942 issues=408
+EXPLORER_WALK: tick=31800 visited=16196 issues=409
+EXPLORER_WALK: tick=32400 visited=16363 issues=409
+EXPLORER_WALK: tick=33000 visited=16535 issues=413
+NET host · build 89bc19d0+dirty [379218563482]
+NET bolts in flight 0
+EXPLORER_WALK: tick=33600 visited=16780 issues=413
+EXPLORER_WALK: tick=34200 visited=16947 issues=415
+EXPLORER_WALK: tick=34800 visited=16959 issues=415
+EXPLORER_WALK: tick=35400 visited=17177 issues=415
+EXPLORER_OK: reached=17236/21616 issues=415 report=/private/tmp/h024-fresh-crawler
+explorer finished
