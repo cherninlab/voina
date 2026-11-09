@@ -9,7 +9,6 @@ var architecture: RedDescentGeometry
 var dressing: RedDescentDressing
 var objective: Label = Label.new()
 var fires: Array[OmniLight3D] = []
-var light_timer: float = 0.0
 
 func _ready() -> void:
 	name = "CinderCrypt"
@@ -289,16 +288,24 @@ func build_landmarks() -> void:
 func player_spawn(slot: int) -> Vector3:
 	return RedDescentLayout.player_spawn(slot)
 
+## Mobile selects at most eight omni lights per mesh. Six practicals leave
+## room for the entrance fill and a player/review light, without floor batch cuts.
+func update_fire_lights(camera: Camera3D) -> void:
+	var ordered: Array[OmniLight3D] = fires.duplicate()
+	ordered.sort_custom(func(a: OmniLight3D,b: OmniLight3D) -> bool: return a.global_position.distance_squared_to(camera.global_position)<b.global_position.distance_squared_to(camera.global_position))
+	var boundary: float = minf(24.0,ordered[6].global_position.distance_to(camera.global_position)) if ordered.size()>6 else 24.0
+	for index: int in range(ordered.size()):
+		var distance: float = ordered[index].global_position.distance_to(camera.global_position)
+		# The seventh light defines a zero-energy edge, so exchanging ranks
+		# does not suddenly illuminate or darken a whole floor section.
+		var weight: float = smoothstep(0.0,3.0,boundary-distance) if index<6 else 0.0
+		ordered[index].visible=weight>.001
+		ordered[index].light_energy=8.0*weight
+		ordered[index].shadow_enabled=index<6 and distance<20.0
+
 func _process(delta: float) -> void:
-	light_timer -= delta
-	if light_timer <= 0.0:
-		light_timer = 0.3
-		var camera: Camera3D = get_viewport().get_camera_3d()
-		if camera != null:
-			var ordered: Array[OmniLight3D] = fires.duplicate()
-			ordered.sort_custom(func(a: OmniLight3D, b: OmniLight3D) -> bool: return a.global_position.distance_squared_to(camera.global_position) < b.global_position.distance_squared_to(camera.global_position))
-			for index: int in range(ordered.size()):
-				ordered[index].shadow_enabled = index < 6 and ordered[index].global_position.distance_to(camera.global_position) < 20.0
+	var camera: Camera3D = get_viewport().get_camera_3d()
+	if camera != null:update_fire_lights(camera)
 	var world: Node3D = get_parent() as Node3D
 	var players: Node3D = world.get("players") as Node3D
 	if players == null:

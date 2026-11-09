@@ -1,0 +1,30 @@
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+Metal 4.0 - Forward Mobile - Using Device #0: Apple - Apple M5 Max (Apple9)
+
+BUILD: d8236a34+dirty [66f5f7f3a351]
+NAVE_ABUTMENT_READY: continuous arch and paving; old endpoint bracket replaced
+STRUCTURAL_RELIEF_READY: 58 meshes, walls [3, 4, 5, 6]
+GENERATED_KIT_PLACED: {}
+RED_DESCENT_GEOMETRY_READY: 17 routes, 13 rooms, 35 lit landmarks, sloping crossings
+MAP: Cinder Crypt (crypt)
+Hosting on UDP 19122
+DUNGEON_ENCOUNTER_READY: five guards across two vertically separated halls, no replacements
+NET host · build d8236a34+dirty [66f5f7f3a351]
+NET bolts in flight 0
+EXPLORER_MESHES: 5335
+FLOOR_SURFACE_RAY: (1100.0, 450.0) { "position": (-13.17672, -17.42629, 21.61635), "normal": (-0.635057, -0.152591, 0.757244), "path": "/root/MatchWorld/CinderCrypt/Architecture/StonePassage_node_-14_-19_24/Stone-stone_node_-14_-19_24_1", "two_sided": false, "instance": -1 }
+FLOOR_SURFACE_RAY: (1220.0, 650.0) { "position": (-12.31138, -18.22303, 22.25695), "normal": (-0.619826, -0.04523, 0.783435), "path": "/root/MatchWorld/CinderCrypt/Architecture/StonePassage_nave/Stone-stone_nave_11", "two_sided": false, "instance": -1 }
+FLOOR_SURFACE_RAY: (1250.0, 300.0) { "position": (-12.39194, -16.57388, 22.20597), "normal": (-0.59964, -0.000211, 0.80027), "path": "/root/MatchWorld/CinderCrypt/Architecture/StonePassage_nave/Stone-stone_nave_11", "two_sided": false, "instance": -1 }
+FLOOR_SURFACE_RAY: (700.0, 100.0) { "position": (-14.82955, -15.31391, 23.52872), "normal": (0.788908, 0.012784, 0.614378), "path": "/root/MatchWorld/CinderCrypt/Architecture/StonePassage_node_-14_-19_24/Stone-arch_node_-14_-19_24_4", "two_sided": false, "instance": -1 }
+FLOOR_SURFACE_RAY: (650.0, 250.0) { "position": (-16.97987, -15.84939, 22.62122), "normal": (0.246106, -0.77044, 0.588093), "path": "/root/MatchWorld/CinderCrypt/Architecture/Roots_nave_6_0/Roots_nave_6_0_0", "two_sided": false, "instance": -1 }
+FLOOR_SURFACE_RAY: (400.0, 700.0) { "position": (-15.8188, -19.08995, 25.28442), "normal": (-0.064845, 0.997374, -0.03225), "path": "/root/MatchWorld/CinderCrypt/Architecture/StonePassage_node_-14_-19_24/Stone-flag_node_-14_-19_24_21", "two_sided": false, "instance": -1 }
+FLOOR_SURFACE_RAY: (400.0, 650.0) { "position": (-16.72635, -19.1584, 25.13184), "normal": (-0.058239, 0.998273, -0.00776), "path": "/root/MatchWorld/CinderCrypt/Architecture/StonePassage_nave/Stone-flag_nave_19", "two_sided": false, "instance": -1 }
+FLOOR_SURFACE_RAY: (650.0, 680.0) { "position": (-14.99147, -19.05684, 23.86171), "normal": (-0.060144, 0.996369, -0.060262), "path": "/root/MatchWorld/CinderCrypt/Architecture/StonePassage_node_-14_-19_24/Stone-flag_node_-14_-19_24_21", "two_sided": false, "instance": -1 }
+FLOOR_SURFACE_RAY: (650.0, 740.0) { "position": (-14.37018, -19.01994, 24.22702), "normal": (-0.090074, 0.995571, -0.026931), "path": "/root/MatchWorld/CinderCrypt/Architecture/StonePassage_node_-14_-19_24/Stone-flag_node_-14_-19_24_21", "two_sided": false, "instance": -1 }
+FLOOR_SURFACE_RAY: (200.0, 800.0) { "position": (-15.34594, -19.04374, 26.27783), "normal": (-0.033256, 0.999182, 0.022999), "path": "/root/MatchWorld/CinderCrypt/Architecture/StonePassage_nave/Stone-flag_nave_19", "two_sided": false, "instance": -1 }
+NET host · build d8236a34+dirty [66f5f7f3a351]
+NET bolts in flight 0
+FLOOR_CONTROL: unbounded
+FLOOR_CONTROL: baseline
+WARNING: 7 RIDs of type "Texture" were leaked.
+   at: finalize (servers/rendering/rendering_device.cpp:8900)
