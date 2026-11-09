@@ -1,0 +1,110 @@
+[
+	{
+		"capture_frame_median_ms": 16.694,
+		"draw_calls": 40.0,
+		"primitives": 5418978.0,
+		"view": "root_tunnel_0-forward"
+	},
+	{
+		"capture_frame_median_ms": 16.681,
+		"draw_calls": 1815.0,
+		"primitives": 12837533.0,
+		"view": "root_tunnel_0-back"
+	},
+	{
+		"capture_frame_median_ms": 16.66,
+		"draw_calls": 1172.0,
+		"primitives": 10525893.0,
+		"view": "root_tunnel_1-forward"
+	},
+	{
+		"capture_frame_median_ms": 16.723,
+		"draw_calls": 182.0,
+		"primitives": 8683569.0,
+		"view": "root_tunnel_1-back"
+	},
+	{
+		"capture_frame_median_ms": 16.68,
+		"draw_calls": 1882.0,
+		"primitives": 12337300.0,
+		"view": "root_tunnel_2-forward"
+	},
+	{
+		"capture_frame_median_ms": 16.686,
+		"draw_calls": 126.0,
+		"primitives": 8782809.0,
+		"view": "root_tunnel_2-back"
+	},
+	{
+		"capture_frame_median_ms": 16.665,
+		"draw_calls": 349.0,
+		"primitives": 5772591.0,
+		"view": "root_tunnel_3-forward"
+	},
+	{
+		"capture_frame_median_ms": 16.734,
+		"draw_calls": 1139.0,
+		"primitives": 7997562.0,
+		"view": "root_tunnel_3-back"
+	},
+	{
+		"capture_frame_median_ms": 16.653,
+		"draw_calls": 1503.0,
+		"primitives": 13738699.0,
+		"view": "root_tunnel_4-forward"
+	},
+	{
+		"capture_frame_median_ms": 16.694,
+		"draw_calls": 179.0,
+		"primitives": 7941584.0,
+		"view": "root_tunnel_4-back"
+	},
+	{
+		"capture_frame_median_ms": 16.682,
+		"draw_calls": 968.0,
+		"primitives": 9608468.0,
+		"view": "root_tunnel_5-forward"
+	},
+	{
+		"capture_frame_median_ms": 16.65,
+		"draw_calls": 285.0,
+		"primitives": 9942178.0,
+		"view": "root_tunnel_5-back"
+	},
+	{
+		"capture_frame_median_ms": 16.641,
+		"draw_calls": 344.0,
+		"primitives": 4301987.0,
+		"view": "cave_bypass_0-forward"
+	},
+	{
+		"capture_frame_median_ms": 16.662,
+		"draw_calls": 820.0,
+		"primitives": 9103133.0,
+		"view": "cave_bypass_0-back"
+	},
+	{
+		"capture_frame_median_ms": 16.638,
+		"draw_calls": 931.0,
+		"primitives": 4660370.0,
+		"view": "cave_bypass_1-forward"
+	},
+	{
+		"capture_frame_median_ms": 16.675,
+		"draw_calls": 270.0,
+		"primitives": 4943206.0,
+		"view": "cave_bypass_1-back"
+	},
+	{
+		"capture_frame_median_ms": 16.663,
+		"draw_calls": 1593.0,
+		"primitives": 9394136.0,
+		"view": "cave_bypass_2-forward"
+	},
+	{
+		"capture_frame_median_ms": 16.66,
+		"draw_calls": 126.0,
+		"primitives": 3659051.0,
+		"view": "cave_bypass_2-back"
+	}
+]

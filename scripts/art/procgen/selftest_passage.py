@@ -168,3 +168,23 @@ architecture.bake_all([('tests','rock_policy',{0:[fixture]})],Path('/tmp/h024-ro
 assert all(abs(item.color[0]-.8)<1e-5 for item in fixture.data.color_attributes['Color'].data),'Continuous rock acquired baked partition occlusion'
 assert not json.loads(Path('/tmp/h024-rock-policy-selftest/tests/rock_policy.json').read_text())['ao'],'Continuous rock unexpectedly included in the AO bake'
 print('PASSAGE_CONTINUOUS_ROCK_COLOUR_OK',flush=True)
+# Real turn: straight-ahead blue ray must meet a wall; bridge doorway stays open.
+from procgen import stonelib,export
+node=nodes[(-23.0,-23.0,-16.0)]
+assert node.get('turning'),'Skew bridge handover still classified as a straight portal'
+lib=stonelib.Library(core.rng(177,'turn-test'),'squared_rubble',count=4,triangles=80)
+turn=node['turning'];groups=passage.turning_portal(lib,core.rng(177,'turn-fixture'),node['profile'],turn['profile'],node['at'],node['arrivals'][0]['away'],turn['axis'],'turn_fixture')
+rock=groups[20][0];rock.data.calc_loop_triangles()
+tree=BVHTree.FromPolygons([v.co for v in rock.data.vertices],[t.vertices[:] for t in rock.data.loop_triangles],all_triangles=True)
+eye=core.to_blender([-26.9093914,-21.4,-11.811367]);direction=Vector((.405960917,.910933495,.073457457))
+assert tree.ray_cast(eye,direction,20)[0] is not None,'Straight view still opens into unbounded exterior'
+assert tree.ray_cast(node['at']-turn['axis']*1.8+passage.UP*1.6,turn['axis'],3.5)[0] is None,'Bridge-facing door blocked'
+floor_collision=export.collision_copy(groups[24][0])
+assert abs(max(v.co.z for v in floor_collision.data.vertices)-node['at'].z)<1e-5,'Turning floor collision is below its walking surface'
+# A previously flat cut face now has bounded relief; shared points use one field.
+plain=passage.box('roughness_control',Vector((0,0,0)),Vector((1,0,0)),2,0,4)
+passage.carve_rock(plain,0)
+assert all(abs(passage.rock_cut_offset(Vector((x,y,0)),0).z)<1e-8 for x,y in [(0,0),(2,2)]),'Carving moved the floor'
+assert max(v.co.x for v in plain.data.vertices)-2>.025,'Rock face remains planar'
+assert max(passage.rock_cut_offset(v.co,0).length for v in plain.data.vertices)<.33,'Rock relief exceeds the safe profile budget'
+print('PASSAGE_TURNING_PORTAL_AND_CARVING_OK',flush=True)

@@ -1,33 +1,36 @@
 {
   "ao": {
     "Mortar_node_7_-18_21_0": {
-      "mean": 0.387,
+      "mean": 0.496,
       "min": 0.18
     },
     "Stone-arch_node_7_-18_21_0": {
-      "mean": 0.466,
+      "mean": 0.503,
       "min": 0.18
     },
     "Stone-ashlar_node_7_-18_21_0": {
-      "mean": 0.459,
+      "mean": 0.521,
       "min": 0.18
     },
     "Stone-stone_node_7_-18_21_0": {
-      "mean": 0.496,
+      "mean": 0.498,
       "min": 0.18
     }
   },
   "blender": "5.2.2 LTS",
   "files": {
-    "content/environments/procedural_architecture_v1/passages/node_7_-18_21.glb": "2108879199f5b27f0f85f3f6b3f85d103c1de3fa9b93608b19e3a98c6387e849"
+    "content/environments/procedural_architecture_v1/passages/node_7_-18_21.glb": "4d08196f8ed36f9c983dccdd16390757439fd07ae4825d4b6e8f845bf7560260"
   },
+  "floor_library_count": 24,
+  "generator": "scripts/art/rebuild_passage_junctions.py",
   "id": "node_7_-18_21",
   "situation": {
     "form": "portal",
     "routes": [
       "nave"
     ],
-    "rule": "aligned groin bay or through-depth portal"
+    "rule": "partitioned vault webs; recessed backing; ramp-fitted bay flags"
   },
-  "triangles": 29444
+  "triangles": 29448,
+  "wall_library_count": 24
 }

@@ -29,7 +29,7 @@ import math
 import bmesh
 import bpy
 import numpy as np
-from mathutils import Matrix, Vector
+from mathutils import Matrix, Vector, noise
 
 from . import core, masonry, shapes
 
@@ -362,6 +362,8 @@ def skew_bay(lib, rng, o: masonry.Opening, centre: Vector, axis: Vector, arrival
     groups[21] = pave_field(lib,centre-axis*h,axis,2*h,h,f'{name}_floor')
     for cutter in full + doors + wall_doors + chamber + outer + recessed_full + recessed_doors + recessed_chamber:
         core.discard(cutter)
+    if hewn:
+        for obj in groups[0]+groups[20]:carve_rock(obj,centre.z)
     return groups
 
 
@@ -766,6 +768,71 @@ def bay(lib, rng, quoins, o: masonry.Opening, centre: Vector, axis: Vector, side
     core.discard(cutter)
     mass['tone'] = -1.0
     groups[6] = [mass]
+    return groups
+
+
+def rock_cut_offset(co: Vector, floor: float) -> Vector:
+    """One world field keeps separately built rock/core interfaces together."""
+    weight=max(0.0,min(1.0,(co.z-floor-.12)/.65))
+    weight=weight*weight*(3-2*weight)
+    broad=noise.noise_vector(co*.85,noise_basis='PERLIN_ORIGINAL')*.15
+    chips=noise.noise_vector(co*3.7,noise_basis='PERLIN_ORIGINAL')*.035
+    return (broad+chips)*weight
+
+
+def carve_rock(obj, floor: float) -> None:
+    """Give long cut faces real relief; the floor stays fixed and walkable."""
+    _bake_transform(obj)
+    shell=bmesh.new();shell.from_mesh(obj.data)
+    bmesh.ops.triangulate(shell,faces=list(shell.faces))
+    for _ in range(7):
+        long=[edge for edge in shell.edges if edge.calc_length()>.55]
+        if not long:break
+        bmesh.ops.subdivide_edges(shell,edges=long,cuts=1,use_grid_fill=True)
+    for vertex in shell.verts:vertex.co+=rock_cut_offset(vertex.co,floor)
+    bmesh.ops.recalc_face_normals(shell,faces=list(shell.faces))
+    shell.to_mesh(obj.data);shell.free();obj.data.update()
+    obj.data.shade_smooth();obj.data.set_sharp_from_angle(angle=math.radians(38))
+
+
+def turning_portal(lib, rng, o: masonry.Opening, exit_profile: masonry.Opening,
+                   mouth: Vector, incoming: Vector, outward: Vector, name: str, quoins=None) -> dict:
+    """A chamber behind the bridge entry; the bridge owns everything beyond it."""
+    h=o.half; extent=h+THICKNESS
+    centre=mouth-outward*extent;side=UP.cross(outward);reach=4*extent
+    planes=[(centre+d*h,d) for d in (outward,side,-outward,-side)]
+    def air(padding):
+        chamber=clearance(o,centre,outward,-reach,reach,name+'_chamber',padding=padding)
+        parts={0:[chamber]};clip_groups(parts,[(p+n*padding,n) for p,n in planes])
+        del chamber['arch_clear']
+        arrival=clearance(o,mouth,incoming,0,reach,name+'_arrival',padding=padding)
+        # The skew tunnel enters the chamber, not the bridge-facing facade.
+        parts={0:[arrival]};clip_groups(parts,[(mouth-outward*(THICKNESS-padding),outward)])
+        del arrival['arch_clear']
+        exit=clearance(exit_profile,mouth,outward,-THICKNESS-padding,THICKNESS,name+'_bridge_door',padding=padding)
+        return [chamber,arrival,exit]
+    openings=air(0)
+    groups={}
+    for k,d in enumerate((outward,side,-outward,-side)):
+        along=d.cross(UP)
+        front=[masonry.Opening(extent-exit_profile.half,extent+exit_profile.half,-.2,exit_profile.spring,
+                               rise=exit_profile.crown-exit_profile.spring)] if k==0 else []
+        parts=masonry.Wall(2*extent,o.crown+RING+.3,THICKNESS,front,
+                           course=(.28,.4),stone=(.55,1.0)).build(lib,rng,quoins=quoins,name=name+'_wall',core=False)
+        masonry.place(parts,centre+d*h-along*extent,along,UP)
+        groups[k]=parts
+    subtract(groups,openings)
+    roof={0:_vault(rng,o,centre-outward*h,outward,2*h,name+'_roof')}
+    clip_groups(roof,planes);subtract(roof,openings[1:]);groups[4]=roof[0]
+    mass=box(name+'_mass',centre,outward,extent,-.15,o.crown+RING+.3);mass['tone']=-1
+    recessed=air(RECESS);backing={0:[mass]};subtract(backing,recessed);groups[20]=backing[0]
+    bed=box(name+'_bed',centre,outward,extent,-.45,-.12);bed['tone']=-1
+    # Render bedding sits beneath chipped flags; walking collision meets the
+    # existing flat root ribbon and the bridge start at the actual floor.
+    bed['walking_surface_lift']=.12
+    groups[24]=[bed]
+    groups[21]=pave_field(lib,centre-outward*extent,outward,2*extent,extent,name+'_floor')
+    for cutter in openings+recessed:core.discard(cutter)
     return groups
 
 

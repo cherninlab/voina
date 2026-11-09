@@ -32,6 +32,7 @@ const RUBBLE: String = "res://content/environments/procedural_rubble_v1/rooms/"
 var stone_passages: Array[Dictionary] = []
 ## Bays and portals built in stone: centre (x, y, z) and plan radius.
 var stone_nodes: Array[Vector4] = []
+var stone_turns: Array[Dictionary] = []
 var passage_landing: Dictionary = {}
 var relief_walls: PackedInt32Array = PackedInt32Array()
 var bonded_gallery: bool = false
@@ -387,6 +388,10 @@ func load_stone_passages() -> void:
 		var node: Dictionary = entry as Dictionary
 		var at: Array = node["at"] as Array
 		stone_nodes.append(Vector4(float(at[0]), float(at[1]), float(at[2]), float(node["radius"])))
+		if node.has("turning"):
+			var turn: Dictionary = node["turning"] as Dictionary
+			if not (turn["routes"] as Array).any(func(id: Variant) -> bool: return stale.has(String(id))):
+				stone_turns.append(turn)
 
 ## True where a stone build already encloses this point of an enclosed route:
 ## inside a stone passage's stretch, a bay or portal, or a stone room (at
@@ -934,8 +939,35 @@ func build_path(path: Dictionary, light_route: bool) -> void:
 				since_light += length
 				if light_route and since_light >= 13.0:
 					# Clear of the parapet a stone walk carries along its edge.
-					torch_posts.append(at + side * (width * 0.5 - (0.65 if stone_walk else 0.35)))
+					torch_posts.append(fit_turn_light(at + side * (width * 0.5 - (0.65 if stone_walk else 0.35))))
 					since_light = 0.0
+
+## A new turning chamber must not leave its old route torch inside a wall.
+func fit_turn_light(point: Vector3) -> Vector3:
+	for turn: Dictionary in stone_turns:
+		var c: Array = turn["centre"] as Array
+		var v: Array = turn["axis"] as Array
+		var centre: Vector3 = Vector3(float(c[0]),float(c[1]),float(c[2]))
+		var axis: Vector3 = Vector3(float(v[0]),0,float(v[2]))
+		var side: Vector3 = Vector3(-axis.z,0,axis.x)
+		var relative: Vector3 = point-centre
+		var h: float = float(turn["half"])
+		if absf(relative.y) < 1 and absf(relative.dot(axis)) < h+.9 and absf(relative.dot(side)) < h+.9:
+			var inset: float = h-.75
+			var best: Vector3 = centre
+			var best_clearance: float = -1.0
+			for corner: Vector2 in [Vector2(-inset,-inset),Vector2(-inset,inset),Vector2(inset,-inset),Vector2(inset,inset)]:
+				var candidate: Vector3 = centre+axis*corner.x+side*corner.y+Vector3.UP*relative.y
+				var clearance: float = INF
+				for path: Dictionary in paths:
+					var points: PackedVector3Array = path["points"] as PackedVector3Array
+					for index: int in range(points.size()-1):
+						clearance=minf(clearance,candidate.distance_to(Geometry3D.get_closest_point_to_segment(candidate,points[index],points[index+1])))
+				if clearance > best_clearance:
+					best_clearance=clearance
+					best=candidate
+			return best
+	return point
 
 ## Recessed solid bedding across the same mitred ribbon as the real paving.
 ## The original smooth walking triangles above it remain authoritative.

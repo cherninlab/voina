@@ -2,15 +2,15 @@
   "ageing": "restrained; 2.5 cm timber bow, 0\u20139 cm hewn relief",
   "ao": {
     "Mortar_cave_bypass_13": {
-      "mean": 0.187,
+      "mean": 0.33,
       "min": 0.18
     },
     "Mortar_cave_bypass_3": {
-      "mean": 0.233,
+      "mean": 0.375,
       "min": 0.18
     },
     "Mortar_cave_bypass_8": {
-      "mean": 0.252,
+      "mean": 0.444,
       "min": 0.18
     },
     "Stone-flag_cave_bypass_14": {
@@ -34,21 +34,23 @@
       "min": 0.18
     },
     "Stone-wood_cave_bypass_1005": {
-      "mean": 0.685,
+      "mean": 0.623,
       "min": 0.18
     },
     "Stone-wood_cave_bypass_1015": {
-      "mean": 0.599,
+      "mean": 0.572,
       "min": 0.18
     }
   },
   "blender": "5.2.2 LTS",
-  "continuous_rock_colour": {
-    "occlusion": "texture AO and live shadows; buried-cap vertex AO excluded",
-    "tone": 0.8
+  "excavation_relief": {
+    "enabled": true,
+    "floor_fade_m": 0.77,
+    "max_displacement_m": 0.33,
+    "sampling_m": 0.55
   },
   "files": {
-    "content/environments/procedural_architecture_v1/passages/cave_bypass.glb": "fe73f2950507eb101ee799074d710091d259f27d6183d5186223ac3df6efa94f"
+    "content/environments/procedural_architecture_v1/passages/cave_bypass.glb": "166bb0eb0281f6e31ed021bd605e580a207565370e382a6b1d103a097c4d6cb2"
   },
   "id": "cave_bypass",
   "profile_change": {
@@ -63,5 +65,5 @@
     "rule": "deep service bypass: timber shores in hewn rock",
     "width_m": 4.5
   },
-  "triangles": 29012
+  "triangles": 58836
 }

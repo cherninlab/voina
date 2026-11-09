@@ -2,27 +2,27 @@
   "ageing": "restrained; 2.5 cm timber bow, 0\u20139 cm hewn relief",
   "ao": {
     "Mortar_root_tunnel_13": {
-      "mean": 0.255,
+      "mean": 0.449,
       "min": 0.18
     },
     "Mortar_root_tunnel_18": {
-      "mean": 0.227,
+      "mean": 0.367,
       "min": 0.18
     },
     "Mortar_root_tunnel_23": {
-      "mean": 0.259,
+      "mean": 0.469,
       "min": 0.18
     },
     "Mortar_root_tunnel_28": {
-      "mean": 0.287,
+      "mean": 0.562,
       "min": 0.18
     },
     "Mortar_root_tunnel_3": {
-      "mean": 0.262,
+      "mean": 0.443,
       "min": 0.18
     },
     "Mortar_root_tunnel_8": {
-      "mean": 0.223,
+      "mean": 0.373,
       "min": 0.18
     },
     "Stone-flag_root_tunnel_14": {
@@ -30,7 +30,7 @@
       "min": 0.18
     },
     "Stone-flag_root_tunnel_19": {
-      "mean": 0.569,
+      "mean": 0.568,
       "min": 0.18
     },
     "Stone-flag_root_tunnel_24": {
@@ -38,7 +38,7 @@
       "min": 0.18
     },
     "Stone-flag_root_tunnel_29": {
-      "mean": 0.717,
+      "mean": 0.688,
       "min": 0.18
     },
     "Stone-flag_root_tunnel_4": {
@@ -50,11 +50,11 @@
       "min": 0.18
     },
     "Stone-stone_root_tunnel_1016": {
-      "mean": 0.264,
+      "mean": 0.261,
       "min": 0.18
     },
     "Stone-stone_root_tunnel_1026": {
-      "mean": 0.248,
+      "mean": 0.247,
       "min": 0.18
     },
     "Stone-stone_root_tunnel_1036": {
@@ -64,19 +64,17 @@
     "Stone-stone_root_tunnel_1046": {
       "mean": 0.254,
       "min": 0.18
-    },
-    "Stone-stone_root_tunnel_1056": {
-      "mean": 0.274,
-      "min": 0.18
     }
   },
   "blender": "5.2.2 LTS",
-  "continuous_rock_colour": {
-    "occlusion": "texture AO and live shadows; buried-cap vertex AO excluded",
-    "tone": 0.8
+  "excavation_relief": {
+    "enabled": true,
+    "floor_fade_m": 0.77,
+    "max_displacement_m": 0.33,
+    "sampling_m": 0.55
   },
   "files": {
-    "content/environments/procedural_architecture_v1/passages/root_tunnel.glb": "f44f04d2ac83ce7f175000c1a56d4d1a53c878e689fb190751b137da86b1f1b3"
+    "content/environments/procedural_architecture_v1/passages/root_tunnel.glb": "c5d7421c8719a34e6a7f4daafbb9067f29875cea35eca81b7875932eec7dd1cf"
   },
   "id": "root_tunnel",
   "profile_change": {
@@ -91,5 +89,5 @@
     "rule": "root route cut through the shaft rock",
     "width_m": 5.0
   },
-  "triangles": 68004
+  "triangles": 121624
 }

@@ -30,12 +30,16 @@ for node in ([] if elements else sorted(nodes.values(),key=lambda n:n['godot']))
     label='node_%d_%d_%d'%tuple(round(c) for c in node['godot'])
     if portals_only:
         arrival=node['arrivals'][0]
-        groups=passage.portal(lib,core.rng(177,'passage',label),quoins,arrival['profile'],node['at'],-arrival['away'],label)
+        if node.get('turning'):
+            turn=node['turning']
+            groups=passage.turning_portal(lib,core.rng(177,'passage',label),node['profile'],turn['profile'],node['at'],arrival['away'],turn['axis'],label,quoins=quoins)
+        else:
+            groups=passage.portal(lib,core.rng(177,'passage',label),quoins,arrival['profile'],node['at'],-arrival['away'],label)
     else:
         groups=passage.skew_bay(lib,core.rng(177,'passage',label),node['profile'],node['at'],node['axis'],node['arrivals'],label)
         architecture.fit_junction_floor(groups,node)
     hewn=all(a['route']['id'] in ('root_tunnel','cave_bypass') for a in node['arrivals'])
-    form='portal' if portals_only else 'hewn barrel chamber' if hewn else 'groin bay'
+    form='turning portal chamber' if node.get('turning') else 'portal' if portals_only else 'hewn barrel chamber' if hewn else 'groin bay'
     architecture.PASSAGE_REPORTS[label]={'situation':{'form':form,'routes':sorted({a['route']['id'] for a in node['arrivals']}),
         'rule':'single hewn chamber with actual arrival openings' if hewn and not portals_only else 'partitioned vault webs; recessed backing; ramp-fitted bay flags'},
         'generator':'scripts/art/rebuild_passage_junctions.py','wall_library_count':24,'floor_library_count':24}
@@ -43,4 +47,6 @@ for node in ([] if elements else sorted(nodes.values(),key=lambda n:n['godot']))
     print('JUNCTION_REBUILT',label,flush=True)
 core.flush_trash()
 architecture.bake_all(elements,core.ROOT/'content/environments/procedural_architecture_v1')
+if core.args():
+    architecture.write_index(layout,core.ROOT/'content/environments/procedural_architecture_v1')
 print('JUNCTIONS_BAKED',len(elements),flush=True)

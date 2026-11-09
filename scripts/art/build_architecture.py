@@ -365,6 +365,15 @@ def network(layout: dict) -> tuple:
             continue
         if len(arrivals) == 1:
             node['kind'] = 'portal' if node['open'] else 'dead'
+            if node['open']:
+                bridge=next(r for r in layout['routes'] if r['id']==node['open'][0])
+                endpoint=0 if node_key(bridge['points'][0])==key else -1
+                neighbour=1 if endpoint==0 else -2
+                delta=blender_point(bridge['points'][neighbour])-node['at']
+                exit_axis=Vector((delta.x,delta.y,0)).normalized()
+                if -arrivals[0]['away'].dot(exit_axis) < math.cos(math.radians(25)):
+                    node['turning']={'axis':exit_axis,'bridge':bridge,'profile':profile(bridge,layout)}
+                    node['turn_centre']=node['at']-exit_axis*(node['profile'].half+passage.THICKNESS)
         elif len(arrivals) == 2 and math.degrees(math.acos(max(-1.0, min(1.0, -arrivals[0]['away'].dot(arrivals[1]['away']))))) < 25.0:
             node['kind'] = 'mitre'
         else:
@@ -410,7 +419,7 @@ def run_planes(route: dict, number: int, stretch: tuple, nodes: dict) -> tuple:
                            arrival['away'].dot(away) > 0.99)
             if not skew_node(node):
                 planes.append((node['at'] + arrival['side'] * node['profile'].half, -arrival['side']))
-        elif node['kind'] == 'portal':
+        elif node['kind'] == 'portal' and not node.get('turning'):
             planes.append((node['at'] + away * passage.THICKNESS, -away))
         elif node['kind'] == 'door' and 'room_wall' in node:
             point, outward = node['room_wall'][1], node['room_wall'][2]
@@ -473,6 +482,21 @@ def fit_junction_floor(groups: dict, node: dict) -> None:
         obj.data.update()
 
 
+def node_route_hashes(node: dict) -> dict:
+    routes={a['route']['id']:a['route'].get('layout_hash') for a in node['arrivals']}
+    if node.get('turning'):
+        route=node['turning']['bridge'];routes[route['id']]=route.get('layout_hash')
+    return routes
+
+
+def node_record(node: dict) -> dict:
+    result={'at':list(node['godot']),'radius':round(node['profile'].half+passage.THICKNESS+.3,2),'kind':node['kind']}
+    if node.get('turning'):
+        result['turning']={'centre':core.to_godot(node['turn_centre']),'axis':core.to_godot(node['turning']['axis']),
+                           'half':node['profile'].half,'routes':list(node_route_hashes(node))}
+    return result
+
+
 def write_index(layout: dict, out: Path) -> None:
     """index.json from the layout alone (every piece is deterministic from it):
     the rooms with a stone build on disk and their roof tops, every passage
@@ -499,8 +523,8 @@ def write_index(layout: dict, out: Path) -> None:
         label = 'node_%d_%d_%d' % tuple(round(c) for c in node['godot'])
         if node['kind'] not in ('bay', 'portal') or not (out / 'passages' / f'{label}.glb').exists():
             continue
-        files.append({'file': f'passages/{label}.glb', 'routes': {a['route']['id']: a['route'].get('layout_hash') for a in node['arrivals']}})
-        built_nodes.append({'at': list(node['godot']), 'radius': round(node['profile'].half + passage.THICKNESS + 0.3, 2), 'kind': node['kind']})
+        files.append({'file': f'passages/{label}.glb', 'routes': node_route_hashes(node)})
+        built_nodes.append(node_record(node))
     index['passages'], index['files'], index['nodes'] = coverage, files, built_nodes
     sets = json.loads((core.ROOT / 'content/environments/procedural_props_aged_v1/sets.json').read_text())
     index['props'] = [spot for room in built for spot in prop_spots(room, layout, sets)]
@@ -525,7 +549,8 @@ def build_network(layout: dict, wanted: set, rng, lib, quoins) -> tuple:
         PASSAGE_REPORTS[route['id']] = {'situation': {'route': route['id'], 'width_m': route['width'],
             'form': style, 'rule': reason}, 'ageing': 'restrained; 2.5 cm timber bow, 0–9 cm hewn relief',
             'profile_change': {'enabled': route['id'] != 'return_gallery',
-                'max_widen_m_per_side': .28, 'max_lower_crown_m': .22, 'unchanged_join_m': 4.0}}
+                'max_widen_m_per_side': .28, 'max_lower_crown_m': .22, 'unchanged_join_m': 4.0},
+            'excavation_relief': {'enabled':style in ('hewn_rock','timber_mine'),'max_displacement_m':.33,'sampling_m':.55,'floor_fade_m':.77}}
         groups, key = {}, 0
         points = route['points']
         for number, stretch in enumerate(runs[route['id']]):
@@ -539,6 +564,11 @@ def build_network(layout: dict, wanted: set, rng, lib, quoins) -> tuple:
             floor_origin=a.lerp(b,t0)-Vector((0,0,(b.z-a.z)/Vector((b.x-a.x,b.y-a.y,0)).length*ext[0]))
             fit_junction_floor({21:pieces[4]},{'at':floor_origin,'arrivals':[{'route':route,'slope':(b.z-a.z)}]})
             for endpoint in (start, end):
+                if endpoint[0] == 'node' and nodes[endpoint[1]].get('turning'):
+                    node=nodes[endpoint[1]]
+                    cut=passage.box('turning_chamber_ownership',node['turn_centre'],node['turning']['axis'],node['profile'].half+passage.THICKNESS,-20,30)
+                    passage.subtract(pieces,[cut]);core.discard(cut)
+                    passage.clip_groups(pieces,[(node['at'],node['turning']['axis'])])
                 if endpoint[0] == 'node' and skew_node(nodes[endpoint[1]]):
                     node = nodes[endpoint[1]]
                     cut = passage.box('bay_footprint', node['at'], node['axis'], node['profile'].half,
@@ -561,6 +591,9 @@ def build_network(layout: dict, wanted: set, rng, lib, quoins) -> tuple:
                     floors = {4:pieces[4]};passage.subtract(floors,floor_cutters);pieces[4]=floors[4]
                     for cutter in floor_cutters:
                         core.discard(cutter)
+            if any(obj.data.name.startswith('tunnel_rock') for obj in pieces[0]):
+                for obj in pieces[0]+pieces[3]:
+                    passage.carve_rock(obj,a.lerp(b,t0).z)
             for group_id, group in pieces.items():
                 # Keep the five structural group names stable: the bonded
                 # upper-gallery bake consumes Mortar_return_gallery_<5*n+3>.
@@ -589,10 +622,16 @@ def build_network(layout: dict, wanted: set, rng, lib, quoins) -> tuple:
             fit_junction_floor(groups,node)
         else:
             arrival = node['arrivals'][0]
-            groups = passage.portal(lib, rng, quoins, arrival['profile'], node['at'], -arrival['away'], label)
+            if node.get('turning'):
+                turn=node['turning']
+                groups=passage.turning_portal(lib,rng,o,turn['profile'],node['at'],arrival['away'],turn['axis'],label,quoins=quoins)
+                PASSAGE_REPORTS[label]['situation'].update({'form':'turning portal chamber','exit_route':turn['bridge']['id'],
+                    'rule':'chamber behind bridge entry; closed forward wall and bridge-facing doorway'})
+            else:
+                groups = passage.portal(lib, rng, quoins, arrival['profile'], node['at'], -arrival['away'], label)
         elements.append(('passages', label, groups))
-        files.append({'file': f'passages/{label}.glb', 'routes': {a['route']['id']: a['route'].get('layout_hash') for a in node['arrivals']}})
-        built_nodes.append({'at': list(node['godot']), 'radius': round(o.half + passage.THICKNESS + 0.3, 2), 'kind': node['kind']})
+        files.append({'file': f'passages/{label}.glb', 'routes': node_route_hashes(node)})
+        built_nodes.append(node_record(node))
         print('PASSAGE_NODE', label, node['kind'], sorted(served), flush=True)
     return elements, coverage, files, built_nodes
 

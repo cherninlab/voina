@@ -1,7 +1,7 @@
 {
   "ao": {
     "Mortar_node_-41_-23_24_20": {
-      "mean": 0.183,
+      "mean": 0.314,
       "min": 0.18
     },
     "Stone-flag_node_-41_-23_24_21": {
@@ -10,12 +10,8 @@
     }
   },
   "blender": "5.2.2 LTS",
-  "continuous_rock_colour": {
-    "occlusion": "texture AO and live shadows; buried-cap vertex AO excluded",
-    "tone": 0.8
-  },
   "files": {
-    "content/environments/procedural_architecture_v1/passages/node_-41_-23_24.glb": "5d1feb869414eb25d63e19a604f32822dd89f29367585c4f73a9bf403842e955"
+    "content/environments/procedural_architecture_v1/passages/node_-41_-23_24.glb": "21dae0fe4328b56b7a334c72183a0c7fc36e2e52161f70570b8ec304f141c68f"
   },
   "id": "node_-41_-23_24",
   "situation": {
@@ -25,5 +21,5 @@
     ],
     "rule": "shared actual-axis barrel clearances"
   },
-  "triangles": 7806
+  "triangles": 28537
 }

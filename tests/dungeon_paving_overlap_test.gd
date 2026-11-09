@@ -37,6 +37,9 @@ func _initialize() -> void:
 	assert(not geometry.shaft_route_cuts(Vector2(-2,0),Vector2(2,0),[]).is_empty(), "An open crossing lost its doorway")
 	var room_door: Array[Dictionary] = [{"t0":0.0,"t1":1.0,"band":Vector2(-1,5)}]
 	assert(geometry.shaft_route_cuts(Vector2(-2,0),Vector2(2,0),room_door).is_empty(), "An open crossing duplicated the room's doorway")
+	geometry.stone_turns.assign([{"centre":[0,0,0],"axis":[1,0,0],"half":2.7}])
+	assert(geometry.fit_turn_light(Vector3(2.68,0,.1)).x < 2.0, "Turning chamber torch remains inside its wall")
+	assert(geometry.fit_turn_light(Vector3(10,0,0)) == Vector3(10,0,0), "Unrelated route torch moved")
 	geometry.free()
 	print("DUNGEON_PAVING_OVERLAP_OK: angled render overlap removed, uncovered floor and collision retained")
 	quit()

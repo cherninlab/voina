@@ -38,3 +38,8 @@ is published as a separate progress increment.
 
 Cave striping follow-up: `h024_remaining_v2/README.md` records the same-camera
 controls and colour-only correction; all non-colour GLB bytes are unchanged.
+
+
+### Excavation relief / root turning increment
+
+Root+cave walls and junctions now carry bounded actual rock relief with matching backing geometry. A contextual turning chamber closes the old root exit void and opens onto the unchanged low-span bridge. Full-depth arch, floor collision, fitted torch and low-span dependency metadata are included. Actual game 18-view normal + inspection sets, intermediate failures, generator/native-Jolt tests, 1,234m traversal, structure/import/smoke/export audits and protected31 hashes: `content/environments/red_descent/h024_remaining_v2/README.md`. The remaining lighting/material seams and nave support underside are not accepted or hidden.

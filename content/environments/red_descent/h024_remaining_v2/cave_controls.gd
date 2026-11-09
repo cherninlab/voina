@@ -41,12 +41,21 @@ func controls() -> void:
 		plain.shader.code = plain.shader.code.replace("color *= COLOR.rgb *","color *= ")
 		rocks.append({"node":visual,"original":original,"plain":plain})
 	var directory: String = "/tmp/h024-cave-controls-v2"
+	for argument: String in OS.get_cmdline_user_args():
+		if argument.begins_with("--capture-dir="):directory=argument.trim_prefix("--capture-dir=")
 	DirAccess.make_dir_recursive_absolute(directory)
-	for mode: String in ["baseline","no-live-shadows","no-baked-colour","neither"]:
+	for mode: String in ["baseline","no-live-shadows","no-baked-colour","neither","flat-geometry"]:
 		for record: Dictionary in lights:
 			(record["node"] as Light3D).shadow_enabled = bool(record["shadow"]) and mode not in ["no-live-shadows","neither"]
 		for record: Dictionary in rocks:
 			(record["node"] as MeshInstance3D).material_override = record["plain"] if mode in ["no-baked-colour","neither"] else record["original"]
+		if mode == "flat-geometry":
+			var flat: StandardMaterial3D = StandardMaterial3D.new()
+			flat.shading_mode = BaseMaterial3D.SHADING_MODE_UNSHADED
+			flat.albedo_color = Color(.1,.4,.8)
+			for record: Dictionary in rocks:(record["node"] as MeshInstance3D).material_override=flat
+			for node: Node in world.find_children("*","MeshInstance3D",true,false):
+				if not node.name.begins_with("Stone-rock"):(node as MeshInstance3D).visible=false
 		for frame: int in range(18): await process_frame
 		RenderingServer.force_draw()
 		assert(root.get_texture().get_image().save_png(directory.path_join(mode+".png")) == OK)

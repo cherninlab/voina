@@ -7,6 +7,7 @@ objects travel as glTF extras for sockets and metadata.
 from pathlib import Path
 
 import bpy
+from mathutils import Matrix
 
 from . import core
 
@@ -15,6 +16,8 @@ def collision_copy(obj: bpy.types.Object, kind: str = 'colonly') -> bpy.types.Ob
     """Duplicate `obj` as a Godot collision-only node (kind: colonly or convcolonly)."""
     copy = obj.copy()
     copy.data = obj.data.copy()
+    if obj.get('walking_surface_lift'):
+        copy.data.transform(Matrix.Translation((0,0,float(obj['walking_surface_lift']))))
     copy.name = f'{obj.name}-{kind}'
     return core.link(copy)
 

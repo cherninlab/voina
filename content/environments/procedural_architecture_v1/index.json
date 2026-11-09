@@ -101,6 +101,7 @@
     {
       "file": "passages/node_-23_-23_-16.glb",
       "routes": {
+        "low_span": "4765cad4d0a3f97f9ad53b57762e8a250ff013cc8fe713d4f79819c914493f8c",
         "root_tunnel": "0a7f77c625fe702318914cc3c05c313540627801ab267bbb81f2db78b3f73c1d"
       }
     },
@@ -896,7 +897,24 @@
         -16.0
       ],
       "kind": "portal",
-      "radius": 3.9
+      "radius": 3.9,
+      "turning": {
+        "axis": [
+          1.0,
+          0.0,
+          -0.0
+        ],
+        "centre": [
+          -26.600000381469727,
+          -23.0,
+          -16.0
+        ],
+        "half": 2.7,
+        "routes": [
+          "root_tunnel",
+          "low_span"
+        ]
+      }
     },
     {
       "at": [

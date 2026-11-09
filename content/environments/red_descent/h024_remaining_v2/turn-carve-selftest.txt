@@ -1,0 +1,21 @@
+SDF.R: Loader Marker V16.2.2 (__init__.py loaded from: /Users/theochernin/Library/Application Support/Blender/5.2/scripts/addons/rust_gpu_sdf_addon/__init__.py)
+SDF.R: --- Initializing GPU Engine (V16.2.2) ---
+SDF.R: No shader cache. This initial compilation may take a few minutes...
+SDF.R: Addon registered. Warming-up will start in 0.5s...
+PASSAGE_SELFTEST_OK
+PASSAGE_ROCK_UV_CONTINUITY_OK
+PASSAGE_PAVING_CONTINUITY_OK
+PASSAGE_HEWN_STRIPE_REGRESSION_OK 5.836876392364502 5.934675216674805
+INFO Draco is available, use library at /Applications/Blender.app/Contents/Resources/5.2/scripts/addons_core/io_scene_gltf2/libbf_intern_draco_bridge.dylib
+INFO MeshOptimizer is available, use library at /Applications/Blender.app/Contents/Resources/5.2/scripts/addons_core/io_scene_gltf2/libbf_intern_meshopt_bridge.dylib
+21:59:39 | INFO: Starting glTF 2.0 export
+21:59:39 | INFO: Extracting primitive: tunnel_rock_policy.001
+21:59:39 | INFO: Primitives created: 1
+21:59:39 | INFO: Finished glTF 2.0 export in 0.001954793930053711 s
+
+ARCHITECTURE_BAKED tests rock_policy 12 tris
+PASSAGE_CONTINUOUS_ROCK_COLOUR_OK
+PASSAGE_TURNING_PORTAL_AND_CARVING_OK
+Blender 5.2.2 LTS (hash d13f752e3b9c built 2026-09-15 01:49:19)
+
+Blender quit
