@@ -11,3 +11,5 @@ Eight existing GLBs were updated in place at their COLOR_0 bytes. The audit prov
 Editor import, core smoke and the generator regression passed. The regression generates a rock fixture through the real bake and verifies its tone and exclusion from the AO output. The previous capsule traversal remains applicable to the byte-identical collision. Capture shutdown still reports a Texture RID leak.
 
 Root-to-low-span turning interface, landing underside and masonry/threshold finishing remain in progress; this increment is not whole-builder acceptance.
+
+The initial published generator test failed because a fresh-break brightness multiplier still applied to rock (.864 instead of .8). The follow-up excludes continuous rock from that multiplier as well. The corrected real-bake regression passes; the [initial failure](rock-selftest-initial-failure.txt) is retained. Generated game assets already had the intended .8 tone.

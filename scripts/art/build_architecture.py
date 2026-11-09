@@ -709,7 +709,7 @@ def bake_all(elements: list, out: Path, samples: int = 24) -> list:
             colour = obj.data.color_attributes['Color']
             for item in colour.data:
                 r, g, b, _ = item.color
-                shade = r * g * 1.25 * (1.08 if b > 0.5 else 1.0)
+                shade = r * g * 1.25 * (1.08 if b > 0.5 and not obj.name.startswith('Stone-rock_') else 1.0)
                 item.color = (shade, shade, shade, 1.0)
         collisions = [export.collision_copy(obj, 'colonly') for obj in objects if obj.name.startswith('Mortar')]
         for obj in collisions:

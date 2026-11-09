@@ -1,0 +1,24 @@
+SDF.R: Loader Marker V16.2.2 (__init__.py loaded from: /Users/theochernin/Library/Application Support/Blender/5.2/scripts/addons/rust_gpu_sdf_addon/__init__.py)
+SDF.R: --- Initializing GPU Engine (V16.2.2) ---
+SDF.R: No shader cache. This initial compilation may take a few minutes...
+SDF.R: Addon registered. Warming-up will start in 0.5s...
+PASSAGE_SELFTEST_OK
+PASSAGE_ROCK_UV_CONTINUITY_OK
+PASSAGE_PAVING_CONTINUITY_OK
+PASSAGE_HEWN_STRIPE_REGRESSION_OK 5.858886241912842 5.9343671798706055
+INFO Draco is available, use library at /Applications/Blender.app/Contents/Resources/5.2/scripts/addons_core/io_scene_gltf2/libbf_intern_draco_bridge.dylib
+INFO MeshOptimizer is available, use library at /Applications/Blender.app/Contents/Resources/5.2/scripts/addons_core/io_scene_gltf2/libbf_intern_meshopt_bridge.dylib
+21:40:00 | INFO: Starting glTF 2.0 export
+21:40:00 | INFO: Extracting primitive: tunnel_rock_policy.001
+21:40:00 | INFO: Primitives created: 1
+21:40:00 | INFO: Finished glTF 2.0 export in 0.0016779899597167969 s
+
+ARCHITECTURE_BAKED tests rock_policy 12 tris
+Traceback (most recent call last):
+  File "/Users/theochernin/Projects/MultiPlayerProject-agents/theo-codex-tunnels-1/scripts/art/procgen/selftest_passage.py", line 168, in <module>
+    assert all(abs(item.color[0]-.8)<1e-5 for item in fixture.data.color_attributes['Color'].data),'Continuous rock acquired baked partition occlusion'
+           ~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Continuous rock acquired baked partition occlusion
+Blender 5.2.2 LTS (hash d13f752e3b9c built 2026-09-15 01:49:19)
+
+Blender quit
