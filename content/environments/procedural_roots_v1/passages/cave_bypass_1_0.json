@@ -12,6 +12,12 @@
     "headroom_m": 2.7,
     "route_margin_m": 0.3
   },
+  "colour_only_source_rebind": {
+    "geometry_bytes_unchanged": true,
+    "previous": {
+      "content/environments/procedural_architecture_v1/passages/cave_bypass.glb": "fe4c584992bf1ffd544647f5fc63a1df27aaa93a74e0739f8a24b6b3559c75b5"
+    }
+  },
   "diameter_cm": {
     "max": 9.6,
     "min": 0.1
@@ -206,7 +212,7 @@
   "roots": 19,
   "seed": 178,
   "sources": {
-    "content/environments/procedural_architecture_v1/passages/cave_bypass.glb": "fe4c584992bf1ffd544647f5fc63a1df27aaa93a74e0739f8a24b6b3559c75b5",
+    "content/environments/procedural_architecture_v1/passages/cave_bypass.glb": "fe73f2950507eb101ee799074d710091d259f27d6183d5186223ac3df6efa94f",
     "scripts/art/build_roots.py": "ffb913f950c8e7f2f63fce40eb35f85e37508f5dba4a51051e3ffc4c9bf0843c",
     "scripts/art/procgen/roots.py": "3714841f150fe6903e6bff1c93a3327cfa183633ebb2dd0998b8a05f95609c92"
   },

@@ -1,0 +1,50 @@
+{
+  "cave_bypass.glb": {
+    "vertices": 4096,
+    "non_colour_bytes_identical": true,
+    "before": "fe4c584992bf1ffd544647f5fc63a1df27aaa93a74e0739f8a24b6b3559c75b5",
+    "after": "fe73f2950507eb101ee799074d710091d259f27d6183d5186223ac3df6efa94f"
+  },
+  "node_-31_-23_6.glb": {
+    "vertices": 1898,
+    "non_colour_bytes_identical": true,
+    "before": "1b35e082f74231bd979dcffd5ebe5f3ad65d1c7057e0f8c4f8801997477c2be8",
+    "after": "01bed5a075410605fa563191826f4c64eeeb8867d01cbdcdf9b239d162723312"
+  },
+  "node_-38_-23_-2.glb": {
+    "vertices": 2697,
+    "non_colour_bytes_identical": true,
+    "before": "267714fc941a9839fb36370656b0930d0eb69575d1fcf827697869913677b772",
+    "after": "3377b11635701ccee5b454001472a18ec7d1afe9293519c1d9e43f631b0c8a0a"
+  },
+  "node_-41_-23_14.glb": {
+    "vertices": 1615,
+    "non_colour_bytes_identical": true,
+    "before": "c7c285d881417931324d00dfcafa6c16ee2c8164fbc1feb18b5515d0c20cf383",
+    "after": "88b5c97cdeb4aa8eb8d0fffdb7010e0ac079cc3840d15870d0b6e96cde2b6c7b"
+  },
+  "node_-41_-23_24.glb": {
+    "vertices": 1414,
+    "non_colour_bytes_identical": true,
+    "before": "f0c4db88b84da2568cf40c0af3cd4140108145c26b4bd1f7dfdf7b1562edd22a",
+    "after": "5d1feb869414eb25d63e19a604f32822dd89f29367585c4f73a9bf403842e955"
+  },
+  "node_-43_-23_-6.glb": {
+    "vertices": 1313,
+    "non_colour_bytes_identical": true,
+    "before": "59de25895453c24d0719710e5eff1fc6ea5afaa625c3b6035aa3679b8f4cc86f",
+    "after": "2eabf60bd188b0c9a6038f424ad5ae44a071456fb8f6c67e85b230818d155849"
+  },
+  "node_-46_-23_7.glb": {
+    "vertices": 6,
+    "non_colour_bytes_identical": true,
+    "before": "547b97519270c3f8fc6cfbb869729ef2492a581788acf44ab5c33081b5ae5e52",
+    "after": "a24297bca098203a49d41318cb160f6d47fd67f3d8fd97dad77e54e8baa4e516"
+  },
+  "root_tunnel.glb": {
+    "vertices": 9576,
+    "non_colour_bytes_identical": true,
+    "before": "aaf2608f99c8e1f1403e21e77cd40bccc64d38b34161a0144138214b6c967bd0",
+    "after": "f44f04d2ac83ce7f175000c1a56d4d1a53c878e689fb190751b137da86b1f1b3"
+  }
+}

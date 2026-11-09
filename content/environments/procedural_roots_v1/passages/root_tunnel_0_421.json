@@ -12,6 +12,12 @@
     "headroom_m": 2.7,
     "route_margin_m": 0.3
   },
+  "colour_only_source_rebind": {
+    "geometry_bytes_unchanged": true,
+    "previous": {
+      "content/environments/procedural_architecture_v1/passages/root_tunnel.glb": "aaf2608f99c8e1f1403e21e77cd40bccc64d38b34161a0144138214b6c967bd0"
+    }
+  },
   "diameter_cm": {
     "max": 11.3,
     "min": 0.4
@@ -116,7 +122,7 @@
   "roots": 7,
   "seed": 178,
   "sources": {
-    "content/environments/procedural_architecture_v1/passages/root_tunnel.glb": "aaf2608f99c8e1f1403e21e77cd40bccc64d38b34161a0144138214b6c967bd0",
+    "content/environments/procedural_architecture_v1/passages/root_tunnel.glb": "f44f04d2ac83ce7f175000c1a56d4d1a53c878e689fb190751b137da86b1f1b3",
     "scripts/art/build_roots.py": "ffb913f950c8e7f2f63fce40eb35f85e37508f5dba4a51051e3ffc4c9bf0843c",
     "scripts/art/procgen/roots.py": "3714841f150fe6903e6bff1c93a3327cfa183633ebb2dd0998b8a05f95609c92"
   },

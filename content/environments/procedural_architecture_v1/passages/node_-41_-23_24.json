@@ -7,15 +7,15 @@
     "Stone-flag_node_-41_-23_24_21": {
       "mean": 0.682,
       "min": 0.18
-    },
-    "Stone-rock_node_-41_-23_24_0": {
-      "mean": 0.402,
-      "min": 0.18
     }
   },
   "blender": "5.2.2 LTS",
+  "continuous_rock_colour": {
+    "occlusion": "texture AO and live shadows; buried-cap vertex AO excluded",
+    "tone": 0.8
+  },
   "files": {
-    "content/environments/procedural_architecture_v1/passages/node_-41_-23_24.glb": "f0c4db88b84da2568cf40c0af3cd4140108145c26b4bd1f7dfdf7b1562edd22a"
+    "content/environments/procedural_architecture_v1/passages/node_-41_-23_24.glb": "5d1feb869414eb25d63e19a604f32822dd89f29367585c4f73a9bf403842e955"
   },
   "id": "node_-41_-23_24",
   "situation": {

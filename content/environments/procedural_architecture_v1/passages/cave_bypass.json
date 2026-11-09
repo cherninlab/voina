@@ -25,18 +25,6 @@
       "mean": 0.558,
       "min": 0.18
     },
-    "Stone-rock_cave_bypass_0": {
-      "mean": 0.577,
-      "min": 0.18
-    },
-    "Stone-rock_cave_bypass_10": {
-      "mean": 0.389,
-      "min": 0.18
-    },
-    "Stone-rock_cave_bypass_5": {
-      "mean": 0.552,
-      "min": 0.18
-    },
     "Stone-stone_cave_bypass_1006": {
       "mean": 0.256,
       "min": 0.18
@@ -55,8 +43,12 @@
     }
   },
   "blender": "5.2.2 LTS",
+  "continuous_rock_colour": {
+    "occlusion": "texture AO and live shadows; buried-cap vertex AO excluded",
+    "tone": 0.8
+  },
   "files": {
-    "content/environments/procedural_architecture_v1/passages/cave_bypass.glb": "fe4c584992bf1ffd544647f5fc63a1df27aaa93a74e0739f8a24b6b3559c75b5"
+    "content/environments/procedural_architecture_v1/passages/cave_bypass.glb": "fe73f2950507eb101ee799074d710091d259f27d6183d5186223ac3df6efa94f"
   },
   "id": "cave_bypass",
   "profile_change": {

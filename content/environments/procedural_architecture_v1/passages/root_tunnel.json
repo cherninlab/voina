@@ -49,30 +49,6 @@
       "mean": 0.565,
       "min": 0.18
     },
-    "Stone-rock_root_tunnel_0": {
-      "mean": 0.46,
-      "min": 0.18
-    },
-    "Stone-rock_root_tunnel_10": {
-      "mean": 0.613,
-      "min": 0.18
-    },
-    "Stone-rock_root_tunnel_15": {
-      "mean": 0.527,
-      "min": 0.18
-    },
-    "Stone-rock_root_tunnel_20": {
-      "mean": 0.705,
-      "min": 0.18
-    },
-    "Stone-rock_root_tunnel_25": {
-      "mean": 0.773,
-      "min": 0.18
-    },
-    "Stone-rock_root_tunnel_5": {
-      "mean": 0.538,
-      "min": 0.18
-    },
     "Stone-stone_root_tunnel_1016": {
       "mean": 0.264,
       "min": 0.18
@@ -95,8 +71,12 @@
     }
   },
   "blender": "5.2.2 LTS",
+  "continuous_rock_colour": {
+    "occlusion": "texture AO and live shadows; buried-cap vertex AO excluded",
+    "tone": 0.8
+  },
   "files": {
-    "content/environments/procedural_architecture_v1/passages/root_tunnel.glb": "aaf2608f99c8e1f1403e21e77cd40bccc64d38b34161a0144138214b6c967bd0"
+    "content/environments/procedural_architecture_v1/passages/root_tunnel.glb": "f44f04d2ac83ce7f175000c1a56d4d1a53c878e689fb190751b137da86b1f1b3"
   },
   "id": "root_tunnel",
   "profile_change": {

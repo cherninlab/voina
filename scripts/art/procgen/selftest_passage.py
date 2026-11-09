@@ -160,3 +160,11 @@ def first_distance(objects):
 rock_distance,core_distance=first_distance(hewn[0]),first_distance(hewn[20])
 assert rock_distance < core_distance-.025,('Mortar protrudes through hewn lining',rock_distance,core_distance)
 print('PASSAGE_HEWN_STRIPE_REGRESSION_OK',rock_distance,core_distance,flush=True)
+# Continuous rock keeps its .8 tone; buried partition caps must not bake bands.
+from pathlib import Path
+fixture=passage.box('continuous_rock_policy',Vector((100,100,0)),Vector((1,0,0)),1,0,2)
+fixture.data.name='tunnel_rock_policy';fixture['tone']=.8;fixture['frame']=[1,0,0,0,0,1,0,-1,0]
+architecture.bake_all([('tests','rock_policy',{0:[fixture]})],Path('/tmp/h024-rock-policy-selftest'))
+assert all(abs(item.color[0]-.8)<1e-5 for item in fixture.data.color_attributes['Color'].data),'Continuous rock acquired baked partition occlusion'
+assert not json.loads(Path('/tmp/h024-rock-policy-selftest/tests/rock_policy.json').read_text())['ao'],'Continuous rock unexpectedly included in the AO bake'
+print('PASSAGE_CONTINUOUS_ROCK_COLOUR_OK',flush=True)

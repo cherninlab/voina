@@ -25,7 +25,7 @@ byte-identical. Capture and standalone test logs include shutdown resource-leak
 warnings; the diagnostic wall probe also reports resources in use at exit.
 
 Open: root-to-low-span turning interface and exposed void; some junction cut
-edges and threshold/material changes; cave striping in full-scene inspection;
+edges and threshold/material changes; 
 nave support underside finish; weak lighting/dressing. Growth audit still flags
 three walking-corridor vertices and ten vertices deeper than 1 cm into stone;
 maximum sampled attachment gap is 0.059 m. Passing traversal does not resolve
@@ -35,3 +35,6 @@ acceptance is claimed.
 Detailed game captures and rejected iterations are retained in the private
 worktree's `content/environments/red_descent/h024_tunnels_v1/`; review evidence
 is published as a separate progress increment.
+
+Cave striping follow-up: `h024_remaining_v2/README.md` records the same-camera
+controls and colour-only correction; all non-colour GLB bytes are unchanged.

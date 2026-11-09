@@ -698,7 +698,9 @@ def bake_all(elements: list, out: Path, samples: int = 24) -> list:
     are the true openings; one GLB per room or passage."""
     rng = core.rng(177, 'mapping')
     merged = [(kind, label, merge(label, groups, rng)) for kind, label, groups in elements]
-    ao = bake.ao_to_color([obj for _, _, objects in merged for obj in objects], samples=samples, distance=0.5)
+    # Buried partition caps pollute vertex AO on continuous rock skins.
+    # Their texture AO and live shadows remain; placed stones keep vertex AO.
+    ao = bake.ao_to_color([obj for _, _, objects in merged for obj in objects if not obj.name.startswith('Stone-rock_')], samples=samples, distance=0.5)
     written = []
     for kind, label, objects in merged:
         if not objects:

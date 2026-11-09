@@ -1,3 +1,5 @@
+> Historical snapshot at e1224da9. New fixes and game captures are recorded in [remaining repairs](../h024_remaining_v2/README.md).
+
 # H-024: actual-game diagnostic build
 
 **Progress shipped; builder incomplete and not visually accepted.** Code and generated assets are on `origin/main` in [f2504af0](https://github.com/cherninlab/voina/commit/f2504af050c0871d95408af0d99159d86ad38f7f), following Theo’s explicit push request. This review is a progress record, not a completed-builder or acceptance claim.
