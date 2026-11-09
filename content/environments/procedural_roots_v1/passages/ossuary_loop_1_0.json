@@ -1,7 +1,7 @@
 {
   "ao": {
     "Roots_ossuary_loop_1_0_0": {
-      "mean": 0.544,
+      "mean": 0.484,
       "min": 0.2
     }
   },
@@ -13,12 +13,13 @@
     "route_margin_m": 0.3
   },
   "diameter_cm": {
-    "max": 12.4,
-    "min": 0.5
+    "max": 8.6,
+    "min": 0.4
   },
   "files": {
-    "content/environments/procedural_roots_v1/passages/ossuary_loop_1_0.glb": "c35b6e38f21e59b8139d86d394f0ba17ba9c48937a7dbfbfb2b1ea0bf8962138"
+    "content/environments/procedural_roots_v1/passages/ossuary_loop_1_0.glb": "8bdbc21e0f1b486fb8bc9873a21a10b23dec31e692c02f0278bb918d7ad03e79"
   },
+  "growth_budget": 15000,
   "id": "ossuary_loop_1_0",
   "layout_hash": "20aa6015a7f9f4f7c12b59b90acfe080b07298d8b2b180c7054b532be72d00d4",
   "meshes": [
@@ -33,31 +34,58 @@
   },
   "qa": {
     "audit": {
-      "cut_deeper_than_1cm": 10,
-      "cut_into_stone": 66,
-      "emerging_from_joint": 1,
+      "cut_deeper_than_1cm": 0,
+      "cut_into_stone": 0,
+      "emerging_from_joint": 0,
       "in_walking_corridor": 0,
-      "vertices": 7033
+      "vertices": 530
     },
     "cling_gap_m": {
-      "max": 0.0305,
-      "p50": 0.0052,
-      "p95": 0.0114
+      "max": 0.0134,
+      "p50": 0.0041,
+      "p95": 0.0123
     },
-    "clipped_at_corridor": 3,
-    "pruned": 0,
-    "rings": 1414,
-    "rings_touching_stone": 44
+    "clipped_at_corridor": 0,
+    "pruned": 129,
+    "rings": 57,
+    "rings_touching_stone": 12,
+    "terminal_rings": [
+      {
+        "end": "start",
+        "exposed_vertices": 0,
+        "root": 105,
+        "vertices": 10
+      },
+      {
+        "end": "return",
+        "exposed_vertices": 0,
+        "root": 105,
+        "vertices": 10
+      },
+      {
+        "end": "start",
+        "exposed_vertices": 0,
+        "root": 109,
+        "vertices": 10
+      },
+      {
+        "end": "return",
+        "exposed_vertices": 0,
+        "root": 109,
+        "vertices": 10
+      }
+    ],
+    "unmounted_systems_pruned": 22
   },
-  "roots": 154,
+  "roots": 2,
   "seed": 178,
   "sources": {
-    "procedural_architecture_v1/passages/ossuary_loop.glb": "99cd9381aab1f0cbbc3192792798c79180b551387b3f0c6f0678382dbff7e974"
+    "content/environments/procedural_architecture_v1/passages/ossuary_loop.glb": "a25e6f7d550fdf2f632c1fb4c1dd0460414e31683fd510eff94e6c91434a9767",
+    "scripts/art/build_roots.py": "ffb913f950c8e7f2f63fce40eb35f85e37508f5dba4a51051e3ffc4c9bf0843c",
+    "scripts/art/procgen/roots.py": "3714841f150fe6903e6bff1c93a3327cfa183633ebb2dd0998b8a05f95609c92"
   },
   "systems": {
-    "branch": 7,
-    "loop": 7,
-    "trunk": 8
+    "trunk": 2
   },
-  "triangles": 13884
+  "triangles": 1132
 }

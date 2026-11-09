@@ -17,7 +17,7 @@ from mathutils import Matrix, Vector, noise
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 import build_architecture as architecture
-from procgen import core, export, masonry, stonelib, stones
+from procgen import core, export, masonry, passage, stonelib, stones
 
 OUT = core.ROOT / "content/environments/red_descent/upper_crossing_v1"
 SOURCE = core.ROOT / "content/environments/procedural_architecture_v1/passages/return_gallery.glb"
@@ -29,48 +29,6 @@ def coordinates(objects):
                          for vertex in obj.data.vertices)
         for obj in objects
     }
-
-
-def cap_mass(obj, centre, side, radius, spring_angle):
-    """Intersect the original mass with tangent planes outside the intrados."""
-    mesh = bmesh.new()
-    mesh.from_mesh(obj.data)
-    bmesh.ops.remove_doubles(mesh, verts=list(mesh.verts), dist=0.00001)
-    protected = [
-        vertex.co.copy() for vertex in mesh.verts
-        if vertex.co.z < -7.65 or
-        math.hypot((vertex.co - centre).dot(side), vertex.co.z - centre.z) < radius - 0.3
-    ]
-    for index in range(19):
-        angle = spring_angle + (math.pi - 2 * spring_angle) * index / 18.0
-        radial = side * math.cos(angle) + Vector((0, 0, math.sin(angle)))
-        result = bmesh.ops.bisect_plane(
-            mesh, geom=list(mesh.verts) + list(mesh.edges) + list(mesh.faces),
-            plane_co=centre + radial * radius, plane_no=radial,
-            clear_outer=True, dist=0.00001,
-        )
-        edges = [edge for edge in result["geom_cut"] if isinstance(edge, bmesh.types.BMEdge)]
-        if edges:
-            caps = bmesh.ops.holes_fill(mesh, edges=edges, sides=0)["faces"]
-            # New cap loops otherwise default to black, which makes a solid
-            # shoulder read as an open slit in the game.
-            for layer in list(mesh.loops.layers.float_color.values()) + list(mesh.loops.layers.color.values()):
-                for face in caps:
-                    for loop in face.loops:
-                        loop[layer] = (0.72, 0.72, 0.72, 1.0)
-    bmesh.ops.triangulate(mesh, faces=list(mesh.faces))
-    bmesh.ops.recalc_face_normals(mesh, faces=list(mesh.faces))
-    assert all(edge.is_manifold for edge in mesh.edges), obj.name
-    retained = {tuple(round(value, 5) for value in vertex.co) for vertex in mesh.verts}
-    assert all(tuple(round(value, 5) for value in point) in retained for point in protected), obj.name
-    mesh.to_mesh(obj.data)
-    mesh.free()
-    obj.data.update()
-    obj.data.calc_loop_triangles()
-    obj.data.normals_split_custom_set([(0.0, 0.0, 0.0)] * len(obj.data.loops))
-    for face in obj.data.polygons:
-        face.use_smooth = False
-    return len(protected)
 
 
 def rebuild_cement(target, profile, origin, direction, side, start, end, planes):
@@ -143,41 +101,7 @@ def export_bonded_gallery(objects, roof, facing, collisions):
             if not obj.name.startswith("Mortar"):
                 # The legacy interior libraries deliberately omitted hidden
                 # backs. Close them before packaging the bonded wall object.
-                shell = bmesh.new(); shell.from_mesh(obj.data)
-                bmesh.ops.remove_doubles(shell, verts=list(shell.verts), dist=0.000001)
-                boundary = {edge for edge in shell.edges if edge.is_boundary}
-                caps = []
-                # Jagged backs are nonplanar. A generic ngon fill can reuse
-                # visible stone diagonals and create nonmanifold edges. Give
-                # each closed boundary its own hidden centre and triangle fan.
-                while boundary:
-                    edge = next(iter(boundary))
-                    start = current = edge.verts[0]
-                    loop = []
-                    while True:
-                        loop.append(current)
-                        boundary.remove(edge)
-                        current = edge.other_vert(current)
-                        if current == start:
-                            break
-                        choices = [candidate for candidate in current.link_edges if candidate in boundary]
-                        assert len(choices) == 1, (obj.name, "Branched open back")
-                        edge = choices[0]
-                    centre = shell.verts.new(sum((vertex.co for vertex in loop), Vector()) / len(loop))
-                    for index, vertex in enumerate(loop):
-                        caps.append(shell.faces.new((vertex, loop[(index + 1) % len(loop)], centre)))
-                for layer in list(shell.loops.layers.float_color.values()) + list(shell.loops.layers.color.values()):
-                    for face in caps:
-                        for loop in face.loops:
-                            loop[layer] = (0.65, 0.65, 0.65, 1)
-                bmesh.ops.triangulate(shell, faces=list(shell.faces))
-                bmesh.ops.recalc_face_normals(shell, faces=list(shell.faces))
-                assert all(edge.is_manifold for edge in shell.edges), obj.name
-                shell.to_mesh(obj.data); shell.free()
-                obj.data.update(); obj.data.calc_loop_triangles()
-                obj.data.normals_split_custom_set([(0.0, 0.0, 0.0)] * len(obj.data.loops))
-                for face in obj.data.polygons:
-                    face.use_smooth = False
+                passage.close_stone_back(obj)
             material = mortar_material if obj.name.startswith("Mortar") else stone_material
             obj.data.materials.clear(); obj.data.materials.append(material)
             for face in obj.data.polygons:
@@ -196,7 +120,7 @@ def export_bonded_gallery(objects, roof, facing, collisions):
 
 def gallery():
     core.empty_scene()
-    bpy.ops.import_scene.gltf(filepath=str(SOURCE))
+    bpy.ops.import_scene.gltf(filepath=str(SOURCE), merge_vertices=True)
     objects = [obj for obj in bpy.context.scene.objects if obj.type == "MESH"]
     for obj in objects:
         matrix = obj.matrix_world.copy()
@@ -213,7 +137,6 @@ def gallery():
     wall_library = stonelib.Library(core.rng(20261107, "gallery-facing"), "squared_rubble", count=8, triangles=140)
     facings = []
     roofs = []
-    protected = 0
     for segment, (p, q) in enumerate(zip(route["points"], route["points"][1:])):
         a = core.to_blender(p)
         b = core.to_blender(q)
@@ -223,7 +146,6 @@ def gallery():
         side = direction.cross(Vector((0, 0, 1)))
         centre = a + Vector((0, 0, profile.cy))
         mass = next(obj for obj in objects if obj.name == f"Mortar_return_gallery_{segment * 5 + 3}")
-        protected += cap_mass(mass, centre, side, profile.radius + 0.52, profile.a0)
         # Use the actual clipped longitudinal extent of the imported mass.
         along = [(vertex.co - a).dot(direction) for vertex in mass.data.vertices]
         start, end = min(along), max(along)
@@ -273,6 +195,22 @@ def gallery():
                 else:
                     core.discard(piece)
         rebuild_cement(mass, profile, a, direction, side, start, end, planes)
+        for endpoint in stretch[3:]:
+            if endpoint[0] == 'node' and architecture.skew_node(nodes[endpoint[1]]):
+                node = nodes[endpoint[1]]
+                cut = passage.box('gallery_bay_footprint', node['at'], node['axis'], node['profile'].half, -20, 30)
+                pieces = {1: [obj for obj in roofs if obj['gallery_segment'] == segment],
+                          2: [obj for obj in facings if obj['gallery_segment'] == segment]}
+                neighbours = architecture.joining_clearances(node, route['id'], stretch_number)
+                passage.subtract(pieces, [cut] + neighbours)
+                core_cut=passage.box('recessed_gallery_bay',node['at'],node['axis'],node['profile'].half+.12,-20,30)
+                core_neighbours=architecture.joining_clearances(node,route['id'],stretch_number,.12)
+                passage.subtract({0:[mass]},[core_cut]+core_neighbours)
+                roofs = [obj for obj in roofs if obj['gallery_segment'] != segment] + pieces[1]
+                facings = [obj for obj in facings if obj['gallery_segment'] != segment] + pieces[2]
+                core.discard(cut)
+                for cutter in neighbours+[core_cut]+core_neighbours:
+                    core.discard(cutter)
     roof = architecture.merge("upper_gallery_roof", {segment: [piece for piece in roofs if piece["gallery_segment"] == segment] for segment in range(5)}, rng)
     facing = architecture.merge("gallery_exterior", {segment: [piece for piece in facings if piece["gallery_segment"] == segment] for segment in range(5)}, rng)
     # The exterior shares the existing grey limestone, rather than arch sandstone.
@@ -302,7 +240,7 @@ def gallery():
         )["files"] if entry["file"] == "passages/return_gallery.glb"),
         "collision_meshes": len(collisions),
         "collision_vertex_coordinates_unchanged": True,
-        "cap_preserved_interior_vertices_before_bonding": protected,
+        "cement_rebuilt_from_interface_profile": True,
         "bonded_cement_shells": 5,
         "render_objects": 5,
         "cement_floor_recess_m": 0.12,

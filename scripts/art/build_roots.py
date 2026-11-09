@@ -1356,7 +1356,9 @@ def bake_and_write(grower: Grower, rules: roots.Rules, label: str, out_dir: Path
         objects.append(graft)
         qa['graft'] = graft_report
     if not objects:
-        # A short stretch can leave no room for a root: nothing to write.
+        # An empty rebuild must not leave the previous geometry in game.
+        for suffix in ('.glb', '.glb.import', '.json'):
+            (out_dir / (label + suffix)).unlink(missing_ok=True)
         print('ROOTS_EMPTY', label, flush=True)
         return [], {}
     qa['audit'] = audit(grower, rules)

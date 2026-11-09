@@ -1,7 +1,7 @@
 {
   "ao": {
     "Roots_return_gallery_4_0_0": {
-      "mean": 0.567,
+      "mean": 0.553,
       "min": 0.2
     }
   },
@@ -13,12 +13,13 @@
     "route_margin_m": 0.3
   },
   "diameter_cm": {
-    "max": 12.8,
+    "max": 7.9,
     "min": 0.5
   },
   "files": {
-    "content/environments/procedural_roots_v1/passages/return_gallery_4_0.glb": "de450757ef229d1620a07e92418c54bf6a1e33cba26861216e187210137d99cd"
+    "content/environments/procedural_roots_v1/passages/return_gallery_4_0.glb": "07b6b87b301ccd0037ad4e4fe6544b3350c245d1e2dd2bc91c362b13cb6ebed2"
   },
+  "growth_budget": 9000,
   "id": "return_gallery_4_0",
   "layout_hash": "20aa6015a7f9f4f7c12b59b90acfe080b07298d8b2b180c7054b532be72d00d4",
   "meshes": [
@@ -33,31 +34,77 @@
   },
   "qa": {
     "audit": {
-      "cut_deeper_than_1cm": 5,
-      "cut_into_stone": 23,
+      "cut_deeper_than_1cm": 0,
+      "cut_into_stone": 13,
       "emerging_from_joint": 0,
       "in_walking_corridor": 0,
-      "vertices": 4044
+      "vertices": 1270
     },
     "cling_gap_m": {
-      "max": 0.0372,
-      "p50": 0.0046,
-      "p95": 0.0122
+      "max": 0.0189,
+      "p50": 0.004,
+      "p95": 0.0136
     },
     "clipped_at_corridor": 0,
-    "pruned": 0,
-    "rings": 874,
-    "rings_touching_stone": 14
+    "pruned": 95,
+    "rings": 145,
+    "rings_touching_stone": 4,
+    "terminal_rings": [
+      {
+        "end": "start",
+        "exposed_vertices": 0,
+        "root": 1,
+        "vertices": 8
+      },
+      {
+        "end": "start",
+        "exposed_vertices": 0,
+        "root": 10,
+        "vertices": 10
+      },
+      {
+        "end": "return",
+        "exposed_vertices": 0,
+        "root": 10,
+        "vertices": 10
+      },
+      {
+        "end": "start",
+        "exposed_vertices": 0,
+        "root": 51,
+        "vertices": 10
+      },
+      {
+        "end": "return",
+        "exposed_vertices": 0,
+        "root": 51,
+        "vertices": 10
+      },
+      {
+        "end": "start",
+        "exposed_vertices": 0,
+        "root": 76,
+        "vertices": 8
+      },
+      {
+        "end": "start",
+        "exposed_vertices": 0,
+        "root": 84,
+        "vertices": 10
+      }
+    ],
+    "unmounted_systems_pruned": 7
   },
-  "roots": 99,
+  "roots": 5,
   "seed": 178,
   "sources": {
-    "procedural_architecture_v1/passages/return_gallery.glb": "cf295ddf258c535d3aa1903713d378b6eaf6252e389e3eb08181cb7653170d00"
+    "content/environments/procedural_architecture_v1/passages/return_gallery.glb": "8d038a8f13a29eb1715ebdbf969d197bf4c87e5c7f9c8eed3a885e54a615c0ee",
+    "scripts/art/build_roots.py": "ffb913f950c8e7f2f63fce40eb35f85e37508f5dba4a51051e3ffc4c9bf0843c",
+    "scripts/art/procgen/roots.py": "3714841f150fe6903e6bff1c93a3327cfa183633ebb2dd0998b8a05f95609c92"
   },
   "systems": {
-    "branch": 5,
-    "loop": 7,
-    "trunk": 1
+    "branch": 3,
+    "trunk": 2
   },
-  "triangles": 7919
+  "triangles": 2658
 }

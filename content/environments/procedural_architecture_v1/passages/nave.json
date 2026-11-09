@@ -1,70 +1,95 @@
 {
+  "ageing": "restrained; 2.5 cm timber bow, 0\u20139 cm hewn relief",
   "ao": {
     "Mortar_nave_13": {
-      "mean": 0.682,
+      "mean": 0.501,
+      "min": 0.18
+    },
+    "Mortar_nave_18": {
+      "mean": 0.526,
       "min": 0.18
     },
     "Mortar_nave_3": {
-      "mean": 0.539,
-      "min": 0.18
-    },
-    "Mortar_nave_8": {
-      "mean": 0.593,
+      "mean": 0.507,
       "min": 0.18
     },
     "Stone-arch_nave_12": {
-      "mean": 0.318,
+      "mean": 0.417,
+      "min": 0.18
+    },
+    "Stone-arch_nave_17": {
+      "mean": 0.415,
       "min": 0.18
     },
     "Stone-arch_nave_2": {
-      "mean": 0.44,
-      "min": 0.18
-    },
-    "Stone-arch_nave_7": {
-      "mean": 0.26,
+      "mean": 0.431,
       "min": 0.18
     },
     "Stone-flag_nave_14": {
-      "mean": 0.755,
+      "mean": 0.714,
+      "min": 0.18
+    },
+    "Stone-flag_nave_19": {
+      "mean": 0.745,
       "min": 0.18
     },
     "Stone-flag_nave_4": {
-      "mean": 0.812,
-      "min": 0.18
-    },
-    "Stone-flag_nave_9": {
-      "mean": 0.755,
+      "mean": 0.77,
       "min": 0.18
     },
     "Stone-stone_nave_0": {
-      "mean": 0.712,
+      "mean": 0.483,
       "min": 0.18
     },
     "Stone-stone_nave_1": {
-      "mean": 0.713,
+      "mean": 0.475,
       "min": 0.18
     },
     "Stone-stone_nave_10": {
-      "mean": 0.713,
+      "mean": 0.338,
+      "min": 0.18
+    },
+    "Stone-stone_nave_1006": {
+      "mean": 0.228,
+      "min": 0.18
+    },
+    "Stone-stone_nave_1026": {
+      "mean": 0.41,
+      "min": 0.18
+    },
+    "Stone-stone_nave_1036": {
+      "mean": 0.266,
       "min": 0.18
     },
     "Stone-stone_nave_11": {
-      "mean": 0.696,
+      "mean": 0.458,
       "min": 0.18
     },
-    "Stone-stone_nave_5": {
-      "mean": 0.667,
+    "Stone-stone_nave_15": {
+      "mean": 0.455,
       "min": 0.18
     },
-    "Stone-stone_nave_6": {
-      "mean": 0.685,
+    "Stone-stone_nave_16": {
+      "mean": 0.46,
       "min": 0.18
     }
   },
   "blender": "5.2.2 LTS",
   "files": {
-    "content/environments/procedural_architecture_v1/passages/nave.glb": "2d71cb11229bc4cee24f584c0411a6de2c3b476e3a6e8bd650c5cdc46471b604"
+    "content/environments/procedural_architecture_v1/passages/nave.glb": "e2b841de1652eaab5168168d37f99d94faf34250cd5574fe1a8e8057f9058123"
   },
   "id": "nave",
-  "triangles": 176797
+  "profile_change": {
+    "enabled": true,
+    "max_lower_crown_m": 0.22,
+    "max_widen_m_per_side": 0.28,
+    "unchanged_join_m": 4.0
+  },
+  "situation": {
+    "form": "masonry",
+    "route": "nave",
+    "rule": "built connector between masonry rooms",
+    "width_m": 4.4
+  },
+  "triangles": 276378
 }

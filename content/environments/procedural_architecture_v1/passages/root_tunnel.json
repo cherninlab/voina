@@ -1,130 +1,115 @@
 {
+  "ageing": "restrained; 2.5 cm timber bow, 0\u20139 cm hewn relief",
   "ao": {
     "Mortar_root_tunnel_13": {
-      "mean": 0.32,
+      "mean": 0.255,
       "min": 0.18
     },
     "Mortar_root_tunnel_18": {
-      "mean": 0.269,
+      "mean": 0.227,
       "min": 0.18
     },
     "Mortar_root_tunnel_23": {
-      "mean": 0.268,
+      "mean": 0.259,
       "min": 0.18
     },
     "Mortar_root_tunnel_28": {
-      "mean": 0.268,
+      "mean": 0.287,
       "min": 0.18
     },
     "Mortar_root_tunnel_3": {
-      "mean": 0.301,
+      "mean": 0.262,
       "min": 0.18
     },
     "Mortar_root_tunnel_8": {
-      "mean": 0.256,
-      "min": 0.18
-    },
-    "Stone-arch_root_tunnel_12": {
-      "mean": 0.429,
-      "min": 0.18
-    },
-    "Stone-arch_root_tunnel_17": {
-      "mean": 0.412,
-      "min": 0.18
-    },
-    "Stone-arch_root_tunnel_2": {
-      "mean": 0.398,
-      "min": 0.18
-    },
-    "Stone-arch_root_tunnel_22": {
-      "mean": 0.432,
-      "min": 0.18
-    },
-    "Stone-arch_root_tunnel_27": {
-      "mean": 0.448,
-      "min": 0.18
-    },
-    "Stone-arch_root_tunnel_7": {
-      "mean": 0.421,
+      "mean": 0.223,
       "min": 0.18
     },
     "Stone-flag_root_tunnel_14": {
-      "mean": 0.787,
+      "mean": 0.632,
       "min": 0.18
     },
     "Stone-flag_root_tunnel_19": {
-      "mean": 0.788,
+      "mean": 0.569,
       "min": 0.18
     },
     "Stone-flag_root_tunnel_24": {
-      "mean": 0.798,
+      "mean": 0.687,
       "min": 0.18
     },
     "Stone-flag_root_tunnel_29": {
-      "mean": 0.8,
+      "mean": 0.717,
       "min": 0.18
     },
     "Stone-flag_root_tunnel_4": {
-      "mean": 0.801,
+      "mean": 0.53,
       "min": 0.18
     },
     "Stone-flag_root_tunnel_9": {
-      "mean": 0.795,
+      "mean": 0.565,
       "min": 0.18
     },
-    "Stone-stone_root_tunnel_0": {
-      "mean": 0.722,
+    "Stone-rock_root_tunnel_0": {
+      "mean": 0.46,
       "min": 0.18
     },
-    "Stone-stone_root_tunnel_1": {
-      "mean": 0.543,
+    "Stone-rock_root_tunnel_10": {
+      "mean": 0.613,
       "min": 0.18
     },
-    "Stone-stone_root_tunnel_10": {
-      "mean": 0.656,
+    "Stone-rock_root_tunnel_15": {
+      "mean": 0.527,
       "min": 0.18
     },
-    "Stone-stone_root_tunnel_11": {
-      "mean": 0.719,
+    "Stone-rock_root_tunnel_20": {
+      "mean": 0.705,
       "min": 0.18
     },
-    "Stone-stone_root_tunnel_15": {
-      "mean": 0.614,
+    "Stone-rock_root_tunnel_25": {
+      "mean": 0.773,
       "min": 0.18
     },
-    "Stone-stone_root_tunnel_16": {
-      "mean": 0.662,
+    "Stone-rock_root_tunnel_5": {
+      "mean": 0.538,
       "min": 0.18
     },
-    "Stone-stone_root_tunnel_20": {
-      "mean": 0.71,
+    "Stone-stone_root_tunnel_1016": {
+      "mean": 0.264,
       "min": 0.18
     },
-    "Stone-stone_root_tunnel_21": {
-      "mean": 0.641,
+    "Stone-stone_root_tunnel_1026": {
+      "mean": 0.248,
       "min": 0.18
     },
-    "Stone-stone_root_tunnel_25": {
-      "mean": 0.719,
+    "Stone-stone_root_tunnel_1036": {
+      "mean": 0.192,
       "min": 0.18
     },
-    "Stone-stone_root_tunnel_26": {
-      "mean": 0.717,
+    "Stone-stone_root_tunnel_1046": {
+      "mean": 0.254,
       "min": 0.18
     },
-    "Stone-stone_root_tunnel_5": {
-      "mean": 0.717,
-      "min": 0.18
-    },
-    "Stone-stone_root_tunnel_6": {
-      "mean": 0.663,
+    "Stone-stone_root_tunnel_1056": {
+      "mean": 0.274,
       "min": 0.18
     }
   },
   "blender": "5.2.2 LTS",
   "files": {
-    "content/environments/procedural_architecture_v1/passages/root_tunnel.glb": "b48fe6141d5053221415c9a463643004c5c3e4b223a7f50b21343de00976188c"
+    "content/environments/procedural_architecture_v1/passages/root_tunnel.glb": "aaf2608f99c8e1f1403e21e77cd40bccc64d38b34161a0144138214b6c967bd0"
   },
   "id": "root_tunnel",
-  "triangles": 468033
+  "profile_change": {
+    "enabled": true,
+    "max_lower_crown_m": 0.22,
+    "max_widen_m_per_side": 0.28,
+    "unchanged_join_m": 4.0
+  },
+  "situation": {
+    "form": "hewn_rock",
+    "route": "root_tunnel",
+    "rule": "root route cut through the shaft rock",
+    "width_m": 5.0
+  },
+  "triangles": 68004
 }

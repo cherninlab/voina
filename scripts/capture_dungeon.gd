@@ -45,6 +45,7 @@ func capture() -> void:
 		["08-nave-materials", RedDescentLayout.at(Vector3(46, -16.35, 87)), RedDescentLayout.at(Vector3(39, -15.7, 90)), 65.0],
 	]
 	var metrics: Array[Dictionary] = []
+	var failed_frames: bool = false
 	if "--stone-rooms" in OS.get_cmdline_user_args():
 		views = stone_room_views()
 	elif "--review" in OS.get_cmdline_user_args():
@@ -101,8 +102,10 @@ func capture() -> void:
 				high = maxf(high, value)
 		if high - low < 0.04:
 			printerr("DUNGEON_CAPTURE_FAIL: blank frame " + file)
-			quit(1)
-			return
+			failed_frames = true
+			if "--capture-keep-failures" not in OS.get_cmdline_user_args():
+				quit(1)
+				return
 		if frame_image.save_png(file) != OK:
 			printerr("DUNGEON_CAPTURE_FAIL: " + file)
 			quit(1)
@@ -119,7 +122,7 @@ func capture() -> void:
 	world.queue_free()
 	for frame: int in range(10):
 		await process_frame
-	quit()
+	quit(1 if failed_frames else 0)
 
 ## For each room with a stone build: from the middle at eye height towards each
 ## of its four longest walls, a corner view up the full height, and a close look

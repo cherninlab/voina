@@ -1,7 +1,7 @@
 {
   "ao": {
     "Roots_ossuary_loop_3_556_0": {
-      "mean": 0.547,
+      "mean": 0.591,
       "min": 0.2
     }
   },
@@ -13,12 +13,13 @@
     "route_margin_m": 0.3
   },
   "diameter_cm": {
-    "max": 9.9,
+    "max": 4.1,
     "min": 0.5
   },
   "files": {
-    "content/environments/procedural_roots_v1/passages/ossuary_loop_3_556.glb": "2ed0006609e448ffed192e1ef90e2b88ed1e11b2984ff1091e3060bbe65cb195"
+    "content/environments/procedural_roots_v1/passages/ossuary_loop_3_556.glb": "6add88f609e9949792d15a44d8bbcf59c4f280e2b7126428d12c942893e1d110"
   },
+  "growth_budget": 4000,
   "id": "ossuary_loop_3_556",
   "layout_hash": "20aa6015a7f9f4f7c12b59b90acfe080b07298d8b2b180c7054b532be72d00d4",
   "meshes": [
@@ -33,31 +34,40 @@
   },
   "qa": {
     "audit": {
-      "cut_deeper_than_1cm": 14,
-      "cut_into_stone": 36,
-      "emerging_from_joint": 4,
+      "cut_deeper_than_1cm": 2,
+      "cut_into_stone": 3,
+      "emerging_from_joint": 0,
       "in_walking_corridor": 0,
-      "vertices": 1751
+      "vertices": 160
     },
     "cling_gap_m": {
-      "max": 0.0235,
-      "p50": 0.0049,
-      "p95": 0.0109
+      "max": 0.0107,
+      "p50": 0.0036,
+      "p95": 0.0107
     },
-    "clipped_at_corridor": 1,
-    "pruned": 0,
-    "rings": 385,
-    "rings_touching_stone": 20
+    "clipped_at_corridor": 0,
+    "pruned": 45,
+    "rings": 21,
+    "rings_touching_stone": 1,
+    "terminal_rings": [
+      {
+        "end": "start",
+        "exposed_vertices": 0,
+        "root": 13,
+        "vertices": 8
+      }
+    ],
+    "unmounted_systems_pruned": 6
   },
-  "roots": 53,
+  "roots": 1,
   "seed": 178,
   "sources": {
-    "procedural_architecture_v1/passages/ossuary_loop.glb": "99cd9381aab1f0cbbc3192792798c79180b551387b3f0c6f0678382dbff7e974"
+    "content/environments/procedural_architecture_v1/passages/ossuary_loop.glb": "a25e6f7d550fdf2f632c1fb4c1dd0460414e31683fd510eff94e6c91434a9767",
+    "scripts/art/build_roots.py": "ffb913f950c8e7f2f63fce40eb35f85e37508f5dba4a51051e3ffc4c9bf0843c",
+    "scripts/art/procgen/roots.py": "3714841f150fe6903e6bff1c93a3327cfa183633ebb2dd0998b8a05f95609c92"
   },
   "systems": {
-    "branch": 3,
-    "loop": 1,
-    "trunk": 2
+    "branch": 1
   },
-  "triangles": 3419
+  "triangles": 334
 }

@@ -1,7 +1,7 @@
 {
   "ao": {
     "Roots_return_gallery_3_0_0": {
-      "mean": 0.548,
+      "mean": 0.534,
       "min": 0.2
     }
   },
@@ -13,12 +13,13 @@
     "route_margin_m": 0.3
   },
   "diameter_cm": {
-    "max": 12.4,
-    "min": 0.5
+    "max": 10.1,
+    "min": 0.2
   },
   "files": {
-    "content/environments/procedural_roots_v1/passages/return_gallery_3_0.glb": "0744fdeef9152d8108987883c426974b259852f59187f3cae31eedf900ec5c48"
+    "content/environments/procedural_roots_v1/passages/return_gallery_3_0.glb": "1fcc568788e1be91c8dc6b530ee14426a4adc0e31f3ecc22239be7a7e9231358"
   },
+  "growth_budget": 15000,
   "id": "return_gallery_3_0",
   "layout_hash": "20aa6015a7f9f4f7c12b59b90acfe080b07298d8b2b180c7054b532be72d00d4",
   "meshes": [
@@ -33,31 +34,131 @@
   },
   "qa": {
     "audit": {
-      "cut_deeper_than_1cm": 12,
-      "cut_into_stone": 55,
-      "emerging_from_joint": 2,
+      "cut_deeper_than_1cm": 0,
+      "cut_into_stone": 11,
+      "emerging_from_joint": 0,
       "in_walking_corridor": 0,
-      "vertices": 6310
+      "vertices": 2946
     },
     "cling_gap_m": {
-      "max": 0.0468,
-      "p50": 0.005,
-      "p95": 0.0106
+      "max": 0.027,
+      "p50": 0.004,
+      "p95": 0.0141
     },
     "clipped_at_corridor": 0,
-    "pruned": 0,
-    "rings": 1341,
-    "rings_touching_stone": 33
+    "pruned": 150,
+    "rings": 336,
+    "rings_touching_stone": 10,
+    "terminal_rings": [
+      {
+        "end": "start",
+        "exposed_vertices": 0,
+        "root": 1,
+        "vertices": 10
+      },
+      {
+        "end": "start",
+        "exposed_vertices": 0,
+        "root": 14,
+        "vertices": 10
+      },
+      {
+        "end": "start",
+        "exposed_vertices": 0,
+        "root": 29,
+        "vertices": 8
+      },
+      {
+        "end": "return",
+        "exposed_vertices": 0,
+        "root": 29,
+        "vertices": 8
+      },
+      {
+        "end": "start",
+        "exposed_vertices": 0,
+        "root": 51,
+        "vertices": 10
+      },
+      {
+        "end": "return",
+        "exposed_vertices": 0,
+        "root": 51,
+        "vertices": 10
+      },
+      {
+        "end": "start",
+        "exposed_vertices": 0,
+        "root": 61,
+        "vertices": 8
+      },
+      {
+        "end": "start",
+        "exposed_vertices": 0,
+        "root": 79,
+        "vertices": 8
+      },
+      {
+        "end": "start",
+        "exposed_vertices": 0,
+        "root": 91,
+        "vertices": 8
+      },
+      {
+        "end": "return",
+        "exposed_vertices": 0,
+        "root": 91,
+        "vertices": 8
+      },
+      {
+        "end": "start",
+        "exposed_vertices": 0,
+        "root": 103,
+        "vertices": 10
+      },
+      {
+        "end": "start",
+        "exposed_vertices": 0,
+        "root": 115,
+        "vertices": 10
+      },
+      {
+        "end": "return",
+        "exposed_vertices": 0,
+        "root": 115,
+        "vertices": 10
+      },
+      {
+        "end": "start",
+        "exposed_vertices": 0,
+        "root": 127,
+        "vertices": 8
+      },
+      {
+        "end": "start",
+        "exposed_vertices": 0,
+        "root": 139,
+        "vertices": 10
+      },
+      {
+        "end": "return",
+        "exposed_vertices": 0,
+        "root": 139,
+        "vertices": 10
+      }
+    ],
+    "unmounted_systems_pruned": 9
   },
-  "roots": 157,
+  "roots": 11,
   "seed": 178,
   "sources": {
-    "procedural_architecture_v1/passages/return_gallery.glb": "cf295ddf258c535d3aa1903713d378b6eaf6252e389e3eb08181cb7653170d00"
+    "content/environments/procedural_architecture_v1/passages/return_gallery.glb": "8d038a8f13a29eb1715ebdbf969d197bf4c87e5c7f9c8eed3a885e54a615c0ee",
+    "scripts/art/build_roots.py": "ffb913f950c8e7f2f63fce40eb35f85e37508f5dba4a51051e3ffc4c9bf0843c",
+    "scripts/art/procgen/roots.py": "3714841f150fe6903e6bff1c93a3327cfa183633ebb2dd0998b8a05f95609c92"
   },
   "systems": {
-    "branch": 9,
-    "loop": 7,
+    "branch": 8,
     "trunk": 3
   },
-  "triangles": 12337
+  "triangles": 6152
 }

@@ -1,50 +1,71 @@
 {
+  "ageing": "restrained; 2.5 cm timber bow, 0\u20139 cm hewn relief",
   "ao": {
-    "Mortar_bell_loop_3": {
-      "mean": 0.379,
+    "Mortar_bell_loop_13": {
+      "mean": 0.315,
       "min": 0.18
     },
     "Mortar_bell_loop_8": {
-      "mean": 0.375,
+      "mean": 0.34,
       "min": 0.18
     },
-    "Stone-arch_bell_loop_2": {
-      "mean": 0.45,
+    "Stone-arch_bell_loop_12": {
+      "mean": 0.438,
       "min": 0.18
     },
     "Stone-arch_bell_loop_7": {
-      "mean": 0.448,
+      "mean": 0.435,
       "min": 0.18
     },
-    "Stone-flag_bell_loop_4": {
-      "mean": 0.801,
+    "Stone-flag_bell_loop_14": {
+      "mean": 0.768,
       "min": 0.18
     },
     "Stone-flag_bell_loop_9": {
-      "mean": 0.804,
+      "mean": 0.768,
       "min": 0.18
     },
-    "Stone-stone_bell_loop_0": {
-      "mean": 0.716,
+    "Stone-stone_bell_loop_10": {
+      "mean": 0.473,
       "min": 0.18
     },
-    "Stone-stone_bell_loop_1": {
-      "mean": 0.713,
+    "Stone-stone_bell_loop_1016": {
+      "mean": 0.252,
+      "min": 0.18
+    },
+    "Stone-stone_bell_loop_1026": {
+      "mean": 0.257,
+      "min": 0.18
+    },
+    "Stone-stone_bell_loop_11": {
+      "mean": 0.465,
       "min": 0.18
     },
     "Stone-stone_bell_loop_5": {
-      "mean": 0.713,
+      "mean": 0.475,
       "min": 0.18
     },
     "Stone-stone_bell_loop_6": {
-      "mean": 0.713,
+      "mean": 0.476,
       "min": 0.18
     }
   },
   "blender": "5.2.2 LTS",
   "files": {
-    "content/environments/procedural_architecture_v1/passages/bell_loop.glb": "831e826c37f65657c503b85dc98371998881ca546c0f77eb0759fbc0eed17d21"
+    "content/environments/procedural_architecture_v1/passages/bell_loop.glb": "bc4f7da0f9cb22b37ad2ae98592446984988539bf76a7d51896fcb2a15de3db4"
   },
   "id": "bell_loop",
-  "triangles": 255693
+  "profile_change": {
+    "enabled": true,
+    "max_lower_crown_m": 0.22,
+    "max_widen_m_per_side": 0.28,
+    "unchanged_join_m": 4.0
+  },
+  "situation": {
+    "form": "masonry",
+    "route": "bell_loop",
+    "rule": "built connector between masonry rooms",
+    "width_m": 4.0
+  },
+  "triangles": 343856
 }

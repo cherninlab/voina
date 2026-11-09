@@ -5,7 +5,81 @@ import bpy, bmesh
 from mathutils import Vector, Matrix
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
-from procgen import core, export
+from procgen import core, export, shapes
+
+
+def build_coping():
+    """Fit separate worn coping blocks to the existing parapet tops by ray."""
+    from mathutils.bvhtree import BVHTree
+    layout = json.loads((core.ROOT/'content/environments/procedural_bridge_v1/layout.json').read_text())
+    destination = core.ROOT/'content/environments/red_descent/stair_art_v1'
+    source_hashes, counts, output = {}, {}, []
+    core.empty_scene()
+    for hall in ('first_stair_hall', 'second_stair_hall'):
+        source = core.ROOT/'content/environments/red_descent/masonry_repairs_v1/stairs'/(hall+'.glb')
+        source_hashes[hall] = core.sha256(source)
+        bpy.ops.import_scene.gltf(filepath=str(source))
+        vertices, triangles = [], []
+        for obj in list(bpy.context.scene.objects):
+            if obj.type == 'MESH' and obj.name.startswith('Mortar'):
+                obj.data.calc_loop_triangles()
+                offset = len(vertices)
+                vertices += [obj.matrix_world@v.co for v in obj.data.vertices]
+                triangles += [tuple(offset+i for i in t.vertices) for t in obj.data.loop_triangles]
+        tree = BVHTree.FromPolygons(vertices, triangles, all_triangles=True)
+        for obj in list(bpy.context.scene.objects):
+            core.discard(obj)
+        room = next(r for r in layout['rooms'] if r['id'] == hall)
+        rng = core.rng(20261109, 'coping', hall)
+        builder = shapes.Builder('StoneCoping_'+hall)
+        for route in layout['routes']:
+            for p,q in zip(route['points'], route['points'][1:]):
+                a,b = core.to_blender(p), core.to_blender(q)
+                delta = b-a; flat = Vector((delta.x,delta.y,0))
+                if flat.length < .8 or max(p[1],q[1]) < room['floor']+.8:
+                    continue
+                d=flat.normalized(); side=d.cross(Vector((0,0,1)))
+                # Only this hall's routes; nearby rooms must not receive caps.
+                centre=(a+b)*.5
+                polygon=[Vector((v[0],-v[1])) for v in room['points']]
+                import build_architecture as architecture
+                if not architecture.contains(polygon,Vector((centre.x,centre.y))):
+                    continue
+                for sign in (-1,1):
+                    s=.12
+                    while s < flat.length-.2:
+                        span=min(rng.uniform(.55,.85),flat.length-.12-s)
+                        points=[]
+                        for sk in (s+.015,s+span-.015):
+                            at=a+d*sk+Vector((0,0,delta.z*sk/flat.length))+side*sign*(route['width']*.5-.18)
+                            hit,normal,_,_=tree.ray_cast(at+Vector((0,0,1.25)),Vector((0,0,-1)),.6)
+                            if hit is None or normal.z < .6 or not .85 < hit.z-at.z < 1.12:
+                                break
+                            points.append(hit+Vector((0,0,.055)))
+                        if len(points)==2:
+                            shapes.prism(builder,points[0],points[1],.52,.14,Vector((0,0,1)),rng,
+                                         chamfer=.018,wear=.035,segment=.3)
+                        s+=span
+        counts[hall]=builder.pieces
+        assert builder.pieces > 0,(hall,'No parapet coping fitted')
+        obj=builder.to_object(); obj['hall']=hall
+        for item in obj.data.color_attributes['Color'].data:
+            shade = .72 + .18 * item.color[1]
+            item.color = (shade, shade, shade, 1)
+        output.append((obj.name,obj.data.copy()))
+    for obj in list(bpy.context.scene.objects):
+        core.discard(obj)
+    objects=[core.link(bpy.data.objects.new(name,mesh)) for name,mesh in output]
+    export.glb(objects,destination/'parapet_coping.glb')
+    core.write_report(destination/'coping.json',{'source_stairs_sha256':source_hashes,'blocks':counts,
+        'provenance':'Original procedural stone coping fitted to the existing parapet backing; no collision changes.'},
+        [destination/'parapet_coping.glb'])
+    print('PARAPET_COPING_BUILT',counts,flush=True)
+
+
+if '--coping-only' in core.args():
+    build_coping()
+    raise SystemExit(0)
 
 OUT = core.ROOT / 'content/environments/red_descent/stair_art_v1'
 core.empty_scene()

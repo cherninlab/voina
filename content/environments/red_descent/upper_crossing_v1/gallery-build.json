@@ -1,11 +1,11 @@
 {
-  "source_sha256": "cf295ddf258c535d3aa1903713d378b6eaf6252e389e3eb08181cb7653170d00",
+  "source_sha256": "8d038a8f13a29eb1715ebdbf969d197bf4c87e5c7f9c8eed3a885e54a615c0ee",
   "source_routes": {
     "return_gallery": "e6b840df7e0af7915c1bfd575585aaba886004f4ed2e8f7017119579130ab719"
   },
   "collision_meshes": 5,
   "collision_vertex_coordinates_unchanged": true,
-  "cap_preserved_interior_vertices_before_bonding": 80,
+  "cement_rebuilt_from_interface_profile": true,
   "bonded_cement_shells": 5,
   "render_objects": 5,
   "cement_floor_recess_m": 0.12,
@@ -15,10 +15,10 @@
     "rise_m": 1.35,
     "intrados_radius_m": 2.467592592592593
   },
-  "roof_stones": 695,
-  "exterior_facing_stones": 985,
+  "roof_stones": 728,
+  "exterior_facing_stones": 1061,
   "roof_and_facing_mitres": "authoritative run_planes from the source passage network",
   "roof_bond": "alternating half-stone circumferential offsets",
-  "roof_triangles": 76324,
+  "roof_triangles": 79816,
   "operation": "Preserve source collision and visible stone faces; cap hidden backs, rebuild connected cement and bond each section."
 }

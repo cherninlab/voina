@@ -1,50 +1,30 @@
 {
   "ao": {
-    "Mortar_node_-38_-23_-2_2": {
-      "mean": 0.238,
+    "Mortar_node_-38_-23_-2_20": {
+      "mean": 0.19,
       "min": 0.18
     },
-    "Mortar_node_-38_-23_-2_3": {
-      "mean": 0.373,
+    "Stone-flag_node_-38_-23_-2_21": {
+      "mean": 0.648,
       "min": 0.18
     },
-    "Mortar_node_-38_-23_-2_6": {
-      "mean": 0.265,
-      "min": 0.18
-    },
-    "Stone-arch_node_-38_-23_-2_2": {
-      "mean": 0.28,
-      "min": 0.18
-    },
-    "Stone-arch_node_-38_-23_-2_4": {
-      "mean": 0.369,
-      "min": 0.18
-    },
-    "Stone-arch_node_-38_-23_-2_5": {
-      "mean": 0.377,
-      "min": 0.18
-    },
-    "Stone-ashlar_node_-38_-23_-2_2": {
-      "mean": 0.378,
-      "min": 0.18
-    },
-    "Stone-flag_node_-38_-23_-2_7": {
-      "mean": 0.789,
-      "min": 0.18
-    },
-    "Stone-stone_node_-38_-23_-2_2": {
-      "mean": 0.423,
-      "min": 0.18
-    },
-    "Stone-stone_node_-38_-23_-2_3": {
-      "mean": 0.603,
+    "Stone-rock_node_-38_-23_-2_0": {
+      "mean": 0.278,
       "min": 0.18
     }
   },
   "blender": "5.2.2 LTS",
   "files": {
-    "content/environments/procedural_architecture_v1/passages/node_-38_-23_-2.glb": "5543c3602e4c61a96f6f637830e819c1e74cb8e10929bee77a5312e82daf12ca"
+    "content/environments/procedural_architecture_v1/passages/node_-38_-23_-2.glb": "267714fc941a9839fb36370656b0930d0eb69575d1fcf827697869913677b772"
   },
   "id": "node_-38_-23_-2",
-  "triangles": 73968
+  "situation": {
+    "form": "bay",
+    "routes": [
+      "cave_bypass",
+      "root_tunnel"
+    ],
+    "rule": "shared actual-axis barrel clearances"
+  },
+  "triangles": 9035
 }

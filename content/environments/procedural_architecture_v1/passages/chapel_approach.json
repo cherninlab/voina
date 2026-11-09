@@ -1,50 +1,63 @@
 {
+  "ageing": "restrained; 2.5 cm timber bow, 0\u20139 cm hewn relief",
   "ao": {
     "Mortar_chapel_approach_3": {
-      "mean": 0.345,
+      "mean": 0.281,
       "min": 0.18
     },
     "Mortar_chapel_approach_8": {
-      "mean": 0.37,
+      "mean": 0.303,
       "min": 0.18
     },
     "Stone-arch_chapel_approach_2": {
-      "mean": 0.408,
+      "mean": 0.373,
       "min": 0.18
     },
     "Stone-arch_chapel_approach_7": {
-      "mean": 0.356,
+      "mean": 0.359,
       "min": 0.18
     },
     "Stone-flag_chapel_approach_4": {
-      "mean": 0.795,
+      "mean": 0.67,
       "min": 0.18
     },
     "Stone-flag_chapel_approach_9": {
-      "mean": 0.786,
+      "mean": 0.67,
       "min": 0.18
     },
     "Stone-stone_chapel_approach_0": {
-      "mean": 0.631,
+      "mean": 0.41,
       "min": 0.18
     },
     "Stone-stone_chapel_approach_1": {
-      "mean": 0.728,
+      "mean": 0.421,
       "min": 0.18
     },
     "Stone-stone_chapel_approach_5": {
-      "mean": 0.735,
+      "mean": 0.379,
       "min": 0.18
     },
     "Stone-stone_chapel_approach_6": {
-      "mean": 0.54,
+      "mean": 0.401,
       "min": 0.18
     }
   },
   "blender": "5.2.2 LTS",
   "files": {
-    "content/environments/procedural_architecture_v1/passages/chapel_approach.glb": "3a2afdfd17fefb411e6738f8fe6c9af2575b43c5b9669580a16465e6c0bba0e9"
+    "content/environments/procedural_architecture_v1/passages/chapel_approach.glb": "4e17fa3d67422c0da5ddf0e93cc102c9f64359bc3f50b6ae374565981b066458"
   },
   "id": "chapel_approach",
-  "triangles": 48971
+  "profile_change": {
+    "enabled": true,
+    "max_lower_crown_m": 0.22,
+    "max_widen_m_per_side": 0.28,
+    "unchanged_join_m": 4.0
+  },
+  "situation": {
+    "form": "masonry",
+    "route": "chapel_approach",
+    "rule": "built connector between masonry rooms",
+    "width_m": 4.4
+  },
+  "triangles": 92062
 }

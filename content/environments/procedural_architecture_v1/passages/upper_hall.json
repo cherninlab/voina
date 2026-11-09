@@ -1,30 +1,43 @@
 {
+  "ageing": "restrained; 2.5 cm timber bow, 0\u20139 cm hewn relief",
   "ao": {
-    "Mortar_upper_hall_3": {
-      "mean": 0.47,
+    "Mortar_upper_hall_8": {
+      "mean": 0.511,
       "min": 0.18
     },
-    "Stone-arch_upper_hall_2": {
-      "mean": 0.436,
+    "Stone-arch_upper_hall_7": {
+      "mean": 0.42,
       "min": 0.18
     },
-    "Stone-flag_upper_hall_4": {
-      "mean": 0.826,
+    "Stone-flag_upper_hall_9": {
+      "mean": 0.788,
       "min": 0.18
     },
-    "Stone-stone_upper_hall_0": {
-      "mean": 0.714,
+    "Stone-stone_upper_hall_5": {
+      "mean": 0.455,
       "min": 0.18
     },
-    "Stone-stone_upper_hall_1": {
-      "mean": 0.733,
+    "Stone-stone_upper_hall_6": {
+      "mean": 0.466,
       "min": 0.18
     }
   },
   "blender": "5.2.2 LTS",
   "files": {
-    "content/environments/procedural_architecture_v1/passages/upper_hall.glb": "b01cbe2de0a2db75b8d9472c9fe36f34fa92c92e4d055c210d47819308647f41"
+    "content/environments/procedural_architecture_v1/passages/upper_hall.glb": "c9a09ac96a4b5c0a9533a768db20557e707a0cbb0df00330d09df1a9f0c1087e"
   },
   "id": "upper_hall",
-  "triangles": 27073
+  "profile_change": {
+    "enabled": true,
+    "max_lower_crown_m": 0.22,
+    "max_widen_m_per_side": 0.28,
+    "unchanged_join_m": 4.0
+  },
+  "situation": {
+    "form": "masonry",
+    "route": "upper_hall",
+    "rule": "built connector between masonry rooms",
+    "width_m": 4.4
+  },
+  "triangles": 34808
 }

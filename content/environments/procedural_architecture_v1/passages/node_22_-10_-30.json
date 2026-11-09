@@ -1,50 +1,54 @@
 {
   "ao": {
-    "Mortar_node_22_-10_-30_1": {
-      "mean": 0.432,
-      "min": 0.18
-    },
-    "Mortar_node_22_-10_-30_3": {
-      "mean": 0.281,
-      "min": 0.18
-    },
-    "Mortar_node_22_-10_-30_6": {
-      "mean": 0.325,
-      "min": 0.18
-    },
-    "Stone-arch_node_22_-10_-30_3": {
-      "mean": 0.303,
+    "Mortar_node_22_-10_-30_20": {
+      "mean": 0.241,
       "min": 0.18
     },
     "Stone-arch_node_22_-10_-30_4": {
-      "mean": 0.389,
+      "mean": 0.361,
       "min": 0.18
     },
     "Stone-arch_node_22_-10_-30_5": {
-      "mean": 0.384,
+      "mean": 0.305,
       "min": 0.18
     },
-    "Stone-ashlar_node_22_-10_-30_3": {
-      "mean": 0.338,
+    "Stone-arch_node_22_-10_-30_6": {
+      "mean": 0.243,
       "min": 0.18
     },
-    "Stone-flag_node_22_-10_-30_7": {
-      "mean": 0.804,
+    "Stone-flag_node_22_-10_-30_21": {
+      "mean": 0.798,
+      "min": 0.18
+    },
+    "Stone-stone_node_22_-10_-30_0": {
+      "mean": 0.301,
       "min": 0.18
     },
     "Stone-stone_node_22_-10_-30_1": {
-      "mean": 0.699,
+      "mean": 0.366,
+      "min": 0.18
+    },
+    "Stone-stone_node_22_-10_-30_2": {
+      "mean": 0.247,
       "min": 0.18
     },
     "Stone-stone_node_22_-10_-30_3": {
-      "mean": 0.459,
+      "mean": 0.276,
       "min": 0.18
     }
   },
   "blender": "5.2.2 LTS",
   "files": {
-    "content/environments/procedural_architecture_v1/passages/node_22_-10_-30.glb": "84c6957f68e4f677eafc756c9c1d49fdb0092be83ffae1d330e98fdfff7ae5a8"
+    "content/environments/procedural_architecture_v1/passages/node_22_-10_-30.glb": "5d8ef2f4ae65ccad43809c6ca6f04fa2ccbae700d4bde64717455f5c793963ca"
   },
   "id": "node_22_-10_-30",
-  "triangles": 63178
+  "situation": {
+    "form": "bay",
+    "routes": [
+      "chapel_approach",
+      "return_gallery"
+    ],
+    "rule": "shared actual-axis barrel clearances"
+  },
+  "triangles": 102383
 }

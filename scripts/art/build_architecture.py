@@ -13,8 +13,8 @@ wall instead. Every wall is built course by course from the stone library
 (procgen.masonry), openings get jambs, arches and keystones through the full
 thickness, and a mortar core fills behind.
 
-Rule two: an enclosed route is one passage with one cross-section (its
-profile): the doorways where it crosses room walls and the barrel vault of
+Rule two: an enclosed route is one passage with one interface cross-section
+(its profile): the doorways where it crosses room walls and the barrel vault of
 the tunnel between rooms are the same arch, so nothing stands inside an
 arch and no box tunnel runs through a wall. Where the rooms are too low for a
 semicircle the vault goes segmental.
@@ -32,6 +32,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parent))
 import bpy
 import numpy
 from mathutils import Matrix, Vector
+from mathutils.bvhtree import BVHTree
 
 from procgen import bake, core, disturb, export, masonry, passage, stonekinds, stonelib, vault
 
@@ -54,6 +55,7 @@ STAIRS = True          # build masonry under raised walks
 # Rooms rendered over their stone, the render peeling to show it (the nave's
 # red, the paintovers' pale lime): the game picks the coat by room.
 PLASTER = {'nave': 'red', 'chapel': 'lime', 'restraint': 'lime'}
+PASSAGE_REPORTS = {}
 
 
 def parse():
@@ -320,7 +322,9 @@ def network(layout: dict) -> tuple:
             for kind_end, direction, godot in ((start, away, points[segment]), (end, -away, points[segment + 1])):
                 if kind_end[0] == 'node':
                     node = nodes.setdefault(kind_end[1], {'at': blender_point(godot), 'godot': godot, 'arrivals': [], 'open': []})
-                    node['arrivals'].append({'route': route, 'run': number, 'away': direction, 'profile': profile(route, layout)})
+                    slope = (b.z - a.z) / Vector((b.x - a.x, b.y - a.y)).length * direction.dot(away)
+                    node['arrivals'].append({'route': route, 'run': number, 'away': direction,
+                                             'slope': slope, 'profile': profile(route, layout)})
     for route in layout['routes']:
         if route['enclosed']:
             continue
@@ -404,7 +408,8 @@ def run_planes(route: dict, number: int, stretch: tuple, nodes: dict) -> tuple:
         elif node['kind'] == 'bay':
             arrival = next(arrival for arrival in node['arrivals'] if arrival['route'] is route and arrival['run'] == number and
                            arrival['away'].dot(away) > 0.99)
-            planes.append((node['at'] + arrival['side'] * node['profile'].half, -arrival['side']))
+            if not skew_node(node):
+                planes.append((node['at'] + arrival['side'] * node['profile'].half, -arrival['side']))
         elif node['kind'] == 'portal':
             planes.append((node['at'] + away * passage.THICKNESS, -away))
         elif node['kind'] == 'door' and 'room_wall' in node:
@@ -413,6 +418,59 @@ def run_planes(route: dict, number: int, stretch: tuple, nodes: dict) -> tuple:
             ext[slot] = min(4.5 * math.sqrt(1.0 - cosine * cosine) / cosine + 0.15, 2.5) + (node['at'] - Vector((point.x, point.y, node['at'].z))).length
             planes.append((Vector((point.x, point.y, 0.0)), -Vector((outward.x, outward.y, 0.0))))
     return planes, ext
+
+
+def skew_node(node: dict) -> bool:
+    return node['kind'] == 'bay' and (all(a['route']['id'] in ('root_tunnel','cave_bypass') for a in node['arrivals']) or
+                                    any(a['away'].dot(a['side']) < 0.9999 for a in node['arrivals']))
+
+
+def joining_clearances(node: dict, route_id: str, run_number: int, padding: float = 0.0) -> list:
+    """A skew neighbour can cross a run's wall outside the square bay too."""
+    h = node['profile'].half
+    return [passage.clearance(a['profile'], node['at'], a['away'], 0.0, 3*(h+passage.THICKNESS),
+                              f'joining_clearance_{k}', a.get('slope', 0.0), padding)
+            for k, a in enumerate(node['arrivals'])
+            if not (a['route']['id'] == route_id and a['run'] == run_number)]
+
+
+def joining_floor_clearances(node: dict, route_id: str, run_number: int) -> list:
+    """One incoming run owns every shared paving patch, in stable ID order."""
+    h = node['profile'].half
+    return [passage.clearance(a['profile'],node['at'],a['away'],0,3*(h+passage.THICKNESS),
+                              f'floor_owner_{k}',a.get('slope',0.0))
+            for k,a in enumerate(node['arrivals']) if (a['route']['id'],a['run']) < (route_id,run_number)]
+
+
+def fit_junction_floor(groups: dict, node: dict) -> None:
+    """Fit bay flags to the game's mitred walking triangles, including ramps."""
+    if not any(abs(a.get('slope',0.0)) > .001 for a in node['arrivals']):
+        return
+    vertices, faces = [], []
+    for arrival in node['arrivals']:
+        route = arrival['route']
+        for i in range(len(route['points'])-1):
+            p,q = blender_point(route['points'][i]),blender_point(route['points'][i+1])
+            e,f = blender_point(route['edges'][i]),blender_point(route['edges'][i+1])
+            steps = max(1,math.ceil((q-p).length/1.4))
+            for step in range(steps):
+                t,u = step/steps,(step+1)/steps
+                a,b = p.lerp(q,t),p.lerp(q,u)
+                edge_a,edge_b = e.lerp(f,t),e.lerp(f,u)
+                n = len(vertices)
+                vertices += [a-edge_a,a+edge_a,b-edge_b,b+edge_b]
+                faces += [(n,n+1,n+2),(n+1,n+3,n+2)]
+    tree = BVHTree.FromPolygons(vertices,faces,all_triangles=True)
+    for obj in groups.get(21,groups.get(7,[])):
+        passage._bake_transform(obj)
+        for vertex in obj.data.vertices:
+            relative_height = vertex.co.z-node['at'].z
+            hit = tree.ray_cast(Vector((vertex.co.x,vertex.co.y,node['at'].z+5)), -passage.UP,10)[0]
+            if hit is None:
+                hit = tree.find_nearest(vertex.co)[0]
+            if hit is not None:
+                vertex.co.z = hit.z+relative_height
+        obj.data.update()
 
 
 def write_index(layout: dict, out: Path) -> None:
@@ -460,6 +518,14 @@ def build_network(layout: dict, wanted: set, rng, lib, quoins) -> tuple:
     for route in layout['routes']:
         if route['id'] not in wanted or route['id'] not in runs:
             continue
+        rng = core.rng(177, 'passage', route['id'])
+        style, reason = ('timber_mine', 'deep service bypass: timber shores in hewn rock') if route['id'] == 'cave_bypass' else (
+            ('hewn_rock', 'root route cut through the shaft rock') if route['id'] == 'root_tunnel' else
+            ('masonry', 'built connector between masonry rooms'))
+        PASSAGE_REPORTS[route['id']] = {'situation': {'route': route['id'], 'width_m': route['width'],
+            'form': style, 'rule': reason}, 'ageing': 'restrained; 2.5 cm timber bow, 0–9 cm hewn relief',
+            'profile_change': {'enabled': route['id'] != 'return_gallery',
+                'max_widen_m_per_side': .28, 'max_lower_crown_m': .22, 'unchanged_join_m': 4.0}}
         groups, key = {}, 0
         points = route['points']
         for number, stretch in enumerate(runs[route['id']]):
@@ -469,10 +535,37 @@ def build_network(layout: dict, wanted: set, rng, lib, quoins) -> tuple:
             a, b = blender_point(points[segment]), blender_point(points[segment + 1])
             planes, ext = run_planes(route, number, stretch, nodes)
             pieces = passage.run(lib, rng, profile(route, layout), a.lerp(b, t0), a.lerp(b, t1), f'{route["id"]}_{number}',
-                                 ext=ext, planes=planes)
-            for group in pieces.values():
+                                 ext=ext, planes=planes, style=style, vary=route['id'] != 'return_gallery')
+            floor_origin=a.lerp(b,t0)-Vector((0,0,(b.z-a.z)/Vector((b.x-a.x,b.y-a.y,0)).length*ext[0]))
+            fit_junction_floor({21:pieces[4]},{'at':floor_origin,'arrivals':[{'route':route,'slope':(b.z-a.z)}]})
+            for endpoint in (start, end):
+                if endpoint[0] == 'node' and skew_node(nodes[endpoint[1]]):
+                    node = nodes[endpoint[1]]
+                    cut = passage.box('bay_footprint', node['at'], node['axis'], node['profile'].half,
+                                      -20.0, 30.0)
+                    faces = {k:v for k,v in pieces.items() if k != 3}
+                    passage.subtract(faces,[cut]);pieces.update(faces)
+                    core.discard(cut)
+                    core_cut = passage.box('recessed_bay_footprint',node['at'],node['axis'],node['profile'].half+passage.RECESS,-20,30)
+                    core_neighbours = joining_clearances(node,route['id'],number,passage.RECESS)
+                    backing={3:pieces[3]};passage.subtract(backing,[core_cut]+core_neighbours);pieces[3]=backing[3]
+                    for cutter in [core_cut]+core_neighbours:
+                        core.discard(cutter)
+                    neighbours = joining_clearances(node, route['id'], number)
+                    walls = {k: objects for k, objects in pieces.items() if k not in (3,4)}
+                    passage.subtract(walls, neighbours)
+                    pieces.update(walls)
+                    for cutter in neighbours:
+                        core.discard(cutter)
+                    floor_cutters = joining_floor_clearances(node,route['id'],number)
+                    floors = {4:pieces[4]};passage.subtract(floors,floor_cutters);pieces[4]=floors[4]
+                    for cutter in floor_cutters:
+                        core.discard(cutter)
+            for group_id, group in pieces.items():
+                # Keep the five structural group names stable: the bonded
+                # upper-gallery bake consumes Mortar_return_gallery_<5*n+3>.
+                key = number * 5 + group_id if group_id < 5 else 1000 + number * 10 + group_id
                 groups[key] = group
-                key += 1
             coverage.append({'route': route['id'], 'segment': segment, 't0': round(t0, 4), 't1': round(t1, 4)})
             print('PASSAGE_RUN', route['id'], segment, f'{t0:.3f}-{t1:.3f}', start[0], end[0], flush=True)
         if not any(groups.values()):
@@ -484,9 +577,16 @@ def build_network(layout: dict, wanted: set, rng, lib, quoins) -> tuple:
         if not served & wanted or node['kind'] not in ('bay', 'portal'):
             continue
         label = 'node_%d_%d_%d' % tuple(round(c) for c in node['godot'])
+        rng = core.rng(177, 'passage', label)
+        PASSAGE_REPORTS[label] = {'situation': {'form': node['kind'], 'routes': sorted(served),
+            'rule': 'shared actual-axis barrel clearances' if skew_node(node) else 'aligned groin bay or through-depth portal'}}
         o = node['profile']
         if node['kind'] == 'bay':
-            groups = passage.bay(lib, rng, quoins, o, node['at'], node['axis'], node['sides'], label)
+            if skew_node(node):
+                groups = passage.skew_bay(lib, rng, o, node['at'], node['axis'], node['arrivals'], label)
+            else:
+                groups = passage.bay(lib, rng, quoins, o, node['at'], node['axis'], node['sides'], label)
+            fit_junction_floor(groups,node)
         else:
             arrival = node['arrivals'][0]
             groups = passage.portal(lib, rng, quoins, arrival['profile'], node['at'], -arrival['away'], label)
@@ -509,13 +609,16 @@ def map_stone(obj, rng) -> None:
     frame = obj.get('frame')
     if frame is None:
         return
-    along, up, out = Vector(frame[0:3]), Vector(frame[3:6]), Vector(frame[6:9])
+    if 'paving_cell' in obj:
+        rng=core.rng(177,'paving-uv',*obj['paving_cell'])
+    rock = obj.data.name.startswith('tunnel_rock')
+    along, up, out = (Vector((1,0,0)),passage.UP,Vector((0,-1,0))) if rock else (Vector(frame[0:3]),Vector(frame[3:6]),Vector(frame[6:9]))
     mesh = obj.data
     own = mesh.uv_layers.get('UVMap') or mesh.uv_layers.new(name='UVMap')
     wall = mesh.uv_layers.get('UVWall') or mesh.uv_layers.new(name='UVWall')
-    shift = Vector((rng.uniform(0.0, 40.0), rng.uniform(0.0, 40.0)))
-    turn = rng.uniform(-0.45, 0.45)
-    centre = sum((v.co for v in mesh.vertices), Vector()) / max(len(mesh.vertices), 1)
+    shift = Vector((0,0)) if rock else Vector((rng.uniform(0.0,40.0),rng.uniform(0.0,40.0)))
+    turn = 0.0 if rock else rng.uniform(-.45,.45)
+    centre = Vector(obj['mapping_origin']) if 'mapping_origin' in obj else (Vector((0,0,0)) if rock else sum((v.co for v in mesh.vertices),Vector())/max(len(mesh.vertices),1))
     for polygon in mesh.polygons:
         n = polygon.normal
         local = Vector((n.dot(along), n.dot(up), n.dot(out)))
@@ -539,6 +642,10 @@ def stone_kind(obj) -> str:
     """Which stone kind a placed stone is, from its library mesh's name (kept
     through copies as 'name.001'): each kind gets its own face material in game."""
     name = obj.data.name
+    if name.startswith('tunnel_rock'):
+        return 'rock'
+    if name.startswith('tunnel_wood'):
+        return 'wood'
     for key, kind in (('quoin_big_lib', 'quoin'), ('ashlar_lib', 'ashlar'), ('quoin_lib', 'ashlar'), ('slab_lib', 'slab'),
                       ('galleted_lib', 'galleted'), ('gallet', 'galleted'), ('Gallet', 'galleted'), ('flag_lib', 'flag'),
                       ('vault_template', 'arch'), ('_arch', 'arch'), ('_rib', 'arch')):
@@ -607,7 +714,7 @@ def bake_all(elements: list, out: Path, samples: int = 24) -> list:
             obj.name = obj.name.replace('Mortar', 'Collision')
         path = export.glb(objects + collisions, out / kind / f'{label}.glb')
         tris = sum(sum(len(p.vertices) - 2 for p in o.data.polygons) for o in objects)
-        core.write_report(out / kind / f'{label}.json', {'id': label, 'triangles': tris,
+        core.write_report(out / kind / f'{label}.json', {'id': label, 'triangles': tris, **PASSAGE_REPORTS.get(label, {}),
                                                          'ao': {o.name: ao[o.name] for o in objects if o.name in ao}}, [path])
         print('ARCHITECTURE_BAKED', kind, label, tris, 'tris', flush=True)
         written.append(path)
@@ -1326,7 +1433,11 @@ def main():
     index_path = out / 'index.json'
     index = json.loads(index_path.read_text()) if index_path.exists() else {}
     wanted_routes = {r['id'] for r in layout['routes'] if r['enclosed']} if options['passages'] == 'all' else set(options['passages'].split(',')) - {''}
-    passage_elements, coverage, files, built_nodes = build_network(layout, wanted_routes, rng, lib, quoins)
+    # Passage junctions use volume cuts: their stones must retain closed backs.
+    passage_lib = stonelib.Library(core.rng(177,'passage-solids'),'squared_rubble',count=24,triangles=200) if wanted_routes else lib
+    if wanted_routes:
+        passage.PAVING=stonekinds.Library(core.rng(177,'passage-floor-field'),'floor_flag',count=24,triangles=110,name='flag')
+    passage_elements, coverage, files, built_nodes = build_network(layout, wanted_routes, rng, passage_lib, quoins)
     elements += passage_elements
     parts += sum(len(g) for _, _, groups in passage_elements for g in groups.values())
     print('ARCHITECTURE_PARTS', parts, flush=True)

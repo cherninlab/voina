@@ -1,0 +1,15 @@
+{
+  "blender": "5.2.2 LTS",
+  "blocks": {
+    "first_stair_hall": 17,
+    "second_stair_hall": 15
+  },
+  "files": {
+    "content/environments/red_descent/stair_art_v1/parapet_coping.glb": "07f74aef14bbac3c90603a6b4a8d5d188c08e01b848dded18ed993b5ad0402c4"
+  },
+  "provenance": "Original procedural stone coping fitted to the existing parapet backing; no collision changes.",
+  "source_stairs_sha256": {
+    "first_stair_hall": "65e5b1bb8039f7829afaf763c3fcf6c34ad9aba4a336625abab31a6c908b3365",
+    "second_stair_hall": "797fd280ba0f43b40840e163221a67bf1de7db382b45d78c46ad696b4e2e46da"
+  }
+}

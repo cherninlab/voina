@@ -224,7 +224,14 @@ func route(path: Dictionary, edges: PackedVector3Array) -> void:
 	for node: int in range(points.size()):
 		var side: Vector3 = edges[node].normalized()
 		if not g.in_room(points[node]):
-			support(points[node], side, width, String(path["id"]), baked)
+			if g.landing_paved(path,node-1):
+				var landing: Dictionary = g.passage_landing
+				var base: Array = landing["base"] as Array
+				var seat: Array = landing["seat"] as Array
+				bearings.append({"route":path["id"],"type":"masonry abutment","deck":points[node],
+					"base":Vector3(float(base[0]),float(base[1]),float(base[2])),"seat":Vector3(float(seat[0]),float(seat[1]),float(seat[2]))})
+			else:
+				support(points[node], side, width, String(path["id"]), baked)
 		if baked:
 			continue
 		for sign_value: float in [-1.0, 1.0]:

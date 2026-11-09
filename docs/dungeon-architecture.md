@@ -13,7 +13,7 @@ blender --factory-startup -b --python-exit-code 1 --python scripts/art/build_arc
 Every element has a structural reason. A rule that can't be met stops the build; it is never papered over.
 
 1. **An opening exists only where a route really crosses a wall** at that height. This is a segment intersection, not a nearness test. The opening is centred on the crossing.
-2. **One generator per element.** An enclosed route is one passage with one cross-section, its *profile*. The doorways where it crosses room walls and the barrel vault between the rooms are the same arch, built together, so nothing stands inside an arch. The lowest room the passage serves decides how flat the vault is. Where a semicircle would hit that room's ceiling, the vault goes segmental.
+2. **One generator per element.** An enclosed route has one interface *profile*. Doorways and the adjoining barrel use that same arch. H-024 permits a long run to widen or lower between interfaces, tapering the variation to zero at least four metres before each join. The lowest room the passage serves decides how flat the interface vault is. Where a semicircle would hit that room's ceiling, the vault goes segmental.
 3. **A doorway onto an open crossing is sized by that crossing.** When an enclosed route leaves a room on its last segment and hands over to a bridge or ledge, the door matches the bridge, not the corridor.
 4. **A doorway must fit its wall.** If a route crosses too near a corner for its door plus jambs, the build prints `DOOR_DOES_NOT_FIT` and refuses to export. The fix is to change the room outline in `RedDescentLayout.rooms()`, never to shrink the door. Example: the entry room's east wall was turned square to its passage.
 5. **A stone build replaces everything it stands for.** A room with `rooms/<id>.glb` skips its old wall boxes, niches, pilasters and proximity arches. A stretch of route inside a passage, or within 1.6 m of a stone room, skips its old tunnel walls and lid (`stone_enclosed`).
@@ -52,6 +52,71 @@ The toolkit lives in `scripts/art/procgen/`:
   - A mortar mass surrounds each run, with the profile as its hole.
   - A bay's groin vault keeps each barrel's triangles over its own sides; its mass is the intersection of the two holed blocks.
   - Everything is clipped to whatever the piece meets: a room wall's outer face, a mitre or bay face, or a portal's back.
+
+### H-024 passage forms and skew joins (acceptance open)
+
+The root tunnel uses a continuous faceted hewn-rock lining; room doorways
+and junctions own its masonry transitions, avoiding duplicate run collars. The cave bypass uses the same lining with floor-seated timber shores,
+knee braces and ties (bow capped at 2.5 cm). Other connectors remain masonry.
+Long runs widen by up to 28 cm per side and lower their crown by up to 22 cm;
+interfaces and short runs retain their original clear profile. The bonded
+return gallery retains its tight profile and is rebaked with its dependent
+exterior. Small fallen spall clusters sit against the wall, outside the walking
+ribbon. Each passage JSON records its situation, chosen form and budgets.
+
+An oblique arrival cannot use a cardinal hole in a square bay. Skew bays use
+full barrel webs inside the central chamber, bounded by that chamber, and
+through-openings only along actual incoming half-runs. The same clear volumes
+cut stones and collision backing, including neighbouring run walls outside
+the bay. The adjoining runs are trimmed against the whole square footprint.
+Aligned masonry bays retain the existing groin construction. Hewn bays use
+one main barrel chamber with openings on the real arrival axes, rather than
+independent intersecting brick skins. Portal arches have actual depth.
+
+Passage runs, bays and the nave landing share a seeded world paving field
+(0.9 x 0.7 m staggered courses). Clipped pieces of a shared cell retain its
+stone, tone and UV origin. Sloped flags fit the same subdivided mitred walking
+triangles as the game. The render fallback is clipped where baked paving
+exists; walking collision is retained. This does not certify every room or
+stair material transition.
+
+Hollow cores use hole-aware cap tessellation. Filling each boundary loop
+separately seals the arch with a face. The cores have no walking floor plate:
+the game's smooth ribbon owns the floor, with its existing render-only mortar
+bed. This avoids a flat extension forming a ledge over an adjoining ramp.
+Long cores are subdivided before profile deformation so collision follows
+the visible crown and wall changes. Mine shores stay 4.2 m from run ends to
+keep complete frames clear of junction cuts.
+
+The stair-art generator's `--coping-only` mode fits individual worn stone caps
+to the existing repaired parapets by raycast. Their source hashes are checked
+at load time; the stair bodies, vascular fixtures and collision are preserved.
+
+Focused generator check:
+
+```sh
+blender --factory-startup -b --python-exit-code 1 --python scripts/art/procgen/selftest_passage.py
+```
+
+This checks closed arch clearances, an open skew arrival, closed rock lining,
+unchanged interfaces, hollow caps, a shared crossing, and varying collision
+profiles without floor plates. Game captures and capsule traversal remain
+separate requirements; this check does not establish visual acceptance.
+
+Use `scripts/art/rebuild_passage_junctions.py` for the nine skew bays, or
+pass route IDs to rebuild routes and all their nodes from closed libraries.
+Rebuild complete source elements rather than applying new volume Booleans to
+older merged meshes: legacy meshes can retain render-only blocking faces.
+Regrow passage growth with
+`build_roots.py -- --rooms none --no-render` after passage surface changes;
+this leaves the protected room and stair growth alone. Empty rebuilds remove
+old generated output so a short stretch cannot retain stale roots.
+
+The separate `build_nave_abutment.py` prototype gives the central ledge/nave
+interface one continuous masonry support from its existing pier into the
+shaft wall, and paving through its portal. It does not complete the broader
+H-023 bridge task. H-024 remains unaccepted while junction cut edges and the
+root-to-bridge turning interface need further visual work.
 
 `--check` prints every doorway, stretch and node the layout implies, without building stones.
 
@@ -125,6 +190,10 @@ scripts/godot_bg.sh --path . --script scripts/capture_dungeon.gd -- --dungeon --
 ```
 
 Add `--review` for the fixed review set everyone compares: the shaft views plus each stone room's widest wall, its vault, its walks and the passages.
+
+Add `--capture-keep-failures` for a complete visual audit: save blank/failed
+frames and continue to the other cameras. The capture still exits nonzero if
+any blank frame was detected. Failed frames must remain visible in review.
 
 `--stone-rooms` captures, for every stone room:
 - its four longest walls, from the middle and close up;

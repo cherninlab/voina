@@ -1,26 +1,33 @@
 {
   "ao": {
     "Mortar_node_-23_-23_-16_0": {
-      "mean": 0.411,
+      "mean": 0.385,
       "min": 0.18
     },
     "Stone-arch_node_-23_-23_-16_0": {
-      "mean": 0.492,
+      "mean": 0.463,
       "min": 0.18
     },
     "Stone-ashlar_node_-23_-23_-16_0": {
-      "mean": 0.521,
+      "mean": 0.472,
       "min": 0.18
     },
     "Stone-stone_node_-23_-23_-16_0": {
-      "mean": 0.738,
+      "mean": 0.491,
       "min": 0.18
     }
   },
   "blender": "5.2.2 LTS",
   "files": {
-    "content/environments/procedural_architecture_v1/passages/node_-23_-23_-16.glb": "f3f246fcc6af053f6c14f3b5f804ce16ccb345ddc80afe2ec592f857026cff09"
+    "content/environments/procedural_architecture_v1/passages/node_-23_-23_-16.glb": "fa6a8000f1480aca4c1d9a838ffebffa917029078c4b06be99c6b02030db2f60"
   },
   "id": "node_-23_-23_-16",
-  "triangles": 25153
+  "situation": {
+    "form": "portal",
+    "routes": [
+      "root_tunnel"
+    ],
+    "rule": "aligned groin bay or through-depth portal"
+  },
+  "triangles": 38992
 }

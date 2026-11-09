@@ -34,7 +34,7 @@ func walk(points: PackedVector3Array, label: String) -> void:
 			if ticks > limit or player.position.y < minf(target.y, points[maxi(0, index - 1)].y) - 3.0:
 				for collision_index: int in range(player.get_slide_collision_count()):
 					var contact: KinematicCollision3D = player.get_slide_collision(collision_index)
-					print("TRAVERSAL_CONTACT: %s normal %s" % [contact.get_position(), contact.get_normal()])
+					print("TRAVERSAL_CONTACT: %s normal %s body %s" % [contact.get_position(), contact.get_normal(), (contact.get_collider() as Node).get_path()])
 				check(false, "%s node %d blocked/fell: %s -> %s, floor=%s" % [label, index, player.position, target, player.is_on_floor()])
 				return
 		# Downhill seams can leave the capsule briefly airborne; let gravity settle it.

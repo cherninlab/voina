@@ -32,6 +32,7 @@ const RUBBLE: String = "res://content/environments/procedural_rubble_v1/rooms/"
 var stone_passages: Array[Dictionary] = []
 ## Bays and portals built in stone: centre (x, y, z) and plan radius.
 var stone_nodes: Array[Vector4] = []
+var passage_landing: Dictionary = {}
 var relief_walls: PackedInt32Array = PackedInt32Array()
 var bonded_gallery: bool = false
 var cube_faces: PackedVector3Array = BoxMesh.new().get_faces()
@@ -49,6 +50,7 @@ func build() -> void:
 	for room: Dictionary in rooms:
 		build_room(room)
 	load_stone_passages()
+	load_passage_landing()
 	stone_props()
 	for index: int in range(paths.size()):
 		build_path(paths[index], index < RedDescentLayout.MAIN_PATHS)
@@ -64,6 +66,26 @@ func build() -> void:
 	fort_source = null
 	print("GENERATED_KIT_PLACED: ", JSON.stringify(module_counts))
 	print("RED_DESCENT_GEOMETRY_READY: %d routes, %d rooms, %d lit landmarks, sloping crossings" % [paths.size(), rooms.size(), torch_posts.size()])
+
+func load_passage_landing() -> void:
+	var folder: String = "res://content/environments/red_descent/passage_landings_v1/"
+	if not ResourceLoader.exists(folder+"meshes/nave_abutment.glb"):
+		return
+	var build: Dictionary = JSON.parse_string(FileAccess.get_file_as_string(folder+"landing.json")) as Dictionary
+	for path: Dictionary in paths:
+		var id: String = String(path["id"])
+		if (build["routes"] as Dictionary).has(id) and String(build["routes"][id]) != DungeonStructure.layout_hash(path,route_edges(path)):
+			push_warning("Stale nave landing; rerun scripts/art/build_nave_abutment.py")
+			return
+	var built: Node3D = (load(folder+"meshes/nave_abutment.glb") as PackedScene).instantiate() as Node3D
+	built.name = "NaveAbutment"
+	stone_materials(built)
+	add_child(built)
+	passage_landing = build
+	print("NAVE_ABUTMENT_READY: continuous arch and paving; old endpoint bracket replaced")
+
+func landing_paved(path: Dictionary, segment: int) -> bool:
+	return not passage_landing.is_empty() and String(path["id"]) == String(passage_landing["route"]) and segment == int(passage_landing["segment"])
 
 ## Closed shaft relief and gallery supports share the rendered and collision faces.
 ## Reject stale geometry before hiding any original wall.
@@ -649,7 +671,13 @@ func stone_materials(built: Node3D) -> void:
 		elif visual.name.begins_with("Stone"):
 			# "Stone-<kind>_...": each stone kind wears its own face (T-182 shapes, T-183 faces).
 			var kind: String = visual.name.get_slice("_", 0).trim_prefix("Stone-") if visual.name.begins_with("Stone-") else "stone"
-			visual.material_override = stone_face(kind)
+			if kind == "rock" and not materials.has("passage_rock"):
+				# The curved lining has baked face UVs. Projecting from its smooth
+				# vertex normals stretches the texture across walls and soffits.
+				var lining: ShaderMaterial = (materials["rock"] as ShaderMaterial).duplicate() as ShaderMaterial
+				lining.set_shader_parameter("mapped", true)
+				materials["passage_rock"] = lining
+			visual.material_override = materials["passage_rock"] if kind == "rock" else (materials["wood"] if kind == "wood" else stone_face(kind))
 			if visual.name.begins_with("Stone-stone_upper_gallery_roof"):
 				if not materials.has("upper_roof"):
 					var roof: ShaderMaterial = (stone_face("stone") as ShaderMaterial).duplicate() as ShaderMaterial
@@ -872,14 +900,15 @@ func build_path(path: Dictionary, light_route: bool) -> void:
 			var room_floor: bool = in_room(a) and in_room(b)
 			# Raised walks inside stone rooms stand on baked masonry with stone treads:
 			# keep only their walking collision.
-			var stone_walk: bool = stone_raised(at) or (enclosed and stone_paved(path, index, (float(step) + 0.5) / float(steps), at))
+			var landing: bool = landing_paved(path,index)
+			var stone_walk: bool = landing or stone_raised(at) or (enclosed and stone_paved(path, index, (float(step) + 0.5) / float(steps), at))
 			if not room_floor:
 				# One shared ribbon across each turn: no horizontal landing lips on ramps.
 				var edge_a: Vector3 = edges[index].lerp(edges[index + 1], float(step) / float(steps))
 				var edge_b: Vector3 = edges[index].lerp(edges[index + 1], float(step + 1) / float(steps))
 				ribbon_top(a - edge_a, a + edge_a, b - edge_b, "collision" if sculpted_deck or stone_walk else material)
 				ribbon_top(a + edge_a, b + edge_b, b - edge_b, "collision" if sculpted_deck or stone_walk else material)
-				if stone_walk and not stone_raised(at) and not (bonded_gallery and String(path["id"]) == "return_gallery"):
+				if stone_walk and not landing and not stone_raised(at) and not (bonded_gallery and String(path["id"]) == "return_gallery"):
 					paving_bed(a - edge_a, a + edge_a, b - edge_b)
 					paving_bed(a + edge_a, b + edge_b, b - edge_b)
 				if not sculpted_deck and not stone_walk:
@@ -944,6 +973,27 @@ func ribbon_top(a: Vector3, b: Vector3, c: Vector3, material: String) -> void:
 		for polygon: PackedVector2Array in polygons:
 			remaining.append_array(Geometry2D.clip_polygons(polygon, room["points"] as PackedVector2Array))
 		polygons = remaining
+	# A mitred triangle can extend into a baked stretch even when its
+	# segment midpoint is outside. Trim the render surface, keeping collision.
+	for passage: Dictionary in stone_passages:
+		for path: Dictionary in paths:
+			if String(path["id"]) != String(passage["route"]):
+				continue
+			var points: PackedVector3Array = path["points"] as PackedVector3Array
+			var segment: int = int(passage["segment"])
+			var start: Vector3 = points[segment].lerp(points[segment + 1], float(passage["t0"]))
+			var finish: Vector3 = points[segment].lerp(points[segment + 1], float(passage["t1"]))
+			if not is_equal_approx(start.y, a.y) or not is_equal_approx(finish.y, a.y):
+				continue
+			var from: Vector2 = Vector2(start.x, start.z)
+			var to: Vector2 = Vector2(finish.x, finish.z)
+			var along: Vector2 = (to - from).normalized()
+			var side: Vector2 = Vector2(-along.y, along.x) * (float(path["width"]) + 0.4) * 0.5
+			var cover: PackedVector2Array = PackedVector2Array([from - side, to - side, to + side, from + side])
+			var remaining: Array[PackedVector2Array] = []
+			for polygon: PackedVector2Array in polygons:
+				remaining.append_array(Geometry2D.clip_polygons(polygon, cover))
+			polygons = remaining
 	for polygon: PackedVector2Array in polygons:
 		var indices: PackedInt32Array = Geometry2D.triangulate_polygon(polygon)
 		for index: int in range(0, indices.size(), 3):
@@ -1114,8 +1164,8 @@ func portal_levels(point: Vector2, radius: float) -> Array[float]:
 				result.append(y)
 	return result
 
-## Cut the shaft wall where the actual walking ribbons meet it. A route
-## running near the wall must not turn a whole masonry column into a doorway.
+## Cut the actual ribbon overlap, including adjacent faces at a shaft corner.
+## Requiring a centre-line crossing leaves a wall face inside the tunnel.
 func shaft_route_cuts(a: Vector2, b: Vector2, room_openings: Array[Dictionary]) -> Array[Dictionary]:
 	var cuts: Array[Dictionary] = []
 	var wall: Vector2 = b - a
@@ -1127,18 +1177,21 @@ func shaft_route_cuts(a: Vector2, b: Vector2, room_openings: Array[Dictionary]) 
 			var to: Vector3 = points[index + 1]
 			var origin: Vector2 = Vector2(from.x, from.z)
 			var destination: Vector2 = Vector2(to.x, to.z)
-			var crossing: Variant = Geometry2D.segment_intersects_segment(a, b, origin, destination)
-			if crossing == null:
-				continue
-			var centre: Vector2 = crossing as Vector2
+			# Open ledges running beside a wall do not require tunnel openings.
+			# Preserve their existing centre-line and room-doorway rules.
+			if not bool(path.get("enclosed", false)):
+				var crossing: Variant = Geometry2D.segment_intersects_segment(a, b, origin, destination)
+				if crossing == null:
+					continue
+				var centre: Vector2 = crossing as Vector2
+				var wall_t: float = (centre - a).dot(wall) / wall.length_squared()
+				var floor_y: float = lerpf(from.y, to.y, (centre-origin).dot(destination-origin)/(destination-origin).length_squared())
+				if room_openings.any(func(cut: Dictionary) -> bool:
+					var band: Vector2 = cut["band"] as Vector2
+					return wall_t > float(cut["t0"]) and wall_t < float(cut["t1"]) and floor_y >= band.x-.05 and floor_y+2.0 < band.y
+				):
+					continue
 			var axis: Vector2 = destination - origin
-			var wall_t: float = (centre - a).dot(wall) / wall.length_squared()
-			var floor_y: float = lerpf(from.y, to.y, (centre - origin).dot(axis) / axis.length_squared())
-			if room_openings.any(func(cut: Dictionary) -> bool:
-				var band: Vector2 = cut["band"] as Vector2
-				return wall_t > float(cut["t0"]) and wall_t < float(cut["t1"]) and floor_y >= band.x - 0.05 and floor_y + 2.0 < band.y
-			):
-				continue
 			var ribbon: PackedVector2Array = PackedVector2Array()
 			for corner: Vector3 in [from - edges[index], to - edges[index + 1], to + edges[index + 1], from + edges[index]]:
 				ribbon.append(Vector2(corner.x, corner.z))

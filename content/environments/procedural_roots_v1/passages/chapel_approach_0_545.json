@@ -1,7 +1,7 @@
 {
   "ao": {
     "Roots_chapel_approach_0_545_0": {
-      "mean": 0.621,
+      "mean": 0.604,
       "min": 0.2
     }
   },
@@ -13,12 +13,13 @@
     "route_margin_m": 0.3
   },
   "diameter_cm": {
-    "max": 10.5,
-    "min": 0.5
+    "max": 7.1,
+    "min": 0.2
   },
   "files": {
-    "content/environments/procedural_roots_v1/passages/chapel_approach_0_545.glb": "58ee9945638a310b4f06f50cd13b86779bc37b39955008cfb62f5f042f0c2780"
+    "content/environments/procedural_roots_v1/passages/chapel_approach_0_545.glb": "7c332aa5451221e7dc1b2ece8247bbf1b126b3d593b65c6c8795dbce88e5cc64"
   },
+  "growth_budget": 6859,
   "id": "chapel_approach_0_545",
   "layout_hash": "20aa6015a7f9f4f7c12b59b90acfe080b07298d8b2b180c7054b532be72d00d4",
   "meshes": [
@@ -33,31 +34,113 @@
   },
   "qa": {
     "audit": {
-      "cut_deeper_than_1cm": 1,
-      "cut_into_stone": 7,
-      "emerging_from_joint": 0,
+      "cut_deeper_than_1cm": 0,
+      "cut_into_stone": 3,
+      "emerging_from_joint": 1,
       "in_walking_corridor": 0,
-      "vertices": 2882
+      "vertices": 3942
     },
     "cling_gap_m": {
-      "max": 0.0494,
-      "p50": 0.0047,
-      "p95": 0.0111
+      "max": 0.0528,
+      "p50": 0.0043,
+      "p95": 0.0206
     },
     "clipped_at_corridor": 0,
-    "pruned": 0,
-    "rings": 646,
-    "rings_touching_stone": 4
+    "pruned": 67,
+    "rings": 430,
+    "rings_touching_stone": 4,
+    "terminal_rings": [
+      {
+        "end": "start",
+        "exposed_vertices": 0,
+        "root": 1,
+        "vertices": 8
+      },
+      {
+        "end": "start",
+        "exposed_vertices": 0,
+        "root": 13,
+        "vertices": 8
+      },
+      {
+        "end": "start",
+        "exposed_vertices": 0,
+        "root": 28,
+        "vertices": 8
+      },
+      {
+        "end": "return",
+        "exposed_vertices": 0,
+        "root": 28,
+        "vertices": 8
+      },
+      {
+        "end": "start",
+        "exposed_vertices": 0,
+        "root": 37,
+        "vertices": 10
+      },
+      {
+        "end": "start",
+        "exposed_vertices": 0,
+        "root": 44,
+        "vertices": 10
+      },
+      {
+        "end": "start",
+        "exposed_vertices": 0,
+        "root": 66,
+        "vertices": 8
+      },
+      {
+        "end": "return",
+        "exposed_vertices": 0,
+        "root": 66,
+        "vertices": 8
+      },
+      {
+        "end": "start",
+        "exposed_vertices": 0,
+        "root": 74,
+        "vertices": 10
+      },
+      {
+        "end": "start",
+        "exposed_vertices": 0,
+        "root": 79,
+        "vertices": 10
+      },
+      {
+        "end": "start",
+        "exposed_vertices": 0,
+        "root": 83,
+        "vertices": 10
+      },
+      {
+        "end": "start",
+        "exposed_vertices": 0,
+        "root": 86,
+        "vertices": 10
+      },
+      {
+        "end": "start",
+        "exposed_vertices": 0,
+        "root": 90,
+        "vertices": 10
+      }
+    ],
+    "unmounted_systems_pruned": 0
   },
-  "roots": 81,
+  "roots": 11,
   "seed": 178,
   "sources": {
-    "procedural_architecture_v1/passages/chapel_approach.glb": "3a2afdfd17fefb411e6738f8fe6c9af2575b43c5b9669580a16465e6c0bba0e9"
+    "content/environments/procedural_architecture_v1/passages/chapel_approach.glb": "4e17fa3d67422c0da5ddf0e93cc102c9f64359bc3f50b6ae374565981b066458",
+    "scripts/art/build_roots.py": "ffb913f950c8e7f2f63fce40eb35f85e37508f5dba4a51051e3ffc4c9bf0843c",
+    "scripts/art/procgen/roots.py": "3714841f150fe6903e6bff1c93a3327cfa183633ebb2dd0998b8a05f95609c92"
   },
   "systems": {
-    "branch": 5,
-    "loop": 3,
-    "trunk": 1
+    "branch": 6,
+    "loop": 5
   },
-  "triangles": 5614
+  "triangles": 8094
 }

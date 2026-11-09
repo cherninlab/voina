@@ -1,7 +1,7 @@
 {
   "ao": {
     "Roots_entry_0_604_0": {
-      "mean": 0.622,
+      "mean": 0.506,
       "min": 0.2
     }
   },
@@ -13,12 +13,13 @@
     "route_margin_m": 0.3
   },
   "diameter_cm": {
-    "max": 11.8,
+    "max": 3.9,
     "min": 0.5
   },
   "files": {
-    "content/environments/procedural_roots_v1/passages/entry_0_604.glb": "5b22dc0441414b3c9b523bbbc454fa474a069727d3e16744d015f03ed44a4eac"
+    "content/environments/procedural_roots_v1/passages/entry_0_604.glb": "d7838f0ad53c59ef7bd6ed422429b1ec09375648f840f2d3053e0edd3d9a027c"
   },
+  "growth_budget": 4924,
   "id": "entry_0_604",
   "layout_hash": "20aa6015a7f9f4f7c12b59b90acfe080b07298d8b2b180c7054b532be72d00d4",
   "meshes": [
@@ -33,31 +34,40 @@
   },
   "qa": {
     "audit": {
-      "cut_deeper_than_1cm": 1,
-      "cut_into_stone": 9,
+      "cut_deeper_than_1cm": 0,
+      "cut_into_stone": 0,
       "emerging_from_joint": 0,
       "in_walking_corridor": 0,
-      "vertices": 2191
+      "vertices": 312
     },
     "cling_gap_m": {
-      "max": 0.0428,
-      "p50": 0.0058,
-      "p95": 0.0129
+      "max": 0.0167,
+      "p50": 0.0037,
+      "p95": 0.016
     },
     "clipped_at_corridor": 0,
-    "pruned": 0,
-    "rings": 465,
-    "rings_touching_stone": 7
+    "pruned": 46,
+    "rings": 40,
+    "rings_touching_stone": 0,
+    "terminal_rings": [
+      {
+        "end": "start",
+        "exposed_vertices": 0,
+        "root": 1,
+        "vertices": 8
+      }
+    ],
+    "unmounted_systems_pruned": 6
   },
-  "roots": 59,
+  "roots": 1,
   "seed": 178,
   "sources": {
-    "procedural_architecture_v1/passages/entry.glb": "912c5aea1608ed100c3765a39271c06a33d805d70a10270a63784137c195452c"
+    "content/environments/procedural_architecture_v1/passages/entry.glb": "18a27ab6e3ddb1ba4566638850ba4a7f9a1048d555295413ce4637fccbb6354e",
+    "scripts/art/build_roots.py": "ffb913f950c8e7f2f63fce40eb35f85e37508f5dba4a51051e3ffc4c9bf0843c",
+    "scripts/art/procgen/roots.py": "3714841f150fe6903e6bff1c93a3327cfa183633ebb2dd0998b8a05f95609c92"
   },
   "systems": {
-    "branch": 1,
-    "loop": 4,
-    "trunk": 3
+    "branch": 1
   },
-  "triangles": 4314
+  "triangles": 638
 }

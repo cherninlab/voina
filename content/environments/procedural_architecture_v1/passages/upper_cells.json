@@ -1,90 +1,107 @@
 {
+  "ageing": "restrained; 2.5 cm timber bow, 0\u20139 cm hewn relief",
   "ao": {
     "Mortar_upper_cells_13": {
-      "mean": 0.26,
+      "mean": 0.289,
       "min": 0.18
     },
     "Mortar_upper_cells_18": {
-      "mean": 0.341,
+      "mean": 0.374,
       "min": 0.18
     },
     "Mortar_upper_cells_3": {
-      "mean": 0.509,
+      "mean": 0.553,
       "min": 0.18
     },
     "Mortar_upper_cells_8": {
-      "mean": 0.343,
+      "mean": 0.372,
       "min": 0.18
     },
     "Stone-arch_upper_cells_12": {
-      "mean": 0.438,
+      "mean": 0.429,
       "min": 0.18
     },
     "Stone-arch_upper_cells_17": {
-      "mean": 0.4,
+      "mean": 0.39,
       "min": 0.18
     },
     "Stone-arch_upper_cells_2": {
-      "mean": 0.459,
+      "mean": 0.436,
       "min": 0.18
     },
     "Stone-arch_upper_cells_7": {
-      "mean": 0.398,
+      "mean": 0.385,
       "min": 0.18
     },
     "Stone-flag_upper_cells_14": {
-      "mean": 0.794,
+      "mean": 0.773,
       "min": 0.18
     },
     "Stone-flag_upper_cells_19": {
-      "mean": 0.81,
+      "mean": 0.741,
       "min": 0.18
     },
     "Stone-flag_upper_cells_4": {
-      "mean": 0.869,
+      "mean": 0.796,
       "min": 0.18
     },
     "Stone-flag_upper_cells_9": {
-      "mean": 0.812,
+      "mean": 0.759,
       "min": 0.18
     },
     "Stone-stone_upper_cells_0": {
-      "mean": 0.742,
+      "mean": 0.474,
       "min": 0.18
     },
     "Stone-stone_upper_cells_1": {
-      "mean": 0.755,
+      "mean": 0.469,
       "min": 0.18
     },
     "Stone-stone_upper_cells_10": {
-      "mean": 0.677,
+      "mean": 0.455,
+      "min": 0.18
+    },
+    "Stone-stone_upper_cells_1026": {
+      "mean": 0.295,
       "min": 0.18
     },
     "Stone-stone_upper_cells_11": {
-      "mean": 0.707,
+      "mean": 0.462,
       "min": 0.18
     },
     "Stone-stone_upper_cells_15": {
-      "mean": 0.584,
+      "mean": 0.335,
       "min": 0.18
     },
     "Stone-stone_upper_cells_16": {
-      "mean": 0.727,
+      "mean": 0.415,
       "min": 0.18
     },
     "Stone-stone_upper_cells_5": {
-      "mean": 0.513,
+      "mean": 0.35,
       "min": 0.18
     },
     "Stone-stone_upper_cells_6": {
-      "mean": 0.714,
+      "mean": 0.412,
       "min": 0.18
     }
   },
   "blender": "5.2.2 LTS",
   "files": {
-    "content/environments/procedural_architecture_v1/passages/upper_cells.glb": "efc6ef1fcfda3ff49a8da42ec9ce64fa4d95d4321459350158ffbe0326dc138e"
+    "content/environments/procedural_architecture_v1/passages/upper_cells.glb": "62b2ead3e32f74d61295418e4c37b149775910ae5872bba9eb11a9e914c42c29"
   },
   "id": "upper_cells",
-  "triangles": 212100
+  "profile_change": {
+    "enabled": true,
+    "max_lower_crown_m": 0.22,
+    "max_widen_m_per_side": 0.28,
+    "unchanged_join_m": 4.0
+  },
+  "situation": {
+    "form": "masonry",
+    "route": "upper_cells",
+    "rule": "built connector between masonry rooms",
+    "width_m": 4.0
+  },
+  "triangles": 298400
 }

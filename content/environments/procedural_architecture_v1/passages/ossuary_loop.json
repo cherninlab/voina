@@ -1,110 +1,131 @@
 {
+  "ageing": "restrained; 2.5 cm timber bow, 0\u20139 cm hewn relief",
   "ao": {
     "Mortar_ossuary_loop_13": {
-      "mean": 0.782,
+      "mean": 0.694,
       "min": 0.18
     },
     "Mortar_ossuary_loop_18": {
-      "mean": 0.815,
+      "mean": 0.812,
       "min": 0.18
     },
     "Mortar_ossuary_loop_23": {
-      "mean": 0.783,
+      "mean": 0.562,
       "min": 0.18
     },
     "Mortar_ossuary_loop_3": {
-      "mean": 0.525,
+      "mean": 0.47,
       "min": 0.18
     },
     "Mortar_ossuary_loop_8": {
-      "mean": 0.542,
+      "mean": 0.577,
       "min": 0.18
     },
     "Stone-arch_ossuary_loop_12": {
-      "mean": 0.494,
+      "mean": 0.489,
       "min": 0.18
     },
     "Stone-arch_ossuary_loop_17": {
-      "mean": 0.447,
+      "mean": 0.446,
       "min": 0.18
     },
     "Stone-arch_ossuary_loop_2": {
-      "mean": 0.44,
+      "mean": 0.437,
       "min": 0.18
     },
     "Stone-arch_ossuary_loop_22": {
-      "mean": 0.441,
-      "min": 0.18
-    },
-    "Stone-arch_ossuary_loop_7": {
       "mean": 0.438,
       "min": 0.18
     },
+    "Stone-arch_ossuary_loop_7": {
+      "mean": 0.437,
+      "min": 0.18
+    },
     "Stone-flag_ossuary_loop_14": {
-      "mean": 0.868,
+      "mean": 0.782,
       "min": 0.18
     },
     "Stone-flag_ossuary_loop_19": {
-      "mean": 0.811,
+      "mean": 0.771,
       "min": 0.18
     },
     "Stone-flag_ossuary_loop_24": {
-      "mean": 0.801,
+      "mean": 0.765,
       "min": 0.18
     },
     "Stone-flag_ossuary_loop_4": {
-      "mean": 0.801,
+      "mean": 0.754,
       "min": 0.18
     },
     "Stone-flag_ossuary_loop_9": {
-      "mean": 0.799,
+      "mean": 0.776,
       "min": 0.18
     },
     "Stone-stone_ossuary_loop_0": {
-      "mean": 0.641,
+      "mean": 0.413,
       "min": 0.18
     },
     "Stone-stone_ossuary_loop_1": {
-      "mean": 0.704,
+      "mean": 0.395,
       "min": 0.18
     },
     "Stone-stone_ossuary_loop_10": {
-      "mean": 0.724,
+      "mean": 0.464,
+      "min": 0.18
+    },
+    "Stone-stone_ossuary_loop_1016": {
+      "mean": 0.224,
+      "min": 0.18
+    },
+    "Stone-stone_ossuary_loop_1046": {
+      "mean": 0.256,
       "min": 0.18
     },
     "Stone-stone_ossuary_loop_11": {
-      "mean": 0.725,
+      "mean": 0.403,
       "min": 0.18
     },
     "Stone-stone_ossuary_loop_15": {
-      "mean": 0.716,
+      "mean": 0.469,
       "min": 0.18
     },
     "Stone-stone_ossuary_loop_16": {
-      "mean": 0.706,
+      "mean": 0.481,
       "min": 0.18
     },
     "Stone-stone_ossuary_loop_20": {
-      "mean": 0.709,
+      "mean": 0.485,
       "min": 0.18
     },
     "Stone-stone_ossuary_loop_21": {
-      "mean": 0.704,
+      "mean": 0.424,
       "min": 0.18
     },
     "Stone-stone_ossuary_loop_5": {
-      "mean": 0.693,
+      "mean": 0.472,
       "min": 0.18
     },
     "Stone-stone_ossuary_loop_6": {
-      "mean": 0.702,
+      "mean": 0.472,
       "min": 0.18
     }
   },
   "blender": "5.2.2 LTS",
   "files": {
-    "content/environments/procedural_architecture_v1/passages/ossuary_loop.glb": "99cd9381aab1f0cbbc3192792798c79180b551387b3f0c6f0678382dbff7e974"
+    "content/environments/procedural_architecture_v1/passages/ossuary_loop.glb": "a25e6f7d550fdf2f632c1fb4c1dd0460414e31683fd510eff94e6c91434a9767"
   },
   "id": "ossuary_loop",
-  "triangles": 313640
+  "profile_change": {
+    "enabled": true,
+    "max_lower_crown_m": 0.22,
+    "max_widen_m_per_side": 0.28,
+    "unchanged_join_m": 4.0
+  },
+  "situation": {
+    "form": "masonry",
+    "route": "ossuary_loop",
+    "rule": "built connector between masonry rooms",
+    "width_m": 4.0
+  },
+  "triangles": 451974
 }

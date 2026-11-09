@@ -102,3 +102,15 @@ static func install(architecture: RedDescentGeometry) -> void:
 		var visual: MeshInstance3D = node as MeshInstance3D
 		visual.material_override = pale if visual.name.begins_with("StoneRim") else stone if visual.name.begins_with("Stone") else bronze if visual.name.begins_with("Bronze") else tissue if visual.name.begins_with("Tissue") else iron
 	architecture.add_child(art)
+	if ResourceLoader.exists(ROOT + "parapet_coping.glb") and FileAccess.file_exists(ROOT + "coping.json"):
+		var coping_report: Dictionary = JSON.parse_string(FileAccess.get_file_as_string(ROOT + "coping.json")) as Dictionary
+		var sources: Dictionary = coping_report["source_stairs_sha256"] as Dictionary
+		var current: bool = true
+		for hall: String in ["first_stair_hall", "second_stair_hall"]:
+			current = current and FileAccess.get_sha256(RedDescentGeometry.MASONRY_REPAIRS + "stairs/" + hall + ".glb") == String(sources[hall])
+		if current:
+			var coping: Node3D = (load(ROOT + "parapet_coping.glb") as PackedScene).instantiate() as Node3D
+			coping.name = "StairParapetCoping"
+			for node: Node in coping.find_children("*", "MeshInstance3D", true, false):
+				(node as MeshInstance3D).material_override = architecture.stone_face("ashlar")
+			architecture.add_child(coping)

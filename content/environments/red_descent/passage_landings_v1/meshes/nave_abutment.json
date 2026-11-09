@@ -1,0 +1,32 @@
+{
+  "ao": {
+    "Mortar_nave_abutment_0": {
+      "mean": 0.376,
+      "min": 0.18
+    },
+    "Stone-flag_nave_abutment_2": {
+      "mean": 0.525,
+      "min": 0.18
+    },
+    "Stone-stone_nave_abutment_1": {
+      "mean": 0.492,
+      "min": 0.18
+    }
+  },
+  "arch_depth_m": {
+    "crown": 0.8,
+    "spring": 4.0
+  },
+  "blender": "5.2.2 LTS",
+  "design": "One continuous segmental arch from the existing ledge pier into the shaft wall; one paving field through the portal",
+  "files": {
+    "content/environments/red_descent/passage_landings_v1/meshes/nave_abutment.glb": "4764f24f6359ff9d115fd0b0e90bb7370b677e74c9f41689559960bac0681598"
+  },
+  "id": "nave_abutment",
+  "old_endpoint_bracket_replaced": true,
+  "source_routes": {
+    "central_ledge": "b20f7b857345b8e2ccce1c5ea0c7f3ff2ef5244c2c9c7a172ad51a7796e9e8be",
+    "nave": "7c51b81a0749b81ca08abdd730ba502d27a7bb17cd731ccc12c18e4331a21cf2"
+  },
+  "triangles": 60730
+}

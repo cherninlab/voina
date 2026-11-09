@@ -1,66 +1,75 @@
 {
+  "ageing": "restrained; 2.5 cm timber bow, 0\u20139 cm hewn relief",
   "ao": {
     "Mortar_cave_bypass_13": {
-      "mean": 0.289,
+      "mean": 0.187,
       "min": 0.18
     },
     "Mortar_cave_bypass_3": {
-      "mean": 0.319,
+      "mean": 0.233,
       "min": 0.18
     },
     "Mortar_cave_bypass_8": {
-      "mean": 0.283,
-      "min": 0.18
-    },
-    "Stone-arch_cave_bypass_12": {
-      "mean": 0.361,
-      "min": 0.18
-    },
-    "Stone-arch_cave_bypass_2": {
-      "mean": 0.398,
-      "min": 0.18
-    },
-    "Stone-arch_cave_bypass_7": {
-      "mean": 0.419,
+      "mean": 0.252,
       "min": 0.18
     },
     "Stone-flag_cave_bypass_14": {
-      "mean": 0.769,
+      "mean": 0.437,
       "min": 0.18
     },
     "Stone-flag_cave_bypass_4": {
-      "mean": 0.769,
+      "mean": 0.526,
       "min": 0.18
     },
     "Stone-flag_cave_bypass_9": {
-      "mean": 0.77,
+      "mean": 0.558,
       "min": 0.18
     },
-    "Stone-stone_cave_bypass_0": {
-      "mean": 0.726,
+    "Stone-rock_cave_bypass_0": {
+      "mean": 0.577,
       "min": 0.18
     },
-    "Stone-stone_cave_bypass_1": {
-      "mean": 0.716,
+    "Stone-rock_cave_bypass_10": {
+      "mean": 0.389,
       "min": 0.18
     },
-    "Stone-stone_cave_bypass_10": {
-      "mean": 0.718,
+    "Stone-rock_cave_bypass_5": {
+      "mean": 0.552,
       "min": 0.18
     },
-    "Stone-stone_cave_bypass_5": {
-      "mean": 0.712,
+    "Stone-stone_cave_bypass_1006": {
+      "mean": 0.256,
       "min": 0.18
     },
-    "Stone-stone_cave_bypass_6": {
-      "mean": 0.662,
+    "Stone-stone_cave_bypass_1016": {
+      "mean": 0.239,
+      "min": 0.18
+    },
+    "Stone-wood_cave_bypass_1005": {
+      "mean": 0.685,
+      "min": 0.18
+    },
+    "Stone-wood_cave_bypass_1015": {
+      "mean": 0.599,
       "min": 0.18
     }
   },
   "blender": "5.2.2 LTS",
   "files": {
-    "content/environments/procedural_architecture_v1/passages/cave_bypass.glb": "ca7b15357383098cc9a13e82c7aa212b0711e97f4ad661852474cfd44b1c7b95"
+    "content/environments/procedural_architecture_v1/passages/cave_bypass.glb": "fe4c584992bf1ffd544647f5fc63a1df27aaa93a74e0739f8a24b6b3559c75b5"
   },
   "id": "cave_bypass",
-  "triangles": 148837
+  "profile_change": {
+    "enabled": true,
+    "max_lower_crown_m": 0.22,
+    "max_widen_m_per_side": 0.28,
+    "unchanged_join_m": 4.0
+  },
+  "situation": {
+    "form": "timber_mine",
+    "route": "cave_bypass",
+    "rule": "deep service bypass: timber shores in hewn rock",
+    "width_m": 4.5
+  },
+  "triangles": 29012
 }

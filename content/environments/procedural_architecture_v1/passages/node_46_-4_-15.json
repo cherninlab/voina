@@ -1,42 +1,49 @@
 {
   "ao": {
     "Mortar_node_46_-4_-15_1": {
-      "mean": 0.323,
+      "mean": 0.41,
       "min": 0.18
     },
     "Mortar_node_46_-4_-15_2": {
-      "mean": 0.327,
+      "mean": 0.445,
       "min": 0.18
     },
     "Mortar_node_46_-4_-15_6": {
-      "mean": 0.3,
+      "mean": 0.304,
       "min": 0.18
     },
     "Stone-arch_node_46_-4_-15_4": {
-      "mean": 0.366,
+      "mean": 0.364,
       "min": 0.18
     },
     "Stone-arch_node_46_-4_-15_5": {
-      "mean": 0.366,
+      "mean": 0.362,
       "min": 0.18
     },
     "Stone-flag_node_46_-4_-15_7": {
-      "mean": 0.796,
+      "mean": 0.781,
       "min": 0.18
     },
     "Stone-stone_node_46_-4_-15_1": {
-      "mean": 0.656,
+      "mean": 0.447,
       "min": 0.18
     },
     "Stone-stone_node_46_-4_-15_2": {
-      "mean": 0.671,
+      "mean": 0.441,
       "min": 0.18
     }
   },
   "blender": "5.2.2 LTS",
   "files": {
-    "content/environments/procedural_architecture_v1/passages/node_46_-4_-15.glb": "47b34c2649bb89fd5d0f70a7c90030669bd5b65213a3b5f5d96b1e7e1bbad861"
+    "content/environments/procedural_architecture_v1/passages/node_46_-4_-15.glb": "59ee44fc71293cfa44d4d699c332d149660b0e029696d5e4586ef1d5d5838ae1"
   },
   "id": "node_46_-4_-15",
-  "triangles": 42935
+  "situation": {
+    "form": "bay",
+    "routes": [
+      "upper_cells"
+    ],
+    "rule": "aligned groin bay or through-depth portal"
+  },
+  "triangles": 71926
 }
