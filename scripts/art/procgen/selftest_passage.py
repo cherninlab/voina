@@ -188,3 +188,19 @@ assert all(abs(passage.rock_cut_offset(Vector((x,y,0)),0).z)<1e-8 for x,y in [(0
 assert max(v.co.x for v in plain.data.vertices)-2>.025,'Rock face remains planar'
 assert max(passage.rock_cut_offset(v.co,0).length for v in plain.data.vertices)<.33,'Rock relief exceeds the safe profile budget'
 print('PASSAGE_TURNING_PORTAL_AND_CARVING_OK',flush=True)
+
+# Carved backing shares final topology and stays inside the solid at every vertex.
+backing=passage.rock_backing([plain],'carved_backing_control')[0]
+assert len(plain.data.vertices)==len(backing.data.vertices),'Backing independently tessellated'
+assert [p.vertices[:] for p in plain.data.polygons]==[p.vertices[:] for p in backing.data.polygons],'Backing faces diverge'
+for front,back in zip(plain.data.vertices,backing.data.vertices):
+    gap=back.co-front.co
+    assert abs(gap.length-.055)<1e-5 and gap.dot(front.normal)<-.054,'Backing crosses rock surface'
+print('PASSAGE_CARVED_BACKING_SEPARATION_OK',flush=True)
+
+# Excavation preserves the shared construction plane exactly at run/bay joins.
+collar=passage.box('join_collar_control',Vector((0,0,0)),Vector((1,0,0)),2,0,4)
+passage.carve_rock(collar,0,seams=[(Vector((2,0,0)),Vector((1,0,0)))])
+assert all(abs(v.co.x-2)<1e-6 for v in collar.data.vertices if v.co.x>1.99),'Excavation separates a shared join plane'
+assert any(abs(v.co.x+2)>.025 for v in collar.data.vertices if v.co.x<-1.5),'Join collar flattened the entire rock surface'
+print('PASSAGE_CARVED_JOIN_COLLAR_OK',flush=True)

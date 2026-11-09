@@ -1,3 +1,7 @@
+# Latest game review
+
+[Current gallery and validation](cavity-final/review.html) · [Current repair report](cavity-final/README.md). This supersedes the intermediate cave/turn frames below. Fine seams and material transitions remain under review.
+
 # Remaining passage repairs
 
 ## Cave striping: corrected rock-colour bake

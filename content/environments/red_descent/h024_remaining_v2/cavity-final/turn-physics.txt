@@ -1,0 +1,10 @@
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+BUILD: 389c80ca [a02c1caa88df]
+NAVE_ABUTMENT_READY: continuous arch and paving; old endpoint bracket replaced
+STRUCTURAL_RELIEF_READY: 58 meshes, walls [3, 4, 5, 6]
+GENERATED_KIT_PLACED: {}
+RED_DESCENT_GEOMETRY_READY: 17 routes, 13 rooms, 35 lit landmarks, sloping crossings
+ROOT_TURNING_PHYSICS_OK: former void blocked at (-23.866, -20.84931, -18.64042); bridge doorway clear; walking floor (-26.6, -23.0, -16.0)
+WARNING: 1 ObjectDB instance was leaked at exit (run with `--verbose` for details).
+   at: cleanup (core/object/object.cpp:2536)

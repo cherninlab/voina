@@ -15,12 +15,24 @@ func controls() -> void:
 		(node as CanvasLayer).visible = false
 	var camera: Camera3D = Camera3D.new()
 	world.add_child(camera)
+	var target: String = "cave_bypass_2-back"
+	for argument: String in OS.get_cmdline_user_args():
+		if argument.begins_with("--view="):target=argument.trim_prefix("--view=")
 	for view: Array in stone_room_views():
-		if view[0] == "cave_bypass_2-back":
+		if view[0] == target:
 			camera.fov = float(view[3])
 			camera.position = view[1] as Vector3
 			camera.look_at(view[2] as Vector3)
 	camera.make_current()
+	var inspector: Node3D = load("res://tests/dungeon_explorer.gd").new() as Node3D
+	inspector.set("dungeon",world.get_node("CinderCrypt"))
+	inspector.set("report",{"capabilities":{}})
+	inspector.call("inventory")
+	for pixel: Vector2 in [Vector2(1100,450),Vector2(1220,650),Vector2(1250,300),Vector2(700,100),Vector2(650,250)]:
+		var start: Vector3 = camera.project_ray_origin(pixel)
+		var hit: Dictionary = inspector.call("visual_ray",start,start+camera.project_ray_normal(pixel)*30) as Dictionary
+		print("CAVE_SURFACE_RAY: ",pixel," ",hit)
+	inspector.free()
 	var lamp: OmniLight3D = OmniLight3D.new()
 	lamp.light_color = Color(.88,.93,1)
 	lamp.light_energy = 3

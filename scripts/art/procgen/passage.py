@@ -38,6 +38,7 @@ PAVING = None  # a floor-flag library for passage floors, if the caller has one
 THICKNESS = 0.9
 RING = 0.4
 RECESS = 0.034
+ROCK_JOIN = 0.4 # Shared run/bay ownership boundary beyond the clear half-width.
 
 
 def _bake_transform(obj) -> None:
@@ -329,41 +330,20 @@ def skew_bay(lib, rng, o: masonry.Opening, centre: Vector, axis: Vector, arrival
     subtract(backing, recessed_chamber + recessed_doors)
     groups[20] = backing[0]
     if hewn:
-        # A cut-rock route keeps cut-rock junctions. Independent brick skins
-        # at every bend made arbitrary grey patches in the hewn corridor.
-        skin=box('tunnel_rock_'+name,centre,axis,h+THICKNESS,-.15,roof_top)
-        inner_full=[clearance(a['profile'],centre,a['away'],-reach,reach,f'{name}_rock_inner{k}',a.get('slope',0.0),-.04)
-                    for k,a in enumerate(arrivals)]
-        inner_doors=[clearance(a['profile'],centre,a['away'],0,reach,f'{name}_rock_door{k}',a.get('slope',0.0),-.04)
-                     for k,a in enumerate(arrivals)]
-        for cutter in inner_full:core.discard(cutter)
-        inner_full=[clearance(o,centre,axis,-reach,reach,f'{name}_hewn_inner',padding=-.04)]
-        inner_chamber=crop(inner_full)
-        exterior=[]
-        for cutter in wall_doors:
-            outside=core.link(cutter.copy());outside.data=cutter.data.copy()
-            if 'arch_clear' in outside:del outside['arch_clear']
-            hole=box('rock_interface_domain',centre,axis,h,-20,30)
-            parts={0:[outside]};subtract(parts,[hole]);core.discard(hole)
-            exterior+=parts[0]
-        rocks={0:[skin]};subtract(rocks,inner_chamber+inner_doors+exterior)
-        for obj in rocks[0]:
-            # Run and bay Boolean caps otherwise occupy the same plane.
-            # Bury the bay's outer cap inside the incoming lining.
-            for vertex in obj.data.vertices:
-                for normal in (axis,y,-axis,-y):
-                    if abs((vertex.co-centre).dot(normal)-h)<.001:
-                        vertex.co+=normal*.012
-            obj.data.update()
-            obj.data.name='tunnel_rock_'+name
-            obj['tone']=.8;obj['frame']=[1,0,0,0,0,1,0,-1,0]
-        groups[0]=rocks[0]
-        for cutter in inner_full+inner_doors+inner_chamber+exterior:core.discard(cutter)
+        # The complete cavity owns the rock. A separate thinner shell left
+        # missing corner webs which were concealed by the old grey backing.
+        # One shared planar ownership collar; the runs begin at the same
+        # boundary. Keep excavation flat only at that construction seam.
+        rock_planes=[(centre+n*(h+ROCK_JOIN),n) for n in (axis,y,-axis,-y)]
+        trimmed={20:groups[20]};clip_groups(trimmed,rock_planes);groups[20]=trimmed[20]
+        groups[0]=rock_skin(groups[20],name)
     groups[21] = pave_field(lib,centre-axis*h,axis,2*h,h,f'{name}_floor')
     for cutter in full + doors + wall_doors + chamber + outer + recessed_full + recessed_doors + recessed_chamber:
         core.discard(cutter)
     if hewn:
-        for obj in groups[0]+groups[20]:carve_rock(obj,centre.z)
+        for obj in groups[0]:carve_rock(obj,centre.z,seams=rock_planes)
+        for obj in groups[20]:core.discard(obj)
+        groups[20]=rock_backing(groups[0],name+'_core')
     return groups
 
 
@@ -780,7 +760,7 @@ def rock_cut_offset(co: Vector, floor: float) -> Vector:
     return (broad+chips)*weight
 
 
-def carve_rock(obj, floor: float) -> None:
+def carve_rock(obj, floor: float, seams: list = None) -> None:
     """Give long cut faces real relief; the floor stays fixed and walkable."""
     _bake_transform(obj)
     shell=bmesh.new();shell.from_mesh(obj.data)
@@ -789,10 +769,45 @@ def carve_rock(obj, floor: float) -> None:
         long=[edge for edge in shell.edges if edge.calc_length()>.55]
         if not long:break
         bmesh.ops.subdivide_edges(shell,edges=long,cuts=1,use_grid_fill=True)
-    for vertex in shell.verts:vertex.co+=rock_cut_offset(vertex.co,floor)
+    for vertex in shell.verts:
+        fade=1.0
+        for point,normal in seams or []:
+            distance=abs((vertex.co-point).dot(normal))
+            value=max(0.0,min(1.0,(distance-.08)/.9))
+            fade=min(fade,value*value*(3-2*value))
+        vertex.co+=rock_cut_offset(vertex.co,floor)*fade
     bmesh.ops.recalc_face_normals(shell,faces=list(shell.faces))
     shell.to_mesh(obj.data);shell.free();obj.data.update()
     obj.data.shade_smooth();obj.data.set_sharp_from_angle(angle=math.radians(38))
+
+
+def rock_skin(cores: list, name: str) -> list:
+    """Make the complete excavated cavity the visible continuous rock face."""
+    result=[]
+    for index,source in enumerate(cores):
+        obj=core.link(source.copy());obj.data=source.data.copy()
+        obj.name=f'tunnel_rock_{name}_{index}';obj.data.name=obj.name
+        obj['tone']=.8;obj['frame']=[1,0,0,0,0,1,0,-1,0]
+        result.append(obj)
+    return result
+
+
+def rock_backing(skins: list, name: str) -> list:
+    """Recess the finished carved topology into solid rock, avoiding crossings.
+
+    Independent subdivision of a nearby cavity interpolates the noise field
+    differently. Sharing every final face keeps backing behind its render face.
+    """
+    result=[]
+    for index,skin in enumerate(skins):
+        obj=core.link(skin.copy());obj.data=skin.data.copy()
+        obj.name=f'{name}_{index}';obj.data.name=obj.name
+        obj.data.update()
+        normals=[vertex.normal.copy() for vertex in obj.data.vertices]
+        for vertex,normal in zip(obj.data.vertices,normals):vertex.co-=normal*.055
+        obj.data.update();obj['tone']=-1.0
+        result.append(obj)
+    return result
 
 
 def turning_portal(lib, rng, o: masonry.Opening, exit_profile: masonry.Opening,

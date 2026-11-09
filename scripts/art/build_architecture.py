@@ -576,7 +576,7 @@ def build_network(layout: dict, wanted: set, rng, lib, quoins) -> tuple:
                     faces = {k:v for k,v in pieces.items() if k != 3}
                     passage.subtract(faces,[cut]);pieces.update(faces)
                     core.discard(cut)
-                    core_cut = passage.box('recessed_bay_footprint',node['at'],node['axis'],node['profile'].half+passage.RECESS,-20,30)
+                    core_cut = passage.box('recessed_bay_footprint',node['at'],node['axis'],node['profile'].half+(passage.ROCK_JOIN if style in ('hewn_rock','timber_mine') else passage.RECESS),-20,30)
                     core_neighbours = joining_clearances(node,route['id'],number,passage.RECESS)
                     backing={3:pieces[3]};passage.subtract(backing,[core_cut]+core_neighbours);pieces[3]=backing[3]
                     for cutter in [core_cut]+core_neighbours:
@@ -592,8 +592,17 @@ def build_network(layout: dict, wanted: set, rng, lib, quoins) -> tuple:
                     for cutter in floor_cutters:
                         core.discard(cutter)
             if any(obj.data.name.startswith('tunnel_rock') for obj in pieces[0]):
-                for obj in pieces[0]+pieces[3]:
-                    passage.carve_rock(obj,a.lerp(b,t0).z)
+                for obj in pieces[0]:core.discard(obj)
+                pieces[0]=passage.rock_skin(pieces[3],f'{route["id"]}_{number}')
+                seams=[]
+                for endpoint in (start,end):
+                    if endpoint[0]=='node' and skew_node(nodes[endpoint[1]]):
+                        node=nodes[endpoint[1]];x=node['axis'];y=passage.UP.cross(x)
+                        seams += [(node['at']+n*(node['profile'].half+passage.ROCK_JOIN),n) for n in (x,y,-x,-y)]
+                for obj in pieces[0]:
+                    passage.carve_rock(obj,a.lerp(b,t0).z,seams=seams)
+                for obj in pieces[3]:core.discard(obj)
+                pieces[3]=passage.rock_backing(pieces[0],f'{route["id"]}_{number}_core')
             for group_id, group in pieces.items():
                 # Keep the five structural group names stable: the bonded
                 # upper-gallery bake consumes Mortar_return_gallery_<5*n+3>.

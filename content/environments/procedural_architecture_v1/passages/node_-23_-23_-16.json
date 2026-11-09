@@ -1,11 +1,11 @@
 {
   "ao": {
     "Mortar_node_-23_-23_-16_20": {
-      "mean": 0.381,
+      "mean": 0.36,
       "min": 0.18
     },
     "Mortar_node_-23_-23_-16_24": {
-      "mean": 0.59,
+      "mean": 0.58,
       "min": 0.18
     },
     "Stone-arch_node_-23_-23_-16_0": {
@@ -13,48 +13,46 @@
       "min": 0.18
     },
     "Stone-arch_node_-23_-23_-16_4": {
-      "mean": 0.411,
+      "mean": 0.41,
       "min": 0.18
     },
     "Stone-ashlar_node_-23_-23_-16_0": {
-      "mean": 0.482,
+      "mean": 0.483,
       "min": 0.18
     },
     "Stone-flag_node_-23_-23_-16_21": {
-      "mean": 0.449,
+      "mean": 0.443,
       "min": 0.18
     },
     "Stone-stone_node_-23_-23_-16_0": {
-      "mean": 0.357,
+      "mean": 0.353,
       "min": 0.18
     },
     "Stone-stone_node_-23_-23_-16_1": {
-      "mean": 0.397,
+      "mean": 0.398,
       "min": 0.18
     },
     "Stone-stone_node_-23_-23_-16_2": {
-      "mean": 0.423,
+      "mean": 0.421,
       "min": 0.18
     },
     "Stone-stone_node_-23_-23_-16_3": {
-      "mean": 0.34,
+      "mean": 0.333,
       "min": 0.18
     }
   },
   "blender": "5.2.2 LTS",
   "files": {
-    "content/environments/procedural_architecture_v1/passages/node_-23_-23_-16.glb": "e53f460997a8b7b05dc133234ce213b0039253c8e44b566cef02fceb02d5003e"
+    "content/environments/procedural_architecture_v1/passages/node_-23_-23_-16.glb": "f52de59712b48d83bc2069d580e71a1acd679c6e8aaf5abad9699121fef16d60"
   },
-  "floor_library_count": 24,
-  "generator": "scripts/art/rebuild_passage_junctions.py",
   "id": "node_-23_-23_-16",
   "situation": {
+    "exit_route": "low_span",
     "form": "turning portal chamber",
     "routes": [
       "root_tunnel"
     ],
-    "rule": "partitioned vault webs; recessed backing; ramp-fitted bay flags"
+    "rule": "chamber behind bridge entry; closed forward wall and bridge-facing doorway"
   },
-  "triangles": 163724,
-  "wall_library_count": 24
+  "triangles": 166482
 }

@@ -1,0 +1,12 @@
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+BUILD: 389c80ca [a02c1caa88df]
+NAVE_ABUTMENT_READY: continuous arch and paving; old endpoint bracket replaced
+STRUCTURAL_RELIEF_READY: 58 meshes, walls [3, 4, 5, 6]
+GENERATED_KIT_PLACED: {}
+RED_DESCENT_GEOMETRY_READY: 17 routes, 13 rooms, 35 lit landmarks, sloping crossings
+EXPLORER_MESHES: 5327
+CAVITY_COVERAGE_RAYS: [{"distance_m":7.88189506530762,"path":"/root/CinderCrypt/Architecture/StonePassage_root_tunnel/Stone-rock_root_tunnel_25","pixel":"(600.0, 180.0)","view":"root_tunnel_4-forward"},{"distance_m":16.9223747253418,"path":"/root/CinderCrypt/Architecture/StonePassage_node_-23_-23_-16/Stone-arch_node_-23_-23_-16_0","pixel":"(600.0, 400.0)","view":"root_tunnel_4-forward"},{"distance_m":6.81967782974243,"path":"/root/CinderCrypt/Architecture/StonePassage_root_tunnel/Stone-rock_root_tunnel_25","pixel":"(800.0, 100.0)","view":"root_tunnel_4-forward"},{"distance_m":7.07806539535522,"path":"/root/CinderCrypt/Architecture/StonePassage_node_-46_-23_7/Stone-rock_node_-46_-23_7_0","pixel":"(600.0, 180.0)","view":"cave_bypass_0-forward"},{"distance_m":7.55015897750854,"path":"/root/CinderCrypt/Architecture/StonePassage_node_-46_-23_7/Stone-rock_node_-46_-23_7_0","pixel":"(600.0, 400.0)","view":"cave_bypass_0-forward"},{"distance_m":6.45748329162598,"path":"/root/CinderCrypt/Architecture/StonePassage_node_-46_-23_7/Stone-rock_node_-46_-23_7_0","pixel":"(800.0, 100.0)","view":"cave_bypass_0-forward"}]
+CAVITY_COVERAGE_OK: five nearby wall/roof rays and one end-arch control meet render geometry
+WARNING: 1 ObjectDB instance was leaked at exit (run with `--verbose` for details).
+   at: cleanup (core/object/object.cpp:2536)

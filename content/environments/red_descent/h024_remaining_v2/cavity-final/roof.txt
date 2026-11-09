@@ -1,0 +1,23 @@
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+Metal 4.0 - Forward Mobile - Using Device #0: Apple - Apple M5 Max (Apple9)
+
+BUILD: 389c80ca [a02c1caa88df]
+NAVE_ABUTMENT_READY: continuous arch and paving; old endpoint bracket replaced
+STRUCTURAL_RELIEF_READY: 58 meshes, walls [3, 4, 5, 6]
+GENERATED_KIT_PLACED: {}
+RED_DESCENT_GEOMETRY_READY: 17 routes, 13 rooms, 35 lit landmarks, sloping crossings
+MAP: Cinder Crypt (crypt)
+Hosting on UDP 19106
+DUNGEON_ENCOUNTER_READY: five guards across two vertically separated halls, no replacements
+NET host · build 389c80ca [a02c1caa88df]
+NET bolts in flight 0
+EXPLORER_MESHES: 5327
+ISSUE_PROBE: E0275 {"status":"no motion trace"}
+ISSUE_PROBE: E0277 {"status":"no motion trace"}
+ISSUE_PROBE: E0330 {"status":"no motion trace"}
+ISSUE_PROBE: E0334 {"status":"no motion trace"}
+ISSUE_PROBE: E0336 {"status":"no motion trace"}
+issue probe finished
+ISSUE_PROBE_OK
+WARNING: 7 RIDs of type "Texture" were leaked.
+   at: finalize (servers/rendering/rendering_device.cpp:8900)
