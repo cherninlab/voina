@@ -1,0 +1,281 @@
+SDF.R: Loader Marker V16.2.2 (__init__.py loaded from: /Users/theochernin/Library/Application Support/Blender/5.2/scripts/addons/rust_gpu_sdf_addon/__init__.py)
+SDF.R: --- Initializing GPU Engine (V16.2.2) ---
+SDF.R: No shader cache. This initial compilation may take a few minutes...
+SDF.R: Addon registered. Warming-up will start in 0.5s...
+PASSAGE_RUN root_tunnel 0 0.421-1.000 room node
+PASSAGE_RUN root_tunnel 1 0.000-1.000 node node
+PASSAGE_RUN root_tunnel 2 0.000-1.000 node node
+PASSAGE_RUN root_tunnel 3 0.000-1.000 node node
+PASSAGE_RUN root_tunnel 4 0.000-1.000 node node
+PASSAGE_RUN root_tunnel 5 0.000-1.000 node node
+PASSAGE_RUN cave_bypass 0 0.000-1.000 node node
+PASSAGE_RUN cave_bypass 1 0.000-1.000 node node
+PASSAGE_RUN cave_bypass 2 0.000-1.000 node node
+PASSAGE_NODE node_-46_-23_7 bay ['cave_bypass']
+PASSAGE_NODE node_-43_-23_-6 bay ['cave_bypass']
+PASSAGE_NODE node_-41_-23_14 bay ['cave_bypass', 'root_tunnel']
+PASSAGE_NODE node_-41_-23_24 bay ['root_tunnel']
+PASSAGE_NODE node_-38_-23_-2 bay ['cave_bypass', 'root_tunnel']
+PASSAGE_NODE node_-31_-23_6 bay ['root_tunnel']
+PASSAGE_NODE node_-23_-23_-16 portal ['root_tunnel']
+INFO Draco is available, use library at /Applications/Blender.app/Contents/Resources/5.2/scripts/addons_core/io_scene_gltf2/libbf_intern_draco_bridge.dylib
+INFO MeshOptimizer is available, use library at /Applications/Blender.app/Contents/Resources/5.2/scripts/addons_core/io_scene_gltf2/libbf_intern_meshopt_bridge.dylib
+00:30:38 | INFO: Starting glTF 2.0 export
+00:30:38 | INFO: Extracting primitive: root_tunnel_0_core_0.002
+00:30:38 | INFO: Primitives created: 1
+00:30:38 | INFO: Extracting primitive: root_tunnel_1_core_0.002
+00:30:38 | INFO: Primitives created: 1
+00:30:38 | INFO: Extracting primitive: root_tunnel_2_core_0.002
+00:30:38 | INFO: Primitives created: 1
+00:30:38 | INFO: Extracting primitive: root_tunnel_3_core_0.002
+00:30:38 | INFO: Primitives created: 1
+00:30:38 | INFO: Extracting primitive: root_tunnel_4_core_0.002
+00:30:38 | INFO: Primitives created: 1
+00:30:38 | INFO: Extracting primitive: root_tunnel_5_core_0.002
+00:30:38 | INFO: Primitives created: 1
+00:30:38 | INFO: Extracting primitive: root_tunnel_0_core_0.001
+00:30:38 | INFO: Primitives created: 1
+00:30:38 | INFO: Extracting primitive: root_tunnel_1_core_0.001
+00:30:38 | INFO: Primitives created: 1
+00:30:38 | INFO: Extracting primitive: root_tunnel_2_core_0.001
+00:30:38 | INFO: Primitives created: 1
+00:30:38 | INFO: Extracting primitive: root_tunnel_3_core_0.001
+00:30:38 | INFO: Primitives created: 1
+00:30:38 | INFO: Extracting primitive: root_tunnel_4_core_0.001
+00:30:38 | INFO: Primitives created: 1
+00:30:38 | INFO: Extracting primitive: root_tunnel_5_core_0.001
+00:30:38 | INFO: Primitives created: 1
+00:30:38 | INFO: Extracting primitive: caveflag_flag_lib_12.1953
+00:30:38 | INFO: Primitives created: 1
+00:30:38 | INFO: Extracting primitive: caveflag_flag_lib_2.1481
+00:30:38 | INFO: Primitives created: 1
+00:30:38 | INFO: Extracting primitive: caveflag_flag_lib_12.1965
+00:30:38 | INFO: Primitives created: 1
+00:30:38 | INFO: Extracting primitive: caveflag_flag_lib_18.792
+00:30:38 | INFO: Primitives created: 1
+00:30:38 | INFO: Extracting primitive: caveflag_flag_lib_11.1882
+00:30:38 | INFO: Primitives created: 1
+00:30:38 | INFO: Extracting primitive: caveflag_flag_lib_11.1897
+00:30:38 | INFO: Primitives created: 1
+00:30:38 | INFO: Extracting primitive: ground_earth_root_tunnel_0_-42_-40.005
+00:30:38 | INFO: Primitives created: 1
+00:30:38 | INFO: Extracting primitive: ground_earth_root_tunnel_1_-50_-30.007
+00:30:38 | INFO: Primitives created: 1
+00:30:38 | INFO: Extracting primitive: ground_earth_root_tunnel_2_-42_-23.007
+00:30:38 | INFO: Primitives created: 1
+00:30:38 | INFO: Extracting primitive: ground_earth_root_tunnel_3_-41_-9.007
+00:30:38 | INFO: Primitives created: 1
+00:30:38 | INFO: Extracting primitive: ground_earth_root_tunnel_4_-38_1.007
+00:30:38 | INFO: Primitives created: 1
+00:30:38 | INFO: Extracting primitive: ground_earth_root_tunnel_5_-32_8.004
+00:30:38 | INFO: Primitives created: 1
+00:30:38 | INFO: Extracting primitive: tunnel_rock_root_tunnel_0_0.002
+00:30:38 | INFO: Primitives created: 1
+00:30:38 | INFO: Extracting primitive: tunnel_rock_root_tunnel_1_0.002
+00:30:38 | INFO: Primitives created: 1
+00:30:38 | INFO: Extracting primitive: tunnel_rock_root_tunnel_2_0.002
+00:30:38 | INFO: Primitives created: 1
+00:30:38 | INFO: Extracting primitive: tunnel_rock_root_tunnel_3_0.002
+00:30:38 | INFO: Primitives created: 1
+00:30:38 | INFO: Extracting primitive: tunnel_rock_root_tunnel_4_0.002
+00:30:38 | INFO: Primitives created: 1
+00:30:38 | INFO: Extracting primitive: tunnel_rock_root_tunnel_5_0.002
+00:30:38 | INFO: Primitives created: 1
+00:30:38 | INFO: Extracting primitive: tunnel_spall.193
+00:30:38 | INFO: Primitives created: 1
+00:30:38 | INFO: Extracting primitive: tunnel_spall.199
+00:30:38 | INFO: Primitives created: 1
+00:30:38 | INFO: Extracting primitive: tunnel_spall.203
+00:30:38 | INFO: Primitives created: 1
+00:30:38 | INFO: Extracting primitive: ground_water_root_tunnel_0_-42_-40.005
+00:30:38 | INFO: Primitives created: 1
+00:30:38 | INFO: Extracting primitive: ground_water_root_tunnel_1_-50_-30.007
+00:30:38 | INFO: Primitives created: 1
+00:30:38 | INFO: Extracting primitive: ground_water_root_tunnel_2_-42_-23.007
+00:30:38 | INFO: Primitives created: 1
+00:30:38 | INFO: Extracting primitive: ground_water_root_tunnel_3_-41_-9.007
+00:30:38 | INFO: Primitives created: 1
+00:30:38 | INFO: Extracting primitive: ground_water_root_tunnel_4_-38_1.007
+00:30:38 | INFO: Primitives created: 1
+00:30:38 | INFO: Extracting primitive: ground_water_root_tunnel_5_-32_8.004
+00:30:38 | INFO: Primitives created: 1
+00:30:38 | INFO: Finished glTF 2.0 export in 0.12298393249511719 s
+
+ARCHITECTURE_BAKED passages root_tunnel 162167 tris
+00:30:38 | INFO: Starting glTF 2.0 export
+00:30:38 | INFO: Extracting primitive: cave_bypass_0_core_0.002
+00:30:38 | INFO: Primitives created: 1
+00:30:38 | INFO: Extracting primitive: cave_bypass_1_core_0.002
+00:30:38 | INFO: Primitives created: 1
+00:30:38 | INFO: Extracting primitive: cave_bypass_2_core_0.002
+00:30:38 | INFO: Primitives created: 1
+00:30:38 | INFO: Extracting primitive: cave_bypass_0_core_0.001
+00:30:38 | INFO: Primitives created: 1
+00:30:38 | INFO: Extracting primitive: cave_bypass_1_core_0.001
+00:30:38 | INFO: Primitives created: 1
+00:30:38 | INFO: Extracting primitive: cave_bypass_2_core_0.001
+00:30:38 | INFO: Primitives created: 1
+00:30:38 | INFO: Extracting primitive: caveflag_flag_lib_7.1982
+00:30:38 | INFO: Primitives created: 1
+00:30:38 | INFO: Extracting primitive: caveflag_flag_lib_11.1917
+00:30:38 | INFO: Primitives created: 1
+00:30:38 | INFO: Extracting primitive: caveflag_flag_lib_15.2185
+00:30:38 | INFO: Primitives created: 1
+00:30:38 | INFO: Extracting primitive: ground_earth_cave_bypass_0_-50_-21.005
+00:30:38 | INFO: Primitives created: 1
+00:30:38 | INFO: Extracting primitive: ground_earth_cave_bypass_1_-48_-10.007
+00:30:38 | INFO: Primitives created: 1
+00:30:38 | INFO: Extracting primitive: ground_earth_cave_bypass_2_-47_0.007
+00:30:38 | INFO: Primitives created: 1
+00:30:38 | INFO: Extracting primitive: tunnel_rock_cave_bypass_0_0.002
+00:30:38 | INFO: Primitives created: 1
+00:30:38 | INFO: Extracting primitive: tunnel_rock_cave_bypass_1_0.002
+00:30:38 | INFO: Primitives created: 1
+00:30:38 | INFO: Extracting primitive: tunnel_rock_cave_bypass_2_0.002
+00:30:38 | INFO: Primitives created: 1
+00:30:38 | INFO: Extracting primitive: tunnel_spall.208
+00:30:38 | INFO: Primitives created: 1
+00:30:38 | INFO: Extracting primitive: tunnel_spall.213
+00:30:38 | INFO: Primitives created: 1
+00:30:38 | INFO: Extracting primitive: ground_water_cave_bypass_0_-50_-21.005
+00:30:38 | INFO: Primitives created: 1
+00:30:38 | INFO: Extracting primitive: ground_water_cave_bypass_1_-48_-10.007
+00:30:38 | INFO: Primitives created: 1
+00:30:38 | INFO: Extracting primitive: ground_water_cave_bypass_2_-47_0.007
+00:30:38 | INFO: Primitives created: 1
+00:30:38 | INFO: Extracting primitive: tunnel_wood_cave_bypass_0.010
+00:30:38 | INFO: Primitives created: 1
+00:30:38 | INFO: Extracting primitive: tunnel_wood_cave_bypass_1.008
+00:30:38 | INFO: Primitives created: 1
+00:30:38 | INFO: Finished glTF 2.0 export in 0.05220770835876465 s
+
+ARCHITECTURE_BAKED passages cave_bypass 66744 tris
+00:30:38 | INFO: Starting glTF 2.0 export
+00:30:38 | INFO: Extracting primitive: node_-46_-23_7_core_0.002
+00:30:38 | INFO: Primitives created: 1
+00:30:38 | INFO: Extracting primitive: node_-46_-23_7_core_0.001
+00:30:38 | INFO: Primitives created: 1
+00:30:38 | INFO: Extracting primitive: caveflag_flag_lib_5.749
+00:30:38 | INFO: Primitives created: 1
+00:30:38 | INFO: Extracting primitive: ground_earth_node_-46_-23_7_floor_-53_-17.003
+00:30:38 | INFO: Primitives created: 1
+00:30:38 | INFO: Extracting primitive: tunnel_rock_node_-46_-23_7_0.002
+00:30:38 | INFO: Primitives created: 1
+00:30:38 | INFO: Extracting primitive: ground_water_node_-46_-23_7_floor_-53_-17.003
+00:30:38 | INFO: Primitives created: 1
+00:30:38 | INFO: Finished glTF 2.0 export in 0.02800917625427246 s
+
+ARCHITECTURE_BAKED passages node_-46_-23_7 35209 tris
+00:30:38 | INFO: Starting glTF 2.0 export
+00:30:38 | INFO: Extracting primitive: node_-43_-23_-6_core_0.002
+00:30:38 | INFO: Primitives created: 1
+00:30:38 | INFO: Extracting primitive: node_-43_-23_-6_core_0.001
+00:30:38 | INFO: Primitives created: 1
+00:30:38 | INFO: Extracting primitive: caveflag_flag_lib_5.754
+00:30:38 | INFO: Primitives created: 1
+00:30:38 | INFO: Extracting primitive: ground_earth_node_-43_-23_-6_floor_-49_3.002
+00:30:38 | INFO: Primitives created: 1
+00:30:38 | INFO: Extracting primitive: tunnel_rock_node_-43_-23_-6_0.002
+00:30:38 | INFO: Primitives created: 1
+00:30:38 | INFO: Extracting primitive: ground_water_node_-43_-23_-6_floor_-49_3.002
+00:30:38 | INFO: Primitives created: 1
+00:30:38 | INFO: Finished glTF 2.0 export in 0.02707982063293457 s
+
+ARCHITECTURE_BAKED passages node_-43_-23_-6 34106 tris
+00:30:38 | INFO: Starting glTF 2.0 export
+00:30:38 | INFO: Extracting primitive: node_-41_-23_14_core_0.002
+00:30:38 | INFO: Primitives created: 1
+00:30:38 | INFO: Extracting primitive: node_-41_-23_14_core_0.001
+00:30:38 | INFO: Primitives created: 1
+00:30:38 | INFO: Extracting primitive: caveflag_flag_lib_12.2077
+00:30:38 | INFO: Primitives created: 1
+00:30:38 | INFO: Extracting primitive: ground_earth_node_-41_-23_14_floor_-50_-25.002
+00:30:38 | INFO: Primitives created: 1
+00:30:38 | INFO: Extracting primitive: tunnel_rock_node_-41_-23_14_0.002
+00:30:38 | INFO: Primitives created: 1
+00:30:38 | INFO: Extracting primitive: ground_water_node_-41_-23_14_floor_-50_-25.002
+00:30:38 | INFO: Primitives created: 1
+00:30:38 | INFO: Finished glTF 2.0 export in 0.025340795516967773 s
+
+ARCHITECTURE_BAKED passages node_-41_-23_14 32340 tris
+00:30:38 | INFO: Starting glTF 2.0 export
+00:30:38 | INFO: Extracting primitive: node_-41_-23_24_core_0.002
+00:30:38 | INFO: Primitives created: 1
+00:30:38 | INFO: Extracting primitive: node_-41_-23_24_core_0.001
+00:30:38 | INFO: Primitives created: 1
+00:30:38 | INFO: Extracting primitive: caveflag_flag_lib_18.840
+00:30:38 | INFO: Primitives created: 1
+00:30:38 | INFO: Extracting primitive: ground_earth_node_-41_-23_24_floor_-50_-40.003
+00:30:38 | INFO: Primitives created: 1
+00:30:38 | INFO: Extracting primitive: tunnel_rock_node_-41_-23_24_0.002
+00:30:38 | INFO: Primitives created: 1
+00:30:38 | INFO: Extracting primitive: ground_water_node_-41_-23_24_floor_-50_-40.003
+00:30:38 | INFO: Primitives created: 1
+00:30:38 | INFO: Finished glTF 2.0 export in 0.025124073028564453 s
+
+ARCHITECTURE_BAKED passages node_-41_-23_24 34901 tris
+00:30:38 | INFO: Starting glTF 2.0 export
+00:30:38 | INFO: Extracting primitive: node_-38_-23_-2_core_0.002
+00:30:38 | INFO: Primitives created: 1
+00:30:38 | INFO: Extracting primitive: node_-38_-23_-2_core_0.001
+00:30:38 | INFO: Primitives created: 1
+00:30:38 | INFO: Extracting primitive: caveflag_flag_lib_2.1594
+00:30:38 | INFO: Primitives created: 1
+00:30:38 | INFO: Extracting primitive: ground_earth_node_-38_-23_-2_floor_-43_-5.003
+00:30:38 | INFO: Primitives created: 1
+00:30:38 | INFO: Extracting primitive: tunnel_rock_node_-38_-23_-2_0.002
+00:30:38 | INFO: Primitives created: 1
+00:30:38 | INFO: Extracting primitive: ground_water_node_-38_-23_-2_floor_-43_-5.003
+00:30:38 | INFO: Primitives created: 1
+00:30:38 | INFO: Finished glTF 2.0 export in 0.02919626235961914 s
+
+ARCHITECTURE_BAKED passages node_-38_-23_-2 39839 tris
+00:30:38 | INFO: Starting glTF 2.0 export
+00:30:38 | INFO: Extracting primitive: node_-31_-23_6_core_0.002
+00:30:38 | INFO: Primitives created: 1
+00:30:38 | INFO: Extracting primitive: node_-31_-23_6_core_0.001
+00:30:38 | INFO: Primitives created: 1
+00:30:38 | INFO: Extracting primitive: caveflag_flag_lib_15.2261
+00:30:39 | INFO: Primitives created: 1
+00:30:39 | INFO: Extracting primitive: ground_earth_node_-31_-23_6_floor_-36_-16.003
+00:30:39 | INFO: Primitives created: 1
+00:30:39 | INFO: Extracting primitive: tunnel_rock_node_-31_-23_6_0.002
+00:30:39 | INFO: Primitives created: 1
+00:30:39 | INFO: Extracting primitive: ground_water_node_-31_-23_6_floor_-36_-16.003
+00:30:39 | INFO: Primitives created: 1
+00:30:39 | INFO: Finished glTF 2.0 export in 0.032132863998413086 s
+
+ARCHITECTURE_BAKED passages node_-31_-23_6 43089 tris
+00:30:39 | INFO: Starting glTF 2.0 export
+00:30:39 | INFO: Extracting primitive: node_-23_-23_-16_mass.009
+00:30:39 | INFO: Primitives created: 1
+00:30:39 | INFO: Extracting primitive: node_-23_-23_-16_bed.003
+00:30:39 | INFO: Primitives created: 1
+00:30:39 | INFO: Extracting primitive: node_-23_-23_-16_mass.008
+00:30:39 | INFO: Primitives created: 1
+00:30:39 | INFO: Extracting primitive: node_-23_-23_-16_bed.002
+00:30:39 | INFO: Primitives created: 1
+00:30:39 | INFO: Extracting primitive: node_-23_-23_-16_wall_arch0_0.008
+00:30:39 | INFO: Primitives created: 1
+00:30:39 | INFO: Extracting primitive: vault_template_0_1_0.008
+00:30:39 | INFO: Primitives created: 1
+00:30:39 | INFO: Extracting primitive: quoin_lib_3.012
+00:30:39 | INFO: Primitives created: 1
+00:30:39 | INFO: Extracting primitive: flag_lib_8.035
+00:30:39 | INFO: Primitives created: 1
+00:30:39 | INFO: Extracting primitive: squared_rubble_lib_23.168
+00:30:39 | INFO: Primitives created: 1
+00:30:39 | INFO: Extracting primitive: squared_rubble_lib_12.163
+00:30:39 | INFO: Primitives created: 1
+00:30:39 | INFO: Extracting primitive: squared_rubble_lib_21.178
+00:30:39 | INFO: Primitives created: 1
+00:30:39 | INFO: Extracting primitive: squared_rubble_lib_23.196
+00:30:39 | INFO: Primitives created: 1
+00:30:39 | INFO: Finished glTF 2.0 export in 0.09828305244445801 s
+
+ARCHITECTURE_BAKED passages node_-23_-23_-16 166482 tris
+ARCHITECTURE_INDEX 13 rooms 24 passage files 26 props 57 sconces
+JUNCTIONS_BAKED 9
+Blender 5.2.2 LTS (hash d13f752e3b9c built 2026-09-15 01:49:19)
+
+Blender quit

@@ -1,0 +1,19 @@
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+BUILD: 31136d12+dirty [728e74a1ad5a]
+NAVE_ABUTMENT_READY: continuous arch and paving; old endpoint bracket replaced
+STRUCTURAL_RELIEF_READY: 58 meshes, walls [3, 4, 5, 6]
+GENERATED_KIT_PLACED: {}
+RED_DESCENT_GEOMETRY_READY: 17 routes, 13 rooms, 35 lit landmarks, sloping crossings
+EXPLORER_MESHES: 5355
+SEAM_PIXEL (1110.0, 150.0) { "position": (-24.72987, -21.41757, -9.36143), "normal": (-0.689209, -0.036028, -0.723666), "path": "/root/CinderCrypt/Architecture/StonePassage_root_tunnel/Stone-rock_root_tunnel_25", "two_sided": false, "instance": -1 }
+SEAM_ALL (1110.0, 150.0) [{"distance":6.93994140625,"front":true,"instance":-1,"normal":"(-0.689209, -0.036028, -0.723666)","path":"/root/CinderCrypt/Architecture/StonePassage_root_tunnel/Stone-rock_root_tunnel_25","position":"(-24.72987, -21.41757, -9.36143)","two_sided":false}]
+SEAM_PIXEL (1100.0, 260.0) { "position": (-25.06358, -22.25456, -9.136414), "normal": (-0.503435, 0.64969, -0.56961), "path": "/root/CinderCrypt/Architecture/StonePassage_root_tunnel/Stone-rock_root_tunnel_25", "two_sided": false, "instance": -1 }
+SEAM_ALL (1100.0, 260.0) [{"distance":6.60762643814087,"front":true,"instance":-1,"normal":"(-0.503435, 0.64969, -0.56961)","path":"/root/CinderCrypt/Architecture/StonePassage_root_tunnel/Stone-rock_root_tunnel_25","position":"(-25.06358, -22.25456, -9.136414)","two_sided":false},{"distance":21.7466278076172,"front":true,"instance":-1,"normal":"(0.040159, 0.998552, 0.0358)","path":"/root/CinderCrypt/Architecture/Bridge_low_span/Wood_1","position":"(-10.78603, -24.21247, -13.77402)","two_sided":false}]
+SEAM_PIXEL (340.0, 240.0) { "position": (-29.88527, -22.0049, -12.6299), "normal": (0.731122, 0.0, 0.682246), "path": "/root/CinderCrypt/Architecture/StonePassage_node_-23_-23_-16/Mortar_node_-23_-23_-16_20", "two_sided": false, "instance": -1 }
+SEAM_ALL (340.0, 240.0) [{"distance":5.72696971893311,"front":true,"instance":-1,"normal":"(0.731122, 0.0, 0.682246)","path":"/root/CinderCrypt/Architecture/StonePassage_node_-23_-23_-16/Mortar_node_-23_-23_-16_20","position":"(-29.88527, -22.0049, -12.6299)","two_sided":false},{"distance":6.10674619674683,"front":true,"instance":-1,"normal":"(0.031237, 0.027445, 0.999135)","path":"/root/CinderCrypt/Architecture/StonePassage_node_-23_-23_-16/Stone-stone_node_-23_-23_-16_3","position":"(-29.79177, -22.04502, -12.9958)","two_sided":false},{"distance":6.74300909042358,"front":true,"instance":-1,"normal":"(-0.987252, 0.109463, -0.115545)","path":"/root/CinderCrypt/Architecture/StonePassage_node_-23_-23_-16/Stone-stone_node_-23_-23_-16_2","position":"(-29.63512, -22.11222, -13.6088)","two_sided":false}]
+SEAM_PIXEL (980.0, 250.0) { "position": (-23.81954, -22.45383, -10.81251), "normal": (-0.701073, 0.584808, -0.408039), "path": "/root/CinderCrypt/Architecture/StonePassage_root_tunnel/Stone-rock_root_tunnel_25", "two_sided": false, "instance": -1 }
+SEAM_ALL (980.0, 250.0) [{"distance":8.40762329101562,"front":true,"instance":-1,"normal":"(-0.701073, 0.584808, -0.408039)","path":"/root/CinderCrypt/Architecture/StonePassage_root_tunnel/Stone-rock_root_tunnel_25","position":"(-23.81954, -22.45383, -10.81251)","two_sided":false},{"distance":21.3334541320801,"front":true,"instance":-1,"normal":"(-0.839548, 0.065781, -0.539288)","path":"/root/CinderCrypt/Architecture/Bridge_low_span/Wood_1","position":"(-12.32648, -24.07398, -16.50125)","two_sided":false},{"distance":26.5663890838623,"front":true,"instance":-1,"normal":"(-0.9239, 0.005904, 0.382589)","path":"/root/CinderCrypt/Architecture/@MeshInstance3D@622","position":"(-7.673588, -24.72989, -18.80429)","two_sided":false}]
+CAVE_RENDER_BACKING_SEAMS_OK: six targeted rays meet finished rock
+WARNING: 1 ObjectDB instance was leaked at exit (run with `--verbose` for details).
+   at: cleanup (core/object/object.cpp:2536)

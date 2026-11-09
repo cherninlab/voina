@@ -1,0 +1,110 @@
+[
+  {
+    "id": "root_tunnel_0_421",
+    "roots": 29,
+    "audit": {
+      "cut_deeper_than_1cm": 0,
+      "cut_into_stone": 0,
+      "emerging_from_joint": 0,
+      "in_walking_corridor": 0,
+      "vertices": 2612
+    },
+    "unmounted_systems_pruned": 0,
+    "exposed_terminal_vertices": 0
+  },
+  {
+    "id": "root_tunnel_1_0",
+    "roots": 27,
+    "audit": {
+      "cut_deeper_than_1cm": 0,
+      "cut_into_stone": 0,
+      "emerging_from_joint": 3,
+      "in_walking_corridor": 0,
+      "vertices": 7006
+    },
+    "unmounted_systems_pruned": 0,
+    "exposed_terminal_vertices": 0
+  },
+  {
+    "id": "root_tunnel_2_0",
+    "roots": 24,
+    "audit": {
+      "cut_deeper_than_1cm": 0,
+      "cut_into_stone": 0,
+      "emerging_from_joint": 0,
+      "in_walking_corridor": 0,
+      "vertices": 7284
+    },
+    "unmounted_systems_pruned": 0,
+    "exposed_terminal_vertices": 0
+  },
+  {
+    "id": "root_tunnel_3_0",
+    "roots": 23,
+    "audit": {
+      "cut_deeper_than_1cm": 0,
+      "cut_into_stone": 0,
+      "emerging_from_joint": 2,
+      "in_walking_corridor": 0,
+      "vertices": 7068
+    },
+    "unmounted_systems_pruned": 0,
+    "exposed_terminal_vertices": 0
+  },
+  {
+    "id": "root_tunnel_4_0",
+    "roots": 21,
+    "audit": {
+      "cut_deeper_than_1cm": 0,
+      "cut_into_stone": 0,
+      "emerging_from_joint": 0,
+      "in_walking_corridor": 0,
+      "vertices": 7196
+    },
+    "unmounted_systems_pruned": 0,
+    "exposed_terminal_vertices": 0
+  },
+  {
+    "id": "root_tunnel_5_0",
+    "roots": 24,
+    "audit": {
+      "cut_deeper_than_1cm": 0,
+      "cut_into_stone": 0,
+      "emerging_from_joint": 0,
+      "in_walking_corridor": 0,
+      "vertices": 7184
+    },
+    "unmounted_systems_pruned": 0,
+    "exposed_terminal_vertices": 0
+  },
+  {
+    "id": "cave_bypass_0_0",
+    "roots": 26,
+    "audit": {
+      "cut_deeper_than_1cm": 0,
+      "cut_into_stone": 0,
+      "emerging_from_joint": 0,
+      "in_walking_corridor": 0,
+      "vertices": 2927
+    },
+    "unmounted_systems_pruned": 1,
+    "exposed_terminal_vertices": 0
+  },
+  {
+    "id": "cave_bypass_1_0",
+    "roots": 22,
+    "audit": {
+      "cut_deeper_than_1cm": 0,
+      "cut_into_stone": 0,
+      "emerging_from_joint": 1,
+      "in_walking_corridor": 0,
+      "vertices": 7238
+    },
+    "unmounted_systems_pruned": 0,
+    "exposed_terminal_vertices": 0
+  },
+  {
+    "id": "cave_bypass_2_0",
+    "empty": true
+  }
+]

@@ -1,0 +1,20 @@
+[
+	{
+		"capture_frame_median_ms": 16.64,
+		"draw_calls": 1884.0,
+		"primitives": 9689130.0,
+		"view": "root_tunnel_2-forward"
+	},
+	{
+		"capture_frame_median_ms": 16.708,
+		"draw_calls": 922.0,
+		"primitives": 5229207.0,
+		"view": "cave_bypass_1-forward"
+	},
+	{
+		"capture_frame_median_ms": 16.668,
+		"draw_calls": 1629.0,
+		"primitives": 9375557.0,
+		"view": "cave_bypass_2-forward"
+	}
+]

@@ -34,7 +34,7 @@ import numpy
 from mathutils import Matrix, Vector
 from mathutils.bvhtree import BVHTree
 
-from procgen import bake, core, disturb, export, masonry, passage, stonekinds, stonelib, vault
+from procgen import bake, core, disturb, export, masonry, passage, stonekinds, stonelib, vault, cave_ground
 
 ROCK = core.ROOT / 'content/environments/dungeon_pbr_v2/marble_rock_03'
 THICKNESS = 0.9
@@ -538,6 +538,19 @@ def build_network(layout: dict, wanted: set, rng, lib, quoins) -> tuple:
     """Stone pieces for the wanted enclosed routes: one element per route
     (its runs) and one per node they reach (bay or portal)."""
     runs, nodes = network(layout)
+    cave_ground.SPINES=[(Vector((*blender_point(route['points'][i])[:2],0)),Vector((*blender_point(route['points'][i+1])[:2],0)),profile(route,layout).half,.12 if route['id']=='cave_bypass' else .02)
+                        for route in layout['routes'] if route['id'] in ('root_tunnel','cave_bypass') for i in range(len(route['points'])-1)]
+    cave_ground.TRANSITIONS=[]
+    for route in layout['routes']:
+        if route['id'] not in ('root_tunnel','cave_bypass'):continue
+        for stretch in runs.get(route['id'],[]):
+            if stretch is None:continue
+            segment,t0,t1,start,end=stretch
+            a,b=(blender_point(route['points'][i]) for i in (segment,segment+1))
+            for endpoint,t in ((start,t0),(end,t1)):
+                if endpoint[0]=='room':cave_ground.TRANSITIONS.append((a.lerp(b,t),0.0))
+                elif endpoint[0]=='node' and nodes[endpoint[1]].get('turning'):
+                    node=nodes[endpoint[1]];cave_ground.TRANSITIONS.append((node['turn_centre'],node['profile'].half+passage.THICKNESS))
     elements, coverage, files, built_nodes = [], [], [], []
     for route in layout['routes']:
         if route['id'] not in wanted or route['id'] not in runs:
@@ -547,10 +560,10 @@ def build_network(layout: dict, wanted: set, rng, lib, quoins) -> tuple:
             ('hewn_rock', 'root route cut through the shaft rock') if route['id'] == 'root_tunnel' else
             ('masonry', 'built connector between masonry rooms'))
         PASSAGE_REPORTS[route['id']] = {'situation': {'route': route['id'], 'width_m': route['width'],
-            'form': style, 'rule': reason}, 'ageing': 'restrained; 2.5 cm timber bow, 0–9 cm hewn relief',
-            'profile_change': {'enabled': route['id'] != 'return_gallery',
+            'form': style, 'rule': reason}, 'ageing': 'restrained; 2.5 cm timber bow; excavation is construction shape, not decay',
+            'profile_change': {'enabled': style == 'masonry' and route['id'] != 'return_gallery',
                 'max_widen_m_per_side': .28, 'max_lower_crown_m': .22, 'unchanged_join_m': 4.0},
-            'excavation_relief': {'enabled':style in ('hewn_rock','timber_mine'),'max_displacement_m':.33,'sampling_m':.55,'floor_fade_m':.77}}
+            'excavation_relief': {'enabled':style in ('hewn_rock','timber_mine'),'max_displacement_m':1.0,'sampling_m':.55,'floor_fade_m':1.05,'coarse_form':'outward asymmetric excavation pockets','floor':'world-continuous irregular flags, earth banks, mud and shallow puddles'}}
         groups, key = {}, 0
         points = route['points']
         for number, stretch in enumerate(runs[route['id']]):
@@ -560,7 +573,7 @@ def build_network(layout: dict, wanted: set, rng, lib, quoins) -> tuple:
             a, b = blender_point(points[segment]), blender_point(points[segment + 1])
             planes, ext = run_planes(route, number, stretch, nodes)
             pieces = passage.run(lib, rng, profile(route, layout), a.lerp(b, t0), a.lerp(b, t1), f'{route["id"]}_{number}',
-                                 ext=ext, planes=planes, style=style, vary=route['id'] != 'return_gallery')
+                                 ext=ext, planes=planes, style=style, vary=style == 'masonry' and route['id'] != 'return_gallery')
             floor_origin=a.lerp(b,t0)-Vector((0,0,(b.z-a.z)/Vector((b.x-a.x,b.y-a.y,0)).length*ext[0]))
             fit_junction_floor({21:pieces[4]},{'at':floor_origin,'arrivals':[{'route':route,'slope':(b.z-a.z)}]})
             for endpoint in (start, end):
@@ -571,7 +584,7 @@ def build_network(layout: dict, wanted: set, rng, lib, quoins) -> tuple:
                     passage.clip_groups(pieces,[(node['at'],node['turning']['axis'])])
                 if endpoint[0] == 'node' and skew_node(nodes[endpoint[1]]):
                     node = nodes[endpoint[1]]
-                    cut = passage.box('bay_footprint', node['at'], node['axis'], node['profile'].half,
+                    cut = passage.box('bay_footprint', node['at'], node['axis'], node['profile'].half+(passage.ROCK_JOIN if style in ('hewn_rock','timber_mine') else 0.0),
                                       -20.0, 30.0)
                     faces = {k:v for k,v in pieces.items() if k != 3}
                     passage.subtract(faces,[cut]);pieces.update(faces)
@@ -594,15 +607,24 @@ def build_network(layout: dict, wanted: set, rng, lib, quoins) -> tuple:
             if any(obj.data.name.startswith('tunnel_rock') for obj in pieces[0]):
                 for obj in pieces[0]:core.discard(obj)
                 pieces[0]=passage.rock_skin(pieces[3],f'{route["id"]}_{number}')
-                seams=[]
+                seams=list(planes)
                 for endpoint in (start,end):
                     if endpoint[0]=='node' and skew_node(nodes[endpoint[1]]):
                         node=nodes[endpoint[1]];x=node['axis'];y=passage.UP.cross(x)
                         seams += [(node['at']+n*(node['profile'].half+passage.ROCK_JOIN),n) for n in (x,y,-x,-y)]
+                    elif endpoint[0]=='node' and nodes[endpoint[1]].get('turning'):
+                        node=nodes[endpoint[1]];x=node['turning']['axis'];y=passage.UP.cross(x)
+                        seams += [(node['turn_centre']+n*(node['profile'].half+passage.THICKNESS),n) for n in (x,y,-x,-y)]
                 for obj in pieces[0]:
                     passage.carve_rock(obj,a.lerp(b,t0).z,seams=seams)
                 for obj in pieces[3]:core.discard(obj)
                 pieces[3]=passage.rock_backing(pieces[0],f'{route["id"]}_{number}_core')
+                for obj in pieces[0]:passage.strip_rock_partitions(obj,seams)
+                if style=='timber_mine':
+                    for obj in pieces.get(5,[]):core.discard(obj)
+                    aa,bb=a.lerp(b,t0),a.lerp(b,t1);delta=Vector((bb.x-aa.x,bb.y-aa.y,0));d=delta.normalized()
+                    slope=(bb.z-aa.z)/delta.length
+                    pieces[5]=passage.mine_shores(core.rng(177,'fitted-shores',route['id'],number),profile(route,layout),aa-d*ext[0]-passage.UP*slope*ext[0],d,delta.length+ext[0]+ext[1],slope,f'{route["id"]}_{number}',skin=pieces[0])
             for group_id, group in pieces.items():
                 # Keep the five structural group names stable: the bonded
                 # upper-gallery bake consumes Mortar_return_gallery_<5*n+3>.
@@ -683,6 +705,9 @@ def map_stone(obj, rng) -> None:
             co = mesh.vertices[mesh.loops[index].vertex_index].co
             wall.data[index].uv = (co.dot(t), co.dot(b))
             own.data[index].uv = ((co - centre).dot(t_own) + shift.x, (co - centre).dot(b_own) + shift.y)
+            if obj.get('natural_floor'):
+                earth,pool,_=cave_ground.field(co)
+                wall.data[index].uv=(earth,pool)
     mesh.uv_layers.active = own
 
 
@@ -690,6 +715,10 @@ def stone_kind(obj) -> str:
     """Which stone kind a placed stone is, from its library mesh's name (kept
     through copies as 'name.001'): each kind gets its own face material in game."""
     name = obj.data.name
+    if obj.get('floor_kind'):return obj['floor_kind']
+    if name.startswith('ground_earth'):return 'earth'
+    if name.startswith('ground_water'):return 'water'
+    if name.startswith('caveflag_'):return 'caveflag'
     if name.startswith('tunnel_rock'):
         return 'rock'
     if name.startswith('tunnel_wood'):
@@ -748,7 +777,7 @@ def bake_all(elements: list, out: Path, samples: int = 24) -> list:
     merged = [(kind, label, merge(label, groups, rng)) for kind, label, groups in elements]
     # Buried partition caps pollute vertex AO on continuous rock skins.
     # Their texture AO and live shadows remain; placed stones keep vertex AO.
-    ao = bake.ao_to_color([obj for _, _, objects in merged for obj in objects if not obj.name.startswith('Stone-rock_')], samples=samples, distance=0.5)
+    ao = bake.ao_to_color([obj for _, _, objects in merged for obj in objects if not obj.name.startswith(('Stone-rock_','Stone-earth_','Stone-water_','Stone-caveflag_'))], samples=samples, distance=0.5)
     written = []
     for kind, label, objects in merged:
         if not objects:
@@ -757,7 +786,7 @@ def bake_all(elements: list, out: Path, samples: int = 24) -> list:
             colour = obj.data.color_attributes['Color']
             for item in colour.data:
                 r, g, b, _ = item.color
-                shade = r * g * 1.25 * (1.08 if b > 0.5 and not obj.name.startswith('Stone-rock_') else 1.0)
+                shade = r * g * 1.25 * (1.08 if b > 0.5 and not obj.name.startswith(('Stone-rock_','Stone-earth_','Stone-water_','Stone-caveflag_')) else 1.0)
                 item.color = (shade, shade, shade, 1.0)
         collisions = [export.collision_copy(obj, 'colonly') for obj in objects if obj.name.startswith('Mortar')]
         for obj in collisions:

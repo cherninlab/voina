@@ -1,0 +1,58 @@
+[
+  {
+    "file": "content/environments/procedural_architecture_v1/passages/cave_bypass.glb",
+    "before_sha256": "5a3cf3dbfa5f99ef160a5c136491332fd45c3163ceead72e5585e411b6b721ed",
+    "after_sha256": "b75ed7348675b93db184adf2edab218c69b543f9a1e328cc9ddef9189b09abc5",
+    "normal_vertices": 9610,
+    "all_non_normal_bytes_identical": true
+  },
+  {
+    "file": "content/environments/procedural_architecture_v1/passages/node_-31_-23_6.glb",
+    "before_sha256": "bfebbc3b8c2c88bf8a2499f9f27a36a4b2cbef78e3e1792343e2c4481d614b38",
+    "after_sha256": "d5f3565c6e1ed3f2928f2a9992a465504b590eefab6696d48a8c2e26f8ebab05",
+    "normal_vertices": 5877,
+    "all_non_normal_bytes_identical": true
+  },
+  {
+    "file": "content/environments/procedural_architecture_v1/passages/node_-38_-23_-2.glb",
+    "before_sha256": "3a78b86c145dd266f272225e076440af6ff3a3a47786f1549a8845dad5cbb2bd",
+    "after_sha256": "48b11a6e68ff673d5590aa4e406808878520f4046dfbe47b2ae0fd70f4c282bc",
+    "normal_vertices": 5980,
+    "all_non_normal_bytes_identical": true
+  },
+  {
+    "file": "content/environments/procedural_architecture_v1/passages/node_-41_-23_14.glb",
+    "before_sha256": "96f6e04406828dde2d62be88245399a69efc6e32ad830e4aad2cf1645e7f7fc4",
+    "after_sha256": "971abaa073ce5b9eead6c8231fd6d1c813b000459a5907ab7ae58b16773bcf3a",
+    "normal_vertices": 3405,
+    "all_non_normal_bytes_identical": true
+  },
+  {
+    "file": "content/environments/procedural_architecture_v1/passages/node_-41_-23_24.glb",
+    "before_sha256": "65bbfebcd7de6aa40ea62f94ed61188c7f644f8b3c416fe2572b8ba37020b5a3",
+    "after_sha256": "f60dccb604e73944ac80b4c8b9062447a112f1bf68f1b2f1b71aadc01b51ccbf",
+    "normal_vertices": 3453,
+    "all_non_normal_bytes_identical": true
+  },
+  {
+    "file": "content/environments/procedural_architecture_v1/passages/node_-43_-23_-6.glb",
+    "before_sha256": "848720b7b19d12e98dfd07855dae7331bec32ac44cb19074b7321c82a0249f55",
+    "after_sha256": "b692b3eb04825d44b1989bc6c656af171417a3902860e62f45dd316cfa5c4bc1",
+    "normal_vertices": 3931,
+    "all_non_normal_bytes_identical": true
+  },
+  {
+    "file": "content/environments/procedural_architecture_v1/passages/node_-46_-23_7.glb",
+    "before_sha256": "84b88b9395d24697cf662da2a1357d4b88fb925e2d6dea84a03e59d311503488",
+    "after_sha256": "a7ef8df90516337ebca22cb255a5e0431db74bc45b99e749c5cfb2b955ce8b10",
+    "normal_vertices": 5065,
+    "all_non_normal_bytes_identical": true
+  },
+  {
+    "file": "content/environments/procedural_architecture_v1/passages/root_tunnel.glb",
+    "before_sha256": "d4bf7b92fa97d9951c2169179826da29be4f81d4358ebe95c0bb0463a5922a31",
+    "after_sha256": "e32a19def26f74c87bd0192acc53034e672fe1eb862c9a3baf648096a1ea0afd",
+    "normal_vertices": 23235,
+    "all_non_normal_bytes_identical": true
+  }
+]

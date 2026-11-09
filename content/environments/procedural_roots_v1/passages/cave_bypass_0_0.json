@@ -1,7 +1,7 @@
 {
   "ao": {
     "Roots_cave_bypass_0_0_0": {
-      "mean": 0.581,
+      "mean": 0.628,
       "min": 0.2
     }
   },
@@ -13,11 +13,11 @@
     "route_margin_m": 0.3
   },
   "diameter_cm": {
-    "max": 10.0,
+    "max": 9.0,
     "min": 0.0
   },
   "files": {
-    "content/environments/procedural_roots_v1/passages/cave_bypass_0_0.glb": "ca77e2386d1e2386c8b7856f18e2ad3794c82d766041c460896147846c77e60c"
+    "content/environments/procedural_roots_v1/passages/cave_bypass_0_0.glb": "676615bec34c72e87792ae699936b10a0fe84a768a3ca11ac24c1f69892d404b"
   },
   "growth_budget": 12903,
   "id": "cave_bypass_0_0",
@@ -38,24 +38,18 @@
       "cut_into_stone": 0,
       "emerging_from_joint": 0,
       "in_walking_corridor": 0,
-      "vertices": 6190
+      "vertices": 2927
     },
     "cling_gap_m": {
-      "max": 0.0516,
-      "p50": 0.0045,
-      "p95": 0.0132
+      "max": 0.0432,
+      "p50": 0.0042,
+      "p95": 0.0108
     },
     "clipped_at_corridor": 0,
-    "pruned": 87,
-    "rings": 673,
+    "pruned": 0,
+    "rings": 555,
     "rings_touching_stone": 0,
     "terminal_rings": [
-      {
-        "end": "start",
-        "exposed_vertices": 0,
-        "root": 1,
-        "vertices": 10
-      },
       {
         "end": "start",
         "exposed_vertices": 0,
@@ -72,10 +66,46 @@
         "end": "branch",
         "exposed_vertices": 0,
         "root": 16,
-        "vertices": 10
+        "vertices": 5
+      },
+      {
+        "end": "branch",
+        "exposed_vertices": 0,
+        "root": 19,
+        "vertices": 5
+      },
+      {
+        "end": "branch",
+        "exposed_vertices": 0,
+        "root": 20,
+        "vertices": 5
+      },
+      {
+        "end": "branch",
+        "exposed_vertices": 0,
+        "root": 21,
+        "vertices": 6
+      },
+      {
+        "end": "branch",
+        "exposed_vertices": 0,
+        "root": 22,
+        "vertices": 5
       },
       {
         "end": "start",
+        "exposed_vertices": 0,
+        "root": 23,
+        "vertices": 10
+      },
+      {
+        "end": "branch",
+        "exposed_vertices": 0,
+        "root": 25,
+        "vertices": 8
+      },
+      {
+        "end": "branch",
         "exposed_vertices": 0,
         "root": 26,
         "vertices": 8
@@ -83,161 +113,119 @@
       {
         "end": "branch",
         "exposed_vertices": 0,
-        "root": 30,
+        "root": 27,
         "vertices": 6
+      },
+      {
+        "end": "branch",
+        "exposed_vertices": 0,
+        "root": 28,
+        "vertices": 5
+      },
+      {
+        "end": "branch",
+        "exposed_vertices": 0,
+        "root": 29,
+        "vertices": 6
+      },
+      {
+        "end": "branch",
+        "exposed_vertices": 0,
+        "root": 30,
+        "vertices": 5
       },
       {
         "end": "branch",
         "exposed_vertices": 0,
         "root": 31,
+        "vertices": 5
+      },
+      {
+        "end": "branch",
+        "exposed_vertices": 0,
+        "root": 32,
+        "vertices": 5
+      },
+      {
+        "end": "branch",
+        "exposed_vertices": 0,
+        "root": 33,
+        "vertices": 5
+      },
+      {
+        "end": "branch",
+        "exposed_vertices": 0,
+        "root": 34,
+        "vertices": 5
+      },
+      {
+        "end": "branch",
+        "exposed_vertices": 0,
+        "root": 35,
         "vertices": 6
       },
       {
-        "end": "start",
+        "end": "branch",
         "exposed_vertices": 0,
-        "root": 40,
-        "vertices": 10
+        "root": 36,
+        "vertices": 5
+      },
+      {
+        "end": "branch",
+        "exposed_vertices": 0,
+        "root": 37,
+        "vertices": 5
+      },
+      {
+        "end": "branch",
+        "exposed_vertices": 0,
+        "root": 38,
+        "vertices": 5
+      },
+      {
+        "end": "branch",
+        "exposed_vertices": 0,
+        "root": 39,
+        "vertices": 5
       },
       {
         "end": "start",
         "exposed_vertices": 0,
-        "root": 54,
-        "vertices": 10
-      },
-      {
-        "end": "return",
-        "exposed_vertices": 0,
-        "root": 54,
-        "vertices": 10
-      },
-      {
-        "end": "start",
-        "exposed_vertices": 0,
-        "root": 72,
+        "root": 42,
         "vertices": 8
       },
       {
-        "end": "return",
+        "end": "start",
         "exposed_vertices": 0,
-        "root": 72,
+        "root": 45,
         "vertices": 8
       },
       {
         "end": "branch",
         "exposed_vertices": 0,
-        "root": 73,
-        "vertices": 6
-      },
-      {
-        "end": "start",
-        "exposed_vertices": 0,
-        "root": 77,
-        "vertices": 10
-      },
-      {
-        "end": "return",
-        "exposed_vertices": 0,
-        "root": 77,
-        "vertices": 10
+        "root": 46,
+        "vertices": 5
       },
       {
         "end": "branch",
         "exposed_vertices": 0,
-        "root": 80,
-        "vertices": 10
-      },
-      {
-        "end": "return",
-        "exposed_vertices": 0,
-        "root": 80,
-        "vertices": 10
-      },
-      {
-        "end": "start",
-        "exposed_vertices": 0,
-        "root": 88,
-        "vertices": 8
-      },
-      {
-        "end": "return",
-        "exposed_vertices": 0,
-        "root": 88,
-        "vertices": 8
-      },
-      {
-        "end": "start",
-        "exposed_vertices": 0,
-        "root": 89,
-        "vertices": 8
-      },
-      {
-        "end": "start",
-        "exposed_vertices": 0,
-        "root": 92,
-        "vertices": 10
-      },
-      {
-        "end": "return",
-        "exposed_vertices": 0,
-        "root": 92,
-        "vertices": 10
-      },
-      {
-        "end": "branch",
-        "exposed_vertices": 0,
-        "root": 95,
-        "vertices": 10
-      },
-      {
-        "end": "start",
-        "exposed_vertices": 0,
-        "root": 100,
-        "vertices": 10
-      },
-      {
-        "end": "start",
-        "exposed_vertices": 0,
-        "root": 103,
-        "vertices": 10
-      },
-      {
-        "end": "start",
-        "exposed_vertices": 0,
-        "root": 106,
-        "vertices": 10
-      },
-      {
-        "end": "start",
-        "exposed_vertices": 0,
-        "root": 111,
-        "vertices": 10
-      },
-      {
-        "end": "start",
-        "exposed_vertices": 0,
-        "root": 116,
-        "vertices": 10
-      },
-      {
-        "end": "start",
-        "exposed_vertices": 0,
-        "root": 120,
-        "vertices": 10
+        "root": 47,
+        "vertices": 5
       }
     ],
-    "unmounted_systems_pruned": 0
+    "unmounted_systems_pruned": 1
   },
-  "roots": 22,
+  "roots": 26,
   "seed": 178,
   "sources": {
-    "content/environments/procedural_architecture_v1/passages/cave_bypass.glb": "9758a6665f0bf39b260c32fe02e4694797901496277e57b27522e1fc5f07a65c",
-    "scripts/art/build_roots.py": "ffb913f950c8e7f2f63fce40eb35f85e37508f5dba4a51051e3ffc4c9bf0843c",
+    "content/environments/procedural_architecture_v1/passages/cave_bypass.glb": "b75ed7348675b93db184adf2edab218c69b543f9a1e328cc9ddef9189b09abc5",
+    "scripts/art/build_roots.py": "db494cf4f9737f92d26b4f81d3d9a42f6695a129310d16fa314eb682aefb8cb4",
     "scripts/art/procgen/roots.py": "3714841f150fe6903e6bff1c93a3327cfa183633ebb2dd0998b8a05f95609c92"
   },
   "systems": {
-    "branch": 6,
-    "loop": 6,
-    "trunk": 4
+    "branch": 1,
+    "loop": 2,
+    "trunk": 1
   },
-  "triangles": 12758
+  "triangles": 5892
 }

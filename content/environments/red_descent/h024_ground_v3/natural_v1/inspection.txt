@@ -1,0 +1,78 @@
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+Metal 4.0 - Forward Mobile - Using Device #0: Apple - Apple M5 Max (Apple9)
+
+BUILD: 31136d12+dirty [52f3c07960d0]
+NAVE_ABUTMENT_READY: continuous arch and paving; old endpoint bracket replaced
+STRUCTURAL_RELIEF_READY: 58 meshes, walls [3, 4, 5, 6]
+GENERATED_KIT_PLACED: {}
+RED_DESCENT_GEOMETRY_READY: 17 routes, 13 rooms, 35 lit landmarks, sloping crossings
+MAP: Cinder Crypt (crypt)
+Hosting on UDP 19069
+DUNGEON_ENCOUNTER_READY: five guards across two vertically separated halls, no replacements
+NET host · build 31136d12+dirty [52f3c07960d0]
+NET bolts in flight 0
+CAPTURE_STONE: res://content/environments/dungeon_pbr_v2/Bricks089/albedo.png scale 0.16
+INSPECTION_LIGHT: fresh neutral camera light at (-38.3749, -21.4, 24.0)
+CAPTURE_CENTRE_HIT: root_tunnel_0-forward /root/MatchWorld/CinderCrypt/Architecture/StonePassage_node_-41_-23_24/Collision_node_-41_-23_24_20 at (-44.12943, -21.1954, 24.0)
+DUNGEON_CAPTURE: /tmp/h024-natural-review-inspection/root_tunnel_0-forward.png
+INSPECTION_LIGHT: fresh neutral camera light at (-39.5749, -21.4, 24.0)
+CAPTURE_CENTRE_HIT: root_tunnel_0-back /root/MatchWorld/CinderCrypt/Architecture/StoneRoom_second_stair_hall/Collision_second_stair_hall_5 at (-30.0125, -21.06001, 24.0)
+DUNGEON_CAPTURE: /tmp/h024-natural-review-inspection/root_tunnel_0-back.png
+INSPECTION_LIGHT: fresh neutral camera light at (-41.0, -21.4, 19.6)
+CAPTURE_CENTRE_HIT: root_tunnel_1-forward /root/MatchWorld/CinderCrypt/Architecture/StonePassage_root_tunnel/Collision_root_tunnel_13 at (-41.0, -21.16815, 9.63049)
+DUNGEON_CAPTURE: /tmp/h024-natural-review-inspection/root_tunnel_1-forward.png
+INSPECTION_LIGHT: fresh neutral camera light at (-41.0, -21.4, 18.4)
+NET host · build 31136d12+dirty [52f3c07960d0]
+NET bolts in flight 0
+CAPTURE_CENTRE_HIT: root_tunnel_1-back /root/MatchWorld/CinderCrypt/Architecture/StonePassage_node_-41_-23_24/Collision_node_-41_-23_24_20 at (-41.0, -21.19532, 27.20141)
+DUNGEON_CAPTURE: /tmp/h024-natural-review-inspection/root_tunnel_1-back.png
+INSPECTION_LIGHT: fresh neutral camera light at (-36.46852, -21.4, 10.37482)
+CAPTURE_CENTRE_HIT: root_tunnel_2-forward /root/MatchWorld/CinderCrypt/Architecture/StonePassage_node_-31_-23_6/Collision_node_-31_-23_6_20 at (-28.57503, -21.19789, 4.060024)
+DUNGEON_CAPTURE: /tmp/h024-natural-review-inspection/root_tunnel_2-forward.png
+INSPECTION_LIGHT: fresh neutral camera light at (-35.53148, -21.4, 9.625183)
+CAPTURE_CENTRE_HIT: root_tunnel_2-back /root/MatchWorld/CinderCrypt/Architecture/StonePassage_node_-41_-23_14/Collision_node_-41_-23_14_20 at (-44.13409, -21.17974, 16.50727)
+DUNGEON_CAPTURE: /tmp/h024-natural-review-inspection/root_tunnel_2-back.png
+INSPECTION_LIGHT: fresh neutral camera light at (-34.1049, -21.4, 2.451546)
+CAPTURE_CENTRE_HIT: root_tunnel_3-forward /root/MatchWorld/CinderCrypt/Architecture/StonePassage_node_-43_-23_-6/Collision_node_-43_-23_-6_20 at (-44.36413, -21.05049, -9.273293)
+DUNGEON_CAPTURE: /tmp/h024-natural-review-inspection/root_tunnel_3-forward.png
+INSPECTION_LIGHT: fresh neutral camera light at (-34.8951, -21.4, 1.548454)
+NET host · build 31136d12+dirty [52f3c07960d0]
+NET bolts in flight 0
+CAPTURE_CENTRE_HIT: root_tunnel_3-back /root/MatchWorld/CinderCrypt/Architecture/StonePassage_node_-31_-23_6/Collision_node_-31_-23_6_20 at (-28.93655, -21.197, 8.358231)
+DUNGEON_CAPTURE: /tmp/h024-natural-review-inspection/root_tunnel_3-back.png
+INSPECTION_LIGHT: fresh neutral camera light at (-34.46567, -21.4, -4.871644)
+CAPTURE_CENTRE_HIT: root_tunnel_4-forward /root/MatchWorld/CinderCrypt/Architecture/StonePassage_node_-23_-23_-16/Collision_node_-23_-23_-16_20 at (-23.866, -21.08797, -13.48388)
+DUNGEON_CAPTURE: /tmp/h024-natural-review-inspection/root_tunnel_4-forward.png
+INSPECTION_LIGHT: fresh neutral camera light at (-33.53433, -21.4, -5.628356)
+CAPTURE_CENTRE_HIT: root_tunnel_4-back /root/MatchWorld/CinderCrypt/Architecture/StonePassage_node_-38_-23_-2/Collision_node_-38_-23_-2_20 at (-40.36848, -21.19882, -0.075614)
+DUNGEON_CAPTURE: /tmp/h024-natural-review-inspection/root_tunnel_4-back.png
+INSPECTION_LIGHT: fresh neutral camera light at (-26.90939, -21.4, -11.81137)
+CAPTURE_CENTRE_HIT: root_tunnel_5-forward /root/MatchWorld/CinderCrypt/Architecture/@StaticBody3D@856 at (-11.09948, -20.86914, -28.75056)
+DUNGEON_CAPTURE: /tmp/h024-natural-review-inspection/root_tunnel_5-forward.png
+INSPECTION_LIGHT: fresh neutral camera light at (-26.09061, -21.4, -12.68863)
+CAPTURE_CENTRE_HIT: root_tunnel_5-back /root/MatchWorld/CinderCrypt/Architecture/StonePassage_node_-38_-23_-2/Collision_node_-38_-23_-2_20 at (-39.19757, -20.9599, 1.354532)
+NET host · build 31136d12+dirty [52f3c07960d0]
+NET bolts in flight 0
+DUNGEON_CAPTURE: /tmp/h024-natural-review-inspection/root_tunnel_5-back.png
+INSPECTION_LIGHT: fresh neutral camera light at (-43.15126, -21.4, 10.98824)
+CAPTURE_CENTRE_HIT: cave_bypass_0-forward /root/MatchWorld/CinderCrypt/Architecture/StonePassage_cave_bypass/Collision_cave_bypass_8 at (-47.98895, -21.18932, 4.215474)
+DUNGEON_CAPTURE: /tmp/h024-natural-review-inspection/cave_bypass_0-forward.png
+INSPECTION_LIGHT: fresh neutral camera light at (-43.84874, -21.4, 10.01176)
+CAPTURE_CENTRE_HIT: cave_bypass_0-back /root/MatchWorld/CinderCrypt/Architecture/StonePassage_root_tunnel/Collision_root_tunnel_8 at (-37.80945, -21.13699, 18.46677)
+DUNGEON_CAPTURE: /tmp/h024-natural-review-inspection/cave_bypass_0-back.png
+INSPECTION_LIGHT: fresh neutral camera light at (-44.63491, -21.4, 1.084635)
+CAPTURE_CENTRE_HIT: cave_bypass_1-forward /root/MatchWorld/CinderCrypt/Architecture/StonePassage_node_-43_-23_-6/Collision_node_-43_-23_-6_20 at (-42.33417, -21.20076, -8.885255)
+DUNGEON_CAPTURE: /tmp/h024-natural-review-inspection/cave_bypass_1-forward.png
+INSPECTION_LIGHT: fresh neutral camera light at (-44.36509, -21.4, -0.084635)
+CAPTURE_CENTRE_HIT: cave_bypass_1-back /root/MatchWorld/CinderCrypt/Architecture/StonePassage_node_-46_-23_7/Collision_node_-46_-23_7_20 at (-46.87725, -21.18245, 10.8014)
+DUNGEON_CAPTURE: /tmp/h024-natural-review-inspection/cave_bypass_1-back.png
+INSPECTION_LIGHT: fresh neutral camera light at (-40.96852, -21.4, -4.374817)
+NET host · build 31136d12+dirty [52f3c07960d0]
+NET bolts in flight 0
+CAPTURE_CENTRE_HIT: cave_bypass_2-forward /root/MatchWorld/CinderCrypt/Architecture/StonePassage_node_-31_-23_6/Collision_node_-31_-23_6_20 at (-27.08193, -20.87708, 6.73446)
+DUNGEON_CAPTURE: /tmp/h024-natural-review-inspection/cave_bypass_2-forward.png
+INSPECTION_LIGHT: fresh neutral camera light at (-40.03148, -21.4, -3.625183)
+CAPTURE_CENTRE_HIT: cave_bypass_2-back /root/MatchWorld/CinderCrypt/Architecture/StonePassage_node_-43_-23_-6/Collision_node_-43_-23_-6_20 at (-45.53965, -21.19258, -8.031716)
+DUNGEON_CAPTURE: /tmp/h024-natural-review-inspection/cave_bypass_2-back.png
+WARNING: 7 RIDs of type "Texture" were leaked.
+   at: finalize (servers/rendering/rendering_device.cpp:8900)

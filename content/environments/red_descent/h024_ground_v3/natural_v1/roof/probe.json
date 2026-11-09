@@ -1,0 +1,202 @@
+[
+	{
+		"area": "route:root_tunnel",
+		"direction": [
+			0.0,
+			1.0,
+			0.0
+		],
+		"eye": [
+			-39.2349014282227,
+			-21.3999996185303,
+			9.89859962463379
+		],
+		"hits": [
+			{
+				"distance": 2.67509269714355,
+				"front": true,
+				"normal": [
+					0.496021449565887,
+					-0.764964282512665,
+					0.410843551158905
+				],
+				"path": "/root/MatchWorld/CinderCrypt/Architecture/Roots_root_tunnel_2_0/Roots_root_tunnel_2_0_0",
+				"position": [
+					-39.2349014282227,
+					-18.7249069213867,
+					9.89859962463379
+				]
+			},
+			{
+				"distance": 2.72792816162109,
+				"front": true,
+				"normal": [
+					0.564064979553223,
+					-0.779473602771759,
+					0.272491723299026
+				],
+				"path": "/root/MatchWorld/CinderCrypt/Architecture/StonePassage_root_tunnel/Stone-rock_root_tunnel_10",
+				"position": [
+					-39.2349014282227,
+					-18.6720714569092,
+					9.89859962463379
+				]
+			}
+		],
+		"id": "E0275",
+		"motion": {
+			"status": "no motion trace"
+		}
+	},
+	{
+		"area": "route:root_tunnel",
+		"direction": [
+			0.0,
+			1.0,
+			0.0
+		],
+		"eye": [
+			-38.4656982421875,
+			-21.3999996185303,
+			9.28330039978027
+		],
+		"hits": [
+			{
+				"distance": 2.95254516601562,
+				"front": true,
+				"normal": [
+					0.423333287239075,
+					-0.693179130554199,
+					0.583345234394073
+				],
+				"path": "/root/MatchWorld/CinderCrypt/Architecture/StonePassage_root_tunnel/Stone-rock_root_tunnel_10",
+				"position": [
+					-38.4656982421875,
+					-18.4474544525146,
+					9.28330039978027
+				]
+			}
+		],
+		"id": "E0277",
+		"motion": {
+			"status": "no motion trace"
+		}
+	},
+	{
+		"area": "route:return_gallery",
+		"direction": [
+			0.0,
+			1.0,
+			0.0
+		],
+		"eye": [
+			20.7406997680664,
+			-8.39999961853027,
+			-4.37039995193481
+		],
+		"hits": [
+			{
+				"distance": 2.1640510559082,
+				"front": true,
+				"normal": [
+					-0.00221254816278815,
+					-0.999935626983643,
+					0.0111293010413647
+				],
+				"path": "/root/MatchWorld/CinderCrypt/Architecture/StonePassage_return_gallery/BondedGallery_2",
+				"position": [
+					20.7406997680664,
+					-6.23594856262207,
+					-4.37039995193481
+				]
+			}
+		],
+		"id": "E0330",
+		"motion": {
+			"status": "no motion trace"
+		}
+	},
+	{
+		"area": "route:cave_bypass",
+		"direction": [
+			0.0,
+			1.0,
+			0.0
+		],
+		"eye": [
+			-45.0379981994629,
+			-21.3999996185303,
+			11.59850025177
+		],
+		"hits": [
+			{
+				"distance": 0.839090347290039,
+				"front": true,
+				"normal": [
+					-0.407548427581787,
+					-0.722588419914246,
+					-0.558363974094391
+				],
+				"path": "/root/MatchWorld/CinderCrypt/Architecture/StonePassage_cave_bypass/Stone-wood_cave_bypass_1005",
+				"position": [
+					-45.0379981994629,
+					-20.5609092712402,
+					11.59850025177
+				]
+			},
+			{
+				"distance": 2.67190361022949,
+				"front": true,
+				"normal": [
+					0.152527406811714,
+					-0.805498719215393,
+					-0.572631895542145
+				],
+				"path": "/root/MatchWorld/CinderCrypt/Architecture/StonePassage_cave_bypass/Stone-rock_cave_bypass_0",
+				"position": [
+					-45.0379981994629,
+					-18.7280960083008,
+					11.59850025177
+				]
+			}
+		],
+		"id": "E0334",
+		"motion": {
+			"status": "no motion trace"
+		}
+	},
+	{
+		"area": "route:cave_bypass",
+		"direction": [
+			0.0,
+			1.0,
+			0.0
+		],
+		"eye": [
+			-46.8415985107422,
+			-21.3999996185303,
+			2.24169993400574
+		],
+		"hits": [
+			{
+				"distance": 2.95232963562012,
+				"front": true,
+				"normal": [
+					0.657934308052063,
+					-0.639541149139404,
+					0.397630035877228
+				],
+				"path": "/root/MatchWorld/CinderCrypt/Architecture/StonePassage_cave_bypass/Stone-rock_cave_bypass_5",
+				"position": [
+					-46.8415985107422,
+					-18.4476699829102,
+					2.24169993400574
+				]
+			}
+		],
+		"id": "E0336",
+		"motion": {
+			"status": "no motion trace"
+		}
+	}
+]

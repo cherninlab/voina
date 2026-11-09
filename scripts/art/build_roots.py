@@ -168,7 +168,7 @@ def load_room(options: dict, room: dict, index: dict) -> dict:
                 bpy.data.objects.remove(obj, do_unlink=True)
     stone, mortar = [], []
     for obj in room_objects + passages:
-        if obj.type != 'MESH' or obj.name.startswith('Collision') or obj.name.endswith('colonly'):
+        if obj.type != 'MESH' or obj.name.startswith(('Collision','Stone-water_')) or obj.name.endswith('colonly'):
             bpy.data.objects.remove(obj, do_unlink=True)
             continue
         (mortar if obj.name.startswith('Mortar') else stone).append(obj)
@@ -908,6 +908,14 @@ class Grower:
             else:
                 root.children=[child for child in root.children if child.at_s<=old_arc[index]]
                 root.entry_rings.update(range(len(root.points)-9,len(root.points)-1))
+        # Fitting a short root's second end can change the first ring's frame.
+        # Reject the unmounted system rather than emit a floating branch cap.
+        probe=Builder('FinalTerminalProbe');audit=[]
+        roots.skin(probe,root,audit=audit);probe.bm.free()
+        for index in ([0] if root.buried or root.parent is not None else [])+([-1] if root.dived else []):
+            branch=index==0 and root.parent is not None and not root.buried
+            solids=[self.root_solid(root.parent)] if branch else self.backing_solids
+            if not self.ring_embedded(audit[index][1],solids):return False
         return True
 
     @staticmethod
@@ -1363,8 +1371,8 @@ def bake_and_write(grower: Grower, rules: roots.Rules, label: str, out_dir: Path
         return [], {}
     qa['audit'] = audit(grower, rules)
     qa['terminal_rings'] = grower.terminal_rings
-    assert all(item['exposed_vertices']==0 for item in grower.terminal_rings),(label,'Exposed wall terminal')
     print('ROOTS_TERMINALS',label,json.dumps(grower.terminal_rings),flush=True)
+    assert all(item['exposed_vertices']==0 for item in grower.terminal_rings),(label,'Exposed wall terminal')
     ao = bake.ao_to_color(objects, samples=64, distance=0.5, floor=0.2)
     for obj in objects:
         colour = obj.data.color_attributes['Color']
@@ -1446,7 +1454,7 @@ def build_passage(options: dict, entry: dict, layout: dict) -> dict:
     bpy.ops.import_scene.gltf(filepath=str(path))
     stone, mortar = [], []
     for obj in sorted(bpy.context.scene.objects, key=lambda o: o.name):
-        if obj.type != 'MESH' or obj.name.startswith('Collision') or obj.name.endswith('colonly'):
+        if obj.type != 'MESH' or obj.name.startswith(('Collision','Stone-water_')) or obj.name.endswith('colonly'):
             bpy.data.objects.remove(obj, do_unlink=True)
         else:
             (mortar if obj.name.startswith('Mortar') else stone).append(obj)

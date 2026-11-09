@@ -1,0 +1,16 @@
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+BUILD: 31136d12+dirty [bc0d5b9757a8]
+NAVE_ABUTMENT_READY: continuous arch and paving; old endpoint bracket replaced
+STRUCTURAL_RELIEF_READY: 58 meshes, walls [3, 4, 5, 6]
+GENERATED_KIT_PLACED: {}
+RED_DESCENT_GEOMETRY_READY: 17 routes, 13 rooms, 35 lit landmarks, sloping crossings
+EXPLORER_MESHES: 5355
+SEAM_PIXEL (130.0, 500.0) { "position": (-38.55678, -21.5885, 2.042482), "normal": (0.743147, -0.055157, 0.666851), "path": "/root/CinderCrypt/Architecture/StonePassage_node_-38_-23_-2/Mortar_node_-38_-23_-2_20", "two_sided": false, "instance": -1 }
+SEAM_PIXEL (145.0, 420.0) { "position": (-38.59821, -21.16527, 1.986936), "normal": (0.729006, -0.056874, -0.682141), "path": "/root/CinderCrypt/Architecture/StonePassage_node_-38_-23_-2/Stone-rock_node_-38_-23_-2_0", "two_sided": false, "instance": -1 }
+SEAM_PIXEL (144.0, 180.0) { "position": (-38.3361, -19.96565, 2.036379), "normal": (0.359835, -0.189173, -0.913637), "path": "/root/CinderCrypt/Architecture/StonePassage_node_-38_-23_-2/Stone-rock_node_-38_-23_-2_0", "two_sided": false, "instance": -1 }
+SEAM_PIXEL (485.0, 440.0) { "position": (-41.21527, -21.10938, -1.333059), "normal": (-0.985022, 0.089083, -0.147634), "path": "/root/CinderCrypt/Architecture/StonePassage_cave_bypass/Mortar_cave_bypass_8", "two_sided": false, "instance": -1 }
+SEAM_PIXEL (1400.0, 180.0) { "position": (-33.67189, -20.26189, -1.1944), "normal": (-0.916928, -0.090152, 0.388736), "path": "/root/CinderCrypt/Architecture/StonePassage_node_-38_-23_-2/Stone-rock_node_-38_-23_-2_0", "two_sided": false, "instance": -1 }
+SEAM_PIXEL (600.0, 180.0) { "position": (-40.38982, -17.78962, -2.413155), "normal": (0.974436, 0.000327, 0.224663), "path": "/root/CinderCrypt/Architecture/StonePassage_cave_bypass/Stone-rock_cave_bypass_5", "two_sided": false, "instance": -1 }
+WARNING: 1 ObjectDB instance was leaked at exit (run with `--verbose` for details).
+   at: cleanup (core/object/object.cpp:2536)

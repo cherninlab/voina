@@ -1,5 +1,5 @@
 {
-  "ageing": "restrained; 2.5 cm timber bow, 0\u20139 cm hewn relief",
+  "ageing": "restrained; 2.5 cm timber bow; excavation is construction shape, not decay",
   "ao": {
     "Mortar_cave_bypass_13": {
       "mean": 0.18,
@@ -13,48 +13,38 @@
       "mean": 0.18,
       "min": 0.18
     },
-    "Stone-flag_cave_bypass_14": {
-      "mean": 0.452,
-      "min": 0.18
-    },
-    "Stone-flag_cave_bypass_4": {
-      "mean": 0.541,
-      "min": 0.18
-    },
-    "Stone-flag_cave_bypass_9": {
-      "mean": 0.584,
-      "min": 0.18
-    },
     "Stone-stone_cave_bypass_1006": {
-      "mean": 0.265,
+      "mean": 0.18,
       "min": 0.18
     },
     "Stone-stone_cave_bypass_1016": {
-      "mean": 0.263,
+      "mean": 0.18,
       "min": 0.18
     },
     "Stone-wood_cave_bypass_1005": {
-      "mean": 0.676,
+      "mean": 0.464,
       "min": 0.18
     },
     "Stone-wood_cave_bypass_1015": {
-      "mean": 0.58,
+      "mean": 0.513,
       "min": 0.18
     }
   },
   "blender": "5.2.2 LTS",
   "excavation_relief": {
+    "coarse_form": "outward asymmetric excavation pockets",
     "enabled": true,
-    "floor_fade_m": 0.77,
-    "max_displacement_m": 0.33,
+    "floor": "world-continuous irregular flags, earth banks, mud and shallow puddles",
+    "floor_fade_m": 1.05,
+    "max_displacement_m": 1.0,
     "sampling_m": 0.55
   },
   "files": {
-    "content/environments/procedural_architecture_v1/passages/cave_bypass.glb": "9758a6665f0bf39b260c32fe02e4694797901496277e57b27522e1fc5f07a65c"
+    "content/environments/procedural_architecture_v1/passages/cave_bypass.glb": "b75ed7348675b93db184adf2edab218c69b543f9a1e328cc9ddef9189b09abc5"
   },
   "id": "cave_bypass",
   "profile_change": {
-    "enabled": true,
+    "enabled": false,
     "max_lower_crown_m": 0.22,
     "max_widen_m_per_side": 0.28,
     "unchanged_join_m": 4.0
@@ -65,5 +55,5 @@
     "rule": "deep service bypass: timber shores in hewn rock",
     "width_m": 4.5
   },
-  "triangles": 60590
+  "triangles": 66744
 }

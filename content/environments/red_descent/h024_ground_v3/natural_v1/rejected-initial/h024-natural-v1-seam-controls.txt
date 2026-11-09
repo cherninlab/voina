@@ -1,0 +1,28 @@
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+Metal 4.0 - Forward Mobile - Using Device #0: Apple - Apple M5 Max (Apple9)
+
+BUILD: 31136d12+dirty [27e9297fafd9]
+NAVE_ABUTMENT_READY: continuous arch and paving; old endpoint bracket replaced
+STRUCTURAL_RELIEF_READY: 58 meshes, walls [3, 4, 5, 6]
+GENERATED_KIT_PLACED: {}
+RED_DESCENT_GEOMETRY_READY: 17 routes, 13 rooms, 35 lit landmarks, sloping crossings
+MAP: Cinder Crypt (crypt)
+Hosting on UDP 19047
+DUNGEON_ENCOUNTER_READY: five guards across two vertically separated halls, no replacements
+NET host · build 31136d12+dirty [27e9297fafd9]
+NET bolts in flight 0
+EXPLORER_MESHES: 5363
+CAVE_SURFACE_RAY: (1100.0, 450.0) { "position": (-35.83315, -21.20286, -7.713229), "normal": (0.591867, 0.075443, 0.802497), "path": "/root/MatchWorld/CinderCrypt/Architecture/StonePassage_root_tunnel/Stone-rock_root_tunnel_20", "two_sided": false, "instance": -1 }
+CAVE_SURFACE_RAY: (1220.0, 650.0) { "position": (-34.31898, -22.55716, -2.515439), "normal": (0.0, 0.0, 1.0), "path": "/root/MatchWorld/CinderCrypt/Architecture/wood_-2_-2_-1_lod0", "two_sided": false, "instance": 0 }
+CAVE_SURFACE_RAY: (1250.0, 300.0) { "position": (-34.19588, -19.16688, -8.621565), "normal": (0.420888, -0.459515, 0.782112), "path": "/root/MatchWorld/CinderCrypt/Architecture/StonePassage_root_tunnel/Stone-rock_root_tunnel_20", "two_sided": false, "instance": -1 }
+CAVE_SURFACE_RAY: (700.0, 100.0) { "position": (-38.77328, -17.3334, -2.54425), "normal": (0.087303, -0.984985, -0.148937), "path": "/root/MatchWorld/CinderCrypt/Architecture/StonePassage_node_-38_-23_-2/Stone-rock_node_-38_-23_-2_0", "two_sided": false, "instance": -1 }
+CAVE_SURFACE_RAY: (650.0, 250.0) { "position": (-41.07408, -18.1424, -3.893862), "normal": (0.276282, -0.957738, 0.080041), "path": "/root/MatchWorld/CinderCrypt/Architecture/StonePassage_node_-38_-23_-2/Stone-rock_node_-38_-23_-2_0", "two_sided": false, "instance": -1 }
+NET host · build 31136d12+dirty [27e9297fafd9]
+NET bolts in flight 0
+CAVE_CONTROL: baseline
+CAVE_CONTROL: no-live-shadows
+CAVE_CONTROL: no-baked-colour
+CAVE_CONTROL: neither
+CAVE_CONTROL: flat-geometry
+WARNING: 7 RIDs of type "Texture" were leaked.
+   at: finalize (servers/rendering/rendering_device.cpp:8900)

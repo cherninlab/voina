@@ -1,17 +1,13 @@
 {
   "ao": {
     "Mortar_node_-31_-23_6_20": {
-      "mean": 0.181,
-      "min": 0.18
-    },
-    "Stone-flag_node_-31_-23_6_21": {
-      "mean": 0.637,
+      "mean": 0.235,
       "min": 0.18
     }
   },
   "blender": "5.2.2 LTS",
   "files": {
-    "content/environments/procedural_architecture_v1/passages/node_-31_-23_6.glb": "e099d87568f708c463622076c0501d941365ff647bd745b399ef74185e0f6a36"
+    "content/environments/procedural_architecture_v1/passages/node_-31_-23_6.glb": "d5f3565c6e1ed3f2928f2a9992a465504b590eefab6696d48a8c2e26f8ebab05"
   },
   "id": "node_-31_-23_6",
   "situation": {
@@ -21,5 +17,5 @@
     ],
     "rule": "shared actual-axis barrel clearances"
   },
-  "triangles": 34144
+  "triangles": 43089
 }

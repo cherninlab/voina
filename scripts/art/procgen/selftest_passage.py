@@ -204,3 +204,56 @@ passage.carve_rock(collar,0,seams=[(Vector((2,0,0)),Vector((1,0,0)))])
 assert all(abs(v.co.x-2)<1e-6 for v in collar.data.vertices if v.co.x>1.99),'Excavation separates a shared join plane'
 assert any(abs(v.co.x+2)>.025 for v in collar.data.vertices if v.co.x<-1.5),'Join collar flattened the entire rock surface'
 print('PASSAGE_CARVED_JOIN_COLLAR_OK',flush=True)
+
+# Natural floors are one shared field, with actual low banks and shallow pools.
+from procgen import cave_ground
+cave_ground.SPINES=[(Vector((-100,0,0)),Vector((100,0,0)),2.7)]
+cave_ground.TRANSITIONS=[]
+points=[Vector((x*.35,y*.35,0)) for x in range(-180,181) for y in range(-5,6)]
+fields=[cave_ground.field(p) for p in points]
+assert min(v[0] for v in fields)<.1 and max(v[0] for v in fields)>.95,'Natural floor has no stone/earth variety'
+pools=[p for p in points if cave_ground.field(p)[1]>.5]
+assert pools,'Natural floor generates no shallow puddles'
+assert all(-.08<cave_ground.height(p,0)<-.008 for p in pools),'Puddle water does not sit above its depression'
+assert cave_ground.height(Vector((0,2.7,0)),0) > cave_ground.height(Vector((0,0,0)),0)+.05,'Wall base remains a crisp flat seam'
+for water in (False,True):
+    terrain=cave_ground.cell('floor_control',0,.9,0,.7,0,water)
+    shell=bmesh.new();shell.from_mesh(terrain.data)
+    assert all(e.is_manifold for e in shell.edges),'Earth/water cell is not closed'
+    shell.free()
+assert cave_ground.shape_offset(Vector((0,2.7,0)),0).length<1e-6,'Excavation moved the walking-floor edge'
+assert cave_ground.shape_offset(Vector((0,2.7,1.6)),0).y>.15,'Broader excavation remains planar'
+print('PASSAGE_NATURAL_GROUND_OK',len(pools),'shallow pool samples',flush=True)
+
+# Natural run and bay cavities must share the exact arch tessellation/allowance.
+for slope in (0.0,.15):
+    start=Vector((2,3,-4));end=start+Vector((12,0,12*slope))
+    mass=passage.run_mass(o,start,end,'natural_profile_control',natural=True)
+    cutter=passage.clearance(o,start,Vector((1,0,0)),-1,13,'bay_profile_control',slope,padding=passage.RECESS)
+    trees=[]
+    for obj in (mass,cutter):
+        obj.data.calc_loop_triangles()
+        trees.append(BVHTree.FromPolygons([obj.matrix_world@v.co for v in obj.data.vertices],[list(t.vertices) for t in obj.data.loop_triangles],all_triangles=True))
+    eye=start+Vector((6,0,1.6+6*slope))
+    for ray in [Vector((0,1,0)),Vector((0,-1,0)),Vector((0,0,1)),Vector((0,.5,1)).normalized()]:
+        hits=[tree.ray_cast(eye,ray,10)[0] for tree in trees]
+        assert all(hit is not None for hit in hits) and (hits[0]-hits[1]).length<.0001,('Natural run/bay profile mismatch',slope,ray,hits)
+print('PASSAGE_NATURAL_PROFILE_MATCH_OK',flush=True)
+
+# Render ownership caps are removed after the closed backing is retained.
+fixture=passage.box('partition_control',Vector((0,0,0)),Vector((1,0,0)),2,0,4)
+solid=passage.rock_backing([fixture],'closed_partition_backing')[0]
+passage.strip_rock_partitions(fixture,[(Vector((2,0,0)),Vector((1,0,0)))])
+assert len(fixture.data.polygons)==5,'Render ownership cap remains'
+shell=bmesh.new();shell.from_mesh(solid.data)
+assert all(e.is_manifold for e in shell.edges),'Render cap removal opened the collision backing'
+shell.free()
+print('PASSAGE_RENDER_PARTITIONS_OK',flush=True)
+
+# All corners at one render vertex share a normal across Boolean seams.
+seen={}
+for loop,normal in zip(fixture.data.loops,fixture.data.corner_normals):
+    key=tuple(round(c,5) for c in fixture.data.vertices[loop.vertex_index].co)
+    if key in seen:assert (seen[key]-normal.vector).length<.0001,'Construction seam kept split normals'
+    seen[key]=normal.vector.copy()
+print('PASSAGE_RENDER_NORMAL_CONTINUITY_OK',flush=True)

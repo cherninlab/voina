@@ -1,0 +1,525 @@
+SDF.R: Loader Marker V16.2.2 (__init__.py loaded from: /Users/theochernin/Library/Application Support/Blender/5.2/scripts/addons/rust_gpu_sdf_addon/__init__.py)
+SDF.R: --- Initializing GPU Engine (V16.2.2) ---
+SDF.R: No shader cache. This initial compilation may take a few minutes...
+SDF.R: Addon registered. Warming-up will start in 0.5s...
+ROOTS_SKIPPED __none__
+00:30:40 | INFO: Data are loaded, start creating Blender stuff
+00:30:40 | INFO: Blender create Mesh node root_tunnel_0_core_0.002
+00:30:40 | INFO: Blender create Mesh node root_tunnel_1_core_0.002
+00:30:40 | INFO: Blender create Mesh node root_tunnel_2_core_0.002
+00:30:40 | INFO: Blender create Mesh node root_tunnel_3_core_0.002
+00:30:40 | INFO: Blender create Mesh node root_tunnel_4_core_0.002
+00:30:40 | INFO: Blender create Mesh node root_tunnel_5_core_0.002
+00:30:40 | INFO: Blender create Mesh node root_tunnel_0_core_0.001
+00:30:40 | INFO: Blender create Mesh node root_tunnel_1_core_0.001
+00:30:40 | INFO: Blender create Mesh node root_tunnel_2_core_0.001
+00:30:40 | INFO: Blender create Mesh node root_tunnel_3_core_0.001
+00:30:40 | INFO: Blender create Mesh node root_tunnel_4_core_0.001
+00:30:40 | INFO: Blender create Mesh node root_tunnel_5_core_0.001
+00:30:40 | INFO: Blender create Mesh node caveflag_flag_lib_12.1953
+00:30:40 | INFO: Blender create Mesh node caveflag_flag_lib_2.1481
+00:30:40 | INFO: Blender create Mesh node caveflag_flag_lib_12.1965
+00:30:40 | INFO: Blender create Mesh node caveflag_flag_lib_18.792
+00:30:40 | INFO: Blender create Mesh node caveflag_flag_lib_11.1882
+00:30:40 | INFO: Blender create Mesh node caveflag_flag_lib_11.1897
+00:30:40 | INFO: Blender create Mesh node ground_earth_root_tunnel_0_-42_-40.005
+00:30:40 | INFO: Blender create Mesh node ground_earth_root_tunnel_1_-50_-30.007
+00:30:40 | INFO: Blender create Mesh node ground_earth_root_tunnel_2_-42_-23.007
+00:30:40 | INFO: Blender create Mesh node ground_earth_root_tunnel_3_-41_-9.007
+00:30:40 | INFO: Blender create Mesh node ground_earth_root_tunnel_4_-38_1.007
+00:30:40 | INFO: Blender create Mesh node ground_earth_root_tunnel_5_-32_8.004
+00:30:40 | INFO: Blender create Mesh node tunnel_rock_root_tunnel_0_0.002
+00:30:40 | INFO: Blender create Mesh node tunnel_rock_root_tunnel_1_0.002
+00:30:40 | INFO: Blender create Mesh node tunnel_rock_root_tunnel_2_0.002
+00:30:40 | INFO: Blender create Mesh node tunnel_rock_root_tunnel_3_0.002
+00:30:40 | INFO: Blender create Mesh node tunnel_rock_root_tunnel_4_0.002
+00:30:40 | INFO: Blender create Mesh node tunnel_rock_root_tunnel_5_0.002
+00:30:40 | INFO: Blender create Mesh node tunnel_spall.193
+00:30:40 | INFO: Blender create Mesh node tunnel_spall.199
+00:30:40 | INFO: Blender create Mesh node tunnel_spall.203
+00:30:40 | INFO: Blender create Mesh node ground_water_root_tunnel_0_-42_-40.005
+00:30:40 | INFO: Blender create Mesh node ground_water_root_tunnel_1_-50_-30.007
+00:30:40 | INFO: Blender create Mesh node ground_water_root_tunnel_2_-42_-23.007
+00:30:40 | INFO: Blender create Mesh node ground_water_root_tunnel_3_-41_-9.007
+00:30:40 | INFO: Blender create Mesh node ground_water_root_tunnel_4_-38_1.007
+00:30:40 | INFO: Blender create Mesh node ground_water_root_tunnel_5_-32_8.004
+00:30:40 | INFO: glTF import finished in 0.23s
+SYSTEM 0 branch r0 2.0 cm length z 5.1->4.5 2.9/9.0 m 12 roots
+SYSTEM 1 branch r0 2.4 cm length z 5.0->4.3 3.5/5.2 m 4 roots
+ROOTS_GROWN {'branch': (3, 7.3), 'vein': (33, 14.1)}
+ROOTS_SPENT {'branch': (6.9, 1826, 266), 'vein': (13.3, 4194, 316)}
+ROOTS_TERMINALS root_tunnel_0_421 [{"root": 1, "end": "start", "vertices": 10, "exposed_vertices": 0}, {"root": 2, "end": "branch", "vertices": 6, "exposed_vertices": 0}, {"root": 5, "end": "branch", "vertices": 6, "exposed_vertices": 0}, {"root": 9, "end": "branch", "vertices": 5, "exposed_vertices": 0}, {"root": 3, "end": "branch", "vertices": 6, "exposed_vertices": 0}, {"root": 4, "end": "branch", "vertices": 8, "exposed_vertices": 0}, {"root": 6, "end": "branch", "vertices": 5, "exposed_vertices": 0}, {"root": 7, "end": "branch", "vertices": 8, "exposed_vertices": 0}, {"root": 10, "end": "branch", "vertices": 5, "exposed_vertices": 0}, {"root": 13, "end": "branch", "vertices": 5, "exposed_vertices": 0}, {"root": 16, "end": "branch", "vertices": 5, "exposed_vertices": 0}, {"root": 17, "end": "branch", "vertices": 5, "exposed_vertices": 0}, {"root": 18, "end": "branch", "vertices": 5, "exposed_vertices": 0}, {"root": 19, "end": "branch", "vertices": 6, "exposed_vertices": 0}, {"root": 20, "end": "branch", "vertices": 5, "exposed_vertices": 0}, {"root": 21, "end": "branch", "vertices": 5, "exposed_vertices": 0}, {"root": 22, "end": "branch", "vertices": 5, "exposed_vertices": 0}, {"root": 23, "end": "branch", "vertices": 5, "exposed_vertices": 0}, {"root": 24, "end": "branch", "vertices": 5, "exposed_vertices": 0}, {"root": 25, "end": "branch", "vertices": 6, "exposed_vertices": 0}, {"root": 26, "end": "branch", "vertices": 5, "exposed_vertices": 0}, {"root": 27, "end": "start", "vertices": 10, "exposed_vertices": 0}, {"root": 28, "end": "branch", "vertices": 5, "exposed_vertices": 0}, {"root": 30, "end": "branch", "vertices": 8, "exposed_vertices": 0}, {"root": 31, "end": "branch", "vertices": 5, "exposed_vertices": 0}, {"root": 32, "end": "branch", "vertices": 5, "exposed_vertices": 0}, {"root": 34, "end": "branch", "vertices": 6, "exposed_vertices": 0}, {"root": 35, "end": "branch", "vertices": 5, "exposed_vertices": 0}, {"root": 36, "end": "branch", "vertices": 5, "exposed_vertices": 0}]
+INFO Draco is available, use library at /Applications/Blender.app/Contents/Resources/5.2/scripts/addons_core/io_scene_gltf2/libbf_intern_draco_bridge.dylib
+INFO MeshOptimizer is available, use library at /Applications/Blender.app/Contents/Resources/5.2/scripts/addons_core/io_scene_gltf2/libbf_intern_meshopt_bridge.dylib
+00:30:41 | INFO: Starting glTF 2.0 export
+00:30:41 | INFO: Extracting primitive: Roots_root_tunnel_0_421_0
+00:30:41 | INFO: Primitives created: 1
+00:30:41 | INFO: Finished glTF 2.0 export in 0.0042040348052978516 s
+
+ROOTS_BAKED root_tunnel_0_421 5206 tris 29 roots {"unmounted_systems_pruned": 0, "pruned": 2, "clipped_at_corridor": 0, "rings": 404, "rings_touching_stone": 0, "cling_gap_m": {"p50": 0.0038, "p95": 0.009, "max": 0.0172}, "audit": {"vertices": 2612, "cut_into_stone": 0, "cut_deeper_than_1cm": 0, "in_walking_corridor": 0, "emerging_from_joint": 0}, "terminal_rings": [{"root": 1, "end": "start", "vertices": 10, "exposed_vertices": 0}, {"root": 2, "end": "branch", "vertices": 6, "exposed_vertices": 0}, {"root": 5, "end": "branch", "vertices": 6, "exposed_vertices": 0}, {"root": 9, "end": "branch", "vertices": 5, "exposed_vertices": 0}, {"root": 3, "end": "branch", "vertices": 6, "exposed_vertices": 0}, {"root": 4, "end": "branch", "vertices": 8, "exposed_vertices": 0}, {"root": 6, "end": "branch", "vertices": 5, "exposed_vertices": 0}, {"root": 7, "end": "branch", "vertices": 8, "exposed_vertices": 0}, {"root": 10, "end": "branch", "vertices": 5, "exposed_vertices": 0}, {"root": 13, "end": "branch", "vertices": 5, "exposed_vertices": 0}, {"root": 16, "end": "branch", "vertices": 5, "exposed_vertices": 0}, {"root": 17, "end": "branch", "vertices": 5, "exposed_vertices": 0}, {"root": 18, "end": "branch", "vertices": 5, "exposed_vertices": 0}, {"root": 19, "end": "branch", "vertices": 6, "exposed_vertices": 0}, {"root": 20, "end": "branch", "vertices": 5, "exposed_vertices": 0}, {"root": 21, "end": "branch", "vertices": 5, "exposed_vertices": 0}, {"root": 22, "end": "branch", "vertices": 5, "exposed_vertices": 0}, {"root": 23, "end": "branch", "vertices": 5, "exposed_vertices": 0}, {"root": 24, "end": "branch", "vertices": 5, "exposed_vertices": 0}, {"root": 25, "end": "branch", "vertices": 6, "exposed_vertices": 0}, {"root": 26, "end": "branch", "vertices": 5, "exposed_vertices": 0}, {"root": 27, "end": "start", "vertices": 10, "exposed_vertices": 0}, {"root": 28, "end": "branch", "vertices": 5, "exposed_vertices": 0}, {"root": 30, "end": "branch", "vertices": 8, "exposed_vertices": 0}, {"root": 31, "end": "branch", "vertices": 5, "exposed_vertices": 0}, {"root": 32, "end": "branch", "vertices": 5, "exposed_vertices": 0}, {"root": 34, "end": "branch", "vertices": 6, "exposed_vertices": 0}, {"root": 35, "end": "branch", "vertices": 5, "exposed_vertices": 0}, {"root": 36, "end": "branch", "vertices": 5, "exposed_vertices": 0}]}
+ROOTS_PASSAGE_DONE root_tunnel_0_421 1.0 s
+00:30:41 | INFO: Data are loaded, start creating Blender stuff
+00:30:41 | INFO: Blender create Mesh node root_tunnel_0_core_0.002
+00:30:41 | INFO: Blender create Mesh node root_tunnel_1_core_0.002
+00:30:41 | INFO: Blender create Mesh node root_tunnel_2_core_0.002
+00:30:41 | INFO: Blender create Mesh node root_tunnel_3_core_0.002
+00:30:41 | INFO: Blender create Mesh node root_tunnel_4_core_0.002
+00:30:41 | INFO: Blender create Mesh node root_tunnel_5_core_0.002
+00:30:41 | INFO: Blender create Mesh node root_tunnel_0_core_0.001
+00:30:41 | INFO: Blender create Mesh node root_tunnel_1_core_0.001
+00:30:41 | INFO: Blender create Mesh node root_tunnel_2_core_0.001
+00:30:41 | INFO: Blender create Mesh node root_tunnel_3_core_0.001
+00:30:41 | INFO: Blender create Mesh node root_tunnel_4_core_0.001
+00:30:41 | INFO: Blender create Mesh node root_tunnel_5_core_0.001
+00:30:41 | INFO: Blender create Mesh node caveflag_flag_lib_12.1953
+00:30:41 | INFO: Blender create Mesh node caveflag_flag_lib_2.1481
+00:30:41 | INFO: Blender create Mesh node caveflag_flag_lib_12.1965
+00:30:41 | INFO: Blender create Mesh node caveflag_flag_lib_18.792
+00:30:41 | INFO: Blender create Mesh node caveflag_flag_lib_11.1882
+00:30:41 | INFO: Blender create Mesh node caveflag_flag_lib_11.1897
+00:30:41 | INFO: Blender create Mesh node ground_earth_root_tunnel_0_-42_-40.005
+00:30:41 | INFO: Blender create Mesh node ground_earth_root_tunnel_1_-50_-30.007
+00:30:41 | INFO: Blender create Mesh node ground_earth_root_tunnel_2_-42_-23.007
+00:30:41 | INFO: Blender create Mesh node ground_earth_root_tunnel_3_-41_-9.007
+00:30:41 | INFO: Blender create Mesh node ground_earth_root_tunnel_4_-38_1.007
+00:30:41 | INFO: Blender create Mesh node ground_earth_root_tunnel_5_-32_8.004
+00:30:41 | INFO: Blender create Mesh node tunnel_rock_root_tunnel_0_0.002
+00:30:41 | INFO: Blender create Mesh node tunnel_rock_root_tunnel_1_0.002
+00:30:41 | INFO: Blender create Mesh node tunnel_rock_root_tunnel_2_0.002
+00:30:41 | INFO: Blender create Mesh node tunnel_rock_root_tunnel_3_0.002
+00:30:41 | INFO: Blender create Mesh node tunnel_rock_root_tunnel_4_0.002
+00:30:41 | INFO: Blender create Mesh node tunnel_rock_root_tunnel_5_0.002
+00:30:41 | INFO: Blender create Mesh node tunnel_spall.193
+00:30:41 | INFO: Blender create Mesh node tunnel_spall.199
+00:30:41 | INFO: Blender create Mesh node tunnel_spall.203
+00:30:41 | INFO: Blender create Mesh node ground_water_root_tunnel_0_-42_-40.005
+00:30:41 | INFO: Blender create Mesh node ground_water_root_tunnel_1_-50_-30.007
+00:30:41 | INFO: Blender create Mesh node ground_water_root_tunnel_2_-42_-23.007
+00:30:41 | INFO: Blender create Mesh node ground_water_root_tunnel_3_-41_-9.007
+00:30:41 | INFO: Blender create Mesh node ground_water_root_tunnel_4_-38_1.007
+00:30:41 | INFO: Blender create Mesh node ground_water_root_tunnel_5_-32_8.004
+00:30:41 | INFO: glTF import finished in 0.22s
+SYSTEM 0 branch r0 1.9 cm length z 5.4->4.6 2.8/9.0 m 12 roots
+SYSTEM 1 branch r0 2.1 cm length z 5.1->3.9 3.0/4.1 m 2 roots
+SYSTEM 2 branch r0 2.3 cm length z 5.3->4.2 2.2/5.2 m 7 roots
+SYSTEM 3 branch r0 2.0 cm length z 5.4->4.8 2.9/4.2 m 4 roots
+SYSTEM 4 branch r0 1.7 cm met z 5.1->4.7 1.6/2.4 m 3 roots
+SYSTEM 5 branch r0 1.7 cm length z 5.1->3.0 3.5/6.3 m 5 roots
+SYSTEM 6 trunk r0 4.1 cm length z 5.4->4.1 2.7/4.0 m 5 roots
+SYSTEM 7 trunk r0 4.4 cm length z 5.3->4.1 2.8/7.2 m 9 roots
+LOOP 8 vault chord 3.06 m low 4.12 m r 2.8 cm
+LOOP 9 vault chord 2.03 m low 4.73 m r 2.8 cm
+LOOP 10 vault chord 2.03 m low 4.56 m r 2.3 cm
+LOOP 11 vault chord 2.73 m low 4.61 m r 2.7 cm
+LOOP 12 vault chord 1.73 m low 4.92 m r 1.7 cm
+LOOP 13 vault chord 2.66 m low 4.32 m r 2.6 cm
+LOOP 14 vault chord 2.38 m low 4.54 m r 2.9 cm
+LOOP 15 vault chord 2.44 m low 4.53 m r 1.7 cm
+LOOP 16 vault chord 2.58 m low 4.58 m r 2.2 cm
+ROOTS_GROWN {'branch': (12, 21.4), 'vein': (126, 57.2), 'trunk': (2, 5.5), 'loop': (9, 44.9)}
+ROOTS_SPENT {'branch': (18.3, 3918, 214), 'vein': (3.8, 1546, 409), 'trunk': (5.4, 1332, 249), 'loop': (44.8, 7746, 173)}
+ROOTS_TERMINALS root_tunnel_1_0 [{"root": 1, "end": "start", "vertices": 8, "exposed_vertices": 0}, {"root": 3, "end": "branch", "vertices": 6, "exposed_vertices": 0}, {"root": 5, "end": "branch", "vertices": 8, "exposed_vertices": 0}, {"root": 9, "end": "branch", "vertices": 6, "exposed_vertices": 0}, {"root": 23, "end": "start", "vertices": 8, "exposed_vertices": 0}, {"root": 39, "end": "start", "vertices": 10, "exposed_vertices": 0}, {"root": 41, "end": "branch", "vertices": 8, "exposed_vertices": 0}, {"root": 42, "end": "branch", "vertices": 8, "exposed_vertices": 0}, {"root": 54, "end": "start", "vertices": 8, "exposed_vertices": 0}, {"root": 72, "end": "start", "vertices": 8, "exposed_vertices": 0}, {"root": 72, "end": "return", "vertices": 8, "exposed_vertices": 0}, {"root": 83, "end": "start", "vertices": 8, "exposed_vertices": 0}, {"root": 105, "end": "start", "vertices": 10, "exposed_vertices": 0}, {"root": 105, "end": "return", "vertices": 10, "exposed_vertices": 0}, {"root": 117, "end": "start", "vertices": 10, "exposed_vertices": 0}, {"root": 121, "end": "branch", "vertices": 10, "exposed_vertices": 0}, {"root": 122, "end": "branch", "vertices": 10, "exposed_vertices": 0}, {"root": 122, "end": "return", "vertices": 10, "exposed_vertices": 0}, {"root": 123, "end": "branch", "vertices": 10, "exposed_vertices": 0}, {"root": 124, "end": "branch", "vertices": 10, "exposed_vertices": 0}, {"root": 125, "end": "branch", "vertices": 10, "exposed_vertices": 0}, {"root": 136, "end": "start", "vertices": 10, "exposed_vertices": 0}, {"root": 141, "end": "start", "vertices": 10, "exposed_vertices": 0}, {"root": 146, "end": "start", "vertices": 10, "exposed_vertices": 0}, {"root": 151, "end": "start", "vertices": 10, "exposed_vertices": 0}, {"root": 154, "end": "start", "vertices": 8, "exposed_vertices": 0}, {"root": 157, "end": "start", "vertices": 10, "exposed_vertices": 0}, {"root": 162, "end": "start", "vertices": 10, "exposed_vertices": 0}, {"root": 165, "end": "start", "vertices": 8, "exposed_vertices": 0}, {"root": 168, "end": "start", "vertices": 10, "exposed_vertices": 0}]
+00:30:43 | INFO: Starting glTF 2.0 export
+00:30:43 | INFO: Extracting primitive: Roots_root_tunnel_1_0_0
+00:30:43 | INFO: Primitives created: 1
+00:30:43 | INFO: Finished glTF 2.0 export in 0.008569955825805664 s
+
+ROOTS_BAKED root_tunnel_1_0 14320 tris 27 roots {"unmounted_systems_pruned": 0, "pruned": 122, "clipped_at_corridor": 0, "rings": 787, "rings_touching_stone": 0, "cling_gap_m": {"p50": 0.0043, "p95": 0.0338, "max": 0.0525}, "audit": {"vertices": 7006, "cut_into_stone": 0, "cut_deeper_than_1cm": 0, "in_walking_corridor": 0, "emerging_from_joint": 3}, "terminal_rings": [{"root": 1, "end": "start", "vertices": 8, "exposed_vertices": 0}, {"root": 3, "end": "branch", "vertices": 6, "exposed_vertices": 0}, {"root": 5, "end": "branch", "vertices": 8, "exposed_vertices": 0}, {"root": 9, "end": "branch", "vertices": 6, "exposed_vertices": 0}, {"root": 23, "end": "start", "vertices": 8, "exposed_vertices": 0}, {"root": 39, "end": "start", "vertices": 10, "exposed_vertices": 0}, {"root": 41, "end": "branch", "vertices": 8, "exposed_vertices": 0}, {"root": 42, "end": "branch", "vertices": 8, "exposed_vertices": 0}, {"root": 54, "end": "start", "vertices": 8, "exposed_vertices": 0}, {"root": 72, "end": "start", "vertices": 8, "exposed_vertices": 0}, {"root": 72, "end": "return", "vertices": 8, "exposed_vertices": 0}, {"root": 83, "end": "start", "vertices": 8, "exposed_vertices": 0}, {"root": 105, "end": "start", "vertices": 10, "exposed_vertices": 0}, {"root": 105, "end": "return", "vertices": 10, "exposed_vertices": 0}, {"root": 117, "end": "start", "vertices": 10, "exposed_vertices": 0}, {"root": 121, "end": "branch", "vertices": 10, "exposed_vertices": 0}, {"root": 122, "end": "branch", "vertices": 10, "exposed_vertices": 0}, {"root": 122, "end": "return", "vertices": 10, "exposed_vertices": 0}, {"root": 123, "end": "branch", "vertices": 10, "exposed_vertices": 0}, {"root": 124, "end": "branch", "vertices": 10, "exposed_vertices": 0}, {"root": 125, "end": "branch", "vertices": 10, "exposed_vertices": 0}, {"root": 136, "end": "start", "vertices": 10, "exposed_vertices": 0}, {"root": 141, "end": "start", "vertices": 10, "exposed_vertices": 0}, {"root": 146, "end": "start", "vertices": 10, "exposed_vertices": 0}, {"root": 151, "end": "start", "vertices": 10, "exposed_vertices": 0}, {"root": 154, "end": "start", "vertices": 8, "exposed_vertices": 0}, {"root": 157, "end": "start", "vertices": 10, "exposed_vertices": 0}, {"root": 162, "end": "start", "vertices": 10, "exposed_vertices": 0}, {"root": 165, "end": "start", "vertices": 8, "exposed_vertices": 0}, {"root": 168, "end": "start", "vertices": 10, "exposed_vertices": 0}]}
+ROOTS_PASSAGE_DONE root_tunnel_1_0 1.7 s
+00:30:43 | INFO: Data are loaded, start creating Blender stuff
+00:30:43 | INFO: Blender create Mesh node root_tunnel_0_core_0.002
+00:30:43 | INFO: Blender create Mesh node root_tunnel_1_core_0.002
+00:30:43 | INFO: Blender create Mesh node root_tunnel_2_core_0.002
+00:30:43 | INFO: Blender create Mesh node root_tunnel_3_core_0.002
+00:30:43 | INFO: Blender create Mesh node root_tunnel_4_core_0.002
+00:30:43 | INFO: Blender create Mesh node root_tunnel_5_core_0.002
+00:30:43 | INFO: Blender create Mesh node root_tunnel_0_core_0.001
+00:30:43 | INFO: Blender create Mesh node root_tunnel_1_core_0.001
+00:30:43 | INFO: Blender create Mesh node root_tunnel_2_core_0.001
+00:30:43 | INFO: Blender create Mesh node root_tunnel_3_core_0.001
+00:30:43 | INFO: Blender create Mesh node root_tunnel_4_core_0.001
+00:30:43 | INFO: Blender create Mesh node root_tunnel_5_core_0.001
+00:30:43 | INFO: Blender create Mesh node caveflag_flag_lib_12.1953
+00:30:43 | INFO: Blender create Mesh node caveflag_flag_lib_2.1481
+00:30:43 | INFO: Blender create Mesh node caveflag_flag_lib_12.1965
+00:30:43 | INFO: Blender create Mesh node caveflag_flag_lib_18.792
+00:30:43 | INFO: Blender create Mesh node caveflag_flag_lib_11.1882
+00:30:43 | INFO: Blender create Mesh node caveflag_flag_lib_11.1897
+00:30:43 | INFO: Blender create Mesh node ground_earth_root_tunnel_0_-42_-40.005
+00:30:43 | INFO: Blender create Mesh node ground_earth_root_tunnel_1_-50_-30.007
+00:30:43 | INFO: Blender create Mesh node ground_earth_root_tunnel_2_-42_-23.007
+00:30:43 | INFO: Blender create Mesh node ground_earth_root_tunnel_3_-41_-9.007
+00:30:43 | INFO: Blender create Mesh node ground_earth_root_tunnel_4_-38_1.007
+00:30:43 | INFO: Blender create Mesh node ground_earth_root_tunnel_5_-32_8.004
+00:30:43 | INFO: Blender create Mesh node tunnel_rock_root_tunnel_0_0.002
+00:30:43 | INFO: Blender create Mesh node tunnel_rock_root_tunnel_1_0.002
+00:30:43 | INFO: Blender create Mesh node tunnel_rock_root_tunnel_2_0.002
+00:30:43 | INFO: Blender create Mesh node tunnel_rock_root_tunnel_3_0.002
+00:30:43 | INFO: Blender create Mesh node tunnel_rock_root_tunnel_4_0.002
+00:30:43 | INFO: Blender create Mesh node tunnel_rock_root_tunnel_5_0.002
+00:30:43 | INFO: Blender create Mesh node tunnel_spall.193
+00:30:43 | INFO: Blender create Mesh node tunnel_spall.199
+00:30:43 | INFO: Blender create Mesh node tunnel_spall.203
+00:30:43 | INFO: Blender create Mesh node ground_water_root_tunnel_0_-42_-40.005
+00:30:43 | INFO: Blender create Mesh node ground_water_root_tunnel_1_-50_-30.007
+00:30:43 | INFO: Blender create Mesh node ground_water_root_tunnel_2_-42_-23.007
+00:30:43 | INFO: Blender create Mesh node ground_water_root_tunnel_3_-41_-9.007
+00:30:43 | INFO: Blender create Mesh node ground_water_root_tunnel_4_-38_1.007
+00:30:43 | INFO: Blender create Mesh node ground_water_root_tunnel_5_-32_8.004
+00:30:43 | INFO: glTF import finished in 0.22s
+SYSTEM 0 branch r0 1.6 cm length z 5.4->5.1 2.4/9.0 m 17 roots
+SYSTEM 1 branch r0 1.5 cm length z 5.3->4.8 4.0/6.2 m 6 roots
+SYSTEM 2 branch r0 2.5 cm length z 5.1->3.2 3.5/6.1 m 5 roots
+SYSTEM 3 trunk r0 3.6 cm length z 5.4->4.8 2.4/3.9 m 4 roots
+SYSTEM 4 branch r0 2.0 cm met z 5.2->5.2 2.2/5.6 m 7 roots
+SYSTEM 5 trunk r0 4.1 cm length z 5.1->4.2 3.8/5.2 m 2 roots
+SYSTEM 6 trunk r0 3.7 cm length z 5.1->2.8 3.7/4.6 m 4 roots
+SYSTEM 7 branch r0 2.4 cm length z 5.2->4.2 3.7/6.9 m 7 roots
+LOOP 8 vault chord 2.83 m low 4.37 m r 2.8 cm
+LOOP 9 vault chord 2.32 m low 4.31 m r 2.4 cm
+LOOP 10 vault chord 1.73 m low 4.78 m r 2.0 cm
+LOOP 11 vault chord 1.90 m low 4.82 m r 2.6 cm
+LOOP 12 vault chord 2.49 m low 4.43 m r 2.6 cm
+LOOP 13 vault chord 2.61 m low 4.48 m r 2.7 cm
+LOOP 14 vault chord 3.49 m low 3.95 m r 1.8 cm
+LOOP 15 vault chord 2.22 m low 4.64 m r 1.6 cm
+LOOP 16 vault chord 3.55 m low 4.16 m r 2.0 cm
+ROOTS_GROWN {'branch': (10, 20.1), 'vein': (142, 65.0), 'trunk': (3, 9.9), 'loop': (9, 46.4)}
+ROOTS_SPENT {'branch': (17.5, 3672, 209), 'vein': (2.8, 954, 343), 'trunk': (9.7, 2208, 227), 'loop': (46.2, 8126, 176)}
+ROOTS_TERMINALS root_tunnel_2_0 [{"root": 1, "end": "start", "vertices": 8, "exposed_vertices": 0}, {"root": 5, "end": "branch", "vertices": 8, "exposed_vertices": 0}, {"root": 11, "end": "branch", "vertices": 6, "exposed_vertices": 0}, {"root": 14, "end": "branch", "vertices": 6, "exposed_vertices": 0}, {"root": 7, "end": "branch", "vertices": 6, "exposed_vertices": 0}, {"root": 23, "end": "start", "vertices": 8, "exposed_vertices": 0}, {"root": 54, "end": "start", "vertices": 10, "exposed_vertices": 0}, {"root": 65, "end": "start", "vertices": 10, "exposed_vertices": 0}, {"root": 65, "end": "return", "vertices": 10, "exposed_vertices": 0}, {"root": 77, "end": "start", "vertices": 8, "exposed_vertices": 0}, {"root": 77, "end": "return", "vertices": 8, "exposed_vertices": 0}, {"root": 79, "end": "branch", "vertices": 6, "exposed_vertices": 0}, {"root": 80, "end": "branch", "vertices": 8, "exposed_vertices": 0}, {"root": 92, "end": "start", "vertices": 10, "exposed_vertices": 0}, {"root": 92, "end": "return", "vertices": 10, "exposed_vertices": 0}, {"root": 93, "end": "branch", "vertices": 10, "exposed_vertices": 0}, {"root": 111, "end": "start", "vertices": 10, "exposed_vertices": 0}, {"root": 111, "end": "return", "vertices": 10, "exposed_vertices": 0}, {"root": 121, "end": "start", "vertices": 10, "exposed_vertices": 0}, {"root": 147, "end": "start", "vertices": 10, "exposed_vertices": 0}, {"root": 151, "end": "start", "vertices": 10, "exposed_vertices": 0}, {"root": 154, "end": "start", "vertices": 10, "exposed_vertices": 0}, {"root": 158, "end": "start", "vertices": 10, "exposed_vertices": 0}, {"root": 163, "end": "start", "vertices": 10, "exposed_vertices": 0}, {"root": 168, "end": "start", "vertices": 10, "exposed_vertices": 0}, {"root": 173, "end": "start", "vertices": 8, "exposed_vertices": 0}, {"root": 176, "end": "start", "vertices": 8, "exposed_vertices": 0}, {"root": 180, "end": "start", "vertices": 10, "exposed_vertices": 0}]
+00:30:44 | INFO: Starting glTF 2.0 export
+00:30:44 | INFO: Extracting primitive: Roots_root_tunnel_2_0_0
+00:30:44 | INFO: Primitives created: 1
+00:30:44 | INFO: Finished glTF 2.0 export in 0.00837397575378418 s
+
+ROOTS_BAKED root_tunnel_2_0 14908 tris 24 roots {"unmounted_systems_pruned": 0, "pruned": 140, "clipped_at_corridor": 0, "rings": 816, "rings_touching_stone": 0, "cling_gap_m": {"p50": 0.0041, "p95": 0.0127, "max": 0.0502}, "audit": {"vertices": 7284, "cut_into_stone": 0, "cut_deeper_than_1cm": 0, "in_walking_corridor": 0, "emerging_from_joint": 0}, "terminal_rings": [{"root": 1, "end": "start", "vertices": 8, "exposed_vertices": 0}, {"root": 5, "end": "branch", "vertices": 8, "exposed_vertices": 0}, {"root": 11, "end": "branch", "vertices": 6, "exposed_vertices": 0}, {"root": 14, "end": "branch", "vertices": 6, "exposed_vertices": 0}, {"root": 7, "end": "branch", "vertices": 6, "exposed_vertices": 0}, {"root": 23, "end": "start", "vertices": 8, "exposed_vertices": 0}, {"root": 54, "end": "start", "vertices": 10, "exposed_vertices": 0}, {"root": 65, "end": "start", "vertices": 10, "exposed_vertices": 0}, {"root": 65, "end": "return", "vertices": 10, "exposed_vertices": 0}, {"root": 77, "end": "start", "vertices": 8, "exposed_vertices": 0}, {"root": 77, "end": "return", "vertices": 8, "exposed_vertices": 0}, {"root": 79, "end": "branch", "vertices": 6, "exposed_vertices": 0}, {"root": 80, "end": "branch", "vertices": 8, "exposed_vertices": 0}, {"root": 92, "end": "start", "vertices": 10, "exposed_vertices": 0}, {"root": 92, "end": "return", "vertices": 10, "exposed_vertices": 0}, {"root": 93, "end": "branch", "vertices": 10, "exposed_vertices": 0}, {"root": 111, "end": "start", "vertices": 10, "exposed_vertices": 0}, {"root": 111, "end": "return", "vertices": 10, "exposed_vertices": 0}, {"root": 121, "end": "start", "vertices": 10, "exposed_vertices": 0}, {"root": 147, "end": "start", "vertices": 10, "exposed_vertices": 0}, {"root": 151, "end": "start", "vertices": 10, "exposed_vertices": 0}, {"root": 154, "end": "start", "vertices": 10, "exposed_vertices": 0}, {"root": 158, "end": "start", "vertices": 10, "exposed_vertices": 0}, {"root": 163, "end": "start", "vertices": 10, "exposed_vertices": 0}, {"root": 168, "end": "start", "vertices": 10, "exposed_vertices": 0}, {"root": 173, "end": "start", "vertices": 8, "exposed_vertices": 0}, {"root": 176, "end": "start", "vertices": 8, "exposed_vertices": 0}, {"root": 180, "end": "start", "vertices": 10, "exposed_vertices": 0}]}
+ROOTS_PASSAGE_DONE root_tunnel_2_0 1.7 s
+00:30:45 | INFO: Data are loaded, start creating Blender stuff
+00:30:45 | INFO: Blender create Mesh node root_tunnel_0_core_0.002
+00:30:45 | INFO: Blender create Mesh node root_tunnel_1_core_0.002
+00:30:45 | INFO: Blender create Mesh node root_tunnel_2_core_0.002
+00:30:45 | INFO: Blender create Mesh node root_tunnel_3_core_0.002
+00:30:45 | INFO: Blender create Mesh node root_tunnel_4_core_0.002
+00:30:45 | INFO: Blender create Mesh node root_tunnel_5_core_0.002
+00:30:45 | INFO: Blender create Mesh node root_tunnel_0_core_0.001
+00:30:45 | INFO: Blender create Mesh node root_tunnel_1_core_0.001
+00:30:45 | INFO: Blender create Mesh node root_tunnel_2_core_0.001
+00:30:45 | INFO: Blender create Mesh node root_tunnel_3_core_0.001
+00:30:45 | INFO: Blender create Mesh node root_tunnel_4_core_0.001
+00:30:45 | INFO: Blender create Mesh node root_tunnel_5_core_0.001
+00:30:45 | INFO: Blender create Mesh node caveflag_flag_lib_12.1953
+00:30:45 | INFO: Blender create Mesh node caveflag_flag_lib_2.1481
+00:30:45 | INFO: Blender create Mesh node caveflag_flag_lib_12.1965
+00:30:45 | INFO: Blender create Mesh node caveflag_flag_lib_18.792
+00:30:45 | INFO: Blender create Mesh node caveflag_flag_lib_11.1882
+00:30:45 | INFO: Blender create Mesh node caveflag_flag_lib_11.1897
+00:30:45 | INFO: Blender create Mesh node ground_earth_root_tunnel_0_-42_-40.005
+00:30:45 | INFO: Blender create Mesh node ground_earth_root_tunnel_1_-50_-30.007
+00:30:45 | INFO: Blender create Mesh node ground_earth_root_tunnel_2_-42_-23.007
+00:30:45 | INFO: Blender create Mesh node ground_earth_root_tunnel_3_-41_-9.007
+00:30:45 | INFO: Blender create Mesh node ground_earth_root_tunnel_4_-38_1.007
+00:30:45 | INFO: Blender create Mesh node ground_earth_root_tunnel_5_-32_8.004
+00:30:45 | INFO: Blender create Mesh node tunnel_rock_root_tunnel_0_0.002
+00:30:45 | INFO: Blender create Mesh node tunnel_rock_root_tunnel_1_0.002
+00:30:45 | INFO: Blender create Mesh node tunnel_rock_root_tunnel_2_0.002
+00:30:45 | INFO: Blender create Mesh node tunnel_rock_root_tunnel_3_0.002
+00:30:45 | INFO: Blender create Mesh node tunnel_rock_root_tunnel_4_0.002
+00:30:45 | INFO: Blender create Mesh node tunnel_rock_root_tunnel_5_0.002
+00:30:45 | INFO: Blender create Mesh node tunnel_spall.193
+00:30:45 | INFO: Blender create Mesh node tunnel_spall.199
+00:30:45 | INFO: Blender create Mesh node tunnel_spall.203
+00:30:45 | INFO: Blender create Mesh node ground_water_root_tunnel_0_-42_-40.005
+00:30:45 | INFO: Blender create Mesh node ground_water_root_tunnel_1_-50_-30.007
+00:30:45 | INFO: Blender create Mesh node ground_water_root_tunnel_2_-42_-23.007
+00:30:45 | INFO: Blender create Mesh node ground_water_root_tunnel_3_-41_-9.007
+00:30:45 | INFO: Blender create Mesh node ground_water_root_tunnel_4_-38_1.007
+00:30:45 | INFO: Blender create Mesh node ground_water_root_tunnel_5_-32_8.004
+00:30:45 | INFO: glTF import finished in 0.23s
+SYSTEM 0 branch r0 2.5 cm length z 5.5->5.1 3.7/5.4 m 2 roots
+SYSTEM 1 trunk r0 4.2 cm length z 5.0->3.0 3.4/6.7 m 7 roots
+SYSTEM 2 branch r0 1.5 cm length z 5.3->4.3 2.4/4.3 m 7 roots
+SYSTEM 3 trunk r0 4.5 cm length z 5.1->4.2 2.4/5.9 m 7 roots
+SYSTEM 4 trunk r0 4.2 cm length z 5.5->4.5 3.1/3.1 m 1 roots
+SYSTEM 5 branch r0 2.2 cm met z 5.2->4.9 2.1/5.2 m 9 roots
+SYSTEM 6 trunk r0 4.8 cm length z 5.5->4.0 2.7/8.0 m 12 roots
+SYSTEM 7 trunk r0 4.3 cm length z 5.5->3.8 3.6/14.2 m 3 roots
+SYSTEM 8 branch r0 2.0 cm length z 5.4->4.2 3.3/5.1 m 3 roots
+LOOP 9 vault chord 3.91 m low 4.10 m r 2.3 cm
+LOOP 10 vault chord 2.27 m low 4.28 m r 2.5 cm
+LOOP 11 vault chord 2.60 m low 4.40 m r 1.9 cm
+LOOP 12 vault chord 2.43 m low 4.59 m r 2.7 cm
+LOOP 13 vault chord 2.57 m low 4.42 m r 2.8 cm
+LOOP 14 vault chord 2.39 m low 4.70 m r 2.9 cm
+LOOP 15 vault chord 2.31 m low 4.84 m r 2.1 cm
+LOOP 16 vault chord 2.15 m low 4.69 m r 2.1 cm
+ROOTS_GROWN {'branch': (12, 19.4), 'vein': (144, 61.1), 'trunk': (6, 25.1), 'loop': (8, 40.2)}
+ROOTS_SPENT {'branch': (14.5, 3418, 236), 'trunk': (14.9, 3500, 235), 'vein': (1.1, 516, 489), 'loop': (40.1, 7424, 185)}
+ROOTS_TERMINALS root_tunnel_3_0 [{"root": 1, "end": "start", "vertices": 10, "exposed_vertices": 0}, {"root": 15, "end": "start", "vertices": 10, "exposed_vertices": 0}, {"root": 15, "end": "return", "vertices": 10, "exposed_vertices": 0}, {"root": 16, "end": "branch", "vertices": 10, "exposed_vertices": 0}, {"root": 26, "end": "start", "vertices": 8, "exposed_vertices": 0}, {"root": 27, "end": "branch", "vertices": 6, "exposed_vertices": 0}, {"root": 46, "end": "start", "vertices": 10, "exposed_vertices": 0}, {"root": 47, "end": "branch", "vertices": 10, "exposed_vertices": 0}, {"root": 48, "end": "branch", "vertices": 10, "exposed_vertices": 0}, {"root": 69, "end": "start", "vertices": 10, "exposed_vertices": 0}, {"root": 69, "end": "return", "vertices": 10, "exposed_vertices": 0}, {"root": 83, "end": "start", "vertices": 8, "exposed_vertices": 0}, {"root": 83, "end": "return", "vertices": 8, "exposed_vertices": 0}, {"root": 100, "end": "start", "vertices": 10, "exposed_vertices": 0}, {"root": 104, "end": "branch", "vertices": 10, "exposed_vertices": 0}, {"root": 105, "end": "branch", "vertices": 10, "exposed_vertices": 0}, {"root": 122, "end": "start", "vertices": 10, "exposed_vertices": 0}, {"root": 122, "end": "return", "vertices": 10, "exposed_vertices": 0}, {"root": 140, "end": "start", "vertices": 8, "exposed_vertices": 0}, {"root": 153, "end": "start", "vertices": 10, "exposed_vertices": 0}, {"root": 158, "end": "start", "vertices": 10, "exposed_vertices": 0}, {"root": 163, "end": "start", "vertices": 10, "exposed_vertices": 0}, {"root": 166, "end": "start", "vertices": 10, "exposed_vertices": 0}, {"root": 171, "end": "start", "vertices": 10, "exposed_vertices": 0}, {"root": 176, "end": "start", "vertices": 10, "exposed_vertices": 0}, {"root": 181, "end": "start", "vertices": 10, "exposed_vertices": 0}, {"root": 185, "end": "start", "vertices": 10, "exposed_vertices": 0}]
+00:30:46 | INFO: Starting glTF 2.0 export
+00:30:46 | INFO: Extracting primitive: Roots_root_tunnel_3_0_0
+00:30:46 | INFO: Primitives created: 1
+00:30:46 | INFO: Finished glTF 2.0 export in 0.008310079574584961 s
+
+ROOTS_BAKED root_tunnel_3_0 14486 tris 23 roots {"unmounted_systems_pruned": 0, "pruned": 147, "clipped_at_corridor": 0, "rings": 752, "rings_touching_stone": 0, "cling_gap_m": {"p50": 0.0044, "p95": 0.0159, "max": 0.0579}, "audit": {"vertices": 7068, "cut_into_stone": 0, "cut_deeper_than_1cm": 0, "in_walking_corridor": 0, "emerging_from_joint": 2}, "terminal_rings": [{"root": 1, "end": "start", "vertices": 10, "exposed_vertices": 0}, {"root": 15, "end": "start", "vertices": 10, "exposed_vertices": 0}, {"root": 15, "end": "return", "vertices": 10, "exposed_vertices": 0}, {"root": 16, "end": "branch", "vertices": 10, "exposed_vertices": 0}, {"root": 26, "end": "start", "vertices": 8, "exposed_vertices": 0}, {"root": 27, "end": "branch", "vertices": 6, "exposed_vertices": 0}, {"root": 46, "end": "start", "vertices": 10, "exposed_vertices": 0}, {"root": 47, "end": "branch", "vertices": 10, "exposed_vertices": 0}, {"root": 48, "end": "branch", "vertices": 10, "exposed_vertices": 0}, {"root": 69, "end": "start", "vertices": 10, "exposed_vertices": 0}, {"root": 69, "end": "return", "vertices": 10, "exposed_vertices": 0}, {"root": 83, "end": "start", "vertices": 8, "exposed_vertices": 0}, {"root": 83, "end": "return", "vertices": 8, "exposed_vertices": 0}, {"root": 100, "end": "start", "vertices": 10, "exposed_vertices": 0}, {"root": 104, "end": "branch", "vertices": 10, "exposed_vertices": 0}, {"root": 105, "end": "branch", "vertices": 10, "exposed_vertices": 0}, {"root": 122, "end": "start", "vertices": 10, "exposed_vertices": 0}, {"root": 122, "end": "return", "vertices": 10, "exposed_vertices": 0}, {"root": 140, "end": "start", "vertices": 8, "exposed_vertices": 0}, {"root": 153, "end": "start", "vertices": 10, "exposed_vertices": 0}, {"root": 158, "end": "start", "vertices": 10, "exposed_vertices": 0}, {"root": 163, "end": "start", "vertices": 10, "exposed_vertices": 0}, {"root": 166, "end": "start", "vertices": 10, "exposed_vertices": 0}, {"root": 171, "end": "start", "vertices": 10, "exposed_vertices": 0}, {"root": 176, "end": "start", "vertices": 10, "exposed_vertices": 0}, {"root": 181, "end": "start", "vertices": 10, "exposed_vertices": 0}, {"root": 185, "end": "start", "vertices": 10, "exposed_vertices": 0}]}
+ROOTS_PASSAGE_DONE root_tunnel_3_0 1.7 s
+00:30:46 | INFO: Data are loaded, start creating Blender stuff
+00:30:46 | INFO: Blender create Mesh node root_tunnel_0_core_0.002
+00:30:46 | INFO: Blender create Mesh node root_tunnel_1_core_0.002
+00:30:46 | INFO: Blender create Mesh node root_tunnel_2_core_0.002
+00:30:46 | INFO: Blender create Mesh node root_tunnel_3_core_0.002
+00:30:46 | INFO: Blender create Mesh node root_tunnel_4_core_0.002
+00:30:46 | INFO: Blender create Mesh node root_tunnel_5_core_0.002
+00:30:46 | INFO: Blender create Mesh node root_tunnel_0_core_0.001
+00:30:46 | INFO: Blender create Mesh node root_tunnel_1_core_0.001
+00:30:46 | INFO: Blender create Mesh node root_tunnel_2_core_0.001
+00:30:46 | INFO: Blender create Mesh node root_tunnel_3_core_0.001
+00:30:46 | INFO: Blender create Mesh node root_tunnel_4_core_0.001
+00:30:46 | INFO: Blender create Mesh node root_tunnel_5_core_0.001
+00:30:46 | INFO: Blender create Mesh node caveflag_flag_lib_12.1953
+00:30:46 | INFO: Blender create Mesh node caveflag_flag_lib_2.1481
+00:30:46 | INFO: Blender create Mesh node caveflag_flag_lib_12.1965
+00:30:46 | INFO: Blender create Mesh node caveflag_flag_lib_18.792
+00:30:46 | INFO: Blender create Mesh node caveflag_flag_lib_11.1882
+00:30:46 | INFO: Blender create Mesh node caveflag_flag_lib_11.1897
+00:30:46 | INFO: Blender create Mesh node ground_earth_root_tunnel_0_-42_-40.005
+00:30:46 | INFO: Blender create Mesh node ground_earth_root_tunnel_1_-50_-30.007
+00:30:46 | INFO: Blender create Mesh node ground_earth_root_tunnel_2_-42_-23.007
+00:30:46 | INFO: Blender create Mesh node ground_earth_root_tunnel_3_-41_-9.007
+00:30:46 | INFO: Blender create Mesh node ground_earth_root_tunnel_4_-38_1.007
+00:30:46 | INFO: Blender create Mesh node ground_earth_root_tunnel_5_-32_8.004
+00:30:46 | INFO: Blender create Mesh node tunnel_rock_root_tunnel_0_0.002
+00:30:46 | INFO: Blender create Mesh node tunnel_rock_root_tunnel_1_0.002
+00:30:46 | INFO: Blender create Mesh node tunnel_rock_root_tunnel_2_0.002
+00:30:46 | INFO: Blender create Mesh node tunnel_rock_root_tunnel_3_0.002
+00:30:46 | INFO: Blender create Mesh node tunnel_rock_root_tunnel_4_0.002
+00:30:46 | INFO: Blender create Mesh node tunnel_rock_root_tunnel_5_0.002
+00:30:46 | INFO: Blender create Mesh node tunnel_spall.193
+00:30:46 | INFO: Blender create Mesh node tunnel_spall.199
+00:30:46 | INFO: Blender create Mesh node tunnel_spall.203
+00:30:46 | INFO: Blender create Mesh node ground_water_root_tunnel_0_-42_-40.005
+00:30:46 | INFO: Blender create Mesh node ground_water_root_tunnel_1_-50_-30.007
+00:30:46 | INFO: Blender create Mesh node ground_water_root_tunnel_2_-42_-23.007
+00:30:46 | INFO: Blender create Mesh node ground_water_root_tunnel_3_-41_-9.007
+00:30:47 | INFO: Blender create Mesh node ground_water_root_tunnel_4_-38_1.007
+00:30:47 | INFO: Blender create Mesh node ground_water_root_tunnel_5_-32_8.004
+00:30:47 | INFO: glTF import finished in 0.22s
+SYSTEM 0 trunk r0 3.9 cm length z 5.4->4.9 3.2/8.4 m 6 roots
+SYSTEM 1 branch r0 1.6 cm length z 5.5->3.9 3.8/5.9 m 5 roots
+SYSTEM 2 trunk r0 4.3 cm length z 5.3->5.2 3.0/5.7 m 8 roots
+SYSTEM 3 branch r0 2.5 cm length z 5.4->3.9 3.9/5.6 m 2 roots
+SYSTEM 4 trunk r0 3.6 cm length z 5.5->4.7 2.5/5.9 m 9 roots
+SYSTEM 5 branch r0 1.8 cm length z 5.5->4.8 2.5/5.0 m 5 roots
+SYSTEM 6 branch r0 1.6 cm met z 5.5->5.5 0.8/2.2 m 5 roots
+SYSTEM 7 branch r0 1.5 cm met z 5.4->4.0 2.8/6.3 m 9 roots
+SYSTEM 8 trunk r0 4.1 cm length z 5.5->4.0 3.5/5.9 m 6 roots
+LOOP 9 vault chord 2.86 m low 4.47 m r 1.9 cm
+LOOP 10 vault chord 2.69 m low 4.55 m r 2.9 cm
+LOOP 11 vault chord 2.17 m low 4.89 m r 2.7 cm
+LOOP 12 vault chord 2.79 m low 4.63 m r 2.3 cm
+LOOP 13 vault chord 2.73 m low 4.46 m r 2.6 cm
+LOOP 14 vault chord 2.67 m low 4.43 m r 2.3 cm
+LOOP 15 vault chord 2.15 m low 4.91 m r 2.9 cm
+LOOP 16 vault chord 2.89 m low 4.72 m r 2.3 cm
+LOOP 17 vault chord 2.60 m low 4.50 m r 2.1 cm
+ROOTS_GROWN {'trunk': (4, 12.3), 'vein': (138, 59.1), 'branch': (14, 23.0), 'loop': (9, 46.9)}
+ROOTS_SPENT {'trunk': (12.2, 2764, 227), 'vein': (1.1, 392, 353), 'branch': (14.4, 3022, 210), 'loop': (46.8, 8602, 184)}
+ROOTS_TERMINALS root_tunnel_4_0 [{"root": 1, "end": "start", "vertices": 10, "exposed_vertices": 0}, {"root": 1, "end": "return", "vertices": 10, "exposed_vertices": 0}, {"root": 3, "end": "branch", "vertices": 10, "exposed_vertices": 0}, {"root": 21, "end": "start", "vertices": 8, "exposed_vertices": 0}, {"root": 41, "end": "start", "vertices": 10, "exposed_vertices": 0}, {"root": 41, "end": "return", "vertices": 10, "exposed_vertices": 0}, {"root": 59, "end": "start", "vertices": 10, "exposed_vertices": 0}, {"root": 81, "end": "start", "vertices": 10, "exposed_vertices": 0}, {"root": 81, "end": "return", "vertices": 10, "exposed_vertices": 0}, {"root": 84, "end": "branch", "vertices": 10, "exposed_vertices": 0}, {"root": 98, "end": "start", "vertices": 8, "exposed_vertices": 0}, {"root": 108, "end": "start", "vertices": 8, "exposed_vertices": 0}, {"root": 108, "end": "return", "vertices": 8, "exposed_vertices": 0}, {"root": 119, "end": "start", "vertices": 8, "exposed_vertices": 0}, {"root": 121, "end": "branch", "vertices": 6, "exposed_vertices": 0}, {"root": 134, "end": "start", "vertices": 10, "exposed_vertices": 0}, {"root": 134, "end": "return", "vertices": 10, "exposed_vertices": 0}, {"root": 152, "end": "start", "vertices": 10, "exposed_vertices": 0}, {"root": 157, "end": "start", "vertices": 10, "exposed_vertices": 0}, {"root": 162, "end": "start", "vertices": 10, "exposed_vertices": 0}, {"root": 165, "end": "start", "vertices": 10, "exposed_vertices": 0}, {"root": 168, "end": "start", "vertices": 10, "exposed_vertices": 0}, {"root": 171, "end": "start", "vertices": 10, "exposed_vertices": 0}, {"root": 174, "end": "start", "vertices": 10, "exposed_vertices": 0}, {"root": 178, "end": "start", "vertices": 10, "exposed_vertices": 0}, {"root": 182, "end": "start", "vertices": 10, "exposed_vertices": 0}]
+00:30:48 | INFO: Starting glTF 2.0 export
+00:30:48 | INFO: Extracting primitive: Roots_root_tunnel_4_0_0
+00:30:48 | INFO: Primitives created: 1
+00:30:48 | INFO: Finished glTF 2.0 export in 0.00834202766418457 s
+
+ROOTS_BAKED root_tunnel_4_0 14780 tris 21 roots {"unmounted_systems_pruned": 0, "pruned": 144, "clipped_at_corridor": 0, "rings": 770, "rings_touching_stone": 0, "cling_gap_m": {"p50": 0.0043, "p95": 0.031, "max": 0.0507}, "audit": {"vertices": 7196, "cut_into_stone": 0, "cut_deeper_than_1cm": 0, "in_walking_corridor": 0, "emerging_from_joint": 0}, "terminal_rings": [{"root": 1, "end": "start", "vertices": 10, "exposed_vertices": 0}, {"root": 1, "end": "return", "vertices": 10, "exposed_vertices": 0}, {"root": 3, "end": "branch", "vertices": 10, "exposed_vertices": 0}, {"root": 21, "end": "start", "vertices": 8, "exposed_vertices": 0}, {"root": 41, "end": "start", "vertices": 10, "exposed_vertices": 0}, {"root": 41, "end": "return", "vertices": 10, "exposed_vertices": 0}, {"root": 59, "end": "start", "vertices": 10, "exposed_vertices": 0}, {"root": 81, "end": "start", "vertices": 10, "exposed_vertices": 0}, {"root": 81, "end": "return", "vertices": 10, "exposed_vertices": 0}, {"root": 84, "end": "branch", "vertices": 10, "exposed_vertices": 0}, {"root": 98, "end": "start", "vertices": 8, "exposed_vertices": 0}, {"root": 108, "end": "start", "vertices": 8, "exposed_vertices": 0}, {"root": 108, "end": "return", "vertices": 8, "exposed_vertices": 0}, {"root": 119, "end": "start", "vertices": 8, "exposed_vertices": 0}, {"root": 121, "end": "branch", "vertices": 6, "exposed_vertices": 0}, {"root": 134, "end": "start", "vertices": 10, "exposed_vertices": 0}, {"root": 134, "end": "return", "vertices": 10, "exposed_vertices": 0}, {"root": 152, "end": "start", "vertices": 10, "exposed_vertices": 0}, {"root": 157, "end": "start", "vertices": 10, "exposed_vertices": 0}, {"root": 162, "end": "start", "vertices": 10, "exposed_vertices": 0}, {"root": 165, "end": "start", "vertices": 10, "exposed_vertices": 0}, {"root": 168, "end": "start", "vertices": 10, "exposed_vertices": 0}, {"root": 171, "end": "start", "vertices": 10, "exposed_vertices": 0}, {"root": 174, "end": "start", "vertices": 10, "exposed_vertices": 0}, {"root": 178, "end": "start", "vertices": 10, "exposed_vertices": 0}, {"root": 182, "end": "start", "vertices": 10, "exposed_vertices": 0}]}
+ROOTS_PASSAGE_DONE root_tunnel_4_0 1.7 s
+00:30:48 | INFO: Data are loaded, start creating Blender stuff
+00:30:48 | INFO: Blender create Mesh node root_tunnel_0_core_0.002
+00:30:48 | INFO: Blender create Mesh node root_tunnel_1_core_0.002
+00:30:48 | INFO: Blender create Mesh node root_tunnel_2_core_0.002
+00:30:48 | INFO: Blender create Mesh node root_tunnel_3_core_0.002
+00:30:48 | INFO: Blender create Mesh node root_tunnel_4_core_0.002
+00:30:48 | INFO: Blender create Mesh node root_tunnel_5_core_0.002
+00:30:48 | INFO: Blender create Mesh node root_tunnel_0_core_0.001
+00:30:48 | INFO: Blender create Mesh node root_tunnel_1_core_0.001
+00:30:48 | INFO: Blender create Mesh node root_tunnel_2_core_0.001
+00:30:48 | INFO: Blender create Mesh node root_tunnel_3_core_0.001
+00:30:48 | INFO: Blender create Mesh node root_tunnel_4_core_0.001
+00:30:48 | INFO: Blender create Mesh node root_tunnel_5_core_0.001
+00:30:48 | INFO: Blender create Mesh node caveflag_flag_lib_12.1953
+00:30:48 | INFO: Blender create Mesh node caveflag_flag_lib_2.1481
+00:30:48 | INFO: Blender create Mesh node caveflag_flag_lib_12.1965
+00:30:48 | INFO: Blender create Mesh node caveflag_flag_lib_18.792
+00:30:48 | INFO: Blender create Mesh node caveflag_flag_lib_11.1882
+00:30:48 | INFO: Blender create Mesh node caveflag_flag_lib_11.1897
+00:30:48 | INFO: Blender create Mesh node ground_earth_root_tunnel_0_-42_-40.005
+00:30:48 | INFO: Blender create Mesh node ground_earth_root_tunnel_1_-50_-30.007
+00:30:48 | INFO: Blender create Mesh node ground_earth_root_tunnel_2_-42_-23.007
+00:30:48 | INFO: Blender create Mesh node ground_earth_root_tunnel_3_-41_-9.007
+00:30:48 | INFO: Blender create Mesh node ground_earth_root_tunnel_4_-38_1.007
+00:30:48 | INFO: Blender create Mesh node ground_earth_root_tunnel_5_-32_8.004
+00:30:48 | INFO: Blender create Mesh node tunnel_rock_root_tunnel_0_0.002
+00:30:48 | INFO: Blender create Mesh node tunnel_rock_root_tunnel_1_0.002
+00:30:48 | INFO: Blender create Mesh node tunnel_rock_root_tunnel_2_0.002
+00:30:48 | INFO: Blender create Mesh node tunnel_rock_root_tunnel_3_0.002
+00:30:48 | INFO: Blender create Mesh node tunnel_rock_root_tunnel_4_0.002
+00:30:48 | INFO: Blender create Mesh node tunnel_rock_root_tunnel_5_0.002
+00:30:48 | INFO: Blender create Mesh node tunnel_spall.193
+00:30:48 | INFO: Blender create Mesh node tunnel_spall.199
+00:30:48 | INFO: Blender create Mesh node tunnel_spall.203
+00:30:48 | INFO: Blender create Mesh node ground_water_root_tunnel_0_-42_-40.005
+00:30:48 | INFO: Blender create Mesh node ground_water_root_tunnel_1_-50_-30.007
+00:30:48 | INFO: Blender create Mesh node ground_water_root_tunnel_2_-42_-23.007
+00:30:48 | INFO: Blender create Mesh node ground_water_root_tunnel_3_-41_-9.007
+00:30:48 | INFO: Blender create Mesh node ground_water_root_tunnel_4_-38_1.007
+00:30:48 | INFO: Blender create Mesh node ground_water_root_tunnel_5_-32_8.004
+00:30:48 | INFO: glTF import finished in 0.24s
+SYSTEM 0 branch r0 1.7 cm length z 5.6->4.5 3.2/4.4 m 2 roots
+SYSTEM 1 trunk r0 4.7 cm length z 5.1->4.9 2.6/4.5 m 4 roots
+SYSTEM 2 trunk r0 3.6 cm met z 5.0->5.2 0.9/3.4 m 6 roots
+SYSTEM 3 trunk r0 4.3 cm met z 5.5->5.2 2.2/3.8 m 5 roots
+SYSTEM 4 trunk r0 4.9 cm length z 5.5->5.3 2.5/4.2 m 4 roots
+SYSTEM 5 branch r0 1.9 cm length z 5.4->4.7 3.1/3.1 m 1 roots
+SYSTEM 6 branch r0 2.0 cm length z 5.4->5.0 2.5/7.0 m 11 roots
+SYSTEM 7 branch r0 1.6 cm met z 5.3->5.1 1.3/4.9 m 9 roots
+SYSTEM 8 trunk r0 4.0 cm length z 5.4->4.5 2.3/7.9 m 6 roots
+SYSTEM 9 trunk r0 4.3 cm met z 5.1->5.2 1.5/4.6 m 8 roots
+SYSTEM 10 branch r0 2.4 cm length z 5.2->4.3 2.1/7.3 m 13 roots
+LOOP 11 vault chord 2.79 m low 4.90 m r 1.7 cm
+LOOP 12 vault chord 2.70 m low 4.75 m r 1.7 cm
+LOOP 13 vault chord 2.69 m low 4.25 m r 2.3 cm
+LOOP 14 vault chord 2.34 m low 4.57 m r 2.5 cm
+LOOP 15 vault chord 2.78 m low 4.41 m r 2.0 cm
+LOOP 16 vault chord 2.51 m low 4.80 m r 2.0 cm
+LOOP 17 vault chord 3.32 m low 4.58 m r 1.9 cm
+LOOP 18 vault chord 2.38 m low 4.47 m r 2.8 cm
+ROOTS_GROWN {'branch': (13, 19.1), 'vein': (147, 64.6), 'trunk': (8, 13.6), 'loop': (8, 42.8)}
+ROOTS_SPENT {'branch': (13.4, 2970, 221), 'trunk': (12.4, 3792, 306), 'vein': (1.9, 702, 362), 'loop': (42.7, 7496, 175)}
+ROOTS_TERMINALS root_tunnel_5_0 [{"root": 1, "end": "start", "vertices": 8, "exposed_vertices": 0}, {"root": 21, "end": "start", "vertices": 10, "exposed_vertices": 0}, {"root": 21, "end": "return", "vertices": 10, "exposed_vertices": 0}, {"root": 35, "end": "start", "vertices": 10, "exposed_vertices": 0}, {"root": 35, "end": "return", "vertices": 10, "exposed_vertices": 0}, {"root": 41, "end": "start", "vertices": 10, "exposed_vertices": 0}, {"root": 41, "end": "return", "vertices": 10, "exposed_vertices": 0}, {"root": 50, "end": "start", "vertices": 10, "exposed_vertices": 0}, {"root": 50, "end": "return", "vertices": 10, "exposed_vertices": 0}, {"root": 52, "end": "branch", "vertices": 10, "exposed_vertices": 0}, {"root": 63, "end": "start", "vertices": 8, "exposed_vertices": 0}, {"root": 78, "end": "start", "vertices": 10, "exposed_vertices": 0}, {"root": 82, "end": "branch", "vertices": 8, "exposed_vertices": 0}, {"root": 99, "end": "start", "vertices": 8, "exposed_vertices": 0}, {"root": 99, "end": "return", "vertices": 8, "exposed_vertices": 0}, {"root": 103, "end": "branch", "vertices": 8, "exposed_vertices": 0}, {"root": 114, "end": "start", "vertices": 10, "exposed_vertices": 0}, {"root": 114, "end": "return", "vertices": 10, "exposed_vertices": 0}, {"root": 115, "end": "branch", "vertices": 10, "exposed_vertices": 0}, {"root": 128, "end": "start", "vertices": 10, "exposed_vertices": 0}, {"root": 128, "end": "return", "vertices": 10, "exposed_vertices": 0}, {"root": 131, "end": "branch", "vertices": 10, "exposed_vertices": 0}, {"root": 131, "end": "return", "vertices": 10, "exposed_vertices": 0}, {"root": 143, "end": "start", "vertices": 10, "exposed_vertices": 0}, {"root": 163, "end": "start", "vertices": 8, "exposed_vertices": 0}, {"root": 166, "end": "start", "vertices": 10, "exposed_vertices": 0}, {"root": 171, "end": "start", "vertices": 10, "exposed_vertices": 0}, {"root": 176, "end": "start", "vertices": 10, "exposed_vertices": 0}, {"root": 180, "end": "start", "vertices": 10, "exposed_vertices": 0}, {"root": 185, "end": "start", "vertices": 8, "exposed_vertices": 0}, {"root": 188, "end": "start", "vertices": 10, "exposed_vertices": 0}, {"root": 191, "end": "start", "vertices": 10, "exposed_vertices": 0}]
+00:30:50 | INFO: Starting glTF 2.0 export
+00:30:50 | INFO: Extracting primitive: Roots_root_tunnel_5_0_0
+00:30:50 | INFO: Primitives created: 1
+00:30:50 | INFO: Finished glTF 2.0 export in 0.008327960968017578 s
+
+ROOTS_BAKED root_tunnel_5_0 14820 tris 24 roots {"unmounted_systems_pruned": 0, "pruned": 152, "clipped_at_corridor": 0, "rings": 788, "rings_touching_stone": 0, "cling_gap_m": {"p50": 0.0041, "p95": 0.0253, "max": 0.0565}, "audit": {"vertices": 7184, "cut_into_stone": 0, "cut_deeper_than_1cm": 0, "in_walking_corridor": 0, "emerging_from_joint": 0}, "terminal_rings": [{"root": 1, "end": "start", "vertices": 8, "exposed_vertices": 0}, {"root": 21, "end": "start", "vertices": 10, "exposed_vertices": 0}, {"root": 21, "end": "return", "vertices": 10, "exposed_vertices": 0}, {"root": 35, "end": "start", "vertices": 10, "exposed_vertices": 0}, {"root": 35, "end": "return", "vertices": 10, "exposed_vertices": 0}, {"root": 41, "end": "start", "vertices": 10, "exposed_vertices": 0}, {"root": 41, "end": "return", "vertices": 10, "exposed_vertices": 0}, {"root": 50, "end": "start", "vertices": 10, "exposed_vertices": 0}, {"root": 50, "end": "return", "vertices": 10, "exposed_vertices": 0}, {"root": 52, "end": "branch", "vertices": 10, "exposed_vertices": 0}, {"root": 63, "end": "start", "vertices": 8, "exposed_vertices": 0}, {"root": 78, "end": "start", "vertices": 10, "exposed_vertices": 0}, {"root": 82, "end": "branch", "vertices": 8, "exposed_vertices": 0}, {"root": 99, "end": "start", "vertices": 8, "exposed_vertices": 0}, {"root": 99, "end": "return", "vertices": 8, "exposed_vertices": 0}, {"root": 103, "end": "branch", "vertices": 8, "exposed_vertices": 0}, {"root": 114, "end": "start", "vertices": 10, "exposed_vertices": 0}, {"root": 114, "end": "return", "vertices": 10, "exposed_vertices": 0}, {"root": 115, "end": "branch", "vertices": 10, "exposed_vertices": 0}, {"root": 128, "end": "start", "vertices": 10, "exposed_vertices": 0}, {"root": 128, "end": "return", "vertices": 10, "exposed_vertices": 0}, {"root": 131, "end": "branch", "vertices": 10, "exposed_vertices": 0}, {"root": 131, "end": "return", "vertices": 10, "exposed_vertices": 0}, {"root": 143, "end": "start", "vertices": 10, "exposed_vertices": 0}, {"root": 163, "end": "start", "vertices": 8, "exposed_vertices": 0}, {"root": 166, "end": "start", "vertices": 10, "exposed_vertices": 0}, {"root": 171, "end": "start", "vertices": 10, "exposed_vertices": 0}, {"root": 176, "end": "start", "vertices": 10, "exposed_vertices": 0}, {"root": 180, "end": "start", "vertices": 10, "exposed_vertices": 0}, {"root": 185, "end": "start", "vertices": 8, "exposed_vertices": 0}, {"root": 188, "end": "start", "vertices": 10, "exposed_vertices": 0}, {"root": 191, "end": "start", "vertices": 10, "exposed_vertices": 0}]}
+ROOTS_PASSAGE_DONE root_tunnel_5_0 1.7 s
+00:30:50 | INFO: Data are loaded, start creating Blender stuff
+00:30:50 | INFO: Blender create Mesh node cave_bypass_0_core_0.002
+00:30:50 | INFO: Blender create Mesh node cave_bypass_1_core_0.002
+00:30:50 | INFO: Blender create Mesh node cave_bypass_2_core_0.002
+00:30:50 | INFO: Blender create Mesh node cave_bypass_0_core_0.001
+00:30:50 | INFO: Blender create Mesh node cave_bypass_1_core_0.001
+00:30:50 | INFO: Blender create Mesh node cave_bypass_2_core_0.001
+00:30:50 | INFO: Blender create Mesh node caveflag_flag_lib_7.1982
+00:30:50 | INFO: Blender create Mesh node caveflag_flag_lib_11.1917
+00:30:50 | INFO: Blender create Mesh node caveflag_flag_lib_15.2185
+00:30:50 | INFO: Blender create Mesh node ground_earth_cave_bypass_0_-50_-21.005
+00:30:50 | INFO: Blender create Mesh node ground_earth_cave_bypass_1_-48_-10.007
+00:30:50 | INFO: Blender create Mesh node ground_earth_cave_bypass_2_-47_0.007
+00:30:50 | INFO: Blender create Mesh node tunnel_rock_cave_bypass_0_0.002
+00:30:50 | INFO: Blender create Mesh node tunnel_rock_cave_bypass_1_0.002
+00:30:50 | INFO: Blender create Mesh node tunnel_rock_cave_bypass_2_0.002
+00:30:50 | INFO: Blender create Mesh node tunnel_spall.208
+00:30:50 | INFO: Blender create Mesh node tunnel_spall.213
+00:30:50 | INFO: Blender create Mesh node ground_water_cave_bypass_0_-50_-21.005
+00:30:50 | INFO: Blender create Mesh node ground_water_cave_bypass_1_-48_-10.007
+00:30:50 | INFO: Blender create Mesh node ground_water_cave_bypass_2_-47_0.007
+00:30:50 | INFO: Blender create Mesh node tunnel_wood_cave_bypass_0.010
+00:30:50 | INFO: Blender create Mesh node tunnel_wood_cave_bypass_1.008
+00:30:50 | INFO: glTF import finished in 0.09s
+SYSTEM 0 branch r0 2.5 cm length z 5.0->3.8 3.0/4.4 m 3 roots
+SYSTEM 1 trunk r0 3.8 cm length z 4.8->2.8 3.5/4.5 m 4 roots
+SYSTEM 2 branch r0 2.3 cm length z 5.0->4.2 3.2/5.8 m 5 roots
+LOOP 3 vault chord 2.30 m low 4.06 m r 1.7 cm
+LOOP 4 vault chord 1.63 m low 4.48 m r 1.8 cm
+ROOTS_GROWN {'branch': (3, 7.5), 'vein': (37, 15.4), 'trunk': (1, 3.5), 'loop': (2, 9.7)}
+ROOTS_SPENT {'branch': (7.4, 1678, 227), 'vein': (15.3, 4592, 300), 'trunk': (3.4, 796, 235), 'loop': (9.6, 1580, 165)}
+ROOTS_TERMINALS cave_bypass_0_0 [{"root": 15, "end": "start", "vertices": 10, "exposed_vertices": 0}, {"root": 15, "end": "return", "vertices": 10, "exposed_vertices": 0}, {"root": 16, "end": "branch", "vertices": 5, "exposed_vertices": 0}, {"root": 19, "end": "branch", "vertices": 5, "exposed_vertices": 0}, {"root": 20, "end": "branch", "vertices": 5, "exposed_vertices": 0}, {"root": 21, "end": "branch", "vertices": 6, "exposed_vertices": 0}, {"root": 22, "end": "branch", "vertices": 5, "exposed_vertices": 0}, {"root": 23, "end": "start", "vertices": 10, "exposed_vertices": 0}, {"root": 25, "end": "branch", "vertices": 8, "exposed_vertices": 0}, {"root": 26, "end": "branch", "vertices": 8, "exposed_vertices": 0}, {"root": 27, "end": "branch", "vertices": 6, "exposed_vertices": 0}, {"root": 28, "end": "branch", "vertices": 5, "exposed_vertices": 0}, {"root": 29, "end": "branch", "vertices": 6, "exposed_vertices": 0}, {"root": 30, "end": "branch", "vertices": 5, "exposed_vertices": 0}, {"root": 31, "end": "branch", "vertices": 5, "exposed_vertices": 0}, {"root": 32, "end": "branch", "vertices": 5, "exposed_vertices": 0}, {"root": 33, "end": "branch", "vertices": 5, "exposed_vertices": 0}, {"root": 34, "end": "branch", "vertices": 5, "exposed_vertices": 0}, {"root": 35, "end": "branch", "vertices": 6, "exposed_vertices": 0}, {"root": 36, "end": "branch", "vertices": 5, "exposed_vertices": 0}, {"root": 37, "end": "branch", "vertices": 5, "exposed_vertices": 0}, {"root": 38, "end": "branch", "vertices": 5, "exposed_vertices": 0}, {"root": 39, "end": "branch", "vertices": 5, "exposed_vertices": 0}, {"root": 42, "end": "start", "vertices": 8, "exposed_vertices": 0}, {"root": 45, "end": "start", "vertices": 8, "exposed_vertices": 0}, {"root": 46, "end": "branch", "vertices": 5, "exposed_vertices": 0}, {"root": 47, "end": "branch", "vertices": 5, "exposed_vertices": 0}]
+00:30:50 | INFO: Starting glTF 2.0 export
+00:30:50 | INFO: Extracting primitive: Roots_cave_bypass_0_0_0
+00:30:50 | INFO: Primitives created: 1
+00:30:50 | INFO: Finished glTF 2.0 export in 0.004984140396118164 s
+
+ROOTS_BAKED cave_bypass_0_0 5892 tris 26 roots {"unmounted_systems_pruned": 1, "pruned": 0, "clipped_at_corridor": 0, "rings": 555, "rings_touching_stone": 0, "cling_gap_m": {"p50": 0.0042, "p95": 0.0108, "max": 0.0432}, "audit": {"vertices": 2927, "cut_into_stone": 0, "cut_deeper_than_1cm": 0, "in_walking_corridor": 0, "emerging_from_joint": 0}, "terminal_rings": [{"root": 15, "end": "start", "vertices": 10, "exposed_vertices": 0}, {"root": 15, "end": "return", "vertices": 10, "exposed_vertices": 0}, {"root": 16, "end": "branch", "vertices": 5, "exposed_vertices": 0}, {"root": 19, "end": "branch", "vertices": 5, "exposed_vertices": 0}, {"root": 20, "end": "branch", "vertices": 5, "exposed_vertices": 0}, {"root": 21, "end": "branch", "vertices": 6, "exposed_vertices": 0}, {"root": 22, "end": "branch", "vertices": 5, "exposed_vertices": 0}, {"root": 23, "end": "start", "vertices": 10, "exposed_vertices": 0}, {"root": 25, "end": "branch", "vertices": 8, "exposed_vertices": 0}, {"root": 26, "end": "branch", "vertices": 8, "exposed_vertices": 0}, {"root": 27, "end": "branch", "vertices": 6, "exposed_vertices": 0}, {"root": 28, "end": "branch", "vertices": 5, "exposed_vertices": 0}, {"root": 29, "end": "branch", "vertices": 6, "exposed_vertices": 0}, {"root": 30, "end": "branch", "vertices": 5, "exposed_vertices": 0}, {"root": 31, "end": "branch", "vertices": 5, "exposed_vertices": 0}, {"root": 32, "end": "branch", "vertices": 5, "exposed_vertices": 0}, {"root": 33, "end": "branch", "vertices": 5, "exposed_vertices": 0}, {"root": 34, "end": "branch", "vertices": 5, "exposed_vertices": 0}, {"root": 35, "end": "branch", "vertices": 6, "exposed_vertices": 0}, {"root": 36, "end": "branch", "vertices": 5, "exposed_vertices": 0}, {"root": 37, "end": "branch", "vertices": 5, "exposed_vertices": 0}, {"root": 38, "end": "branch", "vertices": 5, "exposed_vertices": 0}, {"root": 39, "end": "branch", "vertices": 5, "exposed_vertices": 0}, {"root": 42, "end": "start", "vertices": 8, "exposed_vertices": 0}, {"root": 45, "end": "start", "vertices": 8, "exposed_vertices": 0}, {"root": 46, "end": "branch", "vertices": 5, "exposed_vertices": 0}, {"root": 47, "end": "branch", "vertices": 5, "exposed_vertices": 0}]}
+ROOTS_PASSAGE_DONE cave_bypass_0_0 0.8 s
+00:30:51 | INFO: Data are loaded, start creating Blender stuff
+00:30:51 | INFO: Blender create Mesh node cave_bypass_0_core_0.002
+00:30:51 | INFO: Blender create Mesh node cave_bypass_1_core_0.002
+00:30:51 | INFO: Blender create Mesh node cave_bypass_2_core_0.002
+00:30:51 | INFO: Blender create Mesh node cave_bypass_0_core_0.001
+00:30:51 | INFO: Blender create Mesh node cave_bypass_1_core_0.001
+00:30:51 | INFO: Blender create Mesh node cave_bypass_2_core_0.001
+00:30:51 | INFO: Blender create Mesh node caveflag_flag_lib_7.1982
+00:30:51 | INFO: Blender create Mesh node caveflag_flag_lib_11.1917
+00:30:51 | INFO: Blender create Mesh node caveflag_flag_lib_15.2185
+00:30:51 | INFO: Blender create Mesh node ground_earth_cave_bypass_0_-50_-21.005
+00:30:51 | INFO: Blender create Mesh node ground_earth_cave_bypass_1_-48_-10.007
+00:30:51 | INFO: Blender create Mesh node ground_earth_cave_bypass_2_-47_0.007
+00:30:51 | INFO: Blender create Mesh node tunnel_rock_cave_bypass_0_0.002
+00:30:51 | INFO: Blender create Mesh node tunnel_rock_cave_bypass_1_0.002
+00:30:51 | INFO: Blender create Mesh node tunnel_rock_cave_bypass_2_0.002
+00:30:51 | INFO: Blender create Mesh node tunnel_spall.208
+00:30:51 | INFO: Blender create Mesh node tunnel_spall.213
+00:30:51 | INFO: Blender create Mesh node ground_water_cave_bypass_0_-50_-21.005
+00:30:51 | INFO: Blender create Mesh node ground_water_cave_bypass_1_-48_-10.007
+00:30:51 | INFO: Blender create Mesh node ground_water_cave_bypass_2_-47_0.007
+00:30:51 | INFO: Blender create Mesh node tunnel_wood_cave_bypass_0.010
+00:30:51 | INFO: Blender create Mesh node tunnel_wood_cave_bypass_1.008
+00:30:51 | INFO: glTF import finished in 0.10s
+SYSTEM 0 trunk r0 4.1 cm length z 5.0->4.3 2.2/6.5 m 12 roots
+SYSTEM 1 trunk r0 4.3 cm length z 5.2->3.9 2.8/6.7 m 6 roots
+SYSTEM 2 branch r0 1.7 cm length z 4.8->2.7 3.7/5.5 m 4 roots
+SYSTEM 3 trunk r0 4.6 cm length z 5.0->3.2 2.9/13.9 m 5 roots
+SYSTEM 4 branch r0 2.2 cm length z 5.3->4.3 3.4/6.0 m 4 roots
+SYSTEM 5 branch r0 2.1 cm length z 5.1->5.2 2.5/6.5 m 11 roots
+SYSTEM 6 trunk r0 3.6 cm length z 4.9->2.8 3.7/5.6 m 2 roots
+SYSTEM 7 branch r0 2.4 cm met z 5.1->4.9 0.7/1.2 m 3 roots
+SYSTEM 8 branch r0 2.5 cm length z 4.9->4.3 2.8/4.3 m 4 roots
+SYSTEM 9 branch r0 2.0 cm met z 5.2->5.3 2.3/6.8 m 11 roots
+LOOP 10 vault chord 2.43 m low 4.53 m r 2.6 cm
+LOOP 11 vault chord 2.57 m low 4.13 m r 2.4 cm
+LOOP 12 vault chord 3.43 m low 4.22 m r 1.7 cm
+LOOP 13 vault chord 4.08 m low 4.20 m r 2.2 cm
+LOOP 14 vault chord 1.94 m low 4.53 m r 2.5 cm
+LOOP 15 vault chord 4.24 m low 3.52 m r 2.9 cm
+LOOP 16 vault chord 2.45 m low 4.17 m r 1.8 cm
+LOOP 17 vault chord 3.09 m low 4.27 m r 1.6 cm
+ROOTS_GROWN {'trunk': (6, 22.1), 'vein': (137, 58.1), 'branch': (11, 20.8), 'loop': (8, 46.1)}
+ROOTS_SPENT {'trunk': (11.4, 2764, 243), 'vein': (1.5, 726, 477), 'branch': (15.7, 3530, 225), 'loop': (45.9, 7852, 171)}
+ROOTS_TERMINALS cave_bypass_1_0 [{"root": 1, "end": "start", "vertices": 10, "exposed_vertices": 0}, {"root": 1, "end": "return", "vertices": 10, "exposed_vertices": 0}, {"root": 4, "end": "branch", "vertices": 10, "exposed_vertices": 0}, {"root": 6, "end": "branch", "vertices": 8, "exposed_vertices": 0}, {"root": 5, "end": "branch", "vertices": 10, "exposed_vertices": 0}, {"root": 21, "end": "start", "vertices": 10, "exposed_vertices": 0}, {"root": 21, "end": "return", "vertices": 10, "exposed_vertices": 0}, {"root": 37, "end": "start", "vertices": 8, "exposed_vertices": 0}, {"root": 49, "end": "start", "vertices": 10, "exposed_vertices": 0}, {"root": 49, "end": "return", "vertices": 10, "exposed_vertices": 0}, {"root": 62, "end": "start", "vertices": 8, "exposed_vertices": 0}, {"root": 85, "end": "start", "vertices": 10, "exposed_vertices": 0}, {"root": 111, "end": "start", "vertices": 10, "exposed_vertices": 0}, {"root": 111, "end": "return", "vertices": 10, "exposed_vertices": 0}, {"root": 123, "end": "start", "vertices": 10, "exposed_vertices": 0}, {"root": 123, "end": "return", "vertices": 10, "exposed_vertices": 0}, {"root": 127, "end": "start", "vertices": 10, "exposed_vertices": 0}, {"root": 136, "end": "start", "vertices": 8, "exposed_vertices": 0}, {"root": 136, "end": "return", "vertices": 8, "exposed_vertices": 0}, {"root": 138, "end": "branch", "vertices": 8, "exposed_vertices": 0}, {"root": 154, "end": "start", "vertices": 10, "exposed_vertices": 0}, {"root": 157, "end": "start", "vertices": 10, "exposed_vertices": 0}, {"root": 162, "end": "start", "vertices": 8, "exposed_vertices": 0}, {"root": 165, "end": "start", "vertices": 10, "exposed_vertices": 0}, {"root": 168, "end": "start", "vertices": 10, "exposed_vertices": 0}, {"root": 171, "end": "start", "vertices": 10, "exposed_vertices": 0}, {"root": 175, "end": "start", "vertices": 8, "exposed_vertices": 0}, {"root": 179, "end": "start", "vertices": 8, "exposed_vertices": 0}]
+00:30:52 | INFO: Starting glTF 2.0 export
+00:30:52 | INFO: Extracting primitive: Roots_cave_bypass_1_0_0
+00:30:52 | INFO: Primitives created: 1
+00:30:52 | INFO: Finished glTF 2.0 export in 0.008810281753540039 s
+
+ROOTS_BAKED cave_bypass_1_0 14872 tris 22 roots {"unmounted_systems_pruned": 0, "pruned": 140, "clipped_at_corridor": 0, "rings": 805, "rings_touching_stone": 0, "cling_gap_m": {"p50": 0.0043, "p95": 0.0261, "max": 0.05}, "audit": {"vertices": 7238, "cut_into_stone": 0, "cut_deeper_than_1cm": 0, "in_walking_corridor": 0, "emerging_from_joint": 1}, "terminal_rings": [{"root": 1, "end": "start", "vertices": 10, "exposed_vertices": 0}, {"root": 1, "end": "return", "vertices": 10, "exposed_vertices": 0}, {"root": 4, "end": "branch", "vertices": 10, "exposed_vertices": 0}, {"root": 6, "end": "branch", "vertices": 8, "exposed_vertices": 0}, {"root": 5, "end": "branch", "vertices": 10, "exposed_vertices": 0}, {"root": 21, "end": "start", "vertices": 10, "exposed_vertices": 0}, {"root": 21, "end": "return", "vertices": 10, "exposed_vertices": 0}, {"root": 37, "end": "start", "vertices": 8, "exposed_vertices": 0}, {"root": 49, "end": "start", "vertices": 10, "exposed_vertices": 0}, {"root": 49, "end": "return", "vertices": 10, "exposed_vertices": 0}, {"root": 62, "end": "start", "vertices": 8, "exposed_vertices": 0}, {"root": 85, "end": "start", "vertices": 10, "exposed_vertices": 0}, {"root": 111, "end": "start", "vertices": 10, "exposed_vertices": 0}, {"root": 111, "end": "return", "vertices": 10, "exposed_vertices": 0}, {"root": 123, "end": "start", "vertices": 10, "exposed_vertices": 0}, {"root": 123, "end": "return", "vertices": 10, "exposed_vertices": 0}, {"root": 127, "end": "start", "vertices": 10, "exposed_vertices": 0}, {"root": 136, "end": "start", "vertices": 8, "exposed_vertices": 0}, {"root": 136, "end": "return", "vertices": 8, "exposed_vertices": 0}, {"root": 138, "end": "branch", "vertices": 8, "exposed_vertices": 0}, {"root": 154, "end": "start", "vertices": 10, "exposed_vertices": 0}, {"root": 157, "end": "start", "vertices": 10, "exposed_vertices": 0}, {"root": 162, "end": "start", "vertices": 8, "exposed_vertices": 0}, {"root": 165, "end": "start", "vertices": 10, "exposed_vertices": 0}, {"root": 168, "end": "start", "vertices": 10, "exposed_vertices": 0}, {"root": 171, "end": "start", "vertices": 10, "exposed_vertices": 0}, {"root": 175, "end": "start", "vertices": 8, "exposed_vertices": 0}, {"root": 179, "end": "start", "vertices": 8, "exposed_vertices": 0}]}
+ROOTS_PASSAGE_DONE cave_bypass_1_0 1.5 s
+00:30:52 | INFO: Data are loaded, start creating Blender stuff
+00:30:52 | INFO: Blender create Mesh node cave_bypass_0_core_0.002
+00:30:52 | INFO: Blender create Mesh node cave_bypass_1_core_0.002
+00:30:52 | INFO: Blender create Mesh node cave_bypass_2_core_0.002
+00:30:52 | INFO: Blender create Mesh node cave_bypass_0_core_0.001
+00:30:52 | INFO: Blender create Mesh node cave_bypass_1_core_0.001
+00:30:52 | INFO: Blender create Mesh node cave_bypass_2_core_0.001
+00:30:52 | INFO: Blender create Mesh node caveflag_flag_lib_7.1982
+00:30:52 | INFO: Blender create Mesh node caveflag_flag_lib_11.1917
+00:30:52 | INFO: Blender create Mesh node caveflag_flag_lib_15.2185
+00:30:52 | INFO: Blender create Mesh node ground_earth_cave_bypass_0_-50_-21.005
+00:30:52 | INFO: Blender create Mesh node ground_earth_cave_bypass_1_-48_-10.007
+00:30:52 | INFO: Blender create Mesh node ground_earth_cave_bypass_2_-47_0.007
+00:30:52 | INFO: Blender create Mesh node tunnel_rock_cave_bypass_0_0.002
+00:30:52 | INFO: Blender create Mesh node tunnel_rock_cave_bypass_1_0.002
+00:30:52 | INFO: Blender create Mesh node tunnel_rock_cave_bypass_2_0.002
+00:30:52 | INFO: Blender create Mesh node tunnel_spall.208
+00:30:52 | INFO: Blender create Mesh node tunnel_spall.213
+00:30:52 | INFO: Blender create Mesh node ground_water_cave_bypass_0_-50_-21.005
+00:30:52 | INFO: Blender create Mesh node ground_water_cave_bypass_1_-48_-10.007
+00:30:52 | INFO: Blender create Mesh node ground_water_cave_bypass_2_-47_0.007
+00:30:52 | INFO: Blender create Mesh node tunnel_wood_cave_bypass_0.010
+00:30:52 | INFO: Blender create Mesh node tunnel_wood_cave_bypass_1.008
+00:30:52 | INFO: glTF import finished in 0.09s
+ROOTS_GROWN {}
+ROOTS_SPENT {}
+ROOTS_EMPTY cave_bypass_2_0
+ROOTS_PASSAGE_DONE cave_bypass_2_0 0.2 s
+Blender 5.2.2 LTS (hash d13f752e3b9c built 2026-09-15 01:49:19)
+
+Blender quit

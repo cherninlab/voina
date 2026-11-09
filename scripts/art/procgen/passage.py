@@ -31,14 +31,14 @@ import bpy
 import numpy as np
 from mathutils import Matrix, Vector, noise
 
-from . import core, masonry, shapes
+from . import core, masonry, shapes, cave_ground
 
 UP = Vector((0.0, 0.0, 1.0))
 PAVING = None  # a floor-flag library for passage floors, if the caller has one
 THICKNESS = 0.9
 RING = 0.4
 RECESS = 0.034
-ROCK_JOIN = 0.4 # Shared run/bay ownership boundary beyond the clear half-width.
+ROCK_JOIN = 0.8 # Shared run/bay ownership boundary beyond the clear half-width.
 
 
 def _bake_transform(obj) -> None:
@@ -337,13 +337,15 @@ def skew_bay(lib, rng, o: masonry.Opening, centre: Vector, axis: Vector, arrival
         rock_planes=[(centre+n*(h+ROCK_JOIN),n) for n in (axis,y,-axis,-y)]
         trimmed={20:groups[20]};clip_groups(trimmed,rock_planes);groups[20]=trimmed[20]
         groups[0]=rock_skin(groups[20],name)
-    groups[21] = pave_field(lib,centre-axis*h,axis,2*h,h,f'{name}_floor')
+    floor_half=h+ROCK_JOIN if hewn else h
+    groups[21] = pave_field(lib,centre-axis*floor_half,axis,2*floor_half,floor_half,f'{name}_floor',natural=hewn)
     for cutter in full + doors + wall_doors + chamber + outer + recessed_full + recessed_doors + recessed_chamber:
         core.discard(cutter)
     if hewn:
         for obj in groups[0]:carve_rock(obj,centre.z,seams=rock_planes)
         for obj in groups[20]:core.discard(obj)
         groups[20]=rock_backing(groups[0],name+'_core')
+        for obj in groups[0]:strip_rock_partitions(obj,rock_planes)
     return groups
 
 
@@ -491,7 +493,7 @@ def rock_shell(o: masonry.Opening, start: Vector, d: Vector, length: float, slop
     return obj
 
 
-def pave_field(lib, start: Vector, d: Vector, length: float, half: float, name: str) -> list:
+def pave_field(lib, start: Vector, d: Vector, length: float, half: float, name: str, natural: bool = False) -> list:
     """One world-aligned stone field; clipped halves keep the same stone/UVs."""
     library=PAVING or lib
     side=d.cross(UP)
@@ -506,14 +508,30 @@ def pave_field(lib, start: Vector, d: Vector, length: float, half: float, name: 
             x=(column+.5+(row%2)*.5)*.9;y=(row+.5)*.7
             rng=core.rng(177,'paving-field',column,row)
             used=library.used;library.used={}
-            obj=library.place(rng,.888,.688,.14,f'{name}_cell_{column}_{row}')
+            width,depth=.888,.688
+            if natural:
+                def edge(c,r):return noise.noise(Vector((c*.73,r*.91,4.2)),noise_basis='PERLIN_ORIGINAL')*.12
+                x0=(column+(row%2)*.5)*.9+edge(column,row)
+                x1=(column+1+(row%2)*.5)*.9+edge(column+1,row)
+                y0=row*.7+edge(0,row);y1=(row+1)*.7+edge(0,row+1)
+                x=(x0+x1)*.5;y=(y0+y1)*.5;width=x1-x0-.012;depth=y1-y0-.012
+            obj=library.place(rng,width,depth,.14,f'{name}_cell_{column}_{row}')
+            if natural:
+                obj.data=obj.data.copy();obj.data.name='caveflag_'+obj.data.name
+                obj['natural_floor']=True;obj['floor_kind']='caveflag'
             library.used=used
             obj.matrix_world=Matrix.Translation((x,y,start.z+.015))@obj.matrix_world
             obj['frame']=[1,0,0,0,1,0,0,0,1]
             obj['paving_cell']=[column,row];obj['mapping_origin']=[x,y,0]
             obj['tone']=rng.uniform(.88,1.04)
             _bake_transform(obj)
-            pieces={0:[obj]};clip_groups(pieces,planes)
+            objects=[obj]
+            if natural:
+                # Earth uses a separate fixed world grid so shared boundary
+                # vertices and analytic normals are identical in every piece.
+                gx0=column*.9;gy0=row*.7
+                objects += [cave_ground.cell(f'{name}_{column}_{row}',gx0,gx0+.9,gy0,gy0+.7,start.z,water) for water in (False,True)]
+            pieces={0:objects};clip_groups(pieces,planes)
             result+=pieces[0]
     return result
 
@@ -545,23 +563,37 @@ def shape_run(groups: dict, o: masonry.Opening, a: Vector, b: Vector, style: str
             obj.data.update()
 
 
-def mine_shores(rng, o, start, d, length, slope, name) -> list:
+def mine_shores(rng, o, start, d, length, slope, name, skin: list = None) -> list:
     """Posts stand in wall pockets; paired braces carry a restrained bowed tie."""
     side = d.cross(UP)
     builder = shapes.Builder('tunnel_wood_' + name)
+    tree=None
+    if skin:
+        from mathutils.bvhtree import BVHTree
+        vertices=[];faces=[]
+        for obj in skin:
+            obj.data.calc_loop_triangles();offset=len(vertices)
+            vertices += [obj.matrix_world@v.co for v in obj.data.vertices]
+            faces += [tuple(offset+i for i in t.vertices) for t in obj.data.loop_triangles]
+        tree=BVHTree.FromPolygons(vertices,faces,all_triangles=True)
     for k in range(max(0, math.floor((length - 8.4) / 3.8)) + 1):
         s = 4.2 + k * 3.8
         if s > length - 4.2:
             break
         centre = start + d * s + UP * slope * s
         half, top = o.half + .02, o.spring + .18
+        heads=[]
         for sign in (-1, 1):
             foot = centre + side * half * sign - UP * .12
             head = centre + side * half * sign + UP * top
+            if tree:
+                hit=tree.ray_cast(centre+UP*top,side*sign,half+1.5)[0]
+                if hit is not None:head=hit+side*sign*.03
+            heads.append(head)
             shapes.timber(builder, foot, head, .22, .25, d, rng)
             shapes.timber(builder, head - UP * .60, head - side * sign * .56, .14, .16, d, rng)
-        shapes.timber(builder, centre - side * (half + .14) + UP * top,
-                      centre + side * (half + .14) + UP * top, .24, .28, UP, rng, bow=-.025)
+        shapes.timber(builder, heads[0]-side*.14,
+                      heads[1]+side*.14, .24, .28, UP, rng, bow=-.025)
     if not builder.pieces:
         builder.bm.free()
         return []
@@ -596,11 +628,25 @@ def edge_spalls(rng, o, start, d, length, slope, name) -> list:
     return result
 
 
-def run_mass(o, a: Vector, b: Vector, name: str, ext=(0.0,0.0)):
+def run_mass(o, a: Vector, b: Vector, name: str, ext=(0.0,0.0), natural=False):
     flat = Vector((b.x-a.x,b.y-a.y,0))
     d = flat.normalized(); side = d.cross(UP)
     slope = (b.z-a.z)/flat.length
     start = a-d*ext[0]-UP*slope*ext[0]
+    if natural:
+        # Use the same 48-segment clearance as the bays. The masonry core's
+        # extra 34 mm allowance and 24 segments exposed jagged partition caps.
+        length=flat.length+sum(ext)
+        centre=start+d*(length*.5)
+        mass=box(name,centre,d,o.half+THICKNESS,-.15,o.crown+RING+.3)
+        ratio=length/(2*(o.half+THICKNESS))
+        for vertex in mass.data.vertices:
+            vertex.co+=d*((vertex.co-centre).dot(d)*(ratio-1))
+        if slope:_shear(mass,start,d,slope)
+        cutter=clearance(o,start,d,-.5,length+.5,name+'_cavity',slope,padding=RECESS)
+        parts={0:[mass]};subtract(parts,[cutter]);core.discard(cutter)
+        mass['tone']=-1.0
+        return mass
     mass = _mass(o,flat.length+sum(ext),name)
     masonry.place([mass],start-d*RECESS-side*(o.half+THICKNESS),side,UP)
     if slope:
@@ -642,8 +688,8 @@ def run(lib, rng, o: masonry.Opening, a: Vector, b: Vector, name: str, ext=(0.0,
         clip_groups(sides, cuts)
         groups[0], groups[1] = sides[0], sides[1]
     groups[2] = _vault(rng, o, start, d, length, name, slope, triangles)
-    groups[4] = pave_field(lib,start,d,length,o.half+(.28 if vary else 0.0),name)
-    mass = run_mass(o,a,b,f'{name}_mass',ext)
+    groups[4] = pave_field(lib,start,d,length,o.half+(.8 if style in ('hewn_rock','timber_mine') else .28 if vary else 0.0),name,natural=style in ('hewn_rock','timber_mine'))
+    mass = run_mass(o,a,b,f'{name}_mass',ext,natural=style in ('hewn_rock','timber_mine'))
     groups[3] = [mass]
     groups[6] = edge_spalls(rng, o, start, d, length, slope, name)
     if style in ('hewn_rock', 'timber_mine') and length > 4.0:
@@ -757,7 +803,7 @@ def rock_cut_offset(co: Vector, floor: float) -> Vector:
     weight=weight*weight*(3-2*weight)
     broad=noise.noise_vector(co*.85,noise_basis='PERLIN_ORIGINAL')*.15
     chips=noise.noise_vector(co*3.7,noise_basis='PERLIN_ORIGINAL')*.035
-    return (broad+chips)*weight
+    return (broad+chips)*weight+cave_ground.shape_offset(co,floor)
 
 
 def carve_rock(obj, floor: float, seams: list = None) -> None:
@@ -790,6 +836,30 @@ def rock_skin(cores: list, name: str) -> list:
         obj['tone']=.8;obj['frame']=[1,0,0,0,0,1,0,-1,0]
         result.append(obj)
     return result
+
+
+def strip_rock_partitions(obj, planes):
+    """Internal ownership caps belong to the closed backing, not the render skin.
+
+    Opposite coplanar caps on adjoining chunks fight and receive unrelated
+    normals. The actual cavity faces meet at their shared boundary instead.
+    """
+    shell=bmesh.new();shell.from_mesh(obj.data)
+    caps=[face for face in shell.faces if any(all(abs((v.co-point).dot(normal))<.001 for v in face.verts) for point,normal in planes)]
+    bmesh.ops.delete(shell,geom=caps,context='FACES')
+    bmesh.ops.recalc_face_normals(shell,faces=list(shell.faces))
+    shell.to_mesh(obj.data);shell.free();obj.data.update()
+    obj.data.shade_smooth();obj.data.set_sharp_from_angle(angle=math.pi)
+    # Boolean junction edges are construction artefacts, not sharp fractures.
+    # Share an area-weighted normal at coincident vertices after cap removal.
+    mesh=obj.data;mesh.calc_loop_triangles()
+    sums={}
+    keys=[tuple(round(c,5) for c in vertex.co) for vertex in mesh.vertices]
+    for triangle in mesh.loop_triangles:
+        a,b,c=(mesh.vertices[i].co for i in triangle.vertices)
+        normal=(b-a).cross(c-a)
+        for i in triangle.vertices:sums[keys[i]]=sums.get(keys[i],Vector())+normal
+    mesh.normals_split_custom_set([sums[keys[loop.vertex_index]].normalized() for loop in mesh.loops])
 
 
 def rock_backing(skins: list, name: str) -> list:

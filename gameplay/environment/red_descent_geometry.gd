@@ -642,7 +642,34 @@ func stone_coat(family: String) -> Material:
 		materials[family + "_coat"] = skin
 	return materials[family + "_coat"]
 
+func passage_rock_material() -> ShaderMaterial:
+	if not materials.has("passage_rock"):
+		# Smooth world projections stay continuous across changing rock faces.
+		var lining: ShaderMaterial = (materials["rock"] as ShaderMaterial).duplicate() as ShaderMaterial
+		lining.set_shader_parameter("mapped", false)
+		lining.set_shader_parameter("triplanar", true)
+		lining.set_shader_parameter("normal_strength", .22)
+		lining.set_shader_parameter("dry_roughness_min", .9)
+		lining.set_shader_parameter("wet_roughness", .78)
+		lining.set_shader_parameter("wetness", .6)
+		materials["passage_rock"] = lining
+	return materials["passage_rock"] as ShaderMaterial
+
+func cave_floor_material(kind: String) -> ShaderMaterial:
+	var key: String = "cave_floor_"+kind
+	if not materials.has(key):
+		var material: ShaderMaterial = ShaderMaterial.new()
+		material.shader = preload("res://content/environments/red_descent/cave_floor.gdshader")
+		material.set_shader_parameter("floor_kind", 0 if kind == "caveflag" else 1 if kind == "earth" else 2)
+		material.set_shader_parameter("stone_albedo",load(STONE_FACE+"albedo.png"))
+		material.set_shader_parameter("stone_normal",load(STONE_FACE+"normal_gl.png"))
+		material.set_shader_parameter("soil_albedo",load("res://content/environments/village_generated/mineral_earth.png"))
+		material.set_shader_parameter("soil_normal",load("res://content/environments/dungeon_pbr_v2/Rocks025/normal_gl.png"))
+		materials[key]=material
+	return materials[key] as ShaderMaterial
+
 func stone_materials(built: Node3D) -> void:
+	var complete_rock_skin: bool = not built.find_children("Stone-rock*", "MeshInstance3D", true, false).is_empty()
 	if not materials.has("built_stone"):
 		# Dressed limestone faces (T-180, no joints or veins of its own), read
 		# through each stone's baked coordinates; damp, peel and algae stay the rock's.
@@ -676,13 +703,10 @@ func stone_materials(built: Node3D) -> void:
 		elif visual.name.begins_with("Stone"):
 			# "Stone-<kind>_...": each stone kind wears its own face (T-182 shapes, T-183 faces).
 			var kind: String = visual.name.get_slice("_", 0).trim_prefix("Stone-") if visual.name.begins_with("Stone-") else "stone"
-			if kind == "rock" and not materials.has("passage_rock"):
-				# The curved lining has baked face UVs. Projecting from its smooth
-				# vertex normals stretches the texture across walls and soffits.
-				var lining: ShaderMaterial = (materials["rock"] as ShaderMaterial).duplicate() as ShaderMaterial
-				lining.set_shader_parameter("mapped", true)
-				materials["passage_rock"] = lining
-			visual.material_override = materials["passage_rock"] if kind == "rock" else (materials["wood"] if kind == "wood" else stone_face(kind))
+
+			visual.material_override = cave_floor_material(kind) if kind in ["caveflag","earth","water"] else passage_rock_material() if kind == "rock" else (materials["wood"] if kind == "wood" else stone_face(kind))
+			if kind in ["caveflag","earth","water"]:
+				visual.cast_shadow = GeometryInstance3D.SHADOW_CASTING_SETTING_OFF
 			if visual.name.begins_with("Stone-stone_upper_gallery_roof"):
 				if not materials.has("upper_roof"):
 					var roof: ShaderMaterial = (stone_face("stone") as ShaderMaterial).duplicate() as ShaderMaterial
@@ -694,6 +718,18 @@ func stone_materials(built: Node3D) -> void:
 				visual.material_override = materials["upper_roof"]
 		elif visual.name.begins_with("Mortar"):
 			visual.material_override = mortar_material()
+			# A complete closed excavated skin already renders this solid.
+			# Its recessed collision backing must not paint through tight caps.
+			if complete_rock_skin:
+				visual.visible = false
+			elif built.name == "StonePassage_node_-23_-23_-16" and visual.name.ends_with("_20"):
+				# The skew entry exposes excavated reveal behind the chamber's
+				# masonry. It should read as rock, not a flat black mortar plate.
+				if not materials.has("turning_rock_reveal"):
+					var reveal: ShaderMaterial = passage_rock_material().duplicate() as ShaderMaterial
+					reveal.set_shader_parameter("neutral_vertex_color", true)
+					materials["turning_rock_reveal"] = reveal
+				visual.material_override = materials["turning_rock_reveal"]
 		elif visual.name.begins_with("Plaster"):
 			visual.material_override = stone_coat("red_plaster" if visual.name.begins_with("Plaster_nave") else "plaster")
 		else:

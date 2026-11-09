@@ -1,0 +1,20 @@
+[
+	{
+		"capture_frame_median_ms": 16.673,
+		"draw_calls": 413.0,
+		"primitives": 4386808.0,
+		"view": "earth-walk"
+	},
+	{
+		"capture_frame_median_ms": 16.639,
+		"draw_calls": 304.0,
+		"primitives": 7275257.0,
+		"view": "puddle-walk"
+	},
+	{
+		"capture_frame_median_ms": 16.68,
+		"draw_calls": 166.0,
+		"primitives": 6339721.0,
+		"view": "puddle-close"
+	}
+]

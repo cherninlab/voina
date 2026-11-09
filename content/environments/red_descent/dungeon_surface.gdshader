@@ -28,6 +28,8 @@ uniform float wet_roughness = 0.23;
 uniform bool timber = false;
 // Baked stone builds carry metre UVs per stone (UV) and continuous along each wall (UV2).
 uniform bool mapped = false;
+uniform bool neutral_vertex_color = false; // Exposed rock reveal reused from a dark mortar core.
+uniform bool triplanar = false; // Opt-in for irregular excavated rock only.
 // A render coat over baked stone: where the peel mask exposes masonry, the coat is gone.
 uniform bool coat = false;
 varying vec2 surface_uv;
@@ -49,6 +51,7 @@ float noise3(vec3 p) {
 }
 
 void vertex() {
+	if (neutral_vertex_color) { COLOR = vec4(1.0); }
 	world_position = (MODEL_MATRIX * vec4(VERTEX, 1.0)).xyz;
 	surface_normal = normalize(MODEL_NORMAL_MATRIX * NORMAL);
 	vec3 n = timber ? NORMAL : surface_normal;
@@ -90,6 +93,9 @@ void vertex() {
 
 void fragment() {
 	vec3 n = normalize(surface_normal);
+	vec3 tri_weights=pow(abs(n),vec3(4.0));
+	tri_weights/=max(dot(tri_weights,vec3(1)),.0001);
+	vec3 tri_p=world_position*scale;
 	vec3 tangent = normalize(surface_tangent - n * dot(surface_tangent, n));
 	vec3 bitangent = normalize(cross(n, tangent));
 	vec3 to_eye = normalize(CAMERA_POSITION_WORLD - world_position);
@@ -97,7 +103,7 @@ void fragment() {
 	float distance_fade = 1.0 - smoothstep(6.0, 18.0, distance(CAMERA_POSITION_WORLD, world_position));
 	float relief = min(relief_m, timber ? 0.004 : 0.012) * scale * distance_fade * smoothstep(0.2, 0.5, dot(to_eye, n));
 	// Keep height relief shallow and fade it before grazing views expose stepped sampling.
-	if (relief > 0.0001) {
+	if (relief > 0.0001 && !triplanar) {
 		vec2 step_uv = vec2(dot(to_eye, tangent), -dot(to_eye, bitangent)) * vec2(1.0, aspect) * relief / max(dot(to_eye, n), 0.3) / 10.0;
 		float layer_depth = 0.0;
 		for (int i = 0; i < 10; i++) {
@@ -128,9 +134,18 @@ void fragment() {
 	detail.z = sqrt(max(1.0 - dot(detail.xy, detail.xy), 0.01));
 	// Projected V runs along -bitangent; OpenGL normal Y must follow that same axis.
 	vec3 bent = normalize(tangent * detail.x - bitangent * detail.y + n * max(detail.z, 0.15));
+	if (triplanar) {
+  vec3 nx=texture(normal_map,tri_p.zy).xyz*2.0-1.0;
+  vec3 ny=texture(normal_map,tri_p.xz).xyz*2.0-1.0;
+  vec3 nz=texture(normal_map,tri_p.xy).xyz*2.0-1.0;
+  vec3 fine=vec3(0,-nx.y,nx.x)*tri_weights.x+vec3(ny.x,0,ny.y)*tri_weights.y+vec3(nz.x,-nz.y,0)*tri_weights.z;
+  fine-=n*dot(n,fine);
+  bent=normalize(n+fine*normal_strength);
+ }
 	NORMAL = normalize((VIEW_MATRIX * vec4(bent, 0.0)).xyz);
 	// Paint belongs to the plaster coat; exposed masonry keeps its mineral colour.
 	vec3 color = mix(texture(albedo_map, uv).rgb * tint, texture(substrate_albedo, foundation_uv).rgb * vec3(0.8, 0.79, 0.75), exposed);
+	if (triplanar) { color=(texture(albedo_map,(tri_p).zy)*tri_weights.x+texture(albedo_map,(tri_p).xz)*tri_weights.y+texture(albedo_map,(tri_p).xy)*tri_weights.z).rgb*tint; }
 	float luminance = dot(color, vec3(0.2126, 0.7152, 0.0722));
 	if (timber) {
 		// Aged oak keeps its scanned grain without an orange varnish over every board.
@@ -139,17 +154,20 @@ void fragment() {
 		color = mix(vec3(luminance), color, 0.85);
 	}
 	color *= COLOR.rgb * mix(vec3(0.8, 0.84, 0.82), vec3(1.04, 1.02, 0.96), broad) * mix(0.9, 1.07, medium);
-	float coverage = texture(wet_map, metres * vec2(0.14, 0.1)).r;
+	float coverage = triplanar ? (texture(wet_map,(world_position*.14).zy)*tri_weights.x+texture(wet_map,(world_position*.14).xz)*tri_weights.y+texture(wet_map,(world_position*.14).xy)*tri_weights.z).r : texture(wet_map, metres * vec2(0.14, 0.1)).r;
+	float algae_coverage=triplanar ? (texture(algae_map,(world_position*.16).zy)*tri_weights.x+texture(algae_map,(world_position*.16).xz)*tri_weights.y+texture(algae_map,(world_position*.16).xy)*tri_weights.z).r : texture(algae_map,metres*.16).r;
 	float lower = 1.0 - smoothstep(-40.0, -24.0, world_position.y);
-	float growth = smoothstep(0.48, 0.72, texture(algae_map, metres * 0.16).r * 0.55 + stains * 0.45) * lower * algae;
+	float growth = smoothstep(0.48, 0.72, algae_coverage * 0.55 + stains * 0.45) * lower * algae;
 	color = mix(color, color * vec3(0.38, 0.48, 0.32), growth);
 	float wet = smoothstep(0.54, 0.74, coverage * 0.55 + stains * 0.3 + broad * 0.15) * wetness * mix(0.65, 1.0, lower);
 	color = stair_surface(color, world_position, n, medium);
 	ALBEDO = mix(color, color * vec3(0.64, 0.68, 0.66), wet);
 	float dry = mix(texture(roughness_map, uv).r, texture(substrate_roughness, foundation_uv).r, exposed);
+	if (triplanar) { dry=(texture(roughness_map,(tri_p).zy)*tri_weights.x+texture(roughness_map,(tri_p).xz)*tri_weights.y+texture(roughness_map,(tri_p).xy)*tri_weights.z).r; }
 	// Remap into the dry range instead of clipping away the scan's roughness variation.
 	ROUGHNESS = mix(mix(dry_roughness_min, 0.98, dry), mix(wet_roughness, min(wet_roughness + 0.14, 0.98), dry), wet);
-	AO = mix(1.0, mix(texture(ao_map, uv).r, texture(substrate_ao, foundation_uv).r, exposed), 0.7);
+	float surface_ao=triplanar ? (texture(ao_map,(tri_p).zy)*tri_weights.x+texture(ao_map,(tri_p).xz)*tri_weights.y+texture(ao_map,(tri_p).xy)*tri_weights.z).r : mix(texture(ao_map, uv).r, texture(substrate_ao, foundation_uv).r, exposed);
+	AO = mix(1.0,surface_ao,0.7);
 	AO_LIGHT_AFFECT = 0.15;
 	METALLIC = texture(metallic_map, uv).r * metallic_amount;
 	SPECULAR = mix(0.35, 0.42, wet);
