@@ -197,7 +197,25 @@ func display_text() -> String:
 
 # Two-process check: a client sees the host's countdown and then the running round.
 func smoke_client() -> void:
-	await get_tree().create_timer(5.5).timeout
+	var deadline: int = Time.get_ticks_msec() + 8000
+	var saw_frozen: bool = false
+	while Time.get_ticks_msec() < deadline and state != State.ROUND:
+		var local: CharacterBody3D = players.get_node_or_null(str(multiplayer.get_unique_id())) as CharacterBody3D
+		if state == State.COUNTDOWN and local != null and combat_of(local).frozen:
+			if not combat_of(local).locked or bool(local.call("can_predict_action", 0.0)):
+				printerr("MATCH_SMOKE_FAIL: frozen client predicts an action or lacks its movement lock")
+				get_tree().quit(1)
+				return
+			saw_frozen = true
+			print("MATCH_FROZEN_PREDICTION_OK: client receives frozen/locked and refuses prediction")
+			break
+		await get_tree().physics_frame
+	if not saw_frozen:
+		printerr("MATCH_SMOKE_FAIL: client never received the frozen countdown")
+		get_tree().quit(1)
+		return
+	while Time.get_ticks_msec() < deadline and state != State.ROUND:
+		await get_tree().physics_frame
 	if state == State.ROUND and banner == "Fight!" and time_left > 80.0 and time_left < ROUND_SECONDS:
 		print("MATCH_SMOKE_OK: client sees round %s with %d s left" % [banner, ceili(time_left)])
 		get_tree().quit()
