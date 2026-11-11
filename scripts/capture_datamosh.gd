@@ -43,6 +43,9 @@ func capture() -> void:
 		return
 	effect = mosh.get("effect") as DatamoshEffect
 	mosh.call("reset_defaults")
+	if effect.ycbcr_shader.is_valid() or effect.camera_buffer.is_valid():
+		fail("default-off effect initialized GPU resources")
+		return
 	var values: Dictionary = mosh.get("values") as Dictionary
 	var flags: Dictionary = mosh.get("flags") as Dictionary
 	flags["enabled"] = false # the reference frame is the plain render
@@ -71,6 +74,18 @@ func capture() -> void:
 	print("DATAMOSH_LOSSLESS: mean abs difference ", difference, " (0..1 per channel)")
 	if difference > 0.03:
 		fail("quality 100 at full scale should reproduce the frame")
+		return
+	flags["enabled"] = false
+	await frames(5)
+	var stopped_at: int = effect.frames_coded
+	await frames(5)
+	if effect.frames_coded != stopped_at or still.compositor == mosh.get("compositor"):
+		fail("disabled effect keeps coding or stays attached")
+		return
+	flags["enabled"] = true
+	await frames(10)
+	if effect.frames_coded <= stopped_at:
+		fail("effect did not resume on the same camera")
 		return
 
 	values["internal_scale"] = 0.5
@@ -146,6 +161,27 @@ func capture() -> void:
 		if frame % 10 == 9:
 			await shot("3%d-respawn" % (frame / 10))
 	print("DATAMOSH_OK: ", directory)
+	root.get_node("NetworkManager").call("stop", "Capture complete")
+	mosh.set_process(false)
+	effect.enabled = false
+	for node: Node in world.find_children("*", "Camera3D", true, false):
+		(node as Camera3D).compositor = null
+	world.queue_free()
+	player = null
+	mosh = null
+	effect = null
+	world = null
+	var audio: Node = root.get_node("Audio")
+	audio.set("enabled", false)
+	audio.set_process(false)
+	for voice: Node in audio.get_children():
+		if voice is AudioStreamPlayer:
+			(voice as AudioStreamPlayer).stop()
+			(voice as AudioStreamPlayer).stream = null
+		elif voice is AudioStreamPlayer3D:
+			(voice as AudioStreamPlayer3D).stop()
+			(voice as AudioStreamPlayer3D).stream = null
+	await frames(5)
 	quit()
 
 func turn(amount: float) -> void:

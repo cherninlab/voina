@@ -31,7 +31,7 @@ After a burst the residual gain eases back over **Release** (slowly at first) wi
 
 | Setting | Default | Meaning |
 | --- | --- | --- |
-| Effect on | on | The whole effect. Off costs nothing. |
+| Effect on | off | The whole effect. Off detaches the compositor and skips codec passes. GPU resources initialize once, on first enable. |
 | Datamosh always | off | Never send scheduled I-frames. With a low residual gain the picture smears permanently. |
 | Mosh through camera cuts | off | Camera switches and teleports skip their clean I-frame. |
 | Gameplay triggers | on | Bisect, dash and respawn bursts. F6 works either way. |

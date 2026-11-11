@@ -172,15 +172,20 @@ func _process(_delta: float) -> void:
 	var now: float = now_msec()
 	if label.visible and now > label_until:
 		label.visible = false
+	if not flags["enabled"]:
+		effect.enabled = false
+		if is_instance_valid(camera) and camera.compositor == compositor:
+			camera.compositor = null
+		return
 	var current: Camera3D = get_viewport().get_camera_3d()
 	if current != camera:
 		if camera != null and is_instance_valid(camera) and camera.compositor == compositor:
 			camera.compositor = null
 		camera = current
-		if camera != null and camera.compositor == null:
-			camera.compositor = compositor
 		find_player()
 		scene_cut()
+	if camera != null and camera.compositor == null:
+		camera.compositor = compositor
 	effect.enabled = flags["enabled"] and camera != null and camera.compositor == compositor
 	if not effect.enabled:
 		return

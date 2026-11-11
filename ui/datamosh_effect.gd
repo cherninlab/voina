@@ -72,14 +72,14 @@ var first: bool = true
 var last_usec: int = 0
 var prev_view_proj: Projection = Projection.IDENTITY
 var has_previous_camera: bool = false
+var compute_initialized: bool = false
 
 func _init() -> void:
+	enabled = false
 	effect_callback_type = EFFECT_CALLBACK_TYPE_POST_TRANSPARENT
 	access_resolved_color = true
 	access_resolved_depth = true
 	rd = RenderingServer.get_rendering_device()
-	if rd != null:
-		RenderingServer.call_on_render_thread(_init_compute)
 
 func _notification(what: int) -> void:
 	# Script methods are unavailable this late: free everything inline.
@@ -208,7 +208,12 @@ func _dispatch(list: int, shader: RID, uniforms: Array[RDUniform], push: PackedB
 	rd.compute_list_add_barrier(list)
 
 func _render_callback(callback_type: int, render_data: RenderData) -> void:
-	if rd == null or callback_type != EFFECT_CALLBACK_TYPE_POST_TRANSPARENT or not block_shader.is_valid():
+	if rd == null or callback_type != EFFECT_CALLBACK_TYPE_POST_TRANSPARENT:
+		return
+	if not compute_initialized:
+		_init_compute()
+		compute_initialized = true
+	if not block_shader.is_valid():
 		return
 	var buffers: RenderSceneBuffersRD = render_data.get_render_scene_buffers() as RenderSceneBuffersRD
 	var scene: RenderSceneDataRD = render_data.get_render_scene_data() as RenderSceneDataRD
