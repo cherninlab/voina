@@ -60,6 +60,12 @@ func run() -> void:
 	await get_tree().physics_frame
 	flow.step(0.1)
 	check(flow.state == MatchFlow.State.COUNTDOWN and combat(guest).frozen, "A second player starts a frozen countdown")
+	var late: CharacterBody3D = add_player(3, Vector3(6, 0.95, 3))
+	players.add_child(late)
+	flow.step(0.0)
+	check(combat(late).frozen and combat(late).locked, "A late fighter inherits the ongoing countdown restrictions")
+	late.queue_free()
+	await get_tree().physics_frame
 	check(combat(guest).take_hit(25, false, false, combat(host)) == CombatController.HitResult.EVADE and not combat(host).begin_attack(false), "Countdown blocks damage and attacks")
 	check(combat(host).locked and combat(guest).locked, "The countdown locks movement")
 	Input.action_press(&"move_forward")

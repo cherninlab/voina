@@ -63,12 +63,15 @@ func create_player(data: Variant) -> Node:
 	var player: CharacterBody3D = PLAYER.instantiate() as CharacterBody3D
 	player.name = str(int(info[0]))
 	player.set_multiplayer_authority(int(info[0]))
+	player.set_meta("spawn_slot", int(info[1]))
 	# Spawns stay 6 m apart: the host's movement envelope must still accept the smoke client's hop.
 	player.position = player_spawn(int(info[1]))
 	player.set("sync_position", player.position)
 	player.set("yaw", -PI * 0.5 if map_id == GameMaps.CRYPT else (0.0 if map_id != GameMaps.VILLAGE or int(info[1]) % 2 == 0 else PI))
 	if map_id == GameMaps.CRYPT:
 		player.floor_snap_length = 0.35
+	if multiplayer.is_server():
+		match_flow.apply_rules(player)
 	return player
 
 func player_spawn(slot: int) -> Vector3:
@@ -78,7 +81,17 @@ func player_spawn(slot: int) -> Vector3:
 		return Vector3(-1.5 + float(slot % 2) * 3.0, 0.95, 10.0 + float(slot / 2) * 2.0)
 	if map_id == GameMaps.LONG_GRASS:
 		return (map_nodes[0] as LongGrass).player_spawn(slot)
-	return Vector3(0, 0.95, 3.0 if slot % 2 == 0 else -3.0)
+	return Vector3(float(slot / 2) * 6.0, 0.95, 3.0 if slot % 2 == 0 else -3.0)
+
+func next_spawn_slot() -> int:
+	var occupied: Array[int] = []
+	for player: Node in players.get_children():
+		if not player.is_queued_for_deletion():
+			occupied.append(int(player.get_meta("spawn_slot", -1)))
+	for slot: int in range(spawner.spawn_limit):
+		if not slot in occupied:
+			return slot
+	return -1
 
 func host_started() -> void:
 	menu.hide()
@@ -99,8 +112,12 @@ func host_started() -> void:
 func peer_connected(peer_id: int) -> void:
 	menu.hide()
 	if multiplayer.is_server():
-		spawner.spawn([peer_id, players.get_child_count()])
-		print("SPAWNED ", peer_id)
+		var slot: int = next_spawn_slot()
+		if slot >= 0:
+			spawner.spawn([peer_id, slot])
+			print("SPAWNED ", peer_id)
+		else:
+			multiplayer.multiplayer_peer.disconnect_peer(peer_id)
 
 func peer_disconnected(peer_id: int) -> void:
 	if multiplayer.is_server():

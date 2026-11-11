@@ -115,8 +115,11 @@ func enter(next: int, seconds: float, message: String) -> void:
 	banner = message
 	scores_text = JSON.stringify(scores)
 	for body: CharacterBody3D in fighters():
-		combat_of(body).frozen = next in [State.COUNTDOWN, State.ROUND_OVER, State.MATCH_OVER]
-		combat_of(body).locked = next == State.COUNTDOWN
+		apply_rules(body)
+
+func apply_rules(body: CharacterBody3D) -> void:
+	combat_of(body).frozen = state in [State.COUNTDOWN, State.ROUND_OVER, State.MATCH_OVER]
+	combat_of(body).locked = state == State.COUNTDOWN
 
 # Everyone restarts the round at full health from their spawn point.
 func begin_round() -> void:
@@ -137,6 +140,7 @@ func watch_deaths() -> void:
 		var combat: CombatController = combat_of(body)
 		if not combat.died.is_connected(on_died):
 			combat.died.connect(on_died.bind(body.get_multiplayer_authority()))
+			apply_rules(body)
 
 func on_died(killer: CombatController, victim: int) -> void:
 	if state not in [State.ROUND, State.SUDDEN_DEATH]:
