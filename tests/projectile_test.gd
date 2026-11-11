@@ -132,6 +132,22 @@ func run() -> void:
 	check(fire(shooter, chest(shooter) + Vector3.UP * 10.0), "A bolt for disconnect cleanup is accepted")
 	Projectiles.drop_owner(1)
 	check(Projectiles.bolts.is_empty(), "A disconnecting owner's bolts end")
+	# The lower crypt is playable below the old village kill plane.
+	await frames(40)
+	shooter.set_physics_process(false)
+	target.set_physics_process(false)
+	place(shooter, Vector3(0, -25, 0))
+	place(target, Vector3(0, -25, -6))
+	combat(target).health = 100
+	check(fire(shooter, chest(target)), "A lower-dungeon bolt is accepted")
+	await frames(2)
+	check(not Projectiles.bolts.is_empty(), "A lower-dungeon bolt survives its first flight ticks")
+	await frames(20)
+	check(combat(target).health == 80 and Projectiles.bolts.is_empty(), "A lower-dungeon bolt reaches and damages its target once")
+	await frames(40)
+	check(fire(shooter, chest(shooter) + Vector3.RIGHT * 10), "A lower-dungeon miss is accepted")
+	await frames(130)
+	check(Projectiles.bolts.is_empty(), "A lower-dungeon miss still expires after its lifetime")
 	if failed:
 		return
 	print("PROJECTILE_OK: hit, cover, validation, wall-muzzle clamp, cooldown, in-flight cap, lifetime, dash pass-through, block, parry reflect, disconnect")

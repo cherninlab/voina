@@ -351,6 +351,26 @@ func local_checks() -> void:
 			break
 	check(replacement != null and flat_distance(replacement.global_position, expected) < 0.1 and mobs.bodies.get_child_count() == MobSystem.COUNT, "A replacement rises at the grave farthest from the players")
 	mobs.clear()
+	await frames(2)
+	var blocked_pouncer: HostileMob = add_mob(9000, yard(Vector2(-12, -8)))
+	blocked_pouncer.set_physics_process(false)
+	place(player, blocked_pouncer.position + Vector3.FORWARD * 0.8)
+	fresh(player)
+	blocked_pouncer.target = player
+	blocked_pouncer.leap_velocity = Vector3.FORWARD * 6.0
+	blocked_pouncer.state = HostileMob.State.LEAP
+	box(Vector3(3, 3, 0.1), blocked_pouncer.position + Vector3.FORWARD * 0.4)
+	var thin_cover: StaticBody3D = get_child(get_child_count() - 1) as StaticBody3D
+	await frames(2)
+	check(not blocked_pouncer.can_see(player), "The contact regression has solid cover between both bodies")
+	blocked_pouncer.fly(1.0 / 60.0)
+	check(combat(player).health == 100 and not blocked_pouncer.did_strike, "A blocked pounce neither damages nor consumes its strike")
+	thin_cover.free()
+	await frames(2)
+	blocked_pouncer.fly(1.0 / 60.0)
+	check(combat(player).health == 92 and blocked_pouncer.did_strike, "The pounce can strike once after cover clears")
+	blocked_pouncer.fly(1.0 / 60.0)
+	check(combat(player).health == 92, "A pounce contact cannot repeat its damage")
 	if not failed:
 		print("MOB_OK: sloped yard grid, territory, stare, creep, coil, leap, one hit per leap, block, parry, provoke, melee dedupe, beam, bolt, death, return home, spawn and respawn")
 		get_tree().quit()

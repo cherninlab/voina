@@ -20,7 +20,6 @@ const MAX_ADVANCE: float = 0.1
 # The host's view of a client lags its owner; muzzle claims farther than this from the shooter are refused.
 const ORIGIN_SLACK: float = 2.5
 const AIM_RANGE: float = 60.0
-const KILL_HEIGHT: float = -20.0
 
 class Bolt:
 	var id: int = 0
@@ -202,7 +201,7 @@ func fly(bolt: Bolt, delta: float) -> void:
 	var contact: Dictionary = contact_at(bolt, from + query.motion * fractions[1]) if fractions[1] < 1.0 else {}
 	if not contact.is_empty():
 		resolve(bolt, contact)
-	elif bolt.age >= LIFETIME or to.y < KILL_HEIGHT:
+	elif bolt.age >= LIFETIME:
 		finish(bolt, to)
 
 # Clients only draw: the visual stops at walls, and the host's end event removes it.

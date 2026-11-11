@@ -436,6 +436,8 @@ func strike() -> void:
 		return
 	if flat.length() > 0.3 and forward.dot(flat.normalized()) < 0.2:
 		return
+	if not can_see(target):
+		return
 	did_strike = true
 	target.call("receive_hit", DAMAGE, forward, false, self)
 	if combat.phase == CombatController.Phase.STAGGERED:
