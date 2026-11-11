@@ -85,6 +85,8 @@ func run() -> void:
 	player.set("swing_time", 0.05)
 	player.call("cancel_prediction")
 	check(body.swing_elapsed < 0.0 and float(player.get("swing_time")) < 0.0, "Host rejection cancels predicted visual and movement")
+	check(not body.motion.stroke_live and body.motion.pull_velocity.is_zero_approx(), "Rejected prediction clears the stroke and residual pull")
+	check(body.motion.drive_age >= HeavySwordMotion.DRIVE_TIME, "Rejected prediction cannot apply more swing torque")
 	player.queue_free()
 	await get_tree().process_frame
 	for variant: String in ["male", "female"]:

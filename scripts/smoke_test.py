@@ -55,6 +55,11 @@ print(spawn_slots.stdout, end='')
 print(spawn_slots.stderr, end='')
 assert spawn_slots.returncode == 0 and 'SPAWN_SLOT_OK:' in spawn_slots.stdout
 assert 'ERROR' not in spawn_slots.stdout + spawn_slots.stderr
+sword = subprocess.run(base + ['--fixed-fps', '60', 'res://tests/sword_test.tscn'], capture_output=True, text=True, timeout=60)
+print(sword.stdout, end='')
+print(sword.stderr, end='')
+assert sword.returncode == 0 and 'SWORD_OK:' in sword.stdout
+assert 'ERROR' not in sword.stdout + sword.stderr
 for test, marker in ((['--script', 'tests/remote_motion_test.gd'], 'REMOTE_MOTION_OK:'), (['--script', 'tests/swing_camera_test.gd'], 'SWING_CAMERA_OK:'), (['--script', 'tests/walk_camera_test.gd'], 'WALK_CAMERA_OK:'), (['--fixed-fps', '60', 'res://tests/net_test.tscn'], 'NET_OK:'), (['--fixed-fps', '60', 'res://tests/match_test.tscn'], 'MATCH_OK:'), (['--fixed-fps', '60', 'res://tests/blade_contact_test.tscn'], 'BLADE_CONTACT_OK:'), (['--fixed-fps', '60', 'res://tests/stroke_contact_test.tscn'], 'STROKE_CONTACT_OK:')):
     run = subprocess.run(base + test, capture_output=True, text=True, timeout=60)
     print(run.stdout, end='')

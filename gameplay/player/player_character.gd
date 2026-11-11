@@ -84,10 +84,8 @@ func _ready() -> void:
 	combat.respawn_requested.connect(respawn)
 	if get_multiplayer_authority() != 1: # female rig; the male rig has no fitting death vocal
 		combat.died.connect(func(_killer: CombatController) -> void: GameAudio.broadcast(&"death_female", global_position))
-	if get_multiplayer_authority() != 1: # female rig; the male rig has no fitting death vocal
-		combat.died.connect(func(_killer: CombatController) -> void: GameAudio.broadcast(&"death_female", global_position))
 	add_child(combat)
-	add_sync("CombatSync", 1, [^"Combat:health", ^"Combat:stamina", ^"Combat:poise", ^"Combat:blocking", ^"Combat:phase", ^"Combat:locked"])
+	add_sync("CombatSync", 1, [^"Combat:health", ^"Combat:stamina", ^"Combat:poise", ^"Combat:blocking", ^"Combat:phase", ^"Combat:locked", ^"Combat:frozen"])
 	if is_multiplayer_authority() and DisplayServer.get_name() != "headless":
 		Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 
@@ -171,7 +169,7 @@ func movement_direction() -> Vector3:
 # The owner predicts dash and swing from the replicated combat state so movement reacts this frame.
 # The host repeats the checks; action_rejected cancels a prediction it refused.
 func can_predict_action(cost: float) -> bool:
-	return combat.phase == CombatController.Phase.IDLE and combat.stamina >= cost and dash_left <= 0.0 and swing_time < 0.0
+	return not combat.frozen and combat.phase == CombatController.Phase.IDLE and combat.stamina >= cost and dash_left <= 0.0 and swing_time < 0.0
 
 func dash() -> void:
 	drag_gesture.cancel()
@@ -195,6 +193,7 @@ func cancel_prediction() -> void:
 	if swing_pending:
 		swing_time = -1.0
 		body.cancel_swing()
+		body.reset_motion(yaw)
 	dash_pending = false
 	swing_pending = false
 
@@ -487,7 +486,7 @@ func receive_hit(damage: int, direction: Vector3, ranged: bool = false, attacker
 	if attacker != null:
 		attacker.rpc("hit_feedback", result, true)
 	if result == CombatController.HitResult.HIT and combat.health < old_health:
-		push.rpc(direction * 5.0 + Vector3.UP * 2)
+		push.rpc(direction * 5.0 + Vector3.UP * 2, combat.phase == CombatController.Phase.STAGGERED)
 
 func respawn() -> void:
 	history.clear()
@@ -551,10 +550,11 @@ func correct_position(location: Vector3, impulse: Vector3) -> void:
 # Knockback reaches the owner as velocity only. Teleporting the owner to the host's last snapshot
 # would undo up to a round trip of its own movement on every hit.
 @rpc("any_peer", "call_local", "reliable")
-func push(impulse: Vector3) -> void:
+func push(impulse: Vector3, interrupted: bool = false) -> void:
 	if not from_server():
 		return
-	interrupt()
+	if interrupted:
+		interrupt()
 	if is_multiplayer_authority():
 		velocity = impulse
 
