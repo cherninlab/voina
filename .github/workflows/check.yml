@@ -24,3 +24,7 @@ jobs:
         run: python3 gameplay/wildlife/tests/smoke_test.py "$GODOT"
       - name: Lobby lifecycle and authenticated reconnect
         run: python3 scripts/session_smoke_test.py "$GODOT"
+      - name: Dungeon maps, encounters and map adoption
+        run: python3 scripts/dungeon_smoke_test.py "$GODOT"
+      - name: Dungeon traversal with the actual player
+        run: python3 scripts/dungeon_traversal_test.py "$GODOT"

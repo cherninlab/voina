@@ -60,7 +60,7 @@ print(sword.stdout, end='')
 print(sword.stderr, end='')
 assert sword.returncode == 0 and 'SWORD_OK:' in sword.stdout
 assert 'ERROR' not in sword.stdout + sword.stderr
-for test, marker in ((['--script', 'tests/remote_motion_test.gd'], 'REMOTE_MOTION_OK:'), (['--script', 'tests/swing_camera_test.gd'], 'SWING_CAMERA_OK:'), (['--script', 'tests/walk_camera_test.gd'], 'WALK_CAMERA_OK:'), (['--fixed-fps', '60', 'res://tests/net_test.tscn'], 'NET_OK:'), (['--fixed-fps', '60', 'res://tests/match_test.tscn'], 'MATCH_OK:'), (['--fixed-fps', '60', 'res://tests/blade_contact_test.tscn'], 'BLADE_CONTACT_OK:'), (['--fixed-fps', '60', 'res://tests/stroke_contact_test.tscn'], 'STROKE_CONTACT_OK:')):
+for test, marker in ((['--script', 'tests/remote_motion_test.gd'], 'REMOTE_MOTION_OK:'), (['--script', 'tests/swing_camera_test.gd'], 'SWING_CAMERA_OK:'), (['--script', 'tests/walk_camera_test.gd'], 'WALK_CAMERA_OK:'), (['--fixed-fps', '60', 'res://tests/net_test.tscn'], 'NET_OK:'), (['--fixed-fps', '60', 'res://tests/match_test.tscn'], 'MATCH_OK:'), (['--fixed-fps', '60', 'res://tests/blade_contact_test.tscn'], 'BLADE_CONTACT_OK:'), (['--fixed-fps', '60', 'res://tests/stroke_contact_test.tscn'], 'STROKE_CONTACT_OK:'), (['res://tests/graphics_settings_test.tscn'], 'GRAPHICS_SETTINGS_OK'), (['--script', 'tests/dungeon_light_budget_test.gd'], 'DUNGEON_LIGHT_BUDGET_OK:'), (['--script', 'tests/build_content_test.gd'], 'BUILD_CONTENT_OK:')):
     run = subprocess.run(base + test, capture_output=True, text=True, timeout=60)
     print(run.stdout, end='')
     print(run.stderr, end='')
