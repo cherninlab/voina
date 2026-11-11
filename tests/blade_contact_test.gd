@@ -51,13 +51,14 @@ func run() -> void:
 	mob.kick_velocity = Vector3.ZERO
 	# A medium swing shoves and deals the cone's damage once per swing.
 	motion.tip_velocity = Vector3(0, 0, 6.0)
-	contact.sweep(player, motion, true, 1.0)
+	contact.sweep(player, motion, true, 0.1)
 	check(mob.combat.health == 35, "A medium contact deals swing damage (health %d)" % mob.combat.health)
 	check(mob.kick_velocity.length() > 1.0 and mob.hop > 0.0, "A medium contact shoves the raider")
 	check(float(mob.visual.get("react_left")) > 0.0, "The raider visibly reacts")
 	check((mob.visual.get("wounds") as Array).size() == 1, "A damaging contact leaves a wound line on the raider")
-	contact.sweep(player, motion, true, 1.1)
-	check(mob.combat.health == 35, "Re-hit cooldown blocks an immediate second contact")
+	var shove_after_hit: Vector3 = mob.kick_velocity
+	contact.sweep(player, motion, true, 0.2)
+	check(mob.combat.health == 35 and mob.kick_velocity == shove_after_hit, "Re-hit cooldown blocks an immediate second contact")
 	contact.sweep(player, motion, true, 2.0)
 	check(mob.combat.health == 35, "One damaging contact per swing")
 	# Not swinging: a fast blade still shoves but neither hurts nor cuts.

@@ -150,7 +150,7 @@ func set_block(wants_block: bool) -> bool:
 # Past the swing's phases the stroke keeps cutting until it lands, capped, and blocking,
 # dashing, staggers, respawns and match freezes end it.
 func cuts(stroke_live: bool) -> bool:
-	if frozen:
+	if frozen or action_ranged:
 		return false
 	if phase in [Phase.WINDUP, Phase.ACTIVE, Phase.RECOVERY]:
 		return true

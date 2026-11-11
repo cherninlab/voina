@@ -41,8 +41,6 @@ func sweep(attacker: CharacterBody3D, motion: HeavySwordMotion, swinging: bool, 
 		var mob: HostileMob = node as HostileMob
 		if mob == null or mob.is_queued_for_deletion() or mob.combat.health <= 0:
 			continue
-		if now - float(last_hit.get(mob.mob_id, -INF)) < REHIT:
-			continue
 		var closest: Array[Vector3] = touch(mob, motion)
 		if closest[0].distance_to(closest[1]) > REACH:
 			continue
@@ -51,11 +49,13 @@ func sweep(attacker: CharacterBody3D, motion: HeavySwordMotion, swinging: bool, 
 		var speed: float = point_velocity.length()
 		if speed < KICK_SPEED:
 			continue
+		var damaging: bool = swinging and attacker_combat != null and attacker_combat.strike(-mob.mob_id)
+		if not damaging and now - float(last_hit.get(mob.mob_id, -INF)) < REHIT:
+			continue
 		last_hit[mob.mob_id] = now
 		var direction: Vector3 = point_velocity / speed
 		# Shoves happen on any contact; damage and cuts need an approved swing and share its
 		# one-hit-per-target rule with the cone.
-		var damaging: bool = swinging and attacker_combat != null and attacker_combat.strike(-mob.mob_id)
 		mob.blade_hit(attacker, surface(mob, closest), direction, speed, damaging and speed >= CUT_SPEED, DAMAGE if damaging else 0, motion.blade_direction())
 
 # Closest blade point, closest point on the raider's capsule axis and the blade fraction.
