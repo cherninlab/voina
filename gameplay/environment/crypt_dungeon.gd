@@ -9,6 +9,7 @@ var architecture: RedDescentGeometry
 var dressing: RedDescentDressing
 var objective: Label = Label.new()
 var fires: Array[OmniLight3D] = []
+var fire_energy: Dictionary[OmniLight3D, float] = {}
 
 func _ready() -> void:
 	name = "CinderCrypt"
@@ -295,12 +296,14 @@ func update_fire_lights(camera: Camera3D) -> void:
 	ordered.sort_custom(func(a: OmniLight3D,b: OmniLight3D) -> bool: return a.global_position.distance_squared_to(camera.global_position)<b.global_position.distance_squared_to(camera.global_position))
 	var boundary: float = minf(24.0,ordered[6].global_position.distance_to(camera.global_position)) if ordered.size()>6 else 24.0
 	for index: int in range(ordered.size()):
+		if not fire_energy.has(ordered[index]):
+			fire_energy[ordered[index]] = ordered[index].light_energy
 		var distance: float = ordered[index].global_position.distance_to(camera.global_position)
 		# The seventh light defines a zero-energy edge, so exchanging ranks
 		# does not suddenly illuminate or darken a whole floor section.
 		var weight: float = smoothstep(0.0,3.0,boundary-distance) if index<6 else 0.0
 		ordered[index].visible=weight>.001
-		ordered[index].light_energy=8.0*weight
+		ordered[index].light_energy=fire_energy[ordered[index]]*weight
 		ordered[index].shadow_enabled=index<6 and distance<20.0
 
 func _process(delta: float) -> void:

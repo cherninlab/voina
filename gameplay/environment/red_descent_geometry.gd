@@ -449,7 +449,8 @@ func integrate_materials() -> void:
 	var nave: String = "res://content/environments/red_nave_v1/"
 	var well: String = "res://content/environments/bridge_well_v1/"
 	swap_maps("red_plaster", nave + "red_lime_plaster/", 0.4)
-	swap_maps("plaster", well + "mineral_plaster/", 0.4, "normal_dx.png")
+	if not ResourceLoader.exists(KREA_MATERIALS + "plaster_quiet/albedo.png"):
+		swap_maps("plaster", well + "mineral_plaster/", 0.4, "normal_dx.png")
 	swap_maps("iron", nave + "oxidized_iron/", 2.0)
 	swap_maps("wood", well + "bridge_oak/", 0.65)
 	swap_maps("floor", nave + "broken_stone_floor/", 0.333)
