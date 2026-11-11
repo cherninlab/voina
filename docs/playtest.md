@@ -22,7 +22,9 @@ On every machine, once: install Git LFS and Godot 4.7.2 Standard. If Godot is no
 
 ## Build check
 
-Debug builds (the editor binary) refuse to play against a different build. On connect, both games compare a fingerprint of every script, scene and resource under `core/`, `gameplay/` and `ui/`, plus `project.godot`, during Godot's authentication step, so a mismatched player never spawns. Uncommitted edits change the fingerprint too; the displayed commit gets `+dirty`.
+Debug builds (the editor binary) refuse to play against a different build. On connect, both games compare a fingerprint of every file under `core/`, `gameplay/`, `ui/` and `content/` (scripts, scenes, maps, collision, assets), plus `project.godot`, during Godot's authentication step, so a mismatched player never spawns. Uncommitted edits change the fingerprint too, whether staged, unstaged, deleted or untracked (ignored files do not count); the displayed commit gets `+dirty`.
+
+The fingerprint comes from Git: unchanged files reuse the object IDs in the index, and only modified or untracked files are hashed at startup, through the same LFS and line-ending filters as a commit. The same bytes therefore give the same fingerprint committed or not. A source copy whose Git cannot answer (no repository, missing `git` or `git-lfs`) prints `BUILD_IDENTITY_FAIL`, shows `[unverified]` and is refused by every enforcing build.
 
 A refused joiner sees the host's commit and the exact command, e.g. `python3 scripts/playtest.py sync --commit 80dedc6`, then joins again. The host's HUD reports the refusal. `BUILD: <commit> [<fingerprint>]` is printed at startup. For a deliberate experiment, launch with `-- --allow-version-mismatch`.
 
@@ -48,5 +50,7 @@ Movement replicates at 60 Hz. Remote bodies show their latest snapshot projected
 ## Verify
 
 `scripts/smoke_test.py` runs a two-process pair with a deliberately different fingerprint (`--fake-build`). The joiner must be refused during authentication with the host's commit, and the host must never spawn it. All other pairs pass the same check with matching builds.
+
+`"$GODOT" --headless --path . --script tests/build_content_test.gd` checks the fingerprint itself in a throwaway Git repo under the system temp folder: JSON, binary and script changes, odd file names, untracked and deleted files, and that staging or committing the same bytes leaves it unchanged. It prints `BUILD_CONTENT_OK:`.
 
 Use `--full` with `playtest.py host` or `playtest.py join ADDRESS` for fullscreen. Direct launch: `"$GODOT" --path . -- --full` opens the title screen fullscreen.
