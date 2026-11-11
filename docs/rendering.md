@@ -36,13 +36,15 @@ T-126. Settings (title and pause menus) shows a Graphics panel beside the contro
 | Render scale | 50–100 % in 5 % steps | `Viewport.scaling_3d_scale`, upscaled with MetalFX spatial below 100 % (FSR 1 is Forward+ only); the HUD stays native |
 | Anti-aliasing | Off, FXAA, MSAA 2× + FXAA, MSAA 4× + FXAA | `msaa_3d`, `screen_space_aa` |
 | Shadows | Off, Low, High | sun shadows; Low is 2 cascades to 50 m with no ground cover shadows; High is the sun as built (4 cascades, 100 m) |
-| Grass distance | Near 30 m, Medium 45 m, Far (unlimited) | visibility range of the ground cover cells |
+| Grass distance | Near 30 m, Medium 45 m, Far (unlimited) | visibility range of village ground cover and Long Grass field chunks |
 | Frame cap | 30, 60, 120, unlimited | `Engine.max_fps`; headless always 60 |
 | Fullscreen | on/off | window mode, restored at start |
 
 Presets: Low is 50 %, FXAA, Low shadows, Near grass. Medium is 70 %, MSAA 2× + FXAA, Low shadows, Medium grass. High is 100 %, MSAA 2× + FXAA, High shadows, Far grass: the look before T-126. Frame cap and fullscreen stay out of the presets.
 
 Ground cover (multimeshes of at least 50 instances with meshes under 0.7 m: trail grass, ferns, stones, clover, dead grass) spans the whole village in a few multimeshes, so neither frustum culling nor a visibility range could skip any of it. Once the match world's builders are done (`match_world.gd` calls `register_world`; it waits 30 frames for the church clearing and forest grade, which edit those multimeshes), each one is split into 16 m cells and hidden; the cells carry the visibility range and, under Low shadows, no shadow casting. Collapsed instances (church yard, bog pools) are dropped. Headless runs skip the split: the dummy renderer keeps no multimesh buffers.
+
+Long Grass already builds its tall field in 30 m chunks. Those chunks use the same distance control without being split again: Near ends at 45 m and Medium at 60 m, including the half-chunk margin; Far is unlimited. Their fade and shadow settings remain as authored. When map registrations overlap during the settling wait, only the newest registration captures the map's original shadow settings and ground cover.
 
 ### Why these options: M2 Air benchmark, 2026-10-21
 

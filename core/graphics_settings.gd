@@ -29,6 +29,9 @@ const CELL: float = 16.0
 const GROUND_MIN_INSTANCES: int = 50
 const GROUND_MAX_HEIGHT: float = 0.7
 const WORLD_SETTLE_FRAMES: int = 30 # church clearing and the forest grade edit the village multimeshes late
+# Ground cover built in chunks already (LongGrass fields) carries this meta: half a chunk's length in
+# metres, added to the grass distance. It is never split and keeps its own fade and shadow setting.
+const CHUNK_MARGIN: StringName = &"graphics_chunk_margin"
 
 var config_path: String = "user://graphics.cfg"
 var render_scale: float = 0.7
@@ -41,6 +44,8 @@ var fullscreen: bool = false
 var suns: Dictionary[DirectionalLight3D, Array] = {}
 # Ground cover pieces -> the cast_shadow their source multimesh was built with.
 var ground: Dictionary[MultiMeshInstance3D, int] = {}
+var chunks: Array[MultiMeshInstance3D] = []
+var registration: int = 0 # counts register_world calls; only the latest one scans
 
 func _ready() -> void:
 	set_preset(DEFAULT_PRESET, false)
@@ -116,7 +121,15 @@ func set_fullscreen(enabled: bool) -> void:
 
 func changed() -> void:
 	apply()
+	# The green button, a system shortcut or --fullscreen change the window without set_fullscreen.
+	fullscreen = window_fullscreen()
 	save_settings()
+
+## Whether the window is fullscreen right now; headless has no window and keeps the saved choice.
+func window_fullscreen() -> bool:
+	if headless():
+		return fullscreen
+	return DisplayServer.window_get_mode() in [DisplayServer.WINDOW_MODE_FULLSCREEN, DisplayServer.WINDOW_MODE_EXCLUSIVE_FULLSCREEN]
 
 func apply() -> void:
 	# A dedicated or headless server keeps the 60 Hz loop whatever the local choice.
@@ -128,11 +141,15 @@ func apply() -> void:
 	viewport.screen_space_aa = Viewport.SCREEN_SPACE_AA_DISABLED if antialiasing == 0 else Viewport.SCREEN_SPACE_AA_FXAA
 	apply_world()
 
-## The match world calls this once, after its environment builders.
+## The match world calls this after its environment builders, again on every map change. Calls
+## overlap while the world settles: only the latest one scans, so a sun is captured as built, not
+## as an earlier call's shadow level left it, and ground cover is split once.
 func register_world(world: Node3D) -> void:
+	registration += 1
+	var latest: int = registration
 	for frame: int in range(WORLD_SETTLE_FRAMES):
 		await get_tree().process_frame
-	if not is_instance_valid(world):
+	if latest != registration or not is_instance_valid(world):
 		return
 	suns.clear()
 	for node: Node in world.find_children("*", "DirectionalLight3D", true, false):
@@ -140,6 +157,10 @@ func register_world(world: Node3D) -> void:
 		if light.shadow_enabled:
 			suns[light] = [light.directional_shadow_mode, light.directional_shadow_max_distance]
 	ground.clear()
+	chunks.clear()
+	for node: Node in world.find_children("*", "MultiMeshInstance3D", true, false):
+		if node.has_meta(CHUNK_MARGIN):
+			chunks.append(node as MultiMeshInstance3D)
 	# The headless dummy renderer keeps no multimesh buffers to split.
 	if not headless():
 		for visual: MultiMeshInstance3D in find_ground_cover(world):
@@ -151,7 +172,7 @@ static func find_ground_cover(world: Node) -> Array[MultiMeshInstance3D]:
 	for node: Node in world.find_children("*", "MultiMeshInstance3D", true, false):
 		var visual: MultiMeshInstance3D = node as MultiMeshInstance3D
 		var multi: MultiMesh = visual.multimesh
-		if not visual.is_visible_in_tree() or multi == null or multi.mesh == null or multi.transform_format != MultiMesh.TRANSFORM_3D:
+		if visual.has_meta(CHUNK_MARGIN) or not visual.is_visible_in_tree() or multi == null or multi.mesh == null or multi.transform_format != MultiMesh.TRANSFORM_3D:
 			continue
 		if multi.instance_count >= GROUND_MIN_INSTANCES and multi.mesh.get_aabb().size.y < GROUND_MAX_HEIGHT:
 			found.append(visual)
@@ -209,3 +230,8 @@ func apply_world() -> void:
 			continue
 		piece.cast_shadow = ground[piece] as GeometryInstance3D.ShadowCastingSetting if shadows == Shadows.HIGH else GeometryInstance3D.SHADOW_CASTING_SETTING_OFF
 		piece.visibility_range_end = GRASS_RANGES[grass]
+	for chunk: MultiMeshInstance3D in chunks:
+		if not is_instance_valid(chunk):
+			continue
+		var reach: float = GRASS_RANGES[grass] + float(chunk.get_meta(CHUNK_MARGIN))
+		chunk.visibility_range_end = 0.0 if GRASS_RANGES[grass] <= 0.0 else reach

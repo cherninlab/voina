@@ -480,6 +480,8 @@ func grass() -> void:
 			field.visibility_range_end = settings.grass_view_distance + CHUNK * 0.5
 			field.visibility_range_end_margin = 10.0
 			field.visibility_range_fade_mode = GeometryInstance3D.VISIBILITY_RANGE_FADE_SELF
+			# Settings > Graphics > Grass distance shortens this range; the field is in chunks already.
+			field.set_meta(GraphicsSettings.CHUNK_MARGIN, CHUNK * 0.5)
 			add_child(field)
 			grass_clumps += placements.size()
 		chunk_start += CHUNK

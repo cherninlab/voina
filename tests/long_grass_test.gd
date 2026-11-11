@@ -83,6 +83,30 @@ func run() -> void:
 	field.grass()
 	print("LONG_GRASS_GRASS: %d clumps in %d ms" % [field.grass_clumps, Time.get_ticks_msec() - started_at])
 	check(field.grass_clumps > 5000, "The field is planted")
+	# Settings > Graphics > Grass distance reaches the field's own chunks: Near and Medium end half
+	# a chunk past the chosen distance, Far is unlimited; fade and shadows stay as built.
+	var chunks: Array[MultiMeshInstance3D] = []
+	for node: Node in field.get_children():
+		if node is MultiMeshInstance3D and node.has_meta(GraphicsSettings.CHUNK_MARGIN):
+			chunks.append(node as MultiMeshInstance3D)
+	check(chunks.size() > 20, "The grass chunks are marked for the graphics settings (%d)" % chunks.size())
+	var built: float = settings.grass_view_distance + LongGrass.CHUNK * 0.5
+	for chunk: MultiMeshInstance3D in chunks:
+		check(is_equal_approx(chunk.visibility_range_end, built), "A grass chunk is built to end at %.0f m" % built)
+	var pieces: int = field.get_child_count()
+	var chosen: int = GraphicsSettings.grass
+	await GraphicsSettings.register_world(world)
+	for level: int in [GraphicsSettings.Grass.NEAR, GraphicsSettings.Grass.MEDIUM, GraphicsSettings.Grass.FAR]:
+		GraphicsSettings.grass = level
+		GraphicsSettings.apply_world()
+		var reach: float = 0.0 if level == GraphicsSettings.Grass.FAR else GraphicsSettings.GRASS_RANGES[level] + LongGrass.CHUNK * 0.5
+		for chunk: MultiMeshInstance3D in chunks:
+			check(is_equal_approx(chunk.visibility_range_end, reach), "%s grass ends the field's chunks at %.0f m" % [GraphicsSettings.GRASS_LABELS[level], reach])
+			check(chunk.visible and chunk.visibility_range_fade_mode == GeometryInstance3D.VISIBILITY_RANGE_FADE_SELF and is_equal_approx(chunk.visibility_range_end_margin, 10.0) \
+				and chunk.cast_shadow == GeometryInstance3D.SHADOW_CASTING_SETTING_OFF, "%s grass keeps a chunk's fade and shadow setting" % GraphicsSettings.GRASS_LABELS[level])
+	GraphicsSettings.grass = chosen
+	GraphicsSettings.apply_world()
+	check(field.get_child_count() == pieces, "The grass chunks are not split again")
 	var space: PhysicsDirectSpaceState3D = world.get_world_3d().direct_space_state
 	var capsule: CapsuleShape3D = CapsuleShape3D.new()
 	capsule.radius = 0.4

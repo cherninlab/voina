@@ -91,5 +91,5 @@ func refresh() -> void:
 	scale_label.text = "Render scale · %d %% · %d × %d" % [roundi(GraphicsSettings.render_scale * 100.0), roundi(frame.x), roundi(frame.y)]
 	for option: String in options:
 		options[option].select(int(GraphicsSettings.get(option)))
-	fullscreen.button_pressed = DisplayServer.window_get_mode() in [DisplayServer.WINDOW_MODE_FULLSCREEN, DisplayServer.WINDOW_MODE_EXCLUSIVE_FULLSCREEN]
+	fullscreen.button_pressed = GraphicsSettings.window_fullscreen()
 	updating = false

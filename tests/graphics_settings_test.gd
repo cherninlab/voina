@@ -39,6 +39,13 @@ func run() -> void:
 	settings.grass = 2
 	settings.load_settings()
 	check(settings.preset_index() == 1 and settings.frame_cap == 2, "settings survive save and load")
+	# Headless has no window to read: saving an option keeps the stored fullscreen choice.
+	settings.set_fullscreen(true)
+	settings.set_option("frame_cap", 2)
+	settings.fullscreen = false
+	settings.load_settings()
+	check(settings.fullscreen and settings.window_fullscreen(), "headless keeps the saved fullscreen choice")
+	settings.set_fullscreen(false)
 
 	# A tiny world: a shadowed sun, ground cover, a tall multimesh and a too-small scatter.
 	var world: Node3D = Node3D.new()
@@ -51,6 +58,10 @@ func run() -> void:
 	var tufts: MultiMeshInstance3D = scatter(world, 0.3, 80)
 	scatter(world, 4.0, 80)
 	scatter(world, 0.3, 10)
+	# A field built in chunks already (LongGrass): short and numerous, but marked, so never split.
+	var chunk: MultiMeshInstance3D = scatter(world, 0.3, 80)
+	chunk.visibility_range_end = 90.0
+	chunk.set_meta(GraphicsSettings.CHUNK_MARGIN, 15.0)
 	var found: Array[MultiMeshInstance3D] = settings.find_ground_cover(world)
 	check(found.size() == 1 and found[0] == tufts, "only short, numerous multimeshes count as ground cover")
 	await settings.register_world(world)
@@ -62,6 +73,34 @@ func run() -> void:
 	settings.set_option("shadows", GraphicsSettings.Shadows.HIGH)
 	check(sun.directional_shadow_mode == DirectionalLight3D.SHADOW_PARALLEL_4_SPLITS \
 		and is_equal_approx(sun.directional_shadow_max_distance, 100.0), "high shadows restore the built sun")
+	settings.set_option("grass", GraphicsSettings.Grass.NEAR)
+	check(is_equal_approx(chunk.visibility_range_end, 45.0), "near grass: chunks end at 30 m plus their margin")
+	settings.set_option("grass", GraphicsSettings.Grass.MEDIUM)
+	check(is_equal_approx(chunk.visibility_range_end, 60.0), "medium grass: chunks end at 45 m plus their margin")
+	settings.set_option("grass", GraphicsSettings.Grass.FAR)
+	check(is_zero_approx(chunk.visibility_range_end) and chunk.visible, "far grass: chunks draw at any distance")
+	# A map change registers the world again while an earlier call still waits for it to settle.
+	# Only the latest call may capture the sun, or it records what the earlier one left behind.
+	for level: int in [GraphicsSettings.Shadows.LOW, GraphicsSettings.Shadows.OFF]:
+		settings.set_option("shadows", level)
+		var next: Node3D = Node3D.new()
+		add_child(next)
+		var moon: DirectionalLight3D = DirectionalLight3D.new()
+		moon.shadow_enabled = true
+		moon.directional_shadow_mode = DirectionalLight3D.SHADOW_PARALLEL_4_SPLITS
+		moon.directional_shadow_max_distance = 100.0
+		next.add_child(moon)
+		settings.register_world(next)
+		for frame: int in range(5):
+			await get_tree().process_frame
+		await settings.register_world(next)
+		var label: String = GraphicsSettings.SHADOW_LABELS[level]
+		settings.set_option("shadows", GraphicsSettings.Shadows.LOW)
+		check(moon.shadow_enabled and moon.directional_shadow_mode == DirectionalLight3D.SHADOW_PARALLEL_2_SPLITS, \
+			"overlapping registrations under %s: shadows can be turned back on" % label)
+		settings.set_option("shadows", GraphicsSettings.Shadows.HIGH)
+		check(moon.shadow_enabled and moon.directional_shadow_mode == DirectionalLight3D.SHADOW_PARALLEL_4_SPLITS \
+			and is_equal_approx(moon.directional_shadow_max_distance, 100.0), "overlapping registrations under %s: High restores four splits to 100 m" % label)
 	DirAccess.remove_absolute(ProjectSettings.globalize_path(settings.config_path))
 	if not failed:
 		print("GRAPHICS_SETTINGS_OK")
