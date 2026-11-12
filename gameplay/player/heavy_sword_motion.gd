@@ -322,6 +322,11 @@ func step(delta: float, camera_yaw: float, camera_pitch: float, holding: bool, a
 		tip_velocity = ((tip - previous_tip) / dt).limit_length(MAX_TIP_SPEED)
 		update_follow_through(dt, attacking, blocking, velocity)
 
+# Ends the powered part of a cut that was genuinely interrupted. Only the motor stops: heading and
+# elevation speed are left alone, so the blade coasts and falls on the momentum it already has.
+func stop_drive() -> void:
+	drive_age = DRIVE_TIME
+
 func drive_ramp() -> float:
 	return clampf(drive_age / DRIVE_TIME, 0.0, 1.0)
 

@@ -20,6 +20,13 @@ var dash_left: float = 0.0
 var dash_pending: bool = false
 var swing_time: float = -1.0
 var swing_pending: bool = false
+# Owner action identity: every predicted dash or swing takes the next number, the host echoes it in
+# its approval or rejection, and a reply only ever settles the action that carries its number.
+# The numbers outlive the prediction, so a reply arriving after it expired is still recognised.
+var action_sequence: int = 0
+var dash_action: int = 0
+var swing_action: int = 0
+var approved_action: int = 0 # host: identity of the request behind the current attack_started
 var sword_held: bool = false # Owner-synchronized cosmetic intent; never grants damage.
 var feedback: String = ""
 var feedback_left: float = 0.0
@@ -79,7 +86,7 @@ func _ready() -> void:
 	remote_motion.reset(position, HitResolver.now())
 	combat.name = "Combat"
 	combat.set_multiplayer_authority(1)
-	combat.attack_started.connect(func(ranged: bool) -> void: attack_effect.rpc(ranged, approved_swing_direction))
+	combat.attack_started.connect(func(ranged: bool) -> void: attack_effect.rpc(ranged, approved_swing_direction, approved_action))
 	combat.attack_active.connect(resolve_attack)
 	combat.respawn_requested.connect(respawn)
 	if get_multiplayer_authority() != 1: # female rig; the male rig has no fitting death vocal
@@ -185,17 +192,21 @@ func dash() -> void:
 	dash_direction = direction
 	dash_left = CombatController.DASH_DURATION
 	dash_pending = true
-	request_dash.rpc_id(1, direction)
+	action_sequence += 1
+	dash_action = action_sequence
+	request_dash.rpc_id(1, direction, dash_action)
 
-func cancel_prediction() -> void:
-	if dash_pending:
+# action_id 0 is an unnumbered (direct or legacy) rejection and cancels whatever is pending.
+# A numbered rejection cancels only the pending action it names; a late or stale one does nothing.
+func cancel_prediction(action_id: int = 0) -> void:
+	if dash_pending and (action_id == 0 or action_id == dash_action):
 		dash_left = 0.0
-	if swing_pending:
+		dash_pending = false
+	if swing_pending and (action_id == 0 or action_id == swing_action):
 		swing_time = -1.0
 		body.cancel_swing()
 		body.reset_motion(yaw)
-	dash_pending = false
-	swing_pending = false
+		swing_pending = false
 
 func send_block(wants_block: bool) -> void:
 	if wants_block:
@@ -215,29 +226,35 @@ func request_block(wants_block: bool) -> void:
 		combat.set_block(wants_block)
 
 @rpc("any_peer", "call_remote", "reliable")
-func request_dash(direction: Vector3) -> void:
-	if not owns_request() or not direction.is_finite() or absf(direction.y) > 0.01 or direction.length_squared() < 0.01:
+func request_dash(direction: Vector3, action_id: int = 0) -> void:
+	if not owns_request() or action_id < 0 or not direction.is_finite() or absf(direction.y) > 0.01 or direction.length_squared() < 0.01:
 		return
 	if combat.begin_dash():
-		dash_effect.rpc(direction.normalized())
+		dash_effect.rpc(direction.normalized(), action_id)
 	else:
-		reject_request()
+		reject_request(action_id)
 
-func reject_request() -> void:
+func reject_request(action_id: int = 0) -> void:
 	var sender: int = multiplayer.get_remote_sender_id()
 	if sender != 0:
-		action_rejected.rpc_id(sender)
+		action_rejected.rpc_id(sender, action_id)
 
 @rpc("any_peer", "call_remote", "reliable")
-func action_rejected() -> void:
+func action_rejected(action_id: int = 0) -> void:
 	if from_server():
-		cancel_prediction()
+		cancel_prediction(action_id)
 
 @rpc("any_peer", "call_local", "reliable")
-func dash_effect(direction: Vector3) -> void:
+func dash_effect(direction: Vector3, action_id: int = 0) -> void:
 	if not from_server():
 		return
 	GameAudio.play(&"dash", global_position)
+	if action_id > 0 and is_multiplayer_authority():
+		# The owner already predicted every numbered dash. The approval only settles that one;
+		# after expiry, correction or respawn it must not start the dash again.
+		if action_id == dash_action:
+			dash_pending = false
+		return
 	if dash_pending:
 		dash_pending = false
 		return
@@ -404,24 +421,30 @@ func attack(ranged: bool, direction: Vector2 = Vector2.RIGHT) -> void:
 		request_attack(ranged, direction)
 	else:
 		swing_pending = not ranged
-		request_attack.rpc_id(1, ranged, direction)
+		var action_id: int = 0 # ranged shots are not predicted, so they carry no identity
+		if not ranged:
+			action_sequence += 1
+			swing_action = action_sequence
+			action_id = swing_action
+		request_attack.rpc_id(1, ranged, direction, action_id)
 
 @rpc("any_peer", "call_remote", "reliable")
-func request_attack(ranged: bool, direction: Vector2 = Vector2.RIGHT) -> void:
-	if not owns_request():
+func request_attack(ranged: bool, direction: Vector2 = Vector2.RIGHT, action_id: int = 0) -> void:
+	if not owns_request() or action_id < 0:
 		return
 	if not direction.is_finite() or direction.length_squared() < 0.01 or direction.length_squared() > 4.0:
-		reject_request()
+		reject_request(action_id)
 		return
 	# Direction is presentation only; host combat still decides timing, cost and damage.
 	if combat.phase == CombatController.Phase.IDLE:
 		approved_swing_direction = direction.normalized()
+		approved_action = action_id
 	var round_trip: float = NetworkManager.round_trip_seconds(get_multiplayer_authority())
 	if not combat.begin_attack(ranged, HitResolver.head_start_seconds(round_trip)):
 		if multiplayer.get_remote_sender_id() == 0:
 			swing_time = -1.0
-			body.cancel_swing()
-		reject_request()
+			body.interrupt_swing()
+		reject_request(action_id)
 
 # Targets are judged where the attacker's screen showed them (HitResolver), and the attacker
 # from its latest replicated position rather than the host's smoothed copy.
@@ -512,7 +535,7 @@ func hit_feedback(result: int, dealt: bool) -> void:
 
 func interrupt() -> void:
 	drag_gesture.cancel()
-	body.cancel_swing()
+	body.interrupt_swing()
 	sword_held = false
 	dash_left = 0.0
 	swing_time = -1.0
@@ -559,10 +582,17 @@ func push(impulse: Vector3, interrupted: bool = false) -> void:
 		velocity = impulse
 
 @rpc("any_peer", "call_local", "reliable")
-func attack_effect(ranged: bool, direction: Vector2 = Vector2.RIGHT) -> void:
+func attack_effect(ranged: bool, direction: Vector2 = Vector2.RIGHT, action_id: int = 0) -> void:
 	if not from_server():
 		return
 	if not ranged:
+		if action_id > 0 and is_multiplayer_authority():
+			# The owner already predicted every numbered swing. The approval only settles that
+			# one; after expiry, correction or respawn it must not start the swing again.
+			if action_id == swing_action:
+				swing_pending = false
+			GameAudio.play(&"swing", global_position + Vector3.UP * HitResolver.CHEST_HEIGHT)
+			return
 		if not swing_pending:
 			body.start_swing(direction)
 			if is_multiplayer_authority():

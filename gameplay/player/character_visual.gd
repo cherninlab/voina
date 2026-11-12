@@ -120,6 +120,13 @@ func start_swing(direction: Vector2) -> void:
 func cancel_swing() -> void:
 	swing_elapsed = -1.0
 
+# A stagger, dash, correction or host refusal takes the hands off the cut: the unfinished torque
+# stops, and the blade keeps only the momentum it already has. cancel_swing() alone is the natural
+# end of an accepted swing and leaves the motor untouched.
+func interrupt_swing() -> void:
+	cancel_swing()
+	motion.stop_drive()
+
 func reset_motion(view_yaw: float) -> void:
 	motion.reset(view_yaw, global_position, ground_level)
 	feet.clear()
@@ -133,7 +140,7 @@ func drive_sword(delta: float, view_yaw: float, view_pitch: float, held: bool, a
 	camera_yaw = view_yaw
 	camera_pitch = view_pitch
 	if interrupted:
-		cancel_swing()
+		interrupt_swing()
 	# A staggered or dashing body lets go of the drag; the blade keeps falling under its own weight.
 	var free: bool = not interrupted
 	motion.step(delta, view_yaw, view_pitch, held and free, attacking and free, blocking and free, global_position, ground_level, velocity)
@@ -146,7 +153,7 @@ func drive_sword(delta: float, view_yaw: float, view_pitch: float, held: bool, a
 
 func update_pose(delta: float, _world_velocity: Vector3, _blocking: bool, staggered: bool) -> void:
 	if staggered:
-		cancel_swing()
+		interrupt_swing()
 	if swing_elapsed >= 0.0:
 		swing_elapsed += delta
 		if swing_elapsed >= CombatController.MELEE_WINDUP + CombatController.MELEE_ACTIVE + CombatController.MELEE_RECOVERY:

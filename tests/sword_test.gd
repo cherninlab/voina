@@ -87,6 +87,22 @@ func run() -> void:
 	check(body.swing_elapsed < 0.0 and float(player.get("swing_time")) < 0.0, "Host rejection cancels predicted visual and movement")
 	check(not body.motion.stroke_live and body.motion.pull_velocity.is_zero_approx(), "Rejected prediction clears the stroke and residual pull")
 	check(body.motion.drive_age >= HeavySwordMotion.DRIVE_TIME, "Rejected prediction cannot apply more swing torque")
+	# A genuine interruption stops the unfinished torque but keeps the momentum already gained.
+	body.reset_motion(0.0)
+	body.start_swing(Vector2.LEFT)
+	for frame: int in range(4):
+		body.drive_sword(1.0 / 60.0, 0.0, 0.0, false, true, false, false)
+	var gained: float = body.motion.heading_speed
+	check(body.motion.drive_age < HeavySwordMotion.DRIVE_TIME and absf(gained) > 0.1, "A fresh cut is still under power")
+	body.interrupt_swing()
+	check(body.swing_elapsed < 0.0 and body.motion.drive_age >= HeavySwordMotion.DRIVE_TIME and body.motion.heading_speed == gained, "Interruption stops the motor and keeps existing angular momentum")
+	body.drive_sword(1.0 / 60.0, 0.0, 0.0, false, false, false, true)
+	check(absf(body.motion.heading_speed) <= absf(gained) and absf(body.motion.heading_speed) > absf(gained) * 0.5, "An interrupted blade coasts: no added torque, no erased momentum")
+	body.start_swing(Vector2.RIGHT)
+	body.cancel_swing()
+	check(body.motion.drive_age < HeavySwordMotion.DRIVE_TIME, "The natural end of a swing leaves its motor alone")
+	player.call("interrupt")
+	check(body.motion.drive_age >= HeavySwordMotion.DRIVE_TIME, "A stagger or correction interruption stops the motor")
 	player.queue_free()
 	await get_tree().process_frame
 	for variant: String in ["male", "female"]:
@@ -118,7 +134,7 @@ func run() -> void:
 			check(mesh.visible and mesh.cast_shadow == GeometryInstance3D.SHADOW_CASTING_SETTING_ON, "First-person sword stays visible")
 		visual.queue_free()
 	if failures == 0:
-		print("SWORD_OK: gesture rearm/cancel, request validation, cooldown, prediction cancellation, both hand IK rigs")
+		print("SWORD_OK: gesture rearm/cancel, request validation, cooldown, prediction cancellation, interrupted torque, both hand IK rigs")
 	get_tree().quit(0 if failures == 0 else 1)
 
 func check_grip(visual: CharacterVisual, both: bool, label: String) -> void:
