@@ -125,3 +125,10 @@ run_pair(['--match-smoke'], 'MATCH_SMOKE_OK:', host_flags=('--match',))
 # A different build is refused during authentication, before anything spawns.
 assert 'BUILD_REFUSED' in run_pair(['--fake-build=0123456789ab', '--expect-version-mismatch'], 'VERSION_MISMATCH_OK:', spawns=False)
 print('PASS: local two-process ENet integration and disconnect cleanup')
+
+# Real delayed approvals must not replay an expired dash or melee prediction.
+prediction = subprocess.run([sys.executable, str(root / 'scripts/prediction_latency_test.py'), godot], capture_output=True, text=True, timeout=100)
+print(prediction.stdout, end='')
+print(prediction.stderr, end='')
+assert prediction.returncode == 0 and 'PASS: normal and delayed ENet action approvals' in prediction.stdout
+assert 'SCRIPT ERROR' not in prediction.stdout + prediction.stderr and 'ERROR:' not in prediction.stdout + prediction.stderr
