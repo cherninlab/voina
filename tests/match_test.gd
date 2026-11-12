@@ -32,6 +32,38 @@ func place(body: CharacterBody3D, location: Vector3) -> void:
 func kill(victim: CharacterBody3D, killer: CharacterBody3D) -> void:
 	combat(victim).take_hit(500, false, false, combat(killer) if killer != null else null)
 
+func ring_pulse_regressions(flow: MatchFlow, players: Node3D, host: CharacterBody3D, guest: CharacterBody3D) -> void:
+	for reversed_order: bool in [false, true]:
+		players.move_child(guest if reversed_order else host, 0)
+		for lethal: int in [0, 1, 2]:
+			flow.start()
+			flow.ring.reset()
+			flow.enter(MatchFlow.State.SUDDEN_DEATH, 1.0, "Pulse regression")
+			place(host, Vector3(-15, 0.95, 0))
+			place(guest, Vector3(15, 0.95, 0))
+			combat(host).health = 5 if lethal > 0 else 30
+			combat(guest).health = 5 if lethal == 2 else 30
+			flow.step(SuddenDeathRing.BURN_INTERVAL)
+			if lethal == 0:
+				check(flow.state == MatchFlow.State.SUDDEN_DEATH and flow.scores.is_empty() and combat(host).health == 25 and combat(guest).health == 25, "A nonlethal pulse damages both fighters without scoring (reversed=%s)" % reversed_order)
+			elif lethal == 1:
+				check(flow.state == MatchFlow.State.ROUND_OVER and flow.scores.get(2, 0) == 1 and combat(guest).health == 25, "A sole lethal pulse credits the opponent after both receive damage (reversed=%s)" % reversed_order)
+			else:
+				check(flow.state == MatchFlow.State.ROUND_OVER and flow.scores.is_empty() and flow.banner == "Draw" and combat(host).health == CombatController.MAX_HEALTH and combat(guest).health == CombatController.MAX_HEALTH, "Two lethal hits in one pulse draw independently of child order (reversed=%s)" % reversed_order)
+	# A caught-up step can contain several pulses; only the first lethal pulse resolves.
+	flow.start()
+	flow.ring.reset()
+	flow.enter(MatchFlow.State.SUDDEN_DEATH, 1.0, "Catch-up pulse")
+	place(host, Vector3(-15, 0.95, 0))
+	place(guest, Vector3(15, 0.95, 0))
+	combat(host).health = 5
+	combat(guest).health = 5
+	flow.step(SuddenDeathRing.BURN_INTERVAL * 3.0)
+	check(flow.banner == "Draw" and flow.scores.is_empty(), "Catch-up pulses cannot award a round after a simultaneous draw")
+	flow.enter(MatchFlow.State.ROUND, 10.0, "Normal scoring")
+	kill(guest, host)
+	check(flow.scores.get(1, 0) == 1, "Normal attributed kills still score immediately after ring batches")
+
 func run() -> void:
 	var floor_body: StaticBody3D = StaticBody3D.new()
 	var shape: CollisionShape3D = CollisionShape3D.new()
@@ -150,7 +182,17 @@ func run() -> void:
 	flow.step(MatchFlow.COUNTDOWN_SECONDS + 0.1)
 	kill(third, second)
 	check(flow.scores.get(2, 0) == 1, "Actual fighter identity still credits a three-player kill")
+	flow.start()
+	flow.ring.reset()
+	flow.enter(MatchFlow.State.SUDDEN_DEATH, 1.0, "Three-player pulse")
+	for fighter: CharacterBody3D in [host, second, third]:
+		place(fighter, Vector3(15, 0.95, 0))
+		combat(fighter).health = 30 if fighter != second else 5
+	flow.step(SuddenDeathRing.BURN_INTERVAL)
+	check(flow.banner == "Draw" and flow.scores.is_empty() and combat(host).health == 25 and combat(third).health == 25, "A sole ring death with multiple opponents retains the unattributed draw rule and damages all fighters")
+	third.free()
+	ring_pulse_regressions(flow, players, host, second)
 	if failed:
 		return
-	print("MATCH_OK: waiting, frozen and movement-locked countdown, kill rounds, sudden-death ring burn and closed-ring healthiest/draw, first to three, result freeze, rematch, leaver")
+	print("MATCH_OK: waiting, countdown, kill rounds, ring burn, order-independent pulse draws, single lethal/nonlethal pulses, closed-ring healthiest/draw, first to three, rematch, leaver")
 	get_tree().quit()

@@ -23,6 +23,7 @@ var lobby_camera: Camera3D = Camera3D.new()
 var leave_button: Button = Button.new()
 var host_button: Button = Button.new()
 var join_button: Button = Button.new()
+var pending_spawns: Array[int] = []
 
 func _ready() -> void:
 	if "--full" in OS.get_cmdline_user_args() and DisplayServer.get_name() != "headless":
@@ -64,7 +65,7 @@ func create_player(data: Variant) -> Node:
 	player.name = str(int(info[0]))
 	player.set_multiplayer_authority(int(info[0]))
 	player.set_meta("spawn_slot", int(info[1]))
-	# Spawns stay 6 m apart: the host's movement envelope must still accept the smoke client's hop.
+	# The first pair stays 6 m apart so the movement envelope accepts the smoke client's hop.
 	player.position = player_spawn(int(info[1]))
 	player.set("sync_position", player.position)
 	player.set("yaw", -PI * 0.5 if map_id == GameMaps.CRYPT else (0.0 if map_id != GameMaps.VILLAGE or int(info[1]) % 2 == 0 else PI))
@@ -72,6 +73,7 @@ func create_player(data: Variant) -> Node:
 		player.floor_snap_length = 0.35
 	if multiplayer.is_server():
 		match_flow.apply_rules(player)
+		player.tree_exited.connect(player_exited, CONNECT_ONE_SHOT)
 	return player
 
 func player_spawn(slot: int) -> Vector3:
@@ -81,13 +83,14 @@ func player_spawn(slot: int) -> Vector3:
 		return Vector3(-1.5 + float(slot % 2) * 3.0, 0.95, 10.0 + float(slot / 2) * 2.0)
 	if map_id == GameMaps.LONG_GRASS:
 		return (map_nodes[0] as LongGrass).player_spawn(slot)
-	return Vector3(float(slot / 2) * 6.0, 0.95, 3.0 if slot % 2 == 0 else -3.0)
+	# The second pair sits beyond the cover blocks, with clearance for the 0.4 m capsule.
+	return Vector3(float(slot / 2) * 7.5, 0.95, 3.0 if slot % 2 == 0 else -3.0)
 
 func next_spawn_slot() -> int:
 	var occupied: Array[int] = []
 	for player: Node in players.get_children():
-		if not player.is_queued_for_deletion():
-			occupied.append(int(player.get_meta("spawn_slot", -1)))
+		# MultiplayerSpawner still counts queued nodes until they actually exit the tree.
+		occupied.append(int(player.get_meta("spawn_slot", -1)))
 	for slot: int in range(spawner.spawn_limit):
 		if not slot in occupied:
 			return slot
@@ -96,7 +99,7 @@ func next_spawn_slot() -> int:
 func host_started() -> void:
 	menu.hide()
 	if not NetworkManager.dedicated:
-		spawner.spawn([1, 0])
+		peer_connected(1)
 	# The dungeons run their own encounter; the lobby's switches only shape the village.
 	if map_id != GameMaps.VILLAGE:
 		mobs.start()
@@ -112,14 +115,37 @@ func host_started() -> void:
 func peer_connected(peer_id: int) -> void:
 	menu.hide()
 	if multiplayer.is_server():
+		var existing: Node = players.get_node_or_null(str(peer_id))
+		if peer_id in pending_spawns or (existing != null and not existing.is_queued_for_deletion()):
+			return
+		pending_spawns.append(peer_id)
+		drain_pending_spawns()
+
+func drain_pending_spawns() -> void:
+	if not multiplayer.is_server():
+		return
+	while not pending_spawns.is_empty():
+		# A stop/rehost can reuse peer 1 before the old host avatar's queued exit.
+		if players.has_node(str(pending_spawns[0])):
+			return
 		var slot: int = next_spawn_slot()
-		if slot >= 0:
-			spawner.spawn([peer_id, slot])
-			print("SPAWNED ", peer_id)
-		else:
+		if slot < 0:
+			for player: Node in players.get_children():
+				if player.is_queued_for_deletion():
+					return # tree_exited will retry after the spawner releases capacity.
+		var peer_id: int = pending_spawns.pop_front()
+		if slot < 0 or spawner.spawn([peer_id, slot]) == null:
 			multiplayer.multiplayer_peer.disconnect_peer(peer_id)
+			continue
+		if peer_id != 1:
+			print("SPAWNED ", peer_id)
+
+func player_exited() -> void:
+	# Run after all tree_exited listeners, including MultiplayerSpawner's bookkeeping.
+	drain_pending_spawns.call_deferred()
 
 func peer_disconnected(peer_id: int) -> void:
+	pending_spawns.erase(peer_id)
 	if multiplayer.is_server():
 		var player: Node = players.get_node_or_null(str(peer_id))
 		if player != null:
@@ -127,6 +153,7 @@ func peer_disconnected(peer_id: int) -> void:
 			print("DESPAWNED ", peer_id)
 
 func clear_players() -> void:
+	pending_spawns.clear()
 	mobs.clear()
 	Projectiles.clear()
 	match_flow.state = MatchFlow.State.OFF

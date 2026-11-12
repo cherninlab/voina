@@ -4,6 +4,9 @@ extends Node3D
 ## CLOSE_SECONDS. The radius is derived from MatchFlow's replicated time, so every peer draws the
 ## same ring without extra sync. Only the host burns fighters outside it, through CombatController.
 
+signal pulse_started
+signal pulse_finished
+
 const CLOSE_SECONDS: float = 36.0  # keeps the old ~1 m/s closing speed across the 56 m arena
 const START_RADIUS: float = 40.0  # reaches the corners of the 56 m arena
 const END_RADIUS: float = 1.5
@@ -52,9 +55,11 @@ func burn(bodies: Array[CharacterBody3D], radius: float, delta: float) -> void:
 	burn_clock += delta
 	while burn_clock >= BURN_INTERVAL:
 		burn_clock -= BURN_INTERVAL
+		pulse_started.emit()
 		for body: CharacterBody3D in bodies:
 			if outside(body, radius):
 				(body.get("combat") as CombatController).take_environment_damage(BURN_DAMAGE)
+		pulse_finished.emit()
 
 # Visual only (a mesh, not a physics body), so scaling it is safe.
 func display(active: bool, radius: float, delta: float) -> void:

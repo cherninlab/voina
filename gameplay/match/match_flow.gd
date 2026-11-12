@@ -23,6 +23,8 @@ var banner: String = ""
 var scores: Dictionary[int, int] = {}
 var label: Label = null
 var ring: SuddenDeathRing = SuddenDeathRing.new()
+var ring_pulse_active: bool = false
+var ring_deaths: Array[int] = []
 
 func _ready() -> void:
 	var synchronizer: MultiplayerSynchronizer = MultiplayerSynchronizer.new()
@@ -36,6 +38,8 @@ func _ready() -> void:
 	synchronizer.replication_config = config
 	add_child(synchronizer)
 	ring.name = "SuddenDeathRing"
+	ring.pulse_started.connect(begin_ring_pulse)
+	ring.pulse_finished.connect(finish_ring_pulse)
 	add_child(ring)
 	if DisplayServer.get_name() != "headless":
 		var layer: CanvasLayer = CanvasLayer.new()
@@ -145,6 +149,9 @@ func watch_deaths() -> void:
 func on_died(killer: CombatController, victim: int) -> void:
 	if state not in [State.ROUND, State.SUDDEN_DEATH]:
 		return
+	if ring_pulse_active:
+		ring_deaths.append(victim)
+		return
 	var winner: int = 0
 	for body: CharacterBody3D in fighters():
 		# Server-owned mobs also have authority 1; only an actual fighter can earn credit.
@@ -155,6 +162,21 @@ func on_died(killer: CombatController, victim: int) -> void:
 		var others: Array[CharacterBody3D] = fighters().filter(func(body: CharacterBody3D) -> bool: return body.get_multiplayer_authority() != victim)
 		winner = others[0].get_multiplayer_authority() if others.size() == 1 else 0
 	end_round(winner)
+
+func begin_ring_pulse() -> void:
+	ring_deaths.clear()
+	ring_pulse_active = true
+
+func finish_ring_pulse() -> void:
+	ring_pulse_active = false
+	if ring_deaths.is_empty() or state != State.SUDDEN_DEATH:
+		return
+	# Combat immediately respawns victims, so use deaths recorded during this pulse,
+	# not their restored health. Resolve only after every fighter has taken the damage.
+	if ring_deaths.size() > 1:
+		end_round(0)
+	else:
+		on_died(null, ring_deaths[0])
 
 func healthiest() -> int:
 	var best: int = 0
@@ -214,7 +236,8 @@ func smoke_client() -> void:
 		printerr("MATCH_SMOKE_FAIL: client never received the frozen countdown")
 		get_tree().quit(1)
 		return
-	while Time.get_ticks_msec() < deadline and state != State.ROUND:
+	# The initial ROUND snapshot can still carry the full 90 seconds. Wait for its first clock update.
+	while Time.get_ticks_msec() < deadline and (state != State.ROUND or time_left >= ROUND_SECONDS or banner != "Fight!"):
 		await get_tree().physics_frame
 	if state == State.ROUND and banner == "Fight!" and time_left > 80.0 and time_left < ROUND_SECONDS:
 		print("MATCH_SMOKE_OK: client sees round %s with %d s left" % [banner, ceili(time_left)])
