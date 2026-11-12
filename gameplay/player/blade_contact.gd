@@ -37,7 +37,14 @@ static func closest_points(a0: Vector3, a1: Vector3, b0: Vector3, b1: Vector3) -
 
 func sweep(attacker: CharacterBody3D, motion: HeavySwordMotion, swinging: bool, now: float) -> void:
 	var attacker_combat: CombatController = attacker.get("combat") as CombatController
-	for node: Node in attacker.get_tree().get_nodes_in_group("hostile_mobs"):
+	var mobs: Array[Node] = attacker.get_tree().get_nodes_in_group("hostile_mobs")
+	var excluded: Array[RID] = []
+	for node: Node in attacker.get_parent().get_children() + mobs:
+		if node is CharacterBody3D:
+			excluded.append((node as CharacterBody3D).get_rid())
+	var origin: Vector3 = attacker.global_position + Vector3.UP * HitResolver.CHEST_HEIGHT
+	var space: PhysicsDirectSpaceState3D = attacker.get_world_3d().direct_space_state
+	for node: Node in mobs:
 		var mob: HostileMob = node as HostileMob
 		if mob == null or mob.is_queued_for_deletion() or mob.combat.health <= 0:
 			continue
@@ -48,6 +55,10 @@ func sweep(attacker: CharacterBody3D, motion: HeavySwordMotion, swinging: bool, 
 		var point_velocity: Vector3 = motion.tip_velocity * closest[2].x
 		var speed: float = point_velocity.length()
 		if speed < KICK_SPEED:
+			continue
+		# The cosmetic blade can cross walls; contact must use the same static cover
+		# rule as the cone, before spending either the swing hit or shove cooldown.
+		if HitResolver.wall_distance(space, origin, closest[1], excluded) < origin.distance_to(closest[1]):
 			continue
 		var damaging: bool = swinging and attacker_combat != null and attacker_combat.strike(-mob.mob_id)
 		if not damaging and now - float(last_hit.get(mob.mob_id, -INF)) < REHIT:

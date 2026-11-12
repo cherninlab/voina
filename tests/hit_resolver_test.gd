@@ -1,6 +1,7 @@
 extends SceneTree
 
 var wall: StaticBody3D = StaticBody3D.new()
+var failed: bool = false
 
 func _initialize() -> void:
 	call_deferred("run")
@@ -8,7 +9,7 @@ func _initialize() -> void:
 func check(condition: bool, message: String) -> void:
 	if not condition:
 		printerr("HIT_RESOLVER_FAIL: " + message)
-		quit(1)
+		failed = true
 
 func run() -> void:
 	var history: HitResolver.PositionHistory = HitResolver.PositionHistory.new()
@@ -61,5 +62,20 @@ func run() -> void:
 	check(HitResolver.first_ray_target(space, origin, end, centers, none) == -1, "Rewound targets behind cover are protected")
 	var exclude: Array[RID] = [wall.get_rid()]
 	check(HitResolver.first_ray_target(space, origin, end, centers, exclude) == 0, "Excluded bodies do not block")
+	wall.position = Vector3(8.01, 0, -5)
+	box.size = Vector3(4, 4, 0.1)
+	await physics_frame
+	await physics_frame
+	var graze_from: Vector3 = Vector3(10, 0.65, 0)
+	var graze_to: Vector3 = Vector3(10, 0.65, -10)
+	var grazing_center: Vector3 = Vector3(10.35, 0, -5.33)
+	check(HitResolver.first_ray_target(space, graze_from, graze_to, PackedVector3Array([grazing_center]), none) == -1, "A grazing capsule behind a wall corner stays protected")
+	var expected_entry: float = 5.33 - sqrt(0.4 * 0.4 - 0.35 * 0.35 - 0.15 * 0.15)
+	check(absf(HitResolver.segment_hits_capsule(graze_from, graze_to, grazing_center) - expected_entry) < 0.0001, "Grazing entry uses the actual capsule surface")
+	check(is_zero_approx(HitResolver.segment_hits_capsule(Vector3.ZERO, Vector3.ZERO, Vector3.ZERO)), "A zero-length segment inside hits at zero")
+	check(HitResolver.segment_hits_capsule(Vector3.ONE * 3, Vector3.ONE * 3, Vector3.ZERO) < 0.0, "A zero-length segment outside misses")
+	check(absf(HitResolver.segment_hits_capsule(Vector3(0, 2, 0), Vector3(0, -2, 0), Vector3.ZERO) - 1.1) < 0.0001, "A vertical ray enters the upper spherical cap")
+	check(absf(HitResolver.segment_hits_capsule(Vector3(-2, 0, 0), Vector3(2, 0, 0), Vector3.ZERO) - 1.6) < 0.0001, "A horizontal ray enters the cylinder side")
+	check(absf(HitResolver.segment_hits_capsule(Vector3(0.4, 0, 2), Vector3(0.4, 0, -2), Vector3.ZERO) - 2.0) < 0.0001, "An exact tangent touches the capsule")
 	print("HIT_RESOLVER_OK: history, rewind caps, head start, capsule ray, cone, cover")
-	quit()
+	quit(1 if failed else 0)

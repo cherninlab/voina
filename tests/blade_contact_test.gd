@@ -94,6 +94,36 @@ func run() -> void:
 	contact.strike_mob(player, motion, coned, Vector3.RIGHT, 11.0)
 	await get_tree().process_frame
 	check(coned.state == HostileMob.State.DEAD and not coned.visual.visible, "A lethal cone hit bisects even when slow")
+	# A wall must reject contact before damage dedupe or shove cooldown is consumed.
+	var covered: HostileMob = spawn_mob(90, Vector3(0, 0.95, 6))
+	player_combat.respawn()
+	player.position = Vector3(-1.5, 0.95, 6)
+	player_combat.clock += 1.0
+	check(player_combat.begin_attack(false), "Cover fixture has an approved swing")
+	motion.hilt = Vector3(-1.2, 1.0, 6)
+	motion.tip = Vector3(0.3, 1.0, 6)
+	motion.tip_velocity = Vector3(0, 0, 6.0)
+	var wall: StaticBody3D = StaticBody3D.new()
+	var collision: CollisionShape3D = CollisionShape3D.new()
+	var box: BoxShape3D = BoxShape3D.new()
+	box.size = Vector3(0.1, 3, 3)
+	collision.shape = box
+	wall.add_child(collision)
+	wall.position = Vector3(-0.6, 1, 6)
+	add_child(wall)
+	await get_tree().physics_frame
+	await get_tree().physics_frame
+	contact.sweep(player, motion, false, 20.0)
+	contact.sweep(player, motion, true, 20.1)
+	check(covered.combat.health == 60 and covered.kick_velocity.is_zero_approx(), "Static cover stops damaging and harmless blade contacts")
+	check(not player_combat.struck.has(-90) and not contact.last_hit.has(90), "Blocked contact consumes neither swing damage nor shove cooldown")
+	wall.free()
+	await get_tree().physics_frame
+	await get_tree().physics_frame
+	contact.sweep(player, motion, true, 20.2)
+	check(covered.combat.health == 35, "Removing cover permits the same swing to hit once")
+	contact.sweep(player, motion, true, 20.3)
+	check(covered.combat.health == 35, "Unobstructed contact still deduplicates damage")
 	if failures == 0:
 		print("BLADE_CONTACT_OK: segment geometry, gentle shove, shove and damage, wound, cooldown, one hit per swing, swing gate, farthest respawn, one-shot bisect, cone hit wounds, lethal bisect")
 	get_tree().quit(0 if failures == 0 else 1)

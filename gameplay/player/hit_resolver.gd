@@ -61,10 +61,37 @@ static func in_cone(origin: Vector3, forward: Vector3, target: Vector3, reach: f
 
 ## Distance along the segment to where it passes within the capsule, or -1.0 if it misses.
 static func segment_hits_capsule(from: Vector3, to: Vector3, center: Vector3) -> float:
-	var points: PackedVector3Array = Geometry3D.get_closest_points_between_segments(from, to, center - Vector3.UP * CAPSULE_HALF_SEGMENT, center + Vector3.UP * CAPSULE_HALF_SEGMENT)
-	if points[0].distance_to(points[1]) > CAPSULE_RADIUS:
+	var offset: Vector3 = from - center
+	var axis_point: Vector3 = Vector3(0, clampf(offset.y, -CAPSULE_HALF_SEGMENT, CAPSULE_HALF_SEGMENT), 0)
+	if offset.distance_squared_to(axis_point) <= CAPSULE_RADIUS * CAPSULE_RADIUS:
+		return 0.0
+	var length: float = from.distance_to(to)
+	if length <= 0.000001:
 		return -1.0
-	return maxf(0.0, from.distance_to(points[0]) - CAPSULE_RADIUS)
+	var direction: Vector3 = (to - from) / length
+	var entry: float = INF
+	# The capsule is the union of a cylinder and its two spherical caps. A grazing
+	# ray enters later than closest-distance minus radius, which could put it before cover.
+	var heights: Array[float] = [-CAPSULE_HALF_SEGMENT, CAPSULE_HALF_SEGMENT]
+	for height: float in heights:
+		var relative: Vector3 = offset - Vector3.UP * height
+		var along: float = relative.dot(direction)
+		var discriminant: float = along * along - relative.length_squared() + CAPSULE_RADIUS * CAPSULE_RADIUS
+		if discriminant >= -0.0000001:
+			var distance: float = -along - sqrt(maxf(0.0, discriminant))
+			if distance >= 0.0 and distance <= length:
+				entry = minf(entry, distance)
+	var flat: float = direction.x * direction.x + direction.z * direction.z
+	if flat > 0.000001:
+		var along: float = offset.x * direction.x + offset.z * direction.z
+		var radial: float = offset.x * offset.x + offset.z * offset.z - CAPSULE_RADIUS * CAPSULE_RADIUS
+		var discriminant: float = along * along - flat * radial
+		if discriminant >= -0.0000001:
+			var distances: Array[float] = [(-along - sqrt(maxf(0.0, discriminant))) / flat, (-along + sqrt(maxf(0.0, discriminant))) / flat]
+			for distance: float in distances:
+				if distance >= 0.0 and distance <= length and absf(offset.y + direction.y * distance) <= CAPSULE_HALF_SEGMENT:
+					entry = minf(entry, distance)
+	return entry if is_finite(entry) else -1.0
 
 ## Distance to the first static obstacle; players are excluded because their bodies are in the present.
 static func wall_distance(space: PhysicsDirectSpaceState3D, from: Vector3, to: Vector3, exclude: Array[RID]) -> float:
