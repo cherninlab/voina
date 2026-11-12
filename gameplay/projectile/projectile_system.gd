@@ -17,6 +17,8 @@ const LIFETIME: float = 2.0
 const MAX_IN_FLIGHT: int = 3
 # The host flies a client's bolt ahead by that client's one-way latency, so it matches the shooter's view.
 const MAX_ADVANCE: float = 0.1
+# Fail closed if overlapping parries keep returning the bolt without consuming flight time.
+const MAX_CONTACTS_PER_STEP: int = 32
 # The host's view of a client lags its owner; muzzle claims farther than this from the shooter are refused.
 const ORIGIN_SLACK: float = 2.5
 const AIM_RANGE: float = 60.0
@@ -168,12 +170,7 @@ func spawn(owner_peer: int, seq: int, origin: Vector3, velocity: Vector3) -> voi
 	spawned.rpc(bolt.id, owner_peer, seq, origin, velocity, advance)
 	add_visual(bolt)
 	animate_shot(player(owner_peer))
-	# A bolt released inside a target's capsule hits it; cast_motion ignores shapes it starts inside.
-	var touching: Dictionary = contact_at(bolt, origin)
-	if not touching.is_empty():
-		resolve(bolt, touching)
-	elif advance > 0.0:
-		fly(bolt, advance)
+	fly(bolt, advance)
 
 func _physics_process(delta: float) -> void:
 	for id: int in bolts.keys():
@@ -192,17 +189,43 @@ func _physics_process(delta: float) -> void:
 
 # Host: sweep the bolt's sphere along this tick's segment of its flight.
 func fly(bolt: Bolt, delta: float) -> void:
-	var from: Vector3 = flight_position(bolt, bolt.age)
-	bolt.age += delta
-	var to: Vector3 = flight_position(bolt, bolt.age)
-	var query: PhysicsShapeQueryParameters3D = shape_query(bolt, from)
-	query.motion = to - from
-	var fractions: PackedFloat32Array = get_world_3d().direct_space_state.cast_motion(query)
-	var contact: Dictionary = contact_at(bolt, from + query.motion * fractions[1]) if fractions[1] < 1.0 else {}
-	if not contact.is_empty():
+	if bolts.get(bolt.id) != bolt:
+		return
+	var remaining: float = maxf(delta, 0.0)
+	for attempt: int in range(MAX_CONTACTS_PER_STEP):
+		var from: Vector3 = flight_position(bolt, bolt.age)
+		if bolt.age >= LIFETIME:
+			finish(bolt, from)
+			return
+		var start_age: float = bolt.age
+		var duration: float = minf(remaining, LIFETIME - start_age)
+		var to: Vector3 = flight_position(bolt, start_age + duration)
+		# Jolt casts ignore starting overlaps, including a close reflected origin.
+		var contact: Dictionary = contact_at(bolt, from)
+		var fraction: float = 0.0
+		if contact.is_empty() and duration > 0.0:
+			var query: PhysicsShapeQueryParameters3D = shape_query(bolt, from)
+			query.motion = to - from
+			var fractions: PackedFloat32Array = get_world_3d().direct_space_state.cast_motion(query)
+			fraction = fractions[1]
+			if fraction < 1.0:
+				contact = contact_at(bolt, from + query.motion * fraction)
+		if contact.is_empty():
+			bolt.age = start_age + duration
+			if bolt.age >= LIFETIME:
+				finish(bolt, to)
+			return
+		bolt.age = start_age + duration * fraction
+		var previous_owner: int = bolt.owner_peer
 		resolve(bolt, contact)
-	elif bolt.age >= LIFETIME:
-		finish(bolt, to)
+		if bolts.get(bolt.id) != bolt:
+			return
+		if bolt.owner_peer != previous_owner:
+			remaining -= duration * fraction
+		else:
+			# An evade adds an exclusion; resweep the same chord so gravity/time stay unchanged.
+			bolt.age = start_age
+	finish(bolt, flight_position(bolt, bolt.age))
 
 # Clients only draw: the visual stops at walls, and the host's end event removes it.
 func coast(bolt: Bolt, delta: float) -> void:

@@ -55,6 +55,149 @@ func chest(player: CharacterBody3D) -> Vector3:
 func fire(shooter: CharacterBody3D, target: Vector3) -> bool:
 	return Projectiles.handle_fire(shooter.get_multiplayer_authority(), 0, chest(shooter), (target - chest(shooter)).normalized())
 
+func sweep_regressions(shooter: CharacterBody3D, target: CharacterBody3D, covered: CharacterBody3D) -> void:
+	Projectiles.set_physics_process(false)
+	var second_evader: CharacterBody3D = add_player(4, Vector3(80, 1, 0), 0.0)
+	for body: CharacterBody3D in [shooter, target, covered, second_evader]:
+		body.set_physics_process(false)
+		combat(body).set_physics_process(false)
+		combat(body).health = 100
+		combat(body).blocking = false
+		combat(body).invulnerable_until = 0.0
+	place(shooter, Vector3(30, 1, 0))
+	place(target, Vector3(30, 1, -1))
+	place(covered, Vector3(30, 1, -3.4))
+	add_wall(Vector3(3, 3, 0.1), Vector3(30, 1, -1.7))
+	combat(target).invulnerable_until = combat(target).clock + 100.0
+	await frames(2)
+	Projectiles.spawn(1, 0, chest(shooter), Vector3.FORWARD * Projectiles.SPEED)
+	var bolt: Projectiles.Bolt = Projectiles.bolts.values()[0]
+	Projectiles.fly(bolt, 0.1)
+	check(bolt.passed.size() == 1 and Projectiles.bolts.is_empty(), "A 0.1s catch-up sweeps cover after an evade")
+	for step: int in range(20):
+		Projectiles.fly(bolt, 1.0 / 60.0)
+	check(combat(covered).health == 100, "The player behind evade-plus-cover stays protected")
+	Projectiles.clear()
+
+	place(shooter, Vector3(40, 1, 0))
+	place(target, Vector3(40, 1, -0.8))
+	place(second_evader, Vector3(40, 1, -1.7))
+	place(covered, Vector3(40, 1, -3.1))
+	combat(second_evader).invulnerable_until = combat(second_evader).clock + 100.0
+	await frames(2)
+	Projectiles.spawn(1, 0, chest(shooter), Vector3.FORWARD * Projectiles.SPEED)
+	bolt = Projectiles.bolts.values()[0]
+	Projectiles.fly(bolt, 0.1)
+	check(bolt.passed.size() == 2 and is_equal_approx(bolt.age, 0.1), "One catch-up passes multiple evaders without losing flight time")
+	check(Projectiles.flight_position(bolt, bolt.age).is_equal_approx(chest(shooter) + Vector3(0, -0.02, -2.4)), "Evades preserve the normal ballistic endpoint")
+	Projectiles.fly(bolt, 0.1)
+	check(combat(target).health == 100 and combat(second_evader).health == 100, "Both evaders remain unharmed")
+	check(combat(covered).health == 80 and Projectiles.bolts.is_empty(), "The remaining flight hits the first vulnerable player once")
+	Projectiles.fly(bolt, 0.1)
+	check(combat(covered).health == 80, "An already ended bolt cannot deal duplicate damage")
+	Projectiles.clear()
+
+	place(shooter, Vector3(50, 1, 0))
+	place(target, Vector3(50, 1, -0.8))
+	place(covered, Vector3(50, 1, -1.6))
+	await frames(2)
+	Projectiles.spawn(1, 0, chest(shooter), Vector3.FORWARD * Projectiles.SPEED)
+	bolt = Projectiles.bolts.values()[0]
+	bolt.age = Projectiles.LIFETIME - 0.04
+	bolt.velocity = Vector3.FORWARD * Projectiles.SPEED - Projectiles.GRAVITY * bolt.age
+	bolt.origin = chest(shooter) - bolt.velocity * bolt.age - Projectiles.GRAVITY * (0.5 * bolt.age * bolt.age)
+	var before_expiry: int = combat(covered).health
+	Projectiles.fly(bolt, 0.1)
+	check(bolt.passed.size() == 1 and is_equal_approx(bolt.age, Projectiles.LIFETIME) and Projectiles.bolts.is_empty(), "An evaded bolt expires within the catch-up interval")
+	check(combat(covered).health == before_expiry, "Expiry prevents a hit in the unused part of the interval")
+	Projectiles.fly(bolt, 0.0)
+	check(Projectiles.bolts.is_empty(), "Zero-time updates cannot revive an expired bolt")
+
+	place(shooter, Vector3(60, 1, 0))
+	place(target, Vector3(60, 1, -0.85))
+	combat(target).invulnerable_until = 0.0
+	combat(target).phase = CombatController.Phase.IDLE
+	combat(target).next_block = 0.0
+	target.set("yaw", PI)
+	shooter.set("yaw", 0.0)
+	check(combat(target).set_block(true), "The close defender can parry")
+	await frames(2)
+	Projectiles.spawn(1, 0, chest(shooter), Vector3.FORWARD * Projectiles.SPEED)
+	bolt = Projectiles.bolts.values()[0]
+	Projectiles.fly(bolt, 1.0 / 60.0)
+	check(combat(shooter).health == 80 and combat(target).health == 100 and Projectiles.bolts.is_empty(), "A close reflection hits the shooter overlapping its new origin")
+	Projectiles.fly(bolt, 0.1)
+	check(combat(shooter).health == 80, "A reflected overlap deals damage only once")
+	Projectiles.clear()
+
+	combat(shooter).health = 100
+	combat(shooter).phase = CombatController.Phase.IDLE
+	combat(shooter).next_block = 0.0
+	check(combat(shooter).set_block(true), "The close shooter can also parry")
+	Projectiles.spawn(1, 0, chest(shooter), Vector3.FORWARD * Projectiles.SPEED)
+	bolt = Projectiles.bolts.values()[0]
+	Projectiles.fly(bolt, 0.1)
+	check(Projectiles.bolts.is_empty() and combat(shooter).health == 100 and combat(target).health == 100, "Mutual overlapping parries terminate without recursion or damage")
+	Projectiles.clear()
+
+	# A distant reflection must also use the rest of its catch-up interval, not just overlaps.
+	place(shooter, Vector3(70, 1, 0))
+	place(target, Vector3(70, 1, -1.5))
+	combat(shooter).blocking = false
+	await frames(2)
+	Projectiles.spawn(1, 0, chest(shooter), Vector3.FORWARD * Projectiles.SPEED)
+	bolt = Projectiles.bolts.values()[0]
+	Projectiles.fly(bolt, 0.1)
+	check(combat(shooter).health == 80 and Projectiles.bolts.is_empty(), "A reflection sweeps its remaining catch-up time back to the shooter")
+	Projectiles.clear()
+
+	place(shooter, Vector3(80, 1, 0))
+	place(target, Vector3(80, 1, -0.2))
+	place(second_evader, Vector3(80, 1, -0.3))
+	place(covered, Vector3(80, 1, -1.5))
+	combat(target).blocking = false
+	combat(target).invulnerable_until = combat(target).clock + 100.0
+	combat(covered).health = 100
+	await frames(2)
+	Projectiles.spawn(1, 0, chest(shooter), Vector3.FORWARD * Projectiles.SPEED)
+	bolt = Projectiles.bolts.values()[0]
+	check(bolt.passed.size() == 2 and is_zero_approx(bolt.age), "Spawn resolves multiple immune starting overlaps without consuming flight time")
+	Projectiles.fly(bolt, 0.1)
+	check(combat(covered).health == 80 and Projectiles.bolts.is_empty(), "Starting overlaps do not skip the vulnerable player ahead")
+	Projectiles.clear()
+
+	place(target, Vector3(90, 1, -0.2))
+	place(second_evader, Vector3(90, 1, -0.3))
+	place(shooter, Vector3(90, 1, 0))
+	add_wall(Vector3(0.1, 3, 3), Vector3(90.1, 1, 0))
+	await frames(2)
+	Projectiles.spawn(1, 0, chest(shooter), Vector3.FORWARD * Projectiles.SPEED)
+	check(Projectiles.bolts.is_empty(), "Static cover overlapping an immune spawn still ends the bolt")
+
+	place(shooter, Vector3(100, 1, 0))
+	place(target, Vector3(100, 1, -1.5))
+	combat(target).invulnerable_until = 0.0
+	combat(target).next_block = 0.0
+	target.set("yaw", PI - 0.6)
+	check(combat(target).set_block(true), "A defender beside cover can parry")
+	add_wall(Vector3(0.2, 3, 0.4), Vector3(99.5, 1, -1.0))
+	await frames(2)
+	Projectiles.spawn(1, 0, chest(shooter), Vector3.FORWARD * Projectiles.SPEED)
+	bolt = Projectiles.bolts.values()[0]
+	var before_reflection: int = combat(shooter).health
+	Projectiles.fly(bolt, 0.1)
+	check(bolt.owner_peer == 2 and Projectiles.bolts.is_empty() and combat(shooter).health == before_reflection, "Cover overlapping a reflected origin stops its remaining flight")
+
+	place(shooter, Vector3(110, 5, 0))
+	await frames(2)
+	Projectiles.spawn(1, 0, chest(shooter), Vector3.FORWARD * Projectiles.SPEED)
+	bolt = Projectiles.bolts.values()[0]
+	Projectiles.fly(bolt, 0.1)
+	check(is_equal_approx(bolt.age, 0.1) and Projectiles.flight_position(bolt, bolt.age).is_equal_approx(chest(shooter) + Vector3(0, -0.02, -2.4)), "An unobstructed bolt preserves its ordinary flight endpoint")
+	check(Projectiles.flight_velocity(bolt, bolt.age).is_equal_approx(Vector3(0, -0.4, -24)), "An unobstructed bolt preserves gravity")
+	Projectiles.clear()
+	print("PROJECTILE_SWEEP_OK: catch-up cover, multiple evades, ballistic time, single damage, expiry, close reflection, bounded parries, starting overlaps")
+
 func run() -> void:
 	players.name = "Players"
 	add_child(players)
@@ -148,6 +291,7 @@ func run() -> void:
 	check(fire(shooter, chest(shooter) + Vector3.RIGHT * 10), "A lower-dungeon miss is accepted")
 	await frames(130)
 	check(Projectiles.bolts.is_empty(), "A lower-dungeon miss still expires after its lifetime")
+	await sweep_regressions(shooter, target, covered)
 	if failed:
 		return
 	print("PROJECTILE_OK: hit, cover, validation, wall-muzzle clamp, cooldown, in-flight cap, lifetime, dash pass-through, block, parry reflect, disconnect")
